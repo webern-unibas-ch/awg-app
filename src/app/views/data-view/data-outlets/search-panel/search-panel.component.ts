@@ -385,9 +385,27 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             return;
         }
 
+        let query: SearchQuery;
+        if (
+            !this.selectedSearchTabId ||
+            this.selectedSearchTabId === this.searchTabStrings.fulltext.id ||
+            typeof this.searchParams.query === 'string'
+        ) {
+            query = params.get('query') || this.searchParams.query;
+        } else if (
+            this.selectedSearchTabId === this.searchTabStrings.extended.id ||
+            typeof this.searchParams.query === 'object'
+        ) {
+            query = new ExtendedSearchParams();
+            query.filterByRestype = params.get('filterByRestype') || this.searchParams.query.filterByRestype;
+            query.propertyId = params.getAll('propertyId') || this.searchParams.query.propertyId;
+            query.compop = params.getAll('compop') || this.searchParams.query.compop;
+            query.searchval = params.getAll('searchval') || this.searchParams.query.searchval;
+        }
+
         // Update search params (immutable)
         this.searchParams = {
-            query: params.get('query') || this.searchParams.query,
+            query: query,
             nRows: params.get('nrows') || this.searchParams.nRows,
             startAt: params.get('startAt') || this.searchParams.startAt,
             view: SearchResultsViewTypes[params.get('view')] || this.searchParams.view,
@@ -446,10 +464,31 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     private _routeToSelf(sp: SearchParams, route?: string): void {
         const commands = route ? [route] : [];
+        const params = this._createQueryParams(sp);
         this.router.navigate(commands, {
             relativeTo: this.route,
-            queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
-            queryParamsHandling: 'merge',
+            queryParams: params,
         });
+    }
+
+    private _createQueryParams(sp: SearchParams) {
+        const qp: Params = {};
+        const q = this.getSearchQueryType(sp.query);
+        if (this.selectedSearchTabId === this.searchTabStrings.fulltext.id) {
+            qp['query'] = sp.query;
+        } else if (this.selectedSearchTabId === this.searchTabStrings.extended.id) {
+            qp['filterByRestype'] = q.filterByRestype || '';
+
+            if (q.propertyId) {
+                qp['propertyId'] = q.propertyId || [];
+                qp['compop'] = q.compop || [];
+                qp['searchval'] = q.searchval || [];
+            }
+        }
+        qp['nrows'] = sp.nRows;
+        qp['startAt'] = sp.startAt;
+        qp['view'] = sp.view;
+
+        return qp;
     }
 }
