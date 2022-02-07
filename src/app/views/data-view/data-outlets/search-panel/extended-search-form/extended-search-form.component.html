@@ -27,7 +27,7 @@
                     <select
                         id="awg-extended-search-property-{{ idx }}"
                         class="form-control"
-                        formControlName="propertyIdControl"
+                        [formControl]="getPropertyIdControlAtIndex(idx)"
                         [attr.disabled]="isPropertyIdControlDisabled()"
                         required>
                         <option value="" disabled hidden>{{ defaultFormString }}</option>
@@ -44,7 +44,7 @@
                         id="awg-extended-search-compop"
                         class="form-control"
                         formControlName="compopControl"
-                        [attr.disabled]="isCompopControlDisabled()"
+                        [attr.disabled]="isCompopControlDisabled(idx)"
                         required>
                         <option value="" disabled hidden>{{ defaultFormString }}</option>
                         <option *ngFor="let compop of compops" [ngValue]="compop.id">
@@ -90,13 +90,30 @@
                 {{ searchFormStrings.errorMessage }}
             </div>
 
-            property_id[]: {{ _getFormArrayControlAtIndex('propertyIdControl', idx).value }}
+            <div>
+                property_id[]: {{ _getFormArrayControlAtIndex('propertyIdControl', idx).value }}
 
-            compop[]: {{ _getFormArrayControlAtIndex('compopControl', idx).value }}
+                <div *ngIf="!_isPropertyIdMissing(idx)">
+                    gui_element:
+                    {{
+                        getPopertyListEntryById(_getFormArrayControlAtIndex('propertyIdControl', idx).value)[0][
+                            'guielement_id'
+                        ] | json
+                    }}
+                    valuetype_id:
+                    {{
+                        getPopertyListEntryById(_getFormArrayControlAtIndex('propertyIdControl', idx).value)[0][
+                            'valuetype_id'
+                        ] | json
+                    }}
+                </div>
 
-            searchval[]: {{ _getFormArrayControlAtIndex('searchvalControl', idx).value }}
+                compop[]: {{ _getFormArrayControlAtIndex('compopControl', idx).value }}
 
-            sVDisabled?: {{ isSearchvalControlDisabled(idx) }}
+                searchval[]: {{ _getFormArrayControlAtIndex('searchvalControl', idx).value }}
+
+                sVDisabled?: {{ isSearchvalControlDisabled(idx) }}
+            </div>
         </div>
     </ng-container>
     <button class="btn btn-outline-info" type="submit" [disabled]="!extendedSearchForm.valid">

@@ -214,10 +214,35 @@ export class ExtendedSearchFormComponent implements OnInit {
         }
     }
 
+    getPopertyListEntryById(id: string) {
+        return this.propertyListsResponse.properties.filter(property => property.id === id);
+    }
+
+    getPropertyIdControlAtIndex(index: number) {
+        this.listenToUserPropertyChange(index);
+        return this._getFormArrayControlAtIndex('propertyIdControl', index);
+    }
+
+    getCompopoControlAtIndex(index: number) {
+        return this._getFormArrayControlAtIndex('compopControl', index);
+    }
+
+    getSearchvalControlAtIndex(index: number) {
+        return this._getFormArrayControlAtIndex('searchvalControl', index);
+    }
+
+    getSearchvalPlaceholder(index: number): string {
+        let placeholder = 'Suchbegriff';
+        if (this.isSearchvalControlDisabled(index)) {
+            placeholder = this.defaultFormString;
+        }
+        return placeholder;
+    }
+
     isAddButtonDisabled(index: number): string | null {
         const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
 
-        return this._isPropertyIdAndCompopMissing(index) ||
+        return this._isPropertyIdOrCompopMissing(index) ||
             (compopValue !== 'EXISTS' && this._isSearchvalMissing(index)) ||
             this.getSearchvalControlAtIndex(index).errors?.minlength ||
             this._isNotLastProperty(index)
@@ -229,27 +254,15 @@ export class ExtendedSearchFormComponent implements OnInit {
         return this._isResourecetypeMissing() ? '' : null; // Mechanism needed to populate "attr.disabled", cf. https://stackoverflow.com/a/49087915
     }
 
-    isCompopControlDisabled(): string | null {
-        return this.isPropertyIdControlDisabled();
+    isCompopControlDisabled(index: number): string | null {
+        return this.isPropertyIdControlDisabled() || this._isPropertyIdMissing(index) ? '' : null;
     }
 
     isSearchvalControlDisabled(index: number): string | null {
         const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
-        return this._isResourecetypeMissing() || this._isPropertyIdAndCompopMissing(index) || compopValue === 'EXISTS'
+        return this._isResourecetypeMissing() || this._isPropertyIdOrCompopMissing(index) || compopValue === 'EXISTS'
             ? ''
             : null;
-    }
-
-    getSearchvalControlAtIndex(index: number) {
-        return this._getFormArrayControlAtIndex('searchvalControl', index);
-    }
-
-    getSearchvalPlaceholder(index: number): string {
-        let placeholder = 'Suchbegriff';
-        if (this.isSearchvalControlDisabled(index)) {
-            placeholder = '---';
-        }
-        return placeholder;
     }
 
     private _getFormArrayControlAtIndex(controlName: string, index: number): any {
@@ -267,14 +280,24 @@ export class ExtendedSearchFormComponent implements OnInit {
         return !resourceValue || resourceValue === this.defaultFormString;
     }
 
-    private _isPropertyIdAndCompopMissing(index: number): boolean {
-        const propertyValue = this._getFormArrayControlAtIndex('propertyIdControl', index).value;
+    private _isPropertyIdMissing(index: number): boolean {
+        const propertyIdValue = this._getFormArrayControlAtIndex('propertyIdControl', index).value;
+
+        const propertyIdMissing = !propertyIdValue || propertyIdValue === this.defaultFormString;
+
+        return propertyIdMissing;
+    }
+
+    private _isCompopMissing(index: number): boolean {
         const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
 
-        const propertyMissing = !propertyValue || propertyValue === this.defaultFormString;
         const compopMissing = !compopValue || compopValue === this.defaultFormString;
 
-        return propertyMissing || compopMissing;
+        return compopMissing;
+    }
+
+    private _isPropertyIdOrCompopMissing(index: number): boolean {
+        return this._isPropertyIdMissing(index) || this._isCompopMissing(index);
     }
 
     private _isSearchvalMissing(index: number): boolean {
