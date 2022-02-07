@@ -3,10 +3,16 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { ResourceTypesInVocabularyResponseJson, ResTypeItemJson } from '@awg-shared/api-objects';
+import {
+    PropertyTypesInResourceClassResponseJson,
+    ResourceTypesInVocabularyResponseJson,
+    ResTypeItemJson,
+} from '@awg-shared/api-objects';
 
 import { ExtendedSearchParams } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
+
+import { SEARCH_COMPOP_LISTS, SearchCompop, VALUETYPE_LIST } from './compop';
 
 @Component({
     selector: 'awg-extended-search-form',
@@ -21,20 +27,6 @@ export class ExtendedSearchFormComponent implements OnInit {
      */
     @Output()
     searchRequest: EventEmitter<ExtendedSearchParams> = new EventEmitter();
-
-    extendedSearchParams: ExtendedSearchParams = new ExtendedSearchParams();
-
-    compops = [
-        { id: 'EXISTS', label: 'EXISTS' },
-        { id: 'EQ', label: '=' },
-        { id: '!EQ', label: '!=' },
-        { id: 'GT', label: '>' },
-        { id: 'GT_EQ', label: '>=' },
-        { id: 'LT', label: '<' },
-        { id: 'LT_EQ', label: '<=' },
-    ];
-
-    defaultFormString = '---';
 
     /**
      * Public variable: faPlus.
@@ -64,11 +56,16 @@ export class ExtendedSearchFormComponent implements OnInit {
      */
     extendedSearchForm: FormGroup;
 
+    extendedSearchParams: ExtendedSearchParams = new ExtendedSearchParams();
+
     restypesResponse: ResourceTypesInVocabularyResponseJson;
+    propertyListsResponse: PropertyTypesInResourceClassResponseJson;
     selectedResourcetype: ResTypeItemJson;
     selectedProperties: string[];
+    selectedCompopSets: SearchCompop[][] = [[]];
 
-    // TODO: move to separate class / service?
+    defaultFormString = '---';
+
     /**
      * Public variable: searchFormString.
      *
@@ -164,12 +161,23 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     getResourcetypes(): void {
-        this.dataApiService.getExtendedSearchResourcetypes().subscribe(
+        this.dataApiService.getResourcetypes().subscribe(
             (restypesResponse: ResourceTypesInVocabularyResponseJson) => {
                 this.restypesResponse = restypesResponse;
                 console.log(this.restypesResponse);
 
                 this.listenToUserResourcetypeChange();
+            },
+            error => {
+                console.error(error as any);
+            }
+        );
+    }
+
+    getPropertyLists(restypeId: string): void {
+        this.dataApiService.getPropertyListsByResourceType(restypeId).subscribe(
+            (properyListsResponse: PropertyTypesInResourceClassResponseJson) => {
+                this.propertyListsResponse = properyListsResponse;
             },
             error => {
                 console.error(error as any);
@@ -184,8 +192,56 @@ export class ExtendedSearchFormComponent implements OnInit {
             this.clearPropertiesControls(); // Remove all previous property input fields
 
             console.log(resourcetypeId);
-            console.log(this.selectedResourcetype);
+
+            if (this.selectedResourcetype) {
+                console.log(this.selectedResourcetype);
+                this.getPropertyLists(this.selectedResourcetype.id);
+            }
         });
+    }
+
+    listenToUserPropertyChange(index: number): void {
+        this._getFormArrayControlAtIndex('propertyIdControl', index).valueChanges.subscribe((propertyId: string) => {
+            const propertyListEntry = this.getPopertyListEntryById(propertyId)[0];
+            const guiElementId = propertyListEntry.guielement_id;
+            const valueTypeId = propertyListEntry.valuetype_id;
+
+            this.getCompopoControlAtIndex(index).setValue(this.defaultFormString);
+            this.getSearchvalControlAtIndex(index).setValue('');
+
+            this.selectedCompopSets[index] = this.getCompopSetByValueType(valueTypeId, guiElementId);
+        });
+    }
+
+    getCompopSetByValueType(valueTypeId: string, guiElementId: string): SearchCompop[] {
+        let compopSet: SearchCompop[] = [];
+        const valueType = VALUETYPE_LIST.typeList.filter(vt => vt.id === valueTypeId);
+
+        if (!valueType || valueType.length !== 1 || !valueType[0].id) {
+            return [];
+        } else {
+            const id = valueType[0].id;
+
+            if (id === '1' || id === '14') {
+                // 1 TEXT, 14 RICHTEXT, + 6 RESPTR if gui = 14
+                compopSet = SEARCH_COMPOP_LISTS.compopList[0].compopSet;
+            } else if (id === '2' || id === '3') {
+                // 2 INTEGER, 3 FLOAT
+                compopSet = SEARCH_COMPOP_LISTS.compopList[1].compopSet;
+            } else if (id === '4' || id === '5') {
+                // 4 DATE, 5 PERIOD
+                compopSet = SEARCH_COMPOP_LISTS.compopList[2].compopSet;
+            } else if (id === '7' || id === '11' || id === '12' || id === '15') {
+                // 7 SELECTION, 11 COLOR, 12 HLIST, 15 GEONAE, 6 RESPTR if gui not 14 (3, 6)
+                compopSet = SEARCH_COMPOP_LISTS.compopList[3].compopSet;
+            } else if (id === '13') {
+                // 13 ICONCLASS
+                compopSet = SEARCH_COMPOP_LISTS.compopList[4].compopSet;
+            } else {
+                compopSet = SEARCH_COMPOP_LISTS.compopList[0].compopSet;
+            }
+        }
+        return compopSet;
     }
 
     onReset(): void {

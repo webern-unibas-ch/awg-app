@@ -32,7 +32,10 @@
                         required>
                         <option value="" disabled hidden>{{ defaultFormString }}</option>
                         <ng-container *ngIf="selectedResourcetype">
-                            <option *ngFor="let property of selectedResourcetype?.properties" [value]="property.id">
+                            <option
+                                *ngFor="let property of selectedResourcetype?.properties"
+                                [value]="property.id"
+                                [title]="property.label">
                                 {{ property.id }} | {{ property.label }}
                             </option>
                         </ng-container>
@@ -47,9 +50,13 @@
                         [attr.disabled]="isCompopControlDisabled(idx)"
                         required>
                         <option value="" disabled hidden>{{ defaultFormString }}</option>
-                        <option *ngFor="let compop of compops" [ngValue]="compop.id">
-                            {{ compop.label }}
-                        </option>
+                        <ng-container>
+                            <option
+                                *ngFor="let compop of selectedCompopSets[idx]"
+                                [ngValue]="compop.value"
+                                [title]="compop.title"
+                                [innerHtml]="compop.label"></option>
+                        </ng-container>
                     </select>
                 </div>
                 <div class="input-group col-md-4">
