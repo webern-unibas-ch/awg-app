@@ -8,6 +8,7 @@ import { ApiService, ConversionService } from '@awg-core/services/';
 import {
     GeoDataJson,
     HlistJson,
+    PropertyTypesInResourceClassResponseJson,
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     ResourceTypesInVocabularyResponseJson,
@@ -43,6 +44,13 @@ export class DataApiService extends ApiService {
     projectId = '6';
 
     /**
+     * Public variable: vocabularyId.
+     *
+     * It keeps the SALSAH specific id of the webern vocabulary ('4').
+     */
+    vocabularyId = '4';
+
+    /**
      * Public variable: defaultLanguage.
      *
      * It keeps the SALSAH specific value for the defaut language ('de').
@@ -63,11 +71,12 @@ export class DataApiService extends ApiService {
      * resources, search, geonames, hlists and selections.
      */
     routes = {
+        geonames: 'geonames/',
+        hlists: 'hlists/',
+        propertylists: 'propertylists/',
         resources: 'resources/',
         resourcetypes: 'resourcetypes/',
         search: 'search/',
-        geonames: 'geonames/',
-        hlists: 'hlists/',
         selections: 'selections/',
     };
 
@@ -102,7 +111,7 @@ export class DataApiService extends ApiService {
             return observableOf(new SearchResponseJson());
         }
         if (typeof searchParams.query === 'object' && !searchParams.query['filterByRestype']) {
-            return;
+            return observableOf(new SearchResponseJson());
         }
 
         // Default values
@@ -142,12 +151,10 @@ export class DataApiService extends ApiService {
         );
     }
 
-    getExtendedSearchResourcetypes(): Observable<ResourceTypesInVocabularyResponseJson> {
-        const vocabularyId = 4;
-
+    getResourcetypes(): Observable<ResourceTypesInVocabularyResponseJson> {
         // Set path and params of query
         const queryPath: string = this.routes.resourcetypes;
-        const queryHttpParams = new HttpParams().set('vocabulary', vocabularyId).set('lang', this.defaultLanguage);
+        const queryHttpParams = new HttpParams().set('vocabulary', this.vocabularyId).set('lang', this.defaultLanguage);
 
         // Cold request to API
         const resourcetypesData$: Observable<ResourceTypesInVocabularyResponseJson> = this.getApiResponse(
@@ -164,6 +171,30 @@ export class DataApiService extends ApiService {
             map((resourcetypes: ResourceTypesInVocabularyResponseJson) => {
                 console.log(this.httpGetUrl);
                 return resourcetypes;
+            })
+        );
+    }
+
+    getPropertyListsByResourceType(restypeId: string): Observable<PropertyTypesInResourceClassResponseJson> {
+        // Set path and params of query
+        const queryPath: string = this.routes.propertylists;
+        const queryHttpParams = new HttpParams().set('restype', restypeId);
+
+        // Cold request to API
+        const propertylistsData$: Observable<PropertyTypesInResourceClassResponseJson> = this.getApiResponse(
+            PropertyTypesInResourceClassResponseJson,
+            queryPath,
+            queryHttpParams
+        );
+
+        // Return resource types
+        return propertylistsData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new PropertyTypesInResourceClassResponseJson()),
+
+            map((propertylists: PropertyTypesInResourceClassResponseJson) => {
+                console.log(this.httpGetUrl);
+                return propertylists;
             })
         );
     }

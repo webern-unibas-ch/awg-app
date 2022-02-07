@@ -14,8 +14,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
-import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
+import { KnoraIRI, StringOrNumber } from '@awg-shared/api-objects/basic-message-components';
 
 /**
  * Represents information about a property type
@@ -24,27 +24,6 @@ import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
 @JsonObject('PropertyDefinitionJson')
 export class PropertyDefinitionJson {
     /**
-     * GUI attributes (HTML) of the property type
-     * @param attributes: string | null
-     */
-    @JsonProperty('attributes', String)
-    public attributes: string = undefined;
-
-    /**
-     * Description of the property type
-     * @param description: string
-     */
-    @JsonProperty('description', String)
-    public description: string = undefined;
-
-    /**
-     * Name of the GUI element used for the property type
-     * @param gui_name: string | null
-     */
-    @JsonProperty('gui_name', String)
-    public gui_name: string = undefined;
-
-    /**
      * IRI of the property type
      * @param id: KnoraIRI
      */
@@ -52,27 +31,11 @@ export class PropertyDefinitionJson {
     public id: KnoraIRI = undefined;
 
     /**
-     * Label of the property type
-     * @param label: string
-     */
-    @JsonProperty('label', String)
-    public label: string = undefined;
-
-    /**
      * IRI of the property type
      * @param name: KnoraIRI
-     * TODO: difference to id<KnoraIRI> ??
      */
     @JsonProperty('name', String)
     public name: KnoraIRI = undefined;
-
-    /**
-     * Cardinality of the property type for the requested resource class
-     * (not given if property type is requested for a vocabulary)
-     * @param occurence: string
-     */
-    @JsonProperty('occurence', String, true)
-    public occurence: string = undefined;
 
     /**
      * IRI of the property type's value
@@ -82,9 +45,58 @@ export class PropertyDefinitionJson {
     public valuetype_id: KnoraIRI = undefined;
 
     /**
-     * IRI of the vocabulary the property type belongs to
-     * @param vocabulary: KnoraIRI
+     * GUI attributes (HTML) of the property type
+     * @param attributes: string | null
      */
-    @JsonProperty('vocabulary', String)
-    public vocabulary: KnoraIRI = undefined;
+    @JsonProperty('attributes', String)
+    public attributes: string = undefined;
+
+    /**
+     * IRI of the vocabulary the property type belongs to
+     * @param vocabulary_id: KnoraIRI
+     */
+    @JsonProperty('vocabulary_id', String)
+    public vocabulary_id: KnoraIRI = undefined;
+
+    /**
+     * IRI of the GUI element used for the property type
+     * @param guielement_id: KnoraIRI
+     */
+    @JsonProperty('guielement_id', String)
+    public guielement_id: KnoraIRI = undefined;
+
+    /**
+     * Flag to indicate if a property is an annotation property
+     * @param is_annotation: string
+     */
+    @JsonProperty('is_annotation', Any)
+    public is_annotation: StringOrNumber = undefined;
+
+    /**
+     * Owner of the value
+     * @param person_id: string | null
+     */
+    @JsonProperty('person_id', String, true)
+    public person_id: string = undefined;
+
+    /**
+     * The vocabulary's short name
+     * @param shortname: string
+     */
+    @JsonProperty('shortname', String)
+    public shortname: string = undefined;
+
+    /**
+     * The vocabulary's long name
+     * @param longname: string
+     */
+    @JsonProperty('longname', String)
+    public longname: string = undefined;
+
+    /**
+     * Label of the property type
+     * @param label: string
+     */
+    @JsonProperty('label', String)
+    public label: string = undefined;
 }
