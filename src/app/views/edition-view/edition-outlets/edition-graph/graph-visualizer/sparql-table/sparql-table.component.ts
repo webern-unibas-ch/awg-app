@@ -45,9 +45,7 @@ export class SparqlTableComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit(): void {
-        console.log(this.queryResult);
-    }
+    ngOnInit(): void {}
 
     /**
      * Public method: onTableNodeClick.
