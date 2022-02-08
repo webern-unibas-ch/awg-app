@@ -33,29 +33,11 @@ const LT_EQ: SearchCompop = new SearchCompop('LT_EQ', 'less equal than', '&le;')
 
 export const SEARCH_COMPOP_LISTS: SearchCompopLists = {
     compopList: [
-        // 1 TEXT --> gui text
-        // 6 RESPTR GUI id 14 richtext --> gui text
-        // 14 RICHTEXT --> gui text
+        // Edge case for uncatched value types
         {
             id: 0,
-            compopSet: [EXISTS, EQ, NOT_EQ, MATCH, MATCH_BOOLEAN, LIKE, NOT_LIKE],
+            compopSet: [EXISTS],
         },
-
-        // 2 INTEGER -> gui text
-        // 3 FLOAT -> gui text
-        {
-            id: 1,
-            compopSet: [EXISTS, EQ, NOT_EQ, GT, GT_EQ, LT, LT_EQ],
-        },
-
-        // 4 DATE -> gui datepicker
-        // 5 PERIOD -> gui datepicker
-        // Without !EQ
-        {
-            id: 2,
-            compopSet: [EXISTS, EQ, GT, GT_EQ, LT, LT_EQ],
-        },
-
         // 6 RESPTR GUI id 3 --> gui pulldown,
         // 6 RESPTR GUI id 6 --> gui searchbox
         // 7 SELECTION --> gui pulldown,
@@ -63,14 +45,37 @@ export const SEARCH_COMPOP_LISTS: SearchCompopLists = {
         // 12 HLIST --> gui hlist,
         // 15 GEONAME --> gui geoname
         {
-            id: 3,
+            id: 1,
             compopSet: [EXISTS, EQ],
         },
 
         // 13 ICONCLASS --> gui ??
         {
-            id: 4,
+            id: 2,
             compopSet: [EXISTS, EQ, LIKE],
+        },
+
+        // 4 DATE -> gui datepicker
+        // 5 PERIOD -> gui datepicker
+        // Without !EQ
+        {
+            id: 3,
+            compopSet: [EXISTS, EQ, GT, GT_EQ, LT, LT_EQ],
+        },
+
+        // 2 INTEGER -> gui text
+        // 3 FLOAT -> gui text
+        {
+            id: 4,
+            compopSet: [EXISTS, EQ, NOT_EQ, GT, GT_EQ, LT, LT_EQ],
+        },
+
+        // 1 TEXT --> gui text
+        // 6 RESPTR GUI id 14 richtext --> gui text
+        // 14 RICHTEXT --> gui text
+        {
+            id: 5,
+            compopSet: [EXISTS, EQ, NOT_EQ, MATCH, MATCH_BOOLEAN, LIKE, NOT_LIKE],
         },
     ],
 };

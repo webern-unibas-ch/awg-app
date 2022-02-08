@@ -222,22 +222,29 @@ export class ExtendedSearchFormComponent implements OnInit {
         } else {
             const id = valueType[0].id;
 
-            if (id === '1' || id === '14') {
-                // 1 TEXT, 14 RICHTEXT, + 6 RESPTR if gui = 14
-                compopSet = SEARCH_COMPOP_LISTS.compopList[0].compopSet;
+            if (id === '1' || (id === '6' && guiElementId === '14') || id === '14') {
+                // 1 TEXT, 6 RESPTR if gui 14, 14 RICHTEXT
+                compopSet = SEARCH_COMPOP_LISTS.compopList[5].compopSet;
             } else if (id === '2' || id === '3') {
                 // 2 INTEGER, 3 FLOAT
-                compopSet = SEARCH_COMPOP_LISTS.compopList[1].compopSet;
+                compopSet = SEARCH_COMPOP_LISTS.compopList[4].compopSet;
             } else if (id === '4' || id === '5') {
                 // 4 DATE, 5 PERIOD
-                compopSet = SEARCH_COMPOP_LISTS.compopList[2].compopSet;
-            } else if (id === '7' || id === '11' || id === '12' || id === '15') {
-                // 7 SELECTION, 11 COLOR, 12 HLIST, 15 GEONAE, 6 RESPTR if gui not 14 (3, 6)
                 compopSet = SEARCH_COMPOP_LISTS.compopList[3].compopSet;
             } else if (id === '13') {
                 // 13 ICONCLASS
-                compopSet = SEARCH_COMPOP_LISTS.compopList[4].compopSet;
+                compopSet = SEARCH_COMPOP_LISTS.compopList[2].compopSet;
+            } else if (
+                (id === '6' && (guiElementId === '3' || guiElementId === '6')) ||
+                id === '7' ||
+                id === '11' ||
+                id === '12' ||
+                id === '15'
+            ) {
+                // 6 RESPTR if gui 3 or 6 (not 14), 7 SELECTION, 11 COLOR, 12 HLIST, 15 GEONAMES
+                compopSet = SEARCH_COMPOP_LISTS.compopList[1].compopSet;
             } else {
+                // Minimal set for all other cases
                 compopSet = SEARCH_COMPOP_LISTS.compopList[0].compopSet;
             }
         }
