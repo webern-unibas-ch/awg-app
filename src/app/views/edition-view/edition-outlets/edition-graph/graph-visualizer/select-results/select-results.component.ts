@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { SelectResponse } from '../models';
+import { SearchResult } from '../models';
 
 /**
  * The SelectResults component.
@@ -19,10 +19,10 @@ export class SelectResultsComponent {
     /**
      * Input variable: queryResult$.
      *
-     * It keeps the SelectResponse as an observable.
+     * It keeps the SearchResult as an observable.
      */
     @Input()
-    queryResult$: Observable<SelectResponse>;
+    queryResult$: Observable<SearchResult>;
 
     /**
      * Input variable: queryTime.
@@ -43,14 +43,14 @@ export class SelectResultsComponent {
     /**
      * Public method: isNotEmpty.
      *
-     * It checks if a given queryResult with a SelectResponse
+     * It checks if a given queryResult with a SearchResult
      * is not empty.
      *
      * @param {string} queryResult The given queryResult.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isNotEmpty(queryResult: SelectResponse): boolean {
+    isNotEmpty(queryResult: SearchResult): boolean {
         if (!queryResult.head || !queryResult.body) {
             return;
         }

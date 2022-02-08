@@ -13,6 +13,7 @@ import {
     TableOptions,
     TableOptionsSortCase,
 } from '../models';
+import { SearchResult } from '../models';
 
 /**
  * The SparqlTable component.
@@ -28,12 +29,12 @@ import {
 })
 export class SparqlTableComponent implements OnInit {
     /**
-     * Input variable: queryResult$.
+     * Input variable: queryResult.
      *
-     * It keeps the SelectResponse as an observable.
+     * It keeps the result of the query.
      */
     @Input()
-    queryResult: SelectResponse;
+    queryResult: SearchResult;
 
     /**
      * Input variable: queryTime.
