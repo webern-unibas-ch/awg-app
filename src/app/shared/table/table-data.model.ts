@@ -1,8 +1,6 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable, of } from 'rxjs';
 
-import { SelectResponse, SelectResponseBindings } from './select-response.model';
-
 /**
  * The TableData class.
  *
@@ -18,30 +16,31 @@ export class TableData {
     /**
      * The total rows of the table data as Observable.
      */
-    totalRows$: Observable<SelectResponseBindings[]>;
+    totalRows$: Observable<any[]>;
 
     /**
      * The filtered rows of the table data.
      */
-    filteredRows: SelectResponseBindings[];
+    filteredRows: any[];
 
     /**
      * The paginated rows of the table data as Observable.
      */
-    paginatedRows$: Observable<SelectResponseBindings[]>;
+    paginatedRows$: Observable<any[]>;
 
     /**
      * Constructor of the TableData class.
      *
      * It initializes the class with given values.
      *
-     * @param {SelectResponse} data The given SelectResponse.
+     * @param {any} header The given table header.
+     * @param {any} rows The given table rows.
      */
-    constructor(data: SelectResponse) {
-        this.header = data.head.vars;
-        this.totalRows$ = of(data.body.bindings);
-        this.filteredRows = data.body.bindings;
-        this.paginatedRows$ = of(data.body.bindings);
+    constructor(header: any, rows: any) {
+        this.header = header;
+        this.totalRows$ = of(rows);
+        this.filteredRows = rows;
+        this.paginatedRows$ = of(rows);
     }
 }
 
@@ -53,22 +52,22 @@ export class TableData {
  */
 export class PaginatorOptions {
     /**
-     * The current page number of the Paginator options.
+     * The current page number.
      */
     page: number;
 
     /**
-     * The number of rows per page of the Paginator options.
+     * The selected number of rows per page.
      */
-    pageSize: number;
+    selectedPageSize: number;
 
     /**
-     * The page size optios of the Paginator options.
+     * The page size options.
      */
     pageSizeOptions: number[];
 
     /**
-     * The size of the collection of the Paginator options.
+     * The size of the collection.
      */
     collectionSize: number;
 
@@ -78,26 +77,16 @@ export class PaginatorOptions {
      * It initializes the class with given values.
      *
      * @param {number} page The current page number.
-     * @param {number} pageSize The number of rows per page.
+     * @param {number} selectedPageSize The number of rows per page.
      * @param {number[]} pageSizeOptions The options for the page size.
      * @param {number} collectionSize The size of the collection.
      */
-    constructor(page: number, pageSize: number, pageSizeOptions: number[], collectionSize: number) {
+    constructor(page: number, selectedPageSize: number, pageSizeOptions: number[], collectionSize: number) {
         this.page = page;
-        this.pageSize = pageSize;
+        this.selectedPageSize = selectedPageSize;
         this.pageSizeOptions = pageSizeOptions;
         this.collectionSize = collectionSize;
     }
-}
-
-/**
- * The TableOptionsSortCase enumeration.
- *
- * It stores the possible sort case options for a table.
- */
-export enum TableOptionsSortCase {
-    CASE_SENSITIVE = 'case-sensitive',
-    CASE_INSENSITIVE = 'case-insensitive',
 }
 
 /**
@@ -130,5 +119,5 @@ export class TableOptions {
     /**
      * The sort case  of the Table options.
      */
-    case: TableOptionsSortCase;
+    isCaseInsensitive: boolean;
 }
