@@ -101,7 +101,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have queryResult', () => {
-            expect(component.queryResult$).toBeUndefined('should be undefined');
+            expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
         });
 
         describe('VIEW', () => {

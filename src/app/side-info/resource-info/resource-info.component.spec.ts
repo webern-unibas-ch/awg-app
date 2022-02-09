@@ -1,5 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -53,6 +54,8 @@ describe('ResourceInfoComponent (DONE)', () => {
     let dataStreamerResourceIdSpy: Spy;
     let dataStreamerSearchResponseWithQuerySpy: Spy;
     let consoleSpy: Spy;
+
+    const jsonPipe = new JsonPipe();
 
     const expectedResourceId = '1232';
     const expectedQuery = 'Test';
@@ -138,31 +141,31 @@ describe('ResourceInfoComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have goToIndex', () => {
-            expect(component.goToIndex).toBeUndefined('should be undefined');
+            expect(component.goToIndex).withContext('should be undefined').toBeUndefined();
         });
 
         it('should not have resourceId', () => {
-            expect(component.resourceId).toBeUndefined('should be undefined');
+            expect(component.resourceId).withContext('should be undefined').toBeUndefined();
         });
 
         it('should not have resourceInfoFormGroup', () => {
-            expect(component.resourceInfoFormGroup).toBeUndefined('should be undefined');
+            expect(component.resourceInfoFormGroup).withContext('should be undefined').toBeUndefined();
         });
 
         it('should not have resultSize', () => {
-            expect(component.resultSize).toBeUndefined('should be undefined');
+            expect(component.resultSize).withContext('should be undefined').toBeUndefined();
         });
 
         it('should have empty resourceInfoData', () => {
-            expect(component.resourceInfoData).toBeDefined('should be defined');
-            expect(component.resourceInfoData).toEqual(new ResourceInfo(), 'should equal new ResourceInfo');
+            expect(component.resourceInfoData).withContext('should be defined').toBeDefined();
+            expect(component.resourceInfoData).withContext('should equal new ResourceInfo').toEqual(new ResourceInfo());
         });
 
         it('should have fa-icons', () => {
-            expect(component.faArrowLeft).toBe(faArrowLeft, 'should be faArrowLeft');
-            expect(component.faChevronLeft).toBe(faChevronLeft, 'should be faChevronLeft');
-            expect(component.faChevronRight).toBe(faChevronRight, 'should be faChevronRight');
-            expect(component.faTimesCircle).toBe(faTimesCircle, 'should be faTimesCircle');
+            expect(component.faArrowLeft).withContext('should be faArrowLeft').toBe(faArrowLeft);
+            expect(component.faChevronLeft).withContext('should be faChevronLeft').toBe(faChevronLeft);
+            expect(component.faChevronRight).withContext('should be faChevronRight').toBe(faChevronRight);
+            expect(component.faTimesCircle).withContext('should be faTimesCircle').toBe(faTimesCircle);
         });
 
         describe('VIEW', () => {
@@ -222,8 +225,8 @@ describe('ResourceInfoComponent (DONE)', () => {
             it('... should have got `resourceId` from dataStreamerService', () => {
                 expectSpyCall(dataStreamerResourceIdSpy, 1);
 
-                expect(component.resourceId).toBeTruthy('should be truthy');
-                expect(component.resourceId).toBe(expectedResourceId, `should be ${expectedResourceId}`);
+                expect(component.resourceId).withContext('should be truthy').toBeTruthy();
+                expect(component.resourceId).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
             });
 
             it('... should have got searchResponseWithQuery from dataStreamerService', () => {
@@ -236,11 +239,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                 expectSpyCall(updateResourceInfoSpy, 1, [expectedResourceId, expectedResponseClone]);
             });
             it('... should have set `goToIndex` and `resultSize` (via _updateResourceInfo)', () => {
-                expect(component.resultSize).toBeTruthy('should be truthy');
-                expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
+                expect(component.resultSize).withContext('should be truthy').toBeTruthy();
+                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
 
-                expect(component.goToIndex).toBeTruthy('should be truthy');
-                expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
+                expect(component.goToIndex).withContext('should be truthy').toBeTruthy();
+                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
             });
 
             it('... should have called _buildForm with `goToIndex` and `resultSize`', () => {
@@ -255,7 +258,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).toBeUndefined('should be undefined');
+                expect(mockConsole.get(0)).withContext('should be undefined').toBeUndefined();
             });
 
             it('... should throw an error if subscription fails and log to console', () => {
@@ -266,10 +269,10 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).toBeUndefined('should be undefined');
+                expect(mockConsole.get(0)).withContext('should be undefined').toBeUndefined();
 
                 // Spy on dataStreamerService to return an error
-                dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableThrowError({ status: 404 }));
+                dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableThrowError(() => new Error('error')));
 
                 const expectedLogMessage = 'RESOURCE-INFO: Got no sideInfoData from Subscription!';
 
@@ -286,7 +289,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Check console
                 expectSpyCall(consoleSpy, 1, expectedLogMessage);
-                expect(mockConsole.get(0)).toEqual(expectedLogMessage, `should be ${expectedLogMessage}`);
+                expect(mockConsole.get(0)).withContext(`should be ${expectedLogMessage}`).toEqual(expectedLogMessage);
             });
         });
 
@@ -298,11 +301,11 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should set `goToIndex` and `resultSize`', () => {
-                expect(component.resultSize).toBeTruthy('should be truthy');
-                expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
+                expect(component.resultSize).withContext('should be truthy').toBeTruthy();
+                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
 
-                expect(component.goToIndex).toBeTruthy('should be truthy');
-                expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
+                expect(component.goToIndex).withContext('should be truthy').toBeTruthy();
+                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
             });
 
             it('... should change `goToIndex` and `resultSize` depending on input', () => {
@@ -314,11 +317,11 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                expect(component.resultSize).toBeTruthy('should be truthy');
-                expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
+                expect(component.resultSize).withContext('should be truthy').toBeTruthy();
+                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
 
-                expect(component.goToIndex).toBeTruthy('should be truthy');
-                expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
+                expect(component.goToIndex).withContext('should be truthy').toBeTruthy();
+                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
             });
 
             it('... should set `resourceInfoData` (previous, current, next resource given)', () => {
@@ -338,11 +341,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                     },
                 };
 
-                expect(component.resourceInfoData).toBeTruthy('should be truthy');
-                expect(component.resourceInfoData).toEqual(
-                    expectedResourceInfoData,
-                    `should be ${expectedResourceInfoData}`
-                );
+                expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
+                expect(component.resourceInfoData)
+                    .withContext(`should be ${expectedResourceInfoData}`)
+                    .toEqual(expectedResourceInfoData);
             });
 
             it('... should set `resourceInfoData` (only current, next resource given)', () => {
@@ -366,14 +368,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                expect(component.goToIndex).toBe(1, 'should be 1');
-                expect(component.resultSize).toBe(3, 'should be 3');
+                expect(component.goToIndex).withContext('should be 1').toBe(1);
+                expect(component.resultSize).withContext('should be 3').toBe(3);
 
-                expect(component.resourceInfoData).toBeTruthy('should be truthy');
-                expect(component.resourceInfoData).toEqual(
-                    expectedResourceInfoData,
-                    `should be ${expectedResourceInfoData}`
-                );
+                expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
+                expect(component.resourceInfoData)
+                    .withContext(`should be ${expectedResourceInfoData}`)
+                    .toEqual(expectedResourceInfoData);
             });
 
             it('... should set `resourceInfoData` (only current, previous resource given)', () => {
@@ -397,14 +398,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
-                expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
+                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
+                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
 
-                expect(component.resourceInfoData).toBeTruthy('should be truthy');
-                expect(component.resourceInfoData).toEqual(
-                    expectedResourceInfoData,
-                    `should be ${expectedResourceInfoData}`
-                );
+                expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
+                expect(component.resourceInfoData)
+                    .withContext(`should be ${expectedResourceInfoData}`)
+                    .toEqual(expectedResourceInfoData);
             });
 
             it('... should set `resourceInfoData` (only current resource given)', () => {
@@ -427,14 +427,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
-                expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
+                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
+                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
 
-                expect(component.resourceInfoData).toBeTruthy('should be truthy');
-                expect(component.resourceInfoData).toEqual(
-                    expectedResourceInfoData,
-                    `should be ${expectedResourceInfoData}`
-                );
+                expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
+                expect(component.resourceInfoData)
+                    .withContext(`should be ${expectedResourceInfoData}`)
+                    .toEqual(expectedResourceInfoData);
             });
 
             it('... should set `resourceInfoData` (no previous, current resource given)', () => {
@@ -464,14 +463,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
-                expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
+                expect(component.goToIndex).withContext(`should be ${expectedGoToIndex}`).toBe(expectedGoToIndex);
+                expect(component.resultSize).withContext(`should be ${expectedResultSize}`).toBe(expectedResultSize);
 
-                expect(component.resourceInfoData).toBeTruthy('should be truthy');
-                expect(component.resourceInfoData).toEqual(
-                    expectedResourceInfoData,
-                    `should be ${expectedResourceInfoData}`
-                );
+                expect(component.resourceInfoData).withContext('should be truthy').toBeTruthy();
+                expect(component.resourceInfoData)
+                    .withContext(`should equal ${expectedResourceInfoData}`)
+                    .toEqual(expectedResourceInfoData);
             });
         });
 
@@ -513,12 +511,13 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should have initiated resourceInfoFormGroup with correct resourceInfoIndex', () => {
-                expect(component.resourceInfoFormGroup).toBeTruthy();
-                expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
-
                 expectedGoToIndex = 3;
 
-                expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value).toEqual(expectedGoToIndex);
+                expect(component.resourceInfoFormGroup).toBeTruthy();
+                expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
+                expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value)
+                    .withContext(`should equal ${expectedGoToIndex}`)
+                    .toEqual(expectedGoToIndex);
             });
 
             it('... should have initiated resourceInfoFormGroup with empty index if none is given', () => {
@@ -530,7 +529,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 expect(component.resourceInfoFormGroup).toBeTruthy();
                 expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
-                expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value).toEqual(expectedEmptyIndex);
+                expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value)
+                    .withContext(`should equal ${expectedEmptyIndex}`)
+                    .toEqual(expectedEmptyIndex);
             });
 
             describe('Validators', () => {
@@ -577,58 +578,83 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const expectedPattern = '/^[1-9]\\d{0,9}$/';
 
                     it('NaN', () => {
-                        resourceInfoIndex.setValue(NaN);
+                        const nanValue = NaN;
+                        resourceInfoIndex.setValue(nanValue);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: nanValue,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: NaN },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: NaN }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
-                    it('string', () => {
-                        resourceInfoIndex.setValue('should error');
+                    it('any string', () => {
+                        const anyString = 'should error';
+                        resourceInfoIndex.setValue(anyString);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: anyString,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: 'should error' },
-                            `should be { requiredPattern:  ${expectedPattern}, actualValue: \'should error\'}`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
-                    it('array', () => {
-                        resourceInfoIndex.setValue([1, 2, 3]);
+                    it('any array', () => {
+                        const anyArray = [1, 2, 3];
+                        resourceInfoIndex.setValue(anyArray);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: anyArray,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: [1, 2, 3] },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: [1, 2, 3]}`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
                     it('empty object', () => {
-                        resourceInfoIndex.setValue({});
+                        const emptyObject = {};
+                        resourceInfoIndex.setValue(emptyObject);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: emptyObject,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: {} },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: {} }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
-                    it('object', () => {
-                        resourceInfoIndex.setValue({ 1: 'should', 2: 'error' });
+                    it('any object', () => {
+                        const anyObject = { 1: 'should', 2: 'error' };
+                        resourceInfoIndex.setValue(anyObject);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: anyObject,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: { 1: 'should', 2: 'error' } },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: { 1: 'should', 2: 'error' }}`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
                 });
 
@@ -636,69 +662,99 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const expectedPattern = '/^[1-9]\\d{0,9}$/';
 
                     it('no 10-digit negative integers (-1234567890)', () => {
-                        resourceInfoIndex.setValue(-1234567890);
+                        const tenDigitNegativeInteger = -1234567890;
+                        resourceInfoIndex.setValue(tenDigitNegativeInteger);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: tenDigitNegativeInteger,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: -1234567890 },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: -1234567890 }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
                     it('no 1-digit negative integers (-1)', () => {
-                        resourceInfoIndex.setValue(-1);
+                        const oneDigitNegativeInteger = -1;
+                        resourceInfoIndex.setValue(oneDigitNegativeInteger);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: oneDigitNegativeInteger,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: -1 },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: -1 }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
                     it('not 0', () => {
-                        resourceInfoIndex.setValue(0);
+                        const zero = 0;
+                        resourceInfoIndex.setValue(zero);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: zero,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: 0 },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: 0 }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
                     it('no 11-digit positive integers (12345678901)', () => {
-                        resourceInfoIndex.setValue(12345678901);
+                        const elevenDigitPositivInteger = 12345678901;
+                        resourceInfoIndex.setValue(elevenDigitPositivInteger);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: elevenDigitPositivInteger,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: 12345678901 },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: 12345678901 }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
                     it('no floating numbers (1.1)', () => {
-                        resourceInfoIndex.setValue(1.1);
+                        const floatingNumber = 1.1;
+                        resourceInfoIndex.setValue(floatingNumber);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: floatingNumber,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: 1.1 },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: 1.1 }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
 
                     it('no big floating numbers (1234567890.0123456789)', () => {
-                        resourceInfoIndex.setValue(1234567890.0123456789);
+                        const bigFloatingNumber = 1234567890.0123456789;
+                        resourceInfoIndex.setValue(bigFloatingNumber);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedPatternError = {
+                            requiredPattern: expectedPattern,
+                            actualValue: bigFloatingNumber,
+                        };
+
                         expect(errors['pattern']).toBeTruthy();
-                        expect(errors['pattern']).toEqual(
-                            { requiredPattern: expectedPattern, actualValue: 1234567890.0123456789 },
-                            `should be { requiredPattern: ${expectedPattern}, actualValue: 1234567890.0123456789 }`
-                        );
+                        expect(errors['pattern'])
+                            .withContext(`should equal ${expectedPatternError}`)
+                            .toEqual(expectedPatternError);
                     });
                 });
 
@@ -737,16 +793,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                         resourceInfoIndex.setValue(-1);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedError = { min: 1, actual: -1 };
+
                         expect(errors['min']).toBeTruthy();
-                        expect(errors['min']).toEqual({ min: 1, actual: -1 }, 'should be { min: 1, actual: -1 }');
+                        expect(errors['min']).withContext(`should equal ${expectedError}`).toEqual(expectedError);
                     });
 
                     it('min error == TRUE for 0', () => {
                         resourceInfoIndex.setValue(0);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedError = { min: 1, actual: 0 };
+
                         expect(errors['min']).toBeTruthy();
-                        expect(errors['min']).toEqual({ min: 1, actual: 0 }, 'should be { min: 1, actual: 0}');
+                        expect(errors['min']).withContext(`should equal ${expectedError}`).toEqual(expectedError);
                     });
 
                     it('min error == FALSE for 1', () => {
@@ -769,8 +829,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                         resourceInfoIndex.setValue(expectedResultSize + 1);
                         errors = getErrors(resourceInfoIndex);
 
+                        const expectedError = { max: 5, actual: 6 };
+
                         expect(errors['max']).toBeTruthy();
-                        expect(errors['max']).toEqual({ max: 5, actual: 6 }, 'should be { max: 5, actual: 6 }');
+                        expect(errors['max']).withContext(`should equal ${expectedError}`).toEqual(expectedError);
                     });
 
                     it('max error == FALSE for value equals resultSize', () => {
@@ -796,7 +858,12 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 expect(
                     (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, expectedResponseClone)
-                ).toBe(2, 'should be 2');
+                ).toBeTruthy();
+                expect(
+                    (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, expectedResponseClone)
+                )
+                    .withContext('should be 2')
+                    .toBe(2);
             });
 
             it('... should return -1 if resource id is not found in given search response', () => {
@@ -812,7 +879,10 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 expect(
                     (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, otherResponseClone)
-                ).toBe(-1, 'should be -1');
+                ).toBeTruthy();
+                expect((component as any)._findIndexPositionInSearchResultsById(expectedResourceId, otherResponseClone))
+                    .withContext('should be -1')
+                    .toBe(-1);
             });
         });
 
@@ -951,7 +1021,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should trigger `router.navigate` with query params if searchResults are given', () => {
-                const expectedRoute = ['/data/search/fulltext'];
+                const expectedRoute = ['/data/search'];
                 const expectedParams = { queryParams: { query: component.resourceInfoData.searchResults.query } };
 
                 component.navigateToSearchPanel();
@@ -961,7 +1031,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should trigger `router.navigate` without query params if no searchResults are given', () => {
-                const expectedRoute = ['/data/search/fulltext'];
+                const expectedRoute = ['/data/search'];
                 const expectedParams = { queryParams: { query: '' } };
 
                 component.resourceInfoData.searchResults = undefined;
@@ -1030,8 +1100,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const spanDe = getAndExpectDebugElementByCss(buttonDe[0], 'span.awg-resource-info-btn-text', 1, 1);
                     const spanEl = spanDe[0].nativeElement;
 
+                    const expectedText = 'Zur Suche';
+
                     expect(spanEl.innerText).toBeTruthy();
-                    expect(spanEl.innerText).toBe('Zur Suche', 'should be `Zur Suche`');
+                    expect(spanEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
                 });
 
                 it('... should display bold, small, muted text in second div', () => {
@@ -1039,9 +1111,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const strongDes = getAndExpectDebugElementByCss(divDes[1], 'strong', 1, 1);
                     const strongEl = strongDes[0].nativeElement;
 
+                    const expectedText = 'Aktuelle Suchanfrage';
+
                     expect(strongEl).toHaveCssClass('text-muted');
                     expect(strongEl).toHaveCssClass('small');
-                    expect(strongEl.innerText).toBe('Aktueller Suchbegriff');
+
+                    expect(strongEl.innerText).toBeTruthy();
+                    expect(strongEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
                 });
 
                 it('... should display query in span in second div', () => {
@@ -1053,7 +1129,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
                     const spanEl = spanDes[0].nativeElement;
 
-                    expect(spanEl.innerText).toBe(expectedQuery, `should be ${expectedQuery}`);
+                    expect(spanEl.innerText).toBeTruthy();
+                    expect(spanEl.innerText)
+                        .withContext(`should be ${expectedQuery}`)
+                        .toBe(jsonPipe.transform(expectedQuery));
                 });
 
                 it('... should display `---`  without query in span in second div', () => {
@@ -1065,7 +1144,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
                     const spanEl = spanDes[0].nativeElement;
 
-                    expect(spanEl.innerText).toBe('---', 'should be ---');
+                    const expectedText = '---';
+
+                    expect(spanEl.innerText).toBeTruthy();
+                    expect(spanEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
                 });
             });
 
@@ -1165,7 +1247,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const expectedIndex = component.resourceInfoData.resources.previous.displayIndex; // = 2
                             const expectedInnerText = `Vorheriges Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
-                            expect(spanEl.innerText).toBe(expectedInnerText, `should be ${expectedInnerText}`);
+                            expect(spanEl.innerText).toBeTruthy();
+                            expect(spanEl.innerText)
+                                .withContext(`should be ${expectedInnerText}`)
+                                .toBe(expectedInnerText);
                         });
 
                         it('... should have two divs.single-line in second div', () => {
@@ -1201,7 +1286,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const title = component.resourceInfoData.resources.previous.title; // = Nelson 1974
 
                             expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText).toBe(title, `should be ${title}`);
+                            expect(spanEl0.innerText).withContext(`should be ${title}`).toBe(title);
                         });
 
                         it('... should display previous subtitle in second div.single-line', () => {
@@ -1221,7 +1306,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const subTitle = component.resourceInfoData.resources.previous.subtitle; // = Bibliografie
 
                             expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText).toBe(subTitle, `should be ${subTitle}`);
+                            expect(spanEl1.innerText).withContext(`should be ${subTitle}`).toBe(subTitle);
                         });
                     });
 
@@ -1309,16 +1394,14 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
                             expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText).toBe(
-                                whiteSpace,
-                                `should be non-breaking whiteSpace ${whiteSpace}`
-                            );
+                            expect(spanEl0.innerText)
+                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
+                                .toBe(whiteSpace);
 
                             expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText).toBe(
-                                whiteSpace,
-                                `should be non-breaking whiteSpace ${whiteSpace}`
-                            );
+                            expect(spanEl1.innerText)
+                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
+                                .toBe(whiteSpace);
                         });
                     });
                 });
@@ -1379,7 +1462,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const expectedIndex = component.resourceInfoData.resources.current.displayIndex; // = 3
                             const expectedInnerText = `Angezeigtes Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
-                            expect(spanEl.innerText).toBe(expectedInnerText, `should be ${expectedInnerText}`);
+                            expect(spanEl.innerText).toBeTruthy();
+                            expect(spanEl.innerText)
+                                .withContext(`should be ${expectedInnerText}`)
+                                .toBe(expectedInnerText);
                         });
 
                         it('... should contain one div with button and an input in form > div.input-group', () => {
@@ -1415,21 +1501,20 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                             // FormControlName='resourceInfoIndex'
                             expect(inputDes[0].attributes.formControlName).toBeTruthy();
-                            expect(inputDes[0].attributes.formControlName).toBe(
-                                'resourceInfoIndex',
-                                'should be resourceInfoIndex'
-                            );
+                            expect(inputDes[0].attributes.formControlName)
+                                .withContext('should be resourceInfoIndex')
+                                .toBe('resourceInfoIndex');
 
                             // Type='number'
                             expect(inputDes[0].attributes.type).toBeTruthy();
-                            expect(inputDes[0].attributes.type).toBe('number', 'should be number');
+                            expect(inputDes[0].attributes.type).withContext('should be number').toBe('number');
 
                             // Size=4
                             expect(inputDes[0].attributes.size).toBeTruthy();
-                            expect(inputDes[0].attributes.size).toBe('4', 'should be 4');
+                            expect(inputDes[0].attributes.size).withContext('should be 4').toBe('4');
                             // Step=1
                             expect(inputDes[0].attributes.step).toBeTruthy();
-                            expect(inputDes[0].attributes.step).toBe('1', 'should be 1');
+                            expect(inputDes[0].attributes.step).withContext('should be 1').toBe('1');
                         });
 
                         describe('button', () => {
@@ -1462,8 +1547,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
+                                const expectedText = 'Gehe zu';
+
                                 expect(buttonEl.innerText).toBeTruthy();
-                                expect(buttonEl.innerText).toBe('Gehe zu', 'should be `Gehe zu`');
+                                expect(buttonEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
                             });
 
                             it('... should have btn-outline-success class when form is valid', () => {
@@ -1520,9 +1607,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
                                 // Input index is current.displayIndex
-                                expect(resourceInfoIndex.value).toBe(
-                                    component.resourceInfoData.resources.current.displayIndex
-                                );
+                                expect(resourceInfoIndex.value)
+                                    .withContext(
+                                        `should be ${component.resourceInfoData.resources.current.displayIndex}`
+                                    )
+                                    .toBe(component.resourceInfoData.resources.current.displayIndex);
                                 // Disabled = true
                                 expect(buttonEl.disabled).toBeTrue();
                             });
@@ -1572,9 +1661,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
                                 // Input index is different from current.displayIndex
-                                expect(resourceInfoIndex.value).not.toBe(
-                                    component.resourceInfoData.resources.current.displayIndex
-                                );
+                                expect(resourceInfoIndex.value)
+                                    .withContext(
+                                        `should not be ${component.resourceInfoData.resources.current.displayIndex}`
+                                    )
+                                    .not.toBe(component.resourceInfoData.resources.current.displayIndex);
 
                                 // Disabled = false
                                 expect(buttonEl.disabled).toBeFalse();
@@ -1784,7 +1875,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const expectedIndex = component.resourceInfoData.resources.next.displayIndex; // = 4
                             const expectedInnerText = `Nächstes Ergebnis (${expectedIndex}/${expectedResultSize})`;
 
-                            expect(spanEl.innerText).toBe(expectedInnerText, `should be ${expectedInnerText}`);
+                            expect(spanEl.innerText).toBeTruthy();
+                            expect(spanEl.innerText)
+                                .withContext(`should be ${expectedInnerText}`)
+                                .toBe(expectedInnerText);
                         });
 
                         it('... should have two divs.single-line in second div', () => {
@@ -1820,7 +1914,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const title = component.resourceInfoData.resources.next.title; // = BrownJ 2014
 
                             expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText).toBe(title, `should be ${title}`);
+                            expect(spanEl0.innerText).withContext(`should be ${title}`).toBe(title);
                         });
 
                         it('... should display next subtitle in second div.single-line', () => {
@@ -1841,7 +1935,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const subTitle = component.resourceInfoData.resources.next.subtitle; // = Bibliografie
 
                             expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText).toBe(subTitle, `should be ${subTitle}`);
+                            expect(spanEl1.innerText).withContext(`should be ${subTitle}`).toBe(subTitle);
                         });
                     });
 
@@ -1859,10 +1953,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         it('... should have current.displayIndex === resultSize', () => {
                             expect(component.resourceInfoData.resources.current.displayIndex).toBeTruthy();
-                            expect(component.resourceInfoData.resources.current.displayIndex).toBe(
-                                component.resultSize,
-                                `should be ${component.resultSize}`
-                            );
+                            expect(component.resourceInfoData.resources.current.displayIndex)
+                                .withContext(`should be ${component.resultSize}`)
+                                .toBe(component.resultSize);
                         });
 
                         it('... should have list-group-item-danger class', () => {
@@ -1936,17 +2029,15 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                             const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
-                            expect(spanEl0.innerText).toBeTruthy();
-                            expect(spanEl0.innerText).toBe(
-                                whiteSpace,
-                                `should be non-breaking whiteSpace ${whiteSpace}`
-                            );
+                            expect(spanEl0.innerText).withContext(`should be truthy`).toBeTruthy();
+                            expect(spanEl0.innerText)
+                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
+                                .toBe(whiteSpace);
 
-                            expect(spanEl1.innerText).toBeTruthy();
-                            expect(spanEl1.innerText).toBe(
-                                whiteSpace,
-                                `should be non-breaking whiteSpace ${whiteSpace}`
-                            );
+                            expect(spanEl1.innerText).withContext(`should be truthy`).toBeTruthy();
+                            expect(spanEl1.innerText)
+                                .withContext(`should be non-breaking whiteSpace ${whiteSpace}`)
+                                .toBe(whiteSpace);
                         });
                     });
                 });
@@ -1960,8 +2051,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const aDe = getAndExpectDebugElementByCss(compDe, 'div.card-footer a', 1, 1);
                     const aEl = aDe[0].nativeElement;
 
-                    expect(aEl.href).toBe(expectedHref, `should be ${expectedHref}`);
-                    expect(aEl.innerText).toBe(expectedInnerText, `should be ${expectedInnerText}`);
+                    expect(aEl.href).withContext(`should be ${expectedHref}`).toBe(expectedHref);
+                    expect(aEl.innerText).withContext(`should be ${expectedInnerText}`).toBe(expectedInnerText);
                 });
             });
         });
