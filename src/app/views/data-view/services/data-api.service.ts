@@ -6,14 +6,11 @@ import { defaultIfEmpty, map } from 'rxjs/operators';
 
 import { ApiService, ConversionService } from '@awg-core/services/';
 import {
-    GeoDataJson,
-    HlistJson,
     PropertyTypesInResourceClassResponseJson,
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     ResourceTypesInVocabularyResponseJson,
     SearchResponseJson,
-    SelectionJson,
 } from '@awg-shared/api-objects';
 import {
     IResourceDataResponse,
@@ -68,16 +65,13 @@ export class DataApiService extends ApiService {
      * Public variable: routes.
      *
      * It keeps the SALSAH specific routes for
-     * resources, search, geonames, hlists and selections.
+     *  propertylists, resources, resourcetypes and search.
      */
     routes = {
-        geonames: 'geonames/',
-        hlists: 'hlists/',
         propertylists: 'propertylists/',
         resources: 'resources/',
         resourcetypes: 'resourcetypes/',
         search: 'search/',
-        selections: 'selections/',
     };
 
     /**
@@ -282,10 +276,6 @@ export class DataApiService extends ApiService {
      * @returns {ResourceData} The resource data object.
      */
     private _prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
-        if (Object.keys(resourceDataResponse[0]).length === 0 && resourceDataResponse[0].constructor === Object) {
-            return new ResourceData(new ResourceFullResponseJson(), undefined);
-        }
-
         // Convert data for displaying resource detail
         const resourceDetail: ResourceDetail = this.conversionService.convertResourceData(
             resourceDataResponse,
@@ -295,61 +285,6 @@ export class DataApiService extends ApiService {
         // Return new resource data
         return new ResourceData(resourceDataResponse[0], resourceDetail);
     }
-
-    /**
-     * Private method: _getGeoData.
-     *
-     * * It calls the {@link _getResourceDataResponseFromApi} method to
-     * provide an Observable with the GeoDataJson data.
-     *
-     * NOT USED.
-     *
-     * IMPLEMENTATION FOR FUTURE USE.
-     *
-     * @params {string} resourceId The id of the requested resource.
-     *
-     * @returns {Observable<GeoDataJson>} The observable of the response data.
-     */
-    private _getGeoData(resourceId: string): Observable<GeoDataJson> {
-        return this._getResourceDataResponseFromApi(GeoDataJson, resourceId);
-    }
-
-    /**
-     * Private method: _getHlistData.
-     *
-     * * It calls the {@link _getResourceDataResponseFromApi} method to
-     * provide an Observable with the HlistJson data.
-     *
-     * NOT USED.
-     *
-     * IMPLEMENTATION FOR FUTURE USE.
-     *
-     * @params {string} resourceId The id of the requested resource.
-     *
-     * @returns {Observable<HlistJson>} The observable of the response data.
-     */
-    private _getHlistData(resourceId: string): Observable<HlistJson> {
-        return this._getResourceDataResponseFromApi(HlistJson, resourceId);
-    }
-
-    /**
-     * Private method: _getSelectionsData.
-     *
-     * * It calls the {@link _getResourceDataResponseFromApi} method to
-     * provide an Observable with the SelectionJson data.
-     *
-     * NOT USED.
-     *
-     * IMPLEMENTATION FOR FUTURE USE.
-     *
-     * @params {string} resourceId The id of the requested resource.
-     *
-     * @returns {Observable<SelectionJson>} The observable of the response data.
-     */
-    private _getSelectionsData(resourceId: string): Observable<SelectionJson> {
-        return this._getResourceDataResponseFromApi(SelectionJson, resourceId);
-    }
-
     /**
      * Private method: _getResourceDataResponseFromApi.
      *
@@ -373,10 +308,6 @@ export class DataApiService extends ApiService {
 
         // Set path and params of query depending on responseJsonType
         switch (responseJsonType) {
-            case GeoDataJson:
-                queryPath = this.routes.geonames + id;
-                queryHttpParams = queryHttpParams.set('reqtype', 'node');
-                break;
             case PropertyTypesInResourceClassResponseJson:
                 queryPath = this.routes.propertylists;
                 queryHttpParams = new HttpParams().set('restype', id);
@@ -408,25 +339,5 @@ export class DataApiService extends ApiService {
 
         // Trigger call to API
         return this.getApiResponse(responseJsonType, queryPath, queryHttpParams);
-    }
-
-    /**
-     * Private method: _getNodeIdFromAttributes.
-     *
-     * It gets a node id from the prop.attributes
-     * of a selections or hlists value.
-     *
-     * NOT USED.
-     *
-     * IMPLEMENTATION FOR FUTURE USE.
-     *
-     * @param {string} attributes The given prop.attributes.
-     *
-     * @returns {string} id The node id.
-     */
-    private _getNodeIdFromAttributes(attributes: string): string {
-        // Identify node id from prop.attributes
-        // E.g. "hlist=17" or "selection=77"
-        return attributes.split('=')[1].toString();
     }
 }
