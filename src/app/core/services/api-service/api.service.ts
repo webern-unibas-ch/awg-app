@@ -62,7 +62,7 @@ export class ApiService {
 
         return this._httpGet(queryPath, queryHttpParams).pipe(
             map((result: ApiServiceResult): Observable<any> => result.getBody(responseJsonType)),
-            catchError((error: ApiServiceError): Observable<ApiServiceError> => observableThrowError(error))
+            catchError((error: ApiServiceError): Observable<ApiServiceError> => observableThrowError(() => error))
         );
     }
 
@@ -120,6 +120,6 @@ export class ApiService {
         apiServiceError.statusText = error.statusText ? error.statusText : apiServiceError.statusText;
         apiServiceError.errorInfo = error.message ? error.message : apiServiceError.errorInfo;
         apiServiceError.url = error.url ? error.url : apiServiceError.url;
-        return observableThrowError(apiServiceError);
+        return observableThrowError(() => apiServiceError);
     }
 }

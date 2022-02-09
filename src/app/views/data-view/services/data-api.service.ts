@@ -96,106 +96,30 @@ export class DataApiService extends ApiService {
     }
 
     /**
-     * Public method: getSearchData.
+     * Public method: getPropertyListsByResourceType.
      *
-     * It sets the path and params for a search query
-     * depending on the search mode (fulltext or extended)
-     * to retrieve all results from the given (SALSAH) API.
+     * It sets the path and params for the Extended Search to retrieve
+     * the list of properties of a given resource type from the given (SALSAH) API.
      *
-     * @params {SearchParams} searchParams The given search parameters of the query.
+     * @params {string} restypeId The given resource type.
      *
-     * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
+     * @returns {Observable<SearchResponseJson>} The observable with the PropertyTypesInResourceClassResponseJson data.
      */
-    getSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
-        if (!searchParams || !searchParams.query) {
-            return observableOf(new SearchResponseJson());
-        }
-        if (typeof searchParams.query === 'object' && !searchParams.query['filterByRestype']) {
-            return observableOf(new SearchResponseJson());
-        }
-
-        // Default values
-        const sp: SearchParams = {
-            query: searchParams.query,
-            nRows: searchParams.nRows || '-1',
-            startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchResultsViewTypes.table,
-        };
-
-        // Set path and params of query
-        let queryPath: string = this.routes.search;
-        if (typeof searchParams.query === 'string') {
-            queryPath = queryPath + searchParams.query;
-        }
-
-        const queryHttpParams = this._createQueryParams(sp);
-
-        // Cold request to API
-        const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
-            SearchResponseJson,
-            queryPath,
-            queryHttpParams
-        );
-
-        // Return converted search response
-        return searchData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new SearchResponseJson()),
-
-            // Map the response to a converted search response object for HTML display
-            map((searchResponse: SearchResponseJson) => {
-                console.log(this.httpGetUrl);
-
-                return this.conversionService.convertFullTextSearchResults(searchResponse);
-            })
-        );
-    }
-
-    getResourcetypes(): Observable<ResourceTypesInVocabularyResponseJson> {
-        // Set path and params of query
-        const queryPath: string = this.routes.resourcetypes;
-        const queryHttpParams = new HttpParams().set('vocabulary', this.vocabularyId).set('lang', this.defaultLanguage);
-
-        // Cold request to API
-        const resourcetypesData$: Observable<ResourceTypesInVocabularyResponseJson> = this.getApiResponse(
-            ResourceTypesInVocabularyResponseJson,
-            queryPath,
-            queryHttpParams
-        );
-
-        // Return resource types
-        return resourcetypesData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new ResourceTypesInVocabularyResponseJson()),
-
-            map((resourcetypes: ResourceTypesInVocabularyResponseJson) => {
-                console.log(this.httpGetUrl);
-                return resourcetypes;
-            })
-        );
-    }
-
     getPropertyListsByResourceType(restypeId: string): Observable<PropertyTypesInResourceClassResponseJson> {
-        // Set path and params of query
-        const queryPath: string = this.routes.propertylists;
-        const queryHttpParams = new HttpParams().set('restype', restypeId);
+        if (!restypeId) {
+            return observableOf(new PropertyTypesInResourceClassResponseJson());
+        }
 
         // Cold request to API
-        const propertylistsData$: Observable<PropertyTypesInResourceClassResponseJson> = this.getApiResponse(
-            PropertyTypesInResourceClassResponseJson,
-            queryPath,
-            queryHttpParams
-        );
+        const propertylistsData$: Observable<PropertyTypesInResourceClassResponseJson> =
+            this._getResourceDataResponseFromApi(PropertyTypesInResourceClassResponseJson, restypeId);
 
         // Return resource types
         return propertylistsData$.pipe(
             // Default empty value
             defaultIfEmpty(new PropertyTypesInResourceClassResponseJson()),
 
-            map((propertylists: PropertyTypesInResourceClassResponseJson) => {
-                console.log(this.httpGetUrl);
-                return propertylists;
-            })
+            map((propertylists: PropertyTypesInResourceClassResponseJson) => propertylists)
         );
     }
 
@@ -215,8 +139,14 @@ export class DataApiService extends ApiService {
         }
 
         // Cold request to API
-        const fullResponseData$: Observable<ResourceFullResponseJson> = this._getResourceFullResponseData(resourceId);
-        const contextData$: Observable<ResourceContextResponseJson> = this._getResourceContextData(resourceId);
+        const fullResponseData$: Observable<ResourceFullResponseJson> = this._getResourceDataResponseFromApi(
+            ResourceFullResponseJson,
+            resourceId
+        );
+        const contextData$: Observable<ResourceContextResponseJson> = this._getResourceDataResponseFromApi(
+            ResourceContextResponseJson,
+            resourceId
+        );
 
         // Return converted search response
         return observableForkJoin([fullResponseData$, contextData$]).pipe(
@@ -230,7 +160,79 @@ export class DataApiService extends ApiService {
         );
     }
 
-    private _createQueryParams(sp: SearchParams) {
+    /**
+     * Public method: getResourceTypes.
+     *
+     * It sets the path and params for the Extended search to retrieve
+     * all resource types of the Webern vocabulary (4) from the given (SALSAH) API.
+     *
+     * @returns {Observable<ResourceTypesInVocabularyResponseJson>} The observable with the ResourceTypesInVocabularyResponseJson data.
+     */
+    getResourceTypes(): Observable<ResourceTypesInVocabularyResponseJson> {
+        // Cold request to API
+        const resourcetypesData$: Observable<ResourceTypesInVocabularyResponseJson> =
+            this._getResourceDataResponseFromApi(ResourceTypesInVocabularyResponseJson, '');
+
+        // Return resource types
+        return resourcetypesData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new ResourceTypesInVocabularyResponseJson()),
+
+            map((resourcetypes: ResourceTypesInVocabularyResponseJson) => resourcetypes)
+        );
+    }
+
+    /**
+     * Public method: getSearchData.
+     *
+     * It sets the path and params for a search query
+     * depending on the search mode (fulltext or extended)
+     * to retrieve all results from the given (SALSAH) API.
+     *
+     * @params {SearchParams} searchParams The given search parameters of the query.
+     *
+     * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
+     */
+    getSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
+        if (!searchParams || !searchParams.query) {
+            // .console.log('APISERVICE: no searchParams --> RETURN', searchParams);
+
+            return observableOf(new SearchResponseJson());
+        }
+        if (typeof searchParams.query === 'object' && !searchParams.query['filterByRestype']) {
+            // .console.log('APISERVICE: no searchParams object --> RETURN', searchParams);
+            return observableOf(new SearchResponseJson());
+        }
+        // .console.log('APISERVICE: searchParams', searchParams);
+
+        // Default values
+        const sp: SearchParams = {
+            query: searchParams.query,
+            nRows: searchParams.nRows || '-1',
+            startAt: searchParams.startAt || '0',
+            view: searchParams.view || SearchResultsViewTypes.table,
+        };
+
+        // Cold request to API
+        const searchData$: Observable<SearchResponseJson> = this._getResourceDataResponseFromApi(
+            SearchResponseJson,
+            '',
+            sp
+        );
+
+        // Return converted search response
+        return searchData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new SearchResponseJson()),
+
+            // Map the response to a converted search response object for HTML display
+            map((searchResponse: SearchResponseJson) =>
+                this.conversionService.convertFullTextSearchResults(searchResponse)
+            )
+        );
+    }
+
+    private _createSearchQueryParams(sp: SearchParams) {
         let queryHttpParams = new HttpParams()
             .set('filter_by_project', this.projectId)
             .set('lang', this.defaultLanguage)
@@ -243,20 +245,25 @@ export class DataApiService extends ApiService {
             queryHttpParams = queryHttpParams.append('searchtype', 'extended');
             queryHttpParams = queryHttpParams.append('filter_by_restype', sp.query['filterByRestype']);
 
-            if (sp.query.propertyId.length > 0) {
+            if (
+                sp.query.propertyId &&
+                sp.query.propertyId.length > 0 &&
+                sp.query.compop &&
+                sp.query.compop.length > 0
+            ) {
+                // Compop not possible without property
                 sp.query.propertyId.forEach(id => {
                     queryHttpParams = queryHttpParams.append('property_id', id);
                 });
-            }
-            if (sp.query.compop.length > 0) {
                 sp.query.compop.forEach(compop => {
                     queryHttpParams = queryHttpParams.append('compop', compop);
                 });
-            }
-            if (sp.query.searchval.length > 0) {
-                sp.query.searchval.forEach(searchval => {
-                    queryHttpParams = queryHttpParams.append('searchval', searchval);
-                });
+                // For compop EXISTS there is no searchval
+                if (sp.query.searchval && sp.query.searchval.length > 0) {
+                    sp.query.searchval.forEach(searchval => {
+                        queryHttpParams = queryHttpParams.append('searchval', searchval);
+                    });
+                }
             }
         }
 
@@ -287,34 +294,6 @@ export class DataApiService extends ApiService {
 
         // Return new resource data
         return new ResourceData(resourceDataResponse[0], resourceDetail);
-    }
-
-    /**
-     * Private method: _getResourceContextData.
-     *
-     * It calls the {@link _getResourceDataResponseFromApi} method to
-     * provide an Observable with the ResourceContextResponseJson data.
-     *
-     * @params {string} resourceId The id of the requested resource.
-     *
-     * @returns {Observable<ResourceContextResponseJson>} The observable of the response data.
-     */
-    private _getResourceContextData(resourceId: string): Observable<ResourceContextResponseJson> {
-        return this._getResourceDataResponseFromApi(ResourceContextResponseJson, resourceId);
-    }
-
-    /**
-     * Private method: _getResourceFullResponseData.
-     *
-     * It calls the {@link _getResourceDataResponseFromApi} method to
-     * provide an Observable with the ResourceFullResponseJson data.
-     *
-     * @params {string} resourceId The id of the requested resource.
-     *
-     * @returns {Observable<ResourceFullResponseJson>} The observable of the response data.
-     */
-    private _getResourceFullResponseData(resourceId: string): Observable<ResourceFullResponseJson> {
-        return this._getResourceDataResponseFromApi(ResourceFullResponseJson, resourceId);
     }
 
     /**
@@ -383,10 +362,14 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable<any>} The observable of the HTTP response.
      */
-    private _getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable<any> {
+    private _getResourceDataResponseFromApi(
+        responseJsonType: any,
+        id: string,
+        searchParams?: SearchParams
+    ): Observable<any> {
         // Init query path and params
         let queryPath: string;
-        let queryHttpParams: HttpParams = new HttpParams();
+        let queryHttpParams: HttpParams;
 
         // Set path and params of query depending on responseJsonType
         switch (responseJsonType) {
@@ -394,19 +377,33 @@ export class DataApiService extends ApiService {
                 queryPath = this.routes.geonames + id;
                 queryHttpParams = queryHttpParams.set('reqtype', 'node');
                 break;
-            case HlistJson:
-                queryPath = this.routes.hlists + id;
+            case PropertyTypesInResourceClassResponseJson:
+                queryPath = this.routes.propertylists;
+                queryHttpParams = new HttpParams().set('restype', id);
                 break;
             case ResourceContextResponseJson:
                 queryPath = this.routes.resources + id + this.resourceSuffix;
-                queryHttpParams = queryHttpParams.set('reqtype', 'context');
+                queryHttpParams = new HttpParams().set('reqtype', 'context');
                 break;
             case ResourceFullResponseJson:
                 queryPath = this.routes.resources + id + this.resourceSuffix;
+                queryHttpParams = new HttpParams();
                 break;
-            case SelectionJson:
-                queryPath = this.routes.selections + id;
+            case ResourceTypesInVocabularyResponseJson:
+                queryPath = this.routes.resourcetypes;
+                queryHttpParams = new HttpParams()
+                    .set('vocabulary', this.vocabularyId)
+                    .set('lang', this.defaultLanguage);
                 break;
+            case SearchResponseJson:
+                queryPath = this.routes.search;
+                if (typeof searchParams.query === 'string') {
+                    queryPath = queryPath + searchParams.query;
+                }
+                queryHttpParams = this._createSearchQueryParams(searchParams);
+                break;
+            default:
+                return;
         }
 
         // Trigger call to API
