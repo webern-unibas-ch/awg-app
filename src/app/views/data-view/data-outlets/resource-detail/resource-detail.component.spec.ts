@@ -8,7 +8,6 @@ import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-
 import { of as observableOf } from 'rxjs';
 import { JsonConvert } from 'json2typescript';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
 import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { GndEvent } from '@awg-core/services/gnd-service';

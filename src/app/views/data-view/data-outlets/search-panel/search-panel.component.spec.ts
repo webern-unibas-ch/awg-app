@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { of as observableOf } from 'rxjs';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
@@ -70,7 +71,7 @@ describe('SearchPanelComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [RouterTestingModule],
+                imports: [RouterTestingModule, NgbNavModule],
                 declarations: [
                     SearchPanelComponent,
                     SearchFormStubComponent,
