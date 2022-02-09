@@ -8,17 +8,21 @@
  */
 
 import { mockContextJson } from '@testing/mock-data/mockContextJson';
+import { mockPropertyTypesInResourceClassResponseJson } from '@testing/mock-data/mockPropertyTypesInResourceClassResponseJson';
 import { mockResourceContextResponseJson } from '@testing/mock-data/mockResourceContextResponseJson';
 import { mockResourceDetail } from '@testing/mock-data/mockResourceDetail';
 import { mockResourceFullResponseJson } from '@testing/mock-data/mockResourceFullResponseJson';
+import { mockResourceTypesInVocabularyResponseJson } from '@testing/mock-data/mockResourceTypesInVocabularyResponseJson';
 import { mockSearchResponseConverted } from '@testing/mock-data/mockSearchResponseConverted';
 import { mockSearchResponseJson } from '@testing/mock-data/mockSearchResponseJson';
 
 export {
     mockContextJson,
+    mockPropertyTypesInResourceClassResponseJson,
     mockResourceContextResponseJson,
     mockResourceDetail,
     mockResourceFullResponseJson,
+    mockResourceTypesInVocabularyResponseJson,
     mockSearchResponseConverted,
     mockSearchResponseJson,
 };

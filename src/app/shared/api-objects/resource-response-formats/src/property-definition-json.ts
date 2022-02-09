@@ -48,7 +48,7 @@ export class PropertyDefinitionJson {
      * GUI attributes (HTML) of the property type
      * @param attributes: string | null
      */
-    @JsonProperty('attributes', String)
+    @JsonProperty('attributes', String, true)
     public attributes: string = undefined;
 
     /**

@@ -161,7 +161,7 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     getResourcetypes(): void {
-        this.dataApiService.getResourcetypes().subscribe(
+        this.dataApiService.getResourceTypes().subscribe(
             (restypesResponse: ResourceTypesInVocabularyResponseJson) => {
                 this.restypesResponse = restypesResponse;
                 console.log(this.restypesResponse);
