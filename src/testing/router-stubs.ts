@@ -6,6 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 
 import { AppModule } from '@awg-app/app.module';
 
+export interface UrlSegmentStub {
+    path: string;
+}
+
 // #docregion router-link-stub
 /**
  * A RouterLink test double (stub) with a `click` listener.
@@ -137,6 +141,22 @@ export class ActivatedRouteStub {
     private _testChildren: Params;
 
     /**
+     * Private BehaviorSubject to handle test route url.
+     */
+    private _urlSubject = new BehaviorSubject(this.testUrl);
+
+    /**
+     * Observable that contains a map of the urls
+     */
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly url = this._urlSubject.asObservable();
+
+    /**
+     * Private variable: _testUrl
+     */
+    private _testUrl: UrlSegmentStub[];
+
+    /**
      * Constructor for the ActivatedRouteStub (stub).
      *
      * @param {Params} [initialParams] The optional initial route parameters.
@@ -176,12 +196,21 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Getter for the test route queryÜaramMap.
+     * Getter for the test route queryParamMap.
      *
-     * @returns The latest test route queryParamMap.
+     * @returns The latest test route children.
      */
     get testChildren() {
         return this._testChildren;
+    }
+
+    /**
+     * Getter for the test route url.
+     *
+     * @returns The latest test route url.
+     */
+    get testUrl() {
+        return this._testUrl;
     }
 
     /**
@@ -191,15 +220,17 @@ export class ActivatedRouteStub {
      */
     get snapshot() {
         return {
+            children: this.testChildren,
+            queryParamMap: this.testQueryParamMap,
             params: this.testParams,
             paramMap: this.testParamMap,
-            queryParamMap: this.testQueryParamMap,
-            children: this.testChildren,
+            url: this.testUrl,
         };
     }
 
     /**
      * Setter for test route parameters.
+     *
      * @param params The test route parameters to be set.
      */
     set testParams(params: {}) {
@@ -208,7 +239,7 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Setter for the test route paramMap
+     * Setter for the test route paramMap.
      *
      * @param {} params The route parameters to be set.
      */
@@ -218,7 +249,7 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Setter for the test route queryParamMap
+     * Setter for the test route queryParamMap.
      *
      * @param {Params} params The route queryParameters to be set.
      */
@@ -228,13 +259,23 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Setter for the test route queryParamMap
+     * Setter for the test route children.
      *
-     * @param {Params} params The route queryParameters to be set.
+     * @param {Params} params The route children to be set.
      */
     set testChildren(params: {}) {
         this._testChildren = params;
         this._childrenSubject.next(this._testChildren);
+    }
+
+    /**
+     * Setter for the test route url.
+     *
+     * @param {Params} params The route url to be set.
+     */
+    set testUrl(params: UrlSegmentStub[]) {
+        this._testUrl = params;
+        this._urlSubject.next(this._testUrl);
     }
 }
 // #enddocregion activated-route-stub

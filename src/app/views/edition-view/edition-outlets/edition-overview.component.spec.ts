@@ -101,11 +101,11 @@ describe('EditionOverviewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `editionRouterLinkButtons`', () => {
-            expect(component.editionRouterLinkButtons).toBeUndefined('should be undefined');
+            expect(component.editionRouterLinkButtons).withContext('should be undefined').toBeUndefined();
         });
 
         it('should not have `editionWork`', () => {
-            expect(component.editionWork).toBeUndefined('should be undefined');
+            expect(component.editionWork).withContext('should be undefined').toBeUndefined();
         });
 
         describe('#getEditionWork', () => {
@@ -144,8 +144,10 @@ describe('EditionOverviewComponent (DONE)', () => {
         });
 
         it('should have `editionWork`', () => {
-            expect(component.editionWork).toBeDefined('should be defined');
-            expect(component.editionWork).toEqual(expectedEditionWork, `should equal ${expectedEditionWork}`);
+            expect(component.editionWork).withContext('should be defined').toBeDefined();
+            expect(component.editionWork)
+                .withContext(`should equal ${expectedEditionWork}`)
+                .toEqual(expectedEditionWork);
         });
 
         describe('#setButtons', () => {
@@ -154,11 +156,10 @@ describe('EditionOverviewComponent (DONE)', () => {
             });
 
             it('should have `editionRouterLinkButtons`', () => {
-                expect(component.editionRouterLinkButtons).toBeDefined('should be defined');
-                expect(component.editionRouterLinkButtons).toEqual(
-                    expectedEditionRouterLinkButtons,
-                    `should equal ${expectedEditionRouterLinkButtons}`
-                );
+                expect(component.editionRouterLinkButtons).withContext('should be defined').toBeDefined();
+                expect(component.editionRouterLinkButtons)
+                    .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
+                    .toEqual(expectedEditionRouterLinkButtons);
             });
         });
 
@@ -178,10 +179,9 @@ describe('EditionOverviewComponent (DONE)', () => {
                 ) as RouterLinkButtonGroupStubComponent;
 
                 expect(buttonCmp.routerLinkButtons).toBeTruthy();
-                expect(buttonCmp.routerLinkButtons).toEqual(
-                    expectedEditionRouterLinkButtons,
-                    `should equal ${expectedEditionRouterLinkButtons}`
-                );
+                expect(buttonCmp.routerLinkButtons)
+                    .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
+                    .toEqual(expectedEditionRouterLinkButtons);
             });
         });
     });
