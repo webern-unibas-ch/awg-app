@@ -318,6 +318,10 @@ span.facet-badge {
 .version {
     font-variant: small-caps;
 }
+.tab {
+    display: inline-block;
+    margin-left: 25px;
+}
 .indent {
     text-indent: 25px;
 }
