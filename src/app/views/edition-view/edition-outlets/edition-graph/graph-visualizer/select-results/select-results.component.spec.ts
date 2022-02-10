@@ -6,7 +6,6 @@ import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -68,9 +67,6 @@ describe('SelectResultsComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(SelectResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

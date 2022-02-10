@@ -5,7 +5,6 @@ import { NgbAccordion, NgbAccordionModule, NgbConfig, NgbPanelChangeEvent } from
 import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -68,9 +67,6 @@ describe('SparqlEditorComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(SparqlEditorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -384,14 +380,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const itemEl0 = itemDes[0].nativeElement;
                         const itemEl1 = itemDes[1].nativeElement;
 
-                        expect(itemEl0).toHaveCssClass('disabled');
-                        expect(itemEl1).not.toHaveCssClass('disabled');
+                        expect(itemEl0).toHaveClass('disabled');
+                        expect(itemEl1).not.toHaveClass('disabled');
 
                         component.query = expectedQuery2;
                         await detectChangesOnPush(fixture);
 
-                        expect(itemEl0).not.toHaveCssClass('disabled');
-                        expect(itemEl1).toHaveCssClass('disabled');
+                        expect(itemEl0).not.toHaveClass('disabled');
+                        expect(itemEl1).toHaveClass('disabled');
                     });
 
                     it('... should trigger `onQueryListChange()` by click on dropdown item', async () => {
@@ -407,7 +403,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const itemEl0 = itemDes[0].nativeElement;
                         const itemEl1 = itemDes[1].nativeElement;
 
-                        expect(itemEl1).not.toHaveCssClass('disabled');
+                        expect(itemEl1).not.toHaveClass('disabled');
 
                         // Click on second item (first disabled)
                         click(itemEl1 as HTMLElement);
@@ -419,7 +415,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         component.query = expectedQuery2;
                         await detectChangesOnPush(fixture);
 
-                        expect(itemEl0).not.toHaveCssClass('disabled');
+                        expect(itemEl0).not.toHaveClass('disabled');
 
                         // Click on first item (second disabled)
                         click(itemEl0 as HTMLElement);
@@ -724,14 +720,14 @@ describe('SparqlEditorComponent (DONE)', () => {
                     const itemEl0 = itemDes[0].nativeElement;
                     const itemEl1 = itemDes[1].nativeElement;
 
-                    expect(itemEl0).toHaveCssClass('disabled');
-                    expect(itemEl1).not.toHaveCssClass('disabled');
+                    expect(itemEl0).toHaveClass('disabled');
+                    expect(itemEl1).not.toHaveClass('disabled');
 
                     component.query = expectedQuery2;
                     await detectChangesOnPush(fixture);
 
-                    expect(itemEl0).not.toHaveCssClass('disabled');
-                    expect(itemEl1).toHaveCssClass('disabled');
+                    expect(itemEl0).not.toHaveClass('disabled');
+                    expect(itemEl1).toHaveClass('disabled');
                 });
 
                 it('... should trigger `onQueryListChange()` by click on dropdown item', async () => {
@@ -747,7 +743,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     const itemEl0 = itemDes[0].nativeElement;
                     const itemEl1 = itemDes[1].nativeElement;
 
-                    expect(itemEl1).not.toHaveCssClass('disabled');
+                    expect(itemEl1).not.toHaveClass('disabled');
 
                     // Click on second item (first disabled)
                     click(itemEl1 as HTMLElement);
@@ -759,7 +755,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     component.query = expectedQuery2;
                     await detectChangesOnPush(fixture);
 
-                    expect(itemEl0).not.toHaveCssClass('disabled');
+                    expect(itemEl0).not.toHaveClass('disabled');
 
                     // Click on first item (second disabled)
                     click(itemEl0 as HTMLElement);
@@ -947,7 +943,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.query = expectedQuery2;
                 await detectChangesOnPush(fixture);
 
-                expect(itemEl0).not.toHaveCssClass('disabled');
+                expect(itemEl0).not.toHaveClass('disabled');
 
                 // Click on first item (second disabled)
                 click(itemEl0 as HTMLElement);

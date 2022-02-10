@@ -1,6 +1,3 @@
-/* eslint-disable-next-line spaced-comment, @typescript-eslint/triple-slash-reference */
-/// <reference path="../../../testing/custom-matchers.d.ts"/>
-
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement, Input, NgModule } from '@angular/core';
@@ -8,7 +5,6 @@ import { JsonPipe } from '@angular/common';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -100,9 +96,6 @@ describe('JsonViewerComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (toHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(JsonViewerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;

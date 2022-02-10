@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -22,9 +21,6 @@ describe('ViewContainerComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(ViewContainerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -45,8 +41,8 @@ describe('ViewContainerComponent (DONE)', () => {
                 const divEl0 = divDes[0].nativeElement;
                 const divEl1 = divDes[1].nativeElement;
 
-                expect(divEl0).toHaveCssClass('awg-maincontent');
-                expect(divEl1).toHaveCssClass('awg-sidenav');
+                expect(divEl0).toHaveClass('awg-maincontent');
+                expect(divEl1).toHaveClass('awg-sidenav');
             });
 
             it('... should contain two router outlets (stubbed)', () => {

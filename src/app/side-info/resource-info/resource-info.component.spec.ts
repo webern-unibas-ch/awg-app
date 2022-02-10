@@ -12,7 +12,6 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockSearchResponseJson } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
@@ -88,9 +87,6 @@ describe('ResourceInfoComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(ResourceInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -1255,8 +1251,8 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     const expectedText = 'Aktuelle Suchanfrage';
 
-                    expect(strongEl).toHaveCssClass('text-muted');
-                    expect(strongEl).toHaveCssClass('small');
+                    expect(strongEl).toHaveClass('text-muted');
+                    expect(strongEl).toHaveClass('small');
 
                     expect(strongEl.innerText).toBeTruthy();
                     expect(strongEl.innerText).withContext(`should be ${expectedText}`).toBe(expectedText);
@@ -1311,7 +1307,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
                         const aEl0 = aDes[0].nativeElement;
 
-                        expect(aEl0).toHaveCssClass('text-left');
+                        expect(aEl0).toHaveClass('text-left');
                     });
 
                     describe('if previous resource is given', () => {
@@ -1319,7 +1315,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-left', 1, 1);
                             const aEl0 = aDes[0].nativeElement;
 
-                            expect(aEl0).toHaveCssClass('list-group-item-action');
+                            expect(aEl0).toHaveClass('list-group-item-action');
                         });
 
                         it('... should navigate to previous resource on click', fakeAsync(() => {
@@ -1354,8 +1350,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
-                            expect(strongEl).toHaveCssClass('text-muted');
-                            expect(strongEl).toHaveCssClass('small');
+                            expect(strongEl).toHaveClass('text-muted');
+                            expect(strongEl).toHaveClass('small');
                         });
 
                         it('... should have faChevronLeft icon in strong element', () => {
@@ -1406,8 +1402,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second div
                             const divEl1 = divDes[1].nativeElement;
 
-                            expect(divEl1).toHaveCssClass('text-muted');
-                            expect(divEl1).toHaveCssClass('small');
+                            expect(divEl1).toHaveClass('text-muted');
+                            expect(divEl1).toHaveClass('small');
                         });
 
                         it('... should display previous title in first div.single-line', () => {
@@ -1473,7 +1469,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-left', 1, 1);
                             const aEl0 = aDes[0].nativeElement;
 
-                            expect(aEl0).toHaveCssClass('list-group-item-danger');
+                            expect(aEl0).toHaveClass('list-group-item-danger');
                         });
 
                         it('... should contain two divs', () => {
@@ -1496,8 +1492,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
-                            expect(strongEl).toHaveCssClass('text-muted');
-                            expect(strongEl).toHaveCssClass('small');
+                            expect(strongEl).toHaveClass('text-muted');
+                            expect(strongEl).toHaveClass('small');
                         });
 
                         it('... should have faTimesCircle icon in strong element', () => {
@@ -1525,8 +1521,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second inner div
                             const divEl1 = divDes[1].nativeElement;
 
-                            expect(divEl1).toHaveCssClass('text-muted');
-                            expect(divEl1).toHaveCssClass('small');
+                            expect(divEl1).toHaveClass('text-muted');
+                            expect(divEl1).toHaveClass('small');
 
                             // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
@@ -1558,7 +1554,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const liDes = getAndExpectDebugElementByCss(compDe, 'li.awg-list-group-item', 1, 1);
                             const liEl = liDes[0].nativeElement;
 
-                            expect(liEl).toHaveCssClass('list-group-item-info');
+                            expect(liEl).toHaveClass('list-group-item-info');
                         });
 
                         it('... should contain a strong element and a form', () => {
@@ -1582,8 +1578,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const strongEl = strongDes[0].nativeElement;
 
-                            expect(strongEl).toHaveCssClass('text-muted');
-                            expect(strongEl).toHaveCssClass('small');
+                            expect(strongEl).toHaveClass('text-muted');
+                            expect(strongEl).toHaveClass('small');
                         });
 
                         it('... should point to current resource in span in strong element', () => {
@@ -1929,8 +1925,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
                         const aEl1 = aDes[1].nativeElement;
-                        expect(aEl1).toHaveCssClass('list-group-item-action');
-                        expect(aEl1).toHaveCssClass('text-right');
+                        expect(aEl1).toHaveClass('list-group-item-action');
+                        expect(aEl1).toHaveClass('text-right');
                     });
 
                     describe('if next resource is given', () => {
@@ -1943,7 +1939,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const aEl0 = aDes[0].nativeElement;
 
-                            expect(aEl0).toHaveCssClass('list-group-item-action');
+                            expect(aEl0).toHaveClass('list-group-item-action');
                         });
 
                         it('... should navigate to next resource on click', fakeAsync(() => {
@@ -1982,8 +1978,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
-                            expect(strongEl).toHaveCssClass('text-muted');
-                            expect(strongEl).toHaveCssClass('small');
+                            expect(strongEl).toHaveClass('text-muted');
+                            expect(strongEl).toHaveClass('small');
                         });
 
                         it('... should have faChevronRight icon in strong element', () => {
@@ -2034,8 +2030,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // // get second div
                             const divEl1 = divDes[1].nativeElement;
 
-                            expect(divEl1).toHaveCssClass('text-muted');
-                            expect(divEl1).toHaveCssClass('small');
+                            expect(divEl1).toHaveClass('text-muted');
+                            expect(divEl1).toHaveClass('small');
                         });
 
                         it('... should display next title in first div.single-line', () => {
@@ -2109,7 +2105,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const aEl0 = aDes[0].nativeElement;
 
-                            expect(aEl0).toHaveCssClass('list-group-item-danger');
+                            expect(aEl0).toHaveClass('list-group-item-danger');
                         });
 
                         it('... should contain two divs', () => {
@@ -2132,8 +2128,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
-                            expect(strongEl).toHaveCssClass('text-muted');
-                            expect(strongEl).toHaveCssClass('small');
+                            expect(strongEl).toHaveClass('text-muted');
+                            expect(strongEl).toHaveClass('small');
                         });
 
                         it('... should have faTimesCircle icon in strong element', () => {
@@ -2161,8 +2157,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                             // Get second inner div
                             const divEl1 = divDes[1].nativeElement;
 
-                            expect(divEl1).toHaveCssClass('text-muted');
-                            expect(divEl1).toHaveCssClass('small');
+                            expect(divEl1).toHaveClass('text-muted');
+                            expect(divEl1).toHaveClass('small');
 
                             // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
