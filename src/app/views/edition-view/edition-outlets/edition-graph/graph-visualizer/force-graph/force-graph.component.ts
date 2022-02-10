@@ -203,11 +203,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private _resize$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ForceGraphComponent.
@@ -247,7 +247,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     ngOnInit() {
         // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
-        this._resize$.pipe(debounceTime(150), takeUntil(this._destroy$)).subscribe((event: any) => {
+        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe((event: any) => {
             this._redraw();
         });
 
@@ -340,10 +340,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 
     /**

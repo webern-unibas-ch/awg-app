@@ -141,11 +141,11 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     private _selectedResourceId: string;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the SearchResultListComponent.
@@ -343,7 +343,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Cold request to streamer service
         const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
             .getSearchResponseWithQuery()
-            .pipe(takeUntil(this._destroy$));
+            .pipe(takeUntil(this._destroyed$));
 
         // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
@@ -415,9 +415,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.sideInfoService.clearSearchInfoData();
 
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 }

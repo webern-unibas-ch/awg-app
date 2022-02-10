@@ -35,11 +35,11 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     editionWork: EditionWork;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the EditionOverviewComponent.
@@ -71,7 +71,7 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     getEditionWork(): void {
         this.editionService
             .getEditionWork()
-            .pipe(takeUntil(this._destroy$))
+            .pipe(takeUntil(this._destroyed$))
             .subscribe((work: EditionWork) => {
                 this.editionWork = work;
                 this.setButtons();
@@ -124,9 +124,9 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 }

@@ -249,7 +249,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);
 
-        // Complete the subject itself
+        // Now let's also complete the subject itself
         this._destroyed$.complete();
     }
 

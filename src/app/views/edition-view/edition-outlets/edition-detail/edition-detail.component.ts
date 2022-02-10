@@ -110,11 +110,11 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
     showTkA = false;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the EditionDetailComponent.
@@ -165,7 +165,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                     // Return EditionDetailData from editionDataService
                     return this.editionDataService.getEditionDetailData(this.editionWork);
                 }),
-                takeUntil(this._destroy$)
+                takeUntil(this._destroyed$)
             )
             .pipe(
                 switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
@@ -177,7 +177,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                         return this.route.queryParamMap;
                     }
                 }),
-                takeUntil(this._destroy$)
+                takeUntil(this._destroyed$)
             )
             .subscribe(
                 (queryParams: ParamMap) => {
@@ -279,10 +279,10 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 
     /**
