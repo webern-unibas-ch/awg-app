@@ -247,7 +247,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
             describe('... should trigger on event from ResourceDetailHtmlContentComponent if', () => {
                 it('... gndEvent is undefined', fakeAsync(() => {
-                    // Undefined
                     gndEvent = undefined;
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -255,7 +254,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... gndEvent is SET', fakeAsync(() => {
-                    // SET
                     gndEvent = new GndEvent(GndEventType.SET, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -263,7 +261,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... gndEvent is GET', fakeAsync(() => {
-                    // GET
                     gndEvent = new GndEvent(GndEventType.GET, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -271,7 +268,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... gndEvent is REMOVE', fakeAsync(() => {
-                    // REMOVE
                     gndEvent = new GndEvent(GndEventType.REMOVE, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -281,7 +277,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
             describe('... should not emit anything if', () => {
                 it('... gndEvent is undefined', fakeAsync(() => {
-                    // GndEvent is undefined
                     gndEvent = undefined;
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -290,7 +285,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... gndEvent is null', fakeAsync(() => {
-                    // GndEvent is undefined
                     gndEvent = null;
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -299,7 +293,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... gndEvent type is undefined', fakeAsync(() => {
-                    // GndEvent is undefined
                     gndEvent = new GndEvent(undefined, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -310,7 +303,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
             describe('... should emit provided gndEvent on click with', () => {
                 it('... SET event', fakeAsync(() => {
-                    // SET
                     gndEvent = new GndEvent(GndEventType.SET, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -319,7 +311,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... GET event', fakeAsync(() => {
-                    // GET
                     gndEvent = new GndEvent(GndEventType.GET, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 
@@ -328,7 +319,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 }));
 
                 it('... REMOVE event', fakeAsync(() => {
-                    // REMOVE
                     gndEvent = new GndEvent(GndEventType.REMOVE, '123');
                     htmlContentCmp.gndRequest.emit(gndEvent);
 

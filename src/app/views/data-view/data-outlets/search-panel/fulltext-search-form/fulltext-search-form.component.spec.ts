@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
 import { FulltextSearchFormComponent } from './fulltext-search-form.component';
 
@@ -21,7 +21,7 @@ describe('FulltextSearchFormComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, ReactiveFormsModule],
+                imports: [FontAwesomeTestingModule, ReactiveFormsModule],
                 declarations: [FulltextSearchFormComponent],
                 providers: [{ provide: FormBuilder, useValue: formBuilder }],
             }).compileComponents();

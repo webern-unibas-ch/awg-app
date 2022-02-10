@@ -7,7 +7,7 @@ import { click } from '@testing/click-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -51,7 +51,7 @@ describe('NavbarComponent (DONE)', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, NgbWithConfigModule],
+                imports: [FontAwesomeTestingModule, NgbWithConfigModule],
                 declarations: [NavbarComponent, RouterLinkStubDirective],
                 providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();

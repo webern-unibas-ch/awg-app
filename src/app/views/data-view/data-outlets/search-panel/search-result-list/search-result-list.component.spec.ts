@@ -6,7 +6,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import Spy = jasmine.Spy;
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -17,7 +17,6 @@ import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@
 import { SearchResponseJson } from '@awg-shared/api-objects';
 
 import { SearchResultListComponent } from './search-result-list.component';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 describe('SearchResultListComponent', () => {
     let component: SearchResultListComponent;
@@ -60,7 +59,7 @@ describe('SearchResultListComponent', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
+                imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
                 declarations: [SearchResultListComponent, CompileHtmlComponent],
                 providers: [
                     { provide: DataStreamerService, useValue: mockDataStreamerService },

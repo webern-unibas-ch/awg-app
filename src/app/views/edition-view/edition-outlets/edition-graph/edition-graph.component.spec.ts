@@ -5,6 +5,8 @@ import { JsonPipe } from '@angular/common';
 import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -27,7 +29,6 @@ import {
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Mock components
 @Component({ selector: 'awg-graph-visualizer', template: '' })
@@ -83,7 +84,7 @@ describe('EditionGraphComponent (DONE)', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule],
+                imports: [FontAwesomeTestingModule],
                 declarations: [
                     EditionGraphComponent,
                     GraphVisualizerStubComponent,

@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+
 import { ExtendedSearchFormComponent } from './extended-search-form.component';
 
 describe('ExtendedSearchFormComponent', () => {
@@ -12,7 +14,7 @@ describe('ExtendedSearchFormComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [HttpClientTestingModule, ReactiveFormsModule],
+            imports: [FontAwesomeTestingModule, HttpClientTestingModule, ReactiveFormsModule],
             declarations: [ExtendedSearchFormComponent],
             providers: [FormBuilder],
         }).compileComponents();

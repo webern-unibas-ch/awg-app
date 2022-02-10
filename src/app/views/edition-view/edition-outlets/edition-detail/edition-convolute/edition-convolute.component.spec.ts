@@ -2,18 +2,19 @@ import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/cor
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import Spy = jasmine.Spy;
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgSheet, FolioConvoluteList, FolioConvolute } from '@awg-views/edition-view/models';
-import { EditionConvoluteComponent } from './edition-convolute.component';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+
+import { EditionSvgSheet, FolioConvoluteList, FolioConvolute } from '@awg-views/edition-view/models';
+import { EditionConvoluteComponent } from './edition-convolute.component';
 
 interface IFolioLegend {
     color: string;
@@ -62,7 +63,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, NgbAccordionWithConfigModule],
+                imports: [FontAwesomeTestingModule, NgbAccordionWithConfigModule],
                 declarations: [EditionConvoluteComponent, FolioStubComponent],
             }).compileComponents();
         })
