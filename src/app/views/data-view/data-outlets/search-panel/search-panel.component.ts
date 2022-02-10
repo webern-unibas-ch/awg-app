@@ -160,7 +160,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     while (r.firstChild) {
                         r = r.firstChild;
                     }
-                    this.selectedSearchTabId = r.snapshot.url[0].path;
+                    // Set search tab from url if given, otherwise router will redirect to fulltext automatically
+                    if (this._isValidTabIdInRoute(r)) {
+                        this.selectedSearchTabId = r.snapshot.url[0].path;
+                    }
 
                     return route;
                 }),
@@ -179,7 +182,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                             this.updateSearchParamsFromRoute(qp, false);
 
                             if (!this.viewChanged) {
-                                console.log(typeof this.getSearchQueryType(this.searchParams.query));
                                 if (this.searchParams.query && typeof this.searchParams.query === 'string') {
                                     // Fetch search data
                                     return this.dataApiService.getSearchData(this.searchParams);
@@ -459,7 +461,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);
 
-        // Complete the destroy subject itself
+        // Now let's also complete the subject itself
         this._destroyed$.complete();
     }
 
@@ -501,5 +503,13 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         qp['view'] = sp.view;
 
         return qp;
+    }
+
+    private _isValidTabIdInRoute(r: ActivatedRoute) {
+        return (
+            r.snapshot.url &&
+            r.snapshot.url.length > 0 &&
+            Object.values(this.searchTabStrings).filter(tab => tab.id === r.snapshot.url[0].path).length > 0
+        );
     }
 }

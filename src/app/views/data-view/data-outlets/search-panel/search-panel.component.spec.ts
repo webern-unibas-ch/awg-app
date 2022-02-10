@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { of as observableOf } from 'rxjs';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ActivatedRouteStub } from '@testing/router-stubs';
+import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
 import { DataApiService } from '@awg-views/data-view/services';
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
@@ -15,10 +13,16 @@ import { SearchParams } from '@awg-views/data-view/models';
 
 import { SearchPanelComponent } from './search-panel.component';
 
-@Component({ selector: 'awg-search-form', template: '' })
-class SearchFormStubComponent {
+@Component({ selector: 'awg-fulltext-search-form', template: '' })
+class FulltextSearchFormStubComponent {
     @Input()
     searchValue: string;
+    @Output()
+    searchRequest: EventEmitter<string> = new EventEmitter();
+}
+
+@Component({ selector: 'awg-extended-search-form', template: '' })
+class ExtendedSearchFormStubComponent {
     @Output()
     searchRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -32,7 +36,7 @@ class SearchResultListStubComponent {
     @Output()
     pageChangeRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    rowChangeRequest: EventEmitter<string> = new EventEmitter();
+    rowNumberChangeRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -51,7 +55,7 @@ describe('SearchPanelComponent', () => {
             // Intentional empty test override
         },
     };
-    const mockDataApiService = { httpGetUrl: '/testUrl', getFulltextSearchData: () => observableOf({}) };
+    const mockDataApiService = { httpGetUrl: '/testUrl', getSearchData: () => observableOf({}) };
     const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
     const mockDataStreamerService = {
         updateSearchResponseWithQuery: () => {
@@ -65,16 +69,26 @@ describe('SearchPanelComponent', () => {
         events: observableOf(new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')),
         navigate: jasmine.createSpy('navigate'),
     };
-    // Mocked activated route
-    const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
+
+    let mockActivatedRoute: ActivatedRouteStub;
+    let expectedRouteUrl: UrlSegmentStub[] = [];
+    const expectedPath = 'fulltext';
 
     beforeEach(
         waitForAsync(() => {
+            // Mocked activated route
+            // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
+            expectedRouteUrl = [{ path: expectedPath }];
+
+            mockActivatedRoute = new ActivatedRouteStub();
+            mockActivatedRoute.testUrl = expectedRouteUrl;
+
             TestBed.configureTestingModule({
-                imports: [RouterTestingModule, NgbNavModule],
+                imports: [NgbNavModule],
                 declarations: [
                     SearchPanelComponent,
-                    SearchFormStubComponent,
+                    FulltextSearchFormStubComponent,
+                    ExtendedSearchFormStubComponent,
                     SearchResultListStubComponent,
                     TwelveToneSpinnerStubComponent,
                 ],
@@ -100,5 +114,20 @@ describe('SearchPanelComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('should change urls', () => {
+        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
+        expect(mockActivatedRoute.snapshot.url[0].path)
+            .withContext(`should equal ${expectedPath}`)
+            .toEqual(expectedPath);
+
+        const changedPath = 'other';
+        const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
+
+        mockActivatedRoute.testUrl = changedRouteUrl;
+
+        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
+        expect(mockActivatedRoute.snapshot.url[0].path).withContext(`should equal ${changedPath}`).toEqual(changedPath);
     });
 });
