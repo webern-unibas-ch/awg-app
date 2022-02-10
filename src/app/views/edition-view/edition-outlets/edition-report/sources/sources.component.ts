@@ -76,6 +76,9 @@ export class SourcesComponent {
      * @returns {void} Navigates to the edition report.
      */
     navigateToReportFragment(fragmentId: string) {
+        if (!fragmentId) {
+            return;
+        }
         this.navigateToReportFragmentRequest.emit(fragmentId);
     }
 
@@ -90,6 +93,9 @@ export class SourcesComponent {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -103,6 +109,9 @@ export class SourcesComponent {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }
