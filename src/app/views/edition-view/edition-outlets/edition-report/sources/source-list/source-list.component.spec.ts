@@ -73,13 +73,12 @@ describe('SourceListComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have sourceListData', () => {
-            expect(component.sourceListData).toBeUndefined('should be undefined');
+            expect(component.sourceListData).withContext('should be undefined').toBeUndefined();
         });
 
         it('should have ref', () => {
             expect(component.ref).toBeTruthy();
-            // @ts-ignore
-            expect(component.ref).toEqual(component, `should equal ${component}`);
+            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
         });
 
         describe('VIEW', () => {
@@ -101,7 +100,10 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         it('should have sourceListData', () => {
-            expect(component.sourceListData).toBe(expectedSourceListData);
+            expect(component.sourceListData).toBeTruthy();
+            expect(component.sourceListData)
+                .withContext(`should equal ${expectedSourceListData}`)
+                .toEqual(expectedSourceListData);
         });
 
         describe('VIEW', () => {
@@ -139,23 +141,20 @@ describe('SourceListComponent (DONE)', () => {
                 const anchorCmp1 = anchorDes1[0].nativeElement;
                 const anchorCmp2 = anchorDes2[0].nativeElement;
 
-                expect(anchorCmp0.textContent).toBeDefined('should be defined');
-                expect(anchorCmp0.textContent).toBe(
-                    expectedSourceListData.sources[0].siglum,
-                    `should be ${expectedSourceListData.sources[0].siglum}`
-                );
+                expect(anchorCmp0.textContent).withContext('should be defined').toBeDefined();
+                expect(anchorCmp0.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[0].siglum}`)
+                    .toBe(expectedSourceListData.sources[0].siglum);
 
-                expect(anchorCmp1.textContent).toBeDefined('should be defined');
-                expect(anchorCmp1.textContent).toBe(
-                    expectedSourceListData.sources[1].siglum,
-                    `should be ${expectedSourceListData.sources[1].siglum}`
-                );
+                expect(anchorCmp1.textContent).withContext('should be defined').toBeDefined();
+                expect(anchorCmp1.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[1].siglum}`)
+                    .toBe(expectedSourceListData.sources[1].siglum);
 
-                expect(anchorCmp2.textContent).toBeDefined('should be defined');
-                expect(anchorCmp2.textContent).toBe(
-                    expectedSourceListData.sources[2].siglum,
-                    `should be ${expectedSourceListData.sources[2].siglum}`
-                );
+                expect(anchorCmp2.textContent).withContext('should be defined').toBeDefined();
+                expect(anchorCmp2.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[2].siglum}`)
+                    .toBe(expectedSourceListData.sources[2].siglum);
             });
 
             it('... should contain source type and source location in second table column (td)', () => {
@@ -178,38 +177,35 @@ describe('SourceListComponent (DONE)', () => {
                 const spanCmp20 = spanDes2[0].nativeElement;
                 const spanCmp21 = spanDes2[1].nativeElement;
 
-                expect(spanCmp00.textContent).toBeDefined('should be defined');
-                expect(spanCmp00.textContent).toBe(
-                    expectedSourceListData.sources[0].type,
-                    `should be ${expectedSourceListData.sources[0].type}`
-                );
-                expect(spanCmp01.textContent).toBeDefined('should be defined');
-                expect(spanCmp01.textContent).toBe(
-                    expectedSourceListData.sources[0].location,
-                    `should be ${expectedSourceListData.sources[0].location}`
-                );
+                expect(spanCmp00.textContent).withContext('should be defined').toBeDefined();
+                expect(spanCmp00.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[0].type}`)
+                    .toBe(expectedSourceListData.sources[0].type);
 
-                expect(spanCmp10.textContent).toBeDefined('should be defined');
-                expect(spanCmp10.textContent).toBe(
-                    expectedSourceListData.sources[1].type,
-                    `should be ${expectedSourceListData.sources[1].type}`
-                );
-                expect(spanCmp11.textContent).toBeDefined('should be defined');
-                expect(spanCmp11.textContent).toBe(
-                    expectedSourceListData.sources[1].location,
-                    `should be ${expectedSourceListData.sources[1].location}`
-                );
+                expect(spanCmp01.textContent).withContext('should be defined').toBeDefined();
+                expect(spanCmp01.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[0].location}`)
+                    .toBe(expectedSourceListData.sources[0].location);
 
-                expect(spanCmp20.textContent).toBeDefined('should be defined');
-                expect(spanCmp20.textContent).toBe(
-                    expectedSourceListData.sources[2].type,
-                    `should be ${expectedSourceListData.sources[2].type}`
-                );
-                expect(spanCmp21.textContent).toBeDefined('should be defined');
-                expect(spanCmp21.textContent).toBe(
-                    expectedSourceListData.sources[2].location,
-                    `should be ${expectedSourceListData.sources[2].location}`
-                );
+                expect(spanCmp10.textContent).withContext('should be defined').toBeDefined();
+                expect(spanCmp10.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[1].type}`)
+                    .toBe(expectedSourceListData.sources[1].type);
+
+                expect(spanCmp11.textContent).withContext('should be defined').toBeDefined();
+                expect(spanCmp11.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[1].location}`)
+                    .toBe(expectedSourceListData.sources[1].location);
+
+                expect(spanCmp20.textContent).withContext('should be defined').toBeDefined();
+                expect(spanCmp20.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[2].type}`)
+                    .toBe(expectedSourceListData.sources[2].type);
+
+                expect(spanCmp21.textContent).withContext('should be defined').toBeDefined();
+                expect(spanCmp21.textContent)
+                    .withContext(`should be ${expectedSourceListData.sources[2].location}`)
+                    .toBe(expectedSourceListData.sources[2].location);
             });
         });
 
@@ -230,10 +226,23 @@ describe('SourceListComponent (DONE)', () => {
                 expectSpyCall(openModalSpy, 2, expectedSourceListData.sources[2].linkTo);
             }));
 
-            it('... should not emit anything if no id is provided', () => {
-                component.openModal(undefined);
+            describe('... should not emit anything if ', () => {
+                it('... id is undefined', () => {
+                    component.openModal(undefined);
 
-                expectSpyCall(openModalRequestEmitSpy, 0, undefined);
+                    expectSpyCall(openModalRequestEmitSpy, 0);
+                });
+
+                it('... id is null', () => {
+                    component.openModal(undefined);
+
+                    expectSpyCall(openModalRequestEmitSpy, 0, null);
+                });
+                it('... id is empty string', () => {
+                    component.openModal('');
+
+                    expectSpyCall(openModalRequestEmitSpy, 0);
+                });
             });
 
             it('... should emit id of given modal snippet', () => {
