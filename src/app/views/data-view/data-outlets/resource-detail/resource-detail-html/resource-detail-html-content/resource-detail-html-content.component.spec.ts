@@ -12,7 +12,7 @@ import {
 } from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
 
-import { GndEvent } from '@awg-core/services/gnd-service';
+import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import { ContextJson } from '@awg-shared/api-objects';
 import {
     ResourceDetailContent,
@@ -53,8 +53,10 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
     let fixture: ComponentFixture<ResourceDetailHtmlContentComponent>;
     let compDe: DebugElement;
 
+    let exposeGndSpy: Spy;
     let navigateToResourceSpy: Spy;
-    let emitSpy: Spy;
+    let gndRequestEmitSpy: Spy;
+    let resourceRequestEmitSpy: Spy;
 
     // Json object
     let jsonConvert: JsonConvert;
@@ -99,7 +101,9 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
-        emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
+        exposeGndSpy = spyOn(component, 'exposeGnd').and.callThrough();
+        gndRequestEmitSpy = spyOn(component.gndRequest, 'emit').and.callThrough();
+        resourceRequestEmitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
     it('should create', () => {
@@ -108,13 +112,20 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `content` inputs', () => {
-            expect(component.content).toBeUndefined('should be undefined');
+            expect(component.content).withContext('should be undefined').toBeUndefined();
+        });
+
+        describe('#exposeGnd', () => {
+            it('... should not have been called', () => {
+                expect(exposeGndSpy).not.toHaveBeenCalled();
+                expect(gndRequestEmitSpy).not.toHaveBeenCalled();
+            });
         });
 
         describe('#navigateToResource', () => {
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
-                expect(emitSpy).not.toHaveBeenCalled();
+                expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
             });
         });
 
@@ -157,8 +168,10 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         });
 
         it('should have `content` inputs', () => {
-            expect(component.content).toBeDefined('should be defined');
-            expect(component.content).toBe(expectedContent, `should be expectedIncoming: ${expectedContent}`);
+            expect(component.content).withContext('should be defined').toBeDefined();
+            expect(component.content)
+                .withContext(`should be expectedIncoming: ${expectedContent}`)
+                .toBe(expectedContent);
         });
 
         describe('VIEW', () => {
@@ -174,8 +187,8 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentPropsStubComponent
                 ) as ResourceDetailHtmlContentPropsStubComponent;
 
-                expect(propsCmp.props).toBeDefined();
-                expect(propsCmp.props).toBe(expectedContent.props);
+                expect(propsCmp.props).withContext('should be defined').toBeDefined();
+                expect(propsCmp.props).withContext(`should be ${expectedContent.props}`).toBe(expectedContent.props);
             });
 
             it('... should pass down `content.images` to ResourceDetailHtmlContentImageobjectsComponent', () => {
@@ -190,8 +203,10 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentImageobjectsStubComponent
                 ) as ResourceDetailHtmlContentImageobjectsStubComponent;
 
-                expect(imagesCmp.images).toBeDefined();
-                expect(imagesCmp.images).toBe(expectedContent.images);
+                expect(imagesCmp.images).withContext('should be defined').toBeDefined();
+                expect(imagesCmp.images)
+                    .withContext(`should be ${expectedContent.images}`)
+                    .toBe(expectedContent.images);
             });
 
             it('... should pass down `content.incoming` to ResourceDetailHtmlContentLinkedobjectsComponent', () => {
@@ -206,122 +221,242 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentLinkedobjectsStubComponent
                 ) as ResourceDetailHtmlContentLinkedobjectsStubComponent;
 
-                expect(incomingCmp.incomingGroups).toBeDefined();
-                expect(incomingCmp.incomingGroups).toBe(expectedContent.incoming);
+                expect(incomingCmp.incomingGroups).withContext('should be defined').toBeDefined();
+                expect(incomingCmp.incomingGroups)
+                    .withContext(`should be ${expectedContent.incoming}`)
+                    .toBe(expectedContent.incoming);
             });
         });
 
-        describe('#navigateToResource', () => {
-            it('... should trigger on event from ResourceDetailHtmlContentPropsComponent', fakeAsync(() => {
-                const propsDes = getAndExpectDebugElementByDirective(
+        describe('#exposeGnd', () => {
+            let htmlContentDes;
+            let htmlContentCmp;
+            let gndEvent: GndEvent;
+
+            beforeEach(() => {
+                htmlContentDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentPropsStubComponent,
                     1,
                     1
                 );
-                const propsCmp = propsDes[0].injector.get(
+                htmlContentCmp = htmlContentDes[0].injector.get(
+                    ResourceDetailHtmlContentPropsStubComponent
+                ) as ResourceDetailHtmlContentPropsStubComponent;
+            });
+
+            describe('... should trigger on event from ResourceDetailHtmlContentComponent if', () => {
+                it('... gndEvent is undefined', fakeAsync(() => {
+                    // Undefined
+                    gndEvent = undefined;
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+
+                it('... gndEvent is SET', fakeAsync(() => {
+                    // SET
+                    gndEvent = new GndEvent(GndEventType.SET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+
+                it('... gndEvent is GET', fakeAsync(() => {
+                    // GET
+                    gndEvent = new GndEvent(GndEventType.GET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+
+                it('... gndEvent is REMOVE', fakeAsync(() => {
+                    // REMOVE
+                    gndEvent = new GndEvent(GndEventType.REMOVE, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+            });
+
+            describe('... should not emit anything if', () => {
+                it('... gndEvent is undefined', fakeAsync(() => {
+                    // GndEvent is undefined
+                    gndEvent = undefined;
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, undefined);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+
+                it('... gndEvent is null', fakeAsync(() => {
+                    // GndEvent is undefined
+                    gndEvent = null;
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, null);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+
+                it('... gndEvent type is undefined', fakeAsync(() => {
+                    // GndEvent is undefined
+                    gndEvent = new GndEvent(undefined, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, null);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+            });
+
+            describe('... should emit provided gndEvent on click with', () => {
+                it('... SET event', fakeAsync(() => {
+                    // SET
+                    gndEvent = new GndEvent(GndEventType.SET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
+
+                it('... GET event', fakeAsync(() => {
+                    // GET
+                    gndEvent = new GndEvent(GndEventType.GET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
+
+                it('... REMOVE event', fakeAsync(() => {
+                    // REMOVE
+                    gndEvent = new GndEvent(GndEventType.REMOVE, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
+            });
+        });
+
+        describe('#navigateToResource', () => {
+            let propsDes;
+            let propsCmp;
+            let linkObjDes;
+            let linkObjCmp;
+            let id;
+
+            beforeEach(() => {
+                propsDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    ResourceDetailHtmlContentPropsStubComponent,
+                    1,
+                    1
+                );
+                propsCmp = propsDes[0].injector.get(
                     ResourceDetailHtmlContentPropsStubComponent
                 ) as ResourceDetailHtmlContentPropsStubComponent;
 
-                let id;
-
-                // Undefined
-                id = undefined;
-                propsCmp.resourceRequest.emit(id);
-
-                expectSpyCall(navigateToResourceSpy, 1, id);
-
-                // Number
-                id = 28;
-                propsCmp.resourceRequest.emit(id);
-
-                expectSpyCall(navigateToResourceSpy, 2, id);
-
-                // String
-                id = '330';
-                propsCmp.resourceRequest.emit(id);
-
-                expectSpyCall(navigateToResourceSpy, 3, id);
-            }));
-
-            it('... should trigger on event from ResourceDetailHtmlContentLinkedobjectsComponent', fakeAsync(() => {
-                const propsDes = getAndExpectDebugElementByDirective(
+                linkObjDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentLinkedobjectsStubComponent,
                     1,
                     1
                 );
-                const propsCmp = propsDes[0].injector.get(
+                linkObjCmp = linkObjDes[0].injector.get(
                     ResourceDetailHtmlContentLinkedobjectsStubComponent
                 ) as ResourceDetailHtmlContentLinkedobjectsStubComponent;
+            });
 
-                let id;
+            describe('... should trigger on event', () => {
+                describe('... from ResourceDetailHtmlContentPropsComponent if', () => {
+                    it('... id is undefined', fakeAsync(() => {
+                        id = undefined;
+                        propsCmp.resourceRequest.emit(id);
 
-                // Undefined
-                id = undefined;
-                propsCmp.resourceRequest.emit(id);
+                        expectSpyCall(navigateToResourceSpy, 1, id);
+                    }));
 
-                expectSpyCall(navigateToResourceSpy, 1, id);
+                    it('... id is a number', fakeAsync(() => {
+                        id = 28;
+                        propsCmp.resourceRequest.emit(id);
 
-                // Number
-                id = 28;
-                propsCmp.resourceRequest.emit(id);
+                        expectSpyCall(navigateToResourceSpy, 1, id);
+                    }));
 
-                expectSpyCall(navigateToResourceSpy, 2, id);
+                    it('... id is a string', fakeAsync(() => {
+                        id = '330';
+                        propsCmp.resourceRequest.emit(id);
 
-                // String
-                id = '330';
-                propsCmp.resourceRequest.emit(id);
+                        expectSpyCall(navigateToResourceSpy, 1, id);
+                    }));
+                });
 
-                expectSpyCall(navigateToResourceSpy, 3, id);
-            }));
+                describe('... from ResourceDetailHtmlContentLinkedobjectsComponent if', () => {
+                    it('... id is undefined', fakeAsync(() => {
+                        id = undefined;
+                        linkObjCmp.resourceRequest.emit(id);
 
-            it('... should not emit anything if no id is provided', fakeAsync(() => {
-                // Props
-                const propsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentPropsStubComponent,
-                    1,
-                    1
-                );
-                const propsCmp = propsDes[0].injector.get(
-                    ResourceDetailHtmlContentPropsStubComponent
-                ) as ResourceDetailHtmlContentPropsStubComponent;
+                        expectSpyCall(navigateToResourceSpy, 1, id);
+                    }));
 
-                // No id
-                propsCmp.resourceRequest.emit(undefined);
+                    it('... id is a number', fakeAsync(() => {
+                        id = 28;
+                        linkObjCmp.resourceRequest.emit(id);
 
-                // Id is undefined
-                expect(emitSpy).not.toHaveBeenCalled();
-                expect(emitSpy).toHaveBeenCalledTimes(0);
-            }));
+                        expectSpyCall(navigateToResourceSpy, 1, id);
+                    }));
 
-            it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                // Props
-                const propsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentPropsStubComponent,
-                    1,
-                    1
-                );
-                const propsCmp = propsDes[0].injector.get(
-                    ResourceDetailHtmlContentPropsStubComponent
-                ) as ResourceDetailHtmlContentPropsStubComponent;
+                    it('... id is a string', fakeAsync(() => {
+                        id = '330';
+                        linkObjCmp.resourceRequest.emit(id);
 
-                let id;
+                        expectSpyCall(navigateToResourceSpy, 1, id);
+                    }));
+                });
+            });
 
-                // Number
-                id = 28;
-                propsCmp.resourceRequest.emit(id);
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', fakeAsync(() => {
+                    propsCmp.resourceRequest.emit(undefined);
 
-                expectSpyCall(emitSpy, 1, id.toString());
+                    expectSpyCall(navigateToResourceSpy, 1, undefined);
+                    expectSpyCall(resourceRequestEmitSpy, 0);
+                }));
 
-                // String
-                id = '28';
-                propsCmp.resourceRequest.emit(id);
+                it('... id is null', fakeAsync(() => {
+                    propsCmp.resourceRequest.emit(null);
 
-                expectSpyCall(emitSpy, 2, id);
-            }));
+                    expectSpyCall(navigateToResourceSpy, 1, null);
+                    expectSpyCall(resourceRequestEmitSpy, 0);
+                }));
+
+                it('... id is empty string', fakeAsync(() => {
+                    propsCmp.resourceRequest.emit('');
+
+                    expectSpyCall(navigateToResourceSpy, 1, '');
+                    expectSpyCall(resourceRequestEmitSpy, 0);
+                }));
+            });
+
+            describe('... should emit provided resource id (as string) on click with', () => {
+                it('... number input', fakeAsync(() => {
+                    // Number
+                    id = 28;
+                    propsCmp.resourceRequest.emit(id);
+
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                    expectSpyCall(resourceRequestEmitSpy, 1, id.toString());
+                }));
+
+                it('... string input', fakeAsync(() => {
+                    // String
+                    id = '28';
+                    propsCmp.resourceRequest.emit(id);
+
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                    expectSpyCall(resourceRequestEmitSpy, 1, id.toString());
+                }));
+            });
         });
     });
 });
