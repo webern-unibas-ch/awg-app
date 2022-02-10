@@ -189,7 +189,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
         // Emit truthy value to end all subscriptions
         this._destroyed$.next(true);
 
-        // Complete the destroy subject itself
+        // Now let's complete the subject itself
         this._destroyed$.complete();
     }
 }
