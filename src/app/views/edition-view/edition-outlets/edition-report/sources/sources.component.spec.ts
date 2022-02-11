@@ -1,11 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import {
     EditionSvgSheet,
@@ -15,6 +19,8 @@ import {
 } from '@awg-views/edition-view/models';
 
 import { SourcesComponent } from './sources.component';
+import { expectClosedPanelBody, expectOpenPanelBody } from '@testing/accordion-panel-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
 
 // Mock components
 @Component({ selector: 'awg-source-list', template: '' })
@@ -59,13 +65,14 @@ describe('SourcesComponent (DONE)', () => {
     let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedPanelId: string;
 
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
-    let navigateToReportFragmentSpy: Spy;
-    let navigateToReportFragmentRequestEmitSpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -150,19 +157,20 @@ describe('SourcesComponent (DONE)', () => {
             alt: 'Aa:SkI/3',
         };
         expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
+        expectedPanelId = 'awg-sources-panel';
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
             'emit'
         ).and.callThrough();
+        openModalSpy = spyOn(component, 'openModal').and.callThrough();
+        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
+        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
+        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
     it('should create', () => {
@@ -183,15 +191,23 @@ describe('SourcesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should not contain source list component (stubbed)', () => {
+            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
+                // Ngb-accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+
+                // Panel
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+            });
+
+            it('should not contain source list component (stubbed) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 0, 0);
             });
 
-            it('should not contain source description component (stubbed)', () => {
+            it('should not contain source description component (stubbed) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 0, 0);
             });
 
-            it('should not contain source evaluation component (stubbed)', () => {
+            it('should not contain source evaluation component (stubbed) yet', () => {
                 getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 0, 0);
             });
         });
@@ -230,16 +246,286 @@ describe('SourcesComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should contain source list component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+            it('... should contain one main ngb-accordion with one panel (div.card)', () => {
+                getAndExpectDebugElementByCss(compDe, 'ngb-accordion#sourcesAcc', 1, 1);
+
+                // Panel
+                getAndExpectDebugElementByCss(compDe, 'ngb-accordion#sourcesAcc > div.card', 1, 1);
             });
 
-            it('should contain source description component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 1, 1);
-            });
+            describe('... main ngb-accordion (sourcesAcc)', () => {
+                it('... should render title in outer panel header (div.card-header)', () => {
+                    // Ngb-accordion panel debug element
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion#sourcesAcc > div.card', 1, 1);
 
-            it('should contain source evaluation component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 1, 1);
+                    // Header
+                    const headerDes = getAndExpectDebugElementByCss(
+                        panelDes[0],
+                        'div#awg-sources-panel-header.card-header',
+                        1,
+                        1
+                    );
+
+                    // Header Buttons
+                    const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div > button', 1, 1);
+
+                    const buttonCmp = buttonDes[0].nativeElement;
+
+                    const expectedTitle = 'I. Quellen';
+
+                    expect(buttonCmp.textContent).withContext('should be defined').toBeDefined();
+                    expect(buttonCmp.textContent.trim())
+                        .withContext(`should be ${expectedTitle.trim()}`)
+                        .toBe(expectedTitle.trim());
+                });
+
+                it('... should open and close outer panel on click', fakeAsync(() => {
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'ngb-accordion#sourcesAcc > div.card > div.card-header',
+                        1,
+                        1
+                    );
+
+                    // Button debug elements
+                    const buttonDes = getAndExpectDebugElementByCss(
+                        panelHeaderDes[0],
+                        'button.btn-link',
+                        1,
+                        1,
+                        'in first panel'
+                    );
+
+                    // Panel opened first by default
+                    expectOpenPanelBody(compDe, expectedPanelId, 'panel open');
+
+                    // Click panel to close it
+                    clickAndAwaitChanges(buttonDes[0], fixture);
+
+                    expectClosedPanelBody(compDe, expectedPanelId, 'panel closed');
+
+                    // Click panel again to open it
+                    clickAndAwaitChanges(buttonDes[0], fixture);
+
+                    expectOpenPanelBody(compDe, expectedPanelId, 'panel open');
+                }));
+
+                it('... should contain one sub ngb-accordion with three inner panels (div.card)', () => {
+                    const outerAccDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion#sourcesAcc', 1, 1);
+
+                    const innerAccDes = getAndExpectDebugElementByCss(
+                        outerAccDes[0],
+                        'ngb-accordion#sourcesPanelAcc',
+                        1,
+                        1
+                    );
+
+                    // Panel
+                    getAndExpectDebugElementByCss(innerAccDes[0], 'ngb-accordion#sourcesPanelAcc > div.card', 3, 3);
+                });
+
+                describe('... sub ngb-accordion (sourcesPanelAcc)', () => {
+                    let innerAccDes;
+
+                    beforeEach(() => {
+                        innerAccDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion#sourcesPanelAcc', 1, 1);
+                    });
+
+                    describe('... first inner panel', () => {
+                        it('... should render title in panel header (div.card-header)', () => {
+                            // Ngb-accordion panel debug element
+                            const panelDes = getAndExpectDebugElementByCss(innerAccDes[0], 'div.card', 3, 3);
+
+                            // First panel header
+                            const headerDes = getAndExpectDebugElementByCss(
+                                panelDes[0],
+                                'div#awg-source-list-header.card-header',
+                                1,
+                                1
+                            );
+
+                            // Header Buttons
+                            const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div > button', 1, 1);
+
+                            const buttonCmp = buttonDes[0].nativeElement;
+
+                            const expectedTitle = '1. Quellenübersicht';
+
+                            expect(buttonCmp.textContent).withContext('should be defined').toBeDefined();
+                            expect(buttonCmp.textContent.trim())
+                                .withContext(`should be ${expectedTitle.trim()}`)
+                                .toBe(expectedTitle.trim());
+                        });
+
+                        it('... should open and close outer panel on click', fakeAsync(() => {
+                            // Header debug elements
+                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                                innerAccDes[0],
+                                'div.card > div.card-header',
+                                3,
+                                3
+                            );
+
+                            // Button debug elements of first panel
+                            const buttonDes = getAndExpectDebugElementByCss(
+                                panelHeaderDes[0],
+                                'button.btn-link',
+                                1,
+                                1,
+                                'in first panel'
+                            );
+
+                            expectedPanelId = 'awg-source-list';
+
+                            // Panel opened first by default
+                            expectOpenPanelBody(innerAccDes[0], expectedPanelId, 'panel open');
+
+                            // Click panel to close it
+                            clickAndAwaitChanges(buttonDes[0], fixture);
+
+                            expectClosedPanelBody(innerAccDes[0], expectedPanelId, 'panel closed');
+
+                            // Click panel again to open it
+                            clickAndAwaitChanges(buttonDes[0], fixture);
+
+                            expectOpenPanelBody(innerAccDes[0], expectedPanelId, 'panel open');
+                        }));
+
+                        it('should contain source list component (stubbed)', () => {
+                            getAndExpectDebugElementByDirective(innerAccDes[0], SourceListStubComponent, 1, 1);
+                        });
+                    });
+                    describe('... second inner panel', () => {
+                        it('... should render title in panel header (div.card-header)', () => {
+                            // Ngb-accordion panel debug element
+                            const panelDes = getAndExpectDebugElementByCss(innerAccDes[0], 'div.card', 3, 3);
+
+                            // Second panel header
+                            const headerDes = getAndExpectDebugElementByCss(
+                                panelDes[1],
+                                'div#awg-source-desc-header.card-header',
+                                1,
+                                1
+                            );
+
+                            // Header Buttons
+                            const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div > button', 1, 1);
+
+                            const buttonCmp = buttonDes[0].nativeElement;
+
+                            const expectedTitle = '2. Quellenbeschreibung';
+
+                            expect(buttonCmp.textContent).withContext('should be defined').toBeDefined();
+                            expect(buttonCmp.textContent.trim())
+                                .withContext(`should be ${expectedTitle.trim()}`)
+                                .toBe(expectedTitle.trim());
+                        });
+
+                        it('... should open and close outer panel on click', fakeAsync(() => {
+                            // Header debug elements
+                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                                innerAccDes[0],
+                                'div.card > div.card-header',
+                                3,
+                                3
+                            );
+
+                            // Button debug elements of second panel
+                            const buttonDes = getAndExpectDebugElementByCss(
+                                panelHeaderDes[1],
+                                'button.btn-link',
+                                1,
+                                1,
+                                'in first panel'
+                            );
+
+                            expectedPanelId = 'awg-source-desc';
+
+                            // Panel opened first by default
+                            expectOpenPanelBody(innerAccDes[0], expectedPanelId, 'panel open');
+
+                            // Click panel to close it
+                            clickAndAwaitChanges(buttonDes[0], fixture);
+
+                            expectClosedPanelBody(innerAccDes[0], expectedPanelId, 'panel closed');
+
+                            // Click panel again to open it
+                            clickAndAwaitChanges(buttonDes[0], fixture);
+
+                            expectOpenPanelBody(innerAccDes[0], expectedPanelId, 'panel open');
+                        }));
+
+                        it('should contain source description component (stubbed)', () => {
+                            getAndExpectDebugElementByDirective(innerAccDes[0], SourceDescriptionStubComponent, 1, 1);
+                        });
+                    });
+
+                    describe('... third inner panel', () => {
+                        it('... should render title in panel header (div.card-header)', () => {
+                            // Ngb-accordion panel debug element
+                            const panelDes = getAndExpectDebugElementByCss(innerAccDes[0], 'div.card', 3, 3);
+
+                            // Third panel header
+                            const headerDes = getAndExpectDebugElementByCss(
+                                panelDes[2],
+                                'div#awg-source-evaluation-header.card-header',
+                                1,
+                                1
+                            );
+
+                            // Header Buttons
+                            const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div > button', 1, 1);
+
+                            const buttonCmp = buttonDes[0].nativeElement;
+
+                            const expectedTitle = '3. Quellenbewertung';
+
+                            expect(buttonCmp.textContent).withContext('should be defined').toBeDefined();
+                            expect(buttonCmp.textContent.trim())
+                                .withContext(`should be ${expectedTitle.trim()}`)
+                                .toBe(expectedTitle.trim());
+                        });
+
+                        it('... should open and close outer panel on click', fakeAsync(() => {
+                            // Header debug elements
+                            const panelHeaderDes = getAndExpectDebugElementByCss(
+                                innerAccDes[0],
+                                'div.card > div.card-header',
+                                3,
+                                3
+                            );
+
+                            // Button debug elements of third panel
+                            const buttonDes = getAndExpectDebugElementByCss(
+                                panelHeaderDes[2],
+                                'button.btn-link',
+                                1,
+                                1,
+                                'in first panel'
+                            );
+
+                            expectedPanelId = 'awg-source-evaluation';
+
+                            // Panel opened first by default
+                            expectOpenPanelBody(innerAccDes[0], expectedPanelId, 'panel open');
+
+                            // Click panel to close it
+                            clickAndAwaitChanges(buttonDes[0], fixture);
+
+                            expectClosedPanelBody(innerAccDes[0], expectedPanelId, 'panel closed');
+
+                            // Click panel again to open it
+                            clickAndAwaitChanges(buttonDes[0], fixture);
+
+                            expectOpenPanelBody(innerAccDes[0], expectedPanelId, 'panel open');
+                        }));
+
+                        it('should contain source evaluation component (stubbed)', () => {
+                            getAndExpectDebugElementByDirective(innerAccDes[0], SourceEvaluationStubComponent, 1, 1);
+                        });
+                    });
+                });
             });
         });
 

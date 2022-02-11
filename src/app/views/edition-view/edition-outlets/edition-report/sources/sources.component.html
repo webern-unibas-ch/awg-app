@@ -1,9 +1,9 @@
-<ngb-accordion id="sourcesAcc" activeIds="sourcesPanel">
-    <ngb-panel id="sourcesPanel" title="I. Quellen">
+<ngb-accordion id="sourcesAcc" activeIds="awg-sources-panel">
+    <ngb-panel id="awg-sources-panel" title="I. Quellen">
         <ng-template ngbPanelContent>
-            <ngb-accordion id="sourcesPanelAcc" activeIds="sourceList, sourceDesc, sourceEvaluation">
+            <ngb-accordion id="sourcesPanelAcc" activeIds="awg-source-list, awg-source-desc, awg-source-evaluation">
                 <!-- source list -->
-                <ngb-panel id="sourceList" title="1. Quellenübersicht">
+                <ngb-panel id="awg-source-list" title="1. Quellenübersicht">
                     <ng-template ngbPanelContent>
                         <awg-source-list
                             *ngIf="sourceListData"
@@ -14,7 +14,7 @@
                 </ngb-panel>
 
                 <!-- source description -->
-                <ngb-panel id="sourceDesc" title="2. Quellenbeschreibung">
+                <ngb-panel id="awg-source-desc" title="2. Quellenbeschreibung">
                     <ng-template ngbPanelContent>
                         <awg-source-description
                             *ngIf="sourceDescriptionListData"
@@ -26,7 +26,7 @@
                 </ngb-panel>
 
                 <!-- source evaluation -->
-                <ngb-panel id="sourceEvaluation" title="3. Quellenbewertung">
+                <ngb-panel id="awg-source-evaluation" title="3. Quellenbewertung">
                     <ng-template ngbPanelContent>
                         <awg-source-evaluation
                             *ngIf="sourceEvaluationListData"

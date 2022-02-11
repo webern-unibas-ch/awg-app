@@ -199,22 +199,22 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         it('should have `svgSheetsData` input', () => {
-            expect(component.svgSheetsData).toBeDefined('should be defined');
+            expect(component.svgSheetsData).withContext('should be defined').toBeDefined();
             expect(component.svgSheetsData).toEqual(expectedSvgSheetsData, `should equal ${expectedSvgSheetsData}`);
         });
 
         it('should have `selectedOverlay` input', () => {
-            expect(component.selectedOverlay).toBeDefined('should be defined');
+            expect(component.selectedOverlay).withContext('should be defined').toBeDefined();
             expect(component.selectedOverlay).toBe(expectedOverlay, `should be ${expectedOverlay}`);
         });
 
         it('should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined('should be defined');
+            expect(component.selectedSvgSheet).withContext('should be defined').toBeDefined();
             expect(component.selectedSvgSheet).toBe(expectedSvgSheet, `should be ${expectedSvgSheet}`);
         });
 
         it('should have `selectedTextcriticalComments` input', () => {
-            expect(component.selectedTextcriticalComments).toBeDefined('should be defined');
+            expect(component.selectedTextcriticalComments).withContext('should be defined').toBeDefined();
             expect(component.selectedTextcriticalComments).toEqual(
                 expectedSelectedTextcriticalComments,
                 `should equal ${expectedSelectedTextcriticalComments}`
@@ -222,7 +222,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         it('should have `showTkA` input', () => {
-            expect(component.showTkA).toBeDefined('should be defined');
+            expect(component.showTkA).withContext('should be defined').toBeDefined();
             expect(component.showTkA).toBe(expectedShowTka, `should be ${expectedShowTka}`);
         });
 
@@ -256,10 +256,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const expectedTitle0 = 'Edierter Notentext';
                 const expectedTitle1 = 'Hinweise zur Nutzung';
 
-                expect(buttonCmp0.textContent).toBeDefined('should be defined');
+                expect(buttonCmp0.textContent).withContext('should be defined').toBeDefined();
                 expect(buttonCmp0.textContent).toBe(expectedTitle0, `should be ${expectedTitle0}`);
 
-                expect(buttonCmp1.textContent).toBeDefined('should be defined');
+                expect(buttonCmp1.textContent).withContext('should be defined').toBeDefined();
                 expect(buttonCmp1.textContent.trim()).toBe(expectedTitle1, `should be ${expectedTitle1}`);
             });
 
