@@ -51,6 +51,9 @@ export class TextcriticsComponent {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -64,6 +67,9 @@ export class TextcriticsComponent {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }
