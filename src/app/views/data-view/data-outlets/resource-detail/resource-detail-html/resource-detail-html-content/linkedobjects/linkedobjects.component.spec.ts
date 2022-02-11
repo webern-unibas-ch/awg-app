@@ -11,16 +11,7 @@ import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceDetailGroupedIncomingLinks, ResourceDetailIncomingLink } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects.component';
-
-// Helper functions
-function expectClosedPanelBody(de: DebugElement, id: number, msg: string) {
-    // Body debug elements
-    getAndExpectDebugElementByCss(de, `div.card > div#incoming-linkgroup-${id} > div.card-body`, 0, 0, msg);
-}
-function expectOpenPanelBody(de: DebugElement, id: number, msg: string) {
-    // Body debug elements
-    getAndExpectDebugElementByCss(de, `div.card > div#incoming-linkgroup-${id} > div.card-body`, 1, 1, msg);
-}
+import { expectClosedPanelBody, expectOpenPanelBody } from '@testing/accordion-panel-helper';
 
 describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentLinkedobjectsComponent;
@@ -36,6 +27,8 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let incomingLink2: ResourceDetailIncomingLink;
     let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
+    const expectedFirstPanelId = 'incoming-linkgroup-0';
+    const expectedSecondPanelId = 'incoming-linkgroup-1';
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -145,7 +138,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `incomingGroups` inputs', () => {
+        it('... should have `incomingGroups` inputs', () => {
             expect(component.incomingGroups).toBeDefined('should be defined');
             expect(component.incomingGroups).toBe(expectedIncoming, `should be expectedIncoming: ${expectedIncoming}`);
         });
@@ -310,32 +303,32 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 );
 
                 // Both panels closed first by default
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
+                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
 
                 // Click first panel
                 clickAndAwaitChanges(button0Des[0], fixture);
 
-                expectOpenPanelBody(compDe, 0, 'opened (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+                expectOpenPanelBody(compDe, expectedFirstPanelId, 'first panel open');
+                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
 
                 // Click first panel again
                 clickAndAwaitChanges(button0Des[0], fixture);
 
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
+                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
 
                 // Click second panel
                 clickAndAwaitChanges(button1Des[0], fixture);
 
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectOpenPanelBody(compDe, 1, 'opened (second panel)');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
+                expectOpenPanelBody(compDe, expectedSecondPanelId, 'second panel open');
 
                 // Click second panel again
                 clickAndAwaitChanges(button1Des[0], fixture);
 
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
+                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
             }));
 
             it('... should toggle panels alternately on click', fakeAsync(() => {
@@ -359,20 +352,20 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 );
 
                 // Both panels closed first by default
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'closed (first panel)');
+                expectClosedPanelBody(compDe, expectedSecondPanelId, 'closed (second panel)');
 
                 // Click first panel
                 clickAndAwaitChanges(button0Des[0], fixture);
 
-                expectOpenPanelBody(compDe, 0, 'opened (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+                expectOpenPanelBody(compDe, expectedFirstPanelId, 'opened (first panel)');
+                expectClosedPanelBody(compDe, expectedSecondPanelId, 'closed (second panel)');
 
                 // Click second panel
                 clickAndAwaitChanges(button1Des[0], fixture);
 
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectOpenPanelBody(compDe, 1, 'opened (second panel)');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'closed (first panel)');
+                expectOpenPanelBody(compDe, expectedSecondPanelId, 'opened (second panel)');
             }));
 
             describe('... should render panel content (div.card-body)', () => {
@@ -398,7 +391,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     click(button0El as HTMLElement);
                     await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
-                    expectOpenPanelBody(compDe, 0, 'should have first panel opened');
+                    expectOpenPanelBody(compDe, expectedFirstPanelId, 'should have first panel opened');
 
                     // List debug elements
                     listDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-linked-obj-list', 1, 1);
@@ -489,8 +482,8 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 // Open second panel
                 clickAndAwaitChanges(buttonDes[1], fixture);
 
-                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
-                expectOpenPanelBody(compDe, 1, 'should have second panel opened');
+                expectClosedPanelBody(compDe, expectedFirstPanelId, 'should have first panel closed');
+                expectOpenPanelBody(compDe, expectedSecondPanelId, 'should have second panel opened');
 
                 listDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-linked-obj-list', 1, 1);
                 listItemDes = getAndExpectDebugElementByCss(listDes[0], 'li', 3, 3);
