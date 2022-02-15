@@ -11,6 +11,7 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
+import { SearchResult } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 /**
  * The SearchResultList component.
@@ -132,6 +133,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It instantiates fontawesome's faTable icon.
      */
     faTable = faTable;
+
+    test: SearchResult;
 
     /**
      * Private variable: _selectedResourceId.
@@ -344,7 +347,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
             .getSearchResponseWithQuery()
             .pipe(takeUntil(this._destroyed$));
-
         // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -392,6 +394,50 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
         // Store search response and query
         this.searchResponseWithQuery = { ...searchResponseWithQuery };
+
+        this.test = {
+            head: { vars: ['typ', 'ressource'] },
+            body: {
+                bindings: [
+                    {
+                        typ: {
+                            type: 'search',
+                            icon: '',
+                            value: 'test1-typ-value',
+                            label: 'test1-typ-label',
+                        },
+                        ressource: {
+                            type: 'search',
+                            icon: '',
+                            value: 'test1-res-value',
+                            label: 'test1-res-label',
+                        },
+                    },
+                ],
+            },
+        };
+        console.info(this.searchResponseWithQuery);
+        this.searchResponseWithQuery.data?.subjects.map(subject => {
+            console.info(subject.obj_id, subject.iconlabel, subject?.iconsrc, subject.value[0]);
+
+            const r = {
+                typ: {
+                    type: 'search',
+                    icon: subject.iconsrc,
+                    value: subject.obj_id,
+                    label: subject.iconlabel,
+                },
+                ressource: {
+                    type: 'search',
+                    icon: '',
+                    value: subject.obj_id,
+                    label: subject.value[0],
+                },
+            };
+            this.test.body.bindings.push(r);
+        });
+
+        console.warn(this.test);
 
         // Update info message about the search results
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
