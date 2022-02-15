@@ -93,7 +93,7 @@
             <div
                 *ngIf="getSearchvalControlAtIndex(idx).invalid && !getSearchvalControlAtIndex(idx).pristine"
                 class="alert alert-danger">
-                <p *ngIf="getSearchvalControlAtIndex(idx).errors.minlength"></p>
+                <p *ngIf="getSearchvalControlAtIndex(idx).errors"></p>
                 {{ searchFormStrings.errorMessage }}
             </div>
 

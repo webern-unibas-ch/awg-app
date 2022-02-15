@@ -6,7 +6,7 @@ import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
     PropertyTypesInResourceClassResponseJson,
     ResourceTypesInVocabularyResponseJson,
-    ResTypeItemJson,
+    ResTypeItemJson
 } from '@awg-shared/api-objects';
 
 import { ExtendedSearchParams } from '@awg-views/data-view/models';
@@ -113,6 +113,11 @@ export class ExtendedSearchFormComponent implements OnInit {
         };
     }
 
+    toggle(index: number) {
+        this.getSearchvalControlAtIndex(index).setValidators(this.getCompopoControlAtIndex(index).value === "EXISTS" ? null : [Validators.required]);
+        this.getSearchvalControlAtIndex(index).updateValueAndValidity();
+    }
+
     /**
      * Public method: createExtendedSearchForm.
      *
@@ -206,7 +211,7 @@ export class ExtendedSearchFormComponent implements OnInit {
             const guiElementId = propertyListEntry.guielement_id;
             const valueTypeId = propertyListEntry.valuetype_id;
 
-            this.getCompopoControlAtIndex(index).setValue(this.defaultFormString);
+            this.getCompopoControlAtIndex(index).setValue('');
             this.getSearchvalControlAtIndex(index).setValue('');
 
             this.selectedCompopSets[index] = this.getCompopSetByValueType(valueTypeId, guiElementId);
@@ -303,7 +308,7 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     isAddButtonDisabled(index: number): string | null {
-        const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
+        const compopValue = this.getCompopoControlAtIndex(index).value;
 
         return this._isPropertyIdOrCompopMissing(index) ||
             (compopValue !== 'EXISTS' && this._isSearchvalMissing(index)) ||
@@ -322,7 +327,7 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     isSearchvalControlDisabled(index: number): string | null {
-        const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
+        const compopValue = this.getCompopoControlAtIndex(index).value;
         return this._isResourecetypeMissing() || this._isPropertyIdOrCompopMissing(index) || compopValue === 'EXISTS'
             ? ''
             : null;
@@ -344,19 +349,12 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     private _isPropertyIdMissing(index: number): boolean {
-        const propertyIdValue = this._getFormArrayControlAtIndex('propertyIdControl', index).value;
+       return this._isFormControlValueMissing('propertyIdControl', index);
 
-        const propertyIdMissing = !propertyIdValue || propertyIdValue === this.defaultFormString;
-
-        return propertyIdMissing;
     }
 
     private _isCompopMissing(index: number): boolean {
-        const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
-
-        const compopMissing = !compopValue || compopValue === this.defaultFormString;
-
-        return compopMissing;
+        return this._isFormControlValueMissing('compopControl', index);
     }
 
     private _isPropertyIdOrCompopMissing(index: number): boolean {
@@ -364,8 +362,12 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     private _isSearchvalMissing(index: number): boolean {
-        const searchval = this._getFormArrayControlAtIndex('searchvalControl', index);
-        return !searchval || searchval === this.defaultFormString;
+        return this._isFormControlValueMissing('searchvalControl', index);
+    }
+
+    private _isFormControlValueMissing(controlName: string, index: number): boolean {
+        const formControlValue = this._getFormArrayControlAtIndex(controlName, index).value;
+        return !formControlValue || formControlValue === this.defaultFormString;
     }
 
     private _resetForm() {
