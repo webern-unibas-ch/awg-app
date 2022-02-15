@@ -197,8 +197,12 @@ export class TableComponent implements OnInit {
      * @returns {void} Inits the table data.
      */
     private _initTable(): void {
-        this.tableData = new TableData(this.headerInputData, this.rowInputData);
-        this.paginatorOptions = new PaginatorOptions(1, 10, [5, 10, 25, 50, 100, 200], this.rowInputData.length);
+        if (!this.headerInputData || !this.rowInputData) {
+            this.tableData = new TableData([], []);
+        } else {
+            this.tableData = new TableData(this.headerInputData, this.rowInputData);
+        }
+        this.paginatorOptions = new PaginatorOptions(1, 10, [5, 10, 25, 50, 100, 200], this.rowInputData?.length || 0);
         this.searchFilter = '';
 
         this.onSort(this.tableData.header[0]);

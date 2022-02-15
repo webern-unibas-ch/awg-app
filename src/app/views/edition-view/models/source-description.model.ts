@@ -17,6 +17,11 @@ export class SourceDescription {
     siglum: string;
 
     /**
+     * The type description of a source.
+     */
+    type: string;
+
+    /**
      * The physical location of a source.
      */
     location: string;

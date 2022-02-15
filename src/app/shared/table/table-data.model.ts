@@ -1,5 +1,5 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { Observable, of } from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 
 /**
  * The TableData class.
@@ -33,14 +33,14 @@ export class TableData {
      *
      * It initializes the class with given values.
      *
-     * @param {any} header The given table header.
-     * @param {any} rows The given table rows.
+     * @param {string[]} header The given table header.
+     * @param {any[]} rows The given table rows.
      */
-    constructor(header: any, rows: any) {
-        this.header = header;
-        this.totalRows$ = of(rows);
-        this.filteredRows = rows;
-        this.paginatedRows$ = of(rows);
+    constructor(header: string[], rows: any[]) {
+        this.header = header || [''];
+        this.totalRows$ = observableOf(rows) || observableOf([]);
+        this.filteredRows = rows || [];
+        this.paginatedRows$ = observableOf(rows) || observableOf([]);
     }
 }
 

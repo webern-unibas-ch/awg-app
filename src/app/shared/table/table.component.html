@@ -1,4 +1,4 @@
-<form *ngIf="tableData.filteredRows">
+<form *ngIf="tableData.filteredRows && tableData.totalRows$">
     <div class="form-group form-inline">
         <label class="col-sm-4 col-form-label"
             >{{ tableTitle }}<br />
@@ -66,8 +66,14 @@
                     (click)="onTableValueClick(row[headerLabel].value)">
                     <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
                 </a>
-                <span *ngIf="row[headerLabel].type !== 'uri'"
-                    ><ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
+                <span *ngIf="row[headerLabel].type === 'search'">
+                    <span class="badge" *ngIf="row[headerLabel].icon">
+                        <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />
+                    </span>
+                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
+                ></span>
+                <span *ngIf="row[headerLabel].type !== 'uri' && row[headerLabel].type !== 'search'">
+                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
                 ></span>
             </td>
         </tr>

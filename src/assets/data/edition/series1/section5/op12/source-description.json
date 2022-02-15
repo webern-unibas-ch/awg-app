@@ -3,12 +3,14 @@
         {
             "id": "sourceA",
             "siglum": "A",
+            "type": "Skizzen.",
             "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
             "description": []
         },
         {
             "id": "sourceAa",
             "siglum": "Aa",
+            "type": "",
             "location": "",
             "description": [
                 "2 Blätter (Bl. 1–2). Archivalische Paginierung [<em>1</em>] bis [<em>4</em>] unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert.",
@@ -20,6 +22,7 @@
         {
             "id": "notA",
             "siglum": "",
+            "type": "",
             "location": "",
             "description": [
                 "<small class=\"text-muted\">[Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G<sup>1</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]"
