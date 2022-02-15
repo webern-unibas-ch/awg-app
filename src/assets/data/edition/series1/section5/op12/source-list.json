@@ -2,56 +2,65 @@
     "sources": [
         {
             "siglum": "A",
-            "type": "Skizzen",
+            "type": "Skizzen.",
             "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "hasDescription": true,
             "linkTo": "sourceA"
         },
         {
             "siglum": "B",
             "type": "Autograph von Nr. I.",
             "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "C",
             "type": "Autograph von Nr. I–IV.",
             "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "D",
             "type": "Autograph von Nr. IV.",
             "location": "London, British Library, O. W. Neighbour Collection.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "E",
-            "type": "Druck von Nr. I, in: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
-            "location": "",
+            "type": "Druck von Nr. I.",
+            "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "E<sup>1</sup>",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>.",
             "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "F",
             "type": "Autograph.",
             "location": "New York, NY, Pierpont Morgan Library, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "G",
             "type": "Druck.",
             "location": "Wien: Universal Edition, 1925.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "G<sup>1</sup>",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>.",
             "location": "Washington, DC, Library of Congress, Moldenhauer Archives, Box-Folder: 59/10.",
+            "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         }
     ]

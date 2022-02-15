@@ -211,20 +211,34 @@
             "convoluteId": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
             "folios": [
                 {
-                    "folioId": "38v",
-                    "systems": "18",
+                    "folioId": "1r",
+                    "systems": "7",
                     "format": {
-                        "height": 270,
-                        "width": 335
+                        "height": 169,
+                        "width": 267
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "sigle": "Sk##",
+                            "measure": "Reihenformen 1–8",
+                            "selectable": false,
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
-                    "folioId": "39r",
-                    "systems": "18",
+                    "folioId": "1v",
+                    "systems": "7",
                     "format": {
-                        "height": 270,
-                        "width": 335
+                        "height": 169,
+                        "width": 267
                     },
                     "content": []
                 }
