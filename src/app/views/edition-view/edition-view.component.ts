@@ -89,7 +89,6 @@ export class EditionViewComponent implements OnInit {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve',
         });
     }
 }
