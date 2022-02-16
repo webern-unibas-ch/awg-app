@@ -33,8 +33,8 @@ class EditionSvgSheetNavStubComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet', template: '' })
-class EditionSvgSheetStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet-list', template: '' })
+class EditionSvgSheetListStubComponent {
     @Input()
     svgSheetsData: EditionSvgSheetList;
     @Input()
@@ -92,7 +92,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 imports: [NgbAccordionWithConfigModule],
                 declarations: [
                     EditionAccoladeComponent,
-                    EditionSvgSheetStubComponent,
+                    EditionSvgSheetListStubComponent,
                     EditionSvgSheetNavStubComponent,
                     EditionTkaTableStubComponent,
                 ],
@@ -314,14 +314,19 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                     const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetListStubComponent, 1, 1);
                 });
 
                 it('... should pass down svgSheetsData to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetListStubComponent,
+                        1,
+                        1
+                    );
                     const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetStubComponent
-                    ) as EditionSvgSheetStubComponent;
+                        EditionSvgSheetListStubComponent
+                    ) as EditionSvgSheetListStubComponent;
 
                     expect(sheetCmp.svgSheetsData).toBeTruthy();
                     expect(sheetCmp.svgSheetsData).toEqual(
@@ -331,20 +336,30 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
 
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetListStubComponent,
+                        1,
+                        1
+                    );
                     const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetStubComponent
-                    ) as EditionSvgSheetStubComponent;
+                        EditionSvgSheetListStubComponent
+                    ) as EditionSvgSheetListStubComponent;
 
                     expect(sheetCmp.selectedSvgSheet).toBeTruthy();
                     expect(sheetCmp.selectedSvgSheet).toEqual(expectedSvgSheet, `should equal ${expectedSvgSheet}`);
                 });
 
                 it('... should pass down selectedOverlay to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetListStubComponent,
+                        1,
+                        1
+                    );
                     const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetStubComponent
-                    ) as EditionSvgSheetStubComponent;
+                        EditionSvgSheetListStubComponent
+                    ) as EditionSvgSheetListStubComponent;
 
                     expect(sheetCmp.selectedOverlay).toBeTruthy();
                     expect(sheetCmp.selectedOverlay).toEqual(expectedOverlay, `should equal ${expectedOverlay}`);
@@ -467,8 +482,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         describe('#selectOverlay', () => {
             it('... should trigger on selectOverlayRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetListStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetListStubComponent
+                ) as EditionSvgSheetListStubComponent;
 
                 sheetCmp.selectOverlayRequest.emit(expectedOverlay);
 
@@ -527,8 +544,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetListStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetListStubComponent
+                ) as EditionSvgSheetListStubComponent;
 
                 sheetCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 

@@ -21,14 +21,14 @@
             </awg-edition-svg-sheet-nav>
 
             <!-- svg panel -->
-            <awg-edition-svg-sheet
+            <awg-edition-svg-sheet-list
                 *ngIf="svgSheetsData && selectedSvgSheet"
                 [svgSheetsData]="svgSheetsData"
                 [selectedSvgSheet]="selectedSvgSheet"
                 [selectedOverlay]="selectedOverlay"
                 (selectSvgSheetRequest)="selectSvgSheet($event)"
                 (selectOverlayRequest)="selectOverlay($event)">
-            </awg-edition-svg-sheet>
+            </awg-edition-svg-sheet-list>
 
             <!-- table for TkA -->
             <div class="panel-footer" *ngIf="showTkA && selectedTextcriticalComments">

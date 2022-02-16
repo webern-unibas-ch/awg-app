@@ -6,8 +6,9 @@ import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.mo
 
 import { EditionAccoladeComponent } from './edition-accolade';
 import { EditionConvoluteComponent } from './edition-convolute';
-import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
 import { EditionSvgSheetComponent } from './edition-svg-sheet';
+import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
+import { EditionSvgSheetListComponent } from './edition-svg-sheet-list';
 import { EditionDetailRoutingModule, routedEditionDetailComponents } from './edition-detail-routing.module';
 
 /**
@@ -16,7 +17,7 @@ import { EditionDetailRoutingModule, routedEditionDetailComponents } from './edi
  * It embeds the edition detail components and their
  * [routing definition]{@link EditionDetailRoutingModule} as well as the
  * {@link EditionAccoladeComponent}, {@link EditionConvoluteComponent},
- * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetComponent},
+ * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetListComponent},
  * {@link EditionTkaTableModule}, {@link FolioModule} and {@link SharedModule}.
  */
 @NgModule({
@@ -24,8 +25,9 @@ import { EditionDetailRoutingModule, routedEditionDetailComponents } from './edi
     declarations: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
-        EditionSvgSheetNavComponent,
         EditionSvgSheetComponent,
+        EditionSvgSheetNavComponent,
+        EditionSvgSheetListComponent,
         routedEditionDetailComponents,
     ],
 })
