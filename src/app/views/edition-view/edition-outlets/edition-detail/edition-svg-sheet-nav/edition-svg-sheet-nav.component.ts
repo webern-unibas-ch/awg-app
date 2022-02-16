@@ -7,7 +7,7 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
  *
  * It contains the svg sheet navigation section
  * of the edition view of the app
- * and lets the user select an svg sheet.
+ * and lets the user select an SVG sheet.
  */
 @Component({
     selector: 'awg-edition-svg-sheet-nav',

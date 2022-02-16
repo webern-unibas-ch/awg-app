@@ -1,8 +1,8 @@
 <div *ngIf="svgSheetsData" class="btn-group awg-btn-group d-flex" role="group">
     <a
-        class="btn btn-default w-100"
+        class="btn btn-default w-100 awg-svg-sheet-nav-link"
         *ngFor="let svgSheet of svgSheetsData.sheets"
-        [class.active]="isSelectedSvgSheet(svgSheet.id)"
+        [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
         (click)="selectSvgSheet(svgSheet.id)">
         {{ svgSheet.alt }}
     </a>
