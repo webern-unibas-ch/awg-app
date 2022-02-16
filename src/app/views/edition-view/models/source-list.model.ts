@@ -24,7 +24,7 @@ export class Source {
     /**
      * A flag if the source has a source description in the critical report.
      */
-    hasDescription: string;
+    hasDescription: boolean;
 
     /**
      * The link to a source description in the critical report.

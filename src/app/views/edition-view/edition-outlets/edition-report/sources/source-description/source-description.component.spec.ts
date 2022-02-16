@@ -61,12 +61,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 {
                     id: 'sourceA',
                     siglum: 'A',
+                    type: 'Skizzen',
                     location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
                     description: [],
                 },
                 {
                     id: 'sourceAa',
                     siglum: 'Aa',
+                    type: '',
                     location: 'Wien, Testcentre.',
                     description: [
                         '<img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
@@ -139,7 +141,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... first description div', () => {
-                it('... should contain two paragraphs', () => {
+                it('... should contain 3 paragraphs', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description',
@@ -147,7 +149,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         2
                     );
 
-                    getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+                    getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
                 });
 
                 it('... the first one displaying siglum', () => {
@@ -158,7 +160,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         2
                     );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
 
                     const pCmp = pDes[0].nativeElement;
 
@@ -169,7 +171,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         .toBe(expectedSourceDescriptionListData.sources[0].siglum.trim());
                 });
 
-                it('... the second one displaying location', () => {
+                it('... the second one displaying type', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description',
@@ -177,9 +179,28 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         2
                     );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
 
                     const pCmp = pDes[1].nativeElement;
+
+                    expect(pCmp).toHaveClass('awg-source-description-type');
+                    expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                    expect(pCmp.textContent.trim())
+                        .withContext(`should be ${expectedSourceDescriptionListData.sources[0].type.trim()}`)
+                        .toBe(expectedSourceDescriptionListData.sources[0].type.trim());
+                });
+
+                it('... the third one displaying location', () => {
+                    const divDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-list > div.awg-source-description',
+                        2,
+                        2
+                    );
+
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+
+                    const pCmp = pDes[2].nativeElement;
 
                     expect(pCmp).toHaveClass('awg-source-description-location');
                     expect(pCmp.textContent).withContext('should be defined').toBeDefined();
