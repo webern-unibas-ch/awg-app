@@ -12,8 +12,9 @@
                     },
                     "content": [
                         {
-                            "sigle": "A:SkI/2",
-                            "measure": "",
+                            "id": "M_317_Sk2",
+                            "sigle": "M 317 Sk2",
+                            "sigleAddendum": "",
                             "sectionPartition": 5,
                             "sections": [
                                 {
@@ -24,8 +25,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/1",
-                            "measure": "",
+                            "id": "M_317_Sk1",
+                            "sigle": "M 317 Sk1",
+                            "sigleAddendum": "",
                             "sectionPartition": 5,
                             "sections": [
                                 {
@@ -36,8 +38,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/2.1",
-                            "measure": "",
+                            "id": "M_317_Sk2.1",
+                            "sigle": "M 317 Sk2.1",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 5,
@@ -50,8 +53,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/2.1.1",
-                            "measure": "",
+                            "id": "M_317_Sk2.1.1",
+                            "sigle": "M 317 Sk2.1.1",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 5,
@@ -64,8 +68,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/2.1.2",
-                            "measure": "",
+                            "id": "M_317_Sk2.1.2",
+                            "sigle": "M 317 Sk2.1.2",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 5,
@@ -78,8 +83,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/2.1.2.1",
-                            "measure": "",
+                            "id": "M_317_Sk2.1.2.1",
+                            "sigle": "M 317 Sk2.1.2.1",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 8,
@@ -92,8 +98,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/3",
-                            "measure": "",
+                            "id": "M_317_Sk3",
+                            "sigle": "M 317 Sk3",
+                            "sigleAddendum": "",
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -104,8 +111,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/4a",
-                            "measure": "{1A}–3A",
+                            "id": "M_317_Sk4a",
+                            "sigle": "M 317 Sk4a",
+                            "sigleAddendum": "T. {1A}–3A",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -116,8 +124,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/4.1",
-                            "measure": "",
+                            "id": "M_317_Sk4.1",
+                            "sigle": "M 317 Sk4.1",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 3,
@@ -140,8 +149,9 @@
                     },
                     "content": [
                         {
-                            "sigle": "A:SkI/4b",
-                            "measure": "3B–6",
+                            "id": "M_317_Sk4b",
+                            "sigle": "M 317 Sk4b",
+                            "sigleAddendum": "T. 3B–6",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -152,8 +162,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/4c",
-                            "measure": "7–12",
+                            "id": "M_317_Sk4c",
+                            "sigle": "M 317 Sk4c",
+                            "sigleAddendum": "T. 7–12",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -164,8 +175,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/4d",
-                            "measure": "7–12",
+                            "id": "M_317_Sk4d",
+                            "sigle": "M 317 Sk4d",
+                            "sigleAddendum": "T. 13–15",
                             "sectionPartition": 4,
                             "sections": [
                                 {
@@ -176,8 +188,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/4.2",
-                            "measure": "",
+                            "id": "M_317_Sk4.2",
+                            "sigle": "M 317 Sk4.2",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 4,
@@ -190,8 +203,9 @@
                             ]
                         },
                         {
-                            "sigle": "A:SkI/4.3",
-                            "measure": "",
+                            "id": "M_317_Sk4.3",
+                            "sigle": "M 317 Sk4.3",
+                            "sigleAddendum": "",
                             "selectable": false,
                             "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 7,
@@ -219,9 +233,11 @@
                     },
                     "content": [
                         {
+                            "id": "SkRT",
                             "sigle": "Sk##",
-                            "measure": "Reihenformen 1–8",
+                            "sigleAddendum": "Reihenformen 1–8",
                             "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 1,
                             "sections": [
                                 {

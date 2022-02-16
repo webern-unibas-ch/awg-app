@@ -227,14 +227,19 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
+     * The label for the id of the content item (string).
+     */
+    id: string;
+
+    /**
      * The label for the sigle of the content item (string).
      */
     sigle: string;
 
     /**
-     * The label for the measure of the content item (string).
+     * The label for the sigle addendum of the content item (string).
      */
-    measure: string;
+    sigleAddendum: string;
 
     /**
      * The boolean flag if the content item can be selected..
@@ -590,8 +595,9 @@ export class FolioCalculation {
                         sectionPartition
                     );
 
+                    calculatedContentItem.id = content.id;
                     calculatedContentItem.sigle = content.sigle;
-                    calculatedContentItem.measure = content.measure;
+                    calculatedContentItem.sigleAddendum = content.sigleAddendum;
                     calculatedContentItem.selectable = true;
                     calculatedContentItem.linkTo = '';
                     if (content['selectable'] === false && content['linkTo']) {

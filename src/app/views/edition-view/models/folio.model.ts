@@ -93,14 +93,19 @@ export class FolioFormat {
  */
 export class FolioContent {
     /**
+     * The folio content's id (string).
+     */
+    id: string;
+
+    /**
      * The folio content's sigle (string).
      */
     sigle: string;
 
     /**
-     * The folio content's measure (string).
+     * The folio content's sigle addendum (string).
      */
-    measure: string;
+    sigleAddendum: string;
 
     /**
      * Boolean flag if the content item can be selected..

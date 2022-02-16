@@ -4,6 +4,6 @@
         *ngFor="let svgSheet of svgSheetsData.sheets"
         [class.active]="isSelectedSvgSheet(svgSheet.id)"
         (click)="selectSvgSheet(svgSheet.id)">
-        {{ svgSheet.id }}
+        {{ svgSheet.alt }}
     </a>
 </div>

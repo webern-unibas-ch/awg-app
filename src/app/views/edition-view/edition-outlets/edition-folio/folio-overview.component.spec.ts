@@ -44,8 +44,9 @@ describe('FolioComponent', () => {
                     },
                     content: [
                         {
+                            id: 'Aa:SkI/1a',
                             sigle: 'Aa:SkI/1a',
-                            measure: '1–2, [3–6]',
+                            sigleAddendum: 'T. 1–2, [3–6]',
                             sectionPartition: 1,
                             sections: [
                                 {

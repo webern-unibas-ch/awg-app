@@ -104,8 +104,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
                             },
                             content: [
                                 {
+                                    id: 'Aa:SkI/1a',
                                     sigle: 'Aa:SkI/1a',
-                                    measure: '1–2, [3–6]',
+                                    sigleAddendum: 'T. 1–2, [3–6]',
                                     selectable: false,
                                     linkTo: 'OP12_SOURCE_NOT_A',
                                     sectionPartition: 1,

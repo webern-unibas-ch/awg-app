@@ -12,8 +12,9 @@
                     },
                     "content": [
                         {
+                            "id": "Aa:SkI/1a",
                             "sigle": "Aa:SkI/1a",
-                            "measure": "1–2, [3–6]",
+                            "sigleAddendum": "T. 1–2, [3–6]",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
@@ -25,10 +26,11 @@
                             ]
                         },
                         {
+                            "id": "Aa:SkI/1a",
                             "sigle": "Aa:SkI/1a",
+                            "sigleAddendum": "T. [7–12]",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
-                            "measure": "[7–12]",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -39,10 +41,11 @@
                             ]
                         },
                         {
+                            "id": "Aa:SkI/1a",
                             "sigle": "Aa:SkI/1a",
+                            "sigleAddendum": "T. [13–17]",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
-                            "measure": "[13–17]",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -63,8 +66,9 @@
                     },
                     "content": [
                         {
+                            "id": "Aa:SkI/4",
                             "sigle": "Aa:SkI/4",
-                            "measure": "10–11",
+                            "sigleAddendum": "T. 10–11",
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -75,8 +79,9 @@
                             ]
                         },
                         {
+                            "id": "Aa:SkI/5",
                             "sigle": "Aa:SkI/5",
-                            "measure": "10–11",
+                            "sigleAddendum": "T. 10–11",
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -87,8 +92,9 @@
                             ]
                         },
                         {
+                            "id": "Aa:SkI/3",
                             "sigle": "Aa:SkI/3",
-                            "measure": "10–11",
+                            "sigleAddendum": "T. 10–11",
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -99,8 +105,9 @@
                             ]
                         },
                         {
+                            "id": "Aa:SkI/2",
                             "sigle": "Aa:SkI/2",
-                            "measure": "10, [11–12]",
+                            "sigleAddendum": "T. 10, [11–12]",
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -121,10 +128,11 @@
                     },
                     "content": [
                         {
+                            "id": "Aa:SkI/1b",
                             "sigle": "Aa:SkI/1b",
+                            "sigleAddendum": "T. [18–22]",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
-                            "measure": "[18–22]",
                             "sections": [
                                 {
                                     "startSystem": 6,
@@ -133,10 +141,11 @@
                             ]
                         },
                         {
+                            "id": "Aa:SkI/1b",
                             "sigle": "Aa:SkI/1b",
+                            "sigleAddendum": "T. [23–24]",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
-                            "measure": "[23–24]",
                             "sectionPartition": 1,
                             "sections": [
                                 {
