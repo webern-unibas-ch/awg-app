@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
@@ -15,7 +16,6 @@ import {
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
-import { Subject } from 'rxjs';
 
 /**
  * The EditionDetail component.
@@ -59,6 +59,13 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * It keeps the svg sheets data of the edition detail.
      */
     svgSheetsData: EditionSvgSheetList;
+
+    /**
+     * Public variable: filteredSvgSheetsData.
+     *
+     * It keeps a filtered excerpt of the svg sheets data of the edition detail.
+     */
+    filteredSvgSheetsData: EditionSvgSheetList;
 
     /**
      * Public variable: textcriticsData.
@@ -155,43 +162,35 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition work and all necessary edition data.
      */
     getEditionDetailData(): void {
-        this.editionService
-            // Get current editionWork from editionService
-            .getEditionWork()
+        this.router.events
             .pipe(
+                filter(event => event instanceof NavigationEnd),
+                switchMap(() => this.editionService.getEditionWork()),
                 switchMap((work: EditionWork) => {
                     // Set current editionWork
                     this.editionWork = work;
                     // Return EditionDetailData from editionDataService
                     return this.editionDataService.getEditionDetailData(this.editionWork);
                 }),
-                takeUntil(this._destroyed$)
-            )
-            .pipe(
-                switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+                map((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
                     this.folioConvoluteData = data[0];
                     this.svgSheetsData = data[1];
                     this.textcriticsData = data[2];
-                    if (this.route.queryParamMap) {
-                        // Return queryParams if available
-                        return this.route.queryParamMap;
-                    }
+
+                    return this.route;
                 }),
+                map(
+                    (route: ActivatedRoute) =>
+                        // Snapshot of current route query params
+                        route.snapshot.queryParamMap
+                ),
                 takeUntil(this._destroyed$)
             )
             .subscribe(
                 (queryParams: ParamMap) => {
-                    const sheetId: string = this._getSketchParams(queryParams);
-                    this.selectedSvgSheet = this._findSvgSheet(sheetId);
-                    this.selectedConvolute = this._findConvolute('');
-                    if (
-                        !this.selectedConvolute &&
-                        this.folioConvoluteData.convolutes &&
-                        this.folioConvoluteData.convolutes.constructor === Array &&
-                        this.folioConvoluteData.convolutes.length > 0
-                    ) {
-                        this.selectedConvolute = this.folioConvoluteData.convolutes[0];
-                    }
+                    this._selectConvolute(queryParams);
+                    this._filterSvgSheets();
+                    this._selectSvgSheet(queryParams);
                 },
                 error => {
                     this.errorMessage = error as any;
@@ -209,7 +208,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      */
     onConvoluteSelect(id: string): void {
         if (!id) {
-            return;
+            id = this.folioConvoluteData.convolutes[0].convoluteId || '';
         }
         const convolute: FolioConvolute = this._findConvolute(id);
 
@@ -221,6 +220,13 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
             return;
         }
         this.selectedConvolute = convolute;
+        this._filterSvgSheets();
+
+        const navigationExtras: NavigationExtras = {
+            queryParams: { convolute: convolute.convoluteId, sketch: this.filteredSvgSheetsData.sheets[0].id },
+        };
+
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
     }
 
     /**
@@ -257,15 +263,20 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
+        // Make sure that there is a convolute selected first
+        if (!this.selectedConvolute) {
+            this.onConvoluteSelect('');
+        }
+        // Set default id if none is given
         if (!id) {
-            id = this.svgSheetsData.sheets[0].id || '';
+            id = this.filteredSvgSheetsData.sheets[0].id;
         }
         this.selectedSvgSheet = this._findSvgSheet(id);
         this._clearOverlaySelection();
 
         const navigationExtras: NavigationExtras = {
-            queryParams: { sketch: id },
-            queryParamsHandling: '',
+            queryParams: { convolute: this.selectedConvolute.convoluteId, sketch: id },
+            queryParamsHandling: 'merge',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
@@ -298,27 +309,6 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _getSketchParams.
-     *
-     * It checks the route params for a sketch query
-     * and returns the id of the selected sheet.
-     *
-     * @default first entry of this.svgSheetsData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected sheet.
-     */
-    private _getSketchParams(queryParams?: ParamMap): string {
-        // If there is no id in query params
-        // Take first entry of svg sheets data as default
-        if (!queryParams.get('sketch')) {
-            this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
-            return;
-        }
-        return queryParams.get('sketch') ? queryParams.get('sketch') : this.svgSheetsData.sheets[0].id;
-    }
-
-    /**
      * Private method: _findConvolute.
      *
      * It finds a convolute with a given id.
@@ -327,11 +317,13 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * @returns {FolioConvolute} The convolute that was found.
      */
     private _findConvolute(id: string): FolioConvolute {
-        if (!id) {
-            return;
-        }
         // Find index of given id in folioConvoluteData.convolutes array
-        const convoluteIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
+        let convoluteIndex = 0;
+        const findIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
+        if (findIndex >= 0) {
+            convoluteIndex = findIndex;
+        }
+
         // Return the convolute with the given id
         return this.folioConvoluteData.convolutes[convoluteIndex];
     }
@@ -345,13 +337,15 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * @returns {EditionSvgSheet} The sheet that was found.
      */
     private _findSvgSheet(id: string): EditionSvgSheet {
-        if (!id) {
-            return;
-        }
         // Find index of given id in svgSheetsData.sheets array
-        const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
+        let sheetIndex = 0;
+        const findIndex = this.filteredSvgSheetsData.sheets.findIndex(sheets => sheets.id === id);
+        if (findIndex >= 0) {
+            sheetIndex = findIndex;
+        }
+
         // Return the sheet with the given id
-        return this.svgSheetsData.sheets[sheetIndex];
+        return this.filteredSvgSheetsData.sheets[sheetIndex];
     }
 
     /**
@@ -371,5 +365,84 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         );
         // Return the comments with the given id
         return this.textcriticsData.textcritics[textcriticsIndex].comments;
+    }
+
+    /**
+     * Private method: _filterSvgSheets.
+     *
+     * It filters the svg sheets data by the selected convolute id.
+     *
+     * @returns {void} Filters the svh sheets data.
+     */
+    private _filterSvgSheets(): void {
+        this.filteredSvgSheetsData = new EditionSvgSheetList();
+        this.filteredSvgSheetsData.sheets = this.svgSheetsData.sheets.filter(
+            sheet => sheet.convolute === this.selectedConvolute.convoluteId
+        );
+    }
+
+    /**
+     * Private method: _getSketchParams.
+     *
+     * It checks the route params for a sketch query
+     * and returns the id of the selected sheet.
+     *
+     * @default first entry of this.svgSheetsData
+     *
+     * @param {ParamMap} queryParams The query paramMap of the activated route.
+     * @returns {string} The id of the selected sheet.
+     */
+    private _getSketchParams(queryParams?: ParamMap): string {
+        // If there is no id in query params
+        // Take first entry of filtered svg sheets data as default
+        return queryParams.get('sketch') ? queryParams.get('sketch') : this.filteredSvgSheetsData.sheets[0].id;
+    }
+
+    /**
+     * Private method: _getConvoluteParams.
+     *
+     * It checks the route params for a convolute param
+     * and returns the id of the selected convolute.
+     *
+     * @default first entry of this.folioConvoluteData
+     *
+     * @param {ParamMap} queryParams The query paramMap of the activated route.
+     * @returns {string} The id of the selected convolute.
+     */
+    private _getConvoluteParams(queryParams?: ParamMap): string {
+        // If there is no id in query params
+        // Take first entry of folio convolute data as default
+        if (!queryParams.get('convolute')) {
+            this.onConvoluteSelect(this.folioConvoluteData.convolutes[0].convoluteId);
+            return;
+        }
+
+        return queryParams.get('convolute');
+    }
+
+    /**
+     * Private method: _selectConvolute.
+     *
+     * It selects a convolute by the given query params.
+     *
+     * @param {ParamMap} queryParams The given query params.
+     * @returns {void} Selects the convolute.
+     */
+    private _selectConvolute(queryParams: ParamMap): void {
+        const convId: string = this._getConvoluteParams(queryParams);
+        this.selectedConvolute = this._findConvolute(convId);
+    }
+
+    /**
+     * Private method: _selectSvgSheet.
+     *
+     * It selects an svg sheet by the given query params.
+     *
+     * @param {ParamMap} queryParams The given query params.
+     * @returns {void} Selects the svg sheet.
+     */
+    private _selectSvgSheet(queryParams: ParamMap): void {
+        const sheetId: string = this._getSketchParams(queryParams);
+        this.selectedSvgSheet = this._findSvgSheet(sheetId);
     }
 }

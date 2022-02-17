@@ -7,7 +7,7 @@
     <!-- accolade view -->
     <awg-edition-accolade
         *ngIf="svgSheetsData && selectedSvgSheet"
-        [svgSheetsData]="svgSheetsData"
+        [svgSheetsData]="filteredSvgSheetsData"
         [selectedSvgSheet]="selectedSvgSheet"
         [selectedTextcriticalComments]="selectedTextcriticalComments"
         [selectedOverlay]="selectedOverlay"

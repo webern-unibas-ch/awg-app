@@ -25,6 +25,11 @@ export class EditionSvgSheet {
      * The alternative label for the sheet.
      */
     alt: string;
+
+    /**
+     * The associated convolute of the sheet.
+     */
+    convolute: string;
 }
 
 /**
