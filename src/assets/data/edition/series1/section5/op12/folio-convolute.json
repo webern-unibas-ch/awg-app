@@ -1,7 +1,8 @@
 {
     "convolutes": [
         {
-            "convoluteId": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
             "folios": [
                 {
                     "folioId": "1r",
@@ -169,7 +170,8 @@
             ]
         },
         {
-            "convoluteId": "B–H (siehe Kritischer Bericht)",
+            "convoluteId": "B–H",
+            "convoluteLabel": "B–H (siehe Kritischer Bericht)",
             "folios": [],
             "linkTo": "OP12_SOURCE_NOT_A"
         }

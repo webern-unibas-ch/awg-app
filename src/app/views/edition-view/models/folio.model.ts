@@ -26,6 +26,11 @@ export class FolioConvolute {
     convoluteId: string;
 
     /**
+     * The convolute's label (string).
+     */
+    convoluteLabel: string;
+
+    /**
      * The array of folios from a convolute.
      */
     folios: Folio[];

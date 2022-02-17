@@ -1,7 +1,8 @@
 {
     "convolutes": [
         {
-            "convoluteId": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
             "folios": [
                 {
                     "folioId": "38v",
@@ -222,7 +223,8 @@
             ]
         },
         {
-            "convoluteId": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "convoluteId": "C",
+            "convoluteLabel": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
             "folios": [
                 {
                     "folioId": "1r",
@@ -261,7 +263,8 @@
             ]
         },
         {
-            "convoluteId": "B, D–E (siehe kritischer Bericht)",
+            "convoluteId": "B-D-E",
+            "convoluteLabel": "B, D–E (siehe kritischer Bericht)",
             "folios": [],
             "linkTo": "OP25_SOURCE_NOT_A"
         }

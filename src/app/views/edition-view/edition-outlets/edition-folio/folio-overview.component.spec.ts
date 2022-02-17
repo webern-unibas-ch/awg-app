@@ -33,7 +33,8 @@ describe('FolioComponent', () => {
             alt: 'Aa:SkI/2',
         };
         expectedConvolute = {
-            convoluteId: 'A Skizzen (Basel, Paul Sacher Stiftung)',
+            convoluteId: 'A',
+            convoluteLabel: 'A Skizzen (Basel, Paul Sacher Stiftung)',
             folios: [
                 {
                     folioId: '1r',

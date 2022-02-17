@@ -93,7 +93,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
         expectedFolioConvoluteData = {
             convolutes: [
                 {
-                    convoluteId: 'Test convolute A',
+                    convoluteId: 'A',
+                    convoluteLabel: 'Test convolute A',
                     folios: [
                         {
                             folioId: '1',
@@ -123,6 +124,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 },
                 {
                     convoluteId: 'Test convolute B',
+                    convoluteLabel: 'B',
                     folios: [],
                     linkTo: 'OP12_SOURCE_NOT_A',
                 },
@@ -298,8 +300,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 expect(spanCmp.textContent).toBeDefined();
                 expect(spanCmp.textContent).toBe(
-                    expectedSelectedConvolute.convoluteId,
-                    `should be ${expectedSelectedConvolute.convoluteId}`
+                    expectedSelectedConvolute.convoluteLabel,
+                    `should be ${expectedSelectedConvolute.convoluteLabel}`
                 );
             });
 
@@ -322,14 +324,14 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 expect(anchorCmp0.textContent).toBeDefined();
                 expect(anchorCmp0.textContent).toBe(
-                    expectedFolioConvoluteData.convolutes[0].convoluteId,
-                    `should be ${expectedFolioConvoluteData.convolutes[0].convoluteId}`
+                    expectedFolioConvoluteData.convolutes[0].convoluteLabel,
+                    `should be ${expectedFolioConvoluteData.convolutes[0].convoluteLabel}`
                 );
 
                 expect(anchorCmp1.textContent).toBeDefined();
                 expect(anchorCmp1.textContent).toBe(
-                    expectedFolioConvoluteData.convolutes[1].convoluteId,
-                    `should be ${expectedFolioConvoluteData.convolutes[1].convoluteId}`
+                    expectedFolioConvoluteData.convolutes[1].convoluteLabel,
+                    `should be ${expectedFolioConvoluteData.convolutes[1].convoluteLabel}`
                 );
             });
 

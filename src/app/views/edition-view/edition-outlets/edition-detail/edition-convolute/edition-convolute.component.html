@@ -4,14 +4,14 @@
             <!-- convolute dropDown -->
             <div class="awg-convolute-dropdown d-inline-block" ngbDropdown>
                 <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
-                    <span>{{ selectedConvolute.convoluteId }}</span>
+                    <span>{{ selectedConvolute.convoluteLabel }}</span>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
                     <a
                         class="dropdown-item awg-convolute-dropdown-item"
                         *ngFor="let convolute of folioConvoluteData.convolutes"
                         (click)="selectConvolute(convolute.convoluteId)"
-                        >{{ convolute.convoluteId }}</a
+                        >{{ convolute.convoluteLabel }}</a
                     >
                 </div>
             </div>
