@@ -4,7 +4,7 @@
             "id": "Op25",
             "title": "Skizzengraph Opus 25",
             "description": [
-                "<small class=\"text-muted\">[Eine dynamische Graph-Visualisierung der Skizzen zu <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint in Kürze (02/2020).]<small>"
+                "<small class=\"text-muted\">[Eine dynamische Graph-Visualisierung der Skizzen zu <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint in Kürze (02/2022).]<small>"
             ],
             "rdfData": {
                 "query": "CONSTRUCT \n WHERE { \n\t ?nodeA ?link ?nodeB . \n }",

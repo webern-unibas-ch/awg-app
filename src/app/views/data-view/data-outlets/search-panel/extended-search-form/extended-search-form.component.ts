@@ -6,7 +6,7 @@ import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
     PropertyTypesInResourceClassResponseJson,
     ResourceTypesInVocabularyResponseJson,
-    ResTypeItemJson
+    ResTypeItemJson,
 } from '@awg-shared/api-objects';
 
 import { ExtendedSearchParams } from '@awg-views/data-view/models';
@@ -114,7 +114,9 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     toggle(index: number) {
-        this.getSearchvalControlAtIndex(index).setValidators(this.getCompopoControlAtIndex(index).value === "EXISTS" ? null : [Validators.required]);
+        this.getSearchvalControlAtIndex(index).setValidators(
+            this.getCompopoControlAtIndex(index).value === 'EXISTS' ? null : [Validators.required]
+        );
         this.getSearchvalControlAtIndex(index).updateValueAndValidity();
     }
 
@@ -349,8 +351,7 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     private _isPropertyIdMissing(index: number): boolean {
-       return this._isFormControlValueMissing('propertyIdControl', index);
-
+        return this._isFormControlValueMissing('propertyIdControl', index);
     }
 
     private _isCompopMissing(index: number): boolean {

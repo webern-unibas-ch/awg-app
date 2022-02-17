@@ -24,7 +24,7 @@ const MODALCONTENTSNIPPETS = {
     OP12_EDITION_COMING_SOON:
         '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="nobullets"><li>Werkedition der Druckfassung der <em>Vier Lieder</em> op. 12 <br/> Textedition von Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1) <br/> Textedition von Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2) <br/> Textedition von Nr. IV <em>Gleich und Gleich</em> (Fassung 1) </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
     OP25_SHEET_COMING_SOON:
-        'Die edierten Notentexte weiterer Skizzen der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheinen in Kürze (02/2020).',
+        'Die edierten Notentexte weiterer Skizzen der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheinen in Kürze (02/2022).',
     OP25_SOURCE_NOT_A:
         '<p>Die Beschreibung der Quellen <strong>B</strong> sowie <strong>D–E</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.</p>',
     M198: '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>',
