@@ -31,6 +31,7 @@ describe('FolioComponent', () => {
             svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
             image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
             alt: 'Aa:SkI/2',
+            convolute: 'A',
         };
         expectedConvolute = {
             convoluteId: 'A',
