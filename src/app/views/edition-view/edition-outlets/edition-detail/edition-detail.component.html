@@ -4,18 +4,6 @@
     <awg-modal #modal></awg-modal>
 
     <!-- body with embedded svg's -->
-
-    <!-- convolute view -->
-    <awg-edition-convolute
-        *ngIf="folioConvoluteData && selectedSvgSheet"
-        [folioConvoluteData]="folioConvoluteData"
-        [selectedConvolute]="selectedConvolute"
-        [selectedSvgSheet]="selectedSvgSheet"
-        (openModalRequest)="modal.open($event)"
-        (selectConvoluteRequest)="onConvoluteSelect($event)"
-        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-    </awg-edition-convolute>
-
     <!-- accolade view -->
     <awg-edition-accolade
         *ngIf="svgSheetsData && selectedSvgSheet"
@@ -28,4 +16,15 @@
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"
         (selectOverlayRequest)="onOverlaySelect($event)">
     </awg-edition-accolade>
+
+    <!-- convolute view -->
+    <awg-edition-convolute
+        *ngIf="folioConvoluteData && selectedConvolute && selectedSvgSheet"
+        [folioConvoluteData]="folioConvoluteData"
+        [selectedConvolute]="selectedConvolute"
+        [selectedSvgSheet]="selectedSvgSheet"
+        (openModalRequest)="modal.open($event)"
+        (selectConvoluteRequest)="onConvoluteSelect($event)"
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+    </awg-edition-convolute>
 </div>
