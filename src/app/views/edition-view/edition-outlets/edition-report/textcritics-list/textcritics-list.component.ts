@@ -10,11 +10,11 @@ import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/mo
  * with an {@link EditionTkaTableComponent}.
  */
 @Component({
-    selector: 'awg-critics-list',
-    templateUrl: './critics-list.component.html',
-    styleUrls: ['./critics-list.component.css'],
+    selector: 'awg-textcritics-list',
+    templateUrl: './textcritics-list.component.html',
+    styleUrls: ['./textcritics-list.component.css'],
 })
-export class CriticsListComponent {
+export class TextcriticsListComponent {
     /**
      * Input variable: textcriticsData.
      *
@@ -43,7 +43,7 @@ export class CriticsListComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: CriticsListComponent;
+    ref: TextcriticsListComponent;
 
     /**
      * Constructor of the TextcriticsComponent.

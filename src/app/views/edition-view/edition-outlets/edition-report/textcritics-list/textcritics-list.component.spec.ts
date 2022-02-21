@@ -7,7 +7,7 @@ import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { TextcriticalComment } from '@awg-views/edition-view/models';
 
-import { CriticsListComponent } from './critics-list.component';
+import { TextcriticsListComponent } from './textcritics-list.component';
 
 // Mock tka table component
 @Component({ selector: 'awg-edition-tka-table', template: '' })
@@ -20,9 +20,9 @@ class EditionTkaTableStubComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-describe('CriticsListComponent', () => {
-    let component: CriticsListComponent;
-    let fixture: ComponentFixture<CriticsListComponent>;
+describe('TextcriticsListComponent', () => {
+    let component: TextcriticsListComponent;
+    let fixture: ComponentFixture<TextcriticsListComponent>;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -37,13 +37,13 @@ describe('CriticsListComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [CriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+                declarations: [TextcriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
             }).compileComponents();
         })
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(CriticsListComponent);
+        fixture = TestBed.createComponent(TextcriticsListComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

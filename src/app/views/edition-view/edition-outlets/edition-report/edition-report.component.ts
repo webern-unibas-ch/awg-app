@@ -48,6 +48,13 @@ export class EditionReportComponent implements OnInit {
      */
     errorObject = null;
 
+    titles = {
+        sourceList: '1. Quellenübersicht',
+        sourceDescription: '2. Quellenbeschreibung',
+        sourceEvaluation: '3. Quellenbewertung',
+        tka: '4. Textkritische Anmerkungen',
+    };
+
     /**
      * Constructor of the EditionReportComponent.
      *
@@ -134,7 +141,7 @@ export class EditionReportComponent implements OnInit {
         }
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: '',
+            // .queryParamsHandling: '',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);

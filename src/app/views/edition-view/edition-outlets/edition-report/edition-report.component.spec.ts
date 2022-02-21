@@ -1,16 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { Observable, of as observableOf } from 'rxjs';
+import { Observable, of as observableOf, forkJoin as observableForkJoin } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
+    EditionSvgSheet,
     EditionWork,
     EditionWorks,
     SourceDescriptionList,
@@ -21,35 +28,42 @@ import {
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
+import { Router } from '@angular/router';
 
 // Mock components
-@Component({ selector: 'awg-heading', template: '' })
-class HeadingStubComponent {
-    @Input()
-    title: string;
-    @Input()
-    id: string;
-}
-
-@Component({ selector: 'awg-sources', template: '' })
-class SourcesStubComponent {
+@Component({ selector: 'awg-source-list', template: '' })
+class SourceListStubComponent {
     @Input()
     sourceListData: SourceList;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+}
+
+@Component({ selector: 'awg-source-description', template: '' })
+class SourceDescriptionStubComponent {
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+}
+
+@Component({ selector: 'awg-source-evaluation', template: '' })
+class SourceEvaluationStubComponent {
     @Input()
     sourceEvaluationListData: SourceEvaluationList;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    openModalRequest: EventEmitter<any> = new EventEmitter();
+    openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-textcritics', template: '' })
-class TextcritisStubComponent {
+@Component({ selector: 'awg-textcritics-list', template: '' })
+export class TextcriticsListStubComponent {
     @Input()
     textcriticsData: TextcriticsList;
     @Output()
@@ -61,17 +75,49 @@ class TextcritisStubComponent {
 describe('EditionReportComponent', () => {
     let component: EditionReportComponent;
     let fixture: ComponentFixture<EditionReportComponent>;
+    let compDe: DebugElement;
+
+    let mockRouter;
 
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionService: Partial<EditionService>;
     let editionDataService: Partial<EditionDataService>;
     let editionService: Partial<EditionService>;
 
+    let expectedEditionWork: EditionWork;
+    let expectedEditionReportData: (SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[];
+    let expectedSourceListData: SourceList;
+    let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedSourceEvaluationListData: SourceEvaluationList;
+    let expectedTextcriticsData: TextcriticsList;
+    let expectedFragment: string;
+    let expectedModalSnippet: string;
+    let expectedSvgSheet: EditionSvgSheet;
+    let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedPanelId: string;
+
+    let navigateToReportFragmentSpy: Spy;
+    let openModalSpy: Spy;
+    let selectSvgSheetSpy: Spy;
+    let navigationSpy: Spy;
+
     let getEditionReportDataSpy: Spy;
     let getEditionWorkSpy: Spy;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
+            // Mock router with spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+
             // Mock services
             mockEditionDataService = {
                 getEditionReportData: (
@@ -84,18 +130,21 @@ describe('EditionReportComponent', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [NgbModalModule, RouterTestingModule],
+                imports: [NgbAccordionWithConfigModule, NgbModalModule],
                 declarations: [
                     CompileHtmlComponent,
                     EditionReportComponent,
-                    HeadingStubComponent,
-                    SourcesStubComponent,
-                    TextcritisStubComponent,
+                    RouterOutletStubComponent,
+                    SourceListStubComponent,
+                    SourceDescriptionStubComponent,
+                    SourceEvaluationStubComponent,
+                    TextcriticsListStubComponent,
                     ModalComponent,
                 ],
                 providers: [
                     { provide: EditionDataService, useValue: mockEditionDataService },
                     { provide: EditionService, useValue: mockEditionService },
+                    { provide: Router, useValue: mockRouter },
                 ],
             }).compileComponents();
         })
@@ -104,34 +153,425 @@ describe('EditionReportComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionReportComponent);
         component = fixture.componentInstance;
+        compDe = fixture.debugElement;
 
         // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
         editionService = TestBed.inject(EditionService);
 
+        // Test data
+        expectedEditionWork = EditionWorks.OP12;
+        expectedSourceListData = {
+            sources: [
+                {
+                    siglum: 'A',
+                    type: 'Skizzen',
+                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                    hasDescription: true,
+                    linkTo: 'sourceA',
+                },
+                {
+                    siglum: 'B',
+                    type: 'Autograph von Nr. I.',
+                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                    hasDescription: false,
+                    linkTo: 'OP12_SOURCE_NOT_A',
+                },
+                {
+                    siglum: 'C',
+                    type: 'Autograph von Nr. I–IV.',
+                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                    hasDescription: false,
+                    linkTo: 'OP12_SOURCE_NOT_A',
+                },
+            ],
+        };
+        expectedSourceDescriptionListData = {
+            sources: [
+                {
+                    id: 'sourceA',
+                    siglum: 'A',
+                    type: 'Skizzen',
+                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                    description: [],
+                },
+            ],
+        };
+        expectedSourceEvaluationListData = {
+            sources: [
+                {
+                    id: 'op12',
+                    content: ['Die Skizzen in A sind zum Testen da.'],
+                },
+            ],
+        };
+        expectedTextcriticsData = {
+            textcritics: [
+                {
+                    id: 'test-1',
+                    label: 'test1',
+                    description: ['test description'],
+                    comments: [],
+                },
+                {
+                    id: 'test-2',
+                    label: 'test2',
+                    description: [],
+                    comments: [
+                        {
+                            measure: '10',
+                            system: '12',
+                            position: '1. Note',
+                            comment: 'Viertelnote überschreibt Halbe Note.',
+                        },
+                        {
+                            measure: '10',
+                            system: '12',
+                            position: '2. Note',
+                            comment:
+                                "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('Aa:SkI/3')\">Aa:SkI/3</a>",
+                        },
+                    ],
+                },
+            ],
+        };
+
+        expectedEditionReportData = [
+            expectedSourceListData,
+            expectedSourceDescriptionListData,
+            expectedSourceEvaluationListData,
+            expectedTextcriticsData,
+        ];
+        expectedFragment = 'sourceA';
+        expectedSvgSheet = {
+            id: 'Aa:SkI/2',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
+            alt: 'Aa:SkI/2',
+            convolute: 'A',
+        };
+        expectedNextSvgSheet = {
+            id: 'Aa:SkI/3',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
+            alt: 'Aa:SkI/3',
+            convolute: 'A',
+        };
+        expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
+        expectedPanelId = 'awg-sources-panel';
+
         // Spies on service functions
-        getEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(observableOf());
-        getEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.returnValue(observableOf(EditionWorks.OP12));
+        getEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
+            observableOf(expectedEditionReportData)
+        );
+        getEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.returnValue(observableOf(expectedEditionWork));
+
+        navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
+        // .openModalSpy = spyOn(modal, 'open').and.callThrough();
+        selectSvgSheetSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
+
+        navigationSpy = mockRouter.navigate as jasmine.Spy;
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    describe('BEFORE initial data binding', () => {
+        it('... should not have editionReportData$', () => {
+            expect(component.editionReportData$).withContext('should be undefined').toBeUndefined();
+        });
+
+        it('... should not have editionWork', () => {
+            expect(component.editionWork).withContext('should be undefined').toBeUndefined();
+        });
+
+        describe('VIEW', () => {
+            it('... should contain no ngb-accordion yet', () => {
+                // Ngb-accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 0, 0);
+            });
+
+            it('... should not contain source list component (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 0, 0);
+            });
+
+            it('... should not contain source description component (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 0, 0);
+            });
+
+            it('... should not contain source evaluation component (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 0, 0);
+            });
+
+            it('... should not contain textcritics list component (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 0, 0);
+            });
+        });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // Simulate the parent setting the input properties
+            component.editionReportData$ = observableOf(expectedEditionReportData);
+            component.editionWork = expectedEditionWork;
+
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('should have called `getEditionWork()`', () => {
+        it('... should have called `getEditionWork()`', () => {
             // `getEditionReportData()` called immediately after init
-            expect(getEditionWorkSpy.calls.any()).toBe(true, 'getEditionWork() called');
+            expectSpyCall(getEditionWorkSpy, 1);
         });
 
-        it('should have called `getEditionReportData()`', () => {
+        it('... should have called `getEditionReportData()`', () => {
             // `getEditionReportData()` called immediately after init
-            expect(getEditionReportDataSpy.calls.any()).toBe(true, 'getEditionReportData() called');
+            expectSpyCall(getEditionReportDataSpy, 1);
+        });
+
+        it('... should have editionWork', () => {
+            expect(component.editionWork).withContext('should be defined').toBeDefined();
+            expect(component.editionWork)
+                .withContext(`should equal ${expectedEditionWork}`)
+                .toEqual(expectedEditionWork);
+        });
+
+        it('... should have editionReportData$', done => {
+            expect(component.editionReportData$).withContext('should be defined').toBeDefined();
+            component.editionReportData$.subscribe(
+                response => {
+                    expect(response)
+                        .withContext(`should equal ${expectedEditionReportData}`)
+                        .toEqual(expectedEditionReportData);
+                    done();
+                },
+                err => {
+                    fail('error should not have been called');
+                    done();
+                },
+                () => {
+                    done();
+                }
+            );
+        });
+
+        describe('VIEW', () => {
+            it('... should contain one ngb-accordion', () => {
+                // Ngb-accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            });
+
+            it('... should contain one source list component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+            });
+
+            it('... should contain one source description component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 1, 1);
+            });
+
+            it('... should contain one source evaluation component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 1, 1);
+            });
+
+            it('... should contain one textcritics list component (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 1, 1);
+            });
+
+            it('... should pass down sourceListData to SourceListComponent', () => {
+                const sourceListDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                const sourceListCmp = sourceListDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+
+                expect(sourceListCmp.sourceListData).toBeTruthy();
+                expect(sourceListCmp.sourceListData)
+                    .withContext(`should equal ${expectedSourceListData}`)
+                    .toEqual(expectedSourceListData);
+            });
+
+            it('... should pass down sourceDescriptionListData to SourceDescriptionComponent', () => {
+                const descriptionDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    SourceDescriptionStubComponent,
+                    1,
+                    1
+                );
+                const descriptionCmp = descriptionDes[0].injector.get(
+                    SourceDescriptionStubComponent
+                ) as SourceDescriptionStubComponent;
+
+                expect(descriptionCmp.sourceDescriptionListData).toBeTruthy();
+                expect(descriptionCmp.sourceDescriptionListData)
+                    .withContext(`should equal ${expectedSourceDescriptionListData}`)
+                    .toEqual(expectedSourceDescriptionListData);
+            });
+
+            it('... should pass down sourceEvaluationListData to SourceEvaluationComponent', () => {
+                const evaluationDes = getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 1, 1);
+                const evaluationCmp = evaluationDes[0].injector.get(
+                    SourceEvaluationStubComponent
+                ) as SourceEvaluationStubComponent;
+
+                expect(evaluationCmp.sourceEvaluationListData).toBeTruthy();
+                expect(evaluationCmp.sourceEvaluationListData)
+                    .withContext(`should equal ${expectedSourceEvaluationListData}`)
+                    .toEqual(expectedSourceEvaluationListData);
+            });
+
+            it('... should pass down textcriticsListData to TextcriticsListComponent', () => {
+                const textcriticsDes = getAndExpectDebugElementByDirective(compDe, TextcriticsListStubComponent, 1, 1);
+                const textcriticsCmp = textcriticsDes[0].injector.get(
+                    TextcriticsListStubComponent
+                ) as TextcriticsListStubComponent;
+
+                expect(textcriticsCmp.textcriticsData).toBeTruthy();
+                expect(textcriticsCmp.textcriticsData)
+                    .withContext(`should equal ${expectedTextcriticsData}`)
+                    .toEqual(expectedTextcriticsData);
+            });
+        });
+
+        describe('#onReportFragmentNavigate', () => {
+            describe('... should trigger on event from', () => {
+                describe('... SourceEvaluationComponent if', () => {
+                    it('... fragment id is undefined', () => {
+                        const evaluationDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceEvaluationStubComponent,
+                            1,
+                            1
+                        );
+                        const evaluationCmp = evaluationDes[0].injector.get(
+                            SourceEvaluationStubComponent
+                        ) as SourceEvaluationStubComponent;
+
+                        evaluationCmp.navigateToReportFragmentRequest.emit(undefined);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const evaluationDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceEvaluationStubComponent,
+                            1,
+                            1
+                        );
+                        const evaluationCmp = evaluationDes[0].injector.get(
+                            SourceEvaluationStubComponent
+                        ) as SourceEvaluationStubComponent;
+
+                        evaluationCmp.navigateToReportFragmentRequest.emit(expectedSvgSheet.id);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedSvgSheet.id);
+                    });
+                });
+            });
+        });
+
+        describe('#onSvgSheetSelect', () => {
+            describe('... should trigger on event from', () => {
+                describe('... SourceDescriptionComponent if', () => {
+                    it('... svg sheet id is undefined', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const descriptionCmp = descriptionDes[0].injector.get(
+                            SourceDescriptionStubComponent
+                        ) as SourceDescriptionStubComponent;
+
+                        descriptionCmp.selectSvgSheetRequest.emit(undefined);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
+
+                    it('... svg sheet id is given', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const descriptionCmp = descriptionDes[0].injector.get(
+                            SourceDescriptionStubComponent
+                        ) as SourceDescriptionStubComponent;
+
+                        descriptionCmp.selectSvgSheetRequest.emit(expectedSvgSheet.id);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                    });
+                });
+
+                describe('... SourceEvaluationComponent if', () => {
+                    it('... svg sheet id is undefined', () => {
+                        const evaluationDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceEvaluationStubComponent,
+                            1,
+                            1
+                        );
+                        const evaluationCmp = evaluationDes[0].injector.get(
+                            SourceEvaluationStubComponent
+                        ) as SourceEvaluationStubComponent;
+
+                        evaluationCmp.selectSvgSheetRequest.emit(undefined);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
+
+                    it('... svg sheet id is given', () => {
+                        const evaluationDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceEvaluationStubComponent,
+                            1,
+                            1
+                        );
+                        const evaluationCmp = evaluationDes[0].injector.get(
+                            SourceEvaluationStubComponent
+                        ) as SourceEvaluationStubComponent;
+
+                        evaluationCmp.selectSvgSheetRequest.emit(expectedSvgSheet.id);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                    });
+                });
+
+                describe('... TextcriticsListComponent if', () => {
+                    it('... svg sheet id is undefined', () => {
+                        const textcriticsDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TextcriticsListStubComponent,
+                            1,
+                            1
+                        );
+                        const textcriticsCmp = textcriticsDes[0].injector.get(
+                            TextcriticsListStubComponent
+                        ) as TextcriticsListStubComponent;
+
+                        textcriticsCmp.selectSvgSheetRequest.emit(undefined);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, undefined);
+                    });
+
+                    it('... svg sheet id is given', () => {
+                        const textcriticsDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TextcriticsListStubComponent,
+                            1,
+                            1
+                        );
+                        const textcriticsCmp = textcriticsDes[0].injector.get(
+                            TextcriticsListStubComponent
+                        ) as TextcriticsListStubComponent;
+
+                        textcriticsCmp.selectSvgSheetRequest.emit(expectedSvgSheet.id);
+
+                        expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                    });
+                });
+            });
         });
     });
 });
