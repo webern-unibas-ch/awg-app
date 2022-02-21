@@ -9,26 +9,26 @@ import { EditionConvoluteComponent } from './edition-convolute';
 import { EditionSvgSheetComponent } from './edition-svg-sheet';
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
 import { EditionSvgSheetListComponent } from './edition-svg-sheet-list';
-import { EditionDetailRoutingModule, routedEditionDetailComponents } from './edition-detail-routing.module';
+import { EditionSheetsRoutingModule, routedEditionSheetsComponents } from './edition-sheets-routing.module';
 
 /**
  * The edition detail module.
  *
  * It embeds the edition detail components and their
- * [routing definition]{@link EditionDetailRoutingModule} as well as the
+ * [routing definition]{@link EditionSheetsRoutingModule} as well as the
  * {@link EditionAccoladeComponent}, {@link EditionConvoluteComponent},
  * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetListComponent},
  * {@link EditionTkaTableModule}, {@link FolioModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, FolioModule, EditionTkaTableModule, EditionDetailRoutingModule],
+    imports: [SharedModule, FolioModule, EditionTkaTableModule, EditionSheetsRoutingModule],
     declarations: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
         EditionSvgSheetComponent,
         EditionSvgSheetNavComponent,
         EditionSvgSheetListComponent,
-        routedEditionDetailComponents,
+        routedEditionSheetsComponents,
     ],
 })
-export class EditionDetailModule {}
+export class EditionSheetsModule {}

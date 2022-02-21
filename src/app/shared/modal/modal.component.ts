@@ -13,7 +13,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
  *          `OP25_SHEET_COMING_SOON`,
  *          `OP25_SOURCE_NOT_A`,
  *          `M198`,
- *          `HINT_EDITION_DETAIL`,
+ *          `HINT_EDITION_SHEETS`,
  *          `HINT_EDITION_GRAPH`.
  */
 const MODALCONTENTSNIPPETS = {
@@ -28,7 +28,7 @@ const MODALCONTENTSNIPPETS = {
     OP25_SOURCE_NOT_A:
         '<p>Die Beschreibung der Quellen <strong>B</strong> sowie <strong>D–E</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.</p>',
     M198: '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>',
-    HINT_EDITION_DETAIL:
+    HINT_EDITION_SHEETS:
         '<p>\n' +
         '        <span class="bold">Hinweise zur Nutzung:</span> <br />\n' +
         '        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter <em>Edierter Notentext</em> aufrufen.<br />\n' +

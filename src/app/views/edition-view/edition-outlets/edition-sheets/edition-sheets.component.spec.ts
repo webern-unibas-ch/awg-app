@@ -22,7 +22,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
-import { EditionDetailComponent } from './edition-detail.component';
+import { EditionSheetsComponent } from './edition-sheets.component';
 
 @Component({ selector: 'awg-edition-convolute', template: '' })
 class EditionConvoluteStubComponent {
@@ -52,20 +52,20 @@ class EditionAccoladeStubComponent {
     // TODO: add outputs
 }
 
-describe('EditionDetailComponent', () => {
-    let component: EditionDetailComponent;
-    let fixture: ComponentFixture<EditionDetailComponent>;
+describe('EditionSheetsComponent', () => {
+    let component: EditionSheetsComponent;
+    let fixture: ComponentFixture<EditionSheetsComponent>;
 
-    let getEditionDetailDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
+    let getEditionSheetsDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
     let getTextcriticsListSpy;
     let getEditionWorkSpy;
 
     beforeEach(
         waitForAsync(() => {
-            // Create a fake service object with a `getEditionDetailData()` spy
-            const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
+            // Create a fake service object with a `getEditionSheetsData()` spy
+            const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionSheetsData']);
             // Make the spies return a synchronous Observable with the test data
-            getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
+            getEditionSheetsDataSpy = mockEditionDataService.getEditionSheetsData.and.returnValue(observableOf()); // TODO: provide real test data
 
             const expectedTextcriticalComments = []; // TODO: provide real test data
             // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
@@ -88,7 +88,7 @@ describe('EditionDetailComponent', () => {
                 imports: [NgbModalModule, RouterTestingModule],
                 declarations: [
                     CompileHtmlComponent,
-                    EditionDetailComponent,
+                    EditionSheetsComponent,
                     EditionConvoluteStubComponent,
                     EditionAccoladeStubComponent,
                     ModalComponent,
@@ -102,7 +102,7 @@ describe('EditionDetailComponent', () => {
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionDetailComponent);
+        fixture = TestBed.createComponent(EditionSheetsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

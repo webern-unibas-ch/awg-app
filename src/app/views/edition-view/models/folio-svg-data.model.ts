@@ -176,7 +176,7 @@ class FolioSvgContentItem {
  * It is used in the context of the edition folio convolutes
  * to store and expose the svg data for a folio.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioSvgData {
     /**

@@ -451,7 +451,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     2,
                     2
                 );
-                const expectedSnippet = 'HINT_EDITION_DETAIL';
+                const expectedSnippet = 'HINT_EDITION_SHEETS';
 
                 // Only second button has modal call
                 // Trigger click with click helper & wait for changes

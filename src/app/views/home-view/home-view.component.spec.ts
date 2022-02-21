@@ -352,7 +352,7 @@ describe('HomeViewComponent (DONE)', () => {
                     ]);
                     expect(routerLinks[1].linkParams).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.detailRoute.route,
+                        expectedEditionWorkOp25.sheetsRoute.route,
                     ]);
                     expect(routerLinks[2].linkParams).toEqual([
                         expectedEditionWorkOp25.baseRoute,
@@ -361,11 +361,11 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(routerLinks[3].linkParams).toEqual(['/structure']);
                     expect(routerLinks[4].linkParams).toEqual([
                         expectedEditionWorkOp12.baseRoute,
-                        expectedEditionWorkOp12.detailRoute.route,
+                        expectedEditionWorkOp12.sheetsRoute.route,
                     ]);
                     expect(routerLinks[5].linkParams).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.detailRoute.route,
+                        expectedEditionWorkOp25.sheetsRoute.route,
                     ]);
                     expect(routerLinks[6].linkParams).toEqual(['/data/search', 'fulltext']);
                     expect(routerLinks[7].linkParams).toEqual(['/contact']);
@@ -399,7 +399,7 @@ describe('HomeViewComponent (DONE)', () => {
 
                     expect(detailLink.navigatedTo).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.detailRoute.route,
+                        expectedEditionWorkOp25.sheetsRoute.route,
                     ]);
                 });
 

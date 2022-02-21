@@ -62,7 +62,7 @@ export class SourceDescriptionComponent {
     ref: SourceDescriptionComponent;
 
     /**
-     * Constructor of the EditionDetailComponent.
+     * Constructor of the SourceDescriptionComponent.
      *
      * It declares the self-referring variable
      * needed for CompileHtml library.

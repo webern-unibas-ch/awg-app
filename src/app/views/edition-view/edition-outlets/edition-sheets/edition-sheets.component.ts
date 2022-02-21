@@ -18,20 +18,20 @@ import {
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 /**
- * The EditionDetail component.
+ * The EditionSheets component.
  *
- * It contains the edition detail section
+ * It contains the edition sheets section
  * of the edition view of the app
  * with a {@link ModalComponent},
  * the {@link EditionConvoluteComponent}
  * and the {@link EditionAccoladeComponent}.
  */
 @Component({
-    selector: 'awg-edition-detail',
-    templateUrl: './edition-detail.component.html',
-    styleUrls: ['./edition-detail.component.css'],
+    selector: 'awg-edition-sheets',
+    templateUrl: './edition-sheets.component.html',
+    styleUrls: ['./edition-sheets.component.css'],
 })
-export class EditionDetailComponent implements OnInit, OnDestroy {
+export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * ViewChild variable: modal.
      *
@@ -49,28 +49,28 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
     /**
      * Public variable: folioConvoluteData.
      *
-     * It keeps the folio convolute Data of the edition detail.
+     * It keeps the folio convolute Data of the edition sheets.
      */
     folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: svgSheetsData.
      *
-     * It keeps the svg sheets data of the edition detail.
+     * It keeps the svg sheets data of the edition sheets.
      */
     svgSheetsData: EditionSvgSheetList;
 
     /**
      * Public variable: filteredSvgSheetsData.
      *
-     * It keeps a filtered excerpt of the svg sheets data of the edition detail.
+     * It keeps a filtered excerpt of the svg sheets data of the edition sheets.
      */
     filteredSvgSheetsData: EditionSvgSheetList;
 
     /**
      * Public variable: textcriticsData.
      *
-     * It keeps the textcritics data of the edition detail.
+     * It keeps the textcritics data of the edition sheets.
      */
     textcriticsData: TextcriticsList;
 
@@ -124,7 +124,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
     private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionDetailComponent.
+     * Constructor of the EditionSheetsComponent.
      *
      * It declares private instances of
      * EditionDataService and EditionService,
@@ -149,11 +149,11 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionDetailData();
+        this.getEditionSheetsData();
     }
 
     /**
-     * Public method: getEditionDetailData.
+     * Public method: getEditionSheetsData.
      *
      * It subscribes to the current edition work
      * of the edition service and gets all necessary edition data
@@ -161,7 +161,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      *
      * @returns {void} Gets the current edition work and all necessary edition data.
      */
-    getEditionDetailData(): void {
+    getEditionSheetsData(): void {
         this.router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
@@ -169,8 +169,8 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                 switchMap((work: EditionWork) => {
                     // Set current editionWork
                     this.editionWork = work;
-                    // Return EditionDetailData from editionDataService
-                    return this.editionDataService.getEditionDetailData(this.editionWork);
+                    // Return EditionSheetsData from editionDataService
+                    return this.editionDataService.getEditionSheetsData(this.editionWork);
                 }),
                 map((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
                     this.folioConvoluteData = data[0];
@@ -226,7 +226,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
             queryParams: { convolute: convolute.convoluteId, sketch: this.filteredSvgSheetsData.sheets[0].id },
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
     }
 
     /**
@@ -256,11 +256,11 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * Public method: onSvgSheetSelect.
      *
      * It selects a svg sheet by its id and
-     * navigates to the edition detail route
+     * navigates to the edition sheets route
      * with this given id.
      *
      * @param {string} id The given svg sheet id.
-     * @returns {void} Navigates to the edition detail.
+     * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(id: string): void {
         // Make sure that there is a convolute selected first
@@ -279,7 +279,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
             queryParamsHandling: 'merge',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
     }
 
     /**
@@ -413,6 +413,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         // If there is no id in query params
         // Take first entry of folio convolute data as default
         if (!queryParams.get('convolute')) {
+            console.log('got no convolute');
             this.onConvoluteSelect(this.folioConvoluteData.convolutes[0].convoluteId);
             return;
         }

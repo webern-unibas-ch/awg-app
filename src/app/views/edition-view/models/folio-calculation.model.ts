@@ -7,7 +7,7 @@ import { FolioSettings } from './folio-settings.model';
  * It is used in the context of the edition folio convolutes
  * to calculate the values of a point on the folio canvas.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioCalculationPoint {
     /**
@@ -55,7 +55,7 @@ export class FolioCalculationPoint {
  * It is used in the context of the edition folio convolutes
  * to calculate the values of a line on the folio canvas.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioCalculationLine {
     /**
@@ -153,7 +153,7 @@ class FolioCalculationContentItemCache {
  * It is used in the context of the edition folio convolutes
  * to calculate the values of a content item on the folio canvas.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioCalculationContentItem {
     /**
@@ -258,7 +258,7 @@ export class FolioCalculationContentItem {
  * It is used in the context of the edition folio convolutes
  * to calculate the values of a sheet on the folio canvas.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioCalculationSheet {
     /**
@@ -315,7 +315,7 @@ export class FolioCalculationSheet {
  * It is used in the context of the edition folio convolutes
  * to calculate the values of the systems on the folio canvas.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioCalculationSystems {
     /**
@@ -390,7 +390,7 @@ export class FolioCalculationSystems {
  * It is used in the context of the edition folio convolutes
  * to calculate all the values needed for the folio canvas.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioCalculation {
     /**

@@ -173,9 +173,9 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for the detail section of an edition.
+     * The edition route for the sheets section of an edition.
      */
-    static readonly EDITION_DETAIL: EditionRoute = {
+    static readonly EDITION_SHEETS: EditionRoute = {
         route: 'detail',
         short: 'Edierter Notentext',
         full: 'Edierter Notentext',

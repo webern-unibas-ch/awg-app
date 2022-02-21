@@ -270,7 +270,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 ]);
                 expect(routerLinks[1].linkParams).toEqual([
                     expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.detailRoute.route,
+                    expectedEditionWorkOp25.sheetsRoute.route,
                 ]);
                 expect(routerLinks[2].linkParams).toEqual([
                     expectedEditionWorkOp25.baseRoute,
@@ -306,7 +306,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 expect(detailLink.navigatedTo).toEqual([
                     expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.detailRoute.route,
+                    expectedEditionWorkOp25.sheetsRoute.route,
                 ]);
             });
 

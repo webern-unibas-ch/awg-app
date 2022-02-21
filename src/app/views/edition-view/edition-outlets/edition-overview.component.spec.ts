@@ -67,8 +67,8 @@ describe('EditionOverviewComponent (DONE)', () => {
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
-                expectedEditionWork.detailRoute.route,
-                EditionConstants.EDITION_DETAIL.short,
+                expectedEditionWork.sheetsRoute.route,
+                EditionConstants.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(

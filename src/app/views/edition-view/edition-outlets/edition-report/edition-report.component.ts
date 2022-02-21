@@ -144,6 +144,6 @@ export class EditionReportComponent implements OnInit {
             // .queryParamsHandling: '',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
     }
 }

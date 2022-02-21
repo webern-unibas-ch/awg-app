@@ -16,7 +16,7 @@ import {
  * of the textcritical comments for a selected overlay item.
  *
  * Provided in: `root`.
- * @used in the {@link EditionDetailComponent}.
+ * @used in the {@link EditionSheetsComponent}.
  */
 @Injectable({
     providedIn: 'root',

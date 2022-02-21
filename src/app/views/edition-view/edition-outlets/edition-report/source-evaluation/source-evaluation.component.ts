@@ -55,7 +55,7 @@ export class SourceEvaluationComponent {
     ref: SourceEvaluationComponent;
 
     /**
-     * Constructor of the EditionDetailComponent.
+     * Constructor of the SourceEvaluationComponent.
      *
      * It declares the self-referring variable
      * needed for CompileHtml library.

@@ -252,34 +252,34 @@ describe('NavbarComponent (DONE)', () => {
                     .withContext(
                         `should equal ${[
                             expectedSelectEditionWork.baseRoute,
-                            expectedSelectEditionWork.detailRoute.route,
+                            expectedSelectEditionWork.sheetsRoute.route,
                         ]}`
                     )
-                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.detailRoute.route]);
+                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.sheetsRoute.route]);
                 expect(routerLinks[5].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedSelectEditionWork.baseRoute,
-                            expectedSelectEditionWork.detailRoute.route,
+                            expectedSelectEditionWork.sheetsRoute.route,
                         ]}`
                     )
-                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.detailRoute.route]);
+                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.sheetsRoute.route]);
                 expect(routerLinks[6].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedSelectEditionWork.baseRoute,
-                            expectedSelectEditionWork.detailRoute.route,
+                            expectedSelectEditionWork.sheetsRoute.route,
                         ]}`
                     )
-                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.detailRoute.route]);
+                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.sheetsRoute.route]);
                 expect(routerLinks[7].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedSelectEditionWork.baseRoute,
-                            expectedSelectEditionWork.detailRoute.route,
+                            expectedSelectEditionWork.sheetsRoute.route,
                         ]}`
                     )
-                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.detailRoute.route]);
+                    .toEqual([expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.sheetsRoute.route]);
                 expect(routerLinks[8].linkParams)
                     .withContext(
                         `should equal ${[

@@ -32,10 +32,10 @@ const editionViewRoutes: Routes = [
                                     ),
                             },
                             {
-                                path: EditionConstants.EDITION_DETAIL.route,
+                                path: EditionConstants.EDITION_SHEETS.route,
                                 loadChildren: () =>
-                                    import('./edition-outlets/edition-detail/edition-detail.module').then(
-                                        m => m.EditionDetailModule
+                                    import('./edition-outlets/edition-sheets/edition-sheets.module').then(
+                                        m => m.EditionSheetsModule
                                     ),
                             },
                             {
