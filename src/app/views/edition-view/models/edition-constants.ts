@@ -2,7 +2,7 @@
  * The EditionRoute class.
  *
  * It is used in the context of the edition view
- * to store string constants of the editions.
+ * to store routing constants of the editions parts.
  */
 export class EditionRoute {
     /**
@@ -19,6 +19,24 @@ export class EditionRoute {
      * The full label of an edition route.
      */
     full: string;
+}
+
+/**
+ * The EditionSeriesRoutes class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of the edition series.
+ */
+export class EditionSeriesRoutes {
+    /**
+     * The series route of an edition series.
+     */
+    series: EditionRoute;
+
+    /**
+     * The sections routes of an edition series.
+     */
+    sections: EditionRoute[];
 }
 
 /**
@@ -65,10 +83,19 @@ export class EditionConstants {
     };
 
     /**
+     * The edition route for the series.
+     */
+    static readonly SERIES: EditionRoute = {
+        route: '/series/',
+        short: 'Serien',
+        full: 'Serienübersicht',
+    };
+
+    /**
      * The edition route for series I.
      */
     static readonly SERIES_1: EditionRoute = {
-        route: '/series1',
+        route: '1',
         short: 'I',
         full: 'Serie I (Werke mit Opuszahlen)',
     };
@@ -77,7 +104,7 @@ export class EditionConstants {
      * The edition route for series II.
      */
     static readonly SERIES_2: EditionRoute = {
-        route: '/series2',
+        route: '2',
         short: 'II',
         full: 'Serie II (Nachgelassene Kompositionen und Fragmente)',
     };
@@ -86,16 +113,25 @@ export class EditionConstants {
      * The edition route for series III.
      */
     static readonly SERIES_3: EditionRoute = {
-        route: '/series3',
+        route: '3',
         short: 'III',
         full: 'Serie III (Bearbeitungen von Werken anderer Komponisten)',
+    };
+
+    /**
+     * The edition route for the series.
+     */
+    static readonly SECTION: EditionRoute = {
+        route: '/section/',
+        short: 'Abteilung',
+        full: 'Abteilungsübersicht',
     };
 
     /**
      * The edition route for section 1.
      */
     static readonly SECTION_1: EditionRoute = {
-        route: '/section1',
+        route: '1',
         short: '1',
         full: 'Abteilung 1 (Orchestermusik)',
     };
@@ -104,7 +140,7 @@ export class EditionConstants {
      * The edition route for section 2.
      */
     static readonly SECTION_2: EditionRoute = {
-        route: '/section2',
+        route: '2',
         short: '2',
         full: 'Abteilung 2 (Kammer- und Klaviermusik)',
     };
@@ -113,7 +149,7 @@ export class EditionConstants {
      * The edition route for section 3.
      */
     static readonly SECTION_3: EditionRoute = {
-        route: '/section3',
+        route: '3',
         short: '3',
         full: 'Abteilung 3 (Chormusik)',
     };
@@ -122,7 +158,7 @@ export class EditionConstants {
      * The edition route for section 4.
      */
     static readonly SECTION_4: EditionRoute = {
-        route: '/section4',
+        route: '4',
         short: '4',
         full: 'Abteilung 4 (Vokalmusik mit Ensemblebegleitung)',
     };
@@ -131,9 +167,18 @@ export class EditionConstants {
      * The edition route for section 5.
      */
     static readonly SECTION_5 = {
-        route: '/section5',
+        route: '5',
         short: '5',
         full: 'Abteilung 5 (Klavierlieder)',
+    };
+
+    /**
+     * The edition route for section 5.
+     */
+    static readonly SERIES_3_SECTION_5 = {
+        route: '5',
+        short: '5',
+        full: 'Abteilung 5 (Klavierauszüge)',
     };
 
     /**

@@ -29,8 +29,8 @@ export class EditionWorks {
         },
         {
             route: '/op12',
-            short: '',
-            full: '',
+            short: 'Op. 12',
+            full: 'Opus 12',
         },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,
@@ -57,8 +57,8 @@ export class EditionWorks {
         },
         {
             route: '/op25',
-            short: '',
-            full: '',
+            short: 'Op. 25',
+            full: 'Opus 25',
         },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,

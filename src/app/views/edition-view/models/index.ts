@@ -7,7 +7,7 @@
  *
  */
 
-import { EditionConstants } from './edition-constants';
+import { EditionConstants, EditionRoute, EditionSeriesRoutes } from './edition-constants';
 
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
@@ -32,6 +32,8 @@ import { ViewBox } from './view-box.model';
 
 export {
     EditionConstants,
+    EditionRoute,
+    EditionSeriesRoutes,
     EditionTitleStatement,
     EditionWork,
     EditionSvgOverlay,

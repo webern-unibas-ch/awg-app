@@ -2,22 +2,22 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionSectionComponent } from './edition-section.component';
+import { EditionSectionsComponent } from './edition-sections.component';
 
-describe('EditionSectionComponent', () => {
-    let component: EditionSectionComponent;
-    let fixture: ComponentFixture<EditionSectionComponent>;
+describe('EditionSectionsComponent', () => {
+    let component: EditionSectionsComponent;
+    let fixture: ComponentFixture<EditionSectionsComponent>;
 
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionSectionComponent, RouterOutletStubComponent],
+                declarations: [EditionSectionsComponent, RouterOutletStubComponent],
             }).compileComponents();
         })
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSectionComponent);
+        fixture = TestBed.createComponent(EditionSectionsComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

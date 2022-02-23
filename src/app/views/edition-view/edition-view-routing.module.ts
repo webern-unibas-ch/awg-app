@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionViewComponent } from './edition-view.component';
 import { EditionOverviewComponent } from './edition-outlets/edition-overview.component';
-import { EditionSectionComponent } from './edition-outlets/edition-section';
+import { EditionSectionsComponent } from './edition-outlets/edition-sections';
+import { EditionSectionDetailComponent } from './edition-outlets/edition-sections/edition-section-detail';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
+import { EditionSeriesDetailComponent } from './edition-outlets/edition-series/edition-series-detail';
 import { EditionTypeComponent } from './edition-outlets/edition-type';
 
 import { EditionConstants } from './models';
@@ -13,12 +15,41 @@ import { EditionConstants } from './models';
 const editionViewRoutes: Routes = [
     {
         path: '',
-        component: EditionSectionComponent,
+        component: EditionViewComponent,
         children: [
             {
-                // CompositionID (op12, M317, etc.
+                // Overview of series.
+                path: 'series',
+                component: EditionSeriesComponent,
+            },
+            {
+                // Series by id (I, II, III).
+                path: 'series/:id',
+                component: EditionSeriesDetailComponent,
+                children: [
+                    {
+                        path: 'sections',
+                        component: EditionSectionsComponent,
+                    },
+                    {
+                        path: 'section/:id',
+                        component: EditionSectionDetailComponent,
+                    },
+                    {
+                        path: 'sections/:id',
+                        redirectTo: 'section/:id',
+                        pathMatch: 'full',
+                    },
+                    {
+                        path: '',
+                        redirectTo: 'sections',
+                        pathMatch: 'full',
+                    },
+                ],
+            },
+            {
+                // CompositionID (op12, M317, etc.).
                 path: 'composition/:compositionId',
-                component: EditionViewComponent,
                 children: [
                     {
                         path: '',
@@ -68,14 +99,16 @@ const editionViewRoutes: Routes = [
 /**
  * Routed components of the {@link EditionViewModule}:
  * {@link EditionViewComponent}, {@link EditionOverviewComponent},
- * {@link EditionSectionComponent}, {@link EditionSeriesComponent}
+ * {@link EditionSectionsComponent}, {@link EditionSeriesComponent}
  * and {@link EditionTypeComponent}.
  */
 export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionOverviewComponent,
-    EditionSectionComponent,
+    EditionSectionsComponent,
+    EditionSectionDetailComponent,
     EditionSeriesComponent,
+    EditionSeriesDetailComponent,
     EditionTypeComponent,
 ];
 

@@ -1,3 +1,12 @@
-<p>edition-series works!</p>
-
-<router-outlet></router-outlet>
+<div *ngIf="editionOutline" class="card-deck">
+    <div class="card" style="width: 18rem" *ngFor="let series of editionOutline">
+        <img class="card-img-top" src="..." alt="Card image cap" />
+        <div class="card-body">
+            <h5 class="card-title">{{ series.series.full }}</h5>
+            <p class="card-text">Enthält: {{ series.sections.length }} Abteilungen.</p>
+        </div>
+        <div class="card-footer text-right">
+            <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr... </a>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { delay, Observable } from 'rxjs';
+
+import {
+    EditionConstants,
+    EditionRoute,
+    EditionSeriesRoutes,
+    EditionWork,
+    EditionWorks,
+} from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
-import { Observable } from 'rxjs';
 
 /**
  * The EditionView component.
@@ -40,6 +47,11 @@ export class EditionViewComponent implements OnInit {
      */
     editionWork$: Observable<EditionWork>;
 
+    editionRoute: EditionRoute;
+    seriesRoute: EditionRoute;
+    selectedSeries$: Observable<EditionSeriesRoutes>;
+    selectedSection$: Observable<EditionRoute>;
+
     /**
      * Constructor of the EditionViewComponent.
      *
@@ -60,6 +72,7 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
+        this.getSeriesFromRoute();
         this.getEditionWorkFromRoute();
     }
 
@@ -76,6 +89,20 @@ export class EditionViewComponent implements OnInit {
             this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
             this.editionWork$ = this.editionService.getEditionWork();
         });
+    }
+
+    /**
+     * Public method: getSeriesFromRoute.
+     *
+     * It loads the selected series and section from the edition service (if given).
+     *
+     * @returns {void} Gets the selected series and section from the edition service.
+     */
+    getSeriesFromRoute(): void {
+        this.editionRoute = EditionConstants.EDITION;
+        this.seriesRoute = EditionConstants.SERIES;
+        this.selectedSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
     }
 
     /**
