@@ -17,6 +17,16 @@ import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@
 import { SearchResponseJson } from '@awg-shared/api-objects';
 
 import { SearchResultListComponent } from './search-result-list.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({ selector: 'awg-table', template: '' })
+class TableStubComponent {
+    @Input() tableTitle: string;
+    @Input() headerInputData: any;
+    @Input() rowInputData: any;
+    @Output() clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
+    @Output() clickedTableRowRequest: EventEmitter<string> = new EventEmitter();
+}
 
 describe('SearchResultListComponent', () => {
     let component: SearchResultListComponent;
@@ -60,7 +70,7 @@ describe('SearchResultListComponent', () => {
 
             TestBed.configureTestingModule({
                 imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
-                declarations: [SearchResultListComponent, CompileHtmlComponent],
+                declarations: [SearchResultListComponent, CompileHtmlComponent, TableStubComponent],
                 providers: [
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
                     { provide: ConversionService, useValue: mockConversionService },

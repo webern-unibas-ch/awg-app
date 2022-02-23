@@ -207,8 +207,8 @@ export class EditionService {
      *
      * @returns {EditionSeriesRoutes} The found edition series.
      */
-    getEditionSeriesById(id: string): EditionSeriesRoutes {
-        return this._editionOutline.find(series => series.series.route === id);
+    getEditionSeriesById(seriesId: string): EditionSeriesRoutes {
+        return this._editionOutline.find(series => series.series.route === seriesId);
     }
 
     /**

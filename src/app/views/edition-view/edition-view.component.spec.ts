@@ -15,7 +15,13 @@ import {
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionService } from '@awg-views/edition-view/services';
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import {
+    EditionConstants,
+    EditionRoute,
+    EditionSeriesRoutes,
+    EditionWork,
+    EditionWorks,
+} from '@awg-views/edition-view/models';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -49,6 +55,8 @@ describe('EditionViewComponent (DONE)', () => {
     const expectedTitle = 'Beispieledition ausgewählter Skizzen';
     const expectedId = 'awg-edition-view';
 
+    let expectedSelectedEditionSeries: EditionSeriesRoutes;
+
     beforeEach(
         waitForAsync(() => {
             // Mock router with spy object
@@ -65,6 +73,10 @@ describe('EditionViewComponent (DONE)', () => {
                 updateEditionWork: (editionWork: EditionWork): void => {
                     // Intentional empty test override
                 },
+                getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> =>
+                    observableOf(expectedSelectedEditionSeries),
+                getSelectedEditionSection: (): Observable<EditionRoute> =>
+                    observableOf(expectedSelectedEditionSeries.sections[0]),
             };
 
             TestBed.configureTestingModule({
@@ -90,6 +102,17 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Test data
         expectedWork = EditionWorks[expectedWorkId]; // Op. 12
+
+        expectedSelectedEditionSeries = {
+            series: EditionConstants.SERIES_1,
+            sections: [
+                EditionConstants.SECTION_1,
+                EditionConstants.SECTION_2,
+                EditionConstants.SECTION_3,
+                EditionConstants.SECTION_4,
+                EditionConstants.SECTION_5,
+            ],
+        };
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
