@@ -1,9 +1,14 @@
 <div *ngIf="editionOutline" class="card-deck">
     <div class="card" style="width: 18rem" *ngFor="let series of editionOutline">
-        <img class="card-img-top" src="..." alt="Card image cap" />
-        <div class="card-body">
+        <div class="card-header">
             <h5 class="card-title">{{ series.series.full }}</h5>
-            <p class="card-text">Enthält: {{ series.sections.length }} Abteilungen.</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let section of series.sections" class="list-group-item">
+                    <a [routerLink]="[series.series.route, 'section', section.route]">{{ section.full }}</a>
+                </li>
+            </ul>
         </div>
         <div class="card-footer text-right">
             <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr... </a>
