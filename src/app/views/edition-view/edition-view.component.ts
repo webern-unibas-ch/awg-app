@@ -30,7 +30,7 @@ export class EditionViewComponent implements OnInit {
      *
      * It keeps the title of the edition view section.
      */
-    editionViewTitle = 'Beispieledition ausgewählter Skizzen';
+    editionViewTitle = 'Editionsübersicht';
 
     /**
      * Public variable: editionViewId.
@@ -49,7 +49,19 @@ export class EditionViewComponent implements OnInit {
 
     editionRoute: EditionRoute;
     seriesRoute: EditionRoute;
+
+    /**
+     * Public variable: selectedSeries$.
+     *
+     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     */
     selectedSeries$: Observable<EditionSeriesRoutes>;
+
+    /**
+     * Public variable: selectedSection.
+     *
+     * It keeps the selected section of the edition as an Observable of EditionRoute.
+     */
     selectedSection$: Observable<EditionRoute>;
 
     /**
@@ -87,7 +99,7 @@ export class EditionViewComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('compositionId') ? params.get('compositionId') : '';
             this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
-            this.editionWork$ = this.editionService.getEditionWork();
+            this.editionWork$ = this.editionService.getEditionWork().pipe(delay(0));
         });
     }
 

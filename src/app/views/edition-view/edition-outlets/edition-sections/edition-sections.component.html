@@ -1,9 +1,7 @@
 <div *ngIf="selectedSeries$ | async as selectedSeries" class="card-deck">
     <div class="card" style="width: 18rem" *ngFor="let section of selectedSeries.sections">
-        <img class="card-img-top" src="..." alt="Card image cap" />
         <div class="card-body">
             <h5 class="card-title">{{ section.full }}</h5>
-            <p class="card-text">Enthält: {{ section.length }} Werkkomplexe.</p>
         </div>
         <div class="card-footer text-right">
             <a [routerLink]="[section.route]" class="btn btn-outline-info">Mehr... </a>

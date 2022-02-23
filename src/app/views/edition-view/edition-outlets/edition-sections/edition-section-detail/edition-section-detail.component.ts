@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { delay, Subject } from 'rxjs';
 
-import { EditionRoute } from '@awg-views/edition-view/models';
+import { EditionRoute, EditionSeriesRoutes } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 import { takeUntil } from 'rxjs/operators';
 
@@ -19,6 +19,13 @@ import { takeUntil } from 'rxjs/operators';
     styleUrls: ['./edition-section-detail.component.css'],
 })
 export class EditionSectionDetailComponent implements OnInit, OnDestroy {
+    /**
+     * Public variable: selectedSeries.
+     *
+     * It keeps the selected series of the edition.
+     */
+    selectedSeries: EditionSeriesRoutes;
+
     /**
      * Public variable: selectedSection.
      *
@@ -64,13 +71,13 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      */
     getSection(): void {
         const sectionId = this.route.snapshot.paramMap.get('id');
-        let selectedSeries;
 
         this.editionService
             .getSelectedEditionSeries()
             .pipe(delay(0), takeUntil(this._destroyed$))
             .subscribe(series => {
                 if (series) {
+                    this.selectedSeries = series;
                     const seriesId = series.series.route;
                     this.selectedSection = this.editionService.getEditionSectionById(seriesId, sectionId);
                     this.editionService.updateSelectedEditionSection(this.selectedSection);
