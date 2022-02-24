@@ -221,7 +221,7 @@ export class EditionConstants {
      * The edition route for the sheets section of an edition.
      */
     static readonly EDITION_SHEETS: EditionRoute = {
-        route: 'detail',
+        route: 'sheets',
         short: 'Edierter Notentext',
         full: 'Edierter Notentext',
     };
@@ -285,7 +285,7 @@ export class EditionConstants {
      * The path to the assets image of the graph for op 25.
      */
     static readonly GRAPH_IMAGE_OP25: EditionRoute = {
-        route: 'assets/img/edition/series1/section5/op25/graph_op25_1.png',
+        route: 'assets/img/edition/series/1/section/5/op25/graph_op25_1.png',
         short: 'Statischer Graph op. 25/I',
         full: 'Statischer Graph der Skizzen von Opus 25/I.',
     };

@@ -175,7 +175,12 @@ export class EditionDataService {
      * @returns {void} It sets the asset path.
      */
     private _setAssetWorkPath(editionWork: EditionWork): void {
-        const workRoute = editionWork.series.route + editionWork.section.route + editionWork.work.route;
+        const workRoute =
+            EditionConstants.SERIES.route +
+            editionWork.series.route +
+            EditionConstants.SECTION.route +
+            editionWork.section.route +
+            editionWork.work.route;
         this._assetWorkPath = EditionConstants.EDITION_ASSETS.baseRoute + workRoute;
     }
 
