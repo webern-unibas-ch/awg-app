@@ -1,9 +1,11 @@
 <!-- content: search results -->
 
+<!-- TODO Use shared generic table component to display search results
 <awg-table
     tableTitle="{{ searchResponseWithQuery?.query | json }}"
     [headerInputData]="test.head.vars"
     [rowInputData]="test.body.bindings"></awg-table>
+-->
 
 <div class="awg-search-results" *ngIf="searchResponseWithQuery?.data">
     <!-- header -->

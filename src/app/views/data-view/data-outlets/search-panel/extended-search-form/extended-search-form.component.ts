@@ -171,7 +171,6 @@ export class ExtendedSearchFormComponent implements OnInit {
         this.dataApiService.getResourceTypes().subscribe(
             (restypesResponse: ResourceTypesInVocabularyResponseJson) => {
                 this.restypesResponse = restypesResponse;
-                console.log(this.restypesResponse);
 
                 this.listenToUserResourcetypeChange();
             },
@@ -198,10 +197,7 @@ export class ExtendedSearchFormComponent implements OnInit {
 
             this.clearPropertiesControls(); // Remove all previous property input fields
 
-            console.log(resourcetypeId);
-
             if (this.selectedResourcetype) {
-                console.log(this.selectedResourcetype);
                 this.getPropertyLists(this.selectedResourcetype.id);
             }
         });

@@ -395,7 +395,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Store search response and query
         this.searchResponseWithQuery = { ...searchResponseWithQuery };
 
-        this.test = {
+        /* TODO Prepare data for generic table
+           this.test = {
             head: { vars: ['typ', 'ressource'] },
             body: {
                 bindings: [
@@ -416,10 +417,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 ],
             },
         };
-        console.info(this.searchResponseWithQuery);
         this.searchResponseWithQuery.data?.subjects.map(subject => {
-            console.info(subject.obj_id, subject.iconlabel, subject?.iconsrc, subject.value[0]);
-
             const r = {
                 typ: {
                     type: 'search',
@@ -435,9 +433,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 },
             };
             this.test.body.bindings.push(r);
-        });
-
-        console.warn(this.test);
+        });*/
 
         // Update info message about the search results
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
