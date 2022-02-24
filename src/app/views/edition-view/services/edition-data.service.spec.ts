@@ -46,9 +46,13 @@ describe('EditionDataService (DONE)', () => {
     const expectedEditionWork: EditionWork = EditionWorks.OP12;
 
     const assets = EditionConstants.EDITION_ASSETS;
-    const expectedWorkRoute =
-        expectedEditionWork.series.route + expectedEditionWork.section.route + expectedEditionWork.work.route;
     const expectedAssetWorkPathBaseRoute = assets.baseRoute;
+    const expectedWorkRoute =
+        EditionConstants.SERIES.route +
+        expectedEditionWork.series.route +
+        EditionConstants.SECTION.route +
+        expectedEditionWork.section.route +
+        expectedEditionWork.work.route;
     const expectedAssetWorkPath = expectedAssetWorkPathBaseRoute + expectedWorkRoute;
     const regexBase = new RegExp(expectedAssetWorkPath);
 
