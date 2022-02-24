@@ -15,11 +15,11 @@ import { EditionService } from '@awg-views/edition-view/services';
  * another router outlet for the edition routes.
  */
 @Component({
-    selector: 'awg-edition-overview',
-    templateUrl: './edition-overview.component.html',
-    styleUrls: ['./edition-overview.component.css'],
+    selector: 'awg-edition-detail-nav',
+    templateUrl: './edition-detail-nav.component.html',
+    styleUrls: ['./edition-detail-nav.component.css'],
 })
-export class EditionOverviewComponent implements OnInit, OnDestroy {
+export class EditionDetailNavComponent implements OnInit, OnDestroy {
     /**
      * Public variable: editionRouterLinkButtons.
      *
@@ -42,7 +42,7 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionOverviewComponent.
+     * Constructor of the EditionDetailNavComponent.
      *
      * It declares a private instance of EditionService.
      *

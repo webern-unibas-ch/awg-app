@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { EditionViewComponent } from './edition-view.component';
-import { EditionOverviewComponent } from './edition-outlets/edition-overview.component';
+import { EditionDetailNavComponent } from './edition-outlets/edition-detail-nav.component';
 import { EditionSectionsComponent } from './edition-outlets/edition-sections';
 import { EditionSectionDetailComponent } from './edition-outlets/edition-sections/edition-section-detail';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
@@ -53,7 +53,7 @@ const editionViewRoutes: Routes = [
                 children: [
                     {
                         path: '',
-                        component: EditionOverviewComponent,
+                        component: EditionDetailNavComponent,
                         children: [
                             {
                                 path: EditionConstants.EDITION_INTRO.route,
@@ -98,13 +98,13 @@ const editionViewRoutes: Routes = [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionViewComponent}, {@link EditionOverviewComponent},
+ * {@link EditionViewComponent}, {@link EditionDetailNavComponent},
  * {@link EditionSectionsComponent}, {@link EditionSeriesComponent}
  * and {@link EditionTypeComponent}.
  */
 export const routedEditionViewComponents = [
     EditionViewComponent,
-    EditionOverviewComponent,
+    EditionDetailNavComponent,
     EditionSectionsComponent,
     EditionSectionDetailComponent,
     EditionSeriesComponent,

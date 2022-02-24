@@ -14,7 +14,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
-import { EditionOverviewComponent } from './edition-overview.component';
+import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
 // Mock components
 @Component({ selector: 'awg-router-link-button-group', template: '' })
@@ -26,9 +26,9 @@ class RouterLinkButtonGroupStubComponent {
     selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 }
 
-describe('EditionOverviewComponent (DONE)', () => {
-    let component: EditionOverviewComponent;
-    let fixture: ComponentFixture<EditionOverviewComponent>;
+describe('EditionDetailNavComponent (DONE)', () => {
+    let component: EditionDetailNavComponent;
+    let fixture: ComponentFixture<EditionDetailNavComponent>;
     let compDe: DebugElement;
 
     let expectedEditionRouterLinkButtons: RouterLinkButton[];
@@ -45,14 +45,18 @@ describe('EditionOverviewComponent (DONE)', () => {
             getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
 
             TestBed.configureTestingModule({
-                declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
+                declarations: [
+                    EditionDetailNavComponent,
+                    RouterLinkButtonGroupStubComponent,
+                    RouterOutletStubComponent,
+                ],
                 providers: [{ provide: EditionService, useValue: mockEditionService }],
             }).compileComponents();
         })
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionOverviewComponent);
+        fixture = TestBed.createComponent(EditionDetailNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
