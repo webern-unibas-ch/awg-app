@@ -43,17 +43,17 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.getEditionWorkFromRoute();
+        this.getEditionComplexFromRoute();
     }
 
     /**
-     * Public method: getEditionWorkFromRoute.
+     * Public method: getEditionComplexFromRoute.
      *
-     * It subscribes to the route params to get the compositionId of the current work and load it from the edition service.
+     * It subscribes to the route params to get the id of the current edition complex and load it from the edition service.
      *
-     * @returns {void} Gets the current work from the edition service.
+     * @returns {void} Gets the current edition complex from the edition service.
      */
-    getEditionWorkFromRoute(): void {
+    getEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('compositionId') ? params.get('compositionId') : '';
             this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
