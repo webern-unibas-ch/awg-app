@@ -40,29 +40,40 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
-     * Public variable: editionWork$.
+     * Public variable: editionRoute.
      *
-     * Observable that keeps the information
-     * about the current composition.
+     * It keeps the base edition route.
      */
-    editionWork$: Observable<EditionWork>;
-
-    editionRoute: EditionRoute;
-    seriesRoute: EditionRoute;
+    editionRoute: EditionRoute = EditionConstants.EDITION;
 
     /**
-     * Public variable: selectedSeries$.
+     * Public variable: seriesRoute.
+     *
+     * It keeps the base series route.
+     */
+    seriesRoute: EditionRoute = EditionConstants.SERIES;
+
+    /**
+     * Public variable: selectedEditionComplex$.
+     *
+     * Observable that keeps the information
+     * about the current edition complex.
+     */
+    selectedEditionComplex$: Observable<EditionWork>;
+
+    /**
+     * Public variable: selectedEditionSeries$.
      *
      * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
      */
-    selectedSeries$: Observable<EditionSeriesRoutes>;
+    selectedEditionSeries$: Observable<EditionSeriesRoutes>;
 
     /**
-     * Public variable: selectedSection.
+     * Public variable: selectedEditionSection$.
      *
      * It keeps the selected section of the edition as an Observable of EditionRoute.
      */
-    selectedSection$: Observable<EditionRoute>;
+    selectedEditionSection$: Observable<EditionRoute>;
 
     /**
      * Constructor of the EditionViewComponent.
@@ -84,37 +95,20 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
-        this.getSeriesFromRoute();
-        this.getEditionWorkFromRoute();
+        this.getSelectionsFromRoute();
     }
 
     /**
-     * Public method: getEditionWorkFromRoute.
+     * Public method: getSelectionsFromRoute.
      *
-     * It subscribes to the route params to get the compositionId of the current work and load it from the edition service.
+     * It loads the selected series, section, and edition complex from the edition service (if given).
      *
-     * @returns {void} Gets the current work from the edition service.
+     * @returns {void} Gets the selected series, section, and edition complex from the edition service.
      */
-    getEditionWorkFromRoute(): void {
-        this.route.paramMap.subscribe(params => {
-            const id: string = params.get('compositionId') ? params.get('compositionId') : '';
-            this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
-            this.editionWork$ = this.editionService.getEditionWork().pipe(delay(0));
-        });
-    }
-
-    /**
-     * Public method: getSeriesFromRoute.
-     *
-     * It loads the selected series and section from the edition service (if given).
-     *
-     * @returns {void} Gets the selected series and section from the edition service.
-     */
-    getSeriesFromRoute(): void {
-        this.editionRoute = EditionConstants.EDITION;
-        this.seriesRoute = EditionConstants.SERIES;
-        this.selectedSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
-        this.selectedSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
+    getSelectionsFromRoute(): void {
+        this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
     }
 
     /**
