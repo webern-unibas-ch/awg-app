@@ -40,87 +40,35 @@
                     <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
-                    <h6 class="dropdown-header">Gliederung</h6>
+                    <h6 class="dropdown-header">Allgemein</h6>
                     <a class="dropdown-item" [routerLink]="['/edition/series']" routerLinkActive="active"
-                        >Seriengliederung</a
+                        >Editionsübersicht</a
+                    >
+                    <a class="dropdown-item" [routerLink]="['/edition/row-tables']" routerLinkActive="active"
+                        >Reihentabellen</a
                     >
                     <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Auswahl Skizzenkomplex</h6>
-                    <a
-                        *ngFor="let editionWork of EDITION_WORKS"
-                        class="dropdown-item"
-                        [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"
-                        routerLinkActive="active"
-                        >{{ editionWork.work.full }}</a
-                    >
+                    <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>
                     <div class="dropdown-divider"></div>
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.introRoute.route]"
-                        routerLinkActive="active"
-                        >Einleitung</a
-                    >
-                    <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Edierter Notentext</h6>
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.sheetsRoute.route]"
-                        [queryParams]="{ sketch: 'Aa:SkI/2' }"
-                        routerLinkActive="active"
-                        >Aa:SkI/2</a
-                    >
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.sheetsRoute.route]"
-                        [queryParams]="{ sketch: 'Aa:SkI/3' }"
-                        routerLinkActive="active"
-                        >Aa:SkI/3</a
-                    >
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.sheetsRoute.route]"
-                        [queryParams]="{ sketch: 'Aa:SkI/4' }"
-                        routerLinkActive="active"
-                        >Aa:SkI/4</a
-                    >
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.sheetsRoute.route]"
-                        [queryParams]="{ sketch: 'Aa:SkI/5' }"
-                        routerLinkActive="active"
-                        >Aa:SkI/5</a
-                    >
-                    <div class="dropdown-divider"></div>
-                    <h6 class="dropdown-header">Kritischer Bericht</h6>
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
-                        >I. Quellen</a
-                    >
-                    <a
-                        class="dropdown-item awg-subitem"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
-                        fragment="sourceList"
-                        >1. Quellenübersicht</a
-                    >
-                    <a
-                        class="dropdown-item awg-subitem"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
-                        fragment="sourceDesc"
-                        >2. Quellenbeschreibung</a
-                    >
-                    <a
-                        class="dropdown-item awg-subitem"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
-                        fragment="sourceEvaluation"
-                        >3. Quellenbewertung</a
-                    >
-                    <a
-                        class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
-                        fragment="tkaPanel"
-                        >II. Textkritischer Kommentar</a
-                    >
+                    <div *ngFor="let editionWork of EDITION_WORKS">
+                        <h6 class="dropdown-header">{{ editionWork.work.full }}</h6>
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"
+                            routerLinkActive="active"
+                            >Einleitung</a
+                        >
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="[editionWork.baseRoute, editionWork.sheetsRoute.route]"
+                            routerLinkActive="active"
+                            >Edierter Notentext</a
+                        >
+                        <a class="dropdown-item" [routerLink]="[editionWork.baseRoute, editionWork.reportRoute.route]"
+                            >Kritischer Bericht</a
+                        >
+                        <div class="dropdown-divider"></div>
+                    </div>
                 </div>
             </li>
             <li class="nav-item">
