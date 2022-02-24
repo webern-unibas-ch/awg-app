@@ -162,9 +162,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition work and all necessary edition data.
      */
     getEditionSheetsData(): void {
-        this.router.events
+        this.route.paramMap
             .pipe(
-                filter(event => event instanceof NavigationEnd),
                 switchMap(() => this.editionService.getEditionWork()),
                 switchMap((work: EditionWork) => {
                     // Set current editionWork
