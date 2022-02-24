@@ -5,6 +5,7 @@ import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -37,31 +38,7 @@ describe('SourceListComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSourceListData = {
-            sources: [
-                {
-                    siglum: 'A',
-                    type: 'Skizzen',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    hasDescription: true,
-                    linkTo: 'sourceA',
-                },
-                {
-                    siglum: 'B',
-                    type: 'Autograph von Nr. I.',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    hasDescription: false,
-                    linkTo: 'OP12_SOURCE_NOT_A',
-                },
-                {
-                    siglum: 'C',
-                    type: 'Autograph von Nr. I–IV.',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    hasDescription: false,
-                    linkTo: 'OP12_SOURCE_NOT_A',
-                },
-            ],
-        };
+        expectedSourceListData = mockEditionData.mockSourceListData;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

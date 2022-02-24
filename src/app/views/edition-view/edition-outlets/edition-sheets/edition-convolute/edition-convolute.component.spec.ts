@@ -12,6 +12,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, FolioConvoluteList, FolioConvolute } from '@awg-views/edition-view/models';
 import { EditionConvoluteComponent } from './edition-convolute.component';
@@ -75,6 +76,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedFolioConvoluteData = mockEditionData.mockFolioConvoluteData;
+        expectedSelectedConvolute = expectedFolioConvoluteData.convolutes[0];
+
         expectedFolioLegends = [
             {
                 color: 'olivedrab',
@@ -89,64 +95,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 label: '(momentan noch) nicht auswählbar',
             },
         ];
-
-        expectedFolioConvoluteData = {
-            convolutes: [
-                {
-                    convoluteId: 'A',
-                    convoluteLabel: 'Test convolute A',
-                    folios: [
-                        {
-                            folioId: '1',
-                            systems: '12',
-                            format: {
-                                height: 180,
-                                width: 267,
-                            },
-                            content: [
-                                {
-                                    id: 'Aa:SkI/1a',
-                                    sigle: 'Aa:SkI/1a',
-                                    sigleAddendum: 'T. 1–2, [3–6]',
-                                    selectable: false,
-                                    linkTo: 'OP12_SOURCE_NOT_A',
-                                    sectionPartition: 1,
-                                    sections: [
-                                        {
-                                            startSystem: 2,
-                                            endSystem: 4,
-                                        },
-                                    ],
-                                },
-                            ],
-                        },
-                    ],
-                },
-                {
-                    convoluteId: 'Test convolute B',
-                    convoluteLabel: 'B',
-                    folios: [],
-                    linkTo: 'OP12_SOURCE_NOT_A',
-                },
-            ],
-        };
-
-        expectedSelectedConvolute = expectedFolioConvoluteData.convolutes[0];
-
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

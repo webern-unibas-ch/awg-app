@@ -30,6 +30,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 import { EditionReportComponent } from './edition-report.component';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 import { Router } from '@angular/router';
+import { mockEditionData } from '@testing/mock-data';
 
 // Mock components
 @Component({ selector: 'awg-source-list', template: '' })
@@ -160,81 +161,18 @@ describe('EditionReportComponent', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data
+        expectedPanelId = 'awg-sources-panel';
+        expectedFragment = 'sourceA';
         expectedEditionWork = EditionWorks.OP12;
-        expectedSourceListData = {
-            sources: [
-                {
-                    siglum: 'A',
-                    type: 'Skizzen',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    hasDescription: true,
-                    linkTo: 'sourceA',
-                },
-                {
-                    siglum: 'B',
-                    type: 'Autograph von Nr. I.',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    hasDescription: false,
-                    linkTo: 'OP12_SOURCE_NOT_A',
-                },
-                {
-                    siglum: 'C',
-                    type: 'Autograph von Nr. I–IV.',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    hasDescription: false,
-                    linkTo: 'OP12_SOURCE_NOT_A',
-                },
-            ],
-        };
-        expectedSourceDescriptionListData = {
-            sources: [
-                {
-                    id: 'sourceA',
-                    siglum: 'A',
-                    type: 'Skizzen',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    description: [],
-                },
-            ],
-        };
-        expectedSourceEvaluationListData = {
-            sources: [
-                {
-                    id: 'op12',
-                    content: ['Die Skizzen in A sind zum Testen da.'],
-                },
-            ],
-        };
-        expectedTextcriticsData = {
-            textcritics: [
-                {
-                    id: 'test-1',
-                    label: 'test1',
-                    description: ['test description'],
-                    comments: [],
-                },
-                {
-                    id: 'test-2',
-                    label: 'test2',
-                    description: [],
-                    comments: [
-                        {
-                            measure: '10',
-                            system: '12',
-                            position: '1. Note',
-                            comment: 'Viertelnote überschreibt Halbe Note.',
-                        },
-                        {
-                            measure: '10',
-                            system: '12',
-                            position: '2. Note',
-                            comment:
-                                "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('Aa:SkI/3')\">Aa:SkI/3</a>",
-                        },
-                    ],
-                },
-            ],
-        };
+
+        expectedModalSnippet = mockEditionData.mockModalSnippet;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+
+        expectedSourceListData = mockEditionData.mockSourceListData;
+        expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;
+        expectedSourceEvaluationListData = mockEditionData.mockSourceEvaluationListData;
+        expectedTextcriticsData = mockEditionData.mockTextcriticsData;
 
         expectedEditionReportData = [
             expectedSourceListData,
@@ -242,23 +180,6 @@ describe('EditionReportComponent', () => {
             expectedSourceEvaluationListData,
             expectedTextcriticsData,
         ];
-        expectedFragment = 'sourceA';
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
-        expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
-        expectedPanelId = 'awg-sources-panel';
 
         // Spies on service functions
         getEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(

@@ -6,6 +6,7 @@ import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -48,32 +49,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
         // Test data
         expectedFragment = 'sourceA';
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
-        expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
-        expectedSourceEvaluationListData = {
-            sources: [
-                {
-                    id: 'op25',
-                    content: [
-                        '<small class="text-muted">[Die Quellenbewertung zum gesamten Werkkomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                        'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'Aa:SkI/2\')"><strong>Aa:SkI/2–5</strong></a> vorformulierten Fassung dar.',
-                    ],
-                },
-            ],
-        };
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedModalSnippet = mockEditionData.mockModalSnippet;
+        expectedSourceEvaluationListData = mockEditionData.mockSourceEvaluationListData;
 
         mockDocument = TestBed.inject(DOCUMENT);
 

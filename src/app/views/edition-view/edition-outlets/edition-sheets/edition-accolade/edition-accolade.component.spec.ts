@@ -21,6 +21,7 @@ import {
 } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
+import { mockEditionData } from '@testing/mock-data';
 
 // Mock components
 @Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
@@ -106,43 +107,16 @@ describe('EditionAccoladeComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
+        expectedModalSnippet = mockEditionData.mockModalSnippet;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
         expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet] };
+        expectedSelectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
 
         const type = EditionSvgOverlayTypes.measure;
         const id = '10';
         expectedOverlay = new EditionSvgOverlay(type, id);
-
-        expectedSelectedTextcriticalComments = [
-            {
-                measure: '1',
-                system: '11',
-                position: '1. Note',
-                comment: '1. Kommentar.',
-            },
-            {
-                measure: '2',
-                system: '12',
-                position: '2. Note',
-                comment: '2. Kommentar.',
-            },
-        ];
-
         expectedShowTka = true;
-        expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

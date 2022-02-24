@@ -5,8 +5,10 @@ import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
+
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
 
 describe('EditionSvgSheetNavComponent (DONE)', () => {
@@ -35,20 +37,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
         expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet] };
 
         // Spies on component functions

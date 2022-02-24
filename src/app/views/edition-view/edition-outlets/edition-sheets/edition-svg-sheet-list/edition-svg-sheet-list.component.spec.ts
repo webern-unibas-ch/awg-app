@@ -10,8 +10,9 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 
 import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 import { EditionSvgSheetListComponent } from './edition-svg-sheet-list.component';
+import { mockEditionData } from '@testing/mock-data';
 
-describe('EditionSvgSheetComponent (DONE)', () => {
+describe('EditionSvgSheetListComponent (DONE)', () => {
     let component: EditionSvgSheetListComponent;
     let fixture: ComponentFixture<EditionSvgSheetListComponent>;
     let compDe: DebugElement;
@@ -40,20 +41,9 @@ describe('EditionSvgSheetComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+
         const type = EditionSvgOverlayTypes.measure;
         const id = '10';
         expectedOverlay = new EditionSvgOverlay(type, id);

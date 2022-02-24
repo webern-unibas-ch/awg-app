@@ -5,6 +5,7 @@ import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -43,42 +44,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-            convolute: 'A',
-        };
-        expectedNextSvgSheet = {
-            id: 'Aa:SkI/3',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
-            alt: 'Aa:SkI/3',
-            convolute: 'A',
-        };
-        expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
-        expectedSourceDescriptionListData = {
-            sources: [
-                {
-                    id: 'sourceA',
-                    siglum: 'A',
-                    type: 'Skizzen',
-                    location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                    description: [],
-                },
-                {
-                    id: 'sourceAa',
-                    siglum: 'Aa',
-                    type: '',
-                    location: 'Wien, Testcentre.',
-                    description: [
-                        '<img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
-                        '<span class="caps">Inhalt</span>: (<a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>SkI/1a</strong></a>). (<a (click)="ref.selectSvgSheet(\'Aa:SkI/2\')"><strong>SkI/2</strong></a>).',
-                    ],
-                },
-            ],
-        };
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedModalSnippet = mockEditionData.mockModalSnippet;
+        expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;
 
         mockDocument = TestBed.inject(DOCUMENT);
 
