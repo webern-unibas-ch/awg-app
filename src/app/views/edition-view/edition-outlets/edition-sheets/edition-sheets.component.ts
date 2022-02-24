@@ -412,13 +412,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _getConvoluteParams(queryParams?: ParamMap): string {
         // If there is no id in query params
         // Take first entry of folio convolute data as default
-        if (!queryParams.get('convolute')) {
-            console.log('got no convolute');
-            this.onConvoluteSelect(this.folioConvoluteData.convolutes[0].convoluteId);
-            return;
-        }
-
-        return queryParams.get('convolute');
+        return queryParams.get('convolute')
+            ? queryParams.get('convolute')
+            : this.folioConvoluteData.convolutes[0].convoluteId;
     }
 
     /**
