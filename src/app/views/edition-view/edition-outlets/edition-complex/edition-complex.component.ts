@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
@@ -17,14 +17,14 @@ import { EditionService } from '@awg-views/edition-view/services';
     templateUrl: './edition-complex.component.html',
     styleUrls: ['./edition-complex.component.css'],
 })
-export class EditionComplexComponent implements OnInit {
+export class EditionComplexComponent implements OnDestroy, OnInit {
     /**
-     * Public variable: editionWork$.
+     * Public variable: selectedEditionComplex$.
      *
      * Observable that keeps the information
      * about the current composition.
      */
-    editionWork$: Observable<EditionWork>;
+    selectedEditionComplex$: Observable<EditionWork>;
 
     /**
      * Constructor of the EditionComplexComponent.
@@ -57,7 +57,20 @@ export class EditionComplexComponent implements OnInit {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('compositionId') ? params.get('compositionId') : '';
             this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
-            this.editionWork$ = this.editionService.getEditionWork().pipe(delay(0));
+            this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
         });
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     *
+     * Destroys subscriptions.
+     */
+    ngOnDestroy() {
+        // Remove selected edition complex
+        this.editionService.clearEditionWork();
     }
 }

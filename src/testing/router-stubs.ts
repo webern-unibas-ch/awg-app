@@ -288,5 +288,6 @@ export class ActivatedRouteStub {
 @NgModule({
     imports: [AppModule],
     declarations: [RouterLinkStubDirective, RouterOutletStubComponent],
+    exports: [RouterOutletStubComponent],
 })
 export class FakeRouterModule {}

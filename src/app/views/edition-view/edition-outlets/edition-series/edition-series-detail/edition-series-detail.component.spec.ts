@@ -28,6 +28,7 @@ describe('EditionSeriesDetailComponent', () => {
 
         // Mocked activated route
         const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
+
         await TestBed.configureTestingModule({
             imports: [RouterTestingModule],
             declarations: [EditionSeriesDetailComponent],
