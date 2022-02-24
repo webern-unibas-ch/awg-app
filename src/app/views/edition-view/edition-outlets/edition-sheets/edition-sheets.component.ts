@@ -171,18 +171,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                     // Return EditionSheetsData from editionDataService
                     return this.editionDataService.getEditionSheetsData(this.editionWork);
                 }),
-                map((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+                switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
                     this.folioConvoluteData = data[0];
                     this.svgSheetsData = data[1];
                     this.textcriticsData = data[2];
 
-                    return this.route;
+                    return this.route.queryParamMap;
                 }),
-                map(
-                    (route: ActivatedRoute) =>
-                        // Snapshot of current route query params
-                        route.snapshot.queryParamMap
-                ),
                 takeUntil(this._destroyed$)
             )
             .subscribe(

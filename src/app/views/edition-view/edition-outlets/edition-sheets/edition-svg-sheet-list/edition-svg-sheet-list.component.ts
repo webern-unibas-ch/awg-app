@@ -48,7 +48,7 @@ export enum SvgSheetLabelsOp25 {
     SHEET_A_M317_SK_4_1 = 'M_317_Sk4.1',
     SHEET_A_M317_SK_4_2 = 'M_317_Sk4.2',
     SHEET_A_M317_SK_4_3 = 'M_317_Sk4.3',
-    SHEET_C_RT = 'SkRt',
+    SHEET_C_RT = 'SkRT',
 }
 
 /**

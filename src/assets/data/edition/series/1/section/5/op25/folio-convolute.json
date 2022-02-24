@@ -236,10 +236,8 @@
                     "content": [
                         {
                             "id": "SkRT",
-                            "sigle": "Sk##",
+                            "sigle": "SkRT",
                             "sigleAddendum": "Reihenformen 1–8",
-                            "selectable": false,
-                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 1,
                             "sections": [
                                 {
