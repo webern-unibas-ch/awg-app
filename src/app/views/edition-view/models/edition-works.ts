@@ -53,7 +53,7 @@ export class EditionWorks {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '29. Januar 2020',
+            lastModified: '23. Februar 2022',
         },
         {
             route: '/op25',
