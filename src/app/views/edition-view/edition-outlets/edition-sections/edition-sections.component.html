@@ -1,5 +1,5 @@
 <div *ngIf="selectedSeries$ | async as selectedSeries" class="card-deck">
-    <div class="card" style="width: 18rem" *ngFor="let section of selectedSeries.sections">
+    <div class="card mb-4" style="min-width: 16rem" *ngFor="let section of selectedSeries.sections">
         <div class="card-body">
             <h5 class="card-title">{{ section.full }}</h5>
         </div>
