@@ -57,7 +57,7 @@ describe('EditionViewComponent (DONE)', () => {
     let expectedIsRowTableView: boolean;
 
     const expectedSelectedEditionComplexId = 'OP12';
-    const expectedTitle = 'Editionsübersicht';
+    const expectedTitle = 'Inhalt';
     const expectedId = 'awg-edition-view';
     const expectedEditionRoute = EditionConstants.EDITION;
     const expectedSeriesRoute = EditionConstants.SERIES;
@@ -379,12 +379,10 @@ describe('EditionViewComponent (DONE)', () => {
                     const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                     expect(headingCmp.title).toBeTruthy();
-                    expect(headingCmp.title)
-                        .withContext(`should have title: ${'Übersicht über Weberns Reihentabellen'}`)
-                        .toBe('Übersicht über Weberns Reihentabellen');
+                    expect(headingCmp.title).withContext(`should be 'Übersicht'`).toBe('Übersicht');
 
                     expect(headingCmp.id).toBeTruthy();
-                    expect(headingCmp.id).withContext(`should have id: ${expectedId}`).toBe(expectedId);
+                    expect(headingCmp.id).withContext(`should be ${expectedId}`).toBe(expectedId);
                 });
 
                 it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {

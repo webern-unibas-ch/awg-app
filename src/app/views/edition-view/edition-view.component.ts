@@ -30,7 +30,7 @@ export class EditionViewComponent implements OnInit {
      *
      * It keeps the title of the edition view section.
      */
-    editionViewTitle = 'Editionsübersicht';
+    editionViewTitle = 'Inhalt';
 
     /**
      * Public variable: editionViewId.
