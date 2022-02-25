@@ -92,7 +92,7 @@
         "@ng-bootstrap/ng-bootstrap": "^11.0.0",
         "bootstrap": "^4.6.1",
         "codemirror": "^5.65.2",
-        "core-js": "^3.19.1",
+        "core-js": "^3.21.1",
         "d3-drag": "^3.0.0",
         "d3-force": "^3.0.0",
         "d3-selection": "^3.0.0",
