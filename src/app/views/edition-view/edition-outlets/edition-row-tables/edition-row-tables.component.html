@@ -1,0 +1,18 @@
+<div *ngIf="rowTablesData" class="card-deck">
+    <div class="card mb-4" style="min-width: 18rem; max-width: 20rem" *ngFor="let rowTable of rowTablesData">
+        <div class="card-body">
+            <h5 class="card-title" [ngClass]="{ 'text-muted': rowTable.disabled }">
+                Reihentabelle {{ rowTable.short }}
+            </h5>
+        </div>
+        <div class="card-footer text-right">
+            <a
+                [routerLink]="['../composition', rowTable.route.replace('/', ''), 'sheets']"
+                [queryParams]="{ convolute: rowTable.convolute, sketch: rowTable.sketch }"
+                class="btn btn-outline-info"
+                [ngClass]="{ disabled: rowTable.disabled }"
+                >Mehr...
+            </a>
+        </div>
+    </div>
+</div>

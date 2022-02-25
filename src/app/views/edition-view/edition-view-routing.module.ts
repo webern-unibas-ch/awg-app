@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionViewComponent } from './edition-view.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-detail-nav.component';
+import { EditionRowTablesComponent } from '@awg-views/edition-view/edition-outlets/edition-row-tables';
 import { EditionSectionsComponent } from './edition-outlets/edition-sections';
 import { EditionSectionDetailComponent } from './edition-outlets/edition-sections/edition-section-detail';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
@@ -94,6 +95,11 @@ const editionViewRoutes: Routes = [
                     },
                 ],
             },
+            {
+                // Overview of row tables.
+                path: 'row-tables',
+                component: EditionRowTablesComponent,
+            },
         ],
     },
 ];
@@ -108,6 +114,7 @@ export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
+    EditionRowTablesComponent,
     EditionSectionsComponent,
     EditionSectionDetailComponent,
     EditionSeriesComponent,
