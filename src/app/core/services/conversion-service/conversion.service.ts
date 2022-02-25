@@ -934,7 +934,7 @@ export class ConversionService extends ApiService {
         const distinctObj = {};
         let distinctArr = [];
 
-        subjects.map((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
+        subjects.forEach((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
         distinctArr = Object.values(distinctObj);
 
         this.filteredOut = subjects.length - distinctArr.length;
