@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { EditionConstants } from './models';
+
 import { EditionViewComponent } from './edition-view.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-detail-nav.component';
@@ -10,8 +12,6 @@ import { EditionSectionDetailComponent } from './edition-outlets/edition-section
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series/edition-series-detail';
 import { EditionTypeComponent } from './edition-outlets/edition-type';
-
-import { EditionConstants } from './models';
 
 /* Routes of the EditionViewModule */
 const editionViewRoutes: Routes = [
@@ -88,7 +88,7 @@ const editionViewRoutes: Routes = [
                             },
                             {
                                 path: '',
-                                redirectTo: '/' + EditionConstants.EDITION_INTRO.route,
+                                redirectTo: EditionConstants.EDITION_INTRO.route,
                                 pathMatch: 'full',
                             },
                         ],

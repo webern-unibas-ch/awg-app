@@ -182,11 +182,20 @@ export class EditionConstants {
     };
 
     /**
+     * The edition route for a work edition.
+     */
+    static readonly WORK_EDITION: EditionRoute = {
+        route: '/work-edition',
+        short: 'WE',
+        full: 'Werkedition',
+    };
+
+    /**
      * The edition route for a text edition.
      */
     static readonly TEXT_EDITION: EditionRoute = {
-        route: '/texts',
-        short: 'Textedition',
+        route: '/text-edition',
+        short: 'TE',
         full: 'Textedition',
     };
 
@@ -194,8 +203,8 @@ export class EditionConstants {
      * The edition route for a sketch edition.
      */
     static readonly SKETCH_EDITION: EditionRoute = {
-        route: '/sketches',
-        short: 'Skizzenedition',
+        route: '/sketch-edition',
+        short: 'SE',
         full: 'Skizzenedition',
     };
 
