@@ -79,6 +79,16 @@ export class EditionService {
     private readonly _editionWorkStream$ = this._editionWorkSubject.asObservable();
 
     /**
+     * Private replay subject to flag row table view.
+     */
+    private _isRowTableViewSubject = new ReplaySubject<boolean>(this._bufferSize);
+
+    /**
+     * Private readonly isRowTableView stream as observable (`ReplaySubject`).
+     */
+    private readonly _isRowTableViewStream$ = this._isRowTableViewSubject.asObservable();
+
+    /**
      * Private replay subject to handle the selected edition series.
      */
     private _selectedEditionSeriesSubject = new ReplaySubject<EditionSeriesRoutes>(this._bufferSize);
@@ -294,5 +304,40 @@ export class EditionService {
 
     getEditionSeriesRoute(): string {
         return EditionConstants.EDITION.route + EditionConstants.SERIES.route;
+    }
+
+    /**
+     * Public method: getIsRowTableView.
+     *
+     * It provides the latest isRowTableView flag from the isRowTableView stream.
+     *
+     * @returns {Observable<boolean>} The isRowTableView stream as observable.
+     */
+    getIsRowTableView(): Observable<boolean> {
+        return this._isRowTableViewStream$;
+    }
+
+    /**
+     * Public method: updateIsRowTableView.
+     *
+     * It updates the isRowTableView stream with the given boolean value.
+     *
+     * @param {boolean} isView The given isRowTableView flag.
+     *
+     * @returns {void} Sets the next isRowTableView flag to the stream.
+     */
+    updateIsRowTableView(isView: boolean): void {
+        this._isRowTableViewSubject.next(isView);
+    }
+
+    /**
+     * Public method: clearIsRowTableView.
+     *
+     * It clears the isRowTableView stream.
+     *
+     * @returns {void} Clears the isRowTableView stream.
+     */
+    clearIsRowTableView(): void {
+        this._isRowTableViewSubject.next(null);
     }
 }

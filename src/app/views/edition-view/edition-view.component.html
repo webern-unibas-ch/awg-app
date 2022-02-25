@@ -1,7 +1,21 @@
 <!-- content: edition-view -->
 
 <div>
-    <div class="awg-edition-series para" *ngIf="(selectedEditionComplex$ | async) === null">
+    <div class="awg-edition-row-tables para" *ngIf="isRowTableView$ | async as isRowTableView">
+        <h6 class="awg-edition-info-breadcrumb">
+            <a [routerLink]="['.' + seriesRoute.route]">
+                {{ editionRoute?.short }}
+            </a>
+            /
+            <span>Reihentabellen</span>
+        </h6>
+        <!-- heading -->
+        <awg-heading [title]="'Übersicht über Weberns Reihentabellen'" [id]="editionViewId"></awg-heading>
+    </div>
+
+    <div
+        class="awg-edition-series para"
+        *ngIf="(selectedEditionComplex$ | async) === null && (isRowTableView$ | async) === null">
         <h6 class="awg-edition-info-breadcrumb">
             <a
                 *ngIf="selectedEditionSeries$ | async as selectedSeries; else editionWithoutLink"

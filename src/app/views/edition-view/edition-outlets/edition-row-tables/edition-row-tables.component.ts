@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionRowTables component.
@@ -11,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './edition-row-tables.component.html',
     styleUrls: ['./edition-row-tables.component.css'],
 })
-export class EditionRowTablesComponent implements OnInit {
+export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**
      * Public variable: rowTablesData.
      *
@@ -35,8 +36,12 @@ export class EditionRowTablesComponent implements OnInit {
 
     /**
      * Constructor of the EditionRowTablesComponent.
+     *
+     * It declares a private instance of the EditionService.
+     *
+     * @param {EditionService} editionService Instance of the EditionService.
      */
-    constructor() {}
+    constructor(private editionService: EditionService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -44,5 +49,19 @@ export class EditionRowTablesComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.editionService.updateIsRowTableView(true);
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     *
+     * Destroys subscriptions.
+     */
+    ngOnDestroy() {
+        this.editionService.clearIsRowTableView();
+    }
 }

@@ -47,6 +47,14 @@ export class EditionViewComponent implements OnInit {
     editionRoute: EditionRoute = EditionConstants.EDITION;
 
     /**
+     * Public variable: isRowTableView$.
+     *
+     * Observable that keeps the information
+     * about the flag for the row table view.
+     */
+    isRowTableView$: Observable<boolean>;
+
+    /**
      * Public variable: seriesRoute.
      *
      * It keeps the base series route.
@@ -109,6 +117,7 @@ export class EditionViewComponent implements OnInit {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
         this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
+        this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 
     /**

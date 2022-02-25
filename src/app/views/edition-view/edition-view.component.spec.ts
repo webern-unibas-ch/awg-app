@@ -49,10 +49,12 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetEditionComplexSpy: Spy;
     let editionServiceGetSelectedEditionSeriesSpy: Spy;
     let editionServiceGetSelectedEditionSectionSpy: Spy;
+    let editionServiceGetIsRowTableViewSpy: Spy;
 
     let expectedSelectedEditionComplex: EditionWork;
     let expectedSelectedEditionSeries: EditionSeriesRoutes;
     let expectedSelectedEditionSection: EditionRoute;
+    let expectedIsRowTableView: boolean;
 
     const expectedSelectedEditionComplexId = 'OP12';
     const expectedTitle = 'Editionsübersicht';
@@ -80,6 +82,7 @@ describe('EditionViewComponent (DONE)', () => {
                     observableOf(expectedSelectedEditionSeries),
                 getSelectedEditionSection: (): Observable<EditionRoute> =>
                     observableOf(expectedSelectedEditionSeries.sections[0]),
+                getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
             };
 
             TestBed.configureTestingModule({
@@ -121,6 +124,7 @@ describe('EditionViewComponent (DONE)', () => {
             ],
         };
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[0];
+        expectedIsRowTableView = true;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -138,6 +142,7 @@ describe('EditionViewComponent (DONE)', () => {
             mockEditionService,
             'getSelectedEditionSection'
         ).and.callThrough();
+        editionServiceGetIsRowTableViewSpy = spyOn(mockEditionService, 'getIsRowTableView').and.callThrough();
     });
 
     afterAll(() => {
@@ -165,6 +170,10 @@ describe('EditionViewComponent (DONE)', () => {
             expect(component.seriesRoute).toBe(expectedSeriesRoute);
         });
 
+        it('... should not have isRowTableView$', () => {
+            expect(component.isRowTableView$).toBeUndefined();
+        });
+
         it('... should not have selectedEditionComplex$', () => {
             expect(component.selectedEditionComplex$).toBeUndefined();
         });
@@ -186,6 +195,10 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetEditionComplexSpy, 0);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 0);
                 expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 0);
+            });
+
+            it('... should not have set isRowTableView$', () => {
+                expect(component.isRowTableView$).toBeUndefined();
             });
 
             it('... should not have set selectedEditionComplex$', () => {
@@ -212,6 +225,10 @@ describe('EditionViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
             });
 
+            it('... should contain no div.awg-edition-row-tables yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 0, 0);
+            });
+
             it('... should contain no div.awg-edition-complex yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
             });
@@ -235,6 +252,19 @@ describe('EditionViewComponent (DONE)', () => {
         describe('#getSelectionsFromRoute', () => {
             it('... should have been called', () => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
+            });
+
+            it('... should get isRowTableView$ (via EditionService)', done => {
+                expectSpyCall(getSelectionsFromRouteSpy, 1);
+                expectSpyCall(editionServiceGetIsRowTableViewSpy, 1);
+
+                expect(component.isRowTableView$).toBeDefined();
+                component.isRowTableView$.subscribe((isView: boolean) => {
+                    expect(isView)
+                        .withContext(`should equal ${expectedIsRowTableView}`)
+                        .toEqual(expectedIsRowTableView);
+                    done();
+                });
             });
 
             it('... should get selectedEditionSeries$ (via EditionService)', done => {
@@ -323,17 +353,22 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            describe('... if selectedEditionComplex$ is not given it', () => {
-                it('... should not have a div.awg-edition-complex', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
+            describe('... if isRowTableView$ is given it', () => {
+                beforeEach(
+                    waitForAsync(() => {
+                        component.isRowTableView$ = observableOf(true);
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+                    })
+                );
+
+                it('... should have one div.awg-edition-row-tables', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
                 });
 
-                it('... should have one div.awg-edition-series', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
-                });
-
-                it('... should have a h6 and a heading component in div.awg-edition-series', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                it('... should have a h6 and a heading component in div.awg-edition-row-tables', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
                     getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
@@ -344,68 +379,27 @@ describe('EditionViewComponent (DONE)', () => {
                     const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                     expect(headingCmp.title).toBeTruthy();
-                    expect(headingCmp.title).withContext(`should have title: ${expectedTitle}`).toBe(expectedTitle);
+                    expect(headingCmp.title)
+                        .withContext(`should have title: ${'Übersicht über Weberns Reihentabellen'}`)
+                        .toBe('Übersicht über Weberns Reihentabellen');
 
                     expect(headingCmp.id).toBeTruthy();
                     expect(headingCmp.id).withContext(`should have id: ${expectedId}`).toBe(expectedId);
                 });
 
-                describe('... breadcrumb header (h6)', () => {
-                    it('... should display edition base root (AWG) if no series and section is given', () => {
-                        const hDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
-                            1,
-                            1
-                        );
-                        const hEl = hDes[0].nativeElement;
+                it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {
+                    const hDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-edition-row-tables > h6.awg-edition-info-breadcrumb',
+                        1,
+                        1
+                    );
+                    const hEl = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${expectedEditionRoute.short} /`;
+                    const expectedBreadCrumb = `${expectedEditionRoute.short} / Reihentabellen`;
 
-                        expect(hEl.innerText).toBeTruthy();
-                        expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
-                    });
-
-                    it('... should display edition series if series, but no section is given', () => {
-                        component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
-
-                        // Trigger data binding
-                        fixture.detectChanges();
-
-                        const hDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
-                            1,
-                            1
-                        );
-                        const hEl = hDes[0].nativeElement;
-
-                        const expectedBreadCrumb = `${expectedEditionRoute.short} / ${expectedSelectedEditionSeries.series.full} /`;
-
-                        expect(hEl.innerText).toBeTruthy();
-                        expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
-                    });
-
-                    it('... should display edition series and section if both are given', () => {
-                        component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
-                        component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
-
-                        // Trigger data binding
-                        fixture.detectChanges();
-
-                        const hDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
-                            1,
-                            1
-                        );
-                        const hEl = hDes[0].nativeElement;
-
-                        const expectedBreadCrumb = `${expectedEditionRoute.short} / ${expectedSelectedEditionSeries.series.full} / ${expectedSelectedEditionSection.full}`;
-
-                        expect(hEl.innerText).toBeTruthy();
-                        expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
-                    });
+                    expect(hEl.innerText).toBeTruthy();
+                    expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
                 });
             });
 
@@ -515,6 +509,92 @@ describe('EditionViewComponent (DONE)', () => {
                     expect(versionEl.innerText)
                         .withContext(`should be ${expectedSelectedEditionComplex.responsibilityStatement.lastModified}`)
                         .toBe(expectedSelectedEditionComplex.responsibilityStatement.lastModified);
+                });
+            });
+
+            describe('... if selectedEditionComplex$ and isRowTableView$ are not given it', () => {
+                it('... should not have a div.awg-edition-complex', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
+                });
+
+                it('... should have one div.awg-edition-series', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                });
+
+                it('... should have a h6 and a heading component in div.awg-edition-series', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+
+                    getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
+                    getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                });
+
+                it('... should pass down `editionViewTitle` and `editionViewId` to heading component', () => {
+                    const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                    const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                    expect(headingCmp.title).toBeTruthy();
+                    expect(headingCmp.title).withContext(`should have title: ${expectedTitle}`).toBe(expectedTitle);
+
+                    expect(headingCmp.id).toBeTruthy();
+                    expect(headingCmp.id).withContext(`should have id: ${expectedId}`).toBe(expectedId);
+                });
+
+                describe('... breadcrumb header (h6)', () => {
+                    it('... should display edition base root (AWG) if no series and section is given', () => {
+                        const hDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                            1,
+                            1
+                        );
+                        const hEl = hDes[0].nativeElement;
+
+                        const expectedBreadCrumb = `${expectedEditionRoute.short} /`;
+
+                        expect(hEl.innerText).toBeTruthy();
+                        expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
+                    });
+
+                    it('... should display edition series if series, but no section is given', () => {
+                        component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        const hDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                            1,
+                            1
+                        );
+                        const hEl = hDes[0].nativeElement;
+
+                        const expectedBreadCrumb = `${expectedEditionRoute.short} / ${expectedSelectedEditionSeries.series.full} /`;
+
+                        expect(hEl.innerText).toBeTruthy();
+                        expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
+                    });
+
+                    it('... should display edition series and section if both are given', () => {
+                        component.selectedEditionSeries$ = observableOf(expectedSelectedEditionSeries);
+                        component.selectedEditionSection$ = observableOf(expectedSelectedEditionSection);
+
+                        // Trigger data binding
+                        fixture.detectChanges();
+
+                        const hDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-series > h6.awg-edition-info-breadcrumb',
+                            1,
+                            1
+                        );
+                        const hEl = hDes[0].nativeElement;
+
+                        const expectedBreadCrumb = `${expectedEditionRoute.short} / ${expectedSelectedEditionSeries.series.full} / ${expectedSelectedEditionSection.full}`;
+
+                        expect(hEl.innerText).toBeTruthy();
+                        expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
+                    });
                 });
             });
         });
