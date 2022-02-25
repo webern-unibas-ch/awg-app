@@ -61,14 +61,19 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     searchParams: SearchParams;
 
+    /**
+     * Public variable: searchResponseWithQuery.
+     *
+     * It keeps the query and response of the search request.
+     */
     searchResponseWithQuery: SearchResponseWithQuery;
 
     /**
-     * Public variable: searchTabString.
+     * Public variable: searchTabs.
      *
-     * It keeps the default text strings for the tab panels.
+     * It keeps the default objects for the search tab panels.
      */
-    searchTabStrings = {
+    searchTabs = {
         fulltext: { id: 'fulltext', title: 'Volltext-Suche' },
         extended: { id: 'extended', title: 'Erweiterte Suche' },
     };
@@ -357,9 +362,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     resetSearchParams(tabId?: string): void {
         let query: SearchQuery;
-        if (!tabId || tabId === this.searchTabStrings.fulltext.id) {
+        if (!tabId || tabId === this.searchTabs.fulltext.id) {
             query = '';
-        } else if (tabId === this.searchTabStrings.extended.id) {
+        } else if (tabId === this.searchTabs.extended.id) {
             query = new ExtendedSearchParams();
             query.filterByRestype = '';
             query.propertyId = [];
@@ -374,7 +379,14 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         };
     }
 
-    resetSearchResponse() {
+    /**
+     * Public method: resetSearchResponse.
+     *
+     * It resets the search response to an empty searchResponseWithQuery object.
+     *
+     * @returns {void} Resets the search response.
+     */
+    resetSearchResponse(): void {
         this.searchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
 
         this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
@@ -401,12 +413,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         let query: SearchQuery;
         if (
             !this.selectedSearchTabId ||
-            this.selectedSearchTabId === this.searchTabStrings.fulltext.id ||
+            this.selectedSearchTabId === this.searchTabs.fulltext.id ||
             typeof this.searchParams.query === 'string'
         ) {
             query = params.get('query') || this.searchParams.query;
         } else if (
-            this.selectedSearchTabId === this.searchTabStrings.extended.id ||
+            this.selectedSearchTabId === this.searchTabs.extended.id ||
             typeof this.searchParams.query === 'object'
         ) {
             query = new ExtendedSearchParams();
@@ -429,22 +441,31 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         }
     }
 
+    /**
+     * Public method: getSearchQueryType.
+     *
+     * It checks the type of a SearchQuery value (UNION type)
+     * and returns the value typed as string or ExtendedSearchParams.
+     *
+     * @param {SearchQuery} value The given value.
+     *
+     * @returns {any} The value as string or ExtendedSearchParams type.
+     */
     getSearchQueryType(value: SearchQuery): any {
-        if (this._isString(value)) {
+        if (typeof value === 'string') {
             return value as string;
-        } else if (this._isObject(value)) {
+        } else if (typeof value === 'object') {
             return value as ExtendedSearchParams;
         }
     }
 
-    _isString(value: any): boolean {
-        return typeof value === 'string';
-    }
-
-    _isObject(value: any): boolean {
-        return typeof value === 'object';
-    }
-
+    /**
+     * Public method: isSearchResultListShown.
+     *
+     * It checks if the search result list shall be shown (not used yet).
+     *
+     * @returns {boolean} The boolean result of the check.
+     */
     isSearchResultListShown(): boolean {
         this.dataStreamerService.getSearchResponseWithQuery().subscribe(result => console.log(result));
 
@@ -477,19 +498,28 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     private _routeToSelf(sp: SearchParams, route?: string): void {
         const commands = route ? [route] : [];
-        const params = this._createQueryParams(sp);
+        const params = this._createRouterQueryParams(sp);
         this.router.navigate(commands, {
             relativeTo: this.route,
             queryParams: params,
         });
     }
 
-    private _createQueryParams(sp: SearchParams) {
+    /**
+     * Private method: _createRouterQueryParams.
+     *
+     * It creates Router params from a given SearchParams object.
+     *
+     * @params {SearchParams} sp The given search params.
+     *
+     * @returns {Params} The router Params object.
+     */
+    private _createRouterQueryParams(sp: SearchParams): Params {
         const qp: Params = {};
         const q = this.getSearchQueryType(sp.query);
-        if (this.selectedSearchTabId === this.searchTabStrings.fulltext.id) {
+        if (typeof q === 'string') {
             qp['query'] = sp.query;
-        } else if (this.selectedSearchTabId === this.searchTabStrings.extended.id) {
+        } else if (typeof q === 'object') {
             qp['filterByRestype'] = q.filterByRestype || '';
 
             if (q.propertyId) {
@@ -505,11 +535,20 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         return qp;
     }
 
-    private _isValidTabIdInRoute(r: ActivatedRoute) {
+    /**
+     * Private method: _isValidTabIdInRoute.
+     *
+     * It checks if a given route path provides a valid tab id that is included in the searchTabs.
+     *
+     * @param {ActivatedRoute} r The given activated route
+     *
+     * @returns {boolean} The boolean result of the check.
+     */
+    private _isValidTabIdInRoute(r: ActivatedRoute): boolean {
         return (
             r.snapshot.url &&
             r.snapshot.url.length > 0 &&
-            Object.values(this.searchTabStrings).filter(tab => tab.id === r.snapshot.url[0].path).length > 0
+            Object.values(this.searchTabs).filter(tab => tab.id === r.snapshot.url[0].path).length > 0
         );
     }
 }

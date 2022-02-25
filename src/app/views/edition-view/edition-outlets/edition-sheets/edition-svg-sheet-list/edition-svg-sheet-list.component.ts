@@ -52,9 +52,9 @@ export enum SvgSheetLabelsOp25 {
 }
 
 /**
- * The EditionSvgSheet component.
+ * The EditionSvgSheetList component.
  *
- * It contains the svg sheet section
+ * It contains the svg sheet lists
  * of the edition view of the app
  * and displays a selected svg sheet.
  */

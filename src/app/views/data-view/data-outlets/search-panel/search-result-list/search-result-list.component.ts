@@ -11,7 +11,6 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
-import { SearchResult } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 /**
  * The SearchResultList component.
@@ -133,8 +132,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It instantiates fontawesome's faTable icon.
      */
     faTable = faTable;
-
-    test: SearchResult;
 
     /**
      * Private variable: _selectedResourceId.
@@ -396,7 +393,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.searchResponseWithQuery = { ...searchResponseWithQuery };
 
         /* TODO Prepare data for generic table
-           this.test = {
+           const test: SearchResult = {
             head: { vars: ['typ', 'ressource'] },
             body: {
                 bindings: [

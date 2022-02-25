@@ -94,6 +94,12 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
         return this.searchForm.get('searchvalControl');
     }
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
         this.createFulltextSearchForm();
         this.listenToUserInputChange();

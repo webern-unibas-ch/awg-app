@@ -209,6 +209,17 @@ export class EditionService {
     }
 
     /**
+     * Public method: getEditionSeriesRoute.
+     *
+     * It provides the the base route for the edition series section of the app.
+     *
+     * @returns {string} The edition series route.
+     */
+    getEditionSeriesRoute(): string {
+        return EditionConstants.EDITION.route + EditionConstants.SERIES.route;
+    }
+
+    /**
      * Public method: getEditionSeriesById.
      *
      * It finds a series of the edition by a given id.
@@ -300,10 +311,6 @@ export class EditionService {
      */
     clearSelectedEditionSection(): void {
         this._selectedEditionSectionSubject.next(null);
-    }
-
-    getEditionSeriesRoute(): string {
-        return EditionConstants.EDITION.route + EditionConstants.SERIES.route;
     }
 
     /**

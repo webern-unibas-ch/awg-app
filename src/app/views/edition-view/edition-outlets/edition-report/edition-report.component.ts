@@ -48,6 +48,11 @@ export class EditionReportComponent implements OnInit {
      */
     errorObject = null;
 
+    /**
+     * Public variable: titles.
+     *
+     * It keeps an object for the titles of the report sections.
+     */
     titles = {
         sourceList: '1. Quellenübersicht',
         sourceDescription: '2. Quellenbeschreibung',

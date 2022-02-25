@@ -9,6 +9,12 @@ import { PaginatorOptions, TableData, TableOptions } from './table-data.model';
 
 import { SearchResultBindings } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
+/**
+ * The Table component.
+ *
+ * It contains a generic configurable table
+ * that is provided via the {@link SharedModule}.
+ */
 @Component({
     selector: 'awg-table',
     templateUrl: './table.component.html',

@@ -6,8 +6,8 @@
         class="nav-tabs nav-fill"
         [activeId]="selectedSearchTabId"
         (navChange)="onSearchTabChange($event)">
-        <ng-container [ngbNavItem]="searchTabStrings?.fulltext.id">
-            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabStrings?.fulltext.title }}</a>
+        <ng-container [ngbNavItem]="searchTabs?.fulltext.id">
+            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>
             <ng-template ngbNavContent>
                 <!-- full text search -->
                 <awg-fulltext-search-form
@@ -16,8 +16,8 @@
                 </awg-fulltext-search-form>
             </ng-template>
         </ng-container>
-        <ng-container [ngbNavItem]="searchTabStrings.extended.id">
-            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabStrings?.extended.title }}</a>
+        <ng-container [ngbNavItem]="searchTabs.extended.id">
+            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabs?.extended.title }}</a>
             <ng-template ngbNavContent>
                 <!-- extended search -->
                 <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>

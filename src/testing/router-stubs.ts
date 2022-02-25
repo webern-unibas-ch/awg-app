@@ -6,7 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 
 import { AppModule } from '@awg-app/app.module';
 
+/**
+ * Interface for a UrlSegmentStub.
+ */
 export interface UrlSegmentStub {
+    /**
+     * Path of a UrlSegment.
+     */
     path: string;
 }
 

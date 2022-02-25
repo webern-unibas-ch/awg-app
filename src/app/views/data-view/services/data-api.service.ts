@@ -189,15 +189,11 @@ export class DataApiService extends ApiService {
      */
     getSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
         if (!searchParams || !searchParams.query) {
-            // .console.log('APISERVICE: no searchParams --> RETURN', searchParams);
-
             return observableOf(new SearchResponseJson());
         }
         if (typeof searchParams.query === 'object' && !searchParams.query['filterByRestype']) {
-            // .console.log('APISERVICE: no searchParams object --> RETURN', searchParams);
             return observableOf(new SearchResponseJson());
         }
-        // .console.log('APISERVICE: searchParams', searchParams);
 
         // Default values
         const sp: SearchParams = {
@@ -226,7 +222,16 @@ export class DataApiService extends ApiService {
         );
     }
 
-    private _createSearchQueryParams(sp: SearchParams) {
+    /**
+     * Private method: _createSearchQueryParamsForApi.
+     *
+     * It creates queryHttp params for the API request from a given SearchParams object.
+     *
+     * @params {SearchParams} sp The given search params.
+     *
+     * @returns {HttpParams} The queryHttpParams object for the API.
+     */
+    private _createSearchQueryParamsForApi(sp: SearchParams): HttpParams {
         let queryHttpParams = new HttpParams()
             .set('filter_by_project', this.projectId)
             .set('lang', this.defaultLanguage)
@@ -331,7 +336,7 @@ export class DataApiService extends ApiService {
                 if (typeof searchParams.query === 'string') {
                     queryPath = queryPath + searchParams.query;
                 }
-                queryHttpParams = this._createSearchQueryParams(searchParams);
+                queryHttpParams = this._createSearchQueryParamsForApi(searchParams);
                 break;
             default:
                 return;
