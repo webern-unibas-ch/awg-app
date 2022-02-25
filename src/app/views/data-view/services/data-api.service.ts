@@ -93,9 +93,9 @@ export class DataApiService extends ApiService {
      * Public method: getPropertyListsByResourceType.
      *
      * It sets the path and params for the Extended Search to retrieve
-     * the list of properties of a given resource type from the given (SALSAH) API.
+     * the list of properties of a given resource type id from the given (SALSAH) API.
      *
-     * @params {string} restypeId The given resource type.
+     * @params {string} restypeId The given resource type id.
      *
      * @returns {Observable<SearchResponseJson>} The observable with the PropertyTypesInResourceClassResponseJson data.
      */

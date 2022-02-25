@@ -17,11 +17,10 @@ import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/oper
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 /**
- * The SearchForm component.
+ * The FulltextSearchForm component.
  *
- * It contains the search form section
- * of the data (search) view of the app
- * with a reactive form group.
+ * It contains the search form section for the fulltext search
+ * of the data (search) view of the app with a reactive form group.
  */
 @Component({
     selector: 'awg-fulltext-search-form',
@@ -79,7 +78,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the SearchFormComponent.
+     * Constructor of the FulltextSearchFormComponent.
      *
      * It declares a private FormBuilder instance.
      *
