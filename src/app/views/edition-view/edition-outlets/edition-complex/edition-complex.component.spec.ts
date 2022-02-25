@@ -97,6 +97,7 @@ describe('EditionComplexComponent (DONE)', () => {
             });
         });
     });
+
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set route params via ActivatedRoute mock
