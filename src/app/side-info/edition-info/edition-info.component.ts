@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { EditionWorks } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.
@@ -15,24 +15,23 @@ import { EditionWorks } from '@awg-views/edition-view/models';
 })
 export class EditionInfoComponent {
     /**
-     * Public variable: editionInfoViewTitle.
+     * Readonly constant: EDITION_ROW_TABLES.
      *
-     * It keeps the title for the heading
-     * of the edition info view section.
+     * It keeps the row tables route.
      */
-    editionInfoViewTitle = 'Beispieleditionen ausgewählter Skizzen';
+    readonly EDITION_ROW_TABLES = EditionConstants.ROWTABLES;
 
     /**
-     * Readonly constant: EDITION_WORK_OP12.
+     * Readonly constant: EDITION_COMPLEX_OP12.
      *
-     * It keeps the current composition.
+     * It keeps the edition complex for op. 12.
      */
-    readonly EDITION_WORK_OP12 = EditionWorks.OP12;
+    readonly EDITION_COMPLEX_OP12 = EditionWorks.OP12;
 
     /**
-     * Readonly constant: EDITION_WORK_OP25.
+     * Readonly constant: EDITION_COMPLEX_OP25.
      *
-     * It keeps the current composition.
+     * It keeps the edition complex for op. 25.
      */
-    readonly EDITION_WORK_OP25 = EditionWorks.OP25;
+    readonly EDITION_COMPLEX_OP25 = EditionWorks.OP25;
 }

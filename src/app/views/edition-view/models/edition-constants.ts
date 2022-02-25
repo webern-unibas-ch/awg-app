@@ -56,6 +56,15 @@ export class EditionConstants {
     };
 
     /**
+     * The edition route for the row tables.
+     */
+    static readonly ROWTABLES: EditionRoute = {
+        route: '/row-tables',
+        short: 'Reihentabellen',
+        full: 'Reihentabellen',
+    };
+
+    /**
      * The edition route for a composition.
      */
     static readonly COMPOSITION: EditionRoute = {
@@ -65,7 +74,7 @@ export class EditionConstants {
     };
 
     /**
-     * The opus route for the edition.
+     * The edition route for the opus number.
      */
     static readonly OPUS: EditionRoute = {
         route: '/opus',
@@ -74,7 +83,7 @@ export class EditionConstants {
     };
 
     /**
-     * The Moldenhauer route for the edition.
+     * The editon route for the Moldenhauer number.
      */
     static readonly MNR: EditionRoute = {
         route: '/mnr',

@@ -7,7 +7,7 @@
         </div>
         <div class="card-footer text-right">
             <a
-                [routerLink]="['../composition', rowTable.route.replace('/', ''), 'sheets']"
+                [routerLink]="['../composition' + rowTable.route, 'sheets']"
                 [queryParams]="{ convolute: rowTable.convolute, sketch: rowTable.sketch }"
                 class="btn btn-outline-info"
                 [ngClass]="{ disabled: rowTable.disabled }"
