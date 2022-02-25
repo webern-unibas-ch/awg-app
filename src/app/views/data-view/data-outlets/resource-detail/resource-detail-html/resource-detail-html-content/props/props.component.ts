@@ -66,7 +66,26 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      * @param {SimpleChanges} changes The changes of the input.
      */
     ngOnChanges(changes: SimpleChanges) {
-        this._checkForGND(changes.props);
+        if (changes['props']) {
+            this._checkForGND(changes.props);
+        }
+    }
+
+    /**
+     * Public method: exposeGnd.
+     *
+     * It emits a given gnd event (type, value)
+     * to the {@link gndRequest}.
+     *
+     * @param {{type: string, value: string}} gndEvent The given event.
+     *
+     * @returns {void} Emits the event.
+     */
+    exposeGnd(gndEvent: GndEvent): void {
+        if (!gndEvent || !gndEvent.type) {
+            return;
+        }
+        this.gndRequest.emit(gndEvent);
     }
 
     /**
@@ -122,40 +141,37 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
             propsWithGND.forEach((prop: ResourceDetailProperty) => {
                 prop.values.forEach((value: string) => {
                     // Expose gnd for every value
-                    this._exposeGnd(value);
+                    this._setGnd(value);
                 });
             });
         }
     }
 
     /**
-     * Private method: _exposeGnd.
+     * Private method: _setGnd.
      *
-     * It emits a gnd set event (type, value)
-     * for a given value to the {@link gndRequest}.
+     * It creates a gnd set event (type, value)
+     * for a given value and sends it to the {@link exposeGnd} method.
      *
      * @param {string} value The given value.
      *
-     * @returns {void} Emits the GND set event.
+     * @returns {void} Exposes the GND set event.
      */
-    private _exposeGnd(value: string): void {
-        if (!value) {
-            return;
-        }
+    private _setGnd(value: string): void {
         const gndEvent = new GndEvent(GndEventType.SET, value);
-        this.gndRequest.emit(gndEvent);
+        this.exposeGnd(gndEvent);
     }
 
     /**
      * Private method: _removeGnd.
      *
-     * It emits a gnd remove event (type, value)
-     * to the {@link gndRequest}.
+     * It creates a gnd remove event (type, value)
+     * and sends it to the {@link exposeGnd} method.
      *
-     * @returns {void} Emits the GND remove event.
+     * @returns {void} Exposes the GND remove event.
      */
     private _removeGnd(): void {
         const gndEvent = new GndEvent(GndEventType.REMOVE, null);
-        this.gndRequest.emit(gndEvent);
+        this.exposeGnd(gndEvent);
     }
 }

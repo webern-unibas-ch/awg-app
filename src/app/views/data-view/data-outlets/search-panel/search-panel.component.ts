@@ -1,14 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Params, Router } from '@angular/router';
 
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { EMPTY, Observable, Subject } from 'rxjs';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+
+import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
-import { DataApiService } from '@awg-views/data-view/services';
-
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
+
+import { DataApiService } from '@awg-views/data-view/services';
+import {
+    SearchParams,
+    SearchResultsViewTypes,
+    SearchResponseWithQuery,
+    SearchQuery,
+    ExtendedSearchParams,
+} from '@awg-views/data-view/models';
 
 /**
  * The SearchPanel component.
@@ -16,7 +24,7 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
  * It contains the search panel section
  * of the data (search) view of the app
  * with a {@link TwelveToneSpinnerComponent},
- * the {@link SearchFormComponent}
+ * the {@link FulltextSearchFormComponent}
  * and the {@link SearchResultListComponent}.
  */
 @Component({
@@ -26,30 +34,11 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    destroy$: Subject<boolean> = new Subject<boolean>();
-
-    /**
      * Public variable: currentQueryParams.
      *
      * It keeps the current ParamMap from the query url.
      */
     currentQueryParams: ParamMap;
-
-    /**
-     * Public variable: searchParams.
-     *
-     * It keeps the default parameters for the search.
-     */
-    searchParams: SearchParams = {
-        query: '',
-        nRows: '25',
-        startAt: '0',
-        view: SearchParamsViewTypes.table,
-    };
 
     /**
      * Public variable: errorMessage.
@@ -59,11 +48,44 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     errorMessage: any = undefined;
 
     /**
+     * Public variable: selectedSearchTabId.
+     *
+     * It keeps the id of the selected tab panel.
+     */
+    selectedSearchTabId: string;
+
+    /**
+     * Public variable: searchParams.
+     *
+     * It keeps the default parameters for the search.
+     */
+    searchParams: SearchParams;
+
+    searchResponseWithQuery: SearchResponseWithQuery;
+
+    /**
+     * Public variable: searchTabString.
+     *
+     * It keeps the default text strings for the tab panels.
+     */
+    searchTabStrings = {
+        fulltext: { id: 'fulltext', title: 'Volltext-Suche' },
+        extended: { id: 'extended', title: 'Erweiterte Suche' },
+    };
+
+    /**
      * Public variable: viewChanged.
      *
      * If the view has changed.
      */
     viewChanged = false;
+
+    /**
+     * Private variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the SearchPanelComponent.
@@ -113,27 +135,41 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getFulltextSearchData();
+        this.resetSearchParams();
+        this.getSearchData();
     }
 
     /**
-     * Public method: getFulltextSearchData.
+     * Public method: getSearchData.
      *
      * It gets the query parameters from the route's query params
-     * and fetches the corresponding fulltext search data
+     * and fetches the corresponding search data
      * from the {@link DataApiService}.
      *
      * @returns {void} Sets the search data.
      *
-     * @todo Refactor nested subscription.
      */
-    getFulltextSearchData(): void {
-        this.router.events.pipe(takeUntil(this.destroy$)).subscribe(
-            (e: any) => {
-                // Check for end of navigation
-                if (e instanceof NavigationEnd) {
+    getSearchData(): void {
+        this.router.events
+            .pipe(
+                filter(event => event instanceof NavigationEnd),
+                map(() => this.route),
+                map((route: ActivatedRoute) => {
+                    // Snapshot of tab route
+                    let r = route;
+                    while (r.firstChild) {
+                        r = r.firstChild;
+                    }
+                    // Set search tab from url if given, otherwise router will redirect to fulltext automatically
+                    if (this._isValidTabIdInRoute(r)) {
+                        this.selectedSearchTabId = r.snapshot.url[0].path;
+                    }
+
+                    return route;
+                }),
+                switchMap((route: ActivatedRoute) => {
                     // Snapshot of current route query params
-                    const qp = this.route.snapshot.queryParamMap;
+                    const qp = route.snapshot.queryParamMap;
 
                     if (qp !== this.currentQueryParams) {
                         this.currentQueryParams = qp;
@@ -145,32 +181,37 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                             // Update search params from route if available
                             this.updateSearchParamsFromRoute(qp, false);
 
-                            if (this.searchParams.query && !this.viewChanged) {
-                                // Fetch search data
-                                return this.dataApiService.getFulltextSearchData(this.searchParams).subscribe(
-                                    (searchResponse: SearchResponseJson) => {
-                                        // Share search data via streamer service
-                                        const searchResponseWithQuery: SearchResponseWithQuery =
-                                            new SearchResponseWithQuery(searchResponse, this.searchParams.query);
-                                        this.dataStreamerService.updateSearchResponseWithQuery(searchResponseWithQuery);
-                                    },
-                                    error => {
-                                        this.errorMessage = error as any;
-                                    }
-                                );
-                            } else {
-                                // Console.log('No search query!');
+                            if (!this.viewChanged) {
+                                if (this.searchParams.query && typeof this.searchParams.query === 'string') {
+                                    // Fetch search data
+                                    return this.dataApiService.getSearchData(this.searchParams);
+                                }
+                                if (
+                                    typeof this.searchParams.query === 'object' &&
+                                    this.searchParams.query.filterByRestype
+                                ) {
+                                    // Fetch search data
+                                    return this.dataApiService.getSearchData(this.searchParams);
+                                }
                             }
                         }
-                    } else {
-                        // Console.log('Routed on same page with same query params');
                     }
+                    // In any other cases return empty observable
+                    return EMPTY;
+                }),
+                takeUntil(this._destroyed$)
+            )
+            .subscribe(
+                (searchResponse: SearchResponseJson) => {
+                    // Share search data via streamer service
+                    this.searchResponseWithQuery = new SearchResponseWithQuery(searchResponse, this.searchParams.query);
+                    this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
+                },
+                error => {
+                    console.error(error);
+                    this.errorMessage = error as any;
                 }
-            },
-            error => {
-                this.errorMessage = error as any;
-            }
-        );
+            );
     }
 
     /**
@@ -178,7 +219,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * It sets a new start position value in the searchParams
      * after a page change request and triggers the
-     * {@link routeToSelf} method.
+     * {@link _routeToSelf} method.
      *
      * @param {string} requestedStartAt The given start position.
      *
@@ -196,7 +237,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 view: this.searchParams.view,
             };
             // Route to new params
-            this.routeToSelf(this.searchParams);
+            this._routeToSelf(this.searchParams);
         }
     }
 
@@ -205,7 +246,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * It sets new row number value in the searchParams
      * after a row change request and triggers the
-     * {@link routeToSelf} method.
+     * {@link _routeToSelf} method.
      *
      * @param {string} requestedRows The given row.
      *
@@ -224,8 +265,57 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             };
 
             // Route to new params
-            this.routeToSelf(this.searchParams);
+            this._routeToSelf(this.searchParams);
         }
+    }
+
+    /**
+     * Public method: onSearch.
+     *
+     * It sets new query value in the searchParams
+     * after a search request and triggers the
+     * {@link _routeToSelf} method.
+     *
+     * @param {SearchQuery} requestedQuery The given search query (string or ExtendedSearchParams).
+     *
+     * @returns {void} Sets the search params and routes to itself.
+     */
+    onSearch(requestedQuery: SearchQuery): void {
+        if (requestedQuery !== this.searchParams.query) {
+            // View has not changed
+            this.viewChanged = false;
+
+            this.searchParams = {
+                query: requestedQuery,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: this.searchParams.view,
+            };
+
+            // Route to new search params
+            this._routeToSelf(this.searchParams);
+        }
+    }
+
+    /**
+     * Public method: onSearchTabChange.
+     *
+     * It resets the search params and triggers the
+     * {@link _routeToSelf} method after a tab change request
+     * to update the URL.
+     *
+     * @param {NgbNavChangeEvent} tabEvent The given tabEvent with an id of the next route.
+     *
+     * @returns {void} Routes to itself with the given id as route.
+     */
+    onSearchTabChange(tabEvent: NgbNavChangeEvent): void {
+        const newTabId = tabEvent.nextId;
+        this.resetSearchParams(newTabId);
+        this.resetSearchResponse();
+
+        this.errorMessage = undefined;
+        // Route to new tab with resetted searchParams
+        this._routeToSelf(this.searchParams, newTabId);
     }
 
     /**
@@ -233,7 +323,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * It sets new view type value in the searchParams
      * after a view change request and triggers the
-     * {@link routeToSelf} method.
+     * {@link _routeToSelf} method.
      *
      * @param {string} requestedView The given view.
      *
@@ -248,57 +338,46 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
-                view: SearchParamsViewTypes[requestedView],
+                view: SearchResultsViewTypes[requestedView],
             };
 
             // Route to new params
-            this.routeToSelf(this.searchParams);
+            this._routeToSelf(this.searchParams);
         }
     }
 
     /**
-     * Public method: onSearch.
+     * Public method: resetSearchParams.
      *
-     * It sets new query value in the searchParams
-     * after a search request and triggers the
-     * {@link routeToSelf} method.
+     * It resets the search params to the default value
+     * according to the target tab.
+     * @param {string} [tabId] The given tab id.
      *
-     * @param {string} requestedQuery The given search query.
-     *
-     * @returns {void} Sets the search params and routes to itself.
+     * @returns {void} Resets the search params.
      */
-    onSearch(requestedQuery: string): void {
-        if (requestedQuery !== this.searchParams.query) {
-            // View has not changed
-            this.viewChanged = false;
-
-            this.searchParams = {
-                query: requestedQuery,
-                nRows: this.searchParams.nRows,
-                startAt: this.searchParams.startAt,
-                view: this.searchParams.view,
-            };
-
-            // Route to new search params
-            this.routeToSelf(this.searchParams);
+    resetSearchParams(tabId?: string): void {
+        let query: SearchQuery;
+        if (!tabId || tabId === this.searchTabStrings.fulltext.id) {
+            query = '';
+        } else if (tabId === this.searchTabStrings.extended.id) {
+            query = new ExtendedSearchParams();
+            query.filterByRestype = '';
+            query.propertyId = [];
+            query.compop = [];
+            query.searchval = [];
         }
+        this.searchParams = {
+            query: query,
+            nRows: '25',
+            startAt: '0',
+            view: SearchResultsViewTypes.table,
+        };
     }
 
-    /**
-     * Public method: routeToSelf.
-     *
-     * It navigates to itself to set
-     * new search parameters.
-     *
-     * @param {SearchParams} sp The given search parameters.
-     * @returns {void} Navigates to itself.
-     */
-    routeToSelf(sp: SearchParams) {
-        this.router.navigate([], {
-            relativeTo: this.route,
-            queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
-            queryParamsHandling: 'merge',
-        });
+    resetSearchResponse() {
+        this.searchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
+
+        this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
     }
 
     /**
@@ -319,17 +398,57 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             return;
         }
 
+        let query: SearchQuery;
+        if (
+            !this.selectedSearchTabId ||
+            this.selectedSearchTabId === this.searchTabStrings.fulltext.id ||
+            typeof this.searchParams.query === 'string'
+        ) {
+            query = params.get('query') || this.searchParams.query;
+        } else if (
+            this.selectedSearchTabId === this.searchTabStrings.extended.id ||
+            typeof this.searchParams.query === 'object'
+        ) {
+            query = new ExtendedSearchParams();
+            query.filterByRestype = params.get('filterByRestype') || this.searchParams.query.filterByRestype;
+            query.propertyId = params.getAll('propertyId') || this.searchParams.query.propertyId;
+            query.compop = params.getAll('compop') || this.searchParams.query.compop;
+            query.searchval = params.getAll('searchval') || this.searchParams.query.searchval;
+        }
+
         // Update search params (immutable)
         this.searchParams = {
-            query: params.get('query') || this.searchParams.query,
+            query: query,
             nRows: params.get('nrows') || this.searchParams.nRows,
             startAt: params.get('startAt') || this.searchParams.startAt,
-            view: SearchParamsViewTypes[params.get('view')] || this.searchParams.view,
+            view: SearchResultsViewTypes[params.get('view')] || this.searchParams.view,
         };
 
         if (routing) {
-            this.routeToSelf(this.searchParams);
+            this._routeToSelf(this.searchParams);
         }
+    }
+
+    getSearchQueryType(value: SearchQuery): any {
+        if (this._isString(value)) {
+            return value as string;
+        } else if (this._isObject(value)) {
+            return value as ExtendedSearchParams;
+        }
+    }
+
+    _isString(value: any): boolean {
+        return typeof value === 'string';
+    }
+
+    _isObject(value: any): boolean {
+        return typeof value === 'object';
+    }
+
+    isSearchResultListShown(): boolean {
+        this.dataStreamerService.getSearchResponseWithQuery().subscribe(result => console.log(result));
+
+        return true;
     }
 
     /**
@@ -340,9 +459,57 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Unsubscribe from the destroy subject itself
-        this.destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
+    }
+
+    /**
+     * Private method: _routeToSelf.
+     *
+     * It navigates to itself to set
+     * new search parameters.
+     *
+     * @param {SearchParams} sp The given search parameters.
+     * @param {string} [route] Optional route parameter.
+     * @returns {void} Navigates to itself.
+     */
+    private _routeToSelf(sp: SearchParams, route?: string): void {
+        const commands = route ? [route] : [];
+        const params = this._createQueryParams(sp);
+        this.router.navigate(commands, {
+            relativeTo: this.route,
+            queryParams: params,
+        });
+    }
+
+    private _createQueryParams(sp: SearchParams) {
+        const qp: Params = {};
+        const q = this.getSearchQueryType(sp.query);
+        if (this.selectedSearchTabId === this.searchTabStrings.fulltext.id) {
+            qp['query'] = sp.query;
+        } else if (this.selectedSearchTabId === this.searchTabStrings.extended.id) {
+            qp['filterByRestype'] = q.filterByRestype || '';
+
+            if (q.propertyId) {
+                qp['propertyId'] = q.propertyId || [];
+                qp['compop'] = q.compop || [];
+                qp['searchval'] = q.searchval || [];
+            }
+        }
+        qp['nrows'] = sp.nRows;
+        qp['startAt'] = sp.startAt;
+        qp['view'] = sp.view;
+
+        return qp;
+    }
+
+    private _isValidTabIdInRoute(r: ActivatedRoute) {
+        return (
+            r.snapshot.url &&
+            r.snapshot.url.length > 0 &&
+            Object.values(this.searchTabStrings).filter(tab => tab.id === r.snapshot.url[0].path).length > 0
+        );
     }
 }

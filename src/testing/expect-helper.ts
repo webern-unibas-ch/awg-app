@@ -38,7 +38,7 @@ function expectDebugElement(
         : `should have ${expectedFailMsg} ${selector}`;
 
     expect(de).toBeDefined();
-    expect(de.length).toBe(expected, failMsg);
+    expect(de.length).withContext(failMsg).toBe(expected);
 }
 
 /**

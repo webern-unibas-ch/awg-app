@@ -7,18 +7,24 @@
  *
  */
 
-import { mockContextJson } from '@testing/mock-data/mockContextJson';
-import { mockResourceContextResponseJson } from '@testing/mock-data/mockResourceContextResponseJson';
-import { mockResourceDetail } from '@testing/mock-data/mockResourceDetail';
-import { mockResourceFullResponseJson } from '@testing/mock-data/mockResourceFullResponseJson';
-import { mockSearchResponseConverted } from '@testing/mock-data/mockSearchResponseConverted';
-import { mockSearchResponseJson } from '@testing/mock-data/mockSearchResponseJson';
+import { mockContextJson } from './mockContextJson';
+import { mockEditionData } from './mockEditionData';
+import { mockPropertyTypesInResourceClassResponseJson } from './mockPropertyTypesInResourceClassResponseJson';
+import { mockResourceContextResponseJson } from './mockResourceContextResponseJson';
+import { mockResourceDetail } from './mockResourceDetail';
+import { mockResourceFullResponseJson } from './mockResourceFullResponseJson';
+import { mockResourceTypesInVocabularyResponseJson } from './mockResourceTypesInVocabularyResponseJson';
+import { mockSearchResponseConverted } from './mockSearchResponseConverted';
+import { mockSearchResponseJson } from './mockSearchResponseJson';
 
 export {
     mockContextJson,
+    mockEditionData,
+    mockPropertyTypesInResourceClassResponseJson,
     mockResourceContextResponseJson,
     mockResourceDetail,
     mockResourceFullResponseJson,
+    mockResourceTypesInVocabularyResponseJson,
     mockSearchResponseConverted,
     mockSearchResponseJson,
 };

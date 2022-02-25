@@ -20,8 +20,8 @@ import { Namespace, NamespaceType } from './namespace.model';
 import { PrefixForm, Prefix } from './prefix.model';
 import { QueryResult } from './query-result.model';
 import { QueryTypeIndex } from './query-type-index.model';
-import { SelectResponse, SelectResponseBindings } from './select-response.model';
-import { PaginatorOptions, TableData, TableOptions, TableOptionsSortCase } from './table-data.model';
+import { SearchResult, SearchResultBindings } from './search-result.model';
+import { PaginatorOptions, TableData, TableOptions } from '@awg-shared/table/table-data.model';
 import { TripleComponent, Triple } from './triple.model';
 
 export {
@@ -43,11 +43,10 @@ export {
     Prefix,
     QueryResult,
     QueryTypeIndex,
-    SelectResponse,
-    SelectResponseBindings,
+    SearchResult,
+    SearchResultBindings,
     TableData,
     PaginatorOptions,
-    TableOptionsSortCase,
     TableOptions,
     Triple,
     TripleComponent,

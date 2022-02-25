@@ -1,28 +1,36 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, SimpleChange } from '@angular/core';
+
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ResourceDetailProperty } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentPropsComponent } from './props.component';
 
-describe('ResourceDetailHtmlContentPropsComponent', () => {
+describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentPropsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentPropsComponent>;
     let compDe: DebugElement;
 
+    let exposeGndSpy: Spy;
     let navigateToResourceSpy: Spy;
-    let emitSpy: Spy;
+    let gndRequestEmitSpy: Spy;
+    let resourceRequestEmitSpy: Spy;
 
     let expectedProps: ResourceDetailProperty[];
+    let expectedPropWithGnd: ResourceDetailProperty;
+    let expectedGndValue: string;
+    let expectedGnd: string;
     let expectedMetaBreakLine: string;
 
     beforeEach(
@@ -40,6 +48,7 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
 
         // Test data
         expectedMetaBreakLine = 'Versionsdatum';
+        expectedGnd = '12345678-X';
 
         const prop1Value1 =
             '<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])';
@@ -54,13 +63,18 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
             'prop2-value3',
         ]);
         const props4: ResourceDetailProperty = new ResourceDetailProperty('3', 'text', 'prop1', []);
+        expectedGndValue = `<a href="http://d-nb.info/gnd/${expectedGnd}">http://d-nb.info/gnd/${expectedGnd}</a>`;
+        expectedPropWithGnd = new ResourceDetailProperty('856', 'richtext', 'prop1', [expectedGndValue]);
+
         expectedProps = [props1, props2, props3, props4];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
-        emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
+        exposeGndSpy = spyOn(component, 'exposeGnd').and.callThrough();
+        gndRequestEmitSpy = spyOn(component.gndRequest, 'emit').and.callThrough();
+        resourceRequestEmitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
     it('should create', () => {
@@ -69,18 +83,27 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should have `metaBreakLine`', () => {
-            expect(component.metaBreakLine).toBeDefined('should be defined');
-            expect(component.metaBreakLine).toBe(expectedMetaBreakLine, `should be ${expectedMetaBreakLine}`);
+            expect(component.metaBreakLine).withContext('should be defined').toBeDefined();
+            expect(component.metaBreakLine)
+                .withContext(`should be ${expectedMetaBreakLine}`)
+                .toBe(expectedMetaBreakLine);
         });
 
         it('should not have `props` input', () => {
-            expect(component.props).toBeUndefined('should be undefined');
+            expect(component.props).withContext('should be undefined').toBeUndefined();
+        });
+
+        describe('#exposeGnd', () => {
+            it('... should not have been called', () => {
+                expect(exposeGndSpy).not.toHaveBeenCalled();
+                expect(gndRequestEmitSpy).not.toHaveBeenCalled();
+            });
         });
 
         describe('#navigateToResource', () => {
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
-                expect(emitSpy).not.toHaveBeenCalled();
+                expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
             });
         });
 
@@ -95,7 +118,8 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 // Check output
-                expect(headerEl.textContent).toContain('Objektdaten');
+                expect(headerEl.textContent).toBeTruthy();
+                expect(headerEl.textContent).withContext('Objektdaten').toContain('Objektdaten');
             });
 
             it('... should contain no ul with props yet', () => {
@@ -105,21 +129,21 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        beforeEach(() => {
+        beforeEach(async () => {
             // Simulate the parent setting the input properties
             component.props = expectedProps;
 
             // Trigger initial data binding
-            fixture.detectChanges();
+            await detectChangesOnPush(fixture);
         });
 
         it('should have `props` input', () => {
-            expect(component.props).toBeDefined('should be defined');
-            expect(component.props).toBe(expectedProps, `should be expectedProps: ${expectedProps}`);
+            expect(component.props).withContext('should be defined').toBeDefined();
+            expect(component.props).withContext(`should be expectedProps: ${expectedProps}`).toBe(expectedProps);
         });
 
         describe('VIEW', () => {
-            it('... should contain 4 ul with props', () => {
+            it('... should contain 4 ul elements (one for each prop of props array)', () => {
                 getAndExpectDebugElementByCss(compDe, 'section.awg-props > ul', 4, 4);
             });
 
@@ -129,7 +153,7 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 getAndExpectDebugElementByCss(breakDes[0], 'hr', 1, 1);
             });
 
-            it('... should contain only 3 props (li.awg-prop), last props.value is empty', () => {
+            it('... should contain altogether 3 li.awg-prop elements, since last props.value is empty', () => {
                 getAndExpectDebugElementByCss(compDe, 'ul > li.awg-prop', 3, 3);
             });
 
@@ -145,22 +169,110 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 getAndExpectDebugElementByCss(outerLiDes[2], 'ul', expectedLength2, expectedLength2);
             });
 
-            it('... should contain 6 li.awg-prop-value', () => {
+            it('... should contain altogether 6 li.awg-prop-value elements', () => {
                 getAndExpectDebugElementByCss(compDe, 'ul > li.awg-prop > ul > li.awg-prop-value', 6, 6);
             });
 
-            it('... should contain 6 CompileHtmlComponents in li.awg-prop-value', () => {
+            it('... should contain 7 CompileHtmlComponents in li.awg-prop-value', () => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 6, 6);
 
                 htmlDes.forEach(html => {
-                    expect(html.name).toBeDefined();
-                    expect(html.name).toBe('span');
+                    expect(html.name).toBeTruthy();
+                    expect(html.name).withContext(`should be span`).toBe('span');
 
                     // Check parent
-                    expect(html.parent.name).toBe('li');
-                    expect(html.parent.attributes.class).toBeDefined();
-                    expect(html.parent.attributes.class).toBe('awg-prop-value');
+                    expect(html.parent.name).toBeTruthy();
+                    expect(html.parent.name).withContext(`should be li`).toBe('li');
+                    expect(html.parent.attributes.class).toBeTruthy();
+                    expect(html.parent.attributes.class).withContext(`should be awg-prop-value`).toBe('awg-prop-value');
                 });
+            });
+        });
+
+        describe('#exposeGnd', () => {
+            let gndEvent: GndEvent;
+
+            describe('... should trigger', () => {
+                it('... on props input change', fakeAsync(() => {
+                    // Directly trigger ngOnChanges
+                    component.ngOnChanges({
+                        props: new SimpleChange(component.props, [expectedPropWithGnd], false),
+                    });
+
+                    // Gets triggered 2x (remove all old GND values & set new GND value)
+                    expectSpyCall(exposeGndSpy, 2);
+                }));
+
+                it('... a REMOVE event that clears all previous GND entries if props input contains no GND property', fakeAsync(() => {
+                    const gndRemoveEvent = new GndEvent(GndEventType.REMOVE, null);
+
+                    // Directly trigger ngOnChanges
+                    component.ngOnChanges({
+                        props: new SimpleChange(component.props, [expectedProps], false),
+                    });
+
+                    expectSpyCall(exposeGndSpy, 1, gndRemoveEvent);
+                    expect(exposeGndSpy.calls.mostRecent().args[0]).toEqual(gndRemoveEvent);
+                }));
+
+                it('... a REMOVE and SET event if props input contains a GND property', fakeAsync(() => {
+                    const gndRemoveEvent = new GndEvent(GndEventType.REMOVE, null);
+                    const gndSetEvent = new GndEvent(GndEventType.SET, expectedGndValue);
+
+                    // Directly trigger ngOnChanges
+                    component.ngOnChanges({
+                        props: new SimpleChange(component.props, [expectedPropWithGnd], false),
+                    });
+
+                    // Gets triggered 2x (remove all old GND values & set new GND value)
+                    expectSpyCall(exposeGndSpy, 2, gndSetEvent);
+                    expect(exposeGndSpy.calls.first().args[0]).toEqual(gndRemoveEvent);
+                    expect(exposeGndSpy.calls.mostRecent().args[0]).toEqual(gndSetEvent);
+                }));
+            });
+
+            describe('... should not emit anything if', () => {
+                it('... gndEvent is undefined', fakeAsync(() => {
+                    gndEvent = undefined;
+                    component.exposeGnd(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, undefined);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+
+                it('... gndEvent is null', fakeAsync(() => {
+                    gndEvent = null;
+                    component.exposeGnd(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, null);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+
+                it('... gndEvent type is undefined', fakeAsync(() => {
+                    gndEvent = new GndEvent(undefined, expectedGnd);
+                    component.exposeGnd(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, null);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+            });
+
+            describe('... should emit provided gndEvent for', () => {
+                it('... SET event', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.SET, expectedGnd);
+                    component.exposeGnd(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
+
+                it('... REMOVE event', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.REMOVE, null);
+                    component.exposeGnd(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
             });
         });
 
@@ -172,6 +284,7 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                     6,
                     6
                 );
+                // Get second element with anchor
                 const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
                 // Trigger click with click helper & wait for changes
@@ -207,8 +320,8 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                expect(emitSpy).not.toHaveBeenCalled();
-                expect(emitSpy).toHaveBeenCalledTimes(0);
+                expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
+                expect(resourceRequestEmitSpy).toHaveBeenCalledTimes(0);
             }));
 
             it('... should emit provided resource id (as string) on click', fakeAsync(() => {
@@ -226,13 +339,13 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                expectSpyCall(emitSpy, 1, '28');
+                expectSpyCall(resourceRequestEmitSpy, 1, '28');
 
                 // Third anchor has @id: number
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                expectSpyCall(emitSpy, 2, '330');
+                expectSpyCall(resourceRequestEmitSpy, 2, '330');
             }));
         });
     });

@@ -57,10 +57,10 @@ export class ResourceData {
         // Snapshot of raw json response
         this.jsonRaw = JSON.parse(JSON.stringify(resourceFullResponse));
 
-        // Converted html data
-        this.detail = detail;
-
         // Snapshot of json response from converted html data
         this.jsonConverted = JSON.parse(JSON.stringify(detail));
+
+        // Converted html data
+        this.detail = detail;
     }
 }

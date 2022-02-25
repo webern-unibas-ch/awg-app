@@ -267,8 +267,8 @@ export class FolioService {
             // Init
             const centeredXPosition = contentItem.upperLeftCorner.x + contentItem.width / 2;
             const centeredYPosition = contentItem.upperLeftCorner.y + contentItem.height / 2;
-            const itemLabelArray: string[] = contentItem.measure
-                ? [contentItem.sigle, ' T. ' + contentItem.measure]
+            const itemLabelArray: string[] = contentItem.sigleAddendum
+                ? [contentItem.sigle, ' ' + contentItem.sigleAddendum]
                 : [contentItem.sigle];
 
             const snapItemLabel: any = snapCanvas.text(0, 0, itemLabelArray);
@@ -325,7 +325,7 @@ export class FolioService {
             const snapItemGroup: any = snapCanvas.group(snapItemLink);
             snapItemGroup.attr({
                 itemGroupId: itemLabelArray,
-                itemId: contentItem.sigle,
+                itemId: contentItem.id,
                 class: 'item-group',
             });
 
@@ -334,7 +334,7 @@ export class FolioService {
             snapItemGroup.append(snapItemGroupTitle);
 
             // Add click event handler
-            // Exclude and mute sketch Aa:SkI for now
+            // Exclude and mute non-selectable sketches for now
             if (contentItem.selectable === false) {
                 snapItemGroup.click(() => this.ref.openModal(contentItem.linkTo));
                 snapItemGroup.attr({
@@ -342,7 +342,7 @@ export class FolioService {
                     fill: 'grey',
                 });
             } else {
-                snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.sigle));
+                snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.id));
                 snapItemGroup.attr({
                     stroke: fgColor,
                     fill: fgColor,

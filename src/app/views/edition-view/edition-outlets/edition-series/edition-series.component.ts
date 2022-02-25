@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EditionConstants, EditionRoute, EditionSeriesRoutes } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
+
 /**
  * The EditionSeries component.
  *
@@ -13,9 +16,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditionSeriesComponent implements OnInit {
     /**
-     * Constructor of the EditionSeriesComponent.
+     * Public variable: editionRoute.
+     *
+     * It keeps the edition route of the edition.
      */
-    constructor() {
+    editionRoute: EditionRoute;
+
+    /**
+     * Public variable: editionOutline.
+     *
+     * It keeps the outline of the edition as an array of routes.
+     */
+    editionOutline: EditionSeriesRoutes[];
+
+    /**
+     * Constructor of the EditionSeriesComponent.
+     *
+     * It declares a private instance of the EditionService.
+     *
+     * @param {EditionService} editionService Instance of the EditionService.
+     */
+    constructor(private editionService: EditionService) {
         // Intentionally left empty until implemented
     }
 
@@ -26,6 +47,31 @@ export class EditionSeriesComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        // Intentionally left empty until implemented
+        this.clearSelections();
+        this.getEditionOutline();
+    }
+
+    /**
+     * Public method: getEditionOutline.
+     *
+     * It gets the outline with array of series from the EditionService and sets the editionRoute constant.
+     *
+     * @returns {void} Gets the edition outline.
+     */
+    getEditionOutline(): void {
+        this.editionOutline = this.editionService.getEditionOutline();
+        this.editionRoute = EditionConstants.EDITION;
+    }
+
+    /**
+     * Public method: clearSelectedSeries.
+     *
+     * It clears the selected series from the EditionService.
+     *
+     * @returns {void} Clears the edition series.
+     */
+    clearSelections(): void {
+        this.editionService.clearSelectedEditionSeries();
+        this.editionService.clearSelectedEditionSection();
     }
 }

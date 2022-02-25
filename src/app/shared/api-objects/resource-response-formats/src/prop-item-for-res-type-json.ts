@@ -23,7 +23,6 @@ export class PropItemForResTypeJson {
     /**
      * ...
      * @param id: string
-     * TODO: change to KnoraIRI??
      */
     @JsonProperty('id', String)
     public id: string = undefined;

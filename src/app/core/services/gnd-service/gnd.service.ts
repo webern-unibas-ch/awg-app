@@ -98,7 +98,7 @@ export class GndService extends StorageService {
      * @returns {void} It exposes or removes the event to/from the storage.
      */
     exposeGnd(gndEvent: GndEvent) {
-        if (!gndEvent) {
+        if (!gndEvent || !gndEvent.type) {
             return;
         }
         switch (gndEvent.type) {

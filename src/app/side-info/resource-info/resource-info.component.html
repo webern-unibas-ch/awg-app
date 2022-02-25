@@ -28,10 +28,10 @@
             </button>
         </div>
         <div class="text-center mx-auto">
-            <strong class="text-muted small">Aktueller Suchbegriff</strong>
+            <strong class="text-muted small">Aktuelle Suchanfrage</strong>
             <br />
             <span *ngIf="resourceInfoData?.searchResults?.query; else noQuery">{{
-                resourceInfoData?.searchResults?.query
+                resourceInfoData?.searchResults?.query | json
             }}</span>
             <ng-template #noQuery>
                 <span>---</span>

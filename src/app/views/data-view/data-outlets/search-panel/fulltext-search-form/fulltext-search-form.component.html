@@ -1,0 +1,28 @@
+<form [formGroup]="searchForm">
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <label class="sr-only" for="awg-fulltext-search-searchValue">{{ searchFormStrings.label }}</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="search-icon">
+                        <fa-icon [icon]="faSearch"></fa-icon>
+                    </div>
+                </div>
+                <input
+                    title="Fulltext Search"
+                    type="search"
+                    id="awg-fulltext-search-searchValue"
+                    class="form-control"
+                    formControlName="searchvalControl"
+                    aria-label="Search input"
+                    aria-describedby="search-icon"
+                    placeholder="{{ searchFormStrings.placeholder }}"
+                    required />
+            </div>
+            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="alert alert-danger">
+                <p *ngIf="searchvalControl.hasError('required') || searchvalControl.errors.minlength"></p>
+                {{ searchFormStrings.errorMessage }}
+            </div>
+        </div>
+    </div>
+</form>

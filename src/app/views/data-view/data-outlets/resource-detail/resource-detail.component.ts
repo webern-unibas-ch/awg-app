@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { DataStreamerService, GndService, LoadingService } from '@awg-core/services';
 import { GndEvent } from '@awg-core/services/gnd-service';
@@ -58,22 +59,29 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     resourceId: string;
 
     /**
-     * Public variable: tabTitles.
+     * Public variable: resourceDetailTabTitles.
      *
      * It keeps the titles for the tab panels.
      */
-    tabTitles = {
+    resourceDetailTabTitles = {
         html: 'Detail',
         raw: 'JSON (raw)',
         converted: 'JSON (converted)',
     };
 
     /**
-     * Private variable: _destroy$.
+     * Public variable: selectedResourceDetailTabId.
+     *
+     * It keeps the id of the selected tab panel.
+     */
+    selectedResourceDetailTabId: string;
+
+    /**
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ResourceDetailComponent.
@@ -137,19 +145,31 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     getResourceData(): void {
         // Observe route params
-        this.route.paramMap
+        this.router.events
             .pipe(
-                switchMap((params: ParamMap) => {
-                    // Short cut for id param
-                    const id = params.get('id');
+                filter(event => event instanceof NavigationEnd),
+                map(() => this.route),
+                switchMap((route: ActivatedRoute) => {
+                    // Snapshot of current route query params
+                    const params = this.route.snapshot.paramMap;
+
+                    // Shortcut for resource id param
+                    const resourceId = params.get('id');
+
+                    while (route.firstChild) {
+                        route = route.firstChild;
+                    }
+
+                    // Snapshot of tab route
+                    this.selectedResourceDetailTabId = route.snapshot.url[0].path;
 
                     // Update current resource id via streamer service
-                    this.updateResourceId(id);
+                    this.updateResourceId(resourceId);
 
                     // Fetch resource data depending on param id
-                    return this.dataApiService.getResourceData(id);
+                    return this.dataApiService.getResourceData(resourceId);
                 }),
-                takeUntil(this._destroy$)
+                takeUntil(this._destroyed$)
             )
             .subscribe(
                 (data: ResourceData) => {
@@ -158,6 +178,24 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                 },
                 err => (this.errorMessage = err)
             );
+    }
+
+    /**
+     * Public method: onResourceDetailTabChange.
+     *
+     * It triggers the {@link _routeToSelf} method after a
+     * tab change request to update the URL.
+     *
+     * @param {NgbNavChangeEvent} tabEvent The given tabEvent with an id of the next route (nextId).
+     *
+     * @returns {void} Routes to itself with the given id as route.
+     */
+    onResourceDetailTabChange(tabEvent: NgbNavChangeEvent): void {
+        const route = tabEvent.nextId;
+        // Route to new tab
+        this.router.navigate([route], {
+            relativeTo: this.route,
+        });
     }
 
     /**
@@ -240,9 +278,9 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself:
+        this._destroyed$.complete();
     }
 }

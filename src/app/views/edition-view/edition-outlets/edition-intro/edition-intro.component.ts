@@ -56,7 +56,7 @@ export class EditionIntroComponent implements OnInit {
     ref: EditionIntroComponent;
 
     /**
-     * Constructor of the EditionDetailComponent.
+     * Constructor of the EditionIntroComponent.
      *
      * It declares private instances of
      * EditionDataService, EditionService
@@ -161,6 +161,6 @@ export class EditionIntroComponent implements OnInit {
             queryParamsHandling: '',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
     }
 }

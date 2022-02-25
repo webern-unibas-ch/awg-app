@@ -21,7 +21,7 @@ import {
  * The EditionData service.
  *
  * It handles the calls to local JSON files vai HTTP
- * and provides the data response for the edition detail
+ * and provides the data response for the edition sheets
  * and edition report view.
  *
  * Provided in: `root`.
@@ -48,10 +48,10 @@ export class EditionDataService {
     constructor(private http: HttpClient) {}
 
     /**
-     * Public method: getEditionDetailData.
+     * Public method: getEditionSheetsData.
      *
      * It provides the data from a JSON file
-     * for the current composition of the edition detail view
+     * for the current composition of the edition sheets view
      * (folio convolute, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
@@ -62,7 +62,7 @@ export class EditionDataService {
      * EditionSvgSheetList and TextcriticsList data.
      * Only the first emit is needed.
      */
-    getEditionDetailData(
+    getEditionSheetsData(
         editionWork: EditionWork
     ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
         this._setAssetWorkPath(editionWork);
@@ -175,7 +175,12 @@ export class EditionDataService {
      * @returns {void} It sets the asset path.
      */
     private _setAssetWorkPath(editionWork: EditionWork): void {
-        const workRoute = editionWork.series.route + editionWork.section.route + editionWork.work.route;
+        const workRoute =
+            EditionConstants.SERIES.route +
+            editionWork.series.route +
+            EditionConstants.SECTION.route +
+            editionWork.section.route +
+            editionWork.work.route;
         this._assetWorkPath = EditionConstants.EDITION_ASSETS.baseRoute + workRoute;
     }
 

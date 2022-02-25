@@ -99,14 +99,19 @@ class FolioSvgSystems {
  */
 class FolioSvgContentItem {
     /**
+     * The id for the label of a content item (string).
+     */
+    id: string;
+
+    /**
      * The sigle for the label of a content item (string).
      */
     sigle: string;
 
     /**
-     * The measure for the label of a content item (string).
+     * The sigle addendum for the label of a content item (string).
      */
-    measure: string;
+    sigleAddendum: string;
 
     /**
      * The optional boolean flag if the content item can be selected..
@@ -152,8 +157,9 @@ class FolioSvgContentItem {
      * @param {FolioCalculationContentItem} calculatedContentItem The given calculated folio content item.
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
+        this.id = calculatedContentItem.id;
         this.sigle = calculatedContentItem.sigle;
-        this.measure = calculatedContentItem.measure;
+        this.sigleAddendum = calculatedContentItem.sigleAddendum;
         this.selectable = calculatedContentItem.selectable;
         this.linkTo = calculatedContentItem.linkTo;
 
@@ -170,7 +176,7 @@ class FolioSvgContentItem {
  * It is used in the context of the edition folio convolutes
  * to store and expose the svg data for a folio.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioSvgData {
     /**

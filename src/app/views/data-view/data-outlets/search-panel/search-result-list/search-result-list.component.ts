@@ -8,9 +8,10 @@ import { takeUntil } from 'rxjs/operators';
 import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
-import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
+import { SearchResult } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 /**
  * The SearchResultList component.
@@ -133,6 +134,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     faTable = faTable;
 
+    test: SearchResult;
+
     /**
      * Private variable: _selectedResourceId.
      *
@@ -141,11 +144,11 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     private _selectedResourceId: string;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the SearchResultListComponent.
@@ -179,8 +182,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
         if (
             this.searchParams.view &&
-            (this.searchParams.view === SearchParamsViewTypes.table ||
-                this.searchParams.view === SearchParamsViewTypes.grid)
+            (this.searchParams.view === SearchResultsViewTypes.table ||
+                this.searchParams.view === SearchResultsViewTypes.grid)
         ) {
             this.createFormGroup(this.searchParams.view);
         }
@@ -193,13 +196,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * using the reactive FormBuilder with a formGroup
      * and a search view control.
      *
-     * @param {SearchParamsViewTypes} view The given view type.
+     * @param {SearchResultsViewTypes} view The given view type.
      *
      * @returns {void} Creates the search view control form.
      */
-    createFormGroup(view: SearchParamsViewTypes): void {
+    createFormGroup(view: SearchResultsViewTypes): void {
         this.searchResultControlForm = this.formBuilder.group({
-            searchResultViewControl: SearchParamsViewTypes[view],
+            searchResultViewControl: SearchResultsViewTypes[view],
         });
 
         this.listenToUserInputChange();
@@ -242,7 +245,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {boolean} The boolean value of the check result.
      */
     isGridView(): boolean {
-        return this.searchParams.view === SearchParamsViewTypes.grid;
+        return this.searchParams.view === SearchResultsViewTypes.grid;
     }
 
     /**
@@ -343,8 +346,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Cold request to streamer service
         const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
             .getSearchResponseWithQuery()
-            .pipe(takeUntil(this._destroy$));
-
+            .pipe(takeUntil(this._destroyed$));
         // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -393,6 +395,46 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Store search response and query
         this.searchResponseWithQuery = { ...searchResponseWithQuery };
 
+        /* TODO Prepare data for generic table
+           this.test = {
+            head: { vars: ['typ', 'ressource'] },
+            body: {
+                bindings: [
+                    {
+                        typ: {
+                            type: 'search',
+                            icon: '',
+                            value: 'test1-typ-value',
+                            label: 'test1-typ-label',
+                        },
+                        ressource: {
+                            type: 'search',
+                            icon: '',
+                            value: 'test1-res-value',
+                            label: 'test1-res-label',
+                        },
+                    },
+                ],
+            },
+        };
+        this.searchResponseWithQuery.data?.subjects.map(subject => {
+            const r = {
+                typ: {
+                    type: 'search',
+                    icon: subject.iconsrc,
+                    value: subject.obj_id,
+                    label: subject.iconlabel,
+                },
+                ressource: {
+                    type: 'search',
+                    icon: '',
+                    value: subject.obj_id,
+                    label: subject.value[0],
+                },
+            };
+            this.test.body.bindings.push(r);
+        });*/
+
         // Update info message about the search results
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
             searchResponseWithQuery,
@@ -415,9 +457,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.sideInfoService.clearSearchInfoData();
 
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 }

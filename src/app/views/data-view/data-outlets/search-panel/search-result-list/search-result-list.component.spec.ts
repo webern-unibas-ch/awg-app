@@ -6,18 +6,27 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import Spy = jasmine.Spy;
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
-import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
 
 import { SearchResultListComponent } from './search-result-list.component';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({ selector: 'awg-table', template: '' })
+class TableStubComponent {
+    @Input() tableTitle: string;
+    @Input() headerInputData: any;
+    @Input() rowInputData: any;
+    @Output() clickedTableValueRequest: EventEmitter<string> = new EventEmitter();
+    @Output() clickedTableRowRequest: EventEmitter<string> = new EventEmitter();
+}
 
 describe('SearchResultListComponent', () => {
     let component: SearchResultListComponent;
@@ -60,8 +69,8 @@ describe('SearchResultListComponent', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
-                declarations: [SearchResultListComponent, CompileHtmlComponent],
+                imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
+                declarations: [SearchResultListComponent, CompileHtmlComponent, TableStubComponent],
                 providers: [
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
                     { provide: ConversionService, useValue: mockConversionService },
@@ -87,7 +96,7 @@ describe('SearchResultListComponent', () => {
         expectedSearchResultText = '';
 
         expectedSearchParams = new SearchParams();
-        expectedSearchParams.view = SearchParamsViewTypes.table;
+        expectedSearchParams.view = SearchResultsViewTypes.table;
 
         // Spies on service functions
         getSearchResponseWithQuerySpy = spyOn(dataStreamerService, 'getSearchResponseWithQuery').and.returnValue(

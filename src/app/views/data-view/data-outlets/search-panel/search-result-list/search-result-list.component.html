@@ -1,4 +1,12 @@
 <!-- content: search results -->
+
+<!-- TODO Use shared generic table component to display search results
+<awg-table
+    tableTitle="{{ searchResponseWithQuery?.query | json }}"
+    [headerInputData]="test.head.vars"
+    [rowInputData]="test.body.bindings"></awg-table>
+-->
+
 <div class="awg-search-results" *ngIf="searchResponseWithQuery?.data">
     <!-- header -->
     <div class="row d-flex justify-content-between mb-4 awg-search-results-header">
@@ -85,7 +93,9 @@
                             </span>
                         </td>
                         <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">
-                            <span [compile-html]="(subject?.value)[0]" [compile-html-ref]="this"></span>
+                            <span
+                                ><em>{{ subject!.valuelabel[0] }}:&nbsp;</em></span
+                            ><span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
                         </td>
                     </tr>
                 </tbody>
@@ -101,7 +111,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <span [compile-html]="(subject?.value)[0]" [compile-html-ref]="this"></span>
+                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
                     </h5>
                     <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
                         Mehr ...

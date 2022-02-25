@@ -6,7 +6,7 @@ import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 export class AppConfig {
     /**
      * Getter for the URL of the Salsah API endpoint
-     * ({@link https://www.salsah.org}).
+     * ({@link https://www.salsah.org/api}).
      *
      * @returns {string}
      */

@@ -23,9 +23,14 @@
             (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>
 
         <!-- resourceDetailData body -->
-        <nav ngbNav #resourceDetailNav="ngbNav" class="nav-tabs">
-            <ng-container ngbNavItem>
-                <a ngbNavLink class="awg-resource-detail-long-tab">{{ tabTitles?.html }}</a>
+        <nav
+            ngbNav
+            #resourceDetailNav="ngbNav"
+            class="nav-tabs"
+            [activeId]="selectedResourceDetailTabId"
+            (navChange)="onResourceDetailTabChange($event)">
+            <ng-container ngbNavItem="html">
+                <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>
                 <ng-template ngbNavContent>
                     <!-- html visualisation -->
                     <awg-resource-detail-html
@@ -35,16 +40,16 @@
                     </awg-resource-detail-html>
                 </ng-template>
             </ng-container>
-            <ng-container ngbNavItem>
-                <a ngbNavLink class="ml-auto">{{ tabTitles?.converted }}</a>
+            <ng-container ngbNavItem="converted-json">
+                <a ngbNavLink class="ml-auto">{{ resourceDetailTabTitles?.converted }}</a>
                 <ng-template ngbNavContent>
                     <!-- converted json visualisation -->
                     <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">
                     </awg-resource-detail-json-converted>
                 </ng-template>
             </ng-container>
-            <ng-container ngbNavItem>
-                <a ngbNavLink>{{ tabTitles?.raw }}</a>
+            <ng-container ngbNavItem="raw-json">
+                <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>
                 <ng-template ngbNavContent>
                     <!-- raw json visualisation -->
                     <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">

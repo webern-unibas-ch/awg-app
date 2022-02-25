@@ -1,9 +1,0 @@
-<div *ngIf="svgSheetsData" class="btn-group awg-btn-group d-flex" role="group">
-    <a
-        class="btn btn-default w-100"
-        *ngFor="let svgSheet of svgSheetsData.sheets"
-        [class.active]="isSelectedSvgSheet(svgSheet.id)"
-        (click)="selectSvgSheet(svgSheet.id)">
-        {{ svgSheet.id }}
-    </a>
-</div>

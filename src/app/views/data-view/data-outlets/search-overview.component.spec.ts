@@ -7,7 +7,7 @@ import { ActivatedRoute, QueryParamsHandling } from '@angular/router';
 import Spy = jasmine.Spy;
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
+import { ActivatedRouteStub, RouterOutletStubComponent, UrlSegmentStub } from '@testing/router-stubs';
 
 import { SideInfoService } from '@awg-core/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
@@ -29,11 +29,11 @@ describe('SearchOverviewComponent (DONE)', () => {
     let fixture: ComponentFixture<SearchOverviewComponent>;
     let compDe: DebugElement;
 
-    let expectedsearchRouterLinkButtons: RouterLinkButton[];
+    let expectedSearchRouterLinkButtons: RouterLinkButton[];
 
     let mockActivatedRoute: ActivatedRouteStub;
-    let expectedRouteParams: {};
-    // Let mockActivatedRoutePath: string;
+    let expectedRouteUrl: UrlSegmentStub[] = [];
+    const expectedPath = 'search';
 
     let setButtonsSpy: Spy;
     let selectButtonSpy: Spy;
@@ -55,15 +55,10 @@ describe('SearchOverviewComponent (DONE)', () => {
 
             // Mocked activated route
             // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
-            expectedRouteParams = [
-                {
-                    url: [{ path: 'fulltext' }],
-                },
-            ];
-            mockActivatedRoute = new ActivatedRouteStub();
-            mockActivatedRoute.testChildren = expectedRouteParams;
+            expectedRouteUrl = [{ path: expectedPath }];
 
-            // MockActivatedRoutePath = mockActivatedRoute.snapshot.children[0].url[0].path;*/
+            mockActivatedRoute = new ActivatedRouteStub();
+            mockActivatedRoute.testUrl = expectedRouteUrl;
 
             TestBed.configureTestingModule({
                 declarations: [SearchOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
@@ -84,10 +79,10 @@ describe('SearchOverviewComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedsearchRouterLinkButtons = [
-            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
-            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
+        expectedSearchRouterLinkButtons = [
+            new RouterLinkButton('/data', 'search', 'Suche', false),
+            new RouterLinkButton('/data', 'timeline', 'Timeline', true),
+            new RouterLinkButton('/data', 'bibliography', 'Bibliographie', true),
         ];
 
         // Spies on component functions
@@ -102,22 +97,24 @@ describe('SearchOverviewComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should change params', () => {
-        expect(mockActivatedRoute.snapshot.children).toEqual(expectedRouteParams);
+    it('should change urls', () => {
+        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
+        expect(mockActivatedRoute.snapshot.url[0].path)
+            .withContext(`should equal ${expectedPath}`)
+            .toEqual(expectedPath);
 
-        const changedRouteParams = [
-            {
-                url: [{ path: 'other' }],
-            },
-        ];
-        mockActivatedRoute.testChildren = changedRouteParams;
+        const changedPath = 'other';
+        const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
 
-        expect(mockActivatedRoute.snapshot.children).toEqual(changedRouteParams);
+        mockActivatedRoute.testUrl = changedRouteUrl;
+
+        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
+        expect(mockActivatedRoute.snapshot.url[0].path).withContext(`should equal ${changedPath}`).toEqual(changedPath);
     });
 
     describe('BEFORE initial data binding', () => {
         it('should not have `searchRouterLinkButtons`', () => {
-            expect(component.searchRouterLinkButtons).toBeUndefined('should be undefined');
+            expect(component.searchRouterLinkButtons).withContext('should be undefined').toBeUndefined();
         });
 
         describe('#setButtons', () => {
@@ -173,11 +170,10 @@ describe('SearchOverviewComponent (DONE)', () => {
             });
 
             it('should have `searchRouterLinkButtons`', () => {
-                expect(component.searchRouterLinkButtons).toBeDefined('should be defined');
-                expect(component.searchRouterLinkButtons).toEqual(
-                    expectedsearchRouterLinkButtons,
-                    `should equal ${expectedsearchRouterLinkButtons}`
-                );
+                expect(component.searchRouterLinkButtons).withContext('should be defined').toBeDefined();
+                expect(component.searchRouterLinkButtons)
+                    .withContext(`should equal ${expectedSearchRouterLinkButtons}`)
+                    .toEqual(expectedSearchRouterLinkButtons);
             });
         });
 
@@ -193,10 +189,9 @@ describe('SearchOverviewComponent (DONE)', () => {
                 ) as RouterLinkButtonGroupStubComponent;
 
                 expect(buttonCmp.routerLinkButtons).toBeTruthy();
-                expect(buttonCmp.routerLinkButtons).toEqual(
-                    expectedsearchRouterLinkButtons,
-                    `should equal ${expectedsearchRouterLinkButtons}`
-                );
+                expect(buttonCmp.routerLinkButtons)
+                    .withContext(`should equal ${expectedSearchRouterLinkButtons}`)
+                    .toEqual(expectedSearchRouterLinkButtons);
             });
         });
 
@@ -208,29 +203,25 @@ describe('SearchOverviewComponent (DONE)', () => {
             it('... should update search info title (via Service) if path matches button.link', () => {
                 expectSpyCall(updateSearchInfoTitleFromPathSpy, 1);
 
-                // Path == fulltext -> first button
-                const expectedButton = expectedsearchRouterLinkButtons[0];
+                // Path == search -> first button
+                const expectedButton = expectedSearchRouterLinkButtons[0];
 
                 expectSpyCall(serviceUpdateSearchInfoTitleSpy, 1, expectedButton.label);
             });
 
             it('... should not update search info title (via Service) if path does not match button.link', () => {
-                expectSpyCall(updateSearchInfoTitleFromPathSpy, 1, undefined);
-                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 1, expectedsearchRouterLinkButtons[0].label);
+                expectSpyCall(updateSearchInfoTitleFromPathSpy, 1);
+                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 1, expectedSearchRouterLinkButtons[0].label);
 
-                const changedRouteParams = [
-                    {
-                        url: [{ path: 'other' }],
-                    },
-                ];
-                mockActivatedRoute.testChildren = changedRouteParams;
+                const changedRouteUrl = [{ path: 'other' }];
+                mockActivatedRoute.testUrl = changedRouteUrl;
 
                 component.updateSearchInfoTitleFromPath();
                 fixture.detectChanges();
 
-                expectSpyCall(updateSearchInfoTitleFromPathSpy, 2, undefined);
+                expectSpyCall(updateSearchInfoTitleFromPathSpy, 2);
                 // Spy count should not have changed
-                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 1);
+                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 1, expectedSearchRouterLinkButtons[0].label);
             });
         });
 
@@ -246,19 +237,19 @@ describe('SearchOverviewComponent (DONE)', () => {
                 ) as RouterLinkButtonGroupStubComponent;
 
                 // Button 1
-                buttonCmp.selectButtonRequest.emit(expectedsearchRouterLinkButtons[0]);
+                buttonCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[0]);
 
-                expectSpyCall(selectButtonSpy, 1, expectedsearchRouterLinkButtons[0]);
+                expectSpyCall(selectButtonSpy, 1, expectedSearchRouterLinkButtons[0]);
 
                 // Button 2
-                buttonCmp.selectButtonRequest.emit(expectedsearchRouterLinkButtons[1]);
+                buttonCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[1]);
 
-                expectSpyCall(selectButtonSpy, 2, expectedsearchRouterLinkButtons[1]);
+                expectSpyCall(selectButtonSpy, 2, expectedSearchRouterLinkButtons[1]);
 
                 // Button 3
-                buttonCmp.selectButtonRequest.emit(expectedsearchRouterLinkButtons[2]);
+                buttonCmp.selectButtonRequest.emit(expectedSearchRouterLinkButtons[2]);
 
-                expectSpyCall(selectButtonSpy, 3, expectedsearchRouterLinkButtons[2]);
+                expectSpyCall(selectButtonSpy, 3, expectedSearchRouterLinkButtons[2]);
             }));
 
             describe('... should not do anything if no RouterLinkButton provided', () => {
@@ -347,15 +338,15 @@ describe('SearchOverviewComponent (DONE)', () => {
 
             it('... should call SideInfoService# clearSearchInfoData', fakeAsync(() => {
                 // Emit button 1
-                component.onButtonSelect(expectedsearchRouterLinkButtons[0]);
+                component.onButtonSelect(expectedSearchRouterLinkButtons[0]);
                 expectSpyCall(serviceClearSearchInfoDataSpy, 1);
 
                 // Emit button 2
-                component.onButtonSelect(expectedsearchRouterLinkButtons[1]);
+                component.onButtonSelect(expectedSearchRouterLinkButtons[1]);
                 expectSpyCall(serviceClearSearchInfoDataSpy, 2);
 
                 // Emit button 3
-                component.onButtonSelect(expectedsearchRouterLinkButtons[2]);
+                component.onButtonSelect(expectedSearchRouterLinkButtons[2]);
                 expectSpyCall(serviceClearSearchInfoDataSpy, 3);
             }));
 
@@ -363,16 +354,16 @@ describe('SearchOverviewComponent (DONE)', () => {
                 // First call was on init
 
                 // Emit button 1
-                component.onButtonSelect(expectedsearchRouterLinkButtons[0]);
-                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 2, expectedsearchRouterLinkButtons[0].label);
+                component.onButtonSelect(expectedSearchRouterLinkButtons[0]);
+                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 2, expectedSearchRouterLinkButtons[0].label);
 
                 // Emit button 2
-                component.onButtonSelect(expectedsearchRouterLinkButtons[1]);
-                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 3, expectedsearchRouterLinkButtons[1].label);
+                component.onButtonSelect(expectedSearchRouterLinkButtons[1]);
+                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 3, expectedSearchRouterLinkButtons[1].label);
 
                 // Emit button 3
-                component.onButtonSelect(expectedsearchRouterLinkButtons[2]);
-                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 4, expectedsearchRouterLinkButtons[2].label);
+                component.onButtonSelect(expectedSearchRouterLinkButtons[2]);
+                expectSpyCall(serviceUpdateSearchInfoTitleSpy, 4, expectedSearchRouterLinkButtons[2].label);
             }));
         });
     });

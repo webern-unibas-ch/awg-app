@@ -1,0 +1,23 @@
+<div class="awg-source-description-list" *ngIf="sourceDescriptionListData">
+    <div
+        class="awg-source-description para"
+        *ngFor="let sourceDescription of sourceDescriptionListData.sources"
+        [id]="sourceDescription.id">
+        <p *ngIf="sourceDescription.siglum" class="awg-source-description-siglum bold">
+            {{ sourceDescription.siglum }}
+        </p>
+        <p *ngIf="sourceDescription.type" class="awg-source-description-type">
+            {{ sourceDescription.type }}
+        </p>
+        <p *ngIf="sourceDescription.location" class="awg-source-description-location">
+            {{ sourceDescription.location }}
+        </p>
+        <div *ngIf="sourceDescription.description">
+            <p
+                class="awg-source-description-entry"
+                *ngFor="let description of sourceDescription.description"
+                [compile-html]="description"
+                [compile-html-ref]="this"></p>
+        </div>
+    </div>
+</div>
