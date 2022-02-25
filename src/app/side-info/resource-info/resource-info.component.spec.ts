@@ -1504,9 +1504,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
+
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-times-circle']).toBeTrue();
+                            expect(iconDes[0].children[0].classes['fa-circle-xmark']).toBeTrue();
                         });
 
                         it('... should have two empty divs.single-line in second div', () => {
@@ -2142,7 +2143,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             const iconDes = getAndExpectDebugElementByCss(strongDes[0], 'fa-icon', 1, 1);
                             expect(iconDes[0].children[0]).toBeTruthy();
                             expect(iconDes[0].children[0].classes).toBeTruthy();
-                            expect(iconDes[0].children[0].classes['fa-times-circle']).toBeTrue();
+                            expect(iconDes[0].children[0].classes['fa-circle-xmark']).toBeTrue();
                         });
 
                         it('... should have two empty divs.single-line in second div', () => {
