@@ -9,10 +9,13 @@ import {
     ResTypeItemJson,
 } from '@awg-shared/api-objects';
 
-import { ExtendedSearchParams } from '@awg-views/data-view/models';
+import {
+    ExtendedSearchParams,
+    SEARCH_COMPOP_SETS_LIST,
+    SearchCompop,
+    VALUETYPE_LIST,
+} from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
-
-import { SEARCH_COMPOP_LISTS, SearchCompop, VALUETYPE_LIST } from './compop';
 
 @Component({
     selector: 'awg-extended-search-form',
@@ -227,16 +230,16 @@ export class ExtendedSearchFormComponent implements OnInit {
 
             if (id === '1' || (id === '6' && guiElementId === '14') || id === '14') {
                 // 1 TEXT, 6 RESPTR if gui 14, 14 RICHTEXT
-                compopSet = SEARCH_COMPOP_LISTS.compopList[5].compopSet;
+                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[5].compopSet;
             } else if (id === '2' || id === '3') {
                 // 2 INTEGER, 3 FLOAT
-                compopSet = SEARCH_COMPOP_LISTS.compopList[4].compopSet;
+                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[4].compopSet;
             } else if (id === '4' || id === '5') {
                 // 4 DATE, 5 PERIOD
-                compopSet = SEARCH_COMPOP_LISTS.compopList[3].compopSet;
+                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[3].compopSet;
             } else if (id === '13') {
                 // 13 ICONCLASS
-                compopSet = SEARCH_COMPOP_LISTS.compopList[2].compopSet;
+                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[2].compopSet;
             } else if (
                 (id === '6' && (guiElementId === '3' || guiElementId === '6')) ||
                 id === '7' ||
@@ -245,10 +248,10 @@ export class ExtendedSearchFormComponent implements OnInit {
                 id === '15'
             ) {
                 // 6 RESPTR if gui 3 or 6 (not 14), 7 SELECTION, 11 COLOR, 12 HLIST, 15 GEONAMES
-                compopSet = SEARCH_COMPOP_LISTS.compopList[1].compopSet;
+                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[1].compopSet;
             } else {
                 // Minimal set for all other cases
-                compopSet = SEARCH_COMPOP_LISTS.compopList[0].compopSet;
+                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[0].compopSet;
             }
         }
         return compopSet;
@@ -268,7 +271,7 @@ export class ExtendedSearchFormComponent implements OnInit {
                 searchval: [],
             };
 
-            this.extendedSearchForm.value.propertiesControls.forEach((property, index) => {
+            this.extendedSearchForm.value.propertiesControls.forEach(property => {
                 this.extendedSearchParams.propertyId.push(property.propertyIdControl);
                 this.extendedSearchParams.compop.push(property.compopControl);
                 this.extendedSearchParams.searchval.push(property.searchvalControl);
