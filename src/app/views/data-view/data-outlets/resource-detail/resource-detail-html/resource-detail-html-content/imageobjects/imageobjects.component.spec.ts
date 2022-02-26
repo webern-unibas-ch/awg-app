@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { JsonConvert } from 'json2typescript';
 import { NgxGalleryImage, NgxGalleryComponent, NgxGalleryOptions, NgxGalleryModule } from '@kolkov/ngx-gallery';
@@ -27,7 +28,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgxGalleryModule],
+                imports: [BrowserAnimationsModule, NgxGalleryModule],
                 declarations: [ResourceDetailHtmlContentImageobjectsComponent],
             }).compileComponents();
         })
