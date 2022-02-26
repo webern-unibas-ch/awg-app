@@ -90,13 +90,13 @@ export class DataStreamerService {
     }
 
     /**
-     * Public method: clearSearchResults.
+     * Public method: clearSearchResponseWithQuery.
      *
      * It clears the search results with query stream.
      *
      * @returns {void} Clears the search results with query stream.
      */
-    clearSearchResults(): void {
+    clearSearchResponseWithQuery(): void {
         this._searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), ''));
     }
 

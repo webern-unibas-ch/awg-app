@@ -1,0 +1,7 @@
+<div class="awg-source-evaluation-list para" *ngIf="sourceEvaluationListData">
+    <p
+        class="awg-source-evaluation-entry"
+        *ngFor="let evaluation of sourceEvaluationListData.sources[0].content"
+        [compile-html]="evaluation"
+        [compile-html-ref]="this"></p>
+</div>

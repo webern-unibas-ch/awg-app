@@ -39,7 +39,7 @@ export class EditionReportComponent implements OnInit {
      *
      * Observable that keeps the report data.
      */
-    editionReportData$: Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>;
+    editionReportData$: Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]>;
 
     /**
      * Public variable: errorObject.
@@ -47,6 +47,18 @@ export class EditionReportComponent implements OnInit {
      * It keeps an errorObject for the service calls.
      */
     errorObject = null;
+
+    /**
+     * Public variable: titles.
+     *
+     * It keeps an object for the titles of the report sections.
+     */
+    titles = {
+        sourceList: '1. Quellenübersicht',
+        sourceDescription: '2. Quellenbeschreibung',
+        sourceEvaluation: '3. Quellenbewertung',
+        tka: '4. Textkritische Anmerkungen',
+    };
 
     /**
      * Constructor of the EditionReportComponent.
@@ -134,9 +146,9 @@ export class EditionReportComponent implements OnInit {
         }
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: '',
+            // .queryParamsHandling: '',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
     }
 }

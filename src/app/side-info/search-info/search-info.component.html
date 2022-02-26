@@ -6,8 +6,8 @@
         </h5>
         <p>&#9671;</p>
         <p>
-            <strong>Suchbegriff: </strong
-            ><span *ngIf="searchInfoData$ | async as searchInfoData">{{ searchInfoData?.query }}</span>
+            <strong>Suchanfrage: </strong
+            ><span *ngIf="searchInfoData$ | async as searchInfoData">{{ searchInfoData?.query | json }}</span>
         </p>
         <p>&#9671;</p>
         <p>

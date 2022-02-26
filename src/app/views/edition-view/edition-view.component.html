@@ -1,30 +1,87 @@
 <!-- content: edition-view -->
 
-<!-- heading -->
-<awg-heading [title]="editionViewTitle" [id]="editionViewId"></awg-heading>
-
-<div class="awg-edition-work" *ngIf="editionWork$ | async as editionWork">
-    <!-- TODO: refactor this as selectable breadcrumb -->
-    <h6 class="awg-edition-info-breadcrumb">
-        {{ editionWork.edition.short }} / {{ editionWork.series.full }} / {{ editionWork.section.full }}
-    </h6>
-    <h3 class="awg-edition-info-header">
-        <em class="awg-edition-info-header-title">{{ editionWork.titleStatement.title }}</em
-        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWork.work.short }}</span>
-    </h3>
-    <!-- declamation -->
-    <div class="awg-edition-responsibility mt-3">
-        <p>
-            Ediert von
-            <span class="editor" *ngFor="let editor of editionWork.responsibilityStatement.editors; last as isLast">
-                <a href="{{ editor.homepage }}">{{ editor.name }}</a
-                ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
-            </span>
-            <br />
-            Versionsdatum: <span class="version">{{ editionWork.responsibilityStatement.lastModified }}</span>
-        </p>
+<div>
+    <div class="awg-edition-row-tables para" *ngIf="isRowTableView$ | async as isRowTableView">
+        <h6 class="awg-edition-info-breadcrumb">
+            <a [routerLink]="['.' + seriesRoute.route]">
+                {{ editionRoute?.short }}
+            </a>
+            /
+            <span>Reihentabellen</span>
+        </h6>
+        <!-- heading -->
+        <awg-heading [title]="'Übersicht'" [id]="editionViewId"></awg-heading>
     </div>
-</div>
 
-<!-- edition routes -->
-<router-outlet></router-outlet>
+    <div
+        class="awg-edition-series para"
+        *ngIf="(selectedEditionComplex$ | async) === null && (isRowTableView$ | async) === null">
+        <h6 class="awg-edition-info-breadcrumb">
+            <a
+                *ngIf="selectedEditionSeries$ | async as selectedSeries; else editionWithoutLink"
+                [routerLink]="['.' + seriesRoute.route]">
+                {{ editionRoute?.short }}
+            </a>
+            <ng-template #editionWithoutLink> {{ editionRoute?.short }} </ng-template>
+            /
+            <span *ngIf="selectedEditionSeries$ | async as selectedSeries">
+                <a
+                    *ngIf="selectedEditionSection$ | async as selectedSection; else seriesWithoutLink"
+                    [routerLink]="['./series', selectedSeries.series.route]">
+                    {{ selectedSeries?.series.full }}
+                </a>
+                <ng-template #seriesWithoutLink> {{ selectedSeries?.series.full }} </ng-template>
+                /
+            </span>
+            <span *ngIf="selectedEditionSection$ | async as selectedSection">
+                {{ selectedSection?.full }}
+            </span>
+        </h6>
+        <!-- heading -->
+        <awg-heading [title]="editionViewTitle" [id]="editionViewId"></awg-heading>
+    </div>
+
+    <div class="awg-edition-complex" *ngIf="selectedEditionComplex$ | async as selectedEditionComplex">
+        <h6 class="awg-edition-info-breadcrumb">
+            <a [routerLink]="['.' + seriesRoute.route]">
+                {{ editionRoute?.short }}
+            </a>
+            /
+            <a [routerLink]="['.' + seriesRoute.route, selectedEditionComplex.series.route]">
+                {{ selectedEditionComplex.series.full }}
+            </a>
+            /
+            <a
+                [routerLink]="[
+                    '.' + seriesRoute.route,
+                    selectedEditionComplex.series.route,
+                    'section',
+                    selectedEditionComplex.section.route
+                ]">
+                {{ selectedEditionComplex.section.full }}
+            </a>
+        </h6>
+        <h3 class="awg-edition-info-header">
+            <em class="awg-edition-info-header-title">{{ selectedEditionComplex.titleStatement.title }}</em
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ selectedEditionComplex.work.short }}</span>
+        </h3>
+        <!-- declamation -->
+        <div class="awg-edition-responsibility mt-3">
+            <p>
+                Ediert von
+                <span
+                    class="editor"
+                    *ngFor="let editor of selectedEditionComplex.responsibilityStatement.editors; last as isLast">
+                    <a href="{{ editor.homepage }}">{{ editor.name }}</a
+                    ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
+                </span>
+                <br />
+                Versionsdatum:
+                <span class="version">{{ selectedEditionComplex.responsibilityStatement.lastModified }}</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- edition routes -->
+    <router-outlet></router-outlet>
+</div>

@@ -121,13 +121,11 @@ export const mockResourceDetail = {
                 links: [
                     {
                         id: '2173508',
-                        value:
-                            'Vier Stücke für Geige und Klavier op. 7: Aufführung (Egon Ledeč, Vl.;  Karel Reiner, Klav.). Programm: Webern, op. 7; Leopold Spinner, Zwei kleine Stücke für Geige und Klavier (1934); Ernst Kanitz, Fünf Tänze für Klavier, Nr. 1 und 3; Hans Erich Apostel, Sonatina ritmica op. 5; Egon Wellesz, Sonate für Violine solo op. 36; Ernst Krenek, Toccata und Chaconne für Klavier op. 13; Paul Amadeus Pisk, Rondo-Suite für Violine und Klavier op. 27.\r',
+                        value: 'Vier Stücke für Geige und Klavier op. 7: Aufführung (Egon Ledeč, Vl.;  Karel Reiner, Klav.). Programm: Webern, op. 7; Leopold Spinner, Zwei kleine Stücke für Geige und Klavier (1934); Ernst Kanitz, Fünf Tänze für Klavier, Nr. 1 und 3; Hans Erich Apostel, Sonatina ritmica op. 5; Egon Wellesz, Sonate für Violine solo op. 36; Ernst Krenek, Toccata und Chaconne für Klavier op. 13; Paul Amadeus Pisk, Rondo-Suite für Violine und Klavier op. 27.\r',
                         restype: {
                             id: '28',
                             label: 'Chronologie',
-                            icon:
-                                'https://www.salsah.org:443/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=28',
+                            icon: 'https://www.salsah.org:443/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=28',
                         },
                     },
                 ],

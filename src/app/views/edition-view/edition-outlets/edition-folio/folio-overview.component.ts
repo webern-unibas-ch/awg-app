@@ -212,6 +212,10 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Sets the vbArray and folioSvgDataArray variable.
      */
     prepareFolioSvgOutput(): void {
+        // Reset folioSvgDataArray
+        this.folioSvgDataArray = [];
+
+        // Loop over folios of selected convolute
         this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
             // Update folio settings
             this.folioSettings = {
@@ -226,7 +230,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
             // Prepare viewbox settings
             this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
 
-            // Calculate svg data
+            // Populate folioSvgDataArray with calculated svg data
             this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
         });
     }

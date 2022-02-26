@@ -1,4 +1,6 @@
 # Ignore miscellaneous folders
+.angular/
+.cache/
 .github/
 .idea/
 .husky/

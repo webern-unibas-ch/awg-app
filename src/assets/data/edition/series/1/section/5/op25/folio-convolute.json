@@ -1,0 +1,270 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "38v",
+                    "systems": "16",
+                    "format": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": [
+                        {
+                            "id": "M_317_Sk2",
+                            "sigle": "M 317 Sk2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk1",
+                            "sigle": "M 317 Sk1",
+                            "sigleAddendum": "",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk2.1",
+                            "sigle": "M 317 Sk2.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 1,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk2.1.1",
+                            "sigle": "M 317 Sk2.1.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk2.1.2",
+                            "sigle": "M 317 Sk2.1.2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 2,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk2.1.2.1",
+                            "sigle": "M 317 Sk2.1.2.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 8,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 4,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk3",
+                            "sigle": "M 317 Sk3",
+                            "sigleAddendum": "",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk4a",
+                            "sigle": "M 317 Sk4a",
+                            "sigleAddendum": "T. {1A}–3A",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk4.1",
+                            "sigle": "M 317 Sk4.1",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 13,
+                                    "endSystem": 15
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "39r",
+                    "systems": "16",
+                    "format": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": [
+                        {
+                            "id": "M_317_Sk4b",
+                            "sigle": "M 317 Sk4b",
+                            "sigleAddendum": "T. 3B–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk4c",
+                            "sigle": "M 317 Sk4c",
+                            "sigleAddendum": "T. 7–12",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk4d",
+                            "sigle": "M 317 Sk4d",
+                            "sigleAddendum": "T. 13–15",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk4.2",
+                            "sigle": "M 317 Sk4.2",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_317_Sk4.3",
+                            "sigle": "M 317 Sk4.3",
+                            "sigleAddendum": "",
+                            "selectable": false,
+                            "linkTo": "OP25_SHEET_COMING_SOON",
+                            "sectionPartition": 7,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "7",
+                    "format": {
+                        "height": 169,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "id": "SkRT",
+                            "sigle": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "7",
+                    "format": {
+                        "height": 169,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "B-D-E",
+            "convoluteLabel": "B, D–E (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP25_SOURCE_NOT_A"
+        }
+    ]
+}

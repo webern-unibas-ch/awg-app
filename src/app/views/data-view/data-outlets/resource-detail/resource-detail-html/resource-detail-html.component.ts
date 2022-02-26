@@ -52,7 +52,7 @@ export class ResourceDetailHtmlComponent {
      * @returns {void} Emits the event.
      */
     exposeGnd(gndEvent: GndEvent): void {
-        if (!gndEvent) {
+        if (!gndEvent || !gndEvent.type) {
             return;
         }
         this.gndRequest.emit(gndEvent);

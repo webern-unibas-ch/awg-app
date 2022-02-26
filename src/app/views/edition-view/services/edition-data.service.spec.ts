@@ -46,9 +46,13 @@ describe('EditionDataService (DONE)', () => {
     const expectedEditionWork: EditionWork = EditionWorks.OP12;
 
     const assets = EditionConstants.EDITION_ASSETS;
-    const expectedWorkRoute =
-        expectedEditionWork.series.route + expectedEditionWork.section.route + expectedEditionWork.work.route;
     const expectedAssetWorkPathBaseRoute = assets.baseRoute;
+    const expectedWorkRoute =
+        EditionConstants.SERIES.route +
+        expectedEditionWork.series.route +
+        EditionConstants.SECTION.route +
+        expectedEditionWork.section.route +
+        expectedEditionWork.work.route;
     const expectedAssetWorkPath = expectedAssetWorkPathBaseRoute + expectedWorkRoute;
     const regexBase = new RegExp(expectedAssetWorkPath);
 
@@ -118,13 +122,13 @@ describe('EditionDataService (DONE)', () => {
         );
     });
 
-    describe('#getEditionDetailData', () => {
+    describe('#getEditionSheetsData', () => {
         describe('request', () => {
             it(
                 '... should set assetWorkPath',
                 waitForAsync(() => {
                     // Call service function
-                    editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                    editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
                         },
@@ -159,7 +163,7 @@ describe('EditionDataService (DONE)', () => {
                     ).and.callThrough();
 
                     // Call service function
-                    editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                    editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
                         },
@@ -181,7 +185,7 @@ describe('EditionDataService (DONE)', () => {
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
-                    editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                    editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
                         },
@@ -213,7 +217,7 @@ describe('EditionDataService (DONE)', () => {
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
-                    editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                    editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
                         },
@@ -292,8 +296,12 @@ describe('EditionDataService (DONE)', () => {
                         ).and.returnValue(observableOf(tcl));
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             res => {
+                                const resFcl = res[0] as FolioConvoluteList;
+                                const resEsl = res[1] as EditionSvgSheetList;
+                                const resTcl = res[2] as TextcriticsList;
+
                                 expect(res).toBeTruthy();
                                 expect(res.length as number).toEqual(
                                     expectedResult.length,
@@ -301,25 +309,25 @@ describe('EditionDataService (DONE)', () => {
                                 );
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual(
+                                expect(resFcl).toEqual(
                                     expectedResult[0] as FolioConvoluteList,
                                     `should equal ${expectedResult[0]}`
                                 );
-                                expect(res[1]).toEqual(
+                                expect(resEsl).toEqual(
                                     expectedResult[1] as EditionSvgSheetList,
                                     `should equal ${expectedResult[1]}`
                                 );
-                                expect(res[2]).toEqual(
+                                expect(resTcl).toEqual(
                                     expectedResult[2] as TextcriticsList,
                                     `should equal ${expectedResult[2]}`
                                 );
 
-                                expect(res[0].convolutes[0].convoluteId).toBe(
+                                expect(resFcl.convolutes[0].convoluteId).toBe(
                                     'test-convolute-id',
                                     'should be test-convolute-id'
                                 );
-                                expect(res[1].sheets[0].id).toBe('test-svg-sheets-id', 'should be test-svg-sheet-id');
-                                expect(res[2].textcritics[0].id).toBe(
+                                expect(resEsl.sheets[0].id).toBe('test-svg-sheets-id', 'should be test-svg-sheet-id');
+                                expect(resTcl.textcritics[0].id).toBe(
                                     'test-textcritics-id',
                                     'should be test-textcritics-id'
                                 );
@@ -359,7 +367,7 @@ describe('EditionDataService (DONE)', () => {
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
                                 expect(res.length as number).toBe(
@@ -400,7 +408,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [[], [], []];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -467,7 +475,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [[], [], []];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -526,7 +534,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [new FolioConvoluteList(), [], []];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -582,7 +590,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [[], new EditionSvgSheetList(), []];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -638,7 +646,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [[], [], new TextcriticsList()];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -694,7 +702,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [new FolioConvoluteList(), new EditionSvgSheetList(), []];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -747,7 +755,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [new FolioConvoluteList(), [], new TextcriticsList()];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -800,7 +808,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [[], new EditionSvgSheetList(), new TextcriticsList()];
 
                         // Call service function (success)
-                        editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
+                        editionDataService.getEditionSheetsData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
@@ -1051,6 +1059,11 @@ describe('EditionDataService (DONE)', () => {
                         // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             res => {
+                                const resSl = res[0] as SourceList;
+                                const resSdl = res[1] as SourceDescriptionList;
+                                const resSel = res[2] as SourceEvaluationList;
+                                const resTcl = res[3] as TextcriticsList;
+
                                 expect(res).toBeTruthy();
                                 expect(res.length as number).toEqual(
                                     expectedResult.length,
@@ -1058,33 +1071,33 @@ describe('EditionDataService (DONE)', () => {
                                 );
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual(
+                                expect(resSl).toEqual(
                                     expectedResult[0] as SourceList,
                                     `should equal ${expectedResult[0]}`
                                 );
-                                expect(res[1]).toEqual(
+                                expect(resSdl).toEqual(
                                     expectedResult[1] as SourceDescriptionList,
                                     `should equal ${expectedResult[1]}`
                                 );
-                                expect(res[2]).toEqual(
+                                expect(resSel).toEqual(
                                     expectedResult[2] as SourceEvaluationList,
                                     `should equal ${expectedResult[2]}`
                                 );
-                                expect(res[3]).toEqual(
+                                expect(resTcl).toEqual(
                                     expectedResult[3] as TextcriticsList,
                                     `should equal ${expectedResult[3]}`
                                 );
 
-                                expect(res[0].sources[0].siglum).toBe('test-sources-id', 'should be test-sources-id');
-                                expect(res[1].sources[0].id).toBe(
+                                expect(resSl.sources[0].siglum).toBe('test-sources-id', 'should be test-sources-id');
+                                expect(resSdl.sources[0].id).toBe(
                                     'test-source-description-id',
                                     'should be test-source-description-id'
                                 );
-                                expect(res[2].sources[0].id).toBe(
+                                expect(resSel.sources[0].id).toBe(
                                     'test-source-evaluation-id',
                                     'should be test-source-evaluation-id'
                                 );
-                                expect(res[3].textcritics[0].id).toBe(
+                                expect(resTcl.textcritics[0].id).toBe(
                                     'test-textcritics-id',
                                     'should be test-textcritics-id'
                                 );

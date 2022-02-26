@@ -1,8 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { FolioOverviewComponent } from './folio-overview.component';
-import { FolioService } from './folio.service';
+import { mockEditionData } from '@testing/mock-data';
+
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
+
+import { FolioService } from './folio.service';
+import { FolioOverviewComponent } from './folio-overview.component';
 
 describe('FolioComponent', () => {
     let component: FolioOverviewComponent;
@@ -26,38 +29,8 @@ describe('FolioComponent', () => {
 
         // Test data
         // Mock the inputs supplied by the parent component
-        expectedSvgSheet = {
-            id: 'Aa:SkI/2',
-            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
-            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-            alt: 'Aa:SkI/2',
-        };
-        expectedConvolute = {
-            convoluteId: 'A Skizzen (Basel, Paul Sacher Stiftung)',
-            folios: [
-                {
-                    folioId: '1r',
-                    systems: '16',
-                    format: {
-                        height: 175,
-                        width: 270,
-                    },
-                    content: [
-                        {
-                            sigle: 'Aa:SkI/1a',
-                            measure: '1–2, [3–6]',
-                            sectionPartition: 1,
-                            sections: [
-                                {
-                                    startSystem: 2,
-                                    endSystem: 4,
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        };
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
     });
 
     it('should create', () => {

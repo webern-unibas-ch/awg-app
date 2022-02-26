@@ -8,7 +8,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { DataStreamerService } from '@awg-core/services';
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-models';
 
 /**
@@ -89,11 +89,11 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     resultSize: number;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject<boolean> = new Subject<boolean>();
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ResourceInfoComponent.
@@ -103,11 +103,15 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * DataStreamerService instance
      * to get the streamed search results.
      *
-     * @param {FormBuilder} fb Instance of the FormBuilder.
+     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      * @param {Router} router Instance of the Router.
      * @param {DataStreamerService} streamerService Instance of the DataStreamerService.
      */
-    constructor(private fb: FormBuilder, private router: Router, private streamerService: DataStreamerService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private streamerService: DataStreamerService
+    ) {}
 
     /**
      * Getter for the current index position of the form group.
@@ -149,7 +153,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     // Return search response with query from streamer service
                     return this.streamerService.getSearchResponseWithQuery();
                 }),
-                takeUntil(this._destroy$)
+                takeUntil(this._destroyed$)
             )
             .subscribe(
                 (res: SearchResponseWithQuery) => {
@@ -209,15 +213,27 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
      * Public method: navigateToSearchPanel.
      *
-     * It navigates back to the '/data/search/fulltext' route
-     * (search panel) with the current query string if given.
+     * It navigates back to the '/data/search/' route
+     * (search panel) with the current search query if given.
      *
      * @returns {void} Navigates to the search panel.
      */
     navigateToSearchPanel(): void {
-        const queryStr = this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : '';
-        this.router.navigate(['/data/search/fulltext'], {
-            queryParams: { query: queryStr },
+        let commands;
+        const extras = { queryParams: {} };
+        const query: SearchQuery = this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : '';
+
+        if (typeof query === 'string') {
+            commands = ['/data/search'];
+            extras.queryParams = { query: query };
+        }
+        if (typeof query === 'object' && typeof this.resourceInfoData.searchResults.query === 'object') {
+            commands = ['/data/search/', 'extended'];
+            extras.queryParams = { ...this.resourceInfoData.searchResults.query };
+        }
+
+        this.router.navigate(commands, {
+            queryParams: { query },
         });
     }
 
@@ -231,10 +247,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
     }
 
     /**
@@ -288,7 +304,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     private _buildForm(index: number, resultSize: number): void {
         const regexPattern = /^[1-9]\d{0,9}$/; // Match any up-to 10-digit integer greater 0
 
-        this.resourceInfoFormGroup = this.fb.group({
+        this.resourceInfoFormGroup = this.formBuilder.group({
             resourceInfoIndex: [
                 index || '',
                 Validators.compose([

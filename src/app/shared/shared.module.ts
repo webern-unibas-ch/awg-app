@@ -21,6 +21,7 @@ import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
@@ -57,6 +58,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
@@ -83,6 +85,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         ToastComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
+        TableComponent,
     ],
 })
 export class SharedModule {}

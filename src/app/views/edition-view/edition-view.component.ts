@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { delay, Observable } from 'rxjs';
+
+import {
+    EditionConstants,
+    EditionRoute,
+    EditionSeriesRoutes,
+    EditionWork,
+    EditionWorks,
+} from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
-import { Observable } from 'rxjs';
 
 /**
  * The EditionView component.
@@ -23,7 +30,7 @@ export class EditionViewComponent implements OnInit {
      *
      * It keeps the title of the edition view section.
      */
-    editionViewTitle = 'Beispieledition ausgewählter Skizzen';
+    editionViewTitle = 'Inhalt';
 
     /**
      * Public variable: editionViewId.
@@ -33,12 +40,48 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
-     * Public variable: editionWork$.
+     * Public variable: editionRoute.
+     *
+     * It keeps the base edition route.
+     */
+    editionRoute: EditionRoute = EditionConstants.EDITION;
+
+    /**
+     * Public variable: isRowTableView$.
      *
      * Observable that keeps the information
-     * about the current composition.
+     * about the flag for the row table view.
      */
-    editionWork$: Observable<EditionWork>;
+    isRowTableView$: Observable<boolean>;
+
+    /**
+     * Public variable: seriesRoute.
+     *
+     * It keeps the base series route.
+     */
+    seriesRoute: EditionRoute = EditionConstants.SERIES;
+
+    /**
+     * Public variable: selectedEditionComplex$.
+     *
+     * Observable that keeps the information
+     * about the current edition complex.
+     */
+    selectedEditionComplex$: Observable<EditionWork>;
+
+    /**
+     * Public variable: selectedEditionSeries$.
+     *
+     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     */
+    selectedEditionSeries$: Observable<EditionSeriesRoutes>;
+
+    /**
+     * Public variable: selectedEditionSection$.
+     *
+     * It keeps the selected section of the edition as an Observable of EditionRoute.
+     */
+    selectedEditionSection$: Observable<EditionRoute>;
 
     /**
      * Constructor of the EditionViewComponent.
@@ -60,22 +103,21 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
-        this.getEditionWorkFromRoute();
+        this.getSelectionsFromRoute();
     }
 
     /**
-     * Public method: getEditionWorkFromRoute.
+     * Public method: getSelectionsFromRoute.
      *
-     * It subscribes to the route params to get the compositionId of the current work and load it from the edition service.
+     * It loads the selected series, section, and edition complex from the edition service (if given).
      *
-     * @returns {void} Gets the current work from the edition service.
+     * @returns {void} Gets the selected series, section, and edition complex from the edition service.
      */
-    getEditionWorkFromRoute(): void {
-        this.route.paramMap.subscribe(params => {
-            const id: string = params.get('compositionId') ? params.get('compositionId') : '';
-            this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
-            this.editionWork$ = this.editionService.getEditionWork();
-        });
+    getSelectionsFromRoute(): void {
+        this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
+        this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
+        this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 
     /**
@@ -89,7 +131,6 @@ export class EditionViewComponent implements OnInit {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve',
         });
     }
 }

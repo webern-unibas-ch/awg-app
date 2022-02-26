@@ -146,17 +146,14 @@ export class ConversionService extends ApiService {
         let resText: string;
 
         const searchResults = { ...searchResponseWithQuery.data };
-        const searchValue = searchResponseWithQuery.query;
 
         if (searchResults.subjects) {
-            const length = searchResults.subjects.length;
-            const resString: string = length === 1 ? 'Resultat' : 'Resultate';
-            resText = `${searchResults.nhits} `;
-            resText += `${resString} für "${searchValue}"`;
-
+            const currentLength = searchResults.subjects.length;
+            const totalLength = searchResults.nhits;
+            const resString: string = length === 1 ? 'Ergbnis' : 'Ergebnisse';
+            resText = `${currentLength} / ${totalLength} ${resString}`;
             if (this.filteredOut > 0) {
-                const duplString: string = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
-                resText += ` (${this.filteredOut} ${duplString} entfernt)`;
+                resText += ' (Duplikate enfternt)';
             }
         } else {
             resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
@@ -277,6 +274,9 @@ export class ConversionService extends ApiService {
      * @returns {ResourceDetail} The converted resource detail object.
      */
     convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        if (!resourceData || !resourceData[0] || !resourceData[0].access) {
+            return new ResourceDetail(undefined, undefined);
+        }
         if (resourceData[0].access === 'OK') {
             return this._prepareAccessibleResource(resourceData, resourceId);
         } else {
@@ -931,10 +931,15 @@ export class ConversionService extends ApiService {
             return;
         }
         this.filteredOut = 0;
-        return subjects.reduce(
-            (x, y) => (x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : ((this.filteredOut += 1), x)),
-            []
-        );
+        const distinctObj = {};
+        let distinctArr = [];
+
+        subjects.forEach((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
+        distinctArr = Object.values(distinctObj);
+
+        this.filteredOut = subjects.length - distinctArr.length;
+
+        return distinctArr;
     }
 
     /**

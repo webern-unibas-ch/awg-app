@@ -3,7 +3,6 @@ import { DebugElement, NgModule } from '@angular/core';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
@@ -35,9 +34,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -131,8 +127,8 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 const pEl0 = pDes[0].nativeElement;
                 const pEl1 = pDes[1].nativeElement;
 
-                expect(pEl0).toHaveCssClass('text-center');
-                expect(pEl1).toHaveCssClass('text-center');
+                expect(pEl0).toHaveClass('text-center');
+                expect(pEl1).toHaveClass('text-center');
             });
 
             it('... should display messages in panel body paragraphs', () => {

@@ -6,7 +6,6 @@ import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
@@ -14,7 +13,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { SelectResponse } from '../models';
+import { SearchResult } from '../models';
 import { SelectResultsComponent } from './select-results.component';
 
 // Mock components
@@ -23,7 +22,7 @@ class SparqlNoResultsStubComponent {}
 
 @Component({ selector: 'awg-sparql-table', template: '' })
 class SparqlTableStubComponent {
-    @Input() queryResult: SelectResponse;
+    @Input() queryResult: SearchResult;
     @Input() queryTime: number;
     @Output() clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -36,8 +35,8 @@ describe('SelectResultsComponent (DONE)', () => {
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: SelectResponse;
-    let expectedQueryResult$: Observable<SelectResponse>;
+    let expectedQueryResult: SearchResult;
+    let expectedQueryResult$: Observable<SearchResult>;
     let expectedQueryTime: number;
 
     let tableClickSpy: Spy;
@@ -68,9 +67,6 @@ describe('SelectResultsComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // Add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(customJasmineMatchers);
-
         fixture = TestBed.createComponent(SelectResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -101,7 +97,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have queryResult', () => {
-            expect(component.queryResult$).toBeUndefined('should be undefined');
+            expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
         });
 
         describe('VIEW', () => {

@@ -20,8 +20,9 @@ a:not([href]):not([tabindex]):hover {
     text-decoration: none;
 }
 a.dropdown-item,
+a.awg-svg-sheet-nav-link:hover,
 .nav-tabs > li > a {
-    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
+    color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
 }
 
 a:not(.awg-logo-link):hover {
@@ -29,20 +30,16 @@ a:not(.awg-logo-link):hover {
 }
 a.dropdown-item:hover,
 a.list-group-item:hover,
+a.awg-svg-sheet-nav-link,
+a.awg-svg-sheet-nav-link:hover,
 .navbar-brand:hover,
 .navbar-nav > li > a:hover {
     border-bottom: none !important;
     text-decoration: none;
 }
-
-button.dropdown-item.disabled {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 1); /* rgba converted HEX #fff */
-    background-color: rgba(0, 123, 255, 1); /* rgba converted HEX #007bff */
-}
-
 a.dropdown-item:hover,
 button.dropdown-item:hover,
+a.awg-svg-sheet-nav-link.active,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:active {
@@ -53,6 +50,12 @@ a.navbar-brand span.webernlogo {
 }
 a.navbar-brand:hover span.webernlogo {
     color: rgba(0, 0, 0, 1); /* rgba converted HEX #000000 */
+}
+
+button.dropdown-item.disabled {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1); /* rgba converted HEX #fff */
+    background-color: rgba(0, 123, 255, 1); /* rgba converted HEX #007bff */
 }
 
 /****** DIVS ******/
@@ -317,6 +320,10 @@ span.facet-badge {
 .caps,
 .version {
     font-variant: small-caps;
+}
+.tab {
+    display: inline-block;
+    margin-left: 25px;
 }
 .indent {
     text-indent: 25px;

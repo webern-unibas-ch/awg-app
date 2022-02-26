@@ -1,0 +1,10 @@
+<div *ngIf="selectedSeries$ | async as selectedSeries" class="card-deck">
+    <div class="card mb-4" style="min-width: 16rem" *ngFor="let section of selectedSeries.sections">
+        <div class="card-body">
+            <h5 class="card-title">{{ section.full }}</h5>
+        </div>
+        <div class="card-footer text-right">
+            <a [routerLink]="[section.route]" class="btn btn-outline-info">Mehr... </a>
+        </div>
+    </div>
+</div>

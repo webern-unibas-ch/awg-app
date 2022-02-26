@@ -111,7 +111,7 @@ describe('DataStreamerService (DONE)', () => {
             });
         });
 
-        describe('#clearSearchResults', () => {
+        describe('#clearSearchResponseWithQuery', () => {
             it('... should update search results with empty SearchResponseWithQuery', done => {
                 dataStreamerService
                     .getSearchResponseWithQuery()
@@ -125,7 +125,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 // Clear searchResponse
                 expectedSearchResponse = new SearchResponseWithQuery(new SearchResponseJson(), '');
-                dataStreamerService.clearSearchResults();
+                dataStreamerService.clearSearchResponseWithQuery();
             });
 
             it('... should overwrite existing search results', done => {
@@ -144,7 +144,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 // Clear searchResponse
                 expectedSearchResponse = new SearchResponseWithQuery(new SearchResponseJson(), '');
-                dataStreamerService.clearSearchResults();
+                dataStreamerService.clearSearchResponseWithQuery();
             });
         });
     });

@@ -102,7 +102,7 @@ export class EditionWork {
     /**
      * The route to the detail section of an edition.
      */
-    detailRoute: EditionRoute = EditionConstants.EDITION_DETAIL;
+    sheetsRoute: EditionRoute = EditionConstants.EDITION_SHEETS;
 
     /**
      * The route to the report section of an edition.

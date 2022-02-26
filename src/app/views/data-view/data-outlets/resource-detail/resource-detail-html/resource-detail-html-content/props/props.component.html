@@ -2,16 +2,16 @@
 <section class="awg-props">
     <h4 class="awg-props-title ml-0">Objektdaten</h4>
     <ul *ngFor="let prop of props">
-        <li id="breakLine" *ngIf="prop?.label === metaBreakLine">
+        <li id="breakLine" *ngIf="prop.label === metaBreakLine">
             <hr />
         </li>
-        <li class="awg-prop" *ngIf="(prop?.values)[0]">
+        <li class="awg-prop" *ngIf="prop!.values[0]">
             <!-- value label -->
-            <strong class="awg-prop-label" *ngIf="prop?.label">
-                {{ prop?.label }}
+            <strong class="awg-prop-label" *ngIf="prop.label">
+                {{ prop.label }}
             </strong>
             <!-- value content -->
-            <ul *ngFor="let value of prop?.values">
+            <ul *ngFor="let value of prop.values">
                 <li class="awg-prop-value" *ngIf="value">
                     <span [compile-html]="value" [compile-html-ref]="this"></span>
                 </li>

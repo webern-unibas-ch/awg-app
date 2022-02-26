@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { ActivatedRouteStub } from '@testing/router-stubs';
 import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-data';
@@ -8,7 +8,6 @@ import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-
 import { of as observableOf } from 'rxjs';
 import { JsonConvert } from 'json2typescript';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import Spy = jasmine.Spy;
 
 import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { GndEvent } from '@awg-core/services/gnd-service';
@@ -60,9 +59,6 @@ describe('ResourceDetailComponent', () => {
     let fixture: ComponentFixture<ResourceDetailComponent>;
     let compDe: DebugElement;
 
-    let mockRouter: Spy;
-    let mockActivatedRoute: ActivatedRouteStub;
-
     // Json object
     let jsonConvert: JsonConvert;
     let expectedResourceFullResponseJson: ResourceFullResponseJson;
@@ -85,9 +81,16 @@ describe('ResourceDetailComponent', () => {
             };
 
             // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+            const mockRouter = {
+                url: '/test-url',
+                events: observableOf(
+                    new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
+                ),
+                navigate: jasmine.createSpy('navigate'),
+            };
+
             // Mocked activated route
-            mockActivatedRoute = new ActivatedRouteStub();
+            const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
 
             TestBed.configureTestingModule({
                 imports: [NgbNavModule],

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import Spy = jasmine.Spy;
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -13,10 +12,11 @@ import {
     ResourceDetailImage,
     ResourceDetailProperty,
 } from '@awg-views/data-view/models';
-import { GndEvent } from '@awg-core/services/gnd-service';
+import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import Spy = jasmine.Spy;
 
 // Mock component
 @Component({ selector: 'awg-resource-detail-html-content', template: '' })
@@ -36,8 +36,10 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
     let expectedResourceDetailData: ResourceDetail;
 
+    let exposeGndSpy: Spy;
     let navigateToResourceSpy: Spy;
-    let emitSpy: Spy;
+    let gndRequestEmitSpy: Spy;
+    let resourceRequestEmitSpy: Spy;
 
     beforeEach(
         waitForAsync(() => {
@@ -67,7 +69,9 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
-        emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
+        exposeGndSpy = spyOn(component, 'exposeGnd').and.callThrough();
+        gndRequestEmitSpy = spyOn(component.gndRequest, 'emit').and.callThrough();
+        resourceRequestEmitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
     it('should create', () => {
@@ -76,13 +80,20 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `resourceDetailData` inputs', () => {
-            expect(component.resourceDetailData).toBeUndefined('should be undefined');
+            expect(component.resourceDetailData).withContext('should be undefined').toBeUndefined();
+        });
+
+        describe('#exposeGnd', () => {
+            it('... should not have been called', () => {
+                expect(exposeGndSpy).not.toHaveBeenCalled();
+                expect(gndRequestEmitSpy).not.toHaveBeenCalled();
+            });
         });
 
         describe('#navigateToResource', () => {
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
-                expect(emitSpy).not.toHaveBeenCalled();
+                expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
             });
         });
 
@@ -103,8 +114,10 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         });
 
         it('should have `resourceDetailData` inputs', () => {
-            expect(component.resourceDetailData).toBeDefined('should be defined');
-            expect(component.resourceDetailData).toBe(expectedResourceDetailData);
+            expect(component.resourceDetailData).withContext('should be defined').toBeDefined();
+            expect(component.resourceDetailData)
+                .withContext(`should be ${expectedResourceDetailData}`)
+                .toBe(expectedResourceDetailData);
         });
 
         describe('VIEW', () => {
@@ -135,89 +148,192 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
                 ) as ResourceDetailHtmlContentStubComponent;
 
                 expect(htmlContentCmp.content).toBeDefined();
-                expect(htmlContentCmp.content).toBe(expectedResourceDetailData.content);
+                expect(htmlContentCmp.content)
+                    .withContext(`should be ${expectedResourceDetailData.content}`)
+                    .toBe(expectedResourceDetailData.content);
+            });
+        });
+
+        describe('#exposeGnd', () => {
+            let htmlContentDes;
+            let htmlContentCmp;
+            let gndEvent: GndEvent;
+
+            beforeEach(() => {
+                htmlContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    ResourceDetailHtmlContentStubComponent,
+                    1,
+                    1
+                );
+                htmlContentCmp = htmlContentDes[0].injector.get(
+                    ResourceDetailHtmlContentStubComponent
+                ) as ResourceDetailHtmlContentStubComponent;
+            });
+
+            describe('... should trigger on event from ResourceDetailHtmlContentComponent if', () => {
+                it('... gndEvent is undefined', fakeAsync(() => {
+                    gndEvent = undefined;
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+
+                it('... gndEvent is SET', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.SET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+
+                it('... gndEvent is GET', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.GET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+
+                it('... gndEvent is REMOVE', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.REMOVE, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                }));
+            });
+
+            describe('... should not emit anything if', () => {
+                it('... gndEvent is undefined', fakeAsync(() => {
+                    gndEvent = undefined;
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, undefined);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+
+                it('... gndEvent is null', fakeAsync(() => {
+                    gndEvent = null;
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, null);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+
+                it('... gndEvent type is undefined', fakeAsync(() => {
+                    gndEvent = new GndEvent(undefined, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, null);
+                    expectSpyCall(gndRequestEmitSpy, 0);
+                }));
+            });
+
+            describe('... should emit provided gndEvent on click with', () => {
+                it('... SET event', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.SET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
+
+                it('... GET event', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.GET, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
+
+                it('... REMOVE event', fakeAsync(() => {
+                    gndEvent = new GndEvent(GndEventType.REMOVE, '123');
+                    htmlContentCmp.gndRequest.emit(gndEvent);
+
+                    expectSpyCall(exposeGndSpy, 1, gndEvent);
+                    expectSpyCall(gndRequestEmitSpy, 1, gndEvent);
+                }));
             });
         });
 
         describe('#navigateToResource', () => {
-            it('... should trigger on event from ResourceDetailHtmlContentComponent', fakeAsync(() => {
-                const htmlContentDes = getAndExpectDebugElementByDirective(
+            let htmlContentDes;
+            let htmlContentCmp;
+            let id;
+
+            beforeEach(() => {
+                htmlContentDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentStubComponent,
                     1,
                     1
                 );
-                const htmlContentCmp = htmlContentDes[0].injector.get(
+                htmlContentCmp = htmlContentDes[0].injector.get(
                     ResourceDetailHtmlContentStubComponent
                 ) as ResourceDetailHtmlContentStubComponent;
+            });
 
-                let id;
+            describe('... should trigger on event from ResourceDetailHtmlContentComponent if', () => {
+                it('... id is undefined', fakeAsync(() => {
+                    id = undefined;
+                    htmlContentCmp.resourceRequest.emit(id);
 
-                // Undefined
-                id = undefined;
-                htmlContentCmp.resourceRequest.emit(id);
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                }));
 
-                expectSpyCall(navigateToResourceSpy, 1, id);
+                it('... id is a number', fakeAsync(() => {
+                    id = 28;
+                    htmlContentCmp.resourceRequest.emit(id);
 
-                // Number
-                id = 28;
-                htmlContentCmp.resourceRequest.emit(id);
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                }));
 
-                expectSpyCall(navigateToResourceSpy, 2, id);
+                it('... id is a string', fakeAsync(() => {
+                    id = '330';
+                    htmlContentCmp.resourceRequest.emit(id);
 
-                // String
-                id = '330';
-                htmlContentCmp.resourceRequest.emit(id);
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                }));
+            });
 
-                expectSpyCall(navigateToResourceSpy, 3, id);
-            }));
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', fakeAsync(() => {
+                    htmlContentCmp.resourceRequest.emit(undefined);
 
-            it('... should not emit anything if no id is provided', fakeAsync(() => {
-                const htmlContentDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentStubComponent,
-                    1,
-                    1
-                );
-                const htmlContentCmp = htmlContentDes[0].injector.get(
-                    ResourceDetailHtmlContentStubComponent
-                ) as ResourceDetailHtmlContentStubComponent;
+                    expectSpyCall(navigateToResourceSpy, 1, undefined);
+                    expectSpyCall(resourceRequestEmitSpy, 0);
+                }));
 
-                // Id is undefined
-                htmlContentCmp.resourceRequest.emit(undefined);
+                it('... id is null', fakeAsync(() => {
+                    htmlContentCmp.resourceRequest.emit(null);
 
-                expectSpyCall(navigateToResourceSpy, 1, undefined);
-                expect(emitSpy).not.toHaveBeenCalled();
-                expect(emitSpy).toHaveBeenCalledTimes(0);
-            }));
+                    expectSpyCall(navigateToResourceSpy, 1, null);
+                    expectSpyCall(resourceRequestEmitSpy, 0);
+                }));
 
-            it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                const htmlContentDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentStubComponent,
-                    1,
-                    1
-                );
-                const htmlContentCmp = htmlContentDes[0].injector.get(
-                    ResourceDetailHtmlContentStubComponent
-                ) as ResourceDetailHtmlContentStubComponent;
+                it('... id is empty string', fakeAsync(() => {
+                    htmlContentCmp.resourceRequest.emit('');
 
-                let id;
+                    expectSpyCall(navigateToResourceSpy, 1, '');
+                    expectSpyCall(resourceRequestEmitSpy, 0);
+                }));
+            });
 
-                // Number
-                id = 28;
-                htmlContentCmp.resourceRequest.emit(id);
+            describe('... should emit provided resource id (as string) on click with', () => {
+                it('... number input', fakeAsync(() => {
+                    id = 28;
+                    htmlContentCmp.resourceRequest.emit(id);
 
-                expectSpyCall(navigateToResourceSpy, 1, id);
-                expectSpyCall(emitSpy, 1, id.toString());
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                    expectSpyCall(resourceRequestEmitSpy, 1, id.toString());
+                }));
 
-                // String
-                id = '28';
-                htmlContentCmp.resourceRequest.emit(id);
+                it('... string input', fakeAsync(() => {
+                    id = '28';
+                    htmlContentCmp.resourceRequest.emit(id);
 
-                expectSpyCall(navigateToResourceSpy, 2, id);
-                expectSpyCall(emitSpy, 2, id);
-            }));
+                    expectSpyCall(navigateToResourceSpy, 1, id);
+                    expectSpyCall(resourceRequestEmitSpy, 1, id.toString());
+                }));
+            });
         });
     });
 });

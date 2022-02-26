@@ -1,0 +1,30 @@
+<!-- content: edition detail -->
+<div>
+    <!-- modal -->
+    <awg-modal #modal></awg-modal>
+
+    <!-- body with embedded svg's -->
+    <!-- accolade view -->
+    <awg-edition-accolade
+        *ngIf="svgSheetsData && selectedSvgSheet"
+        [svgSheetsData]="filteredSvgSheetsData"
+        [selectedSvgSheet]="selectedSvgSheet"
+        [selectedTextcriticalComments]="selectedTextcriticalComments"
+        [selectedOverlay]="selectedOverlay"
+        [showTkA]="showTkA"
+        (openModalRequest)="modal.open($event)"
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)"
+        (selectOverlayRequest)="onOverlaySelect($event)">
+    </awg-edition-accolade>
+
+    <!-- convolute view -->
+    <awg-edition-convolute
+        *ngIf="folioConvoluteData && selectedConvolute && selectedSvgSheet"
+        [folioConvoluteData]="folioConvoluteData"
+        [selectedConvolute]="selectedConvolute"
+        [selectedSvgSheet]="selectedSvgSheet"
+        (openModalRequest)="modal.open($event)"
+        (selectConvoluteRequest)="onConvoluteSelect($event)"
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+    </awg-edition-convolute>
+</div>
