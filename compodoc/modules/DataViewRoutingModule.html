@@ -77,9 +77,9 @@
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
 import { DataViewComponent } from &#x27;./data-view.component&#x27;;
-import { ResourceDetailComponent } from &#x27;./data-outlets/resource-detail/resource-detail.component&#x27;;
+import { ResourceDetailComponent } from &#x27;./data-outlets/resource-detail&#x27;;
 import { SearchOverviewComponent } from &#x27;./data-outlets/search-overview.component&#x27;;
-import { SearchPanelComponent } from &#x27;./data-outlets/search-panel/search-panel.component&#x27;;
+import { SearchPanelComponent } from &#x27;./data-outlets/search-panel&#x27;;
 // Import { TimelineComponent } from &#x27;./data-outlets/timeline/timeline.component&#x27;;
 
 /* Routes of the DataViewModule */
@@ -88,33 +88,58 @@ const dataViewRoutes: Routes &#x3D; [
         path: &#x27;&#x27;,
         component: DataViewComponent,
         children: [
+            { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;search&#x27; },
             {
                 path: &#x27;search&#x27;,
                 component: SearchOverviewComponent,
                 children: [
                     {
-                        path: &#x27;fulltext&#x27;,
+                        path: &#x27;&#x27;,
                         component: SearchPanelComponent,
-                        data: { title: &#x27;AWG Online Edition – Search&#x27; },
+                        children: [
+                            { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;fulltext&#x27; },
+                            {
+                                path: &#x27;fulltext&#x27;,
+                                data: { title: &#x27;AWG Online Edition – Fulltext Search&#x27; },
+                            },
+                            {
+                                path: &#x27;extended&#x27;,
+                                data: { title: &#x27;AWG Online Edition – Extended Search&#x27; },
+                            },
+                            { path: &#x27;detail/:id&#x27;, redirectTo: &#x27;resource/:id&#x27; }, // Absolute redirect (replacement of route) to resource/:id,
+                        ],
                     },
-                    { path: &#x27;detail/:id&#x27;, redirectTo: &#x27;resource/:id&#x27; }, // Absolute redirect (replacement of route) to resource/:id,
-                    /* Muted for now
-                    { path: &#x27;timeline&#x27;, component: TimelineComponent },
-                    {
-                        path: &#x27;bibliography&#x27;,
-                        loadChildren: () &#x3D;&gt;
-                            import(&#x27;./data-outlets/bibliography/bibliography.module&#x27;).then(m &#x3D;&gt; m.BibliographyModule)
-                    },
-                    */
-                    { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;fulltext&#x27; },
                 ],
             },
+            /* Muted for now
+            { path: &#x27;timeline&#x27;, component: TimelineComponent },
+            {
+                path: &#x27;bibliography&#x27;,
+                loadChildren: () &#x3D;&gt;
+                    import(&#x27;./data-outlets/bibliography/bibliography.module&#x27;).then(m &#x3D;&gt; m.BibliographyModule)
+            },
+            */
         ],
     },
     {
         path: &#x27;resource/:id&#x27;,
         component: ResourceDetailComponent,
         data: { title: &#x27;AWG Online Edition – Resource Detail&#x27; },
+        children: [
+            { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;html&#x27; },
+            {
+                path: &#x27;html&#x27;,
+                data: { title: &#x27;AWG Online Edition – Resource Detail HTML&#x27; },
+            },
+            {
+                path: &#x27;converted-json&#x27;,
+                data: { title: &#x27;AWG Online Edition – Resource Detail JSON Converted&#x27; },
+            },
+            {
+                path: &#x27;raw-json&#x27;,
+                data: { title: &#x27;AWG Online Edition – Resource Detail JSON Raw&#x27; },
+            },
+        ],
     },
 ];
 
@@ -145,6 +170,8 @@ export class DataViewRoutingModule {}
 </code></pre>
     </div>
 </div>
+
+
 
 
 

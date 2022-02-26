@@ -47,6 +47,8 @@
 
 
 
+
+
 <ol class="breadcrumb">
   <li>Miscellaneous</li>
   <li>Functions</li>
@@ -78,7 +80,13 @@
                             <a href="#detectChangesOnPush" title="src/testing/detect-changes-on-push-helper.ts" ><b>detectChangesOnPush</b>&nbsp;&nbsp;&nbsp;(src/.../detect-changes-on-push-helper.ts)</a>
                         </li>
                         <li>
+                            <a href="#expectClosedPanelBody" title="src/testing/accordion-panel-helper.ts" ><b>expectClosedPanelBody</b>&nbsp;&nbsp;&nbsp;(src/.../accordion-panel-helper.ts)</a>
+                        </li>
+                        <li>
                             <a href="#expectDebugElement" title="src/testing/expect-helper.ts" ><b>expectDebugElement</b>&nbsp;&nbsp;&nbsp;(src/.../expect-helper.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#expectOpenPanelBody" title="src/testing/accordion-panel-helper.ts" ><b>expectOpenPanelBody</b>&nbsp;&nbsp;&nbsp;(src/.../accordion-panel-helper.ts)</a>
                         </li>
                         <li>
                             <a href="#expectRecentSpyCall" title="src/testing/expect-helper.ts" ><b>expectRecentSpyCall</b>&nbsp;&nbsp;&nbsp;(src/.../expect-helper.ts)</a>
@@ -540,6 +548,200 @@ Cf. <a href="https://github.com/angular/angular/issues/12313#issuecomment-528536
    await detectChangesOnPush(fixture);
 });</code></pre>
                         </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/testing/accordion-panel-helper.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expectClosedPanelBody"></a>
+                    <span class="name">
+                        <span ><b>expectClosedPanelBody</b></span>
+                        <a href="#expectClosedPanelBody"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>expectClosedPanelBody(de: <a href="https://angular.io/api/core/DebugElement" target="_blank">DebugElement</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Test helper function: expectClosedPanelBody.</p>
+<p>It checks if a given ngb-accordion panel is closed.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>de</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/DebugElement" target="_blank" >DebugElement</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The DebugElement.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The id of the panel.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>msg</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The msg to be displayed in Expectation.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="expectOpenPanelBody"></a>
+                    <span class="name">
+                        <span ><b>expectOpenPanelBody</b></span>
+                        <a href="#expectOpenPanelBody"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>expectOpenPanelBody(de: <a href="https://angular.io/api/core/DebugElement" target="_blank">DebugElement</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, msg: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Test helper function: expectClosedPanelBody.</p>
+<p>It checks if a given ngb-accordion panel is open.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>de</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/DebugElement" target="_blank" >DebugElement</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The DebugElement.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The id of the panel.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>msg</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The msg to be displayed in Expectation.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
                     </div>
                 </td>
             </tr>

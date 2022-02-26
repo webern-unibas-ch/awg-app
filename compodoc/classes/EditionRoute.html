@@ -42,6 +42,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Classes</li>
   <li >EditionRoute</li>
@@ -72,7 +73,7 @@
             <p class="comment">
                 <p>The EditionRoute class.</p>
 <p>It is used in the context of the edition view
-to store string constants of the editions.</p>
+to store routing constants of the editions parts.</p>
 
             </p>
 
@@ -245,6 +246,24 @@ to store string constants of the editions.</p>
 }
 
 /**
+ * The EditionSeriesRoutes class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of the edition series.
+ */
+export class EditionSeriesRoutes {
+    /**
+     * The series route of an edition series.
+     */
+    series: EditionRoute;
+
+    /**
+     * The sections routes of an edition series.
+     */
+    sections: EditionRoute[];
+}
+
+/**
  * The EditionConstants class.
  *
  * It is used in the context of the edition view
@@ -261,6 +280,15 @@ export class EditionConstants {
     };
 
     /**
+     * The edition route for the row tables.
+     */
+    static readonly ROWTABLES: EditionRoute &#x3D; {
+        route: &#x27;/row-tables&#x27;,
+        short: &#x27;Reihentabellen&#x27;,
+        full: &#x27;Reihentabellen&#x27;,
+    };
+
+    /**
      * The edition route for a composition.
      */
     static readonly COMPOSITION: EditionRoute &#x3D; {
@@ -270,7 +298,7 @@ export class EditionConstants {
     };
 
     /**
-     * The opus route for the edition.
+     * The edition route for the opus number.
      */
     static readonly OPUS: EditionRoute &#x3D; {
         route: &#x27;/opus&#x27;,
@@ -279,7 +307,7 @@ export class EditionConstants {
     };
 
     /**
-     * The Moldenhauer route for the edition.
+     * The editon route for the Moldenhauer number.
      */
     static readonly MNR: EditionRoute &#x3D; {
         route: &#x27;/mnr&#x27;,
@@ -288,10 +316,19 @@ export class EditionConstants {
     };
 
     /**
+     * The edition route for the series.
+     */
+    static readonly SERIES: EditionRoute &#x3D; {
+        route: &#x27;/series/&#x27;,
+        short: &#x27;Serien&#x27;,
+        full: &#x27;Serienübersicht&#x27;,
+    };
+
+    /**
      * The edition route for series I.
      */
     static readonly SERIES_1: EditionRoute &#x3D; {
-        route: &#x27;/series1&#x27;,
+        route: &#x27;1&#x27;,
         short: &#x27;I&#x27;,
         full: &#x27;Serie I (Werke mit Opuszahlen)&#x27;,
     };
@@ -300,7 +337,7 @@ export class EditionConstants {
      * The edition route for series II.
      */
     static readonly SERIES_2: EditionRoute &#x3D; {
-        route: &#x27;/series2&#x27;,
+        route: &#x27;2&#x27;,
         short: &#x27;II&#x27;,
         full: &#x27;Serie II (Nachgelassene Kompositionen und Fragmente)&#x27;,
     };
@@ -309,16 +346,25 @@ export class EditionConstants {
      * The edition route for series III.
      */
     static readonly SERIES_3: EditionRoute &#x3D; {
-        route: &#x27;/series3&#x27;,
+        route: &#x27;3&#x27;,
         short: &#x27;III&#x27;,
         full: &#x27;Serie III (Bearbeitungen von Werken anderer Komponisten)&#x27;,
+    };
+
+    /**
+     * The edition route for the series.
+     */
+    static readonly SECTION: EditionRoute &#x3D; {
+        route: &#x27;/section/&#x27;,
+        short: &#x27;Abteilung&#x27;,
+        full: &#x27;Abteilungsübersicht&#x27;,
     };
 
     /**
      * The edition route for section 1.
      */
     static readonly SECTION_1: EditionRoute &#x3D; {
-        route: &#x27;/section1&#x27;,
+        route: &#x27;1&#x27;,
         short: &#x27;1&#x27;,
         full: &#x27;Abteilung 1 (Orchestermusik)&#x27;,
     };
@@ -327,7 +373,7 @@ export class EditionConstants {
      * The edition route for section 2.
      */
     static readonly SECTION_2: EditionRoute &#x3D; {
-        route: &#x27;/section2&#x27;,
+        route: &#x27;2&#x27;,
         short: &#x27;2&#x27;,
         full: &#x27;Abteilung 2 (Kammer- und Klaviermusik)&#x27;,
     };
@@ -336,7 +382,7 @@ export class EditionConstants {
      * The edition route for section 3.
      */
     static readonly SECTION_3: EditionRoute &#x3D; {
-        route: &#x27;/section3&#x27;,
+        route: &#x27;3&#x27;,
         short: &#x27;3&#x27;,
         full: &#x27;Abteilung 3 (Chormusik)&#x27;,
     };
@@ -345,7 +391,7 @@ export class EditionConstants {
      * The edition route for section 4.
      */
     static readonly SECTION_4: EditionRoute &#x3D; {
-        route: &#x27;/section4&#x27;,
+        route: &#x27;4&#x27;,
         short: &#x27;4&#x27;,
         full: &#x27;Abteilung 4 (Vokalmusik mit Ensemblebegleitung)&#x27;,
     };
@@ -354,17 +400,35 @@ export class EditionConstants {
      * The edition route for section 5.
      */
     static readonly SECTION_5 &#x3D; {
-        route: &#x27;/section5&#x27;,
+        route: &#x27;5&#x27;,
         short: &#x27;5&#x27;,
         full: &#x27;Abteilung 5 (Klavierlieder)&#x27;,
+    };
+
+    /**
+     * The edition route for section 5.
+     */
+    static readonly SERIES_3_SECTION_5 &#x3D; {
+        route: &#x27;5&#x27;,
+        short: &#x27;5&#x27;,
+        full: &#x27;Abteilung 5 (Klavierauszüge)&#x27;,
+    };
+
+    /**
+     * The edition route for a work edition.
+     */
+    static readonly WORK_EDITION: EditionRoute &#x3D; {
+        route: &#x27;/work-edition&#x27;,
+        short: &#x27;WE&#x27;,
+        full: &#x27;Werkedition&#x27;,
     };
 
     /**
      * The edition route for a text edition.
      */
     static readonly TEXT_EDITION: EditionRoute &#x3D; {
-        route: &#x27;/texts&#x27;,
-        short: &#x27;Textedition&#x27;,
+        route: &#x27;/text-edition&#x27;,
+        short: &#x27;TE&#x27;,
         full: &#x27;Textedition&#x27;,
     };
 
@@ -372,8 +436,8 @@ export class EditionConstants {
      * The edition route for a sketch edition.
      */
     static readonly SKETCH_EDITION: EditionRoute &#x3D; {
-        route: &#x27;/sketches&#x27;,
-        short: &#x27;Skizzenedition&#x27;,
+        route: &#x27;/sketch-edition&#x27;,
+        short: &#x27;SE&#x27;,
         full: &#x27;Skizzenedition&#x27;,
     };
 
@@ -396,10 +460,10 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for the detail section of an edition.
+     * The edition route for the sheets section of an edition.
      */
-    static readonly EDITION_DETAIL: EditionRoute &#x3D; {
-        route: &#x27;detail&#x27;,
+    static readonly EDITION_SHEETS: EditionRoute &#x3D; {
+        route: &#x27;sheets&#x27;,
         short: &#x27;Edierter Notentext&#x27;,
         full: &#x27;Edierter Notentext&#x27;,
     };
@@ -433,30 +497,37 @@ export class EditionConstants {
     };
 
     /**
+     * The path to the assets image of a firm sign: JE No. 3, 14 Lines.
+     */
+    static readonly FIRM_JE_NO_3_LIN_14: EditionRoute &#x3D; {
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no3_lin14.png&#x27;,
+        short: &#x27;[JE] | No. 3 | 14 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 3 | 14 linig.&#x27;,
+    };
+
+    /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
     static readonly FIRM_JE_NO_9_LIN_28: EditionRoute &#x3D; {
-        route: &#x27;assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png&#x27;,
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no9_lin28.png&#x27;,
         short: &#x27;[JE] | No. 9 | 28 linig.&#x27;,
-        full:
-            &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.&#x27;,
     };
 
     /**
      * The edition route to the assets image of a firm sign: JE No. 15, 16 Lines.
      */
     static readonly FIRM_JE_NO_15_LIN_16: EditionRoute &#x3D; {
-        route: &#x27;assets/img/edition/series1/section5/op25/firm_je_no15_lin16.png&#x27;,
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no15_lin16.png&#x27;,
         short: &#x27;[JE] | No. 15 | 16 linig.&#x27;,
-        full:
-            &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.&#x27;,
     };
 
     /**
      * The path to the assets image of the graph for op 25.
      */
     static readonly GRAPH_IMAGE_OP25: EditionRoute &#x3D; {
-        route: &#x27;assets/img/edition/series1/section5/op25/graph_op25_1.png&#x27;,
+        route: &#x27;assets/img/edition/series/1/section/5/op25/graph_op25_1.png&#x27;,
         short: &#x27;Statischer Graph op. 25/I&#x27;,
         full: &#x27;Statischer Graph der Skizzen von Opus 25/I.&#x27;,
     };
@@ -464,6 +535,7 @@ export class EditionConstants {
 </code></pre>
     </div>
 </div>
+
 
 
 

@@ -1,0 +1,179 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "14",
+                    "format": {
+                        "height": 180,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "id": "Aa:SkI/1a",
+                            "sigle": "Aa:SkI/1a",
+                            "sigleAddendum": "T. 1–2, [3–6]",
+                            "selectable": false,
+                            "linkTo": "OP12_SOURCE_NOT_A",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 2,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Aa:SkI/1a",
+                            "sigle": "Aa:SkI/1a",
+                            "sigleAddendum": "T. [7–12]",
+                            "selectable": false,
+                            "linkTo": "OP12_SOURCE_NOT_A",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 6,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Aa:SkI/1a",
+                            "sigle": "Aa:SkI/1a",
+                            "sigleAddendum": "T. [13–17]",
+                            "selectable": false,
+                            "linkTo": "OP12_SOURCE_NOT_A",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "14",
+                    "format": {
+                        "height": 180,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "id": "Aa:SkI/4",
+                            "sigle": "Aa:SkI/4",
+                            "sigleAddendum": "T. 10–11",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 4,
+                                    "endSystem": 7
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Aa:SkI/5",
+                            "sigle": "Aa:SkI/5",
+                            "sigleAddendum": "T. 10–11",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 6,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Aa:SkI/3",
+                            "sigle": "Aa:SkI/3",
+                            "sigleAddendum": "T. 10–11",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Aa:SkI/2",
+                            "sigle": "Aa:SkI/2",
+                            "sigleAddendum": "T. 10, [11–12]",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 12,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "16",
+                    "format": {
+                        "height": "175",
+                        "width": "270"
+                    },
+                    "content": [
+                        {
+                            "id": "Aa:SkI/1b",
+                            "sigle": "Aa:SkI/1b",
+                            "sigleAddendum": "T. [18–22]",
+                            "selectable": false,
+                            "linkTo": "OP12_SOURCE_NOT_A",
+                            "sections": [
+                                {
+                                    "startSystem": 6,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "id": "Aa:SkI/1b",
+                            "sigle": "Aa:SkI/1b",
+                            "sigleAddendum": "T. [23–24]",
+                            "selectable": false,
+                            "linkTo": "OP12_SOURCE_NOT_A",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "16",
+                    "format": {
+                        "height": "175",
+                        "width": "270"
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "B–H",
+            "convoluteLabel": "B–H (siehe Kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP12_SOURCE_NOT_A"
+        }
+    ]
+}

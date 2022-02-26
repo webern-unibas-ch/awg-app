@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >FolioService</li>
@@ -1219,8 +1220,8 @@ export class FolioService {
             // Init
             const centeredXPosition &#x3D; contentItem.upperLeftCorner.x + contentItem.width / 2;
             const centeredYPosition &#x3D; contentItem.upperLeftCorner.y + contentItem.height / 2;
-            const itemLabelArray: string[] &#x3D; contentItem.measure
-                ? [contentItem.sigle, &#x27; T. &#x27; + contentItem.measure]
+            const itemLabelArray: string[] &#x3D; contentItem.sigleAddendum
+                ? [contentItem.sigle, &#x27; &#x27; + contentItem.sigleAddendum]
                 : [contentItem.sigle];
 
             const snapItemLabel: any &#x3D; snapCanvas.text(0, 0, itemLabelArray);
@@ -1277,7 +1278,7 @@ export class FolioService {
             const snapItemGroup: any &#x3D; snapCanvas.group(snapItemLink);
             snapItemGroup.attr({
                 itemGroupId: itemLabelArray,
-                itemId: contentItem.sigle,
+                itemId: contentItem.id,
                 class: &#x27;item-group&#x27;,
             });
 
@@ -1286,7 +1287,7 @@ export class FolioService {
             snapItemGroup.append(snapItemGroupTitle);
 
             // Add click event handler
-            // Exclude and mute sketch Aa:SkI for now
+            // Exclude and mute non-selectable sketches for now
             if (contentItem.selectable &#x3D;&#x3D;&#x3D; false) {
                 snapItemGroup.click(() &#x3D;&gt; this.ref.openModal(contentItem.linkTo));
                 snapItemGroup.attr({
@@ -1294,7 +1295,7 @@ export class FolioService {
                     fill: &#x27;grey&#x27;,
                 });
             } else {
-                snapItemGroup.click(() &#x3D;&gt; this.ref.selectSvgSheet(contentItem.sigle));
+                snapItemGroup.click(() &#x3D;&gt; this.ref.selectSvgSheet(contentItem.id));
                 snapItemGroup.attr({
                     stroke: fgColor,
                     fill: fgColor,
@@ -1310,6 +1311,7 @@ export class FolioService {
     </div>
 
 </div>
+
 
 
 

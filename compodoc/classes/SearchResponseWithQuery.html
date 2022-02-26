@@ -42,6 +42,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Classes</li>
   <li >SearchResponseWithQuery</li>
@@ -117,12 +118,12 @@ and its corresponding query string.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(data: <a href="../classes/SearchResponseJson.html" target="_self">SearchResponseJson</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(data: <a href="../classes/SearchResponseJson.html" target="_self">SearchResponseJson</a>, query: <a href="../undefineds/SearchQuery.html" target="_self">SearchQuery</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/views/data-view/models/search-response-with-query.model.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/data-view/models/search-response-with-query.model.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -164,7 +165,7 @@ search response and the corresponding query string.</p>
                                                         <td>query</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -172,7 +173,7 @@ search response and the corresponding query string.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>The given query string.</p>
+                                                                <p>The given search query.</p>
 
                                                         </td>
                                                 </tr>
@@ -209,7 +210,7 @@ search response and the corresponding query string.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/views/data-view/models/search-response-with-query.model.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/views/data-view/models/search-response-with-query.model.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -235,19 +236,19 @@ search response and the corresponding query string.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/views/data-view/models/search-response-with-query.model.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/data-view/models/search-response-with-query.model.ts:20</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The query string.</p>
+                    <div class="io-description"><p>The query string or extended search object.</p>
 </div>
                 </td>
             </tr>
@@ -267,6 +268,7 @@ search response and the corresponding query string.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SearchResponseJson } from &#x27;@awg-shared/api-objects&#x27;;
+import { ExtendedSearchParams, SearchQuery } from &#x27;@awg-views/data-view/models&#x27;;
 
 /**
  * The SearchResponseWithQuery class.
@@ -282,9 +284,9 @@ export class SearchResponseWithQuery {
     data: SearchResponseJson;
 
     /**
-     * The query string.
+     * The query string or extended search object.
      */
-    query: string;
+    query: SearchQuery;
 
     /**
      * Constructor of the SearchResponseWithQuery class.
@@ -293,9 +295,9 @@ export class SearchResponseWithQuery {
      * search response and the corresponding query string.
      *
      * @param {SearchResponseJson} data The given search response.
-     * @param {string} query The given query string.
+     * @param {SearchQuery} query The given search query.
      */
-    constructor(data: SearchResponseJson, query: string) {
+    constructor(data: SearchResponseJson, query: SearchQuery) {
         this.data &#x3D; data;
         this.query &#x3D; query;
     }
@@ -303,6 +305,7 @@ export class SearchResponseWithQuery {
 </code></pre>
     </div>
 </div>
+
 
 
 

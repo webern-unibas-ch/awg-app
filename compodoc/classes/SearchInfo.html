@@ -42,6 +42,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Classes</li>
   <li >SearchInfo</li>
@@ -116,12 +117,12 @@ to store the data to inform about a search.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, nhits: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(query: <a href="../undefineds/SearchQuery.html" target="_self">SearchQuery</a>, nhits: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/side-info/side-info-models/search-info.model.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/side-info/side-info-models/search-info.model.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -148,7 +149,7 @@ of a search.</p>
                                                         <td>query</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                                        <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -156,7 +157,7 @@ of a search.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <p>The given query string.</p>
+                                                                <p>The given search query.</p>
 
                                                         </td>
                                                 </tr>
@@ -209,7 +210,7 @@ of a search.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/side-info/side-info-models/search-info.model.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/side-info/side-info-models/search-info.model.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -235,19 +236,19 @@ of a search.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/side-info/side-info-models/search-info.model.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/side-info/side-info-models/search-info.model.ts:13</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The query string of a search.</p>
+                    <div class="io-description"><p>The query of a search (string or ExtendedSearchParams).</p>
 </div>
                 </td>
             </tr>
@@ -266,11 +267,19 @@ of a search.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SearchInfo {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SearchQuery } from &#x27;@awg-views/data-view/models&#x27;;
+
+/**
+ * The SearchInfo class.
+ *
+ * It is used in the context of the search info
+ * to store the data to inform about a search.
+ */
+export class SearchInfo {
     /**
-     * The query string of a search.
+     * The query of a search (string or ExtendedSearchParams).
      */
-    query: string;
+    query: SearchQuery;
 
     /**
      * The number of hits of a search.
@@ -284,10 +293,10 @@ of a search.</p>
      * from a given query and number of hits
      * of a search.
      *
-     * @param {string} query The given query string.
+     * @param {SearchQuery} query The given search query.
      * @param {string} nhits The given number of hits.
      */
-    constructor(query: string, nhits: string) {
+    constructor(query: SearchQuery, nhits: string) {
         this.query &#x3D; query;
         this.nhits &#x3D; nhits;
     }
@@ -295,6 +304,7 @@ of a search.</p>
 </code></pre>
     </div>
 </div>
+
 
 
 

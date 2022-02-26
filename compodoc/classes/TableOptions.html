@@ -42,6 +42,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Classes</li>
   <li >TableOptions</li>
@@ -62,7 +63,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/table-data.model.ts</code>
+            <code>src/app/shared/table/table-data.model.ts</code>
         </p>
 
 
@@ -92,7 +93,7 @@ to store the options for a table.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#case" >case</a>
+                                <a href="#isCaseInsensitive" >isCaseInsensitive</a>
                             </li>
                             <li>
                                 <a href="#reverse" >reverse</a>
@@ -129,22 +130,22 @@ to store the options for a table.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="case"></a>
+                    <a name="isCaseInsensitive"></a>
                     <span class="name">
-                        <span ><b>case</b></span>
-                        <a href="#case"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>isCaseInsensitive</b></span>
+                        <a href="#isCaseInsensitive"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/TableOptions.html" target="_self" >TableOptionsSortCase</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/table-data.model.ts:133</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/shared/table/table-data.model.ts:122</a></div>
                         </td>
                     </tr>
 
@@ -176,7 +177,7 @@ to store the options for a table.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/table-data.model.ts:128</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/shared/table/table-data.model.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -208,7 +209,7 @@ to store the options for a table.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/table-data.model.ts:113</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/shared/table/table-data.model.ts:102</a></div>
                         </td>
                     </tr>
 
@@ -240,7 +241,7 @@ to store the options for a table.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/table-data.model.ts:123</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/shared/table/table-data.model.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -272,7 +273,7 @@ to store the options for a table.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/table-data.model.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/shared/table/table-data.model.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -298,9 +299,7 @@ to store the options for a table.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IconDefinition } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
-import { Observable, of } from &#x27;rxjs&#x27;;
-
-import { SelectResponse, SelectResponseBindings } from &#x27;./select-response.model&#x27;;
+import { Observable, of as observableOf } from &#x27;rxjs&#x27;;
 
 /**
  * The TableData class.
@@ -317,30 +316,31 @@ export class TableData {
     /**
      * The total rows of the table data as Observable.
      */
-    totalRows$: Observable&lt;SelectResponseBindings[]&gt;;
+    totalRows$: Observable&lt;any[]&gt;;
 
     /**
      * The filtered rows of the table data.
      */
-    filteredRows: SelectResponseBindings[];
+    filteredRows: any[];
 
     /**
      * The paginated rows of the table data as Observable.
      */
-    paginatedRows$: Observable&lt;SelectResponseBindings[]&gt;;
+    paginatedRows$: Observable&lt;any[]&gt;;
 
     /**
      * Constructor of the TableData class.
      *
      * It initializes the class with given values.
      *
-     * @param {SelectResponse} data The given SelectResponse.
+     * @param {string[]} header The given table header.
+     * @param {any[]} rows The given table rows.
      */
-    constructor(data: SelectResponse) {
-        this.header &#x3D; data.head.vars;
-        this.totalRows$ &#x3D; of(data.body.bindings);
-        this.filteredRows &#x3D; data.body.bindings;
-        this.paginatedRows$ &#x3D; of(data.body.bindings);
+    constructor(header: string[], rows: any[]) {
+        this.header &#x3D; header || [&#x27;&#x27;];
+        this.totalRows$ &#x3D; observableOf(rows) || observableOf([]);
+        this.filteredRows &#x3D; rows || [];
+        this.paginatedRows$ &#x3D; observableOf(rows) || observableOf([]);
     }
 }
 
@@ -352,22 +352,22 @@ export class TableData {
  */
 export class PaginatorOptions {
     /**
-     * The current page number of the Paginator options.
+     * The current page number.
      */
     page: number;
 
     /**
-     * The number of rows per page of the Paginator options.
+     * The selected number of rows per page.
      */
-    pageSize: number;
+    selectedPageSize: number;
 
     /**
-     * The page size optios of the Paginator options.
+     * The page size options.
      */
     pageSizeOptions: number[];
 
     /**
-     * The size of the collection of the Paginator options.
+     * The size of the collection.
      */
     collectionSize: number;
 
@@ -377,26 +377,16 @@ export class PaginatorOptions {
      * It initializes the class with given values.
      *
      * @param {number} page The current page number.
-     * @param {number} pageSize The number of rows per page.
+     * @param {number} selectedPageSize The number of rows per page.
      * @param {number[]} pageSizeOptions The options for the page size.
      * @param {number} collectionSize The size of the collection.
      */
-    constructor(page: number, pageSize: number, pageSizeOptions: number[], collectionSize: number) {
+    constructor(page: number, selectedPageSize: number, pageSizeOptions: number[], collectionSize: number) {
         this.page &#x3D; page;
-        this.pageSize &#x3D; pageSize;
+        this.selectedPageSize &#x3D; selectedPageSize;
         this.pageSizeOptions &#x3D; pageSizeOptions;
         this.collectionSize &#x3D; collectionSize;
     }
-}
-
-/**
- * The TableOptionsSortCase enumeration.
- *
- * It stores the possible sort case options for a table.
- */
-export enum TableOptionsSortCase {
-    CASE_SENSITIVE &#x3D; &#x27;case-sensitive&#x27;,
-    CASE_INSENSITIVE &#x3D; &#x27;case-insensitive&#x27;,
 }
 
 /**
@@ -429,11 +419,12 @@ export class TableOptions {
     /**
      * The sort case  of the Table options.
      */
-    case: TableOptionsSortCase;
+    isCaseInsensitive: boolean;
 }
 </code></pre>
     </div>
 </div>
+
 
 
 

@@ -84,28 +84,62 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
-import { EditionOverviewComponent } from &#x27;./edition-outlets/edition-overview.component&#x27;;
-import { EditionSectionComponent } from &#x27;./edition-outlets/edition-section&#x27;;
-import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
-import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
-
 import { EditionConstants } from &#x27;./models&#x27;;
+
+import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
+import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
+import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-detail-nav.component&#x27;;
+import { EditionRowTablesComponent } from &#x27;@awg-views/edition-view/edition-outlets/edition-row-tables&#x27;;
+import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-sections&#x27;;
+import { EditionSectionDetailComponent } from &#x27;./edition-outlets/edition-sections/edition-section-detail&#x27;;
+import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
+import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-series/edition-series-detail&#x27;;
+import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
 
 /* Routes of the EditionViewModule */
 const editionViewRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
-        component: EditionSectionComponent,
+        component: EditionViewComponent,
         children: [
             {
-                // CompositionID (op12, M317, etc.
+                // Overview of series.
+                path: &#x27;series&#x27;,
+                component: EditionSeriesComponent,
+            },
+            {
+                // Series by id (I, II, III).
+                path: &#x27;series/:id&#x27;,
+                component: EditionSeriesDetailComponent,
+                children: [
+                    {
+                        path: &#x27;sections&#x27;,
+                        component: EditionSectionsComponent,
+                    },
+                    {
+                        path: &#x27;section/:id&#x27;,
+                        component: EditionSectionDetailComponent,
+                    },
+                    {
+                        path: &#x27;sections/:id&#x27;,
+                        redirectTo: &#x27;section/:id&#x27;,
+                        pathMatch: &#x27;full&#x27;,
+                    },
+                    {
+                        path: &#x27;&#x27;,
+                        redirectTo: &#x27;sections&#x27;,
+                        pathMatch: &#x27;full&#x27;,
+                    },
+                ],
+            },
+            {
+                // CompositionID (op12, M317, etc.).
                 path: &#x27;composition/:compositionId&#x27;,
-                component: EditionViewComponent,
+                component: EditionComplexComponent,
                 children: [
                     {
                         path: &#x27;&#x27;,
-                        component: EditionOverviewComponent,
+                        component: EditionDetailNavComponent,
                         children: [
                             {
                                 path: EditionConstants.EDITION_INTRO.route,
@@ -115,10 +149,10 @@ const editionViewRoutes: Routes &#x3D; [
                                     )&quot;,
                             },
                             {
-                                path: EditionConstants.EDITION_DETAIL.route,
+                                path: EditionConstants.EDITION_SHEETS.route,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(&#x27;./edition-outlets/edition-detail/edition-detail.module&#x27;).then(\
-                                        m &#x3D;&gt; m.EditionDetailModule\
+                                    &quot;import(&#x27;./edition-outlets/edition-sheets/edition-sheets.module&#x27;).then(\
+                                        m &#x3D;&gt; m.EditionSheetsModule\
                                     )&quot;,
                             },
                             {
@@ -137,12 +171,17 @@ const editionViewRoutes: Routes &#x3D; [
                             },
                             {
                                 path: &#x27;&#x27;,
-                                redirectTo: &#x27;/&#x27; + EditionConstants.EDITION_INTRO.route,
+                                redirectTo: EditionConstants.EDITION_INTRO.route,
                                 pathMatch: &#x27;full&#x27;,
                             },
                         ],
                     },
                 ],
+            },
+            {
+                // Overview of row tables.
+                path: &#x27;row-tables&#x27;,
+                component: EditionRowTablesComponent,
             },
         ],
     },
@@ -150,15 +189,19 @@ const editionViewRoutes: Routes &#x3D; [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionViewComponent}, {@link EditionOverviewComponent},
- * {@link EditionSectionComponent}, {@link EditionSeriesComponent}
+ * {@link EditionViewComponent}, {@link EditionDetailNavComponent},
+ * {@link EditionSectionsComponent}, {@link EditionSeriesComponent}
  * and {@link EditionTypeComponent}.
  */
 export const routedEditionViewComponents &#x3D; [
     EditionViewComponent,
-    EditionOverviewComponent,
-    EditionSectionComponent,
+    EditionComplexComponent,
+    EditionDetailNavComponent,
+    EditionRowTablesComponent,
+    EditionSectionsComponent,
+    EditionSectionDetailComponent,
     EditionSeriesComponent,
+    EditionSeriesDetailComponent,
     EditionTypeComponent,
 ];
 
@@ -175,6 +218,8 @@ export class EditionViewRoutingModule {}
 </code></pre>
     </div>
 </div>
+
+
 
 
 

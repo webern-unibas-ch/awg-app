@@ -37,6 +37,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Directives</li>
   <li >RouterLinkStubDirective</li>
@@ -70,6 +71,7 @@
 after click.</p>
 
             </p>
+
 
 
 
@@ -182,7 +184,7 @@ after click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/testing/router-stubs.ts:30</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/testing/router-stubs.ts:40</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -214,7 +216,7 @@ after click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/testing/router-stubs.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/testing/router-stubs.ts:46</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -241,7 +243,7 @@ after click.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/testing/router-stubs.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/testing/router-stubs.ts:34</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -273,8 +275,8 @@ after click.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/testing/router-stubs.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/testing/router-stubs.ts:57</a></div>
                 </td>
             </tr>
 
@@ -321,8 +323,8 @@ after click.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/testing/router-stubs.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/testing/router-stubs.ts:57</a></div>
                 </td>
             </tr>
 
@@ -370,7 +372,7 @@ after click.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/testing/router-stubs.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/testing/router-stubs.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -395,6 +397,16 @@ import { convertToParamMap, QueryParamsHandling, ParamMap, Params } from &#x27;@
 import { BehaviorSubject } from &#x27;rxjs&#x27;;
 
 import { AppModule } from &#x27;@awg-app/app.module&#x27;;
+
+/**
+ * Interface for a UrlSegmentStub.
+ */
+export interface UrlSegmentStub {
+    /**
+     * Path of a UrlSegment.
+     */
+    path: string;
+}
 
 // #docregion router-link-stub
 /**
@@ -527,6 +539,22 @@ export class ActivatedRouteStub {
     private _testChildren: Params;
 
     /**
+     * Private BehaviorSubject to handle test route url.
+     */
+    private _urlSubject &#x3D; new BehaviorSubject(this.testUrl);
+
+    /**
+     * Observable that contains a map of the urls
+     */
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly url &#x3D; this._urlSubject.asObservable();
+
+    /**
+     * Private variable: _testUrl
+     */
+    private _testUrl: UrlSegmentStub[];
+
+    /**
      * Constructor for the ActivatedRouteStub (stub).
      *
      * @param {Params} [initialParams] The optional initial route parameters.
@@ -566,12 +594,21 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Getter for the test route queryÜaramMap.
+     * Getter for the test route queryParamMap.
      *
-     * @returns The latest test route queryParamMap.
+     * @returns The latest test route children.
      */
     get testChildren() {
         return this._testChildren;
+    }
+
+    /**
+     * Getter for the test route url.
+     *
+     * @returns The latest test route url.
+     */
+    get testUrl() {
+        return this._testUrl;
     }
 
     /**
@@ -581,15 +618,17 @@ export class ActivatedRouteStub {
      */
     get snapshot() {
         return {
+            children: this.testChildren,
+            queryParamMap: this.testQueryParamMap,
             params: this.testParams,
             paramMap: this.testParamMap,
-            queryParamMap: this.testQueryParamMap,
-            children: this.testChildren,
+            url: this.testUrl,
         };
     }
 
     /**
      * Setter for test route parameters.
+     *
      * @param params The test route parameters to be set.
      */
     set testParams(params: {}) {
@@ -598,7 +637,7 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Setter for the test route paramMap
+     * Setter for the test route paramMap.
      *
      * @param {} params The route parameters to be set.
      */
@@ -608,7 +647,7 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Setter for the test route queryParamMap
+     * Setter for the test route queryParamMap.
      *
      * @param {Params} params The route queryParameters to be set.
      */
@@ -618,13 +657,23 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Setter for the test route queryParamMap
+     * Setter for the test route children.
      *
-     * @param {Params} params The route queryParameters to be set.
+     * @param {Params} params The route children to be set.
      */
     set testChildren(params: {}) {
         this._testChildren &#x3D; params;
         this._childrenSubject.next(this._testChildren);
+    }
+
+    /**
+     * Setter for the test route url.
+     *
+     * @param {Params} params The route url to be set.
+     */
+    set testUrl(params: UrlSegmentStub[]) {
+        this._testUrl &#x3D; params;
+        this._urlSubject.next(this._testUrl);
     }
 }
 // #enddocregion activated-route-stub
@@ -637,12 +686,14 @@ export class ActivatedRouteStub {
 @NgModule({
     imports: [AppModule],
     declarations: [RouterLinkStubDirective, RouterOutletStubComponent],
+    exports: [RouterOutletStubComponent],
 })
 export class FakeRouterModule {}
 </code></pre>
     </div>
 
 </div>
+
 
 
 

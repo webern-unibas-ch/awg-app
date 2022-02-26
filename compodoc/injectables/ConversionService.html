@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >ConversionService</li>
@@ -425,8 +426,7 @@ of an accessible resource to be displayed via HTML.</p>
 <p>It finds internal links in the online-access property
 of a bibliography link and adjusts the values
 to be displayed via HTML.</p>
-<p>str = &#39;(PDF) <a href="http://www.example.com/myPdf.pdf&#39;">http://www.example.com/myPdf.pdf&#39;</a></p>
-</div>
+<div><pre class="line-numbers"><code class="language-html">str = &#39;(PDF) http://www.example.com/myPdf.pdf&#39;</code></pre></div></div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1498,8 +1498,8 @@ of a selections or hlists value.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="950"
-                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:950</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="955"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:955</a></div>
                 </td>
             </tr>
 
@@ -2255,8 +2255,8 @@ to be displayed via HTML.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="178"
-                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:178</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="175"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:175</a></div>
                 </td>
             </tr>
 
@@ -2334,8 +2334,8 @@ to be displayed in the bibliography detail view.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="279"
-                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:279</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:276</a></div>
                 </td>
             </tr>
 
@@ -3132,17 +3132,14 @@ export class ConversionService extends ApiService {
         let resText: string;
 
         const searchResults &#x3D; { ...searchResponseWithQuery.data };
-        const searchValue &#x3D; searchResponseWithQuery.query;
 
         if (searchResults.subjects) {
-            const length &#x3D; searchResults.subjects.length;
-            const resString: string &#x3D; length &#x3D;&#x3D;&#x3D; 1 ? &#x27;Resultat&#x27; : &#x27;Resultate&#x27;;
-            resText &#x3D; &#x60;${searchResults.nhits} &#x60;;
-            resText +&#x3D; &#x60;${resString} für &quot;${searchValue}&quot;&#x60;;
-
+            const currentLength &#x3D; searchResults.subjects.length;
+            const totalLength &#x3D; searchResults.nhits;
+            const resString: string &#x3D; length &#x3D;&#x3D;&#x3D; 1 ? &#x27;Ergbnis&#x27; : &#x27;Ergebnisse&#x27;;
+            resText &#x3D; &#x60;${currentLength} / ${totalLength} ${resString}&#x60;;
             if (this.filteredOut &gt; 0) {
-                const duplString: string &#x3D; this.filteredOut &#x3D;&#x3D;&#x3D; 1 ? &#x27;Duplikat&#x27; : &#x27;Duplikate&#x27;;
-                resText +&#x3D; &#x60; (${this.filteredOut} ${duplString} entfernt)&#x60;;
+                resText +&#x3D; &#x27; (Duplikate enfternt)&#x27;;
             }
         } else {
             resText &#x3D; &#x60;Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.&#x60;;
@@ -3263,6 +3260,9 @@ export class ConversionService extends ApiService {
      * @returns {ResourceDetail} The converted resource detail object.
      */
     convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        if (!resourceData || !resourceData[0] || !resourceData[0].access) {
+            return new ResourceDetail(undefined, undefined);
+        }
         if (resourceData[0].access &#x3D;&#x3D;&#x3D; &#x27;OK&#x27;) {
             return this._prepareAccessibleResource(resourceData, resourceId);
         } else {
@@ -3917,10 +3917,15 @@ export class ConversionService extends ApiService {
             return;
         }
         this.filteredOut &#x3D; 0;
-        return subjects.reduce(
-            (x, y) &#x3D;&gt; (x.findIndex(e &#x3D;&gt; e.obj_id &#x3D;&#x3D;&#x3D; y.obj_id) &lt; 0 ? [...x, y] : ((this.filteredOut +&#x3D; 1), x)),
-            []
-        );
+        const distinctObj &#x3D; {};
+        let distinctArr &#x3D; [];
+
+        subjects.forEach((subject: SubjectItemJson) &#x3D;&gt; (distinctObj[subject.obj_id] &#x3D; subject));
+        distinctArr &#x3D; Object.values(distinctObj);
+
+        this.filteredOut &#x3D; subjects.length - distinctArr.length;
+
+        return distinctArr;
     }
 
     /**
@@ -3952,6 +3957,7 @@ export class ConversionService extends ApiService {
     </div>
 
 </div>
+
 
 
 

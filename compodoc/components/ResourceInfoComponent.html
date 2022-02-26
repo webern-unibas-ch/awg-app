@@ -146,7 +146,7 @@ showing information about search results.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_destroy$" >_destroy$</a>
+                                <a href="#_destroyed$" >_destroyed$</a>
                             </li>
                             <li>
                                 <a href="#faArrowLeft" >faArrowLeft</a>
@@ -249,7 +249,7 @@ showing information about search results.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, streamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>)</code>
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, streamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -279,7 +279,7 @@ to get the streamed search results.</p>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>fb</td>
+                                                        <td>formBuilder</td>
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
@@ -366,8 +366,8 @@ to get the streamed search results.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="288"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:288</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="304"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:304</a></div>
                 </td>
             </tr>
 
@@ -467,8 +467,8 @@ search result subjects array.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="314"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:314</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="330"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:330</a></div>
                 </td>
             </tr>
 
@@ -564,8 +564,8 @@ in the search response subjects array.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="247"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:247</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="263"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:263</a></div>
                 </td>
             </tr>
 
@@ -649,8 +649,8 @@ in the search response subjects array.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:144</a></div>
                 </td>
             </tr>
 
@@ -699,8 +699,8 @@ into resourceInfo data object.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="206"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:206</a></div>
                 </td>
             </tr>
 
@@ -778,8 +778,8 @@ with the given id.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="180"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:180</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:184</a></div>
                 </td>
             </tr>
 
@@ -857,8 +857,8 @@ at the given index position and triggers the navigation method.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="217"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:217</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="221"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:221</a></div>
                 </td>
             </tr>
 
@@ -866,8 +866,8 @@ at the given index position and triggers the navigation method.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: navigateToSearchPanel.</p>
-<p>It navigates back to the &#39;/data/search/fulltext&#39; route
-(search panel) with the current query string if given.</p>
+<p>It navigates back to the &#39;/data/search/&#39; route
+(search panel) with the current search query if given.</p>
 </div>
 
                     <div>
@@ -904,8 +904,8 @@ at the given index position and triggers the navigation method.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:248</a></div>
                 </td>
             </tr>
 
@@ -946,8 +946,8 @@ when destroying the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:129</a></div>
                 </td>
             </tr>
 
@@ -977,11 +977,11 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_destroy$"></a>
+                    <a name="_destroyed$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_destroy$</b></span>
-                        <a href="#_destroy$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_destroyed$</b></span>
+                        <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1004,7 +1004,7 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _destroy$.</p>
+                    <div class="io-description"><p>Private variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
 </div>
                 </td>
@@ -1334,7 +1334,7 @@ resourceInfoData.searchResults.data.subjects array.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:119</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1366,7 +1366,7 @@ import { switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
 import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
 import { DataStreamerService } from &#x27;@awg-core/services&#x27;;
-import { SearchResponseWithQuery } from &#x27;@awg-views/data-view/models&#x27;;
+import { SearchQuery, SearchResponseWithQuery } from &#x27;@awg-views/data-view/models&#x27;;
 import { ResourceInfo, ResourceInfoResource } from &#x27;@awg-side-info/side-info-models&#x27;;
 
 /**
@@ -1447,11 +1447,11 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     resultSize: number;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+    private _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
 
     /**
      * Constructor of the ResourceInfoComponent.
@@ -1461,11 +1461,15 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * DataStreamerService instance
      * to get the streamed search results.
      *
-     * @param {FormBuilder} fb Instance of the FormBuilder.
+     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      * @param {Router} router Instance of the Router.
      * @param {DataStreamerService} streamerService Instance of the DataStreamerService.
      */
-    constructor(private fb: FormBuilder, private router: Router, private streamerService: DataStreamerService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private streamerService: DataStreamerService
+    ) {}
 
     /**
      * Getter for the current index position of the form group.
@@ -1507,7 +1511,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     // Return search response with query from streamer service
                     return this.streamerService.getSearchResponseWithQuery();
                 }),
-                takeUntil(this._destroy$)
+                takeUntil(this._destroyed$)
             )
             .subscribe(
                 (res: SearchResponseWithQuery) &#x3D;&gt; {
@@ -1567,15 +1571,27 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
      * Public method: navigateToSearchPanel.
      *
-     * It navigates back to the &#x27;/data/search/fulltext&#x27; route
-     * (search panel) with the current query string if given.
+     * It navigates back to the &#x27;/data/search/&#x27; route
+     * (search panel) with the current search query if given.
      *
      * @returns {void} Navigates to the search panel.
      */
     navigateToSearchPanel(): void {
-        const queryStr &#x3D; this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : &#x27;&#x27;;
-        this.router.navigate([&#x27;/data/search/fulltext&#x27;], {
-            queryParams: { query: queryStr },
+        let commands;
+        const extras &#x3D; { queryParams: {} };
+        const query: SearchQuery &#x3D; this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : &#x27;&#x27;;
+
+        if (typeof query &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+            commands &#x3D; [&#x27;/data/search&#x27;];
+            extras.queryParams &#x3D; { query: query };
+        }
+        if (typeof query &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; typeof this.resourceInfoData.searchResults.query &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+            commands &#x3D; [&#x27;/data/search/&#x27;, &#x27;extended&#x27;];
+            extras.queryParams &#x3D; { ...this.resourceInfoData.searchResults.query };
+        }
+
+        this.router.navigate(commands, {
+            queryParams: { query },
         });
     }
 
@@ -1589,10 +1605,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let&#x27;s also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let&#x27;s also complete the subject itself
+        this._destroyed$.complete();
     }
 
     /**
@@ -1646,7 +1662,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     private _buildForm(index: number, resultSize: number): void {
         const regexPattern &#x3D; /^[1-9]\d{0,9}$/; // Match any up-to 10-digit integer greater 0
 
-        this.resourceInfoFormGroup &#x3D; this.fb.group({
+        this.resourceInfoFormGroup &#x3D; this.formBuilder.group({
             resourceInfoIndex: [
                 index || &#x27;&#x27;,
                 Validators.compose([
@@ -1711,10 +1727,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             &lt;/button&gt;
         &lt;/div&gt;
         &lt;div class&#x3D;&quot;text-center mx-auto&quot;&gt;
-            &lt;strong class&#x3D;&quot;text-muted small&quot;&gt;Aktueller Suchbegriff&lt;/strong&gt;
+            &lt;strong class&#x3D;&quot;text-muted small&quot;&gt;Aktuelle Suchanfrage&lt;/strong&gt;
             &lt;br /&gt;
             &lt;span *ngIf&#x3D;&quot;resourceInfoData?.searchResults?.query; else noQuery&quot;&gt;{{
-                resourceInfoData?.searchResults?.query
+                resourceInfoData?.searchResults?.query | json
             }}&lt;/span&gt;
             &lt;ng-template #noQuery&gt;
                 &lt;span&gt;---&lt;/span&gt;
@@ -1898,12 +1914,14 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229* 20.11.2017***************************************************/ --><!-- sideinfo: resource --><div class="card" *ngIf="resourceInfoData">    <div class="card-header d-flex">        <div class="ml-3 mr-1 my-auto">            <button                type="button"                class="btn btn-outline-info btn-sm"                ngbTooltip="Zur Suche"                tooltipClass="d-none d-md-inline d-lg-none"                (click)="navigateToSearchPanel()">                <fa-icon [icon]="faArrowLeft"></fa-icon>                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>            </button>        </div>        <div class="text-center mx-auto">            <strong class="text-muted small">Aktueller Suchbegriff</strong>            <br />            <span *ngIf="resourceInfoData?.searchResults?.query; else noQuery">{{                resourceInfoData?.searchResults?.query            }}</span>            <ng-template #noQuery>                <span>---</span>            </ng-template>        </div>    </div>    <!-- end card-header -->    <div class="card-body bg-light">        <!-- search results -->        <div *ngIf="resultSize">            <ul class="list-group awg-resource-info-list-group">                <!-- previous resource -->                <a                    *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"                    (click)="navigateToResource(previous?.id)">                    <div>                        <strong class="text-muted small">                            <fa-icon [icon]="faChevronLeft"></fa-icon>                            <span class="awg-resource-info-btn-text ml-2"                                >Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span                            >                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="previous?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ previous?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noPrevious>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left">                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>                <!-- current resource -->                <li                    class="list-group-item list-group-item-info awg-list-group-item"                    *ngIf="resourceInfoData?.resources?.current; let current">                    <strong class="text-muted small mb-1"                        ><span class="awg-resource-info-text"                            >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</span                        ></strong                    >                    <form [formGroup]="resourceInfoFormGroup">                        <div class="input-group input-group-sm">                            <div class="input-group-prepend">                                <button                                    type="submit"                                    [ngClass]="{                                        btn: true,                                        \'btn-outline-success\': resourceInfoFormGroup.valid,                                        \'btn-outline-danger\': resourceInfoFormGroup.invalid                                    }"                                    id="awg-resource-info-input-group-text"                                    [disabled]="                                        resourceInfoIndex === current?.displayIndex || !resourceInfoFormGroup?.valid                                    "                                    (click)="navigateToResourceByIndex(resourceInfoIndex)">                                    Gehe zu                                </button>                            </div>                            <!-- INPUT: required, min=1, max=resultSize and pattern are ensured by Formbuilder.Validators -->                            <input                                type="number"                                class="form-control"                                formControlName="resourceInfoIndex"                                id="awg-resource-info-input"                                aria-label="Index of search result"                                aria-describedby="awg-resource-info-input-group-text"                                size="4"                                step="1" />                        </div>                    </form>                </li>                <!-- next resource -->                <a                    *ngIf="resourceInfoData?.resources?.next; else noNext; let next"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"                    (click)="navigateToResource(next?.id)">                    <div class="mb-1">                        <strong class="text-muted small">                            <span class="awg-resource-info-btn-text mr-2"                                >Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span                            >                            <fa-icon [icon]="faChevronRight"></fa-icon>                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="next?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ next?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noNext>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right">                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>            </ul>        </div>        <!-- end ngIf: resultSize -->    </div>    <!-- end card-body -->    <div class="card-footer text-muted small">        Design and structure of this resource view adapted from        <a href="https://arachne.dainst.org/">iDAI.object arachne</a> (11/2017)    </div>    <!-- end card-footer --></div><!-- end card.ngIf: resourceInfo --></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229* 20.11.2017***************************************************/ --><!-- sideinfo: resource --><div class="card" *ngIf="resourceInfoData">    <div class="card-header d-flex">        <div class="ml-3 mr-1 my-auto">            <button                type="button"                class="btn btn-outline-info btn-sm"                ngbTooltip="Zur Suche"                tooltipClass="d-none d-md-inline d-lg-none"                (click)="navigateToSearchPanel()">                <fa-icon [icon]="faArrowLeft"></fa-icon>                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>            </button>        </div>        <div class="text-center mx-auto">            <strong class="text-muted small">Aktuelle Suchanfrage</strong>            <br />            <span *ngIf="resourceInfoData?.searchResults?.query; else noQuery">{{                resourceInfoData?.searchResults?.query | json            }}</span>            <ng-template #noQuery>                <span>---</span>            </ng-template>        </div>    </div>    <!-- end card-header -->    <div class="card-body bg-light">        <!-- search results -->        <div *ngIf="resultSize">            <ul class="list-group awg-resource-info-list-group">                <!-- previous resource -->                <a                    *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"                    (click)="navigateToResource(previous?.id)">                    <div>                        <strong class="text-muted small">                            <fa-icon [icon]="faChevronLeft"></fa-icon>                            <span class="awg-resource-info-btn-text ml-2"                                >Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span                            >                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="previous?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ previous?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noPrevious>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left">                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>                <!-- current resource -->                <li                    class="list-group-item list-group-item-info awg-list-group-item"                    *ngIf="resourceInfoData?.resources?.current; let current">                    <strong class="text-muted small mb-1"                        ><span class="awg-resource-info-text"                            >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</span                        ></strong                    >                    <form [formGroup]="resourceInfoFormGroup">                        <div class="input-group input-group-sm">                            <div class="input-group-prepend">                                <button                                    type="submit"                                    [ngClass]="{                                        btn: true,                                        \'btn-outline-success\': resourceInfoFormGroup.valid,                                        \'btn-outline-danger\': resourceInfoFormGroup.invalid                                    }"                                    id="awg-resource-info-input-group-text"                                    [disabled]="                                        resourceInfoIndex === current?.displayIndex || !resourceInfoFormGroup?.valid                                    "                                    (click)="navigateToResourceByIndex(resourceInfoIndex)">                                    Gehe zu                                </button>                            </div>                            <!-- INPUT: required, min=1, max=resultSize and pattern are ensured by Formbuilder.Validators -->                            <input                                type="number"                                class="form-control"                                formControlName="resourceInfoIndex"                                id="awg-resource-info-input"                                aria-label="Index of search result"                                aria-describedby="awg-resource-info-input-group-text"                                size="4"                                step="1" />                        </div>                    </form>                </li>                <!-- next resource -->                <a                    *ngIf="resourceInfoData?.resources?.next; else noNext; let next"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"                    (click)="navigateToResource(next?.id)">                    <div class="mb-1">                        <strong class="text-muted small">                            <span class="awg-resource-info-btn-text mr-2"                                >Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span                            >                            <fa-icon [icon]="faChevronRight"></fa-icon>                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="next?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ next?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noNext>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right">                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>            </ul>        </div>        <!-- end ngIf: resultSize -->    </div>    <!-- end card-body -->    <div class="card-footer text-muted small">        Design and structure of this resource view adapted from        <a href="https://arachne.dainst.org/">iDAI.object arachne</a> (11/2017)    </div>    <!-- end card-footer --></div><!-- end card.ngIf: resourceInfo --></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceInfoComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 

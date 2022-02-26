@@ -14,13 +14,13 @@
 <title>cluster_BibliographyModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 1300,-230.8 1300,-32.8 8,-32.8"/>
 </g>
-<g id="clust9" class="cluster">
-<title>cluster_BibliographyModule_exports</title>
-<polygon fill="none" stroke="black" points="141,-170.8 141,-222.8 1117,-222.8 1117,-170.8 141,-170.8"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_BibliographyModule_declarations</title>
 <polygon fill="none" stroke="black" points="334,-40.8 334,-92.8 1292,-92.8 1292,-40.8 334,-40.8"/>
+</g>
+<g id="clust9" class="cluster">
+<title>cluster_BibliographyModule_exports</title>
+<polygon fill="none" stroke="black" points="141,-170.8 141,-222.8 1117,-222.8 1117,-170.8 141,-170.8"/>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_BibliographyModule_imports</title>

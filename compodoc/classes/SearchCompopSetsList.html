@@ -1,0 +1,403 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li >SearchCompopSetsList</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/data-view/models/search-compop.model.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The SearchCompopSetsList class.</p>
+<p>It is used in the context of the extended search
+to store the data for a list of comparison operator sets.</p>
+
+            </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#compopList" >compopList</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compopList"></a>
+                    <span class="name">
+                        <span ><b>compopList</b></span>
+                        <a href="#compopList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>SearchCompopSet[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/data-view/models/search-compop.model.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The list of comparison operator sets.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SearchCompop {
+    /**
+     * The value of a comparison operator.
+     */
+    value: string;
+
+    /**
+     * The title of a comparison operator.
+     */
+    title: string;
+
+    /**
+     * The label of a comparison operator.
+     */
+    label: string;
+
+    /**
+     * Constructor of the SearchCompop class.
+     *
+     * It initializes the class with given values
+     * for value, title, and label.
+     *
+     * @param {string} value The given compop value.
+     * @param {string} title The given compop title.
+     * @param {string} label The given compop label.
+     */
+    constructor(value: string, title: string, label: string) {
+        this.value &#x3D; value || &#x27;&#x27;;
+        this.title &#x3D; title || &#x27;&#x27;;
+        this.label &#x3D; label || &#x27;&#x27;;
+    }
+}
+
+/**
+ * The SearchCompopSet class.
+ *
+ * It is used in the context of the extended search
+ * to store the data for a set of comparison operators.
+ */
+class SearchCompopSet {
+    /**
+     * The id of a comparison operator list.
+     */
+    id: number;
+
+    /**
+     * The set of comparison operators.
+     */
+    compopSet: SearchCompop[];
+}
+
+/**
+ * The SearchCompopSetsList class.
+ *
+ * It is used in the context of the extended search
+ * to store the data for a list of comparison operator sets.
+ */
+class SearchCompopSetsList {
+    /**
+     * The list of comparison operator sets.
+     */
+    compopList: SearchCompopSet[];
+}
+
+/**
+ * Object constant for the EXISTS comparison operator.
+ */
+const EXISTS: SearchCompop &#x3D; new SearchCompop(&#x27;EXISTS&#x27;, &#x27;exists&#x27;, &#x27;&amp;exist;&#x27;);
+
+/**
+ * Object constant for the MATCH comparison operator.
+ */
+const MATCH: SearchCompop &#x3D; new SearchCompop(&#x27;MATCH&#x27;, &#x27;match&#x27;, &#x27;&amp;isin;&#x27;);
+
+/**
+ * Object constant for the MATCH_BOOLEAN comparison operator.
+ */
+const MATCH_BOOLEAN: SearchCompop &#x3D; new SearchCompop(&#x27;MATCH_BOOLEAN&#x27;, &#x27;match boolean&#x27;, &#x27;&amp;isin;&amp;oplus;&#x27;);
+
+/**
+ * Object constant for the EQ comparison operator.
+ */
+const EQ: SearchCompop &#x3D; new SearchCompop(&#x27;EQ&#x27;, &#x27;equal&#x27;, &#x27;&#x3D;&#x27;);
+
+/**
+ * Object constant for the NOT_EQ comparison operator.
+ */
+const NOT_EQ: SearchCompop &#x3D; new SearchCompop(&#x27;!EQ&#x27;, &#x27;not equal&#x27;, &#x27;&amp;ne;&#x27;);
+
+/**
+ * Object constant for the LIKE comparison operator.
+ */
+const LIKE: SearchCompop &#x3D; new SearchCompop(&#x27;LIKE&#x27;, &#x27;like&#x27;, &#x27;&amp;sub;&#x27;);
+
+/**
+ * Object constant for the NOT_LIKE comparison operator.
+ */
+const NOT_LIKE: SearchCompop &#x3D; new SearchCompop(&#x27;!LIKE&#x27;, &#x27;not like&#x27;, &#x27;&amp;nsub;&#x27;);
+
+/**
+ * Object constant for the GT comparison operator.
+ */
+const GT: SearchCompop &#x3D; new SearchCompop(&#x27;GT&#x27;, &#x27;greater than&#x27;, &#x27;&amp;gt;&#x27;);
+
+/**
+ * Object constant for the GT_EQ comparison operator.
+ */
+const GT_EQ: SearchCompop &#x3D; new SearchCompop(&#x27;GT_EQ&#x27;, &#x27;greater equal than&#x27;, &#x27;&amp;ge;&#x27;);
+
+/**
+ * Object constant for the LT comparison operator.
+ */
+const LT: SearchCompop &#x3D; new SearchCompop(&#x27;LT&#x27;, &#x27;less than&#x27;, &#x27;&amp;lt;&#x27;);
+
+/**
+ * Object constant for the LT_EQ comparison operator.
+ */
+const LT_EQ: SearchCompop &#x3D; new SearchCompop(&#x27;LT_EQ&#x27;, &#x27;less equal than&#x27;, &#x27;&amp;le;&#x27;);
+
+/**
+ * Object constant for the search compop sets list of the extended search.
+ *
+ * It provides a list of available search compop sets.
+ */
+export const SEARCH_COMPOP_SETS_LIST: SearchCompopSetsList &#x3D; {
+    compopList: [
+        // Edge case for uncatched value types
+        {
+            id: 0,
+            compopSet: [EXISTS],
+        },
+        // 6 RESPTR GUI id 3 --&gt; gui pulldown,
+        // 6 RESPTR GUI id 6 --&gt; gui searchbox
+        // 7 SELECTION --&gt; gui pulldown,
+        // 11 COLOR --&gt; gui colorpicker,
+        // 12 HLIST --&gt; gui hlist,
+        // 15 GEONAME --&gt; gui geoname
+        {
+            id: 1,
+            compopSet: [EXISTS, EQ],
+        },
+
+        // 13 ICONCLASS --&gt; gui ??
+        {
+            id: 2,
+            compopSet: [EXISTS, EQ, LIKE],
+        },
+
+        // 4 DATE -&gt; gui datepicker
+        // 5 PERIOD -&gt; gui datepicker
+        // Without !EQ
+        {
+            id: 3,
+            compopSet: [EXISTS, EQ, GT, GT_EQ, LT, LT_EQ],
+        },
+
+        // 2 INTEGER -&gt; gui text
+        // 3 FLOAT -&gt; gui text
+        {
+            id: 4,
+            compopSet: [EXISTS, EQ, NOT_EQ, GT, GT_EQ, LT, LT_EQ],
+        },
+
+        // 1 TEXT --&gt; gui text
+        // 6 RESPTR GUI id 14 richtext --&gt; gui text
+        // 14 RICHTEXT --&gt; gui text
+        {
+            id: 5,
+            compopSet: [EXISTS, EQ, NOT_EQ, MATCH, MATCH_BOOLEAN, LIKE, NOT_LIKE],
+        },
+    ],
+};
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'SearchCompopSetsList.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

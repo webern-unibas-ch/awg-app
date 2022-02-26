@@ -18,6 +18,10 @@
 <title>cluster_GraphVisualizerModule_providers</title>
 <polygon fill="none" stroke="black" points="1914,-40.8 1914,-92.8 2138,-92.8 2138,-40.8 1914,-40.8"/>
 </g>
+<g id="clust14" class="cluster">
+<title>cluster_GraphVisualizerModule_exports</title>
+<polygon fill="none" stroke="black" points="1022,-170.8 1022,-222.8 1216,-222.8 1216,-170.8 1022,-170.8"/>
+</g>
 <g id="clust13" class="cluster">
 <title>cluster_GraphVisualizerModule_imports</title>
 <polygon fill="none" stroke="black" points="1792,-40.8 1792,-92.8 1906,-92.8 1906,-40.8 1792,-40.8"/>
@@ -25,10 +29,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_GraphVisualizerModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 1784,-92.8 1784,-40.8 16,-40.8"/>
-</g>
-<g id="clust14" class="cluster">
-<title>cluster_GraphVisualizerModule_exports</title>
-<polygon fill="none" stroke="black" points="1022,-170.8 1022,-222.8 1216,-222.8 1216,-170.8 1022,-170.8"/>
 </g>
 <!-- ConstructResultsComponent -->
 <g id="node1" class="node">

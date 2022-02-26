@@ -156,7 +156,7 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_destroy$" >_destroy$</a>
+                                <a href="#_destroyed$" >_destroyed$</a>
                             </li>
                             <li>
                                 <a href="#errorMessage" >errorMessage</a>
@@ -168,10 +168,13 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                                 <a href="#resourceData" >resourceData</a>
                             </li>
                             <li>
+                                <a href="#resourceDetailTabTitles" >resourceDetailTabTitles</a>
+                            </li>
+                            <li>
                                 <a href="#resourceId" >resourceId</a>
                             </li>
                             <li>
-                                <a href="#tabTitles" >tabTitles</a>
+                                <a href="#selectedResourceDetailTabId" >selectedResourceDetailTabId</a>
                             </li>
                         </ul>
                     </td>
@@ -199,6 +202,9 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onResourceDetailTabChange" >onResourceDetailTabChange</a>
                             </li>
                             <li>
                                 <a href="#routeToSidenav" >routeToSidenav</a>
@@ -246,7 +252,7 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:84</a></div>
                             </td>
                         </tr>
 
@@ -403,8 +409,8 @@ the GndService, and the LoadingService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="215"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:215</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="253"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:253</a></div>
                 </td>
             </tr>
 
@@ -483,8 +489,8 @@ The gnd event is emitted from the <a href="../components/ResourceDetailHtmlConte
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:138</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:146</a></div>
                 </td>
             </tr>
 
@@ -530,8 +536,8 @@ the corresponding resource data from the <a href="../injectables/DataApiService.
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="194"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:194</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="232"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:232</a></div>
                 </td>
             </tr>
 
@@ -612,8 +618,8 @@ not exists (first call), use resourceId.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="241"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:241</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="279"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:279</a></div>
                 </td>
             </tr>
 
@@ -652,8 +658,8 @@ not exists (first call), use resourceId.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:133</a></div>
                 </td>
             </tr>
 
@@ -667,6 +673,85 @@ when initializing the component.</p>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onResourceDetailTabChange"></a>
+                    <span class="name">
+                        <span ><b>onResourceDetailTabChange</b></span>
+                        <a href="#onResourceDetailTabChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onResourceDetailTabChange(tabEvent: NgbNavChangeEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onResourceDetailTabChange.</p>
+<p>It triggers the <a href="_routeToSelf">_routeToSelf</a> method after a
+tab change request to update the URL.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>tabEvent</td>
+                                    <td>
+                                            <code>NgbNavChangeEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given tabEvent with an id of the next route (nextId).</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Routes to itself with the given id as route.</p>
 
                     </div>
                 </td>
@@ -693,8 +778,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="229"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:229</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="267"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:267</a></div>
                 </td>
             </tr>
 
@@ -739,8 +824,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:173</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="211"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:211</a></div>
                 </td>
             </tr>
 
@@ -808,11 +893,11 @@ and the streamer service.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_destroy$"></a>
+                    <a name="_destroyed$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_destroy$</b></span>
-                        <a href="#_destroy$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_destroyed$</b></span>
+                        <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -829,13 +914,13 @@ and the streamer service.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:84</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _destroy$.</p>
+                    <div class="io-description"><p>Private variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
 </div>
                 </td>
@@ -867,7 +952,7 @@ and the streamer service.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -900,7 +985,7 @@ and the streamer service.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -933,7 +1018,7 @@ and the streamer service.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:51</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -941,6 +1026,48 @@ and the streamer service.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: resourceData.</p>
 <p>It keeps the data of the resource detail.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resourceDetailTabTitles"></a>
+                    <span class="name">
+                        <span ><b>resourceDetailTabTitles</b></span>
+                        <a href="#resourceDetailTabTitles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        html: &#x27;Detail&#x27;,
+        raw: &#x27;JSON (raw)&#x27;,
+        converted: &#x27;JSON (converted)&#x27;,
+    }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: resourceDetailTabTitles.</p>
+<p>It keeps the titles for the tab panels.</p>
 </div>
                 </td>
             </tr>
@@ -966,7 +1093,7 @@ and the streamer service.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -984,38 +1111,29 @@ and the streamer service.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="tabTitles"></a>
+                    <a name="selectedResourceDetailTabId"></a>
                     <span class="name">
-                        <span ><b>tabTitles</b></span>
-                        <a href="#tabTitles"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>selectedResourceDetailTabId</b></span>
+                        <a href="#selectedResourceDetailTabId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>{
-        html: &#x27;Detail&#x27;,
-        raw: &#x27;JSON (raw)&#x27;,
-        converted: &#x27;JSON (converted)&#x27;,
-    }</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:65</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:77</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: tabTitles.</p>
-<p>It keeps the titles for the tab panels.</p>
+                    <div class="io-description"><p>Public variable: selectedResourceDetailTabId.</p>
+<p>It keeps the id of the selected tab panel.</p>
 </div>
                 </td>
             </tr>
@@ -1044,7 +1162,7 @@ and the streamer service.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:114</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1079,7 +1197,7 @@ and the streamer service.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:115</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:123</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1104,10 +1222,11 @@ and the streamer service.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
-import { ActivatedRoute, ParamMap, Router } from &#x27;@angular/router&#x27;;
+import { ActivatedRoute, NavigationEnd, Router } from &#x27;@angular/router&#x27;;
 
 import { Observable, Subject } from &#x27;rxjs&#x27;;
-import { switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
+import { filter, map, switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
+import { NgbNavChangeEvent } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 
 import { DataStreamerService, GndService, LoadingService } from &#x27;@awg-core/services&#x27;;
 import { GndEvent } from &#x27;@awg-core/services/gnd-service&#x27;;
@@ -1163,22 +1282,29 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     resourceId: string;
 
     /**
-     * Public variable: tabTitles.
+     * Public variable: resourceDetailTabTitles.
      *
      * It keeps the titles for the tab panels.
      */
-    tabTitles &#x3D; {
+    resourceDetailTabTitles &#x3D; {
         html: &#x27;Detail&#x27;,
         raw: &#x27;JSON (raw)&#x27;,
         converted: &#x27;JSON (converted)&#x27;,
     };
 
     /**
-     * Private variable: _destroy$.
+     * Public variable: selectedResourceDetailTabId.
+     *
+     * It keeps the id of the selected tab panel.
+     */
+    selectedResourceDetailTabId: string;
+
+    /**
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+    private _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
 
     /**
      * Constructor of the ResourceDetailComponent.
@@ -1242,19 +1368,31 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     getResourceData(): void {
         // Observe route params
-        this.route.paramMap
+        this.router.events
             .pipe(
-                switchMap((params: ParamMap) &#x3D;&gt; {
-                    // Short cut for id param
-                    const id &#x3D; params.get(&#x27;id&#x27;);
+                filter(event &#x3D;&gt; event instanceof NavigationEnd),
+                map(() &#x3D;&gt; this.route),
+                switchMap((route: ActivatedRoute) &#x3D;&gt; {
+                    // Snapshot of current route query params
+                    const params &#x3D; this.route.snapshot.paramMap;
+
+                    // Shortcut for resource id param
+                    const resourceId &#x3D; params.get(&#x27;id&#x27;);
+
+                    while (route.firstChild) {
+                        route &#x3D; route.firstChild;
+                    }
+
+                    // Snapshot of tab route
+                    this.selectedResourceDetailTabId &#x3D; route.snapshot.url[0].path;
 
                     // Update current resource id via streamer service
-                    this.updateResourceId(id);
+                    this.updateResourceId(resourceId);
 
                     // Fetch resource data depending on param id
-                    return this.dataApiService.getResourceData(id);
+                    return this.dataApiService.getResourceData(resourceId);
                 }),
-                takeUntil(this._destroy$)
+                takeUntil(this._destroyed$)
             )
             .subscribe(
                 (data: ResourceData) &#x3D;&gt; {
@@ -1263,6 +1401,24 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                 },
                 err &#x3D;&gt; (this.errorMessage &#x3D; err)
             );
+    }
+
+    /**
+     * Public method: onResourceDetailTabChange.
+     *
+     * It triggers the {@link _routeToSelf} method after a
+     * tab change request to update the URL.
+     *
+     * @param {NgbNavChangeEvent} tabEvent The given tabEvent with an id of the next route (nextId).
+     *
+     * @returns {void} Routes to itself with the given id as route.
+     */
+    onResourceDetailTabChange(tabEvent: NgbNavChangeEvent): void {
+        const route &#x3D; tabEvent.nextId;
+        // Route to new tab
+        this.router.navigate([route], {
+            relativeTo: this.route,
+        });
     }
 
     /**
@@ -1345,10 +1501,10 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let&#x27;s also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let&#x27;s also complete the subject itself:
+        this._destroyed$.complete();
     }
 }
 </code></pre>
@@ -1380,9 +1536,14 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
             (resourceRequest)&#x3D;&quot;navigateToResource($event)&quot;&gt;&lt;/awg-resource-detail-header&gt;
 
         &lt;!-- resourceDetailData body --&gt;
-        &lt;nav ngbNav #resourceDetailNav&#x3D;&quot;ngbNav&quot; class&#x3D;&quot;nav-tabs&quot;&gt;
-            &lt;ng-container ngbNavItem&gt;
-                &lt;a ngbNavLink class&#x3D;&quot;awg-resource-detail-long-tab&quot;&gt;{{ tabTitles?.html }}&lt;/a&gt;
+        &lt;nav
+            ngbNav
+            #resourceDetailNav&#x3D;&quot;ngbNav&quot;
+            class&#x3D;&quot;nav-tabs&quot;
+            [activeId]&#x3D;&quot;selectedResourceDetailTabId&quot;
+            (navChange)&#x3D;&quot;onResourceDetailTabChange($event)&quot;&gt;
+            &lt;ng-container ngbNavItem&#x3D;&quot;html&quot;&gt;
+                &lt;a ngbNavLink class&#x3D;&quot;awg-resource-detail-long-tab&quot;&gt;{{ resourceDetailTabTitles?.html }}&lt;/a&gt;
                 &lt;ng-template ngbNavContent&gt;
                     &lt;!-- html visualisation --&gt;
                     &lt;awg-resource-detail-html
@@ -1392,16 +1553,16 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                     &lt;/awg-resource-detail-html&gt;
                 &lt;/ng-template&gt;
             &lt;/ng-container&gt;
-            &lt;ng-container ngbNavItem&gt;
-                &lt;a ngbNavLink class&#x3D;&quot;ml-auto&quot;&gt;{{ tabTitles?.converted }}&lt;/a&gt;
+            &lt;ng-container ngbNavItem&#x3D;&quot;converted-json&quot;&gt;
+                &lt;a ngbNavLink class&#x3D;&quot;ml-auto&quot;&gt;{{ resourceDetailTabTitles?.converted }}&lt;/a&gt;
                 &lt;ng-template ngbNavContent&gt;
                     &lt;!-- converted json visualisation --&gt;
                     &lt;awg-resource-detail-json-converted [resourceJsonConvertedData]&#x3D;&quot;resourceData.jsonConverted&quot;&gt;
                     &lt;/awg-resource-detail-json-converted&gt;
                 &lt;/ng-template&gt;
             &lt;/ng-container&gt;
-            &lt;ng-container ngbNavItem&gt;
-                &lt;a ngbNavLink&gt;{{ tabTitles?.raw }}&lt;/a&gt;
+            &lt;ng-container ngbNavItem&#x3D;&quot;raw-json&quot;&gt;
+                &lt;a ngbNavLink&gt;{{ resourceDetailTabTitles?.raw }}&lt;/a&gt;
                 &lt;ng-template ngbNavContent&gt;
                     &lt;!-- raw json visualisation --&gt;
                     &lt;awg-resource-detail-json-raw [resourceJsonRawData]&#x3D;&quot;resourceData.jsonRaw&quot;&gt;
@@ -1496,12 +1657,14 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- resource detail box --><!-- loading spinner --><div *ngIf="isLoading$ | async; else notLoading">    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></div><ng-template #notLoading>    <!-- error message -->    <div class="errorMessage" *ngIf="errorMessage">        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>    </div>    <!-- async data -->    <div class="awg-resource-detail-tabs" *ngIf="resourceData">        <!-- resourceDetailData header -->        <awg-resource-detail-header            *ngIf="resourceData.detail.header"            [header]="resourceData.detail.header"            [resourceUrl]="httpGetUrl"            (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>        <!-- resourceDetailData body -->        <nav ngbNav #resourceDetailNav="ngbNav" class="nav-tabs">            <ng-container ngbNavItem>                <a ngbNavLink class="awg-resource-detail-long-tab">{{ tabTitles?.html }}</a>                <ng-template ngbNavContent>                    <!-- html visualisation -->                    <awg-resource-detail-html                        [resourceDetailData]="resourceData.detail"                        (gndRequest)="exposeGnd($event)"                        (resourceRequest)="navigateToResource($event)">                    </awg-resource-detail-html>                </ng-template>            </ng-container>            <ng-container ngbNavItem>                <a ngbNavLink class="ml-auto">{{ tabTitles?.converted }}</a>                <ng-template ngbNavContent>                    <!-- converted json visualisation -->                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">                    </awg-resource-detail-json-converted>                </ng-template>            </ng-container>            <ng-container ngbNavItem>                <a ngbNavLink>{{ tabTitles?.raw }}</a>                <ng-template ngbNavContent>                    <!-- raw json visualisation -->                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">                    </awg-resource-detail-json-raw>                </ng-template>            </ng-container>        </nav>        <div [ngbNavOutlet]="resourceDetailNav"></div>    </div>    <!--    TODO: remove    <ul class="nav nav-tabs nav-justified" role="tablist">        <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>        <li class="dropdown awg-resource-detail-short-tab">            <a href="#" data-toggle="dropdown" class="dropdown-toggle">                {{ \'{\' }} JSON {{ \'}\' }} <b class="caret"></b>            </a>            <ul class="dropdown-menu dropdown-menu-right">                <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>                <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>            </ul>        </li>    </ul>    --></ng-template></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!-- resource detail box --><!-- loading spinner --><div *ngIf="isLoading$ | async; else notLoading">    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></div><ng-template #notLoading>    <!-- error message -->    <div class="errorMessage" *ngIf="errorMessage">        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>    </div>    <!-- async data -->    <div class="awg-resource-detail-tabs" *ngIf="resourceData">        <!-- resourceDetailData header -->        <awg-resource-detail-header            *ngIf="resourceData.detail.header"            [header]="resourceData.detail.header"            [resourceUrl]="httpGetUrl"            (resourceRequest)="navigateToResource($event)"></awg-resource-detail-header>        <!-- resourceDetailData body -->        <nav            ngbNav            #resourceDetailNav="ngbNav"            class="nav-tabs"            [activeId]="selectedResourceDetailTabId"            (navChange)="onResourceDetailTabChange($event)">            <ng-container ngbNavItem="html">                <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>                <ng-template ngbNavContent>                    <!-- html visualisation -->                    <awg-resource-detail-html                        [resourceDetailData]="resourceData.detail"                        (gndRequest)="exposeGnd($event)"                        (resourceRequest)="navigateToResource($event)">                    </awg-resource-detail-html>                </ng-template>            </ng-container>            <ng-container ngbNavItem="converted-json">                <a ngbNavLink class="ml-auto">{{ resourceDetailTabTitles?.converted }}</a>                <ng-template ngbNavContent>                    <!-- converted json visualisation -->                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">                    </awg-resource-detail-json-converted>                </ng-template>            </ng-container>            <ng-container ngbNavItem="raw-json">                <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>                <ng-template ngbNavContent>                    <!-- raw json visualisation -->                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">                    </awg-resource-detail-json-raw>                </ng-template>            </ng-container>        </nav>        <div [ngbNavOutlet]="resourceDetailNav"></div>    </div>    <!--    TODO: remove    <ul class="nav nav-tabs nav-justified" role="tablist">        <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>        <li class="dropdown awg-resource-detail-short-tab">            <a href="#" data-toggle="dropdown" class="dropdown-toggle">                {{ \'{\' }} JSON {{ \'}\' }} <b class="caret"></b>            </a>            <ul class="dropdown-menu dropdown-menu-right">                <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>                <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>            </ul>        </li>    </ul>    --></ng-template></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceDetailComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 

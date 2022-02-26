@@ -43,6 +43,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Interfaces</li>
   <li
@@ -264,16 +265,17 @@ export class ResourceData {
         // Snapshot of raw json response
         this.jsonRaw &#x3D; JSON.parse(JSON.stringify(resourceFullResponse));
 
-        // Converted html data
-        this.detail &#x3D; detail;
-
         // Snapshot of json response from converted html data
         this.jsonConverted &#x3D; JSON.parse(JSON.stringify(detail));
+
+        // Converted html data
+        this.detail &#x3D; detail;
     }
 }
 </code></pre>
     </div>
 </div>
+
 
 
 

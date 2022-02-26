@@ -42,6 +42,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Classes</li>
   <li >FolioSvgData</li>
@@ -73,7 +74,7 @@
                 <p>The FolioSvgData class.</p>
 <p>It is used in the context of the edition folio convolutes
 to store and expose the svg data for a folio.</p>
-<p>Exposed to be used throughout <a href="../modules/EditionDetailModule.html">EditionDetailModule</a>.</p>
+<p>Exposed to be used throughout <a href="../modules/EditionSheetsModule.html">EditionSheetsModule</a>.</p>
 
             </p>
 
@@ -125,7 +126,7 @@ to store and expose the svg data for a folio.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:198</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:204</a></div>
                             </td>
                         </tr>
 
@@ -195,7 +196,7 @@ to store and expose the svg data for a folio.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:198</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:204</a></div>
                         </td>
                     </tr>
 
@@ -229,7 +230,7 @@ to draw the svg of the content items of a folio.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:182</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:188</a></div>
                         </td>
                     </tr>
 
@@ -263,7 +264,7 @@ to draw the svg of the sheet of a folio.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:190</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:196</a></div>
                         </td>
                     </tr>
 
@@ -391,14 +392,19 @@ class FolioSvgSystems {
  */
 class FolioSvgContentItem {
     /**
+     * The id for the label of a content item (string).
+     */
+    id: string;
+
+    /**
      * The sigle for the label of a content item (string).
      */
     sigle: string;
 
     /**
-     * The measure for the label of a content item (string).
+     * The sigle addendum for the label of a content item (string).
      */
-    measure: string;
+    sigleAddendum: string;
 
     /**
      * The optional boolean flag if the content item can be selected..
@@ -444,8 +450,9 @@ class FolioSvgContentItem {
      * @param {FolioCalculationContentItem} calculatedContentItem The given calculated folio content item.
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
+        this.id &#x3D; calculatedContentItem.id;
         this.sigle &#x3D; calculatedContentItem.sigle;
-        this.measure &#x3D; calculatedContentItem.measure;
+        this.sigleAddendum &#x3D; calculatedContentItem.sigleAddendum;
         this.selectable &#x3D; calculatedContentItem.selectable;
         this.linkTo &#x3D; calculatedContentItem.linkTo;
 
@@ -462,7 +469,7 @@ class FolioSvgContentItem {
  * It is used in the context of the edition folio convolutes
  * to store and expose the svg data for a folio.
  *
- * Exposed to be used throughout {@link EditionDetailModule}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
 export class FolioSvgData {
     /**
@@ -508,6 +515,7 @@ export class FolioSvgData {
 </code></pre>
     </div>
 </div>
+
 
 
 

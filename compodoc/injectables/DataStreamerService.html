@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >DataStreamerService</li>
@@ -125,7 +126,7 @@ and resource ids for the search components.</p>
                                 <a href="#clearResourceId" >clearResourceId</a>
                             </li>
                             <li>
-                                <a href="#clearSearchResults" >clearSearchResults</a>
+                                <a href="#clearSearchResponseWithQuery" >clearSearchResponseWithQuery</a>
                             </li>
                             <li>
                                 <a href="#getResourceId" >getResourceId</a>
@@ -207,16 +208,16 @@ and resource ids for the search components.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="clearSearchResults"></a>
+                    <a name="clearSearchResponseWithQuery"></a>
                     <span class="name">
-                        <span ><b>clearSearchResults</b></span>
-                        <a href="#clearSearchResults"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>clearSearchResponseWithQuery</b></span>
+                        <a href="#clearSearchResponseWithQuery"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>clearSearchResults()</code>
+<code>clearSearchResponseWithQuery()</code>
                 </td>
             </tr>
 
@@ -231,7 +232,7 @@ and resource ids for the search components.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: clearSearchResults.</p>
+                    <div class="io-description"><p>Public method: clearSearchResponseWithQuery.</p>
 <p>It clears the search results with query stream.</p>
 </div>
 
@@ -762,13 +763,13 @@ export class DataStreamerService {
     }
 
     /**
-     * Public method: clearSearchResults.
+     * Public method: clearSearchResponseWithQuery.
      *
      * It clears the search results with query stream.
      *
      * @returns {void} Clears the search results with query stream.
      */
-    clearSearchResults(): void {
+    clearSearchResponseWithQuery(): void {
         this._searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), &#x27;&#x27;));
     }
 
@@ -787,6 +788,7 @@ export class DataStreamerService {
     </div>
 
 </div>
+
 
 
 

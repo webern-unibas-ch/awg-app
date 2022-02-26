@@ -241,6 +241,7 @@ as well as the <a href="../modules/CoreModule.html">CoreModule</a>, <a href="../
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { LOCALE_ID, NgModule } from &#x27;@angular/core&#x27;;
 import { BrowserModule } from &#x27;@angular/platform-browser&#x27;;
+import { BrowserAnimationsModule } from &#x27;@angular/platform-browser/animations&#x27;;
 import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
 import { registerLocaleData } from &#x27;@angular/common&#x27;;
 import localeDeDE from &#x27;@angular/common/locales/de&#x27;;
@@ -265,7 +266,15 @@ registerLocaleData(localeDeDE);
  * as well as the {@link CoreModule}, {@link SharedModule} and {@link SideInfoModule}.
  */
 @NgModule({
-    imports: [BrowserModule, HttpClientModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        CoreModule,
+        SharedModule,
+        SideInfoModule,
+        AppRoutingModule,
+    ],
     declarations: [AppComponent],
     providers: [{ provide: LOCALE_ID, useValue: &#x27;de-DE&#x27; }], // Change global LOCALE-ID
     bootstrap: [AppComponent],
@@ -274,6 +283,8 @@ export class AppModule {}
 </code></pre>
     </div>
 </div>
+
+
 
 
 

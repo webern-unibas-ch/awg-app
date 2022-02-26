@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >GraphVisualizerService</li>
@@ -935,7 +936,7 @@ from a given string.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_prepareSelectResponse(data: SelectResponseBindings[])</code>
+                    <code>_prepareSelectResponse(data: SearchResultBindings[])</code>
                 </td>
             </tr>
 
@@ -970,7 +971,7 @@ from a given string.</p>
                                 <tr>
                                     <td>data</td>
                                     <td>
-                                            <code>SelectResponseBindings[]</code>
+                                            <code>SearchResultBindings[]</code>
                                     </td>
 
                                     <td>
@@ -993,7 +994,7 @@ from a given string.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>: number; data: SelectResponse | string } An object with a status code, and the data as SelectResponse or string.</p>
+                        <p>: number; data: SearchResult | string } An object with a status code, and the data as SearchResult or string.</p>
 
                     </div>
                 </td>
@@ -1320,7 +1321,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/SelectResponse.html" target="_self" >Promise&lt;string | SelectResponse | []&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/SearchResult.html" target="_self" >Promise&lt;string | SearchResult | []&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1637,8 +1638,8 @@ import {
     PrefixForm,
     QueryResult,
     QueryTypeIndex,
-    SelectResponse,
-    SelectResponseBindings,
+    SearchResult,
+    SearchResultBindings,
     Triple,
     TripleComponent,
 } from &#x27;../models&#x27;;
@@ -1836,7 +1837,7 @@ export class GraphVisualizerService {
         query: string,
         ttlString: string,
         mimeType?: string
-    ): Promise&lt;string | SelectResponse | Triple[]&gt; {
+    ): Promise&lt;string | SearchResult | Triple[]&gt; {
         if (!mimeType) {
             mimeType &#x3D; &#x27;text/turtle&#x27;;
         }
@@ -2166,11 +2167,11 @@ export class GraphVisualizerService {
      *
      * It prepares the data of the select response.
      *
-     * @param {SelectResponseBindings[]} data The given obj.
+     * @param {SearchResultBindings[]} data The given obj.
      *
-     * @returns  {status: number; data: SelectResponse | string } An object with a status code, and the data as SelectResponse or string.
+     * @returns  {status: number; data: SearchResult | string } An object with a status code, and the data as SearchResult or string.
      */
-    private _prepareSelectResponse(data: SelectResponseBindings[]): { status: number; data: SelectResponse | string } {
+    private _prepareSelectResponse(data: SearchResultBindings[]): { status: number; data: SearchResult | string } {
         if (!data) {
             return;
         }
@@ -2223,7 +2224,7 @@ export class GraphVisualizerService {
         }
 
         // Re-format data
-        const reformatted: SelectResponse &#x3D; { head: { vars: varKeys }, body: { bindings: b } };
+        const reformatted: SearchResult &#x3D; { head: { vars: varKeys }, body: { bindings: b } };
 
         return { status: 200, data: reformatted };
     }
@@ -2232,6 +2233,7 @@ export class GraphVisualizerService {
     </div>
 
 </div>
+
 
 
 

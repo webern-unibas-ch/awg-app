@@ -152,7 +152,7 @@ and the results in table or grid view.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_destroy$" >_destroy$</a>
+                                <a href="#_destroyed$" >_destroyed$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -583,7 +583,7 @@ to be displayed in the search result list.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>createFormGroup(view: <a href="../classes/SearchParams.html" target="_self">SearchParamsViewTypes</a>)</code>
+<code>createFormGroup(view: <a href="../interfaces/SearchResult.html" target="_self">SearchResultsViewTypes</a>)</code>
                 </td>
             </tr>
 
@@ -620,7 +620,7 @@ and a search view control.</p>
                                 <tr>
                                     <td>view</td>
                                     <td>
-                                                <code><a href="../classes/SearchParams.html" target="_self" >SearchParamsViewTypes</a></code>
+                                                <code><a href="../interfaces/SearchResult.html" target="_self" >SearchResultsViewTypes</a></code>
                                     </td>
 
                                     <td>
@@ -1015,8 +1015,8 @@ with the given id.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="413"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:413</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="452"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:452</a></div>
                 </td>
             </tr>
 
@@ -1381,8 +1381,8 @@ values needed for the Paginator.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="373"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:373</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="372"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:372</a></div>
                 </td>
             </tr>
 
@@ -1457,8 +1457,8 @@ tracking function to track items identity.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="388"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:388</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:387</a></div>
                 </td>
             </tr>
 
@@ -1527,11 +1527,11 @@ and updates the info message and search info.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_destroy$"></a>
+                    <a name="_destroyed$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_destroy$</b></span>
-                        <a href="#_destroy$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_destroyed$</b></span>
+                        <a href="#_destroyed$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -1554,7 +1554,7 @@ and updates the info message and search info.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _destroy$.</p>
+                    <div class="io-description"><p>Private variable: _destroyed$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
 </div>
                 </td>
@@ -1917,7 +1917,7 @@ import { takeUntil } from &#x27;rxjs/operators&#x27;;
 import { faGripHorizontal, faTable } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
 import { SearchInfo } from &#x27;@awg-side-info/side-info-models&#x27;;
-import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from &#x27;@awg-views/data-view/models&#x27;;
+import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from &#x27;@awg-views/data-view/models&#x27;;
 
 import { ConversionService, DataStreamerService, SideInfoService } from &#x27;@awg-core/services&#x27;;
 
@@ -2050,11 +2050,11 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     private _selectedResourceId: string;
 
     /**
-     * Private variable: _destroy$.
+     * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private _destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+    private _destroyed$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
 
     /**
      * Constructor of the SearchResultListComponent.
@@ -2088,8 +2088,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
         if (
             this.searchParams.view &amp;&amp;
-            (this.searchParams.view &#x3D;&#x3D;&#x3D; SearchParamsViewTypes.table ||
-                this.searchParams.view &#x3D;&#x3D;&#x3D; SearchParamsViewTypes.grid)
+            (this.searchParams.view &#x3D;&#x3D;&#x3D; SearchResultsViewTypes.table ||
+                this.searchParams.view &#x3D;&#x3D;&#x3D; SearchResultsViewTypes.grid)
         ) {
             this.createFormGroup(this.searchParams.view);
         }
@@ -2102,13 +2102,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * using the reactive FormBuilder with a formGroup
      * and a search view control.
      *
-     * @param {SearchParamsViewTypes} view The given view type.
+     * @param {SearchResultsViewTypes} view The given view type.
      *
      * @returns {void} Creates the search view control form.
      */
-    createFormGroup(view: SearchParamsViewTypes): void {
+    createFormGroup(view: SearchResultsViewTypes): void {
         this.searchResultControlForm &#x3D; this.formBuilder.group({
-            searchResultViewControl: SearchParamsViewTypes[view],
+            searchResultViewControl: SearchResultsViewTypes[view],
         });
 
         this.listenToUserInputChange();
@@ -2151,7 +2151,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {boolean} The boolean value of the check result.
      */
     isGridView(): boolean {
-        return this.searchParams.view &#x3D;&#x3D;&#x3D; SearchParamsViewTypes.grid;
+        return this.searchParams.view &#x3D;&#x3D;&#x3D; SearchResultsViewTypes.grid;
     }
 
     /**
@@ -2252,8 +2252,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Cold request to streamer service
         const searchResponseWithQuery$: Observable&lt;SearchResponseWithQuery&gt; &#x3D; this.dataStreamerService
             .getSearchResponseWithQuery()
-            .pipe(takeUntil(this._destroy$));
-
+            .pipe(takeUntil(this._destroyed$));
         // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) &#x3D;&gt; {
@@ -2302,6 +2301,46 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Store search response and query
         this.searchResponseWithQuery &#x3D; { ...searchResponseWithQuery };
 
+        /* TODO Prepare data for generic table
+           const test: SearchResult &#x3D; {
+            head: { vars: [&#x27;typ&#x27;, &#x27;ressource&#x27;] },
+            body: {
+                bindings: [
+                    {
+                        typ: {
+                            type: &#x27;search&#x27;,
+                            icon: &#x27;&#x27;,
+                            value: &#x27;test1-typ-value&#x27;,
+                            label: &#x27;test1-typ-label&#x27;,
+                        },
+                        ressource: {
+                            type: &#x27;search&#x27;,
+                            icon: &#x27;&#x27;,
+                            value: &#x27;test1-res-value&#x27;,
+                            label: &#x27;test1-res-label&#x27;,
+                        },
+                    },
+                ],
+            },
+        };
+        this.searchResponseWithQuery.data?.subjects.map(subject &#x3D;&gt; {
+            const r &#x3D; {
+                typ: {
+                    type: &#x27;search&#x27;,
+                    icon: subject.iconsrc,
+                    value: subject.obj_id,
+                    label: subject.iconlabel,
+                },
+                ressource: {
+                    type: &#x27;search&#x27;,
+                    icon: &#x27;&#x27;,
+                    value: subject.obj_id,
+                    label: subject.value[0],
+                },
+            };
+            this.test.body.bindings.push(r);
+        });*/
+
         // Update info message about the search results
         this.searchResultText &#x3D; this.conversionService.prepareFullTextSearchResultText(
             searchResponseWithQuery,
@@ -2324,10 +2363,10 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.sideInfoService.clearSearchInfoData();
 
         // Emit truthy value to end all subscriptions
-        this._destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Now let&#x27;s also unsubscribe from the subject itself:
-        this._destroy$.unsubscribe();
+        // Now let&#x27;s also complete the subject itself
+        this._destroyed$.complete();
     }
 }
 </code></pre>
@@ -2335,6 +2374,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- content: search results --&gt;
+
+&lt;!-- TODO Use shared generic table component to display search results
+&lt;awg-table
+    tableTitle&#x3D;&quot;{{ searchResponseWithQuery?.query | json }}&quot;
+    [headerInputData]&#x3D;&quot;test.head.vars&quot;
+    [rowInputData]&#x3D;&quot;test.body.bindings&quot;&gt;&lt;/awg-table&gt;
+--&gt;
+
 &lt;div class&#x3D;&quot;awg-search-results&quot; *ngIf&#x3D;&quot;searchResponseWithQuery?.data&quot;&gt;
     &lt;!-- header --&gt;
     &lt;div class&#x3D;&quot;row d-flex justify-content-between mb-4 awg-search-results-header&quot;&gt;
@@ -2421,7 +2468,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                             &lt;/span&gt;
                         &lt;/td&gt;
                         &lt;td class&#x3D;&quot;col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9&quot;&gt;
-                            &lt;span [compile-html]&#x3D;&quot;(subject?.value)[0]&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/span&gt;
+                            &lt;span
+                                &gt;&lt;em&gt;{{ subject!.valuelabel[0] }}:&amp;nbsp;&lt;/em&gt;&lt;/span
+                            &gt;&lt;span [compile-html]&#x3D;&quot;subject!.value[0]&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/span&gt;
                         &lt;/td&gt;
                     &lt;/tr&gt;
                 &lt;/tbody&gt;
@@ -2437,7 +2486,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 &lt;/div&gt;
                 &lt;div class&#x3D;&quot;card-body&quot;&gt;
                     &lt;h5 class&#x3D;&quot;card-title&quot;&gt;
-                        &lt;span [compile-html]&#x3D;&quot;(subject?.value)[0]&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/span&gt;
+                        &lt;span [compile-html]&#x3D;&quot;subject!.value[0]&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/span&gt;
                     &lt;/h5&gt;
                     &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-info&quot; (click)&#x3D;&quot;navigateToResource(subject?.obj_id)&quot;&gt;
                         Mehr ...
@@ -2502,12 +2551,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: search results --><div class="awg-search-results" *ngIf="searchResponseWithQuery?.data">    <!-- header -->    <div class="row d-flex justify-content-between mb-4 awg-search-results-header">        <div class="col-6 mr-auto awg-search-results-header-icons">            <div class="btn-group">                <form [formGroup]="searchResultControlForm">                    <div                        class="btn-group btn-group-toggle"                        ngbRadioGroup                        name="searchResultView"                        formControlName="searchResultViewControl">                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">                            <input ngbButton type="radio" value="table" [disabled]="isNoResults()" />                            <fa-icon [icon]="faTable"></fa-icon>                        </label>                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">                            <input ngbButton type="radio" value="grid" [disabled]="isNoResults()" />                            <fa-icon [icon]="faGripHorizontal"></fa-icon>                        </label>                    </div>                </form>                <div class="btn-group">                    <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">                        <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}                    </button>                    <div                        class="btn-group"                        ngbDropdown                        role="group"                        aria-label="Button group with nested dropdown for row number">                        <button                            class="btn btn-info dropdown-toggle-split"                            ngbDropdownToggle                            [disabled]="isNoResults()"></button>                        <div class="dropdown-menu" ngbDropdownMenu>                            <button                                class="dropdown-item"                                *ngFor="let rowNumber of rowNumbers"                                (click)="onRowNumberChange(rowNumber)">                                {{ rowNumber }}                            </button>                        </div>                    </div>                </div>            </div>        </div>        <div class="col-6 my-auto text-center awg-search-results-header-text">            {{ searchResultText }}        </div>    </div>    <ng-container *ngIf="searchResponseWithQuery?.data?.subjects && !isNoResults()">        <!-- top pagination -->        <ngb-pagination            class="d-flex justify-content-center"            [(page)]="page"            [pageSize]="pageSize"            [collectionSize]="+searchResponseWithQuery?.data?.nhits"            [maxSize]="4"            [boundaryLinks]="true"            (pageChange)="onPageChange($event)">        </ngb-pagination>        <!-- table with searchResults -->        <div *ngIf="!isGridView()" class="table-responsive">            <table aria-label="Table with search results" class="table table-sm awg-search-result-table">                <thead>                    <tr class="d-flex">                        <th scope="col" class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>                        <th scope="col" class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>                    </tr>                </thead>                <tbody>                    <!-- show searchResultDetail by clicking on single entry -->                    <tr                        class="d-flex"                        *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById"                        (click)="navigateToResource(subject?.obj_id)"                        [class.active]="isActiveResource(subject?.obj_id)">                        <td class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">                            <span class="badge">                                <img [attr.src]="subject?.iconsrc" alt="iconsrc" />                                <small>&nbsp;{{ subject?.iconlabel }}</small>                            </span>                        </td>                        <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">                            <span [compile-html]="(subject?.value)[0]" [compile-html-ref]="this"></span>                        </td>                    </tr>                </tbody>            </table>        </div>        <!-- grid with searchResults -->        <div *ngIf="isGridView()" class="card-columns">            <div class="card" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">                <div class="card-header">                    <img [attr.src]="subject?.iconsrc" alt="iconsrc" />                    &nbsp;{{ subject?.iconlabel }}                </div>                <div class="card-body">                    <h5 class="card-title">                        <span [compile-html]="(subject?.value)[0]" [compile-html-ref]="this"></span>                    </h5>                    <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">                        Mehr ...                    </button>                </div>            </div>        </div>        <!-- bottom pagination -->        <ngb-pagination            class="d-flex justify-content-center"            [(page)]="page"            [pageSize]="pageSize"            [collectionSize]="+searchResponseWithQuery?.data?.nhits"            [maxSize]="4"            [boundaryLinks]="true"            (pageChange)="onPageChange($event)">        </ngb-pagination>    </ng-container></div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!-- content: search results --><!-- TODO Use shared generic table component to display search results<awg-table    tableTitle="{{ searchResponseWithQuery?.query | json }}"    [headerInputData]="test.head.vars"    [rowInputData]="test.body.bindings"></awg-table>--><div class="awg-search-results" *ngIf="searchResponseWithQuery?.data">    <!-- header -->    <div class="row d-flex justify-content-between mb-4 awg-search-results-header">        <div class="col-6 mr-auto awg-search-results-header-icons">            <div class="btn-group">                <form [formGroup]="searchResultControlForm">                    <div                        class="btn-group btn-group-toggle"                        ngbRadioGroup                        name="searchResultView"                        formControlName="searchResultViewControl">                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">                            <input ngbButton type="radio" value="table" [disabled]="isNoResults()" />                            <fa-icon [icon]="faTable"></fa-icon>                        </label>                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">                            <input ngbButton type="radio" value="grid" [disabled]="isNoResults()" />                            <fa-icon [icon]="faGripHorizontal"></fa-icon>                        </label>                    </div>                </form>                <div class="btn-group">                    <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">                        <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}                    </button>                    <div                        class="btn-group"                        ngbDropdown                        role="group"                        aria-label="Button group with nested dropdown for row number">                        <button                            class="btn btn-info dropdown-toggle-split"                            ngbDropdownToggle                            [disabled]="isNoResults()"></button>                        <div class="dropdown-menu" ngbDropdownMenu>                            <button                                class="dropdown-item"                                *ngFor="let rowNumber of rowNumbers"                                (click)="onRowNumberChange(rowNumber)">                                {{ rowNumber }}                            </button>                        </div>                    </div>                </div>            </div>        </div>        <div class="col-6 my-auto text-center awg-search-results-header-text">            {{ searchResultText }}        </div>    </div>    <ng-container *ngIf="searchResponseWithQuery?.data?.subjects && !isNoResults()">        <!-- top pagination -->        <ngb-pagination            class="d-flex justify-content-center"            [(page)]="page"            [pageSize]="pageSize"            [collectionSize]="+searchResponseWithQuery?.data?.nhits"            [maxSize]="4"            [boundaryLinks]="true"            (pageChange)="onPageChange($event)">        </ngb-pagination>        <!-- table with searchResults -->        <div *ngIf="!isGridView()" class="table-responsive">            <table aria-label="Table with search results" class="table table-sm awg-search-result-table">                <thead>                    <tr class="d-flex">                        <th scope="col" class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>                        <th scope="col" class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>                    </tr>                </thead>                <tbody>                    <!-- show searchResultDetail by clicking on single entry -->                    <tr                        class="d-flex"                        *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById"                        (click)="navigateToResource(subject?.obj_id)"                        [class.active]="isActiveResource(subject?.obj_id)">                        <td class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">                            <span class="badge">                                <img [attr.src]="subject?.iconsrc" alt="iconsrc" />                                <small>&nbsp;{{ subject?.iconlabel }}</small>                            </span>                        </td>                        <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">                            <span                                ><em>{{ subject!.valuelabel[0] }}:&nbsp;</em></span                            ><span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>                        </td>                    </tr>                </tbody>            </table>        </div>        <!-- grid with searchResults -->        <div *ngIf="isGridView()" class="card-columns">            <div class="card" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">                <div class="card-header">                    <img [attr.src]="subject?.iconsrc" alt="iconsrc" />                    &nbsp;{{ subject?.iconlabel }}                </div>                <div class="card-body">                    <h5 class="card-title">                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>                    </h5>                    <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">                        Mehr ...                    </button>                </div>            </div>        </div>        <!-- bottom pagination -->        <ngb-pagination            class="d-flex justify-content-center"            [(page)]="page"            [pageSize]="pageSize"            [collectionSize]="+searchResponseWithQuery?.data?.nhits"            [maxSize]="4"            [boundaryLinks]="true"            (pageChange)="onPageChange($event)">        </ngb-pagination>    </ng-container></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'SearchResultListComponent'};
 </script>
 <script src="../js/tree.js"></script>
+
+
 
 
 

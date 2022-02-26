@@ -42,6 +42,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Classes</li>
   <li >PropertyDefinitionJson</li>
@@ -95,11 +96,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#description" >description</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#gui_name" >gui_name</a>
+                                <a href="#guielement_id" >guielement_id</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -107,7 +104,15 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
+                                <a href="#is_annotation" >is_annotation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
                                 <a href="#label" >label</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#longname" >longname</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -115,7 +120,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#occurence" >occurence</a>
+                                <a href="#person_id" >person_id</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#shortname" >shortname</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -123,7 +132,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#vocabulary" >vocabulary</a>
+                                <a href="#vocabulary_id" >vocabulary_id</a>
                             </li>
                         </ul>
                     </td>
@@ -172,13 +181,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @JsonProperty(&#x27;attributes&#x27;, String)<br />
+                            @JsonProperty(&#x27;attributes&#x27;, String, undefined)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -219,17 +228,17 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="description"></a>
+                    <a name="guielement_id"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>description</b></span>
-                        <a href="#description"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>guielement_id</b></span>
+                        <a href="#guielement_id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#KnoraIRI" target="_self" >KnoraIRI</a></code>
 
                     </td>
                 </tr>
@@ -243,19 +252,19 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @JsonProperty(&#x27;description&#x27;, String)<br />
+                            @JsonProperty(&#x27;guielement_id&#x27;, String)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:66</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Description of the property type</p>
+                    <div class="io-description"><p>IRI of the GUI element used for the property type</p>
 </div>
                 </td>
             </tr>
@@ -273,80 +282,9 @@
                                     </thead>
                                     <tbody>
                                             <tr>
-                                                    <td>description</td>
+                                                    <td>guielement_id</td>
                                                     <td>
-                                                            <code><p>: string</p>
-</code>
-                                                    </td>
-                                            </tr>
-                                    </tbody>
-                                </table>
-                        </div>
-                    </td>
-                </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="gui_name"></a>
-                    <span class="name">
-                            <span class="modifier">Public</span>
-                        <span ><b>gui_name</b></span>
-                        <a href="#gui_name"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>undefined</code>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @JsonProperty(&#x27;gui_name&#x27;, String)<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:45</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Name of the GUI element used for the property type</p>
-</div>
-                </td>
-            </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description">
-                                <b>Parameters :</b>
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                            <tr>
-                                                    <td>gui_name</td>
-                                                    <td>
-                                                            <code><p>: string | null</p>
+                                                            <code><p>: KnoraIRI</p>
 </code>
                                                     </td>
                                             </tr>
@@ -391,7 +329,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:52</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -418,6 +356,77 @@
                                                     <td>id</td>
                                                     <td>
                                                             <code><p>: KnoraIRI</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="is_annotation"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>is_annotation</b></span>
+                        <a href="#is_annotation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#StringOrNumber" target="_self" >StringOrNumber</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @JsonProperty(&#x27;is_annotation&#x27;, Any)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:73</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Flag to indicate if a property is an annotation property</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>is_annotation</td>
+                                                    <td>
+                                                            <code><p>: string</p>
 </code>
                                                     </td>
                                             </tr>
@@ -462,7 +471,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:59</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -487,6 +496,77 @@
                                     <tbody>
                                             <tr>
                                                     <td>label</td>
+                                                    <td>
+                                                            <code><p>: string</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="longname"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>longname</b></span>
+                        <a href="#longname"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @JsonProperty(&#x27;longname&#x27;, String)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:94</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The vocabulary&#39;s long name</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>longname</td>
                                                     <td>
                                                             <code><p>: string</p>
 </code>
@@ -533,14 +613,13 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:38</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>IRI of the property type
-TODO: difference to id<KnoraIRI> ??</p>
+                    <div class="io-description"><p>IRI of the property type</p>
 </div>
                 </td>
             </tr>
@@ -560,8 +639,7 @@ TODO: difference to id<KnoraIRI> ??</p>
                                             <tr>
                                                     <td>name</td>
                                                     <td>
-                                                            <code><p>: KnoraIRI
-TODO: difference to id<KnoraIRI> ??</p>
+                                                            <code><p>: KnoraIRI</p>
 </code>
                                                     </td>
                                             </tr>
@@ -576,11 +654,11 @@ TODO: difference to id<KnoraIRI> ??</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="occurence"></a>
+                    <a name="person_id"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>occurence</b></span>
-                        <a href="#occurence"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>person_id</b></span>
+                        <a href="#person_id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -600,20 +678,19 @@ TODO: difference to id<KnoraIRI> ??</p>
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @JsonProperty(&#x27;occurence&#x27;, String, undefined)<br />
+                            @JsonProperty(&#x27;person_id&#x27;, String, undefined)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:75</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:80</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Cardinality of the property type for the requested resource class
-(not given if property type is requested for a vocabulary)</p>
+                    <div class="io-description"><p>Owner of the value</p>
 </div>
                 </td>
             </tr>
@@ -631,7 +708,78 @@ TODO: difference to id<KnoraIRI> ??</p>
                                     </thead>
                                     <tbody>
                                             <tr>
-                                                    <td>occurence</td>
+                                                    <td>person_id</td>
+                                                    <td>
+                                                            <code><p>: string | null</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="shortname"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>shortname</b></span>
+                        <a href="#shortname"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @JsonProperty(&#x27;shortname&#x27;, String)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The vocabulary&#39;s short name</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>shortname</td>
                                                     <td>
                                                             <code><p>: string</p>
 </code>
@@ -678,7 +826,7 @@ TODO: difference to id<KnoraIRI> ??</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -719,11 +867,11 @@ TODO: difference to id<KnoraIRI> ??</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="vocabulary"></a>
+                    <a name="vocabulary_id"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>vocabulary</b></span>
-                        <a href="#vocabulary"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>vocabulary_id</b></span>
+                        <a href="#vocabulary_id"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -743,13 +891,13 @@ TODO: difference to id<KnoraIRI> ??</p>
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @JsonProperty(&#x27;vocabulary&#x27;, String)<br />
+                            @JsonProperty(&#x27;vocabulary_id&#x27;, String)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:89</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-definition-json.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -773,7 +921,7 @@ TODO: difference to id<KnoraIRI> ??</p>
                                     </thead>
                                     <tbody>
                                             <tr>
-                                                    <td>vocabulary</td>
+                                                    <td>vocabulary_id</td>
                                                     <td>
                                                             <code><p>: KnoraIRI</p>
 </code>
@@ -798,8 +946,8 @@ TODO: difference to id<KnoraIRI> ??</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import { KnoraIRI } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Any, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
+import { KnoraIRI, StringOrNumber } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
 
 /**
  * Represents information about a property type
@@ -808,27 +956,6 @@ import { KnoraIRI } from &#x27;@awg-shared/api-objects/basic-message-components&
 @JsonObject(&#x27;PropertyDefinitionJson&#x27;)
 export class PropertyDefinitionJson {
     /**
-     * GUI attributes (HTML) of the property type
-     * @param attributes: string | null
-     */
-    @JsonProperty(&#x27;attributes&#x27;, String)
-    public attributes: string &#x3D; undefined;
-
-    /**
-     * Description of the property type
-     * @param description: string
-     */
-    @JsonProperty(&#x27;description&#x27;, String)
-    public description: string &#x3D; undefined;
-
-    /**
-     * Name of the GUI element used for the property type
-     * @param gui_name: string | null
-     */
-    @JsonProperty(&#x27;gui_name&#x27;, String)
-    public gui_name: string &#x3D; undefined;
-
-    /**
      * IRI of the property type
      * @param id: KnoraIRI
      */
@@ -836,27 +963,11 @@ export class PropertyDefinitionJson {
     public id: KnoraIRI &#x3D; undefined;
 
     /**
-     * Label of the property type
-     * @param label: string
-     */
-    @JsonProperty(&#x27;label&#x27;, String)
-    public label: string &#x3D; undefined;
-
-    /**
      * IRI of the property type
      * @param name: KnoraIRI
-     * TODO: difference to id&lt;KnoraIRI&gt; ??
      */
     @JsonProperty(&#x27;name&#x27;, String)
     public name: KnoraIRI &#x3D; undefined;
-
-    /**
-     * Cardinality of the property type for the requested resource class
-     * (not given if property type is requested for a vocabulary)
-     * @param occurence: string
-     */
-    @JsonProperty(&#x27;occurence&#x27;, String, true)
-    public occurence: string &#x3D; undefined;
 
     /**
      * IRI of the property type&#x27;s value
@@ -866,15 +977,65 @@ export class PropertyDefinitionJson {
     public valuetype_id: KnoraIRI &#x3D; undefined;
 
     /**
-     * IRI of the vocabulary the property type belongs to
-     * @param vocabulary: KnoraIRI
+     * GUI attributes (HTML) of the property type
+     * @param attributes: string | null
      */
-    @JsonProperty(&#x27;vocabulary&#x27;, String)
-    public vocabulary: KnoraIRI &#x3D; undefined;
+    @JsonProperty(&#x27;attributes&#x27;, String, true)
+    public attributes: string &#x3D; undefined;
+
+    /**
+     * IRI of the vocabulary the property type belongs to
+     * @param vocabulary_id: KnoraIRI
+     */
+    @JsonProperty(&#x27;vocabulary_id&#x27;, String)
+    public vocabulary_id: KnoraIRI &#x3D; undefined;
+
+    /**
+     * IRI of the GUI element used for the property type
+     * @param guielement_id: KnoraIRI
+     */
+    @JsonProperty(&#x27;guielement_id&#x27;, String)
+    public guielement_id: KnoraIRI &#x3D; undefined;
+
+    /**
+     * Flag to indicate if a property is an annotation property
+     * @param is_annotation: string
+     */
+    @JsonProperty(&#x27;is_annotation&#x27;, Any)
+    public is_annotation: StringOrNumber &#x3D; undefined;
+
+    /**
+     * Owner of the value
+     * @param person_id: string | null
+     */
+    @JsonProperty(&#x27;person_id&#x27;, String, true)
+    public person_id: string &#x3D; undefined;
+
+    /**
+     * The vocabulary&#x27;s short name
+     * @param shortname: string
+     */
+    @JsonProperty(&#x27;shortname&#x27;, String)
+    public shortname: string &#x3D; undefined;
+
+    /**
+     * The vocabulary&#x27;s long name
+     * @param longname: string
+     */
+    @JsonProperty(&#x27;longname&#x27;, String)
+    public longname: string &#x3D; undefined;
+
+    /**
+     * Label of the property type
+     * @param label: string
+     */
+    @JsonProperty(&#x27;label&#x27;, String)
+    public label: string &#x3D; undefined;
 }
 </code></pre>
     </div>
 </div>
+
 
 
 

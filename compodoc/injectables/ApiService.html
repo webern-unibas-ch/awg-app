@@ -38,6 +38,7 @@
 
 
 
+
 <ol class="breadcrumb">
   <li>Injectables</li>
   <li >ApiService</li>
@@ -665,7 +666,7 @@ export class ApiService {
 
         return this._httpGet(queryPath, queryHttpParams).pipe(
             map((result: ApiServiceResult): Observable&lt;any&gt; &#x3D;&gt; result.getBody(responseJsonType)),
-            catchError((error: ApiServiceError): Observable&lt;ApiServiceError&gt; &#x3D;&gt; observableThrowError(error))
+            catchError((error: ApiServiceError): Observable&lt;ApiServiceError&gt; &#x3D;&gt; observableThrowError(() &#x3D;&gt; error))
         );
     }
 
@@ -723,13 +724,14 @@ export class ApiService {
         apiServiceError.statusText &#x3D; error.statusText ? error.statusText : apiServiceError.statusText;
         apiServiceError.errorInfo &#x3D; error.message ? error.message : apiServiceError.errorInfo;
         apiServiceError.url &#x3D; error.url ? error.url : apiServiceError.url;
-        return observableThrowError(apiServiceError);
+        return observableThrowError(() &#x3D;&gt; apiServiceError);
     }
 }
 </code></pre>
     </div>
 
 </div>
+
 
 
 
