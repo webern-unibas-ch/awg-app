@@ -132,7 +132,7 @@
         "eslint-config-prettier": "^8.4.0",
         "eslint-plugin-angular": "^4.1.0",
         "eslint-plugin-import": "^2.25.4",
-        "eslint-plugin-jsdoc": "^37.9.4",
+        "eslint-plugin-jsdoc": "^37.9.6",
         "eslint-plugin-prettier": "^4.0.0",
         "gzipper": "^7.0.0",
         "husky": "^7.0.4",
