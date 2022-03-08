@@ -124,7 +124,7 @@
         "@types/jasmine": "~3.10.3",
         "@types/node": "^15.14.9",
         "@typescript-eslint/eslint-plugin": "^5.12.1",
-        "@typescript-eslint/parser": "^5.12.1",
+        "@typescript-eslint/parser": "^5.14.0",
         "angular-cli-ghpages": "^1.0.0",
         "conventional-recommended-bump": "^6.1.0",
         "cross-var": "^1.1.0",
