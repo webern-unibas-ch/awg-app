@@ -33,14 +33,14 @@
                     Dynamischer Graph
                     <button
                         type="button"
-                        class="btn btn-sm btn-outline-info ml-2"
+                        class="btn btn-sm btn-outline-info ms-2"
                         (click)="modal.open('HINT_EDITION_GRAPH')">
                         Hinweise zur Nutzung
                     </button>
                     <button
                         type="button"
                         title="Open fullscreen"
-                        class="btn btn-sm btn-outline-info ml-2"
+                        class="btn btn-sm btn-outline-info ms-2"
                         (click)="openFullscreen()"
                         *ngIf="!isFullscreen">
                         <fa-icon [icon]="faExpand"></fa-icon>
@@ -48,7 +48,7 @@
                     <button
                         type="button"
                         title="Close fullscreen"
-                        class="btn btn-sm btn-info ml-2"
+                        class="btn btn-sm btn-info ms-2"
                         (click)="closeFullscreen()"
                         *ngIf="isFullscreen">
                         <fa-icon [icon]="faCompress"></fa-icon>

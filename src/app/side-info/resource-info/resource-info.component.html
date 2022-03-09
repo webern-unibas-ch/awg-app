@@ -16,7 +16,7 @@
 <!-- sideinfo: resource -->
 <div class="card" *ngIf="resourceInfoData">
     <div class="card-header d-flex">
-        <div class="ml-3 mr-1 my-auto">
+        <div class="ms-3 me-1 my-auto">
             <button
                 type="button"
                 class="btn btn-outline-info btn-sm"
@@ -24,7 +24,7 @@
                 tooltipClass="d-none d-md-inline d-lg-none"
                 (click)="navigateToSearchPanel()">
                 <fa-icon [icon]="faArrowLeft"></fa-icon>
-                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>
+                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ms-2">Zur Suche</span>
             </button>
         </div>
         <div class="text-center mx-auto">
@@ -51,7 +51,7 @@
                     <div>
                         <strong class="text-muted small">
                             <fa-icon [icon]="faChevronLeft"></fa-icon>
-                            <span class="awg-resource-info-btn-text ml-2"
+                            <span class="awg-resource-info-btn-text ms-2"
                                 >Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span
                             >
                         </strong>
@@ -134,7 +134,7 @@
                     (click)="navigateToResource(next?.id)">
                     <div class="mb-1">
                         <strong class="text-muted small">
-                            <span class="awg-resource-info-btn-text mr-2"
+                            <span class="awg-resource-info-btn-text me-2"
                                 >Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span
                             >
                             <fa-icon [icon]="faChevronRight"></fa-icon>

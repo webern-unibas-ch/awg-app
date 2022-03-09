@@ -2,7 +2,7 @@
     <!-- Brand -->
     <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->
     <a
-        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline mr-0 my-auto"
+        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline me-0 my-auto"
         href="{{ pageMetaData?.awgProjectUrl }}">
         <span class="webernlogo">
             ANTON WEBERN <br />
@@ -24,7 +24,7 @@
     <!-- justify content between (left, center, right) from sm devices up -->
     <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">
         <!-- left nav links, no left margin from sm devices up, auto vertical align -->
-        <ul class="navbar-nav ml-sm-0 my-auto">
+        <ul class="navbar-nav ms-sm-0 my-auto">
             <li class="nav-item">
                 <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
                     <!-- do not show text on sm devices, change order from md devices up -->
@@ -82,7 +82,7 @@
         <!-- END left navbar -->
         <!-- brand to display on center on sm devices, auto vertical align -->
         <a
-            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none mr-0 my-auto"
+            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none me-0 my-auto"
             href="{{ pageMetaData?.awgProjectUrl }}">
             <span class="webernlogo">
                 ANTON WEBERN <br />
