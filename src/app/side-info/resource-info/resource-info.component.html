@@ -46,7 +46,7 @@
                 <!-- previous resource -->
                 <a
                     *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"
-                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"
+                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-start"
                     (click)="navigateToResource(previous?.id)">
                     <div>
                         <strong class="text-muted small">
@@ -68,7 +68,7 @@
                 <ng-template #noPrevious>
                     <a
                         *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"
-                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left">
+                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-start">
                         <div>
                             <strong class="text-muted small">
                                 <fa-icon [icon]="faTimesCircle"></fa-icon>
@@ -130,7 +130,7 @@
                 <!-- next resource -->
                 <a
                     *ngIf="resourceInfoData?.resources?.next; else noNext; let next"
-                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"
+                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-end"
                     (click)="navigateToResource(next?.id)">
                     <div class="mb-1">
                         <strong class="text-muted small">
@@ -152,7 +152,7 @@
                 <ng-template #noNext>
                     <a
                         *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"
-                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right">
+                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-end">
                         <div>
                             <strong class="text-muted small">
                                 <fa-icon [icon]="faTimesCircle"></fa-icon>
