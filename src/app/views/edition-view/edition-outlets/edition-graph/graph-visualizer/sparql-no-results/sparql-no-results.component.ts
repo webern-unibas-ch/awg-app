@@ -13,7 +13,7 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-sparql-no-results',
     templateUrl: './sparql-no-results.component.html',
-    styleUrls: ['./sparql-no-results.component.css'],
+    styleUrls: ['./sparql-no-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlNoResultsComponent implements OnInit {

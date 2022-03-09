@@ -25,7 +25,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'awg-fulltext-search-form',
     templateUrl: './fulltext-search-form.component.html',
-    styleUrls: ['./fulltext-search-form.component.css'],
+    styleUrls: ['./fulltext-search-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy {

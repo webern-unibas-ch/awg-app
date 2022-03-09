@@ -11,7 +11,7 @@ import { LOGOSDATA } from '@awg-core/mock-data';
 @Component({
     selector: 'awg-footer-logo',
     templateUrl: './footer-logo.component.html',
-    styleUrls: ['./footer-logo.component.css'],
+    styleUrls: ['./footer-logo.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterLogoComponent {

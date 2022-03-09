@@ -12,7 +12,7 @@ import { SearchResult } from '../models';
 @Component({
     selector: 'awg-select-results',
     templateUrl: './select-results.component.html',
-    styleUrls: ['./select-results.component.css'],
+    styleUrls: ['./select-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectResultsComponent {

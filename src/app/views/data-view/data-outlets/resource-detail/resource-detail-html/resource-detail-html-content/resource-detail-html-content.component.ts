@@ -15,7 +15,7 @@ import { GndEvent } from '@awg-core/services/gnd-service';
 @Component({
     selector: 'awg-resource-detail-html-content',
     templateUrl: './resource-detail-html-content.component.html',
-    styleUrls: ['./resource-detail-html-content.component.css'],
+    styleUrls: ['./resource-detail-html-content.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentComponent {

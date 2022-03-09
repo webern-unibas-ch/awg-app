@@ -12,7 +12,7 @@ import { SourceList } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-source-list',
     templateUrl: './source-list.component.html',
-    styleUrls: ['./source-list.component.css'],
+    styleUrls: ['./source-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceListComponent {

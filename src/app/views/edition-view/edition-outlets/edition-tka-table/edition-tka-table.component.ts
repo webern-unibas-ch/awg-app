@@ -11,7 +11,7 @@ import { TextcriticalComment } from '../../models/index';
 @Component({
     selector: 'awg-edition-tka-table',
     templateUrl: './edition-tka-table.component.html',
-    styleUrls: ['./edition-tka-table.component.css'],
+    styleUrls: ['./edition-tka-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionTkaTableComponent {

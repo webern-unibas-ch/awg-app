@@ -15,7 +15,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-complex',
     templateUrl: './edition-complex.component.html',
-    styleUrls: ['./edition-complex.component.css'],
+    styleUrls: ['./edition-complex.component.scss'],
 })
 export class EditionComplexComponent implements OnDestroy, OnInit {
     /**

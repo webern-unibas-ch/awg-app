@@ -10,7 +10,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-row-tables',
     templateUrl: './edition-row-tables.component.html',
-    styleUrls: ['./edition-row-tables.component.css'],
+    styleUrls: ['./edition-row-tables.component.scss'],
 })
 export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**

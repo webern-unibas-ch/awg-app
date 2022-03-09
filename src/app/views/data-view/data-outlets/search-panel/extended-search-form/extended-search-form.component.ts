@@ -27,7 +27,7 @@ import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-respons
 @Component({
     selector: 'awg-extended-search-form',
     templateUrl: './extended-search-form.component.html',
-    styleUrls: ['./extended-search-form.component.css'],
+    styleUrls: ['./extended-search-form.component.scss'],
 })
 export class ExtendedSearchFormComponent implements OnInit {
     /**

@@ -23,7 +23,7 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
 @Component({
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
-    styleUrls: ['./search-result-list.component.css'],
+    styleUrls: ['./search-result-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {

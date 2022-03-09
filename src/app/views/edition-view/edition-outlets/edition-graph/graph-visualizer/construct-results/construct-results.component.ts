@@ -12,7 +12,7 @@ import { D3SimulationNode, Triple } from '../models';
 @Component({
     selector: 'awg-construct-results',
     templateUrl: './construct-results.component.html',
-    styleUrls: ['./construct-results.component.css'],
+    styleUrls: ['./construct-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConstructResultsComponent {

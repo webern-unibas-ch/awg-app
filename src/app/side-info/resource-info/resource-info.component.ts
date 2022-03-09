@@ -20,7 +20,7 @@ import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-mod
 @Component({
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
-    styleUrls: ['./resource-info.component.css'],
+    styleUrls: ['./resource-info.component.scss'],
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**

@@ -61,7 +61,7 @@ export enum SvgSheetLabelsOp25 {
 @Component({
     selector: 'awg-edition-svg-sheet-list',
     templateUrl: './edition-svg-sheet-list.component.html',
-    styleUrls: ['./edition-svg-sheet-list.component.css'],
+    styleUrls: ['./edition-svg-sheet-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetListComponent implements OnInit {

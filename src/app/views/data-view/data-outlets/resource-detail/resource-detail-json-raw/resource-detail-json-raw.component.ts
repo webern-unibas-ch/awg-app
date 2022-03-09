@@ -12,7 +12,7 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 @Component({
     selector: 'awg-resource-detail-json-raw',
     templateUrl: './resource-detail-json-raw.component.html',
-    styleUrls: ['./resource-detail-json-raw.component.css'],
+    styleUrls: ['./resource-detail-json-raw.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailJsonRawComponent {

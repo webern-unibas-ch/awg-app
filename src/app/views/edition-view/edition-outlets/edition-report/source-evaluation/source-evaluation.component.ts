@@ -12,7 +12,7 @@ import { SourceEvaluationList } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-source-evaluation',
     templateUrl: './source-evaluation.component.html',
-    styleUrls: ['./source-evaluation.component.css'],
+    styleUrls: ['./source-evaluation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceEvaluationComponent {

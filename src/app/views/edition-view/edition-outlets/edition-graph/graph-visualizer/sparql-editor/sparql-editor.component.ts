@@ -15,7 +15,7 @@ import 'codemirror/mode/sparql/sparql';
 @Component({
     selector: 'awg-sparql-editor',
     templateUrl: './sparql-editor.component.html',
-    styleUrls: ['./sparql-editor.component.css'],
+    styleUrls: ['./sparql-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlEditorComponent {

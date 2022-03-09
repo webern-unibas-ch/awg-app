@@ -23,7 +23,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 @Component({
     selector: 'awg-edition-report',
     templateUrl: './edition-report.component.html',
-    styleUrls: ['./edition-report.component.css'],
+    styleUrls: ['./edition-report.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionReportComponent implements OnInit {
