@@ -43,7 +43,7 @@ export class FooterLogoComponent {
             classList = 'my-2';
         }
         if (isUnibasLogo || isSnfLogo) {
-            classList += ' float-right';
+            classList += ' float-end';
         }
         return classList;
     }

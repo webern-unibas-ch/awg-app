@@ -23,7 +23,7 @@ describe('FooterLogoComponent (DONE)', () => {
     let expectedNonRightMainFooterLogo: Logo;
     let expectedNonMainFooterLogo: Logo;
 
-    const cssClassFloatRight = 'float-right';
+    const cssClassFloatRight = 'float-end';
     const cssClassMarginY2 = 'my-2';
 
     beforeEach(
@@ -139,7 +139,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 expectSpyCall(getLogoClassSpy, 1, expectedLogo.id);
             });
 
-            it('... should return class `my-2 float-right` for right main footer logos', () => {
+            it('... should return class `my-2 float-end` for right main footer logos', () => {
                 expectSpyCall(getLogoClassSpy, 1, expectedLogo.id);
 
                 const classList = component.getLogoClass(component.logo.id);
@@ -238,7 +238,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 expect(imageEl.alt).toBe(expectedLogo.alt, `should be ${expectedLogo.alt}`);
             });
 
-            it('... should have CSS class `my-2 float-right` applied only to right main footer logos', async () => {
+            it('... should have CSS class `my-2 float-end` applied only to right main footer logos', async () => {
                 // For CSS class karma tests cf. https://stackoverflow.com/a/49157894
 
                 // Right main footer logo
