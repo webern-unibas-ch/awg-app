@@ -3,7 +3,7 @@
 <div #fs class="row" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">
     <ng-container *ngIf="!isFullscreen">
         <!-- awg-graph-triples-editor -->
-        <div class="col-lg-6 pr-lg-0">
+        <div class="col-lg-6 pe-lg-0">
             <awg-triples-editor
                 [triples]="triples"
                 (updateTriplesRequest)="triples = $event"
@@ -12,7 +12,7 @@
         </div>
 
         <!-- awg-graph-sparql-editor -->
-        <div class="col-lg-6 pl-lg-0">
+        <div class="col-lg-6 ps-lg-0">
             <awg-sparql-editor
                 [queryList]="queryList"
                 [query]="query"
