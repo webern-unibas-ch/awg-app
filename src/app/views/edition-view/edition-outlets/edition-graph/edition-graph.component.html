@@ -4,7 +4,7 @@
     <awg-modal #modal></awg-modal>
 
     <!-- graph -->
-    <div class="awg-graph-view" *ngIf="editionGraphData$ | async as editionGraphData; else error">
+    <div class="awg-graph-view p-5 border rounded-3" *ngIf="editionGraphData$ | async as editionGraphData; else error">
         <div *ngFor="let graph of editionGraphData.graph">
             <!-- graph description -->
             <div class="awg-graph-description">
