@@ -1,7 +1,7 @@
 <div class="btn-group awg-btn-group d-flex" role="group" aria-label="Router link button group">
     <button
         type="button"
-        class="btn btn-default w-100"
+        class="btn btn-outline-info w-100"
         *ngFor="let routerLinkButton of routerLinkButtons"
         [routerLink]="[routerLinkButton?.root, routerLinkButton?.link]"
         [queryParamsHandling]="queryParamsHandling"
