@@ -1,0 +1,10 @@
+
+// Default variable overrides
+$info:                              #149b9e;
+$accordion-button-color:            $info;
+$accordion-button-active-color:     shade-color($info, 10%);
+
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";

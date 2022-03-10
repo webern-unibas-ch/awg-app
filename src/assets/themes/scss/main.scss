@@ -7,8 +7,27 @@ body {
 }
 
 /****** LINKS & POINTER ******/
-a:not(.list-group-item-danger) {
-    cursor: pointer;
+a {
+    &:not(.list-group-item-danger) {
+        cursor: pointer;
+    }
+    &:not(.awg-logo-link):hover {
+        border-bottom: 1px solid rgba(20, 155, 158, 1);
+    }
+    &.navbar-brand {
+        span {
+            &.webernlogo {
+                color: rgba(0, 0, 0, 0.6);
+            }
+        }
+        &:hover {
+            span {
+                &.webernlogo {
+                    color: rgba(0, 0, 0, 1);
+                }
+            }
+        }
+    }
 }
 a,
 a:link,
@@ -23,10 +42,6 @@ a.dropdown-item,
 a.awg-svg-sheet-nav-link:hover,
 .nav-tabs > li > a {
     color: rgba(51, 51, 51, 1) !important; /* rgba converted HEX #333 */
-}
-
-a:not(.awg-logo-link):hover {
-    border-bottom: 1px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
 }
 a.dropdown-item:hover,
 a.list-group-item:hover,
@@ -45,17 +60,15 @@ a.awg-svg-sheet-nav-link.active,
 .navbar-nav > li > a:active {
     color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
 }
-a.navbar-brand span.webernlogo {
-    color: rgba(0, 0, 0, 0.6); /* rgba converted HEX #000000 */
-}
-a.navbar-brand:hover span.webernlogo {
-    color: rgba(0, 0, 0, 1); /* rgba converted HEX #000000 */
-}
 
-button.dropdown-item.disabled {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 1); /* rgba converted HEX #fff */
-    background-color: rgba(0, 123, 255, 1); /* rgba converted HEX #007bff */
+button {
+    &.dropdown-item {
+        &.disabled {
+            text-decoration: none;
+            color: rgba(255, 255, 255, 1); /* rgba converted HEX #fff */
+            background-color: rgba(0, 123, 255, 1); /* rgba converted HEX #007bff */
+        }
+    }
 }
 
 /****** DIVS ******/
@@ -66,12 +79,12 @@ button.dropdown-item.disabled {
 .todo {
     color: red;
     font-weight: bold;
-}
-.todo::before {
-    content: '## ';
-}
-.todo::after {
-    content: ' ##';
+    &::before {
+        content: '## ';
+    }
+    &::after {
+        content: ' ##';
+    }
 }
 
 /****** PAGE LAYOUT ******/
