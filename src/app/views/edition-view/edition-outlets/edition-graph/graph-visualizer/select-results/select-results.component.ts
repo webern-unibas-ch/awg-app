@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+
 import { SearchResult } from '../models';
 
 /**
@@ -31,6 +33,14 @@ export class SelectResultsComponent {
      */
     @Input()
     queryTime: number;
+
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is set.
+     */
+    @Input()
+    isFullscreen: boolean;
 
     /**
      * Output variable: clickedTableRequest.
@@ -71,5 +81,21 @@ export class SelectResultsComponent {
             return;
         }
         this.clickedTableRequest.emit(uri);
+    }
+
+    /**
+     * Public method: preventPanelCollapseOnFullscreen.
+     *
+     * It prevents the given panel event from being collapsed in fullscreen mode.
+     *
+     * @returns {void} Prevents the panel collapse.
+     */
+    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
+        if (!$event) {
+            return;
+        }
+        if (this.isFullscreen && $event.nextState === false) {
+            $event.preventDefault();
+        }
     }
 }

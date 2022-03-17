@@ -1,5 +1,9 @@
-<ngb-accordion activeIds="awg-graph-visualizer-construct-result">
-    <ngb-panel id="awg-graph-visualizer-construct-result" title="Resultat">
+<ngb-accordion
+    #constructResultsAcc="ngbAccordion"
+    activeIds="awg-graph-visualizer-construct-results"
+    (panelChange)="preventPanelCollapseOnFullscreen($event)"
+    >>
+    <ngb-panel id="awg-graph-visualizer-construct-results" title="Resultat">
         <ng-template ngbPanelContent>
             <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
                 <ng-container *ngIf="queryResult.length > 0; else noResult">

@@ -196,6 +196,6 @@ export class SparqlEditorComponent {
      * @returns {string} The id of the panel to be toggled.
      */
     togglePanel(): string {
-        return this.isFullscreen ? 'awg-graph-visualizer-query' : '';
+        return this.isFullscreen ? 'awg-graph-visualizer-sparql-query' : '';
     }
 }

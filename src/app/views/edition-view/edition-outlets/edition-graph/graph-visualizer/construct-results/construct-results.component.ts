@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+
 import { D3SimulationNode, Triple } from '../models';
 
 /**
@@ -33,6 +35,14 @@ export class ConstructResultsComponent {
     defaultForceGraphHeight: number;
 
     /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is set.
+     */
+    @Input()
+    isFullscreen: boolean;
+
+    /**
      * Output variable: clickedNodeRequest.
      *
      * It keeps an event emitter for a click on a graph node.
@@ -55,5 +65,21 @@ export class ConstructResultsComponent {
             return;
         }
         this.clickedNodeRequest.emit(node);
+    }
+
+    /**
+     * Public method: preventPanelCollapseOnFullscreen.
+     *
+     * It prevents the given panel event from being collapsed in fullscreen mode.
+     *
+     * @returns {void} Prevents the panel collapse.
+     */
+    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
+        if (!$event) {
+            return;
+        }
+        if (this.isFullscreen && $event.nextState === false) {
+            $event.preventDefault();
+        }
     }
 }
