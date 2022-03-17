@@ -1,9 +1,11 @@
 
 // Default variable overrides
-$info:                              #149b9e;
-$accordion-button-color:            $info;
-$accordion-button-active-color:     shade-color($info, 10%);
+$info: #149b9e;
 $link-color: $info;
+
+// Custom variables
+$bg-grey: #f9f9f6;
+$border-grey: #e7e7e7;
 
 
 @import "~bootstrap/scss/functions";
