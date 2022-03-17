@@ -1,4 +1,4 @@
-@import "~assets/themes/scss/shared";
+@import '~assets/themes/scss/shared';
 
 /* slider container */
 .awg-image-slider {
@@ -12,7 +12,6 @@
 :host {
     &::ng-deep {
         ngx-gallery {
-
             /* image preview */
             .ngx-gallery-image-wrapper {
                 background-color: #e7e7e7;
@@ -30,7 +29,9 @@
             /* thumbnails */
             .ngx-gallery-thumbnail {
                 opacity: 0.5;
-                &:hover { opacity: 1 };
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }

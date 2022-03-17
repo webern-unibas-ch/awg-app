@@ -1,4 +1,3 @@
-
 // Default variable overrides
 $info: #149b9e;
 $link-color: $info;
@@ -7,7 +6,6 @@ $link-color: $info;
 $bg-grey: #f9f9f6;
 $border-grey: #e7e7e7;
 
-
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';

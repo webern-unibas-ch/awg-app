@@ -61,7 +61,8 @@ a.awg-svg-sheet-nav-link.active,
     color: $link-color !important;
 }
 
-a, button {
+a,
+button {
     &.dropdown-item {
         &.disabled {
             text-decoration: none;
@@ -183,15 +184,14 @@ footer {
     text-decoration: none;
 }
 
-
 /****** ACCORDION ******/
 .accordion-button {
-    &.collapsed, &:not(.collapsed) {
-
+    &.collapsed,
+    &:not(.collapsed) {
         background-color: $bg-grey;
         color: $link-color;
     }
-    padding: .75rem 1rem; /* default: 25px */
+    padding: 0.75rem 1rem; /* default: 25px */
 }
 
 .awg-accordion-button-custom-header {
@@ -202,9 +202,8 @@ footer {
         color: $link-color;
         text-decoration: none;
     }
-    padding: .54rem 1rem; /* default: 25px */
+    padding: 0.54rem 1rem; /* default: 25px */
 }
-
 
 /****** BUTTON GROUP ******/
 /* TODO: Switch button group direction with scss
