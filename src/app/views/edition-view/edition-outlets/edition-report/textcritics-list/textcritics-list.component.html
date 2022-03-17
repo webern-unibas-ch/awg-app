@@ -1,9 +1,9 @@
-<ngb-accordion #sketchAcc="ngbAccordion" id="sketchAcc" *ngIf="textcriticsData">
+<ngb-accordion #textCriticsAcc="ngbAccordion" id="textCriticsAcc" *ngIf="textcriticsData">
     <ngb-panel *ngFor="let textcritic of textcriticsData.textcritics" [id]="textcritic.id">
         <ng-template ngbPanelHeader>
-            <div class="d-flex align-items-center justify-content-between">
-                <button ngbPanelToggle class="btn btn-link text-start">{{ textcritic.label }}</button>
-                <button type="button" class="btn btn-sm btn-outline-info ms-2" (click)="selectSvgSheet(textcritic.id)">
+            <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
+                <button ngbPanelToggle class="p-0 btn btn-link text-start">{{ textcritic.label }}</button>
+                <button type="button" class="btn btn-sm btn-outline-info" (click)="selectSvgSheet(textcritic.id)">
                     Zur Transkription
                 </button>
             </div>

@@ -3,6 +3,7 @@
 $info:                              #149b9e;
 $accordion-button-color:            $info;
 $accordion-button-active-color:     shade-color($info, 10%);
+$link-color: $info;
 
 
 @import "~bootstrap/scss/functions";
