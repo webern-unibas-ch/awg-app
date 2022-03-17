@@ -1,11 +1,13 @@
+@import '~assets/themes/scss/shared';
+
 #awg-force-graph-container {
     position: relative;
     width: 100%;
-}
 
-#awg-force-graph-container > .awg-force-graph-icon-bar {
-    position: relative;
-    width: 100%;
+    > .awg-force-graph-icon-bar {
+        position: relative;
+        width: 100%;
+    }
 }
 
 .awg-force-graph-panel-container {
@@ -17,93 +19,103 @@
 .input-group.awg-force-graph-zoom-slider-container {
     flex-wrap: nowrap;
     width: auto;
+
+    > :not(:first-child) {
+        margin-left: 0px !important;
+    }
 }
 #slider-label.input-group-text {
-    width: 50px;
-    color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+    min-width: 50px;
+    color: $info;
 }
 
 /* slider input */
+@mixin slider-track-base($radius) {
+    background: rgba(221, 221, 221, 0.78);
+    border: 0.2px solid #dddddd;
+    border-radius: $radius;
+}
+
+@mixin slider-track($height) {
+    @include slider-track-base(1.3px);
+    width: 100%;
+    height: $height;
+    cursor: pointer;
+}
+@mixin slider-thumb($height) {
+    width: 15px;
+    height: $height;
+    background: $info;
+    border: 1.8px solid $info;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 input[type='range'].awg-force-graph-zoom-slider {
     width: 100%;
-    margin: 6px 0;
     background-color: transparent;
     -webkit-appearance: none;
-}
-input[type='range'].awg-force-graph-zoom-slider:focus {
-    outline: none;
-}
-input[type='range'].awg-force-graph-zoom-slider::-webkit-slider-runnable-track {
-    background: rgba(221, 221, 221, 0.78);
-    border: 0.2px solid #dddddd;
-    border-radius: 1.3px;
-    width: 100%;
-    height: 31px;
-    cursor: pointer;
-}
-input[type='range'].awg-force-graph-zoom-slider::-webkit-slider-thumb {
-    margin-top: -6.7px;
-    width: 15px;
-    height: 30px;
-    background: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border: 1.8px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border-radius: 10px;
-    cursor: pointer;
-    -webkit-appearance: none;
-}
-input[type='range'].awg-force-graph-zoom-slider:focus::-webkit-slider-runnable-track {
-    background: #e5e5e5;
-}
-input[type='range'].awg-force-graph-zoom-slider::-moz-range-track {
-    background: rgba(221, 221, 221, 0.78);
-    border: 0.2px solid #dddddd;
-    border-radius: 1.3px;
-    width: 100%;
-    height: 31px;
-    cursor: pointer;
-}
-input[type='range'].awg-force-graph-zoom-slider::-moz-range-thumb {
-    width: 15px;
-    height: 30px;
-    background: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border: 1.8px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border-radius: 10px;
-    cursor: pointer;
-}
-input[type='range'].awg-force-graph-zoom-slider::-ms-track {
-    background: transparent;
-    border-color: transparent;
-    border-width: 7.4px 0;
-    color: transparent;
-    width: 100%;
-    height: 31px;
-    cursor: pointer;
-}
-input[type='range'].awg-force-graph-zoom-slider::-ms-fill-lower {
-    background: #d5d5d5;
-    border: 0.2px solid #dddddd;
-    border-radius: 2.6px;
-}
-input[type='range'].awg-force-graph-zoom-slider::-ms-fill-upper {
-    background: rgba(221, 221, 221, 0.78);
-    border: 0.2px solid #dddddd;
-    border-radius: 2.6px;
-}
-input[type='range'].awg-force-graph-zoom-slider::-ms-thumb {
-    width: 15px;
-    height: 30px;
-    background: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border: 1.8px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 0px;
-    /*Needed to keep the Edge thumb centred*/
-}
-input[type='range'].awg-force-graph-zoom-slider:focus::-ms-fill-lower {
-    background: rgba(221, 221, 221, 0.78);
-}
-input[type='range'].awg-force-graph-zoom-slider:focus::-ms-fill-upper {
-    background: #e5e5e5;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include slider-track(31px);
+    }
+
+    &::-webkit-slider-thumb {
+        @include slider-thumb(29px);
+        -webkit-appearance: none;
+    }
+
+    &:focus::-webkit-slider-runnable-track {
+        background: #e5e5e5;
+    }
+
+    &::-moz-range-track {
+        @include slider-track(29px);
+        -moz-margin-start: fill;
+        margin-end: fill;
+    }
+
+    &::-moz-range-thumb {
+        @include slider-thumb(27px);
+    }
+
+    &::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 7.4px 0;
+        color: transparent;
+        width: 100%;
+        height: 31px;
+        cursor: pointer;
+    }
+
+    &::-ms-fill-lower {
+        @include slider-track-base(2.6px);
+    }
+
+    &::-ms-fill-upper {
+        @include slider-track-base(2.6px);
+    }
+
+    &::-ms-thumb {
+        @include slider-thumb(29px);
+        margin-top: 0px;
+        /*Needed to keep the Edge thumb centred*/
+    }
+
+    &:focus {
+        &::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+    }
 }
 
 /* Simulation nodes */
@@ -116,11 +128,12 @@ input[type='range'].awg-force-graph-zoom-slider:focus::-ms-fill-upper {
     stroke: #fff;
     fill: #000 !important;
     stroke-width: 1.5px;
-}
-:host ::ng-deep .blank.instance {
-    stroke: #fff;
-    fill: #000;
-    stroke-width: 1.5px;
+
+    &.instance {
+        stroke: #fff;
+        fill: #000;
+        stroke-width: 1.5px;
+    }
 }
 :host ::ng-deep .class {
     stroke: #fff;
