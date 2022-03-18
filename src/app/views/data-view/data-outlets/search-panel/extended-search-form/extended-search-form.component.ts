@@ -350,6 +350,9 @@ export class ExtendedSearchFormComponent implements OnInit {
      * @returns {AbstractControl} The searchval control.
      */
     getSearchvalControlAtIndex(index: number): AbstractControl {
+        if (this.isSearchvalControlDisabled(index) === '') {
+            this._getFormArrayControlAtIndex('searchvalControl', index).setValue('');
+        }
         return this._getFormArrayControlAtIndex('searchvalControl', index);
     }
 

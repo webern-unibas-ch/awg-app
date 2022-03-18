@@ -1,11 +1,9 @@
 <form [formGroup]="extendedSearchForm" (ngSubmit)="onSearch()" *ngIf="extendedSearchForm">
-    <div class="input-group mb-4">
-        <div class="input-group-prepend">
-            <label class="input-group-text" for="awg-extended-search-resourcetype-input">Resource-Typ</label>
-        </div>
+    <div class="form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3">
         <select
-            class="form-control"
+            class="form-select"
             id="awg-extended-search-resourcetype-input"
+            aria-label="Extended search restype control"
             formControlName="restypeControl"
             required>
             <option value="" disabled hidden>{{ defaultFormString }}</option>
@@ -13,18 +11,16 @@
                 {{ resourcetype.id }} | {{ resourcetype.label }}
             </option>
         </select>
+        <label for="awg-extended-search-resourcetype-input" class="text-muted">Resource type</label>
     </div>
 
     <ng-container formArrayName="propertiesControls">
-        <div *ngFor="let propCtrl of propertiesControls.controls; index as idx" class="form-row mb-4 ms-4">
+        <div *ngFor="let propCtrl of propertiesControls.controls; index as idx" class="row mb-4 ms-4 g-2">
             <ng-container [formGroupName]="idx">
-                <div class="input-group col-md-4">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="awg-extended-search-property-{{ idx }}">Feld</label>
-                    </div>
+                <div class="form-floating col-md-4">
                     <select
                         id="awg-extended-search-property-{{ idx }}"
-                        class="form-control"
+                        class="form-select"
                         [formControl]="getPropertyIdControlAtIndex(idx)"
                         [attr.disabled]="isPropertyIdControlDisabled()"
                         required>
@@ -38,12 +34,12 @@
                             </option>
                         </ng-container>
                     </select>
+                    <label class="text-muted" for="awg-extended-search-property-{{ idx }}">Property</label>
                 </div>
-                <div class="input-group col-md-2">
-                    <label for="awg-extended-search-compop" class="sr-only">Vergleichsoperation</label>
+                <div class="form-floating col-md-2">
                     <select
                         id="awg-extended-search-compop"
-                        class="form-control"
+                        class="form-select"
                         formControlName="compopControl"
                         [attr.disabled]="isCompopControlDisabled(idx)"
                         required>
@@ -56,9 +52,9 @@
                                 [innerHtml]="compop.label"></option>
                         </ng-container>
                     </select>
+                    <label class="text-muted" for="awg-extended-search-compop">Operator</label>
                 </div>
-                <div class="input-group col-md-4">
-                    <label for="awg-extended-search-searchValue" class="sr-only">Suchbegriff</label>
+                <div class="form-floating col-md-4">
                     <input
                         title="Extended Search - Search Value"
                         type="search"
@@ -67,9 +63,10 @@
                         [formControl]="getSearchvalControlAtIndex(idx)"
                         [attr.disabled]="isSearchvalControlDisabled(idx)"
                         placeholder="{{ getSearchvalPlaceholder(idx) }}" />
+                    <label class="text-muted" for="awg-extended-search-searchValue">Search value</label>
                 </div>
 
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar for property inputs">
+                <div class="btn-toolbar col-2" role="toolbar" aria-label="Toolbar for property inputs">
                     <div class="btn-group" role="group" aria-label="Group of handle buttons">
                         <button
                             type="button"
@@ -96,9 +93,11 @@
             </div>
         </div>
     </ng-container>
-    <button class="btn btn-outline-info" type="submit" [disabled]="!extendedSearchForm.valid">
-        <fa-icon [icon]="faSearch"></fa-icon>
-        Suche
-    </button>
-    <button class="btn btn-outline-danger" (click)="onReset()" [disabled]="!restypeControl.valid">Reset</button>
+    <div class="mb-4">
+        <button class="btn btn-outline-info" type="submit" [disabled]="!extendedSearchForm.valid">
+            <fa-icon [icon]="faSearch"></fa-icon>
+            Suche
+        </button>
+        <button class="btn btn-outline-danger" (click)="onReset()" [disabled]="!restypeControl.valid">Reset</button>
+    </div>
 </form>
