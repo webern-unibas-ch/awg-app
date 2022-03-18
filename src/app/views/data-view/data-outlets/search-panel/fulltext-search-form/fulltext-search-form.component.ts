@@ -65,7 +65,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * It keeps the default texts for the search form.
      */
     searchFormStrings = {
-        label: 'Search Input',
+        label: 'Input für Volltextsuche',
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
     };
