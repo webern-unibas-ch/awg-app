@@ -1,0 +1,103 @@
+{
+    "textcritics": [
+        {
+            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#",
+            "label": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
+            "description": [
+                "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 24 in AWG I/1.]</small>" 
+            ],
+            "comments": [
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1–2",
+                    "position": "G<sub>f</sub>, K<sub>es</sub>, U<sub>f</sub>, KU<sub>g</sub>",
+                    "comment": "Reihennummerierung (<em>1</em>–<em>4</em>) mit rotem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 4., 7., 10. Reihenton",
+                    "comment": "<em>Kr. d. U.</em>, <em>Krebs</em>, <em>Umkehrung</em> und <em>7</em> mit Bleistift. (<em>7</em> bezieht sich auf das erste Trichord von G<sub>fis</sub> (7)."
+                },
+		{
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2a",
+                    "position": "U<sub>f</sub>: 6.–11. Reihenton",
+                    "comment": "Auf Rasur, mit Tinte überschrieben."
+                },
+		{
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3–6",
+                    "position": "G<sub>fis</sub>, K<sub>e</sub>, U<sub>fis</sub>, KU<sub>gis</sub>",
+                    "comment": "Reihennummerierung (<em>5</em>–<em>12</em>), Akkoladenklammer und Einkreisungen links mit grünem Buntstift."
+                },
+		{
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4b",
+                    "position": "KU<sub>gis</sub>: 7.–8. Reihenton",
+                    "comment": "Markierung zwischen h und b mit Bleistift."
+                },
+		{
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "7–10",
+                    "position": "G<sub>g</sub>, K<sub>f</sub>, U<sub>g</sub>, KU<sub>a</sub>, G<sub>es</sub>, K<sub>des</sub>, U<sub>es</sub>, KU<sub>f</sub>",
+                    "comment": "Reihennummerierung (<em>13</em>–<em>20</em>), Akkoladenklammer und Einkreisungen links mit blauem Buntstift."
+                },
+		{
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "10b",
+                    "position": "K<sub>f</sub>: 7. Reihenton",
+                    "comment": "<em>25</em> mit Bleistift. (Bezieht sich auf das erste Trichord von G<sub>as</sub> (25).)"
+                },
+		{
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "11–12",
+                    "position": "G<sub>h</sub>, K<sub>a</sub>, U<sub>h</sub>, KU<sub>cis</sub>",
+                    "comment": "Reihennummerierung (<em>21</em>–<em>24</em>) und Einkreisung links mit Bleistift."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "1–4",
+                    "position": "G<sub>as</sub>, K<sub>ges</sub>, U<sub>as</sub>, KU<sub>b</sub>, G<sub>d</sub>, K<sub>c</sub>, U<sub>d</sub>, KU<sub>e</sub>",
+                    "comment": "Reihennummerierung (<em>25</em>–<em>30</em>), Akkoladenklammer und Einkreisung links mit rotem Buntstift."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "3a",
+                    "position": "G<sub>d</sub>: 4. Reihenton",
+                    "comment": "Auf Rasur, mit Tinte überschrieben."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "5–8",
+                    "position": "G<sub>a</sub>, K<sub>g</sub>, U<sub>a</sub>, KU<sub>h</sub>, G<sub>des</sub>, K<sub>h</sub>, U<sub>des</sub>, KU<sub>es</sub>",
+                    "comment": "Reihennummerierung (<em>33</em>–<em>40</em>), Akkoladenklammer und Einkreisung links mit blauem Buntstift."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "9–12",
+                    "position": "G<sub>b</sub>, K<sub>as</sub>, U<sub>b</sub>, KU<sub>c</sub>, G<sub>c</sub>, K<sub>h</sub>, U<sub>c</sub>, KU<sub>d</sub>",
+                    "comment": "Reihennummerierung (<em>41</em>–<em>48</em>), Akkoladenklammer und Einkreisung links mit Bleistift."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "11a",
+                    "position": "G<sub>c</sub>: 9. Reihenton",
+                    "comment": "Auf Rasur, mit Tinte überschrieben."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "12a",
+                    "position": "U<sub>c</sub>: 4. Reihenton",
+                    "comment": "Auf Rasur, mit Tinte überschrieben."
+                },
+		{
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "12b",
+                    "position": "KU<sub>d</sub>: 12. Reihenton",
+                    "comment": "Auf Rasur, mit Tinte überschrieben."
+                }
+            ]
+        }
+    ]
+}
