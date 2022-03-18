@@ -10,9 +10,7 @@
                 id="awg-fulltext-search-searchValue"
                 class="form-control"
                 [ngClass]="{
-                    'is-invalid':
-                        searchvalControl.hasError('required') ||
-                        (searchvalControl.errors && searchvalControl.errors.minlength)
+                    'is-invalid': isFulltextSearchInputInvalid()
                 }"
                 formControlName="searchvalControl"
                 aria-label="{{ searchFormStrings.label }}"
@@ -21,11 +19,7 @@
                 required />
             <label for="awg-fulltext-search-searchValue" class="text-muted">{{ searchFormStrings.placeholder }}</label>
             <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="invalid-feedback">
-                <p
-                    *ngIf="
-                        searchvalControl.hasError('required') ||
-                        (searchvalControl.errors && searchvalControl.errors.minlength)
-                    ">
+                <p *ngIf="isFulltextSearchInputInvalid()">
                     {{ searchFormStrings.errorMessage }}
                 </p>
             </div>

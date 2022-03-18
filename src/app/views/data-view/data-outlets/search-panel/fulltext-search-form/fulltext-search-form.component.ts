@@ -134,6 +134,20 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     }
 
     /**
+     * Public method: isFulltextSearchInputInvalid.
+     *
+     * It checks if the searchval control is missing or has any errors and returns a boolean flag.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    isFulltextSearchInputInvalid(): boolean {
+        return (
+            this.searchvalControl.hasError('required') ||
+            (this.searchvalControl.errors && this.searchvalControl.errors.minlength)
+        );
+    }
+
+    /**
      * Public method: listenToUserInputChange.
      *
      * It listens to the user's input changes
