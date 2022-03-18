@@ -13,7 +13,7 @@
                     'is-invalid': isFulltextSearchInputInvalid()
                 }"
                 formControlName="searchvalControl"
-                aria-label="{{ searchFormStrings.label }}"
+                [attr.aria-label]="searchFormStrings.label"
                 aria-describedby="search-icon"
                 placeholder="{{ searchFormStrings.placeholder }}"
                 required />
