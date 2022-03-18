@@ -19,25 +19,23 @@
 
 <div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
     <!-- top pagination -->
-    <ngb-pagination
-        class="d-flex justify-content-center cols-xs-2"
+    <awg-table-pagination
         [(page)]="paginatorOptions.page"
-        [pageSize]="paginatorOptions.selectedPageSize"
         [collectionSize]="tableData.filteredRows?.length"
-        [maxSize]="4"
-        [boundaryLinks]="true"
-        (pageChange)="onPageSizeChange(searchFilter)">
-    </ngb-pagination>
+        (pageChangeRequest)="onPageSizeChange(searchFilter)">
+    </awg-table-pagination>
 
-    <select
-        class="custom-select"
-        style="width: auto"
-        [(ngModel)]="paginatorOptions.selectedPageSize"
-        (ngModelChange)="onPageSizeChange(searchFilter)">
-        <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
-            {{ option }} Ergebnisse pro Seite
-        </option>
-    </select>
+    <div ngbDropdown class="d-inline-block">
+        <select
+            ngbDropdownToggle
+            class="form-select"
+            [(ngModel)]="paginatorOptions.selectedPageSize"
+            (ngModelChange)="onPageSizeChange(searchFilter)">
+            <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option" ngbDropdownItem>
+                {{ option }} Ergebnisse pro Seite
+            </option>
+        </select>
+    </div>
 </div>
 
 <table
@@ -85,23 +83,21 @@
 
 <div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
     <!-- bottom pagination -->
-    <ngb-pagination
-        class="d-flex justify-content-center"
+    <awg-table-pagination
         [(page)]="paginatorOptions.page"
-        [pageSize]="paginatorOptions.selectedPageSize"
         [collectionSize]="tableData.filteredRows?.length"
-        [maxSize]="4"
-        [boundaryLinks]="true"
-        (pageChange)="onPageSizeChange(searchFilter)">
-    </ngb-pagination>
+        (pageChangeRequest)="onPageSizeChange(searchFilter)">
+    </awg-table-pagination>
 
-    <select
-        class="custom-select"
-        style="width: auto"
-        [(ngModel)]="paginatorOptions.selectedPageSize"
-        (ngModelChange)="onPageSizeChange(searchFilter)">
-        <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
-            {{ option }} Ergebnisse pro Seite
-        </option>
-    </select>
+    <div ngbDropdown class="d-inline-block">
+        <select
+            ngbDropdownToggle
+            class="form-select"
+            [(ngModel)]="paginatorOptions.selectedPageSize"
+            (ngModelChange)="onPageSizeChange(searchFilter)">
+            <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option" ngbDropdownItem>
+                {{ option }} Ergebnisse pro Seite
+            </option>
+        </select>
+    </div>
 </div>
