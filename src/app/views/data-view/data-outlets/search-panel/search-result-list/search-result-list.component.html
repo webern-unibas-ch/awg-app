@@ -11,30 +11,45 @@
     <!-- header -->
     <div class="row d-flex justify-content-between mb-4 awg-search-results-header">
         <div class="col-6 me-auto awg-search-results-header-icons">
-            <div class="btn-group">
+            <div class="btn-group" role="group">
                 <form [formGroup]="searchResultControlForm">
                     <div
-                        class="btn-group btn-group-toggle"
-                        ngbRadioGroup
+                        class="btn-group"
+                        role="group"
                         name="searchResultView"
-                        formControlName="searchResultViewControl">
-                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
-                            <input ngbButton type="radio" value="table" [disabled]="isNoResults()" />
-                            <fa-icon [icon]="faTable"></fa-icon>
-                        </label>
-                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
-                            <input ngbButton type="radio" value="grid" [disabled]="isNoResults()" />
-                            <fa-icon [icon]="faGripHorizontal"></fa-icon>
+                        aria-label="Search result view toggle button group">
+                        <input
+                            type="radio"
+                            [formControl]="searchResultViewControl"
+                            value="table"
+                            class="btn-check"
+                            id="tableViewButton"
+                            autocomplete="off"
+                            [disabled]="isNoResults()" />
+                        <label class="btn btn-outline-info" for="tableViewButton" ngbTooltip="Table view"
+                            ><fa-icon [icon]="faTable"></fa-icon
+                        ></label>
+
+                        <input
+                            type="radio"
+                            [formControl]="searchResultViewControl"
+                            value="grid"
+                            class="btn-check"
+                            id="gridViewButton"
+                            autocomplete="off"
+                            [disabled]="isNoResults()" />
+                        <label class="btn btn-outline-info" for="gridViewButton" ngbTooltip="Grid view"
+                            ><fa-icon [icon]="faGripHorizontal"></fa-icon>
                         </label>
                     </div>
                 </form>
-                <div class="btn-group">
+                <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">
                         <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}
                     </button>
                     <div
-                        class="btn-group"
                         ngbDropdown
+                        class="btn-group"
                         role="group"
                         aria-label="Button group with nested dropdown for row number">
                         <button
