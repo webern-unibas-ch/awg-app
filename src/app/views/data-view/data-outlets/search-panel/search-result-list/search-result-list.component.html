@@ -118,19 +118,21 @@
         </div>
 
         <!-- grid with searchResults -->
-        <div *ngIf="isGridView()" class="card-columns">
-            <div class="card" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">
-                <div class="card-header">
-                    <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
-                    &nbsp;{{ subject?.iconlabel }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
-                    </h5>
-                    <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
-                        Mehr ...
-                    </button>
+        <div *ngIf="isGridView()" class="row row-cols-1 row-cols-sm-3 row-cols-xl-5 g-4 mb-4">
+            <div class="col" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
+                        &nbsp;{{ subject?.iconlabel }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
+                        </h5>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a (click)="navigateToResource(subject?.obj_id)" class="btn btn-outline-info">Mehr... </a>
+                    </div>
                 </div>
             </div>
         </div>

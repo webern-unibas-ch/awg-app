@@ -183,6 +183,9 @@ footer {
 .card-header .btn-link:focus {
     text-decoration: none;
 }
+.card-footer a.btn:hover {
+    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
+}
 
 /****** ACCORDION ******/
 .accordion-button {
