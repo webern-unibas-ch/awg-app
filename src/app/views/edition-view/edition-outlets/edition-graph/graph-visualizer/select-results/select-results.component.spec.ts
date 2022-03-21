@@ -38,6 +38,7 @@ describe('SelectResultsComponent (DONE)', () => {
     let expectedQueryResult: SearchResult;
     let expectedQueryResult$: Observable<SearchResult>;
     let expectedQueryTime: number;
+    let expectedIsFullscreen: boolean;
 
     let tableClickSpy: Spy;
     let emitSpy: Spy;
@@ -82,6 +83,7 @@ describe('SelectResultsComponent (DONE)', () => {
         expectedQueryResult = { head: { vars: varKeys }, body: { bindings: b } };
         expectedQueryResult$ = observableOf(expectedQueryResult);
         expectedQueryTime = 5000;
+        expectedIsFullscreen = false;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -100,13 +102,21 @@ describe('SelectResultsComponent (DONE)', () => {
             expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
         });
 
+        it('should not have queryTime', () => {
+            expect(component.queryTime).withContext('should be undefined').toBeUndefined();
+        });
+
+        it('should not have isFullscreen', () => {
+            expect(component.isFullscreen).withContext('should be undefined').toBeUndefined();
+        });
+
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
+            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
         });
     });
@@ -116,34 +126,49 @@ describe('SelectResultsComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.queryResult$ = expectedQueryResult$;
             component.queryTime = expectedQueryTime;
+            component.isFullscreen = expectedIsFullscreen;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('should have `queryResult` input', () => {
-            expect(component.queryResult$).toBeDefined('should be defined');
-            expect(component.queryResult$).toEqual(expectedQueryResult$, `should equal ${expectedQueryResult$}`);
+            expect(component.queryResult$).toBeDefined();
+            expect(component.queryResult$)
+                .withContext(`should equal ${expectedQueryResult$}`)
+                .toEqual(expectedQueryResult$);
+        });
+
+        it('should have `queryTime` input', () => {
+            expect(component.queryTime).toBeDefined();
+            expect(component.queryTime).withContext(`should equal ${expectedQueryTime}`).toEqual(expectedQueryTime);
+        });
+
+        it('should have `isFullscreen` input', () => {
+            expect(component.isFullscreen).toBeDefined();
+            expect(component.isFullscreen)
+                .withContext(`should equal ${expectedIsFullscreen}`)
+                .toEqual(expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with panel (div.card) header and body', () => {
+            it('... should contain one ngb-accordion with panel (div.accordion-item) header and body', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1); // Panel (div.card)
                 // Header
                 getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div#awg-graph-visualizer-select-result-header.card-header',
+                    'div#awg-graph-visualizer-select-results-header.accordion-header',
                     1,
                     1
                 ); // Panel (div.card)
                 // Body
                 getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div#awg-graph-visualizer-select-result > div.card-body',
+                    'div#awg-graph-visualizer-select-results > div.accordion-body',
                     1,
                     1
                 );
@@ -153,7 +178,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 // Panel header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-select-result-header > button',
+                    'div#awg-graph-visualizer-select-results-header > button.accordion-button',
                     1,
                     1
                 );
@@ -162,7 +187,7 @@ describe('SelectResultsComponent (DONE)', () => {
 
                 // Check button content
                 expect(btnEl.textContent).toBeTruthy();
-                expect(btnEl.textContent).toContain('Resultat', 'should contain Resultat');
+                expect(btnEl.textContent).withContext('should contain Resultat').toContain('Resultat');
             });
 
             it('... should contain panel body with TwelveToneSpinnerComponent (stubbed) while loading', () => {
@@ -173,7 +198,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-select-result > div.card-body',
+                    'div#awg-graph-visualizer-select-results > div.accordion-body',
                     1,
                     1
                 );
@@ -189,7 +214,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-select-result > div.card-body',
+                    'div#awg-graph-visualizer-select-results > div.accordion-body',
                     1,
                     1
                 );
@@ -202,7 +227,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-select-result > div.card-body',
+                    'div#awg-graph-visualizer-select-results > div.accordion-body',
                     1,
                     1
                 );
@@ -218,10 +243,14 @@ describe('SelectResultsComponent (DONE)', () => {
                 ) as SparqlTableStubComponent;
 
                 expect(sparqlTableCmp.queryResult).toBeDefined();
-                expect(sparqlTableCmp.queryResult).toEqual(expectedQueryResult, `should equal ${expectedQueryResult}`);
+                expect(sparqlTableCmp.queryResult)
+                    .withContext(`should equal ${expectedQueryResult}`)
+                    .toEqual(expectedQueryResult);
 
                 expect(sparqlTableCmp.queryTime).toBeDefined();
-                expect(sparqlTableCmp.queryTime).toEqual(expectedQueryTime, `should have data: ${expectedQueryTime}`);
+                expect(sparqlTableCmp.queryTime)
+                    .withContext(`should have data: ${expectedQueryTime}`)
+                    .toEqual(expectedQueryTime);
             });
         });
 

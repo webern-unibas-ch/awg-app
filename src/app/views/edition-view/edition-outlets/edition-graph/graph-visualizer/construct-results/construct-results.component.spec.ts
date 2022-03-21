@@ -39,6 +39,7 @@ describe('ConstructResultsComponent (DONE)', () => {
     let expectedHeight: number;
     let expectedTriples: Triple[];
     let expectedQueryResult$: Observable<Triple[]>;
+    let expectedIsFullscreen: boolean;
 
     let nodeClickSpy: Spy;
     let emitSpy: Spy;
@@ -73,6 +74,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
         // Test data
         expectedHeight = 500;
+        expectedIsFullscreen = false;
         expectedTriples = [
             {
                 subject: { nominalValue: 'example:Test' },
@@ -95,20 +97,24 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have queryResult', () => {
-            expect(component.queryResult$).toBeUndefined('should be undefined');
+            expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
         });
 
         it('should not have defaultForceGraphHeight', () => {
-            expect(component.defaultForceGraphHeight).toBeUndefined('should be undefined');
+            expect(component.defaultForceGraphHeight).withContext('should be undefined').toBeUndefined();
+        });
+
+        it('should not have isFullscreen', () => {
+            expect(component.isFullscreen).withContext('should be undefined').toBeUndefined();
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
+            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
         });
     });
@@ -118,39 +124,45 @@ describe('ConstructResultsComponent (DONE)', () => {
             // Simulate the parent setting the input properties
             component.queryResult$ = expectedQueryResult$;
             component.defaultForceGraphHeight = expectedHeight;
+            component.isFullscreen = expectedIsFullscreen;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('should have `queryResult` input', () => {
-            expect(component.queryResult$).toBeDefined('should be defined');
+            expect(component.queryResult$).withContext('should be defined').toBeDefined();
             expect(component.queryResult$).toEqual(expectedQueryResult$, `should equal ${expectedQueryResult$}`);
         });
 
         it('should have `defaultForceGraphHeight` input', () => {
-            expect(component.defaultForceGraphHeight).toBeDefined('should be defined');
+            expect(component.defaultForceGraphHeight).withContext('should be defined').toBeDefined();
             expect(component.defaultForceGraphHeight).toBe(expectedHeight, `should be ${expectedHeight}`);
         });
 
+        it('should have `isFullscreen` input', () => {
+            expect(component.isFullscreen).withContext('should be defined').toBeDefined();
+            expect(component.isFullscreen).withContext(`should be ${expectedHeight}`).toBe(expectedIsFullscreen);
+        });
+
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with panel (div.card) header and body', () => {
+            it('... should contain one ngb-accordion with panel (div.accordion-item) header and body', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1); // Panel (div.card)
                 // Header
                 getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div#awg-graph-visualizer-construct-result-header.card-header',
+                    'div#awg-graph-visualizer-construct-results-header.accordion-header',
                     1,
                     1
                 ); // Panel (div.card)
                 // Body
                 getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div#awg-graph-visualizer-construct-result > div.card-body',
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
                     1,
                     1
                 );
@@ -160,7 +172,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 // Panel header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-construct-result-header > button',
+                    'div#awg-graph-visualizer-construct-results-header > button',
                     1,
                     1
                 );
@@ -169,7 +181,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 // Check button content
                 expect(btnEl.textContent).toBeTruthy();
-                expect(btnEl.textContent).toContain('Resultat', 'should be Resultat');
+                expect(btnEl.textContent).withContext('should be Resultat').toContain('Resultat');
             });
 
             it('... should contain panel body with TwelveToneSpinnerComponent (stubbed) while loading', () => {
@@ -180,7 +192,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-construct-result > div.card-body',
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
                     1,
                     1
                 );
@@ -196,7 +208,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-construct-result > div.card-body',
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
                     1,
                     1
                 );
@@ -209,7 +221,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-construct-result > div.card-body',
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
                     1,
                     1
                 );
@@ -222,11 +234,13 @@ describe('ConstructResultsComponent (DONE)', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
-                expect(forceGraphCmp.queryResultTriples).toBeDefined();
-                expect(forceGraphCmp.queryResultTriples).toEqual(expectedTriples, `should equal ${expectedTriples}`);
+                expect(forceGraphCmp.queryResultTriples).withContext('should be defined').toBeDefined();
+                expect(forceGraphCmp.queryResultTriples)
+                    .withContext(`should equal ${expectedTriples}`)
+                    .toEqual(expectedTriples);
 
-                expect(forceGraphCmp.height).toBeDefined();
-                expect(forceGraphCmp.height).toEqual(expectedHeight, `should have data: ${expectedHeight}`);
+                expect(forceGraphCmp.height).withContext('should be defined').toBeDefined();
+                expect(forceGraphCmp.height).withContext(`should have data: ${expectedHeight}`).toEqual(expectedHeight);
             });
         });
 
