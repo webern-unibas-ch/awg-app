@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { Observable, throwError } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import {
     EditionWork,
@@ -108,7 +108,7 @@ export class EditionReportComponent implements OnInit {
                 // Error handling
                 catchError(err => {
                     this.errorObject = err;
-                    return throwError(err);
+                    return EMPTY;
                 })
             );
     }

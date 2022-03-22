@@ -4,7 +4,7 @@ import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
     expectSpyCall,
@@ -53,8 +53,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
 
     // Global NgbConfigModule
-    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
-    class NgbAccordionWithConfigModule {
+    @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
+    class NgbConfigModule {
         constructor(config: NgbConfig) {
             // Set animations to false
             config.animation = false;
@@ -64,7 +64,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, NgbAccordionWithConfigModule],
+                imports: [FontAwesomeTestingModule, NgbConfigModule],
                 declarations: [EditionConvoluteComponent, FolioStubComponent],
             }).compileComponents();
         })
@@ -113,34 +113,36 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have folioConvoluteData', () => {
-            expect(component.folioConvoluteData).toBeUndefined('should be undefined');
+            expect(component.folioConvoluteData).toBeUndefined();
         });
 
         it('should not have selectedConvolute', () => {
-            expect(component.selectedConvolute).toBeUndefined('should be undefined');
+            expect(component.selectedConvolute).toBeUndefined();
         });
 
         it('should not have selectedSvgSheet', () => {
-            expect(component.selectedSvgSheet).toBeUndefined('should be undefined');
+            expect(component.selectedSvgSheet).toBeUndefined();
         });
 
         it('should have faSquare', () => {
-            expect(component.faSquare).toBeDefined('should be defined');
-            expect(component.faSquare).toBe(faSquare);
+            expect(component.faSquare).toBeDefined();
+            expect(component.faSquare).withContext(`should be faSquare`).toBe(faSquare);
         });
 
         it('should have folioLegends', () => {
-            expect(component.folioLegends).toBeDefined('should be defined');
-            expect(component.folioLegends).toEqual(expectedFolioLegends);
+            expect(component.folioLegends).toBeDefined();
+            expect(component.folioLegends)
+                .withContext(`should equal ${expectedFolioLegends}`)
+                .toEqual(expectedFolioLegends);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
+            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
 
             it('... should contain no FolioComponent (stubbed) yet', () => {
@@ -161,40 +163,41 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         it('should have `folioConvoluteData` input', () => {
-            expect(component.folioConvoluteData).toBeDefined('should be defined');
-            expect(component.folioConvoluteData).toEqual(
-                expectedFolioConvoluteData,
-                `should equal ${expectedFolioConvoluteData}`
-            );
+            expect(component.folioConvoluteData).toBeDefined();
+            expect(component.folioConvoluteData)
+                .withContext(`should equal ${expectedFolioConvoluteData}`)
+                .toEqual(expectedFolioConvoluteData);
         });
 
         it('should have `selectedConvolute` input', () => {
-            expect(component.selectedConvolute).toBeDefined('should be defined');
-            expect(component.selectedConvolute).toBe(expectedSelectedConvolute);
+            expect(component.selectedConvolute).toBeDefined();
+            expect(component.selectedConvolute)
+                .withContext(`should be ${expectedSelectedConvolute}`)
+                .toBe(expectedSelectedConvolute);
         });
 
         it('should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined('should be defined');
-            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
+            expect(component.selectedSvgSheet).toBeDefined();
+            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with one panel (div.card)', () => {
+            it('... should contain one ngb-accordion with one panel (div.accordion-item)', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1);
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
             });
 
-            it('... should contain header title for the panel (div.card-header)', () => {
+            it('... should contain header title for the panel (div.accordion-header)', () => {
                 // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                 // Panel
                 const headerDes = getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div#awg-convolute-view-header.card-header',
+                    'div#awg-convolute-view-header.accordion-header',
                     1,
                     1
                 );
@@ -202,15 +205,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 const expectedTitle = 'Konvolutübersicht';
 
-                expect(headerCmp.textContent).toBeDefined('should be defined');
-                expect(headerCmp.textContent.trim()).toBe(expectedTitle, `should be ${expectedTitle}`);
+                expect(headerCmp.textContent).toBeDefined();
+                expect(headerCmp.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
             });
 
-            it('... should contain two divs and one FolioComponent (stubbed) in the panel body (div.card-body)', () => {
+            it('... should contain two divs and one FolioComponent (stubbed) in the panel body (div.accordion-body)', () => {
                 // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
-                const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-dropdown', 1, 1);
                 getAndExpectDebugElementByDirective(bodyDes[0], FolioStubComponent, 1, 1);
@@ -222,10 +225,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
 
                 expect(folioCmp.selectedConvolute).toBeTruthy();
-                expect(folioCmp.selectedConvolute).toEqual(
-                    expectedSelectedConvolute,
-                    `should equal ${expectedSelectedConvolute}`
-                );
+                expect(folioCmp.selectedConvolute)
+                    .withContext(`should equal ${expectedSelectedConvolute}`)
+                    .toEqual(expectedSelectedConvolute);
             });
 
             it('... should pass down selectedSvgSheet to the FolioComponent', () => {
@@ -233,39 +235,49 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
 
                 expect(folioCmp.selectedSvgSheet).toBeTruthy();
-                expect(folioCmp.selectedSvgSheet).toEqual(expectedSvgSheet, `should equal ${expectedSvgSheet}`);
+                expect(folioCmp.selectedSvgSheet)
+                    .withContext(`should equal ${expectedSvgSheet}`)
+                    .toEqual(expectedSvgSheet);
             });
 
-            it('... should contain one button link in the dropdown div', () => {
+            it('... should contain one dropdown-toggle link in the dropdown div', () => {
+                // Ngb-accordion panel debug element
+                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+
                 const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ngb-accordion > div.card div.awg-convolute-dropdown',
+                    panelDes[0],
+                    'div.accordion-body > div.awg-convolute-dropdown.dropdown',
                     1,
                     1
                 );
 
-                const anchorDes = getAndExpectDebugElementByCss(dropdownDes[0], 'a#dropDownConvolutes.btn', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(dropdownDes[0], 'a.dropdown-toggle', 1, 1);
+
                 const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 1, 1);
                 const spanCmp = spanDes[0].nativeElement;
 
                 expect(spanCmp.textContent).toBeDefined();
-                expect(spanCmp.textContent).toBe(
-                    expectedSelectedConvolute.convoluteLabel,
-                    `should be ${expectedSelectedConvolute.convoluteLabel}`
-                );
+                expect(spanCmp.textContent)
+                    .withContext(`should be ${expectedSelectedConvolute.convoluteLabel}`)
+                    .toBe(expectedSelectedConvolute.convoluteLabel);
             });
 
-            it('... should contain another div with dropdown-item links in the dropdown div', () => {
+            it('... should contain a dropdown-menu with dropdown-item links in the dropdown div', () => {
+                // Ngb-accordion panel debug element
+                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+
                 const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ngb-accordion > div.card div.awg-convolute-dropdown',
+                    panelDes[0],
+                    'div.accordion-body > div.awg-convolute-dropdown.dropdown',
                     1,
                     1
                 );
 
+                const divDes = getAndExpectDebugElementByCss(dropdownDes[0], 'div.dropdown-menu', 1, 1);
+
                 const anchorDes = getAndExpectDebugElementByCss(
-                    dropdownDes[0],
-                    'div > a.awg-convolute-dropdown-item',
+                    divDes[0],
+                    'a.dropdown-item',
                     expectedFolioConvoluteData.convolutes.length,
                     expectedFolioConvoluteData.convolutes.length
                 );
@@ -273,22 +285,23 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const anchorCmp1 = anchorDes[1].nativeElement;
 
                 expect(anchorCmp0.textContent).toBeDefined();
-                expect(anchorCmp0.textContent).toBe(
-                    expectedFolioConvoluteData.convolutes[0].convoluteLabel,
-                    `should be ${expectedFolioConvoluteData.convolutes[0].convoluteLabel}`
-                );
+                expect(anchorCmp0.textContent)
+                    .withContext(`should be ${expectedFolioConvoluteData.convolutes[0].convoluteLabel}`)
+                    .toBe(expectedFolioConvoluteData.convolutes[0].convoluteLabel);
 
                 expect(anchorCmp1.textContent).toBeDefined();
-                expect(anchorCmp1.textContent).toBe(
-                    expectedFolioConvoluteData.convolutes[1].convoluteLabel,
-                    `should be ${expectedFolioConvoluteData.convolutes[1].convoluteLabel}`
-                );
+                expect(anchorCmp1.textContent)
+                    .withContext(`should be ${expectedFolioConvoluteData.convolutes[1].convoluteLabel}`)
+                    .toBe(expectedFolioConvoluteData.convolutes[1].convoluteLabel);
             });
 
             it('... should contain three legend labels in the folio legend div', () => {
+                // Ngb-accordion panel debug element
+                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+
                 const legendDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'ngb-accordion > div.card div.awg-folio-legend',
+                    panelDes[0],
+                    'div.accordion-body > div.awg-folio-legend',
                     1,
                     1
                 );
@@ -299,37 +312,31 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const spanCmp2 = spanDes[2].nativeElement;
 
                 expect(spanCmp0.className).toBeDefined();
-                expect(spanCmp0.className).toBe(
-                    expectedFolioLegends[0].color,
-                    `should be ${expectedFolioLegends[0].color}`
-                );
+                expect(spanCmp0.className)
+                    .withContext(`should be ${expectedFolioLegends[0].color}`)
+                    .toBe(expectedFolioLegends[0].color);
                 expect(spanCmp0.textContent).toBeDefined();
-                expect(spanCmp0.textContent.trim()).toBe(
-                    expectedFolioLegends[0].label,
-                    `should be ${expectedFolioLegends[0].label}`
-                );
+                expect(spanCmp0.textContent.trim())
+                    .withContext(`should be ${expectedFolioLegends[0].label}`)
+                    .toBe(expectedFolioLegends[0].label);
 
                 expect(spanCmp1.className).toBeDefined();
-                expect(spanCmp1.className).toBe(
-                    expectedFolioLegends[1].color,
-                    `should be ${expectedFolioLegends[1].color}`
-                );
+                expect(spanCmp1.className)
+                    .withContext(`should be ${expectedFolioLegends[1].color}`)
+                    .toBe(expectedFolioLegends[1].color);
                 expect(spanCmp1.textContent).toBeDefined();
-                expect(spanCmp1.textContent.trim()).toBe(
-                    expectedFolioLegends[1].label,
-                    `should be ${expectedFolioLegends[1].label}`
-                );
+                expect(spanCmp1.textContent.trim())
+                    .withContext(`should be ${expectedFolioLegends[1].label}`)
+                    .toBe(expectedFolioLegends[1].label);
 
                 expect(spanCmp2.className).toBeDefined();
-                expect(spanCmp2.className).toBe(
-                    expectedFolioLegends[2].color,
-                    `should be ${expectedFolioLegends[2].color}`
-                );
+                expect(spanCmp2.className)
+                    .withContext(`should be ${expectedFolioLegends[2].color}`)
+                    .toBe(expectedFolioLegends[2].color);
                 expect(spanCmp2.textContent).toBeDefined();
-                expect(spanCmp2.textContent.trim()).toBe(
-                    expectedFolioLegends[2].label,
-                    `should be ${expectedFolioLegends[2].label}`
-                );
+                expect(spanCmp2.textContent.trim())
+                    .withContext(`should be ${expectedFolioLegends[2].label}`)
+                    .toBe(expectedFolioLegends[2].label);
             });
         });
 

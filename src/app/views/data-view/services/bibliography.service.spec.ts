@@ -247,7 +247,7 @@ describe('BibliographyService (DONE)', () => {
                         expectedApiServiceError.status = 401;
                         expectedApiServiceError.url = expectedQueryPath;
 
-                        getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+                        getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
                         bibliographyService.getBibliographyList().subscribe(
                             result => fail(expectedErrorMsg),
@@ -341,7 +341,7 @@ describe('BibliographyService (DONE)', () => {
                         expectedApiServiceError.status = 401;
                         expectedApiServiceError.url = expectedResourcesRoute + expectedResourceId;
 
-                        getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+                        getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
                         bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe(
                             result => fail(expectedErrorMsg),

@@ -330,11 +330,11 @@ describe('EditionGraphComponent (DONE)', () => {
             );
 
             it(
-                '... should return empty GraphList and set errorObject if switchMap fails',
+                '... should return empty observable and set errorObject if switchMap fails',
                 waitForAsync(async () => {
                     const expectedError = { status: 404, statusText: 'fail' };
                     // Spy on editionDataService to return an error
-                    editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(expectedError));
+                    editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(() => expectedError));
 
                     // Init new switchMap
                     component.getEditionGraphData();
@@ -699,7 +699,9 @@ describe('EditionGraphComponent (DONE)', () => {
                 beforeEach(
                     waitForAsync(() => {
                         // Spy on editionDataService to return an error
-                        editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(expectedError));
+                        editionDataServiceGetEditionGraphDataSpy.and.returnValue(
+                            observableThrowError(() => expectedError)
+                        );
 
                         // Trigger new switch map
                         component.getEditionGraphData();

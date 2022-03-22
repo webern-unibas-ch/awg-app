@@ -36,7 +36,7 @@ describe('NavbarComponent (DONE)', () => {
 
     // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
-    class NgbWithConfigModule {
+    class NgbConfigModule {
         constructor(config: NgbConfig) {
             // Set animations to false
             config.animation = false;
@@ -51,7 +51,7 @@ describe('NavbarComponent (DONE)', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, NgbWithConfigModule],
+                imports: [FontAwesomeTestingModule, NgbConfigModule],
                 declarations: [NavbarComponent, RouterLinkStubDirective],
                 providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();

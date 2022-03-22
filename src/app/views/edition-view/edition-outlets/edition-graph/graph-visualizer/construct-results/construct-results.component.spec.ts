@@ -4,9 +4,11 @@ import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '
 import { EMPTY, Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordion, NgbAccordionModule, NgbConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -14,7 +16,6 @@ import {
 } from '@testing/expect-helper';
 
 import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
-
 import { ConstructResultsComponent } from './construct-results.component';
 
 // Mock components
@@ -41,8 +42,9 @@ describe('ConstructResultsComponent (DONE)', () => {
     let expectedQueryResult$: Observable<Triple[]>;
     let expectedIsFullscreen: boolean;
 
+    let emitClickedNodeRequestSpy: Spy;
     let nodeClickSpy: Spy;
-    let emitSpy: Spy;
+    let preventPanelCollapseOnFullscreenSpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -88,7 +90,8 @@ describe('ConstructResultsComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         nodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
-        emitSpy = spyOn(component.clickedNodeRequest, 'emit').and.callThrough();
+        preventPanelCollapseOnFullscreenSpy = spyOn(component, 'preventPanelCollapseOnFullscreen').and.callThrough();
+        emitClickedNodeRequestSpy = spyOn(component.clickedNodeRequest, 'emit').and.callThrough();
     });
 
     it('should create', () => {
@@ -184,6 +187,99 @@ describe('ConstructResultsComponent (DONE)', () => {
                 expect(btnEl.textContent).withContext('should be Resultat').toContain('Resultat');
             });
 
+            it('... should toggle panel body on click when not in fullscreen mode', () => {
+                component.isFullscreen = false;
+                fixture.detectChanges();
+
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results-header.accordion-header',
+                    1,
+                    1
+                );
+
+                // Button debug elements
+                const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+                // Button native elements to click on
+                const btnEl = btnDes[0].nativeElement;
+
+                // Panel body is open
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
+                    1,
+                    1,
+                    'open'
+                );
+
+                // Click header button
+                click(btnEl as HTMLElement);
+                detectChangesOnPush(fixture);
+
+                // Panel is open
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
+                    0,
+                    0,
+                    'collapsed'
+                );
+
+                // Click header button
+                click(btnEl as HTMLElement);
+                detectChangesOnPush(fixture);
+
+                getAndExpectDebugElementByCss(
+                    // Panel body is closed again
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
+                    1,
+                    1,
+                    'open'
+                );
+            });
+
+            it('... should not toggle panel body on click in fullscreen mode', () => {
+                component.isFullscreen = true;
+                fixture.detectChanges();
+
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results-header.accordion-header',
+                    1,
+                    1
+                );
+
+                // Button debug elements
+                const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+                // Button native elements to click on
+                const btnEl = btnDes[0].nativeElement;
+
+                // Panel body does not close
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
+                    1,
+                    1,
+                    'open'
+                );
+
+                // Click header button
+                click(btnEl as HTMLElement);
+                detectChangesOnPush(fixture);
+
+                // Panel body does not close again
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-results > div.accordion-body',
+                    1,
+                    1,
+                    'open'
+                );
+            });
+
             it('... should contain panel body with TwelveToneSpinnerComponent (stubbed) while loading', () => {
                 // Mock empty observable
                 component.queryResult$ = EMPTY;
@@ -263,7 +359,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 forceGraphCmp.clickedNodeRequest.emit(undefined);
 
                 expectSpyCall(nodeClickSpy, 1, undefined);
-                expectSpyCall(emitSpy, 0);
+                expectSpyCall(emitClickedNodeRequestSpy, 0);
             });
 
             it('... should emit provided node on click', () => {
@@ -274,7 +370,106 @@ describe('ConstructResultsComponent (DONE)', () => {
                 forceGraphCmp.clickedNodeRequest.emit(node);
 
                 expectSpyCall(nodeClickSpy, 1, node);
-                expectSpyCall(emitSpy, 1, node);
+                expectSpyCall(emitClickedNodeRequestSpy, 1, node);
+            });
+        });
+
+        describe('#preventPanelCollapseOnFullscreen', () => {
+            it('... should trigger on event from ngb-accordion', () => {
+                const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
+                const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;
+
+                const panelChangeEvent: NgbPanelChangeEvent = {
+                    panelId: 'panelChangeId',
+                    nextState: true,
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
+                };
+
+                // Emit change event from accordion
+                accordionCmp.panelChange.emit(panelChangeEvent);
+
+                expectSpyCall(preventPanelCollapseOnFullscreenSpy, 1, panelChangeEvent);
+            });
+
+            it('... should not do anything if no $event is provided', () => {
+                const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
+                const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;
+
+                // Emit undefined change event from accordion
+                accordionCmp.panelChange.emit(undefined);
+
+                expectSpyCall(preventPanelCollapseOnFullscreenSpy, 1, undefined);
+            });
+
+            it('... should trigger $event.preventDefault() if isFullscreen == true && $event.nextState == false', () => {
+                const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
+                const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;
+
+                const panelChangeEvent: NgbPanelChangeEvent = {
+                    panelId: 'panelChangeId',
+                    nextState: false,
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
+                };
+                const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
+
+                // Set fullscreen mode
+                component.isFullscreen = true;
+
+                // Emit change event from accordion
+                accordionCmp.panelChange.emit(panelChangeEvent);
+
+                expectSpyCall(preventPanelCollapseOnFullscreenSpy, 1, panelChangeEvent);
+                expectSpyCall(preventDefaultSpy, 1, undefined);
+            });
+
+            it('... should not trigger $event.preventDefault() if $event.nextState == true', () => {
+                const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
+                const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;
+
+                const panelChangeEvent: NgbPanelChangeEvent = {
+                    panelId: 'panelChangeId',
+                    nextState: true,
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
+                };
+                const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
+
+                // Set fullscreen mode
+                component.isFullscreen = true;
+
+                // Emit change event from accordion
+                accordionCmp.panelChange.emit(panelChangeEvent);
+
+                expectSpyCall(preventPanelCollapseOnFullscreenSpy, 1, panelChangeEvent);
+                expectSpyCall(preventDefaultSpy, 0, undefined);
+            });
+
+            it('... should not trigger $event.preventDefault() if isFullscreen == false', () => {
+                const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
+                const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;
+
+                const panelChangeEvent: NgbPanelChangeEvent = {
+                    panelId: 'panelChangeId',
+                    nextState: false,
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
+                };
+                const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
+
+                // Unset fullscreen mode
+                component.isFullscreen = false;
+
+                // Emit change event from accordion
+                accordionCmp.panelChange.emit(panelChangeEvent);
+
+                expectSpyCall(preventPanelCollapseOnFullscreenSpy, 1, panelChangeEvent);
+                expectSpyCall(preventDefaultSpy, 0, undefined);
             });
         });
     });

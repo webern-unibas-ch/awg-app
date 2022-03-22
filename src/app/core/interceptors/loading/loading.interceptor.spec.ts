@@ -197,7 +197,7 @@ describe('LoadingInterceptor (DONE)', () => {
             // Cf. https://stackoverflow.com/a/53688721
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
             const expectedError = { status: 401, statusText: 'error', message: 'test-error' };
-            httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
+            httpHandlerSpy.handle.and.returnValue(observableThrowError(() => expectedError));
 
             // Expect an HTTP request
             call = httpTestingController.expectOne({

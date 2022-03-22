@@ -1203,7 +1203,7 @@ describe('DataApiService (DONE)', () => {
                         waitForAsync(() => {
                             // Return fork joined observables from API
                             getApiResponseSpy.and.returnValues(
-                                observableThrowError(expectedApiServiceError),
+                                observableThrowError(() => expectedApiServiceError),
                                 observableThrowError(() => expectedApiServiceError)
                             );
 

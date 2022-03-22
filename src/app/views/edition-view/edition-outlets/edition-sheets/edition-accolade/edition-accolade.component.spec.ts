@@ -135,28 +135,28 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have svgSheetsData', () => {
-            expect(component.svgSheetsData).toBeUndefined('should be undefined');
+            expect(component.svgSheetsData).toBeUndefined();
         });
 
         it('should not have selectedOverlay', () => {
-            expect(component.selectedOverlay).toBeUndefined('should be undefined');
+            expect(component.selectedOverlay).toBeUndefined();
         });
 
         it('should not have selectedTextcriticalComments', () => {
-            expect(component.selectedTextcriticalComments).toBeUndefined('should be undefined');
+            expect(component.selectedTextcriticalComments).toBeUndefined();
         });
 
         it('should not have showTkA', () => {
-            expect(component.showTkA).toBeUndefined('should be undefined');
+            expect(component.showTkA).toBeUndefined();
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
+            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
         });
     });
@@ -175,56 +175,62 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         it('should have `svgSheetsData` input', () => {
-            expect(component.svgSheetsData).withContext('should be defined').toBeDefined();
-            expect(component.svgSheetsData).toEqual(expectedSvgSheetsData, `should equal ${expectedSvgSheetsData}`);
+            expect(component.svgSheetsData).toBeDefined();
+            expect(component.svgSheetsData)
+                .withContext(`should equal ${expectedSvgSheetsData}`)
+                .toEqual(expectedSvgSheetsData);
         });
 
         it('should have `selectedOverlay` input', () => {
-            expect(component.selectedOverlay).withContext('should be defined').toBeDefined();
-            expect(component.selectedOverlay).toBe(expectedOverlay, `should be ${expectedOverlay}`);
+            expect(component.selectedOverlay).toBeDefined();
+            expect(component.selectedOverlay).withContext(`should be ${expectedOverlay}`).toBe(expectedOverlay);
         });
 
         it('should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).withContext('should be defined').toBeDefined();
-            expect(component.selectedSvgSheet).toBe(expectedSvgSheet, `should be ${expectedSvgSheet}`);
+            expect(component.selectedSvgSheet).toBeDefined();
+            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
         it('should have `selectedTextcriticalComments` input', () => {
-            expect(component.selectedTextcriticalComments).withContext('should be defined').toBeDefined();
-            expect(component.selectedTextcriticalComments).toEqual(
-                expectedSelectedTextcriticalComments,
-                `should equal ${expectedSelectedTextcriticalComments}`
-            );
+            expect(component.selectedTextcriticalComments).toBeDefined();
+            expect(component.selectedTextcriticalComments)
+                .withContext(`should equal ${expectedSelectedTextcriticalComments}`)
+                .toEqual(expectedSelectedTextcriticalComments);
         });
 
         it('should have `showTkA` input', () => {
-            expect(component.showTkA).withContext('should be defined').toBeDefined();
-            expect(component.showTkA).toBe(expectedShowTka, `should be ${expectedShowTka}`);
+            expect(component.showTkA).toBeDefined();
+            expect(component.showTkA).withContext(`should be ${expectedShowTka}`).toBe(expectedShowTka);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with one panel (div.card)', () => {
+            it('... should contain one ngb-accordion with one panel (div.accordion-item)', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1);
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
             });
 
-            it('... should contain header section with div and two buttons (div.card-header)', () => {
+            it('... should contain header section with div and two buttons (div.accordion-header)', () => {
                 // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                 // Header
                 const headerDes = getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div#awg-accolade-view-header.card-header',
+                    'div#awg-accolade-view-header.accordion-header',
                     1,
                     1
                 );
 
                 // Header Buttons
-                const buttonDes = getAndExpectDebugElementByCss(headerDes[0], 'div > button', 2, 2);
+                const buttonDes = getAndExpectDebugElementByCss(
+                    headerDes[0],
+                    'div.accordion-button > button.btn',
+                    2,
+                    2
+                );
 
                 const buttonCmp0 = buttonDes[0].nativeElement;
                 const buttonCmp1 = buttonDes[1].nativeElement;
@@ -232,19 +238,19 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const expectedTitle0 = 'Edierter Notentext';
                 const expectedTitle1 = 'Hinweise zur Nutzung';
 
-                expect(buttonCmp0.textContent).withContext('should be defined').toBeDefined();
-                expect(buttonCmp0.textContent).toBe(expectedTitle0, `should be ${expectedTitle0}`);
+                expect(buttonCmp0.textContent).toBeDefined();
+                expect(buttonCmp0.textContent).withContext(`should be ${expectedTitle0}`).toBe(expectedTitle0);
 
-                expect(buttonCmp1.textContent).withContext('should be defined').toBeDefined();
-                expect(buttonCmp1.textContent.trim()).toBe(expectedTitle1, `should be ${expectedTitle1}`);
+                expect(buttonCmp1.textContent).toBeDefined();
+                expect(buttonCmp1.textContent.trim()).withContext(`should be ${expectedTitle1}`).toBe(expectedTitle1);
             });
 
             describe('EditionSvgSheetNavComponent', () => {
-                it('... should contain one EditionSvgSheetNavComponent (stubbed) in the panel body (div.card-body)', () => {
+                it('... should contain one EditionSvgSheetNavComponent (stubbed) in the panel body (div.accordion-body)', () => {
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
                 });
@@ -261,10 +267,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetNavStubComponent;
 
                     expect(sheetNavCmp.svgSheetsData).toBeTruthy();
-                    expect(sheetNavCmp.svgSheetsData).toEqual(
-                        expectedSvgSheetsData,
-                        `should equal ${expectedSvgSheetsData}`
-                    );
+                    expect(sheetNavCmp.svgSheetsData)
+                        .withContext(`should equal ${expectedSvgSheetsData}`)
+                        .toEqual(expectedSvgSheetsData);
                 });
 
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetNavComponent', () => {
@@ -279,16 +284,18 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetNavStubComponent;
 
                     expect(sheetNavCmp.selectedSvgSheet).toBeTruthy();
-                    expect(sheetNavCmp.selectedSvgSheet).toEqual(expectedSvgSheet, `should equal ${expectedSvgSheet}`);
+                    expect(sheetNavCmp.selectedSvgSheet)
+                        .withContext(`should equal ${expectedSvgSheet}`)
+                        .toEqual(expectedSvgSheet);
                 });
             });
 
             describe('EditionSvgSheetComponent', () => {
-                it('... should contain one EditionSvgSheetComponent (stubbed) in the panel body (div.card-body)', () => {
+                it('... should contain one EditionSvgSheetComponent (stubbed) in the panel body (div.accordion-body)', () => {
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetListStubComponent, 1, 1);
                 });
@@ -305,10 +312,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetListStubComponent;
 
                     expect(sheetCmp.svgSheetsData).toBeTruthy();
-                    expect(sheetCmp.svgSheetsData).toEqual(
-                        expectedSvgSheetsData,
-                        `should equal ${expectedSvgSheetsData}`
-                    );
+                    expect(sheetCmp.svgSheetsData)
+                        .withContext(`should equal ${expectedSvgSheetsData}`)
+                        .toEqual(expectedSvgSheetsData);
                 });
 
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetComponent', () => {
@@ -323,7 +329,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetListStubComponent;
 
                     expect(sheetCmp.selectedSvgSheet).toBeTruthy();
-                    expect(sheetCmp.selectedSvgSheet).toEqual(expectedSvgSheet, `should equal ${expectedSvgSheet}`);
+                    expect(sheetCmp.selectedSvgSheet)
+                        .withContext(`should equal ${expectedSvgSheet}`)
+                        .toEqual(expectedSvgSheet);
                 });
 
                 it('... should pass down selectedOverlay to the EditionSvgSheetComponent', () => {
@@ -338,7 +346,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionSvgSheetListStubComponent;
 
                     expect(sheetCmp.selectedOverlay).toBeTruthy();
-                    expect(sheetCmp.selectedOverlay).toEqual(expectedOverlay, `should equal ${expectedOverlay}`);
+                    expect(sheetCmp.selectedOverlay)
+                        .withContext(`should equal ${expectedOverlay}`)
+                        .toEqual(expectedOverlay);
                 });
             });
 
@@ -348,8 +358,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
-                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
                 });
@@ -359,42 +369,44 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
 
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
-                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
                 });
 
                 it('... should contain one footer div if showTka=true and textcriticalComments selected', () => {
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
-                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 1, 1);
                 });
 
                 it('... should contain one header (h5) in footer div', () => {
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.panel-footer', 1, 1);
 
                     const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h5', 1, 1);
                     const headerCmp = headerDes[0].nativeElement;
 
-                    expect(headerCmp.textContent.trim()).toBe(
-                        `Textkritischer Kommentar (${expectedOverlay.type} ${expectedOverlay.id}):`,
-                        `should be 'Textkritischer Kommentar (${expectedOverlay.type} ${expectedOverlay.id}):'`
-                    );
+                    expect(headerCmp.textContent).toBeTruthy();
+                    expect(headerCmp.textContent.trim())
+                        .withContext(
+                            `should be 'Textkritischer Kommentar (${expectedOverlay.type} ${expectedOverlay.id}):'`
+                        )
+                        .toBe(`Textkritischer Kommentar (${expectedOverlay.type} ${expectedOverlay.id}):`);
                 });
 
                 it('... should contain one EditionTkaTableComponent (stubbed) in footer div', () => {
                     // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.panel-footer', 1, 1);
 
@@ -408,10 +420,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     ) as EditionTkaTableStubComponent;
 
                     expect(tableCmp.textcriticalComments).toBeTruthy();
-                    expect(tableCmp.textcriticalComments).toEqual(
-                        expectedSelectedTextcriticalComments,
-                        `should equal ${expectedSelectedTextcriticalComments}`
-                    );
+                    expect(tableCmp.textcriticalComments)
+                        .withContext(`should equal ${expectedSelectedTextcriticalComments}`)
+                        .toEqual(expectedSelectedTextcriticalComments);
                 });
             });
         });
@@ -421,7 +432,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 // Header
                 const buttonDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-accolade-view-header.card-header > div > button',
+                    'div#awg-accolade-view-header.accordion-header > div.accordion-button > button',
                     2,
                     2
                 );

@@ -26,6 +26,8 @@ class ConstructResultsStubComponent {
     queryResult$: Observable<Triple[]>;
     @Input()
     defaultForceGraphHeight: number;
+    @Input()
+    isFullscreen: boolean;
     @Output()
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 }
@@ -36,6 +38,8 @@ class SelectResultsStubComponent {
     queryResult$: Observable<Triple[]>;
     @Input()
     queryTime: number;
+    @Input()
+    isFullscreen: boolean;
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }

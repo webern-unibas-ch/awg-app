@@ -3,13 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
-import {
-    EditionConstants,
-    EditionRoute,
-    EditionSeriesRoutes,
-    EditionWork,
-    EditionWorks,
-} from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRoute, EditionSeriesRoutes, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**

@@ -258,7 +258,7 @@ describe('ApiService', () => {
                     expectedApiServiceError = new ApiServiceError();
 
                     // Spy on mocked http get call & throw an error
-                    spyOn(httpClient, 'get').and.returnValue(observableThrowError({}));
+                    spyOn(httpClient, 'get').and.returnValue(observableThrowError(() => {}));
 
                     // Call service function (fail)
                     apiService.getApiResponse(UserDataJson, queryPath).subscribe(
@@ -280,7 +280,9 @@ describe('ApiService', () => {
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error', true);
 
                     // Spy on mocked http get call & throw an error
-                    spyOn(apiService, 'getApiResponse').and.returnValue(observableThrowError(expectedApiServiceError));
+                    spyOn(apiService, 'getApiResponse').and.returnValue(
+                        observableThrowError(() => expectedApiServiceError)
+                    );
 
                     // Call service function (fail)
                     apiService.getApiResponse(UserDataJson, queryPath).subscribe(
