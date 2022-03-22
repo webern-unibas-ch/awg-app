@@ -19,10 +19,10 @@ import { ApiService } from './api.service';
 
 // Helper function
 function expectErrorResponse(error, expectedError) {
-    expect(error.status).toEqual(expectedError.status, 'status');
-    expect(error.statusText).toEqual(expectedError.statusText, 'statusText');
-    expect(error.url).toEqual(expectedError.url, 'url');
-    expect(error.errorInfo).toEqual(expectedError.errorInfo, 'errorInfo');
+    expect(error.status).withContext('status').toEqual(expectedError.status);
+    expect(error.statusText).withContext('statusText').toEqual(expectedError.statusText);
+    expect(error.url).withContext('url').toEqual(expectedError.url);
+    expect(error.errorInfo).withContext('errorInfo').toEqual(expectedError.errorInfo);
 }
 
 function createApiServiceError(status: number, statusText: string, noErrorInfo?: boolean): ApiServiceError {
@@ -258,7 +258,7 @@ describe('ApiService', () => {
                     expectedApiServiceError = new ApiServiceError();
 
                     // Spy on mocked http get call & throw an error
-                    spyOn(httpClient, 'get').and.returnValue(observableThrowError(() => {}));
+                    spyOn(httpClient, 'get').and.returnValue(observableThrowError(() => expectedApiServiceError));
 
                     // Call service function (fail)
                     apiService.getApiResponse(UserDataJson, queryPath).subscribe(
