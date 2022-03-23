@@ -362,7 +362,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 this.setPagination();
             },
             error: err => {
-                this.errorMessage = err as any;
+                this.errorMessage = err;
                 console.error('SearchResultList# searchResultData subscription error: ', this.errorMessage);
             },
         });

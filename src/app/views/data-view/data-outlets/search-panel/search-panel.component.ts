@@ -213,8 +213,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
                 },
                 error: err => {
-                    console.error(err);
-                    this.errorMessage = err as any;
+                    this.errorMessage = err;
+                    console.error('SearchPanel# getSearchData subscription error: ', this.errorMessage);
                 },
             });
     }

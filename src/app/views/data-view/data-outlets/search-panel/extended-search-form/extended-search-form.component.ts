@@ -327,7 +327,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
                     this.propertyListsResponse = properyListsResponse;
                 },
                 error: err => {
-                    console.error(err as any);
+                    console.error(err);
                 },
             });
     }
@@ -349,7 +349,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
                     this.listenToUserResourcetypeChange();
                 },
                 error: err => {
-                    console.error(err as any);
+                    console.error(err);
                 },
             });
     }
