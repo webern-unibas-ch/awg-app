@@ -2,6 +2,74 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.0...v0.8.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **edition:** avoid collapsing graph result panels in fullscreen ([4dfbf19](https://github.com/webern-unibas-ch/awg-app/commit/4dfbf1980821a61e77450b9582855f36ad1e4ce0))
+* **edition:** fix typo in textcritics for M 317 Sk2.1.3 ([92dabd6](https://github.com/webern-unibas-ch/awg-app/commit/92dabd60ad3cd60f7637bee984f3609311002d88))
+* **search:** type form controls in ExtendedSearch ([7a7f3d0](https://github.com/webern-unibas-ch/awg-app/commit/7a7f3d02e076911723b6dcda9e3cbeff6d940576))
+* **shared:** move logic for table pagination in separate component ([3992c4f](https://github.com/webern-unibas-ch/awg-app/commit/3992c4f84bc32ccee82c484c589bb930a0dc1ff7))
+
+
+### Code Refactoring
+
+* **edition:** simplify HTML of graph visualizer component ([d29f132](https://github.com/webern-unibas-ch/awg-app/commit/d29f132683d3aad8a622df1f7392817866a2ec23))
+* **search:** adjust grid view of search results to bootstrap 5 ([8b05d8d](https://github.com/webern-unibas-ch/awg-app/commit/8b05d8d683e01dda6fffdd4e6333efd624c5a13f))
+* **search:** adjust search result view buttons to bootstrap 5 ([8af2ff0](https://github.com/webern-unibas-ch/awg-app/commit/8af2ff03afbfe586e2746521654f92f4c433e6b7))
+* **search:** move fulltext search input validation into method ([b891105](https://github.com/webern-unibas-ch/awg-app/commit/b8911058a8464d9e65b2835803f39951bc182536))
+
+
+### Tests
+
+* **app:** fix tests after update to bootstrap 5 - complete ([809168d](https://github.com/webern-unibas-ch/awg-app/commit/809168ddaa10eded3563a067a78203b6b8ddb3d4))
+* **app:** fix tests after update to bootstrap 5 - ongoing ([6e32d73](https://github.com/webern-unibas-ch/awg-app/commit/6e32d73d5f0372d2189054122a4833566388163d))
+* **core:** fix return value for ApiServiceError in ApiService ([f94b125](https://github.com/webern-unibas-ch/awg-app/commit/f94b125d1b4ab801da77a92dffb9f22950c3a63e))
+
+
+### Build System
+
+* **app:** adjust hidden sections for CHANGELOG ([be8ec38](https://github.com/webern-unibas-ch/awg-app/commit/be8ec38ded0764b1aac18d762496a2594c1b487a))
+* **app:** integrate scss files in linting workflow ([4f0c6e3](https://github.com/webern-unibas-ch/awg-app/commit/4f0c6e3db5e4ed5a035e47e26eb00f63308a6c46))
+* **deps-dev:** bump eslint related packages to latest version ([dfeef51](https://github.com/webern-unibas-ch/awg-app/commit/dfeef512a04b5f3dc972225853c12e37178b6f9d))
+* **deps-dev:** bump lint related packages to latest version ([f7c7006](https://github.com/webern-unibas-ch/awg-app/commit/f7c700654ef84771c7f438e85fc2d047cf0a4b29))
+* **deps-dev:** bump test related packages to latest version ([5425f7b](https://github.com/webern-unibas-ch/awg-app/commit/5425f7b11c9a0ebc985e1a53f90b297e6248355a))
+* **deps-dev:** bump typescript from 4.5.5 to 4.6.2 ([1e0d6ee](https://github.com/webern-unibas-ch/awg-app/commit/1e0d6eef3b1074300ac3ed1c65731ca20b99d1b1))
+* **deps:** add popper.js ([b5806a3](https://github.com/webern-unibas-ch/awg-app/commit/b5806a3e10f15658410dd454fc4f3c10fcd528ab))
+* **deps:** bump [@angular](https://github.com/angular) packages from 13.2.4 to 13.2.6 ([515b54c](https://github.com/webern-unibas-ch/awg-app/commit/515b54cb1c9ba3cc656bda500bd3b1b34cc74ee6))
+* **deps:** bump [@angular](https://github.com/angular) packages from 13.2.6 to 13.3.0 ([5703a6e](https://github.com/webern-unibas-ch/awg-app/commit/5703a6e9392112318724f0f1c4669c855b01d25f))
+* **deps:** bump actions/checkout from 2 to 3 ([7012aa0](https://github.com/webern-unibas-ch/awg-app/commit/7012aa07f697c81175f9170e83ed255cd13b1063))
+* **deps:** bump layout related packages to latest version ([aabd5a2](https://github.com/webern-unibas-ch/awg-app/commit/aabd5a2ca1bc81d010d0dce103a4f15996669719))
+* **deps:** bump n3 from 1.13.0 to 1.15.0 ([baea81f](https://github.com/webern-unibas-ch/awg-app/commit/baea81f31764907401d530a25056788129dd4d84))
+* **deps:** update to bootstrap 5 ([e779295](https://github.com/webern-unibas-ch/awg-app/commit/e7792951e64932c699fe721b6650522fbf6ebf1c))
+
+
+### Styles
+
+* **app:** add customized bootstrap scss file ([c97749d](https://github.com/webern-unibas-ch/awg-app/commit/c97749dd2a5aec70a64e3d2eafb86980e82c5db5))
+* **app:** apply changes from prettier ([3fc7ef5](https://github.com/webern-unibas-ch/awg-app/commit/3fc7ef58ed6e235c674d291135b5a3c49ee4074a))
+* **app:** apply scss style format ([89a71c9](https://github.com/webern-unibas-ch/awg-app/commit/89a71c9f344a2ddba05de802f1e416b140e98b57))
+* **app:** reformat files with prettier ([4cb9391](https://github.com/webern-unibas-ch/awg-app/commit/4cb93918c1ebdbbc681d7c33aa72c67b54e9e988))
+* **app:** rename .boder-left &-right to .border-start &-end (BS5) ([e5fa68b](https://github.com/webern-unibas-ch/awg-app/commit/e5fa68b16914b493235ea49211ff84745ed3a56d))
+* **app:** rename .ml- and .mr- to .ms- and .me- (bootstrap 5) ([a08f7c3](https://github.com/webern-unibas-ch/awg-app/commit/a08f7c38e79ede9860dea0be2f42cc105111b893))
+* **app:** rename .pl- and .pr- to .ps- and .pe- (bootstrap 5) ([dc215c5](https://github.com/webern-unibas-ch/awg-app/commit/dc215c5b47f8f3d6ac4213ba3579a159060c7c26))
+* **app:** rename .text-left .text-right to .text-start .text-end (BS5) ([e934119](https://github.com/webern-unibas-ch/awg-app/commit/e9341190be6eafd7ad48b81e610a1e7b03792ffc))
+* **app:** set custom color for info items ([0e09f95](https://github.com/webern-unibas-ch/awg-app/commit/0e09f958707c651408159c0f0c869651c8e35196))
+* **app:** switch from css to scss ([5ca5ded](https://github.com/webern-unibas-ch/awg-app/commit/5ca5dedb1318915e1e251692fd66ea1379458977))
+* **app:** use variables for colors ([3848ec0](https://github.com/webern-unibas-ch/awg-app/commit/3848ec076b55aefcf385dfebef252c670bdef324))
+* **core:** fix navbar brand padding values ([6ce77a0](https://github.com/webern-unibas-ch/awg-app/commit/6ce77a0eae4a1a70dc8bfddbb71ff2f2408ae175))
+* **edition:** add borders to intro and graph blocks ([fed9823](https://github.com/webern-unibas-ch/awg-app/commit/fed98237cc1d4b36a7925d58d100afe3835ae50d))
+* **edition:** adjust accordions after upgrade to bootstrap 5 ([2e0db76](https://github.com/webern-unibas-ch/awg-app/commit/2e0db765f00b2c715b86120f97a12b3b1cea6075))
+* **edition:** adjust card-decks to bootstrap 5 syntax ([6cf5c0f](https://github.com/webern-unibas-ch/awg-app/commit/6cf5c0f15c30450132b4db0f8d0d441103ea12e3))
+* **edition:** fix slider input group of graph visualizer ([b9e8f89](https://github.com/webern-unibas-ch/awg-app/commit/b9e8f891ef653e8b3d6a6275578daa550da602c2))
+* **search:** add border to search panels ([d86ddb0](https://github.com/webern-unibas-ch/awg-app/commit/d86ddb04439dc9014599ccf5446e98b703461312))
+* **search:** fix aria-label binding of full text search input ([84261d2](https://github.com/webern-unibas-ch/awg-app/commit/84261d2ae0c0b05cbf8a68f0e9af7bfa50357efe))
+* **search:** fix extended search input after upgrade to bootstrap 5 ([c202df5](https://github.com/webern-unibas-ch/awg-app/commit/c202df500d9e93a39fbabcd4373cf19d80a5f9f5))
+* **search:** fix full text search input after upgrade to bootstrap 5 ([1215cea](https://github.com/webern-unibas-ch/awg-app/commit/1215ceabdd458309ce37da7aa1f3cf7660399dd6))
+* **shared:** fix modal close button ([43e1245](https://github.com/webern-unibas-ch/awg-app/commit/43e124560117d1d5835600e84916cdee4b9be576))
+* **shared:** use outline button for router link group ([7774c6e](https://github.com/webern-unibas-ch/awg-app/commit/7774c6ed2783b10fa8497b84c20a269598cf4c51))
+
 ## [0.8.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.19...v0.8.0) (2022-02-26)
 
 
