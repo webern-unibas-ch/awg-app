@@ -406,12 +406,15 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(new ProgressEvent('ERROR_LOADING_FOLIOCONVOLUTELIST'));
-                    call[1].error(
+                    call[0].flush(
+                        null,
+                        new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
+                    );
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_EDITIONSVGSHEETLIST' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                     );
@@ -469,15 +472,15 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(
+                    call[0].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
                     );
-                    call[1].error(
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_EDITIONSVGSHEETLIST' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                     );
@@ -528,11 +531,11 @@ describe('EditionDataService (DONE)', () => {
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
-                    call[1].error(
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_EDITIONSVGSHEETLIST' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                     );
@@ -582,12 +585,12 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(
+                    call[0].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
                     );
                     call[1].flush(expectedResult[1]);
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                     );
@@ -637,11 +640,11 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(
+                    call[0].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
                     );
-                    call[1].error(
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_EDITIONSVGSHEETLIST' })
                     );
@@ -694,7 +697,7 @@ describe('EditionDataService (DONE)', () => {
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
                     call[1].flush(expectedResult[1]);
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                     );
@@ -745,7 +748,7 @@ describe('EditionDataService (DONE)', () => {
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
-                    call[1].error(
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_EDITIONSVGSHEETLIST' })
                     );
@@ -796,7 +799,7 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(
+                    call[0].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
                     );
@@ -1131,16 +1134,16 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
-                    call[1].error(
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTDESCRIPTION' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTEVALUATION' })
                     );
-                    call[3].error(
+                    call[3].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                     );
@@ -1206,16 +1209,16 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
-                    call[1].error(
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTDESCRIPTION' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTEVALUATION' })
                     );
-                    call[3].error(
+                    call[3].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                     );
@@ -1270,15 +1273,15 @@ describe('EditionDataService (DONE)', () => {
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
-                    call[1].error(
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTDESCRIPTION' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTEVALUATION' })
                     );
-                    call[3].error(
+                    call[3].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                     );
@@ -1332,13 +1335,13 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
                     call[1].flush(expectedResult[1]);
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTEVALUATION' })
                     );
-                    call[3].error(
+                    call[3].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                     );
@@ -1392,13 +1395,13 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
-                    call[1].error(
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELISTDESCRIPTION' })
                     );
                     call[2].flush(expectedResult[2]);
-                    call[3].error(
+                    call[3].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                     );
@@ -1452,12 +1455,12 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
-                    call[1].error(
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCEDESCRIPTIONLIST' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCEEVALUATIONLIST' })
                     );
@@ -1520,7 +1523,7 @@ describe('EditionDataService (DONE)', () => {
                     call[0].flush(expectedResult[0]);
                     call[1].flush(expectedResult[1]);
                     call[2].flush(expectedResult[2]);
-                    call[3].error(
+                    call[3].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                     );
@@ -1575,11 +1578,11 @@ describe('EditionDataService (DONE)', () => {
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
-                    call[1].error(
+                    call[1].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCEDESCRIPTIONLIST' })
                     );
-                    call[2].error(
+                    call[2].flush(
                         null,
                         new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCEEVALUATIONLIST' })
                     );
@@ -1639,7 +1642,7 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
                     call[1].flush(expectedResult[1]);
                     call[2].flush(expectedResult[2]);
                     call[3].flush(expectedResult[3]);
@@ -1823,7 +1826,7 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedGraphFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' }));
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' }));
 
                     // Check for console output
                     expectSpyCall(
@@ -1861,7 +1864,7 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedGraphFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' }));
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' }));
 
                     // Check for console output
                     expectSpyCall(consoleSpy, 1);
@@ -2042,7 +2045,7 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedIntroFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' }));
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' }));
 
                     // Check for console output
                     expectSpyCall(
@@ -2080,7 +2083,7 @@ describe('EditionDataService (DONE)', () => {
                         .toBe(expectedIntroFilePath);
 
                     // Resolve request with mocked error
-                    call[0].error(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' }));
+                    call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' }));
 
                     // Check for console output
                     expectSpyCall(consoleSpy, 1);

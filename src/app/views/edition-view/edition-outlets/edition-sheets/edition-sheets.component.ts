@@ -180,16 +180,16 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (queryParams: ParamMap) => {
+            .subscribe({
+                next: (queryParams: ParamMap) => {
                     this._selectConvolute(queryParams);
                     this._filterSvgSheets();
                     this._selectSvgSheet(queryParams);
                 },
-                error => {
-                    this.errorMessage = error as any;
-                }
-            );
+                error: err => {
+                    this.errorMessage = err;
+                },
+            });
     }
 
     /**
