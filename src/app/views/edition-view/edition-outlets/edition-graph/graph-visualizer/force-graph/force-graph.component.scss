@@ -58,6 +58,18 @@ input[type='range'].awg-force-graph-zoom-slider {
 
     &:focus {
         outline: none;
+
+        &::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+
+        &::-webkit-slider-runnable-track {
+            background: #e5e5e5;
+        }
     }
 
     &::-webkit-slider-runnable-track {
@@ -69,14 +81,10 @@ input[type='range'].awg-force-graph-zoom-slider {
         -webkit-appearance: none;
     }
 
-    &:focus::-webkit-slider-runnable-track {
-        background: #e5e5e5;
-    }
-
     &::-moz-range-track {
         @include slider-track(29px);
         -moz-margin-start: fill;
-        margin-end: fill;
+        margin-right: fill;
     }
 
     &::-moz-range-thumb {
@@ -105,16 +113,6 @@ input[type='range'].awg-force-graph-zoom-slider {
         @include slider-thumb(29px);
         margin-top: 0px;
         /*Needed to keep the Edge thumb centred*/
-    }
-
-    &:focus {
-        &::-ms-fill-lower {
-            background: rgba(221, 221, 221, 0.78);
-        }
-
-        &::-ms-fill-upper {
-            background: #e5e5e5;
-        }
     }
 }
 
