@@ -58,7 +58,9 @@ export class TablePaginationComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // Intentionally left empty until implemented
+    }
 
     /**
      * Public method: formatInput.
