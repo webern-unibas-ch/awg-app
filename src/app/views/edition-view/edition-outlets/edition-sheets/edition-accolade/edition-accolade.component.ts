@@ -19,7 +19,7 @@ import {
 @Component({
     selector: 'awg-edition-accolade',
     templateUrl: './edition-accolade.component.html',
-    styleUrls: ['./edition-accolade.component.css'],
+    styleUrls: ['./edition-accolade.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionAccoladeComponent {

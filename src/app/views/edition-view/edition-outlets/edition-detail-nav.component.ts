@@ -17,7 +17,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-detail-nav',
     templateUrl: './edition-detail-nav.component.html',
-    styleUrls: ['./edition-detail-nav.component.css'],
+    styleUrls: ['./edition-detail-nav.component.scss'],
 })
 export class EditionDetailNavComponent implements OnInit, OnDestroy {
     /**

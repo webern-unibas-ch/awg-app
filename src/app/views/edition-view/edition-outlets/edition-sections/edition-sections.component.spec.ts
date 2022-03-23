@@ -8,13 +8,11 @@ describe('EditionSectionsComponent', () => {
     let component: EditionSectionsComponent;
     let fixture: ComponentFixture<EditionSectionsComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [EditionSectionsComponent, RouterOutletStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [EditionSectionsComponent, RouterOutletStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionsComponent);

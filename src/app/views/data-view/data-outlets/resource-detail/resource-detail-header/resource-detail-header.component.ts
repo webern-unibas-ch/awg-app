@@ -11,7 +11,7 @@ import { ResourceDetailHeader } from '@awg-views/data-view/models';
 @Component({
     selector: 'awg-resource-detail-header',
     templateUrl: './resource-detail-header.component.html',
-    styleUrls: ['./resource-detail-header.component.css'],
+    styleUrls: ['./resource-detail-header.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHeaderComponent {

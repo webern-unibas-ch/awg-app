@@ -26,13 +26,11 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
     let expectedHeader: ResourceDetailHeader;
     let expectedResourceUrl: string;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ResourceDetailHeaderComponent, CompileHtmlComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ResourceDetailHeaderComponent, CompileHtmlComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHeaderComponent);

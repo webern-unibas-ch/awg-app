@@ -2,13 +2,13 @@
     #sparqlAcc="ngbAccordion"
     [activeIds]="togglePanel()"
     (panelChange)="preventPanelCollapseOnFullscreen($event)">
-    <ngb-panel id="awg-graph-visualizer-query">
+    <ngb-panel id="awg-graph-visualizer-sparql-query">
         <ng-template ngbPanelHeader>
-            <div class="d-flex align-items-center justify-content-between">
-                <button ngbPanelToggle class="btn btn-link text-left panel-btn">SPARQL Abfrage</button>
+            <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
+                <button ngbPanelToggle class="p-0 btn btn-link text-start">SPARQL</button>
 
                 <!-- Example Query Handle -->
-                <div class="btn-group float-right mr-2" *ngIf="isExampleQueriesEnabled()">
+                <div class="p-0 btn-group" *ngIf="isExampleQueriesEnabled()" style="padding: -3rem">
                     <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                         Beispielabfragen
                     </button>
@@ -19,29 +19,23 @@
                         placement="bottom-right"
                         role="group"
                         aria-label="Button group with nested dropdown for sample queries">
-                        <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
-                        <div class="dropdown-menu" ngbDropdownMenu>
+                        <button class="btn btn-sm btn-info" ngbDropdownToggle></button>
+                        <div ngbDropdownMenu>
                             <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
                             <ng-container *ngFor="let q of queryList">
                                 <ng-container *ngIf="q.queryType === 'construct'">
-                                    <button
-                                        class="dropdown-item"
-                                        [class.disabled]="q === query"
-                                        (click)="onQueryListChange(q)">
+                                    <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
                                         <span>{{ q.queryLabel }}</span>
-                                    </button>
+                                    </a>
                                 </ng-container>
                             </ng-container>
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
                             <ng-container *ngFor="let q of queryList">
                                 <ng-container *ngIf="q.queryType === 'select'">
-                                    <button
-                                        class="dropdown-item"
-                                        [class.disabled]="q === query"
-                                        (click)="onQueryListChange(q)">
+                                    <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
                                         <span>{{ q.queryLabel }}</span>
-                                    </button>
+                                    </a>
                                 </ng-container>
                             </ng-container>
                         </div>
@@ -58,7 +52,7 @@
             </ngx-codemirror>
 
             <!-- Handle buttons -->
-            <div fxLayout="row" class="mt-2">
+            <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
                 <button class="btn btn-info" (click)="performQuery()">Query</button>
                 <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
             </div>

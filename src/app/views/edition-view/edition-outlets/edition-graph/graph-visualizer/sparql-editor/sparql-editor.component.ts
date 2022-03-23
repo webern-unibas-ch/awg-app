@@ -15,7 +15,7 @@ import 'codemirror/mode/sparql/sparql';
 @Component({
     selector: 'awg-sparql-editor',
     templateUrl: './sparql-editor.component.html',
-    styleUrls: ['./sparql-editor.component.css'],
+    styleUrls: ['./sparql-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlEditorComponent {
@@ -196,6 +196,6 @@ export class SparqlEditorComponent {
      * @returns {string} The id of the panel to be toggled.
      */
     togglePanel(): string {
-        return this.isFullscreen ? 'awg-graph-visualizer-query' : '';
+        return this.isFullscreen ? 'awg-graph-visualizer-sparql-query' : '';
     }
 }

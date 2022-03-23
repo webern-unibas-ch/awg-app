@@ -37,23 +37,17 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let setButtonsSpy: Spy;
     let getEditionWorkSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Create a fake service object with a `getData()` spy
-            const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-            // Make the spy return a synchronous Observable with the test data
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
+    beforeEach(waitForAsync(() => {
+        // Create a fake service object with a `getData()` spy
+        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
+        // Make the spy return a synchronous Observable with the test data
+        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
 
-            TestBed.configureTestingModule({
-                declarations: [
-                    EditionDetailNavComponent,
-                    RouterLinkButtonGroupStubComponent,
-                    RouterOutletStubComponent,
-                ],
-                providers: [{ provide: EditionService, useValue: mockEditionService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
+            providers: [{ provide: EditionService, useValue: mockEditionService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionDetailNavComponent);

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
-    styleUrls: ['./structure-view.component.css'],
+    styleUrls: ['./structure-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StructureViewComponent implements OnInit {

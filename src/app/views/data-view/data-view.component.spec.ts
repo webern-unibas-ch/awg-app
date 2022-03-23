@@ -34,17 +34,15 @@ describe('DataViewComponent (DONE)', () => {
     const expectedTitle = 'Suche';
     const expectedId = 'search';
 
-    beforeEach(
-        waitForAsync(() => {
-            // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            TestBed.configureTestingModule({
-                declarations: [DataViewComponent, HeadingStubComponent, RouterOutletStubComponent],
-                providers: [{ provide: Router, useValue: mockRouter }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [DataViewComponent, HeadingStubComponent, RouterOutletStubComponent],
+            providers: [{ provide: Router, useValue: mockRouter }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(DataViewComponent);

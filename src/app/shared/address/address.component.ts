@@ -11,7 +11,7 @@ import { MetaContact, MetaPage } from '@awg-core/core-models';
 @Component({
     selector: 'awg-address',
     templateUrl: './address.component.html',
-    styleUrls: ['./address.component.css'],
+    styleUrls: ['./address.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddressComponent {

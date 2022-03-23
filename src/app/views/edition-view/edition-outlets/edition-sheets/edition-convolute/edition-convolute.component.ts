@@ -32,7 +32,7 @@ interface IFolioLegend {
 @Component({
     selector: 'awg-edition-convolute',
     templateUrl: './edition-convolute.component.html',
-    styleUrls: ['./edition-convolute.component.css'],
+    styleUrls: ['./edition-convolute.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionConvoluteComponent {

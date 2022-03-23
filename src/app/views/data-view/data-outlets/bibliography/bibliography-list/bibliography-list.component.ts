@@ -12,7 +12,7 @@ import { SubjectItemJson } from '@awg-shared/api-objects';
 @Component({
     selector: 'awg-bibliography-list',
     templateUrl: './bibliography-list.component.html',
-    styleUrls: ['./bibliography-list.component.css'],
+    styleUrls: ['./bibliography-list.component.scss'],
 })
 export class BibliographyListComponent {
     /**

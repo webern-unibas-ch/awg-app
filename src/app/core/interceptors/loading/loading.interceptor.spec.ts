@@ -72,27 +72,24 @@ describe('LoadingInterceptor (DONE)', () => {
     });
 
     describe('httpTestingController', () => {
-        it(
-            '... should issue a mocked http get request',
-            waitForAsync(() => {
-                const testData: Data = { name: 'TestData' };
+        it('... should issue a mocked http get request', waitForAsync(() => {
+            const testData: Data = { name: 'TestData' };
 
-                httpClient.get<Data>('/foo/bar').subscribe(data => {
-                    expect(data).toEqual(testData);
-                });
+            httpClient.get<Data>('/foo/bar').subscribe(data => {
+                expect(data).toEqual(testData);
+            });
 
-                // Match the request url
-                const call = httpTestingController.expectOne({
-                    url: '/foo/bar',
-                });
+            // Match the request url
+            const call = httpTestingController.expectOne({
+                url: '/foo/bar',
+            });
 
-                // Check for GET request
-                expect(call.request.method).toBe('GET');
+            // Check for GET request
+            expect(call.request.method).toBe('GET');
 
-                // Respond with mocked data
-                call.flush(testData);
-            })
-        );
+            // Respond with mocked data
+            call.flush(testData);
+        }));
     });
 
     describe('loadingInterceptor', () => {
@@ -101,57 +98,46 @@ describe('LoadingInterceptor (DONE)', () => {
         const testData: Data = { name: 'TestData' };
         let call: TestRequest;
 
-        beforeEach(
-            waitForAsync(() => {
-                // Subscribe to GET Http Request
-                httpClient.get<Data>(expectedUrl).subscribe(data => {
-                    expect(data).toEqual(testData);
-                });
-            })
-        );
+        beforeEach(waitForAsync(() => {
+            // Subscribe to GET Http Request
+            httpClient.get<Data>(expectedUrl).subscribe(data => {
+                expect(data).toEqual(testData);
+            });
+        }));
 
-        it(
-            '... should intercept HTTP requests',
-            waitForAsync(() => {
-                // Expect an HTTP request
-                call = httpTestingController.expectOne({
-                    url: expectedUrl,
-                });
+        it('... should intercept HTTP requests', waitForAsync(() => {
+            // Expect an HTTP request
+            call = httpTestingController.expectOne({
+                url: expectedUrl,
+            });
 
-                expectSpyCall(interceptSpy, 1, call.request);
-            })
-        );
+            expectSpyCall(interceptSpy, 1, call.request);
+        }));
 
-        it(
-            '... should call loadingService to update status (true) for pending HTTP requests',
-            waitForAsync(() => {
-                // Expect an HTTP request
-                call = httpTestingController.expectOne({
-                    url: expectedUrl,
-                });
+        it('... should call loadingService to update status (true) for pending HTTP requests', waitForAsync(() => {
+            // Expect an HTTP request
+            call = httpTestingController.expectOne({
+                url: expectedUrl,
+            });
 
-                expectSpyCall(interceptSpy, 1, call.request);
-                expectSpyCall(updateLoadingStatusSpy, 1, true);
-            })
-        );
+            expectSpyCall(interceptSpy, 1, call.request);
+            expectSpyCall(updateLoadingStatusSpy, 1, true);
+        }));
 
-        it(
-            '... should call loadingService to update status (false) for resolved HTTP requests',
-            waitForAsync(() => {
-                // Expect an HTTP request
-                call = httpTestingController.expectOne({
-                    url: expectedUrl,
-                });
+        it('... should call loadingService to update status (false) for resolved HTTP requests', waitForAsync(() => {
+            // Expect an HTTP request
+            call = httpTestingController.expectOne({
+                url: expectedUrl,
+            });
 
-                expectSpyCall(interceptSpy, 1, call.request);
-                expectSpyCall(updateLoadingStatusSpy, 1, true);
+            expectSpyCall(interceptSpy, 1, call.request);
+            expectSpyCall(updateLoadingStatusSpy, 1, true);
 
-                // Resolve request
-                call.flush(testData);
+            // Resolve request
+            call.flush(testData);
 
-                expectSpyCall(updateLoadingStatusSpy, 2, false);
-            })
-        );
+            expectSpyCall(updateLoadingStatusSpy, 2, false);
+        }));
 
         it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', done => {
             // Spy on HTTP handler to handle another response
@@ -197,7 +183,7 @@ describe('LoadingInterceptor (DONE)', () => {
             // Cf. https://stackoverflow.com/a/53688721
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
             const expectedError = { status: 401, statusText: 'error', message: 'test-error' };
-            httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
+            httpHandlerSpy.handle.and.returnValue(observableThrowError(() => expectedError));
 
             // Expect an HTTP request
             call = httpTestingController.expectOne({

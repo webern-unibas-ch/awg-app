@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
     selector: 'awg-unsupported-type-results',
     templateUrl: './unsupported-type-results.component.html',
-    styleUrls: ['./unsupported-type-results.component.css'],
+    styleUrls: ['./unsupported-type-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnsupportedTypeResultsComponent {

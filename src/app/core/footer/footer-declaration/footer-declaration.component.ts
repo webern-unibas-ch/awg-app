@@ -11,7 +11,7 @@ import { MetaPage } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-declaration',
     templateUrl: './footer-declaration.component.html',
-    styleUrls: ['./footer-declaration.component.css'],
+    styleUrls: ['./footer-declaration.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterDeclarationComponent {

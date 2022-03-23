@@ -35,7 +35,7 @@ describe('TableComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have paginatorOptions', () => {
-            expect(component.paginatorOptions).toBeUndefined('should be undefined');
+            expect(component.paginatorOptions).toBeUndefined();
         });
 
         describe('VIEW', () => {

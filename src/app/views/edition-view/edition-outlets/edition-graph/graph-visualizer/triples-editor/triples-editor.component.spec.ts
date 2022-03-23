@@ -51,14 +51,12 @@ describe('TriplesEditorComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule],
-                declarations: [TriplesEditorComponent, CodeMirrorStubComponent, NgbAccordion],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule],
+            declarations: [TriplesEditorComponent, CodeMirrorStubComponent, NgbAccordion],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TriplesEditorComponent);
@@ -95,27 +93,27 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have triples', () => {
-            expect(component.triples).toBeUndefined('should be undefined');
+            expect(component.triples).toBeUndefined();
         });
+
         it('should not have isFullscreen', () => {
-            expect(component.isFullscreen).toBeUndefined('should be undefined');
+            expect(component.isFullscreen).toBeUndefined();
         });
 
         it('should have cmTriplesConfig', () => {
-            expect(component.cmTriplesConfig).toBeDefined('should be defined');
-            expect(component.cmTriplesConfig).toEqual(
-                expectedCmTriplesConfig,
-                `should equal ${expectedCmTriplesConfig}`
-            );
+            expect(component.cmTriplesConfig).toBeDefined();
+            expect(component.cmTriplesConfig)
+                .withContext(`should equal ${expectedCmTriplesConfig}`)
+                .toEqual(expectedCmTriplesConfig);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
+            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
                 // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
         });
     });
@@ -131,45 +129,57 @@ describe('TriplesEditorComponent (DONE)', () => {
         });
 
         it('should have `triples` input', () => {
-            expect(component.triples).toBeDefined('should be defined');
-            expect(component.triples).toEqual(expectedTriples, `should equal ${expectedTriples}`);
+            expect(component.triples).toBeDefined();
+            expect(component.triples).withContext(`should equal ${expectedTriples}`).toEqual(expectedTriples);
         });
 
         it('should have `isFullScreen` input', () => {
-            expect(component.isFullscreen).toBeDefined('should be defined');
-            expect(component.isFullscreen).toBe(expectedIsFullscreen, `should equal ${expectedIsFullscreen}`);
+            expect(component.isFullscreen).toBeDefined();
+            expect(component.isFullscreen)
+                .withContext(`should equal ${expectedIsFullscreen}`)
+                .toBe(expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
             describe('not in fullscreen mode', () => {
                 describe('with closed panel', () => {
-                    it('... should contain one ngb-accordion with panel (div.card) header and collapsed body', () => {
+                    it('... should contain one ngb-accordion with panel (div.accordion-item) header and collapsed body', () => {
                         // Ngb-accordion debug element
                         const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                        // Panel (div.card)
-                        const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                        // Panel (div.accordion-item)
+                        const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
+
                         // Header
                         getAndExpectDebugElementByCss(
                             panelDes[0],
-                            'div#awg-graph-visualizer-triples-header.card-header',
+                            'div#awg-graph-visualizer-triples-header.accordion-header',
                             1,
                             1
-                        ); // Panel (div.card)
+                        );
+
                         // No body
                         getAndExpectDebugElementByCss(
                             panelDes[0],
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             0,
                             0
                         );
                     });
 
                     it('... should display panel header button', () => {
+                        // Header debug elements
+                        const panelHeaderDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-triples-header.accordion-header',
+                            1,
+                            1
+                        );
+
                         // Panel header button
                         const btnDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples-header > button',
+                            panelHeaderDes[0],
+                            'button.accordion-button',
                             1,
                             1
                         );
@@ -178,27 +188,32 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Check button content
                         expect(btnEl.textContent).toBeDefined();
-                        expect(btnEl.textContent).toContain('RDF Triples', 'should be RDF Triples');
+                        expect(btnEl.textContent).withContext('should be RDF Triples').toContain('RDF Triples');
                     });
 
                     it('... should toggle panel body on click', () => {
                         // Header debug elements
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples-header.card-header',
+                            'div#awg-graph-visualizer-triples-header.accordion-header',
                             1,
                             1
                         );
 
                         // Button debug elements
-                        const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.btn-link', 1, 1);
+                        const btnDes = getAndExpectDebugElementByCss(
+                            panelHeaderDes[0],
+                            'button.accordion-button',
+                            1,
+                            1
+                        );
                         // Button native elements to click on
                         const btnEl = btnDes[0].nativeElement;
 
                         // Panel body is closed
                         getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             0,
                             0,
                             'collapsed'
@@ -211,7 +226,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Panel is open
                         getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             1,
                             1,
                             'open'
@@ -219,13 +234,12 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        // Fixture.detectChanges();
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(
                             // Panel body is closed again
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             0,
                             0,
                             'collapsed'
@@ -240,7 +254,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Open panel by click on header button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples-header.card-header > button.btn-link',
+                            'div#awg-graph-visualizer-triples-header.accordion-header > button.accordion-button',
                             1,
                             1
                         );
@@ -253,7 +267,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Panel body
                         bodyDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             1,
                             1
                         );
@@ -263,20 +277,25 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Header debug elements
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples-header.card-header',
+                            'div#awg-graph-visualizer-triples-header.accordion-header',
                             1,
                             1
                         );
 
                         // Button debug elements
-                        const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.btn-link', 1, 1);
+                        const btnDes = getAndExpectDebugElementByCss(
+                            panelHeaderDes[0],
+                            'button.accordion-button',
+                            1,
+                            1
+                        );
                         // Button native elements to click on
                         const btnEl = btnDes[0].nativeElement;
 
                         // Panel body is open
                         getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             1,
                             1,
                             'open'
@@ -289,7 +308,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Panel is closed
                         getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             0,
                             0,
                             'collapsed'
@@ -297,13 +316,12 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                         // Click header button
                         click(btnEl as HTMLElement);
-                        // Fixture.detectChanges();
                         detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(
                             // Panel body is open again
                             compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body',
+                            'div#awg-graph-visualizer-triples > div.accordion-body',
                             1,
                             1,
                             'open'
@@ -323,21 +341,18 @@ describe('TriplesEditorComponent (DONE)', () => {
                         const btnEl1 = btnDes[1].nativeElement;
 
                         expect(btnEl0.textContent).toBeTruthy();
-                        expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+                        expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                         expect(btnEl1.textContent).toBeTruthy();
-                        expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
+                        expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
                     });
 
                     it('... should trigger `performQuery()` by click on Query button', () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
-                            2,
-                            2
-                        );
+                        const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
                         const btnEl0 = btnDes[0].nativeElement;
-                        expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+
+                        expect(btnEl0.textContent).toBeTruthy();
+                        expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                         // Click query button
                         click(btnEl0 as HTMLElement);
@@ -348,14 +363,11 @@ describe('TriplesEditorComponent (DONE)', () => {
                     });
 
                     it('... should trigger `resetTriples()` by click on Reset button', () => {
-                        const btnDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
-                            2,
-                            2
-                        );
+                        const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
                         const btnEl1 = btnDes[1].nativeElement;
-                        expect(btnEl1.textContent).toContain('Reset', 'should contain Query');
+
+                        expect(btnEl1.textContent).toBeTruthy();
+                        expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                         // Click reset button
                         click(btnEl1 as HTMLElement);
@@ -374,7 +386,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Open panel by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples-header.card-header > button.btn-link',
+                        'div#awg-graph-visualizer-triples-header.accordion-header > button.accordion-button',
                         1,
                         1
                     );
@@ -387,7 +399,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Panel body
                     bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.card-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-body',
                         1,
                         1
                     );
@@ -396,16 +408,16 @@ describe('TriplesEditorComponent (DONE)', () => {
                     component.isFullscreen = true;
                 });
 
-                it('... should contain one ngb-accordion with panel (div.card) header and open body', () => {
+                it('... should contain one ngb-accordion with panel (div.accordion-item) header and open body', () => {
                     // Ngb-accordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                     // Panel (div.card)
-                    const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                    const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1); // Panel (div.card)
                     // Header
                     getAndExpectDebugElementByCss(
                         panelDes[0],
-                        'div#awg-graph-visualizer-triples-header.card-header',
+                        'div#awg-graph-visualizer-triples-header.accordion-header',
                         1,
                         1
                     ); // Panel (div.card)
@@ -413,7 +425,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Body opened
                     getAndExpectDebugElementByCss(
                         panelDes[0],
-                        'div#awg-graph-visualizer-triples > div.card-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-body',
                         1,
                         1
                     );
@@ -423,7 +435,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Panel header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples-header > button',
+                        'div#awg-graph-visualizer-triples-header.accordion-header > button.accordion-button',
                         1,
                         1
                     );
@@ -432,27 +444,27 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Check button content
                     expect(btnEl.textContent).toBeDefined();
-                    expect(btnEl.textContent).toContain('RDF Triples', 'should be RDF Triples');
+                    expect(btnEl.textContent).withContext('should be RDF Triples').toContain('RDF Triples');
                 });
 
                 it('... should not toggle panel body on click', () => {
                     // Header debug elements
                     const panelHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples-header.card-header',
+                        'div#awg-graph-visualizer-triples-header.accordion-header',
                         1,
                         1
                     );
 
                     // Button debug elements
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.btn-link', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
                     // Button native elements to click on
                     const btnEl = btnDes[0].nativeElement;
 
                     // Panel body does not close
                     getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.card-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-body',
                         1,
                         1,
                         'open'
@@ -465,7 +477,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Panel body does not close again
                     getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div.card-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-body',
                         1,
                         1,
                         'open'
@@ -485,21 +497,18 @@ describe('TriplesEditorComponent (DONE)', () => {
                     const btnEl1 = btnDes[1].nativeElement;
 
                     expect(btnEl0.textContent).toBeTruthy();
-                    expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+                    expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                     expect(btnEl1.textContent).toBeTruthy();
-                    expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
+                    expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
                 });
 
                 it('... should trigger `performQuery()` by click on Query button', () => {
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
-                        2,
-                        2
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
                     const btnEl0 = btnDes[0].nativeElement;
-                    expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+
+                    expect(btnEl0.textContent).toBeTruthy();
+                    expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
@@ -510,14 +519,11 @@ describe('TriplesEditorComponent (DONE)', () => {
                 });
 
                 it('... should trigger `resetTriples()` by click on Reset button', () => {
-                    const btnDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
-                        2,
-                        2
-                    );
+                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
                     const btnEl1 = btnDes[1].nativeElement;
-                    expect(btnEl1.textContent).toContain('Reset', 'should contain Query');
+
+                    expect(btnEl1.textContent).toBeTruthy();
+                    expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                     // Click reset button
                     click(btnEl1 as HTMLElement);
@@ -531,13 +537,16 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('#onEditorInputChange', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples-header.card-header > button.btn-link',
+                    'div#awg-graph-visualizer-triples-header.accordion-header',
                     1,
                     1
                 );
+
+                // Open panel by click on header button
+                const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
                 const btnEl = btnDes[0].nativeElement;
 
                 // Click header button
@@ -580,13 +589,16 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('#performQuery', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples-header.card-header > button.btn-link',
+                    'div#awg-graph-visualizer-triples-header.accordion-header',
                     1,
                     1
                 );
+
+                // Open panel by click on header button
+                const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
                 const btnEl = btnDes[0].nativeElement;
 
                 // Click header button
@@ -597,12 +609,14 @@ describe('TriplesEditorComponent (DONE)', () => {
             it('... should trigger on click on Query button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
+                    'div#awg-graph-visualizer-triples > div.accordion-body > div > button.btn',
                     2,
                     2
                 );
                 const btnEl0 = btnDes[0].nativeElement;
-                expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+
+                expect(btnEl0.textContent).toBeTruthy();
+                expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                 // Click query button
                 click(btnEl0 as HTMLElement);
@@ -614,12 +628,14 @@ describe('TriplesEditorComponent (DONE)', () => {
             it('... should emit request on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
+                    'div#awg-graph-visualizer-triples > div.accordion-body > div > button.btn',
                     2,
                     2
                 );
                 const btnEl0 = btnDes[0].nativeElement;
-                expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+
+                expect(btnEl0.textContent).toBeTruthy();
+                expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                 // Click query button
                 click(btnEl0 as HTMLElement);
@@ -632,13 +648,16 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('#resetTriples', () => {
             beforeEach(async () => {
-                // Open panel by click on header button
-                const btnDes = getAndExpectDebugElementByCss(
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples-header.card-header > button.btn-link',
+                    'div#awg-graph-visualizer-triples-header.accordion-header',
                     1,
                     1
                 );
+
+                // Open panel by click on header button
+                const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
                 const btnEl = btnDes[0].nativeElement;
 
                 // Click header button
@@ -649,12 +668,14 @@ describe('TriplesEditorComponent (DONE)', () => {
             it('... should trigger on click on Reset button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
+                    'div#awg-graph-visualizer-triples > div.accordion-body > div > button.btn',
                     2,
                     2
                 );
                 const btnEl1 = btnDes[1].nativeElement;
-                expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
+
+                expect(btnEl1.textContent).toBeTruthy();
+                expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                 // Click query button
                 click(btnEl1 as HTMLElement);
@@ -666,12 +687,14 @@ describe('TriplesEditorComponent (DONE)', () => {
             it('... should emit request on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-triples > div.card-body > div > button.btn',
+                    'div#awg-graph-visualizer-triples > div.accordion-body > div > button.btn',
                     2,
                     2
                 );
                 const btnEl1 = btnDes[1].nativeElement;
-                expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
+
+                expect(btnEl1.textContent).toBeTruthy();
+                expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                 // Click reset button
                 click(btnEl1 as HTMLElement);
@@ -692,7 +715,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Set fullscreen flag to true
                 component.isFullscreen = true;
-                expect(component.togglePanel()).toBe(expectedId, `should be ${expectedId}`);
+                expect(component.togglePanel()).withContext(`should be ${expectedId}`).toBe(expectedId);
             });
         });
 

@@ -18,7 +18,7 @@ import { SearchResultBindings } from '@awg-views/edition-view/edition-outlets/ed
 @Component({
     selector: 'awg-table',
     templateUrl: './table.component.html',
-    styleUrls: ['./table.component.css'],
+    styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
     /**

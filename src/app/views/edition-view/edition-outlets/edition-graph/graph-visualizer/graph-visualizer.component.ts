@@ -21,7 +21,7 @@ import { Toast, ToastService } from '@awg-core/services/toast-service';
 @Component({
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
-    styleUrls: ['./graph-visualizer.component.css'],
+    styleUrls: ['./graph-visualizer.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class GraphVisualizerComponent implements OnInit {

@@ -12,7 +12,7 @@ import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 @Component({
     selector: 'awg-resource-detail-html-content-imageobjects',
     templateUrl: './imageobjects.component.html',
-    styleUrls: ['./imageobjects.component.css'],
+    styleUrls: ['./imageobjects.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentImageobjectsComponent {

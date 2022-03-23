@@ -25,13 +25,11 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     const expectedHeader = 'Raw JSON response from Salsah-API';
     let expectedData: ResourceFullResponseJson;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailJsonRawComponent);

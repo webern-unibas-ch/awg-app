@@ -13,7 +13,7 @@ import { GndEvent } from '@awg-core/services/gnd-service';
 @Component({
     selector: 'awg-resource-detail-html',
     templateUrl: './resource-detail-html.component.html',
-    styleUrls: ['./resource-detail-html.component.css'],
+    styleUrls: ['./resource-detail-html.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlComponent {

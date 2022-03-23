@@ -20,17 +20,15 @@ describe('StructureInfoComponent (DONE)', () => {
     let expectedStructureMetaData: MetaStructure;
     const expectedStructureInfoHeader = 'Strukturmodell';
 
-    beforeEach(
-        waitForAsync(() => {
-            // Stub service for test purposes
-            mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+    beforeEach(waitForAsync(() => {
+        // Stub service for test purposes
+        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-            TestBed.configureTestingModule({
-                declarations: [StructureInfoComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [StructureInfoComponent],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(StructureInfoComponent);

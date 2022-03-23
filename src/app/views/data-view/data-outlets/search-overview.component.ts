@@ -15,7 +15,7 @@ import { SideInfoService } from '@awg-core/services';
 @Component({
     selector: 'awg-search-overview',
     templateUrl: './search-overview.component.html',
-    styleUrls: ['./search-overview.component.css'],
+    styleUrls: ['./search-overview.component.scss'],
 })
 export class SearchOverviewComponent implements OnInit {
     /**

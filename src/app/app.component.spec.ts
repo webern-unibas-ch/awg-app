@@ -48,39 +48,37 @@ describe('AppComponent (DONE)', () => {
     let initialzeAnalyticsSpy: Spy;
     let trackpageViewSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
-            mockAnalyticsService = {
-                initializeAnalytics: (): void => {
-                    // Intentional empty test override
-                },
-                trackPageView: (page: string): void => {
-                    // Intentional empty test override
-                },
-            };
+    beforeEach(waitForAsync(() => {
+        // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
+        mockAnalyticsService = {
+            initializeAnalytics: (): void => {
+                // Intentional empty test override
+            },
+            trackPageView: (page: string): void => {
+                // Intentional empty test override
+            },
+        };
 
-            TestBed.configureTestingModule({
-                imports: [RouterTestingModule.withRoutes(mockRoutes)],
-                declarations: [
-                    AppComponent,
-                    FooterStubComponent,
-                    NavbarStubComponent,
-                    ViewContainerStubComponent,
-                    RoutedTestMockComponent,
-                    RoutedTest2MockComponent,
-                ],
-                providers: [
-                    //  Mocked router provided wth RouterTestingModule
-                    { provide: AnalyticsService, useValue: mockAnalyticsService },
-                ],
-            }).compileComponents();
+        TestBed.configureTestingModule({
+            imports: [RouterTestingModule.withRoutes(mockRoutes)],
+            declarations: [
+                AppComponent,
+                FooterStubComponent,
+                NavbarStubComponent,
+                ViewContainerStubComponent,
+                RoutedTestMockComponent,
+                RoutedTest2MockComponent,
+            ],
+            providers: [
+                //  Mocked router provided wth RouterTestingModule
+                { provide: AnalyticsService, useValue: mockAnalyticsService },
+            ],
+        }).compileComponents();
 
-            // Spies for service methods
-            initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
-            trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
-        })
-    );
+        // Spies for service methods
+        initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
+        trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
+    }));
 
     beforeEach(() => {
         // Window spy object (Analytics)
@@ -111,12 +109,9 @@ describe('AppComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it(
-        'should create the app',
-        waitForAsync(() => {
-            expect(component).toBeTruthy();
-        })
-    );
+    it('should create the app', waitForAsync(() => {
+        expect(component).toBeTruthy();
+    }));
 
     it('injected service should use provided mockValue', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
@@ -124,93 +119,69 @@ describe('AppComponent (DONE)', () => {
     });
 
     describe('router setup (self-test)', () => {
-        it(
-            "... initial navigation should have detected empty route ''",
-            waitForAsync(() => {
-                expect(location.path()).toBe('', "should be ''");
-                expect(location.path()).toBe('', "should be ''");
-            })
-        );
+        it("... initial navigation should have detected empty route ''", waitForAsync(() => {
+            expect(location.path()).toBe('', "should be ''");
+            expect(location.path()).toBe('', "should be ''");
+        }));
 
-        it(
-            "... should redirect to /test from '' redirect",
-            waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['']).then(() => {
-                        expect(location.path()).toBe('/test', 'should be /test');
-                    });
+        it("... should redirect to /test from '' redirect", waitForAsync(() => {
+            fixture.ngZone.run(() => {
+                router.navigate(['']).then(() => {
+                    expect(location.path()).toBe('/test', 'should be /test');
                 });
-            })
-        );
+            });
+        }));
 
-        it(
-            "... should navigate to 'test' from /test",
-            waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['/test']).then(() => {
-                        expect(location.path()).toBe('/test', 'should be /test');
-                    });
+        it("... should navigate to 'test' from /test", waitForAsync(() => {
+            fixture.ngZone.run(() => {
+                router.navigate(['/test']).then(() => {
+                    expect(location.path()).toBe('/test', 'should be /test');
                 });
-            })
-        );
+            });
+        }));
 
-        it(
-            "... should navigate to 'test2' from /test2",
-            waitForAsync(() => {
-                fixture.ngZone.run(() => {
-                    router.navigate(['/test2']).then(() => {
-                        expect(location.path()).toBe('/test2', 'should be /test2');
-                    });
+        it("... should navigate to 'test2' from /test2", waitForAsync(() => {
+            fixture.ngZone.run(() => {
+                router.navigate(['/test2']).then(() => {
+                    expect(location.path()).toBe('/test2', 'should be /test2');
                 });
-            })
-        );
+            });
+        }));
     });
 
     describe('BEFORE initial data binding', () => {
         describe('Analytics', () => {
-            it(
-                '... should call AnalyticsService to initialize Analytics',
-                waitForAsync(() => {
-                    expectSpyCall(initialzeAnalyticsSpy, 1);
-                })
-            );
+            it('... should call AnalyticsService to initialize Analytics', waitForAsync(() => {
+                expectSpyCall(initialzeAnalyticsSpy, 1);
+            }));
 
-            it(
-                '... should not call AnalyticsService to track page view without navigation',
-                waitForAsync(() => {
-                    expectSpyCall(trackpageViewSpy, 0);
-                })
-            );
+            it('... should not call AnalyticsService to track page view without navigation', waitForAsync(() => {
+                expectSpyCall(trackpageViewSpy, 0);
+            }));
 
-            it(
-                '... should call AnalyticsService to track page view after navigation',
-                waitForAsync(() => {
-                    fixture.ngZone.run(() => {
-                        router.navigate(['']).then(() => {
-                            expectSpyCall(trackpageViewSpy, 1, '/test');
-                        });
+            it('... should call AnalyticsService to track page view after navigation', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['']).then(() => {
+                        expectSpyCall(trackpageViewSpy, 1, '/test');
                     });
-                })
-            );
+                });
+            }));
 
-            it(
-                '... should call AnalyticsService to track page view after navigation changed',
-                waitForAsync(() => {
-                    fixture.ngZone.run(() => {
-                        router.navigate(['']).then(() => {
-                            expectSpyCall(trackpageViewSpy, 1, '/test');
+            it('... should call AnalyticsService to track page view after navigation changed', waitForAsync(() => {
+                fixture.ngZone.run(() => {
+                    router.navigate(['']).then(() => {
+                        expectSpyCall(trackpageViewSpy, 1, '/test');
 
-                            router.navigate(['test2']).then(() => {
-                                expectSpyCall(trackpageViewSpy, 2, '/test2');
+                        router.navigate(['test2']).then(() => {
+                            expectSpyCall(trackpageViewSpy, 2, '/test2');
 
-                                router.navigate(['test']).then(() => {
-                                    expectSpyCall(trackpageViewSpy, 3, '/test');
-                                });
+                            router.navigate(['test']).then(() => {
+                                expectSpyCall(trackpageViewSpy, 3, '/test');
                             });
                         });
                     });
-                })
-            );
+                });
+            }));
         });
 
         describe('VIEW', () => {
