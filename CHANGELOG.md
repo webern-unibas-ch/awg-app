@@ -48,7 +48,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Styles
 
 * **app:** add customized bootstrap scss file ([c97749d](https://github.com/webern-unibas-ch/awg-app/commit/c97749dd2a5aec70a64e3d2eafb86980e82c5db5))
-* **app:** apply chnages from prettier ([3fc7ef5](https://github.com/webern-unibas-ch/awg-app/commit/3fc7ef58ed6e235c674d291135b5a3c49ee4074a))
+* **app:** apply changes from prettier ([3fc7ef5](https://github.com/webern-unibas-ch/awg-app/commit/3fc7ef58ed6e235c674d291135b5a3c49ee4074a))
 * **app:** apply scss style format ([89a71c9](https://github.com/webern-unibas-ch/awg-app/commit/89a71c9f344a2ddba05de802f1e416b140e98b57))
 * **app:** reformat files with prettier ([4cb9391](https://github.com/webern-unibas-ch/awg-app/commit/4cb93918c1ebdbbc681d7c33aa72c67b54e9e988))
 * **app:** rename .boder-left &-right to .border-start &-end (BS5) ([e5fa68b](https://github.com/webern-unibas-ch/awg-app/commit/e5fa68b16914b493235ea49211ff84745ed3a56d))
