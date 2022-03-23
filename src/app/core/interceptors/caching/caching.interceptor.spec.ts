@@ -168,8 +168,10 @@ describe('CachingInterceptor (DONE)', () => {
 
         it('... should intercept HTTP requests', waitForAsync(() => {
             // Subscribe to GET Http Request
-            httpClient.get<Data>(expectedUrl).subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>(expectedUrl).subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
 
             // Expect an HTTP request
@@ -183,8 +185,10 @@ describe('CachingInterceptor (DONE)', () => {
         describe('no GET request', () => {
             it('... should do nothing if POST request', waitForAsync(() => {
                 // Subscribe to PUT Http Request
-                httpClient.post<Data>(expectedUrl, testData).subscribe(data => {
-                    expect(data).toEqual(testData);
+                httpClient.post<Data>(expectedUrl, testData).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect an HTTP request
@@ -202,8 +206,10 @@ describe('CachingInterceptor (DONE)', () => {
 
             it('... should do nothing if PUT request', waitForAsync(() => {
                 // Subscribe to PUT Http Request
-                httpClient.put<Data>(expectedUrl, testData).subscribe(data => {
-                    expect(data).toEqual(testData);
+                httpClient.put<Data>(expectedUrl, testData).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect an HTTP request
@@ -228,8 +234,10 @@ describe('CachingInterceptor (DONE)', () => {
                 expect(mockCache.get(expectedRequest)).toBeNull();
 
                 // Subscribe to GET Http Request
-                const sub = httpClient.get<Data>(expectedUrl).subscribe(data => {
-                    expect(data).toEqual(testData);
+                const sub = httpClient.get<Data>(expectedUrl).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect an HTTP request
@@ -258,8 +266,10 @@ describe('CachingInterceptor (DONE)', () => {
 
                 // ----------------------
                 // Subscribe to new GET Http Request
-                httpClient.get<Data>(expectedUrl).subscribe(data => {
-                    expect(data).toEqual(testData);
+                httpClient.get<Data>(expectedUrl).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect not an HTTP request, since response is delivered from cache
@@ -287,8 +297,10 @@ describe('CachingInterceptor (DONE)', () => {
                 expect(mockCache.get(expectedRequest)).toBeNull();
 
                 // Subscribe to GET Http Request
-                httpClient.get<Data>(expectedUrl).subscribe(data => {
-                    expect(data).toEqual(testData);
+                httpClient.get<Data>(expectedUrl).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect an HTTP request
@@ -329,8 +341,10 @@ describe('CachingInterceptor (DONE)', () => {
                 expect(mockConsole.get(0)).toBeUndefined();
 
                 // Subscribe to GET Http Request
-                httpClient.get<Data>(expectedUrl).subscribe(data => {
-                    expect(data).toEqual(testData);
+                httpClient.get<Data>(expectedUrl).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect an HTTP request
@@ -343,15 +357,15 @@ describe('CachingInterceptor (DONE)', () => {
                 expectSpyCall(cacheGetSpy, 1, call.request);
 
                 // Add another request to the stack
-                cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
-                    response => fail('should have been failed'),
-                    err => {
+                cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
+                    next: () => fail('should have been failed'),
+                    error: err => {
                         expect(err).toEqual(expectedError);
                     },
-                    () => {
+                    complete: () => {
                         fail('should have been failed');
-                    }
-                );
+                    },
+                });
 
                 expectSpyCall(cachePutSpy, 0);
                 expectSpyCall(consoleSpy, 1, expectedLogMessage);
@@ -369,8 +383,10 @@ describe('CachingInterceptor (DONE)', () => {
                 expect(mockConsole.get(0)).toBeUndefined();
 
                 // Subscribe to GET Http Request
-                httpClient.get<Data>(expectedUrl).subscribe(data => {
-                    expect(data).toEqual(testData);
+                httpClient.get<Data>(expectedUrl).subscribe({
+                    next: data => {
+                        expect(data).toEqual(testData);
+                    },
                 });
 
                 // Expect an HTTP request
@@ -383,15 +399,15 @@ describe('CachingInterceptor (DONE)', () => {
                 expectSpyCall(cacheGetSpy, 1, call.request);
 
                 // Add another request to the stack
-                cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
-                    response => fail('should not call next'),
-                    err => {
+                cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
+                    next: () => fail('should not call next'),
+                    error: err => {
                         expect(err).toEqual(expectedError);
                     },
-                    () => {
+                    complete: () => {
                         fail('should not complete');
-                    }
-                );
+                    },
+                });
 
                 expectSpyCall(cachePutSpy, 0);
                 expectSpyCall(consoleSpy, 0);
