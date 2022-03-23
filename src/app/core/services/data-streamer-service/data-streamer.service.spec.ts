@@ -34,7 +34,9 @@ describe('DataStreamerService (DONE)', () => {
 
     it('should have bufferSize = 1', () => {
         expect((dataStreamerService as any)._bufferSize).toBeTruthy();
-        expect((dataStreamerService as any)._bufferSize).toBe(1, 'should be 1');
+        expect((dataStreamerService as any)._bufferSize)
+            .withContext('should be 1')
+            .toBe(1);
     });
 
     it('should have searchResponseWithQuerySubject', () => {
@@ -56,30 +58,28 @@ describe('DataStreamerService (DONE)', () => {
     describe('SearchResponseWithQuery', () => {
         describe('#getSearchResponseWithQuery', () => {
             it('... should return given searchResponse', done => {
-                dataStreamerService
-                    .getSearchResponseWithQuery()
-                    .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery).toEqual(
-                            expectedSearchResponse,
-                            `should equal ${expectedSearchResponse}`
-                        );
+                dataStreamerService.getSearchResponseWithQuery().subscribe({
+                    next: (searchResponseWithQuery: SearchResponseWithQuery) => {
+                        expect(searchResponseWithQuery)
+                            .withContext(`should equal ${expectedSearchResponse}`)
+                            .toEqual(expectedSearchResponse);
                         done();
-                    });
+                    },
+                });
 
                 // Set searchResponse (with default value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
             });
 
             it('... should return updated searchResponse', done => {
-                dataStreamerService
-                    .getSearchResponseWithQuery()
-                    .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery).toEqual(
-                            expectedSearchResponse,
-                            `should equal ${expectedSearchResponse}`
-                        );
+                dataStreamerService.getSearchResponseWithQuery().subscribe({
+                    next: (searchResponseWithQuery: SearchResponseWithQuery) => {
+                        expect(searchResponseWithQuery)
+                            .withContext(`should equal ${expectedSearchResponse}`)
+                            .toEqual(expectedSearchResponse);
                         done();
-                    });
+                    },
+                });
 
                 // Set searchResponse (with default value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
@@ -92,15 +92,14 @@ describe('DataStreamerService (DONE)', () => {
 
         describe('#updateSearchResponseWithQuery', () => {
             it('... should emit updated searchResponse', done => {
-                dataStreamerService
-                    .getSearchResponseWithQuery()
-                    .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery).toEqual(
-                            expectedSearchResponse,
-                            `should equal ${expectedSearchResponse}`
-                        );
+                dataStreamerService.getSearchResponseWithQuery().subscribe({
+                    next: (searchResponseWithQuery: SearchResponseWithQuery) => {
+                        expect(searchResponseWithQuery)
+                            .withContext(`should equal ${expectedSearchResponse}`)
+                            .toEqual(expectedSearchResponse);
                         done();
-                    });
+                    },
+                });
 
                 // Set searchResponse (with default value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
@@ -113,15 +112,14 @@ describe('DataStreamerService (DONE)', () => {
 
         describe('#clearSearchResponseWithQuery', () => {
             it('... should update search results with empty SearchResponseWithQuery', done => {
-                dataStreamerService
-                    .getSearchResponseWithQuery()
-                    .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery).toEqual(
-                            expectedSearchResponse,
-                            'should be empty SearchResponseWithQuery object'
-                        );
+                dataStreamerService.getSearchResponseWithQuery().subscribe({
+                    next: (searchResponseWithQuery: SearchResponseWithQuery) => {
+                        expect(searchResponseWithQuery)
+                            .withContext('should be empty SearchResponseWithQuery object')
+                            .toEqual(expectedSearchResponse);
                         done();
-                    });
+                    },
+                });
 
                 // Clear searchResponse
                 expectedSearchResponse = new SearchResponseWithQuery(new SearchResponseJson(), '');
@@ -129,15 +127,14 @@ describe('DataStreamerService (DONE)', () => {
             });
 
             it('... should overwrite existing search results', done => {
-                dataStreamerService
-                    .getSearchResponseWithQuery()
-                    .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery).toEqual(
-                            expectedSearchResponse,
-                            `should equal ${expectedSearchResponse}`
-                        );
+                dataStreamerService.getSearchResponseWithQuery().subscribe({
+                    next: (searchResponseWithQuery: SearchResponseWithQuery) => {
+                        expect(searchResponseWithQuery)
+                            .withContext(`should equal ${expectedSearchResponse}`)
+                            .toEqual(expectedSearchResponse);
                         done();
-                    });
+                    },
+                });
 
                 // Set searchResponse with default (value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
@@ -155,9 +152,12 @@ describe('DataStreamerService (DONE)', () => {
                 // Init resource id
                 const expectedResourceId = 'Test';
 
-                dataStreamerService.getResourceId().subscribe((id: string) => {
-                    expect(id).toBe(expectedResourceId, `should be ${expectedResourceId}`);
-                    done();
+                dataStreamerService.getResourceId().subscribe({
+                    next: (id: string) => {
+                        expect(id).toBeTruthy();
+                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        done();
+                    },
                 });
 
                 // Set resource id
@@ -168,9 +168,12 @@ describe('DataStreamerService (DONE)', () => {
                 // Init resource id
                 let expectedResourceId = 'Test';
 
-                dataStreamerService.getResourceId().subscribe((id: string) => {
-                    expect(id).toBe(expectedResourceId, `should be ${expectedResourceId}`);
-                    done();
+                dataStreamerService.getResourceId().subscribe({
+                    next: (id: string) => {
+                        expect(id).toBeTruthy();
+                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        done();
+                    },
                 });
 
                 // Set resource id
@@ -187,9 +190,12 @@ describe('DataStreamerService (DONE)', () => {
                 // Init resource id
                 let expectedResourceId = 'Test';
 
-                dataStreamerService.getResourceId().subscribe((id: string) => {
-                    expect(id).toBe(expectedResourceId, `should be ${expectedResourceId}`);
-                    done();
+                dataStreamerService.getResourceId().subscribe({
+                    next: (id: string) => {
+                        expect(id).toBeTruthy();
+                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        done();
+                    },
                 });
 
                 // Set resource id
@@ -204,9 +210,14 @@ describe('DataStreamerService (DONE)', () => {
         describe('#clearResourceId', () => {
             it('... should update resource id with empty string', done => {
                 // Init resource id
-                dataStreamerService.getResourceId().subscribe((id: string) => {
-                    expect(id).not.toBeTruthy('should be empty string');
-                    done();
+                const expectedResourceId = '';
+
+                dataStreamerService.getResourceId().subscribe({
+                    next: (id: string) => {
+                        expect(id).not.toBeTruthy();
+                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        done();
+                    },
                 });
 
                 dataStreamerService.clearResourceId();
@@ -216,9 +227,11 @@ describe('DataStreamerService (DONE)', () => {
                 // Init resource id
                 let expectedResourceId = 'Test';
 
-                dataStreamerService.getResourceId().subscribe((id: string) => {
-                    expect(id).toBe(expectedResourceId, `should be ${expectedResourceId}`);
-                    done();
+                dataStreamerService.getResourceId().subscribe({
+                    next: (id: string) => {
+                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        done();
+                    },
                 });
 
                 // Set resource id

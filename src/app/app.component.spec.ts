@@ -120,14 +120,14 @@ describe('AppComponent (DONE)', () => {
 
     describe('router setup (self-test)', () => {
         it("... initial navigation should have detected empty route ''", waitForAsync(() => {
-            expect(location.path()).toBe('', "should be ''");
-            expect(location.path()).toBe('', "should be ''");
+            expect(location.path()).withContext("should be ''").toBe('');
+            expect(location.path()).withContext("should be ''").toBe('');
         }));
 
         it("... should redirect to /test from '' redirect", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['']).then(() => {
-                    expect(location.path()).toBe('/test', 'should be /test');
+                    expect(location.path()).withContext('should be /test').toBe('/test');
                 });
             });
         }));
@@ -135,7 +135,7 @@ describe('AppComponent (DONE)', () => {
         it("... should navigate to 'test' from /test", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['/test']).then(() => {
-                    expect(location.path()).toBe('/test', 'should be /test');
+                    expect(location.path()).withContext('should be /test').toBe('/test');
                 });
             });
         }));
@@ -143,7 +143,7 @@ describe('AppComponent (DONE)', () => {
         it("... should navigate to 'test2' from /test2", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['/test2']).then(() => {
-                    expect(location.path()).toBe('/test2', 'should be /test2');
+                    expect(location.path()).withContext('should be /test2').toBe('/test2');
                 });
             });
         }));

@@ -92,8 +92,10 @@ describe('CachingInterceptor (DONE)', () => {
         it('... should issue a mocked http get request', waitForAsync(() => {
             const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>('/foo/bar').subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
 
             // Match the request url

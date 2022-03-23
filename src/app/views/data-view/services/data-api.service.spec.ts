@@ -190,9 +190,11 @@ describe('DataApiService (DONE)', () => {
         it('... should issue a mocked http get request', waitForAsync(() => {
             const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toBeTruthy();
-                expect(data).withContext(`should equal ${testData}`).toEqual(testData);
+            httpClient.get<Data>('/foo/bar').subscribe({
+                next: data => {
+                    expect(data).toBeTruthy();
+                    expect(data).withContext(`should equal ${testData}`).toEqual(testData);
+                },
             });
 
             // Match the request url
@@ -700,12 +702,14 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                    dataApiService.getSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            SearchResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams,
-                        ]);
+                    dataApiService.getSearchData(expectedSearchParams).subscribe({
+                        next: () => {
+                            expectSpyCall(getApiResponseSpy, 1, [
+                                SearchResponseJson,
+                                expectedQueryPath,
+                                expectedQueryHttpParams,
+                            ]);
+                        },
                     });
                 }));
 
@@ -744,12 +748,14 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                    dataApiService.getSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            SearchResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams,
-                        ]);
+                    dataApiService.getSearchData(expectedSearchParams).subscribe({
+                        next: () => {
+                            expectSpyCall(getApiResponseSpy, 1, [
+                                SearchResponseJson,
+                                expectedQueryPath,
+                                expectedQueryHttpParams,
+                            ]);
+                        },
                     });
                 }));
             });
@@ -763,11 +769,13 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
 
-                    dataApiService.getSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
-                        expect(response).toBeTruthy();
-                        expect(response)
-                            .withContext(`should equal ${expectedSearchResponseConverted}`)
-                            .toEqual(expectedSearchResponseConverted);
+                    dataApiService.getSearchData(expectedSearchParams).subscribe({
+                        next: (response: SearchResponseJson) => {
+                            expect(response).toBeTruthy();
+                            expect(response)
+                                .withContext(`should equal ${expectedSearchResponseConverted}`)
+                                .toEqual(expectedSearchResponseConverted);
+                        },
                     });
                 }));
             });
@@ -793,19 +801,19 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
-                    dataApiService.getSearchData(expectedSearchParams).subscribe(
-                        result => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
+                    dataApiService.getSearchData(expectedSearchParams).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 SearchResponseJson,
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(error)
+                            expect(err)
                                 .withContext(`should equal ${expectedApiServiceError}`)
                                 .toEqual(expectedApiServiceError);
-                        }
-                    );
+                        },
+                    });
                 }));
             });
         });
@@ -977,26 +985,30 @@ describe('DataApiService (DONE)', () => {
                     const expectedQueryHttpParams = new HttpParams();
                     const expectedUrl = apiUrl + expectedQueryPath;
 
-                    dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
-                        // Two calls
-                        expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
+                    dataApiService.getResourceData(expectedResourceId).subscribe({
+                        next: () => {
+                            // Two calls
+                            expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
 
-                        // Shortcut
-                        const firstCallArgs = getApiResponseSpy.calls.allArgs()[0];
+                            // Shortcut
+                            const firstCallArgs = getApiResponseSpy.calls.allArgs()[0];
 
-                        // Check args of call
-                        expect(firstCallArgs[0].name).toBeTruthy();
-                        expect(firstCallArgs[0].name)
-                            .withContext('should be ResourceFullResponseJson')
-                            .toBe('ResourceFullResponseJson');
+                            // Check args of call
+                            expect(firstCallArgs[0].name).toBeTruthy();
+                            expect(firstCallArgs[0].name)
+                                .withContext('should be ResourceFullResponseJson')
+                                .toBe('ResourceFullResponseJson');
 
-                        expect(firstCallArgs[1]).toBeTruthy();
-                        expect(firstCallArgs[1]).withContext(`should be ${expectedQueryPath}`).toBe(expectedQueryPath);
+                            expect(firstCallArgs[1]).toBeTruthy();
+                            expect(firstCallArgs[1])
+                                .withContext(`should be ${expectedQueryPath}`)
+                                .toBe(expectedQueryPath);
 
-                        expect(firstCallArgs[2]).toBeTruthy();
-                        expect(firstCallArgs[2])
-                            .withContext(`should equal ${expectedQueryHttpParams}`)
-                            .toEqual(expectedQueryHttpParams);
+                            expect(firstCallArgs[2]).toBeTruthy();
+                            expect(firstCallArgs[2])
+                                .withContext(`should equal ${expectedQueryHttpParams}`)
+                                .toEqual(expectedQueryHttpParams);
+                        },
                     });
 
                     // Expect two requests to url with given settings
@@ -1015,26 +1027,30 @@ describe('DataApiService (DONE)', () => {
                     const expectedQueryHttpParams = new HttpParams().set('reqtype', 'context');
                     const expectedUrl = apiUrl + expectedQueryPath;
 
-                    dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
-                        // Two calls
-                        expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
+                    dataApiService.getResourceData(expectedResourceId).subscribe({
+                        next: () => {
+                            // Two calls
+                            expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
 
-                        // Shortcut
-                        const secondCallArgs = getApiResponseSpy.calls.allArgs()[1];
+                            // Shortcut
+                            const secondCallArgs = getApiResponseSpy.calls.allArgs()[1];
 
-                        // Check args of call
-                        expect(secondCallArgs[0].name).toBeTruthy();
-                        expect(secondCallArgs[0].name)
-                            .withContext('should be ResourceContextResponseJson')
-                            .toBe('ResourceContextResponseJson');
+                            // Check args of call
+                            expect(secondCallArgs[0].name).toBeTruthy();
+                            expect(secondCallArgs[0].name)
+                                .withContext('should be ResourceContextResponseJson')
+                                .toBe('ResourceContextResponseJson');
 
-                        expect(secondCallArgs[1]).toBeTruthy();
-                        expect(secondCallArgs[1]).withContext(`should be ${expectedQueryPath}`).toBe(expectedQueryPath);
+                            expect(secondCallArgs[1]).toBeTruthy();
+                            expect(secondCallArgs[1])
+                                .withContext(`should be ${expectedQueryPath}`)
+                                .toBe(expectedQueryPath);
 
-                        expect(secondCallArgs[2]).toBeTruthy();
-                        expect(secondCallArgs[2])
-                            .withContext(`should equal ${expectedQueryHttpParams}`)
-                            .toEqual(expectedQueryHttpParams);
+                            expect(secondCallArgs[2]).toBeTruthy();
+                            expect(secondCallArgs[2])
+                                .withContext(`should equal ${expectedQueryHttpParams}`)
+                                .toEqual(expectedQueryHttpParams);
+                        },
                     });
 
                     // Expect two requests to url with given settings
@@ -1061,12 +1077,14 @@ describe('DataApiService (DONE)', () => {
                             observableOf(expectedResourceContextResponseJson)
                         );
 
-                        dataApiService.getResourceData(expectedResourceId).subscribe((resourceData: ResourceData) => {
-                            expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                            expect(resourceData).toBeTruthy();
-                            expect(resourceData)
-                                .withContext(`should equal ${expectedResourceData}`)
-                                .toEqual(expectedResourceData);
+                        dataApiService.getResourceData(expectedResourceId).subscribe({
+                            next: (resourceData: ResourceData) => {
+                                expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
+                                expect(resourceData).toBeTruthy();
+                                expect(resourceData)
+                                    .withContext(`should equal ${expectedResourceData}`)
+                                    .toEqual(expectedResourceData);
+                            },
                         });
                     }));
                 });
@@ -1092,16 +1110,16 @@ describe('DataApiService (DONE)', () => {
                             observableThrowError(() => expectedApiServiceError)
                         );
 
-                        dataApiService.getResourceData(expectedResourceId).subscribe(
-                            result => fail(expectedErrorMsg),
-                            (error: ApiServiceError) => {
+                        dataApiService.getResourceData(expectedResourceId).subscribe({
+                            next: () => fail(expectedErrorMsg),
+                            error: (err: ApiServiceError) => {
                                 // Two calls
                                 expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(error)
+                                expect(err)
                                     .withContext(`should equal ${expectedApiServiceError}`)
                                     .toEqual(expectedApiServiceError);
-                            }
-                        );
+                            },
+                        });
                     }));
 
                     it('... when first API response fails', waitForAsync(() => {
@@ -1111,16 +1129,16 @@ describe('DataApiService (DONE)', () => {
                             observableOf(expectedResourceContextResponseJson)
                         );
 
-                        dataApiService.getResourceData(expectedResourceId).subscribe(
-                            result => fail(expectedErrorMsg),
-                            (error: ApiServiceError) => {
+                        dataApiService.getResourceData(expectedResourceId).subscribe({
+                            next: () => fail(expectedErrorMsg),
+                            error: (err: ApiServiceError) => {
                                 // Two calls
                                 expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(error)
+                                expect(err)
                                     .withContext(`should equal ${expectedApiServiceError}`)
                                     .toEqual(expectedApiServiceError);
-                            }
-                        );
+                            },
+                        });
                     }));
 
                     it('... when second API response fails', waitForAsync(() => {
@@ -1130,16 +1148,16 @@ describe('DataApiService (DONE)', () => {
                             observableThrowError(() => expectedApiServiceError)
                         );
 
-                        dataApiService.getResourceData(expectedResourceId).subscribe(
-                            result => fail(expectedErrorMsg),
-                            (error: ApiServiceError) => {
+                        dataApiService.getResourceData(expectedResourceId).subscribe({
+                            next: () => fail(expectedErrorMsg),
+                            error: (err: ApiServiceError) => {
                                 // Two calls
                                 expect(getApiResponseSpy.calls.all().length).withContext('should be 2 calls').toBe(2);
-                                expect(error)
+                                expect(err)
                                     .withContext(`should equal ${expectedApiServiceError}`)
                                     .toEqual(expectedApiServiceError);
-                            }
-                        );
+                            },
+                        });
                     }));
                 });
             });
@@ -1199,13 +1217,15 @@ describe('DataApiService (DONE)', () => {
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedPropertyTypesInResourceClassResponseJson));
 
-                dataApiService.getResourceTypes().subscribe((restypes: ResourceTypesInVocabularyResponseJson) => {
-                    expect(restypes).toBeTruthy();
-                    expectSpyCall(getApiResponseSpy, 1, [
-                        ResourceTypesInVocabularyResponseJson,
-                        expectedQueryPath,
-                        expectedQueryHttpParams,
-                    ]);
+                dataApiService.getResourceTypes().subscribe({
+                    next: (restypes: ResourceTypesInVocabularyResponseJson) => {
+                        expect(restypes).toBeTruthy();
+                        expectSpyCall(getApiResponseSpy, 1, [
+                            ResourceTypesInVocabularyResponseJson,
+                            expectedQueryPath,
+                            expectedQueryHttpParams,
+                        ]);
+                    },
                 });
             }));
         });
@@ -1214,11 +1234,13 @@ describe('DataApiService (DONE)', () => {
                 it('... should return a ResourceTypesInVocabularyResponseJson observable', waitForAsync(() => {
                     getApiResponseSpy.and.returnValue(observableOf(expectedResourceTypesInVocabularyResponseJson));
 
-                    dataApiService.getResourceTypes().subscribe((restypes: ResourceTypesInVocabularyResponseJson) => {
-                        expect(restypes).toBeTruthy();
-                        expect(restypes)
-                            .withContext(`should equal ${expectedResourceTypesInVocabularyResponseJson}`)
-                            .toEqual(expectedResourceTypesInVocabularyResponseJson);
+                    dataApiService.getResourceTypes().subscribe({
+                        next: (restypes: ResourceTypesInVocabularyResponseJson) => {
+                            expect(restypes).toBeTruthy();
+                            expect(restypes)
+                                .withContext(`should equal ${expectedResourceTypesInVocabularyResponseJson}`)
+                                .toEqual(expectedResourceTypesInVocabularyResponseJson);
+                        },
                     });
                 }));
             });
@@ -1238,19 +1260,19 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
-                    dataApiService.getResourceTypes().subscribe(
-                        result => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
+                    dataApiService.getResourceTypes().subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 ResourceTypesInVocabularyResponseJson,
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(error)
+                            expect(err)
                                 .withContext(`should equal ${expectedApiServiceError}`)
                                 .toEqual(expectedApiServiceError);
-                        }
-                    );
+                        },
+                    });
                 }));
             });
         });
@@ -1368,16 +1390,16 @@ describe('DataApiService (DONE)', () => {
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedPropertyTypesInResourceClassResponseJson));
 
-                dataApiService
-                    .getPropertyListsByResourceType(expectedRestype)
-                    .subscribe((propertyList: PropertyTypesInResourceClassResponseJson) => {
+                dataApiService.getPropertyListsByResourceType(expectedRestype).subscribe({
+                    next: (propertyList: PropertyTypesInResourceClassResponseJson) => {
                         expect(propertyList).toBeTruthy();
                         expectSpyCall(getApiResponseSpy, 1, [
                             PropertyTypesInResourceClassResponseJson,
                             expectedQueryPath,
                             expectedQueryHttpParams,
                         ]);
-                    });
+                    },
+                });
             }));
         });
 
@@ -1388,14 +1410,14 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedPropertyTypesInResourceClassResponseJson));
 
-                    dataApiService
-                        .getPropertyListsByResourceType(expectedRestype)
-                        .subscribe((propertyList: PropertyTypesInResourceClassResponseJson) => {
+                    dataApiService.getPropertyListsByResourceType(expectedRestype).subscribe({
+                        next: (propertyList: PropertyTypesInResourceClassResponseJson) => {
                             expect(propertyList).toBeTruthy();
                             expect(propertyList)
                                 .withContext(`should equal ${expectedPropertyTypesInResourceClassResponseJson}`)
                                 .toEqual(expectedPropertyTypesInResourceClassResponseJson);
-                        });
+                        },
+                    });
                 }));
             });
 
@@ -1413,19 +1435,19 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
-                    dataApiService.getPropertyListsByResourceType(expectedRestype).subscribe(
-                        result => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
+                    dataApiService.getPropertyListsByResourceType(expectedRestype).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 PropertyTypesInResourceClassResponseJson,
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(error)
+                            expect(err)
                                 .withContext(`should equal ${expectedApiServiceError}`)
                                 .toEqual(expectedApiServiceError);
-                        }
-                    );
+                        },
+                    });
                 }));
             });
         });

@@ -75,8 +75,10 @@ describe('LoadingInterceptor (DONE)', () => {
         it('... should issue a mocked http get request', waitForAsync(() => {
             const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>('/foo/bar').subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
 
             // Match the request url
@@ -100,8 +102,10 @@ describe('LoadingInterceptor (DONE)', () => {
 
         beforeEach(waitForAsync(() => {
             // Subscribe to GET Http Request
-            httpClient.get<Data>(expectedUrl).subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>(expectedUrl).subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
         }));
 
@@ -159,19 +163,19 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 1, true);
 
             // Add another request to the stack
-            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
-                response => {
+            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
+                next: response => {
                     expect(response).toBe(expectedHttpResponse);
                     done();
                 },
-                err => {
+                error: () => {
                     fail('error should not have been called');
                     done();
                 },
-                () => {
+                complete: () => {
                     done();
-                }
-            );
+                },
+            });
 
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 additional call, 2 decrease calls
@@ -194,16 +198,16 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 1, true);
 
             // Throw error via httpHandlerSpy
-            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
-                response => fail('should have been failed'),
-                err => {
+            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
+                next: () => fail('should have been failed'),
+                error: err => {
                     expect(err).toEqual(expectedError);
                     done();
                 },
-                () => {
+                complete: () => {
                     fail('should have been failed');
-                }
-            );
+                },
+            });
 
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 error call, 2 decrease calls

@@ -101,8 +101,10 @@ describe('ApiService', () => {
         it('... should issue a mocked http get request', waitForAsync(() => {
             const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>('/foo/bar').subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
 
             // Match the request url
@@ -192,15 +194,15 @@ describe('ApiService', () => {
                     const expectedApiServiceResult = new ApiServiceResult();
 
                     // Call service function (success)
-                    apiService
-                        .getApiResponse(ApiServiceResult, queryPath, queryHttpParams)
-                        .subscribe((res: ApiServiceResult) => {
+                    apiService.getApiResponse(ApiServiceResult, queryPath, queryHttpParams).subscribe({
+                        next: (res: ApiServiceResult) => {
                             expect(res).toBeTruthy();
                             expect(res.status).toEqual(expectedApiServiceResult.status);
                             expect(res.statusText).toEqual(expectedApiServiceResult.statusText);
                             expect(res.url).toEqual(expectedApiServiceResult.url);
                             expect(res.body).toBeUndefined();
-                        });
+                        },
+                    });
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
@@ -216,12 +218,12 @@ describe('ApiService', () => {
                     expectedJsonResponse.lang = 'en';
 
                     // Call service function (success)
-                    apiService
-                        .getApiResponse(UserDataJson, queryPath, queryHttpParams)
-                        .subscribe((res: UserDataJson) => {
+                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe({
+                        next: (res: UserDataJson) => {
                             expect(res).toBeTruthy();
                             expect(res).toEqual(expectedJsonResponse);
-                        });
+                        },
+                    });
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
@@ -243,13 +245,14 @@ describe('ApiService', () => {
                     spyOn(httpClient, 'get').and.returnValue(observableThrowError(() => expectedApiServiceError));
 
                     // Call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectErrorResponse(error, expectedApiServiceError);
+                    apiService.getApiResponse(UserDataJson, queryPath).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
+                            expectErrorResponse(err, expectedApiServiceError);
                             done();
-                        }
-                    );
+                        },
+                        complete: () => fail(expectedErrorMsg),
+                    });
 
                     // Expect no request to url with given settings
                     httpTestingController.expectNone(
@@ -267,14 +270,15 @@ describe('ApiService', () => {
                     );
 
                     // Call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
+                    apiService.getApiResponse(UserDataJson, queryPath).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
                             expect(apiService.getApiResponse).toHaveBeenCalled();
-                            expectErrorResponse(error, expectedApiServiceError);
+                            expectErrorResponse(err, expectedApiServiceError);
                             done();
-                        }
-                    );
+                        },
+                        complete: () => fail(expectedErrorMsg),
+                    });
 
                     // Expect no request to url with given settings
                     httpTestingController.expectNone(
@@ -287,12 +291,13 @@ describe('ApiService', () => {
                     expectedApiServiceError = createApiServiceError(401, 'Unauthorized');
 
                     // Call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectErrorResponse(error, expectedApiServiceError);
-                        }
-                    );
+                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
+                            expectErrorResponse(err, expectedApiServiceError);
+                        },
+                        complete: () => fail(expectedErrorMsg),
+                    });
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
@@ -308,12 +313,13 @@ describe('ApiService', () => {
                     expectedApiServiceError = createApiServiceError(404, 'Not found');
 
                     // Call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectErrorResponse(error, expectedApiServiceError);
-                        }
-                    );
+                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
+                            expectErrorResponse(err, expectedApiServiceError);
+                        },
+                        complete: () => fail(expectedErrorMsg),
+                    });
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
