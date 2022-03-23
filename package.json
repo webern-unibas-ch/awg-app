@@ -123,7 +123,7 @@
         "@compodoc/compodoc": "^1.1.19",
         "@types/d3": "^7.1.0",
         "@types/jasmine": "~4.0.0",
-        "@types/node": "^15.14.9",
+        "@types/node": "^17.0.23",
         "@typescript-eslint/eslint-plugin": "^5.16.0",
         "@typescript-eslint/parser": "^5.16.0",
         "angular-cli-ghpages": "^1.0.0",
