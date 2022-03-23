@@ -111,7 +111,7 @@
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./force-graph.component.css</code></td>
+                <td class="col-md-9"><code>./force-graph.component.scss</code></td>
             </tr>
 
 
@@ -3391,7 +3391,7 @@ const FORCES &#x3D; {
 @Component({
     selector: &#x27;awg-force-graph&#x27;,
     templateUrl: &#x27;./force-graph.component.html&#x27;,
-    styleUrls: [&#x27;./force-graph.component.css&#x27;],
+    styleUrls: [&#x27;./force-graph.component.scss&#x27;],
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
@@ -4406,10 +4406,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;awg-force-graph-container&quot; class&#x3D;&quot;awg-forc-graph-panel-container&quot; [ngStyle]&#x3D;&quot;{ &#x27;height.px&#x27;: height }&quot; #graph&gt;
     &lt;div class&#x3D;&quot;awg-force-graph-icon-bar&quot;&gt;
         &lt;!-- Slider --&gt;
-        &lt;div class&#x3D;&quot;input-group input-group-sm awg-force-graph-zoom-slider-container float-left mb-3&quot;&gt;
-            &lt;div class&#x3D;&quot;input-group-prepend&quot;&gt;
-                &lt;span #sliderInputLabel class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;slider-label&quot;&gt;{{ sliderConfig.value }}x&lt;/span&gt;
-            &lt;/div&gt;
+        &lt;div class&#x3D;&quot;input-group input-group-sm awg-force-graph-zoom-slider-container float-start mb-3&quot;&gt;
+            &lt;span #sliderInputLabel class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;slider-label&quot;&gt;{{ sliderConfig.value }}x&lt;/span&gt;
             &lt;input
                 type&#x3D;&quot;range&quot;
                 #sliderInput
@@ -4423,15 +4421,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 [step]&#x3D;&quot;sliderConfig.step&quot;
                 [(ngModel)]&#x3D;&quot;sliderConfig.value&quot;
                 (ngModelChange)&#x3D;&quot;onZoomChange($event)&quot; /&gt;
-            &lt;div class&#x3D;&quot;input-group-append&quot;&gt;
-                &lt;button class&#x3D;&quot;btn btn-sm btn-outline-info&quot; type&#x3D;&quot;submit&quot; title&#x3D;&quot;Reset&quot; (click)&#x3D;&quot;onReCenter()&quot;&gt;
-                    &lt;fa-icon [icon]&#x3D;&quot;faCompressArrowsAlt&quot;&gt;&lt;/fa-icon&gt;
-                &lt;/button&gt;
-            &lt;/div&gt;
+            &lt;button class&#x3D;&quot;btn btn-sm btn-outline-info&quot; type&#x3D;&quot;submit&quot; title&#x3D;&quot;Reset&quot; (click)&#x3D;&quot;onReCenter()&quot;&gt;
+                &lt;fa-icon [icon]&#x3D;&quot;faCompressArrowsAlt&quot;&gt;&lt;/fa-icon&gt;
+            &lt;/button&gt;
         &lt;/div&gt;
 
         &lt;!-- Limit --&gt;
-        &lt;div class&#x3D;&quot;btn-group awg-force-graph-node-limit-container float-right my-auto&quot; *ngIf&#x3D;&quot;queryResultTriples&quot;&gt;
+        &lt;div class&#x3D;&quot;btn-group awg-force-graph-node-limit-container float-end my-auto&quot; *ngIf&#x3D;&quot;queryResultTriples&quot;&gt;
             &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-info&quot; disabled aria-disabled&#x3D;&quot;true&quot;&gt;
                 &lt;span *ngIf&#x3D;&quot;limit &lt; queryResultTriples.length&quot;&gt;{{ limit }} von &lt;/span
                 &gt;{{ queryResultTriples.length }} Triples
@@ -4470,16 +4466,18 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./force-graph.component.css</code>
+                    <code>./force-graph.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">#awg-force-graph-container {
-    position: relative;
-    width: 100%;
-}
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;~assets/themes/scss/shared&#x27;;
 
-#awg-force-graph-container &gt; .awg-force-graph-icon-bar {
+#awg-force-graph-container {
     position: relative;
     width: 100%;
+
+    &gt; .awg-force-graph-icon-bar {
+        position: relative;
+        width: 100%;
+    }
 }
 
 .awg-force-graph-panel-container {
@@ -4491,93 +4489,103 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 .input-group.awg-force-graph-zoom-slider-container {
     flex-wrap: nowrap;
     width: auto;
+
+    &gt; :not(:first-child) {
+        margin-left: 0px !important;
+    }
 }
 #slider-label.input-group-text {
-    width: 50px;
-    color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+    min-width: 50px;
+    color: $info;
 }
 
 /* slider input */
+@mixin slider-track-base($radius) {
+    background: rgba(221, 221, 221, 0.78);
+    border: 0.2px solid #dddddd;
+    border-radius: $radius;
+}
+
+@mixin slider-track($height) {
+    @include slider-track-base(1.3px);
+    width: 100%;
+    height: $height;
+    cursor: pointer;
+}
+@mixin slider-thumb($height) {
+    width: 15px;
+    height: $height;
+    background: $info;
+    border: 1.8px solid $info;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider {
     width: 100%;
-    margin: 6px 0;
     background-color: transparent;
     -webkit-appearance: none;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider:focus {
-    outline: none;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-webkit-slider-runnable-track {
-    background: rgba(221, 221, 221, 0.78);
-    border: 0.2px solid #dddddd;
-    border-radius: 1.3px;
-    width: 100%;
-    height: 31px;
-    cursor: pointer;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-webkit-slider-thumb {
-    margin-top: -6.7px;
-    width: 15px;
-    height: 30px;
-    background: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border: 1.8px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border-radius: 10px;
-    cursor: pointer;
-    -webkit-appearance: none;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider:focus::-webkit-slider-runnable-track {
-    background: #e5e5e5;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-moz-range-track {
-    background: rgba(221, 221, 221, 0.78);
-    border: 0.2px solid #dddddd;
-    border-radius: 1.3px;
-    width: 100%;
-    height: 31px;
-    cursor: pointer;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-moz-range-thumb {
-    width: 15px;
-    height: 30px;
-    background: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border: 1.8px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border-radius: 10px;
-    cursor: pointer;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-ms-track {
-    background: transparent;
-    border-color: transparent;
-    border-width: 7.4px 0;
-    color: transparent;
-    width: 100%;
-    height: 31px;
-    cursor: pointer;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-ms-fill-lower {
-    background: #d5d5d5;
-    border: 0.2px solid #dddddd;
-    border-radius: 2.6px;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-ms-fill-upper {
-    background: rgba(221, 221, 221, 0.78);
-    border: 0.2px solid #dddddd;
-    border-radius: 2.6px;
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider::-ms-thumb {
-    width: 15px;
-    height: 30px;
-    background: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border: 1.8px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 0px;
-    /*Needed to keep the Edge thumb centred*/
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider:focus::-ms-fill-lower {
-    background: rgba(221, 221, 221, 0.78);
-}
-input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider:focus::-ms-fill-upper {
-    background: #e5e5e5;
+
+    &amp;:focus {
+        outline: none;
+    }
+
+    &amp;::-webkit-slider-runnable-track {
+        @include slider-track(31px);
+    }
+
+    &amp;::-webkit-slider-thumb {
+        @include slider-thumb(29px);
+        -webkit-appearance: none;
+    }
+
+    &amp;:focus::-webkit-slider-runnable-track {
+        background: #e5e5e5;
+    }
+
+    &amp;::-moz-range-track {
+        @include slider-track(29px);
+        -moz-margin-start: fill;
+        margin-end: fill;
+    }
+
+    &amp;::-moz-range-thumb {
+        @include slider-thumb(27px);
+    }
+
+    &amp;::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 7.4px 0;
+        color: transparent;
+        width: 100%;
+        height: 31px;
+        cursor: pointer;
+    }
+
+    &amp;::-ms-fill-lower {
+        @include slider-track-base(2.6px);
+    }
+
+    &amp;::-ms-fill-upper {
+        @include slider-track-base(2.6px);
+    }
+
+    &amp;::-ms-thumb {
+        @include slider-thumb(29px);
+        margin-top: 0px;
+        /*Needed to keep the Edge thumb centred*/
+    }
+
+    &amp;:focus {
+        &amp;::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &amp;::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+    }
 }
 
 /* Simulation nodes */
@@ -4590,11 +4598,12 @@ input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider:focus::-ms-fill-u
     stroke: #fff;
     fill: #000 !important;
     stroke-width: 1.5px;
-}
-:host ::ng-deep .blank.instance {
-    stroke: #fff;
-    fill: #000;
-    stroke-width: 1.5px;
+
+    &amp;.instance {
+        stroke: #fff;
+        fill: #000;
+        stroke-width: 1.5px;
+    }
 }
 :host ::ng-deep .class {
     stroke: #fff;
@@ -4666,8 +4675,8 @@ input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider:focus::-ms-fill-u
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="awg-force-graph-container" class="awg-forc-graph-panel-container" [ngStyle]="{ \'height.px\': height }" #graph>    <div class="awg-force-graph-icon-bar">        <!-- Slider -->        <div class="input-group input-group-sm awg-force-graph-zoom-slider-container float-left mb-3">            <div class="input-group-prepend">                <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>            </div>            <input                type="range"                #sliderInput                class="awg-force-graph-zoom-slider"                id="awg-force-graph-zoom-slider"                name="zoomSlider"                aria-label="Zoom slider"                aria-describedby="slider-label"                [min]="sliderConfig.min"                [max]="sliderConfig.max"                [step]="sliderConfig.step"                [(ngModel)]="sliderConfig.value"                (ngModelChange)="onZoomChange($event)" />            <div class="input-group-append">                <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">                    <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>                </button>            </div>        </div>        <!-- Limit -->        <div class="btn-group awg-force-graph-node-limit-container float-right my-auto" *ngIf="queryResultTriples">            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">                <span *ngIf="limit < queryResultTriples.length">{{ limit }} von </span                >{{ queryResultTriples.length }} Triples            </button>            <div                class="btn-group"                ngbDropdown                container="body"                role="group"                aria-label="Button group with nested dropdown for node limit">                <button                    class="btn btn-sm btn-info dropdown-toggle-split"                    ngbDropdownToggle                    [disabled]="queryResultTriples.length === 0"></button>                <div class="dropdown-menu" ngbDropdownMenu>                    <ng-container *ngFor="let limitValue of limitValues">                        <button                            *ngIf="queryResultTriples.length > limitValue"                            class="dropdown-item"                            (click)="onLimitValueChange(limitValue)">                            <span>{{ limitValue }}</span>                        </button>                    </ng-container>                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">                        <span>Kein Limit</span>                    </button>                </div>            </div>        </div>        <!-- <span *ngIf="message" class="message">{{message}}</span> -->    </div></div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><div id="awg-force-graph-container" class="awg-forc-graph-panel-container" [ngStyle]="{ \'height.px\': height }" #graph>    <div class="awg-force-graph-icon-bar">        <!-- Slider -->        <div class="input-group input-group-sm awg-force-graph-zoom-slider-container float-start mb-3">            <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>            <input                type="range"                #sliderInput                class="awg-force-graph-zoom-slider"                id="awg-force-graph-zoom-slider"                name="zoomSlider"                aria-label="Zoom slider"                aria-describedby="slider-label"                [min]="sliderConfig.min"                [max]="sliderConfig.max"                [step]="sliderConfig.step"                [(ngModel)]="sliderConfig.value"                (ngModelChange)="onZoomChange($event)" />            <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">                <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>            </button>        </div>        <!-- Limit -->        <div class="btn-group awg-force-graph-node-limit-container float-end my-auto" *ngIf="queryResultTriples">            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">                <span *ngIf="limit < queryResultTriples.length">{{ limit }} von </span                >{{ queryResultTriples.length }} Triples            </button>            <div                class="btn-group"                ngbDropdown                container="body"                role="group"                aria-label="Button group with nested dropdown for node limit">                <button                    class="btn btn-sm btn-info dropdown-toggle-split"                    ngbDropdownToggle                    [disabled]="queryResultTriples.length === 0"></button>                <div class="dropdown-menu" ngbDropdownMenu>                    <ng-container *ngFor="let limitValue of limitValues">                        <button                            *ngIf="queryResultTriples.length > limitValue"                            class="dropdown-item"                            (click)="onLimitValueChange(limitValue)">                            <span>{{ limitValue }}</span>                        </button>                    </ng-container>                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">                        <span>Kein Limit</span>                    </button>                </div>            </div>        </div>        <!-- <span *ngIf="message" class="message">{{message}}</span> -->    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ForceGraphComponent'};
 </script>

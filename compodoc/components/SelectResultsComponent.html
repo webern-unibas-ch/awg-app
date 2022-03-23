@@ -108,7 +108,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./select-results.component.css</code></td>
+                <td class="col-md-9"><code>./select-results.component.scss</code></td>
             </tr>
 
 
@@ -148,6 +148,9 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                             <li>
                                 <a href="#onTableNodeClick" >onTableNodeClick</a>
                             </li>
+                            <li>
+                                <a href="#preventPanelCollapseOnFullscreen" >preventPanelCollapseOnFullscreen</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -160,6 +163,9 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#isFullscreen" >isFullscreen</a>
+                            </li>
                             <li>
                                 <a href="#queryResult$" >queryResult$</a>
                             </li>
@@ -198,6 +204,34 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="isFullscreen"></a>
+                        <b>isFullscreen</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:43</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: isFullscreen.</p>
+<p>It keeps a boolean flag if fullscreenMode is set.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="queryResult$"></a>
                         <b>queryResult$</b>
                     </td>
@@ -210,7 +244,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:25</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:27</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -238,7 +272,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:35</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -269,7 +303,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:41</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:51</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -309,8 +343,8 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:53</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:63</a></div>
                 </td>
             </tr>
 
@@ -388,8 +422,8 @@ is not empty.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:79</a></div>
                 </td>
             </tr>
 
@@ -446,15 +480,90 @@ is not empty.</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="preventPanelCollapseOnFullscreen"></a>
+                    <span class="name">
+                        <span ><b>preventPanelCollapseOnFullscreen</b></span>
+                        <a href="#preventPanelCollapseOnFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/select-results/select-results.component.ts:93</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: preventPanelCollapseOnFullscreen.</p>
+<p>It prevents the given panel event from being collapsed in fullscreen mode.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$event</td>
+                                    <td>
+                                            <code>NgbPanelChangeEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Prevents the panel collapse.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 
 import { Observable } from &#x27;rxjs&#x27;;
+import { NgbPanelChangeEvent } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
+
 import { SearchResult } from &#x27;../models&#x27;;
 
 /**
@@ -466,7 +575,7 @@ import { SearchResult } from &#x27;../models&#x27;;
 @Component({
     selector: &#x27;awg-select-results&#x27;,
     templateUrl: &#x27;./select-results.component.html&#x27;,
-    styleUrls: [&#x27;./select-results.component.css&#x27;],
+    styleUrls: [&#x27;./select-results.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectResultsComponent {
@@ -485,6 +594,14 @@ export class SelectResultsComponent {
      */
     @Input()
     queryTime: number;
+
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is set.
+     */
+    @Input()
+    isFullscreen: boolean;
 
     /**
      * Output variable: clickedTableRequest.
@@ -526,13 +643,32 @@ export class SelectResultsComponent {
         }
         this.clickedTableRequest.emit(uri);
     }
+
+    /**
+     * Public method: preventPanelCollapseOnFullscreen.
+     *
+     * It prevents the given panel event from being collapsed in fullscreen mode.
+     *
+     * @returns {void} Prevents the panel collapse.
+     */
+    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
+        if (!$event) {
+            return;
+        }
+        if (this.isFullscreen &amp;&amp; $event.nextState &#x3D;&#x3D;&#x3D; false) {
+            $event.preventDefault();
+        }
+    }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ngb-accordion activeIds&#x3D;&quot;awg-graph-visualizer-select-result&quot;&gt;
-    &lt;ngb-panel id&#x3D;&quot;awg-graph-visualizer-select-result&quot; title&#x3D;&quot;Resultat&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;ngb-accordion
+    #selectResultsAcc&#x3D;&quot;ngbAccordion&quot;
+    activeIds&#x3D;&quot;awg-graph-visualizer-select-results&quot;
+    (panelChange)&#x3D;&quot;preventPanelCollapseOnFullscreen($event)&quot;&gt;
+    &lt;ngb-panel id&#x3D;&quot;awg-graph-visualizer-select-results&quot; title&#x3D;&quot;Resultat&quot;&gt;
         &lt;ng-template ngbPanelContent&gt;
             &lt;ng-container *ngIf&#x3D;&quot;queryResult$ | async as queryResult; else loading&quot;&gt;
                 &lt;ng-container *ngIf&#x3D;&quot;isNotEmpty(queryResult); else noResult&quot;&gt;
@@ -558,7 +694,7 @@ export class SelectResultsComponent {
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./select-results.component.css</code>
+                    <code>./select-results.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
@@ -588,8 +724,8 @@ export class SelectResultsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngb-accordion activeIds="awg-graph-visualizer-select-result">    <ngb-panel id="awg-graph-visualizer-select-result" title="Resultat">        <ng-template ngbPanelContent>            <ng-container *ngIf="queryResult$ | async as queryResult; else loading">                <ng-container *ngIf="isNotEmpty(queryResult); else noResult">                    <!-- SPARQL table visualization -->                    <awg-sparql-table                        [queryResult]="queryResult"                        [queryTime]="queryTime"                        (clickedTableRequest)="onTableNodeClick($event)">                    </awg-sparql-table>                </ng-container>                <ng-template #noResult>                    <awg-sparql-no-results></awg-sparql-no-results>                </ng-template>            </ng-container>            <ng-template #loading>                <awg-twelve-tone-spinner></awg-twelve-tone-spinner>            </ng-template>        </ng-template>    </ngb-panel></ngb-accordion></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><ngb-accordion    #selectResultsAcc="ngbAccordion"    activeIds="awg-graph-visualizer-select-results"    (panelChange)="preventPanelCollapseOnFullscreen($event)">    <ngb-panel id="awg-graph-visualizer-select-results" title="Resultat">        <ng-template ngbPanelContent>            <ng-container *ngIf="queryResult$ | async as queryResult; else loading">                <ng-container *ngIf="isNotEmpty(queryResult); else noResult">                    <!-- SPARQL table visualization -->                    <awg-sparql-table                        [queryResult]="queryResult"                        [queryTime]="queryTime"                        (clickedTableRequest)="onTableNodeClick($event)">                    </awg-sparql-table>                </ng-container>                <ng-template #noResult>                    <awg-sparql-no-results></awg-sparql-no-results>                </ng-template>            </ng-container>            <ng-template #loading>                <awg-twelve-tone-spinner></awg-twelve-tone-spinner>            </ng-template>        </ng-template>    </ngb-panel></ngb-accordion></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'SelectResultsComponent'};
 </script>

@@ -114,7 +114,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./graph-visualizer.component.css</code></td>
+                <td class="col-md-9"><code>./graph-visualizer.component.scss</code></td>
             </tr>
 
 
@@ -1238,7 +1238,7 @@ import { Toast, ToastService } from &#x27;@awg-core/services/toast-service&#x27;
 @Component({
     selector: &#x27;awg-graph-visualizer&#x27;,
     templateUrl: &#x27;./graph-visualizer.component.html&#x27;,
-    styleUrls: [&#x27;./graph-visualizer.component.css&#x27;],
+    styleUrls: [&#x27;./graph-visualizer.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class GraphVisualizerComponent implements OnInit {
@@ -1501,103 +1501,61 @@ export class GraphVisualizerComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- Data: Triples, SPARQL query, result --&gt;
-
-&lt;div #fs class&#x3D;&quot;row&quot; [class.is-fullscreen]&#x3D;&quot;isFullscreen&quot; *ngIf&#x3D;&quot;graphRDFInputData&quot;&gt;
-    &lt;ng-container *ngIf&#x3D;&quot;!isFullscreen&quot;&gt;
-        &lt;!-- awg-graph-triples-editor --&gt;
-        &lt;div class&#x3D;&quot;col-lg-6 pr-lg-0&quot;&gt;
-            &lt;awg-triples-editor
-                [triples]&#x3D;&quot;triples&quot;
-                (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
-                (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
-                (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-triples-editor&gt;
-        &lt;/div&gt;
-
-        &lt;!-- awg-graph-sparql-editor --&gt;
-        &lt;div class&#x3D;&quot;col-lg-6 pl-lg-0&quot;&gt;
-            &lt;awg-sparql-editor
-                [queryList]&#x3D;&quot;queryList&quot;
-                [query]&#x3D;&quot;query&quot;
-                (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
-                (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
-                (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-sparql-editor&gt;
-        &lt;/div&gt;
-
-        &lt;!-- Results --&gt;
-        &lt;div class&#x3D;&quot;col-12&quot;&gt;
-            &lt;!-- CONSTRUCT --&gt;
-            &lt;!-- awg-graph-construct-result --&gt;
-            &lt;awg-construct-results
-                #queryConstructResultAcc
-                *ngIf&#x3D;&quot;query.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;; else querySelectResultAcc&quot;
-                [queryResult$]&#x3D;&quot;queryResult$&quot;
-                [defaultForceGraphHeight]&#x3D;&quot;defaultForceGraphHeight&quot;
-                (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;&gt;&lt;/awg-construct-results&gt;
-
-            &lt;!-- SELECT --&gt;
-            &lt;!-- awg-graph-select-result --&gt;
-            &lt;ng-template #querySelectResultAcc&gt;
-                &lt;awg-select-results
-                    *ngIf&#x3D;&quot;query.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;; else queryUnsupportedTypeAcc&quot;
-                    [queryResult$]&#x3D;&quot;queryResult$&quot;
-                    (clickedTableRequest)&#x3D;&quot;onTableNodeClick($event)&quot;&gt;&lt;/awg-select-results&gt;
-            &lt;/ng-template&gt;
-
-            &lt;!-- OTHERS --&gt;
-            &lt;!-- awg-graph-unsupported-query-type-result --&gt;
-            &lt;ng-template #queryUnsupportedTypeAcc&gt;
-                &lt;awg-unsupported-type-results [queryType]&#x3D;&quot;query.queryType&quot;&gt;&lt;/awg-unsupported-type-results&gt;
-            &lt;/ng-template&gt;
-        &lt;/div&gt;
-    &lt;/ng-container&gt;
-    &lt;ng-container *ngIf&#x3D;&quot;isFullscreen&quot;&gt;
-        &lt;div class&#x3D;&quot;col-md-4 col-lg-3 px-0 awg-fullscreen&quot;&gt;
-            &lt;!-- awg-graph-triples-editor --&gt;
-            &lt;awg-triples-editor
-                [triples]&#x3D;&quot;triples&quot;
-                [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
-                (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
-                (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-triples-editor&gt;
+&lt;div #fs class&#x3D;&quot;row awg-graph-visualizer&quot; [class.is-fullscreen]&#x3D;&quot;isFullscreen&quot; *ngIf&#x3D;&quot;graphRDFInputData&quot;&gt;
+    &lt;div [ngClass]&#x3D;&quot;isFullscreen ? &#x27;col-4 col-lg-3 px-0 awg-fullscreen&#x27; : &#x27;col-12&#x27;&quot;&gt;
+        &lt;div [ngClass]&#x3D;&quot;{ row: !isFullscreen }&quot;&gt;
+            &lt;div [ngClass]&#x3D;&quot;{ &#x27;col-6 pe-lg-0&#x27;: !isFullscreen }&quot;&gt;
+                &lt;!-- awg-graph-triples-editor --&gt;
+                &lt;awg-triples-editor
+                    [triples]&#x3D;&quot;triples&quot;
+                    [isFullscreen]&#x3D;&quot;isFullscreen&quot;
+                    (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
+                    (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
+                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-triples-editor&gt;
+            &lt;/div&gt;
 
             &lt;!-- awg-graph-sparql-editor --&gt;
-            &lt;awg-sparql-editor
-                [queryList]&#x3D;&quot;queryList&quot;
-                [query]&#x3D;&quot;query&quot;
-                [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
-                (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
-                (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-sparql-editor&gt;
+            &lt;div [ngClass]&#x3D;&quot;{ &#x27;col-6 ps-lg-0&#x27;: !isFullscreen }&quot;&gt;
+                &lt;awg-sparql-editor
+                    [queryList]&#x3D;&quot;queryList&quot;
+                    [query]&#x3D;&quot;query&quot;
+                    [isFullscreen]&#x3D;&quot;isFullscreen&quot;
+                    (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
+                    (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
+                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-sparql-editor&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
+    &lt;/div&gt;
 
-        &lt;!-- Results --&gt;
-        &lt;div class&#x3D;&quot;col-md-8 col-lg-9 px-0 awg-fullscreen&quot;&gt;
-            &lt;!-- CONSTRUCT --&gt;
-            &lt;!-- awg-graph-construct-result --&gt;
-            &lt;awg-construct-results
-                #queryConstructResultAcc
-                *ngIf&#x3D;&quot;query.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;; else querySelectResultAcc&quot;
+    &lt;!-- Results --&gt;
+    &lt;div [ngClass]&#x3D;&quot;isFullscreen ? &#x27;col-8 col-lg-9 px-0 awg-fullscreen&#x27; : &#x27;col-12&#x27;&quot;&gt;
+        &lt;!-- CONSTRUCT --&gt;
+        &lt;!-- awg-graph-construct-result --&gt;
+        &lt;awg-construct-results
+            #queryConstructResultAcc
+            *ngIf&#x3D;&quot;query.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;; else querySelectResultAcc&quot;
+            [queryResult$]&#x3D;&quot;queryResult$&quot;
+            [defaultForceGraphHeight]&#x3D;&quot;isFullscreen ? 1000 : defaultForceGraphHeight&quot;
+            [isFullscreen]&#x3D;&quot;isFullscreen&quot;
+            (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;&gt;&lt;/awg-construct-results&gt;
+
+        &lt;!-- SELECT --&gt;
+        &lt;!-- awg-graph-select-result --&gt;
+        &lt;ng-template #querySelectResultAcc&gt;
+            &lt;awg-select-results
+                *ngIf&#x3D;&quot;query.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;; else queryUnsupportedTypeAcc&quot;
                 [queryResult$]&#x3D;&quot;queryResult$&quot;
-                [defaultForceGraphHeight]&#x3D;&quot;1000&quot;
-                (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;&gt;&lt;/awg-construct-results&gt;
+                [queryTime]&#x3D;&quot;queryTime&quot;
+                [isFullscreen]&#x3D;&quot;isFullscreen&quot;
+                (clickedTableRequest)&#x3D;&quot;onTableNodeClick($event)&quot;&gt;&lt;/awg-select-results&gt;
+        &lt;/ng-template&gt;
 
-            &lt;!-- SELECT --&gt;
-            &lt;!-- awg-graph-select-result --&gt;
-            &lt;ng-template #querySelectResultAcc&gt;
-                &lt;awg-select-results
-                    *ngIf&#x3D;&quot;query.queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;; else queryUnsupportedTypeAcc&quot;
-                    [queryResult$]&#x3D;&quot;queryResult$&quot;
-                    [queryTime]&#x3D;&quot;queryTime&quot;
-                    (clickedTableRequest)&#x3D;&quot;onTableNodeClick($event)&quot;&gt;&lt;/awg-select-results&gt;
-            &lt;/ng-template&gt;
-
-            &lt;!-- OTHERS --&gt;
-            &lt;!-- awg-graph-unsupported-query-type-result --&gt;
-            &lt;ng-template #queryUnsupportedTypeAcc&gt;
-                &lt;awg-unsupported-type-results [queryType]&#x3D;&quot;query.queryType&quot;&gt;&lt;/awg-unsupported-type-results&gt;
-            &lt;/ng-template&gt;
-        &lt;/div&gt;
-    &lt;/ng-container&gt;
+        &lt;!-- OTHERS --&gt;
+        &lt;!-- awg-graph-unsupported-query-type-result --&gt;
+        &lt;ng-template #queryUnsupportedTypeAcc&gt;
+            &lt;awg-unsupported-type-results [queryType]&#x3D;&quot;query.queryType&quot;&gt;&lt;/awg-unsupported-type-results&gt;
+        &lt;/ng-template&gt;
+    &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;awg-toast aria-live&#x3D;&quot;polite&quot; aria-atomic&#x3D;&quot;true&quot;&gt;&lt;/awg-toast&gt;
@@ -1606,18 +1564,22 @@ export class GraphVisualizerComponent implements OnInit {
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./graph-visualizer.component.css</code>
+                    <code>./graph-visualizer.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.awg-fullscreen ::ng-deep .collapse.show {
-    height: 100vh;
-}
-
-.awg-fullscreen ::ng-deep #awg-graph-visualizer-triples.collapse.show {
-    height: 45vh;
-}
-
-.awg-fullscreen ::ng-deep #awg-graph-visualizer-query.collapse.show {
-    height: 50vh;
+                <pre class="line-numbers"><code class="language-scss">:host {
+    &amp;::ng-deep {
+        .awg-fullscreen {
+            .collapse.show {
+                height: 100vh;
+            }
+            #awg-graph-visualizer-triples.collapse.show {
+                height: 45vh;
+            }
+            #awg-graph-visualizer-query.collapse.show {
+                height: 50vh;
+            }
+        }
+    }
 }
 </code></pre>
     </div>
@@ -1647,8 +1609,8 @@ export class GraphVisualizerComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result --><div #fs class="row" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">    <ng-container *ngIf="!isFullscreen">        <!-- awg-graph-triples-editor -->        <div class="col-lg-6 pr-lg-0">            <awg-triples-editor                [triples]="triples"                (updateTriplesRequest)="triples = $event"                (resetTriplesRequest)="resetTriples()"                (performQueryRequest)="performQuery()"></awg-triples-editor>        </div>        <!-- awg-graph-sparql-editor -->        <div class="col-lg-6 pl-lg-0">            <awg-sparql-editor                [queryList]="queryList"                [query]="query"                (updateQueryStringRequest)="query.queryString = $event"                (resetQueryRequest)="resetQuery($event)"                (performQueryRequest)="performQuery()"></awg-sparql-editor>        </div>        <!-- Results -->        <div class="col-12">            <!-- CONSTRUCT -->            <!-- awg-graph-construct-result -->            <awg-construct-results                #queryConstructResultAcc                *ngIf="query.queryType === \'construct\'; else querySelectResultAcc"                [queryResult$]="queryResult$"                [defaultForceGraphHeight]="defaultForceGraphHeight"                (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>            <!-- SELECT -->            <!-- awg-graph-select-result -->            <ng-template #querySelectResultAcc>                <awg-select-results                    *ngIf="query.queryType === \'select\'; else queryUnsupportedTypeAcc"                    [queryResult$]="queryResult$"                    (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>            </ng-template>            <!-- OTHERS -->            <!-- awg-graph-unsupported-query-type-result -->            <ng-template #queryUnsupportedTypeAcc>                <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>            </ng-template>        </div>    </ng-container>    <ng-container *ngIf="isFullscreen">        <div class="col-md-4 col-lg-3 px-0 awg-fullscreen">            <!-- awg-graph-triples-editor -->            <awg-triples-editor                [triples]="triples"                [isFullscreen]="isFullscreen"                (updateTriplesRequest)="triples = $event"                (resetTriplesRequest)="resetTriples()"                (performQueryRequest)="performQuery()"></awg-triples-editor>            <!-- awg-graph-sparql-editor -->            <awg-sparql-editor                [queryList]="queryList"                [query]="query"                [isFullscreen]="isFullscreen"                (updateQueryStringRequest)="query.queryString = $event"                (resetQueryRequest)="resetQuery($event)"                (performQueryRequest)="performQuery()"></awg-sparql-editor>        </div>        <!-- Results -->        <div class="col-md-8 col-lg-9 px-0 awg-fullscreen">            <!-- CONSTRUCT -->            <!-- awg-graph-construct-result -->            <awg-construct-results                #queryConstructResultAcc                *ngIf="query.queryType === \'construct\'; else querySelectResultAcc"                [queryResult$]="queryResult$"                [defaultForceGraphHeight]="1000"                (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>            <!-- SELECT -->            <!-- awg-graph-select-result -->            <ng-template #querySelectResultAcc>                <awg-select-results                    *ngIf="query.queryType === \'select\'; else queryUnsupportedTypeAcc"                    [queryResult$]="queryResult$"                    [queryTime]="queryTime"                    (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>            </ng-template>            <!-- OTHERS -->            <!-- awg-graph-unsupported-query-type-result -->            <ng-template #queryUnsupportedTypeAcc>                <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>            </ng-template>        </div>    </ng-container></div><awg-toast aria-live="polite" aria-atomic="true"></awg-toast></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result --><div #fs class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">    <div [ngClass]="isFullscreen ? \'col-4 col-lg-3 px-0 awg-fullscreen\' : \'col-12\'">        <div [ngClass]="{ row: !isFullscreen }">            <div [ngClass]="{ \'col-6 pe-lg-0\': !isFullscreen }">                <!-- awg-graph-triples-editor -->                <awg-triples-editor                    [triples]="triples"                    [isFullscreen]="isFullscreen"                    (updateTriplesRequest)="triples = $event"                    (resetTriplesRequest)="resetTriples()"                    (performQueryRequest)="performQuery()"></awg-triples-editor>            </div>            <!-- awg-graph-sparql-editor -->            <div [ngClass]="{ \'col-6 ps-lg-0\': !isFullscreen }">                <awg-sparql-editor                    [queryList]="queryList"                    [query]="query"                    [isFullscreen]="isFullscreen"                    (updateQueryStringRequest)="query.queryString = $event"                    (resetQueryRequest)="resetQuery($event)"                    (performQueryRequest)="performQuery()"></awg-sparql-editor>            </div>        </div>    </div>    <!-- Results -->    <div [ngClass]="isFullscreen ? \'col-8 col-lg-9 px-0 awg-fullscreen\' : \'col-12\'">        <!-- CONSTRUCT -->        <!-- awg-graph-construct-result -->        <awg-construct-results            #queryConstructResultAcc            *ngIf="query.queryType === \'construct\'; else querySelectResultAcc"            [queryResult$]="queryResult$"            [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"            [isFullscreen]="isFullscreen"            (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>        <!-- SELECT -->        <!-- awg-graph-select-result -->        <ng-template #querySelectResultAcc>            <awg-select-results                *ngIf="query.queryType === \'select\'; else queryUnsupportedTypeAcc"                [queryResult$]="queryResult$"                [queryTime]="queryTime"                [isFullscreen]="isFullscreen"                (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>        </ng-template>        <!-- OTHERS -->        <!-- awg-graph-unsupported-query-type-result -->        <ng-template #queryUnsupportedTypeAcc>            <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>        </ng-template>    </div></div><awg-toast aria-live="polite" aria-atomic="true"></awg-toast></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'GraphVisualizerComponent'};
 </script>

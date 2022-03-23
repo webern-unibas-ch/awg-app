@@ -1,0 +1,924 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  TablePaginationComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/table/table-pagination/table-pagination.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The TablePagination component.</p>
+<p>It contains hte pagination panel of the configurable table
+that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-table-pagination</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./table-pagination.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./table-pagination.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#FILTER_PAG_REGEX" >FILTER_PAG_REGEX</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formatInput" >formatInput</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onPageChange" >onPageChange</a>
+                            </li>
+                            <li>
+                                <a href="#selectPage" >selectPage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#collectionSize" >collectionSize</a>
+                            </li>
+                            <li>
+                                <a href="#page" >page</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#pageChange" >pageChange</a>
+                            </li>
+                            <li>
+                                <a href="#pageChangeRequest" >pageChangeRequest</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="collectionSize"></a>
+                        <b>collectionSize</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:22</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: collectionSize.</p>
+<p>It keeps the collectionSize of the pagination.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="page"></a>
+                        <b>page</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:30</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: page.</p>
+<p>It keeps the page of the pagination.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageChange"></a>
+                        <b>pageChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:38</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output variable: pageChangeRequest.</p>
+<p>It keeps an event emitter for a change of the page number.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageChangeRequest"></a>
+                        <b>pageChangeRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;number&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:46</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output variable: pageChangeRequest.</p>
+<p>It keeps an event emitter for a change of the page number.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatInput"></a>
+                    <span class="name">
+                        <span ><b>formatInput</b></span>
+                        <a href="#formatInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatInput(input: HTMLInputElement)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: formatInput.</p>
+<p>It formats the page change input.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>input</td>
+                                    <td>
+                                            <code>HTMLInputElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Formats the input.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:61</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPageChange"></a>
+                    <span class="name">
+                        <span ><b>onPageChange</b></span>
+                        <a href="#onPageChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPageChange(newPage: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onPageChange.</p>
+<p>It emits an event when the user changes the page of the pagination.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>newPage</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given page.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Emits the event.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectPage"></a>
+                    <span class="name">
+                        <span ><b>selectPage</b></span>
+                        <a href="#selectPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectPage(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:102</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: selectPage.</p>
+<p>It selects a given page.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>page</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given page.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Selects the page.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FILTER_PAG_REGEX"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>FILTER_PAG_REGEX</b></span>
+                        <a href="#FILTER_PAG_REGEX"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>/[^0-9]/g</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly variable: FILTER_PAG_REGEX.</p>
+<p>It keeps a regex for anything else but a number value.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+
+/**
+ * The TablePagination component.
+ *
+ * It contains hte pagination panel of the configurable table
+ * that is provided via the {@link SharedModule}.
+ */
+@Component({
+    selector: &#x27;awg-table-pagination&#x27;,
+    templateUrl: &#x27;./table-pagination.component.html&#x27;,
+    styleUrls: [&#x27;./table-pagination.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class TablePaginationComponent implements OnInit {
+    /**
+     * Input variable: collectionSize.
+     *
+     * It keeps the collectionSize of the pagination.
+     */
+    @Input()
+    collectionSize: number;
+
+    /**
+     * Input variable: page.
+     *
+     * It keeps the page of the pagination.
+     */
+    @Input()
+    page: number;
+
+    /**
+     * Output variable: pageChangeRequest.
+     *
+     * It keeps an event emitter for a change of the page number.
+     */
+    @Output()
+    pageChange: EventEmitter&lt;number&gt; &#x3D; new EventEmitter();
+
+    /**
+     * Output variable: pageChangeRequest.
+     *
+     * It keeps an event emitter for a change of the page number.
+     */
+    @Output()
+    pageChangeRequest: EventEmitter&lt;number&gt; &#x3D; new EventEmitter();
+
+    /**
+     * Readonly variable: FILTER_PAG_REGEX.
+     *
+     * It keeps a regex for anything else but a number value.
+     */
+    readonly FILTER_PAG_REGEX &#x3D; /[^0-9]/g;
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit(): void {}
+
+    /**
+     * Public method: formatInput.
+     *
+     * It formats the page change input.
+     *
+     * @param {HTMLInputElement} input The given input.
+     *
+     * @returns {void} Formats the input.
+     */
+    formatInput(input: HTMLInputElement): void {
+        input.value &#x3D; input.value.replace(this.FILTER_PAG_REGEX, &#x27;&#x27;);
+    }
+
+    /**
+     * Public method: onPageChange.
+     *
+     * It emits an event when the user changes the page of the pagination.
+     *
+     * @param {number} newPage The given page.
+     *
+     * @returns {void} Emits the event.
+     */
+    onPageChange(newPage: number): void {
+        if (!newPage) {
+            return;
+        }
+        this.pageChange.emit(newPage);
+        this.pageChangeRequest.emit(newPage);
+    }
+
+    /**
+     * Public method: selectPage.
+     *
+     * It selects a given page.
+     *
+     * @param {string} page The given page.
+     *
+     * @returns {void} Selects the page.
+     */
+    selectPage(page: string): void {
+        this.page &#x3D; parseInt(page, 10) || 1;
+        this.onPageChange(this.page);
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;ngb-pagination
+    class&#x3D;&quot;d-flex justify-content-center cols-xs-2&quot;
+    [(page)]&#x3D;&quot;page&quot;
+    [collectionSize]&#x3D;&quot;collectionSize&quot;
+    [boundaryLinks]&#x3D;&quot;true&quot;
+    (pageChange)&#x3D;&quot;onPageChange($event)&quot;&gt;
+    &lt;ng-template ngbPaginationPages let-page let-pages&#x3D;&quot;pages&quot;&gt;
+        &lt;li class&#x3D;&quot;ngb-custom-pages-item&quot; *ngIf&#x3D;&quot;pages.length &gt; 0&quot;&gt;
+            &lt;div class&#x3D;&quot;mb-3 d-flex flex-nowrap px-2&quot;&gt;
+                &lt;label id&#x3D;&quot;paginationInputLabel&quot; for&#x3D;&quot;paginationInput&quot; class&#x3D;&quot;col-form-label me-2 ms-1&quot;&gt;Seite&lt;/label&gt;
+                &lt;input
+                    #i
+                    type&#x3D;&quot;text&quot;
+                    inputmode&#x3D;&quot;numeric&quot;
+                    pattern&#x3D;&quot;[0-9]*&quot;
+                    class&#x3D;&quot;form-control custom-pages-input&quot;
+                    id&#x3D;&quot;paginationInput&quot;
+                    [value]&#x3D;&quot;page&quot;
+                    (keyup.enter)&#x3D;&quot;selectPage(i.value)&quot;
+                    (blur)&#x3D;&quot;selectPage(i.value)&quot;
+                    (input)&#x3D;&quot;formatInput($any($event).target)&quot;
+                    aria-labelledby&#x3D;&quot;paginationInputLabel paginationDescription&quot;
+                    style&#x3D;&quot;width: 3rem&quot; /&gt;
+                &lt;span id&#x3D;&quot;paginationDescription&quot; class&#x3D;&quot;col-form-label text-nowrap px-2&quot;&gt; von {{ pages.length }}&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+    &lt;/ng-template&gt;
+&lt;/ngb-pagination&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./table-pagination.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><ngb-pagination    class="d-flex justify-content-center cols-xs-2"    [(page)]="page"    [collectionSize]="collectionSize"    [boundaryLinks]="true"    (pageChange)="onPageChange($event)">    <ng-template ngbPaginationPages let-page let-pages="pages">        <li class="ngb-custom-pages-item" *ngIf="pages.length > 0">            <div class="mb-3 d-flex flex-nowrap px-2">                <label id="paginationInputLabel" for="paginationInput" class="col-form-label me-2 ms-1">Seite</label>                <input                    #i                    type="text"                    inputmode="numeric"                    pattern="[0-9]*"                    class="form-control custom-pages-input"                    id="paginationInput"                    [value]="page"                    (keyup.enter)="selectPage(i.value)"                    (blur)="selectPage(i.value)"                    (input)="formatInput($any($event).target)"                    aria-labelledby="paginationInputLabel paginationDescription"                    style="width: 3rem" />                <span id="paginationDescription" class="col-form-label text-nowrap px-2"> von {{ pages.length }}</span>            </div>        </li>    </ng-template></ngb-pagination></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'TablePaginationComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TablePaginationComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

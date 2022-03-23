@@ -116,7 +116,7 @@ of the data (search) view of the app with a reactive form group.</p>
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./fulltext-search-form.component.css</code></td>
+                <td class="col-md-9"><code>./fulltext-search-form.component.scss</code></td>
             </tr>
 
 
@@ -176,6 +176,9 @@ of the data (search) view of the app with a reactive form group.</p>
                         <ul class="index-list">
                             <li>
                                 <a href="#createFulltextSearchForm" >createFulltextSearchForm</a>
+                            </li>
+                            <li>
+                                <a href="#isFulltextSearchInputInvalid" >isFulltextSearchInputInvalid</a>
                             </li>
                             <li>
                                 <a href="#listenToUserInputChange" >listenToUserInputChange</a>
@@ -426,6 +429,52 @@ with a formGroup and a search value control.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="isFulltextSearchInputInvalid"></a>
+                    <span class="name">
+                        <span ><b>isFulltextSearchInputInvalid</b></span>
+                        <a href="#isFulltextSearchInputInvalid"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isFulltextSearchInputInvalid()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: isFulltextSearchInputInvalid.</p>
+<p>It checks if the searchval control is missing or has any errors and returns a boolean flag.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The result of the check.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="listenToUserInputChange"></a>
                     <span class="name">
                         <span ><b>listenToUserInputChange</b></span>
@@ -442,8 +491,8 @@ with a formGroup and a search value control.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:159</a></div>
                 </td>
             </tr>
 
@@ -562,8 +611,8 @@ the onSearch method with the new search value.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="193"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:193</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:207</a></div>
                 </td>
             </tr>
 
@@ -644,8 +693,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="195"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:195</a></div>
                 </td>
             </tr>
 
@@ -722,8 +771,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="169"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:169</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:183</a></div>
                 </td>
             </tr>
 
@@ -880,7 +929,7 @@ from the searchValue input.</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-        label: &#x27;Search Input&#x27;,
+        label: &#x27;Input für Volltextsuche&#x27;,
         placeholder: &#x27;Volltextsuche in der Webern-Datenbank …&#x27;,
         errorMessage: &#x27;Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!&#x27;,
     }</code>
@@ -969,7 +1018,7 @@ import { faSearch } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 @Component({
     selector: &#x27;awg-fulltext-search-form&#x27;,
     templateUrl: &#x27;./fulltext-search-form.component.html&#x27;,
-    styleUrls: [&#x27;./fulltext-search-form.component.css&#x27;],
+    styleUrls: [&#x27;./fulltext-search-form.component.scss&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy {
@@ -1009,7 +1058,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * It keeps the default texts for the search form.
      */
     searchFormStrings &#x3D; {
-        label: &#x27;Search Input&#x27;,
+        label: &#x27;Input für Volltextsuche&#x27;,
         placeholder: &#x27;Volltextsuche in der Webern-Datenbank …&#x27;,
         errorMessage: &#x27;Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!&#x27;,
     };
@@ -1075,6 +1124,20 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
         this.searchForm &#x3D; this.formBuilder.group({
             searchvalControl: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.minLength(3)])],
         });
+    }
+
+    /**
+     * Public method: isFulltextSearchInputInvalid.
+     *
+     * It checks if the searchval control is missing or has any errors and returns a boolean flag.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    isFulltextSearchInputInvalid(): boolean {
+        return (
+            this.searchvalControl.hasError(&#x27;required&#x27;) ||
+            (this.searchvalControl.errors &amp;&amp; this.searchvalControl.errors.minlength)
+        );
     }
 
     /**
@@ -1146,30 +1209,30 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;searchForm&quot;&gt;
-    &lt;div class&#x3D;&quot;form-row mb-4&quot;&gt;
-        &lt;div class&#x3D;&quot;col-12&quot;&gt;
-            &lt;label class&#x3D;&quot;sr-only&quot; for&#x3D;&quot;awg-fulltext-search-searchValue&quot;&gt;{{ searchFormStrings.label }}&lt;/label&gt;
-            &lt;div class&#x3D;&quot;input-group&quot;&gt;
-                &lt;div class&#x3D;&quot;input-group-prepend&quot;&gt;
-                    &lt;div class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;search-icon&quot;&gt;
-                        &lt;fa-icon [icon]&#x3D;&quot;faSearch&quot;&gt;&lt;/fa-icon&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-                &lt;input
-                    title&#x3D;&quot;Fulltext Search&quot;
-                    type&#x3D;&quot;search&quot;
-                    id&#x3D;&quot;awg-fulltext-search-searchValue&quot;
-                    class&#x3D;&quot;form-control&quot;
-                    formControlName&#x3D;&quot;searchvalControl&quot;
-                    aria-label&#x3D;&quot;Search input&quot;
-                    aria-describedby&#x3D;&quot;search-icon&quot;
-                    placeholder&#x3D;&quot;{{ searchFormStrings.placeholder }}&quot;
-                    required /&gt;
-            &lt;/div&gt;
-            &lt;div *ngIf&#x3D;&quot;searchvalControl.invalid &amp;&amp; !searchvalControl.pristine&quot; class&#x3D;&quot;alert alert-danger&quot;&gt;
-                &lt;p *ngIf&#x3D;&quot;searchvalControl.hasError(&#x27;required&#x27;) || searchvalControl.errors.minlength&quot;&gt;&lt;/p&gt;
-                {{ searchFormStrings.errorMessage }}
+        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;searchForm&quot; novalidate class&#x3D;&quot;p-3 border&quot;&gt;
+    &lt;div class&#x3D;&quot;input-group mt-3 mb-3&quot;&gt;
+        &lt;div class&#x3D;&quot;input-group-text&quot; id&#x3D;&quot;search-icon&quot; style&#x3D;&quot;max-height: 3.63rem&quot;&gt;
+            &lt;fa-icon [icon]&#x3D;&quot;faSearch&quot;&gt;&lt;/fa-icon&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-floating awg-form-floating-group flex-grow-1&quot;&gt;
+            &lt;input
+                title&#x3D;&quot;{{ searchFormStrings.label }}&quot;
+                type&#x3D;&quot;search&quot;
+                id&#x3D;&quot;awg-fulltext-search-searchValue&quot;
+                class&#x3D;&quot;form-control&quot;
+                [ngClass]&#x3D;&quot;{
+                    &#x27;is-invalid&#x27;: isFulltextSearchInputInvalid()
+                }&quot;
+                formControlName&#x3D;&quot;searchvalControl&quot;
+                [attr.aria-label]&#x3D;&quot;searchFormStrings.label&quot;
+                aria-describedby&#x3D;&quot;search-icon&quot;
+                placeholder&#x3D;&quot;{{ searchFormStrings.placeholder }}&quot;
+                required /&gt;
+            &lt;label for&#x3D;&quot;awg-fulltext-search-searchValue&quot; class&#x3D;&quot;text-muted&quot;&gt;{{ searchFormStrings.placeholder }}&lt;/label&gt;
+            &lt;div *ngIf&#x3D;&quot;searchvalControl.invalid &amp;&amp; !searchvalControl.pristine&quot; class&#x3D;&quot;invalid-feedback&quot;&gt;
+                &lt;p *ngIf&#x3D;&quot;isFulltextSearchInputInvalid()&quot;&gt;
+                    {{ searchFormStrings.errorMessage }}
+                &lt;/p&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -1179,9 +1242,13 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
 
     <div class="tab-pane fade " id="c-styleData">
                 <p class="comment">
-                    <code>./fulltext-search-form.component.css</code>
+                    <code>./fulltext-search-form.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.awg-form-floating-group input {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1209,8 +1276,8 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="searchForm">    <div class="form-row mb-4">        <div class="col-12">            <label class="sr-only" for="awg-fulltext-search-searchValue">{{ searchFormStrings.label }}</label>            <div class="input-group">                <div class="input-group-prepend">                    <div class="input-group-text" id="search-icon">                        <fa-icon [icon]="faSearch"></fa-icon>                    </div>                </div>                <input                    title="Fulltext Search"                    type="search"                    id="awg-fulltext-search-searchValue"                    class="form-control"                    formControlName="searchvalControl"                    aria-label="Search input"                    aria-describedby="search-icon"                    placeholder="{{ searchFormStrings.placeholder }}"                    required />            </div>            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="alert alert-danger">                <p *ngIf="searchvalControl.hasError(\'required\') || searchvalControl.errors.minlength"></p>                {{ searchFormStrings.errorMessage }}            </div>        </div>    </div></form></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="searchForm" novalidate class="p-3 border">    <div class="input-group mt-3 mb-3">        <div class="input-group-text" id="search-icon" style="max-height: 3.63rem">            <fa-icon [icon]="faSearch"></fa-icon>        </div>        <div class="form-floating awg-form-floating-group flex-grow-1">            <input                title="{{ searchFormStrings.label }}"                type="search"                id="awg-fulltext-search-searchValue"                class="form-control"                [ngClass]="{                    \'is-invalid\': isFulltextSearchInputInvalid()                }"                formControlName="searchvalControl"                [attr.aria-label]="searchFormStrings.label"                aria-describedby="search-icon"                placeholder="{{ searchFormStrings.placeholder }}"                required />            <label for="awg-fulltext-search-searchValue" class="text-muted">{{ searchFormStrings.placeholder }}</label>            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="invalid-feedback">                <p *ngIf="isFulltextSearchInputInvalid()">                    {{ searchFormStrings.errorMessage }}                </p>            </div>        </div>    </div></form></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'FulltextSearchFormComponent'};
 </script>
