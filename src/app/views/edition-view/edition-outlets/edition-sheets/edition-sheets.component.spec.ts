@@ -60,46 +60,44 @@ describe('EditionSheetsComponent', () => {
     let getTextcriticsListSpy;
     let getEditionWorkSpy;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Create a fake service object with a `getEditionSheetsData()` spy
-            const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionSheetsData']);
-            // Make the spies return a synchronous Observable with the test data
-            getEditionSheetsDataSpy = mockEditionDataService.getEditionSheetsData.and.returnValue(observableOf()); // TODO: provide real test data
+    beforeEach(waitForAsync(() => {
+        // Create a fake service object with a `getEditionSheetsData()` spy
+        const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionSheetsData']);
+        // Make the spies return a synchronous Observable with the test data
+        getEditionSheetsDataSpy = mockEditionDataService.getEditionSheetsData.and.returnValue(observableOf()); // TODO: provide real test data
 
-            const expectedTextcriticalComments = []; // TODO: provide real test data
-            // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-            const mockEditionService = jasmine.createSpyObj('EditionService', [
-                'getTextcriticalComments',
-                'getEditionWork',
-            ]);
-            // Make the spies return a synchronous Observable with the test data
-            getTextcriticsListSpy =
-                mockEditionService.getTextcriticalComments.and.returnValue(expectedTextcriticalComments);
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
-            /*
+        const expectedTextcriticalComments = []; // TODO: provide real test data
+        // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+        const mockEditionService = jasmine.createSpyObj('EditionService', [
+            'getTextcriticalComments',
+            'getEditionWork',
+        ]);
+        // Make the spies return a synchronous Observable with the test data
+        getTextcriticsListSpy =
+            mockEditionService.getTextcriticalComments.and.returnValue(expectedTextcriticalComments);
+        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
+        /*
         MockEditionService = {
             // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
 
         };
     */
 
-            TestBed.configureTestingModule({
-                imports: [NgbModalModule, RouterTestingModule],
-                declarations: [
-                    CompileHtmlComponent,
-                    EditionSheetsComponent,
-                    EditionConvoluteStubComponent,
-                    EditionAccoladeStubComponent,
-                    ModalComponent,
-                ],
-                providers: [
-                    { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [NgbModalModule, RouterTestingModule],
+            declarations: [
+                CompileHtmlComponent,
+                EditionSheetsComponent,
+                EditionConvoluteStubComponent,
+                EditionAccoladeStubComponent,
+                ModalComponent,
+            ],
+            providers: [
+                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionService, useValue: mockEditionService },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSheetsComponent);

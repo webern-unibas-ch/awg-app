@@ -13,7 +13,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-series-detail',
     templateUrl: './edition-series-detail.component.html',
-    styleUrls: ['./edition-series-detail.component.css'],
+    styleUrls: ['./edition-series-detail.component.scss'],
 })
 export class EditionSeriesDetailComponent implements OnInit {
     /**

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { Observable, throwError } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import {
     EditionWork,
@@ -23,7 +23,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 @Component({
     selector: 'awg-edition-report',
     templateUrl: './edition-report.component.html',
-    styleUrls: ['./edition-report.component.css'],
+    styleUrls: ['./edition-report.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionReportComponent implements OnInit {
@@ -108,7 +108,7 @@ export class EditionReportComponent implements OnInit {
                 // Error handling
                 catchError(err => {
                     this.errorObject = err;
-                    return throwError(err);
+                    return EMPTY;
                 })
             );
     }

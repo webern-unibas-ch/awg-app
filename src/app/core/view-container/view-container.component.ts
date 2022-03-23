@@ -11,6 +11,6 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'awg-view-container',
     templateUrl: './view-container.component.html',
-    styleUrls: ['./view-container.component.css'],
+    styleUrls: ['./view-container.component.scss'],
 })
 export class ViewContainerComponent {}

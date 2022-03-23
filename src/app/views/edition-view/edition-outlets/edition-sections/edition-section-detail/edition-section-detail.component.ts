@@ -16,7 +16,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
     selector: 'awg-edition-section-detail',
     templateUrl: './edition-section-detail.component.html',
-    styleUrls: ['./edition-section-detail.component.css'],
+    styleUrls: ['./edition-section-detail.component.scss'],
 })
 export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**

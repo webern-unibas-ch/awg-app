@@ -26,14 +26,12 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgxGalleryModule],
-                declarations: [EditionSvgSheetListComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgxGalleryModule],
+            declarations: [EditionSvgSheetListComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetListComponent);

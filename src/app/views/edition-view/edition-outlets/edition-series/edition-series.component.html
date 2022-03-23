@@ -1,17 +1,19 @@
-<div *ngIf="editionOutline" class="card-deck">
-    <div class="card mb-4" style="min-width: 18rem" *ngFor="let series of editionOutline">
-        <div class="card-header">
-            <h5 class="card-title">{{ series.series.full }}</h5>
-        </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li *ngFor="let section of series.sections" class="list-group-item">
-                    <a [routerLink]="[series.series.route, 'section', section.route]">{{ section.full }}</a>
-                </li>
-            </ul>
-        </div>
-        <div class="card-footer text-right">
-            <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr... </a>
+<div *ngIf="editionOutline" class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let series of editionOutline">
+        <div class="card h-100">
+            <div class="card-header">
+                <h5 class="card-title">{{ series.series.full }}</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li *ngFor="let section of series.sections" class="list-group-item">
+                        <a [routerLink]="[series.series.route, 'section', section.route]">{{ section.full }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer text-end">
+                <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr... </a>
+            </div>
         </div>
     </div>
 </div>

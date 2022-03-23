@@ -7,14 +7,12 @@ describe('EditionSeriesComponent', () => {
     let component: EditionSeriesComponent;
     let fixture: ComponentFixture<EditionSeriesComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [RouterTestingModule],
-                declarations: [EditionSeriesComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [RouterTestingModule],
+            declarations: [EditionSeriesComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSeriesComponent);

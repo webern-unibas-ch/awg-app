@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Observable, Subject } from 'rxjs';
@@ -23,7 +23,7 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
 @Component({
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
-    styleUrls: ['./search-result-list.component.css'],
+    styleUrls: ['./search-result-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
@@ -169,6 +169,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     ) {}
 
     /**
+     * Getter for the search result view control value.
+     */
+    get searchResultViewControl(): FormControl {
+        return this.searchResultControlForm.get('searchResultViewControl') as FormControl;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -215,7 +222,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Listens to changing view type.
      */
     listenToUserInputChange(): void {
-        this.searchResultControlForm.get('searchResultViewControl').valueChanges.subscribe((view: string) => {
+        this.searchResultViewControl.valueChanges.subscribe((view: string) => {
             this.onViewChange(view);
         });
     }

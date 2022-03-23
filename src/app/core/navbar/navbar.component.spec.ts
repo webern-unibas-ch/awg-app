@@ -36,27 +36,25 @@ describe('NavbarComponent (DONE)', () => {
 
     // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
-    class NgbWithConfigModule {
+    class NgbConfigModule {
         constructor(config: NgbConfig) {
             // Set animations to false
             config.animation = false;
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            // Stub service for test purposes
-            mockCoreService = {
-                getMetaDataSection: sectionType => METADATA[sectionType],
-            };
+    beforeEach(waitForAsync(() => {
+        // Stub service for test purposes
+        mockCoreService = {
+            getMetaDataSection: sectionType => METADATA[sectionType],
+        };
 
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, NgbWithConfigModule],
-                declarations: [NavbarComponent, RouterLinkStubDirective],
-                providers: [{ provide: CoreService, useValue: mockCoreService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, NgbConfigModule],
+            declarations: [NavbarComponent, RouterLinkStubDirective],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(NavbarComponent);

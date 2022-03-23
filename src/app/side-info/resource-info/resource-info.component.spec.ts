@@ -63,28 +63,26 @@ describe('ResourceInfoComponent (DONE)', () => {
     let expectedGoToIndex: number;
     let expectedResultSize: number;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // Mocked dataStreamerService
-            mockDataStreamerService = {
-                getResourceId: (): Observable<string> => observableOf('test'),
-                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
-            };
+        // Mocked dataStreamerService
+        mockDataStreamerService = {
+            getResourceId: (): Observable<string> => observableOf('test'),
+            getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
+        };
 
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-                providers: [
-                    { provide: Router, useValue: mockRouter },
-                    { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    FormBuilder,
-                ],
-                declarations: [ResourceInfoComponent, CompileHtmlComponent],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
+            providers: [
+                { provide: Router, useValue: mockRouter },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                FormBuilder,
+            ],
+            declarations: [ResourceInfoComponent, CompileHtmlComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceInfoComponent);
@@ -654,7 +652,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     });
 
                     it('any object', () => {
-                        const anyObject = { 1: 'should', 2: 'error' };
+                        const anyObject = { one: 'should', two: 'error' };
                         resourceInfoIndex.setValue(anyObject);
                         errors = getErrors(resourceInfoIndex);
 
@@ -1302,24 +1300,34 @@ describe('ResourceInfoComponent (DONE)', () => {
                 });
 
                 describe('previous resource (first anchor)', () => {
-                    it('... should display text left', () => {
+                    it('... should display text left (text-start)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
                         const aEl0 = aDes[0].nativeElement;
 
-                        expect(aEl0).toHaveClass('text-left');
+                        expect(aEl0).toHaveClass('text-start');
                     });
 
                     describe('if previous resource is given', () => {
                         it('... should have list-group-item-action class', () => {
-                            const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-left', 1, 1);
+                            const aDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'a.awg-list-group-item.text-start',
+                                1,
+                                1
+                            );
                             const aEl0 = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-action');
                         });
 
                         it('... should navigate to previous resource on click', fakeAsync(() => {
-                            const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-left', 1, 1);
+                            const aDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'a.awg-list-group-item.text-start',
+                                1,
+                                1
+                            );
 
                             // Trigger click on anchor (previous) with click helper & wait for changes
                             clickAndAwaitChanges(aDes[0], fixture);
@@ -1336,13 +1344,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item.text-left > div', 2, 2);
+                            getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item.text-start > div', 2, 2);
                         });
 
                         it('... should have strong element with text-muted and small class in first div', () => {
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div',
+                                'a.awg-list-group-item.text-start > div',
                                 2,
                                 2
                             );
@@ -1357,7 +1365,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have faChevronLeft icon in strong element', () => {
                             const strongDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div > strong',
+                                'a.awg-list-group-item.text-start > div > strong',
                                 1,
                                 1
                             );
@@ -1370,7 +1378,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should point to previous resource in span in strong element', () => {
                             const strongDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div > strong',
+                                'a.awg-list-group-item.text-start > div > strong',
                                 1,
                                 1
                             );
@@ -1394,7 +1402,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have two divs.single-line in second div', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div',
+                                'a.awg-list-group-item.text-start > div',
                                 2,
                                 2
                             );
@@ -1409,7 +1417,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should display previous title in first div.single-line', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div',
+                                'a.awg-list-group-item.text-start > div',
                                 2,
                                 2
                             );
@@ -1430,7 +1438,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should display previous subtitle in second div.single-line', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div',
+                                'a.awg-list-group-item.text-start > div',
                                 2,
                                 2
                             );
@@ -1466,7 +1474,12 @@ describe('ResourceInfoComponent (DONE)', () => {
                         });
 
                         it('... should have list-group-item-danger class', () => {
-                            const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-left', 1, 1);
+                            const aDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'a.awg-list-group-item.text-start',
+                                1,
+                                1
+                            );
                             const aEl0 = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-danger');
@@ -1475,7 +1488,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should contain two divs', () => {
                             getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-left > div',
+                                'a.awg-list-group-item.list-group-item-danger.text-start > div',
                                 2,
                                 2
                             );
@@ -1484,7 +1497,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have strong element with text-muted and small class in first div', () => {
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-left > div',
+                                'a.awg-list-group-item.list-group-item-danger.text-start > div',
                                 2,
                                 2
                             );
@@ -1499,7 +1512,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have faTimesCircle icon in strong element', () => {
                             const strongDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-left > div > strong',
+                                'a.awg-list-group-item.list-group-item-danger.text-start > div > strong',
                                 1,
                                 1
                             );
@@ -1513,7 +1526,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have two empty divs.single-line in second div', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-left > div',
+                                'a.awg-list-group-item.list-group-item-danger.text-start > div',
                                 2,
                                 2
                             );
@@ -1922,34 +1935,24 @@ describe('ResourceInfoComponent (DONE)', () => {
                 });
 
                 describe('next resource (second anchor)', () => {
-                    it('... should display text right', () => {
+                    it('... should display text right (text-end)', () => {
                         const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                         const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
                         const aEl1 = aDes[1].nativeElement;
                         expect(aEl1).toHaveClass('list-group-item-action');
-                        expect(aEl1).toHaveClass('text-right');
+                        expect(aEl1).toHaveClass('text-end');
                     });
 
                     describe('if next resource is given', () => {
                         it('... should have list-group-item-action class', () => {
-                            const aDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'a.awg-list-group-item.text-right',
-                                1,
-                                1
-                            );
+                            const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
                             const aEl0 = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-action');
                         });
 
                         it('... should navigate to next resource on click', fakeAsync(() => {
-                            const aDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'a.awg-list-group-item.text-right',
-                                1,
-                                1
-                            );
+                            const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
 
                             // Trigger click on anchor (next) with click helper & wait for changes
                             clickAndAwaitChanges(aDes[0], fixture);
@@ -1966,13 +1969,13 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item.text-right > div', 2, 2);
+                            getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item.text-end > div', 2, 2);
                         });
 
                         it('... should have strong element with text-muted and small class in first div', () => {
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-right > div',
+                                'a.awg-list-group-item.text-end > div',
                                 2,
                                 2
                             );
@@ -1986,7 +1989,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have faChevronRight icon in strong element', () => {
                             const strongDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-right > div > strong',
+                                'a.awg-list-group-item.text-end > div > strong',
                                 1,
                                 1
                             );
@@ -1999,7 +2002,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should point to previous resource in span in strong element', () => {
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-right > div > strong',
+                                'a.awg-list-group-item.text-end > div > strong',
                                 1,
                                 1
                             );
@@ -2023,7 +2026,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have two divs.single-line in second div', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-left > div',
+                                'a.awg-list-group-item.text-end > div',
                                 2,
                                 2
                             );
@@ -2038,7 +2041,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should display next title in first div.single-line', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-right > div',
+                                'a.awg-list-group-item.text-end > div',
                                 2,
                                 2
                             );
@@ -2059,7 +2062,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should display next subtitle in second div.single-line', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.text-right > div',
+                                'a.awg-list-group-item.text-end > div',
                                 2,
                                 2
                             );
@@ -2098,12 +2101,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         });
 
                         it('... should have list-group-item-danger class', () => {
-                            const aDes = getAndExpectDebugElementByCss(
-                                compDe,
-                                'a.awg-list-group-item.text-right',
-                                1,
-                                1
-                            );
+                            const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-end', 1, 1);
                             const aEl0 = aDes[0].nativeElement;
 
                             expect(aEl0).toHaveClass('list-group-item-danger');
@@ -2112,7 +2110,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should contain two divs', () => {
                             getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-right > div',
+                                'a.awg-list-group-item.list-group-item-danger.text-end > div',
                                 2,
                                 2
                             );
@@ -2121,7 +2119,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have strong element with text-muted and small class in first div', () => {
                             const divDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-right > div',
+                                'a.awg-list-group-item.list-group-item-danger.text-end > div',
                                 2,
                                 2
                             );
@@ -2136,7 +2134,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have faTimesCircle icon in strong element', () => {
                             const strongDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-right > div > strong',
+                                'a.awg-list-group-item.list-group-item-danger.text-end > div > strong',
                                 1,
                                 1
                             );
@@ -2149,7 +2147,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should have two empty divs.single-line in second div', () => {
                             const outerDivDes = getAndExpectDebugElementByCss(
                                 compDe,
-                                'a.awg-list-group-item.list-group-item-danger.text-right > div',
+                                'a.awg-list-group-item.list-group-item-danger.text-end > div',
                                 2,
                                 2
                             );

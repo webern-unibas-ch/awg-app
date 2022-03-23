@@ -16,7 +16,7 @@ import { Observable } from 'rxjs';
 @Component({
     selector: 'awg-bibliography',
     templateUrl: './bibliography.component.html',
-    styleUrls: ['./bibliography.component.css'],
+    styleUrls: ['./bibliography.component.scss'],
 })
 export class BibliographyComponent implements OnInit {
     /**

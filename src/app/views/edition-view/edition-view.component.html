@@ -9,8 +9,12 @@
             /
             <span>Reihentabellen</span>
         </h6>
-        <!-- heading -->
-        <awg-heading [title]="'Übersicht'" [id]="editionViewId"></awg-heading>
+        <!-- Jumbotron -->
+        <div
+            class="p-5 bg-image text-white text-center awg-jumbotron-image shadow border rounded-3"
+            style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')">
+            <h1 id="{{ editionViewId }}" class="mb-4">Übersicht</h1>
+        </div>
     </div>
 
     <div
@@ -37,8 +41,12 @@
                 {{ selectedSection?.full }}
             </span>
         </h6>
-        <!-- heading -->
-        <awg-heading [title]="editionViewTitle" [id]="editionViewId"></awg-heading>
+        <!-- Jumbotron -->
+        <div
+            class="p-5 bg-image text-white text-center awg-jumbotron-image shadow border rounded-3"
+            style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp')">
+            <h1 id="{{ editionViewId }}" class="mb-4">{{ editionViewTitle }}</h1>
+        </div>
     </div>
 
     <div class="awg-edition-complex" *ngIf="selectedEditionComplex$ | async as selectedEditionComplex">

@@ -33,13 +33,11 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
     let expectedGnd: string;
     let expectedMetaBreakLine: string;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentPropsComponent);

@@ -18,7 +18,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 @Component({
     selector: 'awg-intro',
     templateUrl: './edition-intro.component.html',
-    styleUrls: ['./edition-intro.component.css'],
+    styleUrls: ['./edition-intro.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionIntroComponent implements OnInit {

@@ -12,7 +12,7 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
 @Component({
     selector: 'awg-edition-svg-sheet-nav',
     templateUrl: './edition-svg-sheet-nav.component.html',
-    styleUrls: ['./edition-svg-sheet-nav.component.css'],
+    styleUrls: ['./edition-svg-sheet-nav.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetNavComponent {

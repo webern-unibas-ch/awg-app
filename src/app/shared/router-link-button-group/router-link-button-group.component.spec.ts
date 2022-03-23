@@ -31,13 +31,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let selectButtonSpy: Spy;
     let emitSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(RouterLinkButtonGroupComponent);

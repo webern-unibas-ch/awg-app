@@ -14,7 +14,7 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-contact-info',
     templateUrl: './contact-info.component.html',
-    styleUrls: ['./contact-info.component.css'],
+    styleUrls: ['./contact-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactInfoComponent implements OnInit {

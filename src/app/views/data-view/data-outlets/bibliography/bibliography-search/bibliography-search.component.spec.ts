@@ -7,13 +7,11 @@ describe('BibliographySearchComponent', () => {
     let component: BibliographySearchComponent;
     let fixture: ComponentFixture<BibliographySearchComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [BibliographySearchComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [BibliographySearchComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographySearchComponent);

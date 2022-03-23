@@ -1,27 +1,27 @@
-<form [formGroup]="searchForm">
-    <div class="form-row mb-4">
-        <div class="col-12">
-            <label class="sr-only" for="awg-fulltext-search-searchValue">{{ searchFormStrings.label }}</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text" id="search-icon">
-                        <fa-icon [icon]="faSearch"></fa-icon>
-                    </div>
-                </div>
-                <input
-                    title="Fulltext Search"
-                    type="search"
-                    id="awg-fulltext-search-searchValue"
-                    class="form-control"
-                    formControlName="searchvalControl"
-                    aria-label="Search input"
-                    aria-describedby="search-icon"
-                    placeholder="{{ searchFormStrings.placeholder }}"
-                    required />
-            </div>
-            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="alert alert-danger">
-                <p *ngIf="searchvalControl.hasError('required') || searchvalControl.errors.minlength"></p>
-                {{ searchFormStrings.errorMessage }}
+<form [formGroup]="searchForm" novalidate class="p-3 border">
+    <div class="input-group mt-3 mb-3">
+        <div class="input-group-text" id="search-icon" style="max-height: 3.63rem">
+            <fa-icon [icon]="faSearch"></fa-icon>
+        </div>
+        <div class="form-floating awg-form-floating-group flex-grow-1">
+            <input
+                title="{{ searchFormStrings.label }}"
+                type="search"
+                id="awg-fulltext-search-searchValue"
+                class="form-control"
+                [ngClass]="{
+                    'is-invalid': isFulltextSearchInputInvalid()
+                }"
+                formControlName="searchvalControl"
+                [attr.aria-label]="searchFormStrings.label"
+                aria-describedby="search-icon"
+                placeholder="{{ searchFormStrings.placeholder }}"
+                required />
+            <label for="awg-fulltext-search-searchValue" class="text-muted">{{ searchFormStrings.placeholder }}</label>
+            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="invalid-feedback">
+                <p *ngIf="isFulltextSearchInputInvalid()">
+                    {{ searchFormStrings.errorMessage }}
+                </p>
             </div>
         </div>
     </div>

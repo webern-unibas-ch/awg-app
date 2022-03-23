@@ -36,7 +36,7 @@ declare let Snap: any;
 @Component({
     selector: 'awg-edition-folio',
     templateUrl: './folio-overview.component.html',
-    styleUrls: ['./folio-overview.component.css'],
+    styleUrls: ['./folio-overview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FolioOverviewComponent implements OnChanges, AfterViewChecked {

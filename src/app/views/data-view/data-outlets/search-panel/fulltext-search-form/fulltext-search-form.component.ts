@@ -25,7 +25,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 @Component({
     selector: 'awg-fulltext-search-form',
     templateUrl: './fulltext-search-form.component.html',
-    styleUrls: ['./fulltext-search-form.component.css'],
+    styleUrls: ['./fulltext-search-form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy {
@@ -65,7 +65,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * It keeps the default texts for the search form.
      */
     searchFormStrings = {
-        label: 'Search Input',
+        label: 'Input für Volltextsuche',
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
     };
@@ -131,6 +131,20 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
         this.searchForm = this.formBuilder.group({
             searchvalControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
+    }
+
+    /**
+     * Public method: isFulltextSearchInputInvalid.
+     *
+     * It checks if the searchval control is missing or has any errors and returns a boolean flag.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    isFulltextSearchInputInvalid(): boolean {
+        return (
+            this.searchvalControl.hasError('required') ||
+            (this.searchvalControl.errors && this.searchvalControl.errors.minlength)
+        );
     }
 
     /**

@@ -74,35 +74,33 @@ describe('SearchPanelComponent', () => {
     let expectedRouteUrl: UrlSegmentStub[] = [];
     const expectedPath = 'fulltext';
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mocked activated route
-            // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
-            expectedRouteUrl = [{ path: expectedPath }];
+    beforeEach(waitForAsync(() => {
+        // Mocked activated route
+        // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
+        expectedRouteUrl = [{ path: expectedPath }];
 
-            mockActivatedRoute = new ActivatedRouteStub();
-            mockActivatedRoute.testUrl = expectedRouteUrl;
+        mockActivatedRoute = new ActivatedRouteStub();
+        mockActivatedRoute.testUrl = expectedRouteUrl;
 
-            TestBed.configureTestingModule({
-                imports: [NgbNavModule],
-                declarations: [
-                    SearchPanelComponent,
-                    FulltextSearchFormStubComponent,
-                    ExtendedSearchFormStubComponent,
-                    SearchResultListStubComponent,
-                    TwelveToneSpinnerStubComponent,
-                ],
-                providers: [
-                    { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                    { provide: Router, useValue: mockRouter },
-                    { provide: ConversionService, useValue: mocConversionService },
-                    { provide: DataApiService, useValue: mockDataApiService },
-                    { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    { provide: LoadingService, useValue: mockLoadingService },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [NgbNavModule],
+            declarations: [
+                SearchPanelComponent,
+                FulltextSearchFormStubComponent,
+                ExtendedSearchFormStubComponent,
+                SearchResultListStubComponent,
+                TwelveToneSpinnerStubComponent,
+            ],
+            providers: [
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                { provide: Router, useValue: mockRouter },
+                { provide: ConversionService, useValue: mocConversionService },
+                { provide: DataApiService, useValue: mockDataApiService },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                { provide: LoadingService, useValue: mockLoadingService },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchPanelComponent);

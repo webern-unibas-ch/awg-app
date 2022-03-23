@@ -22,7 +22,7 @@ import { ResourceDetailProperty } from '@awg-views/data-view/models';
 @Component({
     selector: 'awg-resource-detail-html-content-props',
     templateUrl: './props.component.html',
-    styleUrls: ['./props.component.css'],
+    styleUrls: ['./props.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDestroy {

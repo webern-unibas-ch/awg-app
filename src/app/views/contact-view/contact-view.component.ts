@@ -14,7 +14,7 @@ import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 @Component({
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
-    styleUrls: ['./contact-view.component.css'],
+    styleUrls: ['./contact-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactViewComponent implements OnInit {
