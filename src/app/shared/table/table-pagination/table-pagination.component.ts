@@ -50,7 +50,7 @@ export class TablePaginationComponent implements OnInit {
      *
      * It keeps a regex for anything else but a number value.
      */
-    readonly FILTER_PAG_REGEX = /[^0-9]/g;
+    readonly FILTER_PAG_REGEX = /\D/g;
 
     /**
      * Angular life cycle hook: ngOnInit.
