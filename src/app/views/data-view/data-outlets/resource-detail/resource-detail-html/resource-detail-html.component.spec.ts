@@ -41,13 +41,11 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
     let gndRequestEmitSpy: Spy;
     let resourceRequestEmitSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ResourceDetailHtmlComponent, ResourceDetailHtmlContentStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ResourceDetailHtmlComponent, ResourceDetailHtmlContentStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlComponent);

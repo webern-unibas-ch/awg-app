@@ -16,13 +16,11 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [FooterCopyrightComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [FooterCopyrightComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterCopyrightComponent);

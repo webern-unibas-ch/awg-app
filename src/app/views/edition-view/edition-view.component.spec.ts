@@ -62,47 +62,45 @@ describe('EditionViewComponent (DONE)', () => {
     const expectedEditionRoute = EditionConstants.EDITION;
     const expectedSeriesRoute = EditionConstants.SERIES;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock router with spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Mock router with spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // Mock activated route with stub class
-            mockActivatedRoute = new ActivatedRouteStub();
+        // Mock activated route with stub class
+        mockActivatedRoute = new ActivatedRouteStub();
 
-            // Mock edition service
-            mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> =>
-                    // Return op. 12 by default
-                    observableOf(EditionWorks[expectedSelectedEditionComplexId]),
-                updateEditionWork: (editionWork: EditionWork): void => {
-                    // Intentional empty test override
+        // Mock edition service
+        mockEditionService = {
+            getEditionWork: (): Observable<EditionWork> =>
+                // Return op. 12 by default
+                observableOf(EditionWorks[expectedSelectedEditionComplexId]),
+            updateEditionWork: (editionWork: EditionWork): void => {
+                // Intentional empty test override
+            },
+            getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> =>
+                observableOf(expectedSelectedEditionSeries),
+            getSelectedEditionSection: (): Observable<EditionRoute> =>
+                observableOf(expectedSelectedEditionSeries.sections[0]),
+            getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
+        };
+
+        TestBed.configureTestingModule({
+            declarations: [
+                EditionViewComponent,
+                HeadingStubComponent,
+                RouterOutletStubComponent,
+                RouterLinkStubDirective,
+            ],
+            providers: [
+                { provide: EditionService, useValue: mockEditionService },
+                {
+                    provide: ActivatedRoute,
+                    useValue: mockActivatedRoute,
                 },
-                getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> =>
-                    observableOf(expectedSelectedEditionSeries),
-                getSelectedEditionSection: (): Observable<EditionRoute> =>
-                    observableOf(expectedSelectedEditionSeries.sections[0]),
-                getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
-            };
-
-            TestBed.configureTestingModule({
-                declarations: [
-                    EditionViewComponent,
-                    HeadingStubComponent,
-                    RouterOutletStubComponent,
-                    RouterLinkStubDirective,
-                ],
-                providers: [
-                    { provide: EditionService, useValue: mockEditionService },
-                    {
-                        provide: ActivatedRoute,
-                        useValue: mockActivatedRoute,
-                    },
-                    { provide: Router, useValue: mockRouter },
-                ],
-            }).compileComponents();
-        })
-    );
+                { provide: Router, useValue: mockRouter },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionViewComponent);
@@ -354,14 +352,12 @@ describe('EditionViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('... if isRowTableView$ is given, it', () => {
-                beforeEach(
-                    waitForAsync(() => {
-                        component.isRowTableView$ = observableOf(true);
+                beforeEach(waitForAsync(() => {
+                    component.isRowTableView$ = observableOf(true);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
-                    })
-                );
+                    // Trigger data binding
+                    fixture.detectChanges();
+                }));
 
                 it('... should have one div.awg-edition-row-tables', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
@@ -408,14 +404,12 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             describe('... if selectedEditionComplex$ is given, it', () => {
-                beforeEach(
-                    waitForAsync(() => {
-                        component.selectedEditionComplex$ = observableOf(expectedSelectedEditionComplex);
+                beforeEach(waitForAsync(() => {
+                    component.selectedEditionComplex$ = observableOf(expectedSelectedEditionComplex);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
-                    })
-                );
+                    // Trigger data binding
+                    fixture.detectChanges();
+                }));
 
                 it('... should have one div.awg-edition-complex', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);

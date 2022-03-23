@@ -61,14 +61,12 @@ describe('EditionConvoluteComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, NgbConfigModule],
-                declarations: [EditionConvoluteComponent, FolioStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, NgbConfigModule],
+            declarations: [EditionConvoluteComponent, FolioStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionConvoluteComponent);

@@ -25,14 +25,12 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let expectedGalleryOptions: NgxGalleryOptions[];
     let expectedImages: NgxGalleryImage[];
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [BrowserAnimationsModule, NgxGalleryModule],
-                declarations: [ResourceDetailHtmlContentImageobjectsComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [BrowserAnimationsModule, NgxGalleryModule],
+            declarations: [ResourceDetailHtmlContentImageobjectsComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentImageobjectsComponent);

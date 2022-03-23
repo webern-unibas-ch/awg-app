@@ -114,42 +114,39 @@ describe('EditionReportComponent', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock router with spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Mock router with spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // Mock services
-            mockEditionDataService = {
-                getEditionReportData: (
-                    editionWork: EditionWork
-                ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> =>
-                    observableOf(),
-            };
-            mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> => observableOf(),
-            };
+        // Mock services
+        mockEditionDataService = {
+            getEditionReportData: (
+                editionWork: EditionWork
+            ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> => observableOf(),
+        };
+        mockEditionService = {
+            getEditionWork: (): Observable<EditionWork> => observableOf(),
+        };
 
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule, NgbModalModule],
-                declarations: [
-                    CompileHtmlComponent,
-                    EditionReportComponent,
-                    RouterOutletStubComponent,
-                    SourceListStubComponent,
-                    SourceDescriptionStubComponent,
-                    SourceEvaluationStubComponent,
-                    TextcriticsListStubComponent,
-                    ModalComponent,
-                ],
-                providers: [
-                    { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService },
-                    { provide: Router, useValue: mockRouter },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule, NgbModalModule],
+            declarations: [
+                CompileHtmlComponent,
+                EditionReportComponent,
+                RouterOutletStubComponent,
+                SourceListStubComponent,
+                SourceDescriptionStubComponent,
+                SourceEvaluationStubComponent,
+                TextcriticsListStubComponent,
+                ModalComponent,
+            ],
+            providers: [
+                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionService, useValue: mockEditionService },
+                { provide: Router, useValue: mockRouter },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionReportComponent);
@@ -369,33 +366,28 @@ describe('EditionReportComponent', () => {
                 expectSpyCall(editionDataServiceGetEditionReportDataSpy, 1);
             });
 
-            it(
-                '... should return empty observable and set errorObject if switchMap fails',
-                waitForAsync(() => {
-                    const expectedError = { status: 404, statusText: 'error' };
-                    // Spy on editionDataService to return an error
-                    editionDataServiceGetEditionReportDataSpy.and.returnValue(
-                        observableThrowError(() => expectedError)
-                    );
+            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
+                const expectedError = { status: 404, statusText: 'error' };
+                // Spy on editionDataService to return an error
+                editionDataServiceGetEditionReportDataSpy.and.returnValue(observableThrowError(() => expectedError));
 
-                    // Init new switchMap
-                    component.getEditionReportData();
-                    // Apply changes
-                    detectChangesOnPush(fixture);
+                // Init new switchMap
+                component.getEditionReportData();
+                // Apply changes
+                detectChangesOnPush(fixture);
 
-                    component.editionReportData$.subscribe(
-                        data => {
-                            fail('should not have next');
-                        },
-                        error => {
-                            fail('should not error');
-                        },
-                        () => {
-                            expect(component.errorObject).toEqual(expectedError);
-                        }
-                    );
-                })
-            );
+                component.editionReportData$.subscribe(
+                    data => {
+                        fail('should not have next');
+                    },
+                    error => {
+                        fail('should not error');
+                    },
+                    () => {
+                        expect(component.errorObject).toEqual(expectedError);
+                    }
+                );
+            }));
         });
 
         describe('#onReportFragmentNavigate', () => {

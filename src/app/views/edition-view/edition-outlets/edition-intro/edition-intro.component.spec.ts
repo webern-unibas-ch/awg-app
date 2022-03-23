@@ -16,14 +16,12 @@ describe('IntroComponent', () => {
     let component: EditionIntroComponent;
     let fixture: ComponentFixture<EditionIntroComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbModalModule, HttpClientTestingModule, RouterTestingModule],
-                declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbModalModule, HttpClientTestingModule, RouterTestingModule],
+            declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionIntroComponent);

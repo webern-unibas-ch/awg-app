@@ -18,19 +18,17 @@ describe('SparqlNoResultsComponent (DONE)', () => {
 
     let expectedLogos: Logos;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Stub service for test purposes
-            mockCoreService = {
-                getLogos: () => expectedLogos,
-            };
+    beforeEach(waitForAsync(() => {
+        // Stub service for test purposes
+        mockCoreService = {
+            getLogos: () => expectedLogos,
+        };
 
-            TestBed.configureTestingModule({
-                declarations: [SparqlNoResultsComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [SparqlNoResultsComponent],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SparqlNoResultsComponent);

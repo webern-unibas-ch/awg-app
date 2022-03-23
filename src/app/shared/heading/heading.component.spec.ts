@@ -15,13 +15,11 @@ describe('HeadingComponent (DONE)', () => {
     let expectedTitle: string;
     let expectedId: string;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [HeadingComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [HeadingComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HeadingComponent);

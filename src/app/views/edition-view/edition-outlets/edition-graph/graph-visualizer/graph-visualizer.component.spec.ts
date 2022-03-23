@@ -101,33 +101,31 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let resetQuerySpy: Spy;
     let resetTriplesSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mocked dataStreamerService
-            mockGraphVisualizerService = {
-                checkNamespacesInQuery: (queryString: string, triples: string): string => queryString,
-                getQuerytype: (queryString: string): string => 'construct',
-                doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
-                    new Promise((resolve, reject) => {
-                        resolve(expectedResult);
-                        reject({ name: 'Error1', message: 'failed' });
-                    }),
-            };
+    beforeEach(waitForAsync(() => {
+        // Mocked dataStreamerService
+        mockGraphVisualizerService = {
+            checkNamespacesInQuery: (queryString: string, triples: string): string => queryString,
+            getQuerytype: (queryString: string): string => 'construct',
+            doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
+                new Promise((resolve, reject) => {
+                    resolve(expectedResult);
+                    reject({ name: 'Error1', message: 'failed' });
+                }),
+        };
 
-            TestBed.configureTestingModule({
-                declarations: [
-                    GraphVisualizerComponent,
-                    ConstructResultsStubComponent,
-                    SparqlEditorStubComponent,
-                    SelectResultsStubComponent,
-                    ToastStubComponent,
-                    TriplesEditorStubComponent,
-                    UnsupportedTypeResultsStubComponent,
-                ],
-                providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [
+                GraphVisualizerComponent,
+                ConstructResultsStubComponent,
+                SparqlEditorStubComponent,
+                SelectResultsStubComponent,
+                ToastStubComponent,
+                TriplesEditorStubComponent,
+                UnsupportedTypeResultsStubComponent,
+            ],
+            providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);
@@ -639,81 +637,69 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ]);
             });
 
-            it(
-                '... should get queryResult for construct queries',
-                waitForAsync(() => {
-                    // Set construct query type
-                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+            it('... should get queryResult for construct queries', waitForAsync(() => {
+                // Set construct query type
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
 
-                    // Perform query
-                    component.performQuery();
-                    fixture.detectChanges();
+                // Perform query
+                component.performQuery();
+                fixture.detectChanges();
 
-                    component.queryResult$.subscribe(result => {
-                        expect(result).toBeTruthy();
-                        expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-                    });
-                })
-            );
+                component.queryResult$.subscribe(result => {
+                    expect(result).toBeTruthy();
+                    expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                });
+            }));
 
-            it(
-                '... should get queryResult for select queries',
-                waitForAsync(() => {
-                    // Set select query type
-                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+            it('... should get queryResult for select queries', waitForAsync(() => {
+                // Set select query type
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
 
-                    // Perform query
-                    component.performQuery();
-                    fixture.detectChanges();
+                // Perform query
+                component.performQuery();
+                fixture.detectChanges();
 
-                    component.queryResult$.subscribe(result => {
-                        expect(result).toBeTruthy();
-                        expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-                    });
-                })
-            );
+                component.queryResult$.subscribe(result => {
+                    expect(result).toBeTruthy();
+                    expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                });
+            }));
 
-            it(
-                '... should set empty observable for update query types',
-                waitForAsync(() => {
-                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
+            it('... should set empty observable for update query types', waitForAsync(() => {
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
 
-                    // Perform query
-                    component.performQuery();
-                    fixture.detectChanges();
+                // Perform query
+                component.performQuery();
+                fixture.detectChanges();
 
-                    component.queryResult$.subscribe(
-                        result => fail('should have been failed'),
-                        error => {
-                            fail('should not error');
-                        },
-                        () => {
-                            expect(component.query.queryType).withContext('should be update').toBe('update');
-                        }
-                    );
-                })
-            );
+                component.queryResult$.subscribe(
+                    result => fail('should have been failed'),
+                    error => {
+                        fail('should not error');
+                    },
+                    () => {
+                        expect(component.query.queryType).withContext('should be update').toBe('update');
+                    }
+                );
+            }));
 
-            it(
-                '... should set empty observable for other query types',
-                waitForAsync(() => {
-                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('other');
+            it('... should set empty observable for other query types', waitForAsync(() => {
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('other');
 
-                    // Perform query
-                    component.performQuery();
-                    fixture.detectChanges();
+                // Perform query
+                component.performQuery();
+                fixture.detectChanges();
 
-                    component.queryResult$.subscribe(
-                        result => fail('should not have called next'),
-                        error => {
-                            fail('should not error');
-                        },
-                        () => {
-                            expect(component.query.queryType).withContext('should be other').toBe('other');
-                        }
-                    );
-                })
-            );
+                component.queryResult$.subscribe(
+                    result => fail('should not have called next'),
+                    error => {
+                        fail('should not error');
+                    },
+                    () => {
+                        expect(component.query.queryType).withContext('should be other').toBe('other');
+                    }
+                );
+            }));
         });
 
         describe('#_queryLocalStore', () => {

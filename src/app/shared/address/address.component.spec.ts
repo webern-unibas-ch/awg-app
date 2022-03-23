@@ -17,13 +17,11 @@ describe('AddressComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedContactMetaData: MetaContact;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [AddressComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [AddressComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AddressComponent);

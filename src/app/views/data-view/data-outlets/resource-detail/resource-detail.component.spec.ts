@@ -65,53 +65,51 @@ describe('ResourceDetailComponent', () => {
 
     let expectedResourceData: ResourceData;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Stub services for test purposes
-            // TODO: provide accurate types and service responses
-            const mockDataApiService = {
-                httpGetUrl: '/testUrl',
-                getResourceData: () => observableOf(expectedResourceData),
-            };
-            const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-            const mockDataStreamerService = {
-                updateResourceId: () => {
-                    // Intentional empty test override
-                },
-            };
+    beforeEach(waitForAsync(() => {
+        // Stub services for test purposes
+        // TODO: provide accurate types and service responses
+        const mockDataApiService = {
+            httpGetUrl: '/testUrl',
+            getResourceData: () => observableOf(expectedResourceData),
+        };
+        const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
+        const mockDataStreamerService = {
+            updateResourceId: () => {
+                // Intentional empty test override
+            },
+        };
 
-            // Router spy object
-            const mockRouter = {
-                url: '/test-url',
-                events: observableOf(
-                    new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
-                ),
-                navigate: jasmine.createSpy('navigate'),
-            };
+        // Router spy object
+        const mockRouter = {
+            url: '/test-url',
+            events: observableOf(
+                new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
+            ),
+            navigate: jasmine.createSpy('navigate'),
+        };
 
-            // Mocked activated route
-            const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
+        // Mocked activated route
+        const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
 
-            TestBed.configureTestingModule({
-                imports: [NgbNavModule],
-                declarations: [
-                    ResourceDetailComponent,
-                    ResourceDetailHeaderStubComponent,
-                    ResourceDetailHtmlStubComponent,
-                    ResourceDetailJsonConvertedStubComponent,
-                    ResourceDetailJsonRawStubComponent,
-                    TwelveToneSpinnerStubComponent,
-                ],
-                providers: [
-                    { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                    { provide: Router, useValue: mockRouter },
-                    { provide: DataApiService, useValue: mockDataApiService },
-                    { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    { provide: LoadingService, useValue: mockLoadingService },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [NgbNavModule],
+            declarations: [
+                ResourceDetailComponent,
+                ResourceDetailHeaderStubComponent,
+                ResourceDetailHtmlStubComponent,
+                ResourceDetailJsonConvertedStubComponent,
+                ResourceDetailJsonRawStubComponent,
+                TwelveToneSpinnerStubComponent,
+            ],
+            providers: [
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                { provide: Router, useValue: mockRouter },
+                { provide: DataApiService, useValue: mockDataApiService },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                { provide: LoadingService, useValue: mockLoadingService },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailComponent);

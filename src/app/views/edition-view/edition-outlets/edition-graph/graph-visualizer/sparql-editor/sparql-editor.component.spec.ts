@@ -64,14 +64,12 @@ describe('SparqlEditorComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAnimationConfigModule],
-                declarations: [SparqlEditorComponent, CodeMirrorStubComponent, NgbAccordion, NgbDropdown],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAnimationConfigModule],
+            declarations: [SparqlEditorComponent, CodeMirrorStubComponent, NgbAccordion, NgbDropdown],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SparqlEditorComponent);

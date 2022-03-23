@@ -63,28 +63,26 @@ describe('ResourceInfoComponent (DONE)', () => {
     let expectedGoToIndex: number;
     let expectedResultSize: number;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // Mocked dataStreamerService
-            mockDataStreamerService = {
-                getResourceId: (): Observable<string> => observableOf('test'),
-                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
-            };
+        // Mocked dataStreamerService
+        mockDataStreamerService = {
+            getResourceId: (): Observable<string> => observableOf('test'),
+            getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
+        };
 
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-                providers: [
-                    { provide: Router, useValue: mockRouter },
-                    { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    FormBuilder,
-                ],
-                declarations: [ResourceInfoComponent, CompileHtmlComponent],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
+            providers: [
+                { provide: Router, useValue: mockRouter },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                FormBuilder,
+            ],
+            declarations: [ResourceInfoComponent, CompileHtmlComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceInfoComponent);

@@ -12,15 +12,13 @@ describe('ForceGraphComponent', () => {
     let component: ForceGraphComponent;
     let fixture: ComponentFixture<ForceGraphComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, FormsModule],
-                declarations: [ForceGraphComponent, PrefixPipe],
-                providers: [GraphVisualizerService, PrefixPipe],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, FormsModule],
+            declarations: [ForceGraphComponent, PrefixPipe],
+            providers: [GraphVisualizerService, PrefixPipe],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ForceGraphComponent);

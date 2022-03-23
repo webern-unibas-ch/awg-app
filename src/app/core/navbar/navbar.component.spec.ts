@@ -43,20 +43,18 @@ describe('NavbarComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            // Stub service for test purposes
-            mockCoreService = {
-                getMetaDataSection: sectionType => METADATA[sectionType],
-            };
+    beforeEach(waitForAsync(() => {
+        // Stub service for test purposes
+        mockCoreService = {
+            getMetaDataSection: sectionType => METADATA[sectionType],
+        };
 
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, NgbConfigModule],
-                declarations: [NavbarComponent, RouterLinkStubDirective],
-                providers: [{ provide: CoreService, useValue: mockCoreService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, NgbConfigModule],
+            declarations: [NavbarComponent, RouterLinkStubDirective],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(NavbarComponent);

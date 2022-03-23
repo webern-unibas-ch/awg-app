@@ -39,14 +39,12 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule],
-                declarations: [ResourceDetailHtmlContentLinkedobjectsComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule],
+            declarations: [ResourceDetailHtmlContentLinkedobjectsComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentLinkedobjectsComponent);

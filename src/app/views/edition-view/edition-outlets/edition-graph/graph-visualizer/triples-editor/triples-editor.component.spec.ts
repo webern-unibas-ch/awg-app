@@ -51,14 +51,12 @@ describe('TriplesEditorComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule],
-                declarations: [TriplesEditorComponent, CodeMirrorStubComponent, NgbAccordion],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule],
+            declarations: [TriplesEditorComponent, CodeMirrorStubComponent, NgbAccordion],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TriplesEditorComponent);

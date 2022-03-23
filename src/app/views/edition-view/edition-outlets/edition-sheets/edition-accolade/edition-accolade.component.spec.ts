@@ -87,19 +87,17 @@ describe('EditionAccoladeComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule],
-                declarations: [
-                    EditionAccoladeComponent,
-                    EditionSvgSheetListStubComponent,
-                    EditionSvgSheetNavStubComponent,
-                    EditionTkaTableStubComponent,
-                ],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule],
+            declarations: [
+                EditionAccoladeComponent,
+                EditionSvgSheetListStubComponent,
+                EditionSvgSheetNavStubComponent,
+                EditionTkaTableStubComponent,
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionAccoladeComponent);

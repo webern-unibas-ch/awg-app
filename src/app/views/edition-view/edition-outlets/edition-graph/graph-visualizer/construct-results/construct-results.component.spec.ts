@@ -55,19 +55,17 @@ describe('ConstructResultsComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule],
-                declarations: [
-                    ConstructResultsComponent,
-                    ForceGraphStubComponent,
-                    SparqlNoResultsStubComponent,
-                    TwelveToneSpinnerStubComponent,
-                ],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule],
+            declarations: [
+                ConstructResultsComponent,
+                ForceGraphStubComponent,
+                SparqlNoResultsStubComponent,
+                TwelveToneSpinnerStubComponent,
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ConstructResultsComponent);

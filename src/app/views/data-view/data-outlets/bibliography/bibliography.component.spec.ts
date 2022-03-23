@@ -33,19 +33,17 @@ describe('BibliographyComponent', () => {
 
     let expectedSearchResponseData: SearchResponseJson;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock services
-            mockBibliographyService = {
-                getBibliographyList: (): Observable<SearchResponseJson> => observableOf(),
-            };
+    beforeEach(waitForAsync(() => {
+        // Mock services
+        mockBibliographyService = {
+            getBibliographyList: (): Observable<SearchResponseJson> => observableOf(),
+        };
 
-            TestBed.configureTestingModule({
-                declarations: [BibliographyComponent, BibliographySearchStubComponent, BibliographyListStubComponent],
-                providers: [{ provide: BibliographyService, useValue: mockBibliographyService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [BibliographyComponent, BibliographySearchStubComponent, BibliographyListStubComponent],
+            providers: [{ provide: BibliographyService, useValue: mockBibliographyService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyComponent);

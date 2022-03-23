@@ -25,13 +25,11 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     const expectedHeader = 'Converted JSON response from Salsah-API';
     let expectedData: ResourceDetail;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailJsonConvertedComponent);

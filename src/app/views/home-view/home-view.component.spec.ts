@@ -42,17 +42,15 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedEditionComplexOp12: EditionWork;
     let expectedEditionComplexOp25: EditionWork;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            TestBed.configureTestingModule({
-                declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
-                providers: [{ provide: Router, useValue: mockRouter }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
+            providers: [{ provide: Router, useValue: mockRouter }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeViewComponent);

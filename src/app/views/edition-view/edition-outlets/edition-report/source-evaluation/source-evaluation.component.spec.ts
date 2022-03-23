@@ -34,13 +34,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceEvaluationComponent);

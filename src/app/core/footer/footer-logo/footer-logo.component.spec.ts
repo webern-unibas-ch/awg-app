@@ -26,13 +26,11 @@ describe('FooterLogoComponent (DONE)', () => {
     const cssClassFloatRight = 'float-end';
     const cssClassMarginY2 = 'my-2';
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [FooterLogoComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [FooterLogoComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterLogoComponent);
