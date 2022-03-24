@@ -50,6 +50,10 @@ describe('IntroComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
+    let expectedEditionWorkRoute: string;
+    let expectedReportRoute: string;
+    let expectedSheetsRoute: string;
+
     let editionDataServiceGetEditionIntroDataSpy: Spy;
     let getEditionIntroDataSpy: Spy;
     let getEditionWorkSpy: Spy;
@@ -98,6 +102,10 @@ describe('IntroComponent (DONE)', () => {
         expectedEditionIntroData = mockEditionData.mockIntroData;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+
+        expectedEditionWorkRoute = '/edition/composition/op12/';
+        expectedReportRoute = 'report';
+        expectedSheetsRoute = 'sheets';
 
         // Spies on service functions
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
@@ -289,39 +297,34 @@ describe('IntroComponent (DONE)', () => {
                 component.navigateToReportFragment(expectedFragment);
                 fixture.detectChanges();
 
+                const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-                expectSpyCall(navigationSpy, 1, [
-                    ['/edition/composition/op12/', 'report'],
-                    { fragment: expectedFragment },
-                ]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
 
                 const otherFragment = 'otherFragment';
+                qp.fragment = otherFragment;
                 component.navigateToReportFragment(otherFragment);
                 fixture.detectChanges();
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, otherFragment);
-                expectSpyCall(navigationSpy, 2, [
-                    ['/edition/composition/op12/', 'report'],
-                    { fragment: otherFragment },
-                ]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
             });
 
             it('... should navigate without fragment if none is given', () => {
                 component.navigateToReportFragment(expectedFragment);
                 fixture.detectChanges();
 
+                const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-                expectSpyCall(navigationSpy, 1, [
-                    ['/edition/composition/op12/', 'report'],
-                    { fragment: expectedFragment },
-                ]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
 
                 const noFragment = '';
+                qp.fragment = noFragment;
                 component.navigateToReportFragment(noFragment);
                 fixture.detectChanges();
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, '');
-                expectSpyCall(navigationSpy, 2, [['/edition/composition/op12/', 'report'], { fragment: '' }]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
             });
         });
 
@@ -415,14 +418,14 @@ describe('IntroComponent (DONE)', () => {
                     queryParamsHandling: '',
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
-                expectSpyCall(navigationSpy, 1, [['/edition/composition/op12/', 'sheets'], qp]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
 
                 component.selectSvgSheet(expectedNextSvgSheet.id);
                 fixture.detectChanges();
 
                 qp.queryParams.sketch = expectedNextSvgSheet.id;
                 expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
-                expectSpyCall(navigationSpy, 2, [['/edition/composition/op12/', 'sheets'], qp]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
             });
 
             it('... should navigate without id if none is given', () => {
@@ -434,7 +437,7 @@ describe('IntroComponent (DONE)', () => {
                     queryParamsHandling: '',
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
-                expectSpyCall(navigationSpy, 1, [['/edition/composition/op12/', 'sheets'], qp]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
 
                 const noId = '';
                 qp.queryParams.sketch = noId;
@@ -442,7 +445,7 @@ describe('IntroComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(selectSvgSheetSpy, 2, '');
-                expectSpyCall(navigationSpy, 2, [['/edition/composition/op12/', 'sheets'], qp]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
             });
         });
     });
