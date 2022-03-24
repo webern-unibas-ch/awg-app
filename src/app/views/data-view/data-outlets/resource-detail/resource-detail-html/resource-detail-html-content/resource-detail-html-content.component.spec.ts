@@ -64,18 +64,16 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
     let expectedContent: ResourceDetailContent;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [
-                    ResourceDetailHtmlContentComponent,
-                    ResourceDetailHtmlContentPropsStubComponent,
-                    ResourceDetailHtmlContentImageobjectsStubComponent,
-                    ResourceDetailHtmlContentLinkedobjectsStubComponent,
-                ],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                ResourceDetailHtmlContentComponent,
+                ResourceDetailHtmlContentPropsStubComponent,
+                ResourceDetailHtmlContentImageobjectsStubComponent,
+                ResourceDetailHtmlContentLinkedobjectsStubComponent,
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentComponent);

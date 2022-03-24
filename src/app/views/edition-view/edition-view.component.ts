@@ -3,13 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
-import {
-    EditionConstants,
-    EditionRoute,
-    EditionSeriesRoutes,
-    EditionWork,
-    EditionWorks,
-} from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRoute, EditionSeriesRoutes, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -22,7 +16,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
-    styleUrls: ['./edition-view.component.css'],
+    styleUrls: ['./edition-view.component.scss'],
 })
 export class EditionViewComponent implements OnInit {
     /**

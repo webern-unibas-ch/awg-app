@@ -22,31 +22,29 @@ describe('BibliographyDetailComponent', () => {
     let expectedBibItemDetailBody: ResourceFullResponseJson;
     let expectedConvertedBibItemDetail: BibEntry;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-            const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
-            // Make the spies return a synchronous Observable with the test data
-            expectedBibItemDetailBody = new ResourceFullResponseJson();
-            getBibliographyListSpy = mockBibliographyService.getBibliographyItemDetail.and.returnValue(
-                observableOf(expectedBibItemDetailBody)
-            );
+    beforeEach(waitForAsync(() => {
+        // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+        const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
+        // Make the spies return a synchronous Observable with the test data
+        expectedBibItemDetailBody = new ResourceFullResponseJson();
+        getBibliographyListSpy = mockBibliographyService.getBibliographyItemDetail.and.returnValue(
+            observableOf(expectedBibItemDetailBody)
+        );
 
-            // Stub conversionService to return convertedBibItemDetail
-            expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
-            mockConversionService = {
-                convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail,
-            };
+        // Stub conversionService to return convertedBibItemDetail
+        expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
+        mockConversionService = {
+            convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail,
+        };
 
-            TestBed.configureTestingModule({
-                declarations: [BibliographyDetailComponent, BibliographyFormatPipe],
-                providers: [
-                    { provide: BibliographyService, useValue: mockBibliographyService },
-                    { provide: ConversionService, useValue: mockConversionService },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [BibliographyDetailComponent, BibliographyFormatPipe],
+            providers: [
+                { provide: BibliographyService, useValue: mockBibliographyService },
+                { provide: ConversionService, useValue: mockConversionService },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyDetailComponent);

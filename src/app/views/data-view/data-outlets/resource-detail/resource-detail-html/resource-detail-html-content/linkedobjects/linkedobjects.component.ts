@@ -11,7 +11,7 @@ import { ResourceDetailGroupedIncomingLinks } from '@awg-views/data-view/models'
 @Component({
     selector: 'awg-resource-detail-html-content-linkedobjects',
     templateUrl: './linkedobjects.component.html',
-    styleUrls: ['./linkedobjects.component.css'],
+    styleUrls: ['./linkedobjects.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentLinkedobjectsComponent {

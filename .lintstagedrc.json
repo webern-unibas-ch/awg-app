@@ -1,4 +1,4 @@
 {
     "src/**/*.{ts,tsx,js,jsx,html}": "yarn lint-files:fix",
-    "src/**/*.{ts,tsx,js,jsx,html,css,json,md}": "yarn format-files:fix"
+    "src/**/*.{ts,tsx,js,jsx,html,css,scss,json,md}": "yarn format-files:fix"
 }

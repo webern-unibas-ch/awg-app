@@ -21,13 +21,11 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterDeclarationComponent);

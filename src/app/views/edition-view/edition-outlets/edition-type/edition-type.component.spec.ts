@@ -8,13 +8,11 @@ describe('EditionTypeComponent', () => {
     let component: EditionTypeComponent;
     let fixture: ComponentFixture<EditionTypeComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [EditionTypeComponent, RouterOutletStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [EditionTypeComponent, RouterOutletStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionTypeComponent);

@@ -1,10 +1,8 @@
 <div id="awg-force-graph-container" class="awg-forc-graph-panel-container" [ngStyle]="{ 'height.px': height }" #graph>
     <div class="awg-force-graph-icon-bar">
         <!-- Slider -->
-        <div class="input-group input-group-sm awg-force-graph-zoom-slider-container float-left mb-3">
-            <div class="input-group-prepend">
-                <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
-            </div>
+        <div class="input-group input-group-sm awg-force-graph-zoom-slider-container float-start mb-3">
+            <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
             <input
                 type="range"
                 #sliderInput
@@ -18,15 +16,13 @@
                 [step]="sliderConfig.step"
                 [(ngModel)]="sliderConfig.value"
                 (ngModelChange)="onZoomChange($event)" />
-            <div class="input-group-append">
-                <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">
-                    <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
-                </button>
-            </div>
+            <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">
+                <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
+            </button>
         </div>
 
         <!-- Limit -->
-        <div class="btn-group awg-force-graph-node-limit-container float-right my-auto" *ngIf="queryResultTriples">
+        <div class="btn-group awg-force-graph-node-limit-container float-end my-auto" *ngIf="queryResultTriples">
             <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                 <span *ngIf="limit < queryResultTriples.length">{{ limit }} von </span
                 >{{ queryResultTriples.length }} Triples

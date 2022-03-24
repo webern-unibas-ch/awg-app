@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
-import { Observable, of as observableOf, forkJoin as observableForkJoin } from 'rxjs';
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
+import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -28,9 +31,6 @@ import {
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
-import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
-import { Router } from '@angular/router';
-import { mockEditionData } from '@testing/mock-data';
 
 // Mock components
 @Component({ selector: 'awg-source-list', template: '' })
@@ -97,13 +97,13 @@ describe('EditionReportComponent', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedPanelId: string;
 
-    let navigateToReportFragmentSpy: Spy;
-    let openModalSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let navigationSpy: Spy;
-
+    let editionDataServiceGetEditionReportDataSpy: Spy;
     let getEditionReportDataSpy: Spy;
     let getEditionWorkSpy: Spy;
+    let navigateToReportFragmentSpy: Spy;
+    let navigationSpy: Spy;
+    let openModalSpy: Spy;
+    let selectSvgSheetSpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -114,42 +114,39 @@ describe('EditionReportComponent', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock router with spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Mock router with spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // Mock services
-            mockEditionDataService = {
-                getEditionReportData: (
-                    editionWork: EditionWork
-                ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> =>
-                    observableOf(),
-            };
-            mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> => observableOf(),
-            };
+        // Mock services
+        mockEditionDataService = {
+            getEditionReportData: (
+                editionWork: EditionWork
+            ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> => observableOf(),
+        };
+        mockEditionService = {
+            getEditionWork: (): Observable<EditionWork> => observableOf(),
+        };
 
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule, NgbModalModule],
-                declarations: [
-                    CompileHtmlComponent,
-                    EditionReportComponent,
-                    RouterOutletStubComponent,
-                    SourceListStubComponent,
-                    SourceDescriptionStubComponent,
-                    SourceEvaluationStubComponent,
-                    TextcriticsListStubComponent,
-                    ModalComponent,
-                ],
-                providers: [
-                    { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService },
-                    { provide: Router, useValue: mockRouter },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule, NgbModalModule],
+            declarations: [
+                CompileHtmlComponent,
+                EditionReportComponent,
+                RouterOutletStubComponent,
+                SourceListStubComponent,
+                SourceDescriptionStubComponent,
+                SourceEvaluationStubComponent,
+                TextcriticsListStubComponent,
+                ModalComponent,
+            ],
+            providers: [
+                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionService, useValue: mockEditionService },
+                { provide: Router, useValue: mockRouter },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionReportComponent);
@@ -182,11 +179,11 @@ describe('EditionReportComponent', () => {
         ];
 
         // Spies on service functions
-        getEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
+        editionDataServiceGetEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(
             observableOf(expectedEditionReportData)
         );
         getEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.returnValue(observableOf(expectedEditionWork));
-
+        getEditionReportDataSpy = spyOn(component, 'getEditionReportData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
         // .openModalSpy = spyOn(modal, 'open').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
@@ -349,6 +346,48 @@ describe('EditionReportComponent', () => {
                     .withContext(`should equal ${expectedTextcriticsData}`)
                     .toEqual(expectedTextcriticsData);
             });
+        });
+
+        describe('#getEditionReportData', () => {
+            it('... should have been called', () => {
+                expectSpyCall(getEditionReportDataSpy, 1);
+            });
+
+            it('... should have got `editionWork` from editionService', () => {
+                expectSpyCall(getEditionWorkSpy, 1);
+
+                expect(component.editionWork).toBeTruthy();
+                expect(component.editionWork)
+                    .withContext(`should equal ${expectedEditionWork}`)
+                    .toEqual(expectedEditionWork);
+            });
+
+            it('... should have got editionReportData from editionDataService', () => {
+                expectSpyCall(editionDataServiceGetEditionReportDataSpy, 1);
+            });
+
+            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
+                const expectedError = { status: 404, statusText: 'error' };
+                // Spy on editionDataService to return an error
+                editionDataServiceGetEditionReportDataSpy.and.returnValue(observableThrowError(() => expectedError));
+
+                // Init new switchMap
+                component.getEditionReportData();
+                // Apply changes
+                detectChangesOnPush(fixture);
+
+                component.editionReportData$.subscribe(
+                    data => {
+                        fail('should not have next');
+                    },
+                    error => {
+                        fail('should not error');
+                    },
+                    () => {
+                        expect(component.errorObject).toEqual(expectedError);
+                    }
+                );
+            }));
         });
 
         describe('#onReportFragmentNavigate', () => {

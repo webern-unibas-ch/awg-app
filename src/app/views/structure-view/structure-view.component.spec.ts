@@ -33,17 +33,15 @@ describe('StructureViewComponent (DONE)', () => {
     const expectedTitle = 'Datenstrukturmodell';
     const expectedId = 'awg-structure-view';
 
-    beforeEach(
-        waitForAsync(() => {
-            // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            TestBed.configureTestingModule({
-                declarations: [StructureViewComponent, HeadingStubComponent],
-                providers: [{ provide: Router, useValue: mockRouter }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [StructureViewComponent, HeadingStubComponent],
+            providers: [{ provide: Router, useValue: mockRouter }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(StructureViewComponent);

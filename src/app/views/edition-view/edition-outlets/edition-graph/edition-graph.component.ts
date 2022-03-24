@@ -27,7 +27,7 @@ import { GraphVisualizerComponent } from './graph-visualizer';
 @Component({
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
-    styleUrls: ['./edition-graph.component.css'],
+    styleUrls: ['./edition-graph.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionGraphComponent implements OnInit {

@@ -4,7 +4,7 @@
     <awg-modal #modal></awg-modal>
 
     <!-- intro -->
-    <div *ngIf="editionIntroData$ | async as editionIntroData; else error">
+    <div class="awg-intro-view p-5 border rounded-3" *ngIf="editionIntroData$ | async as editionIntroData; else error">
         <p *ngFor="let intro of editionIntroData.intro[0].content" [compile-html]="intro" [compile-html-ref]="this"></p>
     </div>
 

@@ -45,26 +45,24 @@ describe('FooterComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedLogos: Logos;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Stub service for test purposes
-            mockCoreService = {
-                getMetaDataSection: sectionType => METADATA[sectionType],
-                getLogos: () => expectedLogos,
-            };
+    beforeEach(waitForAsync(() => {
+        // Stub service for test purposes
+        mockCoreService = {
+            getMetaDataSection: sectionType => METADATA[sectionType],
+            getLogos: () => expectedLogos,
+        };
 
-            TestBed.configureTestingModule({
-                declarations: [
-                    FooterComponent,
-                    FooterCopyrightStubComponent,
-                    FooterDeclarationStubComponent,
-                    FooterLogoStubComponent,
-                    FooterPoweredbyStubComponent,
-                ],
-                providers: [{ provide: CoreService, useValue: mockCoreService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [
+                FooterComponent,
+                FooterCopyrightStubComponent,
+                FooterDeclarationStubComponent,
+                FooterLogoStubComponent,
+                FooterPoweredbyStubComponent,
+            ],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterComponent);

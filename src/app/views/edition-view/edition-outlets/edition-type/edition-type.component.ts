@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'awg-edition-type',
     templateUrl: './edition-type.component.html',
-    styleUrls: ['./edition-type.component.css'],
+    styleUrls: ['./edition-type.component.scss'],
 })
 export class EditionTypeComponent implements OnInit {
     /**

@@ -65,7 +65,7 @@ const FORCES = {
 @Component({
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
-    styleUrls: ['./force-graph.component.css'],
+    styleUrls: ['./force-graph.component.scss'],
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**

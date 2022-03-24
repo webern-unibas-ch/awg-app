@@ -55,7 +55,7 @@ const MODALCONTENTSNIPPETS = {
 @Component({
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.css'],
+    styleUrls: ['./modal.component.scss'],
 })
 export class ModalComponent {
     /**

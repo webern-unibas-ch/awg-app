@@ -37,17 +37,15 @@
         },
         {
             "type": "style",
-            "section": "Styles",
-            "hidden": true
+            "section": "Styles"
+        },
+        {
+            "type": "refactor",
+            "section": "Code Refactoring"
         },
         {
             "type": "chore",
             "section": "Miscellaneous Chores",
-            "hidden": true
-        },
-        {
-            "type": "refactor",
-            "section": "Code Refactoring",
             "hidden": true
         }
     ],

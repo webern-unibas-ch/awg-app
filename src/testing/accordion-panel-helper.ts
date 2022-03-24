@@ -14,7 +14,7 @@ import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
  * @returns {void} Sends the given values to getAndExpect helper.
  */
 export function expectClosedPanelBody(de: DebugElement, id: string, msg: string) {
-    getAndExpectDebugElementByCss(de, `div.card > div#${id} > div.card-body`, 0, 0, msg);
+    getAndExpectDebugElementByCss(de, `div.accordion-item > div#${id} > div.accordion-body`, 0, 0, msg);
 }
 
 /**
@@ -29,5 +29,5 @@ export function expectClosedPanelBody(de: DebugElement, id: string, msg: string)
  * @returns {void} Sends the given values to getAndExpect helper.
  */
 export function expectOpenPanelBody(de: DebugElement, id: string, msg: string) {
-    getAndExpectDebugElementByCss(de, `div.card > div#${id} > div.card-body`, 1, 1, msg);
+    getAndExpectDebugElementByCss(de, `div.accordion-item > div#${id} > div.accordion-body`, 1, 1, msg);
 }

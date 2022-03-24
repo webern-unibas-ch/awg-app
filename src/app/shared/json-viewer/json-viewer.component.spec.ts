@@ -86,14 +86,12 @@ describe('JsonViewerComponent (DONE)', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbNavWithConfigModule],
-                declarations: [JsonViewerComponent, NgxJsonViewerStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbNavWithConfigModule],
+            declarations: [JsonViewerComponent, NgxJsonViewerStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(JsonViewerComponent);
