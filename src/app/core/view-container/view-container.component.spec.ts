@@ -12,13 +12,11 @@ describe('ViewContainerComponent (DONE)', () => {
     let fixture: ComponentFixture<ViewContainerComponent>;
     let compDe: DebugElement;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ViewContainerComponent);

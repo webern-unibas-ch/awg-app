@@ -7,34 +7,49 @@
     [rowInputData]="test.body.bindings"></awg-table>
 -->
 
-<div class="awg-search-results" *ngIf="searchResponseWithQuery?.data">
+<div class="awg-search-results p-3 border rounded-bottom" *ngIf="searchResponseWithQuery?.data">
     <!-- header -->
     <div class="row d-flex justify-content-between mb-4 awg-search-results-header">
-        <div class="col-6 mr-auto awg-search-results-header-icons">
-            <div class="btn-group">
+        <div class="col-6 me-auto awg-search-results-header-icons">
+            <div class="btn-group" role="group">
                 <form [formGroup]="searchResultControlForm">
                     <div
-                        class="btn-group btn-group-toggle"
-                        ngbRadioGroup
+                        class="btn-group"
+                        role="group"
                         name="searchResultView"
-                        formControlName="searchResultViewControl">
-                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
-                            <input ngbButton type="radio" value="table" [disabled]="isNoResults()" />
-                            <fa-icon [icon]="faTable"></fa-icon>
-                        </label>
-                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
-                            <input ngbButton type="radio" value="grid" [disabled]="isNoResults()" />
-                            <fa-icon [icon]="faGripHorizontal"></fa-icon>
+                        aria-label="Search result view toggle button group">
+                        <input
+                            type="radio"
+                            [formControl]="searchResultViewControl"
+                            value="table"
+                            class="btn-check"
+                            id="tableViewButton"
+                            autocomplete="off"
+                            [disabled]="isNoResults()" />
+                        <label class="btn btn-outline-info" for="tableViewButton" ngbTooltip="Table view"
+                            ><fa-icon [icon]="faTable"></fa-icon
+                        ></label>
+
+                        <input
+                            type="radio"
+                            [formControl]="searchResultViewControl"
+                            value="grid"
+                            class="btn-check"
+                            id="gridViewButton"
+                            autocomplete="off"
+                            [disabled]="isNoResults()" />
+                        <label class="btn btn-outline-info" for="gridViewButton" ngbTooltip="Grid view"
+                            ><fa-icon [icon]="faGripHorizontal"></fa-icon>
                         </label>
                     </div>
                 </form>
-                <div class="btn-group">
+                <div class="btn-group" role="group">
                     <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">
                         <span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}
                     </button>
                     <div
-                        class="btn-group"
                         ngbDropdown
+                        class="btn-group"
                         role="group"
                         aria-label="Button group with nested dropdown for row number">
                         <button
@@ -103,19 +118,21 @@
         </div>
 
         <!-- grid with searchResults -->
-        <div *ngIf="isGridView()" class="card-columns">
-            <div class="card" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">
-                <div class="card-header">
-                    <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
-                    &nbsp;{{ subject?.iconlabel }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
-                    </h5>
-                    <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
-                        Mehr ...
-                    </button>
+        <div *ngIf="isGridView()" class="row row-cols-1 row-cols-sm-3 row-cols-xl-5 g-4 mb-4">
+            <div class="col" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
+                        &nbsp;{{ subject?.iconlabel }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
+                        </h5>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a (click)="navigateToResource(subject?.obj_id)" class="btn btn-outline-info">Mehr... </a>
+                    </div>
                 </div>
             </div>
         </div>

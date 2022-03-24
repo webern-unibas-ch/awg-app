@@ -51,23 +51,21 @@ describe('ContactViewComponent (DONE)', () => {
     const expectedDocumentationId = 'awg-documentation';
     const expectedDateFormat = 'd. MMMM yyyy';
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock service for test purposes
-            mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+    beforeEach(waitForAsync(() => {
+        // Mock service for test purposes
+        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-            // Router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            TestBed.configureTestingModule({
-                declarations: [ContactViewComponent, HeadingStubComponent],
-                providers: [
-                    { provide: CoreService, useValue: mockCoreService },
-                    { provide: Router, useValue: mockRouter },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [ContactViewComponent, HeadingStubComponent],
+            providers: [
+                { provide: CoreService, useValue: mockCoreService },
+                { provide: Router, useValue: mockRouter },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ContactViewComponent);

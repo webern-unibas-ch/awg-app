@@ -62,47 +62,45 @@ describe('EditionViewComponent (DONE)', () => {
     const expectedEditionRoute = EditionConstants.EDITION;
     const expectedSeriesRoute = EditionConstants.SERIES;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock router with spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(waitForAsync(() => {
+        // Mock router with spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // Mock activated route with stub class
-            mockActivatedRoute = new ActivatedRouteStub();
+        // Mock activated route with stub class
+        mockActivatedRoute = new ActivatedRouteStub();
 
-            // Mock edition service
-            mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> =>
-                    // Return op. 12 by default
-                    observableOf(EditionWorks[expectedSelectedEditionComplexId]),
-                updateEditionWork: (editionWork: EditionWork): void => {
-                    // Intentional empty test override
+        // Mock edition service
+        mockEditionService = {
+            getEditionWork: (): Observable<EditionWork> =>
+                // Return op. 12 by default
+                observableOf(EditionWorks[expectedSelectedEditionComplexId]),
+            updateEditionWork: (editionWork: EditionWork): void => {
+                // Intentional empty test override
+            },
+            getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> =>
+                observableOf(expectedSelectedEditionSeries),
+            getSelectedEditionSection: (): Observable<EditionRoute> =>
+                observableOf(expectedSelectedEditionSeries.sections[0]),
+            getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
+        };
+
+        TestBed.configureTestingModule({
+            declarations: [
+                EditionViewComponent,
+                HeadingStubComponent,
+                RouterOutletStubComponent,
+                RouterLinkStubDirective,
+            ],
+            providers: [
+                { provide: EditionService, useValue: mockEditionService },
+                {
+                    provide: ActivatedRoute,
+                    useValue: mockActivatedRoute,
                 },
-                getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> =>
-                    observableOf(expectedSelectedEditionSeries),
-                getSelectedEditionSection: (): Observable<EditionRoute> =>
-                    observableOf(expectedSelectedEditionSeries.sections[0]),
-                getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
-            };
-
-            TestBed.configureTestingModule({
-                declarations: [
-                    EditionViewComponent,
-                    HeadingStubComponent,
-                    RouterOutletStubComponent,
-                    RouterLinkStubDirective,
-                ],
-                providers: [
-                    { provide: EditionService, useValue: mockEditionService },
-                    {
-                        provide: ActivatedRoute,
-                        useValue: mockActivatedRoute,
-                    },
-                    { provide: Router, useValue: mockRouter },
-                ],
-            }).compileComponents();
-        })
-    );
+                { provide: Router, useValue: mockRouter },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionViewComponent);
@@ -156,18 +154,18 @@ describe('EditionViewComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should have title and id', () => {
             expect(component.editionViewTitle).toBeDefined();
-            expect(component.editionViewTitle).toBe(expectedTitle);
+            expect(component.editionViewTitle).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
 
             expect(component.editionViewId).toBeDefined();
-            expect(component.editionViewId).toBe(expectedId);
+            expect(component.editionViewId).withContext(`should be ${expectedId}`).toBe(expectedId);
         });
 
         it('... should have editionRoute and seriesRoute', () => {
             expect(component.editionRoute).toBeDefined();
-            expect(component.editionRoute).toBe(expectedEditionRoute);
+            expect(component.editionRoute).withContext(`should be ${expectedEditionRoute}`).toBe(expectedEditionRoute);
 
             expect(component.seriesRoute).toBeDefined();
-            expect(component.seriesRoute).toBe(expectedSeriesRoute);
+            expect(component.seriesRoute).withContext(`should be ${expectedSeriesRoute}`).toBe(expectedSeriesRoute);
         });
 
         it('... should not have isRowTableView$', () => {
@@ -353,36 +351,40 @@ describe('EditionViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            describe('... if isRowTableView$ is given it', () => {
-                beforeEach(
-                    waitForAsync(() => {
-                        component.isRowTableView$ = observableOf(true);
+            describe('... if isRowTableView$ is given, it', () => {
+                beforeEach(waitForAsync(() => {
+                    component.isRowTableView$ = observableOf(true);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
-                    })
-                );
+                    // Trigger data binding
+                    fixture.detectChanges();
+                }));
 
                 it('... should have one div.awg-edition-row-tables', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
                 });
 
-                it('... should have a h6 and a heading component in div.awg-edition-row-tables', () => {
+                it('... should have an h6 and a jumbotron div with h1 in div.awg-edition-row-tables', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
-                    getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-jumbotron-image > h1', 1, 1);
                 });
 
-                it('... should pass down `editionViewTitle` and `editionViewId` to heading component', () => {
-                    const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                    const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+                it('... should pass down `editionViewId` to jumbotron h1', () => {
+                    const headingDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-edition-row-tables > div.awg-jumbotron-image > h1',
+                        1,
+                        1
+                    );
+                    const headingEl = headingDes[0].nativeElement;
 
-                    expect(headingCmp.title).toBeTruthy();
-                    expect(headingCmp.title).withContext(`should be 'Übersicht'`).toBe('Übersicht');
+                    expect(headingEl.id).toBeTruthy();
+                    expect(headingEl.id).withContext(`should be ${expectedId}`).toBe(expectedId);
 
-                    expect(headingCmp.id).toBeTruthy();
-                    expect(headingCmp.id).withContext(`should be ${expectedId}`).toBe(expectedId);
+                    expect(headingEl.textContent).toBeTruthy();
+                    expect(headingEl.textContent.trim()).withContext(`should be 'Übersicht'`).toBe('Übersicht');
                 });
 
                 it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {
@@ -401,21 +403,19 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             });
 
-            describe('... if selectedEditionComplex$ is given it', () => {
-                beforeEach(
-                    waitForAsync(() => {
-                        component.selectedEditionComplex$ = observableOf(expectedSelectedEditionComplex);
+            describe('... if selectedEditionComplex$ is given, it', () => {
+                beforeEach(waitForAsync(() => {
+                    component.selectedEditionComplex$ = observableOf(expectedSelectedEditionComplex);
 
-                        // Trigger data binding
-                        fixture.detectChanges();
-                    })
-                );
+                    // Trigger data binding
+                    fixture.detectChanges();
+                }));
 
                 it('... should have one div.awg-edition-complex', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
                 });
 
-                it('... should have a h6, a h3 and a responsibility div in div.awg-edition-complex', () => {
+                it('... should have an h6, an h3 and a responsibility div in div.awg-edition-complex', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
@@ -510,7 +510,11 @@ describe('EditionViewComponent (DONE)', () => {
                 });
             });
 
-            describe('... if selectedEditionComplex$ and isRowTableView$ are not given it', () => {
+            describe('... if selectedEditionComplex$ and isRowTableView$ are not given, it', () => {
+                it('... should not have a div.awg-edition-row-tables', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 0, 0);
+                });
+
                 it('... should not have a div.awg-edition-complex', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-complex', 0, 0);
                 });
@@ -519,22 +523,27 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
                 });
 
-                it('... should have a h6 and a heading component in div.awg-edition-series', () => {
+                it('... should have an h6 and a jumbotron div with h1 in div.awg-edition-series', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
 
                     getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
-                    getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-jumbotron-image > h1', 1, 1);
                 });
 
-                it('... should pass down `editionViewTitle` and `editionViewId` to heading component', () => {
-                    const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                    const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+                it('... should pass down `editionViewTitle` and `editionViewId` to jumbotron h1', () => {
+                    const headingDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-edition-series > div.awg-jumbotron-image > h1',
+                        1,
+                        1
+                    );
+                    const headingEl = headingDes[0].nativeElement;
 
-                    expect(headingCmp.title).toBeTruthy();
-                    expect(headingCmp.title).withContext(`should have title: ${expectedTitle}`).toBe(expectedTitle);
+                    expect(headingEl.id).toBeTruthy();
+                    expect(headingEl.id).withContext(`should be ${expectedId}`).toBe(expectedId);
 
-                    expect(headingCmp.id).toBeTruthy();
-                    expect(headingCmp.id).withContext(`should have id: ${expectedId}`).toBe(expectedId);
+                    expect(headingEl.textContent).toBeTruthy();
+                    expect(headingEl.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
                 });
 
                 describe('... breadcrumb header (h6)', () => {

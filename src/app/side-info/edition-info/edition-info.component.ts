@@ -10,7 +10,7 @@ import { EditionConstants, EditionWorks } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-edition-info',
     templateUrl: './edition-info.component.html',
-    styleUrls: ['./edition-info.component.css'],
+    styleUrls: ['./edition-info.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionInfoComponent {

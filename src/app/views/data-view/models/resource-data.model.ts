@@ -13,12 +13,12 @@ export interface IResourceDataResponse extends Array<ResourceFullResponseJson | 
     /**
      * The ResourceFullResponseJson data of a resource detail.
      */
-    0: ResourceFullResponseJson;
+    [0]: ResourceFullResponseJson;
 
     /**
      * The ResourceContextResponseJson data of a resource detail.
      */
-    1: ResourceContextResponseJson;
+    [1]: ResourceContextResponseJson;
 }
 
 /**

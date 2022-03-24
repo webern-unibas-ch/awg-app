@@ -22,13 +22,11 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
     let expectedLogos: Logos;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [FooterPoweredbyComponent, FooterLogoStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [FooterPoweredbyComponent, FooterLogoStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterPoweredbyComponent);

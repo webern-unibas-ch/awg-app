@@ -21,14 +21,12 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let expectedOsmLinkLabel: string;
     let expectedOsmIFrameSettings: { width; height; scrolling };
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [BrowserModule],
-                declarations: [OpenStreetMapComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [BrowserModule],
+            declarations: [OpenStreetMapComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OpenStreetMapComponent);

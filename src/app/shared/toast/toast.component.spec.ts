@@ -38,14 +38,12 @@ describe('ToastComponent (DONE)', () => {
 
     let expectedToast: Toast;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [ToastComponent, MockTemplateComponent, NgbToastStubComponent],
-                providers: [ToastService],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [ToastComponent, MockTemplateComponent, NgbToastStubComponent],
+            providers: [ToastService],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ToastComponent);

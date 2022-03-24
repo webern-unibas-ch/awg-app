@@ -11,7 +11,7 @@ import { Toast, ToastService } from '@awg-core/services/toast-service';
 @Component({
     selector: 'awg-toast',
     templateUrl: './toast.component.html',
-    styleUrls: ['./toast.component.css'],
+    styleUrls: ['./toast.component.scss'],
 })
 export class ToastComponent {
     /**

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+
 import { D3SimulationNode, Triple } from '../models';
 
 /**
@@ -12,7 +14,7 @@ import { D3SimulationNode, Triple } from '../models';
 @Component({
     selector: 'awg-construct-results',
     templateUrl: './construct-results.component.html',
-    styleUrls: ['./construct-results.component.css'],
+    styleUrls: ['./construct-results.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConstructResultsComponent {
@@ -31,6 +33,14 @@ export class ConstructResultsComponent {
      */
     @Input()
     defaultForceGraphHeight: number;
+
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is set.
+     */
+    @Input()
+    isFullscreen: boolean;
 
     /**
      * Output variable: clickedNodeRequest.
@@ -55,5 +65,21 @@ export class ConstructResultsComponent {
             return;
         }
         this.clickedNodeRequest.emit(node);
+    }
+
+    /**
+     * Public method: preventPanelCollapseOnFullscreen.
+     *
+     * It prevents the given panel event from being collapsed in fullscreen mode.
+     *
+     * @returns {void} Prevents the panel collapse.
+     */
+    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
+        if (!$event) {
+            return;
+        }
+        if (this.isFullscreen && $event.nextState === false) {
+            $event.preventDefault();
+        }
     }
 }

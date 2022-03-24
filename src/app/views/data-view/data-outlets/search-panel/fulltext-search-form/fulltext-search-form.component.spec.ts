@@ -18,15 +18,13 @@ describe('FulltextSearchFormComponent', () => {
     // https://stackoverflow.com/a/48671534
     const formBuilder: FormBuilder = new FormBuilder();
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-                declarations: [FulltextSearchFormComponent],
-                providers: [{ provide: FormBuilder, useValue: formBuilder }],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
+            declarations: [FulltextSearchFormComponent],
+            providers: [{ provide: FormBuilder, useValue: formBuilder }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FulltextSearchFormComponent);

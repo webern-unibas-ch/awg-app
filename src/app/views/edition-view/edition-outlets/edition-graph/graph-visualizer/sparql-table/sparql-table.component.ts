@@ -11,7 +11,7 @@ import { SearchResult } from '../models';
 @Component({
     selector: 'awg-sparql-table',
     templateUrl: './sparql-table.component.html',
-    styleUrls: ['./sparql-table.component.css'],
+    styleUrls: ['./sparql-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlTableComponent implements OnInit {

@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'awg-edition-svg-sheet',
     templateUrl: './edition-svg-sheet.component.html',
-    styleUrls: ['./edition-svg-sheet.component.css'],
+    styleUrls: ['./edition-svg-sheet.component.scss'],
 })
 export class EditionSvgSheetComponent implements OnInit {
     /**

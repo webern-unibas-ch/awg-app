@@ -5,6 +5,7 @@
 
     <ngb-accordion
         id="reportAcc"
+        #reportAcc="ngbAccordion"
         activeIds="awg-source-list, awg-source-desc, awg-source-evaluation, awg-tka-panel"
         *ngIf="editionReportData$ | async as editionReportData">
         <!-- source list -->

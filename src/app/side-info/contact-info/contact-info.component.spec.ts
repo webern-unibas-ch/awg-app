@@ -57,18 +57,16 @@ describe('ContactInfoComponent (DONE)', () => {
 
     const expectedContactInfoHeader = 'Kontakt';
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock service for test purposes
-            mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+    beforeEach(waitForAsync(() => {
+        // Mock service for test purposes
+        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-            TestBed.configureTestingModule({
-                imports: [BrowserModule],
-                declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [BrowserModule],
+            declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
+            providers: [{ provide: CoreService, useValue: mockCoreService }],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ContactInfoComponent);

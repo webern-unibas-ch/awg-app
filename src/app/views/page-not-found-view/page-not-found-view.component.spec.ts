@@ -22,13 +22,11 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     const expectedPageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
     const expectedAwgContactUrl = 'https://www.anton-webern.ch/index.php?id=41';
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [PageNotFoundViewComponent, RouterLinkStubDirective],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [PageNotFoundViewComponent, RouterLinkStubDirective],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PageNotFoundViewComponent);

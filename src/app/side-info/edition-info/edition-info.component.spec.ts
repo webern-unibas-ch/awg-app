@@ -22,13 +22,11 @@ describe('EditionInfoComponent (DONE)', () => {
     let expectedEditionComplexOp12: EditionWork;
     let expectedEditionComplexOp25: EditionWork;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [EditionInfoComponent, RouterLinkStubDirective],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [EditionInfoComponent, RouterLinkStubDirective],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionInfoComponent);

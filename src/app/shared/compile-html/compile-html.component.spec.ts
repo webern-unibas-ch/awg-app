@@ -8,13 +8,11 @@ describe('CompileHtmlComponent', () => {
     let component: CompileHtmlComponent;
     let fixture: ComponentFixture<CompileHtmlComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [CompileHtmlComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [CompileHtmlComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CompileHtmlComponent);

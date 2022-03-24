@@ -41,37 +41,35 @@ describe('SearchOverviewComponent (DONE)', () => {
     let serviceUpdateSearchInfoTitleSpy: Spy;
     let serviceClearSearchInfoDataSpy: Spy;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Create a fake service object with a `updateSearchInfoTitle()` spy
-            const mockSideInfoService = jasmine.createSpyObj('SideInfoService', [
-                'updateSearchInfoTitle',
-                'clearSearchInfoData',
-            ]);
+    beforeEach(waitForAsync(() => {
+        // Create a fake service object with a `updateSearchInfoTitle()` spy
+        const mockSideInfoService = jasmine.createSpyObj('SideInfoService', [
+            'updateSearchInfoTitle',
+            'clearSearchInfoData',
+        ]);
 
-            // Spies on service
-            serviceUpdateSearchInfoTitleSpy = mockSideInfoService.updateSearchInfoTitle.and.callThrough();
-            serviceClearSearchInfoDataSpy = mockSideInfoService.clearSearchInfoData.and.callThrough();
+        // Spies on service
+        serviceUpdateSearchInfoTitleSpy = mockSideInfoService.updateSearchInfoTitle.and.callThrough();
+        serviceClearSearchInfoDataSpy = mockSideInfoService.clearSearchInfoData.and.callThrough();
 
-            // Mocked activated route
-            // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
-            expectedRouteUrl = [{ path: expectedPath }];
+        // Mocked activated route
+        // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
+        expectedRouteUrl = [{ path: expectedPath }];
 
-            mockActivatedRoute = new ActivatedRouteStub();
-            mockActivatedRoute.testUrl = expectedRouteUrl;
+        mockActivatedRoute = new ActivatedRouteStub();
+        mockActivatedRoute.testUrl = expectedRouteUrl;
 
-            TestBed.configureTestingModule({
-                declarations: [SearchOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-                providers: [
-                    { provide: SideInfoService, useValue: mockSideInfoService },
-                    {
-                        provide: ActivatedRoute,
-                        useValue: mockActivatedRoute,
-                    },
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            declarations: [SearchOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
+            providers: [
+                { provide: SideInfoService, useValue: mockSideInfoService },
+                {
+                    provide: ActivatedRoute,
+                    useValue: mockActivatedRoute,
+                },
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchOverviewComponent);

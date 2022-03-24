@@ -12,7 +12,7 @@ import { RouterLinkButton } from './router-link-button.model';
 @Component({
     selector: 'awg-router-link-button-group',
     templateUrl: './router-link-button-group.component.html',
-    styleUrls: ['./router-link-button-group.component.css'],
+    styleUrls: ['./router-link-button-group.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RouterLinkButtonGroupComponent {

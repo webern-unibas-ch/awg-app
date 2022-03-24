@@ -12,7 +12,7 @@ import { EditionWorks } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
-    styleUrls: ['./home-view.component.css'],
+    styleUrls: ['./home-view.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeViewComponent implements OnInit {

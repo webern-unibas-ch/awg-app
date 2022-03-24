@@ -14,7 +14,7 @@ import 'codemirror/mode/turtle/turtle';
 @Component({
     selector: 'awg-triples-editor',
     templateUrl: './triples-editor.component.html',
-    styleUrls: ['./triples-editor.component.css'],
+    styleUrls: ['./triples-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TriplesEditorComponent {

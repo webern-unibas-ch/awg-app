@@ -348,9 +348,9 @@ span.facet-badge {
 /****** FORMS ******/
 .ng-valid[required],
 .ng-valid.required {
-    border-left: 5px solid rgba(66, 169, 72, 1); /* rgba converted HEX #42a948; green */
+    border-start: 5px solid rgba(66, 169, 72, 1); /* rgba converted HEX #42a948; green */
 }
 .ng-invalid:not(form),
 .ng-invalid:not(form):focus {
-    border-left: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
+    border-start: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
 }
