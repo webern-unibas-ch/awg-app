@@ -55,6 +55,23 @@ export const mockEditionData = {
     },
 
     /**
+     * Test helper data constant: mockIntroData.
+     *
+     * It provides a mocked folioConvoluteData object.
+     */
+    mockIntroData: {
+        intro: [
+            {
+                id: 'op12',
+                content: [
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
+                    'In <a (click)="ref.selectSvgSheet(\'Aa:SkI/2\')"><strong>Aa:SkI/2</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Aa:SkI/1</strong></a> neu skizziert',
+                ],
+            },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockModalSnippet.
      *
      * It provides a mocked modal snippet string.
