@@ -10,7 +10,7 @@ import { Logos } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-poweredby',
     templateUrl: './footer-poweredby.component.html',
-    styleUrls: ['./footer-poweredby.component.css'],
+    styleUrls: ['./footer-poweredby.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterPoweredbyComponent {

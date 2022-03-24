@@ -1,5 +1,8 @@
-<ngb-accordion activeIds="awg-graph-visualizer-select-result">
-    <ngb-panel id="awg-graph-visualizer-select-result" title="Resultat">
+<ngb-accordion
+    #selectResultsAcc="ngbAccordion"
+    activeIds="awg-graph-visualizer-select-results"
+    (panelChange)="preventPanelCollapseOnFullscreen($event)">
+    <ngb-panel id="awg-graph-visualizer-select-results" title="Resultat">
         <ng-template ngbPanelContent>
             <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
                 <ng-container *ngIf="isNotEmpty(queryResult); else noResult">

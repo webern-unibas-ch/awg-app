@@ -8,13 +8,11 @@ describe('TwelveToneSpinnerComponent', () => {
     let component: TwelveToneSpinnerComponent;
     let fixture: ComponentFixture<TwelveToneSpinnerComponent>;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [TwelveToneSpinnerComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [TwelveToneSpinnerComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TwelveToneSpinnerComponent);

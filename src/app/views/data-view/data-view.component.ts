@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'awg-data',
     templateUrl: './data-view.component.html',
-    styleUrls: ['./data-view.component.css'],
+    styleUrls: ['./data-view.component.scss'],
 })
 export class DataViewComponent implements OnInit {
     /**

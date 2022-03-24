@@ -1,0 +1,179 @@
+@import '~assets/themes/scss/shared';
+
+#awg-force-graph-container {
+    position: relative;
+    width: 100%;
+
+    > .awg-force-graph-icon-bar {
+        position: relative;
+        width: 100%;
+    }
+}
+
+.awg-force-graph-panel-container {
+    position: inherit;
+    height: 100%;
+}
+
+/* slider */
+.input-group.awg-force-graph-zoom-slider-container {
+    flex-wrap: nowrap;
+    width: auto;
+
+    > :not(:first-child) {
+        margin-left: 0px !important;
+    }
+}
+#slider-label.input-group-text {
+    min-width: 50px;
+    color: $info;
+}
+
+/* slider input */
+@mixin slider-track-base($radius) {
+    background: rgba(221, 221, 221, 0.78);
+    border: 0.2px solid #dddddd;
+    border-radius: $radius;
+}
+
+@mixin slider-track($height) {
+    @include slider-track-base(1.3px);
+    width: 100%;
+    height: $height;
+    cursor: pointer;
+}
+@mixin slider-thumb($height) {
+    width: 15px;
+    height: $height;
+    background: $info;
+    border: 1.8px solid $info;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input[type='range'].awg-force-graph-zoom-slider {
+    width: 100%;
+    background-color: transparent;
+    -webkit-appearance: none;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include slider-track(31px);
+    }
+
+    &::-webkit-slider-thumb {
+        @include slider-thumb(29px);
+        -webkit-appearance: none;
+    }
+
+    &:focus::-webkit-slider-runnable-track {
+        background: #e5e5e5;
+    }
+
+    &::-moz-range-track {
+        @include slider-track(29px);
+        -moz-margin-start: fill;
+        margin-end: fill;
+    }
+
+    &::-moz-range-thumb {
+        @include slider-thumb(27px);
+    }
+
+    &::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 7.4px 0;
+        color: transparent;
+        width: 100%;
+        height: 31px;
+        cursor: pointer;
+    }
+
+    &::-ms-fill-lower {
+        @include slider-track-base(2.6px);
+    }
+
+    &::-ms-fill-upper {
+        @include slider-track-base(2.6px);
+    }
+
+    &::-ms-thumb {
+        @include slider-thumb(29px);
+        margin-top: 0px;
+        /*Needed to keep the Edge thumb centred*/
+    }
+
+    &:focus {
+        &::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+    }
+}
+
+/* Simulation nodes */
+:host ::ng-deep .node {
+    stroke: #fff;
+    fill: #ddd;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .blank {
+    stroke: #fff;
+    fill: #000 !important;
+    stroke-width: 1.5px;
+
+    &.instance {
+        stroke: #fff;
+        fill: #000;
+        stroke-width: 1.5px;
+    }
+}
+:host ::ng-deep .class {
+    stroke: #fff;
+    fill: rgb(158, 0, 0);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance {
+    stroke: #fff;
+    fill: rgb(32, 178, 170);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance-space {
+    stroke: #fff;
+    fill: rgb(0, 191, 255);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance-spaceType {
+    stroke: #fff;
+    fill: rgb(0, 0, 139);
+    stroke-width: 1.5px;
+}
+
+:host ::ng-deep .link {
+    fill: none;
+    stroke: #999;
+    stroke-opacity: 0.6;
+    stroke-width: 1px;
+}
+
+:host ::ng-deep marker {
+    stroke: #999;
+    fill: rgba(124, 240, 10, 0);
+}
+
+:host ::ng-deep .node-text {
+    font: 15px 'Roboto', sans-serif;
+    fill: black;
+}
+
+:host ::ng-deep .link-text {
+    font: 13px 'Roboto', sans-serif;
+    fill: grey;
+}

@@ -14,7 +14,7 @@ import { EditionService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-edition-sections',
     templateUrl: './edition-sections.component.html',
-    styleUrls: ['./edition-sections.component.css'],
+    styleUrls: ['./edition-sections.component.scss'],
 })
 export class EditionSectionsComponent implements OnInit {
     /**

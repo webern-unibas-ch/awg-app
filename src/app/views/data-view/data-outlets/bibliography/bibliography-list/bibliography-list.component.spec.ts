@@ -17,13 +17,11 @@ describe('BibliographyListComponent', () => {
     let fixture: ComponentFixture<BibliographyListComponent>;
     let compDe: DebugElement;
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                declarations: [BibliographyListComponent, BibliographyDetailStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            declarations: [BibliographyListComponent, BibliographyDetailStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyListComponent);

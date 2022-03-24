@@ -30,11 +30,11 @@
                             "rdfstore"
                         ],
                         "styles": [
-                            "src/index.style.css",
+                            "src/index.style.scss",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/font-awesome/scss/font-awesome.scss",
                             "node_modules/codemirror/lib/codemirror.css",
-                            "src/styles.css"
+                            "src/styles.scss"
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
@@ -126,11 +126,11 @@
                         "karmaConfig": "karma.conf.js",
                         "sourceMap": true,
                         "styles": [
-                            "src/index.style.css",
+                            "src/index.style.scss",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/font-awesome/scss/font-awesome.scss",
                             "node_modules/codemirror/lib/codemirror.css",
-                            "src/styles.css"
+                            "src/styles.scss"
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
@@ -170,6 +170,11 @@
         }
     },
     "defaultProject": "awg-app",
+    "schematics": {
+      "@schematics/angular:component": {
+        "style": "scss"
+      }
+    },
     "cli": {
         "defaultCollection": "@angular-eslint/schematics",
         "cache": {

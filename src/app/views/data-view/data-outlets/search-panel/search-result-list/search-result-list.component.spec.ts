@@ -47,39 +47,37 @@ describe('SearchResultListComponent', () => {
 
     let expectedSearchParams: SearchParams;
 
-    beforeEach(
-        waitForAsync(() => {
-            // Mock services
-            mockDataStreamerService = {
-                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
-            };
-            mockConversionService = {
-                prepareFullTextSearchResultText: (
-                    searchResponseWithQuery: SearchResponseWithQuery,
-                    searchUrl: string
-                ): string => expectedSearchResultText,
-            };
-            mockSideInfoService = {
-                updateSearchInfoData: () => {
-                    // Intentional empty test override
-                },
-                clearSearchInfoData: () => {
-                    // Intentional empty test override
-                },
-            };
+    beforeEach(waitForAsync(() => {
+        // Mock services
+        mockDataStreamerService = {
+            getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
+        };
+        mockConversionService = {
+            prepareFullTextSearchResultText: (
+                searchResponseWithQuery: SearchResponseWithQuery,
+                searchUrl: string
+            ): string => expectedSearchResultText,
+        };
+        mockSideInfoService = {
+            updateSearchInfoData: () => {
+                // Intentional empty test override
+            },
+            clearSearchInfoData: () => {
+                // Intentional empty test override
+            },
+        };
 
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
-                declarations: [SearchResultListComponent, CompileHtmlComponent, TableStubComponent],
-                providers: [
-                    { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    { provide: ConversionService, useValue: mockConversionService },
-                    { provide: SideInfoService, useValue: mockSideInfoService },
-                    FormBuilder,
-                ],
-            }).compileComponents();
-        })
-    );
+        TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
+            declarations: [SearchResultListComponent, CompileHtmlComponent, TableStubComponent],
+            providers: [
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                { provide: ConversionService, useValue: mockConversionService },
+                { provide: SideInfoService, useValue: mockSideInfoService },
+                FormBuilder,
+            ],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchResultListComponent);

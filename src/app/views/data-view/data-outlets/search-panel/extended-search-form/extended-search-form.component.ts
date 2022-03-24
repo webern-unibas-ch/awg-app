@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -27,7 +27,7 @@ import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-respons
 @Component({
     selector: 'awg-extended-search-form',
     templateUrl: './extended-search-form.component.html',
-    styleUrls: ['./extended-search-form.component.css'],
+    styleUrls: ['./extended-search-form.component.scss'],
 })
 export class ExtendedSearchFormComponent implements OnInit {
     /**
@@ -139,8 +139,8 @@ export class ExtendedSearchFormComponent implements OnInit {
     /**
      * Getter for the resource type control value.
      */
-    get restypeControl() {
-        return this.extendedSearchForm.get('restypeControl');
+    get restypeControl(): FormControl {
+        return this.extendedSearchForm.get('restypeControl') as FormControl;
     }
 
     /**
@@ -219,9 +219,9 @@ export class ExtendedSearchFormComponent implements OnInit {
      *
      * @param {number} index The given array index.
      *
-     * @returns {AbstractControl} The compopo control.
+     * @returns {FormControl} The compopo control.
      */
-    getCompopoControlAtIndex(index: number): AbstractControl {
+    getCompopoControlAtIndex(index: number): FormControl {
         return this._getFormArrayControlAtIndex('compopControl', index);
     }
 
@@ -293,9 +293,9 @@ export class ExtendedSearchFormComponent implements OnInit {
      *
      * @param {number} index The given array index.
      *
-     * @returns {AbstractControl} The property id control.
+     * @returns {FormControl} The property id control.
      */
-    getPropertyIdControlAtIndex(index: number): AbstractControl {
+    getPropertyIdControlAtIndex(index: number): FormControl {
         this.listenToUserPropertyChange(index);
         return this._getFormArrayControlAtIndex('propertyIdControl', index);
     }
@@ -347,9 +347,12 @@ export class ExtendedSearchFormComponent implements OnInit {
      *
      * @param {number} index The given array index.
      *
-     * @returns {AbstractControl} The searchval control.
+     * @returns {FormControl} The searchval control.
      */
-    getSearchvalControlAtIndex(index: number): AbstractControl {
+    getSearchvalControlAtIndex(index: number): FormControl {
+        if (this.isSearchvalControlDisabled(index) === '') {
+            this._getFormArrayControlAtIndex('searchvalControl', index).setValue('');
+        }
         return this._getFormArrayControlAtIndex('searchvalControl', index);
     }
 
@@ -533,10 +536,10 @@ export class ExtendedSearchFormComponent implements OnInit {
      * @param {string} controlName The given control name.
      * @param {number} index The given array index.
      *
-     * @returns {void} Gets the properties control.
+     * @returns {FormControl} The properties control.
      */
-    private _getFormArrayControlAtIndex(controlName: string, index: number): AbstractControl {
-        return this.propertiesControls.controls[index].get(controlName);
+    private _getFormArrayControlAtIndex(controlName: string, index: number): FormControl {
+        return this.propertiesControls.controls[index].get(controlName) as FormControl;
     }
 
     /**

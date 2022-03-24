@@ -29,7 +29,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 @Component({
     selector: 'awg-edition-sheets',
     templateUrl: './edition-sheets.component.html',
-    styleUrls: ['./edition-sheets.component.css'],
+    styleUrls: ['./edition-sheets.component.scss'],
 })
 export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**

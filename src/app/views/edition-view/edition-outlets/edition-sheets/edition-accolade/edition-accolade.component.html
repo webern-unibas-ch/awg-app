@@ -1,12 +1,9 @@
-<ngb-accordion activeIds="awg-accolade-view">
+<ngb-accordion #accoladeAcc="ngbAccordion" id="accoladeAcc" activeIds="awg-accolade-view">
     <ngb-panel id="awg-accolade-view">
         <ng-template ngbPanelHeader>
-            <div class="d-flex align-items-center justify-content-between">
-                <button ngbPanelToggle class="btn btn-link text-left">Edierter Notentext</button>
-                <button
-                    type="button"
-                    class="btn btn-sm btn-outline-info ml-2"
-                    (click)="openModal('HINT_EDITION_SHEETS')">
+            <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
+                <button ngbPanelToggle class="p-0 btn btn-link text-start">Edierter Notentext</button>
+                <button type="button" class="btn btn-sm btn-outline-info" (click)="openModal('HINT_EDITION_SHEETS')">
                     Hinweise zur Nutzung
                 </button>
             </div>

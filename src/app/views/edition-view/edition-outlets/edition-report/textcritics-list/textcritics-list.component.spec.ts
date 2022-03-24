@@ -33,14 +33,12 @@ describe('TextcriticsListComponent', () => {
         }
     }
 
-    beforeEach(
-        waitForAsync(() => {
-            TestBed.configureTestingModule({
-                imports: [NgbAccordionWithConfigModule],
-                declarations: [TextcriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
-            }).compileComponents();
-        })
-    );
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
+            imports: [NgbAccordionWithConfigModule],
+            declarations: [TextcriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+        }).compileComponents();
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TextcriticsListComponent);
