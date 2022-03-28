@@ -1,0 +1,27 @@
+{
+    "sources": [
+        {
+            "id": "sourceB",
+            "siglum": "B",
+            "type": "Reihentabelle.",
+            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "description": [
+                "1 Bogen (Bl. 1/2). Unterer Rand beschnitten. Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift unten rechts oder links. Bl. 1<sup>v</sup>–2<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet.",
+                "<span class=\"caps\">Beschreibstoff</span>: Notenpapier, 4 Systeme (unten beschnitten), Format (quer): 74 × 270 mm, kein Firmenzeichen (Bl. 1/2).",
+                "<span class=\"caps\">Schreibstoff</span>: Bleistift; roter Buntstift.",
+                "<span class=\"caps\">Titel</span>: <em>Reihen zu den | Liedern: II. „Es stürzt …“ | III. „Herr Jesus mein“ | u. | I. „Das dunkle | Herz“</em> auf Bl. 1<sup>r</sup> oben rechts mit rotem Buntstift; <em>op. 23</em> [eingerahmt] auf Bl. 1<sup>r</sup> System 4 rechts mit rotem Buntstift.",
+                "<span class=\"caps\">Datierung</span>: <em>1933</em> auf Bl. 1<sup>r</sup> System 3–4 rechts mit rotem Buntstift.",
+                "<span class=\"caps\">Inhalt</span>: <br /><strong>M 312 Sk5 / M313 Sk1 / M 314 Sk1</strong> (Reihentabelle op. 25): <br />Bl. 1<sup>r</sup> <br /><span class=\"tab\"></span>System 1a: G<sub>gis</sub> (1); <span class=\"tab\"></span>System 1b: K<sub>h</sub> (2); <br /><span class=\"tab\"></span>System 2a: U<sub>gis</sub> (3); <span class=\"tab\"></span>System 2b: KU<sub>f</sub> (4); <br /><span class=\"tab\"></span>System 3a: G<sub>d</sub> (5); <span class=\"tab\"></span>System 3b: K<sub>f</sub> (6); <br /><span class=\"tab\"></span>System 4a: U<sub>d</sub> (7); <span class=\"tab\"></span>System 4b: KU<sub>h</sub> (8)."
+            ]
+        },
+        {
+            "id": "notA",
+            "siglum": "",
+            "type": "",
+            "location": "",
+            "description": [
+                "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 in AWG I/5.]</small>"
+            ]
+        }
+    ]
+}
