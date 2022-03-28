@@ -222,8 +222,10 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Listens to changing view type.
      */
     listenToUserInputChange(): void {
-        this.searchResultViewControl.valueChanges.subscribe((view: string) => {
-            this.onViewChange(view);
+        this.searchResultViewControl.valueChanges.pipe(takeUntil(this._destroyed$)).subscribe({
+            next: (view: string) => {
+                this.onViewChange(view);
+            },
         });
     }
 
@@ -352,18 +354,18 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             .getSearchResponseWithQuery()
             .pipe(takeUntil(this._destroyed$));
         // Subscribe to response to handle changes
-        searchResponseWithQuery$.subscribe(
-            (searchResponseWithQuery: SearchResponseWithQuery) => {
+        searchResponseWithQuery$.subscribe({
+            next: (searchResponseWithQuery: SearchResponseWithQuery) => {
                 // Update current search params (url, text, sideinfo) via streamer service
                 this.updateSearchParams(searchResponseWithQuery);
 
                 this.setPagination();
             },
-            error => {
-                this.errorMessage = error as any;
+            error: err => {
+                this.errorMessage = err;
                 console.error('SearchResultList# searchResultData subscription error: ', this.errorMessage);
-            }
-        );
+            },
+        });
     }
 
     /**

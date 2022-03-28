@@ -155,8 +155,8 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (res: SearchResponseWithQuery) => {
+            .subscribe({
+                next: (res: SearchResponseWithQuery) => {
                     // Deep clone search results from streamer service
                     const response = JSON.parse(JSON.stringify(res));
 
@@ -166,10 +166,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     // Build the form
                     this._buildForm(this.goToIndex, this.resultSize);
                 },
-                error => {
-                    console.error('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
-                }
-            );
+                error: err => {
+                    console.error('RESOURCE-INFO: Got no sideInfoData from Subscription!', err);
+                },
+            });
     }
 
     /**

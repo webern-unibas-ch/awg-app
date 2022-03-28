@@ -3,6 +3,13 @@ import { D3SimulationNode } from './d3-simulation-node.model';
 import * as d3_force from 'd3-force';
 
 /**
+ * Type alias: D3SimulationNodeOrStringOrNumber.
+ *
+ * Represents a union of D3SimulationNode or string or number type.
+ */
+type D3SimulationNodeOrStringOrNumber = D3SimulationNode | string | number;
+
+/**
  * The D3SimulationLink class.
  *
  * It is used in the context of the graph visualizer
@@ -12,12 +19,12 @@ export class D3SimulationLink implements d3_force.SimulationLinkDatum<D3Simulati
     /**
      * The source of the simulation link.
      */
-    source: D3SimulationNode | string | number;
+    source: D3SimulationNodeOrStringOrNumber;
 
     /**
      * The target of the simulation link.
      */
-    target: D3SimulationNode | string | number;
+    target: D3SimulationNodeOrStringOrNumber;
 
     /**
      * The predicate of the simulation link.
@@ -41,10 +48,10 @@ export class D3SimulationLink implements d3_force.SimulationLinkDatum<D3Simulati
      *
      * It sets the default values of a simulation link.
      *
-     * @param {D3SimulationNode | string | number} source The given source.
-     * @param {D3SimulationNode | string | number} target The given target.
+     * @param {D3SimulationNodeOrStringOrNumber} source The given source.
+     * @param {D3SimulationNodeOrStringOrNumber} target The given target.
      */
-    constructor(source: D3SimulationNode | string | number, target: D3SimulationNode | string | number) {
+    constructor(source: D3SimulationNodeOrStringOrNumber, target: D3SimulationNodeOrStringOrNumber) {
         const blankLabel = '';
 
         this.source = source;

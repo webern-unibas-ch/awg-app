@@ -55,24 +55,24 @@ export class LoadingInterceptor implements HttpInterceptor {
         // Create a new observable to return instead of the original
         return new Observable(observer => {
             // Subscribe to the original observable to ensure the HttpRequest is made
-            const subscription = next.handle(req).subscribe(
-                event => {
+            const subscription = next.handle(req).subscribe({
+                next: event => {
                     if (event instanceof HttpResponse) {
                         this._decreaseRequest(req);
                         observer.next(event);
                     }
                 },
-                err => {
+                error: err => {
                     this._decreaseRequest(req);
                     observer.error(err);
                 },
-                () => {
+                complete: () => {
                     if (this._pendingRequests.length > 0) {
                         this._decreaseRequest(req);
                     }
                     observer.complete();
-                }
-            );
+                },
+            });
             // Return teardown logic in case of cancelled requests
             return () => {
                 if (this._pendingRequests.length > 0) {

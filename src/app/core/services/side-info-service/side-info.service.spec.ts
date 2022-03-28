@@ -50,16 +50,26 @@ describe('SideInfoService (DONE)', () => {
     describe('SearchInfoData', () => {
         describe('#getSearchInfoData', () => {
             it('... should return default empty search info data', done => {
-                sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
-                    expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
-                    done();
+                sideInfoService.getSearchInfoData().subscribe({
+                    next: (searchInfo: SearchInfo) => {
+                        expect(searchInfo).toBeTruthy();
+                        expect(searchInfo)
+                            .withContext(`should equal ${expectedSearchInfoData}`)
+                            .toEqual(expectedSearchInfoData);
+                        done();
+                    },
                 });
             });
 
             it('... should return updated search info data', done => {
-                sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
-                    expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
-                    done();
+                sideInfoService.getSearchInfoData().subscribe({
+                    next: (searchInfo: SearchInfo) => {
+                        expect(searchInfo).toBeTruthy();
+                        expect(searchInfo)
+                            .withContext(`should equal ${expectedSearchInfoData}`)
+                            .toEqual(expectedSearchInfoData);
+                        done();
+                    },
                 });
 
                 // Update search info data
@@ -70,9 +80,14 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#updateSearchInfoData', () => {
             it('... should emit updated search info data', done => {
-                sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
-                    expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
-                    done();
+                sideInfoService.getSearchInfoData().subscribe({
+                    next: (searchInfo: SearchInfo) => {
+                        expect(searchInfo).toBeTruthy();
+                        expect(searchInfo)
+                            .withContext(`should equal ${expectedSearchInfoData}`)
+                            .toEqual(expectedSearchInfoData);
+                        done();
+                    },
                 });
 
                 // Update search info data
@@ -87,9 +102,14 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#clearSearchInfoData', () => {
             it('... should update search info data with empty SearchInfo', done => {
-                sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
-                    expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
-                    done();
+                sideInfoService.getSearchInfoData().subscribe({
+                    next: (searchInfo: SearchInfo) => {
+                        expect(searchInfo).toBeTruthy();
+                        expect(searchInfo)
+                            .withContext(`should equal ${expectedSearchInfoData}`)
+                            .toEqual(expectedSearchInfoData);
+                        done();
+                    },
                 });
 
                 // Clear search info data
@@ -97,9 +117,14 @@ describe('SideInfoService (DONE)', () => {
             });
 
             it('... should overwrite existing search info data', done => {
-                sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
-                    expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
-                    done();
+                sideInfoService.getSearchInfoData().subscribe({
+                    next: (searchInfo: SearchInfo) => {
+                        expect(searchInfo).toBeTruthy();
+                        expect(searchInfo)
+                            .withContext(`should equal ${expectedSearchInfoData}`)
+                            .toEqual(expectedSearchInfoData);
+                        done();
+                    },
                 });
 
                 // Update search info data
@@ -116,17 +141,21 @@ describe('SideInfoService (DONE)', () => {
     describe('SearchInfoTitle', () => {
         describe('#getSearchInfoTitle', () => {
             it('... should return default empty search info title', done => {
-                sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
-                    expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
-                    expect(title).not.toBeTruthy('should be empty string');
-                    done();
+                sideInfoService.getSearchInfoTitle().subscribe({
+                    next: (title: string) => {
+                        expect(title).not.toBeTruthy();
+                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        done();
+                    },
                 });
             });
 
             it('... should return updated search info title', done => {
-                sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
-                    expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
-                    done();
+                sideInfoService.getSearchInfoTitle().subscribe({
+                    next: (title: string) => {
+                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        done();
+                    },
                 });
 
                 // Update search info title
@@ -137,9 +166,11 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#updateSearchInfoTitle', () => {
             it('... should emit updated search info title', done => {
-                sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
-                    expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
-                    done();
+                sideInfoService.getSearchInfoTitle().subscribe({
+                    next: (title: string) => {
+                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        done();
+                    },
                 });
 
                 // Update search info title
@@ -154,18 +185,22 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#clearSearchInfoTitle', () => {
             it('... should update search info title with empty string', done => {
-                sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
-                    expect(title).not.toBeTruthy('should be empty string');
-                    done();
+                sideInfoService.getSearchInfoTitle().subscribe({
+                    next: (title: string) => {
+                        expect(title).not.toBeTruthy();
+                        done();
+                    },
                 });
 
                 sideInfoService.clearSearchInfoTitle();
             });
 
             it('... should overwrite existing search info title', done => {
-                sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
-                    expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
-                    done();
+                sideInfoService.getSearchInfoTitle().subscribe({
+                    next: (title: string) => {
+                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        done();
+                    },
                 });
 
                 // Update search info title

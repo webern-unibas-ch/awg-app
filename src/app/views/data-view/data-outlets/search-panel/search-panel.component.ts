@@ -206,17 +206,17 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (searchResponse: SearchResponseJson) => {
+            .subscribe({
+                next: (searchResponse: SearchResponseJson) => {
                     // Share search data via streamer service
                     this.searchResponseWithQuery = new SearchResponseWithQuery(searchResponse, this.searchParams.query);
                     this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
                 },
-                error => {
-                    console.error(error);
-                    this.errorMessage = error as any;
-                }
-            );
+                error: err => {
+                    this.errorMessage = err;
+                    console.error('SearchPanel# getSearchData subscription error: ', this.errorMessage);
+                },
+            });
     }
 
     /**
@@ -467,7 +467,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * @returns {boolean} The boolean result of the check.
      */
     isSearchResultListShown(): boolean {
-        this.dataStreamerService.getSearchResponseWithQuery().subscribe(result => console.log(result));
+        this.dataStreamerService
+            .getSearchResponseWithQuery()
+            .pipe(takeUntil(this._destroyed$))
+            .subscribe({ next: result => console.log(result) });
 
         return true;
     }

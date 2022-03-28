@@ -14,7 +14,7 @@
                 <awg-source-list
                     *ngIf="editionReportData[0]"
                     [sourceListData]="editionReportData[0]"
-                    (openModalRequest)="modal.open($event)">
+                    (openModalRequest)="onModalOpen($event)">
                 </awg-source-list>
             </ng-template>
         </ngb-panel>
@@ -25,7 +25,7 @@
                 <awg-source-description
                     *ngIf="editionReportData[1]"
                     [sourceDescriptionListData]="editionReportData[1]"
-                    (openModalRequest)="modal.open($event)"
+                    (openModalRequest)="onModalOpen($event)"
                     (selectSvgSheetRequest)="onSvgSheetSelect($event)">
                 </awg-source-description>
             </ng-template>
@@ -38,7 +38,7 @@
                     *ngIf="editionReportData[2]"
                     [sourceEvaluationListData]="editionReportData[2]"
                     (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                    (openModalRequest)="modal.open($event)"
+                    (openModalRequest)="onModalOpen($event)"
                     (selectSvgSheetRequest)="onSvgSheetSelect($event)">
                 </awg-source-evaluation>
             </ng-template>
@@ -50,7 +50,7 @@
                 <awg-textcritics-list
                     *ngIf="editionReportData[3]"
                     [textcriticsData]="editionReportData[3]"
-                    (openModalRequest)="modal.open($event)"
+                    (openModalRequest)="onModalOpen($event)"
                     (selectSvgSheetRequest)="onSvgSheetSelect($event)">
                 </awg-textcritics-list>
             </ng-template>
