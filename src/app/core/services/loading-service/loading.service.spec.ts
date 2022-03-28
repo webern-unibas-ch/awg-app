@@ -38,16 +38,20 @@ describe('LoadingService (DONE)', () => {
 
     describe('#getLoadingStatus', () => {
         it('... should return default false value', done => {
-            loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBeFalse();
-                done();
+            loadingService.getLoadingStatus().subscribe({
+                next: (isLoading: boolean) => {
+                    expect(isLoading).toBeFalse();
+                    done();
+                },
             });
         });
 
         it('... should return updated value', done => {
-            loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
-                done();
+            loadingService.getLoadingStatus().subscribe({
+                next: (isLoading: boolean) => {
+                    expect(isLoading).withContext(`should be ${loadingStatus}`).toBe(loadingStatus);
+                    done();
+                },
             });
 
             // Update status
@@ -58,9 +62,11 @@ describe('LoadingService (DONE)', () => {
 
     describe('#updateLoadingStatus', () => {
         it('... should emit updated loading status', done => {
-            loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
-                done();
+            loadingService.getLoadingStatus().subscribe({
+                next: (isLoading: boolean) => {
+                    expect(isLoading).withContext(`should be ${loadingStatus}`).toBe(loadingStatus);
+                    done();
+                },
             });
 
             // Update status

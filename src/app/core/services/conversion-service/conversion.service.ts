@@ -563,26 +563,29 @@ export class ConversionService extends ApiService {
         // E.g. ["4136"] or ["4136", "4132"]
         values.forEach((valueId, index) => {
             // Get geonames data
-            this._getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe((geoNamesData: GeoDataJson) => {
-                // Check for existing nodelist in geonames response
-                // Else return empty prop if necessary
-                if (!geoNamesData.nodelist) {
-                    console.warn(
-                        'ConversionService# _convertGeoValues: got no nodelist from geonames response: ',
-                        geoNamesData
-                    );
-                    output[index] = '';
+            this._getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe({
+                next: (geoNamesData: GeoDataJson) => {
+                    // Check for existing nodelist in geonames response
+                    // Else return empty prop if necessary
+                    if (!geoNamesData.nodelist) {
+                        console.warn(
+                            'ConversionService# _convertGeoValues: got no nodelist from geonames response: ',
+                            geoNamesData
+                        );
+                        output[index] = '';
+                        return output;
+                    }
+                    // Snapshot of nodelist array
+                    const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
+
+                    // Build new GeoNames-Object from geoData array
+                    const geo: GeoNames = new GeoNames(geoDataArray);
+
+                    // Construct and return html value
+                    output[index] = geo.html;
                     return output;
-                }
-                // Snapshot of nodelist array
-                const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
-
-                // Build new GeoNames-Object from geoData array
-                const geo: GeoNames = new GeoNames(geoDataArray);
-
-                // Construct and return html value
-                output[index] = geo.html;
-                return output;
+                },
+                error: err => console.error(err),
             });
         });
         return output;
@@ -611,8 +614,8 @@ export class ConversionService extends ApiService {
         const nodeId: string = this._getNodeIdFromAttributes(attributes);
 
         // Get hlist data
-        this._getAdditionalInfoFromApi(HlistJson, nodeId).subscribe(
-            (hlistData: HlistJson) => {
+        this._getAdditionalInfoFromApi(HlistJson, nodeId).subscribe({
+            next: (hlistData: HlistJson) => {
                 // Check for existing hlist in response
                 // Esle return empty prop if necessary
                 if (!hlistData.hlist) {
@@ -628,8 +631,8 @@ export class ConversionService extends ApiService {
                 });
                 return output;
             },
-            err => console.error(err)
-        );
+            error: err => console.error(err),
+        });
         return output;
     }
 
@@ -699,8 +702,8 @@ export class ConversionService extends ApiService {
         const nodeId: string = this._getNodeIdFromAttributes(attributes);
 
         // Get selection-list data
-        this._getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe(
-            (selectionData: SelectionJson) => {
+        this._getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe({
+            next: (selectionData: SelectionJson) => {
                 // Check for existing selection in response
                 // Else return empty prop if necessary
                 if (!selectionData.selection) {
@@ -721,8 +724,8 @@ export class ConversionService extends ApiService {
                 });
                 return output;
             },
-            err => console.error(err)
-        );
+            error: err => console.error(err),
+        });
         return output;
     }
 

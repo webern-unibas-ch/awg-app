@@ -257,11 +257,13 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetIsRowTableViewSpy, 1);
 
                 expect(component.isRowTableView$).toBeDefined();
-                component.isRowTableView$.subscribe((isView: boolean) => {
-                    expect(isView)
-                        .withContext(`should equal ${expectedIsRowTableView}`)
-                        .toEqual(expectedIsRowTableView);
-                    done();
+                component.isRowTableView$.subscribe({
+                    next: (isView: boolean) => {
+                        expect(isView)
+                            .withContext(`should equal ${expectedIsRowTableView}`)
+                            .toEqual(expectedIsRowTableView);
+                        done();
+                    },
                 });
             });
 
@@ -270,11 +272,13 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
 
                 expect(component.selectedEditionSeries$).toBeDefined();
-                component.selectedEditionSeries$.subscribe((series: EditionSeriesRoutes) => {
-                    expect(series)
-                        .withContext(`should equal ${expectedSelectedEditionSeries}`)
-                        .toEqual(expectedSelectedEditionSeries);
-                    done();
+                component.selectedEditionSeries$.subscribe({
+                    next: (series: EditionSeriesRoutes) => {
+                        expect(series)
+                            .withContext(`should equal ${expectedSelectedEditionSeries}`)
+                            .toEqual(expectedSelectedEditionSeries);
+                        done();
+                    },
                 });
             });
 
@@ -283,11 +287,13 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 1);
 
                 expect(component.selectedEditionSection$).toBeDefined();
-                component.selectedEditionSection$.subscribe((section: EditionRoute) => {
-                    expect(section)
-                        .withContext(`should equal ${expectedSelectedEditionSection}`)
-                        .toEqual(expectedSelectedEditionSection);
-                    done();
+                component.selectedEditionSection$.subscribe({
+                    next: (section: EditionRoute) => {
+                        expect(section)
+                            .withContext(`should equal ${expectedSelectedEditionSection}`)
+                            .toEqual(expectedSelectedEditionSection);
+                        done();
+                    },
                 });
             });
 
@@ -296,11 +302,13 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetEditionComplexSpy, 1);
 
                 expect(component.selectedEditionComplex$).toBeDefined();
-                component.selectedEditionComplex$.subscribe((work: EditionWork) => {
-                    expect(work)
-                        .withContext(`should equal ${EditionWorks[expectedSelectedEditionComplexId]}`)
-                        .toEqual(EditionWorks[expectedSelectedEditionComplexId]);
-                    done();
+                component.selectedEditionComplex$.subscribe({
+                    next: (work: EditionWork) => {
+                        expect(work)
+                            .withContext(`should equal ${EditionWorks[expectedSelectedEditionComplexId]}`)
+                            .toEqual(EditionWorks[expectedSelectedEditionComplexId]);
+                        done();
+                    },
                 });
             });
         });

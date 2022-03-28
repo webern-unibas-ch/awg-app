@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, NavigationExtras, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
@@ -180,16 +180,16 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (queryParams: ParamMap) => {
+            .subscribe({
+                next: (queryParams: ParamMap) => {
                     this._selectConvolute(queryParams);
                     this._filterSvgSheets();
                     this._selectSvgSheet(queryParams);
                 },
-                error => {
-                    this.errorMessage = error as any;
-                }
-            );
+                error: err => {
+                    this.errorMessage = err;
+                },
+            });
     }
 
     /**

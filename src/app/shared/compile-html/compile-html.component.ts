@@ -72,11 +72,10 @@ const nextId = (): string => {
         currentIdTime = now;
     }
     const comingId = ++currentId;
-    const randomHex = reverse(random()).padStart(8, '0');
     const timeHex = reverse(currentIdTime.toString(16).padStart(12, '0'));
     const comingIdHex = reverse(comingId.toString(16).padStart(3, '0'));
-    const newId = `compile-html-${timeHex}${comingIdHex}${randomHex}`;
-    return newId;
+    const randomHex = reverse(random()).padStart(8, '0');
+    return `compile-html-${timeHex}${comingIdHex}${randomHex}`;
 };
 
 /**

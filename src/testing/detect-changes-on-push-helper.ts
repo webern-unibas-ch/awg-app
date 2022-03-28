@@ -21,5 +21,4 @@ export async function detectChangesOnPush<T>(cf: ComponentFixture<T>) {
     );
     cd.detectChanges();
     await cf.whenStable();
-    return;
 }

@@ -1,5 +1,5 @@
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { ExtendedSearchParams, SearchQuery } from '@awg-views/data-view/models';
+import { SearchQuery } from '@awg-views/data-view/models';
 
 /**
  * The SearchResponseWithQuery class.

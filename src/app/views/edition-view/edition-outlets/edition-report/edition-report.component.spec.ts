@@ -18,7 +18,6 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
     EditionSvgSheet,
     EditionWork,
@@ -33,6 +32,11 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 import { EditionReportComponent } from './edition-report.component';
 
 // Mock components
+@Component({ selector: 'awg-modal', template: '' })
+class ModalStubComponent {
+    open(modalContentSnippetKey: string): void {}
+}
+
 @Component({ selector: 'awg-source-list', template: '' })
 class SourceListStubComponent {
     @Input()
@@ -97,12 +101,17 @@ describe('EditionReportComponent', () => {
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedPanelId: string;
 
+    let expectedEditionWorkRoute: string;
+    let expectedReportRoute: string;
+    let expectedSheetsRoute: string;
+
     let editionDataServiceGetEditionReportDataSpy: Spy;
     let getEditionReportDataSpy: Spy;
     let getEditionWorkSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigationSpy: Spy;
-    let openModalSpy: Spy;
+    let modalOpenSpy: Spy;
+    let onModalOpenSpy: Spy;
     let selectSvgSheetSpy: Spy;
 
     // Global NgbConfigModule
@@ -122,10 +131,11 @@ describe('EditionReportComponent', () => {
         mockEditionDataService = {
             getEditionReportData: (
                 editionWork: EditionWork
-            ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> => observableOf(),
+            ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> =>
+                observableOf(expectedEditionReportData),
         };
         mockEditionService = {
-            getEditionWork: (): Observable<EditionWork> => observableOf(),
+            getEditionWork: (): Observable<EditionWork> => observableOf(expectedEditionWork),
         };
 
         TestBed.configureTestingModule({
@@ -133,12 +143,12 @@ describe('EditionReportComponent', () => {
             declarations: [
                 CompileHtmlComponent,
                 EditionReportComponent,
-                RouterOutletStubComponent,
+                ModalStubComponent,
                 SourceListStubComponent,
                 SourceDescriptionStubComponent,
                 SourceEvaluationStubComponent,
                 TextcriticsListStubComponent,
-                ModalComponent,
+                RouterOutletStubComponent,
             ],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -161,6 +171,10 @@ describe('EditionReportComponent', () => {
         expectedPanelId = 'awg-sources-panel';
         expectedFragment = 'sourceA';
         expectedEditionWork = EditionWorks.OP12;
+
+        expectedEditionWorkRoute = '/edition/composition/op12/';
+        expectedReportRoute = 'report';
+        expectedSheetsRoute = 'sheets';
 
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
@@ -185,10 +199,10 @@ describe('EditionReportComponent', () => {
         getEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.returnValue(observableOf(expectedEditionWork));
         getEditionReportDataSpy = spyOn(component, 'getEditionReportData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'onReportFragmentNavigate').and.callThrough();
-        // .openModalSpy = spyOn(modal, 'open').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
-
         navigationSpy = mockRouter.navigate as jasmine.Spy;
+        modalOpenSpy = spyOn(component.modal, 'open').and.callThrough();
+        onModalOpenSpy = spyOn(component, 'onModalOpen').and.callThrough();
+        selectSvgSheetSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
     });
 
     it('... should create', () => {
@@ -197,11 +211,11 @@ describe('EditionReportComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have editionReportData$', () => {
-            expect(component.editionReportData$).withContext('should be undefined').toBeUndefined();
+            expect(component.editionReportData$).toBeUndefined();
         });
 
         it('... should not have editionWork', () => {
-            expect(component.editionWork).withContext('should be undefined').toBeUndefined();
+            expect(component.editionWork).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -249,29 +263,29 @@ describe('EditionReportComponent', () => {
         });
 
         it('... should have editionWork', () => {
-            expect(component.editionWork).withContext('should be defined').toBeDefined();
+            expect(component.editionWork).toBeDefined();
             expect(component.editionWork)
                 .withContext(`should equal ${expectedEditionWork}`)
                 .toEqual(expectedEditionWork);
         });
 
         it('... should have editionReportData$', done => {
-            expect(component.editionReportData$).withContext('should be defined').toBeDefined();
-            component.editionReportData$.subscribe(
-                response => {
+            expect(component.editionReportData$).toBeDefined();
+            component.editionReportData$.subscribe({
+                next: response => {
                     expect(response)
                         .withContext(`should equal ${expectedEditionReportData}`)
                         .toEqual(expectedEditionReportData);
                     done();
                 },
-                err => {
+                error: err => {
                     fail('error should not have been called');
                     done();
                 },
-                () => {
+                complete: () => {
                     done();
-                }
-            );
+                },
+            });
         });
 
         describe('VIEW', () => {
@@ -376,18 +390,196 @@ describe('EditionReportComponent', () => {
                 // Apply changes
                 detectChangesOnPush(fixture);
 
-                component.editionReportData$.subscribe(
-                    data => {
+                component.editionReportData$.subscribe({
+                    next: () => {
                         fail('should not have next');
                     },
-                    error => {
+                    error: () => {
                         fail('should not error');
                     },
-                    () => {
+                    complete: () => {
                         expect(component.errorObject).toEqual(expectedError);
-                    }
-                );
+                    },
+                });
             }));
+        });
+
+        describe('#onModalOpen', () => {
+            describe('... should trigger on event from', () => {
+                describe('... SourceListComponent if', () => {
+                    it('... modal snippet is undefined', () => {
+                        const sourceListDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceListStubComponent,
+                            1,
+                            1
+                        );
+                        const sourceListCmp = sourceListDes[0].injector.get(
+                            SourceListStubComponent
+                        ) as SourceListStubComponent;
+
+                        sourceListCmp.openModalRequest.emit(undefined);
+
+                        expectSpyCall(onModalOpenSpy, 1, undefined);
+                    });
+
+                    it('... modal snippet is given', () => {
+                        const sourceListDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceListStubComponent,
+                            1,
+                            1
+                        );
+                        const sourceListCmp = sourceListDes[0].injector.get(
+                            SourceListStubComponent
+                        ) as SourceListStubComponent;
+
+                        sourceListCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                    });
+                });
+
+                describe('... SourceDescriptionComponent if', () => {
+                    it('... modal snippet is undefined', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const descriptionCmp = descriptionDes[0].injector.get(
+                            SourceDescriptionStubComponent
+                        ) as SourceDescriptionStubComponent;
+
+                        descriptionCmp.openModalRequest.emit(undefined);
+
+                        expectSpyCall(onModalOpenSpy, 1, undefined);
+                    });
+
+                    it('... modal snippet is given', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const descriptionCmp = descriptionDes[0].injector.get(
+                            SourceDescriptionStubComponent
+                        ) as SourceDescriptionStubComponent;
+
+                        descriptionCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                    });
+                });
+
+                describe('... SourceEvaluationComponent if', () => {
+                    it('... modal snippet is undefined', () => {
+                        const evaluationDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceEvaluationStubComponent,
+                            1,
+                            1
+                        );
+                        const evaluationCmp = evaluationDes[0].injector.get(
+                            SourceEvaluationStubComponent
+                        ) as SourceEvaluationStubComponent;
+
+                        evaluationCmp.openModalRequest.emit(undefined);
+
+                        expectSpyCall(onModalOpenSpy, 1, undefined);
+                    });
+
+                    it('... modal snippet is given', () => {
+                        const evaluationDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceEvaluationStubComponent,
+                            1,
+                            1
+                        );
+                        const evaluationCmp = evaluationDes[0].injector.get(
+                            SourceEvaluationStubComponent
+                        ) as SourceEvaluationStubComponent;
+
+                        evaluationCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                    });
+                });
+
+                describe('... TextcriticsListComponent if', () => {
+                    it('... modal snippet is undefined', () => {
+                        const textcriticsDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TextcriticsListStubComponent,
+                            1,
+                            1
+                        );
+                        const textcriticsCmp = textcriticsDes[0].injector.get(
+                            TextcriticsListStubComponent
+                        ) as TextcriticsListStubComponent;
+
+                        textcriticsCmp.openModalRequest.emit(undefined);
+
+                        expectSpyCall(onModalOpenSpy, 1, undefined);
+                    });
+
+                    it('... smodal snippet is given', () => {
+                        const textcriticsDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            TextcriticsListStubComponent,
+                            1,
+                            1
+                        );
+                        const textcriticsCmp = textcriticsDes[0].injector.get(
+                            TextcriticsListStubComponent
+                        ) as TextcriticsListStubComponent;
+
+                        textcriticsCmp.openModalRequest.emit(expectedModalSnippet);
+
+                        expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                    });
+                });
+            });
+
+            it('... should open modal with given id', () => {
+                component.onModalOpen(expectedModalSnippet);
+                fixture.detectChanges();
+
+                expectSpyCall(onModalOpenSpy, 1, expectedModalSnippet);
+                expectSpyCall(modalOpenSpy, 1, expectedModalSnippet);
+
+                const otherSnippet = 'otherSnippet';
+                component.onModalOpen(otherSnippet);
+                fixture.detectChanges();
+
+                expectSpyCall(onModalOpenSpy, 2, otherSnippet);
+                expectSpyCall(modalOpenSpy, 2, otherSnippet);
+            });
+
+            describe('... should not do anything if ', () => {
+                it('... id is undefined', () => {
+                    component.onModalOpen(undefined);
+
+                    expectSpyCall(onModalOpenSpy, 1, undefined);
+                    expectSpyCall(modalOpenSpy, 0);
+                });
+
+                it('... id is null', () => {
+                    component.onModalOpen(null);
+
+                    expectSpyCall(onModalOpenSpy, 1, null);
+                    expectSpyCall(modalOpenSpy, 0);
+                });
+
+                it('... id is empty string', () => {
+                    component.onModalOpen('');
+
+                    expectSpyCall(onModalOpenSpy, 1, '');
+                    expectSpyCall(modalOpenSpy, 0);
+                });
+            });
         });
 
         describe('#onReportFragmentNavigate', () => {
@@ -425,6 +617,40 @@ describe('EditionReportComponent', () => {
                         expectSpyCall(navigateToReportFragmentSpy, 1, expectedSvgSheet.id);
                     });
                 });
+            });
+
+            it('... should navigate to fragment if given', () => {
+                component.onReportFragmentNavigate(expectedFragment);
+                fixture.detectChanges();
+
+                const qp = { fragment: expectedFragment };
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+
+                const otherFragment = 'otherFragment';
+                qp.fragment = otherFragment;
+                component.onReportFragmentNavigate(otherFragment);
+                fixture.detectChanges();
+
+                expectSpyCall(navigateToReportFragmentSpy, 2, otherFragment);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+            });
+
+            it('... should navigate without fragment if none is given', () => {
+                component.onReportFragmentNavigate(expectedFragment);
+                fixture.detectChanges();
+
+                const qp = { fragment: expectedFragment };
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+
+                const noFragment = '';
+                qp.fragment = noFragment;
+                component.onReportFragmentNavigate(noFragment);
+                fixture.detectChanges();
+
+                expectSpyCall(navigateToReportFragmentSpy, 2, '');
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
             });
         });
 
@@ -531,6 +757,43 @@ describe('EditionReportComponent', () => {
                         expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
                     });
                 });
+            });
+
+            it('... should navigate to id if given', () => {
+                component.onSvgSheetSelect(expectedSvgSheet.id);
+                fixture.detectChanges();
+
+                const qp = {
+                    queryParams: { sketch: expectedSvgSheet.id },
+                };
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+
+                component.onSvgSheetSelect(expectedNextSvgSheet.id);
+                fixture.detectChanges();
+
+                qp.queryParams.sketch = expectedNextSvgSheet.id;
+                expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+            });
+
+            it('... should navigate without id if none is given', () => {
+                component.onSvgSheetSelect(expectedSvgSheet.id);
+                fixture.detectChanges();
+
+                const qp = {
+                    queryParams: { sketch: expectedSvgSheet.id },
+                };
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+
+                const noId = '';
+                qp.queryParams.sketch = noId;
+                component.onSvgSheetSelect(noId);
+                fixture.detectChanges();
+
+                expectSpyCall(selectSvgSheetSpy, 2, '');
+                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
             });
         });
     });

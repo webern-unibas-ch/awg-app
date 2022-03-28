@@ -173,7 +173,6 @@ export class GraphVisualizerComponent implements OnInit {
             this.queryResult$ = from(result);
         } else {
             this.queryResult$ = EMPTY;
-            return;
         }
     }
 

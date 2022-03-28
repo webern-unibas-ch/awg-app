@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
 import { EMPTY, Observable } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 
+import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
     EditionWork,
     SourceDescriptionList,
@@ -11,7 +13,6 @@ import {
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
-import { catchError, switchMap } from 'rxjs/operators';
 
 /**
  * The EditionReport component.
@@ -27,6 +28,13 @@ import { catchError, switchMap } from 'rxjs/operators';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionReportComponent implements OnInit {
+    /**
+     * ViewChild variable: modal.
+     *
+     * It keeps the reference to the awg-modal.
+     */
+    @ViewChild('modal', { static: true }) modal: ModalComponent;
+
     /**
      * Public variable: editionWork.
      *
@@ -111,6 +119,21 @@ export class EditionReportComponent implements OnInit {
                     return EMPTY;
                 })
             );
+    }
+
+    /**
+     * Public method: onModalOpen.
+     *
+     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Opens the modal with the snippet id.
+     */
+    onModalOpen(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.modal.open(id);
     }
 
     /**
