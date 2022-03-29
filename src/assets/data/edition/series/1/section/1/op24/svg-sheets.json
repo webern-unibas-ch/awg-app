@@ -1,17 +1,17 @@
 {
     "sheets": [
         {
-            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#a",
+            "id": "SkRT-a",
             "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_1von2_path.svg",
             "image": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_1von2_path.jpg",
-            "alt": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#a",
+            "alt": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk#a",
             "convolute": "B"
         },
         {
-            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#b",
+            "id": "SkRT-b",
             "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_2von2_path.svg",
             "image": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_2von2_path.jpg",
-            "alt": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#a",
+            "alt": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk#b",
             "convolute": "B"
         }
     ]

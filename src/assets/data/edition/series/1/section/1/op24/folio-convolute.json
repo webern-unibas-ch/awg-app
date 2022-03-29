@@ -29,16 +29,14 @@
                 },
                 {
                     "folioId": "1v",
-                    "systems": "4",
+                    "systems": "12",
                     "format": {
                         "height": 198,
                         "width": 267
                     },
                     "content": []
-                }
-            ]
-        },
-        {
+                },
+                {
                     "folioId": "2r",
                     "systems": "13",
                     "format": {
@@ -72,7 +70,7 @@
                 }
             ]
         },
-	{
+        {
             "convoluteId": "A-C-D",
             "convoluteLabel": "A, C–D (siehe kritischer Bericht)",
             "folios": [],
