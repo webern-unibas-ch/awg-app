@@ -23,6 +23,12 @@ const MODALCONTENTSNIPPETS = {
         'Die edierten Notentexte von <strong>Aa:SkI/1</strong>, <strong>Ab:SkII/1</strong>, <strong>Ac:SkIII/1</strong> und <strong>Ac:SkIII/7</strong> sowie <strong>Ae:SkIV/1</strong> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
     OP12_EDITION_COMING_SOON:
         '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="nobullets"><li>Werkedition der Druckfassung der <em>Vier Lieder</em> op. 12 <br/> Textedition von Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1) <br/> Textedition von Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2) <br/> Textedition von Nr. IV <em>Gleich und Gleich</em> (Fassung 1) </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
+    OP19_SOURCE_NOT_B:
+        '<p>Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 in AWG I/3.</p>',
+    OP23_SOURCE_NOT_B:
+        '<p>Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 in AWG I/5.</p>',
+    OP24_SOURCE_NOT_B:
+        '<p>Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition des <em>Konzert für neun Instrumente</em> op. 24 in AWG I/1.</p>',
     OP25_SHEET_COMING_SOON:
         'Die edierten Notentexte weiterer Skizzen der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheinen in Kürze (02/2022).',
     OP25_SOURCE_NOT_A:
