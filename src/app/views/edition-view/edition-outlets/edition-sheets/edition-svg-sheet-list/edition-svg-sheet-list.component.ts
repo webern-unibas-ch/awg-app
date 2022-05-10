@@ -22,36 +22,6 @@ export enum SvgSheetLabelsOp12 {
 }
 
 /**
- * The SvgSheetLabelsOp25 enumeration.
- *
- * It stores the possible sheet labels for op25.
- * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
- */
-export enum SvgSheetLabelsOp25 {
-    SHEET_A_M317_SK_1 = 'M_317_Sk1',
-    SHEET_A_M317_SK_2 = 'M_317_Sk2',
-    SHEET_A_M317_SK_2_1 = 'M_317_Sk2.1',
-    SHEET_A_M317_SK_2_1_1 = 'M_317_Sk2.1.1',
-    SHEET_A_M317_SK_2_1_2 = 'M_317_Sk2.1.2',
-    SHEET_A_M317_SK_2_1_2_1 = 'M_317_Sk2.1.2.1',
-    SHEET_A_M317_SK_2_1_3 = 'M_317_Sk2.1.3',
-    SHEET_A_M317_SK_3 = 'M_317_Sk3',
-    SHEET_A_M317_SK_3_1 = 'M_317_Sk3.1',
-    SHEET_A_M317_SK_3_1_1 = 'M_317_Sk3.1.1',
-    SHEET_A_M317_SK_3_1_2 = 'M_317_Sk3.1.2',
-    SHEET_A_M317_SK_3_1_3 = 'M_317_Sk3.1.3',
-    SHEET_A_M317_SK_3_1_3_1 = 'M_317_Sk3.1.3.1',
-    SHEET_A_M317_SK_4_A = 'M_317_Sk4a',
-    SHEET_A_M317_SK_4_B = 'M_317_Sk4b',
-    SHEET_A_M317_SK_4_C = 'M_317_Sk4c',
-    SHEET_A_M317_SK_4_D = 'M_317_Sk4d',
-    SHEET_A_M317_SK_4_1 = 'M_317_Sk4.1',
-    SHEET_A_M317_SK_4_2 = 'M_317_Sk4.2',
-    SHEET_A_M317_SK_4_3 = 'M_317_Sk4.3',
-    SHEET_C_RT = 'SkRT',
-}
-
-/**
  * The EditionSvgSheetList component.
  *
  * It contains the svg sheet lists
@@ -92,7 +62,7 @@ export class EditionSvgSheetListComponent implements OnInit {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected id of an SVG sheet.
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
@@ -118,29 +88,6 @@ export class EditionSvgSheetListComponent implements OnInit {
             SHEET_3: SvgSheetLabelsOp12.SHEET_3,
             SHEET_4: SvgSheetLabelsOp12.SHEET_4,
             SHEET_5: SvgSheetLabelsOp12.SHEET_5,
-        },
-        op25: {
-            SHEET_A_M317_SK_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_1,
-            SHEET_A_M317_SK_2: SvgSheetLabelsOp25.SHEET_A_M317_SK_2,
-            SHEET_A_M317_SK_2_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_2_1,
-            SHEET_A_M317_SK_2_1_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_2_1_1,
-            SHEET_A_M317_SK_2_1_2: SvgSheetLabelsOp25.SHEET_A_M317_SK_2_1_2,
-            SHEET_A_M317_SK_2_1_2_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_2_1_2_1,
-            SHEET_A_M317_SK_2_1_3: SvgSheetLabelsOp25.SHEET_A_M317_SK_2_1_3,
-            SHEET_A_M317_SK_3: SvgSheetLabelsOp25.SHEET_A_M317_SK_3,
-            SHEET_A_M317_SK_3_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_3_1,
-            SHEET_A_M317_SK_3_1_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_3_1_1,
-            SHEET_A_M317_SK_3_1_2: SvgSheetLabelsOp25.SHEET_A_M317_SK_3_1_2,
-            SHEET_A_M317_SK_3_1_3: SvgSheetLabelsOp25.SHEET_A_M317_SK_3_1_3,
-            SHEET_A_M317_SK_3_1_3_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_3_1_3_1,
-            SHEET_A_M317_SK_4_A: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_A,
-            SHEET_A_M317_SK_4_B: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_B,
-            SHEET_A_M317_SK_4_C: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_C,
-            SHEET_A_M317_SK_4_D: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_D,
-            SHEET_A_M317_SK_4_1: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_1,
-            SHEET_A_M317_SK_4_2: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_2,
-            SHEET_A_M317_SK_4_3: SvgSheetLabelsOp25.SHEET_A_M317_SK_4_3,
-            SHEET_C_RT: SvgSheetLabelsOp25.SHEET_C_RT,
         },
     };
 
