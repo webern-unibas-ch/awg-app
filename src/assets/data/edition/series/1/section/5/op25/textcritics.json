@@ -203,7 +203,7 @@
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "6/8",
-                    "comment": "<em>I</i> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</i> bezeichnet)."
+                    "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                 },
                 {
                     "measure": "{{ '{' }}5{{ '}' }} <br /> bis {{ '{' }}6{{ '}' }}",
@@ -215,7 +215,7 @@
                     "measure": "{{ '{' }}6{{ '}' }}",
                     "system": "4",
                     "position": "1–2/8",
-                    "comment": "Text: <em>leuch</i>[-]<em>tet</i> zusammengeschrieben."
+                    "comment": "Text: <em>leuch</em>[-]<em>tet</em> zusammengeschrieben."
                 }
             ]
         },
@@ -236,7 +236,7 @@
             "id": "M_317_Sk3_1_2",
             "label": "M 317 Sk3.1.2",
             "description": [
-                "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</i>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
+                "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</em>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
             ],
             "comments": [
                 {
@@ -780,7 +780,7 @@
             "id": "SkRT",
             "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
             "description": [
-                "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <strong>Sk3.1.3</strong> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden." 
+                "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <strong>Sk3.1.3</strong> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
             ],
             "comments": [
                 {
