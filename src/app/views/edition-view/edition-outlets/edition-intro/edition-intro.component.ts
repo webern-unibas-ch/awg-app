@@ -140,10 +140,8 @@ export class EditionIntroComponent implements OnInit {
      */
     openModal(id: string): void {
         if (!id) {
-            console.log('no id');
             return;
         }
-        console.log('id', id);
         this.modal.open(id);
     }
 
