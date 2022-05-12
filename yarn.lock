@@ -2537,10 +2537,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jasmine@~4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.0.0.tgz#48bfd99cbe16dcdcde0b7d3bfa62319504d141f9"
-  integrity sha512-KvhqNz4NaONk7cfp4E9x+uXOUp7x4H2Zeyb4yXnw2vIuxD5YfSi1767x+aF7z54elhZcC0OH9/78/WL6+5jcDg==
+"@types/jasmine@~4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-4.0.3.tgz#097ce710d70eb7f3662e96c1f75824dd22c27d5c"
+  integrity sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==
 
 "@types/json-schema@*", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.6":
   version "7.0.7"
@@ -4170,11 +4170,6 @@ balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
-
-base64-arraybuffer@~1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/base64-arraybuffer/-/base64-arraybuffer-1.0.1.tgz#87bd13525626db4a9838e00a508c2b73efcf348c"
-  integrity sha512-vFIUq7FdLtjZMhATwDul5RZWv2jpXQ09Pd6jcVEOvIsqCWTRFD/ONHNfyOS8dA/Ippi5dsIgpyKWKZaAKZltbA==
 
 base64-js@1.3.1:
   version "1.3.1"
@@ -5834,17 +5829,15 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-engine.io-parser@~5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/engine.io-parser/-/engine.io-parser-5.0.1.tgz#6695fc0f1e6d76ad4a48300ff80db5f6b3654939"
-  integrity sha512-j4p3WwJrG2k92VISM0op7wiq60vO92MlF3CRGxhKHy9ywG1/Dkc72g0dXeDQ+//hrcDn8gqQzoEkdO9FN0d9AA==
-  dependencies:
-    base64-arraybuffer "~1.0.1"
+engine.io-parser@~5.0.3:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/engine.io-parser/-/engine.io-parser-5.0.4.tgz#0b13f704fa9271b3ec4f33112410d8f3f41d0fc0"
+  integrity sha512-+nVFp+5z1E3HcToEnO7ZIj3g+3k9389DvWtvJZz0T6/eOCPIyyxehFcedoYrZQrp0LgQbD9pPXhpMBKMd5QURg==
 
-engine.io@~6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/engine.io/-/engine.io-6.0.0.tgz#2b993fcd73e6b3a6abb52b40b803651cd5747cf0"
-  integrity sha512-Ui7yl3JajEIaACg8MOUwWvuuwU7jepZqX3BKs1ho7NQRuP4LhN4XIykXhp8bEy+x/DhA0LBZZXYSCkZDqrwMMg==
+engine.io@~6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/engine.io/-/engine.io-6.2.0.tgz#003bec48f6815926f2b1b17873e576acd54f41d0"
+  integrity sha512-4KzwW3F3bk+KlzSOY57fj/Jx6LyRQ1nbcyIadehl+AnXjKT7gDO0ORdRi/84ixvMKTym6ZKuxvbzN62HDDU1Lg==
   dependencies:
     "@types/cookie" "^0.4.1"
     "@types/cors" "^2.8.12"
@@ -5854,7 +5847,7 @@ engine.io@~6.0.0:
     cookie "~0.4.1"
     cors "~2.8.5"
     debug "~4.3.1"
-    engine.io-parser "~5.0.0"
+    engine.io-parser "~5.0.3"
     ws "~8.2.3"
 
 enhanced-resolve@^5.9.2:
@@ -7171,10 +7164,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-gzipper@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-7.0.0.tgz#2a612b8ea265412b321ccf3f7f1760967aa7db8a"
-  integrity sha512-Pfr8FXg4JOQ9hwWWS+d5KDOokRlfjkuNuK7HVJsiXwQhYTugKMHXAnAeEuKr5ILtxX0cAzJBtR6g3Wclze8+LA==
+gzipper@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-7.1.0.tgz#a4e2c408b712979496623855bacbfdb097d78e6c"
+  integrity sha512-IhxdCXaOxsW/t8PiTUwg0YfXFI5O17SK80Snci0KJwMSOiqWZ/e00RZr2yhp2Zhnn6hJ0oYC/AJ6u6GQFu5l6w==
   dependencies:
     "@gfx/zopfli" "^1.0.15"
     commander "^7.2.0"
@@ -8056,15 +8049,10 @@ jake@^10.6.1:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
-jasmine-core@^3.6.0:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-3.7.1.tgz#0401327f6249eac993d47bbfa18d4e8efacfb561"
-  integrity sha512-DH3oYDS/AUvvr22+xUBW62m1Xoy7tUlY1tsxKEJvl5JeJ7q8zd1K5bUwiOxdH+erj6l2vAMM3hV25Xs9/WrmuQ==
-
-jasmine-core@~4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.0.1.tgz#ea4b0495d82155023bd56c25181d9f9b623f61b8"
-  integrity sha512-w+JDABxQCkxbGGxg+a2hUVZyqUS2JKngvIyLGu/xiw2ZwgsoSB0iiecLQsQORSeaKQ6iGrCyWG86RfNDuoA7Lg==
+jasmine-core@^4.1.0, jasmine-core@~4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-4.1.1.tgz#1045091e16f4f19e1d72416eef5db01e64d5fbeb"
+  integrity sha512-lmUfT5XcK9KKvt3lLYzn93hc4MGzlUBowExFVgzbSW0ZCrdeyS574dfsyfRhxbg81Wj4gk+RxUiTnj7KBfDA1g==
 
 jest-worker@^27.0.2:
   version "27.0.6"
@@ -8266,12 +8254,12 @@ karma-jasmine-html-reporter@^1.7.0:
   resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.7.0.tgz#52c489a74d760934a1089bfa5ea4a8fcb84cc28b"
   integrity sha512-pzum1TL7j90DTE86eFt48/s12hqwQuiD+e5aXx2Dc9wDEn2LfGq6RoAxEZZjFiN0RDSCOnosEKRZWxbQ+iMpQQ==
 
-karma-jasmine@~4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-4.0.1.tgz#b99e073b6d99a5196fc4bffc121b89313b0abd82"
-  integrity sha512-h8XDAhTiZjJKzfkoO1laMH+zfNlra+dEQHUAjpn5JV1zCPtOIVWGQjLBrqhnzQa/hrU2XrZwSyBa6XjEBzfXzw==
+karma-jasmine@~5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/karma-jasmine/-/karma-jasmine-5.0.0.tgz#e270c86214b5390df77ebe1b6eaab79664d87d9f"
+  integrity sha512-dsFkCoTwyoNyQnMgegS72wIA/2xPDJG5yzTry0448U6lAY7P60Wgg4UuLlbdLv8YHbimgNpDXjjmfPdc99EDWQ==
   dependencies:
-    jasmine-core "^3.6.0"
+    jasmine-core "^4.1.0"
 
 karma-source-map-support@1.4.0:
   version "1.4.0"
@@ -8280,10 +8268,10 @@ karma-source-map-support@1.4.0:
   dependencies:
     source-map-support "^0.5.5"
 
-karma@~6.3.17:
-  version "6.3.17"
-  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.17.tgz#5d963fb52463b73e1b5892ecb54c8f21bb04ba1d"
-  integrity sha512-2TfjHwrRExC8yHoWlPBULyaLwAFmXmxQrcuFImt/JsAsSZu1uOWTZ1ZsWjqQtWpHLiatJOHL5jFjXSJIgCd01g==
+karma@~6.3.19:
+  version "6.3.19"
+  resolved "https://registry.yarnpkg.com/karma/-/karma-6.3.19.tgz#e50759667b0b9c6ad758655db0547d3ab4d2abf5"
+  integrity sha512-NDhWckzES/Y9xMiddyU1RzaKL76/scCsu8Mp0vR0Z3lQRvC3p72+Ab4ppoxs36S9tyPNX5V48yvaV++RNEBPZw==
   dependencies:
     "@colors/colors" "1.5.0"
     body-parser "^1.19.0"
@@ -8304,7 +8292,7 @@ karma@~6.3.17:
     qjobs "^1.2.0"
     range-parser "^1.2.1"
     rimraf "^3.0.2"
-    socket.io "^4.2.0"
+    socket.io "^4.4.1"
     source-map "^0.6.1"
     tmp "^0.2.1"
     ua-parser-js "^0.7.30"
@@ -11146,10 +11134,10 @@ sntp@1.x.x:
   dependencies:
     hoek "2.x.x"
 
-socket.io-adapter@~2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-2.3.2.tgz#039cd7c71a52abad984a6d57da2c0b7ecdd3c289"
-  integrity sha512-PBZpxUPYjmoogY0aoaTmo1643JelsaS1CiAwNjRVdrI0X9Seuc19Y2Wife8k88avW6haG8cznvwbubAZwH4Mtg==
+socket.io-adapter@~2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-2.4.0.tgz#b50a4a9ecdd00c34d4c8c808224daa1a786152a6"
+  integrity sha512-W4N+o69rkMEGVuk2D/cvca3uYsvGlMwsySWV447y99gUPghxq42BxqLNMndb+a1mm/5/7NeXVQS7RLa2XyXvYg==
 
 socket.io-parser@~4.0.4:
   version "4.0.4"
@@ -11160,16 +11148,16 @@ socket.io-parser@~4.0.4:
     component-emitter "~1.3.0"
     debug "~4.3.1"
 
-socket.io@^4.2.0:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-4.3.1.tgz#c0aa14f3f916a8ab713e83a5bd20c16600245763"
-  integrity sha512-HC5w5Olv2XZ0XJ4gOLGzzHEuOCfj3G0SmoW3jLHYYh34EVsIr3EkW9h6kgfW+K3TFEcmYy8JcPWe//KUkBp5jA==
+socket.io@^4.4.1:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/socket.io/-/socket.io-4.5.0.tgz#78ae2e84784c29267086a416620c18ef95b37186"
+  integrity sha512-slTYqU2jCgMjXwresG8grhUi/cC6GjzmcfqArzaH3BN/9I/42eZk9yamNvZJdBfTubkjEdKAKs12NEztId+bUA==
   dependencies:
     accepts "~1.3.4"
     base64id "~2.0.0"
     debug "~4.3.2"
-    engine.io "~6.0.0"
-    socket.io-adapter "~2.3.2"
+    engine.io "~6.2.0"
+    socket.io-adapter "~2.4.0"
     socket.io-parser "~4.0.4"
 
 sockjs@^0.3.21:
