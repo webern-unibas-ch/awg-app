@@ -1836,10 +1836,10 @@ with this given id.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
-import { ActivatedRoute, NavigationEnd, NavigationExtras, ParamMap, Router } from &#x27;@angular/router&#x27;;
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from &#x27;@angular/router&#x27;;
 
 import { Subject } from &#x27;rxjs&#x27;;
-import { filter, map, switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
+import { switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
 
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
 import {
@@ -2017,16 +2017,16 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (queryParams: ParamMap) &#x3D;&gt; {
+            .subscribe({
+                next: (queryParams: ParamMap) &#x3D;&gt; {
                     this._selectConvolute(queryParams);
                     this._filterSvgSheets();
                     this._selectSvgSheet(queryParams);
                 },
-                error &#x3D;&gt; {
-                    this.errorMessage &#x3D; error as any;
-                }
-            );
+                error: err &#x3D;&gt; {
+                    this.errorMessage &#x3D; err;
+                },
+            });
     }
 
     /**

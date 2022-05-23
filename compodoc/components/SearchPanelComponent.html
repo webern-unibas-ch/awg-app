@@ -434,8 +434,8 @@ the DataStreamerService, and the LoadingService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="517"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:517</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="520"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:520</a></div>
                 </td>
             </tr>
 
@@ -509,8 +509,8 @@ the DataStreamerService, and the LoadingService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="547"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:547</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="550"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:550</a></div>
                 </td>
             </tr>
 
@@ -589,8 +589,8 @@ the DataStreamerService, and the LoadingService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="499"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:499</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="502"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:502</a></div>
                 </td>
             </tr>
 
@@ -857,8 +857,8 @@ and returns the value typed as string or ExtendedSearchParams.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="481"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:481</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="484"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:484</a></div>
                 </td>
             </tr>
 
@@ -2119,17 +2119,17 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (searchResponse: SearchResponseJson) &#x3D;&gt; {
+            .subscribe({
+                next: (searchResponse: SearchResponseJson) &#x3D;&gt; {
                     // Share search data via streamer service
                     this.searchResponseWithQuery &#x3D; new SearchResponseWithQuery(searchResponse, this.searchParams.query);
                     this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
                 },
-                error &#x3D;&gt; {
-                    console.error(error);
-                    this.errorMessage &#x3D; error as any;
-                }
-            );
+                error: err &#x3D;&gt; {
+                    this.errorMessage &#x3D; err;
+                    console.error(&#x27;SearchPanel# getSearchData subscription error: &#x27;, this.errorMessage);
+                },
+            });
     }
 
     /**
@@ -2380,7 +2380,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * @returns {boolean} The boolean result of the check.
      */
     isSearchResultListShown(): boolean {
-        this.dataStreamerService.getSearchResponseWithQuery().subscribe(result &#x3D;&gt; console.log(result));
+        this.dataStreamerService
+            .getSearchResponseWithQuery()
+            .pipe(takeUntil(this._destroyed$))
+            .subscribe({ next: result &#x3D;&gt; console.log(result) });
 
         return true;
     }

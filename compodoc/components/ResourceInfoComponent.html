@@ -1513,8 +1513,8 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (res: SearchResponseWithQuery) &#x3D;&gt; {
+            .subscribe({
+                next: (res: SearchResponseWithQuery) &#x3D;&gt; {
                     // Deep clone search results from streamer service
                     const response &#x3D; JSON.parse(JSON.stringify(res));
 
@@ -1524,10 +1524,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     // Build the form
                     this._buildForm(this.goToIndex, this.resultSize);
                 },
-                error &#x3D;&gt; {
-                    console.error(&#x27;RESOURCE-INFO: Got no sideInfoData from Subscription!&#x27;, error as any);
-                }
-            );
+                error: err &#x3D;&gt; {
+                    console.error(&#x27;RESOURCE-INFO: Got no sideInfoData from Subscription!&#x27;, err);
+                },
+            });
     }
 
     /**

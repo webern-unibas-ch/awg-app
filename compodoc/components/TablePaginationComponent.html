@@ -367,8 +367,8 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:74</a></div>
                 </td>
             </tr>
 
@@ -486,8 +486,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:87</a></div>
                 </td>
             </tr>
 
@@ -564,8 +564,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="102"
-                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:102</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/app/shared/table/table-pagination/table-pagination.component.ts:104</a></div>
                 </td>
             </tr>
 
@@ -642,7 +642,7 @@ when initializing the component.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>/[^0-9]/g</code>
+                        <i>Default value : </i><code>/\D/g</code>
                     </td>
                 </tr>
                     <tr>
@@ -719,7 +719,7 @@ export class TablePaginationComponent implements OnInit {
      *
      * It keeps a regex for anything else but a number value.
      */
-    readonly FILTER_PAG_REGEX &#x3D; /[^0-9]/g;
+    readonly FILTER_PAG_REGEX &#x3D; /\D/g;
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -727,7 +727,9 @@ export class TablePaginationComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        // Intentionally left empty until implemented
+    }
 
     /**
      * Public method: formatInput.

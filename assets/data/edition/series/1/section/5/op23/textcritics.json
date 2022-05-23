@@ -1,0 +1,25 @@
+{
+    "textcritics": [
+        {
+            "id": "M_312_Sk5_M_313_Sk1_M_314_Sk1",
+            "label": "M 312 Sk5 / M 313 Sk1 / M 314 Sk1 (Reihentabelle op. 23)",
+            "description": [
+                "Die <strong>Reihentabelle op. 23</strong> wiederholt die bereits in <strong>M 312 Sk2</strong> tabellarisch notierten Reihenformen 1–8, ohne die dort ebenfalls (und eingeklammerten) Reihenformen 9–10 (G<sub>f</sub>, K<sub>gis</sub>). Sie wurde vermutlich während oder nach <strong>M 312 Sk4</strong> angefertigt und dürfte als Werkzeug bei den Skizzen zu M 313 und M 314 gedient haben." 
+            ],
+            "comments": [
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1–4",
+                    "position": "",
+                    "comment": "Reihennummerierung (<em>I</em>–<em>VIII</em>) mit rotem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2",
+                    "position": "KU<sub>f</sub>: 8. Reihenton",
+                    "comment": "&#9839;fis<sup>1</sup> überschreibt &#9837;ges<sup>1</sup>."
+                }
+            ]
+        }
+    ]
+}

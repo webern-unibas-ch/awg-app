@@ -1688,8 +1688,8 @@ Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/1
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="877"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:877</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="875"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:875</a></div>
                 </td>
             </tr>
 
@@ -1768,8 +1768,8 @@ Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/1
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="987"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:987</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="985"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:985</a></div>
                 </td>
             </tr>
 
@@ -1850,8 +1850,8 @@ Cf. <a href="https://stackoverflow.com/questions/16358905/d3-force-layout-graph-
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="1059"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:1059</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="1057"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:1057</a></div>
                 </td>
             </tr>
 
@@ -1931,8 +1931,8 @@ on a force simulation&#39;s tick.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="943"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:943</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="941"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:941</a></div>
                 </td>
             </tr>
 
@@ -2012,8 +2012,8 @@ on a force simulation&#39;s tick.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="972"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:972</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="970"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:970</a></div>
                 </td>
             </tr>
 
@@ -4183,10 +4183,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // Avoid Math.round error
         // Cf. https://www.jacklmoore.com/notes/rounding-in-javascript/
-        const round &#x3D; (roundValue: number, decimalPlaces: number): number &#x3D;&gt; {
-            const rounded &#x3D; Number(Math.round(Number(roundValue + &#x27;e&#x27; + decimalPlaces)) + &#x27;e-&#x27; + decimalPlaces);
-            return rounded;
-        };
+        const round &#x3D; (roundValue: number, decimalPlaces: number): number &#x3D;&gt;
+            Number(Math.round(Number(roundValue + &#x27;e&#x27; + decimalPlaces)) + &#x27;e-&#x27; + decimalPlaces);
 
         return round(value, countDecimals(steps));
     }
@@ -4528,6 +4526,18 @@ input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider {
 
     &amp;:focus {
         outline: none;
+
+        &amp;::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &amp;::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+
+        &amp;::-webkit-slider-runnable-track {
+            background: #e5e5e5;
+        }
     }
 
     &amp;::-webkit-slider-runnable-track {
@@ -4539,14 +4549,10 @@ input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider {
         -webkit-appearance: none;
     }
 
-    &amp;:focus::-webkit-slider-runnable-track {
-        background: #e5e5e5;
-    }
-
     &amp;::-moz-range-track {
         @include slider-track(29px);
         -moz-margin-start: fill;
-        margin-end: fill;
+        margin-right: fill;
     }
 
     &amp;::-moz-range-thumb {
@@ -4575,16 +4581,6 @@ input[type&#x3D;&#x27;range&#x27;].awg-force-graph-zoom-slider {
         @include slider-thumb(29px);
         margin-top: 0px;
         /*Needed to keep the Edge thumb centred*/
-    }
-
-    &amp;:focus {
-        &amp;::-ms-fill-lower {
-            background: rgba(221, 221, 221, 0.78);
-        }
-
-        &amp;::-ms-fill-upper {
-            background: #e5e5e5;
-        }
     }
 }
 

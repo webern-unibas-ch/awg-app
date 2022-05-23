@@ -1394,13 +1394,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (data: ResourceData) &#x3D;&gt; {
+            .subscribe({
+                next: (data: ResourceData) &#x3D;&gt; {
                     // Subscribe to resource data to trigger loading service
                     this.resourceData &#x3D; data;
                 },
-                err &#x3D;&gt; (this.errorMessage &#x3D; err)
-            );
+                error: err &#x3D;&gt; (this.errorMessage &#x3D; err),
+            });
     }
 
     /**

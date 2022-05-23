@@ -472,7 +472,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.8.1&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.8.2&#x27;</code>
                     </td>
                 </tr>
 
@@ -504,7 +504,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;23. März 2022&#x27;</code>
+                        <i>Default value : </i><code>&#x27;23. Mai 2022&#x27;</code>
                     </td>
                 </tr>
 
@@ -801,11 +801,10 @@
         currentIdTime &#x3D; now;
     }
     const comingId &#x3D; ++currentId;
-    const randomHex &#x3D; reverse(random()).padStart(8, &#x27;0&#x27;);
     const timeHex &#x3D; reverse(currentIdTime.toString(16).padStart(12, &#x27;0&#x27;));
     const comingIdHex &#x3D; reverse(comingId.toString(16).padStart(3, &#x27;0&#x27;));
-    const newId &#x3D; &#x60;compile-html-${timeHex}${comingIdHex}${randomHex}&#x60;;
-    return newId;
+    const randomHex &#x3D; reverse(random()).padStart(8, &#x27;0&#x27;);
+    return &#x60;compile-html-${timeHex}${comingIdHex}${randomHex}&#x60;;
 }</code>
                     </td>
                 </tr>
@@ -2326,6 +2325,23 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     },
 
     /**
+     * Test helper data constant: mockIntroData.
+     *
+     * It provides a mocked folioConvoluteData object.
+     */
+    mockIntroData: {
+        intro: [
+            {
+                id: &#x27;op12&#x27;,
+                content: [
+                    &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;sourceA\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&#x27;,
+                    &#x27;In &lt;a (click)&#x3D;&quot;ref.selectSvgSheet(\&#x27;Aa:SkI/2\&#x27;)&quot;&gt;&lt;strong&gt;Aa:SkI/2&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;Aa:SkI/1&lt;/strong&gt;&lt;/a&gt; neu skizziert&#x27;,
+                ],
+            },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockModalSnippet.
      *
      * It provides a mocked modal snippet string.
@@ -3761,6 +3777,12 @@ from the Salsah API.</p>
         &#x27;Die edierten Notentexte von &lt;strong&gt;Aa:SkI/1&lt;/strong&gt;, &lt;strong&gt;Ab:SkII/1&lt;/strong&gt;, &lt;strong&gt;Ac:SkIII/1&lt;/strong&gt; und &lt;strong&gt;Ac:SkIII/7&lt;/strong&gt; sowie &lt;strong&gt;Ae:SkIV/1&lt;/strong&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&#x27;,
     OP12_EDITION_COMING_SOON:
         &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;nobullets&quot;&gt;&lt;li&gt;Werkedition der Druckfassung der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 &lt;br/&gt; Textedition von Nr. I „&lt;em&gt;Der Tag ist vergangen&lt;/em&gt;“ (Fassung 1) &lt;br/&gt; Textedition von Nr. I „&lt;em&gt;Der Tag ist vergangen&lt;/em&gt;“ (Fassung 2) &lt;br/&gt; Textedition von Nr. IV &lt;em&gt;Gleich und Gleich&lt;/em&gt; (Fassung 1) &lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
+    OP19_SOURCE_NOT_B:
+        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;A&lt;/strong&gt; sowie &lt;strong&gt;C–D&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Zwei Lieder für gemischten Chor und Ensemble&lt;/em&gt; op. 19 in AWG I/3.&lt;/p&gt;&#x27;,
+    OP23_SOURCE_NOT_B:
+        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;A&lt;/strong&gt; sowie &lt;strong&gt;C–D&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Drei Gesänge aus&lt;/em&gt; Viae Inviae &lt;em&gt;von Hildegard Jone&lt;/em&gt; op. 23 in AWG I/5.&lt;/p&gt;&#x27;,
+    OP24_SOURCE_NOT_B:
+        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;A&lt;/strong&gt; sowie &lt;strong&gt;C–D&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition des &lt;em&gt;Konzert für neun Instrumente&lt;/em&gt; op. 24 in AWG I/1.&lt;/p&gt;&#x27;,
     OP25_SHEET_COMING_SOON:
         &#x27;Die edierten Notentexte weiterer Skizzen der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheinen in Kürze (02/2022).&#x27;,
     OP25_SOURCE_NOT_A:

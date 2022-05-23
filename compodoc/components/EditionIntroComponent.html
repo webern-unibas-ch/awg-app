@@ -488,8 +488,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-intro/edition-intro.component.ts:142</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="141"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-intro/edition-intro.component.ts:141</a></div>
                 </td>
             </tr>
 
@@ -497,8 +497,7 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: openModal.</p>
-<p>It emits a given id of a modal snippet text
-to the <a href="openModalRequest">openModalRequest</a>.</p>
+<p>It opens the <a href="../components/ModalComponent.html">ModalComponent</a> with a given id of a modal snippet text.</p>
 </div>
 
                     <div class="io-description">
@@ -540,7 +539,7 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Emits the id.</p>
+                        <p>Opens the modal with the snippet id.</p>
 
                     </div>
                 </td>
@@ -567,8 +566,8 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-intro/edition-intro.component.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="157"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-intro/edition-intro.component.ts:157</a></div>
                 </td>
             </tr>
 
@@ -820,7 +819,7 @@ route with the given id.</p>
 import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
 
 import { catchError, switchMap } from &#x27;rxjs/operators&#x27;;
-import { Observable, throwError } from &#x27;rxjs&#x27;;
+import { EMPTY, Observable } from &#x27;rxjs&#x27;;
 
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
 
@@ -925,7 +924,7 @@ export class EditionIntroComponent implements OnInit {
                 // Error handling
                 catchError(err &#x3D;&gt; {
                     this.errorObject &#x3D; err;
-                    return throwError(err);
+                    return EMPTY;
                 })
             );
     }
@@ -951,13 +950,15 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: openModal.
      *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
+     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
      *
      * @param {string} id The given modal snippet id.
-     * @returns {void} Emits the id.
+     * @returns {void} Opens the modal with the snippet id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.modal.open(id);
     }
 

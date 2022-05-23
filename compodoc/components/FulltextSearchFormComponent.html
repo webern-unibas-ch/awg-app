@@ -611,8 +611,8 @@ the onSearch method with the new search value.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="207"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:207</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:209</a></div>
                 </td>
             </tr>
 
@@ -693,8 +693,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="195"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:195</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:197</a></div>
                 </td>
             </tr>
 
@@ -771,8 +771,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="183"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:183</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/fulltext-search-form/fulltext-search-form.component.ts:185</a></div>
                 </td>
             </tr>
 
@@ -1160,7 +1160,9 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
                 distinctUntilChanged(),
                 takeUntil(this._destroyed$)
             )
-            .subscribe((query: string) &#x3D;&gt; this.onSearch(query));
+            .subscribe({
+                next: (query: string) &#x3D;&gt; this.onSearch(query),
+            });
     }
 
     /**

@@ -134,7 +134,7 @@ from a textcritics json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:70</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/models/textcritics.model.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -208,6 +208,11 @@ export class Textcritics {
      * The array of textcritical comments from a textcritics list.
      */
     comments: TextcriticalComment[];
+
+    /**
+     * A boolean flag to indicate if the textcritics describe a row table.
+     */
+    rowtable?: boolean;
 }
 
 /**

@@ -324,9 +324,11 @@ export class AppComponent {
                     return appTitle;
                 })
             )
-            .subscribe((pageTitle: string) &#x3D;&gt; {
-                // Set page title
-                this.titleService.setTitle(pageTitle);
+            .subscribe({
+                next: (pageTitle: string) &#x3D;&gt; {
+                    // Set page title
+                    this.titleService.setTitle(pageTitle);
+                },
             });
     }
 }

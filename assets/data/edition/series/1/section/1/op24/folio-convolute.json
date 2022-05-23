@@ -1,0 +1,80 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "12",
+                    "format": {
+                        "height": 198,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#a",
+                            "sigle": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
+                            "sigleAddendum": "Reihenformen 1–24",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 12
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "12",
+                    "format": {
+                        "height": 198,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "13",
+                    "format": {
+                        "height": 209,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#b",
+                            "sigle": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
+                            "sigleAddendum": "Reihenformen 25–48",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 12
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "13",
+                    "format": {
+                        "height": 209,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-D",
+            "convoluteLabel": "A, C–D (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP24_SOURCE_NOT_B"
+        }
+    ]
+}

@@ -813,7 +813,7 @@ the method to get the JSON data.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>(error: any) &#x3D;&gt; Observable&lt;T&gt;</code>
+                        <b>Returns : </b>    <code>(error: HttpErrorResponse) &#x3D;&gt; Observable&lt;T&gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -846,8 +846,8 @@ the method to get the JSON data.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="350"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:350</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="349"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:349</a></div>
                 </td>
             </tr>
 
@@ -1365,7 +1365,7 @@ Only the first emit is needed.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { HttpClient, HttpErrorResponse } from &#x27;@angular/common/http&#x27;;
 
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from &#x27;rxjs&#x27;;
 import { catchError, defaultIfEmpty, take } from &#x27;rxjs/operators&#x27;;
@@ -1695,8 +1695,7 @@ export class EditionDataService {
      * @returns An observable of the error.
      */
     private _handleError&lt;T&gt;(operation: string, result?: T) {
-        return (error: any): Observable&lt;T&gt; &#x3D;&gt; {
-            // TODO: better job of transforming error for user consumption
+        return (error: HttpErrorResponse): Observable&lt;T&gt; &#x3D;&gt; {
             this._logError(&#x60;${operation} failed: ${error.message}&#x60;);
 
             // Let the app keep running by returning an empty result.
