@@ -19,12 +19,12 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * It keeps the data of the edition row tables as an array of extended routes.
      */
     rowTablesData = [
-        { route: '/op19', short: 'Op. 19', full: 'Opus 19', convolute: 'B', sketch: 'SkRT', disabled: true },
+        { route: '/op19', short: 'Op. 19', full: 'Opus 19', convolute: 'B', sketch: 'SkRT', disabled: false },
         { route: '/op20', short: 'Op. 20', full: 'Opus 20', convolute: 'A', sketch: 'SkRT', disabled: true },
         { route: '/op21', short: 'Op. 21', full: 'Opus 21', convolute: 'B', sketch: 'SkRT', disabled: true },
         { route: '/op22', short: 'Op. 22', full: 'Opus 22', convolute: 'B', sketch: 'SkRT', disabled: true },
-        { route: '/op23', short: 'Op. 23', full: 'Opus 23', convolute: 'B', sketch: 'SkRT', disabled: true },
-        { route: '/op24', short: 'Op. 24', full: 'Opus 24', convolute: 'B', sketch: 'SkRT', disabled: true },
+        { route: '/op23', short: 'Op. 23', full: 'Opus 23', convolute: 'B', sketch: 'SkRT', disabled: false },
+        { route: '/op24', short: 'Op. 24', full: 'Opus 24', convolute: 'B', sketch: 'SkRT', disabled: false },
         { route: '/op25', short: 'Op. 25', full: 'Opus 25', convolute: 'C', sketch: 'SkRT', disabled: false },
         { route: '/op26', short: 'Op. 26', full: 'Opus 26', convolute: 'B', sketch: 'SkRT', disabled: true },
         { route: '/op27', short: 'Op. 27', full: 'Opus 27', convolute: 'B', sketch: 'SkRT', disabled: true },

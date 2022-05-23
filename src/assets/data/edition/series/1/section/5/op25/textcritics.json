@@ -4,7 +4,7 @@
             "id": "M_317_Sk1",
             "label": "M 317 Sk1",
             "description": [
-                "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <strong>Sk2</strong>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu op. 24/I auf Bl. 22v–26r, 31v–33r, und 36v–38r im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39r System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<strong>Sk4</strong> T. 3B–6].) <br /> Die Datierung <em>4. VII. 34</em> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <strong>Sk2</strong> notiert worden. <br /> Der über System 1 stehende Titel <em>„Wie bin ich froh!“</em> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <strong>Sk4</strong>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
+                "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <strong>Sk2</strong>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu op. 24/I auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup> und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39<sup>r</sup> System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<strong>Sk4</strong> T. 3B–6].) <br /> Die Datierung <em>4. VII. 34</em> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <strong>Sk2</strong> notiert worden. <br /> Der über System 1 stehende Titel <em>„Wie bin ich froh!“</em> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <strong>Sk4</strong>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
             ],
             "comments": [
                 {
@@ -203,7 +203,7 @@
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "6/8",
-                    "comment": "<em>I</i> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</i> bezeichnet)."
+                    "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                 },
                 {
                     "measure": "{{ '{' }}5{{ '}' }} <br /> bis {{ '{' }}6{{ '}' }}",
@@ -215,7 +215,7 @@
                     "measure": "{{ '{' }}6{{ '}' }}",
                     "system": "4",
                     "position": "1–2/8",
-                    "comment": "Text: <em>leuch</i>[-]<em>tet</i> zusammengeschrieben."
+                    "comment": "Text: <em>leuch</em>[-]<em>tet</em> zusammengeschrieben."
                 }
             ]
         },
@@ -236,7 +236,7 @@
             "id": "M_317_Sk3_1_2",
             "label": "M 317 Sk3.1.2",
             "description": [
-                "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</i>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
+                "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</em>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
             ],
             "comments": [
                 {
@@ -275,71 +275,72 @@
             "id": "M_317_Sk3_1_3",
             "label": "M 317 Sk3.1.3",
             "description": [
-                "<strong>Sk3.1.3</strong> notiert die vier in op. 25/I verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <strong>Sk4</strong> und <strong>Sk4.1</strong> verwendeten Reihenziffern <em>1</em> bis <em>4</em>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <strong>Sk3.1.2</strong> vollzogen. "
+                "<strong>Sk3.1.3</strong> notiert die vier in M 317 verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <strong>Sk4</strong> und <strong>Sk4.1</strong> verwendeten Reihenziffern <em>1</em> bis <em>4</em>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <strong>Sk3.1.2</strong> vollzogen. "
             ],
+            "rowtable": true,
             "comments": [
                 {
-                    "measure": "",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "5",
                     "position": "",
                     "comment": "Strich mit unklarer Bedeutung."
                 },
                 {
-                    "measure": "G<sub>g</sub> (<em>1</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
-                    "position": "vor 1. Reihenton",
+                    "position": "G<sub>g</sub> (1): vor 1. Reihenton",
                     "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
-                    "measure": "G<sub>g</sub> (<em>1</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
-                    "position": "7. Reihenton",
+                    "position": "G<sub>g</sub> (1): 7. Reihenton",
                     "comment": "sic: kein &#9838;."
                 },
                 {
-                    "measure": "G<sub>g</sub> (<em>1</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
-                    "position": "10.–11. Reihenton",
+                    "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
                     "comment": "&#9838;a, &#9838;c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein &#9838;), &#9838;a<sup>1</sup>."
                 },
                 {
-                    "measure": "K<sub>gis</sub> (<em>2</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
-                    "position": "vor 1. Reihenton",
+                    "position": "K<sub>gis</sub> (2): vor 1. Reihenton",
                     "comment": "<em>2</em> mit grünem Buntstift."
                 },
                 {
-                    "measure": "K<sub>gis</sub> (<em>2</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
-                    "position": "2.–3. Reihenton",
+                    "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
                     "comment": "&#9838;c<sup>1</sup>, &#9838;a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine &#9838;)."
                 },
                 {
-                    "measure": "U<sub>g</sub> (<em>3</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
-                    "position": "vor 1. Reihenton",
+                    "position": "U<sub>g</sub> (3): vor 1. Reihenton",
                     "comment": "<em>3</em> mit schwarzem Buntstift."
                 },
                 {
-                    "measure": "U<sub>g</sub> (<em>3</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
-                    "position": "10.–11. Reihenton",
+                    "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
                     "comment": "&#9838;f<sup>2</sup>, &#9838;d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;d<sup>1</sup>, &#9838;f<sup>1</sup>."
                 },
                 {
-                    "measure": "KU<sub>fis</sub> (<em>4</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
-                    "position": "vor 1. Reihenton",
+                    "position": "KU<sub>fis</sub> (4): vor 1. Reihenton",
                     "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
-                    "measure": "KU<sub>fis</sub> (<em>4</em>)",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
-                    "position": "2.–3. Note",
+                    "position": "KU<sub>fis</sub> (4): 2.–3. Note",
                     "comment": "&#9838;d<sup>2</sup>, &#9838;f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;f<sup>1</sup>, d<sup>1</sup> (sic: kein &#9838;)."
                 },
                 {
-                    "measure": "",
+                    "measure": "Bl. 38<sup>v</sup>",
                     "system": "6–7",
                     "position": "nach letzter Note",
                     "comment": "Klammer rechts mit rotem Buntstift."
@@ -773,6 +774,28 @@
                     "system": "16",
                     "position": "letzte Note",
                     "comment": "Entzifferung von &#9839;ais unsicher: möglicherweise auch &#9837;b."
+                }
+            ]
+        },
+        {
+            "id": "SkRT",
+            "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
+            "description": [
+                "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <strong>Sk3.1.3</strong> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
+            ],
+            "rowtable": true,
+            "comments": [
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1–2",
+                    "position": "",
+                    "comment": "Reihennummerierung (<em>1</em>–<em>4</em>) mit rotem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3–4",
+                    "position": "",
+                    "comment": "<em>2. Lied</em> mit blauem Buntstift. Akkoladenstrich mit blauem Buntstift nachgezogen. Reihennummerierung (<em>5</em>–<em>8</em>) mit grünem Buntstift."
                 }
             ]
         }

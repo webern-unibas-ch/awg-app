@@ -1,0 +1,15 @@
+{
+    "graph": [
+        {
+            "id": "op19",
+            "title": "Skizzengraph Opus 19",
+            "description": [
+                "<span class=\"text-danger\">[Die Graph-Visualisierungen der Skizzen zu <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 erscheinen im Zusammenhang der vollständigen Edition von Opus 19 in AWG I/3.]</span>"
+            ],
+            "rdfData": {
+                "queryList": [],
+                "triples": ""
+            }
+        }
+    ]
+}

@@ -75,8 +75,10 @@ describe('LoadingInterceptor (DONE)', () => {
         it('... should issue a mocked http get request', waitForAsync(() => {
             const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>('/foo/bar').subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
 
             // Match the request url
@@ -100,8 +102,10 @@ describe('LoadingInterceptor (DONE)', () => {
 
         beforeEach(waitForAsync(() => {
             // Subscribe to GET Http Request
-            httpClient.get<Data>(expectedUrl).subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>(expectedUrl).subscribe({
+                next: data => {
+                    expect(data).toEqual(testData);
+                },
             });
         }));
 
@@ -139,7 +143,7 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 2, false);
         }));
 
-        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', done => {
+        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', waitForAsync(() => {
             // Spy on HTTP handler to handle another response
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
             const expectedHttpResponse = new HttpResponse({
@@ -159,26 +163,24 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 1, true);
 
             // Add another request to the stack
-            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
-                response => {
-                    expect(response).toBe(expectedHttpResponse);
-                    done();
+            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
+                next: response => {
+                    expect(response).withContext(`should equal ${expectedHttpResponse}`).toEqual(expectedHttpResponse);
                 },
-                err => {
+                error: () => {
                     fail('error should not have been called');
-                    done();
                 },
-                () => {
-                    done();
-                }
-            );
+                complete: () => {
+                    /* Intentionally left blank */
+                },
+            });
 
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 additional call, 2 decrease calls
             expectSpyCall(updateLoadingStatusSpy, 4, false);
-        });
+        }));
 
-        it('... should call loadingService to update status (false) for failed HTTP requests', done => {
+        it('... should call loadingService to update status (false) for failed HTTP requests', waitForAsync(() => {
             // Spy on HTTP handler to throw a mocked error
             // Cf. https://stackoverflow.com/a/53688721
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
@@ -194,20 +196,19 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 1, true);
 
             // Throw error via httpHandlerSpy
-            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
-                response => fail('should have been failed'),
-                err => {
+            loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
+                next: () => fail('should have been failed'),
+                error: err => {
                     expect(err).toEqual(expectedError);
-                    done();
                 },
-                () => {
+                complete: () => {
                     fail('should have been failed');
-                }
-            );
+                },
+            });
 
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 error call, 2 decrease calls
             expectSpyCall(updateLoadingStatusSpy, 4, false);
-        });
+        }));
     });
 });

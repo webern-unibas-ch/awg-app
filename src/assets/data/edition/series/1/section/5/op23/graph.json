@@ -1,0 +1,15 @@
+{
+    "graph": [
+        {
+            "id": "op23",
+            "title": "Skizzengraph Opus 23",
+            "description": [
+                "<span class=\"text-danger\">[Die Graph-Visualisierungen der Skizzen zu <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 erscheinen im Zusammenhang der vollständigen Edition von Opus 23 in AWG I/5.]</span>"
+            ],
+            "rdfData": {
+                "queryList": [],
+                "triples": ""
+            }
+        }
+    ]
+}

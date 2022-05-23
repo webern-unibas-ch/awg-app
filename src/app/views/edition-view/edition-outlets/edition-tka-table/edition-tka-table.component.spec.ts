@@ -3,6 +3,7 @@ import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
@@ -17,14 +18,20 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedTextcriticalComments: TextcriticalComment[];
+    let expectedIsRowTable: boolean;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedModalSnippet: string;
+    let expectedTableHeaderStrings: {
+        default: { reference: string; label: string }[];
+        rowTable: { reference: string; label: string }[];
+    };
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
+    let getTableHeaderStringsSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -43,9 +50,26 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk5;
         expectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
 
+        expectedIsRowTable = false;
+        expectedTableHeaderStrings = {
+            default: [
+                { reference: 'measure', label: 'Takt' },
+                { reference: 'system', label: 'System' },
+                { reference: 'location', label: 'Ort im Takt' },
+                { reference: 'comment', label: 'Kommentar' },
+            ],
+            rowTable: [
+                { reference: 'measure', label: 'Folio' },
+                { reference: 'system', label: 'System' },
+                { reference: 'location', label: 'Reihe/Reihenton' },
+                { reference: 'comment', label: 'Kommentar' },
+            ],
+        };
+
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -58,13 +82,23 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have textcriticalComments', () => {
-            expect(component.textcriticalComments).toBeUndefined('should be undefined');
+            expect(component.textcriticalComments).toBeUndefined();
+        });
+
+        it('should have isRowTable = false', () => {
+            expect(component.isRowTable).toBeFalse();
         });
 
         it('should have ref', () => {
             expect(component.ref).toBeTruthy();
-            // @ts-ignore
-            expect(component.ref).toEqual(component, `should equal ${component}`);
+            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+        });
+
+        it('should have tableHeaderStrings', () => {
+            expect(component.tableHeaderStrings).toBeTruthy();
+            expect(component.tableHeaderStrings)
+                .withContext(`should equal ${expectedTableHeaderStrings}`)
+                .toEqual(expectedTableHeaderStrings);
         });
 
         describe('VIEW', () => {
@@ -75,26 +109,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(tableDes[0], 'tbody', 0, 0);
             });
 
-            it('... should contain one row (tr) with four columns (th) in table head', () => {
-                const tableheadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
-                const columnDes = getAndExpectDebugElementByCss(tableheadDes[0], 'th', 4, 4);
-
-                const columnCmp0 = columnDes[0].nativeElement;
-                const columnCmp1 = columnDes[1].nativeElement;
-                const columnCmp2 = columnDes[2].nativeElement;
-                const columnCmp3 = columnDes[3].nativeElement;
-
-                expect(columnCmp0.textContent).toBeDefined('should be defined');
-                expect(columnCmp0.textContent).toBe('Takt', `should be 'Takt'`);
-
-                expect(columnCmp1.textContent).toBeDefined('should be defined');
-                expect(columnCmp1.textContent).toBe('System', `should be 'System'`);
-
-                expect(columnCmp2.textContent).toBeDefined('should be defined');
-                expect(columnCmp2.textContent).toBe('Ort im Takt', `should be 'Ort im Takt'`);
-
-                expect(columnCmp3.textContent).toBeDefined('should be defined');
-                expect(columnCmp3.textContent).toBe('Kommentar', `should be 'Kommentar'`);
+            it('... should contain one row (tr) without columns (th) in table head', () => {
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 0, 4);
             });
         });
     });
@@ -103,12 +120,88 @@ describe('EditionTkaTableComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.textcriticalComments = expectedTextcriticalComments;
+            component.isRowTable = expectedIsRowTable;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
+        it('should have textcriticalComments', () => {
+            expect(component.textcriticalComments).toBeTruthy();
+            expect(component.textcriticalComments)
+                .withContext(`should equal ${expectedTextcriticalComments}`)
+                .toEqual(expectedTextcriticalComments);
+        });
+
         describe('VIEW', () => {
+            it('... should contain one row (tr) with four columns (th) in table head', () => {
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
+            });
+
+            it('... should display default table header if `isRowTable` flag is not given', () => {
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
+
+                const columnCmp0 = columnDes[0].nativeElement;
+                const columnCmp1 = columnDes[1].nativeElement;
+                const columnCmp2 = columnDes[2].nativeElement;
+                const columnCmp3 = columnDes[3].nativeElement;
+
+                expect(columnCmp0.textContent).toBeDefined();
+                expect(columnCmp0.textContent.trim())
+                    .withContext(`should be 'Takt'`)
+                    .toBe(expectedTableHeaderStrings.default[0].label);
+
+                expect(columnCmp1.textContent).toBeDefined();
+                expect(columnCmp1.textContent.trim())
+                    .withContext(`should be 'System'`)
+                    .toBe(expectedTableHeaderStrings.default[1].label);
+
+                expect(columnCmp2.textContent).toBeDefined();
+                expect(columnCmp2.textContent.trim())
+                    .withContext(`should be 'Ort im Takt'`)
+                    .toBe(expectedTableHeaderStrings.default[2].label);
+
+                expect(columnCmp3.textContent).toBeDefined();
+                expect(columnCmp3.textContent.trim())
+                    .withContext(`should be 'Kommentar'`)
+                    .toBe(expectedTableHeaderStrings.default[3].label);
+            });
+
+            it('... should display rowTable table header if `isRowTable` flag is given', () => {
+                component.isRowTable = true;
+                detectChangesOnPush(fixture);
+
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
+
+                const columnCmp0 = columnDes[0].nativeElement;
+                const columnCmp1 = columnDes[1].nativeElement;
+                const columnCmp2 = columnDes[2].nativeElement;
+                const columnCmp3 = columnDes[3].nativeElement;
+
+                expect(columnCmp0.textContent).toBeDefined();
+                expect(columnCmp0.textContent.trim())
+                    .withContext(`should be 'Folio'`)
+                    .toBe(expectedTableHeaderStrings.rowTable[0].label);
+
+                expect(columnCmp1.textContent).toBeDefined();
+                expect(columnCmp1.textContent.trim())
+                    .withContext(`should be 'System'`)
+                    .toBe(expectedTableHeaderStrings.rowTable[1].label);
+
+                expect(columnCmp2.textContent).toBeDefined();
+                expect(columnCmp2.textContent.trim())
+                    .withContext(`should be 'Reihe/Reihenton'`)
+                    .toBe(expectedTableHeaderStrings.rowTable[2].label);
+
+                expect(columnCmp3.textContent).toBeDefined();
+                expect(columnCmp3.textContent.trim())
+                    .withContext(`should be 'Kommentar'`)
+                    .toBe(expectedTableHeaderStrings.rowTable[3].label);
+            });
+
             it('... should contain one table body', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table', 1, 1);
 
@@ -227,6 +320,41 @@ describe('EditionTkaTableComponent (DONE)', () => {
                     expectedTextcriticalComments[2].comment,
                     `should be ${expectedTextcriticalComments[2].comment}`
                 );
+            });
+        });
+
+        describe('#getTableHeaderStrings', () => {
+            it('... should trigger on change detection', () => {
+                expectSpyCall(getTableHeaderStringsSpy, 1);
+
+                component.isRowTable = true;
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(getTableHeaderStringsSpy, 2);
+            });
+
+            it('... should return default table header if `isRowTable` flag is not given', () => {
+                component.isRowTable = false;
+                detectChangesOnPush(fixture);
+
+                const re = component.getTableHeaderStrings();
+
+                expect(re).toBeTruthy();
+                expect(re)
+                    .withContext(`should equal ${expectedTableHeaderStrings.default}`)
+                    .toEqual(expectedTableHeaderStrings.default);
+            });
+
+            it('... should return rowTable table header if `isRowTable` flag is given', () => {
+                component.isRowTable = true;
+                detectChangesOnPush(fixture);
+
+                const re = component.getTableHeaderStrings();
+
+                expect(re).toBeTruthy();
+                expect(re)
+                    .withContext(`should equal ${expectedTableHeaderStrings.rowTable}`)
+                    .toEqual(expectedTableHeaderStrings.rowTable);
             });
         });
 

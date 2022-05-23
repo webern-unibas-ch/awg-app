@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
@@ -37,30 +37,33 @@ describe('LoadingService (DONE)', () => {
     });
 
     describe('#getLoadingStatus', () => {
-        it('... should return default false value', done => {
-            loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBeFalse();
-                done();
+        it('... should return default false value', waitForAsync(() => {
+            loadingService.getLoadingStatus().subscribe({
+                next: (isLoading: boolean) => {
+                    expect(isLoading).toBeFalse();
+                },
             });
-        });
+        }));
 
-        it('... should return updated value', done => {
-            loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
-                done();
+        it('... should return updated value', waitForAsync(() => {
+            loadingService.getLoadingStatus().subscribe({
+                next: (isLoading: boolean) => {
+                    expect(isLoading).withContext(`should be ${loadingStatus}`).toBe(loadingStatus);
+                },
             });
 
             // Update status
             loadingStatus = true;
             loadingService.updateLoadingStatus(loadingStatus);
-        });
+        }));
     });
 
     describe('#updateLoadingStatus', () => {
-        it('... should emit updated loading status', done => {
-            loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
-                done();
+        it('... should emit updated loading status', waitForAsync(() => {
+            loadingService.getLoadingStatus().subscribe({
+                next: (isLoading: boolean) => {
+                    expect(isLoading).withContext(`should be ${loadingStatus}`).toBe(loadingStatus);
+                },
             });
 
             // Update status
@@ -70,6 +73,6 @@ describe('LoadingService (DONE)', () => {
             // Update status
             loadingStatus = false;
             loadingService.updateLoadingStatus(loadingStatus);
-        });
+        }));
     });
 });

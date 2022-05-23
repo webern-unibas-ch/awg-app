@@ -1,0 +1,48 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "12",
+                    "format": {
+                        "height": 163,
+                        "width": 255
+                    },
+                    "content": [
+                        {
+                            "id": "SkRT",
+                            "sigle": "M 286 Sk# / M 287 Sk# (Reihentabelle op. 19)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 5
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "12",
+                    "format": {
+                        "height": 163,
+                        "width": 255
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-D",
+            "convoluteLabel": "A, C-D (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP19_SOURCE_NOT_B"
+        }
+    ]
+}
