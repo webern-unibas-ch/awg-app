@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
@@ -102,29 +102,27 @@ describe('EditionService (DONE)', () => {
 
     describe('EditionWork', () => {
         describe('#getEditionWork', () => {
-            it('... should return given editionWork', done => {
+            it('... should return given editionWork', waitForAsync(() => {
                 editionService.getEditionWork().subscribe({
                     next: (editionWork: EditionWork) => {
                         expect(editionWork).toBeTruthy();
                         expect(editionWork)
                             .withContext(`should equal ${expectedEditionWork}`)
                             .toEqual(expectedEditionWork);
-                        done();
                     },
                 });
 
                 // Set editionWork (with default value)
                 editionService.updateEditionWork(expectedEditionWork);
-            });
+            }));
 
-            it('... should return updated editionWork', done => {
+            it('... should return updated editionWork', waitForAsync(() => {
                 editionService.getEditionWork().subscribe({
                     next: (editionWork: EditionWork) => {
                         expect(editionWork).toBeTruthy();
                         expect(editionWork)
                             .withContext(`should equal ${expectedEditionWork}`)
                             .toEqual(expectedEditionWork);
-                        done();
                     },
                 });
 
@@ -134,18 +132,17 @@ describe('EditionService (DONE)', () => {
                 // Update editionWork
                 expectedEditionWork = EditionWorks.OP25;
                 editionService.updateEditionWork(expectedEditionWork);
-            });
+            }));
         });
 
         describe('#updateEditionWork', () => {
-            it('... should emit updated editionWork', done => {
+            it('... should emit updated editionWork', waitForAsync(() => {
                 editionService.getEditionWork().subscribe({
                     next: (editionWork: EditionWork) => {
                         expect(editionWork).toBeTruthy();
                         expect(editionWork)
                             .withContext(`should equal ${expectedEditionWork}`)
                             .toEqual(expectedEditionWork);
-                        done();
                     },
                 });
 
@@ -155,33 +152,31 @@ describe('EditionService (DONE)', () => {
                 // Update editionWork
                 expectedEditionWork = EditionWorks.OP25;
                 editionService.updateEditionWork(expectedEditionWork);
-            });
+            }));
         });
 
         describe('#clearEditionWork', () => {
-            it('... should update edition work with null value', done => {
+            it('... should update edition work with null value', waitForAsync(() => {
                 editionService.getEditionWork().subscribe({
                     next: (editionWork: EditionWork) => {
                         expect(editionWork).toBeNull();
                         expect(editionWork)
                             .withContext(`should equal ${expectedEditionWork}`)
                             .toEqual(expectedEditionWork);
-                        done();
                     },
                 });
 
                 // Clear editionWork
                 expectedEditionWork = null;
                 editionService.clearEditionWork();
-            });
+            }));
 
-            it('... should overwrite existing search results', done => {
+            it('... should overwrite existing search results', waitForAsync(() => {
                 editionService.getEditionWork().subscribe({
                     next: (editionWork: EditionWork) => {
                         expect(editionWork)
                             .withContext(`should equal ${expectedEditionWork}`)
                             .toEqual(expectedEditionWork);
-                        done();
                     },
                 });
 
@@ -191,7 +186,7 @@ describe('EditionService (DONE)', () => {
                 // Clear editionWork
                 expectedEditionWork = null;
                 editionService.clearEditionWork();
-            });
+            }));
         });
     });
 

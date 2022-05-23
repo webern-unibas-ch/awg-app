@@ -467,6 +467,9 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
                     this.getPropertyLists(this.selectedResourcetype.id);
                 }
             },
+            error: err => {
+                console.error(err);
+            },
         });
     }
 
@@ -491,6 +494,9 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
                     this.getSearchvalControlAtIndex(index).setValue('');
 
                     this.selectedCompopSets[index] = this.getCompopSetByValueType(valueTypeId, guiElementId);
+                },
+                error: err => {
+                    console.error(err);
                 },
             });
     }

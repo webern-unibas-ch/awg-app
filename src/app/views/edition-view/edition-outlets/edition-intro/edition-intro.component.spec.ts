@@ -4,11 +4,18 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -17,13 +24,6 @@ import { EditionSvgSheet, EditionWork, EditionWorks, IntroList } from '@awg-view
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionIntroComponent } from './edition-intro.component';
-import {
-    expectSpyCall,
-    getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective,
-} from '@testing/expect-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { clickAndAwaitChanges } from '@testing/click-helper';
 
 // Mock components
 @Component({ selector: 'awg-modal', template: '' })
@@ -120,6 +120,10 @@ describe('IntroComponent (DONE)', () => {
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -177,24 +181,12 @@ describe('IntroComponent (DONE)', () => {
                 .toEqual(expectedEditionWork);
         });
 
-        it('... should have editionIntroData$', done => {
-            expect(component.editionIntroData$).toBeDefined();
-            component.editionIntroData$.subscribe({
-                next: response => {
-                    expect(response)
-                        .withContext(`should equal ${expectedEditionIntroData}`)
-                        .toEqual(expectedEditionIntroData);
-                    done();
-                },
-                error: err => {
-                    fail('error should not have been called');
-                    done();
-                },
-                complete: () => {
-                    done();
-                },
-            });
-        });
+        it('... should have editionIntroData$', waitForAsync(() => {
+            expectAsync(lastValueFrom(component.editionIntroData$)).toBeResolved();
+            expectAsync(lastValueFrom(component.editionIntroData$))
+                .withContext(`should be resolved to ${expectedEditionIntroData}`)
+                .toBeResolvedTo(expectedEditionIntroData);
+        }));
 
         describe('VIEW', () => {
             it('... should contain one div.awg-intro-view n', () => {
@@ -255,20 +247,12 @@ describe('IntroComponent (DONE)', () => {
 
                 // Init new switchMap
                 component.getEditionIntroData();
-                // Apply changes
-                detectChangesOnPush(fixture);
+                fixture.detectChanges();
 
-                component.editionIntroData$.subscribe({
-                    next: () => {
-                        fail('should not have next');
-                    },
-                    error: () => {
-                        fail('should not error');
-                    },
-                    complete: () => {
-                        expect(component.errorObject).toEqual(expectedError);
-                    },
-                });
+                expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejected();
+                expectAsync(lastValueFrom(component.editionIntroData$)).toBeRejectedWithError(EmptyError);
+
+                expect(component.errorObject).toEqual(expectedError);
             }));
         });
 

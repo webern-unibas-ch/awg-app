@@ -252,7 +252,7 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
             });
 
-            it('... should get isRowTableView$ (via EditionService)', done => {
+            it('... should get isRowTableView$ (via EditionService)', waitForAsync(() => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
                 expectSpyCall(editionServiceGetIsRowTableViewSpy, 1);
 
@@ -262,12 +262,11 @@ describe('EditionViewComponent (DONE)', () => {
                         expect(isView)
                             .withContext(`should equal ${expectedIsRowTableView}`)
                             .toEqual(expectedIsRowTableView);
-                        done();
                     },
                 });
-            });
+            }));
 
-            it('... should get selectedEditionSeries$ (via EditionService)', done => {
+            it('... should get selectedEditionSeries$ (via EditionService)', waitForAsync(() => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionSeriesSpy, 1);
 
@@ -277,12 +276,11 @@ describe('EditionViewComponent (DONE)', () => {
                         expect(series)
                             .withContext(`should equal ${expectedSelectedEditionSeries}`)
                             .toEqual(expectedSelectedEditionSeries);
-                        done();
                     },
                 });
-            });
+            }));
 
-            it('... should get selectedEditionSection$ (via EditionService)', done => {
+            it('... should get selectedEditionSection$ (via EditionService)', waitForAsync(() => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
                 expectSpyCall(editionServiceGetSelectedEditionSectionSpy, 1);
 
@@ -292,12 +290,11 @@ describe('EditionViewComponent (DONE)', () => {
                         expect(section)
                             .withContext(`should equal ${expectedSelectedEditionSection}`)
                             .toEqual(expectedSelectedEditionSection);
-                        done();
                     },
                 });
-            });
+            }));
 
-            it('... should get selectedEditionComplex$ (via EditionService)', done => {
+            it('... should get selectedEditionComplex$ (via EditionService)', waitForAsync(() => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
                 expectSpyCall(editionServiceGetEditionComplexSpy, 1);
 
@@ -307,10 +304,9 @@ describe('EditionViewComponent (DONE)', () => {
                         expect(work)
                             .withContext(`should equal ${EditionWorks[expectedSelectedEditionComplexId]}`)
                             .toEqual(EditionWorks[expectedSelectedEditionComplexId]);
-                        done();
                     },
                 });
-            });
+            }));
         });
 
         describe('#routeToSideNav', () => {

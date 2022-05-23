@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
@@ -49,44 +49,41 @@ describe('SideInfoService (DONE)', () => {
 
     describe('SearchInfoData', () => {
         describe('#getSearchInfoData', () => {
-            it('... should return default empty search info data', done => {
+            it('... should return default empty search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
                         expect(searchInfo).toBeTruthy();
                         expect(searchInfo)
                             .withContext(`should equal ${expectedSearchInfoData}`)
                             .toEqual(expectedSearchInfoData);
-                        done();
                     },
                 });
-            });
+            }));
 
-            it('... should return updated search info data', done => {
+            it('... should return updated search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
                         expect(searchInfo).toBeTruthy();
                         expect(searchInfo)
                             .withContext(`should equal ${expectedSearchInfoData}`)
                             .toEqual(expectedSearchInfoData);
-                        done();
                     },
                 });
 
                 // Update search info data
                 expectedSearchInfoData = new SearchInfo('Test', '5');
                 sideInfoService.updateSearchInfoData(expectedSearchInfoData);
-            });
+            }));
         });
 
         describe('#updateSearchInfoData', () => {
-            it('... should emit updated search info data', done => {
+            it('... should emit updated search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
                         expect(searchInfo).toBeTruthy();
                         expect(searchInfo)
                             .withContext(`should equal ${expectedSearchInfoData}`)
                             .toEqual(expectedSearchInfoData);
-                        done();
                     },
                 });
 
@@ -97,33 +94,31 @@ describe('SideInfoService (DONE)', () => {
                 // Update search info data
                 expectedSearchInfoData = new SearchInfo('Test2', '3');
                 sideInfoService.updateSearchInfoData(expectedSearchInfoData);
-            });
+            }));
         });
 
         describe('#clearSearchInfoData', () => {
-            it('... should update search info data with empty SearchInfo', done => {
+            it('... should update search info data with empty SearchInfo', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
                         expect(searchInfo).toBeTruthy();
                         expect(searchInfo)
                             .withContext(`should equal ${expectedSearchInfoData}`)
                             .toEqual(expectedSearchInfoData);
-                        done();
                     },
                 });
 
                 // Clear search info data
                 sideInfoService.clearSearchInfoData();
-            });
+            }));
 
-            it('... should overwrite existing search info data', done => {
+            it('... should overwrite existing search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
                         expect(searchInfo).toBeTruthy();
                         expect(searchInfo)
                             .withContext(`should equal ${expectedSearchInfoData}`)
                             .toEqual(expectedSearchInfoData);
-                        done();
                     },
                 });
 
@@ -134,42 +129,39 @@ describe('SideInfoService (DONE)', () => {
                 // Clear search info data
                 expectedSearchInfoData = new SearchInfo('---', '---');
                 sideInfoService.clearSearchInfoData();
-            });
+            }));
         });
     });
 
     describe('SearchInfoTitle', () => {
         describe('#getSearchInfoTitle', () => {
-            it('... should return default empty search info title', done => {
+            it('... should return default empty search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
                         expect(title).not.toBeTruthy();
                         expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
-                        done();
                     },
                 });
-            });
+            }));
 
-            it('... should return updated search info title', done => {
+            it('... should return updated search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
                         expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
-                        done();
                     },
                 });
 
                 // Update search info title
                 expectedSearchInfoTitle = 'Test';
                 sideInfoService.updateSearchInfoTitle(expectedSearchInfoTitle);
-            });
+            }));
         });
 
         describe('#updateSearchInfoTitle', () => {
-            it('... should emit updated search info title', done => {
+            it('... should emit updated search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
                         expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
-                        done();
                     },
                 });
 
@@ -180,26 +172,24 @@ describe('SideInfoService (DONE)', () => {
                 // Update search info title
                 expectedSearchInfoTitle = 'Test2';
                 sideInfoService.updateSearchInfoTitle(expectedSearchInfoTitle);
-            });
+            }));
         });
 
         describe('#clearSearchInfoTitle', () => {
-            it('... should update search info title with empty string', done => {
+            it('... should update search info title with empty string', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
                         expect(title).not.toBeTruthy();
-                        done();
                     },
                 });
 
                 sideInfoService.clearSearchInfoTitle();
-            });
+            }));
 
-            it('... should overwrite existing search info title', done => {
+            it('... should overwrite existing search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
                         expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
-                        done();
                     },
                 });
 
@@ -210,7 +200,7 @@ describe('SideInfoService (DONE)', () => {
                 // Clear search info title
                 expectedSearchInfoTitle = '';
                 sideInfoService.clearSearchInfoTitle();
-            });
+            }));
         });
     });
 });

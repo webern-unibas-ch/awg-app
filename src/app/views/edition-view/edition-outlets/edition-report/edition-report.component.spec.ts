@@ -3,12 +3,12 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -205,6 +205,10 @@ describe('EditionReportComponent', () => {
         selectSvgSheetSpy = spyOn(component, 'onSvgSheetSelect').and.callThrough();
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('... should create', () => {
         expect(component).toBeTruthy();
     });
@@ -269,24 +273,12 @@ describe('EditionReportComponent', () => {
                 .toEqual(expectedEditionWork);
         });
 
-        it('... should have editionReportData$', done => {
-            expect(component.editionReportData$).toBeDefined();
-            component.editionReportData$.subscribe({
-                next: response => {
-                    expect(response)
-                        .withContext(`should equal ${expectedEditionReportData}`)
-                        .toEqual(expectedEditionReportData);
-                    done();
-                },
-                error: err => {
-                    fail('error should not have been called');
-                    done();
-                },
-                complete: () => {
-                    done();
-                },
-            });
-        });
+        it('... should have editionReportData$', waitForAsync(() => {
+            expectAsync(lastValueFrom(component.editionReportData$)).toBeResolved();
+            expectAsync(lastValueFrom(component.editionReportData$))
+                .withContext(`should be resolved to ${expectedEditionReportData}`)
+                .toBeResolvedTo(expectedEditionReportData);
+        }));
 
         describe('VIEW', () => {
             it('... should contain one ngb-accordion', () => {
@@ -387,20 +379,12 @@ describe('EditionReportComponent', () => {
 
                 // Init new switchMap
                 component.getEditionReportData();
-                // Apply changes
-                detectChangesOnPush(fixture);
+                fixture.detectChanges();
 
-                component.editionReportData$.subscribe({
-                    next: () => {
-                        fail('should not have next');
-                    },
-                    error: () => {
-                        fail('should not error');
-                    },
-                    complete: () => {
-                        expect(component.errorObject).toEqual(expectedError);
-                    },
-                });
+                expectAsync(lastValueFrom(component.editionReportData$)).toBeRejected();
+                expectAsync(lastValueFrom(component.editionReportData$)).toBeRejectedWithError(EmptyError);
+
+                expect(component.errorObject).toEqual(expectedError);
             }));
         });
 

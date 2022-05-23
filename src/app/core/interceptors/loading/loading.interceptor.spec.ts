@@ -143,7 +143,7 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 2, false);
         }));
 
-        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', done => {
+        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', waitForAsync(() => {
             // Spy on HTTP handler to handle another response
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
             const expectedHttpResponse = new HttpResponse({
@@ -165,24 +165,22 @@ describe('LoadingInterceptor (DONE)', () => {
             // Add another request to the stack
             loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
                 next: response => {
-                    expect(response).toBe(expectedHttpResponse);
-                    done();
+                    expect(response).withContext(`should equal ${expectedHttpResponse}`).toEqual(expectedHttpResponse);
                 },
                 error: () => {
                     fail('error should not have been called');
-                    done();
                 },
                 complete: () => {
-                    done();
+                    /* Intentionally left blank */
                 },
             });
 
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 additional call, 2 decrease calls
             expectSpyCall(updateLoadingStatusSpy, 4, false);
-        });
+        }));
 
-        it('... should call loadingService to update status (false) for failed HTTP requests', done => {
+        it('... should call loadingService to update status (false) for failed HTTP requests', waitForAsync(() => {
             // Spy on HTTP handler to throw a mocked error
             // Cf. https://stackoverflow.com/a/53688721
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
@@ -202,7 +200,6 @@ describe('LoadingInterceptor (DONE)', () => {
                 next: () => fail('should have been failed'),
                 error: err => {
                     expect(err).toEqual(expectedError);
-                    done();
                 },
                 complete: () => {
                     fail('should have been failed');
@@ -212,6 +209,6 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(interceptSpy, 2, call.request);
             // 4 times: 1 original call, 1 error call, 2 decrease calls
             expectSpyCall(updateLoadingStatusSpy, 4, false);
-        });
+        }));
     });
 });

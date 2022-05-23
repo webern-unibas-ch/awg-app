@@ -237,7 +237,7 @@ describe('ApiService', () => {
 
             describe('fail', () => {
                 // See http://www.syntaxsuccess.com/viewarticle/unit-testing-rxjs-retries
-                it('... should throw default ApiServiceError if httpGet fails with undefined handler', done => {
+                it('... should throw default ApiServiceError if httpGet fails with undefined handler', waitForAsync(() => {
                     const expectedErrorMsg = 'should fail HTTP response';
                     expectedApiServiceError = new ApiServiceError();
 
@@ -249,7 +249,6 @@ describe('ApiService', () => {
                         next: () => fail(expectedErrorMsg),
                         error: (err: ApiServiceError) => {
                             expectErrorResponse(err, expectedApiServiceError);
-                            done();
                         },
                         complete: () => fail(expectedErrorMsg),
                     });
@@ -258,9 +257,9 @@ describe('ApiService', () => {
                     httpTestingController.expectNone(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
-                });
+                }));
 
-                it('... should throw specified ApiServiceError if httpGet fails with specified handler', done => {
+                it('... should throw specified ApiServiceError if httpGet fails with specified handler', waitForAsync(() => {
                     const expectedErrorMsg = 'should fail HTTP response with 500 error';
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error', true);
 
@@ -275,7 +274,6 @@ describe('ApiService', () => {
                         error: (err: ApiServiceError) => {
                             expect(apiService.getApiResponse).toHaveBeenCalled();
                             expectErrorResponse(err, expectedApiServiceError);
-                            done();
                         },
                         complete: () => fail(expectedErrorMsg),
                     });
@@ -284,7 +282,7 @@ describe('ApiService', () => {
                     httpTestingController.expectNone(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
-                });
+                }));
 
                 it("... should return 'ApiServiceError' for 401 Unauthorized", waitForAsync(() => {
                     const expectedErrorMsg = 'should fail HTTP response with 401 error';
