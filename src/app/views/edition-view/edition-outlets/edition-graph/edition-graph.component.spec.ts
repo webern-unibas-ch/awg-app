@@ -165,27 +165,29 @@ describe('EditionGraphComponent (DONE)', () => {
             expect(component.GRAPH_IMAGES).toBeTruthy();
 
             expect(component.GRAPH_IMAGES.OP12).toBeDefined();
-            expect(component.GRAPH_IMAGES.OP12).not.toBeTruthy('should be empty string');
+            expect(component.GRAPH_IMAGES.OP12).withContext('should be empty string').not.toBeTruthy();
 
             expect(component.GRAPH_IMAGES.OP25).toBeTruthy();
-            expect(component.GRAPH_IMAGES.OP25).toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
+            expect(component.GRAPH_IMAGES.OP25)
+                .withContext(`should be ${EditionConstants.GRAPH_IMAGE_OP25.route}`)
+                .toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
         });
 
         it('should have `errorObject` = null', () => {
-            expect(component.errorObject).toBeNull('should be null');
+            expect(component.errorObject).toBeNull();
         });
 
         it('should have `isFullscreen`', () => {
-            expect(component.isFullscreen).toBeDefined('should be defined');
-            expect(component.isFullscreen).toBe(expectedIsFullscreen, `should be ${expectedIsFullscreen}`);
+            expect(component.isFullscreen).toBeDefined();
+            expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
         });
 
         it('should not have `editionWork`', () => {
-            expect(component.editionWork).toBeUndefined('should be undefined');
+            expect(component.editionWork).toBeUndefined();
         });
 
         it('should not have `editionGraphData$`', () => {
-            expect(component.editionGraphData$).toBeUndefined('should be undefined');
+            expect(component.editionGraphData$).toBeUndefined();
         });
 
         it('should not have called `getEditionGraphData()`', () => {
@@ -234,7 +236,9 @@ describe('EditionGraphComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetEditionWorkSpy, 1);
 
                 expect(component.editionWork).toBeTruthy();
-                expect(component.editionWork).toEqual(expectedEditionWork, `should be ${expectedEditionWork}`);
+                expect(component.editionWork)
+                    .withContext(`should be ${expectedEditionWork}`)
+                    .toEqual(expectedEditionWork);
             });
 
             it('... should update editionWork when editionService emits changed value', waitForAsync(() => {
@@ -404,13 +408,13 @@ describe('EditionGraphComponent (DONE)', () => {
                     const pEl3 = pDes[3].nativeElement;
 
                     expect(pEl1.textContent).toBeTruthy();
-                    expect(pEl1.textContent).toContain('Description 1', 'should contain Description 1');
+                    expect(pEl1.textContent).withContext('should contain Description 1').toContain('Description 1');
 
                     expect(pEl2.textContent).toBeTruthy();
-                    expect(pEl2.textContent).toContain('Description 2', 'should contain Description 2');
+                    expect(pEl2.textContent).withContext('should contain Description 2').toContain('Description 2');
 
                     expect(pEl3.textContent).toBeTruthy();
-                    expect(pEl3.textContent).toContain('Description 3', 'should contain Description 3');
+                    expect(pEl3.textContent).withContext('should contain Description 3').toContain('Description 3');
                 }));
             });
 
@@ -490,15 +494,18 @@ describe('EditionGraphComponent (DONE)', () => {
                         const btnEl1 = btnDes[1].nativeElement;
 
                         expect(hEl.textContent).toBeTruthy();
-                        expect(hEl.textContent).toContain('Dynamischer Graph', 'should contain Dynamischer Graph');
+                        expect(hEl.textContent)
+                            .withContext('should contain Dynamischer Graph')
+                            .toContain('Dynamischer Graph');
 
                         expect(btnEl0.textContent).toBeTruthy();
-                        expect(btnEl0.textContent).toContain(
-                            'Hinweise zur Nutzung',
-                            'should contain Hinweise zur Nutzung'
-                        );
+                        expect(btnEl0.textContent)
+                            .withContext('should contain Hinweise zur Nutzung')
+                            .toContain('Hinweise zur Nutzung');
                         expect(btnEl1.title).toBeTruthy();
-                        expect(btnEl1.title).toContain('Open fullscreen', 'should contain title Open fullscreen');
+                        expect(btnEl1.title)
+                            .withContext('should contain title Open fullscreen')
+                            .toContain('Open fullscreen');
                     });
 
                     it('... should trigger modal from click on help button', fakeAsync(() => {
@@ -550,7 +557,9 @@ describe('EditionGraphComponent (DONE)', () => {
                         const expectedData = graphData.graph[0].rdfData;
 
                         expect(graphVisCmp.graphRDFInputData).toBeTruthy();
-                        expect(graphVisCmp.graphRDFInputData).toEqual(expectedData, `should equal ${expectedData}`);
+                        expect(graphVisCmp.graphRDFInputData)
+                            .withContext(`should equal ${expectedData}`)
+                            .toEqual(expectedData);
                     });
                 });
             });
@@ -633,7 +642,9 @@ describe('EditionGraphComponent (DONE)', () => {
                     const divEl = divDes[0].nativeElement;
 
                     expect(hEl.textContent).toBeTruthy();
-                    expect(hEl.textContent).toContain('Statischer Graph', 'should contain Statischer Graph');
+                    expect(hEl.textContent)
+                        .withContext('should contain Statischer Graph')
+                        .toContain('Statischer Graph');
 
                     expect(divEl.textContent).toBeTruthy();
                     expect(divEl.textContent)
