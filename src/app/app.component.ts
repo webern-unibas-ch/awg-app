@@ -66,9 +66,11 @@ export class AppComponent {
                     return appTitle;
                 })
             )
-            .subscribe((pageTitle: string) => {
-                // Set page title
-                this.titleService.setTitle(pageTitle);
+            .subscribe({
+                next: (pageTitle: string) => {
+                    // Set page title
+                    this.titleService.setTitle(pageTitle);
+                },
             });
     }
 }

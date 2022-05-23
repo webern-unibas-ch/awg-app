@@ -2,7 +2,7 @@ import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/cor
 import { Component, DebugElement, Input } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 
-import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -75,11 +75,11 @@ describe('EditionGraphComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         // Mocked editionDataService
         mockEditionDataService = {
-            getEditionGraphData: (editionWork: EditionWork): Observable<GraphList> => observableOf(),
+            getEditionGraphData: (editionWork: EditionWork): Observable<GraphList> => observableOf(new GraphList()),
         };
         // Mocked editionService
         mockEditionService = {
-            getEditionWork: (): Observable<EditionWork> => observableOf(),
+            getEditionWork: (): Observable<EditionWork> => observableOf(expectedEditionWork),
         };
 
         TestBed.configureTestingModule({
@@ -165,27 +165,29 @@ describe('EditionGraphComponent (DONE)', () => {
             expect(component.GRAPH_IMAGES).toBeTruthy();
 
             expect(component.GRAPH_IMAGES.OP12).toBeDefined();
-            expect(component.GRAPH_IMAGES.OP12).not.toBeTruthy('should be empty string');
+            expect(component.GRAPH_IMAGES.OP12).withContext('should be empty string').not.toBeTruthy();
 
             expect(component.GRAPH_IMAGES.OP25).toBeTruthy();
-            expect(component.GRAPH_IMAGES.OP25).toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
+            expect(component.GRAPH_IMAGES.OP25)
+                .withContext(`should be ${EditionConstants.GRAPH_IMAGE_OP25.route}`)
+                .toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
         });
 
         it('should have `errorObject` = null', () => {
-            expect(component.errorObject).toBeNull('should be null');
+            expect(component.errorObject).toBeNull();
         });
 
         it('should have `isFullscreen`', () => {
-            expect(component.isFullscreen).toBeDefined('should be defined');
-            expect(component.isFullscreen).toBe(expectedIsFullscreen, `should be ${expectedIsFullscreen}`);
+            expect(component.isFullscreen).toBeDefined();
+            expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
         });
 
         it('should not have `editionWork`', () => {
-            expect(component.editionWork).toBeUndefined('should be undefined');
+            expect(component.editionWork).toBeUndefined();
         });
 
         it('should not have `editionGraphData$`', () => {
-            expect(component.editionGraphData$).toBeUndefined('should be undefined');
+            expect(component.editionGraphData$).toBeUndefined();
         });
 
         it('should not have called `getEditionGraphData()`', () => {
@@ -234,10 +236,12 @@ describe('EditionGraphComponent (DONE)', () => {
                 expectSpyCall(editionServiceGetEditionWorkSpy, 1);
 
                 expect(component.editionWork).toBeTruthy();
-                expect(component.editionWork).toEqual(expectedEditionWork, `should be ${expectedEditionWork}`);
+                expect(component.editionWork)
+                    .withContext(`should be ${expectedEditionWork}`)
+                    .toEqual(expectedEditionWork);
             });
 
-            it('... should update editionWork when editionService emits changed value', waitForAsync(async () => {
+            it('... should update editionWork when editionService emits changed value', waitForAsync(() => {
                 // ----------------
                 // Change to op. 25
                 editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.OP25));
@@ -245,12 +249,14 @@ describe('EditionGraphComponent (DONE)', () => {
                 // Init new switchMap
                 component.getEditionGraphData();
                 // Apply changes
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(editionServiceGetEditionWorkSpy, 2);
 
                 expect(component.editionWork).toBeTruthy();
-                expect(component.editionWork).toEqual(EditionWorks.OP25, `should be ${expectedEditionWork}`);
+                expect(component.editionWork)
+                    .withContext(`should be ${expectedEditionWork}`)
+                    .toEqual(EditionWorks.OP25);
             }));
 
             it('... should trigger editionDataService.getEditionGraph', () => {
@@ -261,7 +267,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionWork);
             });
 
-            it('... should re-trigger editionDataService.getEditionGraph with updated editionWork', waitForAsync(async () => {
+            it('... should re-trigger editionDataService.getEditionGraph with updated editionWork', waitForAsync(() => {
                 // ----------------
                 // Change to op. 25
                 // ExpectedEditionWork = EditionWorks.op25;
@@ -270,7 +276,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 // Init new switchMap
                 component.getEditionGraphData();
                 // Apply changes
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(editionServiceGetEditionWorkSpy, 2);
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EditionWorks.OP25);
@@ -279,13 +285,16 @@ describe('EditionGraphComponent (DONE)', () => {
             it('... should get editionGraphData from editionDataService and set editionGraphData$', waitForAsync(() => {
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionWork);
 
-                expect(component.editionGraphData$).toBeTruthy();
-                component.editionGraphData$.subscribe((data: GraphList) => {
-                    expect(data).toEqual(expectedEditionGraphDataOp12, `should equal ${expectedEditionGraphDataOp12}`);
-                });
+                // Wait for fixture to be stable
+                detectChangesOnPush(fixture);
+
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
+                expectAsync(lastValueFrom(component.editionGraphData$))
+                    .withContext(`should be resolved to ${expectedEditionGraphDataOp12}`)
+                    .toBeResolvedTo(expectedEditionGraphDataOp12);
             }));
 
-            it('... should update editionGraphData$ when editionService emits changed value', waitForAsync(async () => {
+            it('... should update editionGraphData$ when editionService emits changed value', waitForAsync(() => {
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionWork);
 
                 // ----------------
@@ -296,20 +305,18 @@ describe('EditionGraphComponent (DONE)', () => {
                 // Init new switchMap
                 component.getEditionGraphData();
                 // Apply changes
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(editionServiceGetEditionWorkSpy, 2);
                 expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EditionWorks.OP25);
 
-                expect(component.editionGraphData$).toBeTruthy();
-
-                component.editionGraphData$.subscribe((data: GraphList) => {
-                    expect(component.editionWork).toBe(EditionWorks.OP25);
-                    expect(data).toEqual(expectedEditionGraphDataOp25, `should equal ${expectedEditionGraphDataOp25}`);
-                });
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeResolved();
+                expectAsync(lastValueFrom(component.editionGraphData$))
+                    .withContext(`should be resolved to ${expectedEditionGraphDataOp25}`)
+                    .toBeResolvedTo(expectedEditionGraphDataOp25);
             }));
 
-            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(async () => {
+            it('... should return empty observable and set errorObject if switchMap fails', waitForAsync(() => {
                 const expectedError = { status: 404, statusText: 'fail' };
                 // Spy on editionDataService to return an error
                 editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(() => expectedError));
@@ -317,19 +324,12 @@ describe('EditionGraphComponent (DONE)', () => {
                 // Init new switchMap
                 component.getEditionGraphData();
                 // Apply changes
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
-                component.editionGraphData$.subscribe(
-                    data => {
-                        fail('should not have next');
-                    },
-                    error => {
-                        fail('should not error');
-                    },
-                    () => {
-                        expect(component.errorObject).toEqual(expectedError, `should equal ${expectedError}`);
-                    }
-                );
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeRejected();
+                expectAsync(lastValueFrom(component.editionGraphData$)).toBeRejectedWithError(EmptyError);
+
+                expect(component.errorObject).withContext(`should equal ${expectedError}`).toEqual(expectedError);
             }));
         });
 
@@ -338,7 +338,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view', 1, 1);
             });
 
-            it('... should not contain a graph div if graph data is not provided', waitForAsync(async () => {
+            it('... should not contain a graph div if graph data is not provided', waitForAsync(() => {
                 const noGraphData = new GraphList();
                 noGraphData.graph = undefined;
 
@@ -348,7 +348,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 // Init new switchMap
                 component.getEditionGraphData();
                 // Apply changes
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 0, 0);
             }));
@@ -358,7 +358,7 @@ describe('EditionGraphComponent (DONE)', () => {
             });
 
             describe('graph description', () => {
-                it('... should have one div for graph description with one default paragraph if description data is not provided', waitForAsync(async () => {
+                it('... should have one div for graph description with one default paragraph if description data is not provided', waitForAsync(() => {
                     const noDescriptionData = new GraphList();
                     noDescriptionData.graph = [];
                     noDescriptionData.graph.push(new Graph());
@@ -370,7 +370,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-view > div > div.awg-graph-description',
@@ -381,7 +381,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 }));
 
-                it('... should have one + x paragraphs for graph description if description data is provided', waitForAsync(async () => {
+                it('... should have one + x paragraphs for graph description if description data is provided', waitForAsync(() => {
                     const descriptionData = new GraphList();
                     descriptionData.graph = [];
                     descriptionData.graph.push(new Graph());
@@ -393,7 +393,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -408,18 +408,18 @@ describe('EditionGraphComponent (DONE)', () => {
                     const pEl3 = pDes[3].nativeElement;
 
                     expect(pEl1.textContent).toBeTruthy();
-                    expect(pEl1.textContent).toContain('Description 1', 'should contain Description 1');
+                    expect(pEl1.textContent).withContext('should contain Description 1').toContain('Description 1');
 
                     expect(pEl2.textContent).toBeTruthy();
-                    expect(pEl2.textContent).toContain('Description 2', 'should contain Description 2');
+                    expect(pEl2.textContent).withContext('should contain Description 2').toContain('Description 2');
 
                     expect(pEl3.textContent).toBeTruthy();
-                    expect(pEl3.textContent).toContain('Description 3', 'should contain Description 3');
+                    expect(pEl3.textContent).withContext('should contain Description 3').toContain('Description 3');
                 }));
             });
 
             describe('dynamic graph', () => {
-                it('... should not contain a dynamic graph if rdf data is not provided', waitForAsync(async () => {
+                it('... should not contain a dynamic graph if rdf data is not provided', waitForAsync(() => {
                     const noRdfData = expectedEditionGraphDataOp12;
 
                     // Return data
@@ -428,7 +428,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-dynamic', 0, 0);
 
@@ -443,7 +443,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-dynamic', 0, 0);
 
@@ -458,7 +458,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-dynamic', 0, 0);
                 }));
@@ -466,7 +466,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 describe('with rdf data', () => {
                     let graphData: GraphList;
 
-                    beforeEach(waitForAsync(async () => {
+                    beforeEach(waitForAsync(() => {
                         graphData = expectedEditionGraphDataOp12;
                         graphData.graph[0].rdfData = new GraphRDFData();
                         graphData.graph[0].rdfData.triples = 'example:test example:has example:Success';
@@ -478,7 +478,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         // Init new switchMap
                         component.getEditionGraphData();
                         // Apply changes
-                        await detectChangesOnPush(fixture);
+                        detectChangesOnPush(fixture);
                     }));
 
                     it('... should contain a div.awg-dynamic-graph', () => {
@@ -494,15 +494,18 @@ describe('EditionGraphComponent (DONE)', () => {
                         const btnEl1 = btnDes[1].nativeElement;
 
                         expect(hEl.textContent).toBeTruthy();
-                        expect(hEl.textContent).toContain('Dynamischer Graph', 'should contain Dynamischer Graph');
+                        expect(hEl.textContent)
+                            .withContext('should contain Dynamischer Graph')
+                            .toContain('Dynamischer Graph');
 
                         expect(btnEl0.textContent).toBeTruthy();
-                        expect(btnEl0.textContent).toContain(
-                            'Hinweise zur Nutzung',
-                            'should contain Hinweise zur Nutzung'
-                        );
+                        expect(btnEl0.textContent)
+                            .withContext('should contain Hinweise zur Nutzung')
+                            .toContain('Hinweise zur Nutzung');
                         expect(btnEl1.title).toBeTruthy();
-                        expect(btnEl1.title).toContain('Open fullscreen', 'should contain title Open fullscreen');
+                        expect(btnEl1.title)
+                            .withContext('should contain title Open fullscreen')
+                            .toContain('Open fullscreen');
                     });
 
                     it('... should trigger modal from click on help button', fakeAsync(() => {
@@ -554,13 +557,15 @@ describe('EditionGraphComponent (DONE)', () => {
                         const expectedData = graphData.graph[0].rdfData;
 
                         expect(graphVisCmp.graphRDFInputData).toBeTruthy();
-                        expect(graphVisCmp.graphRDFInputData).toEqual(expectedData, `should equal ${expectedData}`);
+                        expect(graphVisCmp.graphRDFInputData)
+                            .withContext(`should equal ${expectedData}`)
+                            .toEqual(expectedData);
                     });
                 });
             });
 
             describe('static graph', () => {
-                it('... should not contain a static graph if staticImage data is not provided', waitForAsync(async () => {
+                it('... should not contain a static graph if staticImage data is not provided', waitForAsync(() => {
                     const noStaticImageData = new GraphList();
                     noStaticImageData.graph = [];
                     noStaticImageData.graph.push(new Graph());
@@ -573,7 +578,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-static', 0, 0);
 
@@ -586,12 +591,12 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-static', 0, 0);
                 }));
 
-                it('... should contain a static graph if staticImage data is provided', waitForAsync(async () => {
+                it('... should contain a static graph if staticImage data is provided', waitForAsync(() => {
                     const staticImageData = new GraphList();
                     staticImageData.graph = [];
                     staticImageData.graph.push(new Graph());
@@ -604,12 +609,12 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > div.awg-graph-static', 1, 1);
                 }));
 
-                it('... should display header and image of static graph if staticImage data is provided', waitForAsync(async () => {
+                it('... should display header and image of static graph if staticImage data is provided', waitForAsync(() => {
                     const staticImageData = new GraphList();
                     staticImageData.graph = [];
                     staticImageData.graph.push(new Graph());
@@ -622,7 +627,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // Init new switchMap
                     component.getEditionGraphData();
                     // Apply changes
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     const imgDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -637,13 +642,14 @@ describe('EditionGraphComponent (DONE)', () => {
                     const divEl = divDes[0].nativeElement;
 
                     expect(hEl.textContent).toBeTruthy();
-                    expect(hEl.textContent).toContain('Statischer Graph', 'should contain Statischer Graph');
+                    expect(hEl.textContent)
+                        .withContext('should contain Statischer Graph')
+                        .toContain('Statischer Graph');
 
                     expect(divEl.textContent).toBeTruthy();
-                    expect(divEl.textContent).toContain(
-                        component.GRAPH_IMAGES.OP25,
-                        `should contain ${component.GRAPH_IMAGES.OP25}`
-                    );
+                    expect(divEl.textContent)
+                        .withContext(`should contain ${component.GRAPH_IMAGES.OP25}`)
+                        .toContain(component.GRAPH_IMAGES.OP25);
                 }));
             });
 

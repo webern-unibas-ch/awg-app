@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { EmptyError, lastValueFrom, Observable } from 'rxjs';
 import Spy = jasmine.Spy;
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -176,6 +178,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
         mockConsole.clear();
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -320,6 +326,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const changedTriples =
                     '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                 component.triples = changedTriples;
+                // Wait for fixture to be stable
                 fixture.detectChanges();
 
                 expect(component.triples).toBeDefined();
@@ -643,12 +650,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
-                component.queryResult$.subscribe(result => {
-                    expect(result).toBeTruthy();
-                    expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-                });
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
+                expectAsync(lastValueFrom(component.queryResult$))
+                    .withContext(`should be resolved to ${expectedResult}`)
+                    .toBeResolvedTo(expectedResult);
             }));
 
             it('... should get queryResult for select queries', waitForAsync(() => {
@@ -657,12 +664,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Perform query
                 component.performQuery();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
-                component.queryResult$.subscribe(result => {
-                    expect(result).toBeTruthy();
-                    expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-                });
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
+                expectAsync(lastValueFrom(component.queryResult$))
+                    .withContext(`should be resolved to ${expectedResult}`)
+                    .toBeResolvedTo(expectedResult);
             }));
 
             it('... should set empty observable for update query types', waitForAsync(() => {
@@ -672,15 +679,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 fixture.detectChanges();
 
-                component.queryResult$.subscribe(
-                    result => fail('should have been failed'),
-                    error => {
-                        fail('should not error');
-                    },
-                    () => {
-                        expect(component.query.queryType).withContext('should be update').toBe('update');
-                    }
-                );
+                expect(component.query.queryType).withContext('should be other').toBe('update');
+                expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
+                expectAsync(lastValueFrom(component.queryResult$)).toBeRejectedWithError(EmptyError);
             }));
 
             it('... should set empty observable for other query types', waitForAsync(() => {
@@ -690,15 +691,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 fixture.detectChanges();
 
-                component.queryResult$.subscribe(
-                    result => fail('should not have called next'),
-                    error => {
-                        fail('should not error');
-                    },
-                    () => {
-                        expect(component.query.queryType).withContext('should be other').toBe('other');
-                    }
-                );
+                expect(component.query.queryType).withContext('should be other').toBe('other');
+                expectAsync(lastValueFrom(component.queryResult$)).toBeRejected();
+                expectAsync(lastValueFrom(component.queryResult$)).toBeRejectedWithError(EmptyError);
             }));
         });
 
@@ -730,7 +725,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(serviceSpy, 1, expectedCallback);
             });
 
-            it('... should return query result on success', async () => {
+            it('... should return query result on success', waitForAsync(() => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -741,22 +736,19 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 fixture.detectChanges();
 
-                await expectAsync(
+                expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
-                ).toBeResolvedTo(expectedResult);
+                )
+                    .withContext(`should be resolved to ${expectedResult}`)
+                    .toBeResolvedTo(expectedResult);
 
-                component.queryResult$.subscribe(
-                    result => {
-                        expect(result).toBeTruthy();
-                        expect(result).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-                    },
-                    error => {
-                        fail('should not error');
-                    }
-                );
-            });
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
+                expectAsync(lastValueFrom(component.queryResult$))
+                    .withContext(`should be resolved to ${expectedResult}`)
+                    .toBeResolvedTo(expectedResult);
+            }));
 
-            it('... should return Empty on error', async () => {
+            it('... should return Empty on error', waitForAsync(() => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -771,20 +763,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.performQuery();
                 fixture.detectChanges();
 
-                await expectAsync(
+                expectAsync(
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
                 ).toBeRejectedWith(expectedError);
 
-                component.queryResult$.subscribe(
-                    result => {
-                        expect(result).toBeTruthy();
-                        expect(result).withContext(`should equal []`).toEqual([]);
-                    },
-                    error => {
-                        fail('should not error');
-                    }
-                );
-            });
+                expectAsync(lastValueFrom(component.queryResult$)).toBeResolved();
+                expectAsync(lastValueFrom(component.queryResult$))
+                    .withContext(`should be resolved to []`)
+                    .toBeResolvedTo([]);
+            }));
 
             it('... should log an error on error', async () => {
                 const expectedCallback = [

@@ -72,9 +72,11 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
         this.editionService
             .getEditionWork()
             .pipe(takeUntil(this._destroyed$))
-            .subscribe((work: EditionWork) => {
-                this.editionWork = work;
-                this.setButtons();
+            .subscribe({
+                next: (work: EditionWork) => {
+                    this.editionWork = work;
+                    this.setButtons();
+                },
             });
     }
 

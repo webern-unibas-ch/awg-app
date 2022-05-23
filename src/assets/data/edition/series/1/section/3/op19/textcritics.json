@@ -1,0 +1,84 @@
+{
+    "textcritics": [
+        {
+            "id": "M_286_Sk#_M_287_Sk#",
+            "label": "M 286 Sk# / M 287 Sk # (Reihentabelle op. 19)",
+            "description": [],
+            "rowtable": true,
+            "comments": [
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1",
+                    "position": "",
+                    "comment": "Reihenbezeichnungen mit rotem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>g</sub>: 1. Reihenton",
+                    "comment": "<em>I.</em> überschreibt <em>1</em> (roter Buntstift)."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1b",
+                    "position": "K(G<sub>g</sub>)<sub>c</sub>: 1. Reihenton",
+                    "comment": "<em>II.</em> überschreibt <em>2</em> (roter Buntstift)."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1b",
+                    "position": "K<sub>c</sub>: 8.—9. Reihenton",
+                    "comment": "<em>’</em> mit rotem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2",
+                    "position": "",
+                    "comment": "Reihenbezeichnungen mit blauem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2a",
+                    "position": "K<sub>c</sub>: 1. Reihenton",
+                    "comment": "<em>IV</em> überschreibt <em>4</em> (blauer Buntstift)."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4",
+                    "position": "",
+                    "comment": "Reihenbezeichnungen mit Kopierstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4a",
+                    "position": "G<sub>cis</sub>: 1. Reihenton",
+                    "comment": "<em>5</em> [Kopierstift] gestrichen mit Kopierstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "5",
+                    "position": "",
+                    "comment": "Reihenbezeichnungen mit grünem Buntstift, zum Teil mit Bleistift ##(siehe unten)."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "5a",
+                    "position": "U<sub>cis</sub>: 1. Reihenton",
+                    "comment": "<em>7</em> mit Bleistift, gestrichen mit grünem Buntstift."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "5b",
+                    "position": "KU<sub>gis</sub>: 1. Reihenton",
+                    "comment": "<em>8</em> mit grünem Buntstift überschreibt <em>8</em> mit Bleistift (nachgezogen)."
+                },
+                {
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "5b",
+                    "position": "KU<sub>gis</sub>: 2.—4.Reihenton",
+                    "comment": "Bogen mit dünnem Bleistift."
+                }
+            ]
+        }
+    ]
+}

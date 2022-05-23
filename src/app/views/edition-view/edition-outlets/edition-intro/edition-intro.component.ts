@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { NavigationExtras, Router } from '@angular/router';
 
 import { catchError, switchMap } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
@@ -107,7 +107,7 @@ export class EditionIntroComponent implements OnInit {
                 // Error handling
                 catchError(err => {
                     this.errorObject = err;
-                    return throwError(err);
+                    return EMPTY;
                 })
             );
     }
@@ -133,13 +133,15 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: openModal.
      *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
+     * It opens the {@link ModalComponent} with a given id of a modal snippet text.
      *
      * @param {string} id The given modal snippet id.
-     * @returns {void} Emits the id.
+     * @returns {void} Opens the modal with the snippet id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.modal.open(id);
     }
 
