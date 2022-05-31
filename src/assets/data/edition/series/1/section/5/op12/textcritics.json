@@ -4,7 +4,7 @@
             "id": "Aa-SkI-1",
             "label": "Aa:SkI/1",
             "description": [
-                "<small class=\"text-muted\">[Der Skizzenkommentar und die textkritischen Kommentare zu <strong>Aa:Sk1/1</strong> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
+                "<small class=\"text-muted\">[Der Skizzenkommentar und die textkritischen Kommentare zu <strong>M 212 Sk1</strong> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
             ],
             "comments": []
         },
@@ -23,7 +23,7 @@
                     "measure": "10",
                     "system": "12",
                     "position": "2. Note",
-                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Aa:SkI/1</strong></a> T. [11], <a (click)=\"ref.selectSvgSheet('Aa:SkI/3')\"><strong>Aa:SkI/3</strong></a> und <a (click)=\"ref.selectSvgSheet('Aa:SkI/5')\"><strong>Aa:SkI/5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>."
+                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>M 212 Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('Aa:SkI/3')\"><strong>M 212 Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('Aa:SkI/5')\"><strong>M 212 Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>."
                 },
                 {
                     "measure": "[11]",

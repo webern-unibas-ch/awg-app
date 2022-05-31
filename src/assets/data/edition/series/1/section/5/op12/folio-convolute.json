@@ -15,7 +15,7 @@
                         {
                             "id": "Aa:SkI/1a",
                             "sigle": "Aa:SkI/1a",
-                            "sigleAddendum": "T. 1–2, [3–6]",
+                            "sigleAddendum": "T. 1–6",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
@@ -29,7 +29,7 @@
                         {
                             "id": "Aa:SkI/1a",
                             "sigle": "Aa:SkI/1a",
-                            "sigleAddendum": "T. [7–12]",
+                            "sigleAddendum": "T. 7–12",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
@@ -44,7 +44,7 @@
                         {
                             "id": "Aa:SkI/1a",
                             "sigle": "Aa:SkI/1a",
-                            "sigleAddendum": "T. [13–17]",
+                            "sigleAddendum": "T. 13–17",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
@@ -108,7 +108,7 @@
                         {
                             "id": "Aa:SkI/2",
                             "sigle": "Aa:SkI/2",
-                            "sigleAddendum": "T. 10, [11–12]",
+                            "sigleAddendum": "T. 10–12",
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -131,7 +131,7 @@
                         {
                             "id": "Aa:SkI/1b",
                             "sigle": "Aa:SkI/1b",
-                            "sigleAddendum": "T. [18–22]",
+                            "sigleAddendum": "T. 18–22",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
                             "sections": [
@@ -144,7 +144,7 @@
                         {
                             "id": "Aa:SkI/1b",
                             "sigle": "Aa:SkI/1b",
-                            "sigleAddendum": "T. [23–24]",
+                            "sigleAddendum": "T. 23–24",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
