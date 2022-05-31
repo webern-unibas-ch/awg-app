@@ -21,6 +21,7 @@
             "description": [
                 "<strong>Sk2</strong> entwirft eine Zwölftonreihe in zwei Anläufen. Reihe A umfasst lediglich fünf Töne, Reihe B ergänzt nach einer Permutation des 3.–4. Reihentons die Reihe zur vollständigen Zwölftönigkeit. Die ersten fünf Töne beider Reihen ergänzen den ungeordneten Tonvorrat von <strong>Sk1</strong> um den Anfangston cis. Die Niederschrift von Reihe B erfolgt dann im dynamischen Abgleich mit <strong>Sk2.1</strong>, <strong>Sk2.1.1</strong>, <strong>Sk2.1.2</strong>, <strong>Sk2.1.2.1</strong> und <strong>Sk2.1.3</strong>."
             ],
+            "rowtable": true,
             "comments": [
                 {
                     "measure": "A",
