@@ -171,13 +171,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                 }),
                 takeUntil(this._destroyed$)
             )
-            .subscribe(
-                (data: ResourceData) => {
+            .subscribe({
+                next: (data: ResourceData) => {
                     // Subscribe to resource data to trigger loading service
                     this.resourceData = data;
                 },
-                err => (this.errorMessage = err)
-            );
+                error: err => (this.errorMessage = err),
+            });
     }
 
     /**

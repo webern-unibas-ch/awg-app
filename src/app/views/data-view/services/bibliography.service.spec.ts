@@ -75,35 +75,44 @@ describe('BibliographyService (DONE)', () => {
             const expectedServiceName = 'BibliographyService';
 
             expect(bibliographyService.serviceName).toBeDefined();
-            expect(bibliographyService.serviceName).toBe(expectedServiceName);
+            expect(bibliographyService.serviceName)
+                .withContext(`should be ${expectedServiceName}`)
+                .toBe(expectedServiceName);
         });
 
         it('... should have projectId', () => {
             expect(bibliographyService.projectId).toBeDefined();
-            expect(bibliographyService.projectId).toBe(expectedProjectId);
+            expect(bibliographyService.projectId).withContext(`should be ${expectedProjectId}`).toBe(expectedProjectId);
         });
 
         it('... should have resTypeId', () => {
             expect(bibliographyService.resTypeId).toBeDefined();
-            expect(bibliographyService.resTypeId).toBe(expectedResTypeId);
+            expect(bibliographyService.resTypeId).withContext(`should be ${expectedResTypeId}`).toBe(expectedResTypeId);
         });
 
         it('... should have bibShortTitlePropertyId', () => {
             expect(bibliographyService.bibShortTitlePropertyId).toBeDefined();
-            expect(bibliographyService.bibShortTitlePropertyId).toBe(expectedBibShortTitlePropertyId);
+            expect(bibliographyService.bibShortTitlePropertyId)
+                .withContext(`should be ${expectedBibShortTitlePropertyId}`)
+                .toBe(expectedBibShortTitlePropertyId);
         });
 
         it('... should have routes', () => {
             expect(bibliographyService.resourcesRoute).toBeDefined();
-            expect(bibliographyService.resourcesRoute).toBe(expectedResourcesRoute);
+            expect(bibliographyService.resourcesRoute)
+                .withContext(`should be ${expectedResourcesRoute}`)
+                .toBe(expectedResourcesRoute);
 
             expect(bibliographyService.searchRoute).toBeDefined();
-            expect(bibliographyService.searchRoute).toBe(expectedSearchRoute);
+            expect(bibliographyService.searchRoute)
+                .withContext(`should be ${expectedSearchRoute}`)
+                .toBe(expectedSearchRoute);
         });
 
         it("... should have empty 'httpGetUrl' (inherited from ApiService)", () => {
             expect(bibliographyService.httpGetUrl).toBeDefined();
-            expect(bibliographyService.httpGetUrl).toBe('');
+            expect(bibliographyService.httpGetUrl).not.toBeTruthy();
+            expect(bibliographyService.httpGetUrl).withContext(`should be empty string`).toBe('');
         });
     });
 
@@ -111,8 +120,11 @@ describe('BibliographyService (DONE)', () => {
         it('... should issue a mocked http get request', waitForAsync(() => {
             const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toEqual(testData);
+            httpClient.get<Data>('/foo/bar').subscribe({
+                next: data => {
+                    expect(data).toBeTruthy();
+                    expect(data).withContext(`should equal ${testData}`).toEqual(testData);
+                },
             });
 
             // Match the request url
@@ -143,9 +155,9 @@ describe('BibliographyService (DONE)', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.method).withContext('should be GET').toBe('GET');
+                expect(call.request.responseType).withContext('should be json').toBe('json');
+                expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
             }));
 
             it('... should set filter params for GET request', waitForAsync(() => {
@@ -161,25 +173,22 @@ describe('BibliographyService (DONE)', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.method).withContext('should be GET').toBe('GET');
+                expect(call.request.responseType).withContext('should be json').toBe('json');
+                expect(call.request.url).withContext(`should be ${expectedUrl}`).toBe(expectedUrl);
                 expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).toBe(5, 'should be 5');
-                expect(call.request.params.get('searchtype')).toBe('extended', 'should be extended');
-                expect(call.request.params.get('filter_by_project')).toBe(
-                    expectedProjectId,
-                    `should be ${expectedProjectId}`
-                );
-                expect(call.request.params.get('filter_by_restype')).toBe(
-                    expectedResTypeId,
-                    `should be ${expectedResTypeId}`
-                );
-                expect(call.request.params.get('property_id')).toBe(
-                    expectedBibShortTitlePropertyId,
-                    `should be ${expectedBibShortTitlePropertyId}`
-                );
-                expect(call.request.params.get('compop')).toBe('EXISTS', 'should be EXISTS');
+                expect(call.request.params.keys().length).withContext('should be 5').toBe(5);
+                expect(call.request.params.get('searchtype')).withContext('should be extended').toBe('extended');
+                expect(call.request.params.get('filter_by_project'))
+                    .withContext(`should be ${expectedProjectId}`)
+                    .toBe(expectedProjectId);
+                expect(call.request.params.get('filter_by_restype'))
+                    .withContext(`should be ${expectedResTypeId}`)
+                    .toBe(expectedResTypeId);
+                expect(call.request.params.get('property_id'))
+                    .withContext(`should be ${expectedBibShortTitlePropertyId}`)
+                    .toBe(expectedBibShortTitlePropertyId);
+                expect(call.request.params.get('compop')).withContext('should be EXISTS').toBe('EXISTS');
             }));
 
             it('... should call getApiResponse (via ApiService) with filter params', waitForAsync(() => {
@@ -193,12 +202,14 @@ describe('BibliographyService (DONE)', () => {
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                bibliographyService.getBibliographyList().subscribe((response: SearchResponseJson) => {
-                    expectSpyCall(getApiResponseSpy, 1, [
-                        SearchResponseJson,
-                        expectedQueryPath,
-                        expectedQueryHttpParams,
-                    ]);
+                bibliographyService.getBibliographyList().subscribe({
+                    next: () => {
+                        expectSpyCall(getApiResponseSpy, 1, [
+                            SearchResponseJson,
+                            expectedQueryPath,
+                            expectedQueryHttpParams,
+                        ]);
+                    },
                 });
             }));
         });
@@ -208,8 +219,13 @@ describe('BibliographyService (DONE)', () => {
                 it('... should return an Observable<SearchResponseJson>', waitForAsync(() => {
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                    bibliographyService.getBibliographyList().subscribe((response: SearchResponseJson) => {
-                        expect(response).toEqual(expectedSearchResponseJson);
+                    bibliographyService.getBibliographyList().subscribe({
+                        next: (response: SearchResponseJson) => {
+                            expect(response).toBeTruthy();
+                            expect(response)
+                                .withContext(`shoud equal ${expectedSearchResponseJson}`)
+                                .toEqual(expectedSearchResponseJson);
+                        },
                     });
                 }));
             });
@@ -232,17 +248,19 @@ describe('BibliographyService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
-                    bibliographyService.getBibliographyList().subscribe(
-                        result => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
+                    bibliographyService.getBibliographyList().subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 SearchResponseJson,
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(error).toEqual(expectedApiServiceError);
-                        }
-                    );
+                            expect(err)
+                                .withContext(`shoud equal ${expectedApiServiceError}`)
+                                .toEqual(expectedApiServiceError);
+                        },
+                    });
                 }));
             });
         });
@@ -260,7 +278,7 @@ describe('BibliographyService (DONE)', () => {
                 // Expect one request to url with given settings
                 httpTestingController.expectOne((req: HttpRequest<any>) => {
                     expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(0, 'should be 0');
+                    expect(req.params.keys().length).withContext('should be 0').toBe(0);
 
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
@@ -273,15 +291,15 @@ describe('BibliographyService (DONE)', () => {
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
 
-                bibliographyService
-                    .getBibliographyItemDetail(expectedResourceId)
-                    .subscribe((response: ResourceFullResponseJson) => {
+                bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe({
+                    next: (response: ResourceFullResponseJson) => {
                         expectSpyCall(getApiResponseSpy, 1, [
                             ResourceFullResponseJson,
                             expectedQueryPath,
                             expectedQueryHttpParams,
                         ]);
-                    });
+                    },
+                });
             }));
         });
 
@@ -292,11 +310,14 @@ describe('BibliographyService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
 
-                    bibliographyService
-                        .getBibliographyItemDetail(expectedResourceId)
-                        .subscribe((response: ResourceFullResponseJson) => {
-                            expect(response).toEqual(expectedResourceFullResponseJson);
-                        });
+                    bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe({
+                        next: (response: ResourceFullResponseJson) => {
+                            expect(response).toBeTruthy();
+                            expect(response)
+                                .withContext(`should equal ${expectedResourceFullResponseJson}`)
+                                .toEqual(expectedResourceFullResponseJson);
+                        },
+                    });
                 }));
             });
 
@@ -314,17 +335,19 @@ describe('BibliographyService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(() => expectedApiServiceError));
 
-                    bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe(
-                        result => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
+                    bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe({
+                        next: () => fail(expectedErrorMsg),
+                        error: (err: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 ResourceFullResponseJson,
                                 expectedQueryPath,
                                 expectedQueryHttpParams,
                             ]);
-                            expect(error).toEqual(expectedApiServiceError);
-                        }
-                    );
+                            expect(err)
+                                .withContext(`shoud equal ${expectedApiServiceError}`)
+                                .toEqual(expectedApiServiceError);
+                        },
+                    });
                 }));
             });
         });

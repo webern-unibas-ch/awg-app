@@ -857,10 +857,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // Avoid Math.round error
         // Cf. https://www.jacklmoore.com/notes/rounding-in-javascript/
-        const round = (roundValue: number, decimalPlaces: number): number => {
-            const rounded = Number(Math.round(Number(roundValue + 'e' + decimalPlaces)) + 'e-' + decimalPlaces);
-            return rounded;
-        };
+        const round = (roundValue: number, decimalPlaces: number): number =>
+            Number(Math.round(Number(roundValue + 'e' + decimalPlaces)) + 'e-' + decimalPlaces);
 
         return round(value, countDecimals(steps));
     }

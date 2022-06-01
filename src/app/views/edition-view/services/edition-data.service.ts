@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
@@ -329,8 +329,7 @@ export class EditionDataService {
      * @returns An observable of the error.
      */
     private _handleError<T>(operation: string, result?: T) {
-        return (error: any): Observable<T> => {
-            // TODO: better job of transforming error for user consumption
+        return (error: HttpErrorResponse): Observable<T> => {
             this._logError(`${operation} failed: ${error.message}`);
 
             // Let the app keep running by returning an empty result.

@@ -1,0 +1,48 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "4",
+                    "format": {
+                        "height": 74,
+                        "width": 270
+                    },
+                    "content": [
+                        {
+                            "id": "M_312_Sk5_M_313_Sk1_M_314_Sk1",
+                            "sigle": "M 312 Sk5 / M 313 Sk1 / M 314 Sk1 (Reihentabelle op. 23)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "4",
+                    "format": {
+                        "height": 74,
+                        "width": 270
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-D",
+            "convoluteLabel": "A, C–D (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP23_SOURCE_NOT_B"
+        }
+    ]
+}

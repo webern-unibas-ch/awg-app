@@ -1,5 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,7 +11,7 @@ import {
     ResourceTypesInVocabularyResponseJson,
     ResTypeItemJson,
 } from '@awg-shared/api-objects';
-
+import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-response-formats/src/property-definition-json';
 import {
     ExtendedSearchParams,
     SEARCH_COMPOP_SETS_LIST,
@@ -16,7 +19,6 @@ import {
     VALUETYPE_LIST,
 } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
-import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-response-formats/src/property-definition-json';
 
 /**
  * The ExtendedSearchForm component.
@@ -29,7 +31,7 @@ import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-respons
     templateUrl: './extended-search-form.component.html',
     styleUrls: ['./extended-search-form.component.scss'],
 })
-export class ExtendedSearchFormComponent implements OnInit {
+export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     /**
      * Output variable: searchRequest.
      *
@@ -125,6 +127,13 @@ export class ExtendedSearchFormComponent implements OnInit {
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
     };
+
+    /**
+     * Private variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ExtendedSearchFormComponent.
@@ -310,14 +319,17 @@ export class ExtendedSearchFormComponent implements OnInit {
      * @returns {void} Sets the propertyListsResponse data.
      */
     getPropertyLists(restypeId: string): void {
-        this.dataApiService.getPropertyListsByResourceType(restypeId).subscribe(
-            (properyListsResponse: PropertyTypesInResourceClassResponseJson) => {
-                this.propertyListsResponse = properyListsResponse;
-            },
-            error => {
-                console.error(error as any);
-            }
-        );
+        this.dataApiService
+            .getPropertyListsByResourceType(restypeId)
+            .pipe(takeUntil(this._destroyed$))
+            .subscribe({
+                next: (properyListsResponse: PropertyTypesInResourceClassResponseJson) => {
+                    this.propertyListsResponse = properyListsResponse;
+                },
+                error: err => {
+                    console.error(err);
+                },
+            });
     }
 
     /**
@@ -328,16 +340,18 @@ export class ExtendedSearchFormComponent implements OnInit {
      * @returns {void} Sets the restypesResponse data.
      */
     getResourcetypes(): void {
-        this.dataApiService.getResourceTypes().subscribe(
-            (restypesResponse: ResourceTypesInVocabularyResponseJson) => {
-                this.restypesResponse = restypesResponse;
-
-                this.listenToUserResourcetypeChange();
-            },
-            error => {
-                console.error(error as any);
-            }
-        );
+        this.dataApiService
+            .getResourceTypes()
+            .pipe(takeUntil(this._destroyed$))
+            .subscribe({
+                next: (restypesResponse: ResourceTypesInVocabularyResponseJson) => {
+                    this.restypesResponse = restypesResponse;
+                    this.listenToUserResourcetypeChange();
+                },
+                error: err => {
+                    console.error(err);
+                },
+            });
     }
 
     /**
@@ -443,14 +457,19 @@ export class ExtendedSearchFormComponent implements OnInit {
      * @returns {void} Listens to changing restype input.
      */
     listenToUserResourcetypeChange(): void {
-        this.restypeControl.valueChanges.subscribe((resourcetypeId: string) => {
-            this.selectedResourcetype = this.restypesResponse.resourcetypes.find(r => r.id === resourcetypeId);
+        this.restypeControl.valueChanges.pipe(takeUntil(this._destroyed$)).subscribe({
+            next: (resourcetypeId: string) => {
+                this.selectedResourcetype = this.restypesResponse.resourcetypes.find(r => r.id === resourcetypeId);
 
-            this._clearPropertiesControls(); // Remove all previous property input fields
+                this._clearPropertiesControls(); // Remove all previous property input fields
 
-            if (this.selectedResourcetype) {
-                this.getPropertyLists(this.selectedResourcetype.id);
-            }
+                if (this.selectedResourcetype) {
+                    this.getPropertyLists(this.selectedResourcetype.id);
+                }
+            },
+            error: err => {
+                console.error(err);
+            },
         });
     }
 
@@ -463,16 +482,23 @@ export class ExtendedSearchFormComponent implements OnInit {
      * @returns {void} Listens to changing property id input.
      */
     listenToUserPropertyChange(index: number): void {
-        this._getFormArrayControlAtIndex('propertyIdControl', index).valueChanges.subscribe((propertyId: string) => {
-            const propertyListEntry = this.getPopertyListEntryById(propertyId)[0];
-            const guiElementId = propertyListEntry.guielement_id;
-            const valueTypeId = propertyListEntry.valuetype_id;
+        this._getFormArrayControlAtIndex('propertyIdControl', index)
+            .valueChanges.pipe(takeUntil(this._destroyed$))
+            .subscribe({
+                next: (propertyId: string) => {
+                    const propertyListEntry = this.getPopertyListEntryById(propertyId)[0];
+                    const guiElementId = propertyListEntry.guielement_id;
+                    const valueTypeId = propertyListEntry.valuetype_id;
 
-            this.getCompopoControlAtIndex(index).setValue('');
-            this.getSearchvalControlAtIndex(index).setValue('');
+                    this.getCompopoControlAtIndex(index).setValue('');
+                    this.getSearchvalControlAtIndex(index).setValue('');
 
-            this.selectedCompopSets[index] = this.getCompopSetByValueType(valueTypeId, guiElementId);
-        });
+                    this.selectedCompopSets[index] = this.getCompopSetByValueType(valueTypeId, guiElementId);
+                },
+                error: err => {
+                    console.error(err);
+                },
+            });
     }
 
     /**
@@ -514,6 +540,20 @@ export class ExtendedSearchFormComponent implements OnInit {
 
             // .this._resetForm();
         }
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // Emit truthy value to end all subscriptions
+        this._destroyed$.next(true);
+
+        // Now let's complete the subject itself
+        this._destroyed$.complete();
     }
 
     /**

@@ -24,6 +24,14 @@ export class EditionTkaTableComponent {
     textcriticalComments: TextcriticalComment[];
 
     /**
+     * Input variable: isRowTable.
+     *
+     * It keeps a boolean flag to indicate if the textcritics describe a row table.
+     */
+    @Input()
+    isRowTable = false;
+
+    /**
      * Output variable: openModalRequest.
      *
      * It keeps an event emitter to open the modal
@@ -46,12 +54,46 @@ export class EditionTkaTableComponent {
     ref: EditionTkaTableComponent;
 
     /**
+     * Public variable: tableHeaderStrings.
+     *
+     * It keeps different string collections for the table header.
+     */
+    tableHeaderStrings = {
+        default: [
+            { reference: 'measure', label: 'Takt' },
+            { reference: 'system', label: 'System' },
+            { reference: 'location', label: 'Ort im Takt' },
+            { reference: 'comment', label: 'Kommentar' },
+        ],
+        rowTable: [
+            { reference: 'measure', label: 'Folio' },
+            { reference: 'system', label: 'System' },
+            { reference: 'location', label: 'Reihe/Reihenton' },
+            { reference: 'comment', label: 'Kommentar' },
+        ],
+    };
+
+    /**
      * Constructor of the EditionTkaTableComponent.
      *
      * It initializes the self-referring ref variable needed for CompileHtml library.
      */
     constructor() {
         this.ref = this;
+    }
+
+    /**
+     * Public method: getTableHeaderStrings.
+     *
+     * It returns different table header strings depending on the isRowTable flag.
+     *
+     * @returns {{reference: string, label: string}[]} The table header string collection.
+     */
+    getTableHeaderStrings(): { reference: string; label: string }[] {
+        if (this.isRowTable) {
+            return this.tableHeaderStrings.rowTable;
+        }
+        return this.tableHeaderStrings.default;
     }
 
     /**

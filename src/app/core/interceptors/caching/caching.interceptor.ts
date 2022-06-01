@@ -69,7 +69,7 @@ export class CachingInterceptor implements HttpInterceptor {
                     console.error('CachingInterceptor: Processing http error', response);
                 }
 
-                return observableThrowError(response);
+                return observableThrowError(() => response);
             })
         );
     }

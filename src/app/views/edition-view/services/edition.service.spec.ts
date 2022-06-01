@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectSpyCall } from '@testing/expect-helper';
 
 import {
     EditionSvgOverlay,
@@ -14,7 +15,6 @@ import {
 } from '@awg-views/edition-view/models';
 
 import { EditionService } from './edition.service';
-import { expectSpyCall } from '@testing/expect-helper';
 
 describe('EditionService (DONE)', () => {
     let editionService: EditionService;
@@ -87,7 +87,9 @@ describe('EditionService (DONE)', () => {
 
     it('should have bufferSize = 1', () => {
         expect((editionService as any)._bufferSize).toBeTruthy();
-        expect((editionService as any)._bufferSize).toBe(1, 'should be 1');
+        expect((editionService as any)._bufferSize)
+            .withContext('should be 1')
+            .toBe(1);
     });
 
     it('should have editionWorkSubject', () => {
@@ -100,22 +102,28 @@ describe('EditionService (DONE)', () => {
 
     describe('EditionWork', () => {
         describe('#getEditionWork', () => {
-            it('... should return given editionWork', done => {
-                editionService.getEditionWork().subscribe((editionWork: EditionWork) => {
-                    expect(editionWork).toBeTruthy();
-                    expect(editionWork).toEqual(expectedEditionWork);
-                    done();
+            it('... should return given editionWork', waitForAsync(() => {
+                editionService.getEditionWork().subscribe({
+                    next: (editionWork: EditionWork) => {
+                        expect(editionWork).toBeTruthy();
+                        expect(editionWork)
+                            .withContext(`should equal ${expectedEditionWork}`)
+                            .toEqual(expectedEditionWork);
+                    },
                 });
 
                 // Set editionWork (with default value)
                 editionService.updateEditionWork(expectedEditionWork);
-            });
+            }));
 
-            it('... should return updated editionWork', done => {
-                editionService.getEditionWork().subscribe((editionWork: EditionWork) => {
-                    expect(editionWork).toBeTruthy();
-                    expect(editionWork).toEqual(expectedEditionWork);
-                    done();
+            it('... should return updated editionWork', waitForAsync(() => {
+                editionService.getEditionWork().subscribe({
+                    next: (editionWork: EditionWork) => {
+                        expect(editionWork).toBeTruthy();
+                        expect(editionWork)
+                            .withContext(`should equal ${expectedEditionWork}`)
+                            .toEqual(expectedEditionWork);
+                    },
                 });
 
                 // Set editionWork (with default value)
@@ -124,15 +132,18 @@ describe('EditionService (DONE)', () => {
                 // Update editionWork
                 expectedEditionWork = EditionWorks.OP25;
                 editionService.updateEditionWork(expectedEditionWork);
-            });
+            }));
         });
 
         describe('#updateEditionWork', () => {
-            it('... should emit updated editionWork', done => {
-                editionService.getEditionWork().subscribe((editionWork: EditionWork) => {
-                    expect(editionWork).toBeTruthy();
-                    expect(editionWork).toEqual(expectedEditionWork);
-                    done();
+            it('... should emit updated editionWork', waitForAsync(() => {
+                editionService.getEditionWork().subscribe({
+                    next: (editionWork: EditionWork) => {
+                        expect(editionWork).toBeTruthy();
+                        expect(editionWork)
+                            .withContext(`should equal ${expectedEditionWork}`)
+                            .toEqual(expectedEditionWork);
+                    },
                 });
 
                 // Set editionWork
@@ -141,26 +152,32 @@ describe('EditionService (DONE)', () => {
                 // Update editionWork
                 expectedEditionWork = EditionWorks.OP25;
                 editionService.updateEditionWork(expectedEditionWork);
-            });
+            }));
         });
 
         describe('#clearEditionWork', () => {
-            it('... should update edition work with null value', done => {
-                editionService.getEditionWork().subscribe((editionWork: EditionWork) => {
-                    expect(editionWork).toBeNull();
-                    expect(editionWork).toEqual(expectedEditionWork);
-                    done();
+            it('... should update edition work with null value', waitForAsync(() => {
+                editionService.getEditionWork().subscribe({
+                    next: (editionWork: EditionWork) => {
+                        expect(editionWork).toBeNull();
+                        expect(editionWork)
+                            .withContext(`should equal ${expectedEditionWork}`)
+                            .toEqual(expectedEditionWork);
+                    },
                 });
 
                 // Clear editionWork
                 expectedEditionWork = null;
                 editionService.clearEditionWork();
-            });
+            }));
 
-            it('... should overwrite existing search results', done => {
-                editionService.getEditionWork().subscribe((editionWork: EditionWork) => {
-                    expect(editionWork).toEqual(expectedEditionWork);
-                    done();
+            it('... should overwrite existing search results', waitForAsync(() => {
+                editionService.getEditionWork().subscribe({
+                    next: (editionWork: EditionWork) => {
+                        expect(editionWork)
+                            .withContext(`should equal ${expectedEditionWork}`)
+                            .toEqual(expectedEditionWork);
+                    },
                 });
 
                 // Update editionWork
@@ -169,7 +186,7 @@ describe('EditionService (DONE)', () => {
                 // Clear editionWork
                 expectedEditionWork = null;
                 editionService.clearEditionWork();
-            });
+            }));
         });
     });
 
@@ -204,7 +221,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
 
             // Overlay for measure 4 entries
             expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '4');
@@ -213,7 +230,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should find multiple comments for measure 2', () => {
@@ -224,7 +241,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should find comments for a measure with brackets [3]', () => {
@@ -235,7 +252,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should find a single comment for system 11 & 12', () => {
@@ -246,7 +263,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
 
             // Overlay for system 12 entries
             expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.system, '12');
@@ -255,7 +272,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should find multiple comments for system 14', () => {
@@ -266,7 +283,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should find a system with brackets [13]', () => {
@@ -277,7 +294,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should find a comment for an item by array position', () => {
@@ -288,7 +305,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
 
             // Overlay for item 4
             expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.item, '4');
@@ -297,7 +314,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should return empty array if measure was not found', () => {
@@ -308,7 +325,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should return empty array if system was not found', () => {
@@ -319,7 +336,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
 
         it('... should return empty array if item id was not found', () => {
@@ -330,7 +347,7 @@ describe('EditionService (DONE)', () => {
             filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
 
             expect(filteredComments).toBeTruthy();
-            expect(filteredComments).toEqual(expectedResult, `should be ${expectedResult}`);
+            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
         });
     });
 });

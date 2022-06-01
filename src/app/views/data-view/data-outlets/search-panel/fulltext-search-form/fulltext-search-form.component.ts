@@ -167,7 +167,9 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
                 distinctUntilChanged(),
                 takeUntil(this._destroyed$)
             )
-            .subscribe((query: string) => this.onSearch(query));
+            .subscribe({
+                next: (query: string) => this.onSearch(query),
+            });
     }
 
     /**
