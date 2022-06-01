@@ -1,16 +1,16 @@
 {
     "textcritics": [
         {
-            "id": "Aa-SkI-1",//M_212_Sk1 ##warum hier Schreibweise mit Bindestrich?##
-            "label": "Aa:SkI/1",//M 212 Sk1
+            "id": "M_212_Sk1",
+            "label": "M 212 Sk1",
             "description": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar und die textkritischen Kommentare zu <strong>M 212 Sk1</strong> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
             ],
             "comments": []
         },
         {
-            "id": "Aa-SkI-2",//M_212_Sk2
-            "label": "Aa:SkI/2",//M 212 Sk2
+            "id": "M_212_Sk2",
+            "label": "M 212 Sk2",
             "description": [],
             "comments": [
                 {
@@ -23,7 +23,7 @@
                     "measure": "10",
                     "system": "12",
                     "position": "2. Note",
-                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>M 212 Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M 212 Sk3')\"><strong>M 212 Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M 212 Sk5')\"><strong>M 212 Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>."
+                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>M 212 Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>."
                 },
                 {
                     "measure": "[11]",
@@ -40,8 +40,8 @@
             ]
         },
         {
-            "id": "Aa-SkI-3",//M_212_Sk3
-            "label": "Aa:SkI/3",//M 212 Sk3
+            "id": "M_212_Sk3",
+            "label": "M 212 Sk3",
             "description": [],
             "comments": [
                 {
@@ -65,8 +65,8 @@
             ]
         },
         {
-            "id": "Aa-SkI-4",//M_212_Sk4
-            "label": "Aa:SkI/4",//M 212 Sk4
+            "id": "M_212_Sk4",
+            "label": "M 212 Sk4",
             "description": [],
             "comments": [
                 {
@@ -84,8 +84,8 @@
             ]
         },
         {
-            "id": "Aa-SkI-5",//M_212_Sk5
-            "label": "Aa:SkI/5",//M 212 Sk5
+            "id": "M_212_Sk5",
+            "label": "M 212 Sk5",
             "description": [],
             "comments": [
                 {
