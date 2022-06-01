@@ -13,8 +13,8 @@
                     },
                     "content": [
                         {
-                            "id": "Aa:SkI/1a",
-                            "sigle": "Aa:SkI/1a",
+                            "id": "Aa:SkI/1a", //M_212_Sk1a ##wo 'existiert' M 212 Sk1 als Ganzes?##
+                            "sigle": "Aa:SkI/1a", //M 212 Sk1a
                             "sigleAddendum": "T. 1–6",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
@@ -27,8 +27,8 @@
                             ]
                         },
                         {
-                            "id": "Aa:SkI/1a",
-                            "sigle": "Aa:SkI/1a",
+                            "id": "Aa:SkI/1a", //M_212_Sk1b
+                            "sigle": "Aa:SkI/1a", //M 212 Sk1b
                             "sigleAddendum": "T. 7–12",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
@@ -42,8 +42,8 @@
                             ]
                         },
                         {
-                            "id": "Aa:SkI/1a",
-                            "sigle": "Aa:SkI/1a",
+                            "id": "Aa:SkI/1a", //M_212_Sk1c
+                            "sigle": "Aa:SkI/1a", //M 212 Sk1c
                             "sigleAddendum": "T. 13–17",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
@@ -67,8 +67,8 @@
                     },
                     "content": [
                         {
-                            "id": "Aa:SkI/4",
-                            "sigle": "Aa:SkI/4",
+                            "id": "Aa:SkI/4", //M_212_Sk4
+                            "sigle": "Aa:SkI/4", //M 212 Sk4
                             "sigleAddendum": "T. 10–11",
                             "sectionPartition": 2,
                             "sections": [
@@ -80,8 +80,8 @@
                             ]
                         },
                         {
-                            "id": "Aa:SkI/5",
-                            "sigle": "Aa:SkI/5",
+                            "id": "Aa:SkI/5", //M_212_Sk5
+                            "sigle": "Aa:SkI/5", //M 212 Sk5
                             "sigleAddendum": "T. 10–11",
                             "sectionPartition": 2,
                             "sections": [
@@ -93,8 +93,8 @@
                             ]
                         },
                         {
-                            "id": "Aa:SkI/3",
-                            "sigle": "Aa:SkI/3",
+                            "id": "Aa:SkI/3", //M_212_Sk3
+                            "sigle": "Aa:SkI/3", //M 212 Sk3
                             "sigleAddendum": "T. 10–11",
                             "sectionPartition": 2,
                             "sections": [
@@ -106,8 +106,8 @@
                             ]
                         },
                         {
-                            "id": "Aa:SkI/2",
-                            "sigle": "Aa:SkI/2",
+                            "id": "Aa:SkI/2", //M_212_Sk2
+                            "sigle": "Aa:SkI/2", //M 212 Sk2
                             "sigleAddendum": "T. 10–12",
                             "sectionPartition": 2,
                             "sections": [
@@ -129,8 +129,8 @@
                     },
                     "content": [
                         {
-                            "id": "Aa:SkI/1b",
-                            "sigle": "Aa:SkI/1b",
+                            "id": "Aa:SkI/1b", //M_212_Sk1d
+                            "sigle": "Aa:SkI/1b", //M 212 Sk1d
                             "sigleAddendum": "T. 18–22",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",
@@ -142,8 +142,8 @@
                             ]
                         },
                         {
-                            "id": "Aa:SkI/1b",
-                            "sigle": "Aa:SkI/1b",
+                            "id": "Aa:SkI/1b", //M_212_Sk1e
+                            "sigle": "Aa:SkI/1b", //M 212 Sk1e
                             "sigleAddendum": "T. 23–24",
                             "selectable": false,
                             "linkTo": "OP12_SOURCE_NOT_A",

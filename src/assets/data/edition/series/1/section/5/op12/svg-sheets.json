@@ -1,38 +1,38 @@
 {
     "sheets": [
         {
-            "id": "Aa:SkI/1",
+            "id": "M 212 Sk1",
             "svg": "",
             "image": "",
-            "alt": "Aa:SkI/1",
+            "alt": "M 212 Sk1",
             "convolute": "A"
         },
         {
-            "id": "Aa:SkI/2",
+            "id": "M 212 Sk2",
             "svg": "assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg",
             "image": "assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg",
-            "alt": "Aa:SkI/2",
+            "alt": "M 212 Sk2",
             "convolute": "A"
         },
         {
-            "id": "Aa:SkI/3",
+            "id": "M 212 Sk3",
             "svg": "assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg",
             "image": "assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg",
-            "alt": "Aa:SkI/3",
+            "alt": "M 212 Sk3",
             "convolute": "A"
         },
         {
-            "id": "Aa:SkI/4",
+            "id": "M 212 Sk4",
             "svg": "assets/img/edition/series/1/section/5/op12/SkI_4n_small_cut_opt.svg",
             "image": "assets/img/edition/series/1/section/5/op12/SkI_4_small.jpg",
-            "alt": "Aa:SkI/4",
+            "alt": "M 212 Sk4",
             "convolute": "A"
         },
         {
-            "id": "Aa:SkI/5",
+            "id": "M 212 Sk5",
             "svg": "assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg",
             "image": "assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg",
-            "alt": "Aa:SkI/5",
+            "alt": "M 212 Sk5",
             "convolute": "A"
         }
     ]
