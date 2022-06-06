@@ -227,29 +227,25 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const columnCmp2 = columnDes[2].nativeElement;
                 const columnCmp3 = columnDes[3].nativeElement;
 
-                expect(columnCmp0.textContent).toBeDefined('should be defined');
-                expect(columnCmp0.textContent).toBe(
-                    expectedTextcriticalComments[0].measure,
-                    `should be ${expectedTextcriticalComments[0].measure}`
-                );
+                expect(columnCmp0.textContent).toBeDefined();
+                expect(columnCmp0.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[0].measure}`)
+                    .toBe(expectedTextcriticalComments[0].measure);
 
-                expect(columnCmp1.textContent).toBeDefined('should be defined');
-                expect(columnCmp1.textContent).toBe(
-                    expectedTextcriticalComments[0].system,
-                    `should be ${expectedTextcriticalComments[0].system}`
-                );
+                expect(columnCmp1.textContent).toBeDefined();
+                expect(columnCmp1.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[0].system}`)
+                    .toBe(expectedTextcriticalComments[0].system);
 
-                expect(columnCmp2.textContent).toBeDefined('should be defined');
-                expect(columnCmp2.textContent).toBe(
-                    expectedTextcriticalComments[0].position,
-                    `should be ${expectedTextcriticalComments[0].position}`
-                );
+                expect(columnCmp2.textContent).toBeDefined();
+                expect(columnCmp2.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[0].position}`)
+                    .toBe(expectedTextcriticalComments[0].position);
 
-                expect(columnCmp3.textContent).toBeDefined('should be defined');
-                expect(columnCmp3.textContent).toBe(
-                    expectedTextcriticalComments[0].comment,
-                    `should be ${expectedTextcriticalComments[0].comment}`
-                );
+                expect(columnCmp3.textContent).toBeDefined();
+                expect(columnCmp3.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[0].comment}`)
+                    .toBe(expectedTextcriticalComments[0].comment);
             });
 
             it('... should contain correct data in second row', () => {
@@ -262,29 +258,25 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const columnCmp2 = columnDes[2].nativeElement;
                 const columnCmp3 = columnDes[3].nativeElement;
 
-                expect(columnCmp0.textContent).toBeDefined('should be defined');
-                expect(columnCmp0.textContent).toBe(
-                    expectedTextcriticalComments[1].measure,
-                    `should be ${expectedTextcriticalComments[1].measure}`
-                );
+                expect(columnCmp0.textContent).toBeDefined();
+                expect(columnCmp0.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[1].measure}`)
+                    .toBe(expectedTextcriticalComments[1].measure);
 
-                expect(columnCmp1.textContent).toBeDefined('should be defined');
-                expect(columnCmp1.textContent).toBe(
-                    expectedTextcriticalComments[1].system,
-                    `should be ${expectedTextcriticalComments[1].system}`
-                );
+                expect(columnCmp1.textContent).toBeDefined();
+                expect(columnCmp1.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[1].system}`)
+                    .toBe(expectedTextcriticalComments[1].system);
 
-                expect(columnCmp2.textContent).toBeDefined('should be defined');
-                expect(columnCmp2.textContent).toBe(
-                    expectedTextcriticalComments[1].position,
-                    `should be ${expectedTextcriticalComments[1].position}`
-                );
+                expect(columnCmp2.textContent).toBeDefined();
+                expect(columnCmp2.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[1].position}`)
+                    .toBe(expectedTextcriticalComments[1].position);
 
-                expect(columnCmp3.textContent).toBeDefined('should be defined');
-                expect(columnCmp3.textContent).toBe(
-                    'Siehe Aa:SkI/1 T. [11] und Aa:SkI/5.',
-                    `should be 'Siehe Aa:SkI/1 T. [11] und Aa:SkI/5.'`
-                );
+                expect(columnCmp3.textContent).toBeDefined();
+                expect(columnCmp3.textContent)
+                    .withContext(`should be 'Siehe M 212 Sk1 T. [11] und M 212 Sk5.'`)
+                    .toBe('Siehe M 212 Sk1 T. [11] und M 212 Sk5.');
             });
 
             it('... should contain correct data in third row', () => {
@@ -297,29 +289,25 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const columnCmp2 = columnDes[2].nativeElement;
                 const columnCmp3 = columnDes[3].nativeElement;
 
-                expect(columnCmp0.textContent).toBeDefined('should be defined');
-                expect(columnCmp0.textContent).toBe(
-                    expectedTextcriticalComments[2].measure,
-                    `should be ${expectedTextcriticalComments[2].measure}`
-                );
+                expect(columnCmp0.textContent).toBeDefined();
+                expect(columnCmp0.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[2].measure}`)
+                    .toBe(expectedTextcriticalComments[2].measure);
 
-                expect(columnCmp1.textContent).toBeDefined('should be defined');
-                expect(columnCmp1.textContent).toBe(
-                    expectedTextcriticalComments[2].system,
-                    `should be ${expectedTextcriticalComments[2].system}`
-                );
+                expect(columnCmp1.textContent).toBeDefined();
+                expect(columnCmp1.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[2].system}`)
+                    .toBe(expectedTextcriticalComments[2].system);
 
-                expect(columnCmp2.textContent).toBeDefined('should be defined');
-                expect(columnCmp2.textContent).toBe(
-                    expectedTextcriticalComments[2].position,
-                    `should be ${expectedTextcriticalComments[2].position}`
-                );
+                expect(columnCmp2.textContent).toBeDefined();
+                expect(columnCmp2.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[2].position}`)
+                    .toBe(expectedTextcriticalComments[2].position);
 
-                expect(columnCmp3.textContent).toBeDefined('should be defined');
-                expect(columnCmp3.textContent).toBe(
-                    expectedTextcriticalComments[2].comment,
-                    `should be ${expectedTextcriticalComments[2].comment}`
-                );
+                expect(columnCmp3.textContent).toBeDefined();
+                expect(columnCmp3.textContent)
+                    .withContext(`should be ${expectedTextcriticalComments[2].comment}`)
+                    .toBe(expectedTextcriticalComments[2].comment);
             });
         });
 

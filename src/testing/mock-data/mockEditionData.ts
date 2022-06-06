@@ -28,8 +28,8 @@ export const mockEditionData = {
                         },
                         content: [
                             {
-                                id: 'Aa:SkI/1a',
-                                sigle: 'Aa:SkI/1a',
+                                id: 'M_212_Sk1',
+                                sigle: 'M 212 Sk1',
                                 sigleAddendum: 'T. 1–2, [3–6]',
                                 selectable: false,
                                 linkTo: 'OP12_SOURCE_NOT_A',
@@ -65,7 +65,7 @@ export const mockEditionData = {
                 id: 'op12',
                 content: [
                     'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
-                    'In <a (click)="ref.selectSvgSheet(\'Aa:SkI/2\')"><strong>Aa:SkI/2</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Aa:SkI/1</strong></a> neu skizziert',
+                    'In <a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> neu skizziert',
                 ],
             },
         ],
@@ -130,7 +130,7 @@ export const mockEditionData = {
                 location: 'Wien, Testcentre.',
                 description: [
                     '<img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
-                    '<span class="caps">Inhalt</span>: (<a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>SkI/1a</strong></a>). (<a (click)="ref.selectSvgSheet(\'Aa:SkI/2\')"><strong>SkI/2</strong></a>).',
+                    '<span class="caps">Inhalt</span>: (<a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1a</strong></a>). (<a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2</strong></a>).',
                 ],
             },
         ],
@@ -147,7 +147,7 @@ export const mockEditionData = {
                 id: 'op25',
                 content: [
                     '<small class="text-muted">[Die Quellenbewertung zum gesamten Werkkomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'Aa:SkI/2\')"><strong>Aa:SkI/2–5</strong></a> vorformulierten Fassung dar.',
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2–5</strong></a> vorformulierten Fassung dar.',
                 ],
             },
         ],
@@ -159,10 +159,10 @@ export const mockEditionData = {
      * It provides a mocked svg sheet object.
      */
     mockSvgSheet_Sk2: {
-        id: 'Aa:SkI/2',
+        id: 'M_212_Sk2',
         svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
         image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
-        alt: 'Aa:SkI/2',
+        alt: 'M 212 Sk2',
         convolute: 'A',
     },
 
@@ -172,10 +172,10 @@ export const mockEditionData = {
      * It provides another mocked svg sheet object.
      */
     mockSvgSheet_Sk3: {
-        id: 'Aa:SkI/3',
+        id: 'M_212_Sk3',
         svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
         image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
-        alt: 'Aa:SkI/3',
+        alt: 'M 212 Sk3',
         convolute: 'A',
     },
 
@@ -185,10 +185,10 @@ export const mockEditionData = {
      * It provides another mocked svg sheet object.
      */
     mockSvgSheet_Sk5: {
-        id: 'Aa:SkI/5',
+        id: 'M_212_Sk5',
         svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
         image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
-        alt: 'Aa:SkI/5',
+        alt: 'M 212 Sk5',
         convolute: 'A',
     },
 
@@ -209,7 +209,7 @@ export const mockEditionData = {
             system: '12',
             position: '2. Note',
             comment:
-                'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Aa:SkI/1</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'Aa:SkI/5\')"><strong>Aa:SkI/5</strong></a>.',
+                'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'M_212_Sk5\')"><strong>M 212 Sk5</strong></a>.',
         },
         {
             measure: '[12]',
@@ -248,7 +248,7 @@ export const mockEditionData = {
                         system: '12',
                         position: '2. Note',
                         comment:
-                            "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('Aa:SkI/3')\">Aa:SkI/3</a>",
+                            "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\">M 212 Sk3</a>",
                     },
                 ],
             },

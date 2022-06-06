@@ -52,11 +52,11 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have svgSheetsData', () => {
-            expect(component.svgSheetsData).toBeUndefined('should be undefined');
+            expect(component.svgSheetsData).toBeUndefined();
         });
 
         it('should not have selectedSvgSheet', () => {
-            expect(component.selectedSvgSheet).toBeUndefined('should be undefined');
+            expect(component.selectedSvgSheet).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -77,14 +77,16 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         });
 
         it('should have `svgSheetsData` input', () => {
-            expect(component.svgSheetsData).toBeDefined('should be defined');
+            expect(component.svgSheetsData).toBeDefined();
             expect(component.svgSheetsData.sheets.length).toBe(2, 'should be 2');
-            expect(component.svgSheetsData).toEqual(expectedSvgSheetsData, `should equal ${expectedSvgSheetsData}`);
+            expect(component.svgSheetsData)
+                .withContext(`should equal ${expectedSvgSheetsData}`)
+                .toEqual(expectedSvgSheetsData);
         });
 
         it('should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined('should be defined');
-            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
+            expect(component.selectedSvgSheet).toBeDefined();
+            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
         describe('VIEW', () => {
@@ -96,16 +98,17 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div > a', 2, 2);
             });
 
-            it('... should contain sheet id in anchors', () => {
+            it('... should contain sheet label (alt) in anchors', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'div > a', 2, 2);
                 const anchorCmp0 = anchorDes[0].nativeElement;
                 const anchorCmp1 = anchorDes[1].nativeElement;
 
-                expect(anchorCmp0.textContent.trim()).toBe(expectedSvgSheet.id, `should be ${expectedSvgSheet.id}`);
-                expect(anchorCmp1.textContent.trim()).toBe(
-                    expectedNextSvgSheet.id,
-                    `should be ${expectedNextSvgSheet.id}`
-                );
+                expect(anchorCmp0.textContent.trim())
+                    .withContext(`should be ${expectedSvgSheet.alt}`)
+                    .toBe(expectedSvgSheet.alt);
+                expect(anchorCmp1.textContent.trim())
+                    .withContext(`should be ${expectedNextSvgSheet.alt}`)
+                    .toBe(expectedNextSvgSheet.alt);
             });
 
             it('... should have active class on anchor with selected svg sheet', () => {
@@ -113,8 +116,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 const anchorCmp0 = anchorDes[0].nativeElement;
                 const anchorCmp1 = anchorDes[1].nativeElement;
 
-                expect(anchorCmp0).toHaveClass('active', `should have class 'active'`);
-                expect(anchorCmp1).not.toHaveClass('active', `should not have class 'active'`);
+                expect(anchorCmp0).withContext(`should have class 'active'`).toHaveClass('active');
+                expect(anchorCmp1).withContext(`should not have class 'active'`).not.toHaveClass('active');
             });
         });
 
