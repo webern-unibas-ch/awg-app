@@ -49,7 +49,7 @@ jobs:
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 14.17 # upload coverage report for current node version only
+              if: matrix.node-version == 14.17 && github.event_name != 'pull_request' # perform SonarCloud analysis only for current node version and not with pull requests (token issue)
               uses: SonarSource/sonarcloud-github-action@v1.6
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
