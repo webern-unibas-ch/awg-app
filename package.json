@@ -85,7 +85,7 @@
         "@angular/platform-server": "~13.3.11",
         "@angular/router": "~13.3.11",
         "@ctrl/ngx-codemirror": "^5.1.1",
-        "@fortawesome/angular-fontawesome": "^0.11.0",
+        "@fortawesome/angular-fontawesome": "^0.10.2",
         "@fortawesome/fontawesome-svg-core": "^6.1.1",
         "@fortawesome/free-solid-svg-icons": "^6.1.1",
         "@kolkov/ngx-gallery": "2.0.1",
