@@ -155,7 +155,7 @@ and displays a selected svg sheet.</p>
                                 <a href="#sheetsArray" >sheetsArray</a>
                             </li>
                             <li>
-                                <a href="#svgSheetLabels" >svgSheetLabels</a>
+                                <a href="#svgSheetIds" >svgSheetIds</a>
                             </li>
                         </ul>
                     </td>
@@ -852,10 +852,10 @@ TODO: Refactor temporary solution. Will be removed and created dynamically from 
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="svgSheetLabels"></a>
+                    <a name="svgSheetIds"></a>
                     <span class="name">
-                        <span ><b>svgSheetLabels</b></span>
-                        <a href="#svgSheetLabels"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>svgSheetIds</b></span>
+                        <a href="#svgSheetIds"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -869,11 +869,11 @@ TODO: Refactor temporary solution. Will be removed and created dynamically from 
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
         op12: {
-            SHEET_1: SvgSheetLabelsOp12.SHEET_1,
-            SHEET_2: SvgSheetLabelsOp12.SHEET_2,
-            SHEET_3: SvgSheetLabelsOp12.SHEET_3,
-            SHEET_4: SvgSheetLabelsOp12.SHEET_4,
-            SHEET_5: SvgSheetLabelsOp12.SHEET_5,
+            SHEET_1: SvgSheetIdsOp12.SHEET_1,
+            SHEET_2: SvgSheetIdsOp12.SHEET_2,
+            SHEET_3: SvgSheetIdsOp12.SHEET_3,
+            SHEET_4: SvgSheetIdsOp12.SHEET_4,
+            SHEET_5: SvgSheetIdsOp12.SHEET_5,
         },
     }</code>
                     </td>
@@ -886,8 +886,8 @@ TODO: Refactor temporary solution. Will be removed and created dynamically from 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: svgSheetLabels.</p>
-<p>It keeps the labels of the svg sheets.
+                    <div class="io-description"><p>Public variable: svgSheetIds.</p>
+<p>It keeps the IDs of the svg sheets.
 TODO: Refactor temporary solution. Will be removed and created dynamically from data.</p>
 </div>
                 </td>
@@ -911,17 +911,17 @@ import {
 } from &#x27;@awg-views/edition-view/models&#x27;;
 
 /**
- * The SvgSheetLabelsOp12 enumeration.
+ * The SvgSheetIdsOp12 enumeration.
  *
- * It stores the possible sheet labels for op12.
+ * It stores the possible sheet IDs for op12.
  * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
  */
-export enum SvgSheetLabelsOp12 {
-    SHEET_1 &#x3D; &#x27;Aa:SkI/1&#x27;,
-    SHEET_2 &#x3D; &#x27;Aa:SkI/2&#x27;,
-    SHEET_3 &#x3D; &#x27;Aa:SkI/3&#x27;,
-    SHEET_4 &#x3D; &#x27;Aa:SkI/4&#x27;,
-    SHEET_5 &#x3D; &#x27;Aa:SkI/5&#x27;,
+export enum SvgSheetIdsOp12 {
+    SHEET_1 &#x3D; &#x27;M_212_Sk1&#x27;,
+    SHEET_2 &#x3D; &#x27;M_212_Sk2&#x27;,
+    SHEET_3 &#x3D; &#x27;M_212_Sk3&#x27;,
+    SHEET_4 &#x3D; &#x27;M_212_Sk4&#x27;,
+    SHEET_5 &#x3D; &#x27;M_212_Sk5&#x27;,
 }
 
 /**
@@ -979,18 +979,18 @@ export class EditionSvgSheetListComponent implements OnInit {
     selectOverlayRequest: EventEmitter&lt;EditionSvgOverlay&gt; &#x3D; new EventEmitter();
 
     /**
-     * Public variable: svgSheetLabels.
+     * Public variable: svgSheetIds.
      *
-     * It keeps the labels of the svg sheets.
+     * It keeps the IDs of the svg sheets.
      * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
      */
-    svgSheetLabels &#x3D; {
+    svgSheetIds &#x3D; {
         op12: {
-            SHEET_1: SvgSheetLabelsOp12.SHEET_1,
-            SHEET_2: SvgSheetLabelsOp12.SHEET_2,
-            SHEET_3: SvgSheetLabelsOp12.SHEET_3,
-            SHEET_4: SvgSheetLabelsOp12.SHEET_4,
-            SHEET_5: SvgSheetLabelsOp12.SHEET_5,
+            SHEET_1: SvgSheetIdsOp12.SHEET_1,
+            SHEET_2: SvgSheetIdsOp12.SHEET_2,
+            SHEET_3: SvgSheetIdsOp12.SHEET_3,
+            SHEET_4: SvgSheetIdsOp12.SHEET_4,
+            SHEET_5: SvgSheetIdsOp12.SHEET_5,
         },
     };
 
@@ -1093,17 +1093,17 @@ export class EditionSvgSheetListComponent implements OnInit {
     &lt;!--       OPUS 12           --&gt;
     &lt;!-- *********************** --&gt;
 
-    &lt;!-- embedded svg: op. 12 Aa:SkI/1 --&gt;
-    &lt;div class&#x3D;&quot;svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetLabels.op12.SHEET_1)&quot;&gt;
+    &lt;!-- embedded svg: op. 12 M 212 Sk1 --&gt;
+    &lt;div class&#x3D;&quot;svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetIds.op12.SHEET_1)&quot;&gt;
         &lt;p class&#x3D;&quot;small text-muted&quot;&gt;
-            [Der edierte Notentext von &lt;strong&gt;Aa:SKI/1&lt;/strong&gt; erscheint im Zusammenhang der vollständigen Edition der
-            &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in &lt;strong&gt;AWG I/5&lt;/strong&gt;.]
+            [Der edierte Notentext von &lt;strong&gt;M 212 Sk1&lt;/strong&gt; erscheint im Zusammenhang der vollständigen Edition
+            der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in &lt;strong&gt;AWG I/5&lt;/strong&gt;.]
         &lt;/p&gt;
     &lt;/div&gt;
-    &lt;!-- END svg op. 12 Aa:SkI/1 --&gt;
+    &lt;!-- END svg op. 12 M 212 Sk1 --&gt;
 
-    &lt;!-- embedded svg: op. 12 Aa:SkI/2 --&gt;
-    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetLabels.op12.SHEET_2)&quot;&gt;
+    &lt;!-- embedded svg: op. 12 M 212 Sk2 --&gt;
+    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetIds.op12.SHEET_2)&quot;&gt;
         &lt;svg
             version&#x3D;&quot;1.1&quot;
             xmlns&#x3D;&quot;https://www.w3.org/2000/svg&quot;
@@ -1183,16 +1183,16 @@ export class EditionSvgSheetListComponent implements OnInit {
             &lt;!-- link boxes --&gt;
             &lt;svg:g class&#x3D;&quot;edition-svg-linkboxes&quot;&gt;
                 &lt;!-- rect SkI/3 --&gt;
-                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetLabels.op12.SHEET_3)&quot;&gt;
+                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetIds.op12.SHEET_3)&quot;&gt;
                     &lt;rect class&#x3D;&quot;edition-svg-linkbox&quot; x&#x3D;&quot;90&quot; y&#x3D;&quot;345&quot; width&#x3D;&quot;182&quot; height&#x3D;&quot;125&quot; /&gt;
                 &lt;/a&gt;
             &lt;/svg:g&gt;
         &lt;/svg&gt;
     &lt;/div&gt;
-    &lt;!-- END svg op. 12 Aa:SkI/2 --&gt;
+    &lt;!-- END svg op. 12 M 212 Sk2 --&gt;
 
-    &lt;!-- embedded svg: op. 12 Aa:SkI/3 --&gt;
-    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetLabels.op12.SHEET_3)&quot;&gt;
+    &lt;!-- embedded svg: op. 12 M 212 Sk3 --&gt;
+    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetIds.op12.SHEET_3)&quot;&gt;
         &lt;svg
             version&#x3D;&quot;1.1&quot;
             xmlns&#x3D;&quot;https://www.w3.org/2000/svg&quot;
@@ -1239,20 +1239,20 @@ export class EditionSvgSheetListComponent implements OnInit {
             &lt;!-- link boxes --&gt;
             &lt;svg:g class&#x3D;&quot;edition-svg-linkboxes&quot;&gt;
                 &lt;!-- rect SkI/2 --&gt;
-                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetLabels.op12.SHEET_2)&quot;&gt;
+                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetIds.op12.SHEET_2)&quot;&gt;
                     &lt;rect class&#x3D;&quot;edition-svg-linkbox&quot; x&#x3D;&quot;458&quot; y&#x3D;&quot;111&quot; width&#x3D;&quot;165&quot; height&#x3D;&quot;162&quot; /&gt;
                 &lt;/a&gt;
                 &lt;!-- rect SkI/5 --&gt;
-                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetLabels.op12.SHEET_5)&quot;&gt;
+                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetIds.op12.SHEET_5)&quot;&gt;
                     &lt;rect class&#x3D;&quot;edition-svg-linkbox&quot; x&#x3D;&quot;620&quot; y&#x3D;&quot;420&quot; width&#x3D;&quot;165&quot; height&#x3D;&quot;160&quot; /&gt;
                 &lt;/a&gt;
             &lt;/svg:g&gt;
         &lt;/svg&gt;
     &lt;/div&gt;
-    &lt;!-- END svg op. 12 Aa:SkI/3 --&gt;
+    &lt;!-- END svg op. 12 M 212 Sk3 --&gt;
 
-    &lt;!-- embedded svg: op. 12 Aa:SkI/4 --&gt;
-    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetLabels.op12.SHEET_4)&quot;&gt;
+    &lt;!-- embedded svg: op. 12 M 212 Sk4 --&gt;
+    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetIds.op12.SHEET_4)&quot;&gt;
         &lt;svg
             version&#x3D;&quot;1.1&quot;
             xmlns&#x3D;&quot;https://www.w3.org/2000/svg&quot;
@@ -1287,16 +1287,16 @@ export class EditionSvgSheetListComponent implements OnInit {
             &lt;!-- link boxes --&gt;
             &lt;svg:g class&#x3D;&quot;edition-svg-linkboxes&quot;&gt;
                 &lt;!-- rect SkI/5 --&gt;
-                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetLabels.op12.SHEET_5)&quot;&gt;
+                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetIds.op12.SHEET_5)&quot;&gt;
                     &lt;rect class&#x3D;&quot;edition-svg-linkbox&quot; x&#x3D;&quot;577&quot; y&#x3D;&quot;152&quot; width&#x3D;&quot;222&quot; height&#x3D;&quot;180&quot; /&gt;
                 &lt;/a&gt;
             &lt;/svg:g&gt;
         &lt;/svg&gt;
     &lt;/div&gt;
-    &lt;!-- END svg op. 12 Aa:SkI/4 --&gt;
+    &lt;!-- END svg op. 12 M 212 Sk4 --&gt;
 
-    &lt;!-- embedded svg: op. 12 Aa:SkI/5 --&gt;
-    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetLabels.op12.SHEET_5)&quot;&gt;
+    &lt;!-- embedded svg: op. 12 M 212 Sk5 --&gt;
+    &lt;div class&#x3D;&quot;svg edition-svg&quot; *ngIf&#x3D;&quot;isSelectedSvgSheet(svgSheetIds.op12.SHEET_5)&quot;&gt;
         &lt;svg
             version&#x3D;&quot;1.1&quot;
             xmlns&#x3D;&quot;https://www.w3.org/2000/svg&quot;
@@ -1337,17 +1337,17 @@ export class EditionSvgSheetListComponent implements OnInit {
             &lt;!-- link boxes --&gt;
             &lt;svg:g class&#x3D;&quot;edition-svg-linkboxes&quot;&gt;
                 &lt;!-- rect SkI/3 --&gt;
-                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetLabels.op12.SHEET_3)&quot;&gt;
+                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetIds.op12.SHEET_3)&quot;&gt;
                     &lt;rect class&#x3D;&quot;edition-svg-linkbox&quot; x&#x3D;&quot;72&quot; y&#x3D;&quot;148&quot; width&#x3D;&quot;242&quot; height&#x3D;&quot;125&quot; /&gt;
                 &lt;/a&gt;
                 &lt;!-- rect SkI/4 --&gt;
-                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetLabels.op12.SHEET_4)&quot;&gt;
+                &lt;a (click)&#x3D;&quot;selectSvgSheet(svgSheetIds.op12.SHEET_4)&quot;&gt;
                     &lt;rect class&#x3D;&quot;edition-svg-linkbox&quot; x&#x3D;&quot;72&quot; y&#x3D;&quot;345&quot; width&#x3D;&quot;245&quot; height&#x3D;&quot;205&quot; /&gt;
                 &lt;/a&gt;
             &lt;/svg:g&gt;
         &lt;/svg&gt;
     &lt;/div&gt;
-    &lt;!-- END svg op. 12 Aa:SkI/5 --&gt;
+    &lt;!-- END svg op. 12 M 212 Sk5 --&gt;
 
     &lt;!-- *********************** --&gt;
     &lt;!--       all other SVG&#x27;s   --&gt;
@@ -1355,11 +1355,11 @@ export class EditionSvgSheetListComponent implements OnInit {
     &lt;div
         class&#x3D;&quot;svg edition-svg&quot;
         *ngIf&#x3D;&quot;
-            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_1) &amp;&amp;
-            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_2) &amp;&amp;
-            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_3) &amp;&amp;
-            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_4) &amp;&amp;
-            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_5)
+            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_1) &amp;&amp;
+            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_2) &amp;&amp;
+            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_3) &amp;&amp;
+            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_4) &amp;&amp;
+            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_5)
         &quot;&gt;
         &lt;svg
             version&#x3D;&quot;1.1&quot;
@@ -1406,7 +1406,7 @@ export class EditionSvgSheetListComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div>    <!-- *********************** -->    <!--       OPUS 12           -->    <!-- *********************** -->    <!-- embedded svg: op. 12 Aa:SkI/1 -->    <div class="svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.op12.SHEET_1)">        <p class="small text-muted">            [Der edierte Notentext von <strong>Aa:SKI/1</strong> erscheint im Zusammenhang der vollständigen Edition der            <em>Vier Lieder</em> op. 12 in <strong>AWG I/5</strong>.]        </p>    </div>    <!-- END svg op. 12 Aa:SkI/1 -->    <!-- embedded svg: op. 12 Aa:SkI/2 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.op12.SHEET_2)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 508"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- systems -->            <svg:g class="edition-svg-systems">                <!-- system 14 -->                <a                    (click)="selectOverlay(overlayTypes.system, \'14\')"                    [class.active]="isSelectedOverlay(overlayTypes.system, \'14\')">                    <rect class="edition-svg-system" x="20" y="205" width="950" height="60" />                </a>                <!-- system 13 -->                <a                    (click)="selectOverlay(overlayTypes.system, \'13\')"                    [class.active]="isSelectedOverlay(overlayTypes.system, \'13\')">                    <rect class="edition-svg-system" x="20" y="275" width="950" height="60" />                </a>                <!-- system 12 -->                <a                    (click)="selectOverlay(overlayTypes.system, \'12\')"                    [class.active]="isSelectedOverlay(overlayTypes.system, \'12\')">                    <rect class="edition-svg-system" x="20" y="345" width="950" height="60" />                </a>            </svg:g>            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="300" y="125" width="180" height="345" />                </a>                <!-- measure 11 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'11\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'11\')">                    <rect class="edition-svg-measure" x="480" y="125" width="180" height="345" />                </a>                <!-- measure 12 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'12\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'12\')">                    <rect class="edition-svg-measure" x="660" y="125" width="180" height="345" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S12/o1 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="330" y="350" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T10/S12/o2 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="380" y="350" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T11/S14/o(1/4) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'2\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'2\')">                    <rect class="edition-svg-item" x="480" y="200" rx="5" ry="5" width="125" height="80" />                </a>                <!-- T12/S13/oO -->                <a                    (click)="selectOverlay(overlayTypes.item, \'3\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'3\')">                    <rect class="edition-svg-item" x="660" y="270" rx="5" ry="5" width="125" height="80" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/3 -->                <a (click)="selectSvgSheet(svgSheetLabels.op12.SHEET_3)">                    <rect class="edition-svg-linkbox" x="90" y="345" width="182" height="125" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 Aa:SkI/2 -->    <!-- embedded svg: op. 12 Aa:SkI/3 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.op12.SHEET_3)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 608"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="80" y="110" width="282" height="400" />                </a>                <!-- measure 11 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'11\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'11\')">                    <rect class="edition-svg-measure" x="362" y="110" width="260" height="400" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S9/o(2/4) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="225" y="420" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T11/S10/o(1.-2.Note) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="365" y="340" rx="5" ry="5" width="105" height="70" />                </a>                <!-- T12/S10/o(nach 2/4) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'2\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'2\')">                    <rect class="edition-svg-item" x="510" y="340" rx="5" ry="5" width="100" height="70" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/2 -->                <a (click)="selectSvgSheet(svgSheetLabels.op12.SHEET_2)">                    <rect class="edition-svg-linkbox" x="458" y="111" width="165" height="162" />                </a>                <!-- rect SkI/5 -->                <a (click)="selectSvgSheet(svgSheetLabels.op12.SHEET_5)">                    <rect class="edition-svg-linkbox" x="620" y="420" width="165" height="160" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 Aa:SkI/3 -->    <!-- embedded svg: op. 12 Aa:SkI/4 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.op12.SHEET_4)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 508"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="150" y="115" width="268" height="390" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S6/oO -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="283" y="270" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T10/S5/o(3.Note) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="283" y="350" rx="5" ry="5" width="40" height="70" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/5 -->                <a (click)="selectSvgSheet(svgSheetLabels.op12.SHEET_5)">                    <rect class="edition-svg-linkbox" x="577" y="152" width="222" height="180" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 Aa:SkI/4 -->    <!-- embedded svg: op. 12 Aa:SkI/5 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.op12.SHEET_5)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 608"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="390" y="115" width="260" height="390" />                </a>                <!-- measure 11 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'11\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'11\')">                    <rect class="edition-svg-measure" x="650" y="115" width="200" height="390" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S9/o3/8 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="523" y="195" rx="5" ry="5" width="40" height="85" />                </a>                <!-- T11/S9/o1/4 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="650" y="195" rx="5" ry="5" width="40" height="85" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/3 -->                <a (click)="selectSvgSheet(svgSheetLabels.op12.SHEET_3)">                    <rect class="edition-svg-linkbox" x="72" y="148" width="242" height="125" />                </a>                <!-- rect SkI/4 -->                <a (click)="selectSvgSheet(svgSheetLabels.op12.SHEET_4)">                    <rect class="edition-svg-linkbox" x="72" y="345" width="245" height="205" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 Aa:SkI/5 -->    <!-- *********************** -->    <!--       all other SVG\'s   -->    <!-- *********************** -->    <div        class="svg edition-svg"        *ngIf="            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_1) &&            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_2) &&            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_3) &&            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_4) &&            !isSelectedSvgSheet(svgSheetLabels.op12.SHEET_5)        ">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 508"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />        </svg>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div>    <!-- *********************** -->    <!--       OPUS 12           -->    <!-- *********************** -->    <!-- embedded svg: op. 12 M 212 Sk1 -->    <div class="svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_1)">        <p class="small text-muted">            [Der edierte Notentext von <strong>M 212 Sk1</strong> erscheint im Zusammenhang der vollständigen Edition            der <em>Vier Lieder</em> op. 12 in <strong>AWG I/5</strong>.]        </p>    </div>    <!-- END svg op. 12 M 212 Sk1 -->    <!-- embedded svg: op. 12 M 212 Sk2 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_2)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 508"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- systems -->            <svg:g class="edition-svg-systems">                <!-- system 14 -->                <a                    (click)="selectOverlay(overlayTypes.system, \'14\')"                    [class.active]="isSelectedOverlay(overlayTypes.system, \'14\')">                    <rect class="edition-svg-system" x="20" y="205" width="950" height="60" />                </a>                <!-- system 13 -->                <a                    (click)="selectOverlay(overlayTypes.system, \'13\')"                    [class.active]="isSelectedOverlay(overlayTypes.system, \'13\')">                    <rect class="edition-svg-system" x="20" y="275" width="950" height="60" />                </a>                <!-- system 12 -->                <a                    (click)="selectOverlay(overlayTypes.system, \'12\')"                    [class.active]="isSelectedOverlay(overlayTypes.system, \'12\')">                    <rect class="edition-svg-system" x="20" y="345" width="950" height="60" />                </a>            </svg:g>            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="300" y="125" width="180" height="345" />                </a>                <!-- measure 11 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'11\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'11\')">                    <rect class="edition-svg-measure" x="480" y="125" width="180" height="345" />                </a>                <!-- measure 12 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'12\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'12\')">                    <rect class="edition-svg-measure" x="660" y="125" width="180" height="345" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S12/o1 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="330" y="350" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T10/S12/o2 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="380" y="350" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T11/S14/o(1/4) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'2\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'2\')">                    <rect class="edition-svg-item" x="480" y="200" rx="5" ry="5" width="125" height="80" />                </a>                <!-- T12/S13/oO -->                <a                    (click)="selectOverlay(overlayTypes.item, \'3\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'3\')">                    <rect class="edition-svg-item" x="660" y="270" rx="5" ry="5" width="125" height="80" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/3 -->                <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_3)">                    <rect class="edition-svg-linkbox" x="90" y="345" width="182" height="125" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 M 212 Sk2 -->    <!-- embedded svg: op. 12 M 212 Sk3 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_3)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 608"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="80" y="110" width="282" height="400" />                </a>                <!-- measure 11 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'11\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'11\')">                    <rect class="edition-svg-measure" x="362" y="110" width="260" height="400" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S9/o(2/4) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="225" y="420" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T11/S10/o(1.-2.Note) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="365" y="340" rx="5" ry="5" width="105" height="70" />                </a>                <!-- T12/S10/o(nach 2/4) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'2\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'2\')">                    <rect class="edition-svg-item" x="510" y="340" rx="5" ry="5" width="100" height="70" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/2 -->                <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_2)">                    <rect class="edition-svg-linkbox" x="458" y="111" width="165" height="162" />                </a>                <!-- rect SkI/5 -->                <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_5)">                    <rect class="edition-svg-linkbox" x="620" y="420" width="165" height="160" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 M 212 Sk3 -->    <!-- embedded svg: op. 12 M 212 Sk4 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_4)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 508"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="150" y="115" width="268" height="390" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S6/oO -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="283" y="270" rx="5" ry="5" width="40" height="70" />                </a>                <!-- T10/S5/o(3.Note) -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="283" y="350" rx="5" ry="5" width="40" height="70" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/5 -->                <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_5)">                    <rect class="edition-svg-linkbox" x="577" y="152" width="222" height="180" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 M 212 Sk4 -->    <!-- embedded svg: op. 12 M 212 Sk5 -->    <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_5)">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 608"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />            <!-- measures -->            <svg:g class="edition-svg-measures">                <!-- measure 10 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'10\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'10\')">                    <rect class="edition-svg-measure" x="390" y="115" width="260" height="390" />                </a>                <!-- measure 11 -->                <a                    (click)="selectOverlay(overlayTypes.measure, \'11\')"                    [class.active]="isSelectedOverlay(overlayTypes.measure, \'11\')">                    <rect class="edition-svg-measure" x="650" y="115" width="200" height="390" />                </a>            </svg:g>            <!-- items -->            <svg:g class="edition-svg-items">                <!-- T10/S9/o3/8 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'0\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'0\')">                    <rect class="edition-svg-item" x="523" y="195" rx="5" ry="5" width="40" height="85" />                </a>                <!-- T11/S9/o1/4 -->                <a                    (click)="selectOverlay(overlayTypes.item, \'1\')"                    [class.active]="isSelectedOverlay(overlayTypes.item, \'1\')">                    <rect class="edition-svg-item" x="650" y="195" rx="5" ry="5" width="40" height="85" />                </a>            </svg:g>            <!-- link boxes -->            <svg:g class="edition-svg-linkboxes">                <!-- rect SkI/3 -->                <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_3)">                    <rect class="edition-svg-linkbox" x="72" y="148" width="242" height="125" />                </a>                <!-- rect SkI/4 -->                <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_4)">                    <rect class="edition-svg-linkbox" x="72" y="345" width="245" height="205" />                </a>            </svg:g>        </svg>    </div>    <!-- END svg op. 12 M 212 Sk5 -->    <!-- *********************** -->    <!--       all other SVG\'s   -->    <!-- *********************** -->    <div        class="svg edition-svg"        *ngIf="            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_1) &&            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_2) &&            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_3) &&            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_4) &&            !isSelectedSvgSheet(svgSheetIds.op12.SHEET_5)        ">        <svg            version="1.1"            xmlns="https://www.w3.org/2000/svg"            xmlns:xlink="https://www.w3.org/1999/xlink"            viewBox="0 0 1000 508"            [id]="selectedSvgSheet.id">            <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.svg" width="100%" height="100%" />        </svg>    </div></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSvgSheetListComponent'};
