@@ -103,7 +103,7 @@
         "n3": "^1.16.2",
         "ngx-json-viewer": "^3.0.2",
         "ngx-order-pipe": "^2.2.0",
-        "rdfstore": "^0.9.17",
+        "rdfstore": "musicenfanthen/rdfstore-js#7ddf50850ac5a7608dff40aecc29725d4230f30b",
         "rxjs": "~7.5.5",
         "snapsvg": "^0.5.1",
         "tslib": "^2.4.0",
