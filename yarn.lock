@@ -1883,12 +1883,12 @@
   resolved "https://registry.yarnpkg.com/@foliojs-fork/restructure/-/restructure-2.0.2.tgz#73759aba2aff1da87b7c4554e6839c70d43c92b4"
   integrity sha512-59SgoZ3EXbkfSX7b63tsou/SDGzwUEK6MuB5sKqgVK1/XE0fxmpsOb9DQI8LXW3KfGnAjImCGhhEb7uPPAUVNA==
 
-"@fortawesome/angular-fontawesome@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.10.2.tgz#de12845cf5e8d7bc5df3ee8f1f16d497ef21e675"
-  integrity sha512-VxsCAo2lK74KwD236AKAhGpiethfz9yqCViIG2iRAZqgNmuZ6ihwumjbLW32n6hV4fFvCqLcHmpngoEl3TNiOg==
+"@fortawesome/angular-fontawesome@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.11.0.tgz#2f4af0e7373599432e5550e08d42977cca16c69a"
+  integrity sha512-/WbG9s83dmZn2FBkCN6IjlhODmMUbkzkMxPjFokKKprlB7QXR047avG3xDTfxPJEcLDGNQmdX/vbsEhoT36/bA==
   dependencies:
-    tslib "^2.3.1"
+    tslib "^2.4.0"
 
 "@fortawesome/fontawesome-common-types@6.1.1":
   version "6.1.1"
@@ -4691,10 +4691,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codemirror@^5.65.4:
-  version "5.65.4"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.65.4.tgz#384c257f27d1d06f44311722c98ad802cce3984e"
-  integrity sha512-tytrSm5Rh52b6j36cbDXN+FHwHCl9aroY4BrDZB2NFFL3Wjfq9nuYVLFFhaOYOczKAg3JXTr8BuT8LcE5QY4Iw==
+codemirror@^5.65.5:
+  version "5.65.5"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.65.5.tgz#f38f0e29945c3464df0c81f946fcd9a063fa2024"
+  integrity sha512-HNyhvGLnYz5c+kIsB9QKVitiZUevha3ovbIYaQiGzKo7ECSL/elWD9RXt3JgNr0NdnyqE9/Rc/7uLfkJQL638w==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -8152,10 +8152,10 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-json2typescript@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/json2typescript/-/json2typescript-1.5.0.tgz#1729e61656c417c4227572f828292dca33c566f0"
-  integrity sha512-V4pOGtpP1QqEcmwr908dnFvxR4yJWe2yCtNzQ0x2ErEjYv2Zmn/5NIbauy2MmdefMLgeIkDNQ5aUTykS03jmFA==
+json2typescript@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/json2typescript/-/json2typescript-1.5.1.tgz#46ca89958ecf629507a03d51cbd39a827de28827"
+  integrity sha512-mkuZR1O+rMPnWW1ROJJlY56aWWa71jYEmF5eIp52PlvcbNC9dWsFf8xAByRHWMbOTVbQYIb2vfndA66ibihPZg==
 
 json5@^0.5.1:
   version "0.5.1"
@@ -8241,10 +8241,10 @@ karma-coverage@^2.2.0:
     istanbul-reports "^3.0.5"
     minimatch "^3.0.4"
 
-karma-jasmine-html-reporter@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-1.7.0.tgz#52c489a74d760934a1089bfa5ea4a8fcb84cc28b"
-  integrity sha512-pzum1TL7j90DTE86eFt48/s12hqwQuiD+e5aXx2Dc9wDEn2LfGq6RoAxEZZjFiN0RDSCOnosEKRZWxbQ+iMpQQ==
+karma-jasmine-html-reporter@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/karma-jasmine-html-reporter/-/karma-jasmine-html-reporter-2.0.0.tgz#76c26ce40e217dc36a630fbcd7b31c3462948bf2"
+  integrity sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==
 
 karma-jasmine@~5.0.1:
   version "5.0.1"
@@ -11896,7 +11896,7 @@ tsconfig-paths@^3.14.1:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.3.1, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0, tslib@^2.3.1:
+tslib@2.3.1, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.2.0, tslib@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
