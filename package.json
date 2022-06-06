@@ -143,7 +143,7 @@
         "karma-coverage": "^2.2.0",
         "karma-jasmine": "~5.0.1",
         "karma-jasmine-html-reporter": "^1.7.0",
-        "lint-staged": "^12.4.1",
+        "lint-staged": "^13.0.0",
         "prettier": "^2.6.2",
         "source-map-explorer": "^2.5.2",
         "standard-version": "^9.5.0",
