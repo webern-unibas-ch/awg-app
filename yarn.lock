@@ -8190,10 +8190,10 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-json2typescript@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/json2typescript/-/json2typescript-1.5.0.tgz#1729e61656c417c4227572f828292dca33c566f0"
-  integrity sha512-V4pOGtpP1QqEcmwr908dnFvxR4yJWe2yCtNzQ0x2ErEjYv2Zmn/5NIbauy2MmdefMLgeIkDNQ5aUTykS03jmFA==
+json2typescript@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/json2typescript/-/json2typescript-1.5.1.tgz#46ca89958ecf629507a03d51cbd39a827de28827"
+  integrity sha512-mkuZR1O+rMPnWW1ROJJlY56aWWa71jYEmF5eIp52PlvcbNC9dWsFf8xAByRHWMbOTVbQYIb2vfndA66ibihPZg==
 
 json5@^0.5.1:
   version "0.5.1"
