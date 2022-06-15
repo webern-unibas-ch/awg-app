@@ -16,8 +16,6 @@
                             "id": "M_212_Sk1a",
                             "sigle": "M 212 Sk1a",
                             "sigleAddendum": "T. 1–6",
-                            "selectable": false,
-                            "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -30,8 +28,6 @@
                             "id": "M_212_Sk1b",
                             "sigle": "M 212 Sk1b",
                             "sigleAddendum": "T. 7–12",
-                            "selectable": false,
-                            "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -45,8 +41,6 @@
                             "id": "M_212_Sk1c",
                             "sigle": "M 212 Sk1c",
                             "sigleAddendum": "T. 13–17",
-                            "selectable": false,
-                            "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -132,8 +126,6 @@
                             "id": "M_212_Sk1d",
                             "sigle": "/M 212 Sk1d",
                             "sigleAddendum": "T. 18–22",
-                            "selectable": false,
-                            "linkTo": "OP12_SOURCE_NOT_A",
                             "sections": [
                                 {
                                     "startSystem": 6,
@@ -145,8 +137,6 @@
                             "id": "M_212_Sk1e",
                             "sigle": "M 212 Sk1e",
                             "sigleAddendum": "T. 23–24",
-                            "selectable": false,
-                            "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
                             "sections": [
                                 {
