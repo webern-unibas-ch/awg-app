@@ -181,8 +181,10 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
                     // Check parent
                     expect(html.parent.name).toBeTruthy();
                     expect(html.parent.name).withContext(`should be li`).toBe('li');
-                    expect(html.parent.attributes.class).toBeTruthy();
-                    expect(html.parent.attributes.class).withContext(`should be awg-prop-value`).toBe('awg-prop-value');
+                    expect(html.parent.attributes['class']).toBeTruthy();
+                    expect(html.parent.attributes['class'])
+                        .withContext(`should be awg-prop-value`)
+                        .toBe('awg-prop-value');
                 });
             });
         });

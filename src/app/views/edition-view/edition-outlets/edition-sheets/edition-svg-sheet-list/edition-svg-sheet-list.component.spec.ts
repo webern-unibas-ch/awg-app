@@ -92,21 +92,20 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
         });
 
         it('should have `svgSheetsData` input', () => {
-            expect(component.svgSheetsData).toBeDefined('should be defined');
-            expect(component.svgSheetsData).toEqual(
-                { sheets: [expectedSvgSheet] },
-                `should equal ${{ sheets: [expectedSvgSheet] }}`
-            );
+            expect(component.svgSheetsData).toBeDefined();
+            expect(component.svgSheetsData)
+                .withContext(`should equal ${{ sheets: [expectedSvgSheet] }}`)
+                .toEqual({ sheets: [expectedSvgSheet] });
         });
 
         it('should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined('should be defined');
-            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
+            expect(component.selectedSvgSheet).toBeDefined();
+            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
         it('should have `selectedOverlay` input', () => {
-            expect(component.selectedOverlay).toBeDefined('should be defined');
-            expect(component.selectedOverlay).toBe(expectedOverlay);
+            expect(component.selectedOverlay).toBeDefined();
+            expect(component.selectedOverlay).withContext(`should be ${expectedOverlay}`).toBe(expectedOverlay);
         });
 
         // TODO: test correct implementation of EditionSVGOverlayEnum
@@ -122,7 +121,9 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
 
                 const svgDes = getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
 
-                expect(svgDes[0].attributes.id).toBe(expectedSvgSheet.id, `should be ${expectedSvgSheet.id}`);
+                expect(svgDes[0].attributes['id'])
+                    .withContext(`should be ${expectedSvgSheet.id}`)
+                    .toBe(expectedSvgSheet.id);
             });
         });
 
@@ -132,7 +133,7 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
                 const id = undefined;
                 const comparison = component.isSelectedOverlay(type, id);
 
-                expect(comparison).toBeUndefined('should be undefined');
+                expect(comparison).toBeUndefined();
             });
 
             it('... should do nothing if no type is provided', () => {
@@ -140,7 +141,7 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
                 const id = '10';
                 const comparison = component.isSelectedOverlay(type, id);
 
-                expect(comparison).toBeUndefined('should be undefined');
+                expect(comparison).toBeUndefined();
             });
 
             it('... should return false if given overlay does not equal selected overlay', () => {
