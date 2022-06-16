@@ -19,7 +19,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [14.17, 16, 17]
+                node-version: [14.17, 16.15, 18.x]
 
         steps:
             - name: Checkout repo
@@ -42,14 +42,14 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 14.17 # upload coverage report for current node version only
+              if: matrix.node-version == 16.15 # upload coverage report for current node version only
               uses: codecov/codecov-action@v3.1.0
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 14.17 && github.event_name != 'pull_request' # perform SonarCloud analysis only for current node version and not with pull requests (token issue)
+              if: matrix.node-version == 16.15 && github.event_name != 'pull_request' # perform SonarCloud analysis only for current node version and not with pull requests (token issue)
               uses: SonarSource/sonarcloud-github-action@v1.6
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -71,7 +71,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [ 14.17 ]
+                node-version: [ 16.15 ]
 
         steps:
             - name: Checkout repo
@@ -108,7 +108,7 @@ jobs:
         strategy:
             matrix:
                 os: [ ubuntu-latest ]
-                node-version: [ 14.17 ]
+                node-version: [ 16.15 ]
 
         steps:
             - name: Get tag version
