@@ -8,17 +8,17 @@ import {
 } from '@awg-views/edition-view/models';
 
 /**
- * The SvgSheetLabelsOp12 enumeration.
+ * The SvgSheetIdsOp12 enumeration.
  *
- * It stores the possible sheet labels for op12.
+ * It stores the possible sheet IDs for op12.
  * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
  */
-export enum SvgSheetLabelsOp12 {
-    SHEET_1 = 'Aa:SkI/1',
-    SHEET_2 = 'Aa:SkI/2',
-    SHEET_3 = 'Aa:SkI/3',
-    SHEET_4 = 'Aa:SkI/4',
-    SHEET_5 = 'Aa:SkI/5',
+export enum SvgSheetIdsOp12 {
+    SHEET_1 = 'M_212_Sk1',
+    SHEET_2 = 'M_212_Sk2',
+    SHEET_3 = 'M_212_Sk3',
+    SHEET_4 = 'M_212_Sk4',
+    SHEET_5 = 'M_212_Sk5',
 }
 
 /**
@@ -76,18 +76,18 @@ export class EditionSvgSheetListComponent implements OnInit {
     selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
     /**
-     * Public variable: svgSheetLabels.
+     * Public variable: svgSheetIds.
      *
-     * It keeps the labels of the svg sheets.
+     * It keeps the IDs of the svg sheets.
      * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
      */
-    svgSheetLabels = {
+    svgSheetIds = {
         op12: {
-            SHEET_1: SvgSheetLabelsOp12.SHEET_1,
-            SHEET_2: SvgSheetLabelsOp12.SHEET_2,
-            SHEET_3: SvgSheetLabelsOp12.SHEET_3,
-            SHEET_4: SvgSheetLabelsOp12.SHEET_4,
-            SHEET_5: SvgSheetLabelsOp12.SHEET_5,
+            SHEET_1: SvgSheetIdsOp12.SHEET_1,
+            SHEET_2: SvgSheetIdsOp12.SHEET_2,
+            SHEET_3: SvgSheetIdsOp12.SHEET_3,
+            SHEET_4: SvgSheetIdsOp12.SHEET_4,
+            SHEET_5: SvgSheetIdsOp12.SHEET_5,
         },
     };
 

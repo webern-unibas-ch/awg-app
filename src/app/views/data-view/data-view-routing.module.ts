@@ -22,7 +22,11 @@ const dataViewRoutes: Routes = [
                         path: '',
                         component: SearchPanelComponent,
                         children: [
-                            { path: '', pathMatch: 'full', redirectTo: 'fulltext' },
+                            {
+                                path: '',
+                                pathMatch: 'full',
+                                redirectTo: 'fulltext',
+                            },
                             {
                                 path: 'fulltext',
                                 data: { title: 'AWG Online Edition – Fulltext Search' },
@@ -31,7 +35,10 @@ const dataViewRoutes: Routes = [
                                 path: 'extended',
                                 data: { title: 'AWG Online Edition – Extended Search' },
                             },
-                            { path: 'detail/:id', redirectTo: 'resource/:id' }, // Absolute redirect (replacement of route) to resource/:id,
+                            {
+                                path: 'detail/:id',
+                                redirectTo: 'resource/:id',
+                            }, // Absolute redirect (replacement of route) to resource/:id,
                         ],
                     },
                 ],
@@ -51,7 +58,11 @@ const dataViewRoutes: Routes = [
         component: ResourceDetailComponent,
         data: { title: 'AWG Online Edition – Resource Detail' },
         children: [
-            { path: '', pathMatch: 'full', redirectTo: 'html' },
+            {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'html',
+            },
             {
                 path: 'html',
                 data: { title: 'AWG Online Edition – Resource Detail HTML' },

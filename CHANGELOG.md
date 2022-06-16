@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.2...v0.8.3) (2022-06-06)
+
+
+### Features
+
+* **edition:** update op12 ([#424](https://github.com/webern-unibas-ch/awg-app/issues/424)) ([ada63a1](https://github.com/webern-unibas-ch/awg-app/commit/ada63a1d2dd3deb709fbf5c479664c01e5a9c363))
+
+
+### Bug Fixes
+
+* **edition:** add rowtable flag where needed ([42bb1b9](https://github.com/webern-unibas-ch/awg-app/commit/42bb1b97104c655b4854c6a0a7b325719a5c2d2d))
+* **edition:** fix source description of op12 ([08ec11f](https://github.com/webern-unibas-ch/awg-app/commit/08ec11fef41ab8fd82ae9a64e1a115bf000761e0))
+* **edition:** fix typos in source descriptions ([c82af93](https://github.com/webern-unibas-ch/awg-app/commit/c82af93c5d1a3732f38fa2fa6c63654eff0f5aee))
+* **edition:** show html for source description type ([7d19ff1](https://github.com/webern-unibas-ch/awg-app/commit/7d19ff19f5a74e19d08024fcc5d8c44ba4200095))
+* **edition:** update modification date for op12 ([27a0393](https://github.com/webern-unibas-ch/awg-app/commit/27a03936b82fc0935d1250863eedd1355383d027))
+* **edition:** use correct IDs to display op12 SVGs ([d715832](https://github.com/webern-unibas-ch/awg-app/commit/d715832dffb88404272fd9a8e14c10e1f7231d05))
+* **edition:** use id instead of labels to identify textcritical comments ([2811885](https://github.com/webern-unibas-ch/awg-app/commit/2811885eb1a2355584bce5e3d9f7bbf287dc339f))
+* **gh-actions:** exclude SonarCloud analysis from pull requests ([ca7011c](https://github.com/webern-unibas-ch/awg-app/commit/ca7011c32bb4310986a824d0cffee64d435dcede))
+* **gh-actions:** increase dependabot limits ([aa4ffc1](https://github.com/webern-unibas-ch/awg-app/commit/aa4ffc1911f210d108f8575b69dfc27106c6a0c9))
+
+
+### Tests
+
+* **edition:** fix tests after update of op12 ([30676b6](https://github.com/webern-unibas-ch/awg-app/commit/30676b67f7b7c6bf39906974eb9144cd5a20bf5c))
+
+
+### Build System
+
+* **deps-dev:** bump lint related packages to latest version ([007fd8c](https://github.com/webern-unibas-ch/awg-app/commit/007fd8cd882024047a7d1e3114316e4846d55165))
+* **deps:** bump [@angular](https://github.com/angular) packages from 13.3.9 to 13.3.11 ([b295da0](https://github.com/webern-unibas-ch/awg-app/commit/b295da0dec0c3bfd3d832ad53a89c319c1fb3274))
+* **deps:** bump async from 2.6.3 to 2.6.4 ([1c0833e](https://github.com/webern-unibas-ch/awg-app/commit/1c0833e6701961681cef9e3ecd6773678580a951))
+* **deps:** bump remaining dependencies to latest versions ([7473df7](https://github.com/webern-unibas-ch/awg-app/commit/7473df798aaba3210a3577f47bc99b911447e3b5))
+* **deps:** revert angular-fontawesome bump from 0.10.2 to 0.11.0 ([0dce0e6](https://github.com/webern-unibas-ch/awg-app/commit/0dce0e632ec48856d8b8dc63f2edc0b438ace5fe))
+* **deps:** use customized version of rdfstore ([329c9c7](https://github.com/webern-unibas-ch/awg-app/commit/329c9c7dcb1759afb108d41a8ae9e07a39234633))
+
 ### [0.8.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.1...v0.8.2) (2022-05-23)
 
 
