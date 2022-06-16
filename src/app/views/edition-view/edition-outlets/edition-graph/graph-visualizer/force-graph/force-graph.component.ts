@@ -263,11 +263,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     ngOnChanges(changes: SimpleChanges) {
         if (
-            changes.queryResultTriples &&
-            changes.queryResultTriples.currentValue &&
-            !changes.queryResultTriples.isFirstChange()
+            changes['queryResultTriples'] &&
+            changes['queryResultTriples'].currentValue &&
+            !changes['queryResultTriples'].isFirstChange()
         ) {
-            this.queryResultTriples = changes.queryResultTriples.currentValue;
+            this.queryResultTriples = changes['queryResultTriples'].currentValue;
             this._redraw();
         }
     }
@@ -874,7 +874,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _triplesToD3GraphData(triples: Triple[]): D3SimulationData {
         if (!triples) {
-            return;
+            return undefined;
         }
 
         // Graph

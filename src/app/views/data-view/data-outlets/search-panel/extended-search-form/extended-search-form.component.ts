@@ -401,7 +401,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
 
         return this._isPropertyIdOrCompopMissing(index) ||
             (compopValue !== 'EXISTS' && this._isSearchvalMissing(index)) ||
-            this.getSearchvalControlAtIndex(index).errors?.minlength ||
+            this.getSearchvalControlAtIndex(index).errors?.['minlength'] ||
             this._isNotLastProperty(index)
             ? ''
             : null;

@@ -152,7 +152,7 @@ export class EditionService {
         overlay: EditionSvgOverlay
     ): TextcriticalComment[] {
         if (!textcriticalComments || !overlay) {
-            return;
+            return undefined;
         }
 
         // Filter the textcritics input array

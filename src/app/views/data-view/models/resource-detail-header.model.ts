@@ -142,7 +142,7 @@ export class ResourceDetailHeader {
      */
     private static _replaceParagraphTags(str: string): string {
         if (!str) {
-            return;
+            return undefined;
         }
         str = str
             .replace(/<\/p><p>/g, '<br />')

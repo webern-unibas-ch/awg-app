@@ -27,7 +27,7 @@ export class ResourceDetail {
      * @param {ResourceDetailHeader} header The given header.
      * @param {ResourceDetailContent} content The given content.
      */
-    constructor(header: ResourceDetailHeader, content: ResourceDetailContent) {
+    constructor(header: ResourceDetailHeader, content: ResourceDetailContent | undefined) {
         this.header = header;
         this.content = content;
     }

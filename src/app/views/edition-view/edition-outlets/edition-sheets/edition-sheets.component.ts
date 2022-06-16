@@ -351,7 +351,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     private _findTextCriticalComments(): TextcriticalComment[] {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return;
+            return undefined;
         }
         // Find index of the selected svg sheet id in textcriticsData.textcritics array
         const textcriticsIndex = this.textcriticsData.textcritics.findIndex(

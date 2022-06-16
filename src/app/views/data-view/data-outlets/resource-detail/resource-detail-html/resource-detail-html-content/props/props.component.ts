@@ -67,7 +67,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      */
     ngOnChanges(changes: SimpleChanges) {
         if (changes['props']) {
-            this._checkForGND(changes.props);
+            this._checkForGND(changes['props']);
         }
     }
 

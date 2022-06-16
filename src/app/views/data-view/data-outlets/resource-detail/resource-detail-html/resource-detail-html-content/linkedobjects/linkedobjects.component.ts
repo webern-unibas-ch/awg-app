@@ -69,7 +69,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      */
     private _getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
         if (!groupedLinksArr) {
-            return;
+            return undefined;
         }
 
         // Callback for reduce function

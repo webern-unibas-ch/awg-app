@@ -141,7 +141,7 @@ export class EditionSvgSheetListComponent implements OnInit {
      */
     isSelectedOverlay(type: EditionSvgOverlayTypes, id: string): boolean {
         if (!type || !id) {
-            return;
+            return undefined;
         }
         const overlay = new EditionSvgOverlay(type, id);
         return JSON.stringify(overlay) === JSON.stringify(this.selectedOverlay);
