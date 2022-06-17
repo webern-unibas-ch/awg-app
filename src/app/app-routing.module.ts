@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 /* Routes of the AppModule */
-const appRoutes: Routes = [
+const APP_ROUTES: Routes = [
     // Lazy loaded
     {
         path: 'home',
@@ -51,11 +51,11 @@ const appRoutes: Routes = [
 /**
  * Main app module routing.
  *
- * It activates the appRoutes, esp. lazy-loaded View Modules.
+ * It activates the APP_ROUTES, esp. lazy-loaded View Modules.
  */
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes, {
+        RouterModule.forRoot(APP_ROUTES, {
             anchorScrolling: 'enabled',
             onSameUrlNavigation: 'reload',
             scrollPositionRestoration: 'enabled',

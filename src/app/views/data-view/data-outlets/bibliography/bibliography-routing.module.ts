@@ -5,7 +5,7 @@ import { BibliographyComponent } from './bibliography.component';
 import { BibliographyDetailComponent } from './bibliography-detail/bibliography-detail.component';
 
 /* Routes of the BibliographyModule */
-const bibliographyRoutes: Routes = [
+const BIBLIOGRAPHY_ROUTES: Routes = [
     {
         path: '',
         component: BibliographyComponent,
@@ -22,10 +22,10 @@ export const routedBibliographyComponents = [BibliographyComponent, Bibliography
 /**
  * Bibliography module routing.
  *
- * It activates the bibliographyRoutes.
+ * It activates the BIBLIOGRAPHY_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(bibliographyRoutes)],
+    imports: [RouterModule.forChild(BIBLIOGRAPHY_ROUTES)],
     exports: [RouterModule],
 })
 export class BibliographyRoutingModule {}

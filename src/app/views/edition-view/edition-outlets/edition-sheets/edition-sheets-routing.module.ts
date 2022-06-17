@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionSheetsComponent } from './edition-sheets.component';
 
 /* Routes of the EditionSheetsModule */
-const editionSheetsRoutes: Routes = [
+const EDITION_SHEETS_ROUTES: Routes = [
     {
         path: '',
         component: EditionSheetsComponent,
@@ -21,10 +21,10 @@ export const routedEditionSheetsComponents = [EditionSheetsComponent];
 /**
  * EditionSheets module routing.
  *
- * It activates the editionSheetsRoutes.
+ * It activates the EDITION_SHEETS_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionSheetsRoutes)],
+    imports: [RouterModule.forChild(EDITION_SHEETS_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionSheetsRoutingModule {}

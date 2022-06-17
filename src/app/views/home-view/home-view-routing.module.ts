@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
 
 /* Routes of the PageNotFoundViewModule */
-const homeViewRoutes: Routes = [
+const HOME_VIEW_ROUTES: Routes = [
     {
         path: '',
         component: HomeViewComponent,
@@ -21,10 +21,10 @@ export const routedHomeViewComponents = [HomeViewComponent];
 /**
  * HomeView module routing.
  *
- * It activates the homeViewRoutes.
+ * It activates the HOME_VIEW_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(homeViewRoutes)],
+    imports: [RouterModule.forChild(HOME_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class HomeViewRoutingModule {}
