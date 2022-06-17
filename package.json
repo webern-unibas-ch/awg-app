@@ -55,7 +55,7 @@
         "format-files:check": "prettier --check \"src/**/*.{ts,js,html,css,scss}\"",
         "format-files:fix": "prettier --write \"src/**/*.{ts,js,html,css,scss}\"",
         "-- DOCS --": "",
-        "doc": "yarn compodoc --tsconfig tsconfig.doc.json --theme Readthedocs --output dist/awg-app/compodoc",
+        "doc": "compodoc --tsconfig tsconfig.doc.json --theme Readthedocs --output dist/awg-app/compodoc",
         "doc:build": "yarn doc",
         "doc:serve": "yarn doc --serve --watch",
         "-- BUILD --": "",

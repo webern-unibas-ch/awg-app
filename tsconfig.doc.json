@@ -13,5 +13,5 @@
         }
     },
     "include": ["src/main.ts", "src/polyfills.ts", "src/**/*.d.ts", "src/**/*.ts"],
-    "exclude": ["src/test.ts", "src/**/*.spec.ts", "src/testing/", "e2e/**/*"]
+    "exclude": ["src/test.ts", "src/**/*.spec.ts", "src/testing/*"]
 }
