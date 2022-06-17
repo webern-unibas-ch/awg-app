@@ -1,13 +1,23 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
+
 /* Routes of the AppModule */
 const APP_ROUTES: Routes = [
-    // Lazy loaded
+    // Default route
+    {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+    },
     {
         path: 'home',
-        loadChildren: () => import('@awg-views/home-view/home-view.module').then(m => m.HomeViewModule),
+        component: HomeViewComponent,
+        data: { title: 'AWG Online Edition – Home' },
     },
+
+    // Lazy loaded routes
     {
         path: 'contact',
         loadChildren: () => import('@awg-views/contact-view/contact-view.module').then(m => m.ContactViewModule),
@@ -30,12 +40,7 @@ const APP_ROUTES: Routes = [
         loadChildren: () => import('@awg-views/structure-view/structure-view.module').then(m => m.StructureViewModule),
     },
 
-    // Default routes
-    {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full',
-    },
+    // Fallback routes
     {
         path: '404',
         loadChildren: () =>
@@ -47,6 +52,12 @@ const APP_ROUTES: Routes = [
         pathMatch: 'full',
     },
 ];
+
+/**
+ * Routed components of the {@link AppModule}:
+ * {@link HomeViewComponent}.
+ */
+export const routedAppComponents = [HomeViewComponent];
 
 /**
  * Main app module routing.
