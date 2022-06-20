@@ -11,6 +11,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 import { EditionSvgSheetListComponent } from './edition-svg-sheet-list.component';
 import { mockEditionData } from '@testing/mock-data';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 
 describe('EditionSvgSheetListComponent (DONE)', () => {
     let component: EditionSvgSheetListComponent;
@@ -19,6 +20,8 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
 
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedSvgSheetWithPartials: EditionSvgSheet;
+    let expectedSvgSheetWithPartialsSingleSvg: EditionSvgSheet;
     let expectedOverlay: EditionSvgOverlay;
 
     let selectOverlaySpy: Spy;
@@ -41,6 +44,9 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
         // Test data
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2_with_partials;
+
+        expectedSvgSheetWithPartialsSingleSvg = mockEditionData.mockSvgSheet_Sk2a;
 
         const type = EditionSvgOverlayTypes.measure;
         const id = '10';
@@ -173,6 +179,17 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
 
                 expect(comparison).toBeTrue();
             });
+
+            it('... should recognize ids of selected svg sheet wth partials', async () => {
+                component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
+                await detectChangesOnPush(fixture);
+
+                const expectedId =
+                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+                const comparison = component.isSelectedSvgSheet(expectedId);
+
+                expect(comparison).toBeTrue();
+            });
         });
 
         describe('#selectOverlay', () => {
@@ -254,6 +271,15 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSvgSheet.id);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+            });
+
+            it('... should emit id of selected svg sheet with partial', () => {
+                const expectedId =
+                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+
+                component.selectSvgSheet(expectedId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedId);
             });
         });
     });
