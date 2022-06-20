@@ -1,16 +1,11 @@
 /**
- * The EditionSvgSheet class.
+ * The EditionSvgSheetContent class.
  *
  * It is used in the context of the edition view
- * to store the data for a single svg sheet
- * from a svg sheet json file.
+ * to store the data for the content of a single svg sheet
+ * in a svg sheet json file.
  */
-export class EditionSvgSheet {
-    /**
-     * The sheet's id (string).
-     */
-    id: string;
-
+export class EditionSvgSheetContent {
     /**
      * The path to the svg file of the sheet.
      */
@@ -22,9 +17,33 @@ export class EditionSvgSheet {
     image: string;
 
     /**
-     * The alternative label for the sheet.
+     * Optional: The sheet's content partial id as an extra to the sheet id (string).
      */
-    alt: string;
+    partial?: string;
+}
+
+/**
+ * The EditionSvgSheet class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single svg sheet
+ * in a svg sheet json file.
+ */
+export class EditionSvgSheet {
+    /**
+     * The sheet's id (string).
+     */
+    id: string;
+
+    /**
+     * The label for the sheet.
+     */
+    label: string;
+
+    /**
+     * The content of the sheet.
+     */
+    content: EditionSvgSheetContent[];
 
     /**
      * The associated convolute of the sheet.

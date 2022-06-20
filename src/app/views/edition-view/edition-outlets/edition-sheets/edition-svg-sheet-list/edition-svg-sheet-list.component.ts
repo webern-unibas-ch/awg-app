@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import {
     EditionSvgSheet,
@@ -34,7 +34,7 @@ export enum SvgSheetIdsOp12 {
     styleUrls: ['./edition-svg-sheet-list.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionSvgSheetListComponent implements OnInit {
+export class EditionSvgSheetListComponent {
     /**
      * Input variable: svgSheetsData.
      *
@@ -92,29 +92,11 @@ export class EditionSvgSheetListComponent implements OnInit {
     };
 
     /**
-     * Public variable: sheetsArray.
-     *
-     * It keeps the array of of the svg sheets' labels.
-     * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
-     */
-    sheetsArray: string[];
-
-    /**
      * Public variable: overlayTypes.
      *
      * It keeps the EditionSvgOverlayTypes to be accessed from template.
      */
     overlayTypes = EditionSvgOverlayTypes;
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        this.sheetsArray = this.svgSheetsData.sheets.map(sheet => sheet.id);
-    }
 
     /**
      * Public method: isSelectedSvgSheet.
@@ -126,7 +108,12 @@ export class EditionSvgSheetListComponent implements OnInit {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isSelectedSvgSheet(id: string): boolean {
-        return id === this.selectedSvgSheet.id;
+        let selectedId = this.selectedSvgSheet.id;
+        // Compare partial id if needed
+        if (this.selectedSvgSheet.content && this.selectedSvgSheet.content[0].partial) {
+            selectedId = selectedId + this.selectedSvgSheet.content[0].partial;
+        }
+        return id === selectedId;
     }
 
     /**
