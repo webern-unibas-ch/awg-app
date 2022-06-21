@@ -1652,21 +1652,21 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
 
                             // FormControlName='resourceInfoIndex'
-                            expect(inputDes[0].attributes.formControlName).toBeTruthy();
-                            expect(inputDes[0].attributes.formControlName)
+                            expect(inputDes[0].attributes['formControlName']).toBeTruthy();
+                            expect(inputDes[0].attributes['formControlName'])
                                 .withContext('should be resourceInfoIndex')
                                 .toBe('resourceInfoIndex');
 
                             // Type='number'
-                            expect(inputDes[0].attributes.type).toBeTruthy();
-                            expect(inputDes[0].attributes.type).withContext('should be number').toBe('number');
+                            expect(inputDes[0].attributes['type']).toBeTruthy();
+                            expect(inputDes[0].attributes['type']).withContext('should be number').toBe('number');
 
                             // Size=4
-                            expect(inputDes[0].attributes.size).toBeTruthy();
-                            expect(inputDes[0].attributes.size).withContext('should be 4').toBe('4');
+                            expect(inputDes[0].attributes['size']).toBeTruthy();
+                            expect(inputDes[0].attributes['size']).withContext('should be 4').toBe('4');
                             // Step=1
-                            expect(inputDes[0].attributes.step).toBeTruthy();
-                            expect(inputDes[0].attributes.step).withContext('should be 1').toBe('1');
+                            expect(inputDes[0].attributes['step']).toBeTruthy();
+                            expect(inputDes[0].attributes['step']).withContext('should be 1').toBe('1');
                         });
 
                         describe('button', () => {
@@ -1680,8 +1680,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 const buttonEl = buttonDes[0].nativeElement;
 
                                 // Type='submit'
-                                expect(buttonDes[0].attributes.type).toBeTruthy();
-                                expect(buttonDes[0].attributes.type).toBe('submit', 'should be submit');
+                                expect(buttonDes[0].attributes['type']).toBeTruthy();
+                                expect(buttonDes[0].attributes['type']).withContext('should be submit').toBe('submit');
 
                                 // Class=btn
                                 expect(buttonEl).toHaveClass('btn');

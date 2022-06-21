@@ -732,7 +732,7 @@ export class FolioCalculation {
         sectionPartition: number
     ): FolioCalculationLine[] {
         if (!calculatedContentItem.current.cornerPoints) {
-            return;
+            return undefined;
         }
 
         // Init
@@ -938,7 +938,7 @@ export class FolioCalculation {
      */
     private _getSystemLineArray(y: number): number[] {
         if (!y) {
-            return;
+            return undefined;
         }
 
         const lineArray: number[] = [];
@@ -964,7 +964,7 @@ export class FolioCalculation {
      */
     private _round(value: number, decimals: number): number {
         if (Number.isNaN(value)) {
-            return;
+            return undefined;
         }
         return Number(Math.round(Number(value + 'e' + decimals)) + 'e-' + decimals);
     }

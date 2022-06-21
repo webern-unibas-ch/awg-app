@@ -147,7 +147,7 @@ export class GraphVisualizerService {
      */
     checkNamespacesInQuery(queryStr: string, turtleStr: string): string {
         if (!queryStr || !turtleStr) {
-            return;
+            return undefined;
         }
         // Get namespaces from Turtle triples
         const turtleNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
@@ -246,6 +246,7 @@ export class GraphVisualizerService {
                         this.abbreviateTriples(response.triples, namespaces, mimeType)
                     );
                 }
+                return undefined;
             });
     }
 
@@ -548,7 +549,7 @@ export class GraphVisualizerService {
      */
     private _prepareSelectResponse(data: SearchResultBindings[]): { status: number; data: SearchResult | string } {
         if (!data) {
-            return;
+            return undefined;
         }
 
         // Check that it didn't return null results

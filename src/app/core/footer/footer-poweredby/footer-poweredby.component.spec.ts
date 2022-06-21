@@ -47,7 +47,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have logos', () => {
-            expect(component.logos).toBeUndefined('should be undefined');
+            expect(component.logos).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -72,7 +72,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
         it('should have logos', () => {
             expect(component.logos).toBeDefined();
-            expect(component.logos).toBe(expectedLogos);
+            expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
         });
 
         describe('VIEW', () => {
@@ -82,16 +82,20 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                     de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
                 );
 
-                expect(footerLogoCmps.length).toBe(3, 'should have 3 logo components');
+                expect(footerLogoCmps.length).withContext('should have 3 logo components').toBe(3);
 
                 expect(footerLogoCmps[0].logo).toBeTruthy();
-                expect(footerLogoCmps[0].logo).toEqual(expectedLogos.github, 'should have github logo');
+                expect(footerLogoCmps[0].logo).withContext('should have github logo').toEqual(expectedLogos['github']);
 
                 expect(footerLogoCmps[1].logo).toBeTruthy();
-                expect(footerLogoCmps[1].logo).toEqual(expectedLogos.angular, 'should have angular logo');
+                expect(footerLogoCmps[1].logo)
+                    .withContext('should have angular logo')
+                    .toEqual(expectedLogos['angular']);
 
                 expect(footerLogoCmps[2].logo).toBeTruthy();
-                expect(footerLogoCmps[2].logo).toEqual(expectedLogos.bootstrap, 'should have bootstrap logo');
+                expect(footerLogoCmps[2].logo)
+                    .withContext('should have bootstrap logo')
+                    .toEqual(expectedLogos['bootstrap']);
             });
         });
     });

@@ -111,9 +111,9 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      */
     ngOnChanges(changes: SimpleChanges) {
         if (
-            changes.searchValue &&
-            !changes.searchValue.isFirstChange() &&
-            typeof changes.searchValue.currentValue === 'string'
+            changes['searchValue'] &&
+            !changes['searchValue'].isFirstChange() &&
+            typeof changes['searchValue'].currentValue === 'string'
         ) {
             this.setSearchvalFromInput();
         }
@@ -143,7 +143,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     isFulltextSearchInputInvalid(): boolean {
         return (
             this.searchvalControl.hasError('required') ||
-            (this.searchvalControl.errors && this.searchvalControl.errors.minlength)
+            (this.searchvalControl.errors && this.searchvalControl.errors['minlength'])
         );
     }
 

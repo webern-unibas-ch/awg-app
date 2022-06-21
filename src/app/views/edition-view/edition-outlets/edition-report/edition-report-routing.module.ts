@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionReportComponent } from './edition-report.component';
 
 /* Routes of the EditionReportModule */
-const editionReportRoutes: Routes = [
+const EDITION_REPORT_ROUTES: Routes = [
     {
         path: '',
         component: EditionReportComponent,
@@ -21,10 +21,10 @@ export const routedEditionReportComponents = [EditionReportComponent];
 /**
  * EditionReport module routing.
  *
- * It activates the editionReportRoutes.
+ * It activates the EDITION_REPORT_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionReportRoutes)],
+    imports: [RouterModule.forChild(EDITION_REPORT_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionReportRoutingModule {}

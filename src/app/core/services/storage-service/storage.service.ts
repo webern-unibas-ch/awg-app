@@ -113,9 +113,9 @@ export class StorageService {
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {Storage} The local reference to Storage for the given storage type.
+     * @returns {boolean} The boolean value for a supported Storage with the given storage type.
      */
-    private _storageIsSupported(storage: Storage): Storage {
+    private _storageIsSupported(storage: Storage): boolean {
         return typeof storage !== 'undefined' && storage !== null && this._storageIsAvailable(storage);
     }
 
@@ -127,9 +127,9 @@ export class StorageService {
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {Storage} The local reference to Storage for the given storage type.
+     * @returns {boolean} The boolean value for an available Storage with the given storage type.
      */
-    private _storageIsAvailable(storage: Storage): Storage {
+    private _storageIsAvailable(storage: Storage): boolean {
         try {
             // Make uid from Date
             const uid = new Date().toDateString();
@@ -137,11 +137,11 @@ export class StorageService {
             // Set, get and remove item
             storage.setItem(uid, uid);
             const result = storage.getItem(uid) === uid;
-
             storage.removeItem(uid);
 
-            // Return local reference to Storage or undefined
-            return result && storage;
-        } catch (e) {}
+            return result;
+        } catch (e) {
+            return false;
+        }
     }
 }

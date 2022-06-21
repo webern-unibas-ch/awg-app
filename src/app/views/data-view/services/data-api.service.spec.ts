@@ -1455,13 +1455,13 @@ describe('DataApiService (DONE)', () => {
 
     describe('#_getResourceDataResponseFromApi', () => {
         describe('request', () => {
-            describe('... should not do anything if ', () => {
+            describe('... should not get anything if ', () => {
                 it('response type is undefined', waitForAsync(() => {
                     // Call service function
                     (dataApiService as any)._getResourceDataResponseFromApi(undefined, 'undefined');
 
                     // Expect no request to getApiResponse
-                    expectSpyCall(getApiResponseSpy, 0);
+                    expectSpyCall(getApiResponseSpy, 1, undefined);
 
                     // Expect no request to url with given settings
                     httpTestingController.expectNone(
@@ -1476,7 +1476,7 @@ describe('DataApiService (DONE)', () => {
                     (dataApiService as any)._getResourceDataResponseFromApi(null, 'null');
 
                     // Expect no request to getApiResponse
-                    expectSpyCall(getApiResponseSpy, 0);
+                    expectSpyCall(getApiResponseSpy, 1, null);
 
                     // Expect no request to url with given settings
                     httpTestingController.expectNone(
@@ -1491,7 +1491,7 @@ describe('DataApiService (DONE)', () => {
                     (dataApiService as any)._getResourceDataResponseFromApi(HlistJson, 'hlist');
 
                     // Expect no request to getApiResponse
-                    expectSpyCall(getApiResponseSpy, 0);
+                    expectSpyCall(getApiResponseSpy, 1, HlistJson);
 
                     // Expect no request to url with given settings
                     httpTestingController.expectNone(

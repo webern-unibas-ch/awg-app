@@ -34,9 +34,9 @@ export class FooterLogoComponent {
      * @returns {boolean} The boolean value of the comparison.
      */
     getLogoClass(id: string) {
-        const isSnfLogo = id === LOGOSDATA.snf.id;
-        const isUnibasLogo = id === LOGOSDATA.unibas.id;
-        const isSagwLogo = id === LOGOSDATA.sagw.id;
+        const isSnfLogo = id === LOGOSDATA['snf'].id;
+        const isUnibasLogo = id === LOGOSDATA['unibas'].id;
+        const isSagwLogo = id === LOGOSDATA['sagw'].id;
 
         let classList = '';
         if (isUnibasLogo || isSnfLogo || isSagwLogo) {

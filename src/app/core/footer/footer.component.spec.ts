@@ -89,7 +89,7 @@ describe('FooterComponent (DONE)', () => {
 
     it('injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(true);
+        expect(mockCoreService === coreService).toBeTrue();
     });
 
     describe('BEFORE initial data binding', () => {
@@ -99,11 +99,11 @@ describe('FooterComponent (DONE)', () => {
             });
 
             it('... should not have pageMetaData', () => {
-                expect(component.pageMetaData).toBeUndefined('should be undefined');
+                expect(component.pageMetaData).toBeUndefined();
             });
 
             it('... should not have logos', () => {
-                expect(component.logos).toBeUndefined('should be undefined');
+                expect(component.logos).toBeUndefined();
             });
         });
 
@@ -159,12 +159,14 @@ describe('FooterComponent (DONE)', () => {
 
             it('... should return metadata', () => {
                 expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData).toBe(expectedPageMetaData);
+                expect(component.pageMetaData)
+                    .withContext(`should be ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
             });
 
             it('... should return logos', () => {
                 expect(component.logos).toBeDefined();
-                expect(component.logos).toBe(expectedLogos);
+                expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
             });
         });
 
@@ -191,16 +193,18 @@ describe('FooterComponent (DONE)', () => {
                         de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
                     );
 
-                    expect(footerLogoCmps.length).toBe(3, 'should have 3 logo components');
+                    expect(footerLogoCmps.length).withContext('should have 3 logo components').toBe(3);
 
                     expect(footerLogoCmps[0].logo).toBeTruthy();
-                    expect(footerLogoCmps[0].logo).toEqual(expectedLogos.sagw, 'should have sagw logo');
+                    expect(footerLogoCmps[0].logo).withContext('should have sagw logo').toEqual(expectedLogos['sagw']);
 
                     expect(footerLogoCmps[1].logo).toBeTruthy();
-                    expect(footerLogoCmps[1].logo).toEqual(expectedLogos.unibas, 'should have unibas logo');
+                    expect(footerLogoCmps[1].logo)
+                        .withContext('should have unibas logo')
+                        .toEqual(expectedLogos['unibas']);
 
                     expect(footerLogoCmps[2].logo).toBeTruthy();
-                    expect(footerLogoCmps[2].logo).toEqual(expectedLogos.snf, 'should have snf logo');
+                    expect(footerLogoCmps[2].logo).withContext('should have snf logo').toEqual(expectedLogos['snf']);
                 });
             });
 
@@ -217,7 +221,9 @@ describe('FooterComponent (DONE)', () => {
                     ) as FooterCopyrightStubComponent;
 
                     expect(footerCopyrightCmp.pageMetaData).toBeTruthy();
-                    expect(footerCopyrightCmp.pageMetaData).toEqual(expectedPageMetaData, 'should equal pageMetaData');
+                    expect(footerCopyrightCmp.pageMetaData)
+                        .withContext(`should equal ${expectedPageMetaData}`)
+                        .toEqual(expectedPageMetaData);
                 });
 
                 it('... should pass down logos to footer poweredby component', () => {
@@ -232,7 +238,9 @@ describe('FooterComponent (DONE)', () => {
                     ) as FooterPoweredbyStubComponent;
 
                     expect(footerPoweredbyCmp.logos).toBeTruthy();
-                    expect(footerPoweredbyCmp.logos).toEqual(expectedLogos, 'should have logos');
+                    expect(footerPoweredbyCmp.logos)
+                        .withContext(`should equal ${expectedLogos}`)
+                        .toEqual(expectedLogos);
                 });
             });
         });

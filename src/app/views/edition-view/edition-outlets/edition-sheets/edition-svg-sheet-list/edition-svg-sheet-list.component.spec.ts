@@ -11,6 +11,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 import { EditionSvgSheetListComponent } from './edition-svg-sheet-list.component';
 import { mockEditionData } from '@testing/mock-data';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 
 describe('EditionSvgSheetListComponent (DONE)', () => {
     let component: EditionSvgSheetListComponent;
@@ -19,6 +20,8 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
 
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedSvgSheetWithPartials: EditionSvgSheet;
+    let expectedSvgSheetWithPartialsSingleSvg: EditionSvgSheet;
     let expectedOverlay: EditionSvgOverlay;
 
     let selectOverlaySpy: Spy;
@@ -41,6 +44,9 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
         // Test data
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2_with_partials;
+
+        expectedSvgSheetWithPartialsSingleSvg = mockEditionData.mockSvgSheet_Sk2a;
 
         const type = EditionSvgOverlayTypes.measure;
         const id = '10';
@@ -92,21 +98,20 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
         });
 
         it('should have `svgSheetsData` input', () => {
-            expect(component.svgSheetsData).toBeDefined('should be defined');
-            expect(component.svgSheetsData).toEqual(
-                { sheets: [expectedSvgSheet] },
-                `should equal ${{ sheets: [expectedSvgSheet] }}`
-            );
+            expect(component.svgSheetsData).toBeDefined();
+            expect(component.svgSheetsData)
+                .withContext(`should equal ${{ sheets: [expectedSvgSheet] }}`)
+                .toEqual({ sheets: [expectedSvgSheet] });
         });
 
         it('should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined('should be defined');
-            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
+            expect(component.selectedSvgSheet).toBeDefined();
+            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
         it('should have `selectedOverlay` input', () => {
-            expect(component.selectedOverlay).toBeDefined('should be defined');
-            expect(component.selectedOverlay).toBe(expectedOverlay);
+            expect(component.selectedOverlay).toBeDefined();
+            expect(component.selectedOverlay).withContext(`should be ${expectedOverlay}`).toBe(expectedOverlay);
         });
 
         // TODO: test correct implementation of EditionSVGOverlayEnum
@@ -122,7 +127,9 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
 
                 const svgDes = getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
 
-                expect(svgDes[0].attributes.id).toBe(expectedSvgSheet.id, `should be ${expectedSvgSheet.id}`);
+                expect(svgDes[0].attributes['id'])
+                    .withContext(`should be ${expectedSvgSheet.id}`)
+                    .toBe(expectedSvgSheet.id);
             });
         });
 
@@ -132,7 +139,7 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
                 const id = undefined;
                 const comparison = component.isSelectedOverlay(type, id);
 
-                expect(comparison).toBeUndefined('should be undefined');
+                expect(comparison).toBeUndefined();
             });
 
             it('... should do nothing if no type is provided', () => {
@@ -140,7 +147,7 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
                 const id = '10';
                 const comparison = component.isSelectedOverlay(type, id);
 
-                expect(comparison).toBeUndefined('should be undefined');
+                expect(comparison).toBeUndefined();
             });
 
             it('... should return false if given overlay does not equal selected overlay', () => {
@@ -169,6 +176,17 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
 
             it('... should return true if given id does equal id of selected svg sheet', () => {
                 const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
+
+                expect(comparison).toBeTrue();
+            });
+
+            it('... should recognize ids of selected svg sheet wth partials', async () => {
+                component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
+                await detectChangesOnPush(fixture);
+
+                const expectedId =
+                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+                const comparison = component.isSelectedSvgSheet(expectedId);
 
                 expect(comparison).toBeTrue();
             });
@@ -253,6 +271,15 @@ describe('EditionSvgSheetListComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSvgSheet.id);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+            });
+
+            it('... should emit id of selected svg sheet with partial', () => {
+                const expectedId =
+                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+
+                component.selectSvgSheet(expectedId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedId);
             });
         });
     });

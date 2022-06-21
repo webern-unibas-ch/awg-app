@@ -62,7 +62,7 @@ export class SelectResultsComponent {
      */
     isNotEmpty(queryResult: SearchResult): boolean {
         if (!queryResult.head || !queryResult.body) {
-            return;
+            return undefined;
         }
         return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
     }

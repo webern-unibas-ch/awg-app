@@ -79,7 +79,7 @@ export class ConversionService extends ApiService {
      *
      * @param {HttpClient} http Instance of the HttpClient.
      */
-    constructor(public http: HttpClient) {
+    constructor(public override http: HttpClient) {
         super(http);
     }
 
@@ -342,14 +342,16 @@ export class ConversionService extends ApiService {
      *
      * @returns {NgxGalleryImage[]} The image array of the resource detail.
      */
-    private _prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
+    private _prepareResourceDetailImage(
+        resourceContextData: ResourceContextResponseJson
+    ): NgxGalleryImage[] | undefined {
         // Id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
         // Result is an array of NgxGalleryImage
         const images: NgxGalleryImage[] = [];
 
         if (!resourceContextData.resource_context.res_id) {
             // console.log('ConversionService# _prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
-            return;
+            return undefined;
         } else {
             const context: ContextJson = { ...resourceContextData.resource_context };
 
@@ -381,12 +383,12 @@ export class ConversionService extends ApiService {
                         'ConversionService - Array length for context objects is not consistent with firstprops length!',
                         context
                     );
-                    return;
+                    return undefined;
                 }
                 // STANDARD OBJECT (context == 0 || 1)
             } else if (context.context < 2) {
                 console.warn('ConversionService - got no image context', context);
-                return;
+                return undefined;
             }
         }
 
@@ -405,9 +407,9 @@ export class ConversionService extends ApiService {
      */
     private _prepareResourceDetailIncomingLinks(
         incomingArray: IncomingItemJson[]
-    ): ResourceDetailGroupedIncomingLinks[] {
+    ): ResourceDetailGroupedIncomingLinks[] | undefined {
         if (!incomingArray) {
-            return;
+            return undefined;
         }
 
         // Map incoming array items into new array (immutable)
@@ -429,9 +431,9 @@ export class ConversionService extends ApiService {
      *
      * @returns {ResourceDetailProperty[]} The properties array of the resource detail.
      */
-    private _prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
+    private _prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] | undefined {
         if (!props) {
-            return;
+            return undefined;
         }
 
         // Helper method to clean value labels
@@ -745,7 +747,7 @@ export class ConversionService extends ApiService {
      */
     private _convertStandoffToHTML(str: string, attr: string): string {
         if (!str) {
-            return;
+            return undefined;
         }
         if (!attr) {
             return str;
@@ -815,7 +817,7 @@ export class ConversionService extends ApiService {
      */
     private _adjustBiblioLink(str: string): string {
         if (!str) {
-            return;
+            return undefined;
         }
 
         let outStr: string;
@@ -860,7 +862,7 @@ export class ConversionService extends ApiService {
      */
     private _replaceSalsahLink(str: string): string {
         if (!str) {
-            return;
+            return undefined;
         }
 
         // Regexp for Salsah links
@@ -905,7 +907,7 @@ export class ConversionService extends ApiService {
      */
     private _replaceParagraphTags(str: string): string {
         if (!str) {
-            return;
+            return undefined;
         }
         str = str
             .replace(/<\/p><p>/g, '<br />')
@@ -931,7 +933,7 @@ export class ConversionService extends ApiService {
      */
     private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
         if (!subjects) {
-            return;
+            return undefined;
         }
         this.filteredOut = 0;
         const distinctObj = {};
@@ -957,7 +959,7 @@ export class ConversionService extends ApiService {
      */
     private _groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {
         if (!incomingLinks) {
-            return;
+            return undefined;
         }
 
         // Find out and alphabetically sort all the unique restype labels

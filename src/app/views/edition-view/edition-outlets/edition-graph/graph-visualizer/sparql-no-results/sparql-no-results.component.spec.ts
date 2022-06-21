@@ -60,7 +60,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             });
 
             it('... should not have logos', () => {
-                expect(component.logos).toBeUndefined('should be undefined');
+                expect(component.logos).toBeUndefined();
             });
         });
 
@@ -81,16 +81,16 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 expect(divEl.id).toBeDefined();
 
                 expect(p1El.textContent).toBeDefined();
-                expect(p1El.textContent).toContain(
-                    'Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.',
-                    'should contain: Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.'
-                );
+                expect(p1El.textContent)
+                    .withContext(
+                        'should contain: Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.'
+                    )
+                    .toContain('Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.');
 
                 expect(p2El.textContent).toBeDefined();
-                expect(p2El.textContent).toContain(
-                    'Möglicherweise können Sie Ihre Anfrage anpassen.',
-                    'should contain: Möglicherweise können Sie Ihre Anfrage anpassen.'
-                );
+                expect(p2El.textContent)
+                    .withContext('should contain: Möglicherweise können Sie Ihre Anfrage anpassen.')
+                    .toContain('Möglicherweise können Sie Ihre Anfrage anpassen.');
             });
 
             it('... should contain one empty link in 3rd and 4th paragraph', () => {
@@ -103,10 +103,10 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 const p4aEl = p4aDes[0].nativeElement;
 
                 expect(p3aEl.href).toBeDefined();
-                expect(p3aEl.href).not.toBeTruthy('should be empty'); // JASMINE: empty string ==> not truthy
+                expect(p3aEl.href).withContext('should be empty string').not.toBeTruthy(); // JASMINE: empty string ==> not truthy
 
                 expect(p4aEl.href).toBeDefined();
-                expect(p4aEl.href).not.toBeTruthy('should be empty string');
+                expect(p4aEl.href).withContext('should be empty string').not.toBeTruthy();
             });
 
             it('... should contain one empty image in 4th paragraph link', () => {
@@ -118,7 +118,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 const imgEl = imgDes[0].nativeElement;
 
                 expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).not.toBeTruthy('should be empty');
+                expect(imgEl.src).withContext('should be empty string').not.toBeTruthy();
             });
         });
     });
@@ -139,7 +139,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
 
             it('... should return logos', () => {
                 expect(component.logos).toBeDefined();
-                expect(component.logos).toBe(expectedLogos);
+                expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
             });
         });
 
@@ -154,18 +154,21 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 const p4aEl = p4aDes[0].nativeElement;
 
                 expect(p3aEl.href).toBeDefined();
-                expect(p3aEl.href).toBeTruthy('should not be empty');
-                expect(p3aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
+                expect(p3aEl.href).withContext('should be empty string').toBeTruthy();
+                expect(p3aEl.href)
+                    .withContext(`should contain ${expectedLogos['sparql'].href}`)
+                    .toContain(expectedLogos['sparql'].href);
 
                 expect(p3aEl.textContent).toBeDefined();
-                expect(p3aEl.textContent).toContain(
-                    expectedLogos.sparql.href,
-                    `should contain: ${expectedLogos.sparql.href}`
-                );
+                expect(p3aEl.textContent)
+                    .withContext(`should contain: ${expectedLogos['sparql'].href}`)
+                    .toContain(expectedLogos['sparql'].href);
 
                 expect(p4aEl.href).toBeDefined();
-                expect(p4aEl.href).toBeTruthy('should not be empty');
-                expect(p4aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
+                expect(p4aEl.href).withContext('should be empty string').toBeTruthy();
+                expect(p4aEl.href)
+                    .withContext(`should contain ${expectedLogos['sparql'].href}`)
+                    .toContain(expectedLogos['sparql'].href);
             });
 
             it('... should contain correct image in 4th paragraph link', () => {
@@ -177,7 +180,9 @@ describe('SparqlNoResultsComponent (DONE)', () => {
                 const imgEl = imgDes[0].nativeElement;
 
                 expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).toContain(expectedLogos.sparql.src, `should contain ${expectedLogos.sparql.src}`);
+                expect(imgEl.src)
+                    .withContext(`should contain ${expectedLogos['sparql'].src}`)
+                    .toContain(expectedLogos['sparql'].src);
             });
         });
     });
