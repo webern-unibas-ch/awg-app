@@ -171,8 +171,6 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
                 const anchorCmp = anchorDes[0].nativeElement;
 
-                console.log(anchorDes);
-
                 expect(anchorCmp.textContent.trim())
                     .withContext(`should be ${expectedSvgSheetWithPartials.label}`)
                     .toBe(expectedSvgSheetWithPartials.label);
