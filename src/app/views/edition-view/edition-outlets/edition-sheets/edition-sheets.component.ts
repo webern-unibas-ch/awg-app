@@ -339,7 +339,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             // If we have partial sheets, look into content array for id with extra partial
             if (sheets.content.length > 1) {
                 partialIndex = sheets.content.findIndex(content => i + content.partial === id);
-                i = i + sheets.content[partialIndex].partial;
+                if (partialIndex >= 0) {
+                    i = i + sheets.content[partialIndex].partial;
+                }
             }
             return i === id;
         });
