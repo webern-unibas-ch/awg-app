@@ -3,15 +3,6 @@
     <!--       OPUS 12           -->
     <!-- *********************** -->
 
-    <!-- embedded svg: op. 12 M 212 Sk1 -->
-    <div class="svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_1)">
-        <p class="small text-muted">
-            [Der edierte Notentext von <strong>M 212 Sk1</strong> erscheint im Zusammenhang der vollständigen Edition
-            der <em>Vier Lieder</em> op. 12 in <strong>AWG I/5</strong>.]
-        </p>
-    </div>
-    <!-- END svg op. 12 M 212 Sk1 -->
-
     <!-- embedded svg: op. 12 M 212 Sk2 -->
     <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetIds.op12.SHEET_2)">
         <svg
@@ -27,19 +18,19 @@
                 <a
                     (click)="selectOverlay(overlayTypes.system, '14')"
                     [class.active]="isSelectedOverlay(overlayTypes.system, '14')">
-                    <rect class="edition-svg-system" x="20" y="205" width="950" height="60" />
+                    <rect class="edition-svg-system" x="80" y="180" width="800" height="50" />
                 </a>
                 <!-- system 13 -->
                 <a
                     (click)="selectOverlay(overlayTypes.system, '13')"
                     [class.active]="isSelectedOverlay(overlayTypes.system, '13')">
-                    <rect class="edition-svg-system" x="20" y="275" width="950" height="60" />
+                    <rect class="edition-svg-system" x="80" y="230" width="800" height="50" />
                 </a>
                 <!-- system 12 -->
                 <a
                     (click)="selectOverlay(overlayTypes.system, '12')"
                     [class.active]="isSelectedOverlay(overlayTypes.system, '12')">
-                    <rect class="edition-svg-system" x="20" y="345" width="950" height="60" />
+                    <rect class="edition-svg-system" x="80" y="280" width="800" height="50" />
                 </a>
             </svg:g>
             <!-- measures -->
@@ -48,19 +39,19 @@
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '10')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '10')">
-                    <rect class="edition-svg-measure" x="300" y="125" width="180" height="345" />
+                    <rect class="edition-svg-measure" x="300" y="125" width="75" height="225" />
                 </a>
                 <!-- measure 11 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '11')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '11')">
-                    <rect class="edition-svg-measure" x="480" y="125" width="180" height="345" />
+                    <rect class="edition-svg-measure" x="375" y="125" width="75" height="225" />
                 </a>
                 <!-- measure 12 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '12')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '12')">
-                    <rect class="edition-svg-measure" x="660" y="125" width="180" height="345" />
+                    <rect class="edition-svg-measure" x="450" y="125" width="75" height="225" />
                 </a>
             </svg:g>
             <!-- items -->
@@ -69,32 +60,32 @@
                 <a
                     (click)="selectOverlay(overlayTypes.item, '0')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '0')">
-                    <rect class="edition-svg-item" x="330" y="350" rx="5" ry="5" width="40" height="70" />
+                    <rect class="edition-svg-item" x="320" y="285" rx="5" ry="5" width="24" height="35" />
                 </a>
                 <!-- T10/S12/o2 -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '1')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '1')">
-                    <rect class="edition-svg-item" x="380" y="350" rx="5" ry="5" width="40" height="70" />
+                    <rect class="edition-svg-item" x="345" y="285" rx="5" ry="5" width="20" height="35" />
                 </a>
                 <!-- T11/S14/o(1/4) -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '2')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '2')">
-                    <rect class="edition-svg-item" x="480" y="200" rx="5" ry="5" width="125" height="80" />
+                    <rect class="edition-svg-item" x="380" y="190" rx="5" ry="5" width="50" height="40" />
                 </a>
                 <!-- T12/S13/oO -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '3')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '3')">
-                    <rect class="edition-svg-item" x="660" y="270" rx="5" ry="5" width="125" height="80" />
+                    <rect class="edition-svg-item" x="455" y="235" rx="5" ry="5" width="50" height="40" />
                 </a>
             </svg:g>
             <!-- link boxes -->
             <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/3 -->
                 <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_3)">
-                    <rect class="edition-svg-linkbox" x="90" y="345" width="182" height="125" />
+                    <rect class="edition-svg-linkbox" x="151" y="276" width="134" height="74" />
                 </a>
             </svg:g>
         </svg>
@@ -110,19 +101,46 @@
             viewBox="0 0 1000 608"
             [id]="selectedSvgSheet.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.content[0].svg" width="100%" height="100%" />
+            <!-- systems -->
+            <svg:g class="edition-svg-systems">
+                <!-- system 12 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '12')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '12')">
+                    <rect class="edition-svg-system" x="80" y="210" width="800" height="45" />
+                </a>
+                <!-- system 11 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '11')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '11')">
+                    <rect class="edition-svg-system" x="80" y="255" width="800" height="45" />
+                </a>
+                <!-- system 10 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '10')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '10')">
+                    <rect class="edition-svg-system" x="80" y="300" width="800" height="50" />
+                </a>
+                <!-- system 9 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '9')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '9')">
+                    <rect class="edition-svg-system" x="80" y="350" width="800" height="50" />
+                </a>
+            </svg:g>
             <!-- measures -->
             <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '10')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '10')">
-                    <rect class="edition-svg-measure" x="80" y="110" width="282" height="400" />
+                    <rect class="edition-svg-measure" x="160" y="150" width="129" height="265" />
                 </a>
                 <!-- measure 11 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '11')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '11')">
-                    <rect class="edition-svg-measure" x="362" y="110" width="260" height="400" />
+                    <rect class="edition-svg-measure" x="289" y="150" width="114" height="265" />
                 </a>
             </svg:g>
             <!-- items -->
@@ -131,30 +149,30 @@
                 <a
                     (click)="selectOverlay(overlayTypes.item, '0')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '0')">
-                    <rect class="edition-svg-item" x="225" y="420" rx="5" ry="5" width="40" height="70" />
+                    <rect class="edition-svg-item" x="225" y="355" rx="5" ry="5" width="35" height="50" />
                 </a>
                 <!-- T11/S10/o(1.-2.Note) -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '1')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '1')">
-                    <rect class="edition-svg-item" x="365" y="340" rx="5" ry="5" width="105" height="70" />
+                    <rect class="edition-svg-item" x="290" y="300" rx="5" ry="5" width="70" height="50" />
                 </a>
                 <!-- T12/S10/o(nach 2/4) -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '2')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '2')">
-                    <rect class="edition-svg-item" x="510" y="340" rx="5" ry="5" width="100" height="70" />
+                    <rect class="edition-svg-item" x="380" y="300" rx="5" ry="5" width="70" height="50" />
                 </a>
             </svg:g>
             <!-- link boxes -->
             <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/2 -->
                 <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_2)">
-                    <rect class="edition-svg-linkbox" x="458" y="111" width="165" height="162" />
+                    <rect class="edition-svg-linkbox" x="320" y="194" width="147" height="67" />
                 </a>
                 <!-- rect SkI/5 -->
                 <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_5)">
-                    <rect class="edition-svg-linkbox" x="620" y="420" width="165" height="160" />
+                    <rect class="edition-svg-linkbox" x="465" y="351" width="159" height="72" />
                 </a>
             </svg:g>
         </svg>
@@ -170,13 +188,46 @@
             viewBox="0 0 1000 508"
             [id]="selectedSvgSheet.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.content[0].svg" width="100%" height="100%" />
+            <!-- systems -->
+            <svg:g class="edition-svg-systems">
+                <!-- system 7 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '7')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '7')">
+                    <rect class="edition-svg-system" x="80" y="175" width="800" height="45" />
+                </a>
+                <!-- system 6 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '6')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '6')">
+                    <rect class="edition-svg-system" x="80" y="220" width="800" height="50" />
+                </a>
+                <!-- system 5 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '5')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '5')">
+                    <rect class="edition-svg-system" x="80" y="270" width="800" height="50" />
+                </a>
+                <!-- system 4 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '4')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '4')">
+                    <rect class="edition-svg-system" x="80" y="320" width="800" height="50" />
+                </a>
+            </svg:g>
             <!-- measures -->
             <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '10')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '10')">
-                    <rect class="edition-svg-measure" x="150" y="115" width="268" height="390" />
+                    <rect class="edition-svg-measure" x="185" y="125" width="134" height="250" />
+                </a>
+                <!-- measure 11 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.measure, '11')"
+                    [class.active]="isSelectedOverlay(overlayTypes.measure, '11')">
+                    <rect class="edition-svg-measure" x="319" y="125" width="115" height="250" />
                 </a>
             </svg:g>
             <!-- items -->
@@ -185,20 +236,20 @@
                 <a
                     (click)="selectOverlay(overlayTypes.item, '0')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '0')">
-                    <rect class="edition-svg-item" x="283" y="270" rx="5" ry="5" width="40" height="70" />
+                    <rect class="edition-svg-item" x="250" y="220" rx="5" ry="5" width="30" height="45" />
                 </a>
                 <!-- T10/S5/o(3.Note) -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '1')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '1')">
-                    <rect class="edition-svg-item" x="283" y="350" rx="5" ry="5" width="40" height="70" />
+                    <rect class="edition-svg-item" x="260" y="275" rx="5" ry="5" width="30" height="45" />
                 </a>
             </svg:g>
             <!-- link boxes -->
             <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/5 -->
                 <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_5)">
-                    <rect class="edition-svg-linkbox" x="577" y="152" width="222" height="180" />
+                    <rect class="edition-svg-linkbox" x="483" y="176" width="201" height="97" />
                 </a>
             </svg:g>
         </svg>
@@ -214,19 +265,46 @@
             viewBox="0 0 1000 608"
             [id]="selectedSvgSheet.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgSheet.content[0].svg" width="100%" height="100%" />
+            <!-- systems -->
+            <svg:g class="edition-svg-systems">
+                <!-- system 9 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '9')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '9')">
+                    <rect class="edition-svg-system" x="80" y="210" width="800" height="60" />
+                </a>
+                <!-- system 8 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '8')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '8')">
+                    <rect class="edition-svg-system" x="80" y="270" width="800" height="35" />
+                </a>
+                <!-- system 7 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '7')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '7')">
+                    <rect class="edition-svg-system" x="80" y="305" width="800" height="50" />
+                </a>
+                <!-- system 6 -->
+                <a
+                    (click)="selectOverlay(overlayTypes.system, '6')"
+                    [class.active]="isSelectedOverlay(overlayTypes.system, '6')">
+                    <rect class="edition-svg-system" x="80" y="355" width="800" height="50" />
+                </a>
+            </svg:g>
             <!-- measures -->
             <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '10')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '10')">
-                    <rect class="edition-svg-measure" x="390" y="115" width="260" height="390" />
+                    <rect class="edition-svg-measure" x="460" y="155" width="123" height="260" />
                 </a>
                 <!-- measure 11 -->
                 <a
                     (click)="selectOverlay(overlayTypes.measure, '11')"
                     [class.active]="isSelectedOverlay(overlayTypes.measure, '11')">
-                    <rect class="edition-svg-measure" x="650" y="115" width="200" height="390" />
+                    <rect class="edition-svg-measure" x="583" y="155" width="110" height="260" />
                 </a>
             </svg:g>
             <!-- items -->
@@ -235,24 +313,24 @@
                 <a
                     (click)="selectOverlay(overlayTypes.item, '0')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '0')">
-                    <rect class="edition-svg-item" x="523" y="195" rx="5" ry="5" width="40" height="85" />
+                    <rect class="edition-svg-item" x="523" y="205" rx="5" ry="5" width="30" height="55" />
                 </a>
                 <!-- T11/S9/o1/4 -->
                 <a
                     (click)="selectOverlay(overlayTypes.item, '1')"
                     [class.active]="isSelectedOverlay(overlayTypes.item, '1')">
-                    <rect class="edition-svg-item" x="650" y="195" rx="5" ry="5" width="40" height="85" />
+                    <rect class="edition-svg-item" x="585" y="215" rx="5" ry="5" width="25" height="60" />
                 </a>
             </svg:g>
             <!-- link boxes -->
             <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/3 -->
                 <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_3)">
-                    <rect class="edition-svg-linkbox" x="72" y="148" width="242" height="125" />
+                    <rect class="edition-svg-linkbox" x="158" y="200" width="180" height="63" />
                 </a>
                 <!-- rect SkI/4 -->
                 <a (click)="selectSvgSheet(svgSheetIds.op12.SHEET_4)">
-                    <rect class="edition-svg-linkbox" x="72" y="345" width="245" height="205" />
+                    <rect class="edition-svg-linkbox" x="171" y="312" width="180" height="111" />
                 </a>
             </svg:g>
         </svg>
