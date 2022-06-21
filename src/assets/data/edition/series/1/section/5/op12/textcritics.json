@@ -4,7 +4,7 @@
             "id": "M_212_Sk1",
             "label": "M 212 Sk1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\"><strong>M 212 Sk1</strong> ist die Verlaufsskizze zu <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>."
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\"><strong>M 212 Sk1</strong></a> ist die Verlaufsskizze zu <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>."
             ],
             "comments": [
                 {
