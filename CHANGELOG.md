@@ -2,6 +2,63 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.3...v0.8.4) (2022-06-22)
+
+
+### Features
+
+* **edition:** prepare svg panel to handle partial sheets ([98bf540](https://github.com/webern-unibas-ch/awg-app/commit/98bf5408eaf5f7d1899ecf0618acfc4dad77459b))
+
+
+### Bug Fixes
+
+* **app:** do not lazy-load default route ([6435579](https://github.com/webern-unibas-ch/awg-app/commit/6435579b3cdcf7654e90d5adf7a143f56fadd27b))
+* **edition:** check for partialIndex before constructing sheetId ([411410b](https://github.com/webern-unibas-ch/awg-app/commit/411410b88d562148eeab42abf3f3774b1b4c3c13))
+* **edition:** fix overlay coordinates after update of op12 ([7172a5c](https://github.com/webern-unibas-ch/awg-app/commit/7172a5c0cbb8344df525b2897ed45254e9d834ac))
+* **edition:** fix typo in textcritics for op12 ([f3c7186](https://github.com/webern-unibas-ch/awg-app/commit/f3c71863b6d7b14f78a701a18a72135a380aecf5))
+* **edition:** remove deprecated alt label from op25 content ([c8bb12c](https://github.com/webern-unibas-ch/awg-app/commit/c8bb12cf612427b8f53bac88c4cffc6814fef208))
+
+
+### Styles
+
+* **app:** fix indentation for route paths ([9ee8922](https://github.com/webern-unibas-ch/awg-app/commit/9ee8922ca855c83765e2155b23c2f3ac693ca92f))
+
+
+### Documentation
+
+* **app:** fix exclude path to display routes with compodoc ([5b5c734](https://github.com/webern-unibas-ch/awg-app/commit/5b5c734348e5f4fe71df3704dfce9a56c62464dd))
+
+
+### Code Refactoring
+
+* **app:** preparation for stricter mode ([38b238a](https://github.com/webern-unibas-ch/awg-app/commit/38b238a2cac0d6ea6dfd5e1db35dbb6fd0e91229))
+* **app:** use SNAKE_CASE (all caps) for route variables ([38e9d4b](https://github.com/webern-unibas-ch/awg-app/commit/38e9d4b46ab90d26757564c5b3cdba3481fb6af3))
+
+
+### Tests
+
+* **app:** adjust tests after preparation for stricter mode ([b5bb8c8](https://github.com/webern-unibas-ch/awg-app/commit/b5bb8c827d4cc008b99f06aa16daee6c3705b1fa))
+* **edition:** adjust tests to handle svg sheets with partials ([9edb1fa](https://github.com/webern-unibas-ch/awg-app/commit/9edb1fa878e4127460d8f84df4ebf30f86713d07))
+* **edition:** remove console.log from test ([6941364](https://github.com/webern-unibas-ch/awg-app/commit/6941364c75f812804732540c48693bbfdcdde7dd))
+
+
+### Build System
+
+* **app:** add brotli compression to build script ([01f4ac7](https://github.com/webern-unibas-ch/awg-app/commit/01f4ac7a99b89349d2f01ea7d92b40c34c120b25))
+* **app:** adjust budget sizes ([6462a53](https://github.com/webern-unibas-ch/awg-app/commit/6462a53d850693aa0e063ad4fed663cbcae139b4))
+* **app:** adjust project to cli changes in angular v13 ([5fb0fa3](https://github.com/webern-unibas-ch/awg-app/commit/5fb0fa30bafa9a9369590563da502bad541db2df))
+* **app:** adjust project to cli changes in angular v13 (cont'd) ([8581164](https://github.com/webern-unibas-ch/awg-app/commit/858116475bb61b8dca2257fc19b741c2673f6081))
+* **app:** move from node v14 to v16-lts as default ([3d0c475](https://github.com/webern-unibas-ch/awg-app/commit/3d0c4752f9751d70381d39aa5feacf8bcfcfa7b4))
+* **deps-dev:** bump @angular/cli related packages to v13-lts ([cdf1b27](https://github.com/webern-unibas-ch/awg-app/commit/cdf1b2776dcad27a761d77a273b04037b35545ca))
+* **deps-dev:** bump lint related packages to latest version ([0ac5d6f](https://github.com/webern-unibas-ch/awg-app/commit/0ac5d6fc1948d66c23db862cce49a8e59c6c106d))
+* **deps-dev:** bump lint related packages to latest version ([c997dba](https://github.com/webern-unibas-ch/awg-app/commit/c997dbacc3af121cd59832717cc577cd2558b5a4))
+* **deps-dev:** bump lint-staged from 13.0.1 to 13.0.2 ([1859a33](https://github.com/webern-unibas-ch/awg-app/commit/1859a3304e0b5a1749cdb117e29a2c0018407468))
+* **deps-dev:** bump test related packages to latest version ([1962f1b](https://github.com/webern-unibas-ch/awg-app/commit/1962f1b150dbcd4a344de14913a97edece79de00))
+* **deps:** bump codemirror from 5.65.5 to 5.65.6 ([396a3b6](https://github.com/webern-unibas-ch/awg-app/commit/396a3b6f8e761b83f47fe8d19e5f197e4163a246))
+* **deps:** bump ngx-json-viewer from 3.0.2 to 3.1.0 ([626b69d](https://github.com/webern-unibas-ch/awg-app/commit/626b69dd69e9c9a2cd821257bd024dbfe66909c7))
+* **deps:** remove unnecessary dependency core-js ([3d7cb80](https://github.com/webern-unibas-ch/awg-app/commit/3d7cb80ed7ff7c8ac95abcf27218ef3044c96fe8))
+* **deps:** use latest tagged version of custom rdfstore ([ab18c2c](https://github.com/webern-unibas-ch/awg-app/commit/ab18c2cbdb19757e211e98652cbb5a8e95150c3d))
+
 ### [0.8.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.2...v0.8.3) (2022-06-06)
 
 
