@@ -48,14 +48,14 @@ Using these conventions leads to more readable messages that are easy to follow 
 When writing commit messages, we stick to this schema:
 
 ```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+[mandatory:] type(scope): subject
+[optional:] <BLANK LINE>
+[optional:] body...
+[optional:] <BLANK LINE>
+[optional:] footer...
 ```
 
-The **header** is mandatory, and **type** and **scope** of the header must be one of the following:
+The **header** (first line) is mandatory, with a **subject** message summarizing the changes of the commit. The **type** and **scope** of the header must be one of the following:
 
 Types:
 
@@ -72,20 +72,45 @@ Types:
 
 Scopes (specific to this project, not part of the Angular convention):
 
--   `app`
--   `home`
--   `edition`
--   `search`
--   `structure`
--   `contact`
+- related to app structure
+  - `app`
+  - `assets`
+  - `contact`
+  - `edition`
+  - `home`
+  - `page-not-found`
+  - `search`
+  - `shared`
+  - `side-info`
+  - `structure`
+  - `views`
 
-Example:
+
+- related to build process and tests
+  - `core`
+  - `deps`
+  - `deps-dev`
+  - `gh-actions`
+  - `testing`
+
+
+- related to documentation
+  - `CHANGELOG`
+  - `CONTRIBUTING`
+  - `LICENSE`
+  - `README`
+
+#### Examples:
 
 ```
 feat(edition): add route for resource creation
 
 - add path for multipart request
 - adapt handling of resources responder
+```
+
+```
+docs(README): add new contributors for data
 ```
 
 ### Release Versioning Convention
