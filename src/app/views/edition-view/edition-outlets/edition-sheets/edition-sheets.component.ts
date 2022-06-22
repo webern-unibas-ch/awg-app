@@ -333,13 +333,35 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _findSvgSheet(id: string): EditionSvgSheet {
         // Find index of given id in svgSheetsData.sheets array
         let sheetIndex = 0;
-        const findIndex = this.filteredSvgSheetsData.sheets.findIndex(sheets => sheets.id === id);
+        let partialIndex;
+        const findIndex = this.filteredSvgSheetsData.sheets.findIndex(sheets => {
+            let i = sheets.id;
+            // If we have partial sheets, look into content array for id with extra partial
+            if (sheets.content.length > 1) {
+                partialIndex = sheets.content.findIndex(content => i + content.partial === id);
+                if (partialIndex >= 0) {
+                    i = i + sheets.content[partialIndex].partial;
+                }
+            }
+            return i === id;
+        });
+
         if (findIndex >= 0) {
             sheetIndex = findIndex;
         }
 
+        // Copy filtered sheets data for output
+        const output = {
+            ...this.filteredSvgSheetsData.sheets[sheetIndex],
+        };
+
+        // Reduce content array to the svg of partial id only
+        if (partialIndex >= 0) {
+            output.content = [this.filteredSvgSheetsData.sheets[sheetIndex].content[partialIndex]];
+        }
+
         // Return the sheet with the given id
-        return this.filteredSvgSheetsData.sheets[sheetIndex];
+        return output;
     }
 
     /**
@@ -351,7 +373,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     private _findTextCriticalComments(): TextcriticalComment[] {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return;
+            return undefined;
         }
         // Find index of the selected svg sheet id in textcriticsData.textcritics array
         const textcriticsIndex = this.textcriticsData.textcritics.findIndex(

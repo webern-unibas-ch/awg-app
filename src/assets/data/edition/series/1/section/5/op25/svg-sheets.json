@@ -2,58 +2,75 @@
     "sheets": [
         {
             "id": "M_317_Sk1",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk1_200123_1von1.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk1_200123_1von1.jpg",
-            "alt": "M 317 Sk1",
+            "label": "M 317 Sk1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk1_200123_1von1.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk1_200123_1von1.jpg"
+                }
+            ],
             "convolute": "A"
         },
         {
             "id": "M_317_Sk2",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk2_200123_1von1.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk2_200123_1von1.jpg",
-            "alt": "M 317 Sk2",
+            "label": "M 317 Sk2",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk2_200123_1von1.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk2_200123_1von1.jpg"
+                }
+            ],
             "convolute": "A"
         },
         {
             "id": "M_317_Sk3",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk3_200123_1von1.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk3_200123_1von1.jpg",
-            "alt": "M 317 Sk3",
+            "label": "M 317 Sk3",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk3_200123_1von1.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk3_200123_1von1.jpg"
+                }
+            ],
+
             "convolute": "A"
         },
         {
-            "id": "M_317_Sk4a",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_1von4.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_1von4.jpg",
-            "alt": "M 317 Sk4a",
-            "convolute": "A"
-        },
-        {
-            "id": "M_317_Sk4b",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_2von4.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_2von4.jpg",
-            "alt": "M 317 Sk4b",
-            "convolute": "A"
-        },
-        {
-            "id": "M_317_Sk4c",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_3von4.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_3von4.jpg",
-            "alt": "M 317 Sk4c",
-            "convolute": "A"
-        },
-        {
-            "id": "M_317_Sk4d",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_4von4.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_4von4.jpg",
-            "alt": "M 317 Sk4d",
+            "id": "M_317_Sk4",
+            "label": "M 317 Sk4",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_1von4.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_1von4.jpg",
+                    "partial": "a"
+                },
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_2von4.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_2von4.jpg",
+                    "partial": "b"
+                },
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_3von4.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_3von4.jpg",
+                    "partial": "c"
+                },
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_4von4.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_4von4.jpg",
+                    "partial": "d"
+                }
+            ],
             "convolute": "A"
         },
         {
             "id": "SkRT",
-            "svg": "assets/img/edition/series/1/section/5/op25/op25_C_Reihentabelle_21220119_1von1_path.svg",
-            "image": "assets/img/edition/series/1/section/5/op25/op25_C_Reihentabelle_21220119_1von1_path.jpg",
-            "alt": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
+            "label": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/op25_C_Reihentabelle_21220119_1von1_path.svg",
+                    "image": "assets/img/edition/series/1/section/5/op25/op25_C_Reihentabelle_21220119_1von1_path.jpg"
+                }
+            ],
+
             "convolute": "C"
         }
     ]

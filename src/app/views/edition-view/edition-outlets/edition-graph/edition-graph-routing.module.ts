@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionGraphComponent } from './edition-graph.component';
 
 /* Routes of the EditionGraphModule */
-const editionGraphRoutes: Routes = [
+const EDITION_GRAPH_ROUTES: Routes = [
     {
         path: '',
         component: EditionGraphComponent,
@@ -21,10 +21,10 @@ export const routedEditionGraphComponents = [EditionGraphComponent];
 /**
  * EditionGraph module routing.
  *
- * It activates the editionGraphRoutes.
+ * It activates the EDITION_GRAPH_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionGraphRoutes)],
+    imports: [RouterModule.forChild(EDITION_GRAPH_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionGraphRoutingModule {}

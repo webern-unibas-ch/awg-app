@@ -4,14 +4,143 @@
             "id": "M_212_Sk1",
             "label": "M 212 Sk1",
             "description": [
-                "<small class=\"text-muted\">[Der Skizzenkommentar und die textkritischen Kommentare zu <strong>M 212 Sk1</strong> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\"><strong>M 212 Sk1</strong></a> ist die Verlaufsskizze zu <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>."
             ],
-            "comments": []
+            "comments": [
+                {
+                    "measure": "1",
+                    "system": "3",
+                    "position": "2/8",
+                    "comment": "&#9838;c<sup>2</sup> überschreibt &#9837;b<sup>1</sup> (oder &#9837;ces<sup>2</sup>?)."
+                },
+                {
+                    "measure": "2",
+                    "system": "3",
+                    "position": "4/8",
+                    "comment": "&#9839; zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 2</strong></a> und <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 3</strong></a>."
+                },
+                {
+                    "measure": "8",
+                    "system": "6",
+                    "position": "1/4",
+                    "comment": "&#9838;g<sup>2</sup> gestrichen und geändert zu &#9838;g<sup>1</sup>."
+                },
+                {
+                    "measure": "8",
+                    "system": "6",
+                    "position": "vorletzte und letzte Note",
+                    "comment": "Text: <em>Gute</em> zusammengeschrieben."
+                },
+                {
+                    "measure": "11",
+                    "system": "7",
+                    "position": "1.–2. Note",
+                    "comment": "Bogen gestrichen."
+                },
+                {
+                    "measure": "11",
+                    "system": "9",
+                    "position": "",
+                    "comment": "Entzifferung und Bezug nicht eindeutig."
+                },
+                {
+                    "measure": "12",
+                    "system": "8",
+                    "position": "1.–3. Note",
+                    "comment": "Bogen gestrichen."
+                },
+                {
+                    "measure": "13",
+                    "system": "11",
+                    "position": "2.–3. Note",
+                    "comment": "Zwei triolische Achtelnoten &#9838;g<sup>1</sup>–&#9838;c<sup>2</sup> gestrichen und geändert zu Achtelpause."
+                },
+                {
+                    "measure": "15",
+                    "system": "11–12",
+                    "position": "Taktanfang",
+                    "comment": "Taktartvorzeichnung 2/4 gestrichen."
+                },
+                {
+                    "measure": "15",
+                    "system": "10",
+                    "position": "1.–2. Note",
+                    "comment": "Text: [ver-]<em>gangen</em> zusammengeschrieben."
+                },
+                {
+                    "measure": "15",
+                    "system": "11",
+                    "position": "",
+                    "comment": "&#9837;as<sup>2</sup>/&#9838;c<sup>3</sup>–&#9838;g<sup>1</sup>/&#9839;cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
+                },
+                {
+                    "measure": "16",
+                    "system": "10",
+                    "position": "2/8",
+                    "comment": "&#9838;g<sup>2</sup> ersetzt &#9838;g<sup>1</sup>."
+                },
+                {
+                    "measure": "16",
+                    "system": "11",
+                    "position": "3–4/16",
+                    "comment": "sic: &#9838; nach &#9837;es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
+                },
+                {
+                    "measure": "16",
+                    "system": "10",
+                    "position": "3.–4. Note",
+                    "comment": "Zwei Achtelnoten &#9837;as<sup>2</sup>–&#9838;g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
+                },
+                {
+                    "measure": "20",
+                    "system": "8",
+                    "position": "",
+                    "comment": "&#9837; überschreibt &#9838;."
+                },
+                {
+                    "measure": "21",
+                    "system": "6",
+                    "position": "3. Note",
+                    "comment": "d<sup>1</sup> gestrichen und geändert zu &#9839;fis<sup>1</sup>."
+                },
+                {
+                    "measure": "22",
+                    "system": "9–10",
+                    "position": "1. Note",
+                    "comment": "Notenköpfe gestrichen und geändert zu Achtelpause (System 10)."
+                },
+                {
+                    "measure": "nach 22",
+                    "system": "",
+                    "position": "",
+                    "comment": "Schlusstaktstrich gestrichen (siehe T. 23–24)."
+                },
+                {
+                    "measure": "23",
+                    "system": "14",
+                    "position": "1/4",
+                    "comment": "Entzifferung nicht eindeutig. <br />Zuerst: Halbe Note e/a überschreibt Viertelnote &#9838;H/g; <br />dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
+                },
+                {
+                    "measure": "23",
+                    "system": "13",
+                    "position": "2/4",
+                    "comment": "&#9839;cis<sup>1</sup>/&#9839;gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
+                },
+                {
+                    "measure": "24",
+                    "system": "14",
+                    "position": "",
+                    "comment": "&#9838;B/&#9838;f/&#9838;h durch Einkreisung getilgt."
+                }
+            ]
         },
         {
             "id": "M_212_Sk2",
             "label": "M 212 Sk2",
-            "description": [],
+            "description": [
+                "In <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>M 212 Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\"><strong>„Der Tag ist vergangen“ M 212: Textfassung 2</strong></a>) entspricht. Da T. 10–11 in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> übernommen wurden und Korrekturen in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet()\"><strong>M 212 Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a> entstanden. <br /><a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> bzw. <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a> (Gis/cis) getilgt."
+            ],
             "comments": [
                 {
                     "measure": "10",
@@ -23,7 +152,8 @@
                     "measure": "10",
                     "system": "12",
                     "position": "2. Note",
-                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>M 212 Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>."
+
+                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>."
                 },
                 {
                     "measure": "[11]",
@@ -42,7 +172,9 @@
         {
             "id": "M_212_Sk3",
             "label": "M 212 Sk3",
-            "description": [],
+            "description": [
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> formulierte und in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a> verwendete Variante."
+            ],
             "comments": [
                 {
                     "measure": "10",
@@ -67,7 +199,9 @@
         {
             "id": "M_212_Sk4",
             "label": "M 212 Sk4",
-            "description": [],
+            "description": [
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>M 212 Sk4</strong></a> erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6)."
+            ],
             "comments": [
                 {
                     "measure": "10",
@@ -86,7 +220,10 @@
         {
             "id": "M_212_Sk5",
             "label": "M 212 Sk5",
-            "description": [],
+
+            "description": [
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> bringt in der letzten Korrekturschicht die in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>C</strong></a> verwendete Variante."
+            ],
             "comments": [
                 {
                     "measure": "10",

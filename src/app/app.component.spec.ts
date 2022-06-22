@@ -30,7 +30,7 @@ export class RoutedTestMockComponent {}
 @Component({ selector: 'awg-test2', template: 'test2' })
 export class RoutedTest2MockComponent {}
 
-export const mockRoutes: Routes = [
+export const MOCK_ROUTES: Routes = [
     { path: '', redirectTo: 'test', pathMatch: 'full' },
     { path: 'test', component: RoutedTestMockComponent },
     { path: 'test2', component: RoutedTest2MockComponent },
@@ -60,7 +60,7 @@ describe('AppComponent (DONE)', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule.withRoutes(mockRoutes)],
+            imports: [RouterTestingModule.withRoutes(MOCK_ROUTES)],
             declarations: [
                 AppComponent,
                 FooterStubComponent,

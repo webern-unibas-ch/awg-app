@@ -50,7 +50,12 @@ export class EditionSvgSheetNavComponent {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isSelectedSvgSheet(id: string): boolean {
-        return id === this.selectedSvgSheet.id;
+        let selectedId = this.selectedSvgSheet.id;
+        // Compare partial id if needed
+        if (this.selectedSvgSheet.content && this.selectedSvgSheet.content[0].partial) {
+            selectedId = selectedId + this.selectedSvgSheet.content[0].partial;
+        }
+        return id === selectedId;
     }
 
     /**

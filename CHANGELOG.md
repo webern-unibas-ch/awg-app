@@ -2,12 +2,72 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.3...v0.8.4) (2022-06-22)
+
+
+### Features
+
+* **edition:** add svg files for op12: M212 Sk1-5 ([2dc24af](https://github.com/webern-unibas-ch/awg-app/commit/2dc24af6072281ce5084940cfa3dee6e9a5534b8); thanks to [@masthom](https://github.com/masthom))
+* **edition:** add textcritics for op12: M212 Sk1 ([8d082c3](https://github.com/webern-unibas-ch/awg-app/commit/8d082c3b02cceb2f994b86f1330cca22fc15891c); thanks to [@masthom](https://github.com/masthom))
+* **edition:** prepare svg panel to handle partial sheets ([98bf540](https://github.com/webern-unibas-ch/awg-app/commit/98bf5408eaf5f7d1899ecf0618acfc4dad77459b)) 
+
+### Bug Fixes
+
+* **app:** do not lazy-load default route ([6435579](https://github.com/webern-unibas-ch/awg-app/commit/6435579b3cdcf7654e90d5adf7a143f56fadd27b))
+* **edition:** check for partialIndex before constructing sheetId ([411410b](https://github.com/webern-unibas-ch/awg-app/commit/411410b88d562148eeab42abf3f3774b1b4c3c13))
+* **edition:** fix overlay coordinates after update of op12 ([7172a5c](https://github.com/webern-unibas-ch/awg-app/commit/7172a5c0cbb8344df525b2897ed45254e9d834ac))
+* **edition:** fix typo in textcritics for op12 ([f3c7186](https://github.com/webern-unibas-ch/awg-app/commit/f3c71863b6d7b14f78a701a18a72135a380aecf5))
+* **edition:** remove deprecated alt label from op25 content ([c8bb12c](https://github.com/webern-unibas-ch/awg-app/commit/c8bb12cf612427b8f53bac88c4cffc6814fef208))
+* **edition:** update folio-convolute + svg-sheets for op12 ([e38c073](https://github.com/webern-unibas-ch/awg-app/commit/e38c073c5b317a54116f9ef60909ffe52c982be8); thanks to [@masthom](https://github.com/masthom))
+* **edition:** update source-description, intro and textcritics for op12: M212 Sk2-5 ([e9a963e](https://github.com/webern-unibas-ch/awg-app/commit/e9a963e897041761b6d988850b53ea7b692c3e6e); thanks to [@masthom](https://github.com/masthom))
+
+
+### Styles
+
+* **app:** fix indentation for route paths ([9ee8922](https://github.com/webern-unibas-ch/awg-app/commit/9ee8922ca855c83765e2155b23c2f3ac693ca92f))
+
+
+### Documentation
+
+* **app:** fix exclude path to display routes with compodoc ([5b5c734](https://github.com/webern-unibas-ch/awg-app/commit/5b5c734348e5f4fe71df3704dfce9a56c62464dd))
+
+
+### Code Refactoring
+
+* **app:** preparation for stricter mode ([38b238a](https://github.com/webern-unibas-ch/awg-app/commit/38b238a2cac0d6ea6dfd5e1db35dbb6fd0e91229))
+* **app:** use SNAKE_CASE (all caps) for route variables ([38e9d4b](https://github.com/webern-unibas-ch/awg-app/commit/38e9d4b46ab90d26757564c5b3cdba3481fb6af3))
+
+
+### Tests
+
+* **app:** adjust tests after preparation for stricter mode ([b5bb8c8](https://github.com/webern-unibas-ch/awg-app/commit/b5bb8c827d4cc008b99f06aa16daee6c3705b1fa))
+* **edition:** adjust tests to handle svg sheets with partials ([9edb1fa](https://github.com/webern-unibas-ch/awg-app/commit/9edb1fa878e4127460d8f84df4ebf30f86713d07))
+* **edition:** remove console.log from test ([6941364](https://github.com/webern-unibas-ch/awg-app/commit/6941364c75f812804732540c48693bbfdcdde7dd))
+
+
+### Build System
+
+* **app:** add brotli compression to build script ([01f4ac7](https://github.com/webern-unibas-ch/awg-app/commit/01f4ac7a99b89349d2f01ea7d92b40c34c120b25))
+* **app:** adjust budget sizes ([6462a53](https://github.com/webern-unibas-ch/awg-app/commit/6462a53d850693aa0e063ad4fed663cbcae139b4))
+* **app:** adjust project to cli changes in angular v13 ([5fb0fa3](https://github.com/webern-unibas-ch/awg-app/commit/5fb0fa30bafa9a9369590563da502bad541db2df))
+* **app:** adjust project to cli changes in angular v13 (cont'd) ([8581164](https://github.com/webern-unibas-ch/awg-app/commit/858116475bb61b8dca2257fc19b741c2673f6081))
+* **app:** move from node v14 to v16-lts as default ([3d0c475](https://github.com/webern-unibas-ch/awg-app/commit/3d0c4752f9751d70381d39aa5feacf8bcfcfa7b4))
+* **deps-dev:** bump @angular/cli related packages to v13-lts ([cdf1b27](https://github.com/webern-unibas-ch/awg-app/commit/cdf1b2776dcad27a761d77a273b04037b35545ca))
+* **deps-dev:** bump lint related packages to latest version ([0ac5d6f](https://github.com/webern-unibas-ch/awg-app/commit/0ac5d6fc1948d66c23db862cce49a8e59c6c106d))
+* **deps-dev:** bump lint related packages to latest version ([c997dba](https://github.com/webern-unibas-ch/awg-app/commit/c997dbacc3af121cd59832717cc577cd2558b5a4))
+* **deps-dev:** bump lint-staged from 13.0.1 to 13.0.2 ([1859a33](https://github.com/webern-unibas-ch/awg-app/commit/1859a3304e0b5a1749cdb117e29a2c0018407468))
+* **deps-dev:** bump test related packages to latest version ([1962f1b](https://github.com/webern-unibas-ch/awg-app/commit/1962f1b150dbcd4a344de14913a97edece79de00))
+* **deps:** bump codemirror from 5.65.5 to 5.65.6 ([396a3b6](https://github.com/webern-unibas-ch/awg-app/commit/396a3b6f8e761b83f47fe8d19e5f197e4163a246))
+* **deps:** bump ngx-json-viewer from 3.0.2 to 3.1.0 ([626b69d](https://github.com/webern-unibas-ch/awg-app/commit/626b69dd69e9c9a2cd821257bd024dbfe66909c7))
+* **deps:** remove unnecessary dependency core-js ([3d7cb80](https://github.com/webern-unibas-ch/awg-app/commit/3d7cb80ed7ff7c8ac95abcf27218ef3044c96fe8))
+* **deps:** use latest tagged version of custom rdfstore ([ab18c2c](https://github.com/webern-unibas-ch/awg-app/commit/ab18c2cbdb19757e211e98652cbb5a8e95150c3d))
+
 ### [0.8.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.2...v0.8.3) (2022-06-06)
 
 
 ### Features
 
-* **edition:** update op12 ([#424](https://github.com/webern-unibas-ch/awg-app/issues/424)) ([ada63a1](https://github.com/webern-unibas-ch/awg-app/commit/ada63a1d2dd3deb709fbf5c479664c01e5a9c363))
+* **edition:** update op12 ([#424](https://github.com/webern-unibas-ch/awg-app/issues/424)) ([ada63a1](https://github.com/webern-unibas-ch/awg-app/commit/ada63a1d2dd3deb709fbf5c479664c01e5a9c363); thanks to [@masthom](https://github.com/masthom))
 
 
 ### Bug Fixes
@@ -403,7 +463,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Documentation
 
 -   **app:** fix jsdoc errors after compodoc update ([8d7d0b3](https://github.com/webern-unibas-ch/awg-app/commit/8d7d0b3ea038d1bf643eac33890fdceea9ee869a))
--   **CHANGELOG:** add credits to [@van](https://github.com/van)Bithoven ([a159267](https://github.com/webern-unibas-ch/awg-app/commit/a159267dbb940177feebe2b665c273252750e089))
+-   **CHANGELOG:** add credits to [@vanBithoven](https://github.com/vanBithoven) ([a159267](https://github.com/webern-unibas-ch/awg-app/commit/a159267dbb940177feebe2b665c273252750e089))
 -   **README:** fix link to code of conduct ([1224288](https://github.com/webern-unibas-ch/awg-app/commit/1224288e5d56889ff4c95d49bde4601a8a34ff06))
 
 ### Tests
@@ -472,13 +532,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
--   **edition:** add sample queries for select ([ba1b6b5](https://github.com/webern-unibas-ch/awg-app/commit/ba1b6b560e462e684e860abf3434f6c1a93b8312); thanks to @vanBithoven)
+-   **edition:** add sample queries for select ([ba1b6b5](https://github.com/webern-unibas-ch/awg-app/commit/ba1b6b560e462e684e860abf3434f6c1a93b8312); thanks to [@vanBithoven](https://github.com/vanBithoven))
 
 ### Continuous Integration
 
 -   **gh-actions:** remove node v15 from workflow matrix ([8e7afa0](https://github.com/webern-unibas-ch/awg-app/commit/8e7afa08aafc6b0ad91f6fa6b0af97e841792ecf))
--   **gh-actions:** trigger workflow on pull-request ([bab471b](https://github.com/webern-unibas-ch/awg-app/commit/bab471b5ef479bc0d6eb6a86ed628a325096062d); thanks to @vanBithoven)
--   **gh-actions:** trigger workflow on pull-request ([867acf8](https://github.com/webern-unibas-ch/awg-app/commit/867acf84be473a5b2ec3726f0dddaaf68aab7c4e); thanks to @vanBithoven)
+-   **gh-actions:** trigger workflow on pull-request ([bab471b](https://github.com/webern-unibas-ch/awg-app/commit/bab471b5ef479bc0d6eb6a86ed628a325096062d); thanks to [@vanBithoven](https://github.com/vanBithoven))
+-   **gh-actions:** trigger workflow on pull-request ([867acf8](https://github.com/webern-unibas-ch/awg-app/commit/867acf84be473a5b2ec3726f0dddaaf68aab7c4e); thanks to [@vanBithoven](https://github.com/vanBithoven))
 -   **gh-actions:** use built-in cache from action/setup-node ([f28222b](https://github.com/webern-unibas-ch/awg-app/commit/f28222b93ccb4723f492c89f0f81fdab21025118))
 
 ### Tests
@@ -492,10 +552,10 @@ All notable changes to this project will be documented in this file. See [standa
 -   **edition:** add tests for EditionTkaTableComponent ([dc515ac](https://github.com/webern-unibas-ch/awg-app/commit/dc515ac6b9f01a061b1505993ceb3678dfbfb756))
 -   **edition:** add tests for SourceDescriptionComponent ([db482e6](https://github.com/webern-unibas-ch/awg-app/commit/db482e6d3aecb24520dc6fd88c7b504785a2cc86))
 -   **edition:** add tests for SourceListComponent ([9811169](https://github.com/webern-unibas-ch/awg-app/commit/9811169897d671690f95d89e446c17cb58bd96fc))
--   **edition:** additional testing for graph-view ([c793115](https://github.com/webern-unibas-ch/awg-app/commit/c793115bbf7e720cae9e2b713134e111de1ecf8f); thanks to @vanBithoven)
--   **edition:** additional testing for sparql-editor ([966183e](https://github.com/webern-unibas-ch/awg-app/commit/966183e4d33bd8409392036ad27f9999e38b67f7); thanks to @vanBithoven)
--   **edition:** fix testing for graph-visualizer.component ([14ccecc](https://github.com/webern-unibas-ch/awg-app/commit/14ccecc8309e5bf9592c570421c7935850d4970f); thanks to @vanBithoven)
--   **edition:** fix testing for graph-visualizer.component ([8a74e9b](https://github.com/webern-unibas-ch/awg-app/commit/8a74e9be54d3b6db2a2f9f42deb3332ff37ad814); thanks to @vanBithoven)
+-   **edition:** additional testing for graph-view ([c793115](https://github.com/webern-unibas-ch/awg-app/commit/c793115bbf7e720cae9e2b713134e111de1ecf8f); thanks to [@vanBithoven](https://github.com/vanBithoven))
+-   **edition:** additional testing for sparql-editor ([966183e](https://github.com/webern-unibas-ch/awg-app/commit/966183e4d33bd8409392036ad27f9999e38b67f7); thanks to [@vanBithoven](https://github.com/vanBithoven))
+-   **edition:** fix testing for graph-visualizer.component ([14ccecc](https://github.com/webern-unibas-ch/awg-app/commit/14ccecc8309e5bf9592c570421c7935850d4970f); thanks to [@vanBithoven](https://github.com/vanBithoven))
+-   **edition:** fix testing for graph-visualizer.component ([8a74e9b](https://github.com/webern-unibas-ch/awg-app/commit/8a74e9be54d3b6db2a2f9f42deb3332ff37ad814); thanks to [@vanBithoven](https://github.com/vanBithoven))
 -   **edition:** fix tests for EditionSvgSheet and SparqlTable ([1549f19](https://github.com/webern-unibas-ch/awg-app/commit/1549f1951faa5a682ace3f62ac6a400b9ca4512b))
 
 ### Documentation
@@ -505,7 +565,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Build System
 
--   **app:** add husky install script ([21ef203](https://github.com/webern-unibas-ch/awg-app/commit/21ef203c07dffd886f660e1a2a642b99ee3c35b4); thanks to @vanBithoven)
+-   **app:** add husky install script ([21ef203](https://github.com/webern-unibas-ch/awg-app/commit/21ef203c07dffd886f660e1a2a642b99ee3c35b4); thanks to [@vanBithoven](https://github.com/vanBithoven))
 -   **app:** rename package.json scripts for build and docs ([61cbafa](https://github.com/webern-unibas-ch/awg-app/commit/61cbafa64b8eef66143746010c64f52c5013abe5))
 -   **deps:** bump [@angular](https://github.com/angular) packages from 12.1.0 to 12.1.1 ([752fc72](https://github.com/webern-unibas-ch/awg-app/commit/752fc72647ba002c34d7e1627ac7e6178e5c6f8b))
 -   **deps:** bump [@angular](https://github.com/angular) packages from 12.1.1 to 12.1.3 ([34d1426](https://github.com/webern-unibas-ch/awg-app/commit/34d1426aff4260d876ca4a3b8357de68203ac75d))

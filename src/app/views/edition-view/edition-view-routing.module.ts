@@ -14,7 +14,7 @@ import { EditionSeriesDetailComponent } from './edition-outlets/edition-series/e
 import { EditionTypeComponent } from './edition-outlets/edition-type';
 
 /* Routes of the EditionViewModule */
-const editionViewRoutes: Routes = [
+const EDITION_VIEW_ROUTES: Routes = [
     {
         path: '',
         component: EditionViewComponent,
@@ -59,28 +59,28 @@ const editionViewRoutes: Routes = [
                         component: EditionDetailNavComponent,
                         children: [
                             {
-                                path: EditionConstants.EDITION_INTRO.route,
+                                path: 'intro',
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-intro/edition-intro.module').then(
                                         m => m.EditionIntroModule
                                     ),
                             },
                             {
-                                path: EditionConstants.EDITION_SHEETS.route,
+                                path: 'sheets',
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-sheets/edition-sheets.module').then(
                                         m => m.EditionSheetsModule
                                     ),
                             },
                             {
-                                path: EditionConstants.EDITION_REPORT.route,
+                                path: 'report',
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-report/edition-report.module').then(
                                         m => m.EditionReportModule
                                     ),
                             },
                             {
-                                path: EditionConstants.EDITION_GRAPH.route,
+                                path: 'graph',
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-graph/edition-graph.module').then(
                                         m => m.EditionGraphModule
@@ -88,7 +88,7 @@ const editionViewRoutes: Routes = [
                             },
                             {
                                 path: '',
-                                redirectTo: EditionConstants.EDITION_INTRO.route,
+                                redirectTo: 'intro',
                                 pathMatch: 'full',
                             },
                         ],
@@ -125,10 +125,10 @@ export const routedEditionViewComponents = [
 /**
  * EditionView module routing.
  *
- * It activates the editionViewRoutes.
+ * It activates the EDITION_VIEW_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionViewRoutes)],
+    imports: [RouterModule.forChild(EDITION_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionViewRoutingModule {}

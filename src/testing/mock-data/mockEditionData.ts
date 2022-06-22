@@ -160,9 +160,54 @@ export const mockEditionData = {
      */
     mockSvgSheet_Sk2: {
         id: 'M_212_Sk2',
-        svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-        image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
-        alt: 'M 212 Sk2',
+        label: 'M 212 Sk2',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+            },
+        ],
+        convolute: 'A',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk2_with_partials.
+     *
+     * It provides a mocked svg sheet object with partials.
+     */
+    mockSvgSheet_Sk2_with_partials: {
+        id: 'M_212_Sk2',
+        label: 'M 212 Sk2',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                partial: 'a',
+            },
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                partial: 'b',
+            },
+        ],
+        convolute: 'A',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk2a.
+     *
+     * It provides a mocked partial svg sheet object.
+     */
+    mockSvgSheet_Sk2a: {
+        id: 'M_212_Sk2',
+        label: 'M 212 Sk2',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                partial: 'a',
+            },
+        ],
         convolute: 'A',
     },
 
@@ -173,9 +218,13 @@ export const mockEditionData = {
      */
     mockSvgSheet_Sk3: {
         id: 'M_212_Sk3',
-        svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
-        image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
-        alt: 'M 212 Sk3',
+        label: 'M 212 Sk3',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+            },
+        ],
         convolute: 'A',
     },
 
@@ -186,9 +235,13 @@ export const mockEditionData = {
      */
     mockSvgSheet_Sk5: {
         id: 'M_212_Sk5',
-        svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
-        image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
-        alt: 'M 212 Sk5',
+        label: 'M 212 Sk5',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+            },
+        ],
         convolute: 'A',
     },
 
