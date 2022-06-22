@@ -79,7 +79,7 @@ import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { EditionIntroComponent } from &#x27;./edition-intro.component&#x27;;
 
 /* Routes of the EditionIntroModule */
-const editionIntroRoutes: Routes &#x3D; [
+const EDITION_INTRO_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: EditionIntroComponent,
@@ -96,10 +96,10 @@ export const routedEditionIntroComponents &#x3D; [EditionIntroComponent];
 /**
  * EditionIntro module routing.
  *
- * It activates the editionIntroRoutes.
+ * It activates the EDITION_INTRO_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionIntroRoutes)],
+    imports: [RouterModule.forChild(EDITION_INTRO_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionIntroRoutingModule {}

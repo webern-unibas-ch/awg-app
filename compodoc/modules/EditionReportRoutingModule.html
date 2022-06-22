@@ -79,7 +79,7 @@ import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { EditionReportComponent } from &#x27;./edition-report.component&#x27;;
 
 /* Routes of the EditionReportModule */
-const editionReportRoutes: Routes &#x3D; [
+const EDITION_REPORT_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: EditionReportComponent,
@@ -96,10 +96,10 @@ export const routedEditionReportComponents &#x3D; [EditionReportComponent];
 /**
  * EditionReport module routing.
  *
- * It activates the editionReportRoutes.
+ * It activates the EDITION_REPORT_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionReportRoutes)],
+    imports: [RouterModule.forChild(EDITION_REPORT_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionReportRoutingModule {}

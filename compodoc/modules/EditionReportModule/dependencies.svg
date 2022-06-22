@@ -14,115 +14,115 @@
 <title>cluster_EditionReportModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-157.8 1438,-157.8 1438,-32.8 8,-32.8"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_EditionReportModule_declarations</title>
-<polygon fill="none" stroke="black" points="512,-40.8 512,-92.8 1430,-92.8 1430,-40.8 512,-40.8"/>
-</g>
 <g id="clust8" class="cluster">
 <title>cluster_EditionReportModule_imports</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 504,-92.8 504,-40.8 16,-40.8"/>
+<polygon fill="none" stroke="black" points="942,-40.8 942,-92.8 1430,-92.8 1430,-40.8 942,-40.8"/>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_EditionReportModule_declarations</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 934,-92.8 934,-40.8 16,-40.8"/>
 </g>
 <!-- EditionReportComponent -->
 <g id="node1" class="node">
 <title>EditionReportComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1422.16,-84.8 1261.84,-84.8 1261.84,-48.8 1422.16,-48.8 1422.16,-84.8"/>
-<text text-anchor="middle" x="1342" y="-62.6" font-family="Times,serif" font-size="14.00">EditionReportComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="926.16,-84.8 765.84,-84.8 765.84,-48.8 926.16,-48.8 926.16,-84.8"/>
+<text text-anchor="middle" x="846" y="-62.6" font-family="Times,serif" font-size="14.00">EditionReportComponent</text>
 </g>
 <!-- EditionReportModule -->
 <g id="node6" class="node">
 <title>EditionReportModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="755.38,-149.8 752.38,-153.8 731.38,-153.8 728.38,-149.8 616.62,-149.8 616.62,-113.8 755.38,-113.8 755.38,-149.8"/>
-<text text-anchor="middle" x="686" y="-127.6" font-family="Times,serif" font-size="14.00">EditionReportModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="819.38,-149.8 816.38,-153.8 795.38,-153.8 792.38,-149.8 680.62,-149.8 680.62,-113.8 819.38,-113.8 819.38,-149.8"/>
+<text text-anchor="middle" x="750" y="-127.6" font-family="Times,serif" font-size="14.00">EditionReportModule</text>
 </g>
 <!-- EditionReportComponent&#45;&gt;EditionReportModule -->
 <g id="edge1" class="edge">
 <title>EditionReportComponent&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M1342,-85.09C1342,-107.01 1342,-140.8 1342,-140.8 1342,-140.8 765.58,-140.8 765.58,-140.8"/>
-<polygon fill="black" stroke="black" points="765.58,-137.3 755.58,-140.8 765.58,-144.3 765.58,-137.3"/>
+<path fill="none" stroke="black" d="M792.55,-84.91C792.55,-84.91 792.55,-103.79 792.55,-103.79"/>
+<polygon fill="black" stroke="black" points="789.05,-103.79 792.55,-113.79 796.05,-103.79 789.05,-103.79"/>
 </g>
 <!-- SourceDescriptionComponent -->
 <g id="node2" class="node">
 <title>SourceDescriptionComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1243.52,-84.8 1058.48,-84.8 1058.48,-48.8 1243.52,-48.8 1243.52,-84.8"/>
-<text text-anchor="middle" x="1151" y="-62.6" font-family="Times,serif" font-size="14.00">SourceDescriptionComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="747.52,-84.8 562.48,-84.8 562.48,-48.8 747.52,-48.8 747.52,-84.8"/>
+<text text-anchor="middle" x="655" y="-62.6" font-family="Times,serif" font-size="14.00">SourceDescriptionComponent</text>
 </g>
 <!-- SourceDescriptionComponent&#45;&gt;EditionReportModule -->
 <g id="edge2" class="edge">
 <title>SourceDescriptionComponent&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M1151,-84.91C1151,-104.14 1151,-131.8 1151,-131.8 1151,-131.8 765.62,-131.8 765.62,-131.8"/>
-<polygon fill="black" stroke="black" points="765.62,-128.3 755.62,-131.8 765.62,-135.3 765.62,-128.3"/>
+<path fill="none" stroke="black" d="M714.16,-84.91C714.16,-84.91 714.16,-103.79 714.16,-103.79"/>
+<polygon fill="black" stroke="black" points="710.66,-103.79 714.16,-113.79 717.66,-103.79 710.66,-103.79"/>
 </g>
 <!-- SourceEvaluationComponent -->
 <g id="node3" class="node">
 <title>SourceEvaluationComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="1040.36,-84.8 859.64,-84.8 859.64,-48.8 1040.36,-48.8 1040.36,-84.8"/>
-<text text-anchor="middle" x="950" y="-62.6" font-family="Times,serif" font-size="14.00">SourceEvaluationComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="544.36,-84.8 363.64,-84.8 363.64,-48.8 544.36,-48.8 544.36,-84.8"/>
+<text text-anchor="middle" x="454" y="-62.6" font-family="Times,serif" font-size="14.00">SourceEvaluationComponent</text>
 </g>
 <!-- SourceEvaluationComponent&#45;&gt;EditionReportModule -->
 <g id="edge3" class="edge">
 <title>SourceEvaluationComponent&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M950,-84.83C950,-101.2 950,-122.8 950,-122.8 950,-122.8 765.71,-122.8 765.71,-122.8"/>
-<polygon fill="black" stroke="black" points="765.71,-119.3 755.71,-122.8 765.71,-126.3 765.71,-119.3"/>
+<path fill="none" stroke="black" d="M454,-84.83C454,-101.2 454,-122.8 454,-122.8 454,-122.8 670.6,-122.8 670.6,-122.8"/>
+<polygon fill="black" stroke="black" points="670.6,-126.3 680.6,-122.8 670.6,-119.3 670.6,-126.3"/>
 </g>
 <!-- SourceListComponent -->
 <g id="node4" class="node">
 <title>SourceListComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="841.98,-84.8 700.02,-84.8 700.02,-48.8 841.98,-48.8 841.98,-84.8"/>
-<text text-anchor="middle" x="771" y="-62.6" font-family="Times,serif" font-size="14.00">SourceListComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="345.98,-84.8 204.02,-84.8 204.02,-48.8 345.98,-48.8 345.98,-84.8"/>
+<text text-anchor="middle" x="275" y="-62.6" font-family="Times,serif" font-size="14.00">SourceListComponent</text>
 </g>
 <!-- SourceListComponent&#45;&gt;EditionReportModule -->
 <g id="edge4" class="edge">
 <title>SourceListComponent&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M727.72,-84.91C727.72,-84.91 727.72,-103.79 727.72,-103.79"/>
-<polygon fill="black" stroke="black" points="724.22,-103.79 727.72,-113.79 731.22,-103.79 724.22,-103.79"/>
+<path fill="none" stroke="black" d="M275,-84.91C275,-104.14 275,-131.8 275,-131.8 275,-131.8 670.42,-131.8 670.42,-131.8"/>
+<polygon fill="black" stroke="black" points="670.42,-135.3 680.42,-131.8 670.42,-128.3 670.42,-135.3"/>
 </g>
 <!-- TextcriticsListComponent -->
 <g id="node5" class="node">
 <title>TextcriticsListComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="682.47,-84.8 519.53,-84.8 519.53,-48.8 682.47,-48.8 682.47,-84.8"/>
-<text text-anchor="middle" x="601" y="-62.6" font-family="Times,serif" font-size="14.00">TextcriticsListComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="186.47,-84.8 23.53,-84.8 23.53,-48.8 186.47,-48.8 186.47,-84.8"/>
+<text text-anchor="middle" x="105" y="-62.6" font-family="Times,serif" font-size="14.00">TextcriticsListComponent</text>
 </g>
 <!-- TextcriticsListComponent&#45;&gt;EditionReportModule -->
 <g id="edge5" class="edge">
 <title>TextcriticsListComponent&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M649.52,-84.91C649.52,-84.91 649.52,-103.79 649.52,-103.79"/>
-<polygon fill="black" stroke="black" points="646.02,-103.79 649.52,-113.79 653.02,-103.79 646.02,-103.79"/>
+<path fill="none" stroke="black" d="M105,-85.09C105,-107.01 105,-140.8 105,-140.8 105,-140.8 670.36,-140.8 670.36,-140.8"/>
+<polygon fill="black" stroke="black" points="670.36,-144.3 680.36,-140.8 670.36,-137.3 670.36,-144.3"/>
 </g>
 <!-- EditionReportRoutingModule -->
 <g id="node7" class="node">
 <title>EditionReportRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="495.99,-84.8 492.99,-88.8 471.99,-88.8 468.99,-84.8 312.01,-84.8 312.01,-48.8 495.99,-48.8 495.99,-84.8"/>
-<text text-anchor="middle" x="404" y="-62.6" font-family="Times,serif" font-size="14.00">EditionReportRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1421.99,-84.8 1418.99,-88.8 1397.99,-88.8 1394.99,-84.8 1238.01,-84.8 1238.01,-48.8 1421.99,-48.8 1421.99,-84.8"/>
+<text text-anchor="middle" x="1330" y="-62.6" font-family="Times,serif" font-size="14.00">EditionReportRoutingModule</text>
 </g>
 <!-- EditionReportRoutingModule&#45;&gt;EditionReportModule -->
 <g id="edge6" class="edge">
 <title>EditionReportRoutingModule&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M404,-84.83C404,-101.2 404,-122.8 404,-122.8 404,-122.8 606.29,-122.8 606.29,-122.8"/>
-<polygon fill="black" stroke="black" points="606.29,-126.3 616.29,-122.8 606.29,-119.3 606.29,-126.3"/>
+<path fill="none" stroke="black" d="M1330,-85.09C1330,-107.01 1330,-140.8 1330,-140.8 1330,-140.8 829.39,-140.8 829.39,-140.8"/>
+<polygon fill="black" stroke="black" points="829.39,-137.3 819.39,-140.8 829.39,-144.3 829.39,-137.3"/>
 </g>
 <!-- EditionTkaTableModule -->
 <g id="node8" class="node">
 <title>EditionTkaTableModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="294.41,-84.8 291.41,-88.8 270.41,-88.8 267.41,-84.8 139.59,-84.8 139.59,-48.8 294.41,-48.8 294.41,-84.8"/>
-<text text-anchor="middle" x="217" y="-62.6" font-family="Times,serif" font-size="14.00">EditionTkaTableModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1220.41,-84.8 1217.41,-88.8 1196.41,-88.8 1193.41,-84.8 1065.59,-84.8 1065.59,-48.8 1220.41,-48.8 1220.41,-84.8"/>
+<text text-anchor="middle" x="1143" y="-62.6" font-family="Times,serif" font-size="14.00">EditionTkaTableModule</text>
 </g>
 <!-- EditionTkaTableModule&#45;&gt;EditionReportModule -->
 <g id="edge7" class="edge">
 <title>EditionTkaTableModule&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M217,-84.91C217,-104.14 217,-131.8 217,-131.8 217,-131.8 606.55,-131.8 606.55,-131.8"/>
-<polygon fill="black" stroke="black" points="606.55,-135.3 616.55,-131.8 606.55,-128.3 606.55,-135.3"/>
+<path fill="none" stroke="black" d="M1143,-84.91C1143,-104.14 1143,-131.8 1143,-131.8 1143,-131.8 829.81,-131.8 829.81,-131.8"/>
+<polygon fill="black" stroke="black" points="829.81,-128.3 819.81,-131.8 829.81,-135.3 829.81,-128.3"/>
 </g>
 <!-- SharedModule -->
 <g id="node9" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="122.42,-84.8 119.42,-88.8 98.42,-88.8 95.42,-84.8 23.58,-84.8 23.58,-48.8 122.42,-48.8 122.42,-84.8"/>
-<text text-anchor="middle" x="73" y="-62.6" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="1048.42,-84.8 1045.42,-88.8 1024.42,-88.8 1021.42,-84.8 949.58,-84.8 949.58,-48.8 1048.42,-48.8 1048.42,-84.8"/>
+<text text-anchor="middle" x="999" y="-62.6" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;EditionReportModule -->
 <g id="edge8" class="edge">
 <title>SharedModule&#45;&gt;EditionReportModule</title>
-<path fill="none" stroke="black" d="M73,-85.09C73,-107.01 73,-140.8 73,-140.8 73,-140.8 606.58,-140.8 606.58,-140.8"/>
-<polygon fill="black" stroke="black" points="606.58,-144.3 616.58,-140.8 606.58,-137.3 606.58,-144.3"/>
+<path fill="none" stroke="black" d="M999,-84.83C999,-101.2 999,-122.8 999,-122.8 999,-122.8 829.69,-122.8 829.69,-122.8"/>
+<polygon fill="black" stroke="black" points="829.69,-119.3 819.69,-122.8 829.69,-126.3 829.69,-119.3"/>
 </g>
 </g>
 </svg>

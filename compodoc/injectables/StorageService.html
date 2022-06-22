@@ -294,11 +294,11 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Storage</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The local reference to Storage for the given storage type.</p>
+                        <p>The boolean value for an available Storage with the given storage type.</p>
 
                     </div>
                 </td>
@@ -374,11 +374,11 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Storage</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The local reference to Storage for the given storage type.</p>
+                        <p>The boolean value for a supported Storage with the given storage type.</p>
 
                     </div>
                 </td>
@@ -804,9 +804,9 @@ export class StorageService {
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {Storage} The local reference to Storage for the given storage type.
+     * @returns {boolean} The boolean value for a supported Storage with the given storage type.
      */
-    private _storageIsSupported(storage: Storage): Storage {
+    private _storageIsSupported(storage: Storage): boolean {
         return typeof storage !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; storage !&#x3D;&#x3D; null &amp;&amp; this._storageIsAvailable(storage);
     }
 
@@ -818,9 +818,9 @@ export class StorageService {
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {Storage} The local reference to Storage for the given storage type.
+     * @returns {boolean} The boolean value for an available Storage with the given storage type.
      */
-    private _storageIsAvailable(storage: Storage): Storage {
+    private _storageIsAvailable(storage: Storage): boolean {
         try {
             // Make uid from Date
             const uid &#x3D; new Date().toDateString();
@@ -828,12 +828,12 @@ export class StorageService {
             // Set, get and remove item
             storage.setItem(uid, uid);
             const result &#x3D; storage.getItem(uid) &#x3D;&#x3D;&#x3D; uid;
-
             storage.removeItem(uid);
 
-            // Return local reference to Storage or undefined
-            return result &amp;&amp; storage;
-        } catch (e) {}
+            return result;
+        } catch (e) {
+            return false;
+        }
     }
 }
 </code></pre>

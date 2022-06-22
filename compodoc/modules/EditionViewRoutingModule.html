@@ -61,14 +61,6 @@
 
 
 
-        <p class="comment">
-            <h3>Description</h3>
-        </p>
-        <p class="comment">
-            <p>EditionView module routing.</p>
-<p>It activates the editionViewRoutes.</p>
-
-        </p>
 
 
         <div class="container-fluid module">
@@ -97,7 +89,7 @@ import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-ser
 import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
 
 /* Routes of the EditionViewModule */
-const editionViewRoutes: Routes &#x3D; [
+const EDITION_VIEW_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: EditionViewComponent,
@@ -142,28 +134,28 @@ const editionViewRoutes: Routes &#x3D; [
                         component: EditionDetailNavComponent,
                         children: [
                             {
-                                path: EditionConstants.EDITION_INTRO.route,
+                                path: &#x27;intro&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(&#x27;./edition-outlets/edition-intro/edition-intro.module&#x27;).then(\
                                         m &#x3D;&gt; m.EditionIntroModule\
                                     )&quot;,
                             },
                             {
-                                path: EditionConstants.EDITION_SHEETS.route,
+                                path: &#x27;sheets&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(&#x27;./edition-outlets/edition-sheets/edition-sheets.module&#x27;).then(\
                                         m &#x3D;&gt; m.EditionSheetsModule\
                                     )&quot;,
                             },
                             {
-                                path: EditionConstants.EDITION_REPORT.route,
+                                path: &#x27;report&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(&#x27;./edition-outlets/edition-report/edition-report.module&#x27;).then(\
                                         m &#x3D;&gt; m.EditionReportModule\
                                     )&quot;,
                             },
                             {
-                                path: EditionConstants.EDITION_GRAPH.route,
+                                path: &#x27;graph&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(&#x27;./edition-outlets/edition-graph/edition-graph.module&#x27;).then(\
                                         m &#x3D;&gt; m.EditionGraphModule\
@@ -171,7 +163,7 @@ const editionViewRoutes: Routes &#x3D; [
                             },
                             {
                                 path: &#x27;&#x27;,
-                                redirectTo: EditionConstants.EDITION_INTRO.route,
+                                redirectTo: &#x27;intro&#x27;,
                                 pathMatch: &#x27;full&#x27;,
                             },
                         ],
@@ -208,10 +200,10 @@ export const routedEditionViewComponents &#x3D; [
 /**
  * EditionView module routing.
  *
- * It activates the editionViewRoutes.
+ * It activates the EDITION_VIEW_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionViewRoutes)],
+    imports: [RouterModule.forChild(EDITION_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionViewRoutingModule {}

@@ -76,43 +76,72 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
+import { HomeViewComponent } from &#x27;@awg-views/home-view/home-view.component&#x27;;
+
 /* Routes of the AppModule */
-const appRoutes: Routes &#x3D; [
-    // Lazy loaded
-    { path: &#x27;home&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/home-view/home-view.module&#x27;).then(m &#x3D;&gt; m.HomeViewModule)&quot; },
+const APP_ROUTES: Routes &#x3D; [
+    // Default route
+    {
+        path: &#x27;&#x27;,
+        redirectTo: &#x27;home&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
+    {
+        path: &#x27;home&#x27;,
+        component: HomeViewComponent,
+        data: { title: &#x27;AWG Online Edition – Home&#x27; },
+    },
+
+    // Lazy loaded routes
     {
         path: &#x27;contact&#x27;,
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)&quot;,
     },
-    { path: &#x27;data&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule)&quot; },
+    {
+        path: &#x27;data&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule)&quot;,
+    },
     {
         path: &#x27;edition&#x27;,
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule)&quot;,
     },
-    { path: &#x27;editions&#x27;, redirectTo: &#x27;edition&#x27;, pathMatch: &#x27;full&#x27; },
+    {
+        path: &#x27;editions&#x27;,
+        redirectTo: &#x27;edition&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
     {
         path: &#x27;structure&#x27;,
         loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)&quot;,
     },
 
-    // Default routes
-    { path: &#x27;&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27; },
+    // Fallback routes
     {
         path: &#x27;404&#x27;,
         loadChildren: () &#x3D;&gt;
             &quot;import(&#x27;@awg-views/page-not-found-view/page-not-found-view.module&#x27;).then(m &#x3D;&gt; m.PageNotFoundViewModule)&quot;,
     },
-    { path: &#x27;**&#x27;, redirectTo: &#x27;404&#x27;, pathMatch: &#x27;full&#x27; },
+    {
+        path: &#x27;**&#x27;,
+        redirectTo: &#x27;404&#x27;,
+        pathMatch: &#x27;full&#x27;,
+    },
 ];
+
+/**
+ * Routed components of the {@link AppModule}:
+ * {@link HomeViewComponent}.
+ */
+export const routedAppComponents &#x3D; [HomeViewComponent];
 
 /**
  * Main app module routing.
  *
- * It activates the appRoutes, esp. lazy-loaded View Modules.
+ * It activates the APP_ROUTES, esp. lazy-loaded View Modules.
  */
 @NgModule({
     imports: [
-        RouterModule.forRoot(appRoutes, {
+        RouterModule.forRoot(APP_ROUTES, {
             anchorScrolling: &#x27;enabled&#x27;,
             onSameUrlNavigation: &#x27;reload&#x27;,
             scrollPositionRestoration: &#x27;enabled&#x27;,

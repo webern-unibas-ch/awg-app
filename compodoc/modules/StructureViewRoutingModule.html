@@ -79,7 +79,7 @@ import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 import { StructureViewComponent } from &#x27;@awg-views/structure-view/structure-view.component&#x27;;
 
 /* Routes of the StructureViewModule */
-const structureViewRoutes: Routes &#x3D; [
+const STRUCTURE_VIEW_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: StructureViewComponent,
@@ -96,10 +96,10 @@ export const routedStructureViewComponents &#x3D; [StructureViewComponent];
 /**
  * StructureView module routing.
  *
- * It activates the structureViewRoutes.
+ * It activates the STRUCTURE_VIEW_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(structureViewRoutes)],
+    imports: [RouterModule.forChild(STRUCTURE_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class StructureViewRoutingModule {}

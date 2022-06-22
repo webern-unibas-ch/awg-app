@@ -1576,7 +1576,7 @@ export class DataApiService extends ApiService {
      */
     getResourceData(resourceId: string): Observable&lt;ResourceData&gt; {
         if (!resourceId) {
-            return;
+            return undefined;
         }
 
         // Cold request to API
@@ -1786,7 +1786,7 @@ export class DataApiService extends ApiService {
                 queryHttpParams &#x3D; this._createSearchQueryParamsForApi(searchParams);
                 break;
             default:
-                return;
+                break;
         }
 
         // Trigger call to API

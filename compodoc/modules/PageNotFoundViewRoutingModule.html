@@ -79,7 +79,7 @@ import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 import { PageNotFoundViewComponent } from &#x27;@awg-views/page-not-found-view/page-not-found-view.component&#x27;;
 
 /* Routes of the PageNotFoundViewModule */
-const pageNotFoundViewRoutes: Routes &#x3D; [
+const PAGE_NOT_FOUND_VIEW_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: PageNotFoundViewComponent,
@@ -96,10 +96,10 @@ export const routedPageNotFoundViewComponents &#x3D; [PageNotFoundViewComponent]
 /**
  * PageNotFound module routing.
  *
- * It activates the pageNotFoundViewRoutes.
+ * It activates the PAGE_NOT_FOUND_VIEW_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(pageNotFoundViewRoutes)],
+    imports: [RouterModule.forChild(PAGE_NOT_FOUND_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class PageNotFoundViewRoutingModule {}

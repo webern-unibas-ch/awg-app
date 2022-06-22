@@ -79,7 +79,7 @@ import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 import { ContactViewComponent } from &#x27;@awg-views/contact-view/contact-view.component&#x27;;
 
 /* Routes of the ContactViewModule */
-const contactViewRoutes: Routes &#x3D; [
+const CONTACT_VIEW_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: ContactViewComponent,
@@ -96,10 +96,10 @@ export const routedContactViewComponents &#x3D; [ContactViewComponent];
 /**
  * ContactView module routing.
  *
- * It activates the contactViewRoutes.
+ * It activates the CONTACT_VIEW_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(contactViewRoutes)],
+    imports: [RouterModule.forChild(CONTACT_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class ContactViewRoutingModule {}

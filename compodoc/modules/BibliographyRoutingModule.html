@@ -80,7 +80,7 @@ import { BibliographyComponent } from &#x27;./bibliography.component&#x27;;
 import { BibliographyDetailComponent } from &#x27;./bibliography-detail/bibliography-detail.component&#x27;;
 
 /* Routes of the BibliographyModule */
-const bibliographyRoutes: Routes &#x3D; [
+const BIBLIOGRAPHY_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: BibliographyComponent,
@@ -97,10 +97,10 @@ export const routedBibliographyComponents &#x3D; [BibliographyComponent, Bibliog
 /**
  * Bibliography module routing.
  *
- * It activates the bibliographyRoutes.
+ * It activates the BIBLIOGRAPHY_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(bibliographyRoutes)],
+    imports: [RouterModule.forChild(BIBLIOGRAPHY_ROUTES)],
     exports: [RouterModule],
 })
 export class BibliographyRoutingModule {}

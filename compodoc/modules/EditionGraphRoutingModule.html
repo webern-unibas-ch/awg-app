@@ -79,7 +79,7 @@ import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { EditionGraphComponent } from &#x27;./edition-graph.component&#x27;;
 
 /* Routes of the EditionGraphModule */
-const editionGraphRoutes: Routes &#x3D; [
+const EDITION_GRAPH_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: EditionGraphComponent,
@@ -96,10 +96,10 @@ export const routedEditionGraphComponents &#x3D; [EditionGraphComponent];
 /**
  * EditionGraph module routing.
  *
- * It activates the editionGraphRoutes.
+ * It activates the EDITION_GRAPH_ROUTES.
  */
 @NgModule({
-    imports: [RouterModule.forChild(editionGraphRoutes)],
+    imports: [RouterModule.forChild(EDITION_GRAPH_ROUTES)],
     exports: [RouterModule],
 })
 export class EditionGraphRoutingModule {}

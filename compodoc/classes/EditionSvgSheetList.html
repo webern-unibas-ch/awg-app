@@ -134,7 +134,7 @@ from a svg sheet json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:46</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -159,12 +159,7 @@ from a svg sheet json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class EditionSvgSheet {
-    /**
-     * The sheet&#x27;s id (string).
-     */
-    id: string;
-
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class EditionSvgSheetContent {
     /**
      * The path to the svg file of the sheet.
      */
@@ -176,9 +171,33 @@ from a svg sheet json file.</p>
     image: string;
 
     /**
-     * The alternative label for the sheet.
+     * Optional: The sheet&#x27;s content partial id as an extra to the sheet id (string).
      */
-    alt: string;
+    partial?: string;
+}
+
+/**
+ * The EditionSvgSheet class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single svg sheet
+ * in a svg sheet json file.
+ */
+export class EditionSvgSheet {
+    /**
+     * The sheet&#x27;s id (string).
+     */
+    id: string;
+
+    /**
+     * The label for the sheet.
+     */
+    label: string;
+
+    /**
+     * The content of the sheet.
+     */
+    content: EditionSvgSheetContent[];
 
     /**
      * The associated convolute of the sheet.

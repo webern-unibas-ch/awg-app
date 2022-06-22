@@ -83,7 +83,7 @@ import { SearchPanelComponent } from &#x27;./data-outlets/search-panel&#x27;;
 // Import { TimelineComponent } from &#x27;./data-outlets/timeline/timeline.component&#x27;;
 
 /* Routes of the DataViewModule */
-const dataViewRoutes: Routes &#x3D; [
+const DATA_VIEW_ROUTES: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: DataViewComponent,
@@ -97,7 +97,11 @@ const dataViewRoutes: Routes &#x3D; [
                         path: &#x27;&#x27;,
                         component: SearchPanelComponent,
                         children: [
-                            { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;fulltext&#x27; },
+                            {
+                                path: &#x27;&#x27;,
+                                pathMatch: &#x27;full&#x27;,
+                                redirectTo: &#x27;fulltext&#x27;,
+                            },
                             {
                                 path: &#x27;fulltext&#x27;,
                                 data: { title: &#x27;AWG Online Edition – Fulltext Search&#x27; },
@@ -106,7 +110,10 @@ const dataViewRoutes: Routes &#x3D; [
                                 path: &#x27;extended&#x27;,
                                 data: { title: &#x27;AWG Online Edition – Extended Search&#x27; },
                             },
-                            { path: &#x27;detail/:id&#x27;, redirectTo: &#x27;resource/:id&#x27; }, // Absolute redirect (replacement of route) to resource/:id,
+                            {
+                                path: &#x27;detail/:id&#x27;,
+                                redirectTo: &#x27;resource/:id&#x27;,
+                            }, // Absolute redirect (replacement of route) to resource/:id,
                         ],
                     },
                 ],
@@ -126,7 +133,11 @@ const dataViewRoutes: Routes &#x3D; [
         component: ResourceDetailComponent,
         data: { title: &#x27;AWG Online Edition – Resource Detail&#x27; },
         children: [
-            { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;html&#x27; },
+            {
+                path: &#x27;&#x27;,
+                pathMatch: &#x27;full&#x27;,
+                redirectTo: &#x27;html&#x27;,
+            },
             {
                 path: &#x27;html&#x27;,
                 data: { title: &#x27;AWG Online Edition – Resource Detail HTML&#x27; },
@@ -160,10 +171,10 @@ export const routedDataViewComponents &#x3D; [
 /**
  * DataView module routing.
  *
- * It activates the dataViewRoutes, also the lazy-loaded bibliography module.
+ * It activates the DATA_VIEW_ROUTES, also the lazy-loaded bibliography module.
  */
 @NgModule({
-    imports: [RouterModule.forChild(dataViewRoutes)],
+    imports: [RouterModule.forChild(DATA_VIEW_ROUTES)],
     exports: [RouterModule],
 })
 export class DataViewRoutingModule {}

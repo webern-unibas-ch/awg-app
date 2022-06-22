@@ -117,7 +117,7 @@ to store the data for a resource detail.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(header: <a href="../classes/ResourceDetailHeader.html" target="_self">ResourceDetailHeader</a>, content: <a href="../classes/ResourceDetailContent.html" target="_self">ResourceDetailContent</a>)</code>
+<code>constructor(header: <a href="../classes/ResourceDetailHeader.html" target="_self">ResourceDetailHeader</a>, content: ResourceDetailContent | undefined)</code>
                     </td>
                 </tr>
                         <tr>
@@ -164,7 +164,7 @@ from a given header and content.</p>
                                                         <td>content</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/ResourceDetailContent.html" target="_self" >ResourceDetailContent</a></code>
+                                                                    <code>ResourceDetailContent | undefined</code>
                                                         </td>
                                                   
                                                     <td>
@@ -295,7 +295,7 @@ export class ResourceDetail {
      * @param {ResourceDetailHeader} header The given header.
      * @param {ResourceDetailContent} content The given content.
      */
-    constructor(header: ResourceDetailHeader, content: ResourceDetailContent) {
+    constructor(header: ResourceDetailHeader, content: ResourceDetailContent | undefined) {
         this.header &#x3D; header;
         this.content &#x3D; content;
     }
