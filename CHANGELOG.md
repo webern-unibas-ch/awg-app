@@ -102,9 +102,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **edition:** add op19 ([ff07aa0](https://github.com/webern-unibas-ch/awg-app/commit/ff07aa0a862fd8d03f40a87f7e3583f4b8acfe65))
-* **edition:** add op24 ([ec474b8](https://github.com/webern-unibas-ch/awg-app/commit/ec474b86dd41d6acf0a85795b3b45fb7bb2b6e7b))
-* **edition:** add textcritics for "SkRT" in op25 ([373e8af](https://github.com/webern-unibas-ch/awg-app/commit/373e8afff58051429faf4e16e2c85d0e727c68d5))
+* **edition:** add op19 ([ff07aa0](https://github.com/webern-unibas-ch/awg-app/commit/ff07aa0a862fd8d03f40a87f7e3583f4b8acfe65); thanks to[@AMWilke](https://github.com/AMWilke))
+* **edition:** add op24 ([ec474b8](https://github.com/webern-unibas-ch/awg-app/commit/ec474b86dd41d6acf0a85795b3b45fb7bb2b6e7b); thanks to[@masthom](https://github.com/masthom))
+* **edition:** add textcritics for "SkRT" in op25 ([373e8af](https://github.com/webern-unibas-ch/awg-app/commit/373e8afff58051429faf4e16e2c85d0e727c68d5); thanks to[@masthom](https://github.com/masthom))
 
 
 ### Bug Fixes
