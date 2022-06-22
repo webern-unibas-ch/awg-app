@@ -7,8 +7,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **edition:** prepare svg panel to handle partial sheets ([98bf540](https://github.com/webern-unibas-ch/awg-app/commit/98bf5408eaf5f7d1899ecf0618acfc4dad77459b))
-
+* **edition:** add svg files for op12: M212 Sk1-5 ([2dc24af](https://github.com/webern-unibas-ch/awg-app/commit/2dc24af6072281ce5084940cfa3dee6e9a5534b8); thanks to [@masthom](https://github.com/masthom))
+* **edition:** add textcritics for op12: M212 Sk1 ([8d082c3](https://github.com/webern-unibas-ch/awg-app/commit/8d082c3b02cceb2f994b86f1330cca22fc15891c); thanks to [@masthom](https://github.com/masthom))
+* **edition:** prepare svg panel to handle partial sheets ([98bf540](https://github.com/webern-unibas-ch/awg-app/commit/98bf5408eaf5f7d1899ecf0618acfc4dad77459b)) 
 
 ### Bug Fixes
 
@@ -17,6 +18,8 @@ All notable changes to this project will be documented in this file. See [standa
 * **edition:** fix overlay coordinates after update of op12 ([7172a5c](https://github.com/webern-unibas-ch/awg-app/commit/7172a5c0cbb8344df525b2897ed45254e9d834ac))
 * **edition:** fix typo in textcritics for op12 ([f3c7186](https://github.com/webern-unibas-ch/awg-app/commit/f3c71863b6d7b14f78a701a18a72135a380aecf5))
 * **edition:** remove deprecated alt label from op25 content ([c8bb12c](https://github.com/webern-unibas-ch/awg-app/commit/c8bb12cf612427b8f53bac88c4cffc6814fef208))
+* **edition:** update folio-convolute + svg-sheets for op12 ([e38c073](https://github.com/webern-unibas-ch/awg-app/commit/e38c073c5b317a54116f9ef60909ffe52c982be8); thanks to [@masthom](https://github.com/masthom))
+* **edition:** update source-description, intro and textcritics for op12: M212 Sk2-5 ([e9a963e](https://github.com/webern-unibas-ch/awg-app/commit/e9a963e897041761b6d988850b53ea7b692c3e6e); thanks to [@masthom](https://github.com/masthom))
 
 
 ### Styles
@@ -64,7 +67,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **edition:** update op12 ([#424](https://github.com/webern-unibas-ch/awg-app/issues/424)) ([ada63a1](https://github.com/webern-unibas-ch/awg-app/commit/ada63a1d2dd3deb709fbf5c479664c01e5a9c363))
+* **edition:** update op12 ([#424](https://github.com/webern-unibas-ch/awg-app/issues/424)) ([ada63a1](https://github.com/webern-unibas-ch/awg-app/commit/ada63a1d2dd3deb709fbf5c479664c01e5a9c363); thanks to [@masthom](https://github.com/masthom))
 
 
 ### Bug Fixes
