@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Prefix, PrefixForm } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
+import { Prefix, PrefixForm } from '../models';
 
 /**
  * The prefix pipe.

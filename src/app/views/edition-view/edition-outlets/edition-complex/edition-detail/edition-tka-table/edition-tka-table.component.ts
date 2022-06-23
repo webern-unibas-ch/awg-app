@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { TextcriticalComment } from '../../models/index';
+import { TextcriticalComment } from '@awg-views/edition-view/models';
 
 /**
  * The EditionTkaTable component.

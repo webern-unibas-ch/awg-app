@@ -18,10 +18,10 @@ import { D3SimulationNodeTriple } from './d3-simulation-node-triple.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 import { Namespace, NamespaceType } from './namespace.model';
 import { PrefixForm, Prefix } from './prefix.model';
-import { QueryResult } from './query-result.model';
+import { TriplestoreResponse } from './triplestore-response.model';
 import { QueryTypeIndex } from './query-type-index.model';
-import { SearchResult, SearchResultBindings } from './search-result.model';
-import { PaginatorOptions, TableData, TableOptions } from '@awg-shared/table/table-data.model';
+import { SearchResult, QueryResultBindings } from './search-result.model';
+import { PaginatorOptions, TableData, TableOptions } from '@awg-shared/table/models/table-data.model';
 import { TripleComponent, Triple } from './triple.model';
 
 export {
@@ -41,11 +41,11 @@ export {
     NamespaceType,
     PrefixForm,
     Prefix,
-    QueryResult,
     QueryTypeIndex,
     SearchResult,
-    SearchResultBindings,
+    QueryResultBindings,
     TableData,
+    TriplestoreResponse,
     PaginatorOptions,
     TableOptions,
     Triple,

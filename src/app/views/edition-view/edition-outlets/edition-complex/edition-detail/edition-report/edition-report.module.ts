@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
-import { EditionTkaTableModule } from '@awg-views/edition-view/edition-outlets/edition-tka-table/edition-tka-table.module';
+import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
 
 import { SourceListComponent } from './source-list';
-import { SourceDescriptionComponent } from '@awg-views/edition-view/edition-outlets/edition-report/source-description';
+import { SourceDescriptionComponent } from './source-description';
 import { SourceEvaluationComponent } from './source-evaluation';
 import { TextcriticsListComponent } from './textcritics-list';
 

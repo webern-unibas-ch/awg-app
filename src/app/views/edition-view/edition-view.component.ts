@@ -96,8 +96,8 @@ export class EditionViewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.routeToSidenav();
         this.getSelectionsFromRoute();
+        this.routeToSidenav();
     }
 
     /**

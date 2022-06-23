@@ -6,7 +6,7 @@ import Spy = jasmine.Spy;
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { SearchResult } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
+import { SearchResult } from '../models';
 import { SparqlTableComponent } from './sparql-table.component';
 
 @Component({ selector: 'awg-table', template: '' })
