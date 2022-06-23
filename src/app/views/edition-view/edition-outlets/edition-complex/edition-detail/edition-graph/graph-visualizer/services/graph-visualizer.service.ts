@@ -11,7 +11,7 @@ import {
     Namespace,
     NamespaceType,
     PrefixForm,
-    QueryResult,
+    TriplestoreResponse,
     QueryTypeIndex,
     SearchResult,
     SearchResultBindings,
@@ -355,11 +355,11 @@ export class GraphVisualizerService {
      * @param {any} store The given triplestore.
      * @param {string} query The given query string.
      *
-     * @returns {Promise<QueryResult>} A promise of the query result.
+     * @returns {Promise<TriplestoreResponse>} A promise of the triplestore response.
      */
-    private _executeQuery(store: any, query: string): Promise<QueryResult> {
+    private _executeQuery(store: any, query: string): Promise<TriplestoreResponse> {
         return new Promise((resolve, reject) => {
-            store.execute(query, (err, res: QueryResult) => {
+            store.execute(query, (err, res: TriplestoreResponse) => {
                 if (err) {
                     console.error('_executeQuery# got ERROR', err);
                     reject(err);
