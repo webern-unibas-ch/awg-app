@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { SearchResult } from '../models';
+import { QueryResult } from '../models';
 
 /**
  * The SparqlTable component.
@@ -21,7 +21,7 @@ export class SparqlTableComponent implements OnInit {
      * It keeps the result of the query.
      */
     @Input()
-    queryResult: SearchResult;
+    queryResult: QueryResult;
 
     /**
      * Input variable: queryTime.

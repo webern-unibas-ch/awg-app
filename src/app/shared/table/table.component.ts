@@ -5,9 +5,9 @@ import { map } from 'rxjs/operators';
 
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
-import { PaginatorOptions, TableData, TableOptions } from './table-data.model';
+import { PaginatorOptions, TableData, TableOptions } from './models/table-data.model';
 
-import { SearchResultBindings } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
+import { QueryResultBindings } from '@awg-views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models';
 
 /**
  * The Table component.
@@ -225,10 +225,10 @@ export class TableComponent implements OnInit {
      *
      * @returns {Observable<SearchResultBindings[]>} Returns an observable of the paginated rows.
      */
-    private _paginateRows(searchTerm: string): Observable<SearchResultBindings[]> {
+    private _paginateRows(searchTerm: string): Observable<QueryResultBindings[]> {
         return this.tableData.totalRows$.pipe(
             // Filter rows by searchTerm
-            map((rows: SearchResultBindings[]) => {
+            map((rows: QueryResultBindings[]) => {
                 const term = searchTerm.toString().toLowerCase();
                 this.tableData.filteredRows = rows.filter(row =>
                     Object.values(row).some(rowEntry => {
@@ -241,7 +241,7 @@ export class TableComponent implements OnInit {
                 return this.tableData.filteredRows;
             }),
             // Paginate rows
-            map((rows: SearchResultBindings[]) => {
+            map((rows: QueryResultBindings[]) => {
                 const startRow = (this.paginatorOptions.page - 1) * this.paginatorOptions.selectedPageSize;
                 const endRow = startRow + this.paginatorOptions.selectedPageSize;
                 const range = endRow - startRow;

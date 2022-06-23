@@ -13,8 +13,8 @@ import {
     PrefixForm,
     TriplestoreResponse,
     QueryTypeIndex,
-    SearchResult,
-    SearchResultBindings,
+    QueryResult,
+    QueryResultBindings,
     Triple,
     TripleComponent,
 } from '../models';
@@ -212,7 +212,7 @@ export class GraphVisualizerService {
         query: string,
         ttlString: string,
         mimeType?: string
-    ): Promise<string | SearchResult | Triple[]> {
+    ): Promise<string | QueryResult | Triple[]> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
@@ -543,11 +543,11 @@ export class GraphVisualizerService {
      *
      * It prepares the data of the select response.
      *
-     * @param {SearchResultBindings[]} data The given obj.
+     * @param {QueryResultBindings[]} data The given data as QueryResultBindings array.
      *
-     * @returns  {status: number; data: SearchResult | string } An object with a status code, and the data as SearchResult or string.
+     * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
      */
-    private _prepareSelectResponse(data: SearchResultBindings[]): { status: number; data: SearchResult | string } {
+    private _prepareSelectResponse(data: QueryResultBindings[]): { status: number; data: QueryResult | string } {
         if (!data) {
             return undefined;
         }
@@ -600,7 +600,7 @@ export class GraphVisualizerService {
         }
 
         // Re-format data
-        const reformatted: SearchResult = { head: { vars: varKeys }, body: { bindings: b } };
+        const reformatted: QueryResult = { head: { vars: varKeys }, body: { bindings: b } };
 
         return { status: 200, data: reformatted };
     }

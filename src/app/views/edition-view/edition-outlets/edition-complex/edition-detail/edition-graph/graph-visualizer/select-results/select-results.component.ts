@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { Observable } from 'rxjs';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-import { SearchResult } from '../models';
+import { QueryResult } from '../models';
 
 /**
  * The SelectResults component.
@@ -21,10 +21,10 @@ export class SelectResultsComponent {
     /**
      * Input variable: queryResult$.
      *
-     * It keeps the SearchResult as an observable.
+     * It keeps the query result as an observable.
      */
     @Input()
-    queryResult$: Observable<SearchResult>;
+    queryResult$: Observable<QueryResult>;
 
     /**
      * Input variable: queryTime.
@@ -53,14 +53,13 @@ export class SelectResultsComponent {
     /**
      * Public method: isNotEmpty.
      *
-     * It checks if a given queryResult with a SearchResult
-     * is not empty.
+     * It checks if a given queryResult is not empty.
      *
      * @param {string} queryResult The given queryResult.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isNotEmpty(queryResult: SearchResult): boolean {
+    isNotEmpty(queryResult: QueryResult): boolean {
         if (!queryResult.head || !queryResult.body) {
             return undefined;
         }

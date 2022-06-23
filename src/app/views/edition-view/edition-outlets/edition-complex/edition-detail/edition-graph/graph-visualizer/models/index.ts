@@ -20,7 +20,7 @@ import { Namespace, NamespaceType } from './namespace.model';
 import { PrefixForm, Prefix } from './prefix.model';
 import { TriplestoreResponse } from './triplestore-response.model';
 import { QueryTypeIndex } from './query-type-index.model';
-import { SearchResult, QueryResultBindings } from './search-result.model';
+import { QueryResult, QueryResultBindings } from './query-result.model';
 import { PaginatorOptions, TableData, TableOptions } from '@awg-shared/table/models/table-data.model';
 import { TripleComponent, Triple } from './triple.model';
 
@@ -42,7 +42,7 @@ export {
     PrefixForm,
     Prefix,
     QueryTypeIndex,
-    SearchResult,
+    QueryResult,
     QueryResultBindings,
     TableData,
     TriplestoreResponse,

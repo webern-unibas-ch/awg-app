@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChil
 import { EMPTY, from, Observable } from 'rxjs';
 
 import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
-import { D3SimulationNode, SearchResult, Triple } from './models';
+import { D3SimulationNode, QueryResult, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 import { Toast, ToastService } from '@awg-core/services/toast-service';
@@ -72,9 +72,9 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples or SearchResult.
+     * It keeps the result of the query as an observable of triples or QueryResult.
      */
-    queryResult$: Observable<Triple[] | SearchResult>;
+    queryResult$: Observable<Triple[] | QueryResult>;
 
     /**
      * Public variable: queryTime.

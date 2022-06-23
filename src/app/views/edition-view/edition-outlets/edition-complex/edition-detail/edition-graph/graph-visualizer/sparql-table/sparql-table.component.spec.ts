@@ -6,7 +6,7 @@ import Spy = jasmine.Spy;
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { SearchResult } from '../models';
+import { QueryResult } from '../models';
 import { SparqlTableComponent } from './sparql-table.component';
 
 @Component({ selector: 'awg-table', template: '' })
@@ -23,7 +23,7 @@ describe('SparqlTableComponent (DONE)', () => {
     let fixture: ComponentFixture<SparqlTableComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: SearchResult;
+    let expectedQueryResult: QueryResult;
     let expectedQueryTime: number;
 
     let expectedTableTitle: string;

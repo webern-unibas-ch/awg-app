@@ -15,7 +15,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { SearchResult } from '../models';
+import { QueryResult } from '../models';
 import { SelectResultsComponent } from './select-results.component';
 
 // Mock components
@@ -24,7 +24,7 @@ class SparqlNoResultsStubComponent {}
 
 @Component({ selector: 'awg-sparql-table', template: '' })
 class SparqlTableStubComponent {
-    @Input() queryResult: SearchResult;
+    @Input() queryResult: QueryResult;
     @Input() queryTime: number;
     @Output() clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -37,8 +37,8 @@ describe('SelectResultsComponent (DONE)', () => {
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
 
-    let expectedQueryResult: SearchResult;
-    let expectedQueryResult$: Observable<SearchResult>;
+    let expectedQueryResult: QueryResult;
+    let expectedQueryResult$: Observable<QueryResult>;
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
