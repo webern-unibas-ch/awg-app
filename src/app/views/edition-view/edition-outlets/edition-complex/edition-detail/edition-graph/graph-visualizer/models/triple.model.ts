@@ -7,25 +7,25 @@ export interface Triple {
     /**
      * The subject of an RDF triple.
      */
-    subject: TripleComponent;
+    subject: TripleValue;
 
     /**
      * The predicate of an RDF triple.
      */
-    predicate: TripleComponent;
+    predicate: TripleValue;
 
     /**
      * The object of an RDF triple.
      */
-    object: TripleComponent;
+    object: TripleValue;
 }
 
 /**
- * The TripleComponent interface.
+ * The TripleValue interface.
  *
- * It represents an RDF triple component.
+ * It represents the nominal value of an RDF triple.
  */
-export interface TripleComponent {
+export interface TripleValue {
     /**
      * The nominal value of an RDF triple component.
      */

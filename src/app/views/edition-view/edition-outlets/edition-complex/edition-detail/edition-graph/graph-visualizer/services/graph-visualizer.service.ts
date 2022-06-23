@@ -16,7 +16,7 @@ import {
     QueryResult,
     QueryResultBindings,
     Triple,
-    TripleComponent,
+    TripleValue,
 } from '../models';
 import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 
@@ -114,9 +114,9 @@ export class GraphVisualizerService {
             mimeType = 'text/turtle';
         }
         return triples.map((triple: Triple) => {
-            let s: TripleComponent = triple.subject.nominalValue;
-            let p: TripleComponent = triple.predicate.nominalValue;
-            let o: TripleComponent = triple.object.nominalValue;
+            let s: TripleValue = triple.subject.nominalValue;
+            let p: TripleValue = triple.predicate.nominalValue;
+            let o: TripleValue = triple.object.nominalValue;
 
             // Abbreviate turtle format
             if (mimeType === 'text/turtle') {
@@ -312,10 +312,10 @@ export class GraphVisualizerService {
      * @param {*} iri The given iri.
      * @param {Namespace} namespaces The given namespaces.
      *
-     * @returns {TripleComponent} The abbreviated triple component.
+     * @returns {TripleValue} The abbreviated triple component.
      */
-    private _abbreviate(iri: any, namespaces: Namespace): TripleComponent {
-        let newVal: TripleComponent = null;
+    private _abbreviate(iri: any, namespaces: Namespace): TripleValue {
+        let newVal: TripleValue = null;
         // If IRI has 'http' in its name, continue
         if (iri.indexOf('http') !== -1) {
             // Loop over namespaces

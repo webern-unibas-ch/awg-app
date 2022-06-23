@@ -21,8 +21,7 @@ import { PrefixForm, Prefix } from './prefix.model';
 import { TriplestoreResponse } from './triplestore-response.model';
 import { QueryTypeIndex } from './query-type-index.model';
 import { QueryResult, QueryResultBindings } from './query-result.model';
-import { PaginatorOptions, TableData, TableOptions } from '@awg-shared/table/models/table-data.model';
-import { TripleComponent, Triple } from './triple.model';
+import { TripleValue, Triple } from './triple.model';
 
 export {
     CmConfig,
@@ -44,10 +43,7 @@ export {
     QueryTypeIndex,
     QueryResult,
     QueryResultBindings,
-    TableData,
     TriplestoreResponse,
-    PaginatorOptions,
-    TableOptions,
     Triple,
-    TripleComponent,
+    TripleValue,
 };
