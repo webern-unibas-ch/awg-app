@@ -3,8 +3,8 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
+import { LOGOSDATA } from '@awg-core/core-data';
 import { Logos } from '@awg-core/core-models';
-import { LOGOSDATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { SparqlNoResultsComponent } from './sparql-no-results.component';

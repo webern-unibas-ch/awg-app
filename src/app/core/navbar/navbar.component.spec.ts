@@ -11,8 +11,8 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { METADATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { EditionWorks } from '@awg-views/edition-view/data';
