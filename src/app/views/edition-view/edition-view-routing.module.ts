@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionConstants } from './models';
-
 import { EditionViewComponent } from './edition-view.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
-import { EditionRowTablesComponent } from './edition-outlets/edition-row-tables';
 import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
@@ -98,7 +95,10 @@ const EDITION_VIEW_ROUTES: Routes = [
             {
                 // Overview of row tables.
                 path: 'row-tables',
-                component: EditionRowTablesComponent,
+                loadChildren: () =>
+                    import('./edition-outlets/edition-row-tables/edition-row-tables.module').then(
+                        m => m.EditionRowTablesModule
+                    ),
             },
         ],
     },
@@ -114,7 +114,6 @@ export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
-    EditionRowTablesComponent,
     EditionSectionsComponent,
     EditionSectionDetailComponent,
     EditionSeriesComponent,
