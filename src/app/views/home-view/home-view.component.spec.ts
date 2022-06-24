@@ -13,7 +13,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionWork } from '@awg-views/edition-view/models';
 
 import { HomeViewComponent } from './home-view.component';
 

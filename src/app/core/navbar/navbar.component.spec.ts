@@ -15,7 +15,8 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionWork } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
 

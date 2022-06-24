@@ -15,7 +15,6 @@ import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
 import { EditionWork, EditionTitleStatement } from './edition-work.model';
-import { EditionWorks } from './edition-works';
 
 import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
@@ -43,7 +42,6 @@ export {
     EditionSvgSheetList,
     EditionTitleStatement,
     EditionWork,
-    EditionWorks,
     FolioConvoluteList,
     FolioConvolute,
     Folio,

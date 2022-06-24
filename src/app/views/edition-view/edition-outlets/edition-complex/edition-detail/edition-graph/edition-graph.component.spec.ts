@@ -17,10 +17,10 @@ import {
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { EditionWorks } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
     EditionWork,
-    EditionWorks,
     Graph,
     GraphList,
     GraphRDFData,

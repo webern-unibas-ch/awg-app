@@ -1,6 +1,5 @@
 import { AppConfig } from '@awg-app/app.config';
-import { EditionConstants } from './edition-constants';
-import { EditionWork } from './edition-work.model';
+import { EditionConstants, EditionWork } from '../models';
 
 /**
  * The EditionWorksModel class.

@@ -11,13 +11,12 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROW_TABLES_DATA, EditionWorks } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionWorks,
     EditionWork,
     FolioConvoluteList,
     FolioConvolute,

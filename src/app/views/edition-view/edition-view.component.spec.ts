@@ -14,14 +14,9 @@ import {
 } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionConstants, EditionRoute, EditionSeriesRoutes, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
-import {
-    EditionConstants,
-    EditionRoute,
-    EditionSeriesRoutes,
-    EditionWork,
-    EditionWorks,
-} from '@awg-views/edition-view/models';
 
 import { EditionViewComponent } from './edition-view.component';
 

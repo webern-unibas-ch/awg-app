@@ -7,6 +7,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { EditionWorks } from '@awg-views/edition-view/data';
 import {
     Folio,
     EditionSvgSheet,
@@ -15,7 +16,6 @@ import {
     TextcriticsList,
     EditionSvgSheetList,
     FolioConvoluteList,
-    EditionWorks,
     FolioConvolute,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';

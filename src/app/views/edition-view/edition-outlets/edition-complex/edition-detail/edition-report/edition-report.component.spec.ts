@@ -18,10 +18,10 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { EditionWorks } from '@awg-views/edition-view/data';
 import {
     EditionSvgSheet,
     EditionWork,
-    EditionWorks,
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,

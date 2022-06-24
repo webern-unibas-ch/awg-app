@@ -12,7 +12,9 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
