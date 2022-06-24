@@ -9,6 +9,8 @@
 
 import { EditionConstants, EditionRoute, EditionSeriesRoutes } from './edition-constants';
 
+import { EditionRowTables } from './edition-row-tables.model';
+
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
@@ -33,13 +35,14 @@ import { ViewBox } from './view-box.model';
 export {
     EditionConstants,
     EditionRoute,
+    EditionRowTables,
     EditionSeriesRoutes,
-    EditionTitleStatement,
-    EditionWork,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
+    EditionTitleStatement,
+    EditionWork,
     EditionWorks,
     FolioConvoluteList,
     FolioConvolute,
