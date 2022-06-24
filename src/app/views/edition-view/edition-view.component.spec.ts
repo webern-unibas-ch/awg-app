@@ -25,13 +25,13 @@ import {
 
 import { EditionViewComponent } from './edition-view.component';
 
-// Mock heading component
-@Component({ selector: 'awg-heading', template: '' })
-class HeadingStubComponent {
+// Mock jumbotron component
+@Component({ selector: 'awg-edition-jumbotron', template: '' })
+class EditionJumbotronStubComponent {
     @Input()
-    title: string;
+    jumbotronId: string;
     @Input()
-    id: string;
+    jumbotronTitle: string;
 }
 
 describe('EditionViewComponent (DONE)', () => {
@@ -87,7 +87,7 @@ describe('EditionViewComponent (DONE)', () => {
         TestBed.configureTestingModule({
             declarations: [
                 EditionViewComponent,
-                HeadingStubComponent,
+                EditionJumbotronStubComponent,
                 RouterOutletStubComponent,
                 RouterLinkStubDirective,
             ],
@@ -367,28 +367,12 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
                 });
 
-                it('... should have an h6 and a jumbotron div with h1 in div.awg-edition-row-tables', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
 
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-jumbotron-image > h1', 1, 1);
-                });
-
-                it('... should pass down `editionViewId` to jumbotron h1', () => {
-                    const headingDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-row-tables > div.awg-jumbotron-image > h1',
-                        1,
-                        1
-                    );
-                    const headingEl = headingDes[0].nativeElement;
-
-                    expect(headingEl.id).toBeTruthy();
-                    expect(headingEl.id).withContext(`should be ${expectedId}`).toBe(expectedId);
-
-                    expect(headingEl.textContent).toBeTruthy();
-                    expect(headingEl.textContent.trim()).withContext(`should be 'Übersicht'`).toBe('Übersicht');
+                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
                 it('... should display edition base root (AWG) and heading title in breadcrumb header (h6)', () => {
@@ -404,6 +388,26 @@ describe('EditionViewComponent (DONE)', () => {
 
                     expect(hEl.innerText).toBeTruthy();
                     expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
+                });
+
+                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
+                    // Get debug and native element of JumbotronComponent
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-row-tables', 1, 1);
+                    const jumbotronDes = getAndExpectDebugElementByDirective(
+                        divDes[0],
+                        EditionJumbotronStubComponent,
+                        1,
+                        1
+                    );
+                    const jumbotronCmp = jumbotronDes[0].injector.get(
+                        EditionJumbotronStubComponent
+                    ) as EditionJumbotronStubComponent;
+
+                    expect(jumbotronCmp.jumbotronId).toBeDefined();
+                    expect(jumbotronCmp.jumbotronId).withContext(`should be ${expectedId}`).toBe(expectedId);
+
+                    expect(jumbotronCmp.jumbotronTitle).toBeDefined();
+                    expect(jumbotronCmp.jumbotronTitle).withContext(`should be 'Übersicht'`).toBe('Übersicht');
                 });
             });
 
@@ -527,27 +531,32 @@ describe('EditionViewComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
                 });
 
-                it('... should have an h6 and a jumbotron div with h1 in div.awg-edition-series', () => {
+                it('... should have an h6 (breadcrumb) and a JumbotronComponent (stubbed)', () => {
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
 
-                    getAndExpectDebugElementByCss(divDes[0], 'h6', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-jumbotron-image > h1', 1, 1);
+                    getAndExpectDebugElementByCss(divDes[0], 'h6.awg-edition-info-breadcrumb', 1, 1);
+
+                    getAndExpectDebugElementByDirective(divDes[0], EditionJumbotronStubComponent, 1, 1);
                 });
 
-                it('... should pass down `editionViewTitle` and `editionViewId` to jumbotron h1', () => {
-                    const headingDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-edition-series > div.awg-jumbotron-image > h1',
+                it('... should pass down `editionViewId` and `title` to JumbotronComponent (stubbed)', () => {
+                    // Get debug and native element of JumbotronComponent
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-series', 1, 1);
+                    const jumbotronDes = getAndExpectDebugElementByDirective(
+                        divDes[0],
+                        EditionJumbotronStubComponent,
                         1,
                         1
                     );
-                    const headingEl = headingDes[0].nativeElement;
+                    const jumbotronCmp = jumbotronDes[0].injector.get(
+                        EditionJumbotronStubComponent
+                    ) as EditionJumbotronStubComponent;
 
-                    expect(headingEl.id).toBeTruthy();
-                    expect(headingEl.id).withContext(`should be ${expectedId}`).toBe(expectedId);
+                    expect(jumbotronCmp.jumbotronId).toBeDefined();
+                    expect(jumbotronCmp.jumbotronId).withContext(`should be ${expectedId}`).toBe(expectedId);
 
-                    expect(headingEl.textContent).toBeTruthy();
-                    expect(headingEl.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+                    expect(jumbotronCmp.jumbotronTitle).toBeDefined();
+                    expect(jumbotronCmp.jumbotronTitle).withContext(`should be  ${expectedTitle}`).toBe(expectedTitle);
                 });
 
                 describe('... breadcrumb header (h6)', () => {

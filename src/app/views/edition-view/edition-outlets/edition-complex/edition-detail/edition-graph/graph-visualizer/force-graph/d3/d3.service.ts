@@ -8,7 +8,7 @@ import {
     D3SimulationLink,
     D3SimulationNode,
     D3DragBehaviour,
-} from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
+} from '../../models';
 
 import * as d3_drag from 'd3-drag';
 import * as d3_selection from 'd3-selection';
