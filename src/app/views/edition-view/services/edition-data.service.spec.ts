@@ -11,26 +11,28 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
+import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
+    EditionRowTables,
+    EditionSvgSheet,
+    EditionSvgSheetList,
     EditionWorks,
     EditionWork,
-    SourceList,
-    SourceDescriptionList,
-    SourceEvaluationList,
-    TextcriticsList,
-    EditionSvgSheetList,
     FolioConvoluteList,
     FolioConvolute,
-    EditionSvgSheet,
-    Textcritics,
-    Source,
-    SourceDescription,
-    SourceEvaluation,
     GraphList,
     Graph,
     IntroList,
     Intro,
+    Source,
+    SourceList,
+    SourceDescription,
+    SourceDescriptionList,
+    SourceEvaluation,
+    SourceEvaluationList,
+    Textcritics,
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
@@ -43,8 +45,9 @@ describe('EditionDataService (DONE)', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    const expectedEditionWork: EditionWork = EditionWorks.OP12;
+    let expectedRowTablesData: EditionRowTables[];
 
+    const expectedEditionWork: EditionWork = EditionWorks.OP12;
     const assets = EditionConstants.EDITION_ASSETS;
     const expectedAssetWorkPathBaseRoute = assets.baseRoute;
     const expectedWorkRoute =
@@ -75,6 +78,9 @@ describe('EditionDataService (DONE)', () => {
         editionDataService = TestBed.inject(EditionDataService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
+
+        // Test data
+        expectedRowTablesData = EDITION_ROW_TABLES_DATA;
 
         // Spies on console logs
         consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
@@ -2092,6 +2098,15 @@ describe('EditionDataService (DONE)', () => {
                     httpTestingController.verify();
                 }));
             });
+        });
+    });
+
+    describe('#getRowTables', () => {
+        it('... should return EDITION_ROW_TABLES_DATA', () => {
+            // Call service function
+            expect(editionDataService.getRowTables())
+                .withContext(`should be ${expectedRowTablesData}`)
+                .toBe(expectedRowTablesData);
         });
     });
 });
