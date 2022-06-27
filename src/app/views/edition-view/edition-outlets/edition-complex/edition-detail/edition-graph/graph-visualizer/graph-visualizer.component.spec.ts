@@ -156,9 +156,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
         expectedResult = [
             {
-                subject: { nominalValue: 'Test' },
-                predicate: { nominalValue: 'has' },
-                object: { nominalValue: 'Success' },
+                subject: 'Test',
+                predicate: 'has',
+                object: 'Success',
             },
         ];
 

@@ -16,7 +16,8 @@ import {
     QueryResult,
     QueryResultBindings,
     Triple,
-    TripleValue,
+    StoreTriple,
+    StoreTripleValue,
 } from '../models';
 import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 
@@ -59,7 +60,7 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
      */
-    parseTriples(triples: Triple[]): Promise<{ triples; namespaces }> {
+    parseTriples(triples: Triple[]): Promise<{ triples; namespaces } | unknown> {
         const parser = new N3.Parser();
         const jsonTriples = [];
 
@@ -103,20 +104,20 @@ export class GraphVisualizerService {
      *
      * It abbreviates the given triples according to the given namespaces.
      *
-     * @param {Triple[]} triples The given triples.
+     * @param {StoreTriple[]} storeTriples The given triple response from the store.
      * @param {string} namespaces The given namespaces.
      * @param {string} [mimeType] The given optional mimeType.
      *
      * @returns {Triple[]} The array of abbreviated triples.
      */
-    abbreviateTriples(triples: Triple[], namespaces: Namespace, mimeType?: string): Triple[] {
+    abbreviateTriples(storeTriples: StoreTriple[], namespaces: Namespace, mimeType?: string): Triple[] {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
-        return triples.map((triple: Triple) => {
-            let s: TripleValue = triple.subject.nominalValue;
-            let p: TripleValue = triple.predicate.nominalValue;
-            let o: TripleValue = triple.object.nominalValue;
+        return storeTriples.map((storeTriple: StoreTriple) => {
+            let s: string = storeTriple.subject.nominalValue;
+            let p: string = storeTriple.predicate.nominalValue;
+            let o: string = storeTriple.object.nominalValue;
 
             // Abbreviate turtle format
             if (mimeType === 'text/turtle') {

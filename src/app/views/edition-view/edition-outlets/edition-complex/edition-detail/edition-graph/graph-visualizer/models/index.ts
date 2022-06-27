@@ -21,7 +21,7 @@ import { PrefixForm, Prefix } from './prefix.model';
 import { TriplestoreResponse } from './triplestore-response.model';
 import { QueryTypeIndex } from './query-type-index.model';
 import { QueryResult, QueryResultBindings } from './query-result.model';
-import { TripleValue, Triple } from './triple.model';
+import { StoreTriple, StoreTripleValue, Triple } from './triple.model';
 
 export {
     CmConfig,
@@ -45,5 +45,6 @@ export {
     QueryResultBindings,
     TriplestoreResponse,
     Triple,
-    TripleValue,
+    StoreTriple,
+    StoreTripleValue,
 };

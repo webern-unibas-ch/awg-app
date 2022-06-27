@@ -427,7 +427,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         // The triples must be parsed to objects instead
         if (typeof triples === 'string') {
             this.graphVisualizerService.parseTriples(triples).then((data: { triples; namespaces }) => {
-                const abrTriples = this.graphVisualizerService.abbreviateTriples(data.triples, data.namespaces);
+                const abrTriples: Triple[] = this.graphVisualizerService.abbreviateTriples(
+                    data.triples,
+                    data.namespaces
+                );
                 this._simulationData = this._triplesToD3GraphData(abrTriples);
 
                 this._setupForceSimulation();

@@ -77,9 +77,9 @@ describe('ConstructResultsComponent (DONE)', () => {
         expectedIsFullscreen = false;
         expectedTriples = [
             {
-                subject: { nominalValue: 'example:Test' },
-                predicate: { nominalValue: 'example:has' },
-                object: { nominalValue: 'example:Success' },
+                subject: 'example:Test',
+                predicate: 'example:has',
+                object: 'example:Success',
             },
         ];
         expectedQueryResult$ = observableOf(expectedTriples);
