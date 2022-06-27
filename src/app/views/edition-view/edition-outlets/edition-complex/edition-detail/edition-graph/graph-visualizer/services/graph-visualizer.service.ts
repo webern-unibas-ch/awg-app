@@ -138,8 +138,8 @@ export class GraphVisualizerService {
     /**
      * Public method: checkNamespacesInQuery.
      *
-     * It checks the existing namespaces and prefixes in a SPARQL query
-     * and appends missing declarations, if possible, from the Turtle string.
+     * It checks the existing namespaces and qNames in a SPARQL query
+     * and appends missing prefix declarations, if possible, from the Turtle string.
      *
      * @param {string} queryStr The given SPARQL query string.
      * @param {string} turtleStr The given Turtle string.
@@ -154,8 +154,8 @@ export class GraphVisualizerService {
         const turtleNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
         // Get namespaces from SPARQL query
         const sparqlNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
-        // Get prefixes used in the query
-        const prefixes: string[] = this._extractPrefixesFromSPARQLWhereClause(queryStr);
+        // Get qNames used in the SPARQL query WHERE clause
+        const qNames: string[] = this._extractQNamesFromSPARQLWhereClause(queryStr);
 
         // Get keys of namespace objects
         const turtleNamespaceKeys = Object.keys(turtleNamespaces);
@@ -170,20 +170,23 @@ export class GraphVisualizerService {
             }
         });
 
-        // Loop over existing prefixes from SPARQL query
-        if (prefixes.length > 0) {
-            prefixes.forEach(prefix => {
+        // Loop over existing qNames from SPARQL query
+        if (qNames.length > 0) {
+            qNames.forEach(qName => {
                 // If prefix is not in the list...
-                if (sparqlNamespaceKeys.indexOf(prefix) === -1) {
+                if (sparqlNamespaceKeys.indexOf(qName) === -1) {
                     // TODO: Warnings should go into error messages
-                    console.warn(`Prefix '${prefix}' not declared in SPARQL and/or Turtle header`);
+                    console.warn(
+                        `Prefix '${qName}' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`
+                    );
 
-                    const cachedNamespace = this.prefixPipe.transform(prefix, PrefixForm.long);
-                    if (cachedNamespace !== prefix) {
-                        console.warn(`Added prefix from cache`);
-                        missingNamespacesStr += `PREFIX ${prefix} <${cachedNamespace}>\n`;
+                    const defaultNamespace = this.prefixPipe.transform(qName, PrefixForm.long);
+                    if (defaultNamespace !== qName) {
+                        const missingPrefix = `PREFIX ${qName} <${defaultNamespace}>\n`;
+                        missingNamespacesStr += missingPrefix;
+                        console.warn(`Added '${missingPrefix}' to SPARQL prefixes from list of default namespaces.`);
                     } else {
-                        console.warn(`'${prefix}' is unknown. Please provide a declaration.`);
+                        console.warn(`'${qName}' is unknown. Please provide a declaration.`);
                     }
                 }
             });
@@ -427,19 +430,19 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: _extractPrefixesFromSPARQLWhereClause.
+     * Private method: _extractQNamesFromSPARQLWhereClause.
      *
-     * It identifies the prefixes that are used in the WHERE clause of a SPARQL query.
+     * It identifies the qNames that are used in the WHERE clause of a SPARQL query.
      *
-     * @param {string} queryStr The given query string.
+     * @param {string} query The given query string.
      *
-     * @returns {string[]} A string array of the used prefixes.
+     * @returns {string[]} A string array of the used qNames.
      */
-    private _extractPrefixesFromSPARQLWhereClause(query: string): string[] {
+    private _extractQNamesFromSPARQLWhereClause(query: string): string[] {
         let m;
         let queryStr = query.toLowerCase();
         let start = 0;
-        const prefixes: string[] = [];
+        const qNames: string[] = [];
         const regex = /\b[a-zA-Z]{2,15}:/g;
         const where = 'WHERE {'.toLowerCase();
 
@@ -461,12 +464,12 @@ export class GraphVisualizerService {
 
             // The result can be accessed through the `m`-variable.
             m.forEach(match => {
-                if (prefixes.indexOf(match) === -1) {
-                    prefixes.push(match);
+                if (qNames.indexOf(match) === -1) {
+                    qNames.push(match);
                 }
             });
         }
-        return prefixes;
+        return qNames;
     }
 
     /**
