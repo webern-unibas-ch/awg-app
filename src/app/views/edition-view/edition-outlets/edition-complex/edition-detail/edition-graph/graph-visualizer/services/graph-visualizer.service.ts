@@ -403,7 +403,9 @@ export class GraphVisualizerService {
                 prefixStr = 'PREFIX'.toLowerCase();
                 break;
             default:
-                prefixStr = '';
+                // This branch should not be reached
+                const exhaustiveCheck: never = type;
+                throw new Error(`The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.`);
         }
 
         // Get index of all occurrences of prefix string
