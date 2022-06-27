@@ -289,20 +289,18 @@ export class GraphVisualizerService {
             return item;
         });
 
-        // If none of the keywords match return null
+        // If none of the keywords match, return null
         if (!match) {
             return null;
         }
 
-        // If more exist, take the lowest
+        // If more keywords exist in one query, take the one with the lowest index (first in string)
         const lowest: QueryTypeIndex = keyWords.find(item => item.index === low);
-        if (!lowest) {
-            return null;
-        }
-        const type: string = lowest.queryType;
+
+        let type: string = lowest.queryType;
 
         if (type === 'insert' || type === 'delete') {
-            return 'update';
+            type = 'update';
         }
 
         return type;
@@ -313,14 +311,14 @@ export class GraphVisualizerService {
      *
      * It abbreviates the namespaces of a given iri.
      *
-     * @param {*} iri The given iri.
+     * @param {string} iri The given iri string.
      * @param {Namespace} namespaces The given namespaces.
      *
-     * @returns {TripleValue} The abbreviated triple component.
+     * @returns {string} The abbreviated or original iri string.
      */
-    private _abbreviate(iri: any, namespaces: Namespace): TripleValue {
-        let newVal: TripleValue = null;
-        // If IRI has 'http' in its name, continue
+    private _abbreviate(iri: string, namespaces: Namespace): string {
+        let newVal: string = iri;
+        // If IRI has 'http' or 'https in its name, continue
         if (iri.indexOf('http') !== -1) {
             // Loop over namespaces
             Object.entries(namespaces).forEach(([key, value], index) => {
@@ -421,8 +419,8 @@ export class GraphVisualizerService {
         prefixIndexArray.forEach(prefixIndex => {
             const qName = arr[prefixIndex + 1];
             let namespaceName = arr[prefixIndex + 2];
-            // Remove final dot if given
-            if (namespaceName[namespaceName.length - 1] === '.') {
+            // Remove final dot if there is no space between namespace and dot
+            if (namespaceName.at(-1) === '.') {
                 namespaceName = namespaceName.slice(0, -1);
             }
             obj[qName] = namespaceName;
