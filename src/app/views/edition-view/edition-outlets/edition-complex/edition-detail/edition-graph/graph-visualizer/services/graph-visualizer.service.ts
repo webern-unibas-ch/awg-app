@@ -232,20 +232,15 @@ export class GraphVisualizerService {
 
                 // Reformat data if select query
                 if (queryType === 'select') {
-                    return this._prepareSelectResponse(response).data;
+                    const selectResponse = this._prepareSelectResponse(response);
+                    return selectResponse.data;
                 }
 
-                // Reformat data if select query
+                // Reformat data if construct query
                 if (queryType === 'construct') {
-                    /**
-                     * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
-                     */
-
-                    // PrepareConstructResponse
-
                     // Get namespaces
                     return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
-                        // Process result
+                        // Process triples
                         this.abbreviateTriples(response.triples, namespaces, mimeType)
                     );
                 }
@@ -550,20 +545,23 @@ export class GraphVisualizerService {
      *
      * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
      */
-    private _prepareSelectResponse(data: QueryResultBindings[]): { status: number; data: QueryResult | string } {
-        if (!data) {
-            return undefined;
+    private _prepareSelectResponse(selectResponse: QueryResultBindings[]): {
+        status: number;
+        data: QueryResult | string;
+    } {
+        if (!selectResponse) {
+            return { status: 404, data: undefined };
         }
 
         // Check that it didn't return null results
-        if (data[0] == null) {
+        if (selectResponse[0] == null) {
             return { status: 400, data: 'Query returned no results' };
         }
         // Get variable keys
-        const varKeys = Object.keys(data[0]);
+        const varKeys = Object.keys(selectResponse[0]);
 
         // Get object array
-        const b = data;
+        const b = selectResponse;
 
         // Rename keys according to below mapping table
         const map = {
@@ -590,9 +588,12 @@ export class GraphVisualizerService {
 
                             // Transform integer values to numbers
                             const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
+                            const xmlsNonNegativeInteger = 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger';
+                            const type = b[i][varKeys[key]]['type'];
+                            const datatype = b[i][varKeys[key]]['datatype'] || '';
                             if (
-                                b[i][varKeys[key]]['type'] === 'literal' &&
-                                b[i][varKeys[key]]['datatype'] === xmlsInteger
+                                type === 'literal' &&
+                                (datatype === xmlsInteger || datatype === xmlsNonNegativeInteger)
                             ) {
                                 b[i][varKeys[key]]['label'] = +b[i][varKeys[key]]['value'];
                             }
