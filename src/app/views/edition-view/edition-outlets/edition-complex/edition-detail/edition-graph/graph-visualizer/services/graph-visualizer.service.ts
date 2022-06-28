@@ -51,15 +51,15 @@ export class GraphVisualizerService {
     constructor(private prefixPipe: PrefixPipe) {}
 
     /**
-     * Public method: parseTriples.
+     * Public method: parseTripleString.
      *
-     * It parses the triples from a given triple array.
+     * It parses the triples from a given triple string.
      *
-     * @param {Triple[]} triples The given triple array.
+     * @param {string} triples The given triple string.
      *
      * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
      */
-    parseTriples(triples: Triple[]): Promise<{ triples; namespaces } | unknown> {
+    parseTripleString(triples: string): Promise<{ triples; namespaces } | unknown> {
         const parser = new N3.Parser();
         const jsonTriples = [];
 

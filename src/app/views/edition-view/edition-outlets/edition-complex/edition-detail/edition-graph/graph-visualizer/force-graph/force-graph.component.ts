@@ -426,7 +426,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         // If type of triples is text/turtle (not array)
         // The triples must be parsed to objects instead
         if (typeof triples === 'string') {
-            this.graphVisualizerService.parseTriples(triples).then((data: { triples; namespaces }) => {
+            this.graphVisualizerService.parseTripleString(triples).then((data: { triples; namespaces }) => {
                 const abrTriples: Triple[] = this.graphVisualizerService.abbreviateTriples(
                     data.triples,
                     data.namespaces
