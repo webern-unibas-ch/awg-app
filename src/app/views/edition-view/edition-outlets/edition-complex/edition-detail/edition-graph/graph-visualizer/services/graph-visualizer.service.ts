@@ -11,13 +11,12 @@ import {
     Namespace,
     NamespaceType,
     PrefixForm,
-    TriplestoreResponse,
     QueryTypeIndex,
     QueryResult,
     QueryResultBindings,
-    Triple,
     StoreTriple,
-    StoreTripleValue,
+    Triple,
+    TriplestoreResponse,
 } from '../models';
 import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 
