@@ -4,8 +4,8 @@ import Spy = jasmine.Spy;
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { StoreTriple, Triple } from '../models';
-import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
+import { QueryResult, StoreTriple, Triple } from '../models';
+import { PrefixPipe } from '../prefix-pipe';
 
 import { GraphVisualizerService } from './graph-visualizer.service';
 
@@ -523,6 +523,204 @@ describe('GraphVisualizerService', () => {
             expect(() => (graphVisualizerService as any)._extractNamespacesFromString(undefined, tripleStr))
                 .withContext('should throw an error')
                 .toThrowError('The type must be TURTLE or SPARQL, but was: undefined.');
+        });
+    });
+
+    describe('#doQuery()', () => {
+        it('should have a `doQuery` method', () => {
+            expect(graphVisualizerService.doQuery).toBeDefined();
+        });
+
+        it('should create an instance of rdfstore', async () => {
+            const queryStr = 'CONSTRUCT WHERE { ?s ?p ?o }';
+            const tripleStr =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+            const queryType = 'construct';
+
+            await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+            expect((graphVisualizerService as any)._store).toBeDefined();
+        });
+
+        describe('should perform a given query with a given turtle string against the rdfstore', () => {
+            it('... and return Triple[] with CONSTRUCT query', async () => {
+                const queryStr = 'CONSTRUCT WHERE { ?s ?p ?o }';
+                const tripleStr =
+                    '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                const queryType = 'construct';
+                const expectedConstructResult: Triple[] = [
+                    {
+                        subject: 'ex:subject',
+                        predicate: 'ex:predicate',
+                        object: 'ex:object',
+                    },
+                ];
+
+                const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+                expect(result).toBeDefined();
+                expect(result).withContext(`should equal ${expectedConstructResult}`).toEqual(expectedConstructResult);
+            });
+
+            it('... and return QueryResult with SELECT query', async () => {
+                const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o . }';
+                const tripleStr =
+                    '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                const queryType = 'select';
+                const expectedSelectResult: QueryResult = {
+                    head: {
+                        vars: ['s', 'p', 'o'],
+                    },
+                    body: {
+                        bindings: [
+                            {
+                                s: {
+                                    type: 'uri',
+                                    value: 'http://example.org/subject',
+                                    label: 'http://example.org/subject',
+                                },
+                                p: {
+                                    type: 'uri',
+                                    value: 'http://example.org/predicate',
+                                    label: 'http://example.org/predicate',
+                                },
+                                o: {
+                                    type: 'uri',
+                                    value: 'http://example.org/object',
+                                    label: 'http://example.org/object',
+                                },
+                            },
+                        ],
+                    },
+                };
+
+                const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+                expect(result).toBeDefined();
+                expect(result).withContext(`should equal ${expectedSelectResult}`).toEqual(expectedSelectResult);
+            });
+
+            it('... and transform integer literals to number labels in a SELECT response', async () => {
+                const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o . }';
+                const tripleStr =
+                    '@prefix ex: <http://example.org/>. ' +
+                    '@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . ' +
+                    '<http://example.org/subject> <http://example.org/predicate> "1"^^xsd:nonNegativeInteger . ' +
+                    '<http://example.org/subject2> <http://example.org/predicate2> "2"^^xsd:integer . ';
+                const queryType = 'select';
+                const expectedSelectResult: QueryResult = {
+                    head: {
+                        vars: ['s', 'p', 'o'],
+                    },
+                    body: {
+                        bindings: [
+                            {
+                                s: {
+                                    type: 'uri',
+                                    value: 'http://example.org/subject',
+                                    label: 'http://example.org/subject',
+                                },
+                                p: {
+                                    type: 'uri',
+                                    value: 'http://example.org/predicate',
+                                    label: 'http://example.org/predicate',
+                                },
+                                o: {
+                                    type: 'literal',
+                                    value: '1',
+                                    label: 1,
+                                    datatype: 'http://www.w3.org/2001/XMLSchema#nonNegativeInteger',
+                                },
+                            },
+                            {
+                                s: {
+                                    type: 'uri',
+                                    value: 'http://example.org/subject2',
+                                    label: 'http://example.org/subject2',
+                                },
+                                p: {
+                                    type: 'uri',
+                                    value: 'http://example.org/predicate2',
+                                    label: 'http://example.org/predicate2',
+                                },
+                                o: {
+                                    type: 'literal',
+                                    value: '2',
+                                    label: 2,
+                                    datatype: 'http://www.w3.org/2001/XMLSchema#integer',
+                                },
+                            },
+                        ],
+                    },
+                };
+
+                const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+                console.log(result);
+
+                expect(result).toBeDefined();
+                expect(result).withContext(`should equal ${expectedSelectResult}`).toEqual(expectedSelectResult);
+            });
+
+            describe('... and return `undefined`', () => {
+                it('... if querytype is not CONSTRUCT or SELECT', async () => {
+                    const queryStr = 'ASK WHERE { ?s ?p ?o }';
+                    const tripleStr =
+                        '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                    const queryType = 'ask';
+
+                    const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+                    expect(result).toBeUndefined();
+                });
+
+                it('... if response of a SELECT query is undefined', async () => {
+                    const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o . }';
+                    const tripleStr =
+                        '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                    const queryType = 'select';
+
+                    spyOn(graphVisualizerService as any, '_executeQuery').and.resolveTo('');
+
+                    const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+                    expect(result).toBeUndefined();
+                });
+            });
+
+            it('... and return `Query returned no results` if SELECT query returns an empty array', async () => {
+                const queryStr = 'PREFIX ex: <http://example.org/> SELECT * WHERE { ?s ?p ?o . }';
+                const tripleStr =
+                    '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+                const queryType = 'select';
+
+                spyOn(graphVisualizerService as any, '_executeQuery').and.resolveTo([]);
+
+                const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
+
+                expect(result).toBeDefined();
+                expect(result)
+                    .withContext(`should equal 'Query returned no results'`)
+                    .toEqual('Query returned no results');
+            });
+        });
+    });
+
+    describe('#parseTripleString()', () => {
+        it('should have a `parseTripleString` method', () => {
+            expect(graphVisualizerService.parseTripleString).toBeDefined();
+        });
+
+        it('should return a Promise of triples and namespaces', async () => {
+            const triples =
+                '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
+
+            const result = graphVisualizerService.parseTripleString(triples);
+
+            expect(result).toBeDefined();
+            await expectAsync(result).toBeResolved();
+
+            // TODO: check if the result is a Promise of Triple[] and Namespace[]
         });
     });
 });
