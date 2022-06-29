@@ -13,10 +13,10 @@ import {
     PrefixForm,
     QueryTypeIndex,
     QueryResult,
-    QueryResultBindings,
-    StoreTriple,
+    RDFStoreConstructResponse,
+    RDFStoreConstructResponseTriple,
+    RDFStoreSelectResponse,
     Triple,
-    TriplestoreConstructResponse,
 } from '../models';
 import { PrefixPipe } from '../prefix-pipe';
 
@@ -103,17 +103,21 @@ export class GraphVisualizerService {
      *
      * It abbreviates the given triples according to the given namespaces.
      *
-     * @param {StoreTriple[]} storeTriples The given triple response from the store.
+     * @param {RDFStoreConstructResponseTriple[]} storeTriples The given triples from the rdf construct response.
      * @param {string} namespaces The given namespaces.
      * @param {string} [mimeType] The given optional mimeType.
      *
      * @returns {Triple[]} The array of abbreviated triples.
      */
-    abbreviateTriples(storeTriples: StoreTriple[], namespaces: Namespace, mimeType?: string): Triple[] {
+    abbreviateTriples(
+        storeTriples: RDFStoreConstructResponseTriple[],
+        namespaces: Namespace,
+        mimeType?: string
+    ): Triple[] {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
-        return storeTriples.map((storeTriple: StoreTriple) => {
+        return storeTriples.map((storeTriple: RDFStoreConstructResponseTriple) => {
             let s: string = storeTriple.subject.nominalValue;
             let p: string = storeTriple.predicate.nominalValue;
             let o: string = storeTriple.object.nominalValue;
@@ -227,17 +231,18 @@ export class GraphVisualizerService {
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
             .then((_storeSize: number) => this._executeQuery(this._store, query))
-            .then((res: TriplestoreConstructResponse | QueryResultBindings[]) => {
+            .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
+                console.log(`Query result:`, res);
                 // Reformat data if select query
                 if (queryType === 'select') {
-                    const response = res as QueryResultBindings[];
+                    const response = res as RDFStoreSelectResponse;
                     const selectResponse = this._prepareSelectResponse(response);
                     return selectResponse.data;
                 }
 
                 // Reformat data if construct query
                 if (queryType === 'construct') {
-                    const response = res as TriplestoreConstructResponse;
+                    const response = res as RDFStoreConstructResponse;
                     // Get namespaces
                     return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
                         // Process triples
@@ -351,11 +356,11 @@ export class GraphVisualizerService {
      * @param {any} store The given triplestore.
      * @param {string} query The given query string.
      *
-     * @returns {Promise<TriplestoreConstructResponse | QueryResultBindings[]>} A promise of the triplestore response or query result bindings.
+     * @returns {Promise<RDFStoreConstructResponse | RDFStoreSelectResponse>} A promise of the rdfstore construct or select response.
      */
-    private _executeQuery(store: any, query: string): Promise<TriplestoreConstructResponse | QueryResultBindings[]> {
+    private _executeQuery(store: any, query: string): Promise<RDFStoreConstructResponse | RDFStoreSelectResponse> {
         return new Promise((resolve, reject) => {
-            store.execute(query, (err, res: TriplestoreConstructResponse | QueryResultBindings[]) => {
+            store.execute(query, (err, res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
                 if (err) {
                     console.error('_executeQuery# got ERROR', err);
                     reject(err);
@@ -541,11 +546,11 @@ export class GraphVisualizerService {
      *
      * It prepares the data of the select response.
      *
-     * @param {QueryResultBindings[]} selectResponse The given selectResponse as QueryResultBindings array.
+     * @param {RDFStoreSelectResponse} selectResponse The given selectResponse.
      *
      * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
      */
-    private _prepareSelectResponse(selectResponse: QueryResultBindings[]): {
+    private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse): {
         status: number;
         data: QueryResult | string;
     } {
@@ -557,6 +562,7 @@ export class GraphVisualizerService {
         if (selectResponse[0] == null) {
             return { status: 400, data: 'Query returned no results' };
         }
+
         // Get variable keys
         const varKeys = Object.keys(selectResponse[0]);
 

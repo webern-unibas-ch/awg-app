@@ -43,35 +43,94 @@ export interface Triple extends AbstractTriple {
 }
 
 /**
- * The StoreTriple interface.
+ * The RDFStoreConstructResponseTriple interface.
  *
- * It represents an RDF triple as returned from Triplestore.
+ * It represents an RDF triple as returned from CONSTRUCT response against rdfstore.
  */
-export interface StoreTriple extends AbstractTriple {
+export interface RDFStoreConstructResponseTriple extends AbstractTriple {
     /**
-     * The subject of an RDF triple.
+     * The subject of an RDF triple from CONSTRUCT response against rdfstore..
      */
-    subject: StoreTripleValue;
+    subject: RDFStoreConstructResponseTripleSegment;
 
     /**
-     * The predicate of an RDF triple.
+     * The predicate of an RDF triple from CONSTRUCT response against rdfstore..
      */
-    predicate: StoreTripleValue;
+    predicate: RDFStoreConstructResponseTripleSegment;
 
     /**
-     * The object of an RDF triple.
+     * The object of an RDF triple from CONSTRUCT response against rdfstore..
      */
-    object: StoreTripleValue;
+    object: RDFStoreConstructResponseTripleSegment;
 }
 
 /**
- * The StoreTripleValue interface.
+ * The RDFStoreConstructResponseTripleSegment interface.
  *
- * It represents the nominal value of an RDF triple as returned from Triplestore.
+ * It represents a segment of an RDF triple as returned from CONSTRUCT response against rdfstore.
  */
-export interface StoreTripleValue {
+export interface RDFStoreConstructResponseTripleSegment {
     /**
-     * The nominal value of an RDF triple component.
+     * The nominal value of an RDF triple segment from CONSTRUCT response against rdfstore.
      */
     nominalValue: string;
+
+    /**
+     * The interfacename of an RDF triple segment from CONSTRUCT response against rdfstore.
+     */
+    interfacename?: string;
+
+    /**
+     * The attributes of an RDF triple segment from CONSTRUCT response against rdfstore.
+     */
+    attributes?: string[];
+}
+
+/**
+ * The RDFStoreSelectResponseTriple interface.
+ *
+ * It represents an RDF triple as returned from SELECT response against rdfstore.
+ */
+export interface RDFStoreSelectResponseTriple extends AbstractTriple {
+    /**
+     * The subject of an RDF triple from SELECT response against rdfstore..
+     */
+    subject: RDFStoreSelectResponseTripleSegment;
+
+    /**
+     * The predicate of an RDF triple from SELECT response against rdfstore..
+     */
+    predicate: RDFStoreSelectResponseTripleSegment;
+
+    /**
+     * The object of an RDF triple from SELECT response against rdfstore..
+     */
+    object: RDFStoreSelectResponseTripleSegment;
+}
+
+/**
+ * The RDFStoreSelectResponseTripleSegment interface.
+ *
+ * It represents a segment of an RDF triple as returned from SELECT response against rdfstore.
+ */
+export interface RDFStoreSelectResponseTripleSegment {
+    /**
+     * The type of an RDF triple segment from SELECT response against rdfstore.
+     */
+    type: string;
+
+    /**
+     * The label of an RDF triple segment from SELECT response against rdfstore.
+     */
+    label: any;
+
+    /**
+     * The value of an RDF triple segment from SELECT response against rdfstore.
+     */
+    value: string;
+
+    /**
+     * The datatype of an RDF triple segment from SELECT response against rdfstore.
+     */
+    datatype?: string;
 }

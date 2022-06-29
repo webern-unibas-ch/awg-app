@@ -4,7 +4,7 @@ import Spy = jasmine.Spy;
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { QueryResult, StoreTriple, Triple } from '../models';
+import { QueryResult, RDFStoreConstructResponseTriple, Triple } from '../models';
 import { PrefixPipe } from '../prefix-pipe';
 
 import { GraphVisualizerService } from './graph-visualizer.service';
@@ -13,7 +13,7 @@ describe('GraphVisualizerService', () => {
     let graphVisualizerService: GraphVisualizerService;
 
     let expectedTriples: Triple[];
-    let expectedStoreTriples: StoreTriple[];
+    let expectedConstructResponseTriples: RDFStoreConstructResponseTriple[];
 
     let consoleSpy: Spy;
 
@@ -47,7 +47,7 @@ describe('GraphVisualizerService', () => {
             },
         ];
 
-        expectedStoreTriples = [
+        expectedConstructResponseTriples = [
             {
                 subject: { nominalValue: 'http://example.org/subject1' },
                 predicate: { nominalValue: 'http://example.org/predicate1' },
@@ -155,7 +155,7 @@ describe('GraphVisualizerService', () => {
 
         describe('should abbreviate the given StoreTriples', () => {
             it('... according to the given namespaces', () => {
-                const triples: StoreTriple[] = expectedStoreTriples;
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {
                     ex: 'http://example.org/',
                     exs: 'https://example.org/',
@@ -179,7 +179,7 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... if mimetype `text/turtle` is given', () => {
-                const triples: StoreTriple[] = expectedStoreTriples;
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {
                     ex: 'http://example.org/',
                     exs: 'https://example.org/',
@@ -204,7 +204,7 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... if no mimetype is given (`text/turtle` applied by default)', () => {
-                const triples: StoreTriple[] = expectedStoreTriples;
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {
                     ex: 'http://example.org/',
                     exs: 'https://example.org/',
@@ -231,7 +231,7 @@ describe('GraphVisualizerService', () => {
 
         describe('should not abbreviate the given StoreTriples', () => {
             it('... if the IRI uses an unknown namespace', () => {
-                const triples: StoreTriple[] = expectedStoreTriples;
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {};
 
                 const result = graphVisualizerService.abbreviateTriples(triples, namespaces);
@@ -264,7 +264,7 @@ describe('GraphVisualizerService', () => {
             });
 
             it('... if a given mimetype is not `text/turtle`', () => {
-                const triples: StoreTriple[] = expectedStoreTriples;
+                const triples: RDFStoreConstructResponseTriple[] = expectedConstructResponseTriples;
                 const namespaces = {
                     ex: 'http://example.org/',
                     exs: 'https://example.org/',
