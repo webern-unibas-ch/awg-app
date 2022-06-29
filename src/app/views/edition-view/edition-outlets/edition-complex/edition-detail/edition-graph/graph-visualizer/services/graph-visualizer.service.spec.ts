@@ -656,8 +656,6 @@ describe('GraphVisualizerService', () => {
 
                 const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
-                console.log(result);
-
                 expect(result).toBeDefined();
                 expect(result).withContext(`should equal ${expectedSelectResult}`).toEqual(expectedSelectResult);
             });
