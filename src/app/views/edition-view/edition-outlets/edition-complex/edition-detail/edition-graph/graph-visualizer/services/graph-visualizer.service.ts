@@ -18,7 +18,7 @@ import {
     Triple,
     TriplestoreResponse,
 } from '../models';
-import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
+import { PrefixPipe } from '../prefix-pipe';
 
 /**
  * Declared variable: rdfstore.
