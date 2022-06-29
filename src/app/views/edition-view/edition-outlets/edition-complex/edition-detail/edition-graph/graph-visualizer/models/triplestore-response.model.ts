@@ -1,11 +1,11 @@
-import { Triple } from './triple.model';
+import { StoreTriple } from './triple.model';
 
 /**
  * The TriplestoreResponse interface.
  *
  * It represents the response of a triplestore.
  */
-export interface TriplestoreResponse {
+export interface TriplestoreConstructResponse {
     /**
      * The actions of the triplestore response (optional).
      */
@@ -19,5 +19,5 @@ export interface TriplestoreResponse {
     /**
      * The triples of the triplestore response (optional).
      */
-    triples?: Triple[];
+    triples?: StoreTriple[];
 }

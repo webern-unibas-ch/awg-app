@@ -18,7 +18,7 @@ import { D3SimulationNodeTriple } from './d3-simulation-node-triple.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 import { Namespace, NamespaceType } from './namespace.model';
 import { PrefixForm, Prefix } from './prefix.model';
-import { TriplestoreResponse } from './triplestore-response.model';
+import { TriplestoreConstructResponse } from './triplestore-response.model';
 import { QueryTypeIndex } from './query-type-index.model';
 import { QueryResult, QueryResultBindings } from './query-result.model';
 import { StoreTriple, StoreTripleValue, Triple } from './triple.model';
@@ -43,7 +43,7 @@ export {
     QueryTypeIndex,
     QueryResult,
     QueryResultBindings,
-    TriplestoreResponse,
+    TriplestoreConstructResponse,
     Triple,
     StoreTriple,
     StoreTripleValue,

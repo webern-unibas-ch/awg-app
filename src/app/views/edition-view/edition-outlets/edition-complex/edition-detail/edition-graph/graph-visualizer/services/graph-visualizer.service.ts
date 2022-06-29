@@ -16,7 +16,7 @@ import {
     QueryResultBindings,
     StoreTriple,
     Triple,
-    TriplestoreResponse,
+    TriplestoreConstructResponse,
 } from '../models';
 import { PrefixPipe } from '../prefix-pipe';
 
@@ -227,17 +227,17 @@ export class GraphVisualizerService {
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
             .then((storeSize: number) => this._executeQuery(this._store, query))
-            .then((res: any) => {
-                const response = res;
-
+            .then((res: TriplestoreConstructResponse | QueryResultBindings[]) => {
                 // Reformat data if select query
                 if (queryType === 'select') {
+                    const response = res as QueryResultBindings[];
                     const selectResponse = this._prepareSelectResponse(response);
                     return selectResponse.data;
                 }
 
                 // Reformat data if construct query
                 if (queryType === 'construct') {
+                    const response = res as TriplestoreConstructResponse;
                     // Get namespaces
                     return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
                         // Process triples
@@ -351,11 +351,11 @@ export class GraphVisualizerService {
      * @param {any} store The given triplestore.
      * @param {string} query The given query string.
      *
-     * @returns {Promise<TriplestoreResponse>} A promise of the triplestore response.
+     * @returns {Promise<TriplestoreConstructResponse | QueryResultBindings[]>} A promise of the triplestore response or query result bindings.
      */
-    private _executeQuery(store: any, query: string): Promise<TriplestoreResponse> {
+    private _executeQuery(store: any, query: string): Promise<TriplestoreConstructResponse | QueryResultBindings[]> {
         return new Promise((resolve, reject) => {
-            store.execute(query, (err, res: TriplestoreResponse) => {
+            store.execute(query, (err, res: TriplestoreConstructResponse | QueryResultBindings[]) => {
                 if (err) {
                     console.error('_executeQuery# got ERROR', err);
                     reject(err);
@@ -541,7 +541,7 @@ export class GraphVisualizerService {
      *
      * It prepares the data of the select response.
      *
-     * @param {QueryResultBindings[]} data The given data as QueryResultBindings array.
+     * @param {QueryResultBindings[]} selectResponse The given selectResponse as QueryResultBindings array.
      *
      * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
      */
