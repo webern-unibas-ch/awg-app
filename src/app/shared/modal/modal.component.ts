@@ -20,9 +20,9 @@ const MODALCONTENTSNIPPETS = {
     OP12_SOURCE_NOT_A:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
     OP12_SHEET_COMING_SOON:
-        'Die edierten Notentexte von <strong>Aa:SkI/1</strong>, <strong>Ab:SkII/1</strong>, <strong>Ac:SkIII/1</strong> und <strong>Ac:SkIII/7</strong> sowie <strong>Ae:SkIV/1</strong> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
+        'Die edierten Notentexte der Skizzen zu M 213 (<strong>A<sup>c</sup></strong>), M 216 (<strong>A<sup>d</sup></strong>) und M 217 (<strong><sup>Ab</sup></strong>) erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
     OP12_EDITION_COMING_SOON:
-        '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="nobullets"><li>Werkedition der Druckfassung der <em>Vier Lieder</em> op. 12 <br/> Textedition von Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1) <br/> Textedition von Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2) <br/> Textedition von Nr. IV <em>Gleich und Gleich</em> (Fassung 1) </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
+        '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="nobullets"><li>Werkedition der Druckfassung der <em>Vier Lieder</em> op. 12 <br/> „<em>Der Tag ist vergangen</em>“ M 212: Textfassung 1 <br/> „<em>Der Tag ist vergangen</em>“ M 212: Textfassung 2 <br/> <em>Gleich und Gleich</em> M 216; Textfassung 1 </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
     OP19_SOURCE_NOT_B:
         '<p>Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 in AWG I/3.</p>',
     OP23_SOURCE_NOT_B:
