@@ -226,7 +226,7 @@ export class GraphVisualizerService {
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((storeSize: number) => this._executeQuery(this._store, query))
+            .then((_storeSize: number) => this._executeQuery(this._store, query))
             .then((res: TriplestoreConstructResponse | QueryResultBindings[]) => {
                 // Reformat data if select query
                 if (queryType === 'select') {
@@ -315,7 +315,7 @@ export class GraphVisualizerService {
         // If IRI has 'http' or 'https in its name, continue
         if (iri.indexOf('http') !== -1) {
             // Loop over namespaces
-            Object.entries(namespaces).forEach(([key, value], index) => {
+            Object.entries(namespaces).forEach(([key, value]) => {
                 // If the IRI has the prefixed namespace in its name, return it
                 if (iri.indexOf(value) !== -1) {
                     newVal = iri.replace(value, key + ':');

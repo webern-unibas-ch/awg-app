@@ -247,7 +247,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     ngOnInit() {
         // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
-        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe((event: any) => {
+        this._resize$.pipe(debounceTime(150), takeUntil(this._destroyed$)).subscribe((_event: any) => {
             this._redraw();
         });
 
@@ -991,8 +991,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             const y1 = d.nodeSubject.y;
             let x2 = d.nodeObject.x;
             let y2 = d.nodeObject.y;
-            const dx = x2 - x1;
-            const dy = y2 - y1;
             const dr = 0;
 
             // Defaults for normal edge.

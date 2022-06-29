@@ -160,10 +160,8 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * Angular life cycle hook: ngOnChanges.
      *
      * It checks for changes of the given input.
-     *
-     * @param {SimpleChanges} changes The changes of the input.
      */
-    ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges() {
         this.prepareFolioSvgOutput();
     }
 

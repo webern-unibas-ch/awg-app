@@ -118,7 +118,7 @@ export class EditionGraphComponent implements OnInit {
      *
      * It listens for fullscreen exit with ESC key.
      */
-    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(_event: KeyboardEvent) {
         if (
             !this.document.fullscreenElement && // Alternative standard method
             !this.document.mozFullScreenElement &&
