@@ -7,10 +7,11 @@ import Spy = jasmine.Spy;
 
 import { expectSpyCall } from '@testing/expect-helper';
 
-import { EditionService } from '@awg-views/edition-view/services';
+import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EditionRowTables } from '@awg-views/edition-view/models';
+import { EditionService, EditionDataService } from '@awg-views/edition-view/services';
 
 import { EditionRowTablesComponent } from './edition-row-tables.component';
-import { EditionWork } from '@awg-views/edition-view/models';
 
 describe('EditionRowTablesComponent (DONE)', () => {
     let component: EditionRowTablesComponent;
@@ -19,8 +20,10 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
     let editionServiceUpdateIsRowTablesViewSpy: Spy;
     let editionServiceClearIsRowTablesViewSpy: Spy;
+    let editionDataServiceGetRowTablesSpy: Spy;
 
     let mockEditionService: Partial<EditionService>;
+    let mockEditionDataService: Partial<EditionDataService>;
     let mockIsRowTableViewSubject: ReplaySubject<boolean>;
 
     beforeEach(async () => {
@@ -32,10 +35,18 @@ describe('EditionRowTablesComponent (DONE)', () => {
             clearIsRowTableView: (): void => mockIsRowTableViewSubject.next(null),
         };
 
+        // Mock edition data service
+        mockEditionDataService = {
+            getRowTables: (): EditionRowTables[] => EDITION_ROW_TABLES_DATA,
+        };
+
         await TestBed.configureTestingModule({
             imports: [RouterTestingModule],
             declarations: [EditionRowTablesComponent],
-            providers: [{ provide: EditionService, useValue: mockEditionService }],
+            providers: [
+                { provide: EditionService, useValue: mockEditionService },
+                { provide: EditionDataService, useValue: mockEditionDataService },
+            ],
         }).compileComponents();
     });
 
@@ -45,12 +56,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         mockEditionService = TestBed.inject(EditionService);
+        mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         editionServiceUpdateIsRowTablesViewSpy = spyOn(mockEditionService, 'updateIsRowTableView').and.callThrough();
         editionServiceClearIsRowTablesViewSpy = spyOn(mockEditionService, 'clearIsRowTableView').and.callThrough();
+        editionDataServiceGetRowTablesSpy = spyOn(mockEditionDataService, 'getRowTables').and.callThrough();
     });
 
     it('should create', () => {
@@ -58,12 +71,16 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have rowTablesData', () => {
-            expect(component.rowTablesData).toBeDefined();
+        it('... should not have rowTablesData', () => {
+            expect(component.rowTablesData).toBeUndefined();
         });
 
         it('... should not have called EditionService', () => {
             expectSpyCall(editionServiceUpdateIsRowTablesViewSpy, 0);
+        });
+
+        it('... should not have called EditionDataService', () => {
+            expectSpyCall(editionDataServiceGetRowTablesSpy, 0);
         });
     });
 
@@ -75,6 +92,14 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         it('... should have updated IsRowTableViewFlag (via EditionService)', () => {
             expectSpyCall(editionServiceUpdateIsRowTablesViewSpy, 1, true);
+        });
+
+        it('... should have called EditionDataService', () => {
+            expectSpyCall(editionDataServiceGetRowTablesSpy, 1);
+        });
+
+        it('... should have rowTablesData', () => {
+            expect(component.rowTablesData).toEqual(EDITION_ROW_TABLES_DATA);
         });
 
         describe('#ngOnDestroy', () => {

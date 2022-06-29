@@ -4,7 +4,8 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionWork } from '@awg-views/edition-view/models';
 
 /**
  * The Header component.

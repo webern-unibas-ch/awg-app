@@ -76,6 +76,7 @@ Scopes (specific to this project, not part of the Angular convention):
   - `app`
   - `assets`
   - `contact`
+  - `core`
   - `edition`
   - `home`
   - `page-not-found`
@@ -87,7 +88,6 @@ Scopes (specific to this project, not part of the Angular convention):
 
 
 - related to build process and tests
-  - `core`
   - `deps`
   - `deps-dev`
   - `gh-actions`

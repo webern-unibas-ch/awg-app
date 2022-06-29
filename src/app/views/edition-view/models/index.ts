@@ -9,11 +9,12 @@
 
 import { EditionConstants, EditionRoute, EditionSeriesRoutes } from './edition-constants';
 
+import { EditionRowTables } from './edition-row-tables.model';
+
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
 import { EditionWork, EditionTitleStatement } from './edition-work.model';
-import { EditionWorks } from './edition-works';
 
 import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
@@ -33,14 +34,14 @@ import { ViewBox } from './view-box.model';
 export {
     EditionConstants,
     EditionRoute,
+    EditionRowTables,
     EditionSeriesRoutes,
-    EditionTitleStatement,
-    EditionWork,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionWorks,
+    EditionTitleStatement,
+    EditionWork,
     FolioConvoluteList,
     FolioConvolute,
     Folio,

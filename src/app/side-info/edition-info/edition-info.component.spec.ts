@@ -6,7 +6,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { EditionConstants, EditionRoute, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionConstants, EditionRoute, EditionWork } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 

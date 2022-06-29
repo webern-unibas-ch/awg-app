@@ -9,7 +9,8 @@ import Spy = jasmine.Spy;
 import { expectSpyCall } from '@testing/expect-helper';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionComplexComponent } from './edition-complex.component';
