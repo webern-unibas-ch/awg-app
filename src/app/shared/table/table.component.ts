@@ -7,8 +7,6 @@ import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
 import { TablePaginatorOptions, TableData, TableOptions, TableRows } from './models';
 
-import { QueryResultBindings } from '@awg-views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models';
-
 /**
  * The Table component.
  *

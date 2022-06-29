@@ -1,4 +1,3 @@
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable, of as observableOf } from 'rxjs';
 
 /**
