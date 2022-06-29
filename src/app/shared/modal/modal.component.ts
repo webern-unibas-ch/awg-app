@@ -20,7 +20,7 @@ const MODALCONTENTSNIPPETS = {
     OP12_SOURCE_NOT_A:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
     OP12_SHEET_COMING_SOON:
-        'Die edierten Notentexte der Skizzen zu M 213 (<strong>A<sup>c</sup></strong>), M 216 (<strong>A<sup>d</sup></strong>) und M 217 (<strong><sup>Ab</sup></strong>) erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
+        'Die edierten Notentexte der Skizzen zu M 213 (<strong>A<sup>c</sup></strong>), M 216 (<strong>A<sup>d</sup></strong>) und M 217 (<strong>A<sup>b</sup></strong>) erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
     OP12_EDITION_COMING_SOON:
         '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="nobullets"><li>Werkedition der Druckfassung der <em>Vier Lieder</em> op. 12 <br/> „<em>Der Tag ist vergangen</em>“ M 212: Textfassung 1 <br/> „<em>Der Tag ist vergangen</em>“ M 212: Textfassung 2 <br/> <em>Gleich und Gleich</em> M 216; Textfassung 1 </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
     OP19_SOURCE_NOT_B:
