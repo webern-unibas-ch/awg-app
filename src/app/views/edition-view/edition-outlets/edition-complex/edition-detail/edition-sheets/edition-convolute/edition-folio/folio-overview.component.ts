@@ -6,7 +6,6 @@ import {
     Input,
     OnChanges,
     Output,
-    SimpleChanges,
 } from '@angular/core';
 
 import {
