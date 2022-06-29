@@ -432,13 +432,12 @@ describe('GraphVisualizerService', () => {
             const tripleStr =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
             const queryStr = 'SELECT * WHERE { ?s ?p ?o }';
+            const expectedResult = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s ?p ?o }';
 
             const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
             expect(result).toBeDefined();
-            expect(result)
-                .withContext('should be `PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s ?p ?o }`')
-                .toBe('PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s ?p ?o }');
+            expect(result).withContext(`should be ${expectedResult}`).toBe(expectedResult);
         });
 
         describe('should check qNames from the query if a qName is not referenced in the list of namespaces and ...', () => {
@@ -447,6 +446,8 @@ describe('GraphVisualizerService', () => {
                     const tripleStr =
                         '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
                     const queryStr = 'SELECT * WHERE { ?s xyz:composer ?o }';
+                    const expectedFirstWarning = `Prefix 'xyz:' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`;
+                    const expectedSecondWarning = `'xyz:' is unknown. Please provide a declaration.`;
 
                     graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
@@ -454,17 +455,13 @@ describe('GraphVisualizerService', () => {
 
                     expect(consoleSpy.calls.argsFor(0)).toBeDefined();
                     expect(consoleSpy.calls.argsFor(0))
-                        .withContext(
-                            `should equal 'Prefix \'xyz:\' not declared in SPARQL and/or Turtle header. . Searching in default namespaces...'`
-                        )
-                        .toEqual([
-                            `Prefix 'xyz:' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`,
-                        ]);
+                        .withContext(`should equal ${expectedFirstWarning}`)
+                        .toEqual([expectedFirstWarning]);
 
                     expect(consoleSpy.calls.argsFor(1)).toBeDefined();
                     expect(consoleSpy.calls.argsFor(1))
-                        .withContext(`should equal ''xyz:' is unknown. Please provide a declaration.`)
-                        .toEqual([`'xyz:' is unknown. Please provide a declaration.`]);
+                        .withContext(`should equal ${expectedSecondWarning}`)
+                        .toEqual([expectedSecondWarning]);
                 });
             });
 
@@ -473,23 +470,20 @@ describe('GraphVisualizerService', () => {
                     const tripleStr =
                         '@prefix ex: <http://example.org/> .\n<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
                     const queryStr = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }';
+                    const expectedResult = `PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }`;
 
                     const result = graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
                     expect(result).toBeDefined();
-                    expect(result.trim())
-                        .withContext(
-                            'should be a `PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s ?p ?o }`'
-                        )
-                        .toBe(
-                            'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\nPREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }'
-                        );
+                    expect(result.trim()).withContext(`should be ${expectedResult}`).toBe(expectedResult);
                 });
 
                 it('... warn in the console ', () => {
                     const tripleStr =
                         '@prefix ex: <http://example.org/> .\n<http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
                     const queryStr = 'PREFIX ex: <http://example.org/>\nSELECT * WHERE { ?s foaf:age ?o }';
+                    const expectedFirstWarning = `Prefix 'foaf:' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`;
+                    const expectedSecondWarning = `Added 'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n' to SPARQL prefixes from list of default namespaces.`;
 
                     graphVisualizerService.checkNamespacesInQuery(queryStr, tripleStr);
 
@@ -497,21 +491,13 @@ describe('GraphVisualizerService', () => {
 
                     expect(consoleSpy.calls.argsFor(0)).toBeDefined();
                     expect(consoleSpy.calls.argsFor(0))
-                        .withContext(
-                            `should equal 'Prefix \'foaf:\' not declared in SPARQL and/or Turtle header. Searching in default namespaces...'`
-                        )
-                        .toEqual([
-                            `Prefix 'foaf:' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`,
-                        ]);
+                        .withContext(`should equal ${expectedFirstWarning}`)
+                        .toEqual([expectedFirstWarning]);
 
                     expect(consoleSpy.calls.argsFor(1)).toBeDefined();
                     expect(consoleSpy.calls.argsFor(1))
-                        .withContext(
-                            `should equal 'Added \'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n\' to SPARQL prefixes from list of default namespaces'`
-                        )
-                        .toEqual([
-                            `Added 'PREFIX foaf: <http://xmlns.com/foaf/0.1/>\n' to SPARQL prefixes from list of default namespaces.`,
-                        ]);
+                        .withContext(`should equal ${expectedSecondWarning}`)
+                        .toEqual([expectedSecondWarning]);
                 });
             });
         });
@@ -519,10 +505,11 @@ describe('GraphVisualizerService', () => {
         it('should throw an error if extractNamespacesFromString() is called with another type than TURTLE or SPARQL', () => {
             const tripleStr =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
+            const expectedError = 'The type must be TURTLE or SPARQL, but was: undefined.';
 
             expect(() => (graphVisualizerService as any)._extractNamespacesFromString(undefined, tripleStr))
                 .withContext('should throw an error')
-                .toThrowError('The type must be TURTLE or SPARQL, but was: undefined.');
+                .toThrowError(expectedError);
         });
     });
 
@@ -691,15 +678,14 @@ describe('GraphVisualizerService', () => {
                 const tripleStr =
                     '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
                 const queryType = 'select';
+                const expectedResponse = 'Query returned no results';
 
                 spyOn(graphVisualizerService as any, '_executeQuery').and.resolveTo([]);
 
                 const result = await graphVisualizerService.doQuery(queryType, queryStr, tripleStr);
 
                 expect(result).toBeDefined();
-                expect(result)
-                    .withContext(`should equal 'Query returned no results'`)
-                    .toEqual('Query returned no results');
+                expect(result).withContext(`should equal ${expectedResponse}`).toEqual(expectedResponse);
             });
         });
     });
