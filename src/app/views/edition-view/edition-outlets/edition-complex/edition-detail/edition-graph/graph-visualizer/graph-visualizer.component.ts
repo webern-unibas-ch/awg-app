@@ -265,9 +265,9 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
-                    await this.showErrorMessage(err.name, 'The query did not return any results', 10000);
+                    this.showErrorMessage(err.name, 'The query did not return any results', 10000);
                 }
-                await this.showErrorMessage(err.name, err.message, 10000);
+                this.showErrorMessage(err.name, err.message, 10000);
             }
 
             // Capture query time
