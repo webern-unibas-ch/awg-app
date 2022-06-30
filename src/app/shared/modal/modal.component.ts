@@ -16,7 +16,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
  *          `HINT_EDITION_SHEETS`,
  *          `HINT_EDITION_GRAPH`.
  */
-const MODALCONTENTSNIPPETS = {
+const MODAL_CONTENT_SNIPPETS = {
     OP12_SOURCE_NOT_A:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
     OP12_SHEET_COMING_SOON:
@@ -140,15 +140,15 @@ export class ModalComponent {
      * It opens the modal with the text snippet
      * represented by the given snippet key.
      *
-     * Snippet key must be an existing key of MODALCONTENTSNIPPETS.
+     * Snippet key must be an existing key of MODAL_CONTENT_SNIPPETS.
      *
      * @param {string} modalContentSnippetKey The given snippet key.
      * @returns {void} Opens the modal.
      */
     open(modalContentSnippetKey: string): void {
         // Get modal text
-        this.modalContent = MODALCONTENTSNIPPETS[modalContentSnippetKey]
-            ? MODALCONTENTSNIPPETS[modalContentSnippetKey]
+        this.modalContent = MODAL_CONTENT_SNIPPETS[modalContentSnippetKey]
+            ? MODAL_CONTENT_SNIPPETS[modalContentSnippetKey]
             : '';
 
         // Open modalTemplate via modalService
