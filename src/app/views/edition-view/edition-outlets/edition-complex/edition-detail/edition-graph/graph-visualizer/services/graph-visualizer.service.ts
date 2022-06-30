@@ -232,7 +232,6 @@ export class GraphVisualizerService {
             })
             .then((_storeSize: number) => this._executeQuery(this._store, query))
             .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) => {
-                console.log(`Query result:`, res);
                 // Reformat data if select query
                 if (queryType === 'select') {
                     const response = res as RDFStoreSelectResponse;
