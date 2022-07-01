@@ -63,7 +63,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts</code>
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts</code>
         </p>
 
 
@@ -71,8 +71,8 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The prefix pipe.</p>
-<p>It shortens or expands a given value to be used as an RDF prefix.</p>
+                <p>The Prefix pipe.</p>
+<p>It turns a short form of an RDF prefix into a long form and vice versa.</p>
 
             </p>
 
@@ -98,102 +98,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_switchPrefixForm"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>_switchPrefixForm</b></span>
-                        <a href="#_switchPrefixForm"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_switchPrefixForm(oldValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, prefixForm: <a href="../classes/Prefix.html" target="_self">PrefixForm</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:53</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _switchPrefixForm.</p>
-<p>It shortens or expands a given value
-depending on the requested prefix form.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>oldValue</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given value to be piped.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>prefixForm</td>
-                                    <td>
-                                                <code><a href="../classes/Prefix.html" target="_self" >PrefixForm</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The requested form of the prefix (short or long).</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="transform"></a>
                     <span class="name">
                         <span ><b>transform</b></span>
@@ -210,8 +114,8 @@ depending on the requested prefix form.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:28</a></div>
                 </td>
             </tr>
 
@@ -276,7 +180,8 @@ depending on the requested prefix form.</p>
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>The transformed value.</p>
+
                     </div>
                 </td>
             </tr>
@@ -292,10 +197,10 @@ depending on the requested prefix form.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="prefixes"></a>
+                    <a name="defaultPrefixes"></a>
                     <span class="name">
-                        <span ><b>prefixes</b></span>
-                        <a href="#prefixes"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>defaultPrefixes</b></span>
+                        <a href="#defaultPrefixes"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -307,26 +212,18 @@ depending on the requested prefix form.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>[
-        new Prefix(&#x27;awg&#x27;, &#x27;https://edition.anton-webern.ch/webern-onto#&#x27;),
-        new Prefix(&#x27;dc&#x27;, &#x27;http://purl.org/dc/elements/1.1/&#x27;),
-        new Prefix(&#x27;owl&#x27;, &#x27;http://www.w3.org/2002/07/owl#&#x27;),
-        new Prefix(&#x27;prov&#x27;, &#x27;http://www.w3.org/ns/prov#&#x27;),
-        new Prefix(&#x27;rdf&#x27;, &#x27;http://www.w3.org/1999/02/22-rdf-syntax-ns#&#x27;),
-        new Prefix(&#x27;rdfs&#x27;, &#x27;http://www.w3.org/2000/01/rdf-schema#&#x27;),
-        new Prefix(&#x27;xsd&#x27;, &#x27;http://www.w3.org/2001/XMLSchema#&#x27;),
-    ]</code>
+                        <i>Default value : </i><code>DEFAULT_PREFIXES</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:18</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: prefixes.</p>
+                    <div class="io-description"><p>Public variable: defaultPrefixes.</p>
 <p>It keeps an array of default prefixes.</p>
 </div>
                 </td>
@@ -342,79 +239,60 @@ depending on the requested prefix form.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Pipe, PipeTransform } from &#x27;@angular/core&#x27;;
 
-import { Prefix, PrefixForm } from &#x27;@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models&#x27;;
+import { DEFAULT_PREFIXES } from &#x27;../data&#x27;;
+import { Prefix, PrefixForm } from &#x27;../models&#x27;;
 
 /**
- * The prefix pipe.
+ * The Prefix pipe.
  *
- * It shortens or expands a given value to be used as an RDF prefix.
+ * It turns a short form of an RDF prefix into a long form and vice versa.
  */
 @Pipe({ name: &#x27;prefix&#x27;, pure: false })
 export class PrefixPipe implements PipeTransform {
     /**
-     * Public variable: prefixes.
+     * Public variable: defaultPrefixes.
      *
      * It keeps an array of default prefixes.
      */
-    prefixes: Prefix[] &#x3D; [
-        new Prefix(&#x27;awg&#x27;, &#x27;https://edition.anton-webern.ch/webern-onto#&#x27;),
-        new Prefix(&#x27;dc&#x27;, &#x27;http://purl.org/dc/elements/1.1/&#x27;),
-        new Prefix(&#x27;owl&#x27;, &#x27;http://www.w3.org/2002/07/owl#&#x27;),
-        new Prefix(&#x27;prov&#x27;, &#x27;http://www.w3.org/ns/prov#&#x27;),
-        new Prefix(&#x27;rdf&#x27;, &#x27;http://www.w3.org/1999/02/22-rdf-syntax-ns#&#x27;),
-        new Prefix(&#x27;rdfs&#x27;, &#x27;http://www.w3.org/2000/01/rdf-schema#&#x27;),
-        new Prefix(&#x27;xsd&#x27;, &#x27;http://www.w3.org/2001/XMLSchema#&#x27;),
-    ];
+    defaultPrefixes: Prefix[] &#x3D; DEFAULT_PREFIXES;
 
     /**
      * Transform method of the PrefixPipe.
      *
      * @param {*} value The given value to be piped.
      * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
+     *
+     * @returns {*} The transformed value.
      */
     transform(value: any, prefixForm: PrefixForm): any {
-        let val &#x3D; value;
-        const transformedValue &#x3D; this._switchPrefixForm(val, prefixForm);
-
-        if (transformedValue) {
-            val &#x3D; transformedValue;
-        }
-
-        return val;
-    }
-
-    /**
-     * Private method: _switchPrefixForm.
-     *
-     * It shortens or expands a given value
-     * depending on the requested prefix form.
-     *
-     * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
-     * @param {*} oldValue The given value to be piped.
-     */
-    private _switchPrefixForm(oldValue: any, prefixForm: PrefixForm): any {
-        let newValue;
+        let transformedValue: any;
 
         switch (prefixForm) {
             case PrefixForm.short: {
-                this.prefixes.forEach((p: Prefix) &#x3D;&gt; {
-                    if (oldValue.indexOf(p.prefixIri) !&#x3D;&#x3D; -1) {
-                        newValue &#x3D; oldValue.replace(p.prefixIri, p.prefixName + &#x27;:&#x27;);
+                this.defaultPrefixes.forEach((p: Prefix) &#x3D;&gt; {
+                    if (value.indexOf(p.prefixIri) !&#x3D;&#x3D; -1) {
+                        transformedValue &#x3D; value.replace(p.prefixIri, p.prefixName + &#x27;:&#x27;);
                     }
                 });
                 break;
             }
             case PrefixForm.long: {
-                this.prefixes.forEach((p: Prefix) &#x3D;&gt; {
-                    if (oldValue.indexOf(p.prefixName) !&#x3D;&#x3D; -1) {
-                        newValue &#x3D; oldValue.replace(p.prefixName + &#x27;:&#x27;, p.prefixIri);
+                this.defaultPrefixes.forEach((p: Prefix) &#x3D;&gt; {
+                    if (value.indexOf(p.prefixName) !&#x3D;&#x3D; -1) {
+                        transformedValue &#x3D; value.replace(p.prefixName + &#x27;:&#x27;, p.prefixIri);
                     }
                 });
                 break;
             }
+            default:
+                // This branch should not be reached
+                const exhaustiveCheck: never &#x3D; prefixForm;
+                throw new Error(
+                    &#x60;The prefixForm must be ${PrefixForm.short} or ${PrefixForm.long}, but was: ${exhaustiveCheck}.&#x60;
+                );
         }
-
-        return newValue;
+        // If the value was not transformed, return the original value
+        return transformedValue ? transformedValue : value;
     }
 }
 </code></pre>

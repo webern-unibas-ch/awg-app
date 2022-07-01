@@ -59,7 +59,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts</code>
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts</code>
         </p>
 
 
@@ -120,7 +120,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_extractPrefixesFromSPARQLWhereClause" >_extractPrefixesFromSPARQLWhereClause</a>
+                                <a href="#_extractQNamesFromSPARQLWhereClause" >_extractQNamesFromSPARQLWhereClause</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -154,7 +154,7 @@
                                 <a href="#limitTriples" >limitTriples</a>
                             </li>
                             <li>
-                                <a href="#parseTriples" >parseTriples</a>
+                                <a href="#parseTripleString" >parseTripleString</a>
                             </li>
                         </ul>
                     </td>
@@ -179,7 +179,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -245,7 +245,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_abbreviate(iri: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, namespaces: <a href="../interfaces/Namespace.html" target="_self">Namespace</a>)</code>
+                    <code>_abbreviate(iri: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, namespaces: <a href="../interfaces/Namespace.html" target="_self">Namespace</a>)</code>
                 </td>
             </tr>
 
@@ -253,7 +253,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="317"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:317</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:317</a></div>
                 </td>
             </tr>
 
@@ -280,7 +280,7 @@
                                 <tr>
                                     <td>iri</td>
                                     <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -289,7 +289,7 @@
 
 
                                     <td>
-                                        <p>The given iri.</p>
+                                        <p>The given iri string.</p>
 
                                     </td>
                                 </tr>
@@ -315,11 +315,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The abbreviated triple component.</p>
+                        <p>The abbreviated or original iri string.</p>
 
                     </div>
                 </td>
@@ -349,7 +349,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="339"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:339</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:339</a></div>
                 </td>
             </tr>
 
@@ -397,7 +397,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="360"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:360</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:360</a></div>
                 </td>
             </tr>
 
@@ -459,11 +459,11 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/QueryResult.html" target="_self" >Promise&lt;QueryResult&gt;</a></code>
+                        <b>Returns : </b>    <code>Promise&lt;RDFStoreConstructResponse | RDFStoreSelectResponse&gt;</code>
 
                     </div>
                     <div class="io-description">
-                        <p>A promise of the query result.</p>
+                        <p>A promise of the rdfstore construct or select response.</p>
 
                     </div>
                 </td>
@@ -493,7 +493,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="383"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:383</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:383</a></div>
                 </td>
             </tr>
 
@@ -571,34 +571,34 @@ from a given string.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_extractPrefixesFromSPARQLWhereClause"></a>
+                    <a name="_extractQNamesFromSPARQLWhereClause"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_extractPrefixesFromSPARQLWhereClause</b></span>
-                        <a href="#_extractPrefixesFromSPARQLWhereClause"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_extractQNamesFromSPARQLWhereClause</b></span>
+                        <a href="#_extractQNamesFromSPARQLWhereClause"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_extractPrefixesFromSPARQLWhereClause(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_extractQNamesFromSPARQLWhereClause(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="437"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:437</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="439"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:439</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _extractPrefixesFromSPARQLWhereClause.</p>
-<p>It identifies the prefixes that are used in the WHERE clause of a SPARQL query.</p>
+                    <div class="io-description"><p>Private method: _extractQNamesFromSPARQLWhereClause.</p>
+<p>It identifies the qNames that are used in the WHERE clause of a SPARQL query.</p>
 </div>
 
                     <div class="io-description">
@@ -610,6 +610,7 @@ from a given string.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -624,6 +625,10 @@ from a given string.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>The given query string.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -635,7 +640,7 @@ from a given string.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>A string array of the used prefixes.</p>
+                        <p>A string array of the used qNames.</p>
 
                     </div>
                 </td>
@@ -664,8 +669,8 @@ from a given string.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="480"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:480</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="482"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:482</a></div>
                 </td>
             </tr>
 
@@ -744,8 +749,8 @@ from a given string.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="507"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:507</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="509"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:509</a></div>
                 </td>
             </tr>
 
@@ -856,8 +861,8 @@ from a given string.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="533"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:533</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="535"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:535</a></div>
                 </td>
             </tr>
 
@@ -936,15 +941,15 @@ from a given string.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_prepareSelectResponse(data: SearchResultBindings[])</code>
+                    <code>_prepareSelectResponse(selectResponse: <a href="../interfaces/RDFStoreSelectResponse.html" target="_self">RDFStoreSelectResponse</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="550"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:550</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="552"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:552</a></div>
                 </td>
             </tr>
 
@@ -969,9 +974,9 @@ from a given string.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>data</td>
+                                    <td>selectResponse</td>
                                     <td>
-                                            <code>SearchResultBindings[]</code>
+                                                <code><a href="../interfaces/RDFStoreSelectResponse.html" target="_self" >RDFStoreSelectResponse</a></code>
                                     </td>
 
                                     <td>
@@ -980,7 +985,7 @@ from a given string.</p>
 
 
                                     <td>
-                                        <p>The given obj.</p>
+                                        <p>The given selectResponse.</p>
 
                                     </td>
                                 </tr>
@@ -994,7 +999,7 @@ from a given string.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>: number; data: SearchResult | string } An object with a status code, and the data as SearchResult or string.</p>
+                        <p>: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.</p>
 
                     </div>
                 </td>
@@ -1014,7 +1019,7 @@ from a given string.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>abbreviateTriples(triples: <a href="../interfaces/Triple.html" target="_self">Triple[]</a>, namespaces: <a href="../interfaces/Namespace.html" target="_self">Namespace</a>, mimeType?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>abbreviateTriples(storeTriples: RDFStoreConstructResponseTriple[], namespaces: <a href="../interfaces/Namespace.html" target="_self">Namespace</a>, mimeType?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -1022,7 +1027,7 @@ from a given string.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:112</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -1047,9 +1052,9 @@ from a given string.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>triples</td>
+                                    <td>storeTriples</td>
                                     <td>
-                                                <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+                                            <code>RDFStoreConstructResponseTriple[]</code>
                                     </td>
 
                                     <td>
@@ -1058,7 +1063,7 @@ from a given string.</p>
 
 
                                     <td>
-                                        <p>The given triples.</p>
+                                        <p>The given triples from the rdf construct response.</p>
 
                                     </td>
                                 </tr>
@@ -1131,8 +1136,8 @@ from a given string.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="148"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:148</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="152"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:152</a></div>
                 </td>
             </tr>
 
@@ -1140,8 +1145,8 @@ from a given string.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: checkNamespacesInQuery.</p>
-<p>It checks the existing namespaces and prefixes in a SPARQL query
-and appends missing declarations, if possible, from the Turtle string.</p>
+<p>It checks the existing namespaces and qNames in a SPARQL query
+and appends missing prefix declarations, if possible, from the Turtle string.</p>
 </div>
 
                     <div class="io-description">
@@ -1226,8 +1231,8 @@ and appends missing declarations, if possible, from the Turtle string.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="210"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:210</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:217</a></div>
                 </td>
             </tr>
 
@@ -1321,7 +1326,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/SearchResult.html" target="_self" >Promise&lt;string | SearchResult | []&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/QueryResult.html" target="_self" >Promise&lt;string | QueryResult | []&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1352,8 +1357,8 @@ and appends missing declarations, if possible, from the Turtle string.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="262"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:262</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:264</a></div>
                 </td>
             </tr>
 
@@ -1431,7 +1436,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:90</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:90</a></div>
                 </td>
             </tr>
 
@@ -1508,16 +1513,16 @@ and appends missing declarations, if possible, from the Turtle string.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="parseTriples"></a>
+                    <a name="parseTripleString"></a>
                     <span class="name">
-                        <span ><b>parseTriples</b></span>
-                        <a href="#parseTriples"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>parseTripleString</b></span>
+                        <a href="#parseTripleString"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>parseTriples(triples: <a href="../interfaces/Triple.html" target="_self">Triple[]</a>)</code>
+<code>parseTripleString(triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -1525,15 +1530,15 @@ and appends missing declarations, if possible, from the Turtle string.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:62</a></div>
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:62</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: parseTriples.</p>
-<p>It parses the triples from a given triple array.</p>
+                    <div class="io-description"><p>Public method: parseTripleString.</p>
+<p>It parses the triples from a given triple string.</p>
 </div>
 
                     <div class="io-description">
@@ -1552,7 +1557,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
                                 <tr>
                                     <td>triples</td>
                                     <td>
-                                                <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -1561,7 +1566,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
 
 
                                     <td>
-                                        <p>The given triple array.</p>
+                                        <p>The given triple string.</p>
 
                                     </td>
                                 </tr>
@@ -1571,7 +1576,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+                        <b>Returns : </b>    <code>Promise&lt;literal type | &gt;</code>
 
                     </div>
                     <div class="io-description">
@@ -1608,7 +1613,7 @@ and appends missing declarations, if possible, from the Turtle string.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1636,14 +1641,14 @@ import {
     Namespace,
     NamespaceType,
     PrefixForm,
-    QueryResult,
     QueryTypeIndex,
-    SearchResult,
-    SearchResultBindings,
+    QueryResult,
+    RDFStoreConstructResponse,
+    RDFStoreConstructResponseTriple,
+    RDFStoreSelectResponse,
     Triple,
-    TripleComponent,
 } from &#x27;../models&#x27;;
-import { PrefixPipe } from &#x27;../prefix-pipe/prefix.pipe&#x27;;
+import { PrefixPipe } from &#x27;../prefix-pipe&#x27;;
 
 /**
  * Declared variable: rdfstore.
@@ -1676,15 +1681,15 @@ export class GraphVisualizerService {
     constructor(private prefixPipe: PrefixPipe) {}
 
     /**
-     * Public method: parseTriples.
+     * Public method: parseTripleString.
      *
-     * It parses the triples from a given triple array.
+     * It parses the triples from a given triple string.
      *
-     * @param {Triple[]} triples The given triple array.
+     * @param {string} triples The given triple string.
      *
      * @returns {Promise&lt;{triples; namespaces}&gt;} A promise of the parsed triples.
      */
-    parseTriples(triples: Triple[]): Promise&lt;{ triples; namespaces }&gt; {
+    parseTripleString(triples: string): Promise&lt;{ triples; namespaces } | unknown&gt; {
         const parser &#x3D; new N3.Parser();
         const jsonTriples &#x3D; [];
 
@@ -1728,20 +1733,24 @@ export class GraphVisualizerService {
      *
      * It abbreviates the given triples according to the given namespaces.
      *
-     * @param {Triple[]} triples The given triples.
+     * @param {RDFStoreConstructResponseTriple[]} storeTriples The given triples from the rdf construct response.
      * @param {string} namespaces The given namespaces.
      * @param {string} [mimeType] The given optional mimeType.
      *
      * @returns {Triple[]} The array of abbreviated triples.
      */
-    abbreviateTriples(triples: Triple[], namespaces: Namespace, mimeType?: string): Triple[] {
+    abbreviateTriples(
+        storeTriples: RDFStoreConstructResponseTriple[],
+        namespaces: Namespace,
+        mimeType?: string
+    ): Triple[] {
         if (!mimeType) {
             mimeType &#x3D; &#x27;text/turtle&#x27;;
         }
-        return triples.map((triple: Triple) &#x3D;&gt; {
-            let s: TripleComponent &#x3D; triple.subject.nominalValue;
-            let p: TripleComponent &#x3D; triple.predicate.nominalValue;
-            let o: TripleComponent &#x3D; triple.object.nominalValue;
+        return storeTriples.map((storeTriple: RDFStoreConstructResponseTriple) &#x3D;&gt; {
+            let s: string &#x3D; storeTriple.subject.nominalValue;
+            let p: string &#x3D; storeTriple.predicate.nominalValue;
+            let o: string &#x3D; storeTriple.object.nominalValue;
 
             // Abbreviate turtle format
             if (mimeType &#x3D;&#x3D;&#x3D; &#x27;text/turtle&#x27;) {
@@ -1762,8 +1771,8 @@ export class GraphVisualizerService {
     /**
      * Public method: checkNamespacesInQuery.
      *
-     * It checks the existing namespaces and prefixes in a SPARQL query
-     * and appends missing declarations, if possible, from the Turtle string.
+     * It checks the existing namespaces and qNames in a SPARQL query
+     * and appends missing prefix declarations, if possible, from the Turtle string.
      *
      * @param {string} queryStr The given SPARQL query string.
      * @param {string} turtleStr The given Turtle string.
@@ -1778,8 +1787,8 @@ export class GraphVisualizerService {
         const turtleNamespaces: Namespace &#x3D; this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
         // Get namespaces from SPARQL query
         const sparqlNamespaces: Namespace &#x3D; this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
-        // Get prefixes used in the query
-        const prefixes: string[] &#x3D; this._extractPrefixesFromSPARQLWhereClause(queryStr);
+        // Get qNames used in the SPARQL query WHERE clause
+        const qNames: string[] &#x3D; this._extractQNamesFromSPARQLWhereClause(queryStr);
 
         // Get keys of namespace objects
         const turtleNamespaceKeys &#x3D; Object.keys(turtleNamespaces);
@@ -1794,20 +1803,23 @@ export class GraphVisualizerService {
             }
         });
 
-        // Loop over existing prefixes from SPARQL query
-        if (prefixes.length &gt; 0) {
-            prefixes.forEach(prefix &#x3D;&gt; {
+        // Loop over existing qNames from SPARQL query
+        if (qNames.length &gt; 0) {
+            qNames.forEach(qName &#x3D;&gt; {
                 // If prefix is not in the list...
-                if (sparqlNamespaceKeys.indexOf(prefix) &#x3D;&#x3D;&#x3D; -1) {
+                if (sparqlNamespaceKeys.indexOf(qName) &#x3D;&#x3D;&#x3D; -1) {
                     // TODO: Warnings should go into error messages
-                    console.warn(&#x60;Prefix &#x27;${prefix}&#x27; not declared in SPARQL and/or Turtle header&#x60;);
+                    console.warn(
+                        &#x60;Prefix &#x27;${qName}&#x27; not declared in SPARQL and/or Turtle header. Searching in default namespaces...&#x60;
+                    );
 
-                    const cachedNamespace &#x3D; this.prefixPipe.transform(prefix, PrefixForm.long);
-                    if (cachedNamespace !&#x3D;&#x3D; prefix) {
-                        console.warn(&#x60;Added prefix from cache&#x60;);
-                        missingNamespacesStr +&#x3D; &#x60;PREFIX ${prefix} &lt;${cachedNamespace}&gt;\n&#x60;;
+                    const defaultNamespace &#x3D; this.prefixPipe.transform(qName, PrefixForm.long);
+                    if (defaultNamespace !&#x3D;&#x3D; qName) {
+                        const missingPrefix &#x3D; &#x60;PREFIX ${qName} &lt;${defaultNamespace}&gt;\n&#x60;;
+                        missingNamespacesStr +&#x3D; missingPrefix;
+                        console.warn(&#x60;Added &#x27;${missingPrefix}&#x27; to SPARQL prefixes from list of default namespaces.&#x60;);
                     } else {
-                        console.warn(&#x60;&#x27;${prefix}&#x27; is unknown. Please provide a declaration.&#x60;);
+                        console.warn(&#x60;&#x27;${qName}&#x27; is unknown. Please provide a declaration.&#x60;);
                     }
                 }
             });
@@ -1837,7 +1849,7 @@ export class GraphVisualizerService {
         query: string,
         ttlString: string,
         mimeType?: string
-    ): Promise&lt;string | SearchResult | Triple[]&gt; {
+    ): Promise&lt;string | QueryResult | Triple[]&gt; {
         if (!mimeType) {
             mimeType &#x3D; &#x27;text/turtle&#x27;;
         }
@@ -1848,26 +1860,21 @@ export class GraphVisualizerService {
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((storeSize: number) &#x3D;&gt; this._executeQuery(this._store, query))
-            .then((res: any) &#x3D;&gt; {
-                const response &#x3D; res;
-
+            .then((_storeSize: number) &#x3D;&gt; this._executeQuery(this._store, query))
+            .then((res: RDFStoreConstructResponse | RDFStoreSelectResponse) &#x3D;&gt; {
                 // Reformat data if select query
                 if (queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
-                    return this._prepareSelectResponse(response).data;
+                    const response &#x3D; res as RDFStoreSelectResponse;
+                    const selectResponse &#x3D; this._prepareSelectResponse(response);
+                    return selectResponse.data;
                 }
 
-                // Reformat data if select query
+                // Reformat data if construct query
                 if (queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;) {
-                    /**
-                     * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
-                     */
-
-                    // PrepareConstructResponse
-
+                    const response &#x3D; res as RDFStoreConstructResponse;
                     // Get namespaces
                     return this._getNamespaces(ttlString).then((namespaces: Namespace) &#x3D;&gt;
-                        // Process result
+                        // Process triples
                         this.abbreviateTriples(response.triples, namespaces, mimeType)
                     );
                 }
@@ -1910,20 +1917,18 @@ export class GraphVisualizerService {
             return item;
         });
 
-        // If none of the keywords match return null
+        // If none of the keywords match, return null
         if (!match) {
             return null;
         }
 
-        // If more exist, take the lowest
+        // If more keywords exist in one query, take the one with the lowest index (first in string)
         const lowest: QueryTypeIndex &#x3D; keyWords.find(item &#x3D;&gt; item.index &#x3D;&#x3D;&#x3D; low);
-        if (!lowest) {
-            return null;
-        }
-        const type: string &#x3D; lowest.queryType;
+
+        let type: string &#x3D; lowest.queryType;
 
         if (type &#x3D;&#x3D;&#x3D; &#x27;insert&#x27; || type &#x3D;&#x3D;&#x3D; &#x27;delete&#x27;) {
-            return &#x27;update&#x27;;
+            type &#x3D; &#x27;update&#x27;;
         }
 
         return type;
@@ -1934,17 +1939,17 @@ export class GraphVisualizerService {
      *
      * It abbreviates the namespaces of a given iri.
      *
-     * @param {*} iri The given iri.
+     * @param {string} iri The given iri string.
      * @param {Namespace} namespaces The given namespaces.
      *
-     * @returns {TripleComponent} The abbreviated triple component.
+     * @returns {string} The abbreviated or original iri string.
      */
-    private _abbreviate(iri: any, namespaces: Namespace): TripleComponent {
-        let newVal: TripleComponent &#x3D; null;
-        // If IRI has &#x27;http&#x27; in its name, continue
+    private _abbreviate(iri: string, namespaces: Namespace): string {
+        let newVal: string &#x3D; iri;
+        // If IRI has &#x27;http&#x27; or &#x27;https in its name, continue
         if (iri.indexOf(&#x27;http&#x27;) !&#x3D;&#x3D; -1) {
             // Loop over namespaces
-            Object.entries(namespaces).forEach(([key, value], index) &#x3D;&gt; {
+            Object.entries(namespaces).forEach(([key, value]) &#x3D;&gt; {
                 // If the IRI has the prefixed namespace in its name, return it
                 if (iri.indexOf(value) !&#x3D;&#x3D; -1) {
                     newVal &#x3D; iri.replace(value, key + &#x27;:&#x27;);
@@ -1980,11 +1985,11 @@ export class GraphVisualizerService {
      * @param {any} store The given triplestore.
      * @param {string} query The given query string.
      *
-     * @returns {Promise&lt;QueryResult&gt;} A promise of the query result.
+     * @returns {Promise&lt;RDFStoreConstructResponse | RDFStoreSelectResponse&gt;} A promise of the rdfstore construct or select response.
      */
-    private _executeQuery(store: any, query: string): Promise&lt;QueryResult&gt; {
+    private _executeQuery(store: any, query: string): Promise&lt;RDFStoreConstructResponse | RDFStoreSelectResponse&gt; {
         return new Promise((resolve, reject) &#x3D;&gt; {
-            store.execute(query, (err, res: QueryResult) &#x3D;&gt; {
+            store.execute(query, (err, res: RDFStoreConstructResponse | RDFStoreSelectResponse) &#x3D;&gt; {
                 if (err) {
                     console.error(&#x27;_executeQuery# got ERROR&#x27;, err);
                     reject(err);
@@ -2024,7 +2029,9 @@ export class GraphVisualizerService {
                 prefixStr &#x3D; &#x27;PREFIX&#x27;.toLowerCase();
                 break;
             default:
-                prefixStr &#x3D; &#x27;&#x27;;
+                // This branch should not be reached
+                const exhaustiveCheck: never &#x3D; type;
+                throw new Error(&#x60;The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.&#x60;);
         }
 
         // Get index of all occurrences of prefix string
@@ -2040,8 +2047,8 @@ export class GraphVisualizerService {
         prefixIndexArray.forEach(prefixIndex &#x3D;&gt; {
             const qName &#x3D; arr[prefixIndex + 1];
             let namespaceName &#x3D; arr[prefixIndex + 2];
-            // Remove final dot if given
-            if (namespaceName[namespaceName.length - 1] &#x3D;&#x3D;&#x3D; &#x27;.&#x27;) {
+            // Remove final dot if there is no space between namespace and dot
+            if (namespaceName.at(-1) &#x3D;&#x3D;&#x3D; &#x27;.&#x27;) {
                 namespaceName &#x3D; namespaceName.slice(0, -1);
             }
             obj[qName] &#x3D; namespaceName;
@@ -2051,19 +2058,19 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: _extractPrefixesFromSPARQLWhereClause.
+     * Private method: _extractQNamesFromSPARQLWhereClause.
      *
-     * It identifies the prefixes that are used in the WHERE clause of a SPARQL query.
+     * It identifies the qNames that are used in the WHERE clause of a SPARQL query.
      *
-     * @param {string} queryStr The given query string.
+     * @param {string} query The given query string.
      *
-     * @returns {string[]} A string array of the used prefixes.
+     * @returns {string[]} A string array of the used qNames.
      */
-    private _extractPrefixesFromSPARQLWhereClause(query: string): string[] {
+    private _extractQNamesFromSPARQLWhereClause(query: string): string[] {
         let m;
         let queryStr &#x3D; query.toLowerCase();
         let start &#x3D; 0;
-        const prefixes: string[] &#x3D; [];
+        const qNames: string[] &#x3D; [];
         const regex &#x3D; /\b[a-zA-Z]{2,15}:/g;
         const where &#x3D; &#x27;WHERE {&#x27;.toLowerCase();
 
@@ -2085,12 +2092,12 @@ export class GraphVisualizerService {
 
             // The result can be accessed through the &#x60;m&#x60;-variable.
             m.forEach(match &#x3D;&gt; {
-                if (prefixes.indexOf(match) &#x3D;&#x3D;&#x3D; -1) {
-                    prefixes.push(match);
+                if (qNames.indexOf(match) &#x3D;&#x3D;&#x3D; -1) {
+                    qNames.push(match);
                 }
             });
         }
-        return prefixes;
+        return qNames;
     }
 
     /**
@@ -2168,24 +2175,28 @@ export class GraphVisualizerService {
      *
      * It prepares the data of the select response.
      *
-     * @param {SearchResultBindings[]} data The given obj.
+     * @param {RDFStoreSelectResponse} selectResponse The given selectResponse.
      *
-     * @returns  {status: number; data: SearchResult | string } An object with a status code, and the data as SearchResult or string.
+     * @returns  {status: number; data: QueryResult | string } An object with a status code, and the data as QueryResult or string.
      */
-    private _prepareSelectResponse(data: SearchResultBindings[]): { status: number; data: SearchResult | string } {
-        if (!data) {
-            return undefined;
+    private _prepareSelectResponse(selectResponse: RDFStoreSelectResponse): {
+        status: number;
+        data: QueryResult | string;
+    } {
+        if (!selectResponse) {
+            return { status: 404, data: undefined };
         }
 
         // Check that it didn&#x27;t return null results
-        if (data[0] &#x3D;&#x3D; null) {
+        if (selectResponse[0] &#x3D;&#x3D; null) {
             return { status: 400, data: &#x27;Query returned no results&#x27; };
         }
+
         // Get variable keys
-        const varKeys &#x3D; Object.keys(data[0]);
+        const varKeys &#x3D; Object.keys(selectResponse[0]);
 
         // Get object array
-        const b &#x3D; data;
+        const b &#x3D; selectResponse;
 
         // Rename keys according to below mapping table
         const map &#x3D; {
@@ -2212,9 +2223,12 @@ export class GraphVisualizerService {
 
                             // Transform integer values to numbers
                             const xmlsInteger &#x3D; &#x27;http://www.w3.org/2001/XMLSchema#integer&#x27;;
+                            const xmlsNonNegativeInteger &#x3D; &#x27;http://www.w3.org/2001/XMLSchema#nonNegativeInteger&#x27;;
+                            const type &#x3D; b[i][varKeys[key]][&#x27;type&#x27;];
+                            const datatype &#x3D; b[i][varKeys[key]][&#x27;datatype&#x27;] || &#x27;&#x27;;
                             if (
-                                b[i][varKeys[key]][&#x27;type&#x27;] &#x3D;&#x3D;&#x3D; &#x27;literal&#x27; &amp;&amp;
-                                b[i][varKeys[key]][&#x27;datatype&#x27;] &#x3D;&#x3D;&#x3D; xmlsInteger
+                                type &#x3D;&#x3D;&#x3D; &#x27;literal&#x27; &amp;&amp;
+                                (datatype &#x3D;&#x3D;&#x3D; xmlsInteger || datatype &#x3D;&#x3D;&#x3D; xmlsNonNegativeInteger)
                             ) {
                                 b[i][varKeys[key]][&#x27;label&#x27;] &#x3D; +b[i][varKeys[key]][&#x27;value&#x27;];
                             }
@@ -2225,7 +2239,7 @@ export class GraphVisualizerService {
         }
 
         // Re-format data
-        const reformatted: SearchResult &#x3D; { head: { vars: varKeys }, body: { bindings: b } };
+        const reformatted: QueryResult &#x3D; { head: { vars: varKeys }, body: { bindings: b } };
 
         return { status: 200, data: reformatted };
     }

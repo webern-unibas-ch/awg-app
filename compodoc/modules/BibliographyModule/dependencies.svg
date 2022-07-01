@@ -14,167 +14,167 @@
 <title>cluster_BibliographyModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 1300,-230.8 1300,-32.8 8,-32.8"/>
 </g>
-<g id="clust8" class="cluster">
-<title>cluster_BibliographyModule_imports</title>
-<polygon fill="none" stroke="black" points="982,-40.8 982,-92.8 1292,-92.8 1292,-40.8 982,-40.8"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_BibliographyModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 974,-92.8 974,-40.8 16,-40.8"/>
+<polygon fill="none" stroke="black" points="334,-40.8 334,-92.8 1292,-92.8 1292,-40.8 334,-40.8"/>
 </g>
 <g id="clust9" class="cluster">
 <title>cluster_BibliographyModule_exports</title>
-<polygon fill="none" stroke="black" points="197,-170.8 197,-222.8 1173,-222.8 1173,-170.8 197,-170.8"/>
+<polygon fill="none" stroke="black" points="141,-170.8 141,-222.8 1117,-222.8 1117,-170.8 141,-170.8"/>
+</g>
+<g id="clust8" class="cluster">
+<title>cluster_BibliographyModule_imports</title>
+<polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 326,-92.8 326,-40.8 16,-40.8"/>
 </g>
 <!-- BibliographyComponent -->
 <g id="node1" class="node">
 <title>BibliographyComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="965.72,-84.8 810.28,-84.8 810.28,-48.8 965.72,-48.8 965.72,-84.8"/>
-<text text-anchor="middle" x="888" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1283.72,-84.8 1128.28,-84.8 1128.28,-48.8 1283.72,-48.8 1283.72,-84.8"/>
+<text text-anchor="middle" x="1206" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyComponent</text>
 </g>
 <!-- BibliographyModule -->
 <g id="node6" class="node">
 <title>BibliographyModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="764.93,-149.8 761.93,-153.8 740.93,-153.8 737.93,-149.8 631.07,-149.8 631.07,-113.8 764.93,-113.8 764.93,-149.8"/>
-<text text-anchor="middle" x="698" y="-127.6" font-family="Times,serif" font-size="14.00">BibliographyModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="708.93,-149.8 705.93,-153.8 684.93,-153.8 681.93,-149.8 575.07,-149.8 575.07,-113.8 708.93,-113.8 708.93,-149.8"/>
+<text text-anchor="middle" x="642" y="-127.6" font-family="Times,serif" font-size="14.00">BibliographyModule</text>
 </g>
 <!-- BibliographyComponent&#45;&gt;BibliographyModule -->
 <g id="edge1" class="edge">
 <title>BibliographyComponent&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M888,-85.04C888,-100.37 888,-119.8 888,-119.8 888,-119.8 774.72,-119.8 774.72,-119.8"/>
-<polygon fill="black" stroke="black" points="774.72,-116.3 764.72,-119.8 774.72,-123.3 774.72,-116.3"/>
+<path fill="none" stroke="black" d="M1206,-84.91C1206,-104.14 1206,-131.8 1206,-131.8 1206,-131.8 718.91,-131.8 718.91,-131.8"/>
+<polygon fill="black" stroke="black" points="718.91,-128.3 708.91,-131.8 718.91,-135.3 718.91,-128.3"/>
 </g>
 <!-- BibliographyDetailComponent -->
 <g id="node2" class="node">
 <title>BibliographyDetailComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="792.92,-84.8 603.08,-84.8 603.08,-48.8 792.92,-48.8 792.92,-84.8"/>
-<text text-anchor="middle" x="698" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyDetailComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1110.92,-84.8 921.08,-84.8 921.08,-48.8 1110.92,-48.8 1110.92,-84.8"/>
+<text text-anchor="middle" x="1016" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyDetailComponent</text>
 </g>
 <!-- BibliographyDetailComponent&#45;&gt;BibliographyModule -->
 <g id="edge2" class="edge">
 <title>BibliographyDetailComponent&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M698,-84.91C698,-84.91 698,-103.79 698,-103.79"/>
-<polygon fill="black" stroke="black" points="694.5,-103.79 698,-113.79 701.5,-103.79 694.5,-103.79"/>
+<path fill="none" stroke="black" d="M926.88,-84.82C926.88,-102.17 926.88,-125.8 926.88,-125.8 926.88,-125.8 718.79,-125.8 718.79,-125.8"/>
+<polygon fill="black" stroke="black" points="718.79,-122.3 708.79,-125.8 718.79,-129.3 718.79,-122.3"/>
 </g>
 <!-- BibliographyFormatPipe -->
 <g id="node3" class="node">
 <title>BibliographyFormatPipe</title>
-<polygon fill="#ffffb3" stroke="black" points="585.71,-84.8 430.29,-84.8 430.29,-48.8 585.71,-48.8 585.71,-84.8"/>
-<text text-anchor="middle" x="508" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyFormatPipe</text>
+<polygon fill="#ffffb3" stroke="black" points="903.71,-84.8 748.29,-84.8 748.29,-48.8 903.71,-48.8 903.71,-84.8"/>
+<text text-anchor="middle" x="826" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyFormatPipe</text>
 </g>
 <!-- BibliographyFormatPipe&#45;&gt;BibliographyModule -->
 <g id="edge3" class="edge">
 <title>BibliographyFormatPipe&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M508,-85.04C508,-100.37 508,-119.8 508,-119.8 508,-119.8 621.28,-119.8 621.28,-119.8"/>
-<polygon fill="black" stroke="black" points="621.28,-123.3 631.28,-119.8 621.28,-116.3 621.28,-123.3"/>
+<path fill="none" stroke="black" d="M826,-85.04C826,-100.37 826,-119.8 826,-119.8 826,-119.8 718.95,-119.8 718.95,-119.8"/>
+<polygon fill="black" stroke="black" points="718.95,-116.3 708.95,-119.8 718.95,-123.3 718.95,-116.3"/>
 </g>
 <!-- BibliographyListComponent -->
 <g id="node4" class="node">
 <title>BibliographyListComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="412.49,-84.8 235.51,-84.8 235.51,-48.8 412.49,-48.8 412.49,-84.8"/>
-<text text-anchor="middle" x="324" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyListComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="730.49,-84.8 553.51,-84.8 553.51,-48.8 730.49,-48.8 730.49,-84.8"/>
+<text text-anchor="middle" x="642" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyListComponent</text>
 </g>
 <!-- BibliographyListComponent&#45;&gt;BibliographyModule -->
 <g id="edge4" class="edge">
 <title>BibliographyListComponent&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M406.95,-84.82C406.95,-102.17 406.95,-125.8 406.95,-125.8 406.95,-125.8 621.23,-125.8 621.23,-125.8"/>
-<polygon fill="black" stroke="black" points="621.23,-129.3 631.23,-125.8 621.23,-122.3 621.23,-129.3"/>
+<path fill="none" stroke="black" d="M642,-84.91C642,-84.91 642,-103.79 642,-103.79"/>
+<polygon fill="black" stroke="black" points="638.5,-103.79 642,-113.79 645.5,-103.79 638.5,-103.79"/>
 </g>
 <!-- BibliographySearchComponent -->
 <g id="node5" class="node">
 <title>BibliographySearchComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="217.8,-84.8 24.2,-84.8 24.2,-48.8 217.8,-48.8 217.8,-84.8"/>
-<text text-anchor="middle" x="121" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographySearchComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="535.8,-84.8 342.2,-84.8 342.2,-48.8 535.8,-48.8 535.8,-84.8"/>
+<text text-anchor="middle" x="439" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographySearchComponent</text>
 </g>
 <!-- BibliographySearchComponent&#45;&gt;BibliographyModule -->
 <g id="edge5" class="edge">
 <title>BibliographySearchComponent&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M211.12,-84.91C211.12,-104.14 211.12,-131.8 211.12,-131.8 211.12,-131.8 621.07,-131.8 621.07,-131.8"/>
-<polygon fill="black" stroke="black" points="621.07,-135.3 631.07,-131.8 621.07,-128.3 621.07,-135.3"/>
+<path fill="none" stroke="black" d="M449.7,-85.04C449.7,-100.37 449.7,-119.8 449.7,-119.8 449.7,-119.8 565.28,-119.8 565.28,-119.8"/>
+<polygon fill="black" stroke="black" points="565.28,-123.3 575.28,-119.8 565.28,-116.3 565.28,-123.3"/>
 </g>
 <!-- BibliographyComponent  -->
 <g id="node9" class="node">
 <title>BibliographyComponent </title>
-<polygon fill="#fb8072" stroke="black" points="1165.22,-214.8 1006.78,-214.8 1006.78,-178.8 1165.22,-178.8 1165.22,-214.8"/>
-<text text-anchor="middle" x="1086" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyComponent </text>
+<polygon fill="#fb8072" stroke="black" points="1109.22,-214.8 950.78,-214.8 950.78,-178.8 1109.22,-178.8 1109.22,-214.8"/>
+<text text-anchor="middle" x="1030" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyComponent </text>
 </g>
 <!-- BibliographyModule&#45;&gt;BibliographyComponent  -->
 <g id="edge8" class="edge">
 <title>BibliographyModule&#45;&gt;BibliographyComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M764.96,-137.8C866.42,-137.8 1047.43,-137.8 1047.43,-137.8 1047.43,-137.8 1047.43,-168.78 1047.43,-168.78"/>
-<polygon fill="black" stroke="black" points="1043.93,-168.78 1047.43,-178.78 1050.93,-168.78 1043.93,-168.78"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M709.14,-137.8C820.19,-137.8 1030,-137.8 1030,-137.8 1030,-137.8 1030,-168.78 1030,-168.78"/>
+<polygon fill="black" stroke="black" points="1026.5,-168.78 1030,-178.78 1033.5,-168.78 1026.5,-168.78"/>
 </g>
 <!-- BibliographyDetailComponent  -->
 <g id="node10" class="node">
 <title>BibliographyDetailComponent </title>
-<polygon fill="#fb8072" stroke="black" points="988.42,-214.8 795.58,-214.8 795.58,-178.8 988.42,-178.8 988.42,-214.8"/>
-<text text-anchor="middle" x="892" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyDetailComponent </text>
+<polygon fill="#fb8072" stroke="black" points="932.42,-214.8 739.58,-214.8 739.58,-178.8 932.42,-178.8 932.42,-214.8"/>
+<text text-anchor="middle" x="836" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyDetailComponent </text>
 </g>
 <!-- BibliographyModule&#45;&gt;BibliographyDetailComponent  -->
 <g id="edge9" class="edge">
 <title>BibliographyModule&#45;&gt;BibliographyDetailComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M764.77,-143.8C785.47,-143.8 802.97,-143.8 802.97,-143.8 802.97,-143.8 802.97,-168.56 802.97,-168.56"/>
-<polygon fill="black" stroke="black" points="799.47,-168.56 802.97,-178.56 806.47,-168.56 799.47,-168.56"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M708.88,-143.8C728.09,-143.8 743.97,-143.8 743.97,-143.8 743.97,-143.8 743.97,-168.56 743.97,-168.56"/>
+<polygon fill="black" stroke="black" points="740.47,-168.56 743.97,-178.56 747.47,-168.56 740.47,-168.56"/>
 </g>
 <!-- BibliographyFormatPipe  -->
 <g id="node11" class="node">
 <title>BibliographyFormatPipe </title>
-<polygon fill="#fb8072" stroke="black" points="777.21,-214.8 618.79,-214.8 618.79,-178.8 777.21,-178.8 777.21,-214.8"/>
-<text text-anchor="middle" x="698" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyFormatPipe </text>
+<polygon fill="#fb8072" stroke="black" points="721.21,-214.8 562.79,-214.8 562.79,-178.8 721.21,-178.8 721.21,-214.8"/>
+<text text-anchor="middle" x="642" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyFormatPipe </text>
 </g>
 <!-- BibliographyModule&#45;&gt;BibliographyFormatPipe  -->
 <g id="edge10" class="edge">
 <title>BibliographyModule&#45;&gt;BibliographyFormatPipe </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M698,-149.91C698,-149.91 698,-168.79 698,-168.79"/>
-<polygon fill="black" stroke="black" points="694.5,-168.79 698,-178.79 701.5,-168.79 694.5,-168.79"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M642,-149.91C642,-149.91 642,-168.79 642,-168.79"/>
+<polygon fill="black" stroke="black" points="638.5,-168.79 642,-178.79 645.5,-168.79 638.5,-168.79"/>
 </g>
 <!-- BibliographyListComponent  -->
 <g id="node12" class="node">
 <title>BibliographyListComponent </title>
-<polygon fill="#fb8072" stroke="black" points="600.5,-214.8 419.5,-214.8 419.5,-178.8 600.5,-178.8 600.5,-214.8"/>
-<text text-anchor="middle" x="510" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyListComponent </text>
+<polygon fill="#fb8072" stroke="black" points="544.5,-214.8 363.5,-214.8 363.5,-178.8 544.5,-178.8 544.5,-214.8"/>
+<text text-anchor="middle" x="454" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographyListComponent </text>
 </g>
 <!-- BibliographyModule&#45;&gt;BibliographyListComponent  -->
 <g id="edge11" class="edge">
 <title>BibliographyModule&#45;&gt;BibliographyListComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M631.16,-143.8C610.43,-143.8 592.93,-143.8 592.93,-143.8 592.93,-143.8 592.93,-168.56 592.93,-168.56"/>
-<polygon fill="black" stroke="black" points="589.43,-168.56 592.93,-178.56 596.43,-168.56 589.43,-168.56"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M575.07,-143.8C555.83,-143.8 539.95,-143.8 539.95,-143.8 539.95,-143.8 539.95,-168.56 539.95,-168.56"/>
+<polygon fill="black" stroke="black" points="536.45,-168.56 539.95,-178.56 543.45,-168.56 536.45,-168.56"/>
 </g>
 <!-- BibliographySearchComponent  -->
 <g id="node13" class="node">
 <title>BibliographySearchComponent </title>
-<polygon fill="#fb8072" stroke="black" points="401.3,-214.8 204.7,-214.8 204.7,-178.8 401.3,-178.8 401.3,-214.8"/>
-<text text-anchor="middle" x="303" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographySearchComponent </text>
+<polygon fill="#fb8072" stroke="black" points="345.3,-214.8 148.7,-214.8 148.7,-178.8 345.3,-178.8 345.3,-214.8"/>
+<text text-anchor="middle" x="247" y="-192.6" font-family="Times,serif" font-size="14.00">BibliographySearchComponent </text>
 </g>
 <!-- BibliographyModule&#45;&gt;BibliographySearchComponent  -->
 <g id="edge12" class="edge">
 <title>BibliographyModule&#45;&gt;BibliographySearchComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M631.02,-137.8C522.06,-137.8 318.45,-137.8 318.45,-137.8 318.45,-137.8 318.45,-168.78 318.45,-168.78"/>
-<polygon fill="black" stroke="black" points="314.95,-168.78 318.45,-178.78 321.95,-168.78 314.95,-168.78"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M575.14,-137.8C483.55,-137.8 330.31,-137.8 330.31,-137.8 330.31,-137.8 330.31,-168.78 330.31,-168.78"/>
+<polygon fill="black" stroke="black" points="326.81,-168.78 330.31,-178.78 333.81,-168.78 326.81,-168.78"/>
 </g>
 <!-- BibliographyRoutingModule -->
 <g id="node7" class="node">
 <title>BibliographyRoutingModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1284.05,-84.8 1281.05,-88.8 1260.05,-88.8 1257.05,-84.8 1105.95,-84.8 1105.95,-48.8 1284.05,-48.8 1284.05,-84.8"/>
-<text text-anchor="middle" x="1195" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyRoutingModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="318.05,-84.8 315.05,-88.8 294.05,-88.8 291.05,-84.8 139.95,-84.8 139.95,-48.8 318.05,-48.8 318.05,-84.8"/>
+<text text-anchor="middle" x="229" y="-62.6" font-family="Times,serif" font-size="14.00">BibliographyRoutingModule</text>
 </g>
 <!-- BibliographyRoutingModule&#45;&gt;BibliographyModule -->
 <g id="edge6" class="edge">
 <title>BibliographyRoutingModule&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M1135.54,-84.91C1135.54,-104.14 1135.54,-131.8 1135.54,-131.8 1135.54,-131.8 774.93,-131.8 774.93,-131.8"/>
-<polygon fill="black" stroke="black" points="774.93,-128.3 764.93,-131.8 774.93,-135.3 774.93,-128.3"/>
+<path fill="none" stroke="black" d="M233.44,-84.82C233.44,-102.17 233.44,-125.8 233.44,-125.8 233.44,-125.8 564.99,-125.8 564.99,-125.8"/>
+<polygon fill="black" stroke="black" points="564.99,-129.3 574.99,-125.8 564.99,-122.3 564.99,-129.3"/>
 </g>
 <!-- SharedModule -->
 <g id="node8" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1088.42,-84.8 1085.42,-88.8 1064.42,-88.8 1061.42,-84.8 989.58,-84.8 989.58,-48.8 1088.42,-48.8 1088.42,-84.8"/>
-<text text-anchor="middle" x="1039" y="-62.6" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="122.42,-84.8 119.42,-88.8 98.42,-88.8 95.42,-84.8 23.58,-84.8 23.58,-48.8 122.42,-48.8 122.42,-84.8"/>
+<text text-anchor="middle" x="73" y="-62.6" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;BibliographyModule -->
 <g id="edge7" class="edge">
 <title>SharedModule&#45;&gt;BibliographyModule</title>
-<path fill="none" stroke="black" d="M998.22,-84.82C998.22,-102.17 998.22,-125.8 998.22,-125.8 998.22,-125.8 775,-125.8 775,-125.8"/>
-<polygon fill="black" stroke="black" points="775,-122.3 765,-125.8 775,-129.3 775,-122.3"/>
+<path fill="none" stroke="black" d="M73,-84.91C73,-104.14 73,-131.8 73,-131.8 73,-131.8 565.06,-131.8 565.06,-131.8"/>
+<polygon fill="black" stroke="black" points="565.06,-135.3 575.06,-131.8 565.06,-128.3 565.06,-135.3"/>
 </g>
 </g>
 </svg>

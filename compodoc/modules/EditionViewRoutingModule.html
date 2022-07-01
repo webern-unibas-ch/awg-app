@@ -76,16 +76,13 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { EditionConstants } from &#x27;./models&#x27;;
-
 import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
 import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
-import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-detail-nav.component&#x27;;
-import { EditionRowTablesComponent } from &#x27;@awg-views/edition-view/edition-outlets/edition-row-tables&#x27;;
-import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-sections&#x27;;
-import { EditionSectionDetailComponent } from &#x27;./edition-outlets/edition-sections/edition-section-detail&#x27;;
+import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component&#x27;;
+import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-series-detail/edition-sections&#x27;;
+import { EditionSectionDetailComponent } from &#x27;./edition-outlets/edition-series-detail/edition-section-detail&#x27;;
 import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
-import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-series/edition-series-detail&#x27;;
+import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-series-detail&#x27;;
 import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
 
 /* Routes of the EditionViewModule */
@@ -136,30 +133,30 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                             {
                                 path: &#x27;intro&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(&#x27;./edition-outlets/edition-intro/edition-intro.module&#x27;).then(\
-                                        m &#x3D;&gt; m.EditionIntroModule\
-                                    )&quot;,
+                                    &quot;import(\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module&#x27;\
+                                    ).then(m &#x3D;&gt; m.EditionIntroModule)&quot;,
                             },
                             {
                                 path: &#x27;sheets&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(&#x27;./edition-outlets/edition-sheets/edition-sheets.module&#x27;).then(\
-                                        m &#x3D;&gt; m.EditionSheetsModule\
-                                    )&quot;,
+                                    &quot;import(\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail//edition-sheets/edition-sheets.module&#x27;\
+                                    ).then(m &#x3D;&gt; m.EditionSheetsModule)&quot;,
                             },
                             {
                                 path: &#x27;report&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(&#x27;./edition-outlets/edition-report/edition-report.module&#x27;).then(\
-                                        m &#x3D;&gt; m.EditionReportModule\
-                                    )&quot;,
+                                    &quot;import(\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail//edition-report/edition-report.module&#x27;\
+                                    ).then(m &#x3D;&gt; m.EditionReportModule)&quot;,
                             },
                             {
                                 path: &#x27;graph&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(&#x27;./edition-outlets/edition-graph/edition-graph.module&#x27;).then(\
-                                        m &#x3D;&gt; m.EditionGraphModule\
-                                    )&quot;,
+                                    &quot;import(\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail//edition-graph/edition-graph.module&#x27;\
+                                    ).then(m &#x3D;&gt; m.EditionGraphModule)&quot;,
                             },
                             {
                                 path: &#x27;&#x27;,
@@ -173,7 +170,10 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
             {
                 // Overview of row tables.
                 path: &#x27;row-tables&#x27;,
-                component: EditionRowTablesComponent,
+                loadChildren: () &#x3D;&gt;
+                    &quot;import(&#x27;./edition-outlets/edition-row-tables/edition-row-tables.module&#x27;).then(\
+                        m &#x3D;&gt; m.EditionRowTablesModule\
+                    )&quot;,
             },
         ],
     },
@@ -189,7 +189,6 @@ export const routedEditionViewComponents &#x3D; [
     EditionViewComponent,
     EditionComplexComponent,
     EditionDetailNavComponent,
-    EditionRowTablesComponent,
     EditionSectionsComponent,
     EditionSectionDetailComponent,
     EditionSeriesComponent,

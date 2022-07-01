@@ -63,7 +63,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/table/table-data.model.ts</code>
+            <code>src/app/shared/table/models/table-data.model.ts</code>
         </p>
 
 
@@ -128,7 +128,7 @@ to store the options for a table paginator.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/table/table-data.model.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/table/models/table-data.model.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -214,7 +214,7 @@ to store the options for a table paginator.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/shared/table/table-data.model.ts:24</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/table/models/table-data.model.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,7 @@ to store the options for a table paginator.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/table/table-data.model.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/table/models/table-data.model.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -278,7 +278,7 @@ to store the options for a table paginator.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/table/table-data.model.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/table/models/table-data.model.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -310,7 +310,7 @@ to store the options for a table paginator.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/table/table-data.model.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/table/models/table-data.model.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -335,8 +335,7 @@ to store the options for a table paginator.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IconDefinition } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
-import { Observable, of as observableOf } from &#x27;rxjs&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Observable, of as observableOf } from &#x27;rxjs&#x27;;
 
 /**
  * The TableData class.
@@ -379,84 +378,6 @@ export class TableData {
         this.filteredRows &#x3D; rows || [];
         this.paginatedRows$ &#x3D; observableOf(rows) || observableOf([]);
     }
-}
-
-/**
- * The PaginatorOptions class.
- *
- * It is used in the context of the app framework
- * to store the options for a table paginator.
- */
-export class PaginatorOptions {
-    /**
-     * The current page number.
-     */
-    page: number;
-
-    /**
-     * The selected number of rows per page.
-     */
-    selectedPageSize: number;
-
-    /**
-     * The page size options.
-     */
-    pageSizeOptions: number[];
-
-    /**
-     * The size of the collection.
-     */
-    collectionSize: number;
-
-    /**
-     * Constructor of the PaginatorOptions class.
-     *
-     * It initializes the class with given values.
-     *
-     * @param {number} page The current page number.
-     * @param {number} selectedPageSize The number of rows per page.
-     * @param {number[]} pageSizeOptions The options for the page size.
-     * @param {number} collectionSize The size of the collection.
-     */
-    constructor(page: number, selectedPageSize: number, pageSizeOptions: number[], collectionSize: number) {
-        this.page &#x3D; page;
-        this.selectedPageSize &#x3D; selectedPageSize;
-        this.pageSizeOptions &#x3D; pageSizeOptions;
-        this.collectionSize &#x3D; collectionSize;
-    }
-}
-
-/**
- * The TableOptions class.
- *
- * It is used in the context of the app framework
- * to store the options for a table.
- */
-export class TableOptions {
-    /**
-     * The selected key of the Table options.
-     */
-    selectedKey: string;
-
-    /**
-     * The sort key of the Table options.
-     */
-    sortKey: string;
-
-    /**
-     * The sortIcon of the Table options.
-     */
-    sortIcon: IconDefinition;
-
-    /**
-     * The flag for reverse order of the Table options.
-     */
-    reverse: boolean;
-
-    /**
-     * The sort case  of the Table options.
-     */
-    isCaseInsensitive: boolean;
 }
 </code></pre>
     </div>

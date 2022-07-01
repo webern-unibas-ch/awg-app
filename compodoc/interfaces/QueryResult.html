@@ -66,7 +66,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/query-result.model.ts</code>
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models/query-result.model.ts</code>
         </p>
 
 
@@ -75,7 +75,7 @@
             </p>
             <p class="comment">
                 <p>The QueryResult interface.</p>
-<p>It represents the result of a query.</p>
+<p>It represents the result of a SPARQL query.</p>
 
             </p>
 
@@ -93,24 +93,15 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#actions" 
+                                        <a href="#body" 
 >
-                                            actions
+                                            body
                                         </a>
                                 </li>
                                 <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#duplicates" 
+                                        <a href="#head" 
 >
-                                            duplicates
-                                        </a>
-                                </li>
-                                <li>
-                                            <span class="modifier">Optional</span>
-                                        <a href="#triples" 
->
-                                            triples
+                                            head
                                         </a>
                                 </li>
                             </ul>
@@ -128,9 +119,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="actions"></a>
-                                        <span class="name "><b>actions</b>
-                                            <a href="#actions">
+                                        <a name="body"></a>
+                                        <span class="name "><b>body</b>
+                                            <a href="#body">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -138,25 +129,26 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>actions:     <code></code>
+                                        <code>body:         <code><a href="../interfaces/QueryResultBody.html" target="_self" >QueryResultBody</a></code>
 </code>
                                     </td>
                                 </tr>
 
 
-
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Optional</i>
+                                            <i>Type : </i>        <code><a href="../interfaces/QueryResultBody.html" target="_self" >QueryResultBody</a></code>
+
                                         </td>
                                     </tr>
 
 
 
 
+
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The actions of the query result (optional).</p>
+                                    <div class="io-description"><p>The body of the query result with the bindings.</p>
 </div>
                                 </td>
                             </tr>
@@ -166,9 +158,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="duplicates"></a>
-                                        <span class="name "><b>duplicates</b>
-                                            <a href="#duplicates">
+                                        <a name="head"></a>
+                                        <span class="name "><b>head</b>
+                                            <a href="#head">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -176,7 +168,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>duplicates:     <code>object[]</code>
+                                        <code>head:         <code><a href="../interfaces/QueryResultHead.html" target="_self" >QueryResultHead</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -184,67 +176,18 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>    <code>object[]</code>
+                                            <i>Type : </i>        <code><a href="../interfaces/QueryResultHead.html" target="_self" >QueryResultHead</a></code>
 
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
 
 
 
 
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-description"><p>The duplicates of the query result (optional).</p>
-</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="triples"></a>
-                                        <span class="name "><b>triples</b>
-                                            <a href="#triples">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>triples:         <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Optional</i>
-                                        </td>
-                                    </tr>
-
-
-
-
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-description"><p>The triples of the query result (optional).</p>
+                                    <div class="io-description"><p>The head of the query result with the variable names.</p>
 </div>
                                 </td>
                             </tr>
@@ -255,28 +198,52 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Triple } from &#x27;./triple.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface QueryResult {
+    /**
+     * The head of the query result with the variable names.
+     */
+    head: QueryResultHead;
+
+    /**
+     * The body of the query result with the bindings.
+     */
+    body: QueryResultBody;
+}
 
 /**
- * The QueryResult interface.
+ * The QueryResultHead interface.
  *
- * It represents the result of a query.
+ * It represents the head of a query result.
  */
-export interface QueryResult {
+export interface QueryResultHead {
     /**
-     * The actions of the query result (optional).
+     * The variable names of the query result head.
      */
-    actions?;
+    vars: string[];
+}
 
+/**
+ * The QueryResultBody interface.
+ *
+ * It represents the body of a query result.
+ */
+export interface QueryResultBody {
     /**
-     * The duplicates of the query result (optional).
+     * The bindings of the query result body.
      */
-    duplicates?: object[];
+    bindings: QueryResultBindings[];
+}
 
+/**
+ * The QueryResultBindings interface.
+ *
+ * It represents the bindings of a query result.
+ */
+export interface QueryResultBindings {
     /**
-     * The triples of the query result (optional).
+     * The key-value pair bindings of the query result body.
      */
-    triples?: Triple[];
+    [key: string]: any;
 }
 </code></pre>
     </div>

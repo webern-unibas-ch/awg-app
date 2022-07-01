@@ -66,7 +66,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/triple.model.ts</code>
+            <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/models/triple.model.ts</code>
         </p>
 
 
@@ -79,6 +79,12 @@
 
             </p>
 
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../interfaces/AbstractTriple.html" target="_self" >AbstractTriple</a></code>
+            </p>
 
         <section>
             <h3 id="index">Index</h3>
@@ -135,7 +141,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>object:         <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                                        <code>object:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -143,7 +149,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -174,7 +180,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>predicate:         <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                                        <code>predicate:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -182,7 +188,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -213,7 +219,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>subject:         <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                                        <code>subject:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -221,7 +227,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../interfaces/TripleComponent.html" target="_self" >TripleComponent</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                                         </td>
                                     </tr>
@@ -243,33 +249,136 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface Triple {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export interface AbstractTriple {
+    /**
+     * The subject of an abstract RDF triple.
+     */
+    subject: any;
+
+    /**
+     * The predicate of an abstract RDF triple.
+     */
+    predicate: any;
+
+    /**
+     * The object of an abstract  RDF triple.
+     */
+    object: any;
+}
+
+/**
+ * The Triple interface.
+ *
+ * It represents an RDF triple.
+ */
+export interface Triple extends AbstractTriple {
     /**
      * The subject of an RDF triple.
      */
-    subject: TripleComponent;
+    subject: string;
 
     /**
      * The predicate of an RDF triple.
      */
-    predicate: TripleComponent;
+    predicate: string;
 
     /**
      * The object of an RDF triple.
      */
-    object: TripleComponent;
+    object: string;
 }
 
 /**
- * The TripleComponent interface.
+ * The RDFStoreConstructResponseTriple interface.
  *
- * It represents an RDF triple component.
+ * It represents an RDF triple as returned from CONSTRUCT response against rdfstore.
  */
-export interface TripleComponent {
+export interface RDFStoreConstructResponseTriple extends AbstractTriple {
     /**
-     * The nominal value of an RDF triple component.
+     * The subject of an RDF triple from CONSTRUCT response against rdfstore..
      */
-    nominalValue: any;
+    subject: RDFStoreConstructResponseTripleSegment;
+
+    /**
+     * The predicate of an RDF triple from CONSTRUCT response against rdfstore..
+     */
+    predicate: RDFStoreConstructResponseTripleSegment;
+
+    /**
+     * The object of an RDF triple from CONSTRUCT response against rdfstore..
+     */
+    object: RDFStoreConstructResponseTripleSegment;
+}
+
+/**
+ * The RDFStoreConstructResponseTripleSegment interface.
+ *
+ * It represents a segment of an RDF triple as returned from CONSTRUCT response against rdfstore.
+ */
+export interface RDFStoreConstructResponseTripleSegment {
+    /**
+     * The nominal value of an RDF triple segment from CONSTRUCT response against rdfstore.
+     */
+    nominalValue: string;
+
+    /**
+     * The interfacename of an RDF triple segment from CONSTRUCT response against rdfstore.
+     */
+    interfacename?: string;
+
+    /**
+     * The attributes of an RDF triple segment from CONSTRUCT response against rdfstore.
+     */
+    attributes?: string[];
+}
+
+/**
+ * The RDFStoreSelectResponseTriple interface.
+ *
+ * It represents an RDF triple as returned from SELECT response against rdfstore.
+ */
+export interface RDFStoreSelectResponseTriple extends AbstractTriple {
+    /**
+     * The subject of an RDF triple from SELECT response against rdfstore..
+     */
+    subject: RDFStoreSelectResponseTripleSegment;
+
+    /**
+     * The predicate of an RDF triple from SELECT response against rdfstore..
+     */
+    predicate: RDFStoreSelectResponseTripleSegment;
+
+    /**
+     * The object of an RDF triple from SELECT response against rdfstore..
+     */
+    object: RDFStoreSelectResponseTripleSegment;
+}
+
+/**
+ * The RDFStoreSelectResponseTripleSegment interface.
+ *
+ * It represents a segment of an RDF triple as returned from SELECT response against rdfstore.
+ */
+export interface RDFStoreSelectResponseTripleSegment {
+    /**
+     * The type of an RDF triple segment from SELECT response against rdfstore.
+     */
+    type: string;
+
+    /**
+     * The label of an RDF triple segment from SELECT response against rdfstore.
+     */
+    label: any;
+
+    /**
+     * The value of an RDF triple segment from SELECT response against rdfstore.
+     */
+    value: string;
+
+    /**
+     * The datatype of an RDF triple segment from SELECT response against rdfstore.
+     */
+    datatype?: string;
 }
 </code></pre>
     </div>
