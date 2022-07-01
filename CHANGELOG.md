@@ -10,12 +10,12 @@ All notable changes to this project will be documented in this file. See [standa
 * **edition:** add  response type for doQuery in visualizer service ([44331ef](https://github.com/webern-unibas-ch/awg-app/commit/44331efc91d450d4c143d9e9325da6fae5668b9f))
 * **edition:** add barrels for graph visualizer module participants ([3d4c86e](https://github.com/webern-unibas-ch/awg-app/commit/3d4c86e9ab27e4541d1ec1eedf78f5c7ce32c2a9))
 * **edition:** add some more default prefixes to PrefixPipe ([51cbb5a](https://github.com/webern-unibas-ch/awg-app/commit/51cbb5a7e60b1ade86354bb5f195e69cd790f81b))
-* **edition:** added colons in source description ([0ba69d0](https://github.com/webern-unibas-ch/awg-app/commit/0ba69d037a591f7f9ba91c2c44713c3c92bb918e))
-* **edition:** adjust modal.components.ts ([#485](https://github.com/webern-unibas-ch/awg-app/issues/485)) ([4f3a4b2](https://github.com/webern-unibas-ch/awg-app/commit/4f3a4b2f841dbe8f9ebf1bd054255df9788deb7d))
-* **edition:** adjustment in source-description of op25 ([6ec0a17](https://github.com/webern-unibas-ch/awg-app/commit/6ec0a1711ab6bb1802f462c10ad1edd945687367))
-* **edition:** adjustments in source-list and -description of op12 ([61d1e19](https://github.com/webern-unibas-ch/awg-app/commit/61d1e196917150c96fd6c1301de12d2a18f57402))
+* **edition:** added colons in source description ([0ba69d0](https://github.com/webern-unibas-ch/awg-app/commit/0ba69d037a591f7f9ba91c2c44713c3c92bb918e); thanks to [@masthom](https://github.com/masthom))
+* **edition:** adjust modal.components.ts ([#485](https://github.com/webern-unibas-ch/awg-app/issues/485)) ([4f3a4b2](https://github.com/webern-unibas-ch/awg-app/commit/4f3a4b2f841dbe8f9ebf1bd054255df9788deb7d); thanks to [@masthom](https://github.com/masthom))
+* **edition:** adjustment in source-description of op25 ([6ec0a17](https://github.com/webern-unibas-ch/awg-app/commit/6ec0a1711ab6bb1802f462c10ad1edd945687367); thanks to [@masthom](https://github.com/masthom))
+* **edition:** adjustments in source-list and -description of op12 ([61d1e19](https://github.com/webern-unibas-ch/awg-app/commit/61d1e196917150c96fd6c1301de12d2a18f57402); thanks to [@masthom](https://github.com/masthom))
 * **edition:** fix typo in RISM sigle ([e56aaae](https://github.com/webern-unibas-ch/awg-app/commit/e56aaae0bdcd01711001f23a3f84311e128b2380))
-* **edition:** more adjustments in source-description op op12 and op25, ([f6d5250](https://github.com/webern-unibas-ch/awg-app/commit/f6d5250b3eee6fb0610153f259ebd57792ef155b))
+* **edition:** more adjustments in source-description op op12 and op25, ([f6d5250](https://github.com/webern-unibas-ch/awg-app/commit/f6d5250b3eee6fb0610153f259ebd57792ef155b); thanks to [@masthom](https://github.com/masthom))
 * **edition:** more adjustments to source-list of op12 and op25 ([c2e6e92](https://github.com/webern-unibas-ch/awg-app/commit/c2e6e92d7a609b70796f7342bfa039808afc5f2f))
 * **edition:** remove or underscore unused function parameters ([6380c9c](https://github.com/webern-unibas-ch/awg-app/commit/6380c9cf0622d26defbf049a37c8c76c6cc762bd))
 * **edition:** remove redundant await from non-promise call ([354e23b](https://github.com/webern-unibas-ch/awg-app/commit/354e23b44e667a58b1f1a4ee5430521cb7f57656))
@@ -27,8 +27,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Documentation
 
-* **app:** add AMWilke to contributors in package.json ([bdd97d2](https://github.com/webern-unibas-ch/awg-app/commit/bdd97d2421728f1b6b1aace8e5f85f9036d4e48a))
-* **CHANGELOG:** add credits to [@masthom](https://github.com/masthom) and @AMWilke in v0.8.2 release ([ae581d3](https://github.com/webern-unibas-ch/awg-app/commit/ae581d3e0845102a3538cbbfcaad60df32fd68f8))
+* **app:** add [@AMWilke](https://github.com/AMWilke) to contributors in package.json ([bdd97d2](https://github.com/webern-unibas-ch/awg-app/commit/bdd97d2421728f1b6b1aace8e5f85f9036d4e48a))
+* **CHANGELOG:** add credits to [@masthom](https://github.com/masthom) and [@AMWilke](https://github.com/AMWilke) in v0.8.2 release ([ae581d3](https://github.com/webern-unibas-ch/awg-app/commit/ae581d3e0845102a3538cbbfcaad60df32fd68f8))
 * **CONTRIBUTING:** fix incorrect sorting of core scope ([9774f51](https://github.com/webern-unibas-ch/awg-app/commit/9774f511dab82adcd7bd7c76baf35390f9f1ca7c))
 * **CONTRIBUTING:** update commit message schema ([5632f8f](https://github.com/webern-unibas-ch/awg-app/commit/5632f8feab281ee8fd51ceeaf2fdd1a40fc6956b))
 * **edition:** add jsdocs for EditionDetail ([5512e31](https://github.com/webern-unibas-ch/awg-app/commit/5512e319279409f2171fd8fc8f92cd417018e254))
