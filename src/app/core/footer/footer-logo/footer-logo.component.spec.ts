@@ -7,8 +7,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
+import { LOGOSDATA } from '@awg-core/core-data';
 import { Logo } from '@awg-core/core-models';
-import { LOGOSDATA } from '@awg-core/mock-data';
 
 import { FooterLogoComponent } from './footer-logo.component';
 

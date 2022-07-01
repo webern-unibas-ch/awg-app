@@ -1,11 +1,19 @@
 <ng-template #modalTemplate let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">{{ modalTitle }}</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+        <button
+            type="button"
+            class="btn-close"
+            aria-label="dismiss"
+            (click)="modal.dismiss('Click on dismiss button')"></button>
     </div>
     <div class="modal-body" [compile-html]="modalContent" [compile-html-ref]="this"></div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark awg-modal-button" ngbAutofocus (click)="modal.close()">
+        <button
+            type="button"
+            class="btn btn-outline-dark awg-modal-button"
+            ngbAutofocus
+            (click)="modal.close('Click on {{ modalCloseLabel }}')">
             {{ modalCloseLabel }}
         </button>
     </div>

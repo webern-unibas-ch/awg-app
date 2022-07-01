@@ -2,29 +2,29 @@
     "sources": [
         {
             "siglum": "A",
-            "type": "Skizzen zu <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1/2 (<strong>Aa</strong>)<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: Textfassung 1 <strong>(Ab)</strong><br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: Textfassung 1 <strong>(Ac)</strong><br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1 <strong>(Ad)</strong>.<br />Enthält auch Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1/2 (<strong>A<sup>a</sup></strong>)<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 (<strong>A<sup>b</sup></strong>)<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213 (<strong>A<sup>c</sup></strong>)<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216 (<strong>A<sup>d</sup></strong>).<br />Enthält auch Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "sourceA"
         },
         {
             "siglum": "B",
-            "type": "Autograph von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1 [→2].",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "type": "Autograph von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1→2.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "C",
-            "type": "Autographe von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: Textfassung [0→] 1<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: Textfassung [0→] 1<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung [1→] 2.",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "type": "Autographe von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: Textfassung 1<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: Textfassung 1<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1→2.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "D",
             "type": "Autograph von <br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
-            "location": "London, British Library, O. W. Neighbour Collection.",
+            "location": "GB-Lbl, O. W. Neighbour Collection.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
@@ -37,21 +37,21 @@
         },
         {
             "siglum": "E<sup>1</sup>",
-            "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2 [→3].",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2→3.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "F",
-            "type": "Autograph von <em>Vier Lieder</em> op. 12: <br /><span class=\"tab\"></span>I („Der Tag ist vergangen“ M 212: Textfassung 3)<br /><span class=\"tab\"></span>II (<em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung)<br /><span class=\"tab\"></span>III („Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung)<br /><span class=\"tab\"></span>IV (<em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2).",
-            "location": "New York, NY, Pierpont Morgan Library, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "type": "Autograph von <em>Vier Lieder</em> op. 12: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 3<br /><span class=\"tab\"></span>II<span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung<br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung<br /><span class=\"tab\"></span>IV<span class=\"tab\"></span><em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
             "siglum": "G",
-            "type": "Druck von <em>Vier Lieder</em> op. 12: <br /><span class=\"tab\"></span>I („Der Tag ist vergangen“ M 212: Textfassung 3)<br /><span class=\"tab\"></span>II (<em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung)<br /><span class=\"tab\"></span>III („Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung)<br /><span class=\"tab\"></span>IV (<em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2).",
+            "type": "Druck von <em>Vier Lieder</em> op. 12: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 3<br /><span class=\"tab\"></span>II<span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung<br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung<br /><span class=\"tab\"></span>IV<span class=\"tab\"></span><em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2.",
             "location": "Wien: Universal Edition, 1925.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
@@ -59,7 +59,7 @@
         {
             "siglum": "G<sup>1</sup>",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>.",
-            "location": "Washington, DC, Library of Congress, Moldenhauer Archives, Box-Folder: 59/10.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_A"
         }

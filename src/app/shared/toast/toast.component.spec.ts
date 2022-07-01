@@ -80,9 +80,9 @@ describe('ToastComponent (DONE)', () => {
         });
 
         it('... should have added one toast to toast service', () => {
-            expect(toastService.toasts).toBeDefined('should be defined');
-            expect(toastService.toasts.length).toBe(1, `should be 1`);
-            expect(toastService.toasts[0]).toEqual(expectedToast, `should equal ${expectedToast}`);
+            expect(toastService.toasts).toBeDefined();
+            expect(toastService.toasts.length).withContext(`should be 1`).toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast}`).toEqual(expectedToast);
         });
 
         describe('VIEW', () => {
@@ -94,26 +94,27 @@ describe('ToastComponent (DONE)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.header).toBeDefined('should be defined');
-                expect(toastCmp.header).toBe(expectedToast.options.header, `should be ${expectedToast.options.header}`);
+                expect(toastCmp.header).toBeDefined();
+                expect(toastCmp.header)
+                    .withContext(`should be ${expectedToast.options.header}`)
+                    .toBe(expectedToast.options.header);
             });
 
             it('... should pass down classname to ngb-toast component (stubbed) if given', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.class).toBeDefined('should be defined');
-                expect(toastCmp.class).toBe(
-                    expectedToast.options.classname,
-                    `should be ${expectedToast.options.classname}`
-                );
+                expect(toastCmp.class).toBeDefined();
+                expect(toastCmp.class)
+                    .withContext(`should be ${expectedToast.options.classname}`)
+                    .toBe(expectedToast.options.classname);
             });
 
             it('... should pass down autohide=true to ngb-toast component (stubbed)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.autohide).toBeDefined('should be defined');
+                expect(toastCmp.autohide).toBeDefined();
                 expect(toastCmp.autohide).toBeTrue();
             });
 
@@ -121,8 +122,10 @@ describe('ToastComponent (DONE)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.delay).toBeDefined('should be defined');
-                expect(toastCmp.delay).toBe(expectedToast.options.delay, `should be ${expectedToast.options.delay}`);
+                expect(toastCmp.delay).toBeDefined();
+                expect(toastCmp.delay)
+                    .withContext(`should be ${expectedToast.options.delay}`)
+                    .toBe(expectedToast.options.delay);
             });
 
             it('... should pass down default delay (=5000) to ngb-toast component (stubbed) if no delay is given', () => {
@@ -136,8 +139,8 @@ describe('ToastComponent (DONE)', () => {
                 const toastDes = getAndExpectDebugElementByDirective(compDe, NgbToastStubComponent, 1, 1);
                 const toastCmp = toastDes[0].injector.get(NgbToastStubComponent) as NgbToastStubComponent;
 
-                expect(toastCmp.delay).toBeDefined('should be defined');
-                expect<any>(toastCmp.delay).toBe(5000, `should be 5000`);
+                expect(toastCmp.delay).toBeDefined();
+                expect<any>(toastCmp.delay).withContext(`should be 5000`).toBe(5000);
             });
 
             it('... should remove toast from service on hide', () => {
@@ -146,8 +149,8 @@ describe('ToastComponent (DONE)', () => {
 
                 toastCmp.hide.emit();
 
-                expect(toastService.toasts).toBeDefined('should be defined');
-                expect(toastService.toasts.length).toBe(0, `should be 0`);
+                expect(toastService.toasts).toBeDefined();
+                expect(toastService.toasts.length).withContext(`should be 0`).toBe(0);
             });
         });
 

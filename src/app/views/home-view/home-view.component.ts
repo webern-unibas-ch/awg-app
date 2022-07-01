@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
 
 /**
  * The HomeView component.

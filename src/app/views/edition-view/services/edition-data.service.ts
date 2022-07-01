@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
+import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
     EditionWork,
@@ -15,6 +16,7 @@ import {
     SourceDescriptionList,
     SourceEvaluationList,
     TextcriticsList,
+    EditionRowTables,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -163,6 +165,17 @@ export class EditionDataService {
             // Take only first request (JSON fetch)
             take(1)
         );
+    }
+
+    /**
+     * Public method: getRowTables.
+     *
+     * It provides the data for the row tables.
+     *
+     * @returns {EditionRowTables[]} The row tables data.
+     */
+    getRowTables(): EditionRowTables[] {
+        return EDITION_ROW_TABLES_DATA;
     }
 
     /**
