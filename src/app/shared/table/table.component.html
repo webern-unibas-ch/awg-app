@@ -1,8 +1,8 @@
-<form *ngIf="tableData.filteredRows && tableData.totalRows$">
+<form *ngIf="tableData.filteredRows && tableData.totalRows$ | async as totalRows">
     <div class="form-group form-inline">
         <label class="col-sm-4 col-form-label"
             >{{ tableTitle }}<br />
-            ({{ tableData.filteredRows?.length }} von {{ (tableData.totalRows$ | async).length }} Ergebnissen)</label
+            ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)</label
         >
         <div class="col-sm-6">
             <input
@@ -17,7 +17,7 @@
     </div>
 </form>
 
-<div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
+<div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows && paginatorOptions">
     <!-- top pagination -->
     <awg-table-pagination
         [(page)]="paginatorOptions.page"
@@ -26,15 +26,18 @@
     </awg-table-pagination>
 
     <div ngbDropdown class="d-inline-block">
-        <select
-            ngbDropdownToggle
-            class="form-select"
-            [(ngModel)]="paginatorOptions.selectedPageSize"
-            (ngModelChange)="onPageSizeChange(searchFilter)">
-            <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option" ngbDropdownItem>
-                {{ option }} Ergebnisse pro Seite
-            </option>
-        </select>
+        <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuTop" ngbDropdownToggle>
+            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
+        </button>
+        <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuTop" ngbDropdownMenu>
+            <button
+                ngbDropdownItem
+                class="dropdown-item"
+                *ngFor="let pageSizeOption of paginatorOptions.pageSizeOptions"
+                (click)="onPageSizeChange(searchFilter, pageSizeOption)">
+                {{ pageSizeOption }} Ergebnisse pro Seite
+            </button>
+        </div>
     </div>
 </div>
 
@@ -90,14 +93,17 @@
     </awg-table-pagination>
 
     <div ngbDropdown class="d-inline-block">
-        <select
-            ngbDropdownToggle
-            class="form-select"
-            [(ngModel)]="paginatorOptions.selectedPageSize"
-            (ngModelChange)="onPageSizeChange(searchFilter)">
-            <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option" ngbDropdownItem>
-                {{ option }} Ergebnisse pro Seite
-            </option>
-        </select>
+        <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuBottom" ngbDropdownToggle>
+            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
+        </button>
+        <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuBottom" ngbDropdownMenu>
+            <button
+                ngbDropdownItem
+                class="dropdown-item"
+                *ngFor="let pageSizeOption of paginatorOptions.pageSizeOptions"
+                (click)="onPageSizeChange(searchFilter, pageSizeOption)">
+                {{ pageSizeOption }} Ergebnisse pro Seite
+            </button>
+        </div>
     </div>
 </div>

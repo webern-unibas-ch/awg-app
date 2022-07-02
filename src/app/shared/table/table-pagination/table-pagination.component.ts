@@ -30,7 +30,7 @@ export class TablePaginationComponent implements OnInit {
     page: number;
 
     /**
-     * Output variable: pageChangeRequest.
+     * Output variable: pageChange.
      *
      * It keeps an event emitter for a change of the page number.
      */
