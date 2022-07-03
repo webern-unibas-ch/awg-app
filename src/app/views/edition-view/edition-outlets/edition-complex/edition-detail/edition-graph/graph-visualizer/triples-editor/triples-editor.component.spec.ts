@@ -191,7 +191,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         const btnEl = btnDes[0].nativeElement;
 
                         // Check button content
-                        expect(btnEl.textContent).toBeDefined();
+                        expect(btnEl.textContent).toBeTruthy();
                         expect(btnEl.textContent).withContext('should be RDF Triples').toContain('RDF Triples');
                     });
 
@@ -466,7 +466,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     const btnEl = btnDes[0].nativeElement;
 
                     // Check button content
-                    expect(btnEl.textContent).toBeDefined();
+                    expect(btnEl.textContent).toBeTruthy();
                     expect(btnEl.textContent).withContext('should be RDF Triples').toContain('RDF Triples');
                 });
 

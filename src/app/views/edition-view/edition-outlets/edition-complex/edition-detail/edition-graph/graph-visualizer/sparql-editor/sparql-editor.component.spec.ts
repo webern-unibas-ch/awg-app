@@ -216,7 +216,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const btnEl = btnDes[0].nativeElement;
 
                         // Check button content
-                        expect(btnEl.textContent).toBeDefined();
+                        expect(btnEl.textContent).toBeTruthy();
                         expect(btnEl.textContent).withContext('should be SPARQL').toContain('SPARQL');
                     });
 
@@ -540,7 +540,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
                     });
 
-                    it('... should contain div with three buttons (Query, Reset, Clear) in panel body', () => {
+                    it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
                         const divDes = getAndExpectDebugElementByCss(
                             bodyDes[0],
                             'div.awg-graph-visualizer-sparql-query-handle-buttons',
@@ -572,6 +572,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         const btnEl0 = btnDes[0].nativeElement;
 
+                        expect(btnEl0.textContent).toBeTruthy();
                         expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                         // Click query button
@@ -591,6 +592,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         const btnEl1 = btnDes[1].nativeElement;
 
+                        expect(btnEl1.textContent).toBeTruthy();
                         expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                         // Click reset button
@@ -610,6 +612,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         const btnEl2 = btnDes[2].nativeElement;
 
+                        expect(btnEl2.textContent).toBeTruthy();
                         expect(btnEl2.textContent).withContext(`should contain 'Clear'`).toContain('Clear');
 
                         // Click clear button
@@ -693,7 +696,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     const btnEl = btnDes[0].nativeElement;
 
                     // Check button content
-                    expect(btnEl.textContent).toBeDefined();
+                    expect(btnEl.textContent).toBeTruthy();
                     expect(btnEl.textContent).withContext(`should be 'SPARQL'`).toContain('SPARQL');
                 });
 
@@ -971,7 +974,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
                 });
 
-                it('... should contain div with three buttons (Query, Reset, Clear) in panel body', () => {
+                it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         bodyDes[0],
                         'div.awg-graph-visualizer-sparql-query-handle-buttons',
@@ -1003,6 +1006,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     const btnEl0 = btnDes[0].nativeElement;
 
+                    expect(btnEl0.textContent).toBeTruthy();
                     expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                     // Click query button
@@ -1022,6 +1026,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     const btnEl1 = btnDes[1].nativeElement;
 
+                    expect(btnEl1.textContent).toBeTruthy();
                     expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                     // Click reset button
@@ -1041,6 +1046,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     const btnEl2 = btnDes[2].nativeElement;
 
+                    expect(btnEl2.textContent).toBeTruthy();
                     expect(btnEl2.textContent).withContext(`should contain 'Clear'`).toContain('Clear');
 
                     // Click clear button
@@ -1148,6 +1154,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl2 = btnDes[2].nativeElement;
 
+                expect(btnEl2.textContent).toBeTruthy();
                 expect(btnEl2.textContent).withContext(`should contain 'Clear'`).toContain('Clear');
 
                 // Click clear button
@@ -1157,7 +1164,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
             });
 
-            it('... should emit request on click', async () => {
+            it('... should emit updateQueryStringRequest on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-sparql-query-handle-buttons > button.btn',
@@ -1166,6 +1173,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl2 = btnDes[2].nativeElement;
 
+                expect(btnEl2.textContent).toBeTruthy();
                 expect(btnEl2.textContent).withContext(`should contain 'Clear'`).toContain('Clear');
 
                 // Click clear button
@@ -1173,6 +1181,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
+                expectSpyCall(emitUpdateQueryStringRequestSpy, 1);
             });
 
             describe('... should emit provided query string on editor change', () => {
@@ -1323,6 +1332,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl0 = btnDes[0].nativeElement;
 
+                expect(btnEl0.textContent).toBeTruthy();
                 expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                 // Click query button
@@ -1342,6 +1352,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     const btnEl0 = btnDes[0].nativeElement;
 
+                    expect(btnEl0.textContent).toBeTruthy();
                     expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                     // Click query button
@@ -1367,6 +1378,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     const btnEl0 = btnDes[0].nativeElement;
 
+                    expect(btnEl0.textContent).toBeTruthy();
                     expect(btnEl0.textContent).withContext(`should contain 'Query'`).toContain('Query');
 
                     // Click query button
@@ -1405,6 +1417,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl1 = btnDes[1].nativeElement;
 
+                expect(btnEl1.textContent).toBeTruthy();
                 expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                 // Click query button
@@ -1432,6 +1445,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl1 = btnDes[1].nativeElement;
 
+                expect(btnEl1.textContent).toBeTruthy();
                 expect(btnEl1.textContent).withContext(`should contain 'Reset'`).toContain('Reset');
 
                 // Click reset button

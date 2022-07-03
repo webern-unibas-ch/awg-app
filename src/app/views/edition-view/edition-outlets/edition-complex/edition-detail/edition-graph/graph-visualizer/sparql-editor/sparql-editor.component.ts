@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-import { CmConfig } from '../models';
+import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
+
+import { ToastMessage } from '@awg-core/services/toast-service';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
+import { CmConfig } from '../models';
 
 import 'codemirror/mode/sparql/sparql';
-import { ToastMessage } from '@awg-core/services/toast-service';
 
 /**
  * The SparqlEditor component.
