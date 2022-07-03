@@ -222,7 +222,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Shows the error message.
      */
     showErrorMessage(toastMessage: ToastMessage): void {
-        if (!toastMessage) {
+        if (!toastMessage || !toastMessage.message) {
             return;
         }
 
@@ -264,9 +264,9 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
-                    this.showErrorMessage(new ToastMessage(err.name, 'The query did not return any results', 10000));
+                    this.showErrorMessage(new ToastMessage(err.name, 'The query did not return any results.', 5000));
                 }
-                this.showErrorMessage(new ToastMessage(err.name, err.message, 10000));
+                this.showErrorMessage(new ToastMessage(err.name, err.message, 5000));
             }
 
             // Capture query time
