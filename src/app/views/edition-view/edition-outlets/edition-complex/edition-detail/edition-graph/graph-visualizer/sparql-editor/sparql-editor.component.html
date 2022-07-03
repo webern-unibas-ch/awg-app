@@ -53,8 +53,9 @@
 
             <!-- Handle buttons -->
             <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
-                <button class="btn btn-info" (click)="performQuery()">Query</button>
-                <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
+                <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
+                <button class="btn btn-warning" (click)="resetQuery(query)">Reset</button>
+                <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
             </div>
         </ng-template>
     </ngb-panel>

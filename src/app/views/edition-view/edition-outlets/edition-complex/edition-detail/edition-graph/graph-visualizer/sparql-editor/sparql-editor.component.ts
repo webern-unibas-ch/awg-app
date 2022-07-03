@@ -117,16 +117,13 @@ export class SparqlEditorComponent {
      * Public method: onEditorInputChange.
      *
      * It emits the given query string
-     * to the {@link updateQueryRequest}.
+     * to the {@link updateQueryStringRequest}.
      *
      * @param {string} queryString The given query string.
      *
      * @returns {void} Emits the query.
      */
     onEditorInputChange(queryString: string): void {
-        if (!queryString) {
-            return;
-        }
         this.updateQueryStringRequest.emit(queryString);
     }
 
