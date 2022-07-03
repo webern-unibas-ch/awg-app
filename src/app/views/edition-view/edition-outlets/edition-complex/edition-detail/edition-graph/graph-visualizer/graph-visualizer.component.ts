@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChil
 
 import { EMPTY, from, Observable } from 'rxjs';
 
-import { Toast, ToastService } from '@awg-core/services/toast-service';
+import { Toast, ToastMessage, ToastService } from '@awg-core/services/toast-service';
 import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { D3SimulationNode, QueryResult, Triple } from './models';
 
@@ -217,24 +217,23 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It shows a given error message for a given duration.
      *
-     * @param {string} name The given error name.
-     * @param {string} message The given error message.
-     * @param {number} [durationValue] The given optional duration in ms.
+     * @param {ToastMessage} toastMessage The given toast message.
      *
      * @returns {void} Shows the error message.
      */
-    showErrorMessage(name: string, message: string, durationValue?: number): void {
-        if (!message) {
+    showErrorMessage(toastMessage: ToastMessage): void {
+        if (!toastMessage) {
             return;
         }
-        if (!durationValue) {
-            durationValue = 7000;
-        }
 
-        const toast = new Toast(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
+        const toast = new Toast(toastMessage.message, {
+            header: toastMessage.name,
+            classname: 'bg-danger text-light',
+            delay: toastMessage.duration,
+        });
         this.toastService.add(toast);
 
-        console.error(message, durationValue);
+        console.error(toastMessage.name, ':', toastMessage.message);
     }
 
     /**
@@ -265,9 +264,9 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
-                    this.showErrorMessage(err.name, 'The query did not return any results', 10000);
+                    this.showErrorMessage(new ToastMessage(err.name, 'The query did not return any results', 10000));
                 }
-                this.showErrorMessage(err.name, err.message, 10000);
+                this.showErrorMessage(new ToastMessage(err.name, err.message, 10000));
             }
 
             // Capture query time
