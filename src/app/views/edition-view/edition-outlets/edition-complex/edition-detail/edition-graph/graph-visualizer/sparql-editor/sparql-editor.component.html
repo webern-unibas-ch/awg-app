@@ -8,7 +8,10 @@
                 <button ngbPanelToggle class="p-0 btn btn-link text-start">SPARQL</button>
 
                 <!-- Example Query Handle -->
-                <div class="p-0 btn-group" *ngIf="isExampleQueriesEnabled()" style="padding: -3rem">
+                <div
+                    class="p-0 btn-group awg-example-query-btn-group"
+                    *ngIf="isExampleQueriesEnabled()"
+                    style="padding: -3rem">
                     <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                         Beispielabfragen
                     </button>
