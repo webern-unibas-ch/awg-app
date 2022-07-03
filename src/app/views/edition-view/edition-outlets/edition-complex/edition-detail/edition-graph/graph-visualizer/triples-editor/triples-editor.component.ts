@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+import { ToastMessage } from '@awg-core/services/toast-service';
 import { CmConfig } from '../models';
 
 import 'codemirror/mode/turtle/turtle';
@@ -40,6 +41,14 @@ export class TriplesEditorComponent {
      */
     @Input()
     isFullscreen: boolean;
+
+    /**
+     * Output variable: errorMessageRequest.
+     *
+     * It keeps an event emitter to update the query string after editor changes.
+     */
+    @Output()
+    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
 
     /**
      * Output variable: performQueryRequest.
@@ -104,7 +113,11 @@ export class TriplesEditorComponent {
      * @returns {void} Triggers the request.
      */
     performQuery(): void {
-        this.performQueryRequest.emit();
+        if (this.triples) {
+            this.performQueryRequest.emit();
+        } else {
+            this.errorMessageRequest.emit(new ToastMessage('Empty triples', 'Please enter triple content.'));
+        }
     }
 
     /**

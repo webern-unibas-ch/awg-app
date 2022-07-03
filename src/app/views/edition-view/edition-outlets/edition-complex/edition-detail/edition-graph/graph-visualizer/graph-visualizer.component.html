@@ -7,6 +7,7 @@
                 <awg-triples-editor
                     [triples]="triples"
                     [isFullscreen]="isFullscreen"
+                    (errorMessageRequest)="showErrorMessage($event)"
                     (performQueryRequest)="performQuery()"
                     (resetTriplesRequest)="resetTriples()"
                     (updateTriplesRequest)="triples = $event"></awg-triples-editor>
