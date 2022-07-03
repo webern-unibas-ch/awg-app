@@ -98,9 +98,6 @@ export class TriplesEditorComponent {
      * @returns {void} Emits the triples.
      */
     onEditorInputChange(triples: string): void {
-        if (!triples) {
-            return;
-        }
         this.updateTriplesRequest.emit(triples);
     }
 
