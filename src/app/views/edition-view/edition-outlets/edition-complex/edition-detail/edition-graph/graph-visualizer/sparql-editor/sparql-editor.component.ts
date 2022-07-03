@@ -5,6 +5,7 @@ import { CmConfig } from '../models';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
 import 'codemirror/mode/sparql/sparql';
+import { ToastMessage } from '@awg-core/services/toast-service';
 
 /**
  * The SparqlEditor component.
@@ -49,6 +50,14 @@ export class SparqlEditorComponent {
      */
     @Input()
     isFullscreen: boolean;
+
+    /**
+     * Output variable: errorMessageRequest.
+     *
+     * It keeps an event emitter to update the query string after editor changes.
+     */
+    @Output()
+    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
 
     /**
      * Output variable: performQueryRequest.
@@ -151,7 +160,11 @@ export class SparqlEditorComponent {
      * @returns {void} Triggers the request.
      */
     performQuery(): void {
-        this.performQueryRequest.emit();
+        if (this.query.queryString) {
+            this.performQueryRequest.emit();
+        } else {
+            this.errorMessageRequest.emit(new ToastMessage('Empty query', 'Please enter a SPARQL query.'));
+        }
     }
 
     /**

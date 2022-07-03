@@ -7,20 +7,21 @@
                 <awg-triples-editor
                     [triples]="triples"
                     [isFullscreen]="isFullscreen"
-                    (updateTriplesRequest)="triples = $event"
+                    (performQueryRequest)="performQuery()"
                     (resetTriplesRequest)="resetTriples()"
-                    (performQueryRequest)="performQuery()"></awg-triples-editor>
+                    (updateTriplesRequest)="triples = $event"></awg-triples-editor>
             </div>
 
-            <!-- awg-graph-sparql-editor -->
             <div [ngClass]="{ 'col-6 ps-lg-0': !isFullscreen }">
+                <!-- awg-graph-sparql-editor -->
                 <awg-sparql-editor
                     [queryList]="queryList"
                     [query]="query"
                     [isFullscreen]="isFullscreen"
-                    (updateQueryStringRequest)="query.queryString = $event"
+                    (errorMessageRequest)="showErrorMessage($event)"
+                    (performQueryRequest)="performQuery()"
                     (resetQueryRequest)="resetQuery($event)"
-                    (performQueryRequest)="performQuery()"></awg-sparql-editor>
+                    (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>
             </div>
         </div>
     </div>
