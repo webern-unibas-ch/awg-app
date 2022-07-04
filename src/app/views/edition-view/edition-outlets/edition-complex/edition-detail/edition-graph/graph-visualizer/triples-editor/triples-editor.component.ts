@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-import { ToastMessage } from '@awg-core/services/toast-service';
+import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { CmConfig } from '../models';
 
 import 'codemirror/mode/turtle/turtle';

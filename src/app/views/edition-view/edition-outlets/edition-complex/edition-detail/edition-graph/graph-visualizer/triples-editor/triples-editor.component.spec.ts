@@ -12,7 +12,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { ToastMessage } from '@awg-core/services/toast-service';
+import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { CmConfig } from '../models';
 
 import { TriplesEditorComponent } from './triples-editor.component';

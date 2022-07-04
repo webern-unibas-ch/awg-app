@@ -17,7 +17,6 @@ import { HttpCacheService } from './http-cache';
 import { LoadingService } from './loading-service';
 import { SideInfoService } from './side-info-service';
 import { StorageService } from './storage-service';
-import { ToastService } from './toast-service';
 
 export {
     AnalyticsService,
@@ -30,5 +29,4 @@ export {
     LoadingService,
     SideInfoService,
     StorageService,
-    ToastService,
 };

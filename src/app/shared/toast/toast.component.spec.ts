@@ -3,7 +3,7 @@ import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef, View
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Toast, ToastService } from '@awg-core/services/toast-service';
+import { Toast, ToastService } from './toast.service';
 import { ToastComponent } from './toast.component';
 
 // Mock component to get templateRef

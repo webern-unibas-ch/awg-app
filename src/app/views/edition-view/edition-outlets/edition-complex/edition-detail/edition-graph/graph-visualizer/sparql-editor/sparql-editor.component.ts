@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewCh
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
 
-import { ToastMessage } from '@awg-core/services/toast-service';
+import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { CmConfig } from '../models';
 

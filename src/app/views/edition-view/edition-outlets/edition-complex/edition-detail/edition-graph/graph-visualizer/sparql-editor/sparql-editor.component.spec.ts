@@ -19,11 +19,11 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
-
 import { CmConfig } from '../models';
+
 import { SparqlEditorComponent } from './sparql-editor.component';
-import { ToastMessage } from '@awg-core/services/toast-service';
 
 // eslint-disable-next-line @angular-eslint/component-selector
 @Component({ selector: 'ngx-codemirror', template: '' })

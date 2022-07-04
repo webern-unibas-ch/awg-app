@@ -13,7 +13,7 @@ import {
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { Toast, ToastMessage, ToastService } from '@awg-core/services/toast-service';
+import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { D3SimulationNode, D3SimulationNodeType, Triple } from './models';
