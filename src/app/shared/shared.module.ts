@@ -25,6 +25,7 @@ import { TableComponent } from './table/table.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
+import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-handle-button-group.component';
 
 //
 // Shared directives
@@ -63,6 +64,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         TablePaginationComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
+        ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
     ],
     exports: [
@@ -87,6 +89,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
+        ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
     ],
 })

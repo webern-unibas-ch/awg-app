@@ -1,0 +1,22 @@
+<!-- View Handle -->
+<div class="btn-group awg-view-handle-btn-group" role="group">
+    <form [formGroup]="viewHandleControlForm">
+        <div class="btn-group" role="group" name="viewHandle" aria-label="View handle button group">
+            <ng-container *ngFor="let viewHandle of viewHandles; trackBy: viewHandleTracker">
+                <input
+                    type="radio"
+                    [formControl]="viewHandleControl"
+                    value="{{ viewHandle.type }}"
+                    class="btn-check"
+                    id="{{ viewHandle.type }}-view-button"
+                    autocomplete="off" />
+                <label
+                    class="btn btn-sm btn-outline-info"
+                    for="{{ viewHandle.type }}-view-button"
+                    ngbTooltip="{{ viewHandle.type }} view"
+                    ><fa-icon [icon]="viewHandle.icon"></fa-icon>
+                </label>
+            </ng-container>
+        </div>
+    </form>
+</div>
