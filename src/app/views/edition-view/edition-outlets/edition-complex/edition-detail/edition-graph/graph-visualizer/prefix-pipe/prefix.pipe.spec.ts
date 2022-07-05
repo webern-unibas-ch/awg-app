@@ -54,7 +54,6 @@ describe('PrefixPipe', () => {
         it('should throw an error if the prefixForm is not equal to PrefixForm.SHORT or PrefixForm.LONG', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'rdf:';
-            const longForm = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 
             expect(() => pipe.transform(shortForm, undefined)).toThrowError(
                 `The prefixForm must be ${PrefixForm.SHORT} or ${PrefixForm.LONG}, but was: undefined.`
