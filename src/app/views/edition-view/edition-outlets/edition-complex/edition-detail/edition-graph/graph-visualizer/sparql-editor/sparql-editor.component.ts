@@ -1,9 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+} from '@angular/core';
 
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastMessage } from '@awg-shared/toast/toast.service';
+import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { CmConfig } from '../models';
 
@@ -21,7 +32,7 @@ import 'codemirror/mode/sparql/sparql';
     styleUrls: ['./sparql-editor.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SparqlEditorComponent {
+export class SparqlEditorComponent implements OnInit, OnChanges {
     /**
      * ViewChild variable: sparqlAcc.
      *
@@ -99,6 +110,127 @@ export class SparqlEditorComponent {
     };
 
     /**
+     * Public variable: faDiagramProject.
+     *
+     * It instantiates fontawesome's faDiagramProject icon.
+     */
+    faDiagramProject = faDiagramProject;
+
+    /**
+     * Public variable: faTable.
+     *
+     * It instantiates fontawesome's faTable icon.
+     */
+    faTable = faTable;
+
+    /**
+     * Public variable: selectedViewType.
+     *
+     * It keeps the selected view type.
+     */
+    selectedViewType: ViewHandleTypes = ViewHandleTypes.GRAPH;
+
+    /**
+     * Public variable: viewHandles.
+     *
+     * It keeps the list of view handles.
+     */
+    viewHandles: ViewHandle[] = [
+        new ViewHandle('Graph view', ViewHandleTypes.GRAPH, faDiagramProject),
+        new ViewHandle('Table view', ViewHandleTypes.TABLE, faTable),
+    ];
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.setViewType();
+    }
+
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
+     */
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['query'] && !changes['query'].isFirstChange()) {
+            this.setViewType();
+        }
+    }
+
+    /**
+     * Public method: setViewType.
+     *
+     * It sets the view type according to the query type.
+     *
+     * @returns {void} Sets the selected view type.
+     */
+    setViewType(): void {
+        if (this.query.queryType && this.query.queryType === 'construct') {
+            this.selectedViewType = ViewHandleTypes.GRAPH;
+        }
+        if (this.query.queryType && this.query.queryType === 'select') {
+            this.selectedViewType = ViewHandleTypes.TABLE;
+        }
+    }
+
+    /**
+     * Public method: onViewChange.
+     *
+     * It switches the query type according to the given view type and
+     * triggers onEditorInputChange and performQuery.
+     *
+     * @param {ViewHandleTypes} view The given view type.
+     *
+     * @returns {void} Performs a new query with switched query type.
+     */
+    onViewChange(view: ViewHandleTypes): void {
+        this.switchQueryType(view);
+        this.onEditorInputChange(this.query.queryString);
+        this.performQuery();
+    }
+
+    /**
+     * Public method: switchQueryType.
+     *
+     * It switches the query type and string according to the given view type.
+     *
+     * @param {ViewHandleTypes} view The given view type.
+     *
+     * @returns {void} Switches the query type.
+     */
+    switchQueryType(view: ViewHandleTypes): void {
+        switch (view) {
+            case ViewHandleTypes.TABLE:
+                if (this.query.queryType === 'construct' && this.query.queryString.includes('CONSTRUCT')) {
+                    this.query.queryString = this.query.queryString.replace('CONSTRUCT', 'SELECT *');
+                    this.query.queryType = 'select';
+                }
+                break;
+            case ViewHandleTypes.GRAPH:
+                if (this.query.queryType === 'select' && this.query.queryString.includes('SELECT')) {
+                    this.query.queryString = this.query.queryString.replace(/SELECT.*\n/, 'CONSTRUCT\n');
+                    this.query.queryType = 'construct';
+                }
+                break;
+            case ViewHandleTypes.GRID:
+                // Do nothing
+                break;
+            default:
+                // This branch should not be reached
+                const exhaustiveCheck: never = view;
+                throw new Error(
+                    `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
+                );
+        }
+    }
+
+    /**
      * Public method: isExampleQueriesEnabled.
      *
      * It checks if query and queryList values are given.
@@ -169,8 +301,7 @@ export class SparqlEditorComponent {
     /**
      * Public method: resetQuery.
      *
-     * It emits a trigger to
-     * the {@link resetQueryRequest}.
+     * It emits a trigger to the {@link resetQueryRequest}.
      *
      * @param {GraphSparqlQuery} query The given triples.
      *

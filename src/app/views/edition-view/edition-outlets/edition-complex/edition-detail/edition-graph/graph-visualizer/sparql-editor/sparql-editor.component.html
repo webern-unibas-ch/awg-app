@@ -7,6 +7,12 @@
             <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
                 <button ngbPanelToggle class="p-0 btn btn-link text-start">SPARQL</button>
 
+                <!-- View Handle -->
+                <awg-view-handle-button-group
+                    [viewHandles]="viewHandles"
+                    [selectedViewType]="selectedViewType"
+                    (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
+
                 <!-- Example Query Handle -->
                 <div
                     class="p-0 btn-group awg-example-query-btn-group"
