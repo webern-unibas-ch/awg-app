@@ -101,7 +101,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let expectedResult: Triple[];
     let expectedIsFullscreen: boolean;
 
-    let consoleSpy;
+    let consoleSpy: Spy;
+    let mockGraphVisualizerServiceGetQueryTypeSpy: Spy;
     let queryLocalStoreSpy: Spy;
     let performQuerySpy: Spy;
     let resetQuerySpy: Spy;
@@ -172,6 +173,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        mockGraphVisualizerServiceGetQueryTypeSpy = spyOn(mockGraphVisualizerService, 'getQuerytype').and.callThrough();
         queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
         performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
         resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
@@ -434,87 +436,94 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     .toEqual(changedQuery.queryType);
             });
 
-            it('... should not find and reset a query from queryList if only queryLabel is known but not queryType', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
+            describe('... should set query as is, and not find from queryList, if', () => {
+                it('... only queryLabel is known but not queryType', () => {
+                    expectSpyCall(resetQuerySpy, 1, undefined);
 
-                // Request for query with known queryLabel but unknown queryType
-                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                changedQuery.queryType = 'select';
+                    // Request for query with known queryLabel but unknown queryType
+                    const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                    changedQuery.queryType = 'select';
 
-                component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                    // Set correct return value of service
+                    mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
 
-                // Matches queryList queries only by label
-                expectSpyCall(resetQuerySpy, 2, undefined);
+                    component.resetQuery(changedQuery);
+                    fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                    // Matches queryList queries only by label
+                    expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toBe(changedQuery.queryLabel);
+                    expect(component.query).toBeDefined();
+                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toBe(changedQuery.queryType);
-            });
+                    expect(component.query.queryLabel).toBeDefined();
+                    expect(component.query.queryLabel)
+                        .withContext(`should equal ${changedQuery.queryLabel}`)
+                        .toBe(changedQuery.queryLabel);
 
-            it('... should not find and reset a query from queryList if only queryType is known but not queryLabel', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
+                    expect(component.query.queryType).toBeDefined();
+                    expect(component.query.queryType)
+                        .withContext(`should equal ${changedQuery.queryType}`)
+                        .toBe(changedQuery.queryType);
+                });
 
-                // Request for query with known queryType but unknown label
-                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                changedQuery.queryLabel = 'select all bananas';
+                it('... only queryType is known but not queryLabel', () => {
+                    expectSpyCall(resetQuerySpy, 1, undefined);
 
-                component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                    // Request for query with known queryType but unknown label
+                    const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                    changedQuery.queryLabel = 'select all tests';
 
-                // Matches queryList queries only by type
-                expectSpyCall(resetQuerySpy, 2, undefined);
+                    component.resetQuery(changedQuery);
+                    fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                    // Matches queryList queries only by type
+                    expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toBe(changedQuery.queryLabel);
+                    expect(component.query).toBeDefined();
+                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toBe(changedQuery.queryType);
-            });
+                    expect(component.query.queryLabel).toBeDefined();
+                    expect(component.query.queryLabel)
+                        .withContext(`should equal ${changedQuery.queryLabel}`)
+                        .toBe(changedQuery.queryLabel);
 
-            it('... should set an unkown query that is not in queryList as is', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
+                    expect(component.query.queryType).toBeDefined();
+                    expect(component.query.queryType)
+                        .withContext(`should equal ${changedQuery.queryType}`)
+                        .toBe(changedQuery.queryType);
+                });
 
-                // Request for unknown query
-                const changedQuery = {
-                    queryType: 'SELECT',
-                    queryLabel: 'Test Query 3',
-                    queryString:
-                        'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
-                };
-                component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                it('... given query is not in queryList', () => {
+                    expectSpyCall(resetQuerySpy, 1, undefined);
 
-                expectSpyCall(resetQuerySpy, 2, undefined);
+                    // Request for unknown query
+                    const changedQuery = {
+                        queryType: 'select',
+                        queryLabel: 'Test Query 3',
+                        queryString:
+                            'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
+                    };
+                    // Set correct return value of service
+                    mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
+                    component.resetQuery(changedQuery);
+                    fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                    expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toBe(changedQuery.queryLabel);
+                    expect(component.query).toBeDefined();
+                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toBe(changedQuery.queryType);
+                    expect(component.query.queryLabel).toBeDefined();
+                    expect(component.query.queryLabel)
+                        .withContext(`should equal ${changedQuery.queryLabel}`)
+                        .toBe(changedQuery.queryLabel);
+
+                    expect(component.query.queryType).toBeDefined();
+                    expect(component.query.queryType)
+                        .withContext(`should equal ${changedQuery.queryType}`)
+                        .toBe(changedQuery.queryType);
+                });
             });
 
             it('... should set initial query (queryList[0]) if no query is provided', () => {
@@ -540,7 +549,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     .toEqual(expectedGraphRDFData.queryList[0]);
             });
 
-            it('... should not do anything if no queryList is provided from rdf data', () => {
+            it('... should not do anything if no queryList is provided from RDF data', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Set undefined triples
@@ -630,22 +639,30 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryType from service', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
-
-                const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.callThrough();
+                expectSpyCall(
+                    mockGraphVisualizerServiceGetQueryTypeSpy,
+                    1,
+                    expectedGraphRDFData.queryList[0].queryString
+                );
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
                 expectSpyCall(performQuerySpy, 2, undefined);
-                expectSpyCall(queryTypeSpy, 1, expectedGraphRDFData.queryList[0].queryString);
+                expectSpyCall(
+                    mockGraphVisualizerServiceGetQueryTypeSpy,
+                    2,
+                    expectedGraphRDFData.queryList[0].queryString
+                );
 
                 expect(component.query.queryType).toBeDefined();
                 expect(component.query.queryType).withContext('should equal construct').toEqual('construct');
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+                // Set construct query type
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
@@ -661,7 +678,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should trigger `_queryLocalStore` for select queries', () => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                // Set select query type
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
@@ -678,7 +696,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for construct queries', waitForAsync(() => {
                 // Set construct query type
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
@@ -692,7 +710,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for select queries', waitForAsync(() => {
                 // Set select query type
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
@@ -705,7 +723,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
 
             it('... should set empty observable for update query types', waitForAsync(() => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('update');
 
                 // Perform query
                 component.performQuery();
@@ -717,7 +735,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
 
             it('... should set empty observable for other query types', waitForAsync(() => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('other');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('other');
 
                 // Perform query
                 component.performQuery();

@@ -147,6 +147,7 @@ export class GraphVisualizerComponent implements OnInit {
             ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query
             : this.queryList[0];
         this.query = { ...resetted };
+
         this.performQuery();
     }
 
