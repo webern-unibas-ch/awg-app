@@ -79,7 +79,6 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      * when initializing the component.
      */
     ngOnInit(): void {
-        console.log('ViewHandleButtonGroupComponent got view', this.selectedViewType);
         this.createFormGroup(this.selectedViewType);
     }
 
@@ -109,7 +108,7 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      */
     createFormGroup(view: ViewHandleTypes): void {
         this.viewHandleControlForm = this.formBuilder.group({
-            viewHandleControl: ViewHandleTypes[view],
+            viewHandleControl: view,
         });
 
         this.listenToUserInputChange();

@@ -12,7 +12,7 @@ import {
 
 import { TablePaginationComponent } from './table-pagination.component';
 
-describe('TablePaginationComponent', () => {
+describe('TablePaginationComponent (DONE)', () => {
     let component: TablePaginationComponent;
     let fixture: ComponentFixture<TablePaginationComponent>;
     let compDe: DebugElement;
