@@ -185,12 +185,12 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * It switches the query type according to the given view type and
      * triggers onEditorInputChange and performQuery.
      *
-     * @param {ViewHandleTypes} view The given view type.
+     * @param {ViewHandleTypes} viewType The given view type.
      *
      * @returns {void} Performs a new query with switched query type.
      */
-    onViewChange(view: ViewHandleTypes): void {
-        this.switchQueryType(view);
+    onViewChange(viewType: ViewHandleTypes): void {
+        this.switchQueryType(viewType);
         this.onEditorInputChange(this.query.queryString);
         this.performQuery();
     }
@@ -200,12 +200,12 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      *
      * It switches the query type and string according to the given view type.
      *
-     * @param {ViewHandleTypes} view The given view type.
+     * @param {ViewHandleTypes} viewType The given view type.
      *
      * @returns {void} Switches the query type.
      */
-    switchQueryType(view: ViewHandleTypes): void {
-        switch (view) {
+    switchQueryType(viewType: ViewHandleTypes): void {
+        switch (viewType) {
             case ViewHandleTypes.TABLE:
                 if (this.query.queryType === 'construct' && this.query.queryString.includes('CONSTRUCT')) {
                     this.query.queryString = this.query.queryString.replace('CONSTRUCT', 'SELECT *');
@@ -223,7 +223,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
                 break;
             default:
                 // This branch should not be reached
-                const exhaustiveCheck: never = view;
+                const exhaustiveCheck: never = viewType;
                 throw new Error(
                     `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
                 );
