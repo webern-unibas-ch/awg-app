@@ -94,7 +94,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the reference to the element containing the graph.
      */
-    @ViewChild('graph', { static: true }) private _graphContainer: ElementRef;
+    @ViewChild('graphContainer', { static: true }) private _graphContainer: ElementRef;
 
     /**
      * ViewChild variable: _sliderInput.
@@ -232,8 +232,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         // Calculate new width & height
-        this._divWidth = this._getContainerWidth(this._graphContainer);
-        this._divHeight = this._getContainerHeight(this._graphContainer);
+        this._divWidth = this._getContainerDimensions(this._graphContainer).width;
+        this._divHeight = this._getContainerDimensions(this._graphContainer).height;
 
         // Fire resize event
         this._resize$.next(true);
@@ -386,19 +386,29 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             return;
         }
 
-        // Get container width & height
-        this._divWidth = this._divWidth
-            ? this._divWidth
-            : this._getContainerWidth(this._graphContainer)
-            ? this._getContainerWidth(this._graphContainer)
-            : 400;
-        this._divHeight = this.height
-            ? this.height
-            : this._getContainerHeight(this._graphContainer)
-            ? this._getContainerHeight(this._graphContainer)
-            : 500;
+        // Get container dimensions
+        let width;
+        let height;
+
+        if (this._divWidth) {
+            width = this._divWidth;
+        } else if (this._getContainerDimensions(this._graphContainer).width) {
+            width = this._getContainerDimensions(this._graphContainer).width;
+        } else {
+            width = 400;
+        }
+
+        if (this._divHeight) {
+            height = this._divHeight;
+        } else if (this._getContainerDimensions(this._graphContainer).height) {
+            height = this._getContainerDimensions(this._graphContainer).height;
+        } else {
+            height = 500;
+        }
+
+        this._divWidth = width;
         // Leave some space for icon bar at the top
-        this._divHeight = this._divHeight - 20;
+        this._divHeight = height - 20;
 
         // ==================== Add SVG =====================
         if (!this._svg) {
@@ -776,35 +786,19 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: _getContainerWidth.
+     * Private method: _getContainerDimensions.
      *
-     * It returns the clientWidth of a given container.
-     *
-     * @param {ElementRef} container The given container element.
-     *
-     * @returns {number} The container width.
-     */
-    private _getContainerWidth(container: ElementRef): number {
-        if (!container || !container.nativeElement) {
-            return null;
-        }
-        return container.nativeElement.clientWidth;
-    }
-
-    /**
-     * Private method: _getContainerHeight.
-     *
-     * It returns the clientHeight of a given container.
+     * It returns the dimensions (clientWidth & clientHeight) of a given container.
      *
      * @param {ElementRef} container The given container element.
      *
-     * @returns {number} The container height.
+     * @returns { width: number; height: number } The container dimensions.
      */
-    private _getContainerHeight(container: ElementRef): number {
+    private _getContainerDimensions(container: ElementRef): { width: number; height: number } {
         if (!container || !container.nativeElement) {
             return null;
         }
-        return container.nativeElement.clientHeight;
+        return { width: container.nativeElement.clientWidth, height: container.nativeElement.clientHeight };
     }
 
     /**
