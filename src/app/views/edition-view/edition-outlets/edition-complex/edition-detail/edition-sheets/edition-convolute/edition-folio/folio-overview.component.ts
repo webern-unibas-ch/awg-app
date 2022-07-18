@@ -224,8 +224,13 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
                 numberOfFolios: +this.selectedConvolute.folios.length,
             };
 
-            // Prepare viewbox settings
-            this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
+            // Prepare viewbox settings by calculating the width and height for the viewBox string
+            const vbWidth =
+                (this.folioSettings.formatX + 2 * this.folioSettings.initialOffsetX) * this.folioSettings.factor;
+            const vbHeight =
+                (this.folioSettings.formatY + 2 * this.folioSettings.initialOffsetY) * this.folioSettings.factor;
+
+            this.vbArray[folioIndex] = new ViewBox(vbWidth, vbHeight);
 
             // Populate folioSvgDataArray with calculated svg data
             this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);

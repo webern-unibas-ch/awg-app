@@ -34,17 +34,11 @@ export class ViewBox {
     /**
      * Constructor of the ViewBox class.
      *
-     * It calculates the view box string from the folio settings.
+     * It sets the view box string from the given width and height.
      *
-     * @param {FolioSettings} folioSettings The given folio settings.
+
      */
-    constructor(folioSettings: FolioSettings) {
-        // Calculate the width for the viewBox string
-        const width = (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor;
-
-        // Calculate the height for the viewBox string
-        const height = (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor;
-
+    constructor(width: number, height: number) {
         // Set the viewBox string
         this.viewBox = '0 0 ' + width + ' ' + height;
     }
