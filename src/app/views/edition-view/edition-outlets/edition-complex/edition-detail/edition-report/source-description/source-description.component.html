@@ -3,17 +3,21 @@
         class="awg-source-description para"
         *ngFor="let sourceDescription of sourceDescriptionListData.sources"
         [id]="sourceDescription.id">
-        <p *ngIf="sourceDescription.siglum" class="awg-source-description-siglum bold">
-            {{ sourceDescription.siglum }}
-        </p>
+        <p
+            *ngIf="sourceDescription.siglum"
+            class="awg-source-description-siglum bold"
+            [compile-html]="sourceDescription.siglum"
+            [compile-html-ref]="ref"></p>
         <p
             *ngIf="sourceDescription.type"
             class="awg-source-description-type"
             [compile-html]="sourceDescription.type"
             [compile-html-ref]="ref"></p>
-        <p *ngIf="sourceDescription.location" class="awg-source-description-location">
-            {{ sourceDescription.location }}
-        </p>
+        <p
+            *ngIf="sourceDescription.location"
+            class="awg-source-description-location"
+            [compile-html]="sourceDescription.location"
+            [compile-html-ref]="ref"></p>
         <div *ngIf="sourceDescription.description">
             <p
                 class="awg-source-description-entry"
