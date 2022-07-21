@@ -62,6 +62,23 @@
             "convolute": "A"
         },
         {
+            "id": "M_317_TF1",
+            "label": "M 317 Textfassung 1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_bbt.svg",
+                    "image": "",
+                    "partial": "a"
+                },
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_bbt.svg",
+                    "image": "",
+                    "partial": "b"
+                }
+            ],
+            "convolute": ""
+        },
+        {
             "id": "SkRT",
             "label": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
             "content": [
