@@ -163,8 +163,8 @@ export const mockEditionData = {
         label: 'M 212 Sk2',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
             },
         ],
         convolute: 'A',
@@ -180,13 +180,13 @@ export const mockEditionData = {
         label: 'M 212 Sk2',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
                 partial: 'a',
             },
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                image: '',
                 partial: 'b',
             },
         ],
@@ -203,8 +203,8 @@ export const mockEditionData = {
         label: 'M 212 Sk2',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
                 partial: 'a',
             },
         ],
