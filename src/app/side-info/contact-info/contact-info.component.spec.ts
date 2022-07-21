@@ -12,8 +12,8 @@ import {
 } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
+import { METADATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { METADATA } from '@awg-core/mock-data';
 
 import { CoreService } from '@awg-core/services';
 import { ContactInfoComponent } from './contact-info.component';

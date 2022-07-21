@@ -2,6 +2,93 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.8.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.4...v0.8.5) (2022-07-01)
+
+
+### Bug Fixes
+
+* **edition:** add  response type for doQuery in visualizer service ([44331ef](https://github.com/webern-unibas-ch/awg-app/commit/44331efc91d450d4c143d9e9325da6fae5668b9f))
+* **edition:** add barrels for graph visualizer module participants ([3d4c86e](https://github.com/webern-unibas-ch/awg-app/commit/3d4c86e9ab27e4541d1ec1eedf78f5c7ce32c2a9))
+* **edition:** add some more default prefixes to PrefixPipe ([51cbb5a](https://github.com/webern-unibas-ch/awg-app/commit/51cbb5a7e60b1ade86354bb5f195e69cd790f81b))
+* **edition:** added colons in source description ([0ba69d0](https://github.com/webern-unibas-ch/awg-app/commit/0ba69d037a591f7f9ba91c2c44713c3c92bb918e); thanks to [@masthom](https://github.com/masthom))
+* **edition:** adjust modal.components.ts ([#485](https://github.com/webern-unibas-ch/awg-app/issues/485)) ([4f3a4b2](https://github.com/webern-unibas-ch/awg-app/commit/4f3a4b2f841dbe8f9ebf1bd054255df9788deb7d); thanks to [@masthom](https://github.com/masthom))
+* **edition:** adjustment in source-description of op25 ([6ec0a17](https://github.com/webern-unibas-ch/awg-app/commit/6ec0a1711ab6bb1802f462c10ad1edd945687367); thanks to [@masthom](https://github.com/masthom))
+* **edition:** adjustments in source-list and -description of op12 ([61d1e19](https://github.com/webern-unibas-ch/awg-app/commit/61d1e196917150c96fd6c1301de12d2a18f57402); thanks to [@masthom](https://github.com/masthom))
+* **edition:** fix typo in RISM sigle ([e56aaae](https://github.com/webern-unibas-ch/awg-app/commit/e56aaae0bdcd01711001f23a3f84311e128b2380))
+* **edition:** more adjustments in source-description op op12 and op25, ([f6d5250](https://github.com/webern-unibas-ch/awg-app/commit/f6d5250b3eee6fb0610153f259ebd57792ef155b); thanks to [@masthom](https://github.com/masthom))
+* **edition:** more adjustments to source-list of op12 and op25 ([c2e6e92](https://github.com/webern-unibas-ch/awg-app/commit/c2e6e92d7a609b70796f7342bfa039808afc5f2f))
+* **edition:** remove or underscore unused function parameters ([6380c9c](https://github.com/webern-unibas-ch/awg-app/commit/6380c9cf0622d26defbf049a37c8c76c6cc762bd))
+* **edition:** remove redundant await from non-promise call ([354e23b](https://github.com/webern-unibas-ch/awg-app/commit/354e23b44e667a58b1f1a4ee5430521cb7f57656))
+* **edition:** remove unused import ([a8a2de1](https://github.com/webern-unibas-ch/awg-app/commit/a8a2de10ceb6a6de35075764fa55883ab68a3b32))
+* **edition:** removed unused import from visualizer service ([7161c7e](https://github.com/webern-unibas-ch/awg-app/commit/7161c7e54a2894579e0126ef6f0d4c3e439a494d))
+* **edition:** throw error in switch default with enums ([bbd3a42](https://github.com/webern-unibas-ch/awg-app/commit/bbd3a42229fb632573b4e3fb15feaa9bda343b48))
+* **shared:** remove unused imports ([f0facaa](https://github.com/webern-unibas-ch/awg-app/commit/f0facaa83aad1c932fdbe0104ad6b3bc2dc81f74))
+
+
+### Documentation
+
+* **app:** add [@AMWilke](https://github.com/AMWilke) to contributors in package.json ([bdd97d2](https://github.com/webern-unibas-ch/awg-app/commit/bdd97d2421728f1b6b1aace8e5f85f9036d4e48a))
+* **CHANGELOG:** add credits to [@masthom](https://github.com/masthom) and [@AMWilke](https://github.com/AMWilke) in v0.8.2 release ([ae581d3](https://github.com/webern-unibas-ch/awg-app/commit/ae581d3e0845102a3538cbbfcaad60df32fd68f8))
+* **CONTRIBUTING:** fix incorrect sorting of core scope ([9774f51](https://github.com/webern-unibas-ch/awg-app/commit/9774f511dab82adcd7bd7c76baf35390f9f1ca7c))
+* **CONTRIBUTING:** update commit message schema ([5632f8f](https://github.com/webern-unibas-ch/awg-app/commit/5632f8feab281ee8fd51ceeaf2fdd1a40fc6956b))
+* **edition:** add jsdocs for EditionDetail ([5512e31](https://github.com/webern-unibas-ch/awg-app/commit/5512e319279409f2171fd8fc8f92cd417018e254))
+* **edition:** remove console.log ([bdf04d2](https://github.com/webern-unibas-ch/awg-app/commit/bdf04d2ff540ae3ec0738521f46c17e7c789e5d5))
+* **README:** add AMWilke as a contributor for data ([#472](https://github.com/webern-unibas-ch/awg-app/issues/472)) ([055ff9d](https://github.com/webern-unibas-ch/awg-app/commit/055ff9d0093d457bf8215c1067fb82f30cc43fc7))
+
+
+### Tests
+
+* **edition:** add first tests for visualizer service ([edd2179](https://github.com/webern-unibas-ch/awg-app/commit/edd2179dd424c5f791db60544a10a03659fe9434))
+* **edition:** add further tests for visualizer service ([8705bb6](https://github.com/webern-unibas-ch/awg-app/commit/8705bb6fc4ff3cddd321789d89aacb199d2cec94))
+* **edition:** add tests for PrefixPipe ([8112d81](https://github.com/webern-unibas-ch/awg-app/commit/8112d817486f57b59c412690e8ca46e0ba462ef5))
+* **edition:** fix tests for row tables after changes ([cde00eb](https://github.com/webern-unibas-ch/awg-app/commit/cde00eb3404c98b632754474c2e73924f9c0a4ef))
+* **edition:** fix tests for ToastComponent ([47b0dc2](https://github.com/webern-unibas-ch/awg-app/commit/47b0dc2791e74bd321e93896a9497d2122d03ce9))
+* **edition:** improve readability of tests for visualizer service ([cd8be97](https://github.com/webern-unibas-ch/awg-app/commit/cd8be97e34469f93168e4a847ee56a8ea8a7d312))
+* **edition:** remove log from test ([c39e57d](https://github.com/webern-unibas-ch/awg-app/commit/c39e57dfca807b07fd2d1cf2c86fe866029df53d))
+* **shared:** add tests for ModalComponent ([2de15d7](https://github.com/webern-unibas-ch/awg-app/commit/2de15d7f51aa90e775bd4b7d2b453b22db718dc3))
+
+
+### Code Refactoring
+
+* **core:** rename core mock-data -> core-data ([8ed4aa7](https://github.com/webern-unibas-ch/awg-app/commit/8ed4aa747f5477b62fbd1e01d50c4d63ecd4a637))
+* **edition:** get row tables data from service ([13ddd60](https://github.com/webern-unibas-ch/awg-app/commit/13ddd60ee28229b2a385ecb49c25cb526fcfe793))
+* **edition:** lazy load RowTablesComponent ([54ce0b1](https://github.com/webern-unibas-ch/awg-app/commit/54ce0b12704c68b2127cbd00af30ae637f85e0f9))
+* **edition:** make Triple class distinctive from StoreTriple ([479b62f](https://github.com/webern-unibas-ch/awg-app/commit/479b62fccf2393a852abea4fd0e337cb21013f1e))
+* **edition:** move EditionWorks from model to data ([d966ccd](https://github.com/webern-unibas-ch/awg-app/commit/d966ccda22f511daf52d908fa9aa282a41cf41ba))
+* **edition:** move jumbotron into separate component ([dfb18bf](https://github.com/webern-unibas-ch/awg-app/commit/dfb18bf4b2a777e0756682260940e9e75a5898b7))
+* **edition:** re-organize folder structure ([fbe8d0a](https://github.com/webern-unibas-ch/awg-app/commit/fbe8d0aa4476927bbea52166255d533d263a1c23))
+* **edition:** refactor interfaces related to rdfstore response ([1a3cc91](https://github.com/webern-unibas-ch/awg-app/commit/1a3cc915e113075e280f3fbb612c3807958964cd))
+* **edition:** refactor PrefixPipe ([a8df392](https://github.com/webern-unibas-ch/awg-app/commit/a8df39239dc9655d78a779118c294d817521aa9c))
+* **edition:** refactor select response prep in visualizer service ([acc6a33](https://github.com/webern-unibas-ch/awg-app/commit/acc6a33231669b998e73eb1546a2fc2c65c4d944))
+* **edition:** refactor some methods in visualizer service ([01c21f9](https://github.com/webern-unibas-ch/awg-app/commit/01c21f95945befcd9130a539d40496e83c9002c2))
+* **edition:** rename method parseTriples -> parseTripleString ([6848a78](https://github.com/webern-unibas-ch/awg-app/commit/6848a78eabb1bd9a7295aac38cd6f5a4c3c9cc68))
+* **edition:** rename model QueryResult -> TriplestoreResponse ([e692269](https://github.com/webern-unibas-ch/awg-app/commit/e69226993adc2629ebd54f6fbd2de0ba9f452fb9))
+* **edition:** rename model SearchResult -> QueryResult ([1751500](https://github.com/webern-unibas-ch/awg-app/commit/1751500e8b8440a4dec434e4d33deb1af1692b17))
+* **edition:** rename prefixes -> qNames in visualizer service ([4299886](https://github.com/webern-unibas-ch/awg-app/commit/42998869d9eec552c116e3322f5861e07ec4c42b))
+* **edition:** rename TripleComponent -> TripleValue ([f780cf2](https://github.com/webern-unibas-ch/awg-app/commit/f780cf2212cf19ca7acc1396202c6df887a20fc6))
+* **shared:** move modal snippets into data file ([654cc9f](https://github.com/webern-unibas-ch/awg-app/commit/654cc9f32593a8d48963ab3fd63aaba648cdd3aa))
+* **shared:** refactor table models ([da0e170](https://github.com/webern-unibas-ch/awg-app/commit/da0e1703336311868a3b82a1f614211f6eddafd1))
+* **shared:** rename and clarify members of ModalComponent ([1efca5b](https://github.com/webern-unibas-ch/awg-app/commit/1efca5ba74ada51afa7b86c232b90eebcc802e1f))
+* **shared:** rename MODAL_CONTENT_SNIPPETS ([fc6afd3](https://github.com/webern-unibas-ch/awg-app/commit/fc6afd3d2443b93fb0ba46f0462ca147168ce188))
+
+
+### Build System
+
+* **deps-dev:** bump [@commitlint](https://github.com/commitlint) packages from 17.0.x to 17.0.3 ([8adef93](https://github.com/webern-unibas-ch/awg-app/commit/8adef93f1e8ad9c268d28809e4186e9ae10154db))
+* **deps-dev:** bump [@typescript-eslint](https://github.com/typescript-eslint) packages from 5.29.0 to 5.30.0 ([8f2f701](https://github.com/webern-unibas-ch/awg-app/commit/8f2f70184bf1ac73344c0c481b5cb25fc5d34c99))
+* **deps-dev:** bump eslint-plugin-prettier from 4.0.0 to 4.1.0 ([aa237c3](https://github.com/webern-unibas-ch/awg-app/commit/aa237c3b7956beb9b268bdaa7c9dec45113f2464))
+* **deps-dev:** bump eslint-plugin-prettier from 4.1.0 to 4.2.1 ([0958569](https://github.com/webern-unibas-ch/awg-app/commit/0958569a3e277f1b1996d360eb6d4f40737b7f79))
+* **deps-dev:** bump lint-staged from 13.0.2 to 13.0.3 ([f02586c](https://github.com/webern-unibas-ch/awg-app/commit/f02586cfbec7dc879733ae62ff9fd44b8de78f6a))
+* **deps:** bump custom rdfstore from 0.9.18-alpha.3 to -alpha.4 ([3379505](https://github.com/webern-unibas-ch/awg-app/commit/33795053df012c48c8814235bd4dc8348ffab1dc))
+* **deps:** bump tar from 6.1.0 to 6.1.11 ([efd22e4](https://github.com/webern-unibas-ch/awg-app/commit/efd22e43648676cc124bc1a4cb1a9f968bb771ed))
+
+
+### Continuous Integration
+
+* **gh-actions:** do not trigger sonar cloud analysis on forks ([af2db69](https://github.com/webern-unibas-ch/awg-app/commit/af2db69130e299efa347d2f5bdded8bb72d341ea))
+* **gh-actions:** fix more syntax in if-clause ([76b1dc8](https://github.com/webern-unibas-ch/awg-app/commit/76b1dc8655d5d9163d1eeae7727ee08f5187dddd))
+* **gh-actions:** fix syntax in if-clause ([364f32e](https://github.com/webern-unibas-ch/awg-app/commit/364f32e4083e01a681d2826705b94269ea7fbf53))
+
 ### [0.8.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.3...v0.8.4) (2022-06-22)
 
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { LOGOSDATA, METADATA } from '@awg-core/core-data';
 import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
-import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 
 /**
  * The Core service.

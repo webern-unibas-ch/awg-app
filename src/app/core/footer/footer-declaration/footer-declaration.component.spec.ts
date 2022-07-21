@@ -6,8 +6,8 @@ import { click } from '@testing/click-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { METADATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { METADATA } from '@awg-core/mock-data';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
 

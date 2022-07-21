@@ -6,11 +6,11 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 
+import { EditionWorks } from '@awg-views/edition-view/data';
 import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionWork,
-    EditionWorks,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 

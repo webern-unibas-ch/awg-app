@@ -13,8 +13,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { METADATA } from '@awg-core/core-data';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
-import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';

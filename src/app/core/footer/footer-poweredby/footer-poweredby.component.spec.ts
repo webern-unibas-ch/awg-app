@@ -4,8 +4,8 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
+import { LOGOSDATA } from '@awg-core/core-data';
 import { Logo, Logos } from '@awg-core/core-models';
-import { LOGOSDATA } from '@awg-core/mock-data';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 

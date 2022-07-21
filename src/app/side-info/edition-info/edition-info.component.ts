@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { EditionConstants, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/data';
+import { EditionConstants } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.

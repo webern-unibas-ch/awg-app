@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { LOGOSDATA } from '@awg-core/core-data';
 import { Logo } from '@awg-core/core-models';
-import { LOGOSDATA } from '@awg-core/mock-data';
 
 /**
  * The FooterLogo component.

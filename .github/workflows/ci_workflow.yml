@@ -12,6 +12,12 @@ on:
         branches: [ develop ]
         types: [ opened, synchronize, reopened ]
 
+# globals
+env:
+    # general settings
+    MAIN_REPO_OWNER:
+        webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
+
 jobs:
     test:
         name: Run tests (Node v${{ matrix.node-version }}, ${{ matrix.os }})
@@ -49,7 +55,7 @@ jobs:
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 16.15 && github.event_name != 'pull_request' # perform SonarCloud analysis only for current node version and not with pull requests (token issue)
+              if: matrix.node-version == 16.15 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
               uses: SonarSource/sonarcloud-github-action@v1.6
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
