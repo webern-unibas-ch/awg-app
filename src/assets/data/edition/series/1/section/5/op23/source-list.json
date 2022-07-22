@@ -3,21 +3,21 @@
         {
             "siglum": "A",
             "type": "Skizzen (in Skizzenbuch 3).",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
             "linkTo": "OP23_SOURCE_NOT_B"
         },
         {
             "siglum": "B",
             "type": "Reihentabelle.",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
             "linkTo": "sourceB"
         },
         {
             "siglum": "C",
             "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I (\"Das dunkle Herz\" M 314: einzige Textfassung) <br /><span class=\"tab\"></span>II (\"Es stürzt aus Höhen Frische\" M 313: einzige Textfassung) <br /><span class=\"tab\"></span>III (\"Herr Jesus mein\" M 312: einzige Textfassung).",
-            "location": "New York, NY, The Morgan Library, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
             "hasDescription": false,
             "linkTo": "OP23_SOURCE_NOT_B"
         },
