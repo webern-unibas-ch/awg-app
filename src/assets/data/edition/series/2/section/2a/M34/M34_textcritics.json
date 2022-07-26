@@ -4,7 +4,7 @@
             "id": "M_34_Sk1",
             "label": "M 34 Sk1",
             "description": [
-                "<strong>M 34 Sk1</strong> ist die Verlaufsskizze zu M 34, die jedoch ab T. 7–15 maßgeblich von der späteren achttaktigen Tintenniederschrift abweicht und stattdessen eine sechzehntaktige Periode formuliert."
+                "<strong>M 34 Sk1</strong> ist die Verlaufsskizze zu M 34, die jedoch ab T. 7–15 maßgeblich von der späteren achttaktigen Tintenniederschrift abweicht, indem sie stattdessen eine sechzehntaktige Periode formuliert."
             ],
             "comments": [
                 {
@@ -17,7 +17,7 @@
                     "measure": "1",
                     "system": "2",
                     "position": "3/4",
-                    "comment": "d/f überschreibt b/d<sup>1</sup>/f<sup>1</sup>."
+                    "comment": "Viertelnote gestrichen."
                 },
                 {
                     "measure": "4",
@@ -35,13 +35,13 @@
                     "measure": "4",
                     "system": "2",
                     "position": "3/4",
-                    "comment": "Viertelnote f/b gestrichen und ersetzt durch f/a."
+                    "comment": "Viertelnote f/c<sup>1</sup> gestrichen und ersetzt durch f/a."
                 },
                 {
-                    "measure": "11",
-                    "system": "4",
-                    "position": "3/4",
-                    "comment": "b<sup>1</sup> überschreibt c<sup>2</sup>."
+                    "measure": "8-16",
+                    "system": "4-5, 7-8",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
                 },
                 {
                     "measure": "13",
@@ -78,7 +78,7 @@
                     "system": "7–8",
                     "position": "1. Note",
                     "comment": "Halbe Note überschreibt Viertelnote."
-                }   
+                },   
             ]
         },
         {
@@ -105,8 +105,14 @@
                     "system": "8",
                     "position": "3–4/8",
                     "comment": "Oberstimmenschicht: Zwei Achtelnoten überschreiben punktierte Viertelnote und Achtelnote? Entzifferung unklar."
+                },
+                {
+                    "measure": "7",
+                    "system": "6",
+                    "position": "",
+                    "comment": "Korrektur in Tinte."
                 }
             ]
-        }
+        },
    ]
 }
