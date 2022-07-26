@@ -17,11 +17,7 @@ import { EditionSvgSheetListComponent } from './edition-svg-sheet-list';
  */
 @NgModule({
     imports: [SharedModule, EditionTkaTableModule],
-    declarations: [
-        EditionAccoladeComponent,
-        EditionSvgSheetNavComponent,
-        EditionSvgSheetListComponent,
-    ],
+    declarations: [EditionAccoladeComponent, EditionSvgSheetNavComponent, EditionSvgSheetListComponent],
     exports: [EditionAccoladeComponent],
 })
 export class EditionAccoladeModule {}

@@ -3,30 +3,194 @@
         {
             "id": "sourceA",
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "description": []
+            "description": {}
         },
         {
             "id": "sourceAa",
-            "siglum": "A<sup>a</sup>",
+            "siglum": "A",
+            "siglumAddendum": "a",
             "type": "Skizzen zu „Der Tag ist vergangen“ M 212: Textfassung 1/2.",
             "location": "",
-            "description": [
-                "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert.",
-                "<span class=\"caps\">Beschreibstoff</span>: Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.A[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
-                "<span class=\"caps\">Schreibstoff</span>: Bleistift.",
-                "<span class=\"caps\">Inhalt</span>: <br /> <a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\"><strong>M 212 Sk1</strong></a> (Skizze zu „Der Tag ist vergangen“ M 212): <br /><span class=\"tab\"></span>Bl. 1<sup>r</sup> System 2–4: <a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\">T. 1–6</a>; <br /><span class=\"doubletab\"></span>System 6–9: <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\">T. 7–12</a>; <br /><span class=\"doubletab\"></span>System 10–14: <a (click)=\"ref.selectSvgSheet('M_212_Sk1c')\">T. 13–17</a>; <br /><span class=\"tab\"></span>Bl. 2<sup>r</sup> System 6–10: <a (click)=\"ref.selectSvgSheet('M_212_Sk1d')\">T. 18–22</a>; <br /><span class=\"doubletab\"></span>System 12–15: <a (click)=\"ref.selectSvgSheet('M_212_Sk1e')\">T. 23–24</a>. <br /> <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> (Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2): <br /><span class=\"tab\"></span>Bl. 1<sup>v</sup> System 14–12b (auf dem Kopf stehend): T. 10–12. <br /> <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> (Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2): <br /><span class=\"tab\"></span>Bl. 1<sup>v</sup> System 12a–9a (auf dem Kopf stehend): T. 10–11. <br /> <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> (Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2): <br /><span class=\"tab\"></span>Bl. 1<sup>v</sup> System 9b–6 (auf dem Kopf stehend): T. 10–11. <br /> <a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>M 212 Sk4</strong></a> (Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2): <br /><span class=\"tab\"></span>Bl. 1<sup>v</sup> System 7a–4 (auf dem Kopf stehend): T. 10–11. <br />Bl. 2<sup>v</sup> unbeschriftet."
-            ]
+            "description": {
+                "desc": [
+                    "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
+                ],
+                "writingMaterial": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.A[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "content": [
+                    {
+                        "item": "M 212 Sk1",
+                        "itemLinkTo": "M_212_Sk1a",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–6",
+                                            "linkTo": "M_212_Sk1a"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "7–12",
+                                            "linkTo": "M_212_Sk1b"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–14",
+                                            "measure": "13–17",
+                                            "linkTo": "M_212_Sk1c"
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–10",
+                                            "measure": "18–22",
+                                            "linkTo": "M_212_Sk1d"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "23–24",
+                                            "linkTo": "M_212_Sk1e"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 212 Sk2",
+                        "itemLinkTo": "M_212_Sk2",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–12b (auf dem Kopf stehend)",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 212 Sk3",
+                        "itemLinkTo": "M_212_Sk3",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12a–9a (auf dem Kopf stehend)",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 212 Sk5",
+                        "itemLinkTo": "M_212_Sk5",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9b–6 (auf dem Kopf stehend)",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 212 Sk4",
+                        "itemLinkTo": "M_212_Sk4",
+                        "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7a–4 (auf dem Kopf stehend)",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "unbeschriftet.",
+                                "systemGroups": []
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "notA",
             "siglum": "",
+            "siglumAddendum": "",
             "type": "",
             "location": "",
-            "description": [
-                "<small class=\"text-muted\">[Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G<sup>1</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]"
-            ]
+            "description": {
+                "desc": [
+                    "<small class=\"text-muted\">[Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G<sup>H</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
+                ]
+            }
         }
     ]
 }
