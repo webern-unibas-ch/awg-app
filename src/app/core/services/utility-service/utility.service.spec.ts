@@ -19,12 +19,22 @@ describe('UtilityService (DONE)', () => {
 
     describe('#isNotEmptyArray', () => {
         it('... should return true if a given array is not empty', () => {
-            const checkArray = [1, 2, 3];
+            const checkArray = [1];
             expect(utils.isNotEmptyArray(checkArray)).toBeTrue();
         });
 
         it('... should return false if a given array is empty', () => {
             const checkArray = [];
+            expect(utils.isNotEmptyArray(checkArray)).toBeFalse();
+        });
+
+        it('... should return false if a given array is null', () => {
+            const checkArray = null;
+            expect(utils.isNotEmptyArray(checkArray)).toBeFalse();
+        });
+
+        it('... should return false if a given array is undefined', () => {
+            const checkArray = undefined;
             expect(utils.isNotEmptyArray(checkArray)).toBeFalse();
         });
     });

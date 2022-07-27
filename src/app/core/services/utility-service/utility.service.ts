@@ -14,14 +14,17 @@ export class UtilityService {
     /**
      * Public method: isNotEmptyArray.
      *
-     * It checks if a given array of the textcritical comment input
-     * is not empty.
+     * It checks if a given array input is not empty.
      *
      * @param {any[]} checkArray The given array input.
+     *
      * @returns {boolean} The boolean result of the check.
      */
     isNotEmptyArray(checkArray: any[]): boolean {
-        return checkArray && Array.isArray(checkArray) && checkArray.length > 0;
+        if (checkArray && Array.isArray(checkArray)) {
+            return checkArray.length !== 0;
+        }
+        return false;
     }
 
     /**
