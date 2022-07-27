@@ -29,7 +29,7 @@ export class PrefixPipe implements PipeTransform {
         let transformedValue: any;
 
         switch (prefixForm) {
-            case PrefixForm.short: {
+            case PrefixForm.SHORT: {
                 this.defaultPrefixes.forEach((p: Prefix) => {
                     if (value.indexOf(p.prefixIri) !== -1) {
                         transformedValue = value.replace(p.prefixIri, p.prefixName + ':');
@@ -37,7 +37,7 @@ export class PrefixPipe implements PipeTransform {
                 });
                 break;
             }
-            case PrefixForm.long: {
+            case PrefixForm.LONG: {
                 this.defaultPrefixes.forEach((p: Prefix) => {
                     if (value.indexOf(p.prefixName) !== -1) {
                         transformedValue = value.replace(p.prefixName + ':', p.prefixIri);
@@ -49,7 +49,7 @@ export class PrefixPipe implements PipeTransform {
                 // This branch should not be reached
                 const exhaustiveCheck: never = prefixForm;
                 throw new Error(
-                    `The prefixForm must be ${PrefixForm.short} or ${PrefixForm.long}, but was: ${exhaustiveCheck}.`
+                    `The prefixForm must be ${PrefixForm.SHORT} or ${PrefixForm.LONG}, but was: ${exhaustiveCheck}.`
                 );
         }
         // If the value was not transformed, return the original value

@@ -7,10 +7,10 @@ import { takeUntil } from 'rxjs/operators';
 
 import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
-import { SearchInfo } from '@awg-side-info/side-info-models';
-import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
-
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
+import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
+import { SearchInfo } from '@awg-side-info/side-info-models';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 /**
  * The SearchResultList component.
@@ -68,7 +68,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It keeps an event emitter for the selected view type of the search result list.
      */
     @Output()
-    viewChangeRequest: EventEmitter<string> = new EventEmitter();
+    viewChangeRequest: EventEmitter<ViewHandleTypes> = new EventEmitter();
 
     /**
      * Public variable: errorMessage.
@@ -76,13 +76,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It keeps an errorMessage for the searchResponseWithQuery subscription.
      */
     errorMessage: any = undefined;
-
-    /**
-     * Public variable: searchResultControlForm.
-     *
-     * It keeps the reactive form group: searchResultControlForm.
-     */
-    searchResultControlForm: FormGroup;
 
     /**
      * Public variable: page.
@@ -134,6 +127,23 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     faTable = faTable;
 
     /**
+     * Public variable: selectedViewType.
+     *
+     * It keeps the selected view type.
+     */
+    selectedViewType: ViewHandleTypes = ViewHandleTypes.TABLE;
+
+    /**
+     * Public variable: viewHandles.
+     *
+     * It keeps the list of view handles.
+     */
+    viewHandles: ViewHandle[] = [
+        new ViewHandle('Table view', ViewHandleTypes.TABLE, faTable),
+        new ViewHandle('Grid view', ViewHandleTypes.GRID, faGripHorizontal),
+    ];
+
+    /**
      * Private variable: _selectedResourceId.
      *
      * It keeps the id of the selected resource.
@@ -150,30 +160,21 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     /**
      * Constructor of the SearchResultListComponent.
      *
-     * It declares private instances of the Angular FormBuilder,
-     * the Angular Router, the ConversionService,
-     * the DataStreamerService, and the SideInfoService.
+     * It declares private instances of the Angular Router,
+     * the ConversionService, the DataStreamerService,
+     * and the SideInfoService.
      *
-     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      * @param {Router} router Instance of the Angular Router.
      * @param {ConversionService} conversionService Instance of the ConversionService.
      * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
      * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
      */
     constructor(
-        private formBuilder: FormBuilder,
         private router: Router,
         private conversionService: ConversionService,
         private dataStreamerService: DataStreamerService,
         private sideInfoService: SideInfoService
     ) {}
-
-    /**
-     * Getter for the search result view control value.
-     */
-    get searchResultViewControl(): FormControl {
-        return this.searchResultControlForm.get('searchResultViewControl') as FormControl;
-    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -185,48 +186,25 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.getSearchResponseWithQueryData();
 
         if (
-            this.searchParams.view &&
-            (this.searchParams.view === SearchResultsViewTypes.table ||
-                this.searchParams.view === SearchResultsViewTypes.grid)
+            this.searchParams.viewType &&
+            (this.searchParams.viewType === ViewHandleTypes.TABLE ||
+                this.searchParams.viewType === ViewHandleTypes.GRID)
         ) {
-            this.createFormGroup(this.searchParams.view);
+            this.setViewType(this.searchParams.viewType);
         }
     }
 
     /**
-     * Public method: createFormGroup.
+     * Public method: setViewType.
      *
-     * It creates the search result control form
-     * using the reactive FormBuilder with a formGroup
-     * and a search view control.
+     * It sets the view type according to the query type.
      *
-     * @param {SearchResultsViewTypes} view The given view type.
+     * @param {ViewHandleTypes} viewType The view type.
      *
-     * @returns {void} Creates the search view control form.
+     * @returns {void} Sets the selected view type.
      */
-    createFormGroup(view: SearchResultsViewTypes): void {
-        this.searchResultControlForm = this.formBuilder.group({
-            searchResultViewControl: SearchResultsViewTypes[view],
-        });
-
-        this.listenToUserInputChange();
-    }
-
-    /**
-     * Public method: listenToUserInputChange.
-     *
-     * It listens to the user's input changes
-     * in the view control and triggers the
-     * onViewChange method with the new view type.
-     *
-     * @returns {void} Listens to changing view type.
-     */
-    listenToUserInputChange(): void {
-        this.searchResultViewControl.valueChanges.pipe(takeUntil(this._destroyed$)).subscribe({
-            next: (view: string) => {
-                this.onViewChange(view);
-            },
-        });
+    setViewType(viewType: ViewHandleTypes): void {
+        this.selectedViewType = viewType;
     }
 
     /**
@@ -251,7 +229,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {boolean} The boolean value of the check result.
      */
     isGridView(): boolean {
-        return this.searchParams.view === SearchResultsViewTypes.grid;
+        return this.searchParams.viewType === ViewHandleTypes.GRID;
     }
 
     /**
@@ -316,11 +294,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It emits the new view type
      * to the {@link viewChangeRequest}.
      *
-     * @param {string} view The given view type.
+     * @param {ViewHandleTypes} view The given view type.
      *
      * @returns {void} Emits the new view type.
      */
-    onViewChange(view: string): void {
+    onViewChange(view: ViewHandleTypes): void {
+        if (!view) {
+            return;
+        }
         this.viewChangeRequest.emit(view);
     }
 

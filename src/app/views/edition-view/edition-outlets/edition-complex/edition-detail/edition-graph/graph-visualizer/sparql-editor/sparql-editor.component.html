@@ -7,8 +7,17 @@
             <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
                 <button ngbPanelToggle class="p-0 btn btn-link text-start">SPARQL</button>
 
+                <!-- View Handle -->
+                <awg-view-handle-button-group
+                    [viewHandles]="viewHandles"
+                    [selectedViewType]="selectedViewType"
+                    (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
+
                 <!-- Example Query Handle -->
-                <div class="p-0 btn-group" *ngIf="isExampleQueriesEnabled()" style="padding: -3rem">
+                <div
+                    class="p-0 btn-group awg-example-query-btn-group"
+                    *ngIf="isExampleQueriesEnabled()"
+                    style="padding: -3rem">
                     <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                         Beispielabfragen
                     </button>
@@ -53,8 +62,9 @@
 
             <!-- Handle buttons -->
             <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
-                <button class="btn btn-info" (click)="performQuery()">Query</button>
-                <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
+                <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
+                <button class="btn btn-warning" (click)="resetQuery(query)">Reset</button>
+                <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
             </div>
         </ng-template>
     </ngb-panel>

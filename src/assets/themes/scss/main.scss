@@ -87,6 +87,14 @@ button {
     }
 }
 
+/****** PARAGRAPHS ******/
+.half-para {
+    margin-bottom: 0.5em;
+}
+.no-para {
+    margin-bottom: 0;
+}
+
 /****** PAGE LAYOUT ******/
 
 /* navbar */
@@ -362,10 +370,24 @@ span.facet-badge {
 .version {
     font-variant: small-caps;
 }
-.tab {
+
+%inlineblock {
     display: inline-block;
+}
+
+.tab {
+    @extend %inlineblock;
     margin-left: 25px;
 }
+.doubletab {
+    @extend %inlineblock;
+    margin-left: 60px;
+}
+.doubletab_two {
+    @extend %inlineblock;
+    margin-left: 70px;
+}
+
 .indent {
     text-indent: 25px;
 }

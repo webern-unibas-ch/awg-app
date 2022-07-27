@@ -62,11 +62,11 @@ describe('StorageService (DONE)', () => {
         it('... should use mock storage', () => {
             expectedStorage.setItem('testkey', 'testvalue');
 
-            expect(mockStorage.getItem('testkey')).toEqual('testvalue', "should be 'testvalue'");
+            expect(mockStorage.getItem('testkey')).withContext(`should be 'testvalue'`).toBe('testvalue');
 
             expectedStorage.removeItem('testkey');
 
-            expect(mockStorage.getItem('testkey')).toBeNull('should be null');
+            expect(mockStorage.getItem('testkey')).toBeNull();
         });
 
         it('... should use correct mock storage', () => {
@@ -75,16 +75,16 @@ describe('StorageService (DONE)', () => {
 
             expectedStorage.setItem('testkey', 'testvalue');
 
-            expect(mockStorage.getItem('testkey')).toEqual('testvalue', "should be 'testvalue'");
-            expect(otherMockStorage.getItem('testkey')).toBeNull('should be null');
+            expect(mockStorage.getItem('testkey')).withContext(`should be 'testvalue'`).toBe('testvalue');
+            expect(otherMockStorage.getItem('testkey')).toBeNull();
 
             mockStorage.clear();
             otherMockStorage.clear();
 
             expectedOtherStorage.setItem('testkey', 'testvalue');
 
-            expect(otherMockStorage.getItem('testkey')).toEqual('testvalue', "should be 'testvalue'");
-            expect(mockStorage.getItem('testkey')).toBeNull('should be null');
+            expect(otherMockStorage.getItem('testkey')).withContext(`should be 'testvalue'`).toBe('testvalue');
+            expect(mockStorage.getItem('testkey')).toBeNull();
 
             otherMockStorage.clear();
         });
@@ -92,35 +92,35 @@ describe('StorageService (DONE)', () => {
         it('... should set and get an item', () => {
             expectedStorage.setItem('testkey', 'testvalue');
 
-            expect(mockStorage.getItem('testkey')).toEqual('testvalue', "should be 'testvalue'");
+            expect(mockStorage.getItem('testkey')).withContext(`should be 'testvalue'`).toBe('testvalue');
         });
 
         it('... should remove an item', () => {
             expectedStorage.setItem('testkey', 'testvalue');
 
-            expect(mockStorage.getItem('testkey')).toEqual('testvalue', "should be 'testvalue'");
+            expect(mockStorage.getItem('testkey')).withContext(`should be 'testvalue'`).toBe('testvalue');
 
             expectedStorage.removeItem('testkey');
 
-            expect(mockStorage.getItem('testkey')).toBeNull('should be null');
+            expect(mockStorage.getItem('testkey')).toBeNull();
         });
 
         it('... should remove the correct item', () => {
             expectedStorage.setItem('testkey', 'testvalue');
             expectedStorage.setItem('testkey2', 'testvalue2');
 
-            expect(mockStorage.getItem('testkey')).toEqual('testvalue', "should be 'testvalue'");
-            expect(mockStorage.getItem('testkey2')).toEqual('testvalue2', "should be 'testvalue2'");
+            expect(mockStorage.getItem('testkey')).withContext(`should be 'testvalue'`).toBe('testvalue');
+            expect(mockStorage.getItem('testkey2')).withContext(`should be 'testvalue2'`).toBe('testvalue2');
 
             expectedStorage.removeItem('testkey');
 
-            expect(mockStorage.getItem('testkey')).toBeNull('should be null');
-            expect(mockStorage.getItem('testkey2')).toEqual('testvalue2', "should be 'testvalue2'");
+            expect(mockStorage.getItem('testkey')).toBeNull();
+            expect(mockStorage.getItem('testkey2')).withContext(`should be 'testvalue2'`).toBe('testvalue2');
 
             expectedStorage.removeItem('testkey2');
 
-            expect(mockStorage.getItem('testkey')).toBeNull('should be null');
-            expect(mockStorage.getItem('testkey2')).toBeNull('should be null');
+            expect(mockStorage.getItem('testkey')).toBeNull();
+            expect(mockStorage.getItem('testkey2')).toBeNull();
         });
 
         it('... should clear mock storage after each run', () => {
@@ -133,7 +133,7 @@ describe('StorageService (DONE)', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
 
-            expect(mockStorage.getItem(expectedKey)).toBe(expectedItem, `should be ${expectedItem}`);
+            expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
         });
 
         it('... should set item to the correct storage type', () => {
@@ -145,8 +145,8 @@ describe('StorageService (DONE)', () => {
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
             storageService.setStorageKey(localType, expectedKey, otherItem);
 
-            expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
-            expect(otherMockStorage.getItem(expectedKey)).toEqual(otherItem, `should be ${otherItem}`);
+            expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
+            expect(otherMockStorage.getItem(expectedKey)).withContext(`should be ${otherItem}`).toBe(otherItem);
 
             otherMockStorage.clear();
         });
@@ -155,17 +155,17 @@ describe('StorageService (DONE)', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
 
-            expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+            expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
         });
 
         it('... should overwrite an existing item with the correct item when a key exists', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
 
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
-            expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+            expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
 
             storageService.setStorageKey(sessionType, expectedKey, otherItem);
-            expect(expectedStorage.getItem(expectedKey)).toEqual(otherItem, `should be ${otherItem}`);
+            expect(expectedStorage.getItem(expectedKey)).withContext(`should be ${otherItem}`).toBe(otherItem);
         });
 
         describe('... should do nothing if:', () => {
@@ -228,10 +228,9 @@ describe('StorageService (DONE)', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             expectedStorage.setItem(expectedKey, expectedItem);
 
-            expect(storageService.getStorageKey(sessionType, expectedKey)).toEqual(
-                expectedItem,
-                `should be ${expectedItem}`
-            );
+            expect(storageService.getStorageKey(sessionType, expectedKey))
+                .withContext(`should be ${expectedItem}`)
+                .toBe(expectedItem);
         });
 
         it('... should get item from the correct storage type', () => {
@@ -244,11 +243,12 @@ describe('StorageService (DONE)', () => {
             expectedStorage.setItem(expectedKey, expectedItem);
             expectedOtherStorage.setItem(expectedKey, otherItem);
 
-            expect(storageService.getStorageKey(sessionType, expectedKey)).toEqual(
-                expectedItem,
-                `should be ${expectedItem}`
-            );
-            expect(storageService.getStorageKey(localType, expectedKey)).toEqual(otherItem, `should be ${otherItem}`);
+            expect(storageService.getStorageKey(sessionType, expectedKey))
+                .withContext(`should be ${expectedItem}`)
+                .toBe(expectedItem);
+            expect(storageService.getStorageKey(localType, expectedKey))
+                .withContext(`should be ${otherItem}`)
+                .toBe(otherItem);
 
             otherMockStorage.clear();
         });
@@ -306,7 +306,7 @@ describe('StorageService (DONE)', () => {
         it('... should remove an item by key from a given storage type', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
-            expect(mockStorage.getItem(expectedKey)).toBe(expectedItem, `should be ${expectedItem}`);
+            expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
 
             storageService.removeStorageKey(sessionType, expectedKey);
             expect(mockStorage.getItem(expectedKey)).toBeNull();
@@ -325,7 +325,7 @@ describe('StorageService (DONE)', () => {
             storageService.removeStorageKey(sessionType, expectedKey);
 
             expect(mockStorage.getItem(expectedKey)).toBeNull();
-            expect(otherMockStorage.getItem(expectedKey)).toEqual(otherItem, `should be ${otherItem}`);
+            expect(otherMockStorage.getItem(expectedKey)).withContext(`should be ${otherItem}`).toBe(otherItem);
 
             storageService.removeStorageKey(localType, expectedKey);
 
@@ -344,58 +344,60 @@ describe('StorageService (DONE)', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
 
                 storageService.removeStorageKey(undefined, expectedKey);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
             });
 
             it('- storage type is null', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
 
                 storageService.removeStorageKey(null, expectedKey);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
             });
 
             it('- storage has not the given key', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
 
                 spyOn<any>(storageService, '_storageHasKey').and.returnValue(false);
                 storageService.removeStorageKey(sessionType, expectedKey);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
             });
 
             it('- storage is not supported', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                expect(expectedStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(expectedStorage.getItem(expectedKey))
+                    .withContext(`should be ${expectedItem}`)
+                    .toBe(expectedItem);
 
                 spyOn<any>(storageService, '_storageIsSupported').and.returnValue(undefined);
                 storageService.removeStorageKey(sessionType, expectedKey);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
             });
 
             it('- storage is not available', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
 
                 spyOn<any>(storageService, '_storageIsAvailable').and.returnValue(undefined);
                 storageService.removeStorageKey(sessionType, expectedKey);
 
-                expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+                expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
             });
         });
     });

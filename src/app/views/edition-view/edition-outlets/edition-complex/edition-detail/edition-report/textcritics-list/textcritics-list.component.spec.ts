@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
+import { UtilityService } from '@awg-app/core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { TextcriticalComment } from '@awg-views/edition-view/models';
 
@@ -23,6 +24,9 @@ class EditionTkaTableStubComponent {
 describe('TextcriticsListComponent', () => {
     let component: TextcriticsListComponent;
     let fixture: ComponentFixture<TextcriticsListComponent>;
+    let compDe: DebugElement;
+
+    let utils: UtilityService;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -37,12 +41,17 @@ describe('TextcriticsListComponent', () => {
         TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
             declarations: [TextcriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+            providers: [UtilityService],
         }).compileComponents();
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TextcriticsListComponent);
         component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+
+        utils = TestBed.inject(UtilityService);
+
         fixture.detectChanges();
     });
 

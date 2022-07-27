@@ -4,9 +4,8 @@ import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@an
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Data } from '@angular/router';
 
-import Spy = jasmine.Spy;
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
-
+import Spy = jasmine.Spy;
 import { JsonConvert } from 'json2typescript';
 
 import { expectSpyCall } from '@testing/expect-helper';
@@ -31,6 +30,7 @@ import {
     ResourceTypesInVocabularyResponseJson,
     SearchResponseJson,
 } from '@awg-shared/api-objects';
+import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { ExtendedSearchParams, ResourceData, ResourceDetail, SearchParams } from '@awg-views/data-view/models';
 
 import { DataApiService } from './data-api.service';
@@ -253,8 +253,12 @@ describe('DataApiService (DONE)', () => {
 
                 it('... searchParams.query is undefined', waitForAsync(() => {
                     // Empty string
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = undefined;
+                    const expectedSearchParams: SearchParams = new SearchParams(
+                        undefined,
+                        '25',
+                        '0',
+                        ViewHandleTypes.TABLE
+                    );
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
@@ -273,8 +277,7 @@ describe('DataApiService (DONE)', () => {
 
                 it('... searchParams.query is null', waitForAsync(() => {
                     // Empty string
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = null;
+                    const expectedSearchParams: SearchParams = new SearchParams(null, '25', '0', ViewHandleTypes.TABLE);
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
@@ -293,8 +296,7 @@ describe('DataApiService (DONE)', () => {
 
                 it('... searchParams.query is empty string', waitForAsync(() => {
                     // Empty string
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = '';
+                    const expectedSearchParams: SearchParams = new SearchParams('', '25', '0', ViewHandleTypes.TABLE);
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
@@ -313,10 +315,17 @@ describe('DataApiService (DONE)', () => {
 
                 describe('... searchParams.query is an ExtendedSearchParams object that has', () => {
                     it('... `filterByRestype` value of undefined', waitForAsync(() => {
-                        // Empty string
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = undefined;
+                        // Undefined
+                        const query = new ExtendedSearchParams();
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '25',
+                            '0',
+                            ViewHandleTypes.TABLE
+                        );
+                        if (expectedSearchParams.query instanceof ExtendedSearchParams) {
+                            expectedSearchParams.query.filterByRestype = undefined;
+                        }
                         const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                         // Call service function
@@ -334,10 +343,17 @@ describe('DataApiService (DONE)', () => {
                     }));
 
                     it('... `filterByRestype` value of null', waitForAsync(() => {
-                        // Empty string
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = null;
+                        // Null
+                        const query = new ExtendedSearchParams();
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '25',
+                            '0',
+                            ViewHandleTypes.TABLE
+                        );
+                        if (expectedSearchParams.query instanceof ExtendedSearchParams) {
+                            expectedSearchParams.query.filterByRestype = null;
+                        }
                         const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                         // Call service function
@@ -356,9 +372,16 @@ describe('DataApiService (DONE)', () => {
 
                     it('... `filterByRestype` value of empty string', waitForAsync(() => {
                         // Empty string
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = '';
+                        const query = new ExtendedSearchParams();
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '25',
+                            '0',
+                            ViewHandleTypes.TABLE
+                        );
+                        if (expectedSearchParams.query instanceof ExtendedSearchParams) {
+                            expectedSearchParams.query.filterByRestype = '';
+                        }
                         const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                         // Call service function
@@ -379,8 +402,13 @@ describe('DataApiService (DONE)', () => {
 
             describe('... should perform an HTTP GET request to the API (via ApiService)', () => {
                 it('... for Fulltext search with provided searchString (url includes query)', waitForAsync(() => {
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = 'Test';
+                    const query = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams(
+                        query,
+                        '25',
+                        '0',
+                        ViewHandleTypes.TABLE
+                    );
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
@@ -405,9 +433,14 @@ describe('DataApiService (DONE)', () => {
 
                 it('... for Extended search with provided object (url does not include query)', waitForAsync(() => {
                     const expectedRestype = '43'; // Opus
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = new ExtendedSearchParams();
-                    expectedSearchParams.query.filterByRestype = expectedRestype;
+                    const query = new ExtendedSearchParams();
+                    query.filterByRestype = expectedRestype;
+                    const expectedSearchParams: SearchParams = new SearchParams(
+                        query,
+                        '25',
+                        '0',
+                        ViewHandleTypes.TABLE
+                    );
                     const expectedUrl = apiUrl + expectedRoutes.search;
 
                     // Call service function
@@ -433,9 +466,8 @@ describe('DataApiService (DONE)', () => {
 
             describe('... should set default query params for GET request if none is provided', () => {
                 it('... for Fulltext search query (string) => 5', waitForAsync(() => {
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = 'Test';
-
+                    const query = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams(query, '', '', undefined);
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
                     const expectedNRows = '-1';
                     const expectedStartAt = '0';
@@ -462,10 +494,9 @@ describe('DataApiService (DONE)', () => {
 
                 it('... for Extended search query (object) without properties => 6', waitForAsync(() => {
                     const expectedRestype = '43'; // Opus
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = new ExtendedSearchParams();
-                    expectedSearchParams.query.filterByRestype = expectedRestype;
-
+                    const query = new ExtendedSearchParams();
+                    query.filterByRestype = expectedRestype;
+                    const expectedSearchParams: SearchParams = new SearchParams(query, '', '', undefined);
                     const expectedUrl = apiUrl + expectedRoutes.search;
                     const expectedNRows = '-1';
                     const expectedStartAt = '0';
@@ -494,11 +525,13 @@ describe('DataApiService (DONE)', () => {
 
             describe('... should apply provided params for GET request', () => {
                 it('... for Fulltext search query (string)', waitForAsync(() => {
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = 'Test';
-                    expectedSearchParams.nRows = '5';
-                    expectedSearchParams.startAt = '20';
-
+                    const query = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams(
+                        query,
+                        '5',
+                        '20',
+                        ViewHandleTypes.TABLE
+                    );
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
@@ -527,14 +560,16 @@ describe('DataApiService (DONE)', () => {
                         const expectedFirstProperty = '389'; // Opus number
                         const expectedFirstCompop = 'EXISTS';
 
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = expectedRestype;
-                        expectedSearchParams.query.propertyId = [expectedFirstProperty];
-                        expectedSearchParams.query.compop = [expectedFirstCompop];
-                        expectedSearchParams.nRows = '5';
-                        expectedSearchParams.startAt = '20';
-
+                        const query = new ExtendedSearchParams();
+                        query.filterByRestype = expectedRestype;
+                        query.propertyId = [expectedFirstProperty];
+                        query.compop = [expectedFirstCompop];
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '5',
+                            '20',
+                            ViewHandleTypes.TABLE
+                        );
                         const expectedUrl = apiUrl + expectedRoutes.search;
 
                         // Call service function
@@ -567,14 +602,16 @@ describe('DataApiService (DONE)', () => {
                         const expectedFirstCompop = 'EXISTS';
                         const expectedSecondCompop = 'EXISTS';
 
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = expectedRestype;
-                        expectedSearchParams.query.propertyId = [expectedFirstProperty, expectedSecondProperty];
-                        expectedSearchParams.query.compop = [expectedFirstCompop, expectedSecondCompop];
-                        expectedSearchParams.nRows = '5';
-                        expectedSearchParams.startAt = '20';
-
+                        const query = new ExtendedSearchParams();
+                        query.filterByRestype = expectedRestype;
+                        query.propertyId = [expectedFirstProperty, expectedSecondProperty];
+                        query.compop = [expectedFirstCompop, expectedSecondCompop];
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '5',
+                            '20',
+                            ViewHandleTypes.TABLE
+                        );
                         const expectedUrl = apiUrl + expectedRoutes.search;
 
                         // Call service function
@@ -606,14 +643,17 @@ describe('DataApiService (DONE)', () => {
                         const expectedFirstCompop = 'EQ';
                         const expectedFirstSearchval = '1';
 
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = expectedRestype;
-                        expectedSearchParams.query.propertyId = [expectedFirstProperty];
-                        expectedSearchParams.query.compop = [expectedFirstCompop];
-                        expectedSearchParams.query.searchval = [expectedFirstSearchval];
-                        expectedSearchParams.nRows = '5';
-                        expectedSearchParams.startAt = '20';
+                        const query = new ExtendedSearchParams();
+                        query.filterByRestype = expectedRestype;
+                        query.propertyId = [expectedFirstProperty];
+                        query.compop = [expectedFirstCompop];
+                        query.searchval = [expectedFirstSearchval];
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '5',
+                            '20',
+                            ViewHandleTypes.TABLE
+                        );
 
                         const expectedUrl = apiUrl + expectedRoutes.search;
 
@@ -650,14 +690,17 @@ describe('DataApiService (DONE)', () => {
                         const expectedFirstSearchval = '1';
                         const expectedSecondSearchval = 'Passacaglia';
 
-                        const expectedSearchParams: SearchParams = new SearchParams();
-                        expectedSearchParams.query = new ExtendedSearchParams();
-                        expectedSearchParams.query.filterByRestype = expectedRestype;
-                        expectedSearchParams.query.propertyId = [expectedFirstProperty, expectedSecondProperty];
-                        expectedSearchParams.query.compop = [expectedFirstCompop, expectedSecondCompop];
-                        expectedSearchParams.query.searchval = [expectedFirstSearchval, expectedSecondSearchval];
-                        expectedSearchParams.nRows = '5';
-                        expectedSearchParams.startAt = '20';
+                        const query = new ExtendedSearchParams();
+                        query.filterByRestype = expectedRestype;
+                        query.propertyId = [expectedFirstProperty, expectedSecondProperty];
+                        query.compop = [expectedFirstCompop, expectedSecondCompop];
+                        query.searchval = [expectedFirstSearchval, expectedSecondSearchval];
+                        const expectedSearchParams: SearchParams = new SearchParams(
+                            query,
+                            '5',
+                            '20',
+                            ViewHandleTypes.TABLE
+                        );
 
                         const expectedUrl = apiUrl + expectedRoutes.search;
 
@@ -689,8 +732,8 @@ describe('DataApiService (DONE)', () => {
 
             describe('... should call getApiResponse (via ApiService) ', () => {
                 it('... with Fulltext search string', waitForAsync(() => {
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = 'Test';
+                    const query = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams(query, '', '', ViewHandleTypes.TABLE);
 
                     const expectedQueryPath = expectedRoutes.search + expectedSearchParams.query;
                     let expectedQueryHttpParams = new HttpParams()
@@ -722,12 +765,12 @@ describe('DataApiService (DONE)', () => {
                     const expectedFirstSearchval = '1';
                     const expectedSecondSearchval = 'Passacaglia';
 
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = new ExtendedSearchParams();
-                    expectedSearchParams.query.filterByRestype = expectedRestype;
-                    expectedSearchParams.query.propertyId = [expectedFirstProperty, expectedSecondProperty];
-                    expectedSearchParams.query.compop = [expectedFirstCompop, expectedSecondCompop];
-                    expectedSearchParams.query.searchval = [expectedFirstSearchval, expectedSecondSearchval];
+                    const query = new ExtendedSearchParams();
+                    query.filterByRestype = expectedRestype;
+                    query.propertyId = [expectedFirstProperty, expectedSecondProperty];
+                    query.compop = [expectedFirstCompop, expectedSecondCompop];
+                    query.searchval = [expectedFirstSearchval, expectedSecondSearchval];
+                    const expectedSearchParams: SearchParams = new SearchParams(query, '', '', undefined);
 
                     const expectedQueryPath = expectedRoutes.search;
                     let expectedQueryHttpParams = new HttpParams()
@@ -764,8 +807,13 @@ describe('DataApiService (DONE)', () => {
         describe('response', () => {
             describe('success', () => {
                 it('... should return a SearchResponseJson observable (converted)', waitForAsync(() => {
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = 'Test';
+                    const query = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams(
+                        query,
+                        '5',
+                        '20',
+                        ViewHandleTypes.TABLE
+                    );
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
 
@@ -782,8 +830,8 @@ describe('DataApiService (DONE)', () => {
 
             describe('fail', () => {
                 it('... should return an ApiServiceError observable', waitForAsync(() => {
-                    const expectedSearchParams: SearchParams = new SearchParams();
-                    expectedSearchParams.query = 'Test';
+                    const query = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams(query, '', '', undefined);
 
                     const expectedQueryPath = expectedRoutes.search + expectedSearchParams.query;
                     let expectedQueryHttpParams = new HttpParams()

@@ -119,19 +119,205 @@ export const mockEditionData = {
             {
                 id: 'sourceA',
                 siglum: 'A',
+                siglumAddendum: '',
                 type: 'Skizzen',
                 location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                description: [],
+                description: {},
             },
             {
                 id: 'sourceAa',
-                siglum: 'Aa',
+                siglum: 'A',
+                siglumAddendum: 'a',
                 type: '',
                 location: 'Wien, Testcentre.',
-                description: [
-                    '<img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
-                    '<span class="caps">Inhalt</span>: (<a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1a</strong></a>). (<a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2</strong></a>).',
-                ],
+                description: {
+                    desc: [
+                        '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')" ><strong>Textfassung 2</strong></a>',
+                    ],
+                    writingMaterial:
+                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
+                    writingInstruments: {
+                        main: 'Bleistift',
+                        secondary: ['roter Buntstrift', 'blaue Tinte', 'Kopierstift'],
+                    },
+                    title: 'test title',
+                    date: 'test date',
+                    measureNumbers: 'test measure numbers',
+                    instrumentation: 'test instrumentation',
+                    annotations: 'test annotations',
+                    content: [
+                        {
+                            item: 'Test item',
+                            itemLinkTo: 'test_item_id_1',
+                            itemDescription: '(test description)',
+                            folios: [
+                                {
+                                    folio: '1r',
+                                    folioLinkTo: 'test_folio_id_1',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '1–2',
+                                                measure: '1–3',
+                                                linkTo: 'test_id_1',
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                system: '3–4',
+                                                measure: '4–6',
+                                                linkTo: 'test_id_2',
+                                            },
+                                        ],
+                                    ],
+                                },
+                                {
+                                    folio: '29v',
+                                    folioLinkTo: '',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '7–8',
+                                                measure: '10–12',
+                                                linkTo: 'test_id_4',
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                system: '9–10',
+                                                measure: '13–15',
+                                                linkTo: 'test_id_5',
+                                            },
+                                        ],
+                                    ],
+                                },
+                                {
+                                    folio: '2v',
+                                    folioLinkTo: '',
+                                    folioDescription: 'unbeschriftet',
+                                    systemGroups: [],
+                                },
+                            ],
+                        },
+                        {
+                            item: 'Test item 2 without link',
+                            itemLinkTo: '',
+                            itemDescription: '(test description 2)',
+                            folios: [
+                                {
+                                    folio: '1r',
+                                    folioLinkTo: 'test_folio_id_1',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '1a',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'G',
+                                                    rowBase: 'g',
+                                                    rowNumber: '1',
+                                                },
+                                            },
+                                            {
+                                                system: '1b',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'K',
+                                                    rowBase: 'gis',
+                                                    rowNumber: '2',
+                                                },
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                system: '2a',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'U',
+                                                    rowBase: 'g',
+                                                    rowNumber: '3',
+                                                },
+                                            },
+                                            {
+                                                system: '2b',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'KU',
+                                                    rowBase: 'fis',
+                                                    rowNumber: '4',
+                                                },
+                                            },
+                                        ],
+                                    ],
+                                },
+                                {
+                                    folio: '29v',
+                                    folioLinkTo: '',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '1a',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'G',
+                                                    rowBase: 'g',
+                                                    rowNumber: '1',
+                                                },
+                                            },
+                                            {
+                                                system: '1b',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'K',
+                                                    rowBase: 'gis',
+                                                    rowNumber: '2',
+                                                },
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                system: '2a',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'U',
+                                                    rowBase: 'g',
+                                                    rowNumber: '3',
+                                                },
+                                            },
+                                            {
+                                                system: '2b',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'KU',
+                                                    rowBase: 'fis',
+                                                    rowNumber: '4',
+                                                },
+                                            },
+                                        ],
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            item: 'Test item 3 without description',
+                            itemLinkTo: 'test_item_id_2',
+                            itemDescription: '',
+                            folios: [],
+                        },
+                    ],
+                },
             },
         ],
     },
@@ -163,8 +349,8 @@ export const mockEditionData = {
         label: 'M 212 Sk2',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
             },
         ],
         convolute: 'A',
@@ -180,13 +366,13 @@ export const mockEditionData = {
         label: 'M 212 Sk2',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
                 partial: 'a',
             },
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                image: '',
                 partial: 'b',
             },
         ],
@@ -203,8 +389,8 @@ export const mockEditionData = {
         label: 'M 212 Sk2',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/series/1/section/5/op12/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
                 partial: 'a',
             },
         ],

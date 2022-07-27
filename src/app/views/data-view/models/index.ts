@@ -15,7 +15,7 @@ import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.model';
 import { ResourceDetailProperty } from './resource-detail-property.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
-import { ExtendedSearchParams, SearchQuery, SearchParams, SearchResultsViewTypes } from './search-params.model';
+import { ExtendedSearchParams, SearchQuery, SearchParams } from './search-params.model';
 import { SearchResponseWithQuery } from './search-response-with-query.model';
 import { SearchCompop, SEARCH_COMPOP_SETS_LIST } from './search-compop.model';
 import { VALUETYPE_LIST } from './value-type.model';
@@ -33,7 +33,6 @@ export {
     ResourceDetailGroupedIncomingLinks,
     SearchQuery,
     SearchParams,
-    SearchResultsViewTypes,
     SearchResponseWithQuery,
     SearchCompop,
     SEARCH_COMPOP_SETS_LIST,

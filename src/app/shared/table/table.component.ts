@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,6 +17,7 @@ import { TablePaginatorOptions, TableData, TableOptions, TableRows } from './mod
     selector: 'awg-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnInit {
     /**
@@ -114,7 +115,34 @@ export class TableComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this._initTable();
+        this.initTable();
+    }
+
+    /**
+     * Public method: initTable.
+     *
+     * It inits all the data needed for the table.
+     *
+     * @returns {void} Inits the table data.
+     */
+    initTable(): void {
+        if (!this.headerInputData || !this.rowInputData) {
+            this.tableData = new TableData([], []);
+        } else {
+            this.tableData = new TableData(this.headerInputData, this.rowInputData);
+        }
+
+        this.paginatorOptions = new TablePaginatorOptions(
+            1,
+            10,
+            [5, 10, 25, 50, 100, 200],
+            this.rowInputData?.length || 0
+        );
+        this.searchFilter = '';
+
+        this.onSort(this.tableData.header[0]);
+
+        this.onPageSizeChange(this.searchFilter);
     }
 
     /**
@@ -123,11 +151,18 @@ export class TableComponent implements OnInit {
      * It emits the new start position of the Paginator
      * from a given page number to the {@link pageChangeRequest}.
      *
+     * @param {string} searchFilter The given search filter.
+     * @param {number} selectedPageSizeOption The selected page size option.
+
+     *
      * @returns {void} Emits the new start position.
      */
-    onPageSizeChange(searchFilter: string): void {
+    onPageSizeChange(searchFilter: string, selectedPageSizeOption?: number): void {
         if (!this.tableData || !this.headerInputData || !this.rowInputData) {
             return;
+        }
+        if (selectedPageSizeOption) {
+            this.paginatorOptions.selectedPageSize = selectedPageSizeOption;
         }
         this.tableData.paginatedRows$ = this._paginateRows(searchFilter);
     }
@@ -191,32 +226,6 @@ export class TableComponent implements OnInit {
             return;
         }
         this.clickedTableRowRequest.emit(e);
-    }
-
-    /**
-     * Private method: _initTable.
-     *
-     * It inits all the data needed for the table.
-     *
-     * @returns {void} Inits the table data.
-     */
-    private _initTable(): void {
-        if (!this.headerInputData || !this.rowInputData) {
-            this.tableData = new TableData([], []);
-        } else {
-            this.tableData = new TableData(this.headerInputData, this.rowInputData);
-        }
-        this.paginatorOptions = new TablePaginatorOptions(
-            1,
-            10,
-            [5, 10, 25, 50, 100, 200],
-            this.rowInputData?.length || 0
-        );
-        this.searchFilter = '';
-
-        this.onSort(this.tableData.header[0]);
-
-        this.onPageSizeChange(this.searchFilter);
     }
 
     /**
