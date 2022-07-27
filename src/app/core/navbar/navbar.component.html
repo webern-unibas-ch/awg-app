@@ -33,8 +33,8 @@
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
-            <li class="nav-item" ngbDropdown>
-                <a class="nav-link d-flex" id="dropdownNavEdition" ngbDropdownToggle>
+            <li class="nav-item" ngbDropdown [class.active]="isActiveRoute('/edition')">
+                <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>
                     <!-- do not show text on sm devices, change order from md devices up -->
                     <span class="d-sm-none d-md-inline">Edition</span>
                     <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>
@@ -64,7 +64,10 @@
                             routerLinkActive="active"
                             >Edierter Notentext</a
                         >
-                        <a class="dropdown-item" [routerLink]="[editionWork.baseRoute, editionWork.reportRoute.route]"
+                        <a
+                            class="dropdown-item"
+                            [routerLink]="[editionWork.baseRoute, editionWork.reportRoute.route]"
+                            routerLinkActive="active"
                             >Kritischer Bericht</a
                         >
                         <div class="dropdown-divider"></div>

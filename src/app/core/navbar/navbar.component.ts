@@ -6,6 +6,7 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 import { EditionWorks } from '@awg-views/edition-view/data';
 import { EditionWork } from '@awg-views/edition-view/models';
+import { Router } from '@angular/router';
 
 /**
  * The Header component.
@@ -85,12 +86,12 @@ export class NavbarComponent implements OnInit {
     /**
      * Constructor of the HeaderComponent.
      *
-     * It declares a private CoreService instance
-     * to get the meta data.
+     * It declares private instances of the CoreService and the Angular Router.
      *
      * @param {CoreService} coreService Instance of the CoreService.
+     * @param {Router} router Instance of the Angular Router.
      */
-    constructor(private coreService: CoreService) {}
+    constructor(private coreService: CoreService, private router: Router) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -101,6 +102,24 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         this.getEditionWork();
         this.provideMetaData();
+    }
+
+    /**
+     * Public method: isActiveRoute.
+     *
+     * It checks if a given route is active.
+
+     * @param {string} route The route to check.
+     *
+     * @returns {boolean} The boolean value of the check.
+     */
+    isActiveRoute(route: string): boolean {
+        return this.router.isActive(route, {
+            paths: 'subset',
+            queryParams: 'subset',
+            fragment: 'ignored',
+            matrixParams: 'ignored',
+        });
     }
 
     /**
@@ -118,7 +137,7 @@ export class NavbarComponent implements OnInit {
      * Public method: provideMetaData.
      *
      * It calls the CoreService to provide
-     * the meta data for the header.
+     * the metadata for the header.
      *
      * @returns {void} Sets the pageMetaData variable.
      */
