@@ -19,7 +19,6 @@ import {
     Input,
     Injectable,
     OnChanges,
-    SimpleChanges,
     Type,
     ModuleWithProviders,
     NgModule,

@@ -1,5 +1,3 @@
-import { FolioSettings } from './folio-settings.model';
-
 /**
  * The ViewBox class.
  *
