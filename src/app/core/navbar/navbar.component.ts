@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit {
     /**
      * Public variable: pageMetaData.
      *
-     * It keeps the page meta data for the header.
+     * It keeps the page metadata for the header.
      */
     pageMetaData: MetaPage;
 

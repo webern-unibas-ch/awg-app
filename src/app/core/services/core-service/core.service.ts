@@ -17,7 +17,7 @@ export class CoreService {
     /**
      * Public method: getMetaDataSection.
      *
-     * It provides a section of the meta data object.
+     * It provides a section of the metadata object.
      *
      * @params {<S extends MetaSectionTypes>S} [sectionType] The given sectionType.
      *

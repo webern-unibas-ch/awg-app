@@ -62,14 +62,14 @@ export class ContactViewComponent implements OnInit {
     /**
      * Public variable: contactMetaData.
      *
-     * It keeps the contact meta data for the contact view.
+     * It keeps the contact metadata for the contact view.
      */
     contactMetaData: MetaContact;
 
     /**
      * Public variable: pageMetaData.
      *
-     * It keeps the page meta data for the contact view.
+     * It keeps the page metadata for the contact view.
      */
     pageMetaData: MetaPage;
 
@@ -91,7 +91,7 @@ export class ContactViewComponent implements OnInit {
      * Constructor of the ContactViewComponent.
      *
      * It declares a private CoreService instance
-     * to get the meta data and a private Router instance.
+     * to get the metadata and a private Router instance.
      *
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular router.
@@ -114,7 +114,7 @@ export class ContactViewComponent implements OnInit {
      * Public method: provideMetaData.
      *
      * It calls the CoreService to provide
-     * the meta data for the contact view.
+     * the metadata for the contact view.
      *
      * @returns {void} Sets the pageMetaData variable.
      */

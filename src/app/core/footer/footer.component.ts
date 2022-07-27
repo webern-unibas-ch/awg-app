@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
     /**
      * Public variable: pageMetaData.
      *
-     * It keeps the page meta data for the footer.
+     * It keeps the page metadata for the footer.
      */
     pageMetaData: MetaPage;
 
@@ -36,7 +36,7 @@ export class FooterComponent implements OnInit {
      * Constructor of the FooterComponent.
      *
      * It declares a private CoreService instance
-     * to get the meta data and logos.
+     * to get the metadata and logos.
      *
      * @param {CoreService} coreService Instance of the CoreService.
      */
@@ -56,7 +56,7 @@ export class FooterComponent implements OnInit {
      * Public method: provideMetaData.
      *
      * It calls the CoreService to provide
-     * the meta data and logos for the footer.
+     * the metadata and logos for the footer.
      *
      * @returns {void} Sets the pageMetaData and logos variables.
      */

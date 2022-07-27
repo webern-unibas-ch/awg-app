@@ -26,7 +26,7 @@ export class StructureInfoComponent implements OnInit {
     /**
      * Public variable: structureMetaData.
      *
-     * It keeps the meta data for the structure info.
+     * It keeps the metadata for the structure info.
      */
     structureMetaData: MetaStructure;
 
@@ -34,7 +34,7 @@ export class StructureInfoComponent implements OnInit {
      * Constructor of the StructureInfoComponent.
      *
      * It declares a private CoreService instance
-     * to get the meta data.
+     * to get the metadata.
      *
      * @param {CoreService} coreService Instance of the CoreService.
      */
@@ -54,7 +54,7 @@ export class StructureInfoComponent implements OnInit {
      * Public method: provideMetaData.
      *
      * It calls the CoreService to provide
-     * the meta data for the structure info.
+     * the metadata for the structure info.
      *
      * @returns {void} Sets the structureMetaData variable.
      */
