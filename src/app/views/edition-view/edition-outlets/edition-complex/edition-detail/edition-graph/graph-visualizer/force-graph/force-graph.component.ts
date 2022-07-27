@@ -407,8 +407,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         this._divWidth = width;
-        // Leave some space for icon bar at the top
-        this._divHeight = height - 20;
+        // Leave some space for icon bar at the top and the bottom
+        this._divHeight = height - 45;
 
         // ==================== Add SVG =====================
         if (!this._svg) {
