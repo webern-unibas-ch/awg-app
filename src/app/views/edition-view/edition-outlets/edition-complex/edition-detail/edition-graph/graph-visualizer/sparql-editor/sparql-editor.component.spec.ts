@@ -1759,7 +1759,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 component.switchQueryType(ViewHandleTypes.TABLE);
 
                 component.query.queryType = expectedSelectQuery1.queryType;
-                expect((component.query.queryString = expectedSelectQuery1.queryString));
+                component.query.queryString = expectedSelectQuery1.queryString;
 
                 // Switch back to GRAPH view
                 component.switchQueryType(ViewHandleTypes.GRAPH);
