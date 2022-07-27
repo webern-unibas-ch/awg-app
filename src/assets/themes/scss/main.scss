@@ -30,11 +30,11 @@ a {
     }
 }
 a,
-a:link,
-a:visited,
-a:hover,
-a:not([href]):not([tabindex]),
-a:not([href]):not([tabindex]):hover {
+a:link:not(.nav-link),
+a:visited:not(.nav-link),
+a:hover:not(.nav-link),
+a:not([href]):not([tabindex]):not(.nav-link),
+a:not([href]):not([tabindex]):not(.nav-link):hover {
     color: $link-color;
     text-decoration: none;
 }
@@ -56,9 +56,18 @@ a.dropdown-item:hover,
 button.dropdown-item:hover,
 a.awg-svg-sheet-nav-link.active,
 .navbar-light .navbar-nav .nav-link.active,
-.navbar-nav > li > a:focus,
-.navbar-nav > li > a:active {
+.navbar-nav > li.nav-item.dropdown.active > a,
+.navbar-nav > li > a:focus:not(#dropdownNavEdition),
+.navbar-nav > li > a:active:not(#dropdownNavEdition) {
     color: $link-color !important;
+}
+/* no border color for svg-sheet-nav-link */
+a.awg-svg-sheet-nav-link.active,
+a.awg-svg-sheet-nav-link:active,
+a.awg-svg-sheet-nav-link:hover,
+a.awg-svg-sheet-nav-link:focus,
+a.awg-svg-sheet-nav-link:active {
+    border-color: transparent !important;
 }
 
 a,
