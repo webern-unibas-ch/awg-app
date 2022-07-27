@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { UtilityService } from '@awg-core/services';
 import { EditionConstants, SourceDescriptionList } from '@awg-views/edition-view/models';
 
 /**
@@ -64,10 +65,12 @@ export class SourceDescriptionComponent {
     /**
      * Constructor of the SourceDescriptionComponent.
      *
-     * It declares the self-referring variable
-     * needed for CompileHtml library.
+     * It declares a public instance of the UtilityService and
+     * initializes the self-referring variable needed for CompileHtml library.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor() {
+    constructor(public utils: UtilityService) {
         this.ref = this;
     }
 

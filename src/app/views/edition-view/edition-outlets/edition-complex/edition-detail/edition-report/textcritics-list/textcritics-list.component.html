@@ -9,14 +9,14 @@
             </div>
         </ng-template>
         <ng-template ngbPanelContent>
-            <div *ngIf="isNotEmptyArray(textcritic.description)">
+            <div *ngIf="utils.isNotEmptyArray(textcritic.description)">
                 <p class="caps">Skizzenkommentar:</p>
                 <p
                     *ngFor="let description of textcritic.description"
                     [compile-html]="description"
                     [compile-html-ref]="ref"></p>
             </div>
-            <div *ngIf="isNotEmptyArray(textcritic.comments)">
+            <div *ngIf="utils.isNotEmptyArray(textcritic.comments)">
                 <p class="caps">Textkritischer Kommentar:</p>
                 <awg-edition-tka-table
                     [textcriticalComments]="textcritic.comments"

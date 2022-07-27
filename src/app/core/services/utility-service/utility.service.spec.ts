@@ -31,12 +31,32 @@ describe('UtilityService (DONE)', () => {
 
     describe('#isNotEmptyObject', () => {
         it('... should return true if a given object is not empty', () => {
-            const checkObj = { a: 1, b: 2, c: 3 };
+            const checkObj = { a: 1 };
             expect(utils.isNotEmptyObject(checkObj)).toBeTrue();
         });
 
         it('... should return false if a given object is empty', () => {
             const checkObj = {};
+            expect(utils.isNotEmptyObject(checkObj)).toBeFalse();
+        });
+
+        it('... should return false if a given object is an Array', () => {
+            const checkObj = [1, 2, 3];
+            expect(utils.isNotEmptyObject(checkObj)).toBeFalse();
+        });
+
+        it('... should return false if a given object is an empty Array', () => {
+            const checkObj = [];
+            expect(utils.isNotEmptyObject(checkObj)).toBeFalse();
+        });
+
+        it('... should return false if a given object is undefined', () => {
+            const checkObj = undefined;
+            expect(utils.isNotEmptyObject(checkObj)).toBeFalse();
+        });
+
+        it('... should return false if a given object is null', () => {
+            const checkObj = null;
             expect(utils.isNotEmptyObject(checkObj)).toBeFalse();
         });
     });

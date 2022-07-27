@@ -21,7 +21,7 @@ export class UtilityService {
      * @returns {boolean} The boolean result of the check.
      */
     isNotEmptyArray(checkArray: any[]): boolean {
-        return checkArray && checkArray.constructor === Array && checkArray.length > 0;
+        return checkArray && Array.isArray(checkArray) && checkArray.length > 0;
     }
 
     /**
@@ -29,11 +29,14 @@ export class UtilityService {
      *
      * It checks if a given object is not empty.
      *
-     * @param {any{}} checkObj The given object input.
+     * @param {object} checkObj The given object input.
      *
      * @returns {boolean} The boolean result of the check.
      */
-    isNotEmptyObject(checkObj): boolean {
-        return Object.keys(checkObj).length !== 0;
+    isNotEmptyObject(checkObj: object): boolean {
+        if (checkObj && !Array.isArray(checkObj)) {
+            return Object.keys(checkObj).length !== 0;
+        }
+        return false;
     }
 }
