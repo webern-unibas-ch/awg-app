@@ -10074,9 +10074,9 @@ rdf-canonize@^3.0.0:
   dependencies:
     setimmediate "^1.0.5"
 
-rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.4:
-  version "0.9.18-alpha.4"
-  resolved "https://codeload.github.com/musicenfanthen/rdfstore-js/tar.gz/6fe33a4142515dea40c29b6b163fb3f276efc795"
+rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.5:
+  version "0.9.18-alpha.5"
+  resolved "https://codeload.github.com/musicenfanthen/rdfstore-js/tar.gz/b6040aeb35f4ea5b804eccf9acd5c0f687f0cab7"
   dependencies:
     jsonld "^6.0.0"
     n3 "^0.11.3"
