@@ -68,11 +68,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have sourceDescriptionListData', () => {
-            expect(component.sourceDescriptionListData).withContext('should be undefined').toBeUndefined();
+        it('should not have `sourceDescriptionListData`', () => {
+            expect(component.sourceDescriptionListData).toBeUndefined();
         });
 
-        it('should have ref', () => {
+        it('should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
         });
@@ -93,7 +93,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have sourceDescriptionListData', () => {
+        it('should have `sourceDescriptionListData`', () => {
             expect(component.sourceDescriptionListData).toBeTruthy();
             expect(component.sourceDescriptionListData)
                 .withContext(`should equal ${expectedSourceDescriptionListData}`)
@@ -943,6 +943,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
         });
 
         describe('#openModal', () => {
+            it('should have a `openModal` method', () => {
+                expect(component.openModal).toBeTruthy();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
                 // Find description paragraphs
@@ -984,6 +988,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
         });
 
         describe('#selectSvgSheet', () => {
+            it('should have a `selectSvgSheet` method', () => {
+                expect(component.selectSvgSheet).toBeTruthy();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
 

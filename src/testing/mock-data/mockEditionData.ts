@@ -468,13 +468,14 @@ export const mockEditionData = {
             {
                 id: 'test-1',
                 label: 'test1',
-                description: ['test description'],
+                description: ['test description 1', 'test description 2'],
                 comments: [],
             },
             {
                 id: 'test-2',
                 label: 'test2',
                 description: [],
+                rowtable: true,
                 comments: [
                     {
                         measure: '10',

@@ -334,7 +334,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     .toEqual(expectedTriples);
 
                 expect(forceGraphCmp.height).withContext('should be defined').toBeDefined();
-                expect(forceGraphCmp.height).withContext(`should have data: ${expectedHeight}`).toEqual(expectedHeight);
+                expect(forceGraphCmp.height).withContext(`should be: ${expectedHeight}`).toBe(expectedHeight);
             });
         });
 
