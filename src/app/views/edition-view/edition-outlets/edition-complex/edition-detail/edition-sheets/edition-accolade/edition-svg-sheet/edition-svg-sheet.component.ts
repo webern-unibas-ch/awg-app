@@ -15,7 +15,7 @@ import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
-import { SliderConfig } from '@awg-shared/shared-models/slider-config';
+import { SliderConfig } from '@awg-shared/shared-models';
 import { EditionSvgOverlay, EditionSvgOverlayTypes, EditionSvgSheet } from '@awg-views/edition-view/models';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
 
