@@ -23,16 +23,15 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { SliderConfig } from '@awg-shared/shared-models';
+import { D3Selection, D3ZoomBehaviour } from '@awg-app/views/edition-view/models';
 import {
     D3DragBehaviour,
-    D3Selection,
     D3Simulation,
     D3SimulationData,
     D3SimulationLink,
     D3SimulationNode,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
-    D3ZoomBehaviour,
     PrefixForm,
     Triple,
 } from '../models';

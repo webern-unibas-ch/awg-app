@@ -1,11 +1,9 @@
 import { ElementRef, Injectable } from '@angular/core';
 
-import { ViewBox } from '@awg-views/edition-view/models';
+import { D3Selection, ViewBox } from '@awg-views/edition-view/models';
 
 import * as d3_selection from 'd3-selection';
 import * as d3_fetch from 'd3-fetch';
-
-export interface D3Selection extends d3_selection.Selection<any, any, any, any> {}
 
 @Injectable({ providedIn: 'root' })
 export class EditionSvgDrawingService {

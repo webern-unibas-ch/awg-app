@@ -16,14 +16,16 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { SliderConfig } from '@awg-shared/shared-models';
-import { EditionSvgOverlay, EditionSvgOverlayTypes, EditionSvgSheet } from '@awg-views/edition-view/models';
+import {
+    D3Selection,
+    D3ZoomBehaviour,
+    EditionSvgOverlay,
+    EditionSvgOverlayTypes,
+    EditionSvgSheet,
+} from '@awg-views/edition-view/models';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
 
-import * as d3_selection from 'd3-selection';
 import * as d3_zoom from 'd3-zoom';
-
-export interface D3Selection extends d3_selection.Selection<any, any, any, any[]> {}
-export interface D3ZoomBehaviour extends d3_zoom.ZoomBehavior<any, any> {}
 
 /**
  * The EditionSvgSheet component.
