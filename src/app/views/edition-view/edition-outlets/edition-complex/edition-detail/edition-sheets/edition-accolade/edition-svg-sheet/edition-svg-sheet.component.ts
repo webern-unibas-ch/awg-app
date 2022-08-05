@@ -227,13 +227,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
         }
 
         // Calculate new width & height
-        const dimensions = this.svgDrawingService.getContainerDimensions(
-            this.svgSheetContainerRef,
-            this._divWidth,
-            this._divHeight
-        );
-        this._divWidth = dimensions.width;
-        this._divHeight = dimensions.height;
+        this._getContainerDimensions(this.svgSheetContainerRef);
 
         // Fire resize event
         this._resize$.next(true);
@@ -403,14 +397,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
         // Create a D3 selection object of the svg root group of the svg template element
         this.svgSheetRootSelection = this.svgSheetSelection.select('#awg-edition-svg-sheet-root');
 
-        // Get container dimensions
-        const dimensions = this.svgDrawingService.getContainerDimensions(
-            this.svgSheetContainerRef,
-            this._divWidth,
-            this._divHeight
-        );
-        this._divWidth = dimensions.width;
-        this._divHeight = dimensions.height;
+        this._getContainerDimensions(this.svgSheetContainerRef);
 
         // ==================== ZOOM ====================
         this._zoomHandler(this.svgSheetRootSelection, this.svgSheetSelection);
@@ -480,6 +467,23 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
         }
 
         this.svgDrawingService.getLinkBoxes(this.svgSheetRootSelection);
+    }
+
+    /**
+     * Private method: _getContainerDimensions.
+     *
+     * It sets the width and height of the given container div with its provided value
+     * or the dimensions (width and height) of the given container.
+     *
+     * @param {ElementRef} containerEl The given container element.
+     *
+     * @returns {void} Sets width and height of the container div.
+     */
+    private _getContainerDimensions(containerEl: ElementRef): void {
+        const dimensions = this.svgDrawingService.getContainerDimensions(containerEl);
+
+        this._divWidth = this._divWidth ? this._divWidth : dimensions.width;
+        this._divHeight = this._divHeight ? this._divHeight : dimensions.height;
     }
 
     /**
