@@ -32,14 +32,6 @@ export class EditionAccoladeComponent {
     svgSheetsData: EditionSvgSheetList;
 
     /**
-     * Input variable: selectedOverlay.
-     *
-     * It keeps the selected svg overlay.
-     */
-    @Input()
-    selectedOverlay: EditionSvgOverlay;
-
-    /**
      * Input variable: selectedSvgSheet.
      *
      * It keeps the selected svg sheet.
@@ -73,12 +65,12 @@ export class EditionAccoladeComponent {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Output variable: selectOverlayRequest.
+     * Output variable: selectOverlaysRequest.
      *
-     * It keeps an event emitter for the selected svg overlay.
+     * It keeps an event emitter for the selected svg overlays.
      */
     @Output()
-    selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
+    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
 
     /**
      * Output variable: selectSvgSheetRequest.
@@ -105,19 +97,16 @@ export class EditionAccoladeComponent {
     }
 
     /**
-     * Public method: selectOverlay.
+     * Public method: selectOverlays.
      *
-     * It emits a given svg overlay
-     * to the {@link selectOverlayRequest}.
+     * It emits the selected svg overlays
+     * to the {@link selectOverlaysRequest}.
      *
-     * @param {EditionSvgOverlay} overlay The given svg overlay.
-     * @returns {void} Emits the overlay.
+     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @returns {void} Emits the overlays.
      */
-    selectOverlay(overlay: EditionSvgOverlay): void {
-        if (!overlay.type || !overlay.id) {
-            return;
-        }
-        this.selectOverlayRequest.emit(overlay);
+    selectOverlays(overlays: EditionSvgOverlay[]): void {
+        this.selectOverlaysRequest.emit(overlays);
     }
 
     /**
