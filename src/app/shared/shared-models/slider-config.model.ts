@@ -4,27 +4,27 @@
  * It is used to configure the slider.
  */
 export class SliderConfig {
-    /*
+    /**
      * The initial value of the slider.
      */
     initial: number;
 
-    /*
+    /**
      * The minimum value of the slider.
      */
     min: number;
 
-    /*
+    /**
      * The maximum value of the slider.
      */
     max: number;
 
-    /*
+    /**
      * The step size of the slider.
      */
     stepSize: number;
 
-    /*
+    /**
      * The current value of the slider.
      */
     value: number;
