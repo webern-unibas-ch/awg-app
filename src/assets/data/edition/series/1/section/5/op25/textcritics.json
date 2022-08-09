@@ -781,6 +781,33 @@
             ]
         },
         {
+            "id": "M_317_TF1",
+            "label": "M 317 Textfassung 1",
+            "description": [
+                "##Quellenbewertung:## Für die Edition von „Wie bin ich froh!“ M 317 Textfassung 1 sind <strong>B</strong> und <strong>E</strong> relevante Quellen. <br />Korrekturschicht 1 in <strong>E</strong> etabliert Textfassung 1, wobei dese Überarbeitung vor oder gleichzeitig mit der Niederschrift von <strong>B</strong> stattgefunden haben dürfte. Korrekturschicht 2 in <strong>E</strong> betrifft Textfassung 2. Der Zustand von <strong>E</strong> vor Korrekturschicht 2 lässt sich nicht immer eindeutig entziffern. <br /> Hauptquelle der Textedition von „Wie bin ich froh!“ M 317 Textfassung 1 ist <strong>B</strong>."
+            ],
+            "comments": [
+                {
+                    "measure": "1",
+                    "system": "",
+                    "position": "4/8",
+                    "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4/8 und 5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>M 317 Sk4</strong></a>."
+                },
+                {
+                    "measure": "3",
+                    "system": "Ges.",
+                    "position": "1. Note",
+                    "comment": "&#119185; versetzt von 1. Pause."
+                },
+                {
+                    "measure": "6",
+                    "system": "Ges.",
+                    "position": "1. Note",
+                    "comment": "&#119185; versetzt von 3/8."
+                }
+            ]
+        },
+        {
             "id": "SkRT",
             "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
             "description": [
