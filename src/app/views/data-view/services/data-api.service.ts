@@ -12,13 +12,8 @@ import {
     ResourceTypesInVocabularyResponseJson,
     SearchResponseJson,
 } from '@awg-shared/api-objects';
-import {
-    IResourceDataResponse,
-    ResourceData,
-    ResourceDetail,
-    SearchParams,
-    SearchResultsViewTypes,
-} from '@awg-views/data-view/models';
+import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
+import { IResourceDataResponse, ResourceData, ResourceDetail, SearchParams } from '@awg-views/data-view/models';
 
 /**
  * The DataApi service.
@@ -196,12 +191,12 @@ export class DataApiService extends ApiService {
         }
 
         // Default values
-        const sp: SearchParams = {
-            query: searchParams.query,
-            nRows: searchParams.nRows || '-1',
-            startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchResultsViewTypes.table,
-        };
+        const sp: SearchParams = new SearchParams(
+            searchParams.query,
+            searchParams.nRows || '-1',
+            searchParams.startAt || '0',
+            searchParams.viewType || ViewHandleTypes.TABLE
+        );
 
         // Cold request to API
         const searchData$: Observable<SearchResponseJson> = this._getResourceDataResponseFromApi(
@@ -299,6 +294,7 @@ export class DataApiService extends ApiService {
      *
      * @param {*} responseJsonType The given json type of the API response.
      * @param {string} id The given id of a resource.
+     * @param {SearchParams} [searchParams] The given search params.
      *
      * @returns {Observable<any>} The observable of the HTTP response.
      */

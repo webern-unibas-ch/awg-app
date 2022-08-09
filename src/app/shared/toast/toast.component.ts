@@ -1,6 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 
-import { Toast, ToastService } from '@awg-core/services/toast-service';
+import { Toast, ToastService } from './toast.service';
 
 /**
  * The Toast component.

@@ -48,7 +48,7 @@ export class EditionSvgSheet {
     /**
      * The associated convolute of the sheet.
      */
-    convolute: string;
+    convolute?: string;
 }
 
 /**

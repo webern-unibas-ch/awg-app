@@ -233,7 +233,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const buttonCmp0 = buttonDes[0].nativeElement;
                 const buttonCmp1 = buttonDes[1].nativeElement;
 
-                const expectedTitle0 = 'Edierter Notentext';
+                const expectedTitle0 = 'Edierte Notentexte';
                 const expectedTitle1 = 'Hinweise zur Nutzung';
 
                 expect(buttonCmp0.textContent).toBeDefined();

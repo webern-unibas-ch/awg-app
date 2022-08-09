@@ -1,11 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
+
+import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -28,12 +35,20 @@ describe('NavbarComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
+    let coreServiceSpy: Spy;
+    let getEditionWorkSpy: Spy;
+    let isActiveRouteSpy: Spy;
+    let routerSpy: Spy;
+    let provideMetaDataSpy: Spy;
+    let toggleNavSpy: Spy;
+
     let mockCoreService: Partial<CoreService>;
+    let mockRouter: Partial<Router>;
 
     let expectedPageMetaData: MetaPage;
 
     let expectedEditionWorks: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
-    let expectedSelectEditionWork: EditionWork = EditionWorks.OP12;
+    let expectedSelectedEditionWork: EditionWork = EditionWorks.OP12;
 
     // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
@@ -50,10 +65,16 @@ describe('NavbarComponent (DONE)', () => {
             getMetaDataSection: sectionType => METADATA[sectionType],
         };
 
+        // Router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['isActive']);
+
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
             declarations: [NavbarComponent, RouterLinkStubDirective],
-            providers: [{ provide: CoreService, useValue: mockCoreService }],
+            providers: [
+                { provide: CoreService, useValue: mockCoreService },
+                { provide: Router, useValue: mockRouter },
+            ],
         }).compileComponents();
     }));
 
@@ -65,13 +86,17 @@ describe('NavbarComponent (DONE)', () => {
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedEditionWorks = [EditionWorks.OP12, EditionWorks.OP25];
-        expectedSelectEditionWork = EditionWorks.OP12;
+        expectedSelectedEditionWork = expectedEditionWorks[0];
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
-        spyOn(component, 'toggleNav').and.callThrough();
+        coreServiceSpy = spyOn(mockCoreService, 'getMetaDataSection').and.callThrough();
+        getEditionWorkSpy = spyOn(component, 'getEditionWork').and.callThrough();
+        isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
+        routerSpy = mockRouter.isActive as jasmine.Spy;
+        provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
+        toggleNavSpy = spyOn(component, 'toggleNav').and.callThrough();
     });
 
     afterAll(() => {
@@ -109,46 +134,19 @@ describe('NavbarComponent (DONE)', () => {
             expect(component.isCollapsed).withContext('should be true').toBeTrue();
         });
 
-        describe('#provideMetaData', () => {
-            it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-
-            it('... should not have pageMetaData', () => {
-                expect(component.pageMetaData).withContext('should be undefined').toBeUndefined();
-            });
+        it('should have `EDITION_WORKS`', () => {
+            expect(component.EDITION_WORKS).toBeTruthy();
+            expect(component.EDITION_WORKS)
+                .withContext(`should equal ${expectedEditionWorks}`)
+                .toEqual(expectedEditionWorks);
         });
 
-        describe('#toggleNav', () => {
-            it('... should not have been called', () => {
-                expect(component.toggleNav).not.toHaveBeenCalled();
-            });
+        it('should not have `pageMetaData`', () => {
+            expect(component.pageMetaData).toBeUndefined();
+        });
 
-            it('... should be called when button clicked (click helper)', () => {
-                // Find button elements
-                const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
-                const buttonEl = buttonDes[0].nativeElement;
-
-                // Should have not been called yet
-                expect(component.toggleNav).not.toHaveBeenCalled();
-
-                // Click button
-                click(buttonDes[0]);
-                click(buttonEl);
-
-                expect(component.toggleNav).toHaveBeenCalled();
-                expect(component.toggleNav).toHaveBeenCalledTimes(2);
-            });
-
-            it('... should toggle `isCollapsed`', () => {
-                component.toggleNav();
-
-                expect(component.isCollapsed).withContext(`should be false`).toBeFalse();
-
-                component.toggleNav();
-
-                expect(component.isCollapsed).withContext(`should be true`).toBeTrue();
-            });
+        it('should not have `selectedEditionWork`', () => {
+            expect(component.selectedEditionWork).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -173,27 +171,89 @@ describe('NavbarComponent (DONE)', () => {
                 expect(urlEl2.href).withContext('should be empty string').toBe('');
             });
         });
+
+        describe('#getEditionWork', () => {
+            it('should have a `getEditionWork` method', () => {
+                expect(component.getEditionWork).toBeTruthy();
+            });
+
+            it('... should not have been called', () => {
+                expectSpyCall(getEditionWorkSpy, 0);
+            });
+
+            it('... should not have `selectedEditionWork`', () => {
+                expect(component.selectedEditionWork).toBeUndefined();
+            });
+        });
+
+        describe('#isActiveRoute', () => {
+            it('should have a `isActiveRoute` method', () => {
+                expect(component.isActiveRoute).toBeTruthy();
+            });
+
+            it('... should not have been called', () => {
+                expectSpyCall(isActiveRouteSpy, 0);
+            });
+        });
+
+        describe('#provideMetaData', () => {
+            it('should have a `provideMetaData` method', () => {
+                expect(component.provideMetaData).toBeTruthy();
+            });
+
+            it('... should not have been called', () => {
+                expectSpyCall(provideMetaDataSpy, 0);
+            });
+
+            it('... should not have `pageMetaData`', () => {
+                expect(component.pageMetaData).toBeUndefined();
+            });
+        });
+
+        describe('#toggleNav', () => {
+            it('should have a `toggleNav` method', () => {
+                expect(component.toggleNav).toBeTruthy();
+            });
+
+            it('... should not have been called', () => {
+                expectSpyCall(toggleNavSpy, 0);
+            });
+
+            it('... should be called when button clicked (click helper)', () => {
+                // Find button elements
+                const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
+                const buttonEl = buttonDes[0].nativeElement;
+
+                // Should have not been called yet
+                expectSpyCall(toggleNavSpy, 0);
+
+                // Click button
+                click(buttonDes[0]);
+                click(buttonEl);
+
+                expectSpyCall(toggleNavSpy, 2);
+            });
+
+            it('... should toggle `isCollapsed`', () => {
+                component.toggleNav();
+
+                expect(component.isCollapsed).toBeFalse();
+
+                component.toggleNav();
+
+                expect(component.isCollapsed).toBeTrue();
+
+                component.toggleNav();
+
+                expect(component.isCollapsed).toBeFalse();
+            });
+        });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
-
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        describe('#provideMetaData', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return metadata', () => {
-                expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData)
-                    .withContext(`should be ${expectedPageMetaData}`)
-                    .toBe(expectedPageMetaData);
-            });
         });
 
         describe('VIEW', () => {
@@ -211,6 +271,56 @@ describe('NavbarComponent (DONE)', () => {
                 expect(urlEl2.href)
                     .withContext(`should be ${expectedPageMetaData.awgProjectUrl}`)
                     .toBe(expectedPageMetaData.awgProjectUrl);
+            });
+        });
+
+        describe('#getEditionWork', () => {
+            it('... should have been called', () => {
+                expectSpyCall(getEditionWorkSpy, 1);
+            });
+
+            it('... should get `selectedEditionWork`', () => {
+                expect(component.selectedEditionWork).toBeDefined();
+                expect(component.selectedEditionWork)
+                    .withContext(`should be ${expectedSelectedEditionWork}`)
+                    .toBe(expectedSelectedEditionWork);
+            });
+        });
+
+        describe('#isActiveRoute', () => {
+            it('... should have been called 2 times', () => {
+                expectSpyCall(isActiveRouteSpy, 2);
+            });
+
+            it('... should return true if a given route is active', () => {
+                const expectedActiveRoute = '/active-route';
+                routerSpy.and.returnValue(true);
+
+                expect(component.isActiveRoute(expectedActiveRoute)).toBeTrue();
+            });
+
+            it('... should return false if a given route is not active', () => {
+                const expectedActiveRoute = '/non-active-route';
+                routerSpy.and.returnValue(false);
+
+                expect(component.isActiveRoute(expectedActiveRoute)).toBeFalse();
+            });
+        });
+
+        describe('#provideMetaData', () => {
+            it('... should have been called', () => {
+                expectSpyCall(provideMetaDataSpy, 1);
+            });
+
+            it('... should get `pageMetaData`', () => {
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData)
+                    .withContext(`should be ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
+            });
+
+            it('... should have called coreService', () => {
+                expectSpyCall(coreServiceSpy, 1);
             });
         });
 
@@ -298,7 +408,10 @@ describe('NavbarComponent (DONE)', () => {
                 const editionLinkDe = linkDes[3]; // Edition link DebugElement
                 const editionLink = routerLinks[3]; // Edition link directive
 
-                const expectedRoute = [expectedSelectEditionWork.baseRoute, expectedSelectEditionWork.introRoute.route];
+                const expectedRoute = [
+                    expectedSelectedEditionWork.baseRoute,
+                    expectedSelectedEditionWork.introRoute.route,
+                ];
 
                 expect(editionLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
 

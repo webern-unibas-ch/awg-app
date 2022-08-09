@@ -30,7 +30,7 @@ export class TablePaginationComponent implements OnInit {
     page: number;
 
     /**
-     * Output variable: pageChangeRequest.
+     * Output variable: pageChange.
      *
      * It keeps an event emitter for a change of the page number.
      */
@@ -63,15 +63,15 @@ export class TablePaginationComponent implements OnInit {
     }
 
     /**
-     * Public method: formatInput.
+     * Public method: replaceNonNumberInput.
      *
-     * It formats the page change input.
+     * It replaces all non-number input values with empty string.
      *
      * @param {HTMLInputElement} input The given input.
      *
-     * @returns {void} Formats the input.
+     * @returns {void} Replaces the input.value.
      */
-    formatInput(input: HTMLInputElement): void {
+    replaceNonNumberInput(input: HTMLInputElement): void {
         input.value = input.value.replace(this.FILTER_PAG_REGEX, '');
     }
 

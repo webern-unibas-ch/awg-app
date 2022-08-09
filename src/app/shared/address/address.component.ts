@@ -5,7 +5,7 @@ import { MetaContact, MetaPage } from '@awg-core/core-models';
  * The Address component.
  *
  * It contains an address field to be
- * filled from meta data information and to be
+ * filled from metadata information and to be
  * provided via the {@link SharedModule}.
  */
 @Component({
@@ -18,7 +18,7 @@ export class AddressComponent {
     /**
      * Input variable: pageMetaData.
      *
-     * It keeps the page meta data for the address.
+     * It keeps the page metadata for the address.
      */
     @Input()
     pageMetaData: MetaPage;
@@ -26,7 +26,7 @@ export class AddressComponent {
     /**
      * Input variable: contactMetaData.
      *
-     * It keeps the contact meta data for the address.
+     * It keeps the contact metadata for the address.
      */
     @Input()
     contactMetaData: MetaContact;

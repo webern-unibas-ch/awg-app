@@ -5,8 +5,8 @@
             "label": "M 317 Sk1",
             "content": [
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk1_200123_1von1.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk1_200123_1von1.jpg"
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk1_1von1_220714_path.svg",
+                    "image": ""
                 }
             ],
             "convolute": "A"
@@ -16,8 +16,63 @@
             "label": "M 317 Sk2",
             "content": [
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk2_200123_1von1.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk2_200123_1von1.jpg"
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk2_1von1_220715_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk2_1",
+            "label": "M 317 Sk2.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk2_1_1von1_220714_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk2_1_1",
+            "label": "M 317 Sk2.1.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk2_1_1_1von1_220714_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk2_1_2",
+            "label": "M 317 Sk2.1.2",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk2_1_2_1von1_220715_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk2_1_2_1",
+            "label": "M 317 Sk2.1.2.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk2_1_2_1_1von1_220715_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk2_1_3",
+            "label": "M 317 Sk2.1.3",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk2_1_3_1von1_220715_path.svg",
+                    "image": ""
                 }
             ],
             "convolute": "A"
@@ -27,11 +82,65 @@
             "label": "M 317 Sk3",
             "content": [
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk3_200123_1von1.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk3_200123_1von1.jpg"
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk3_1von1_220718_path.svg",
+                    "image": ""
                 }
             ],
-
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk3_1",
+            "label": "M 317 Sk3.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk3_1_1von1_220715_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk3_1_1",
+            "label": "M 317 Sk3.1.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk3_1_1_1von1_220715_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk3_1_2",
+            "label": "M 317 Sk3.1.2",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk3_1_2_1von1_220718_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk3_1_3",
+            "label": "M 317 Sk3.1.3",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk3_1_3_1von1_220718_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk3_1_3_1",
+            "label": "M 317 Sk3.1.3.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk3_1_3_1_1von1_220718_path.svg",
+                    "image": ""
+                }
+            ],
             "convolute": "A"
         },
         {
@@ -39,24 +148,57 @@
             "label": "M 317 Sk4",
             "content": [
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_1von4.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_1von4.jpg",
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_1von4_220718_path.svg",
+                    "image": "",
                     "partial": "a"
                 },
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_2von4.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_2von4.jpg",
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_2von4_220718_path.svg",
+                    "image": "",
                     "partial": "b"
                 },
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_3von4.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_3von4.jpg",
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_3von4_220718_path.svg",
+                    "image": "",
                     "partial": "c"
                 },
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_4von4.svg",
-                    "image": "assets/img/edition/series/1/section/5/op25/op25_A_Sk4_200123_4von4.jpg",
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_4von4_220718_path.svg",
+                    "image": "",
                     "partial": "d"
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk4_1",
+            "label": "M 317 Sk4.1",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_1_1von1_220718_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk4_2",
+            "label": "M 317 Sk4.2",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_2_1von1_220718_path.svg",
+                    "image": ""
+                }
+            ],
+            "convolute": "A"
+        },
+        {
+            "id": "M_317_Sk4_3",
+            "label": "M 317 Sk4.3",
+            "content": [
+                {
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Sk4_3_1von1_220718_path.svg",
+                    "image": ""
                 }
             ],
             "convolute": "A"

@@ -3,25 +3,137 @@
         {
             "id": "sourceB",
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Reihentabelle und Skizze.",
-            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
-            "description": [
-                "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Abriss an der oberen rechten Ecke. Zwei Risse am rechten Rand. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> unten links oder rechts. Verso-Seite bis auf die archivalische Paginierung unbeschriftet.",
-                "<span class=\"caps\">Beschreibstoff</span>: Notenpapier, 12 Systeme (unten beschnitten), Format (quer): 163 × 255 mm, kein Firmenzeichen.",
-                "<span class=\"caps\">Schreibstoff</span>: Bleistift; blauer Buntstift, grüner Buntstift, roter Buntstift, Kopierstift.",
-                "<span class=\"caps\">Titel</span>: <em>Reihen zu op. 19</em> auf Bl. 1<sup>r</sup> oben halbrechts mit blauem Buntstift; Punkt von <em>i</em> bei <em>Lieder</em> mit rotem Buntstift.",
-                "<span class=\"caps\">Datierung</span>: <em>1925/26</em> auf Bl. 1<sup>r</sup> oben rechts mit rotem Buntstift.",
-                "<span class=\"caps\">Inhalt</span>: <br /><strong>M 286 Sk# / M 287 Sk#</strong> (Reihentabelle op. 19): <br />Bl. 1<sup>r</sup> <br /><span class=\"tab\"></span>System 1a: G<sub>g</sub> (1); <span class=\"tab\"></span>System 1b: K<sub>c</sub> (2); <br /><span class=\"tab\"></span>System 2a: U<sub>g</sub> (3); <span class=\"tab\"></span>System 2b: KU<sub>d</sub> (4); <br /><span class=\"tab\"></span>System 4a: G<sub>cis</sub> (5); <span class=\"tab\"></span>System 4b: K<sub>ges</sub> (6); <br /><span class=\"tab\"></span>System 5a: U<sub>cis</sub> (7); <span class=\"tab\"></span>System 5b: KU<sub>gis</sub> (8)."
-            ]
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Abriss an der oberen rechten Ecke. Zwei Risse am rechten Rand. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> unten links oder rechts. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
+                ],
+                "writingMaterial": "Notenpapier, 12 Systeme (unten beschnitten), Format (quer): 163 × 255 mm, kein Firmenzeichen.",
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "Kopierstift"]
+                },
+                "title": "<em>Reihen zu op. 19</em> auf Bl. 1<sup>r</sup> oben halbrechts mit blauem Buntstift; Punkt von <em>i</em> bei <em>Lieder</em> mit rotem Buntstift.",
+                "date": "<em>1925/26</em> auf Bl. 1<sup>r</sup> oben rechts mit rotem Buntstift.",
+                "content": [
+                    {
+                        "item": "M 286 Sk# / M 287 Sk#",
+                        "itemLinkTo": "SkRT",
+                        "itemDescription": "(Reihentabelle op. 19)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "g",
+                                                "rowNumber": "1"
+                                            }
+                                        },
+                                        {
+                                            "system": "1b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "c",
+                                                "rowNumber": "2"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "2a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "g",
+                                                "rowNumber": "3"
+                                            }
+                                        },
+                                        {
+                                            "system": "2b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "d",
+                                                "rowNumber": "4"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "3a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "cis",
+                                                "rowNumber": "5"
+                                            }
+                                        },
+                                        {
+                                            "system": "3b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "ges",
+                                                "rowNumber": "6"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4a",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "cis",
+                                                "rowNumber": "7"
+                                            }
+                                        },
+                                        {
+                                            "system": "4b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "gis",
+                                                "rowNumber": "8"
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "notB",
             "siglum": "",
+            "siglumAddendum": "",
             "type": "",
             "location": "",
-            "description": [
-                "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C-D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 in AWG I/3.]</small>"
-            ]
+            "description": {
+                "desc": [
+                    "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C-D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Zwei Lieder für gemischten Chor und Ensemble</em> op. 19 in AWG I/3.]</small>"
+                ]
+            }
         }
     ]
 }

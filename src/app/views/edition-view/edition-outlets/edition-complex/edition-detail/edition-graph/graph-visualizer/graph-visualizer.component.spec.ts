@@ -13,7 +13,7 @@ import {
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { Toast, ToastService } from '@awg-core/services/toast-service';
+import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
 
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { D3SimulationNode, D3SimulationNodeType, Triple } from './models';
@@ -55,6 +55,8 @@ class SparqlEditorStubComponent {
     @Input()
     isFullscreen: boolean;
     @Output()
+    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
+    @Output()
     performQueryRequest: EventEmitter<void> = new EventEmitter();
     @Output()
     resetQueryRequest: EventEmitter<GraphSparqlQuery> = new EventEmitter();
@@ -70,6 +72,8 @@ class TriplesEditorStubComponent {
     @Input() triples: string;
     @Input()
     isFullscreen: boolean;
+    @Output()
+    errorMessageRequest: EventEmitter<ToastMessage> = new EventEmitter();
     @Output()
     performQueryRequest: EventEmitter<void> = new EventEmitter();
     @Output()
@@ -97,11 +101,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let expectedResult: Triple[];
     let expectedIsFullscreen: boolean;
 
-    let consoleSpy;
+    let consoleSpy: Spy;
+    let mockGraphVisualizerServiceGetQueryTypeSpy: Spy;
     let queryLocalStoreSpy: Spy;
     let performQuerySpy: Spy;
     let resetQuerySpy: Spy;
     let resetTriplesSpy: Spy;
+    let toastServiceAddSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Mocked dataStreamerService
@@ -167,10 +173,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        mockGraphVisualizerServiceGetQueryTypeSpy = spyOn(mockGraphVisualizerService, 'getQuerytype').and.callThrough();
         queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
         performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
         resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
         resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
+        toastServiceAddSpy = spyOn(toastService, 'add').and.callThrough();
     });
 
     afterEach(() => {
@@ -310,6 +318,17 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('#resetTriples', () => {
+            it('... should trigger on resetTriplesRequest event from TriplesEditorComponent', () => {
+                expectSpyCall(resetTriplesSpy, 1, undefined);
+
+                const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                const editorCmp = editorDes[0].injector.get(TriplesEditorStubComponent) as TriplesEditorStubComponent;
+
+                editorCmp.resetTriplesRequest.emit();
+
+                expectSpyCall(resetTriplesSpy, 2, undefined);
+            });
+
             it('... should set initial triples', () => {
                 expectSpyCall(resetTriplesSpy, 1, undefined);
 
@@ -358,20 +377,21 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(resetTriplesSpy, 2);
                 expect(component.triples).toBeUndefined();
             });
-
-            it('... should trigger on resetTriplesRequest event from TriplesEditorComponent', () => {
-                expectSpyCall(resetTriplesSpy, 1, undefined);
-
-                const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
-                const editorCmp = editorDes[0].injector.get(TriplesEditorStubComponent) as TriplesEditorStubComponent;
-
-                editorCmp.resetTriplesRequest.emit();
-
-                expectSpyCall(resetTriplesSpy, 2, undefined);
-            });
         });
 
         describe('#resetQuery', () => {
+            it('... should trigger on resetQueryRequest event from SparqlEditorComponent', () => {
+                expectSpyCall(resetQuerySpy, 1, undefined);
+
+                const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
+                const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+
+                // Set changed query
+                editorCmp.resetQueryRequest.emit(expectedGraphRDFData.queryList[1]);
+
+                expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
+            });
+
             it('... should set initial queryList', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
@@ -416,87 +436,94 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     .toEqual(changedQuery.queryType);
             });
 
-            it('... should not find and reset a query from queryList if only queryLabel is known but not queryType', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
+            describe('... should set query as is, and not find from queryList, if', () => {
+                it('... only queryLabel is known but not queryType', () => {
+                    expectSpyCall(resetQuerySpy, 1, undefined);
 
-                // Request for query with known queryLabel but unknown queryType
-                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                changedQuery.queryType = 'select';
+                    // Request for query with known queryLabel but unknown queryType
+                    const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                    changedQuery.queryType = 'select';
 
-                component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                    // Set correct return value of service
+                    mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
 
-                // Matches queryList queries only by label
-                expectSpyCall(resetQuerySpy, 2, undefined);
+                    component.resetQuery(changedQuery);
+                    fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                    // Matches queryList queries only by label
+                    expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toBe(changedQuery.queryLabel);
+                    expect(component.query).toBeDefined();
+                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toBe(changedQuery.queryType);
-            });
+                    expect(component.query.queryLabel).toBeDefined();
+                    expect(component.query.queryLabel)
+                        .withContext(`should equal ${changedQuery.queryLabel}`)
+                        .toBe(changedQuery.queryLabel);
 
-            it('... should not find and reset a query from queryList if only queryType is known but not queryLabel', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
+                    expect(component.query.queryType).toBeDefined();
+                    expect(component.query.queryType)
+                        .withContext(`should equal ${changedQuery.queryType}`)
+                        .toBe(changedQuery.queryType);
+                });
 
-                // Request for query with known queryType but unknown label
-                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
-                changedQuery.queryLabel = 'select all bananas';
+                it('... only queryType is known but not queryLabel', () => {
+                    expectSpyCall(resetQuerySpy, 1, undefined);
 
-                component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                    // Request for query with known queryType but unknown label
+                    const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                    changedQuery.queryLabel = 'select all tests';
 
-                // Matches queryList queries only by type
-                expectSpyCall(resetQuerySpy, 2, undefined);
+                    component.resetQuery(changedQuery);
+                    fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                    // Matches queryList queries only by type
+                    expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toBe(changedQuery.queryLabel);
+                    expect(component.query).toBeDefined();
+                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toBe(changedQuery.queryType);
-            });
+                    expect(component.query.queryLabel).toBeDefined();
+                    expect(component.query.queryLabel)
+                        .withContext(`should equal ${changedQuery.queryLabel}`)
+                        .toBe(changedQuery.queryLabel);
 
-            it('... should set an unkown query that is not in queryList as is', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
+                    expect(component.query.queryType).toBeDefined();
+                    expect(component.query.queryType)
+                        .withContext(`should equal ${changedQuery.queryType}`)
+                        .toBe(changedQuery.queryType);
+                });
 
-                // Request for unknown query
-                const changedQuery = {
-                    queryType: 'SELECT',
-                    queryLabel: 'Test Query 3',
-                    queryString:
-                        'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
-                };
-                component.resetQuery(changedQuery);
-                fixture.detectChanges();
+                it('... given query is not in queryList', () => {
+                    expectSpyCall(resetQuerySpy, 1, undefined);
 
-                expectSpyCall(resetQuerySpy, 2, undefined);
+                    // Request for unknown query
+                    const changedQuery = {
+                        queryType: 'select',
+                        queryLabel: 'Test Query 3',
+                        queryString:
+                            'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
+                    };
+                    // Set correct return value of service
+                    mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue(changedQuery.queryType);
+                    component.resetQuery(changedQuery);
+                    fixture.detectChanges();
 
-                expect(component.query).toBeDefined();
-                expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
+                    expectSpyCall(resetQuerySpy, 2, undefined);
 
-                expect(component.query.queryLabel).toBeDefined();
-                expect(component.query.queryLabel)
-                    .withContext(`should equal ${changedQuery.queryLabel}`)
-                    .toBe(changedQuery.queryLabel);
+                    expect(component.query).toBeDefined();
+                    expect(component.query).withContext(`should equal ${changedQuery}`).toEqual(changedQuery);
 
-                expect(component.query.queryType).toBeDefined();
-                expect(component.query.queryType)
-                    .withContext(`should equal ${changedQuery.queryType}`)
-                    .toBe(changedQuery.queryType);
+                    expect(component.query.queryLabel).toBeDefined();
+                    expect(component.query.queryLabel)
+                        .withContext(`should equal ${changedQuery.queryLabel}`)
+                        .toBe(changedQuery.queryLabel);
+
+                    expect(component.query.queryType).toBeDefined();
+                    expect(component.query.queryType)
+                        .withContext(`should equal ${changedQuery.queryType}`)
+                        .toBe(changedQuery.queryType);
+                });
             });
 
             it('... should set initial query (queryList[0]) if no query is provided', () => {
@@ -522,7 +549,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     .toEqual(expectedGraphRDFData.queryList[0]);
             });
 
-            it('... should not do anything if no queryList is provided from rdf data', () => {
+            it('... should not do anything if no queryList is provided from RDF data', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Set undefined triples
@@ -544,18 +571,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expect(component.queryList).toBeUndefined();
             });
 
-            it('... should trigger on resetQueryRequest event from SparqlEditorComponent', () => {
-                expectSpyCall(resetQuerySpy, 1, undefined);
-
-                const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
-                const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
-
-                // Set changed query
-                editorCmp.resetQueryRequest.emit(expectedGraphRDFData.queryList[1]);
-
-                expectSpyCall(resetQuerySpy, 2, expectedGraphRDFData.queryList[1]);
-            });
-
             it('... should trigger `performQuery()`', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
 
@@ -569,6 +584,32 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('#performQuery', () => {
+            it('... should trigger on event from TriplesEditorComponent', () => {
+                // First time called on ngOnInit
+                expectSpyCall(performQuerySpy, 1, undefined);
+
+                const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                const editorCmp = editorDes[0].injector.get(TriplesEditorStubComponent) as TriplesEditorStubComponent;
+
+                // Set changed query
+                editorCmp.performQueryRequest.emit();
+
+                expectSpyCall(performQuerySpy, 2);
+            });
+
+            it('... should trigger on event from SparqlEditorComponent', () => {
+                // First time called on ngOnInit
+                expectSpyCall(performQuerySpy, 1, undefined);
+
+                const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
+                const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
+
+                // Set changed query
+                editorCmp.performQueryRequest.emit();
+
+                expectSpyCall(performQuerySpy, 2);
+            });
+
             it('... should append namespaces to query if no prefixes given', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
 
@@ -598,22 +639,30 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryType from service', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
-
-                const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.callThrough();
+                expectSpyCall(
+                    mockGraphVisualizerServiceGetQueryTypeSpy,
+                    1,
+                    expectedGraphRDFData.queryList[0].queryString
+                );
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
                 expectSpyCall(performQuerySpy, 2, undefined);
-                expectSpyCall(queryTypeSpy, 1, expectedGraphRDFData.queryList[0].queryString);
+                expectSpyCall(
+                    mockGraphVisualizerServiceGetQueryTypeSpy,
+                    2,
+                    expectedGraphRDFData.queryList[0].queryString
+                );
 
                 expect(component.query.queryType).toBeDefined();
                 expect(component.query.queryType).withContext('should equal construct').toEqual('construct');
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+                // Set construct query type
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
@@ -629,7 +678,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should trigger `_queryLocalStore` for select queries', () => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                // Set select query type
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
@@ -646,7 +696,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for construct queries', waitForAsync(() => {
                 // Set construct query type
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
@@ -660,7 +710,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             it('... should get queryResult for select queries', waitForAsync(() => {
                 // Set select query type
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
@@ -673,7 +723,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
 
             it('... should set empty observable for update query types', waitForAsync(() => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('update');
 
                 // Perform query
                 component.performQuery();
@@ -685,7 +735,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
 
             it('... should set empty observable for other query types', waitForAsync(() => {
-                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('other');
+                mockGraphVisualizerServiceGetQueryTypeSpy.and.returnValue('other');
 
                 // Perform query
                 component.performQuery();
@@ -748,7 +798,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     .toBeResolvedTo(expectedResult);
             }));
 
-            it('... should return Empty on error', waitForAsync(() => {
+            it('... should return empty array on error', waitForAsync(() => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -802,6 +852,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectedGraphRDFData.triples,
                 ];
                 const expectedError = { name: 'Error', message: 'error message' };
+                const expectedToastMessage = new ToastMessage(expectedError.name, expectedError.message, 5000);
 
                 spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
@@ -815,6 +866,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ).toBeRejectedWith(expectedError);
 
                 expectSpyCall(showErrorMessageSpy, 1);
+                expect(showErrorMessageSpy.calls.any()).toBeTruthy();
+                expect(showErrorMessageSpy.calls.count()).withContext(`should be 1`).toBe(1);
+                expect(showErrorMessageSpy.calls.first().args)
+                    .withContext(`should equal ${expectedToastMessage}`)
+                    .toEqual([expectedToastMessage]);
+                expect(showErrorMessageSpy.calls.allArgs()[0]).withContext(`should equal ${expectedToastMessage}`);
             });
 
             it('... should trigger `showErrorMessage` 2x if error message contains `undefined`', async () => {
@@ -824,6 +881,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     expectedGraphRDFData.triples,
                 ];
                 const expectedError = { name: 'Error', message: 'error message undefined' };
+
+                const expectedToastMessage1 = new ToastMessage('Error', 'The query did not return any results.', 5000);
+                const expectedToastMessage2 = new ToastMessage(expectedError.name, expectedError.message, 5000);
 
                 spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
@@ -838,23 +898,19 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(showErrorMessageSpy, 2);
                 expect(showErrorMessageSpy.calls.any()).toBeTruthy();
-                expect(showErrorMessageSpy.calls.count()).toBe(2);
-                expect(showErrorMessageSpy.calls.first().args).toEqual([
-                    'Error',
-                    'The query did not return any results',
-                    10000,
-                ]);
-                expect(showErrorMessageSpy.calls.allArgs()[0]).toEqual([
-                    'Error',
-                    'The query did not return any results',
-                    10000,
-                ]);
-                expect(showErrorMessageSpy.calls.allArgs()[1]).toEqual(['Error', 'error message undefined', 10000]);
-                expect(showErrorMessageSpy.calls.mostRecent().args).toEqual([
-                    'Error',
-                    'error message undefined',
-                    10000,
-                ]);
+                expect(showErrorMessageSpy.calls.count()).withContext(`should be 2`).toBe(2);
+                expect(showErrorMessageSpy.calls.first().args)
+                    .withContext(`should equal ${expectedToastMessage1}`)
+                    .toEqual([expectedToastMessage1]);
+                expect(showErrorMessageSpy.calls.allArgs()[0])
+                    .withContext(`should equal ${expectedToastMessage1}`)
+                    .toEqual([expectedToastMessage1]);
+                expect(showErrorMessageSpy.calls.allArgs()[1])
+                    .withContext(`should equal ${expectedToastMessage2}`)
+                    .toEqual([expectedToastMessage2]);
+                expect(showErrorMessageSpy.calls.mostRecent().args)
+                    .withContext(`should equal ${expectedToastMessage2}`)
+                    .toEqual([expectedToastMessage2]);
             });
         });
 
@@ -870,67 +926,88 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
             });
 
-            it('... should not do anything if no message is provided', () => {
-                component.showErrorMessage('Error', '', 500);
+            it('... should trigger on event from TriplesEditorComponent', () => {
+                const editorDes = getAndExpectDebugElementByDirective(compDe, TriplesEditorStubComponent, 1, 1);
+                const editorCmp = editorDes[0].injector.get(TriplesEditorStubComponent) as TriplesEditorStubComponent;
 
-                expectSpyCall(showErrorMessageSpy, 1, ['Error', '', 500]);
-                expectSpyCall(consoleSpy, 0);
+                // Set changed query
+                editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
+
+                expectSpyCall(showErrorMessageSpy, 1);
             });
 
-            it('... should set durationvValue = 7000 if not given', () => {
-                component.showErrorMessage('Error', 'error message');
+            it('... should trigger on event from SparqlEditorComponent', () => {
+                const editorDes = getAndExpectDebugElementByDirective(compDe, SparqlEditorStubComponent, 1, 1);
+                const editorCmp = editorDes[0].injector.get(SparqlEditorStubComponent) as SparqlEditorStubComponent;
 
-                expectSpyCall(showErrorMessageSpy, 1, ['Error', 'error message']);
-                expectSpyCall(consoleSpy, 1, ['error message', 7000]);
+                // Set changed query
+                editorCmp.errorMessageRequest.emit(new ToastMessage('Test', 'test message'));
+
+                expectSpyCall(showErrorMessageSpy, 1);
             });
 
-            it('... should log the provided message and durationValue to console', () => {
-                component.showErrorMessage('Error1', 'error message', 500);
+            describe('... should not do anything', () => {
+                it('... if no toastMessage is provided', () => {
+                    component.showErrorMessage(undefined);
 
-                expectSpyCall(showErrorMessageSpy, 1, ['Error1', 'error message', 500]);
-                expectSpyCall(consoleSpy, 1, ['error message', 500]);
+                    expectSpyCall(showErrorMessageSpy, 1, [undefined]);
+                    expectSpyCall(toastServiceAddSpy, 0);
+                    expectSpyCall(consoleSpy, 0);
+                });
+
+                it('... if no toastMessage.message is provided', () => {
+                    const toastMessage = new ToastMessage('Error1', '', 500);
+                    component.showErrorMessage(undefined);
+
+                    expectSpyCall(showErrorMessageSpy, 1, [undefined]);
+                    expectSpyCall(toastServiceAddSpy, 0);
+                    expectSpyCall(consoleSpy, 0);
+                });
+            });
+
+            it('... should log the provided name and message to console', () => {
+                const toastMessage = new ToastMessage('Error1', 'error message', 500);
+                component.showErrorMessage(toastMessage);
+
+                expectSpyCall(showErrorMessageSpy, 1, toastMessage);
+                expectSpyCall(consoleSpy, 1, [toastMessage.name, ':', toastMessage.message]);
             });
 
             it('... should trigger toast service and add a toast message', () => {
-                const name = 'Error1';
-                const message = 'error message';
-                const delay = 500;
+                const toastMessage = new ToastMessage('Error1', 'error message', 500);
 
-                const toastSpy = spyOn(toastService, 'add').and.callThrough();
-                const expectedToast = new Toast(message, {
-                    header: name,
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
                     classname: 'bg-danger text-light',
-                    delay: delay,
+                    delay: toastMessage.duration,
                 });
 
                 // Trigger error message
-                component.showErrorMessage(name, message, delay);
+                component.showErrorMessage(toastMessage);
                 fixture.detectChanges();
 
-                expectSpyCall(toastSpy, 1, expectedToast);
+                expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
                 expect(toastService.toasts).toBeDefined();
                 expect(toastService.toasts.length).withContext(`should be 1`).toBe(1);
                 expect(toastService.toasts[0]).withContext(`should equal ${expectedToast}`).toEqual(expectedToast);
             });
 
-            it('... should set durationvValue = 7000 for the toast message if delay not given ', () => {
-                const name = 'Error1';
-                const message = 'error message';
-                const delay = 7000;
+            it('... should set durationvValue = 3000 for the toast message if delay not given ', () => {
+                const toastMessage = new ToastMessage('Error1', 'error message');
+                const expectedDuration = 3000;
 
-                const toastSpy = spyOn(toastService, 'add').and.callThrough();
-                const expectedToast = new Toast(message, {
-                    header: name,
+                const expectedToast = new Toast(toastMessage.message, {
+                    header: toastMessage.name,
                     classname: 'bg-danger text-light',
-                    delay: delay,
+                    delay: expectedDuration,
                 });
 
                 // Trigger error message without delay value
-                component.showErrorMessage(name, message);
+                component.showErrorMessage(toastMessage);
                 fixture.detectChanges();
 
-                expectSpyCall(toastSpy, 1, expectedToast);
+                expectSpyCall(toastServiceAddSpy, 1, expectedToast);
 
                 expect(toastService.toasts).toBeDefined();
                 expect(toastService.toasts.length).withContext(`should be 1`).toBe(1);

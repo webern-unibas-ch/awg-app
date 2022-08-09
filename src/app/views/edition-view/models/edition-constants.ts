@@ -240,8 +240,8 @@ export class EditionConstants {
      */
     static readonly EDITION_SHEETS: EditionRoute = {
         route: 'sheets',
-        short: 'Edierter Notentext',
-        full: 'Edierter Notentext',
+        short: 'Edierte Notentexte',
+        full: 'Edierte Notentexte',
     };
 
     /**

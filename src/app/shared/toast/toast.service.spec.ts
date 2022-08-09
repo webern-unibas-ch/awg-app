@@ -46,7 +46,7 @@ describe('ToastService (DONE)', () => {
 
     it('should have empty toast array', () => {
         expect(toastService.toasts).toBeTruthy();
-        expect(toastService.toasts).toEqual([], 'should equal empty array []');
+        expect(toastService.toasts).withContext('should equal empty array []').toEqual([]);
     });
 
     describe('#add', () => {
@@ -55,8 +55,8 @@ describe('ToastService (DONE)', () => {
             toastService.add(expectedToast1);
 
             expect(toastService.toasts).toBeTruthy();
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).toEqual(expectedToast1, `should equal ${expectedToast1}`);
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
         });
 
         it('should add given template to toast array', () => {
@@ -70,8 +70,8 @@ describe('ToastService (DONE)', () => {
             toastService.add(expectedTplToast);
 
             expect(toastService.toasts).toBeTruthy();
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).toEqual(expectedTplToast, `should equal ${expectedTplToast}`);
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedTplToast}`).toEqual(expectedTplToast);
         });
 
         it('should only add textOrTpl if options not given', () => {
@@ -79,16 +79,17 @@ describe('ToastService (DONE)', () => {
             toastService.add(expectedToast1);
 
             expect(toastService.toasts).toBeTruthy();
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).toEqual(expectedToast1, `should equal ${expectedToast1}`);
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
         });
 
         it('should add options if given with text message', () => {
             // Call service method
             toastService.add(expectedToast2);
 
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).toEqual(expectedToast2, `should equal ${expectedToast2}`);
+            expect(toastService.toasts).toBeTruthy();
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
         it('should add options if given with template message', () => {
@@ -101,8 +102,9 @@ describe('ToastService (DONE)', () => {
             // Call service method
             toastService.add(expectedTplToast);
 
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).toEqual(expectedTplToast, `should equal ${expectedTplToast}`);
+            expect(toastService.toasts).toBeTruthy();
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedTplToast}`).toEqual(expectedTplToast);
         });
     });
 
@@ -118,9 +120,10 @@ describe('ToastService (DONE)', () => {
             // Call service method
             toastService.remove(expectedOtherToast);
 
-            expect(toastService.toasts.length).toBe(2, 'should have two entries');
-            expect(toastService.toasts[0]).toEqual(expectedToast1, `should equal ${expectedToast1}`);
-            expect(toastService.toasts[1]).toEqual(expectedToast2, `should equal ${expectedToast2}`);
+            expect(toastService.toasts).toBeTruthy();
+            expect(toastService.toasts.length).withContext('should have two entries').toBe(2);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
+            expect(toastService.toasts[1]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
         it('should do nothing if options do not match', () => {
@@ -128,27 +131,34 @@ describe('ToastService (DONE)', () => {
             // Call service method
             toastService.remove(otherOptionsToast);
 
-            expect(toastService.toasts.length).toBe(2, 'should have two entries');
-            expect(toastService.toasts[0]).toEqual(expectedToast1, `should equal ${expectedToast1}`);
-            expect(toastService.toasts[1]).toEqual(expectedToast2, `should equal ${expectedToast2}`);
+            expect(toastService.toasts).toBeTruthy();
+            expect(toastService.toasts.length).withContext('should have two entries').toBe(2);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
+            expect(toastService.toasts[1]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
         it('should remove existing toast from toast array (without options)', () => {
             // Call service method
             toastService.remove(expectedToast1);
 
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).not.toEqual(expectedToast1, `should not equal ${expectedToast1}`);
-            expect(toastService.toasts[0]).toEqual(expectedToast2, `should equal ${expectedToast2}`);
+            expect(toastService.toasts).toBeTruthy();
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0])
+                .withContext(`should not equal ${expectedToast1}`)
+                .not.toEqual(expectedToast1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
         it('should remove existing toast from toast array (with options)', () => {
             // Call service method
             toastService.remove(expectedToast2);
 
-            expect(toastService.toasts.length).toBe(1, 'should have one entry');
-            expect(toastService.toasts[0]).toEqual(expectedToast1, `should equal ${expectedToast1}`);
-            expect(toastService.toasts[1]).not.toEqual(expectedToast2, `should not equal ${expectedToast2}`);
+            expect(toastService.toasts).toBeTruthy();
+            expect(toastService.toasts.length).withContext('should have one entry').toBe(1);
+            expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
+            expect(toastService.toasts[1])
+                .withContext(`should not equal ${expectedToast2}`)
+                .not.toEqual(expectedToast2);
         });
     });
 });
