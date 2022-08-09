@@ -208,12 +208,12 @@
             "label": "M 317 Textfassung 1",
             "content": [
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_bbt.svg",
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg",
                     "image": "",
                     "partial": "a"
                 },
                 {
-                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_bbt.svg",
+                    "svg": "assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg",
                     "image": "",
                     "partial": "b"
                 }
