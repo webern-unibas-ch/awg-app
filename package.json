@@ -94,7 +94,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.1.2",
         "@kolkov/ngx-gallery": "2.0.1",
         "@ng-bootstrap/ng-bootstrap": "^12.1.2",
-        "@popperjs/core": "^2.11.5",
+        "@popperjs/core": "^2.11.6",
         "bootstrap": "^5.2.0",
         "codemirror": "^5.65.7",
         "d3-drag": "^3.0.0",
