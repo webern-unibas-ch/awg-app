@@ -7,7 +7,6 @@ import {
     EditionRoute,
     EditionSeriesRoutes,
     EditionSvgOverlay,
-    EditionSvgOverlayTypes,
     EditionWork,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
@@ -176,7 +175,7 @@ export class EditionService {
     /**
      * Public method: getEditionSeriesRoute.
      *
-     * It provides the the base route for the edition series section of the app.
+     * It provides the base route for the edition series section of the app.
      *
      * @returns {string} The edition series route.
      */
