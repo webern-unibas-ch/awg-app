@@ -370,8 +370,8 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
      */
     private _clearSVG(): void {
         // Clear svg by removing all child nodes from D3 svg sheet selections
-        this.svgSheetSelection?.selectAll('*').remove();
         this.svgSheetRootSelection?.selectAll('*').remove();
+        this.svgSheetSelection?.selectAll('*').remove();
     }
 
     /**
