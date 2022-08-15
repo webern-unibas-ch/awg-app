@@ -62,14 +62,8 @@ export class EditionSvgDrawingService {
      * @returns {Promise<D3Selection>} A promise that resolves to the D3 selection.
      */
     async createSvg(svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise<D3Selection> {
-        if (!svgFilePath) {
-            throw new Error('svgFilePath is not defined');
-        }
-        if (!svgEl) {
-            throw new Error('svgEl is not defined');
-        }
-        if (!svgRootGroupEl) {
-            throw new Error('svgRootGroupEl is not defined');
+        if (!svgFilePath || !svgEl || !svgRootGroupEl) {
+            return undefined;
         }
 
         // Fetch the SVG file
@@ -153,7 +147,7 @@ export class EditionSvgDrawingService {
      * @returns {void} Fills the selection.
      */
     fillD3SelectionWithColor(svgEl: D3Selection | undefined, color: string): void {
-        if (!svgEl) {
+        if (!svgEl || !color) {
             return;
         }
         svgEl.attr('fill', color);
@@ -193,7 +187,7 @@ export class EditionSvgDrawingService {
      * @returns {D3Selection} The D3 selection of the found element.
      */
     getD3SelectionById(svgRootGroup: D3Selection, id: string): D3Selection {
-        if (!svgRootGroup) {
+        if (!svgRootGroup || !id) {
             return undefined;
         }
         return svgRootGroup.select('#' + id);
@@ -262,7 +256,7 @@ export class EditionSvgDrawingService {
      * @returns {D3Selection} The D3 selection of the found element.
      */
     getOverlayGroupRectSelection(svgRootGroup: D3Selection, id: string, type: string): D3Selection {
-        if (!svgRootGroup || !id) {
+        if (!svgRootGroup || !id || !type) {
             return undefined;
         }
         // Get D3 selection of target group
