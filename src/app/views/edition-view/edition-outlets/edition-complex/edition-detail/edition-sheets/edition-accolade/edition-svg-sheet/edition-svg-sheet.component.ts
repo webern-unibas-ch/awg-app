@@ -418,7 +418,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
         const tkkGroups: D3Selection = this.svgDrawingService.getTkkGroups(this.svgSheetRootSelection);
 
         if (tkkGroups) {
-            Array.from(tkkGroups).forEach(tkkGroup => {
+            tkkGroups.nodes().forEach(tkkGroup => {
                 const id: string = tkkGroup['id'];
 
                 this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
