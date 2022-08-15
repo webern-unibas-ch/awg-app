@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
+import { D3Selection } from '@awg-app/views/edition-view/models';
 import {
     D3ForceSimulation,
-    D3Selection,
     D3Simulation,
     D3ForceSimulationOptions,
     D3SimulationLink,

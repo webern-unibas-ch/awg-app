@@ -20,8 +20,8 @@
 <div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows && paginatorOptions">
     <!-- top pagination -->
     <awg-table-pagination
-        [(page)]="paginatorOptions.page"
         [collectionSize]="tableData.filteredRows?.length"
+        [(page)]="paginatorOptions.page"
         (pageChangeRequest)="onPageSizeChange(searchFilter)">
     </awg-table-pagination>
 

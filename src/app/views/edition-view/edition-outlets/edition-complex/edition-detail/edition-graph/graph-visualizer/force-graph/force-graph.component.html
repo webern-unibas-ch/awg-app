@@ -17,7 +17,7 @@
                 aria-describedby="slider-label"
                 [min]="sliderConfig.min"
                 [max]="sliderConfig.max"
-                [step]="sliderConfig.step"
+                [step]="sliderConfig.stepSize"
                 [(ngModel)]="sliderConfig.value"
                 (ngModelChange)="onZoomChange($event)" />
             <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">

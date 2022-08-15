@@ -153,7 +153,6 @@ export class TableComponent implements OnInit {
      *
      * @param {string} searchFilter The given search filter.
      * @param {number} selectedPageSizeOption The selected page size option.
-
      *
      * @returns {void} Emits the new start position.
      */

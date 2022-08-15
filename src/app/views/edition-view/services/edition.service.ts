@@ -109,57 +109,22 @@ export class EditionService {
     private readonly _selectedEditionSectionStream$ = this._selectedEditionSectionSubject.asObservable();
 
     /**
-     * Private static method: _filterTextcriticalComments.
+     * Public method: getTextcriticalCommentsForOverlays.
      *
-     * It filters a textcritical comments array in regard of a selected overlay item.
-     *
-     * @param {TextcriticalComment} textcriticalComment The given textcritical comment to be filtered.
-     * @param { type: string; id: string } overlay The given selected overlay item defined by `type` and `ìd`.
-     * @param {number} filterIndex The given index position of the filter.
-     * @returns {boolean} A boolean value if the input contains the overlay type and id
-     */
-    private static _filterTextcriticalComments(
-        textcriticalComment: TextcriticalComment,
-        overlay: EditionSvgOverlay,
-        filterIndex: number
-    ): boolean {
-        // Shortcuts & trimmed values
-        const measure = textcriticalComment.measure.replace('[', '').replace(']', '');
-        const system = textcriticalComment.system.replace('[', '').replace(']', '');
-
-        // Filter the comments by overlay type and id
-        switch (overlay.type) {
-            case EditionSvgOverlayTypes.measure:
-                return measure === overlay.id;
-            case EditionSvgOverlayTypes.system:
-                return system === overlay.id;
-            case EditionSvgOverlayTypes.item:
-                return filterIndex === +overlay.id;
-        }
-    }
-
-    /**
-     * Public method: getTextcriticalComments.
-     *
-     * It provides the textcritical comments for a selected svg overlay.
+     * It provides the textcritical comments for the selected svg overlays.
      *
      * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
-     * @param {EditionSvgOverlay} overlay The given svg overlay.
+     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
      * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
      */
-    getTextcriticalComments(
+    getTextcriticalCommentsForOverlays(
         textcriticalComments: TextcriticalComment[],
-        overlay: EditionSvgOverlay
+        overlays: EditionSvgOverlay[]
     ): TextcriticalComment[] {
-        if (!textcriticalComments || !overlay) {
-            return undefined;
+        if (!textcriticalComments || !overlays) {
+            return [];
         }
-
-        // Filter the textcritics input array
-        return textcriticalComments.filter((textcriticalComment, filterIndex) =>
-            // Get filtered results from private method
-            EditionService._filterTextcriticalComments(textcriticalComment, overlay, filterIndex)
-        );
+        return textcriticalComments.filter(comment => overlays.some(overlay => comment.svgGroupId === overlay.id));
     }
 
     /**

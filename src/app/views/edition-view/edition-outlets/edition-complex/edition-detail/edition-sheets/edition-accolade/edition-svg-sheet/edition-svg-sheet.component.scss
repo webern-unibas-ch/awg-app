@@ -1,0 +1,117 @@
+@import '~assets/themes/scss/shared';
+
+#awg-edition-svg-container {
+    position: relative;
+    width: 100%;
+
+    > .awg-edition-svg-icon-bar {
+        position: relative;
+        width: 100%;
+    }
+}
+
+.awg-edition-svg-panel-container {
+    position: inherit;
+    height: 100%;
+}
+
+/* slider */
+.input-group.awg-edition-svg-zoom-slider-container {
+    flex-wrap: nowrap;
+    width: auto;
+
+    > :not(:first-child) {
+        margin-left: 0px !important;
+    }
+}
+#slider-label.input-group-text {
+    min-width: 50px;
+    color: $info;
+}
+
+/* slider input */
+@mixin slider-track-base($radius) {
+    background: rgba(221, 221, 221, 0.78);
+    border: 0.2px solid #dddddd;
+    border-radius: $radius;
+}
+
+@mixin slider-track($height) {
+    @include slider-track-base(1.3px);
+    width: 100%;
+    height: $height;
+    cursor: pointer;
+}
+@mixin slider-thumb($height) {
+    width: 15px;
+    height: $height;
+    background: $info;
+    border: 1.8px solid $info;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+input[type='range'].awg-edition-svg-zoom-slider {
+    width: 100%;
+    background-color: transparent;
+    -webkit-appearance: none;
+
+    &:focus {
+        outline: none;
+
+        &::-ms-fill-lower {
+            background: rgba(221, 221, 221, 0.78);
+        }
+
+        &::-ms-fill-upper {
+            background: #e5e5e5;
+        }
+
+        &::-webkit-slider-runnable-track {
+            background: #e5e5e5;
+        }
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include slider-track(31px);
+    }
+
+    &::-webkit-slider-thumb {
+        @include slider-thumb(29px);
+        -webkit-appearance: none;
+    }
+
+    &::-moz-range-track {
+        @include slider-track(29px);
+        -moz-margin-start: fill;
+        margin-right: fill;
+    }
+
+    &::-moz-range-thumb {
+        @include slider-thumb(27px);
+    }
+
+    &::-ms-track {
+        background: transparent;
+        border-color: transparent;
+        border-width: 7.4px 0;
+        color: transparent;
+        width: 100%;
+        height: 31px;
+        cursor: pointer;
+    }
+
+    &::-ms-fill-lower {
+        @include slider-track-base(2.6px);
+    }
+
+    &::-ms-fill-upper {
+        @include slider-track-base(2.6px);
+    }
+
+    &::-ms-thumb {
+        @include slider-thumb(29px);
+        margin-top: 0px;
+        /*Needed to keep the Edge thumb centred*/
+    }
+}
