@@ -136,11 +136,11 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
     svgSheetSelection: D3Selection | undefined;
 
     /**
-     * Public variable: svgSheetRootSelection.
+     * Public variable: svgSheetRootGroupSelection.
      *
-     * It keeps the d3 selection of the svg sheet root.
+     * It keeps the d3 selection of the svg sheet root group.
      */
-    svgSheetRootSelection: D3Selection | undefined;
+    svgSheetRootGroupSelection: D3Selection | undefined;
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -222,7 +222,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
      */
     @HostListener('window:resize') onResize() {
         // Guard against resize before view is rendered
-        if (!this.svgSheetSelection || !this.svgSheetRootSelection) {
+        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection) {
             return;
         }
 
@@ -370,7 +370,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
      */
     private _clearSVG(): void {
         // Clear svg by removing all child nodes from D3 svg sheet selections
-        this.svgSheetRootSelection?.selectAll('*').remove();
+        this.svgSheetRootGroupSelection?.selectAll('*').remove();
         this.svgSheetSelection?.selectAll('*').remove();
     }
 
@@ -395,12 +395,12 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
         );
 
         // Create a D3 selection object of the svg root group of the svg template element
-        this.svgSheetRootSelection = this.svgSheetSelection.select('#awg-edition-svg-sheet-root');
+        this.svgSheetRootGroupSelection = this.svgSheetSelection.select('#awg-edition-svg-sheet-root-group');
 
         this._getContainerDimensions(this.svgSheetContainerRef);
 
         // ==================== ZOOM ====================
-        this._zoomHandler(this.svgSheetRootSelection, this.svgSheetSelection);
+        this._zoomHandler(this.svgSheetRootGroupSelection, this.svgSheetSelection);
     }
 
     /**
@@ -411,11 +411,11 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
      * @returns {void} Creates the D3 SVG sheet overlays.
      */
     private _createSvgOverlays(): void {
-        if (!this.svgSheetRootSelection) {
+        if (!this.svgSheetRootGroupSelection) {
             return;
         }
 
-        const tkkGroups: D3Selection = this.svgDrawingService.getTkkGroups(this.svgSheetRootSelection);
+        const tkkGroups: D3Selection = this.svgDrawingService.getTkkGroups(this.svgSheetRootGroupSelection);
 
         if (tkkGroups) {
             tkkGroups.nodes().forEach(tkkGroup => {
@@ -427,14 +427,14 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                 const type = 'tkk';
                 const dim: DOMRect = (tkkGroup as SVGGElement).getBBox();
                 const overlayGroupSelection = this.svgDrawingService.createSVGOverlayGroup(
-                    this.svgSheetRootSelection,
+                    this.svgSheetRootGroupSelection,
                     id,
                     dim,
                     type
                 );
 
                 const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
-                    this.svgSheetRootSelection,
+                    this.svgSheetRootGroupSelection,
                     id,
                     type
                 );
@@ -466,7 +466,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
             });
         }
 
-        this.svgDrawingService.getLinkBoxes(this.svgSheetRootSelection);
+        this.svgDrawingService.getLinkBoxes(this.svgSheetRootGroupSelection);
     }
 
     /**
@@ -552,7 +552,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
         if (!this.svgSheetSelection) {
             return;
         }
-        this.svgSheetRootSelection.attr('transform', 'translate(0,0)');
+        this.svgSheetRootGroupSelection.attr('transform', 'translate(0,0)');
     }
 
     /**
