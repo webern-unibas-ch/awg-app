@@ -9,7 +9,6 @@ import { EMPTY, lastValueFrom } from 'rxjs';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
 import { NgbHighlight, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { OrderModule } from 'ngx-order-pipe';
 
 import { BUTTON_CLICK_EVENTS, clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -18,6 +17,8 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+
+import { OrderPipe } from '@awg-shared/order-pipe/order.pipe';
 
 import { TableData, TableOptions, TablePaginatorOptions } from './models';
 import { TableComponent } from './table.component';
@@ -61,8 +62,14 @@ describe('TableComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, FormsModule, NgbPaginationModule, OrderModule],
-            declarations: [TableComponent, TablePaginationStubComponent, NgbHighlight, TwelveToneSpinnerStubComponent],
+            imports: [FontAwesomeTestingModule, FormsModule, NgbPaginationModule],
+            declarations: [
+                TableComponent,
+                TablePaginationStubComponent,
+                NgbHighlight,
+                TwelveToneSpinnerStubComponent,
+                OrderPipe,
+            ],
         }).compileComponents();
     });
 
