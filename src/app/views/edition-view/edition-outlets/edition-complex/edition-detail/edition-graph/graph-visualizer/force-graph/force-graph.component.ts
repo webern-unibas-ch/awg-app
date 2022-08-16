@@ -22,16 +22,16 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { SliderConfig } from '@awg-shared/shared-models';
+import { D3Selection, D3ZoomBehaviour } from '@awg-app/views/edition-view/models';
 import {
     D3DragBehaviour,
-    D3Selection,
     D3Simulation,
     D3SimulationData,
     D3SimulationLink,
     D3SimulationNode,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
-    D3ZoomBehaviour,
     PrefixForm,
     Triple,
 } from '../models';
@@ -138,13 +138,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = {
-        initial: 1,
-        min: 0.1,
-        max: 3,
-        step: 1 / 100,
-        value: 1,
-    };
+    sliderConfig = new SliderConfig(1, 0.1, 3, 1 / 100, 1);
 
     /**
      * Private variable: _svg.
@@ -839,7 +833,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {number} The rounded value.
      */
     private _roundToNearestScaleStep(value: number): number {
-        const steps = this.sliderConfig.step;
+        const steps = this.sliderConfig.stepSize;
 
         // Count decimals of a given value
         // Cf. https://stackoverflow.com/a/17369245

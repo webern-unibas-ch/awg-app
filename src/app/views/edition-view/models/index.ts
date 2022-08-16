@@ -7,6 +7,9 @@
  *
  */
 
+import { D3Selection } from './d3-selection.model';
+import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
+
 import { EditionConstants, EditionRoute, EditionSeriesRoutes } from './edition-constants';
 
 import { EditionRowTables } from './edition-row-tables.model';
@@ -32,6 +35,8 @@ import { TextcriticalComment, Textcritics, TextcriticsList } from './textcritics
 import { ViewBox } from './view-box.model';
 
 export {
+    D3Selection,
+    D3ZoomBehaviour,
     EditionConstants,
     EditionRoute,
     EditionRowTables,

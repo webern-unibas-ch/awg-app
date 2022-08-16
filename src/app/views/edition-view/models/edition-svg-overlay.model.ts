@@ -32,17 +32,25 @@ export class EditionSvgOverlay {
     typeKey: string;
 
     /**
+     * A boolean value indicating whether the overlay is selected.
+     */
+    isSelected?: boolean;
+
+    /**
      * Constructor of the EditionSvgOverlay class.
      *
      * It initializes the class with values from the EditionSvgOverlayTypes and an id.
      *
      * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
      * @param {string} id The given id of the overlay.
+     * @param {boolean} [isSelected] The given boolean value indicating whether the overlay is selected.
+     *
      */
-    constructor(typeValue: EditionSvgOverlayTypes, id: string) {
+    constructor(typeValue: EditionSvgOverlayTypes, id: string, isSelected?: boolean) {
         this.type = typeValue;
         this.id = id;
         this.typeKey = this._getEnumKeyFromValue(typeValue);
+        this.isSelected = isSelected || false;
     }
 
     /**

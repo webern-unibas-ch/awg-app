@@ -22,11 +22,9 @@ describe('EditionService (DONE)', () => {
     let expectedEditionWork: EditionWork;
 
     let expectedTka: TextcriticalComment[];
-    let expectedOverlay: EditionSvgOverlay;
+    let expectedOverlays: EditionSvgOverlay[];
     let expectedResult: TextcriticalComment[];
     let filteredComments: TextcriticalComment[];
-
-    let filterTextcriticalCommentsSpy: Spy;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -40,30 +38,35 @@ describe('EditionService (DONE)', () => {
         // Textcritial comments
         expectedTka = [
             {
+                svgGroupId: 'tka-1',
                 measure: '1',
                 system: '11',
                 position: '1. Note',
                 comment: '1. Kommentar.',
             },
             {
+                svgGroupId: 'tka-2',
                 measure: '2',
                 system: '12',
                 position: '2. Note',
                 comment: '2. Kommentar.',
             },
             {
+                svgGroupId: 'tka-3',
                 measure: '2',
                 system: '14',
                 position: '3. Note',
                 comment: '3. Kommentar.',
             },
             {
+                svgGroupId: 'tka-4',
                 measure: '[3]',
                 system: '14',
                 position: '4. Note',
                 comment: '4. Kommentar.',
             },
             {
+                svgGroupId: 'tka-5',
                 measure: '4',
                 system: '[13]',
                 position: '5. Note',
@@ -71,10 +74,10 @@ describe('EditionService (DONE)', () => {
             },
         ];
         // Overlay for measure 9 entries
-        expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '9');
-
-        // Spy on private static method
-        filterTextcriticalCommentsSpy = spyOn(EditionService as any, '_filterTextcriticalComments').and.callThrough();
+        expectedOverlays = [
+            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-1', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-3', true),
+        ];
     });
 
     afterAll(() => {
@@ -190,161 +193,41 @@ describe('EditionService (DONE)', () => {
         });
     });
 
-    describe('#getTextCriticalComment', () => {
-        it('... should do nothing if no TkA are given', () => {
-            editionService.getTextcriticalComments(undefined, expectedOverlay);
-
-            expectSpyCall(filterTextcriticalCommentsSpy, 0, 0);
+    describe('#getTextcriticalCommentsForOverlays', () => {
+        it('... should have a method `getTextcriticalCommentsForOverlays`', () => {
+            expect(editionService.getTextcriticalCommentsForOverlays).toBeTruthy();
         });
 
-        it('... should do nothing if no overlay is given', () => {
-            editionService.getTextcriticalComments(expectedTka, undefined);
+        describe('... should return empty array', () => {
+            it('if no TkA are given', () => {
+                const value = editionService.getTextcriticalCommentsForOverlays(undefined, expectedOverlays);
 
-            expectSpyCall(filterTextcriticalCommentsSpy, 0, 0);
+                expect(value).toBeDefined();
+                expect(value).toEqual([]);
+            });
+
+            it('... if no overlays are given', () => {
+                const value = editionService.getTextcriticalCommentsForOverlays(expectedTka, undefined);
+
+                expect(value).toBeDefined();
+                expect(value).toEqual([]);
+            });
         });
 
-        it('... should call static method filterTextCriticalComments for every tka', () => {
-            editionService.getTextcriticalComments(expectedTka, expectedOverlay);
+        it('... should find a comment for a selected item by id', () => {
+            // Overlay for item tka-1 and tka-3
+            expectedResult = [expectedTka[0], expectedTka[2]];
 
-            expectSpyCall(filterTextcriticalCommentsSpy, expectedTka.length, [
-                expectedTka[expectedTka.length - 1],
-                expectedOverlay,
-                expectedTka.length - 1,
-            ]);
-        });
-
-        it('... should find a single comment for measures 1 & 4', () => {
-            // Overlay for measure 1 entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '1');
-            expectedResult = [expectedTka[0]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
+            filteredComments = editionService.getTextcriticalCommentsForOverlays(expectedTka, expectedOverlays);
 
             expect(filteredComments).toBeTruthy();
             expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
 
-            // Overlay for measure 4 entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '4');
-            expectedResult = [expectedTka[4]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should find multiple comments for measure 2', () => {
-            // Overlay for measure 2 entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '2');
-            expectedResult = expectedTka.slice(1, 3);
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should find comments for a measure with brackets [3]', () => {
-            // Overlay for measure [11] entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '3');
-            expectedResult = [expectedTka[3]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should find a single comment for system 11 & 12', () => {
-            // Overlay for system 11 entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.system, '11');
-            expectedResult = [expectedTka[0]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-
-            // Overlay for system 12 entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.system, '12');
+            // Overlay for item tka-2
+            expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-2', true)];
             expectedResult = [expectedTka[1]];
 
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should find multiple comments for system 14', () => {
-            // Overlay for system 14 entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.system, '14');
-            expectedResult = expectedTka.slice(2, 4);
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should find a system with brackets [13]', () => {
-            // Overlay for system [13] entries
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.system, '13');
-            expectedResult = [expectedTka[4]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should find a comment for an item by array position', () => {
-            // Overlay for item 0
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.item, '0');
-            expectedResult = [expectedTka[0]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-
-            // Overlay for item 4
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.item, '4');
-            expectedResult = [expectedTka[4]];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should return empty array if measure was not found', () => {
-            // Overlay for non-existing measure 12
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '12');
-            expectedResult = [];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should return empty array if system was not found', () => {
-            // Overlay for non-existing measure 12
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.system, '1');
-            expectedResult = [];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-
-        it('... should return empty array if item id was not found', () => {
-            // Overlay for non-existing item 5
-            expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.item, '5');
-            expectedResult = [];
-
-            filteredComments = editionService.getTextcriticalComments(expectedTka, expectedOverlay);
+            filteredComments = editionService.getTextcriticalCommentsForOverlays(expectedTka, expectedOverlays);
 
             expect(filteredComments).toBeTruthy();
             expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);

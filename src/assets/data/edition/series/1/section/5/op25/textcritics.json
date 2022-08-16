@@ -8,6 +8,7 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1–2",
                     "system": "1",
                     "position": "",
@@ -24,18 +25,21 @@
             "rowtable": true,
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "A",
                     "system": "1",
                     "position": "1.–5. Reihenton",
                     "comment": "Durch Einklammerung rechts getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "A",
                     "system": "1",
                     "position": "2. Reihenton",
                     "comment": "&#9838; nachgezogen (überschreibt &#9837;?)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "B",
                     "system": "1",
                     "position": "4. Reihenton",
@@ -51,52 +55,60 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1–3",
                     "system": "1",
                     "position": "",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1",
                     "system": "1",
                     "position": "6/8",
                     "comment": "&#9837; nachgezogen (überschreibt Ansatz von &#9839; zu dis<sup>2</sup>?)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "1",
                     "position": "1. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "1",
                     "position": "3/8",
                     "comment": "&#9839; nachgezogen (überschreibt &#9838;?)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "3",
                     "position": "letzte Note",
                     "comment": "Punkt unter der Note: Fleck oder Ansatz zu Notenkopf f?"
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2 <br /> bis 3",
                     "system": "3",
                     "position": "letzte Note <br /> 3 . Note",
                     "comment": "Durch Einklammerung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3",
                     "system": "1",
                     "position": "3 . Note",
                     "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <strong>Sk2.1.1</strong> und <strong>Sk2.1.2</strong>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3",
                     "system": "2",
                     "position": "4/8",
-                    "comment": "Punktierte Achtelnote c<sup>1</sup> überschreibt radierte Achtelpause."
+                    "comment": "Punktierte Achtelnote &#9838;c<sup>1</sup> überschreibt radierte Achtelpause."
                 }
             ]
         },
@@ -117,6 +129,7 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3",
                     "system": "2",
                     "position": "",
@@ -150,18 +163,21 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1 <br /> bis 2",
                     "system": "3",
                     "position": "1. Note <br /> 1. Note",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "3",
                     "position": "1. Note",
                     "comment": "Punktierung durch Einkreisung getilgt?"
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "3",
                     "position": "1. Note",
@@ -177,42 +193,49 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "vor 3 <br /> bis 3",
                     "system": "4",
                     "position": "1. Note <br /> 1. Note",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3",
                     "system": "4",
                     "position": "Taktanfang",
                     "comment": "Asterisk verweist auf Variante der Fortsetzung in <strong>Sk3.1.2</strong>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}5–6{{ '}' }}",
                     "system": "4",
                     "position": "",
                     "comment": "Durch Einklammerung getilgt. (Die Variante in System 3 wird allerdings nicht von der Einklammerung eingeschlossen.)"
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "1. Note",
                     "comment": "Pfeil unten rechts von Variante T. 4 in <strong>Sk3.1.1</strong>. <br /> Ligaturbogen gestrichen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "6/8",
                     "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}5{{ '}' }} <br /> bis {{ '{' }}6{{ '}' }}",
                     "system": "4",
                     "position": "6/8 <br /> 3. Note",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}6{{ '}' }}",
                     "system": "4",
                     "position": "1–2/8",
@@ -224,10 +247,11 @@
             "id": "M_317_Sk3_1_1",
             "label": "M 317 Sk3.1.1",
             "description": [
-              "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a> formuliert Varianten von T. 4–5 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
+                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a> formuliert Varianten von T. 4–5 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "6",
                     "position": "",
@@ -243,30 +267,35 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3 <br /> bis 5",
                     "system": "4",
                     "position": "1. Note <br /> 1. Note",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3",
                     "system": "4",
                     "position": "Taktanfang",
                     "comment": "Asterisk verweist auf Anschluss von <strong>Sk3.1</strong>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3",
                     "system": "4",
                     "position": "1. Note",
                     "comment": "Punktierung durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "4",
                     "position": "1. Note",
                     "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "4",
                     "position": "nach 1. Note",
@@ -283,66 +312,77 @@
             "rowtable": true,
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "5",
                     "position": "",
                     "comment": "Strich mit unklarer Bedeutung."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): vor 1. Reihenton",
                     "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): 7. Reihenton",
                     "comment": "sic: kein &#9838;."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
                     "comment": "&#9838;a, &#9838;c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein &#9838;), &#9838;a<sup>1</sup>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "K<sub>gis</sub> (2): vor 1. Reihenton",
                     "comment": "<em>2</em> mit grünem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
                     "comment": "&#9838;c<sup>1</sup>, &#9838;a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine &#9838;)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "U<sub>g</sub> (3): vor 1. Reihenton",
                     "comment": "<em>3</em> mit schwarzem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
                     "comment": "&#9838;f<sup>2</sup>, &#9838;d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;d<sup>1</sup>, &#9838;f<sup>1</sup>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "KU<sub>fis</sub> (4): vor 1. Reihenton",
                     "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "KU<sub>fis</sub> (4): 2.–3. Note",
                     "comment": "&#9838;d<sup>2</sup>, &#9838;f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;f<sup>1</sup>, d<sup>1</sup> (sic: kein &#9838;)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6–7",
                     "position": "nach letzter Note",
@@ -368,348 +408,406 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1A",
                     "system": "10–12",
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1B",
                     "system": "10–12",
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "vor 1C",
                     "system": "11",
                     "position": "1. Note",
                     "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "1C",
                     "system": "11",
                     "position": "6/8",
                     "comment": "sic: Winkel markiert hier nicht das Ende, sondern den 11. Reihenton von KU<sub>fis</sub> (<em>4</em>). 12. Reihenton von KU<sub>fis</sub> (<em>g</em>) ist zugleich 1. Reihenton von G<sub>g</sub> (<em>1</em>): siehe T. 2 System 10–11 jeweils 1. Note."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "nach 1C",
                     "system": "11–12",
                     "position": "",
                     "comment": "Taktstrich nachgezogen mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "10",
                     "position": "1. Note",
                     "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3B",
                     "system": "2",
                     "position": "1/8",
                     "comment": "<em>zart</em> gestrichen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3B",
                     "system": "3",
                     "position": "3. Note",
                     "comment": "Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3B",
                     "system": "4",
                     "position": "2/8",
                     "comment": "<em>3</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3B",
                     "system": "3–4",
                     "position": "4.–6. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3B",
                     "system": "6",
                     "position": "1. Note",
                     "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "3B",
                     "system": "2",
                     "position": "5/8",
                     "comment": "Durch Einkreisung getilgt. Siehe Variante in System 1."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "4",
                     "system": "2–4",
                     "position": "Taktanfang",
                     "comment": "Taktvorzeichnung 2/4 überschreibt 4/4."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "2",
                     "position": "1. Note",
                     "comment": "Punktierte Viertelnote überschreibt Halbe Note.<br />Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "3–4",
                     "position": "(1–2/4)",
                     "comment": "Durch Einkreisung mit rotem Buntstift getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "5–6",
                     "position": "",
                     "comment": "Durch Streichung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "3",
                     "position": "1. Note",
                     "comment": "<em>u. 1</em> und Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "5",
                     "position": "1. Note",
                     "comment": "Beide Winkel und <em>1</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "8",
                     "position": "3. Note",
                     "comment": "Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "7",
                     "position": "1. Note",
                     "comment": "<em>1</em> mit Bleistift und nachgezogen mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "5",
                     "system": "2",
                     "position": "5/8",
                     "comment": "<em>1</em> über dem System mit rotem Buntstift und radiert. <em>1</em> unter dem System mit rotem Buntstift. (Ziffern beziehen sich auf 6/8.)"
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "3–4",
                     "position": "1. Pause bis <br /> 1. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "5",
                     "position": "1. Note",
                     "comment": "fis<sup>1</sup> durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "4",
                     "position": "2. Note",
                     "comment": "[f] mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "5–6",
                     "position": "2.–6. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "3",
                     "position": "2.–4. Note",
                     "comment": "Triolenziffer mit rotem Buntstift nachgezogen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "3",
                     "position": "letzte Note",
                     "comment": "Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "6",
                     "system": "4",
                     "position": "8/8",
                     "comment": "<em>3</em> mit schwarzem Buntstift nachgezogen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "7",
                     "system": "10–11",
                     "position": "Taktanfang",
                     "comment": "<em>4/4</em> überschreibt <em>3/4</em>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "7",
                     "system": "10",
                     "position": "3/8",
                     "comment": "<em>3</em> mit Bleistift und mit schwarzem Buntstift nachgezogen. (Ziffer bezieht sich auf 1. Note.)"
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "7",
                     "system": "11",
                     "position": "8/8",
                     "comment": "Winkel mit Bleistift und mit schwarzem Buntstift nachgezogen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "8",
                     "system": "11",
                     "position": "1. Note",
                     "comment": "<em>2</em> mit grünem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "9",
                     "system": "11",
                     "position": "(2/4)",
                     "comment": "Viertelpause über dem System durch Einkreisung getilgt?"
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "9",
                     "system": "11",
                     "position": "3. Note",
                     "comment": "sic: &#9837; (zu es<sup>2</sup>). Vermutlich Verschreibung für &#9838; (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "9",
                     "system": "12",
                     "position": "2. Note",
                     "comment": "8–┐ mit Bleistift und mit grünem Buntstift nachgezogen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "9",
                     "system": "13",
                     "position": "1. Note",
                     "comment": "<em>2</em> mit Bleistift und mit grünem Buntstift nachgezogen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "9",
                     "system": "11",
                     "position": "4.–5. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "9",
                     "system": "9",
                     "position": "letzte Note",
                     "comment": "Winkel mit schwarzem Buntstift und radiert."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "10",
                     "system": "9",
                     "position": "1. Note",
                     "comment": "Winkel mit schwarzem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "10",
                     "system": "9",
                     "position": "2. Note",
                     "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "10",
                     "system": "11–12",
                     "position": "1. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "12",
                     "system": "13–14",
                     "position": "Taktanfang",
                     "comment": "<em>3/4</em> mit Bleistift und nachgezogen mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "12",
                     "system": "8",
                     "position": "(1. Note)",
                     "comment": "<em>molto</em> [xx] radiert."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "12",
                     "system": "9",
                     "position": "1/8",
                     "comment": "Text: Kleinschreibung <em>wer</em>[-den] überschrieben zu Großschreibung <em>Wer</em>[-den]."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "12",
                     "system": "11",
                     "position": "1. Note",
                     "comment": "Winkel mit grünem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "12",
                     "system": "13",
                     "position": "2. Note",
                     "comment": "<em>4</em> mit Bleistift und nachgezogen mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
                     "comment": "<em>gilt</em> mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "15, 16",
                     "position": "1. Pause",
                     "comment": "Viertelpause überschreibt Achtelpause."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "14",
                     "position": "2. Note",
                     "comment": "Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "15",
                     "position": "7/8",
                     "comment": "Achtelpause gestrichen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "14",
                     "position": "letzte Note",
                     "comment": "<em>u. 4</em> gestrichen mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "14–15",
                     "position": "letzte Note",
                     "comment": "Pfeil mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "15",
                     "position": "letzte Note",
                     "comment": "Winkel gestrichen."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "14",
                     "system": "15, 16",
                     "position": "1. Note",
                     "comment": "Achtelnote überschreibt Viertelnote."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "14",
                     "system": "13",
                     "position": "2. Note",
                     "comment": "h (undeutlich, auch als c<sup>1</sup> zu entziffern) durch Einklammerung getilgt und ersetzt durch h<sup>2</sup>."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "14",
                     "system": "15–16",
                     "position": "Taktanfang",
                     "comment": "<em>3</em> mit schwarzem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "14",
                     "system": "16",
                     "position": "1. Note",
                     "comment": "<em>u.</em> von <em>u. 3</em> sowie Winkel mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "14",
                     "system": "16",
                     "position": "letzte Note",
@@ -725,24 +823,28 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "14",
                     "position": "1. Note",
                     "comment": "Beide Winkel und <em>1</em> (G<sub>g</sub>) mit rotem Buntstift. "
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "2",
                     "system": "13",
                     "position": "6/8–4/4",
                     "comment": "Decrescendogabel zu 4/4 überschrieben zu Decrescendogabel von 6/8–4/4."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}3{{ '}' }}",
                     "system": "",
                     "position": "",
                     "comment": "Durch Einklammerung links und Streichung getilgt. Streichung mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "{{ '{' }}3{{ '}' }}",
                     "system": "14",
                     "position": "letzte Note",
@@ -767,12 +869,14 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
                     "comment": "sic: Verweisstrich führt zu <strong>Sk4</strong> T. 14. Inhaltlich bezieht sich <strong>Sk4.3</strong> jedoch auf <strong>Sk4</strong> T. 13. "
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "13",
                     "system": "16",
                     "position": "letzte Note",
@@ -816,12 +920,14 @@
             "rowtable": true,
             "comments": [
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "1–2",
                     "position": "",
                     "comment": "Reihennummerierung (<em>1</em>–<em>4</em>) mit rotem Buntstift."
                 },
                 {
+                    "svgGroupId": "TODO",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "3–4",
                     "position": "",

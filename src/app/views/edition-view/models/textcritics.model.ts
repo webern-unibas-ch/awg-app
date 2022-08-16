@@ -7,6 +7,11 @@
  */
 export class TextcriticalComment {
     /**
+     * The svgGroupId of the textcritical comment.
+     */
+    svgGroupId?: string;
+
+    /**
      * The measure that the textcritical comment is addressing.
      */
     measure: string;
