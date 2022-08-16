@@ -97,11 +97,11 @@
                     "comment": "Durch Einklammerung getilgt."
                 },
                 {
-                    "svgGroupId": "TODO: #path242 needs group element",
+                    "svgGroupId": "g242",
                     "measure": "3",
                     "system": "1",
                     "position": "3. Note",
-                    "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <strong>Sk2.1.1</strong> und <strong>Sk2.1.2</strong>."
+                    "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>."
                 },
                 {
                     "svgGroupId": "g1295",
