@@ -233,7 +233,7 @@ export class EditionSvgDrawingService {
 
             linkBoxOverlayGroupSelection
                 .on('mouseover', () => {
-                    linkBoxOverlayGroupRectSelection.attr('opacity', '0.3');
+                    linkBoxOverlayGroupRectSelection.attr('opacity', '0');
                 })
                 .on('mouseout', () => {
                     linkBoxOverlayGroupRectSelection.attr('opacity', '0');
