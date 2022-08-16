@@ -110,9 +110,9 @@ describe('EditionSvgDrawingService', () => {
         });
     });
 
-    describe('#createSVGOverlayGroup()', () => {
-        it('... should have a `createSVGOverlayGroup()` method', () => {
-            expect(service.createSVGOverlayGroup).toBeDefined();
+    describe('#createOverlayGroup()', () => {
+        it('... should have a `createOverlayGroup()` method', () => {
+            expect(service.createOverlayGroup).toBeDefined();
         });
 
         describe('... should do nothing if', () => {
@@ -122,7 +122,7 @@ describe('EditionSvgDrawingService', () => {
                 const dim = expectedSvgRootGroup.nodes()[0].getBBox();
                 const type = 'tkk';
 
-                const d3selections = service.createSVGOverlayGroup(rootGroup, id, dim, type);
+                const d3selections = service.createOverlayGroup(rootGroup, id, dim, type);
 
                 expect(d3selections).toBeUndefined();
             });
@@ -133,7 +133,7 @@ describe('EditionSvgDrawingService', () => {
                 const dim = expectedSvgRootGroup.nodes()[0].getBBox();
                 const type = 'tkk';
 
-                const d3selections = service.createSVGOverlayGroup(rootGroup, id, dim, type);
+                const d3selections = service.createOverlayGroup(rootGroup, id, dim, type);
 
                 expect(d3selections).toBeUndefined();
             });
@@ -338,7 +338,7 @@ describe('EditionSvgDrawingService', () => {
                 const expectedType = 'tkk';
                 const otherType = 'other-type';
 
-                service.createSVGOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
+                service.createOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
 
                 const d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', otherType);
 
@@ -353,7 +353,7 @@ describe('EditionSvgDrawingService', () => {
             const expectedDimensions = tkkGroups.nodes()[0].getBBox();
             const expectedType = 'tkk';
 
-            service.createSVGOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
+            service.createOverlayGroup(expectedSvgRootGroup, 'tkk-1', expectedDimensions, expectedType);
 
             const d3selections = service.getOverlayGroupRectSelection(expectedSvgRootGroup, 'tkk-1', expectedType);
 
