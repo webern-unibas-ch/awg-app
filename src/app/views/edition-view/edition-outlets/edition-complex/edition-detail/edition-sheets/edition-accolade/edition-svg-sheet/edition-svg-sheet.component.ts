@@ -426,7 +426,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                 // Get D3 selection of overlay group
                 const type = 'tkk';
                 const dim: DOMRect = (tkkGroup as SVGGElement).getBBox();
-                const overlayGroupSelection = this.svgDrawingService.createSVGOverlayGroup(
+                const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(
                     this.svgSheetRootGroupSelection,
                     id,
                     dim,

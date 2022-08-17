@@ -10,7 +10,6 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { OrderModule } from 'ngx-order-pipe';
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 
 //
@@ -33,6 +32,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
 // Shared pipes
+import { OrderPipe } from './order-pipe/order.pipe';
 
 /**
  * The shared module.
@@ -50,7 +50,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
-        OrderModule,
         SharedNgbootstrapModule,
     ],
     declarations: [
@@ -66,6 +65,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
+        OrderPipe,
     ],
     exports: [
         CommonModule,
@@ -77,7 +77,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
-        OrderModule,
         SharedNgbootstrapModule,
 
         AddressComponent,
@@ -91,6 +90,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
+        OrderPipe,
     ],
 })
 export class SharedModule {}

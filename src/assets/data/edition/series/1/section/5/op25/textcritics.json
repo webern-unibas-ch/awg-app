@@ -8,7 +8,7 @@
             ],
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g6494",
                     "measure": "1–2",
                     "system": "1",
                     "position": "",
@@ -55,56 +55,56 @@
             ],
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g1245",
                     "measure": "1–3",
                     "system": "1",
                     "position": "",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text164",
                     "measure": "1",
                     "system": "1",
                     "position": "6/8",
                     "comment": "&#9837; nachgezogen (überschreibt Ansatz von &#9839; zu dis<sup>2</sup>?)."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g1254",
                     "measure": "2",
                     "system": "1",
                     "position": "1. Note",
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text194",
                     "measure": "2",
                     "system": "1",
                     "position": "3/8",
                     "comment": "&#9839; nachgezogen (überschreibt &#9838;?)."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text338",
                     "measure": "2",
                     "system": "3",
                     "position": "letzte Note",
                     "comment": "Punkt unter der Note: Fleck oder Ansatz zu Notenkopf f?"
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g1281",
                     "measure": "2 <br /> bis 3",
                     "system": "3",
-                    "position": "letzte Note <br /> 3 . Note",
+                    "position": "letzte Note <br /> 3. Note",
                     "comment": "Durch Einklammerung getilgt."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g242",
                     "measure": "3",
                     "system": "1",
-                    "position": "3 . Note",
-                    "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <strong>Sk2.1.1</strong> und <strong>Sk2.1.2</strong>."
+                    "position": "3. Note",
+                    "comment": "Klammerung rechts zeigt Tilgung an. Es ist nicht eindeutig, ob die so angezeigte Tilgung ab T. 2 4/8 beginnt (mit den Varianten in System 2–3) oder ob sie sich auch auf T. 1 ff. bezieht (mit den Varianten in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g1295",
                     "measure": "3",
                     "system": "2",
                     "position": "4/8",
@@ -129,7 +129,7 @@
             ],
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g1105",
                     "measure": "3",
                     "system": "2",
                     "position": "",

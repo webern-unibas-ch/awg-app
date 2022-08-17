@@ -96,7 +96,7 @@ export class EditionSvgDrawingService {
     }
 
     /**
-     * Public method: createSVGOverlayGroup.
+     * Public method: createOverlayGroup.
      *
      * It creates a D3 selection representation of an overlay group (rect)
      * with a given type for an element identified by the given id in the svgRootGroup
@@ -109,7 +109,7 @@ export class EditionSvgDrawingService {
      *
      * @returns {D3Selection} The selection of the overlay group.
      */
-    createSVGOverlayGroup(svgRootGroup: D3Selection | undefined, id: string, dim: DOMRect, type: string): D3Selection {
+    createOverlayGroup(svgRootGroup: D3Selection | undefined, id: string, dim: DOMRect, type: string): D3Selection {
         if (!svgRootGroup || !id) {
             return undefined;
         }
@@ -233,7 +233,7 @@ export class EditionSvgDrawingService {
 
             linkBoxOverlayGroupSelection
                 .on('mouseover', () => {
-                    linkBoxOverlayGroupRectSelection.attr('opacity', '0.3');
+                    linkBoxOverlayGroupRectSelection.attr('opacity', '0');
                 })
                 .on('mouseout', () => {
                     linkBoxOverlayGroupRectSelection.attr('opacity', '0');
