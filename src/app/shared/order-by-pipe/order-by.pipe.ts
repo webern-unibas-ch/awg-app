@@ -256,7 +256,7 @@ export class OrderByPipe implements PipeTransform {
         value: any,
         expressions: any[],
         reverse: boolean,
-        isCaseInsensitive: boolean = false,
+        isCaseInsensitive: boolean,
         comparator?: Function
     ): any {
         return expressions
