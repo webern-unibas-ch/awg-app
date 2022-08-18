@@ -18,7 +18,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { OrderPipe } from '@awg-shared/order-pipe/order.pipe';
+import { OrderByPipe } from '@awg-shared/order-by-pipe/order-by.pipe';
 
 import { TableData, TableOptions, TablePaginatorOptions } from './models';
 import { TableComponent } from './table.component';
@@ -68,7 +68,7 @@ describe('TableComponent', () => {
                 TablePaginationStubComponent,
                 NgbHighlight,
                 TwelveToneSpinnerStubComponent,
-                OrderPipe,
+                OrderByPipe,
             ],
         }).compileComponents();
     });

@@ -32,7 +32,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
 // Shared pipes
-import { OrderPipe } from './order-pipe/order.pipe';
+import { OrderByPipe } from './order-by-pipe/order-by.pipe';
 
 /**
  * The shared module.
@@ -65,7 +65,7 @@ import { OrderPipe } from './order-pipe/order.pipe';
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
-        OrderPipe,
+        OrderByPipe,
     ],
     exports: [
         CommonModule,
@@ -90,7 +90,7 @@ import { OrderPipe } from './order-pipe/order.pipe';
         TwelveToneSpinnerComponent,
         ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
-        OrderPipe,
+        OrderByPipe,
     ],
 })
 export class SharedModule {}

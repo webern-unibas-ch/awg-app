@@ -12,11 +12,17 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * The OrderBy pipe.
+ *
+ * It declares a pipe that can be used in ngFor loops
+ * to order a given collection by a given field.
+ */
 @Pipe({
     name: 'orderBy',
     pure: false,
 })
-export class OrderPipe implements PipeTransform {
+export class OrderByPipe implements PipeTransform {
     /**
      * Check if a value is a string
      *
@@ -33,10 +39,10 @@ export class OrderPipe implements PipeTransform {
      * @param b
      */
     static caseInsensitiveSort(a: any, b: any) {
-        if (OrderPipe.isString(a) && OrderPipe.isString(b)) {
+        if (OrderByPipe.isString(a) && OrderByPipe.isString(b)) {
             return a.localeCompare(b);
         }
-        return OrderPipe.defaultCompare(a, b);
+        return OrderByPipe.defaultCompare(a, b);
     }
 
     /**
@@ -164,7 +170,7 @@ export class OrderPipe implements PipeTransform {
         const isDeepLink = expression && expression.indexOf('.') !== -1;
 
         if (isDeepLink) {
-            expression = OrderPipe.parseExpression(expression);
+            expression = OrderByPipe.parseExpression(expression);
         }
 
         let compareFn: Function;
@@ -172,7 +178,7 @@ export class OrderPipe implements PipeTransform {
         if (comparator && typeof comparator === 'function') {
             compareFn = comparator;
         } else {
-            compareFn = isCaseInsensitive ? OrderPipe.caseInsensitiveSort : OrderPipe.defaultCompare;
+            compareFn = isCaseInsensitive ? OrderByPipe.caseInsensitiveSort : OrderByPipe.defaultCompare;
         }
 
         const sortedArray: any[] = array.sort((a: any, b: any): number => {
@@ -187,7 +193,7 @@ export class OrderPipe implements PipeTransform {
                 return compareFn(a, b);
             }
 
-            return compareFn(OrderPipe.getValue(a, expression), OrderPipe.getValue(b, expression));
+            return compareFn(OrderByPipe.getValue(a, expression), OrderByPipe.getValue(b, expression));
         });
 
         if (reverse) {
@@ -214,21 +220,21 @@ export class OrderPipe implements PipeTransform {
         isCaseInsensitive?: boolean,
         comparator?: Function
     ): any {
-        const parsedExpression = OrderPipe.parseExpression(expression);
+        const parsedExpression = OrderByPipe.parseExpression(expression);
         let lastPredicate = parsedExpression.pop();
-        let oldValue = OrderPipe.getValue(value, parsedExpression);
+        let oldValue = OrderByPipe.getValue(value, parsedExpression);
 
         if (!Array.isArray(oldValue)) {
             parsedExpression.push(lastPredicate);
             lastPredicate = null;
-            oldValue = OrderPipe.getValue(value, parsedExpression);
+            oldValue = OrderByPipe.getValue(value, parsedExpression);
         }
 
         if (!oldValue) {
             return value;
         }
 
-        OrderPipe.setValue(
+        OrderByPipe.setValue(
             value,
             this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive),
             parsedExpression
