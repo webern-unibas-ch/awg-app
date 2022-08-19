@@ -9,6 +9,34 @@ import { EditionConstants, EditionWork } from '../models';
  */
 export class EditionWorks {
     /**
+     * An EditionWork object for M 34.
+     */
+    static readonly M34: EditionWork = new EditionWork(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EditionConstants.MNR,
+            catalogueNumber: '34',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '07. Juli 2022',
+        },
+        {
+            route: '/m34',
+            short: 'M 34',
+            full: 'M 34',
+        },
+        EditionConstants.SERIES_2,
+        EditionConstants.SECTION_2A,
+        EditionConstants.SKETCH_EDITION
+    );
+
+    /**
      * An EditionWork object for Opus 12.
      */
     static readonly OP12: EditionWork = new EditionWork(

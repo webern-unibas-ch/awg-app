@@ -155,6 +155,15 @@ export class EditionConstants {
     };
 
     /**
+     * The edition route for section 2.
+     */
+    static readonly SECTION_2A: EditionRoute = {
+        route: '2a',
+        short: '2a',
+        full: 'Abteilung 2a (Klaviermusik)',
+    };
+
+    /**
      * The edition route for section 3.
      */
     static readonly SECTION_3: EditionRoute = {
