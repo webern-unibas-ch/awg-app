@@ -2,6 +2,160 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.5...v0.9.0) (2022-08-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **edition:** The former workflow to display SVG files and overlays one-by-one is replaced by (re)drawing the SVGs with D3 library and creating the overlays automatically.
+
+### Features
+
+* **assets:** add files for M 34 ([df94020](https://github.com/webern-unibas-ch/awg-app/commit/df94020abcc29c23ded489d3d519095261cae063))
+* **assets:** add svg for M 34 ([411051f](https://github.com/webern-unibas-ch/awg-app/commit/411051faf30d9e8097af6fc1fa0ea8b441a45f1a))
+* **assets:** add svgGroupId to textcritics files ([f983c61](https://github.com/webern-unibas-ch/awg-app/commit/f983c610cb0a74f0633780064a806317f0e64bf3))
+* **assets:** final files for M 34 ([362d42b](https://github.com/webern-unibas-ch/awg-app/commit/362d42b3eae36f079fbe0f0ed571b5b5f07fcd02))
+* **assets:** updated files for M 34 ([bd0d342](https://github.com/webern-unibas-ch/awg-app/commit/bd0d342a089d463f34fc746cd983a2e4541566a3))
+* **core:** add UtilityService for app-wide util functions ([6ef3654](https://github.com/webern-unibas-ch/awg-app/commit/6ef365467f487012d37f8bd01178ec5b8d4f7d77))
+* **edition:** activate M 34 in app ([404d780](https://github.com/webern-unibas-ch/awg-app/commit/404d78027f6736cbd7d42ae65a648bedb67a1e9a))
+* **edition:** add classes in svg files of M 212 and M 317 Sk1 ([80721cc](https://github.com/webern-unibas-ch/awg-app/commit/80721ccf9521916227eb7d4f02df51bfa934f5cc))
+* **edition:** add classes to M 317 Sk5 ([11dd42f](https://github.com/webern-unibas-ch/awg-app/commit/11dd42f34669a2cfb3d57647515cab7988e9e7ac))
+* **edition:** add Clear button to SparqlEditor ([1b90f03](https://github.com/webern-unibas-ch/awg-app/commit/1b90f03f91df1e6ee357dda5f31090190cc9e428))
+* **edition:** add Clear button to TriplesEditor ([75a8dd9](https://github.com/webern-unibas-ch/awg-app/commit/75a8dd9f0b0d9f33dba76d619264a09031a65103))
+* **edition:** add ToastMessage class to ToastService ([ce101d4](https://github.com/webern-unibas-ch/awg-app/commit/ce101d41ef10a6a4f6f459006ab137dce59b89e0))
+* **edition:** extend overlay model with selection status ([49cbb2e](https://github.com/webern-unibas-ch/awg-app/commit/49cbb2e0ed35959e5c033f4d5f9b9ba97f349bec))
+* **edition:** fix foliation in M 212 and add classes in some sketches of M 317 ([cd3cfd4](https://github.com/webern-unibas-ch/awg-app/commit/cd3cfd423ba20f8a2050044aaf744e5ae18b9c23))
+* **edition:** generate source descriptions semi-automatically from JSON ([67ada7c](https://github.com/webern-unibas-ch/awg-app/commit/67ada7c5681702690082f93b08175522b910e703))
+* **edition:** use D3 library to render SVG sheets and overlays ([ba0676c](https://github.com/webern-unibas-ch/awg-app/commit/ba0676c00e7a774fd2ca0c871d32ff722db28693))
+* **shared:** add ViewHandleButtonGroup ([78a6c0c](https://github.com/webern-unibas-ch/awg-app/commit/78a6c0ce708bcac2f320f62f154a90a0fa1c68bf))
+* **shared:** create SliderConfig class ([b2f2ee3](https://github.com/webern-unibas-ch/awg-app/commit/b2f2ee3fa0339638df8aee905ad39f7213ac4165))
+* **shared:** integrate OrderByPipe lib as shared pipe (module issues) ([7ef2a2e](https://github.com/webern-unibas-ch/awg-app/commit/7ef2a2e51aaa3a8a5ad1e4d9bec073f22eee6a5c))
+
+
+### Bug Fixes
+
+* **app:** remove unused imports (SonarCloud) ([79fb6dd](https://github.com/webern-unibas-ch/awg-app/commit/79fb6dd433ace12e36a1406dd97ed229b801b57c))
+* **app:** remove unused variables ([376aae4](https://github.com/webern-unibas-ch/awg-app/commit/376aae4e24e4934c63c11d7800b4768a1081c472))
+* **assets:** add folio dimensions for M 34 ([8f168af](https://github.com/webern-unibas-ch/awg-app/commit/8f168af0dd8683e72a311f5ff253f520e93088f8))
+* **assets:** add M number in source list for M 34 A ([7f601c1](https://github.com/webern-unibas-ch/awg-app/commit/7f601c10b67bc2169d8b2504fb2981dad625d198))
+* **assets:** add missing data files and placeholders for M 34 ([5b9427d](https://github.com/webern-unibas-ch/awg-app/commit/5b9427d559dcac38b89ff45d4f3e5517dfca0cb1))
+* **assets:** add missing svgGroupIds to op12 textcritics ([1b1b19d](https://github.com/webern-unibas-ch/awg-app/commit/1b1b19d2e1fb07f0602d4fb2d66fc4b3a2a2dd39))
+* **assets:** add missing svgGroupIds to op25 textcritics ([9f887ad](https://github.com/webern-unibas-ch/awg-app/commit/9f887ad64f43eda2926d266141fb3f2030017622))
+* **assets:** add svg ids to M 34 textcritics ([5fbbf4f](https://github.com/webern-unibas-ch/awg-app/commit/5fbbf4fcb8b3f9366a1edfacbfbeea522ba5766d))
+* **assets:** adjust source description for M 34 to new format ([f1946ec](https://github.com/webern-unibas-ch/awg-app/commit/f1946ec6dc6252e1f9d2eaa1c370ec210565d629))
+* **assets:** adjust tabs in source descriptions ([7e4f66c](https://github.com/webern-unibas-ch/awg-app/commit/7e4f66cbe2c13328ae0b0a7023432d1b40bb50b6))
+* **assets:** fix typo in file name fpr M 34 Sk1b ([2fbe15b](https://github.com/webern-unibas-ch/awg-app/commit/2fbe15b57f3f45b9e1fc0531b20e7537a2cdc2f6))
+* **assets:** fix typos in textcritics of M 34 ([a4b6286](https://github.com/webern-unibas-ch/awg-app/commit/a4b62865fca524d43dfba42c4dd42abee2726417))
+* **assets:** link source descriptions of op19, 23 & 24 with svgs ([50e0b2f](https://github.com/webern-unibas-ch/awg-app/commit/50e0b2f407183b282cd75f87c1140155a81e2978))
+* **assets:** move inner svg group out of outer group ([82d603b](https://github.com/webern-unibas-ch/awg-app/commit/82d603b2d875b5f8ed10c099c856a139d6135883))
+* **assets:** remove deprecated SVGs ([104f951](https://github.com/webern-unibas-ch/awg-app/commit/104f951b3a2114d8d810578a4f8f3ea93485367d))
+* **assets:** use RISM sigla for op19, 23 & 24 ([9a0d8de](https://github.com/webern-unibas-ch/awg-app/commit/9a0d8de1ca3b0b2794bc3b96350a5295db67126a))
+* **core:** adjust UtilityService to be stricter ([f6c9aaa](https://github.com/webern-unibas-ch/awg-app/commit/f6c9aaa3e0c5037be8026f8f0f27563c4b77cb4e))
+* **core:** highlight Edition link in navbar when active ([75867c6](https://github.com/webern-unibas-ch/awg-app/commit/75867c626127b74d407a79d4f6cee10d3c434a6d))
+* **edition:** add errorMessageRequest to SparqlEditor ([bd13db8](https://github.com/webern-unibas-ch/awg-app/commit/bd13db8e6a0059378cb97b6ffb22fa9324d88b88))
+* **edition:** add errorMessageRequest to TriplesEditor ([1625ae3](https://github.com/webern-unibas-ch/awg-app/commit/1625ae34dd94a909ab67a5a691beba4c7f179c83))
+* **edition:** add g element to #path242 in M 317 Sk2.1 ([2250314](https://github.com/webern-unibas-ch/awg-app/commit/2250314e3078daccc113cb6088fef0a5e2200b14)), closes [#path242](https://github.com/webern-unibas-ch/awg-app/issues/path242)
+* **edition:** add links to svg files for M 317 in source-description.json ([0c186be](https://github.com/webern-unibas-ch/awg-app/commit/0c186bed27b100a5b7601c271b0e5c35b85be171))
+* **edition:** add links to svg files in textcritics.json ([1e5bbbd](https://github.com/webern-unibas-ch/awg-app/commit/1e5bbbd4195b3fec7c186daa1c22c1dadaeec6b2))
+* **edition:** adjust svg-sheets.json and folio-convolute.json for new svg files ([3447c10](https://github.com/webern-unibas-ch/awg-app/commit/3447c10c204fb7912029072bd405eaa33f0abb98))
+* **edition:** compile html for all source description parts ([5dd3e8a](https://github.com/webern-unibas-ch/awg-app/commit/5dd3e8a62210f16a4b38c73a6cf3890df57998ee))
+* **edition:** do only prevent convolute selection if conv has modal link ([0ee0301](https://github.com/webern-unibas-ch/awg-app/commit/0ee0301e3a0cde94ab856660a56b063256f145a6))
+* **edition:** fix clearing order for svg ([c600bb1](https://github.com/webern-unibas-ch/awg-app/commit/c600bb1d4c981bc7ef9295776b9735493cb18113))
+* **edition:** fix container height of ForceGraph ([3d20803](https://github.com/webern-unibas-ch/awg-app/commit/3d208038ae1dd2abb8396cb16d5e8fbdf78a0973))
+* **edition:** iterate over tkkGroup nodes instead of artificial array ([915f056](https://github.com/webern-unibas-ch/awg-app/commit/915f0564e4234161cf2ea73752e38e34864d7b89))
+* **edition:** minor fixes (mainly tabs etc.) in source-decription and source-list of op12 and op25 ([54ee38c](https://github.com/webern-unibas-ch/awg-app/commit/54ee38c3d8604ac8d50259c67519cf42e6baf160))
+* **edition:** mute link boxes in svgs for now ([4007c42](https://github.com/webern-unibas-ch/awg-app/commit/4007c42f89fa6ad1d08cc7bb3cba38857a07cefb))
+* **edition:** remove EditionSvgSheetCmp from accolade module ([d46f24b](https://github.com/webern-unibas-ch/awg-app/commit/d46f24b8db2b0f47870d9a2a79c10468659a403f))
+* **edition:** remove unused import of EditionSvgOverlayTypes ([a10e6e8](https://github.com/webern-unibas-ch/awg-app/commit/a10e6e822b4553346120b8f96652ea52aa8044eb))
+* **edition:** update svg files for M 317 ([5272975](https://github.com/webern-unibas-ch/awg-app/commit/52729756f18c6f80851ce0240d594698ee063395))
+* **edition:** use plural form for Edierte Notentexte ([30ab551](https://github.com/webern-unibas-ch/awg-app/commit/30ab551cb2d5ad183a5c5f33452094b7a4ad4702))
+* **edition:** use utility service in app ([f0c13d8](https://github.com/webern-unibas-ch/awg-app/commit/f0c13d841c17a5b1ac3960c210abfc689dde058a))
+* **edition:** use utility service to check for empty array ([d98a991](https://github.com/webern-unibas-ch/awg-app/commit/d98a991c15c2a5d72a338b03040cf8a0d2f1abd8))
+* **edition:** use ViewHandleButtonGroup in SearchResultList ([1a313f3](https://github.com/webern-unibas-ch/awg-app/commit/1a313f3234e6cda50da231808d5200a5d5227266))
+* **edition:** use ViewHandleButtonGroup in SparqlComponent ([47cfd44](https://github.com/webern-unibas-ch/awg-app/commit/47cfd449fa51afc3644cc49568b740caaeb1c3cf))
+* **shared:** add barrels for SliderConfig model class ([0255dab](https://github.com/webern-unibas-ch/awg-app/commit/0255dabb510c91b875720ab52d00f3b196d29b67))
+* **shared:** fix modal snippet for op12 ([87ec17c](https://github.com/webern-unibas-ch/awg-app/commit/87ec17c8e49749cbd743ffc5e6f57be7f4f56d1d))
+
+
+### Styles
+
+* **app:** adjust tab size ([dcc488f](https://github.com/webern-unibas-ch/awg-app/commit/dcc488fe506ec1833fd85701df61c162bd0081d3))
+* **app:** extend tab class ([2aa683a](https://github.com/webern-unibas-ch/awg-app/commit/2aa683a7007f90415f8f42a2a15aa69df0916a1f))
+* **app:** fix styles after bootstrap update ([94dcd83](https://github.com/webern-unibas-ch/awg-app/commit/94dcd83f0ffb7cfca8806981e1ee0bd261230f2e))
+
+
+### Documentation
+
+* **app:** fix typo in metadata ([43c87f3](https://github.com/webern-unibas-ch/awg-app/commit/43c87f30e722f0d9d2b07b0e0f38ec82c081db73))
+* **edition:** add docs for EditionSvgDrawingService ([0f0e94a](https://github.com/webern-unibas-ch/awg-app/commit/0f0e94a8eda440956d92a22ec93abb829037a2c8))
+* **shared:** fix incorrect line break in table docs ([fc77c3a](https://github.com/webern-unibas-ch/awg-app/commit/fc77c3a30ae25b275381718c7aca6e08655e4ebb))
+* **shared:** fix syntax for jsdocs in SliderConfig ([5fb19e7](https://github.com/webern-unibas-ch/awg-app/commit/5fb19e7c8986992b092c3d16aec2d32869f119a8))
+
+
+### Tests
+
+* **app:** fix file paths after changes ([b8b058d](https://github.com/webern-unibas-ch/awg-app/commit/b8b058dfe8e6d39bee4705029a55953572af6f39))
+* **core:** adjust tests for StorageService ([d634c96](https://github.com/webern-unibas-ch/awg-app/commit/d634c9625d0b2b7e2bcffb07efb460face65b4c5))
+* **core:** adjust tests for ToastService ([94d3a12](https://github.com/webern-unibas-ch/awg-app/commit/94d3a12fe052a17cb02b78ffd86d954b51a32045))
+* **edition:** add tests for SvgDrawingService (started) ([16caef1](https://github.com/webern-unibas-ch/awg-app/commit/16caef1ec85c7cd2601c3d00215593444128bc1b))
+* **edition:** add tests for TableComponent ([c425119](https://github.com/webern-unibas-ch/awg-app/commit/c4251192f2bac2461d9f6b76d3899727249f9c6c))
+* **edition:** add tests for TextCriticsListComponent ([8098c00](https://github.com/webern-unibas-ch/awg-app/commit/8098c005017b5ecd6f4d8fe39d57ec344ae4596b))
+* **edition:** adjust tests for GraphVisualizerComponent after changes ([1d701c0](https://github.com/webern-unibas-ch/awg-app/commit/1d701c091dbbe4cd4dd4c9df5cad1846e2ebe1b4))
+* **edition:** adjust tests for SourceDescriptionComp after changes ([5976390](https://github.com/webern-unibas-ch/awg-app/commit/5976390627285e616456c4403db8d66d5addd614))
+* **edition:** adjust tests for SparqlEditorComponent after changes ([fdbe9a0](https://github.com/webern-unibas-ch/awg-app/commit/fdbe9a0d554c28cc09be715e84c63b31f4c47c0b))
+* **edition:** adjust tests for SparqlEditorComponent after changes ([e5c4880](https://github.com/webern-unibas-ch/awg-app/commit/e5c4880e97e971bfcd07e5a4fdb9efba7cc68332))
+* **edition:** adjust tests for TriplesEditorComponent after changes ([456ddc5](https://github.com/webern-unibas-ch/awg-app/commit/456ddc523739adaae88e6b12cb04bce0edd6b0bc))
+* **edition:** fix accolade tests after changes ([4c230a7](https://github.com/webern-unibas-ch/awg-app/commit/4c230a7eae08d6f3cf247b6a845ec9f7cb946f92))
+* **edition:** fix tests after changes ([4d437cd](https://github.com/webern-unibas-ch/awg-app/commit/4d437cdccc576551a7c494698222d7c6434595f4))
+* **edition:** fix tests for GraphVisualizer after changes ([1402141](https://github.com/webern-unibas-ch/awg-app/commit/1402141e926ce43c07907fd3845fb83c0a2fce2d))
+* **edition:** fix typo in test for SparqlEditorCOmponent ([4cae2a1](https://github.com/webern-unibas-ch/awg-app/commit/4cae2a177acde0bb0dd2c46ff8664ecac2acc522))
+* **edition:** remove unused imports from test for EditionIntroComponent ([370930f](https://github.com/webern-unibas-ch/awg-app/commit/370930fc8be824bc6554e5e69cb847caee903096))
+* **search:** adjust tests for DataViewComponent ([d1f922a](https://github.com/webern-unibas-ch/awg-app/commit/d1f922a26412f18525ea703687fad33d6e70b658))
+* **search:** fix tests after changes in SearchParams ([8c8af2a](https://github.com/webern-unibas-ch/awg-app/commit/8c8af2adf9e3895adf39cf86d7d027604f735e2d))
+* **shared:** add tests for TablePaginationComponent ([a818bbb](https://github.com/webern-unibas-ch/awg-app/commit/a818bbb3d1313d17c0a9443b017adb4a147fe2a4))
+* **shared:** add tests for ViewHandleButtonGroup ([58349ac](https://github.com/webern-unibas-ch/awg-app/commit/58349acf33dcc966f846ca1730dd7e2d49c1c2ec))
+* **shared:** fix tests for OrderByPipe ([f7f2414](https://github.com/webern-unibas-ch/awg-app/commit/f7f2414693cd351fcdc18dd1b5b482537bcfff79))
+
+
+### Build System
+
+* **deps-dev:** bump @angular-devk/build-angular from 13.3.8 to 13.3.9 ([b5a35ea](https://github.com/webern-unibas-ch/awg-app/commit/b5a35ead4bc2e4989d33654d2409177b0653958e))
+* **deps-dev:** bump @angular/cli from 13.3.8 to 13.3.9 ([0771c25](https://github.com/webern-unibas-ch/awg-app/commit/0771c25d6200a3602a7454cb67b04586c32b1f7d))
+* **deps-dev:** bump @types/node from 16.11.41 to 16.11.49 ([5d8c662](https://github.com/webern-unibas-ch/awg-app/commit/5d8c662dd897fca2a6413e7733b0d13f4ac7a70b))
+* **deps-dev:** bump eslint related packages to latest version ([bbb3cd3](https://github.com/webern-unibas-ch/awg-app/commit/bbb3cd39b4de1b76529cb1923b3fc8b2db1f8287))
+* **deps-dev:** bump jasmine-core from 4.2.0 to 4.3.0 ([997634e](https://github.com/webern-unibas-ch/awg-app/commit/997634e0867c274a5aa28c102792bf724cf88653))
+* **deps:** add d3-fetch to dependencies ([635aa1f](https://github.com/webern-unibas-ch/awg-app/commit/635aa1f10c4fd25d69be95866288fbf9eff1e8e7))
+* **deps:** bump @fortawesome/fontawesome-svg-core from 6.1.1 to 6.1.2 ([b533058](https://github.com/webern-unibas-ch/awg-app/commit/b533058eed120cc647504f46cb59bc25b965f053))
+* **deps:** bump @fortawesome/free-solid-svg-icons from 6.1.1 to 6.1.2 ([d49d331](https://github.com/webern-unibas-ch/awg-app/commit/d49d331daa588ffeceed5eb66edf272d6b115b6c))
+* **deps:** bump bootstrap from 5.1.3 to 5.2.0 ([f667083](https://github.com/webern-unibas-ch/awg-app/commit/f667083ef07c52f4da44df371c856e5ec5c38394))
+* **deps:** bump codemirror from 5.65.6 to 5.65.7 ([6d9c17b](https://github.com/webern-unibas-ch/awg-app/commit/6d9c17b208a184513b477a98d6b08b3aaed75d06))
+* **deps:** bump custom rdfstore from 0.9.18-alpha.4 to -alpha.5 ([ba83f1f](https://github.com/webern-unibas-ch/awg-app/commit/ba83f1f16ede44f828f3a358f5e6dd43ef9a456f))
+* **deps:** bump rxjs from 7.5.5 to 7.5.6 ([df4132c](https://github.com/webern-unibas-ch/awg-app/commit/df4132c00c451ab213ece281821c5885536d1c9a))
+* **deps:** bump terser from 5.7.1 to 5.14.2 ([322d3b5](https://github.com/webern-unibas-ch/awg-app/commit/322d3b538d2ecea052300c46c9d917bb6bdab6cb))
+* **deps:** bump undici from 5.5.1 to 5.8.0 ([df097f9](https://github.com/webern-unibas-ch/awg-app/commit/df097f93e08d7710abfe29d343125e8bc8c27efb))
+* **deps:** bump undici from 5.8.0 to 5.9.1 ([8e893bf](https://github.com/webern-unibas-ch/awg-app/commit/8e893bf5c4b3837ab1ef7cea9fd940a5f8b0e9ea))
+* **deps:** bump zone.js from 0.11.6 to 0.11.7 ([e6007ff](https://github.com/webern-unibas-ch/awg-app/commit/e6007ff05b5ed08f0e57ffc3f0376084361bce10))
+* **deps:** bump zone.js from 0.11.7 to 0.11.8 ([ef553fe](https://github.com/webern-unibas-ch/awg-app/commit/ef553fea698da6e8f8d071dce8d47ddc3684951e))
+
+
+### Code Refactoring
+
+* **app:** use capital letters for prefix enum ([988bcce](https://github.com/webern-unibas-ch/awg-app/commit/988bcce95cfc06a1cc3e18448024ebcdd6c304c0))
+* **assets:** rename and reorganize files for M 34 ([f38b89b](https://github.com/webern-unibas-ch/awg-app/commit/f38b89bdd853ccf181b8516bf21ae90d333fe249))
+* **core:** move ToastService to shared ToastComponent ([b7e9e1f](https://github.com/webern-unibas-ch/awg-app/commit/b7e9e1f7a3f33bb8c01091d87d6354c8325d60eb))
+* **edition:** calculate container dimensions in separate method ([38b0bcd](https://github.com/webern-unibas-ch/awg-app/commit/38b0bcd90aab01b3065104868e93ae4aefb23ae6))
+* **edition:** move accolade and convolute into separate modules ([4a84c45](https://github.com/webern-unibas-ch/awg-app/commit/4a84c455b1aa13238272d8c9b32468d924ab02b9))
+* **edition:** move shared D3 models to general edition models ([638d308](https://github.com/webern-unibas-ch/awg-app/commit/638d3083c358fb7e7edf696513432736d21bd150))
+* **edition:** refactor TableComponent ([c1204af](https://github.com/webern-unibas-ch/awg-app/commit/c1204af55db728a9586d84b36019d17701bc6641))
+* **edition:** refactor ViewBox model to be used generic ([412b0fc](https://github.com/webern-unibas-ch/awg-app/commit/412b0fc5ecb0897e84c69f38359157ff54c6064b))
+* **edition:** rename createSVGOverlayGroup method ([582ef4d](https://github.com/webern-unibas-ch/awg-app/commit/582ef4d72966617d7e5601ceb806c8aaa57838fe))
+* **edition:** rename svgSheetRootSelection ([99ae616](https://github.com/webern-unibas-ch/awg-app/commit/99ae616a151b5ff4c7f5170741418b0a86509698))
+* **edition:** rename view -> viewType in SparqlEditor ([8e16652](https://github.com/webern-unibas-ch/awg-app/commit/8e166526f1baafc8efe3186aa17c6d6e886bd4aa))
+* **edition:** simplify retrieval of container coords in ForceGraph ([517ef78](https://github.com/webern-unibas-ch/awg-app/commit/517ef787b54401111ec3b8989a1dd7923ef6e7df))
+* **search:** use ViewHandleTypes for refactored SearchParams ([89bf082](https://github.com/webern-unibas-ch/awg-app/commit/89bf082fec64bb88822b4aab0e484935c0d8391d))
+* **shared:** rename formatInput method in TablePagination ([3179561](https://github.com/webern-unibas-ch/awg-app/commit/31795613fdc8cde4a145e515774d56544260f98a))
+* **shared:** rename OrderPipe -> OrderByPipe ([d836018](https://github.com/webern-unibas-ch/awg-app/commit/d836018a0ffdddf707544a8f6ffdfe39f4243fec))
+
 ### [0.8.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.8.4...v0.8.5) (2022-07-01)
 
 
