@@ -3,12 +3,86 @@
         {
             "convoluteId": "A",
             "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
-            "folios": []
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                }
+            ]
         },
         {
             "convoluteId": "B",
             "convoluteLabel": "B Tintenniederschrift (Basel, Paul Sacher Stiftung)",
-            "folios": []
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
         }
     ]
 }
