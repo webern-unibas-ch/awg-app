@@ -209,7 +209,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
         const convolute: FolioConvolute = this._findConvolute(id);
 
-        if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
+        if (!this.utils.isNotEmptyArray(convolute.folios)) {
             // If no folio data provided, open modal
             if (convolute.linkTo) {
                 this.modal.open(convolute.linkTo);
