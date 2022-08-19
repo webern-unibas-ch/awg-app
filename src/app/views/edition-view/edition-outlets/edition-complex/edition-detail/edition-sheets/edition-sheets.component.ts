@@ -213,8 +213,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             // If no folio data provided, open modal
             if (convolute.linkTo) {
                 this.modal.open(convolute.linkTo);
+                return;
             }
-            return;
         }
         this.selectedConvolute = convolute;
         this._filterSvgSheets();
