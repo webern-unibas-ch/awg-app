@@ -398,8 +398,8 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="251"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:251</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="252"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:252</a></div>
                 </td>
             </tr>
 
@@ -549,8 +549,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="186"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:186</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="188"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:188</a></div>
                 </td>
             </tr>
 
@@ -622,8 +622,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="202"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:202</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="204"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:204</a></div>
                 </td>
             </tr>
 
@@ -700,8 +700,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:159</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/graph-visualizer.component.ts:161</a></div>
                 </td>
             </tr>
 
@@ -865,7 +865,7 @@ from the RDF input data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>showErrorMessage(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, durationValue?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>showErrorMessage(toastMessage: <a href="../classes/ToastMessage.html" target="_self">ToastMessage</a>)</code>
                 </td>
             </tr>
 
@@ -898,9 +898,9 @@ from the RDF input data.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>name</td>
+                                    <td>toastMessage</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../classes/ToastMessage.html" target="_self" >ToastMessage</a></code>
                                     </td>
 
                                     <td>
@@ -909,39 +909,7 @@ from the RDF input data.</p>
 
 
                                     <td>
-                                        <p>The given error name.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>message</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given error message.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>durationValue</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given optional duration in ms.</p>
+                                        <p>The given toast message.</p>
 
                                     </td>
                                 </tr>
@@ -1223,7 +1191,7 @@ from the RDF input data.</p>
 
 import { EMPTY, from, Observable } from &#x27;rxjs&#x27;;
 
-import { Toast, ToastService } from &#x27;@awg-core/services/toast-service&#x27;;
+import { Toast, ToastMessage, ToastService } from &#x27;@awg-shared/toast/toast.service&#x27;;
 import { GraphSparqlQuery, GraphRDFData } from &#x27;@awg-views/edition-view/models&#x27;;
 import { D3SimulationNode, QueryResult, Triple } from &#x27;./models&#x27;;
 
@@ -1360,9 +1328,11 @@ export class GraphVisualizerComponent implements OnInit {
         }
 
         this.queryList &#x3D; JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
-        this.query &#x3D; query
+        const resetted &#x3D; query
             ? this.queryList.find(q &#x3D;&gt; query.queryLabel &#x3D;&#x3D;&#x3D; q.queryLabel &amp;&amp; query.queryType &#x3D;&#x3D;&#x3D; q.queryType) || query
             : this.queryList[0];
+        this.query &#x3D; { ...resetted };
+
         this.performQuery();
     }
 
@@ -1434,24 +1404,23 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It shows a given error message for a given duration.
      *
-     * @param {string} name The given error name.
-     * @param {string} message The given error message.
-     * @param {number} [durationValue] The given optional duration in ms.
+     * @param {ToastMessage} toastMessage The given toast message.
      *
      * @returns {void} Shows the error message.
      */
-    showErrorMessage(name: string, message: string, durationValue?: number): void {
-        if (!message) {
+    showErrorMessage(toastMessage: ToastMessage): void {
+        if (!toastMessage || !toastMessage.message) {
             return;
         }
-        if (!durationValue) {
-            durationValue &#x3D; 7000;
-        }
 
-        const toast &#x3D; new Toast(message, { header: name, classname: &#x27;bg-danger text-light&#x27;, delay: durationValue });
+        const toast &#x3D; new Toast(toastMessage.message, {
+            header: toastMessage.name,
+            classname: &#x27;bg-danger text-light&#x27;,
+            delay: toastMessage.duration,
+        });
         this.toastService.add(toast);
 
-        console.error(message, durationValue);
+        console.error(toastMessage.name, &#x27;:&#x27;, toastMessage.message);
     }
 
     /**
@@ -1482,9 +1451,9 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message &amp;&amp; err.name) {
                 if (err.message.indexOf(&#x27;undefined&#x27;) !&#x3D;&#x3D; -1) {
-                    this.showErrorMessage(err.name, &#x27;The query did not return any results&#x27;, 10000);
+                    this.showErrorMessage(new ToastMessage(err.name, &#x27;The query did not return any results.&#x27;, 5000));
                 }
-                this.showErrorMessage(err.name, err.message, 10000);
+                this.showErrorMessage(new ToastMessage(err.name, err.message, 5000));
             }
 
             // Capture query time
@@ -1508,20 +1477,22 @@ export class GraphVisualizerComponent implements OnInit {
                 &lt;awg-triples-editor
                     [triples]&#x3D;&quot;triples&quot;
                     [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                    (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
+                    (errorMessageRequest)&#x3D;&quot;showErrorMessage($event)&quot;
+                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;
                     (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
-                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-triples-editor&gt;
+                    (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;&gt;&lt;/awg-triples-editor&gt;
             &lt;/div&gt;
 
-            &lt;!-- awg-graph-sparql-editor --&gt;
             &lt;div [ngClass]&#x3D;&quot;{ &#x27;col-6 ps-lg-0&#x27;: !isFullscreen }&quot;&gt;
+                &lt;!-- awg-graph-sparql-editor --&gt;
                 &lt;awg-sparql-editor
                     [queryList]&#x3D;&quot;queryList&quot;
                     [query]&#x3D;&quot;query&quot;
                     [isFullscreen]&#x3D;&quot;isFullscreen&quot;
-                    (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
+                    (errorMessageRequest)&#x3D;&quot;showErrorMessage($event)&quot;
+                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;
                     (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
-                    (performQueryRequest)&#x3D;&quot;performQuery()&quot;&gt;&lt;/awg-sparql-editor&gt;
+                    (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;&gt;&lt;/awg-sparql-editor&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -1608,8 +1579,8 @@ export class GraphVisualizerComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result --><div #fs class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">    <div [ngClass]="isFullscreen ? \'col-4 col-lg-3 px-0 awg-fullscreen\' : \'col-12\'">        <div [ngClass]="{ row: !isFullscreen }">            <div [ngClass]="{ \'col-6 pe-lg-0\': !isFullscreen }">                <!-- awg-graph-triples-editor -->                <awg-triples-editor                    [triples]="triples"                    [isFullscreen]="isFullscreen"                    (updateTriplesRequest)="triples = $event"                    (resetTriplesRequest)="resetTriples()"                    (performQueryRequest)="performQuery()"></awg-triples-editor>            </div>            <!-- awg-graph-sparql-editor -->            <div [ngClass]="{ \'col-6 ps-lg-0\': !isFullscreen }">                <awg-sparql-editor                    [queryList]="queryList"                    [query]="query"                    [isFullscreen]="isFullscreen"                    (updateQueryStringRequest)="query.queryString = $event"                    (resetQueryRequest)="resetQuery($event)"                    (performQueryRequest)="performQuery()"></awg-sparql-editor>            </div>        </div>    </div>    <!-- Results -->    <div [ngClass]="isFullscreen ? \'col-8 col-lg-9 px-0 awg-fullscreen\' : \'col-12\'">        <!-- CONSTRUCT -->        <!-- awg-graph-construct-result -->        <awg-construct-results            #queryConstructResultAcc            *ngIf="query.queryType === \'construct\'; else querySelectResultAcc"            [queryResult$]="queryResult$"            [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"            [isFullscreen]="isFullscreen"            (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>        <!-- SELECT -->        <!-- awg-graph-select-result -->        <ng-template #querySelectResultAcc>            <awg-select-results                *ngIf="query.queryType === \'select\'; else queryUnsupportedTypeAcc"                [queryResult$]="queryResult$"                [queryTime]="queryTime"                [isFullscreen]="isFullscreen"                (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>        </ng-template>        <!-- OTHERS -->        <!-- awg-graph-unsupported-query-type-result -->        <ng-template #queryUnsupportedTypeAcc>            <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>        </ng-template>    </div></div><awg-toast aria-live="polite" aria-atomic="true"></awg-toast></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result --><div #fs class="row awg-graph-visualizer" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">    <div [ngClass]="isFullscreen ? \'col-4 col-lg-3 px-0 awg-fullscreen\' : \'col-12\'">        <div [ngClass]="{ row: !isFullscreen }">            <div [ngClass]="{ \'col-6 pe-lg-0\': !isFullscreen }">                <!-- awg-graph-triples-editor -->                <awg-triples-editor                    [triples]="triples"                    [isFullscreen]="isFullscreen"                    (errorMessageRequest)="showErrorMessage($event)"                    (performQueryRequest)="performQuery()"                    (resetTriplesRequest)="resetTriples()"                    (updateTriplesRequest)="triples = $event"></awg-triples-editor>            </div>            <div [ngClass]="{ \'col-6 ps-lg-0\': !isFullscreen }">                <!-- awg-graph-sparql-editor -->                <awg-sparql-editor                    [queryList]="queryList"                    [query]="query"                    [isFullscreen]="isFullscreen"                    (errorMessageRequest)="showErrorMessage($event)"                    (performQueryRequest)="performQuery()"                    (resetQueryRequest)="resetQuery($event)"                    (updateQueryStringRequest)="query.queryString = $event"></awg-sparql-editor>            </div>        </div>    </div>    <!-- Results -->    <div [ngClass]="isFullscreen ? \'col-8 col-lg-9 px-0 awg-fullscreen\' : \'col-12\'">        <!-- CONSTRUCT -->        <!-- awg-graph-construct-result -->        <awg-construct-results            #queryConstructResultAcc            *ngIf="query.queryType === \'construct\'; else querySelectResultAcc"            [queryResult$]="queryResult$"            [defaultForceGraphHeight]="isFullscreen ? 1000 : defaultForceGraphHeight"            [isFullscreen]="isFullscreen"            (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>        <!-- SELECT -->        <!-- awg-graph-select-result -->        <ng-template #querySelectResultAcc>            <awg-select-results                *ngIf="query.queryType === \'select\'; else queryUnsupportedTypeAcc"                [queryResult$]="queryResult$"                [queryTime]="queryTime"                [isFullscreen]="isFullscreen"                (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>        </ng-template>        <!-- OTHERS -->        <!-- awg-graph-unsupported-query-type-result -->        <ng-template #queryUnsupportedTypeAcc>            <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>        </ng-template>    </div></div><awg-toast aria-live="polite" aria-atomic="true"></awg-toast></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'GraphVisualizerComponent'};
 </script>

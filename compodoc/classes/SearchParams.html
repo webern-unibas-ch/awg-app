@@ -102,7 +102,7 @@ to store the data for search (url) params.</p>
                                 <a href="#startAt" >startAt</a>
                             </li>
                             <li>
-                                <a href="#view" >view</a>
+                                <a href="#viewType" >viewType</a>
                             </li>
                         </ul>
                     </td>
@@ -117,6 +117,109 @@ to store the data for search (url) params.</p>
     </table>
 </section>
 
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(query: <a href="../undefineds/SearchQuery.html" target="_self">SearchQuery</a>, nRows: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, startAt: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, viewType: <a href="../classes/ViewHandle.html" target="_self">ViewHandleTypes</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the SearchParams class.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>query</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The search query (string or ExtendedSearchParams).</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>nRows</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The number of rows to return per result list page.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>startAt</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The position in the result list to start at.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>viewType</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/ViewHandle.html" target="_self" >ViewHandleTypes</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The requested view type.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section>
     
@@ -142,7 +245,7 @@ to store the data for search (url) params.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -174,7 +277,7 @@ to store the data for search (url) params.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:26</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -206,7 +309,7 @@ to store the data for search (url) params.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -223,28 +326,28 @@ to store the data for search (url) params.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="view"></a>
+                    <a name="viewType"></a>
                     <span class="name">
-                        <span ><b>view</b></span>
-                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>viewType</b></span>
+                        <a href="#viewType"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/variables.html#w" target="_self" >SearchResultsViewTypes</a></code>
+                        <i>Type : </i>        <code><a href="../classes/ViewHandle.html" target="_self" >ViewHandleTypes</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/data-view/models/search-params.model.ts:33</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The requested view type (&#39;table&#39;, &#39;grid&#39;).</p>
+                    <div class="io-description"><p>The requested view type.</p>
 </div>
                 </td>
             </tr>
@@ -263,10 +366,7 @@ to store the data for search (url) params.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum SearchResultsViewTypes {
-    table &#x3D; &#x27;table&#x27;,
-    grid &#x3D; &#x27;grid&#x27;,
-}
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ViewHandleTypes } from &#x27;@awg-shared/view-handle-button-group/view-handle.model&#x27;;
 
 /**
  * Describes a type that can be either string or ExtendedSearchParams object.
@@ -296,9 +396,24 @@ export class SearchParams {
     startAt: string;
 
     /**
-     * The requested view type (&#x27;table&#x27;, &#x27;grid&#x27;).
+     * The requested view type.
      */
-    view: SearchResultsViewTypes;
+    viewType: ViewHandleTypes;
+
+    /**
+     * Constructor of the SearchParams class.
+     *
+     * @param {SearchQuery} query The search query (string or ExtendedSearchParams).
+     * @param {string} nRows The number of rows to return per result list page.
+     * @param {string} startAt The position in the result list to start at.
+     * @param {ViewHandleTypes} viewType The requested view type.
+     */
+    constructor(query: SearchQuery, nRows: string, startAt: string, viewType: ViewHandleTypes) {
+        this.query &#x3D; query;
+        this.nRows &#x3D; nRows;
+        this.startAt &#x3D; startAt;
+        this.viewType &#x3D; viewType;
+    }
 }
 
 /**

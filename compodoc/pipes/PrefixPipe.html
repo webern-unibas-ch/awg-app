@@ -268,7 +268,7 @@ export class PrefixPipe implements PipeTransform {
         let transformedValue: any;
 
         switch (prefixForm) {
-            case PrefixForm.short: {
+            case PrefixForm.SHORT: {
                 this.defaultPrefixes.forEach((p: Prefix) &#x3D;&gt; {
                     if (value.indexOf(p.prefixIri) !&#x3D;&#x3D; -1) {
                         transformedValue &#x3D; value.replace(p.prefixIri, p.prefixName + &#x27;:&#x27;);
@@ -276,7 +276,7 @@ export class PrefixPipe implements PipeTransform {
                 });
                 break;
             }
-            case PrefixForm.long: {
+            case PrefixForm.LONG: {
                 this.defaultPrefixes.forEach((p: Prefix) &#x3D;&gt; {
                     if (value.indexOf(p.prefixName) !&#x3D;&#x3D; -1) {
                         transformedValue &#x3D; value.replace(p.prefixName + &#x27;:&#x27;, p.prefixIri);
@@ -288,7 +288,7 @@ export class PrefixPipe implements PipeTransform {
                 // This branch should not be reached
                 const exhaustiveCheck: never &#x3D; prefixForm;
                 throw new Error(
-                    &#x60;The prefixForm must be ${PrefixForm.short} or ${PrefixForm.long}, but was: ${exhaustiveCheck}.&#x60;
+                    &#x60;The prefixForm must be ${PrefixForm.SHORT} or ${PrefixForm.LONG}, but was: ${exhaustiveCheck}.&#x60;
                 );
         }
         // If the value was not transformed, return the original value

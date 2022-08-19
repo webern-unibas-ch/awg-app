@@ -14,6 +14,10 @@
 <title>cluster_ResourceDetailModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-32.8 8,-230.8 2311,-230.8 2311,-32.8 8,-32.8"/>
 </g>
+<g id="clust12" class="cluster">
+<title>cluster_ResourceDetailModule_exports</title>
+<polygon fill="none" stroke="black" points="63,-170.8 63,-222.8 2256,-222.8 2256,-170.8 63,-170.8"/>
+</g>
 <g id="clust11" class="cluster">
 <title>cluster_ResourceDetailModule_imports</title>
 <polygon fill="none" stroke="black" points="2189,-40.8 2189,-92.8 2303,-92.8 2303,-40.8 2189,-40.8"/>
@@ -21,10 +25,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_ResourceDetailModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-40.8 16,-92.8 2181,-92.8 2181,-40.8 16,-40.8"/>
-</g>
-<g id="clust12" class="cluster">
-<title>cluster_ResourceDetailModule_exports</title>
-<polygon fill="none" stroke="black" points="63,-170.8 63,-222.8 2256,-222.8 2256,-170.8 63,-170.8"/>
 </g>
 <!-- ResourceDetailHeaderComponent -->
 <g id="node1" class="node">

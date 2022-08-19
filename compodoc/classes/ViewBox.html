@@ -120,19 +120,19 @@ It takes folio settings as input to return the main svg view box values.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(folioSettings: <a href="../classes/FolioSettings.html" target="_self">FolioSettings</a>)</code>
+<code>constructor(width: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, height: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:30</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the ViewBox class.</p>
-<p>It calculates the view box string from the folio settings.</p>
+<p>It sets the view box string from the given width and height.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -142,25 +142,32 @@ It takes folio settings as input to return the main svg view box values.</p>
                                                 <td>Name</td>
                                                     <td>Type</td>
                                                 <td>Optional</td>
-                                                    <td>Description</td>
                                             </tr>
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>folioSettings</td>
+                                                        <td>width</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                                         </td>
                                                   
                                                     <td>
                                                             No
                                                     </td>
                                                     
+                                                </tr>
+                                                <tr>
+                                                        <td>height</td>
+                                                  
                                                         <td>
-                                                                <p>The given folio settings.</p>
-
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                                         </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -200,7 +207,7 @@ It takes folio settings as input to return the main svg view box values.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -238,7 +245,7 @@ It takes folio settings as input to return the main svg view box values.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -271,7 +278,7 @@ It takes folio settings as input to return the main svg view box values.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/models/view-box.model.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -297,15 +304,7 @@ It takes folio settings as input to return the main svg view box values.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FolioSettings } from &#x27;./folio-settings.model&#x27;;
-
-/**
- * The ViewBox class.
- *
- * It is used for the calculation of the svg view box measures of the edition folios.
- * It takes folio settings as input to return the main svg view box values.
- */
-export class ViewBox {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class ViewBox {
     /**
      * The width of the svg (string).
      *
@@ -333,17 +332,11 @@ export class ViewBox {
     /**
      * Constructor of the ViewBox class.
      *
-     * It calculates the view box string from the folio settings.
+     * It sets the view box string from the given width and height.
      *
-     * @param {FolioSettings} folioSettings The given folio settings.
+
      */
-    constructor(folioSettings: FolioSettings) {
-        // Calculate the width for the viewBox string
-        const width &#x3D; (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor;
-
-        // Calculate the height for the viewBox string
-        const height &#x3D; (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor;
-
+    constructor(width: number, height: number) {
         // Set the viewBox string
         this.viewBox &#x3D; &#x27;0 0 &#x27; + width + &#x27; &#x27; + height;
     }

@@ -63,7 +63,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/services/toast-service/toast.service.ts</code>
+            <code>src/app/shared/toast/toast.service.ts</code>
         </p>
 
 
@@ -123,7 +123,7 @@ to be displayed with ngb-toast.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/toast-service/toast.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/shared/toast/toast.service.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -209,7 +209,7 @@ to be displayed with ngb-toast.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/toast-service/toast.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/shared/toast/toast.service.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -241,7 +241,7 @@ to be displayed with ngb-toast.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/core/services/toast-service/toast.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/shared/toast/toast.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -269,6 +269,51 @@ to be displayed with ngb-toast.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, TemplateRef } from &#x27;@angular/core&#x27;;
 
 /**
+ * The ToastMessage class.
+ *
+ * It is used in the context of the app
+ * to store and provide the data for a toast
+ * to be displayed with ngb-toast.
+ */
+export class ToastMessage {
+    /**
+     * Public variable: name.
+     *
+     * It keeps the name of the toast.
+     */
+    name: string;
+
+    /**
+     * Public variable: message.
+     *
+     * It keeps the message of the toast to be displayed.
+     */
+    message: string;
+
+    /**
+     * Public variable: duration.
+     *
+     * It keeps the duration of the toast.
+     */
+    duration?: number;
+
+    /**
+     * Constructor of the Toast class.
+     *
+     * It initializes the class with given values.
+     *
+     * @param {string} name The name of the toast.
+     * @param {string} message The message of the toast.
+     * @param {number} [duration] The optional duration of the toast.
+     */
+    constructor(name: string, message: string, duration?: number) {
+        this.name &#x3D; name;
+        this.message &#x3D; message;
+        this.duration &#x3D; duration || 3000;
+    }
+}
+
+/**
  * The Toast class.
  *
  * It is used in the context of the app
@@ -291,7 +336,7 @@ export class Toast {
      * It initializes the class with given values.
      *
      * @param {string | TemplateRef&lt;*&gt;} textOrTpl The given text or template input.
-     * @param {[*]} options The optional options input.
+     * @param {*} [options] The optional options input.
      */
     constructor(textOrTpl: string | TemplateRef&lt;any&gt;, options?: any) {
         this.textOrTpl &#x3D; textOrTpl;

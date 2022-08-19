@@ -373,10 +373,10 @@ export class TableData {
      * @param {any[]} rows The given table rows.
      */
     constructor(header: string[], rows: any[]) {
-        this.header &#x3D; header || [&#x27;&#x27;];
-        this.totalRows$ &#x3D; observableOf(rows) || observableOf([]);
+        this.header &#x3D; header || [];
+        this.totalRows$ &#x3D; rows ? observableOf(rows) : observableOf([]);
+        this.paginatedRows$ &#x3D; rows ? observableOf(rows) : observableOf([]);
         this.filteredRows &#x3D; rows || [];
-        this.paginatedRows$ &#x3D; observableOf(rows) || observableOf([]);
     }
 }
 </code></pre>

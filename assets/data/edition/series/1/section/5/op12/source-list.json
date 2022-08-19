@@ -36,7 +36,7 @@
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
-            "siglum": "E<sup>1</sup>",
+            "siglum": "E<sup>H</sup>",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2→3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
@@ -57,7 +57,7 @@
             "linkTo": "OP12_SOURCE_NOT_A"
         },
         {
-            "siglum": "G<sup>1</sup>",
+            "siglum": "G<sup>H</sup>",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_A')\"><strong>G</strong></a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "hasDescription": false,

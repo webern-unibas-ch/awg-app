@@ -106,6 +106,10 @@ from a source description json file.</p>
                                 <a href="#siglum" >siglum</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#siglumAddendum" >siglumAddendum</a>
+                            </li>
+                            <li>
                                 <a href="#type" >type</a>
                             </li>
                         </ul>
@@ -140,13 +144,13 @@ from a source description json file.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>string[]</code>
+                        <i>Type : </i>        <code><a href="../classes/SourceDescriptionDesc.html" target="_self" >SourceDescriptionDesc</a></code>
 
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="205" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:205</a></div>
                         </td>
                     </tr>
 
@@ -178,7 +182,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:12</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:180</a></div>
                         </td>
                     </tr>
 
@@ -210,7 +214,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="200" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:200</a></div>
                         </td>
                     </tr>
 
@@ -242,13 +246,46 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:185</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The siglum of a sourceDescription.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="siglumAddendum"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>siglumAddendum</b></span>
+                        <a href="#siglumAddendum"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:190</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The addendum to a siglum of a sourceDescription (optional).</p>
 </div>
                 </td>
             </tr>
@@ -274,7 +311,7 @@ from a source description json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="195" class="link-to-prism">src/app/views/edition-view/models/source-description.model.ts:195</a></div>
                         </td>
                     </tr>
 
@@ -299,7 +336,175 @@ from a source description json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SourceDescription {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class SourceDescriptionSystemRow {
+    /**
+     * The type of the row (optional).
+     */
+    rowType?: string;
+
+    /**
+     * The base of the row (optional).
+     */
+    rowBase?: string;
+
+    /**
+     * The number of the row (optional).
+     */
+    rowNumber?: string;
+}
+
+/**
+ * The SourceDescriptionSystem class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a system of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionSystem {
+    /**
+     * The system label (optional).
+     */
+    system?: string;
+
+    /**
+     * The measure label (optional).
+     */
+    measure?: string;
+
+    /**
+     * The measure link (optional).
+     */
+    linkTo?: string;
+
+    /**
+     * The system rows (optional).
+     */
+    row?: SourceDescriptionSystemRow;
+}
+
+/**
+ * The SourceDescriptionFolio class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a folio of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionFolio {
+    /**
+     * The folio label (optional).
+     */
+    folio?: string;
+
+    /**
+     * The folio link (optional).
+     */
+    folioLinkTo?: string;
+
+    /**
+     * The folio description (optional).
+     */
+    folioDescription?: string;
+
+    /**
+     * The systemGroups of a folio (optional).
+     */
+    systemGroups?: SourceDescriptionSystem[][];
+}
+
+/**
+ * The SourceDescriptionContent class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the content of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionContent {
+    /**
+     * The content item (optional).
+     */
+    item?: string;
+
+    /**
+     * The content item link (optional).
+     */
+    itemLinkTo?: string;
+
+    /**
+     * The content item description (optional).
+     */
+    itemDescription?: string;
+
+    /**
+     * The folios of the content item (optional).
+     */
+    folios?: SourceDescriptionFolio[];
+}
+
+/**
+ * The SourceDescriptionDesc class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the description of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionDesc {
+    /**
+     * The description of a source (optional).
+     */
+    desc?: string[];
+
+    /**
+     * The writing material used for a source (optional).
+     */
+    writingMaterial?: string;
+
+    /**
+     * The writing instruments used in a source (optional).
+     */
+    writingInstruments?: {
+        main?: string;
+        secondary?: string[];
+    };
+
+    /**
+     * A title as it appears in a source (optional).
+     */
+    title?: string;
+
+    /**
+     * A date as it appears in a source (optional).
+     */
+    date?: string;
+
+    /**
+     * Measure numbers as they appear in a source (optional).
+     */
+    measureNumbers?: string;
+
+    /**
+     * The instrumentation as it appears in a source (optional).
+     */
+    instrumentation?: string;
+
+    /**
+     * Annotations as they appear in a source (optional).
+     */
+    annotations?: string;
+
+    /**
+     * The content of a source (optional).
+     */
+    content?: SourceDescriptionContent[];
+}
+
+/**
+ * The SourceDescription class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single source description
+ * from a source description json file.
+ */
+export class SourceDescription {
     /**
      * The id of a sourceDescription.
      */
@@ -309,6 +514,11 @@ from a source description json file.</p>
      * The siglum of a sourceDescription.
      */
     siglum: string;
+
+    /**
+     * The addendum to a siglum of a sourceDescription (optional).
+     */
+    siglumAddendum?: string;
 
     /**
      * The type description of a source.
@@ -323,7 +533,7 @@ from a source description json file.</p>
     /**
      * The description of a sourceDescription.
      */
-    description: string[];
+    description: SourceDescriptionDesc;
 }
 
 /**

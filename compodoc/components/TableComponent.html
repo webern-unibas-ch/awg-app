@@ -93,6 +93,10 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
     <table class="table table-sm table-hover metadata">
         <tbody>
 
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
 
 
 
@@ -175,11 +179,10 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_initTable" >_initTable</a>
+                                <a href="#_paginateRows" >_paginateRows</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_paginateRows" >_paginateRows</a>
+                                <a href="#initTable" >initTable</a>
                             </li>
                             <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
@@ -264,7 +267,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/table/table.component.ts:36</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/shared/table/table.component.ts:37</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -292,7 +295,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/table/table.component.ts:44</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/shared/table/table.component.ts:45</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -320,7 +323,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/shared/table/table.component.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/shared/table/table.component.ts:29</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -351,7 +354,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/shared/table/table.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/shared/table/table.component.ts:61</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -379,7 +382,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/shared/table/table.component.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/shared/table/table.component.ts:53</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -403,54 +406,6 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_initTable"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>_initTable</b></span>
-                        <a href="#_initTable"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_initTable()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="203"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:203</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _initTable.</p>
-<p>It inits all the data needed for the table.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Inits the table data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="_paginateRows"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -469,8 +424,8 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="231"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:231</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="239"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:239</a></div>
                 </td>
             </tr>
 
@@ -531,6 +486,52 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="initTable"></a>
+                    <span class="name">
+                        <span ><b>initTable</b></span>
+                        <a href="#initTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initTable()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:128</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: initTable.</p>
+<p>It inits all the data needed for the table.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Inits the table data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -547,8 +548,8 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="116"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:116</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:117</a></div>
                 </td>
             </tr>
 
@@ -581,15 +582,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onPageSizeChange(searchFilter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>onPageSizeChange(searchFilter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, selectedPageSizeOption?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:159</a></div>
                 </td>
             </tr>
 
@@ -610,6 +611,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -624,6 +626,26 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                                     </td>
 
 
+                                    <td>
+                                        <p>The given search filter.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectedPageSizeOption</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The selected page size option.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -662,8 +684,8 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="144"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:144</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:178</a></div>
                 </td>
             </tr>
 
@@ -740,8 +762,8 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="189"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:189</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:223</a></div>
                 </td>
             </tr>
 
@@ -818,8 +840,8 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/shared/table/table.component.ts:173</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/app/shared/table/table.component.ts:207</a></div>
                 </td>
             </tr>
 
@@ -900,7 +922,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/shared/table/table.component.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/shared/table/table.component.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -932,7 +954,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/shared/table/table.component.ts:67</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/shared/table/table.component.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -965,7 +987,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/shared/table/table.component.ts:81</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/shared/table/table.component.ts:82</a></div>
                         </td>
                     </tr>
 
@@ -998,7 +1020,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/shared/table/table.component.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/shared/table/table.component.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -1031,7 +1053,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/shared/table/table.component.ts:95</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/shared/table/table.component.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -1075,7 +1097,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/shared/table/table.component.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/shared/table/table.component.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -1095,7 +1117,7 @@ from a given page number to the <a href="pageChangeRequest">pageChangeRequest</a
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 
 import { Observable } from &#x27;rxjs&#x27;;
 import { map } from &#x27;rxjs/operators&#x27;;
@@ -1114,6 +1136,7 @@ import { TablePaginatorOptions, TableData, TableOptions, TableRows } from &#x27;
     selector: &#x27;awg-table&#x27;,
     templateUrl: &#x27;./table.component.html&#x27;,
     styleUrls: [&#x27;./table.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent implements OnInit {
     /**
@@ -1211,7 +1234,34 @@ export class TableComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this._initTable();
+        this.initTable();
+    }
+
+    /**
+     * Public method: initTable.
+     *
+     * It inits all the data needed for the table.
+     *
+     * @returns {void} Inits the table data.
+     */
+    initTable(): void {
+        if (!this.headerInputData || !this.rowInputData) {
+            this.tableData &#x3D; new TableData([], []);
+        } else {
+            this.tableData &#x3D; new TableData(this.headerInputData, this.rowInputData);
+        }
+
+        this.paginatorOptions &#x3D; new TablePaginatorOptions(
+            1,
+            10,
+            [5, 10, 25, 50, 100, 200],
+            this.rowInputData?.length || 0
+        );
+        this.searchFilter &#x3D; &#x27;&#x27;;
+
+        this.onSort(this.tableData.header[0]);
+
+        this.onPageSizeChange(this.searchFilter);
     }
 
     /**
@@ -1220,11 +1270,17 @@ export class TableComponent implements OnInit {
      * It emits the new start position of the Paginator
      * from a given page number to the {@link pageChangeRequest}.
      *
+     * @param {string} searchFilter The given search filter.
+     * @param {number} selectedPageSizeOption The selected page size option.
+     *
      * @returns {void} Emits the new start position.
      */
-    onPageSizeChange(searchFilter: string): void {
+    onPageSizeChange(searchFilter: string, selectedPageSizeOption?: number): void {
         if (!this.tableData || !this.headerInputData || !this.rowInputData) {
             return;
+        }
+        if (selectedPageSizeOption) {
+            this.paginatorOptions.selectedPageSize &#x3D; selectedPageSizeOption;
         }
         this.tableData.paginatedRows$ &#x3D; this._paginateRows(searchFilter);
     }
@@ -1291,32 +1347,6 @@ export class TableComponent implements OnInit {
     }
 
     /**
-     * Private method: _initTable.
-     *
-     * It inits all the data needed for the table.
-     *
-     * @returns {void} Inits the table data.
-     */
-    private _initTable(): void {
-        if (!this.headerInputData || !this.rowInputData) {
-            this.tableData &#x3D; new TableData([], []);
-        } else {
-            this.tableData &#x3D; new TableData(this.headerInputData, this.rowInputData);
-        }
-        this.paginatorOptions &#x3D; new TablePaginatorOptions(
-            1,
-            10,
-            [5, 10, 25, 50, 100, 200],
-            this.rowInputData?.length || 0
-        );
-        this.searchFilter &#x3D; &#x27;&#x27;;
-
-        this.onSort(this.tableData.header[0]);
-
-        this.onPageSizeChange(this.searchFilter);
-    }
-
-    /**
      * Private method: _paginateRows.
      *
      * It filters by searchTerm and paginates the observable of total rows.
@@ -1359,11 +1389,11 @@ export class TableComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form *ngIf&#x3D;&quot;tableData.filteredRows &amp;&amp; tableData.totalRows$&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;form *ngIf&#x3D;&quot;tableData.filteredRows &amp;&amp; tableData.totalRows$ | async as totalRows&quot;&gt;
     &lt;div class&#x3D;&quot;form-group form-inline&quot;&gt;
         &lt;label class&#x3D;&quot;col-sm-4 col-form-label&quot;
             &gt;{{ tableTitle }}&lt;br /&gt;
-            ({{ tableData.filteredRows?.length }} von {{ (tableData.totalRows$ | async).length }} Ergebnissen)&lt;/label
+            ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)&lt;/label
         &gt;
         &lt;div class&#x3D;&quot;col-sm-6&quot;&gt;
             &lt;input
@@ -1378,24 +1408,27 @@ export class TableComponent implements OnInit {
     &lt;/div&gt;
 &lt;/form&gt;
 
-&lt;div class&#x3D;&quot;awg-pagination d-flex justify-content-between p-2&quot; *ngIf&#x3D;&quot;tableData.filteredRows&quot;&gt;
+&lt;div class&#x3D;&quot;awg-pagination d-flex justify-content-between p-2&quot; *ngIf&#x3D;&quot;tableData.filteredRows &amp;&amp; paginatorOptions&quot;&gt;
     &lt;!-- top pagination --&gt;
     &lt;awg-table-pagination
-        [(page)]&#x3D;&quot;paginatorOptions.page&quot;
         [collectionSize]&#x3D;&quot;tableData.filteredRows?.length&quot;
+        [(page)]&#x3D;&quot;paginatorOptions.page&quot;
         (pageChangeRequest)&#x3D;&quot;onPageSizeChange(searchFilter)&quot;&gt;
     &lt;/awg-table-pagination&gt;
 
     &lt;div ngbDropdown class&#x3D;&quot;d-inline-block&quot;&gt;
-        &lt;select
-            ngbDropdownToggle
-            class&#x3D;&quot;form-select&quot;
-            [(ngModel)]&#x3D;&quot;paginatorOptions.selectedPageSize&quot;
-            (ngModelChange)&#x3D;&quot;onPageSizeChange(searchFilter)&quot;&gt;
-            &lt;option *ngFor&#x3D;&quot;let option of paginatorOptions.pageSizeOptions&quot; [ngValue]&#x3D;&quot;option&quot; ngbDropdownItem&gt;
-                {{ option }} Ergebnisse pro Seite
-            &lt;/option&gt;
-        &lt;/select&gt;
+        &lt;button class&#x3D;&quot;btn btn-default awg-pagesize-dropdown-button&quot; id&#x3D;&quot;pageSizeDropdownMenuTop&quot; ngbDropdownToggle&gt;
+            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
+        &lt;/button&gt;
+        &lt;div class&#x3D;&quot;dropdown-menu&quot; aria-labelledby&#x3D;&quot;pageSizeDropdownMenuTop&quot; ngbDropdownMenu&gt;
+            &lt;button
+                ngbDropdownItem
+                class&#x3D;&quot;dropdown-item&quot;
+                *ngFor&#x3D;&quot;let pageSizeOption of paginatorOptions.pageSizeOptions&quot;
+                (click)&#x3D;&quot;onPageSizeChange(searchFilter, pageSizeOption)&quot;&gt;
+                {{ pageSizeOption }} Ergebnisse pro Seite
+            &lt;/button&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 
@@ -1451,15 +1484,18 @@ export class TableComponent implements OnInit {
     &lt;/awg-table-pagination&gt;
 
     &lt;div ngbDropdown class&#x3D;&quot;d-inline-block&quot;&gt;
-        &lt;select
-            ngbDropdownToggle
-            class&#x3D;&quot;form-select&quot;
-            [(ngModel)]&#x3D;&quot;paginatorOptions.selectedPageSize&quot;
-            (ngModelChange)&#x3D;&quot;onPageSizeChange(searchFilter)&quot;&gt;
-            &lt;option *ngFor&#x3D;&quot;let option of paginatorOptions.pageSizeOptions&quot; [ngValue]&#x3D;&quot;option&quot; ngbDropdownItem&gt;
-                {{ option }} Ergebnisse pro Seite
-            &lt;/option&gt;
-        &lt;/select&gt;
+        &lt;button class&#x3D;&quot;btn btn-default awg-pagesize-dropdown-button&quot; id&#x3D;&quot;pageSizeDropdownMenuBottom&quot; ngbDropdownToggle&gt;
+            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
+        &lt;/button&gt;
+        &lt;div class&#x3D;&quot;dropdown-menu&quot; aria-labelledby&#x3D;&quot;pageSizeDropdownMenuBottom&quot; ngbDropdownMenu&gt;
+            &lt;button
+                ngbDropdownItem
+                class&#x3D;&quot;dropdown-item&quot;
+                *ngFor&#x3D;&quot;let pageSizeOption of paginatorOptions.pageSizeOptions&quot;
+                (click)&#x3D;&quot;onPageSizeChange(searchFilter, pageSizeOption)&quot;&gt;
+                {{ pageSizeOption }} Ergebnisse pro Seite
+            &lt;/button&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
@@ -1469,7 +1505,10 @@ export class TableComponent implements OnInit {
                 <p class="comment">
                     <code>./table.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.awg-pagesize-dropdown-button {
+    border: 1px solid #ced4da;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1497,8 +1536,8 @@ export class TableComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form *ngIf="tableData.filteredRows && tableData.totalRows$">    <div class="form-group form-inline">        <label class="col-sm-4 col-form-label"            >{{ tableTitle }}<br />            ({{ tableData.filteredRows?.length }} von {{ (tableData.totalRows$ | async).length }} Ergebnissen)</label        >        <div class="col-sm-6">            <input                id="search"                class="form-control ms-2"                type="text"                name="searchFilter"                [(ngModel)]="searchFilter"                (ngModelChange)="onPageSizeChange(searchFilter)"                placeholder="Ergebnisse filtern..." />        </div>    </div></form><div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">    <!-- top pagination -->    <awg-table-pagination        [(page)]="paginatorOptions.page"        [collectionSize]="tableData.filteredRows?.length"        (pageChangeRequest)="onPageSizeChange(searchFilter)">    </awg-table-pagination>    <div ngbDropdown class="d-inline-block">        <select            ngbDropdownToggle            class="form-select"            [(ngModel)]="paginatorOptions.selectedPageSize"            (ngModelChange)="onPageSizeChange(searchFilter)">            <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option" ngbDropdownItem>                {{ option }} Ergebnisse pro Seite            </option>        </select>    </div></div><table    aria-label="Table for SPARQL query results"    class="table table-striped"    *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">    <thead>        <tr>            <th scope="col" *ngFor="let headerLabel of tableData?.header" (click)="onSort(headerLabel)">                {{ headerLabel }}&nbsp;<fa-icon                    *ngIf="headerLabel === tableOptions.selectedKey"                    [icon]="tableOptions.sortIcon"></fa-icon>            </th>        </tr>    </thead>    <tbody>        <tr            *ngFor="                let row of paginatedRows                    | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.isCaseInsensitive            "            (click)="onTableRowClick($event)">            <td *ngFor="let headerLabel of tableData.header">                <a                    *ngIf="row[headerLabel].type && row[headerLabel].type === \'uri\'"                    (click)="onTableValueClick(row[headerLabel].value)">                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>                </a>                <span *ngIf="row[headerLabel].type === \'search\'">                    <span class="badge" *ngIf="row[headerLabel].icon">                        <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />                    </span>                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight                ></span>                <span *ngIf="row[headerLabel].type !== \'uri\' && row[headerLabel].type !== \'search\'">                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight                ></span>            </td>        </tr>    </tbody></table><ng-template #loading>    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></ng-template><div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">    <!-- bottom pagination -->    <awg-table-pagination        [(page)]="paginatorOptions.page"        [collectionSize]="tableData.filteredRows?.length"        (pageChangeRequest)="onPageSizeChange(searchFilter)">    </awg-table-pagination>    <div ngbDropdown class="d-inline-block">        <select            ngbDropdownToggle            class="form-select"            [(ngModel)]="paginatorOptions.selectedPageSize"            (ngModelChange)="onPageSizeChange(searchFilter)">            <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option" ngbDropdownItem>                {{ option }} Ergebnisse pro Seite            </option>        </select>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><form *ngIf="tableData.filteredRows && tableData.totalRows$ | async as totalRows">    <div class="form-group form-inline">        <label class="col-sm-4 col-form-label"            >{{ tableTitle }}<br />            ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)</label        >        <div class="col-sm-6">            <input                id="search"                class="form-control ms-2"                type="text"                name="searchFilter"                [(ngModel)]="searchFilter"                (ngModelChange)="onPageSizeChange(searchFilter)"                placeholder="Ergebnisse filtern..." />        </div>    </div></form><div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows && paginatorOptions">    <!-- top pagination -->    <awg-table-pagination        [collectionSize]="tableData.filteredRows?.length"        [(page)]="paginatorOptions.page"        (pageChangeRequest)="onPageSizeChange(searchFilter)">    </awg-table-pagination>    <div ngbDropdown class="d-inline-block">        <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuTop" ngbDropdownToggle>            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite        </button>        <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuTop" ngbDropdownMenu>            <button                ngbDropdownItem                class="dropdown-item"                *ngFor="let pageSizeOption of paginatorOptions.pageSizeOptions"                (click)="onPageSizeChange(searchFilter, pageSizeOption)">                {{ pageSizeOption }} Ergebnisse pro Seite            </button>        </div>    </div></div><table    aria-label="Table for SPARQL query results"    class="table table-striped"    *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">    <thead>        <tr>            <th scope="col" *ngFor="let headerLabel of tableData?.header" (click)="onSort(headerLabel)">                {{ headerLabel }}&nbsp;<fa-icon                    *ngIf="headerLabel === tableOptions.selectedKey"                    [icon]="tableOptions.sortIcon"></fa-icon>            </th>        </tr>    </thead>    <tbody>        <tr            *ngFor="                let row of paginatedRows                    | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.isCaseInsensitive            "            (click)="onTableRowClick($event)">            <td *ngFor="let headerLabel of tableData.header">                <a                    *ngIf="row[headerLabel].type && row[headerLabel].type === \'uri\'"                    (click)="onTableValueClick(row[headerLabel].value)">                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>                </a>                <span *ngIf="row[headerLabel].type === \'search\'">                    <span class="badge" *ngIf="row[headerLabel].icon">                        <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />                    </span>                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight                ></span>                <span *ngIf="row[headerLabel].type !== \'uri\' && row[headerLabel].type !== \'search\'">                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight                ></span>            </td>        </tr>    </tbody></table><ng-template #loading>    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></ng-template><div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">    <!-- bottom pagination -->    <awg-table-pagination        [(page)]="paginatorOptions.page"        [collectionSize]="tableData.filteredRows?.length"        (pageChangeRequest)="onPageSizeChange(searchFilter)">    </awg-table-pagination>    <div ngbDropdown class="d-inline-block">        <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuBottom" ngbDropdownToggle>            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite        </button>        <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuBottom" ngbDropdownMenu>            <button                ngbDropdownItem                class="dropdown-item"                *ngFor="let pageSizeOption of paginatorOptions.pageSizeOptions"                (click)="onPageSizeChange(searchFilter, pageSizeOption)">                {{ pageSizeOption }} Ergebnisse pro Seite            </button>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'TableComponent'};
 </script>

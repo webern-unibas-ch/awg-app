@@ -187,6 +187,9 @@ with the navigation bar, menu and brand.</p>
                                 <a href="#getEditionWork" >getEditionWork</a>
                             </li>
                             <li>
+                                <a href="#isActiveRoute" >isActiveRoute</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
@@ -213,20 +216,19 @@ with the navigation bar, menu and brand.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>)</code>
+<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/core/navbar/navbar.component.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/core/navbar/navbar.component.ts:84</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the HeaderComponent.</p>
-<p>It declares a private CoreService instance
-to get the meta data.</p>
+<p>It declares private instances of the CoreService and the Angular Router.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -253,6 +255,22 @@ to get the meta data.</p>
                                                     
                                                         <td>
                                                                 <p>Instance of the CoreService.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Instance of the Angular Router.</p>
 
                                                         </td>
                                                 </tr>
@@ -294,8 +312,8 @@ to get the meta data.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:132</a></div>
                 </td>
             </tr>
 
@@ -324,6 +342,84 @@ to get the meta data.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="isActiveRoute"></a>
+                    <span class="name">
+                        <span ><b>isActiveRoute</b></span>
+                        <a href="#isActiveRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isActiveRoute(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: isActiveRoute.</p>
+<p>It checks if a given route is active.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>route</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The route to check.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The boolean value of the check.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -340,8 +436,8 @@ to get the meta data.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:102</a></div>
                 </td>
             </tr>
 
@@ -381,8 +477,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="144"
+                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:144</a></div>
                 </td>
             </tr>
 
@@ -391,7 +487,7 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: provideMetaData.</p>
 <p>It calls the CoreService to provide
-the meta data for the header.</p>
+the metadata for the header.</p>
 </div>
 
                     <div>
@@ -428,8 +524,8 @@ the meta data for the header.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:155</a></div>
                 </td>
             </tr>
 
@@ -485,7 +581,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/core/navbar/navbar.component.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/core/navbar/navbar.component.ts:84</a></div>
                         </td>
                     </tr>
 
@@ -517,7 +613,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/navbar/navbar.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/core/navbar/navbar.component.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -549,7 +645,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/core/navbar/navbar.component.ts:34</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/core/navbar/navbar.component.ts:35</a></div>
                         </td>
                     </tr>
 
@@ -581,7 +677,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/core/navbar/navbar.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/core/navbar/navbar.component.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -613,7 +709,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/core/navbar/navbar.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/core/navbar/navbar.component.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -645,7 +741,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/core/navbar/navbar.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/core/navbar/navbar.component.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -677,7 +773,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/core/navbar/navbar.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/core/navbar/navbar.component.ts:63</a></div>
                         </td>
                     </tr>
 
@@ -710,14 +806,14 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/core/navbar/navbar.component.ts:69</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/core/navbar/navbar.component.ts:70</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: pageMetaData.</p>
-<p>It keeps the page meta data for the header.</p>
+<p>It keeps the page metadata for the header.</p>
 </div>
                 </td>
             </tr>
@@ -743,7 +839,7 @@ the meta data for the header.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/core/navbar/navbar.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/core/navbar/navbar.component.ts:77</a></div>
                         </td>
                     </tr>
 
@@ -771,6 +867,7 @@ import { MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
 import { CoreService } from &#x27;@awg-core/services&#x27;;
 import { EditionWorks } from &#x27;@awg-views/edition-view/data&#x27;;
 import { EditionWork } from &#x27;@awg-views/edition-view/models&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 
 /**
  * The Header component.
@@ -829,7 +926,7 @@ export class NavbarComponent implements OnInit {
     /**
      * Public variable: pageMetaData.
      *
-     * It keeps the page meta data for the header.
+     * It keeps the page metadata for the header.
      */
     pageMetaData: MetaPage;
 
@@ -850,12 +947,12 @@ export class NavbarComponent implements OnInit {
     /**
      * Constructor of the HeaderComponent.
      *
-     * It declares a private CoreService instance
-     * to get the meta data.
+     * It declares private instances of the CoreService and the Angular Router.
      *
      * @param {CoreService} coreService Instance of the CoreService.
+     * @param {Router} router Instance of the Angular Router.
      */
-    constructor(private coreService: CoreService) {}
+    constructor(private coreService: CoreService, private router: Router) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -866,6 +963,24 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         this.getEditionWork();
         this.provideMetaData();
+    }
+
+    /**
+     * Public method: isActiveRoute.
+     *
+     * It checks if a given route is active.
+
+     * @param {string} route The route to check.
+     *
+     * @returns {boolean} The boolean value of the check.
+     */
+    isActiveRoute(route: string): boolean {
+        return this.router.isActive(route, {
+            paths: &#x27;subset&#x27;,
+            queryParams: &#x27;subset&#x27;,
+            fragment: &#x27;ignored&#x27;,
+            matrixParams: &#x27;ignored&#x27;,
+        });
     }
 
     /**
@@ -883,7 +998,7 @@ export class NavbarComponent implements OnInit {
      * Public method: provideMetaData.
      *
      * It calls the CoreService to provide
-     * the meta data for the header.
+     * the metadata for the header.
      *
      * @returns {void} Sets the pageMetaData variable.
      */
@@ -942,8 +1057,8 @@ export class NavbarComponent implements OnInit {
                     &lt;span class&#x3D;&quot;sr-only&quot;&gt;(current)&lt;/span&gt;
                 &lt;/a&gt;
             &lt;/li&gt;
-            &lt;li class&#x3D;&quot;nav-item&quot; ngbDropdown&gt;
-                &lt;a class&#x3D;&quot;nav-link d-flex&quot; id&#x3D;&quot;dropdownNavEdition&quot; ngbDropdownToggle&gt;
+            &lt;li class&#x3D;&quot;nav-item&quot; ngbDropdown [class.active]&#x3D;&quot;isActiveRoute(&#x27;/edition&#x27;)&quot;&gt;
+                &lt;a id&#x3D;&quot;dropdownNavEdition&quot; class&#x3D;&quot;nav-link d-flex&quot; ngbDropdownToggle&gt;
                     &lt;!-- do not show text on sm devices, change order from md devices up --&gt;
                     &lt;span class&#x3D;&quot;d-sm-none d-md-inline&quot;&gt;Edition&lt;/span&gt;
                     &lt;fa-icon [icon]&#x3D;&quot;faFileAlt&quot; class&#x3D;&quot;order-md-minus-1&quot;&gt;&lt;/fa-icon&gt;
@@ -973,7 +1088,10 @@ export class NavbarComponent implements OnInit {
                             routerLinkActive&#x3D;&quot;active&quot;
                             &gt;Edierter Notentext&lt;/a
                         &gt;
-                        &lt;a class&#x3D;&quot;dropdown-item&quot; [routerLink]&#x3D;&quot;[editionWork.baseRoute, editionWork.reportRoute.route]&quot;
+                        &lt;a
+                            class&#x3D;&quot;dropdown-item&quot;
+                            [routerLink]&#x3D;&quot;[editionWork.baseRoute, editionWork.reportRoute.route]&quot;
+                            routerLinkActive&#x3D;&quot;active&quot;
                             &gt;Kritischer Bericht&lt;/a
                         &gt;
                         &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
@@ -1055,8 +1173,8 @@ export class NavbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2">    <!-- Brand -->    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->    <a        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline me-0 my-auto"        href="{{ pageMetaData?.awgProjectUrl }}">        <span class="webernlogo">            ANTON WEBERN <br />            <span>GESAMTAUSGABE</span>        </span>    </a>    <!-- Toggle button -->    <button        type="button"        class="navbar-toggler"        (click)="toggleNav()"        [attr.aria-expanded]="!isCollapsed"        aria-controls="collapsibleNavbar">        <span class="navbar-toggler-icon"></span>    </button>    <!-- collapsible navigation menu -->    <!-- justify content between (left, center, right) from sm devices up -->    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">        <!-- left nav links, no left margin from sm devices up, auto vertical align -->        <ul class="navbar-nav ms-sm-0 my-auto">            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/home\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">awg-app</span>                    <fa-icon [icon]="faHome"></fa-icon>                    <span class="sr-only">(current)</span>                </a>            </li>            <li class="nav-item" ngbDropdown>                <a class="nav-link d-flex" id="dropdownNavEdition" ngbDropdownToggle>                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline">Edition</span>                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>                </a>                <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">                    <h6 class="dropdown-header">Allgemein</h6>                    <a class="dropdown-item" [routerLink]="[\'/edition/series\']" routerLinkActive="active"                        >Editionsübersicht</a                    >                    <a class="dropdown-item" [routerLink]="[\'/edition/row-tables\']" routerLinkActive="active"                        >Reihentabellen</a                    >                    <div class="dropdown-divider"></div>                    <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>                    <div class="dropdown-divider"></div>                    <div *ngFor="let editionWork of EDITION_WORKS">                        <h6 class="dropdown-header">{{ editionWork.work.full }}</h6>                        <a                            class="dropdown-item"                            [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"                            routerLinkActive="active"                            >Einleitung</a                        >                        <a                            class="dropdown-item"                            [routerLink]="[editionWork.baseRoute, editionWork.sheetsRoute.route]"                            routerLinkActive="active"                            >Edierter Notentext</a                        >                        <a class="dropdown-item" [routerLink]="[editionWork.baseRoute, editionWork.reportRoute.route]"                            >Kritischer Bericht</a                        >                        <div class="dropdown-divider"></div>                    </div>                </div>            </li>            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/structure\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>                    <fa-icon [icon]="faNetworkWired"></fa-icon>                </a>            </li>        </ul>        <!-- END left navbar -->        <!-- brand to display on center on sm devices, auto vertical align -->        <a            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none me-0 my-auto"            href="{{ pageMetaData?.awgProjectUrl }}">            <span class="webernlogo">                ANTON WEBERN <br />                <span>GESAMTAUSGABE</span>            </span>        </a>        <!-- right nav links, auto vertical align -->        <ul class="navbar-nav my-auto">            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/data\']" routerLinkActive="active">                    <!-- do not show text on sm devices -->                    <span class="d-sm-none d-lg-inline">Suche</span>                    <fa-icon [icon]="faSearch"></fa-icon>                </a>            </li>            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/contact\']" routerLinkActive="active">                    <!-- do not show text on sm devices-->                    <span class="d-sm-none d-lg-inline">Kontakt</span>                    <fa-icon [icon]="faEnvelope"></fa-icon>                </a>            </li>        </ul>        <!-- END right navbar -->    </div>    <!-- END collapse --></nav></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetListComponent', 'selector': 'awg-edition-svg-sheet-list'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2">    <!-- Brand -->    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->    <a        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline me-0 my-auto"        href="{{ pageMetaData?.awgProjectUrl }}">        <span class="webernlogo">            ANTON WEBERN <br />            <span>GESAMTAUSGABE</span>        </span>    </a>    <!-- Toggle button -->    <button        type="button"        class="navbar-toggler"        (click)="toggleNav()"        [attr.aria-expanded]="!isCollapsed"        aria-controls="collapsibleNavbar">        <span class="navbar-toggler-icon"></span>    </button>    <!-- collapsible navigation menu -->    <!-- justify content between (left, center, right) from sm devices up -->    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">        <!-- left nav links, no left margin from sm devices up, auto vertical align -->        <ul class="navbar-nav ms-sm-0 my-auto">            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/home\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">awg-app</span>                    <fa-icon [icon]="faHome"></fa-icon>                    <span class="sr-only">(current)</span>                </a>            </li>            <li class="nav-item" ngbDropdown [class.active]="isActiveRoute(\'/edition\')">                <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline">Edition</span>                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>                </a>                <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">                    <h6 class="dropdown-header">Allgemein</h6>                    <a class="dropdown-item" [routerLink]="[\'/edition/series\']" routerLinkActive="active"                        >Editionsübersicht</a                    >                    <a class="dropdown-item" [routerLink]="[\'/edition/row-tables\']" routerLinkActive="active"                        >Reihentabellen</a                    >                    <div class="dropdown-divider"></div>                    <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>                    <div class="dropdown-divider"></div>                    <div *ngFor="let editionWork of EDITION_WORKS">                        <h6 class="dropdown-header">{{ editionWork.work.full }}</h6>                        <a                            class="dropdown-item"                            [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"                            routerLinkActive="active"                            >Einleitung</a                        >                        <a                            class="dropdown-item"                            [routerLink]="[editionWork.baseRoute, editionWork.sheetsRoute.route]"                            routerLinkActive="active"                            >Edierter Notentext</a                        >                        <a                            class="dropdown-item"                            [routerLink]="[editionWork.baseRoute, editionWork.reportRoute.route]"                            routerLinkActive="active"                            >Kritischer Bericht</a                        >                        <div class="dropdown-divider"></div>                    </div>                </div>            </li>            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/structure\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>                    <fa-icon [icon]="faNetworkWired"></fa-icon>                </a>            </li>        </ul>        <!-- END left navbar -->        <!-- brand to display on center on sm devices, auto vertical align -->        <a            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none me-0 my-auto"            href="{{ pageMetaData?.awgProjectUrl }}">            <span class="webernlogo">                ANTON WEBERN <br />                <span>GESAMTAUSGABE</span>            </span>        </a>        <!-- right nav links, auto vertical align -->        <ul class="navbar-nav my-auto">            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/data\']" routerLinkActive="active">                    <!-- do not show text on sm devices -->                    <span class="d-sm-none d-lg-inline">Suche</span>                    <fa-icon [icon]="faSearch"></fa-icon>                </a>            </li>            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/contact\']" routerLinkActive="active">                    <!-- do not show text on sm devices-->                    <span class="d-sm-none d-lg-inline">Kontakt</span>                    <fa-icon [icon]="faEnvelope"></fa-icon>                </a>            </li>        </ul>        <!-- END right navbar -->    </div>    <!-- END collapse --></nav></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'NavbarComponent'};
 </script>

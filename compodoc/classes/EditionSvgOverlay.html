@@ -96,6 +96,10 @@ to store the data of a svg overlay.</p>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#isSelected" >isSelected</a>
+                            </li>
+                            <li>
                                 <a href="#type" >type</a>
                             </li>
                             <li>
@@ -135,12 +139,12 @@ to store the data of a svg overlay.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(typeValue: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlayTypes</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>constructor(typeValue: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlayTypes</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, isSelected?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/models/edition-svg-overlay.model.ts:32</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/models/edition-svg-overlay.model.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -193,6 +197,22 @@ to store the data of a svg overlay.</p>
 
                                                         </td>
                                                 </tr>
+                                                <tr>
+                                                        <td>isSelected</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The given boolean value indicating whether the overlay is selected.</p>
+
+                                                        </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -233,6 +253,39 @@ to store the data of a svg overlay.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The id of an svg overlay.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSelected"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>isSelected</b></span>
+                        <a href="#isSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/models/edition-svg-overlay.model.ts:37</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>A boolean value indicating whether the overlay is selected.</p>
 </div>
                 </td>
             </tr>
@@ -332,8 +385,8 @@ to store the data of a svg overlay.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/app/views/edition-view/models/edition-svg-overlay.model.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="67"
+                            class="link-to-prism">src/app/views/edition-view/models/edition-svg-overlay.model.ts:67</a></div>
                 </td>
             </tr>
 
@@ -430,17 +483,25 @@ export class EditionSvgOverlay {
     typeKey: string;
 
     /**
+     * A boolean value indicating whether the overlay is selected.
+     */
+    isSelected?: boolean;
+
+    /**
      * Constructor of the EditionSvgOverlay class.
      *
      * It initializes the class with values from the EditionSvgOverlayTypes and an id.
      *
      * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
      * @param {string} id The given id of the overlay.
+     * @param {boolean} [isSelected] The given boolean value indicating whether the overlay is selected.
+     *
      */
-    constructor(typeValue: EditionSvgOverlayTypes, id: string) {
+    constructor(typeValue: EditionSvgOverlayTypes, id: string, isSelected?: boolean) {
         this.type &#x3D; typeValue;
         this.id &#x3D; id;
         this.typeKey &#x3D; this._getEnumKeyFromValue(typeValue);
+        this.isSelected &#x3D; isSelected || false;
     }
 
     /**

@@ -97,6 +97,7 @@ in a svg sheet json file.</p>
                                 <a href="#content" >content</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#convolute" >convolute</a>
                             </li>
                             <li>
@@ -162,6 +163,7 @@ in a svg sheet json file.</p>
                 <td class="col-md-4">
                     <a name="convolute"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>convolute</b></span>
                         <a href="#convolute"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -307,7 +309,7 @@ export class EditionSvgSheet {
     /**
      * The associated convolute of the sheet.
      */
-    convolute: string;
+    convolute?: string;
 }
 
 /**

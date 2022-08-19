@@ -1813,7 +1813,7 @@ export class GraphVisualizerService {
                         &#x60;Prefix &#x27;${qName}&#x27; not declared in SPARQL and/or Turtle header. Searching in default namespaces...&#x60;
                     );
 
-                    const defaultNamespace &#x3D; this.prefixPipe.transform(qName, PrefixForm.long);
+                    const defaultNamespace &#x3D; this.prefixPipe.transform(qName, PrefixForm.LONG);
                     if (defaultNamespace !&#x3D;&#x3D; qName) {
                         const missingPrefix &#x3D; &#x60;PREFIX ${qName} &lt;${defaultNamespace}&gt;\n&#x60;;
                         missingNamespacesStr +&#x3D; missingPrefix;
@@ -2218,7 +2218,7 @@ export class GraphVisualizerService {
                         if (b[i][varKeys[key]][&#x27;value&#x27;]) {
                             b[i][varKeys[key]][&#x27;label&#x27;] &#x3D; this.prefixPipe.transform(
                                 b[i][varKeys[key]][&#x27;value&#x27;],
-                                PrefixForm.short
+                                PrefixForm.SHORT
                             );
 
                             // Transform integer values to numbers
