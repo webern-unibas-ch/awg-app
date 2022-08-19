@@ -16,6 +16,7 @@ import {
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { UtilityService } from '@awg-core/services';
 
 /**
  * The EditionSheets component.
@@ -82,11 +83,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedConvolute: FolioConvolute;
 
     /**
-     * Public variable: selectedOverlay.
+     * Public variable: selectedOverlays.
      *
-     * It keeps the selected svg overlay.
+     * It keeps the selected svg overlays.
      */
-    selectedOverlay: EditionSvgOverlay;
+    selectedOverlays: EditionSvgOverlay[];
 
     /**
      * Public variable: selectedSvgSheet.
@@ -127,17 +128,19 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * Constructor of the EditionSheetsComponent.
      *
      * It declares private instances of
-     * EditionDataService and EditionService,
+     * EditionDataService, EditionService, UtilityService,
      * ActivatedRoute and Router.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {UtilityService} utils Instance of the UtilityService.
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular Router.
      */
     constructor(
         private editionDataService: EditionDataService,
         private editionService: EditionService,
+        private utils: UtilityService,
         private route: ActivatedRoute,
         private router: Router
     ) {}
@@ -206,12 +209,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
         const convolute: FolioConvolute = this._findConvolute(id);
 
-        if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
+        if (!this.utils.isNotEmptyArray(convolute.folios)) {
             // If no folio data provided, open modal
             if (convolute.linkTo) {
                 this.modal.open(convolute.linkTo);
+                return;
             }
-            return;
         }
         this.selectedConvolute = convolute;
         this._filterSvgSheets();
@@ -226,24 +229,24 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onOverlaySelect.
      *
-     * It selects a given overlay and its corresponding textcritical comments.
+     * It finds the corresponding textcritical comments to a list of selected overlays.
      *
-     * @param {EditionSvgOverlay} overlay The given svg overlay.
-     * @returns {void} Sets the selectedOverlay,
-     * selectedTextcriticalComments and showTka variable.
+     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @returns {void} Sets the selectedOverlay, selectedTextcriticalComments and showTka variable.
      */
-    onOverlaySelect(overlay: EditionSvgOverlay): void {
+    onOverlaySelect(overlays: EditionSvgOverlay[]): void {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return;
         }
-        const textcriticalComments: TextcriticalComment[] = this._findTextCriticalComments();
 
-        this.selectedOverlay = overlay;
-        this.selectedTextcriticalComments = this.editionService.getTextcriticalComments(
+        const textcriticalComments: TextcriticalComment[] = this._findTextcriticalComments();
+
+        this.selectedTextcriticalComments = this.editionService.getTextcriticalCommentsForOverlays(
             textcriticalComments,
-            this.selectedOverlay
+            overlays
         );
-        this.showTkA = this.selectedTextcriticalComments !== [];
+
+        this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
     }
 
     /**
@@ -261,12 +264,15 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         if (!this.selectedConvolute) {
             this.onConvoluteSelect('');
         }
+
+        // Clear overlay selections
+        this.onOverlaySelect([]);
+
         // Set default id if none is given
         if (!id) {
             id = this.filteredSvgSheetsData.sheets[0].id;
         }
         this.selectedSvgSheet = this._findSvgSheet(id);
-        this._clearOverlaySelection();
 
         const navigationExtras: NavigationExtras = {
             queryParams: { convolute: this.selectedConvolute.convoluteId, sketch: id },
@@ -288,18 +294,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         // Now let's also complete the subject itself
         this._destroyed$.complete();
-    }
-
-    /**
-     * Private method: _clearOverlaySelection.
-     *
-     * It clears the selected overlay and TkA.
-     *
-     * @returns {void} Clears the selection.
-     */
-    private _clearOverlaySelection(): void {
-        this.selectedOverlay = null;
-        this.showTkA = false;
     }
 
     /**
@@ -365,22 +359,32 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _findTextCriticalComments.
+     * Private method: _findTextcriticalComments.
      *
      * It finds the textcritical comments for an svg overlay.
      *
      * @returns {TextcriticalComment[]} The textcritical comments that were found.
      */
-    private _findTextCriticalComments(): TextcriticalComment[] {
+    private _findTextcriticalComments(): TextcriticalComment[] {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return undefined;
         }
+
         // Find index of the selected svg sheet id in textcriticsData.textcritics array
         const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
             textcritic => textcritic.id === this.selectedSvgSheet.id
         );
-        // Return the comments with the given id
-        return this.textcriticsData.textcritics[textcriticsIndex].comments;
+
+        if (
+            textcriticsIndex > -1 &&
+            this.textcriticsData.textcritics[textcriticsIndex] &&
+            this.textcriticsData.textcritics[textcriticsIndex].comments
+        ) {
+            // Return the comments with the given id
+            return this.textcriticsData.textcritics[textcriticsIndex].comments;
+        }
+        // Return empty array if no comments were found
+        return [];
     }
 
     /**
@@ -457,5 +461,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _selectSvgSheet(queryParams: ParamMap): void {
         const sheetId: string = this._getSketchParams(queryParams);
         this.selectedSvgSheet = this._findSvgSheet(sheetId);
+        this.selectedTextcriticalComments = this._findTextcriticalComments();
     }
 }

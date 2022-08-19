@@ -1,4 +1,8 @@
-<div id="awg-force-graph-container" class="awg-forc-graph-panel-container" [ngStyle]="{ 'height.px': height }" #graph>
+<div
+    #graphContainer
+    id="awg-force-graph-container"
+    class="awg-force-graph-panel-container"
+    [ngStyle]="{ 'height.px': height }">
     <div class="awg-force-graph-icon-bar">
         <!-- Slider -->
         <div class="input-group input-group-sm awg-force-graph-zoom-slider-container float-start mb-3">
@@ -13,7 +17,7 @@
                 aria-describedby="slider-label"
                 [min]="sliderConfig.min"
                 [max]="sliderConfig.max"
-                [step]="sliderConfig.step"
+                [step]="sliderConfig.stepSize"
                 [(ngModel)]="sliderConfig.value"
                 (ngModelChange)="onZoomChange($event)" />
             <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">

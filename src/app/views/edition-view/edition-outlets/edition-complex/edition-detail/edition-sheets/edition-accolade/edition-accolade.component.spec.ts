@@ -11,6 +11,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionData } from '@testing/mock-data';
 
 import {
     EditionSvgOverlay,
@@ -21,7 +22,6 @@ import {
 } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
-import { mockEditionData } from '@testing/mock-data';
 
 // Mock components
 @Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
@@ -34,18 +34,16 @@ class EditionSvgSheetNavStubComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet-list', template: '' })
-class EditionSvgSheetListStubComponent {
-    @Input()
-    svgSheetsData: EditionSvgSheetList;
+@Component({ selector: 'awg-edition-svg-sheet', template: '' })
+class EditionSvgSheetStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
-    @Input()
-    selectedOverlay: EditionSvgOverlay;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
-    @Output()
-    selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-edition-tka-table', template: '' })
@@ -65,13 +63,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
-    let selectOverlaySpy: Spy;
-    let selectOverlayRequestEmitSpy: Spy;
+    let selectOverlaysSpy: Spy;
+    let selectOverlaysRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
     let expectedSvgSheetsData: EditionSvgSheetList;
-    let expectedOverlay: EditionSvgOverlay;
+    let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcriticalComments: TextcriticalComment[];
@@ -92,7 +90,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             imports: [NgbAccordionWithConfigModule],
             declarations: [
                 EditionAccoladeComponent,
-                EditionSvgSheetListStubComponent,
+                EditionSvgSheetStubComponent,
                 EditionSvgSheetNavStubComponent,
                 EditionTkaTableStubComponent,
             ],
@@ -111,9 +109,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet] };
         expectedSelectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
 
-        const type = EditionSvgOverlayTypes.measure;
-        const id = '10';
-        expectedOverlay = new EditionSvgOverlay(type, id);
+        const type = EditionSvgOverlayTypes.item;
+        const id = 'tka-1';
+        const overlay = new EditionSvgOverlay(type, id, true);
+        expectedOverlays = [overlay];
         expectedShowTka = true;
 
         // Spies on component functions
@@ -121,8 +120,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectOverlaySpy = spyOn(component, 'selectOverlay').and.callThrough();
-        selectOverlayRequestEmitSpy = spyOn(component.selectOverlayRequest, 'emit').and.callThrough();
+        selectOverlaysSpy = spyOn(component, 'selectOverlays').and.callThrough();
+        selectOverlaysRequestEmitSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
@@ -132,19 +131,19 @@ describe('EditionAccoladeComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have svgSheetsData', () => {
+        it('should not have `svgSheetsData`', () => {
             expect(component.svgSheetsData).toBeUndefined();
         });
 
-        it('should not have selectedOverlay', () => {
-            expect(component.selectedOverlay).toBeUndefined();
+        it('should not have `selectedSvgSheet`', () => {
+            expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('should not have selectedTextcriticalComments', () => {
+        it('should not have `selectedTextcriticalComments`', () => {
             expect(component.selectedTextcriticalComments).toBeUndefined();
         });
 
-        it('should not have showTkA', () => {
+        it('should not have `showTkA`', () => {
             expect(component.showTkA).toBeUndefined();
         });
 
@@ -163,7 +162,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.svgSheetsData = expectedSvgSheetsData;
-            component.selectedOverlay = expectedOverlay;
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedTextcriticalComments = expectedSelectedTextcriticalComments;
             component.showTkA = expectedShowTka;
@@ -177,11 +175,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
             expect(component.svgSheetsData)
                 .withContext(`should equal ${expectedSvgSheetsData}`)
                 .toEqual(expectedSvgSheetsData);
-        });
-
-        it('should have `selectedOverlay` input', () => {
-            expect(component.selectedOverlay).toBeDefined();
-            expect(component.selectedOverlay).withContext(`should be ${expectedOverlay}`).toBe(expectedOverlay);
         });
 
         it('should have `selectedSvgSheet` input', () => {
@@ -233,7 +226,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const buttonCmp0 = buttonDes[0].nativeElement;
                 const buttonCmp1 = buttonDes[1].nativeElement;
 
-                const expectedTitle0 = 'Edierter Notentext';
+                const expectedTitle0 = 'Edierte Notentexte';
                 const expectedTitle1 = 'Hinweise zur Nutzung';
 
                 expect(buttonCmp0.textContent).toBeDefined();
@@ -295,63 +288,24 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                     const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetListStubComponent, 1, 1);
-                });
-
-                it('... should pass down svgSheetsData to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetListStubComponent,
-                        1,
-                        1
-                    );
-                    const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetListStubComponent
-                    ) as EditionSvgSheetListStubComponent;
-
-                    expect(sheetCmp.svgSheetsData).toBeTruthy();
-                    expect(sheetCmp.svgSheetsData)
-                        .withContext(`should equal ${expectedSvgSheetsData}`)
-                        .toEqual(expectedSvgSheetsData);
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetStubComponent, 1, 1);
                 });
 
                 it('... should pass down selectedSvgSheet to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetListStubComponent,
-                        1,
-                        1
-                    );
+                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
                     const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetListStubComponent
-                    ) as EditionSvgSheetListStubComponent;
+                        EditionSvgSheetStubComponent
+                    ) as EditionSvgSheetStubComponent;
 
                     expect(sheetCmp.selectedSvgSheet).toBeTruthy();
                     expect(sheetCmp.selectedSvgSheet)
                         .withContext(`should equal ${expectedSvgSheet}`)
                         .toEqual(expectedSvgSheet);
                 });
-
-                it('... should pass down selectedOverlay to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetListStubComponent,
-                        1,
-                        1
-                    );
-                    const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetListStubComponent
-                    ) as EditionSvgSheetListStubComponent;
-
-                    expect(sheetCmp.selectedOverlay).toBeTruthy();
-                    expect(sheetCmp.selectedOverlay)
-                        .withContext(`should equal ${expectedOverlay}`)
-                        .toEqual(expectedOverlay);
-                });
             });
 
             describe('EditionTkaTableComponent', () => {
-                it('... should contain no footer div if showTka=false', () => {
+                it('... should contain no footer div if showTka is false', () => {
                     component.showTkA = false;
                     detectChangesOnPush(fixture);
 
@@ -362,18 +316,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
                 });
 
-                it('... should contain no footer div if no textcriticalComments selected', () => {
-                    component.selectedTextcriticalComments = undefined;
-                    detectChangesOnPush(fixture);
-
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
-
-                    getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
-                });
-
-                it('... should contain one footer div if showTka=true and textcriticalComments selected', () => {
+                it('... should contain one footer div if showTka is true', () => {
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
                     const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
@@ -394,10 +337,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                     expect(headerCmp.textContent).toBeTruthy();
                     expect(headerCmp.textContent.trim())
-                        .withContext(
-                            `should be 'Textkritischer Kommentar (${expectedOverlay.type} ${expectedOverlay.id}):'`
-                        )
-                        .toBe(`Textkritischer Kommentar (${expectedOverlay.type} ${expectedOverlay.id}):`);
+                        .withContext(`should be 'Textkritischer Kommentar:`)
+                        .toBe(`Textkritischer Kommentar:`);
                 });
 
                 it('... should contain one EditionTkaTableComponent (stubbed) in footer div', () => {
@@ -465,54 +406,32 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
-        describe('#selectOverlay', () => {
-            it('... should trigger on selectOverlayRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetListStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(
-                    EditionSvgSheetListStubComponent
-                ) as EditionSvgSheetListStubComponent;
+        describe('#selectOverlays', () => {
+            it('... should trigger on selectOverlaysRequest event from EditionSvgSheetComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
 
-                sheetCmp.selectOverlayRequest.emit(expectedOverlay);
+                sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
 
-                expectSpyCall(selectOverlaySpy, 1, expectedOverlay);
-            });
-
-            it('... should not emit anything if no overlay.type is provided', () => {
-                const type = undefined;
-                const id = '10';
-                const overlay = new EditionSvgOverlay(type, id);
-
-                component.selectOverlay(overlay);
-
-                expectSpyCall(selectOverlayRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should not emit anything if no overlay.id is provided', () => {
-                const type = EditionSvgOverlayTypes.measure;
-                const id = undefined;
-                const overlay = new EditionSvgOverlay(type, id);
-
-                component.selectOverlay(overlay);
-
-                expectSpyCall(selectOverlayRequestEmitSpy, 0, undefined);
+                expectSpyCall(selectOverlaysSpy, 1, [expectedOverlays]);
             });
 
             it('... should emit overlay of provided type and id', () => {
-                component.selectOverlay(expectedOverlay);
+                component.selectOverlays(expectedOverlays);
 
-                expectSpyCall(selectOverlayRequestEmitSpy, 1, expectedOverlay);
+                expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
             });
 
             it('... should emit correct overlay of provided type and id', () => {
-                component.selectOverlay(expectedOverlay);
+                component.selectOverlays(expectedOverlays);
 
-                expectSpyCall(selectOverlayRequestEmitSpy, 1, expectedOverlay);
+                expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
 
-                // Trigger another overlay
-                const otherOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '11');
-                component.selectOverlay(otherOverlay);
+                // Trigger other overlays
+                const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-2')];
+                component.selectOverlays(otherOverlays);
 
-                expectSpyCall(selectOverlayRequestEmitSpy, 2, otherOverlay);
+                expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);
             });
         });
 
@@ -529,10 +448,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetListStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(
-                    EditionSvgSheetListStubComponent
-                ) as EditionSvgSheetListStubComponent;
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
 
                 sheetCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 

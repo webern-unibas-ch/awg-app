@@ -22,16 +22,16 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { SliderConfig } from '@awg-shared/shared-models';
+import { D3Selection, D3ZoomBehaviour } from '@awg-app/views/edition-view/models';
 import {
     D3DragBehaviour,
-    D3Selection,
     D3Simulation,
     D3SimulationData,
     D3SimulationLink,
     D3SimulationNode,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
-    D3ZoomBehaviour,
     PrefixForm,
     Triple,
 } from '../models';
@@ -94,7 +94,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the reference to the element containing the graph.
      */
-    @ViewChild('graph', { static: true }) private _graphContainer: ElementRef;
+    @ViewChild('graphContainer', { static: true }) private _graphContainer: ElementRef;
 
     /**
      * ViewChild variable: _sliderInput.
@@ -138,13 +138,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = {
-        initial: 1,
-        min: 0.1,
-        max: 3,
-        step: 1 / 100,
-        value: 1,
-    };
+    sliderConfig = new SliderConfig(1, 0.1, 3, 1 / 100, 1);
 
     /**
      * Private variable: _svg.
@@ -232,8 +226,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         }
 
         // Calculate new width & height
-        this._divWidth = this._getContainerWidth(this._graphContainer);
-        this._divHeight = this._getContainerHeight(this._graphContainer);
+        this._divWidth = this._getContainerDimensions(this._graphContainer).width;
+        this._divHeight = this._getContainerDimensions(this._graphContainer).height;
 
         // Fire resize event
         this._resize$.next(true);
@@ -386,19 +380,29 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             return;
         }
 
-        // Get container width & height
-        this._divWidth = this._divWidth
-            ? this._divWidth
-            : this._getContainerWidth(this._graphContainer)
-            ? this._getContainerWidth(this._graphContainer)
-            : 400;
-        this._divHeight = this.height
-            ? this.height
-            : this._getContainerHeight(this._graphContainer)
-            ? this._getContainerHeight(this._graphContainer)
-            : 500;
-        // Leave some space for icon bar at the top
-        this._divHeight = this._divHeight - 20;
+        // Get container dimensions
+        let width;
+        let height;
+
+        if (this._divWidth) {
+            width = this._divWidth;
+        } else if (this._getContainerDimensions(this._graphContainer).width) {
+            width = this._getContainerDimensions(this._graphContainer).width;
+        } else {
+            width = 400;
+        }
+
+        if (this._divHeight) {
+            height = this._divHeight;
+        } else if (this._getContainerDimensions(this._graphContainer).height) {
+            height = this._getContainerDimensions(this._graphContainer).height;
+        } else {
+            height = 500;
+        }
+
+        this._divWidth = width;
+        // Leave some space for icon bar at the top and the bottom
+        this._divHeight = height - 45;
 
         // ==================== Add SVG =====================
         if (!this._svg) {
@@ -641,7 +645,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             // Rdf:type
             predicateNode.label === 'a' ||
             predicateNode.label === 'rdf:type' ||
-            predicateNode.label === this.prefixPipe.transform('rdf:type', PrefixForm.long)
+            predicateNode.label === this.prefixPipe.transform('rdf:type', PrefixForm.LONG)
         );
     }
 
@@ -776,35 +780,19 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: _getContainerWidth.
+     * Private method: _getContainerDimensions.
      *
-     * It returns the clientWidth of a given container.
-     *
-     * @param {ElementRef} container The given container element.
-     *
-     * @returns {number} The container width.
-     */
-    private _getContainerWidth(container: ElementRef): number {
-        if (!container || !container.nativeElement) {
-            return null;
-        }
-        return container.nativeElement.clientWidth;
-    }
-
-    /**
-     * Private method: _getContainerHeight.
-     *
-     * It returns the clientHeight of a given container.
+     * It returns the dimensions (clientWidth & clientHeight) of a given container.
      *
      * @param {ElementRef} container The given container element.
      *
-     * @returns {number} The container height.
+     * @returns { width: number; height: number } The container dimensions.
      */
-    private _getContainerHeight(container: ElementRef): number {
+    private _getContainerDimensions(container: ElementRef): { width: number; height: number } {
         if (!container || !container.nativeElement) {
             return null;
         }
-        return container.nativeElement.clientHeight;
+        return { width: container.nativeElement.clientWidth, height: container.nativeElement.clientHeight };
     }
 
     /**
@@ -845,7 +833,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {number} The rounded value.
      */
     private _roundToNearestScaleStep(value: number): number {
-        const steps = this.sliderConfig.step;
+        const steps = this.sliderConfig.stepSize;
 
         // Count decimals of a given value
         // Cf. https://stackoverflow.com/a/17369245
@@ -885,9 +873,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // Initial Graph from triples
         triples.forEach((triple: Triple) => {
-            const subjId = this.prefixPipe.transform(triple.subject, PrefixForm.short);
-            const predId = this.prefixPipe.transform(triple.predicate, PrefixForm.short);
-            let objId = this.prefixPipe.transform(triple.object, PrefixForm.short);
+            const subjId = this.prefixPipe.transform(triple.subject, PrefixForm.SHORT);
+            const predId = this.prefixPipe.transform(triple.predicate, PrefixForm.SHORT);
+            let objId = this.prefixPipe.transform(triple.object, PrefixForm.SHORT);
 
             // Check if object is number & round decimal numbers to 2 decimals
             if (!isNaN(objId)) {

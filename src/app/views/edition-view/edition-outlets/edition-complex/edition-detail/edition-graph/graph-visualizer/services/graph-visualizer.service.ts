@@ -183,7 +183,7 @@ export class GraphVisualizerService {
                         `Prefix '${qName}' not declared in SPARQL and/or Turtle header. Searching in default namespaces...`
                     );
 
-                    const defaultNamespace = this.prefixPipe.transform(qName, PrefixForm.long);
+                    const defaultNamespace = this.prefixPipe.transform(qName, PrefixForm.LONG);
                     if (defaultNamespace !== qName) {
                         const missingPrefix = `PREFIX ${qName} <${defaultNamespace}>\n`;
                         missingNamespacesStr += missingPrefix;
@@ -588,7 +588,7 @@ export class GraphVisualizerService {
                         if (b[i][varKeys[key]]['value']) {
                             b[i][varKeys[key]]['label'] = this.prefixPipe.transform(
                                 b[i][varKeys[key]]['value'],
-                                PrefixForm.short
+                                PrefixForm.SHORT
                             );
 
                             // Transform integer values to numbers

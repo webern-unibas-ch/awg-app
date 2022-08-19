@@ -10,7 +10,6 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { OrderModule } from 'ngx-order-pipe';
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 
 //
@@ -25,6 +24,7 @@ import { TableComponent } from './table/table.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
 import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
+import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-handle-button-group.component';
 
 //
 // Shared directives
@@ -32,6 +32,7 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
 // Shared pipes
+import { OrderByPipe } from './order-by-pipe/order-by.pipe';
 
 /**
  * The shared module.
@@ -49,7 +50,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
-        OrderModule,
         SharedNgbootstrapModule,
     ],
     declarations: [
@@ -63,7 +63,9 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         TablePaginationComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
+        ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
+        OrderByPipe,
     ],
     exports: [
         CommonModule,
@@ -75,7 +77,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
-        OrderModule,
         SharedNgbootstrapModule,
 
         AddressComponent,
@@ -87,7 +88,9 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
         TableComponent,
         ToastComponent,
         TwelveToneSpinnerComponent,
+        ViewHandleButtonGroupComponent,
         ExternalLinkDirective,
+        OrderByPipe,
     ],
 })
 export class SharedModule {}

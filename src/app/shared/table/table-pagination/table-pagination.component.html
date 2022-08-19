@@ -18,7 +18,7 @@
                     [value]="page"
                     (keyup.enter)="selectPage(i.value)"
                     (blur)="selectPage(i.value)"
-                    (input)="formatInput($any($event).target)"
+                    (input)="replaceNonNumberInput($any($event).target)"
                     aria-labelledby="paginationInputLabel paginationDescription"
                     style="width: 3rem" />
                 <span id="paginationDescription" class="col-form-label text-nowrap px-2"> von {{ pages.length }}</span>

@@ -1,7 +1,7 @@
 /**
  * The MetaSectionTypes enumeration.
  *
- * It stores the possible meta data section types.
+ * It stores the possible metadata section types.
  */
 export enum MetaSectionTypes {
     page = 'page',
@@ -12,7 +12,7 @@ export enum MetaSectionTypes {
 /**
  * The MetaPerson class.
  *
- * It is used to store the meta data about a Person.
+ * It is used to store the metadata about a Person.
  */
 export class MetaPerson {
     /**
@@ -30,7 +30,7 @@ export class MetaPerson {
  * The MetaPage class.
  *
  * It is used in the context of the app framework
- * to store the meta data for the main framework.
+ * to store the metadata for the main framework.
  */
 export class MetaPage {
     /**
@@ -83,7 +83,7 @@ export class MetaPage {
  * The MetaStructure class.
  *
  * It is used in the context of the structure view
- * to store the meta data about the structure overview.
+ * to store the metadata about the structure overview.
  */
 export class MetaStructure {
     /**
@@ -101,7 +101,7 @@ export class MetaStructure {
  * The MetaContact class.
  *
  * It is used in the context of the contact view
- * to store the meta data about contact information.
+ * to store the metadata about contact information.
  */
 export class MetaContact {
     /**
@@ -178,21 +178,21 @@ export class MetaContact {
  * The Meta class.
  *
  * It is used in the context of the app framework
- * to store the meta data for different parts of the app.
+ * to store the metadata for different parts of the app.
  */
 export class Meta {
     /**
-     * The meta data for the main app framework.
+     * The metadata for the main app framework.
      */
     page: MetaPage;
 
     /**
-     * The meta data for the structure view.
+     * The metadata for the structure view.
      */
     structure: MetaStructure;
 
     /**
-     * The meta data for the contact view.
+     * The metadata for the contact view.
      */
     contact: MetaContact;
 }

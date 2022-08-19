@@ -28,14 +28,14 @@ export class ContactInfoComponent implements OnInit {
     /**
      * Public variable: contactMetaData.
      *
-     * It keeps the contact meta data for the contact-info.
+     * It keeps the contact metadata for the contact-info.
      */
     contactMetaData: MetaContact;
 
     /**
      * Public variable: pageMetaData.
      *
-     * It keeps the page meta data for the contact-info.
+     * It keeps the page metadata for the contact-info.
      */
     pageMetaData: MetaPage;
 
@@ -57,7 +57,7 @@ export class ContactInfoComponent implements OnInit {
      * Constructor of the ContactInfoComponent.
      *
      * It declares a private CoreService instance
-     * to get the meta data and a private DomSanitizer instance.
+     * to get the metadata and a private DomSanitizer instance.
      *
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {DomSanitizer} sanitizer Instance of the Angular DomSanitizer.
@@ -79,7 +79,7 @@ export class ContactInfoComponent implements OnInit {
      * Public method: provideMetaData.
      *
      * It calls the CoreService to provide
-     * the meta data for the contact-info.
+     * the metadata for the contact-info.
      *
      * @returns {void} Sets the pageMetaData variable.
      */

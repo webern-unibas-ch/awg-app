@@ -1,23 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Observable, of as observableOf } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
+import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
-
-import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { SearchResultListComponent } from './search-result-list.component';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({ selector: 'awg-table', template: '' })
 class TableStubComponent {
@@ -93,8 +92,7 @@ describe('SearchResultListComponent', () => {
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
         expectedSearchResultText = '';
 
-        expectedSearchParams = new SearchParams();
-        expectedSearchParams.view = SearchResultsViewTypes.table;
+        expectedSearchParams = new SearchParams('', '5', '0', ViewHandleTypes.TABLE);
 
         // Spies on service functions
         getSearchResponseWithQuerySpy = spyOn(dataStreamerService, 'getSearchResponseWithQuery').and.returnValue(
@@ -107,14 +105,14 @@ describe('SearchResultListComponent', () => {
     });
 
     it('injected conversion service should use provided mockValue', () => {
-        expect(conversionService === mockConversionService).toBe(true);
+        expect(conversionService === mockConversionService).toBeTrue();
     });
 
     it('injected datastreamer service should use provided mockValue', () => {
-        expect(dataStreamerService === mockDataStreamerService).toBe(true);
+        expect(dataStreamerService === mockDataStreamerService).toBeTrue();
     });
 
     it('injected sideinfo service should use provided mockValue', () => {
-        expect(sideInfoService === mockSideInfoService).toBe(true);
+        expect(sideInfoService === mockSideInfoService).toBeTrue();
     });
 });

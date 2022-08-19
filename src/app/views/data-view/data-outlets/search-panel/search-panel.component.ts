@@ -8,15 +8,9 @@ import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { SearchResponseJson } from '@awg-shared/api-objects';
-
+import { ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { DataApiService } from '@awg-views/data-view/services';
-import {
-    SearchParams,
-    SearchResultsViewTypes,
-    SearchResponseWithQuery,
-    SearchQuery,
-    ExtendedSearchParams,
-} from '@awg-views/data-view/models';
+import { SearchParams, SearchResponseWithQuery, SearchQuery, ExtendedSearchParams } from '@awg-views/data-view/models';
 
 /**
  * The SearchPanel component.
@@ -235,12 +229,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // View has not changed
             this.viewChanged = false;
 
-            this.searchParams = {
-                query: this.searchParams.query,
-                nRows: this.searchParams.nRows,
-                startAt: requestedStartAt,
-                view: this.searchParams.view,
-            };
+            this.searchParams = new SearchParams(
+                this.searchParams.query,
+                this.searchParams.nRows,
+                requestedStartAt,
+                this.searchParams.viewType
+            );
             // Route to new params
             this._routeToSelf(this.searchParams);
         }
@@ -262,12 +256,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // View has not changed
             this.viewChanged = false;
 
-            this.searchParams = {
-                query: this.searchParams.query,
-                nRows: requestedRows,
-                startAt: '0',
-                view: this.searchParams.view,
-            };
+            this.searchParams = new SearchParams(
+                this.searchParams.query,
+                requestedRows,
+                '0',
+                this.searchParams.viewType
+            );
 
             // Route to new params
             this._routeToSelf(this.searchParams);
@@ -290,12 +284,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // View has not changed
             this.viewChanged = false;
 
-            this.searchParams = {
-                query: requestedQuery,
-                nRows: this.searchParams.nRows,
-                startAt: this.searchParams.startAt,
-                view: this.searchParams.view,
-            };
+            this.searchParams = new SearchParams(
+                requestedQuery,
+                this.searchParams.nRows,
+                this.searchParams.startAt,
+                this.searchParams.viewType
+            );
 
             // Route to new search params
             this._routeToSelf(this.searchParams);
@@ -330,21 +324,21 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * after a view change request and triggers the
      * {@link _routeToSelf} method.
      *
-     * @param {string} requestedView The given view.
+     * @param {ViewHandleTypes} requestedViewType The given view type.
      *
      * @returns {void} Sets the search params and routes to itself.
      */
-    onViewChange(requestedView: string): void {
-        if (requestedView !== this.searchParams.view) {
+    onViewChange(requestedViewType: ViewHandleTypes): void {
+        if (requestedViewType !== this.searchParams.viewType) {
             // View has changed
             this.viewChanged = true;
 
-            this.searchParams = {
-                query: this.searchParams.query,
-                nRows: this.searchParams.nRows,
-                startAt: this.searchParams.startAt,
-                view: SearchResultsViewTypes[requestedView],
-            };
+            this.searchParams = new SearchParams(
+                this.searchParams.query,
+                this.searchParams.nRows,
+                this.searchParams.startAt,
+                requestedViewType
+            );
 
             // Route to new params
             this._routeToSelf(this.searchParams);
@@ -371,12 +365,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             query.compop = [];
             query.searchval = [];
         }
-        this.searchParams = {
-            query: query,
-            nRows: '25',
-            startAt: '0',
-            view: SearchResultsViewTypes.table,
-        };
+        this.searchParams = new SearchParams(query, '25', '0', ViewHandleTypes.TABLE);
     }
 
     /**
@@ -429,12 +418,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         }
 
         // Update search params (immutable)
-        this.searchParams = {
-            query: query,
-            nRows: params.get('nrows') || this.searchParams.nRows,
-            startAt: params.get('startAt') || this.searchParams.startAt,
-            view: SearchResultsViewTypes[params.get('view')] || this.searchParams.view,
-        };
+        this.searchParams = new SearchParams(
+            query,
+            params.get('nrows') || this.searchParams.nRows,
+            params.get('startAt') || this.searchParams.startAt,
+            ViewHandleTypes[params.get('view')] || this.searchParams.viewType
+        );
 
         if (routing) {
             this._routeToSelf(this.searchParams);
@@ -533,7 +522,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         }
         qp['nrows'] = sp.nRows;
         qp['startAt'] = sp.startAt;
-        qp['view'] = sp.view;
+        qp['view'] = sp.viewType;
 
         return qp;
     }

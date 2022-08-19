@@ -2,14 +2,14 @@
     <ngb-panel id="awg-accolade-view">
         <ng-template ngbPanelHeader>
             <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
-                <button ngbPanelToggle class="p-0 btn btn-link text-start">Edierter Notentext</button>
+                <button ngbPanelToggle class="p-0 btn btn-link text-start">Edierte Notentexte</button>
                 <button type="button" class="btn btn-sm btn-outline-info" (click)="openModal('HINT_EDITION_SHEETS')">
                     Hinweise zur Nutzung
                 </button>
             </div>
         </ng-template>
         <ng-template ngbPanelContent>
-            <!-- accolade control -->
+            <!-- svg sheet navigation -->
             <awg-edition-svg-sheet-nav
                 *ngIf="svgSheetsData && selectedSvgSheet"
                 [svgSheetsData]="svgSheetsData"
@@ -17,19 +17,18 @@
                 (selectSvgSheetRequest)="selectSvgSheet($event)">
             </awg-edition-svg-sheet-nav>
 
-            <!-- svg panel -->
-            <awg-edition-svg-sheet-list
-                *ngIf="svgSheetsData && selectedSvgSheet"
-                [svgSheetsData]="svgSheetsData"
+            <!-- svg sheet -->
+            <awg-edition-svg-sheet
+                *ngIf="selectedSvgSheet"
                 [selectedSvgSheet]="selectedSvgSheet"
-                [selectedOverlay]="selectedOverlay"
-                (selectSvgSheetRequest)="selectSvgSheet($event)"
-                (selectOverlayRequest)="selectOverlay($event)">
-            </awg-edition-svg-sheet-list>
+                (openModalRequest)="openModal($event)"
+                (selectOverlaysRequest)="selectOverlays($event)"
+                (selectSvgSheetRequest)="selectSvgSheet($event)">
+            </awg-edition-svg-sheet>
 
             <!-- table for TkA -->
-            <div class="panel-footer" *ngIf="showTkA && selectedTextcriticalComments">
-                <h5 class="mt-4">Textkritischer Kommentar ({{ selectedOverlay.type }} {{ selectedOverlay.id }}):</h5>
+            <div class="panel-footer" *ngIf="showTkA">
+                <h5 class="mt-4">Textkritischer Kommentar:</h5>
                 <awg-edition-tka-table
                     [textcriticalComments]="selectedTextcriticalComments"
                     (openModalRequest)="openModal($event)"

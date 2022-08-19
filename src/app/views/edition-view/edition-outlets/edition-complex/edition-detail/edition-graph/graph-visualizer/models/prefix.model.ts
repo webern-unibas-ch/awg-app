@@ -4,8 +4,8 @@
  * It stores the possible prefix forms.
  */
 export enum PrefixForm {
-    short = 'short',
-    long = 'long',
+    SHORT = 'short',
+    LONG = 'long',
 }
 
 /**

@@ -17,7 +17,7 @@ export class FooterCopyrightComponent {
     /**
      * Input variable: pageMetaData.
      *
-     * It keeps the page meta data for the component.
+     * It keeps the page metadata for the component.
      */
     @Input()
     pageMetaData: MetaPage;

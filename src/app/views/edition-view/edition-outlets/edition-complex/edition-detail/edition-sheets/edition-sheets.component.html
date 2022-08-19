@@ -10,11 +10,10 @@
         [svgSheetsData]="filteredSvgSheetsData"
         [selectedSvgSheet]="selectedSvgSheet"
         [selectedTextcriticalComments]="selectedTextcriticalComments"
-        [selectedOverlay]="selectedOverlay"
         [showTkA]="showTkA"
         (openModalRequest)="modal.open($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-        (selectOverlayRequest)="onOverlaySelect($event)">
+        (selectOverlaysRequest)="onOverlaySelect($event)">
     </awg-edition-accolade>
 
     <!-- convolute view -->

@@ -36,9 +36,9 @@ export class TableData {
      * @param {any[]} rows The given table rows.
      */
     constructor(header: string[], rows: any[]) {
-        this.header = header || [''];
-        this.totalRows$ = observableOf(rows) || observableOf([]);
+        this.header = header || [];
+        this.totalRows$ = rows ? observableOf(rows) : observableOf([]);
+        this.paginatedRows$ = rows ? observableOf(rows) : observableOf([]);
         this.filteredRows = rows || [];
-        this.paginatedRows$ = observableOf(rows) || observableOf([]);
     }
 }

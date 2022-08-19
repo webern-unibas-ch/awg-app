@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
- * The CriticsList component.
+ * The TextcriticsList component.
  *
  * It contains the list of textcritical comments
  * of the critical report of the edition view of the app
@@ -48,9 +49,12 @@ export class TextcriticsListComponent {
     /**
      * Constructor of the TextcriticsComponent.
      *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
+     * It declares a public instance of the UtilityService and
+     * initializes the self-referring ref variable needed for CompileHtml library.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor() {
+    constructor(public utils: UtilityService) {
         this.ref = this;
     }
 
@@ -64,6 +68,9 @@ export class TextcriticsListComponent {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -77,19 +84,9 @@ export class TextcriticsListComponent {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
-     * Public method: isNotEmptyArray.
-     *
-     * It checks if a given array of the textcritical comment input
-     * is not empty.
-     *
-     * @param {TextcriticalComment[] | string[]} part The given array input.
-     * @returns {boolean} The boolean result of the check.
-     */
-    isNotEmptyArray(checkArray: TextcriticalComment[] | string[]): boolean {
-        return checkArray && checkArray.constructor === Array && checkArray.length > 0;
     }
 }
