@@ -679,7 +679,14 @@
                                             "measure": "7–13",
                                             "linkTo": ""
                                         }
-                                    ],
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
                                     [
                                         {
                                             "system": "1–2",
@@ -723,8 +730,6 @@
                                         }
                                     ]
                                 ]
-                            }
-                        ]
                     },
                     {
                         "item": "M 38",
@@ -862,7 +867,7 @@
                     {
                         "item": "M 41",
                         "itemLinkTo": "",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 40)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 41)",
                         "folios": [
                             {
                                 "folio": "2v",
