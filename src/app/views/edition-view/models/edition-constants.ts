@@ -300,6 +300,15 @@ export class EditionConstants {
     };
 
     /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines.
+     */
+    static readonly FIRM_JE_NO_2_LIN_12: EditionRoute = {
+        route: 'assets/img/edition/firm-signs/firm_je_no2_lin12.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 2 | 12 linig.',
+    };
+
+    /**
      * The edition route to the assets image of a firm sign: JE No. 15, 16 Lines.
      */
     static readonly FIRM_JE_NO_15_LIN_16: EditionRoute = {
