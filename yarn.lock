@@ -145,7 +145,12 @@
   resolved "https://registry.yarnpkg.com/@angular-eslint/bundled-angular-compiler/-/bundled-angular-compiler-13.5.0.tgz#5b417f7f4503b5588957bb4b963b752e0b76a158"
   integrity sha512-7M/5ilxqPD3ydgqqdLsYs3kBwZgNg2Y6C01B5SEHZNLqLT9kAJa7I4y6GlxCZqejCIh554kdXGeV3abIxFccSg==
 
-"@angular-eslint/eslint-plugin-template@13.5.0", "@angular-eslint/eslint-plugin-template@^13.5.0":
+"@angular-eslint/bundled-angular-compiler@14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/bundled-angular-compiler/-/bundled-angular-compiler-14.1.1.tgz#4ce515c9eb9c434b980643922f1859b7f461fb5d"
+  integrity sha512-/l4741bivWuyA7zDXXjQc/MENOkIGKG6f7b5dTgquEGLyafFNIGXVHbHKD8BYOJ8ou6cheWGGKB9gL/JOltn7w==
+
+"@angular-eslint/eslint-plugin-template@13.5.0":
   version "13.5.0"
   resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-13.5.0.tgz#c7769d045ba792891199f1c9fd1be37ba54c5a49"
   integrity sha512-ZVSXayn8MqYOhYomH2Cjc0azhuUQbY9fp9dKjJZOD64KhP8BYHw8+Ogc9E/FU5oZQ9fKw6A+23NAYKmLNqSAgA==
@@ -154,6 +159,17 @@
     "@typescript-eslint/experimental-utils" "5.27.1"
     aria-query "^4.2.2"
     axobject-query "^2.2.0"
+
+"@angular-eslint/eslint-plugin-template@^14.1.1":
+  version "14.1.1"
+  resolved "https://registry.yarnpkg.com/@angular-eslint/eslint-plugin-template/-/eslint-plugin-template-14.1.1.tgz#5aec67c541a220e4db8e99d22492f05d29382027"
+  integrity sha512-jFvUFx+rn7cqLjsvvZP8Sr0VA9ihYYzaXJHDx5KBVyyA1+VpTecBBKNW9nKW23IcJFwuW2Xxx2lqwj2H8xcTtQ==
+  dependencies:
+    "@angular-eslint/bundled-angular-compiler" "14.1.1"
+    "@typescript-eslint/type-utils" "5.37.0"
+    "@typescript-eslint/utils" "5.37.0"
+    aria-query "5.0.2"
+    axobject-query "3.0.1"
 
 "@angular-eslint/eslint-plugin@13.5.0", "@angular-eslint/eslint-plugin@^13.5.0":
   version "13.5.0"
@@ -2747,6 +2763,16 @@
     debug "^4.3.4"
     tsutils "^3.21.0"
 
+"@typescript-eslint/type-utils@5.37.0":
+  version "5.37.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/type-utils/-/type-utils-5.37.0.tgz#43ed2f567ada49d7e33a6e4b6f9babd060445fe5"
+  integrity sha512-BSx/O0Z0SXOF5tY0bNTBcDEKz2Ec20GVYvq/H/XNKiUorUFilH7NPbFUuiiyzWaSdN3PA8JV0OvYx0gH/5aFAQ==
+  dependencies:
+    "@typescript-eslint/typescript-estree" "5.37.0"
+    "@typescript-eslint/utils" "5.37.0"
+    debug "^4.3.4"
+    tsutils "^3.21.0"
+
 "@typescript-eslint/types@5.27.1":
   version "5.27.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-5.27.1.tgz#34e3e629501349d38be6ae97841298c03a6ffbf1"
@@ -2822,6 +2848,18 @@
     "@typescript-eslint/scope-manager" "5.33.0"
     "@typescript-eslint/types" "5.33.0"
     "@typescript-eslint/typescript-estree" "5.33.0"
+    eslint-scope "^5.1.1"
+    eslint-utils "^3.0.0"
+
+"@typescript-eslint/utils@5.37.0":
+  version "5.37.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.37.0.tgz#7784cb8e91390c4f90ccaffd24a0cf9874df81b2"
+  integrity sha512-jUEJoQrWbZhmikbcWSMDuUSxEE7ID2W/QCV/uz10WtQqfOuKZUqFGjqLJ+qhDd17rjgp+QJPqTdPIBWwoob2NQ==
+  dependencies:
+    "@types/json-schema" "^7.0.9"
+    "@typescript-eslint/scope-manager" "5.37.0"
+    "@typescript-eslint/types" "5.37.0"
+    "@typescript-eslint/typescript-estree" "5.37.0"
     eslint-scope "^5.1.1"
     eslint-utils "^3.0.0"
 
@@ -3284,6 +3322,11 @@ argparse@^2.0.1:
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
   integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
+aria-query@5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/aria-query/-/aria-query-5.0.2.tgz#0b8a744295271861e1d933f8feca13f9b70cfdc1"
+  integrity sha512-eigU3vhqSO+Z8BKDnVLN/ompjhf3pYzecKXz8+whRy+9gZu8n1TCGfwzQUUPnqdHl9ax1Hr9031orZ+UOEYr7Q==
+
 aria-query@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/aria-query/-/aria-query-4.2.2.tgz#0d2ca6c9aceb56b8977e9fed6aed7e15bbd2f83b"
@@ -3416,6 +3459,11 @@ available-typed-arrays@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.4.tgz#9e0ae84ecff20caae6a94a1c3bc39b955649b7a9"
   integrity sha512-SA5mXJWrId1TaQjfxUYghbqQ/hYioKmLJvPJyDuYRtXXenFNMjj4hSSt1Cf1xsuXSXrtxrVC5Ot4eU6cOtBDdA==
+
+axobject-query@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-3.0.1.tgz#160e20533a7010db37726df68b7faf7db9653acd"
+  integrity sha512-vy5JPSOibF9yAeC2PoemRdA1MuSXX7vX5osdoxKf/6OUeppAWekZ3JIJVNWFMH6wgj7uHYyqZUSqE/b/3JLV1A==
 
 axobject-query@^2.2.0:
   version "2.2.0"
