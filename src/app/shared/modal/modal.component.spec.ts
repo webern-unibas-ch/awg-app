@@ -55,12 +55,12 @@ describe('ModalComponent', () => {
     const expectedModalTitle = 'Hinweis';
     const expectedModalCloseLabel = 'Schließen';
     const EXPECTED_MODAL_CONTENT_SNIPPETS = {
-        OP12_SOURCE_NOT_A:
+        OP12_SOURCE_NOT_AVAILABLE:
             '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
         OP12_SHEET_COMING_SOON:
             'Die edierten Notentexte der Skizzen zu M 213 (<strong>A<sup>c</sup></strong>), M 216 (<strong>A<sup>d</sup></strong>) und M 217 (<strong>A<sup>b</sup></strong>) erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
     };
-    const expectedSnippetKey1 = 'OP12_SOURCE_NOT_A';
+    const expectedSnippetKey1 = 'OP12_SOURCE_NOT_AVAILABLE';
     const expectedSnippetKey2 = 'OP12_SHEET_COMING_SOON';
     const expectedUnknownSnippetKey = 'UNKNOWN_SNIPPET_KEY';
 
