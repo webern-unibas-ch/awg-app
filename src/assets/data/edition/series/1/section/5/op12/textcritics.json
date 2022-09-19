@@ -134,11 +134,11 @@
                     "comment": "Schlusstaktstrich gestrichen (siehe T. 23–24)."
                 },
                 {
-                    "svgGroupId": "g1085",
+                    "svgGroupId": "g2767",
                     "measure": "23",
                     "system": "14",
                     "position": "1/4",
-                    "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote &#9838;H/g; dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
+                    "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote &#9838;H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
                 },
                 {
                     "svgGroupId": "g1094",
@@ -152,7 +152,7 @@
                     "measure": "24",
                     "system": "14",
                     "position": "",
-                    "comment": "&#9838;B/&#9838;f/&#9838;h durch Einkreisung getilgt."
+                    "comment": "&#9837;B/&#9838;f/&#9838;h durch Einkreisung getilgt."
                 }
             ]
         },
