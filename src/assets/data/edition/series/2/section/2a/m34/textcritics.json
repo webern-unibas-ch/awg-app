@@ -64,6 +64,13 @@
                     "comment": "b überscheibt es<sup>1</sup>."
                 },
                 {
+                    "svgGroupId": "g9346",
+                    "measure": "15–16",
+                    "system": "7–8",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
                     "svgGroupId": "g7144",
                     "measure": "15",
                     "system": "7",
@@ -78,14 +85,14 @@
                     "comment": "Notenkopf F radiert."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g220",
                     "measure": "15",
                     "system": "7",
                     "position": "6/8",
                     "comment": "f<sup>2</sup> gestrichen."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g8617",
                     "measure": "16",
                     "system": "7–8",
                     "position": "1. Note",
