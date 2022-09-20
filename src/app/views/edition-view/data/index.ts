@@ -7,7 +7,8 @@
  *
  */
 
+import { EDITION_OUTLINE_DATA } from './edition-outline.data';
 import { EDITION_ROW_TABLES_DATA } from './edition-row-tables.data';
 import { EditionWorks } from './edition-works';
 
-export { EDITION_ROW_TABLES_DATA, EditionWorks };
+export { EDITION_OUTLINE_DATA, EDITION_ROW_TABLES_DATA, EditionWorks };

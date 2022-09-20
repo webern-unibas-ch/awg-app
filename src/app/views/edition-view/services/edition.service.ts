@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
+import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
     EditionRoute,
@@ -24,44 +25,6 @@ import {
     providedIn: 'root',
 })
 export class EditionService {
-    /**
-     * Private variable: _editionOutline.
-     *
-     * It keeps the outline of the edition as an array of routes.
-     */
-    private _editionOutline: EditionSeriesRoutes[] = [
-        {
-            series: EditionConstants.SERIES_1,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SECTION_5,
-            ],
-        },
-        {
-            series: EditionConstants.SERIES_2,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SECTION_5,
-            ],
-        },
-        {
-            series: EditionConstants.SERIES_3,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SERIES_3_SECTION_5,
-            ],
-        },
-    ];
-
     /**
      * Private variable for the replay subject´s buffer size.
      */
@@ -169,7 +132,7 @@ export class EditionService {
      * @returns {EditionSeriesRoutes[]} The edition outline.
      */
     getEditionOutline(): EditionSeriesRoutes[] {
-        return this._editionOutline;
+        return EDITION_OUTLINE_DATA;
     }
 
     /**
@@ -193,7 +156,7 @@ export class EditionService {
      * @returns {EditionSeriesRoutes} The found edition series.
      */
     getEditionSeriesById(seriesId: string): EditionSeriesRoutes {
-        return this._editionOutline.find(series => series.series.route === seriesId);
+        return EDITION_OUTLINE_DATA.find(series => series.series.route === seriesId);
     }
 
     /**
