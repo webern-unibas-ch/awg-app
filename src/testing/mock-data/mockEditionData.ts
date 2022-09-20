@@ -193,12 +193,6 @@ export const mockEditionData = {
                                         ],
                                     ],
                                 },
-                                {
-                                    folio: '2v',
-                                    folioLinkTo: '',
-                                    folioDescription: 'unbeschriftet',
-                                    systemGroups: [],
-                                },
                             ],
                         },
                         {
@@ -315,6 +309,19 @@ export const mockEditionData = {
                             itemLinkTo: 'test_item_id_2',
                             itemDescription: '',
                             folios: [],
+                        },
+                        {
+                            item: '',
+                            itemLinkTo: '',
+                            itemDescription: '',
+                            folios: [
+                                {
+                                    folio: '2v',
+                                    folioLinkTo: '',
+                                    folioDescription: 'Test item 4 without item',
+                                    systemGroups: [],
+                                },
+                            ],
                         },
                     ],
                 },
