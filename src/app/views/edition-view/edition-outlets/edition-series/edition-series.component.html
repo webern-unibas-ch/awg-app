@@ -7,7 +7,9 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li *ngFor="let section of series.sections" class="list-group-item">
-                        <a [routerLink]="[series.series.route, 'section', section.route]">{{ section.full }}</a>
+                        <a [routerLink]="[series.series.route, 'section', section.section.route]">{{
+                            section.section.full
+                        }}</a>
                     </li>
                 </ul>
             </div>

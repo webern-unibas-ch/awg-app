@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { EditionSeriesRoutes } from '@awg-views/edition-view/models';
+import { EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -22,7 +22,7 @@ export class EditionSectionsComponent implements OnInit {
      *
      * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
      */
-    selectedSeries$: Observable<EditionSeriesRoutes>;
+    selectedSeries$: Observable<EditionSeriesRoute>;
 
     /**
      * Constructor of the EditionSectionsComponent.

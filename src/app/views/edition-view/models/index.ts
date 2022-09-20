@@ -10,7 +10,7 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoutes } from './edition-constants';
+import { EditionConstants, EditionRoute, EditionSectionRoute, EditionSeriesRoute } from './edition-constants';
 
 import { EditionRowTables } from './edition-row-tables.model';
 
@@ -40,7 +40,8 @@ export {
     EditionConstants,
     EditionRoute,
     EditionRowTables,
-    EditionSeriesRoutes,
+    EditionSectionRoute,
+    EditionSeriesRoute,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,

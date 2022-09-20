@@ -1,3 +1,5 @@
+import { EditionWork } from './edition-work.model';
+
 /**
  * The EditionRoute class.
  *
@@ -22,21 +24,57 @@ export class EditionRoute {
 }
 
 /**
- * The EditionSeriesRoutes class.
+ * The EditionSeriesRoute class.
  *
  * It is used in the context of the edition view
  * to store routing constants of the edition series.
  */
-export class EditionSeriesRoutes {
+export class EditionSeriesRoute {
     /**
      * The series route of an edition series.
      */
     series: EditionRoute;
 
     /**
-     * The sections routes of an edition series.
+     * The section route of an edition series.
      */
-    sections: EditionRoute[];
+    sections: EditionSectionRoute[];
+}
+
+/**
+ * The EditionSectionRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of the edition sections.
+ */
+export class EditionSectionRoute {
+    /**
+     * The section route of an edition section.
+     */
+    section: EditionRoute;
+
+    /**
+     * The edition complexes of an edition section.
+     */
+    complexes: EditionComplexRoute[];
+}
+
+/**
+ * The EditionComplexRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of an edition complex.
+ */
+export class EditionComplexRoute {
+    /**
+     * The edition complex.
+     */
+    complex: EditionWork;
+
+    /**
+     * Boolean flag if an edition complex is available.
+     */
+    available: boolean;
 }
 
 /**

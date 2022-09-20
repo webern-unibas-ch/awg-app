@@ -15,7 +15,7 @@ import {
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionRoute, EditionSeriesRoutes, EditionWork } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRoute, EditionSeriesRoute, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
@@ -47,7 +47,7 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetIsRowTableViewSpy: Spy;
 
     let expectedSelectedEditionComplex: EditionWork;
-    let expectedSelectedEditionSeries: EditionSeriesRoutes;
+    let expectedSelectedEditionSeries: EditionSeriesRoute;
     let expectedSelectedEditionSection: EditionRoute;
     let expectedIsRowTableView: boolean;
 
@@ -72,8 +72,7 @@ describe('EditionViewComponent (DONE)', () => {
             updateEditionWork: (editionWork: EditionWork): void => {
                 // Intentional empty test override
             },
-            getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> =>
-                observableOf(expectedSelectedEditionSeries),
+            getSelectedEditionSeries: (): Observable<EditionSeriesRoute> => observableOf(expectedSelectedEditionSeries),
             getSelectedEditionSection: (): Observable<EditionRoute> =>
                 observableOf(expectedSelectedEditionSeries.sections[0]),
             getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
@@ -267,7 +266,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.selectedEditionSeries$).toBeDefined();
                 component.selectedEditionSeries$.subscribe({
-                    next: (series: EditionSeriesRoutes) => {
+                    next: (series: EditionSeriesRoute) => {
                         expect(series)
                             .withContext(`should equal ${expectedSelectedEditionSeries}`)
                             .toEqual(expectedSelectedEditionSeries);

@@ -1,5 +1,43 @@
-<small class="text-muted"
-    >[Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG {{ selectedSeries?.series.short }}/{{
-        selectedSection?.short
-    }}.]</small
->
+<div
+    *ngIf="selectedSection && utils.isNotEmptyArray(selectedSection.complexes); else noComplexes"
+    class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+    <div class="col" *ngFor="let complex of selectedSection.complexes">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <em>{{ complex.complex.titleStatement.title }}</em
+                    >&nbsp;{{ complex.complex.titleStatement.catalogueType.short }}&nbsp;{{
+                        complex.complex.titleStatement.catalogueNumber
+                    }}
+                </h5>
+            </div>
+            <div class="awg-edition-responsibility card-footer">
+                <p>
+                    <small class="text-muted">
+                        Ediert von
+                        <span
+                            class="editor"
+                            *ngFor="let editor of complex.complex.responsibilityStatement.editors; last as isLast">
+                            <a href="{{ editor.homepage }}">{{ editor.name }}</a
+                            ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
+                        </span>
+                        <br />
+                        Versionsdatum:
+                        <span class="version">{{ complex.complex.responsibilityStatement.lastModified }}</span>
+                    </small>
+                </p>
+                <p class="text-end">
+                    <a [routerLink]="[complex.complex.work.route]" class="btn btn-outline-info">Mehr... </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noComplexes>
+    <div class="alert alert-info" role="alert">
+        <p class="text-muted" style="margin-bottom: 0">
+            [Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG
+            {{ selectedSeries?.series.short }}/{{ selectedSection?.section.short }}.]
+        </p>
+    </div>
+</ng-template>

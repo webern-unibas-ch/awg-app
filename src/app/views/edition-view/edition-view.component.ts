@@ -3,7 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoutes, EditionWork } from '@awg-views/edition-view/models';
+import {
+    EditionConstants,
+    EditionRoute,
+    EditionSectionRoute,
+    EditionSeriesRoute,
+    EditionWork,
+} from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -64,18 +70,18 @@ export class EditionViewComponent implements OnInit {
     selectedEditionComplex$: Observable<EditionWork>;
 
     /**
-     * Public variable: selectedEditionSeries$.
-     *
-     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
-     */
-    selectedEditionSeries$: Observable<EditionSeriesRoutes>;
-
-    /**
      * Public variable: selectedEditionSection$.
      *
      * It keeps the selected section of the edition as an Observable of EditionRoute.
      */
-    selectedEditionSection$: Observable<EditionRoute>;
+    selectedEditionSection$: Observable<EditionSectionRoute>;
+
+    /**
+     * Public variable: selectedEditionSeries$.
+     *
+     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     */
+    selectedEditionSeries$: Observable<EditionSeriesRoute>;
 
     /**
      * Constructor of the EditionViewComponent.

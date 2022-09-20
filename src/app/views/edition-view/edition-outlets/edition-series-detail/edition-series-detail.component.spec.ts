@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { EditionSeriesRoutes } from '@awg-views/edition-view/models';
+import { EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSeriesDetailComponent } from './edition-series-detail.component';
@@ -17,13 +17,13 @@ describe('EditionSeriesDetailComponent', () => {
 
     let mockEditionService: Partial<EditionService>;
 
-    let expectedEditionSeries: EditionSeriesRoutes;
+    let expectedEditionSeries: EditionSeriesRoute;
 
     beforeEach(async () => {
         // Mock edition service
         mockEditionService = {
-            getEditionSeriesById: (seriesId: string): EditionSeriesRoutes => expectedEditionSeries,
-            updateSelectedEditionSeries: (editionSeries: EditionSeriesRoutes): void => {},
+            getEditionSeriesById: (seriesId: string): EditionSeriesRoute => expectedEditionSeries,
+            updateSelectedEditionSeries: (editionSeries: EditionSeriesRoute): void => {},
         };
 
         // Mocked activated route

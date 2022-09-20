@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { delay, Subject } from 'rxjs';
+import { delay, Observable, Subject } from 'rxjs';
 
-import { EditionRoute, EditionSeriesRoutes } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 import { takeUntil } from 'rxjs/operators';
+import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-constants';
+import { UtilityService } from '@awg-core/services';
 
 /**
  * The EditionSectionDetail component.
@@ -24,14 +26,14 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      *
      * It keeps the selected series of the edition.
      */
-    selectedSeries: EditionSeriesRoutes;
+    selectedSeries: EditionSeriesRoute;
 
     /**
      * Public variable: selectedSection.
      *
      * It keeps the selected section of the edition.
      */
-    selectedSection: EditionRoute;
+    selectedSection: EditionSectionRoute;
 
     /**
      * Private variable: _destroyed$.
@@ -43,12 +45,14 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
      * Constructor of the EditionSectionDetailComponent.
      *
-     * It declares private instances of the Angular ActivatedRoute and the EditionService.
+     * It declares private instances of the Angular ActivatedRoute and the EditionService,
+     * and a public instance of the UtilityService.
      *
      * @param {ActivatedRoute} route Instance of the ActivatedRoute.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(private route: ActivatedRoute, private editionService: EditionService) {
+    constructor(private route: ActivatedRoute, private editionService: EditionService, public utils: UtilityService) {
         // Intentionally left empty until implemented
     }
 
