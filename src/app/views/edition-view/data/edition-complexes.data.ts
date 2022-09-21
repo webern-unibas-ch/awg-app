@@ -1,17 +1,17 @@
 import { AppConfig } from '@awg-app/app.config';
-import { EditionConstants, EditionWork } from '../models';
+import { EditionConstants, EditionComplex } from '../models';
 
 /**
- * The EditionWorksModel class.
+ * The EditionComplexes class.
  *
  * It is used in the context of the edition view
- * to store work information of the editions.
+ * to store information about the edition complexes.
  */
-export class EditionWorks {
+export class EDITION_COMPLEXES {
     /**
-     * An EditionWork object for M 34.
+     * An EditionComplex object for M 34.
      */
-    static readonly M34: EditionWork = new EditionWork(
+    static readonly M34: EditionComplex = new EditionComplex(
         {
             title: 'Studienkomposition für Klavier',
             catalogueType: EditionConstants.MNR,
@@ -37,9 +37,9 @@ export class EditionWorks {
     );
 
     /**
-     * An EditionWork object for Opus 12.
+     * An EditionComplex object for Opus 12.
      */
-    static readonly OP12: EditionWork = new EditionWork(
+    static readonly OP12: EditionComplex = new EditionComplex(
         {
             title: 'Vier Lieder',
             catalogueType: EditionConstants.OPUS,
@@ -65,9 +65,9 @@ export class EditionWorks {
     );
 
     /**
-     * An EditionWork object for Opus 23.
+     * An EditionComplex object for Opus 19.
      */
-    static readonly OP19: EditionWork = new EditionWork(
+    static readonly OP19: EditionComplex = new EditionComplex(
         {
             title: 'Zwei Lieder für gemischten Chor und Ensemble',
             catalogueType: EditionConstants.OPUS,
@@ -93,9 +93,9 @@ export class EditionWorks {
     );
 
     /**
-     * An EditionWork object for Opus 23.
+     * An EditionComplex object for Opus 23.
      */
-    static readonly OP23: EditionWork = new EditionWork(
+    static readonly OP23: EditionComplex = new EditionComplex(
         {
             title: 'Drei Gesänge aus Viae Inviae von Hildegard Jone',
             catalogueType: EditionConstants.OPUS,
@@ -121,9 +121,9 @@ export class EditionWorks {
     );
 
     /**
-     * An EditionWork object for Opus 24.
+     * An EditionComplex object for Opus 24.
      */
-    static readonly OP24: EditionWork = new EditionWork(
+    static readonly OP24: EditionComplex = new EditionComplex(
         {
             title: 'Konzert für neun Instrumente',
             catalogueType: EditionConstants.OPUS,
@@ -149,9 +149,9 @@ export class EditionWorks {
     );
 
     /**
-     * An EditionWork object for Opus 25.
+     * An EditionComplex object for Opus 25.
      */
-    static readonly OP25: EditionWork = new EditionWork(
+    static readonly OP25: EditionComplex = new EditionComplex(
         {
             title: 'Drei Lieder nach Gedichten von Hildegard Jone',
             catalogueType: EditionConstants.OPUS,

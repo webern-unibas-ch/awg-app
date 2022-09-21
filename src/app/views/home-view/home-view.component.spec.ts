@@ -13,8 +13,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionWork } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { HomeViewComponent } from './home-view.component';
 
@@ -40,8 +40,8 @@ describe('HomeViewComponent (DONE)', () => {
     const expectedTitle = 'Beispieleditionen ausgewählter Skizzen';
     const expectedId = 'awg-home-view';
 
-    let expectedEditionComplexOp12: EditionWork;
-    let expectedEditionComplexOp25: EditionWork;
+    let expectedEditionComplexOp12: EditionComplex;
+    let expectedEditionComplexOp25: EditionComplex;
 
     beforeEach(waitForAsync(() => {
         // Router spy object
@@ -59,8 +59,8 @@ describe('HomeViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionComplexOp12 = EditionWorks.OP12;
-        expectedEditionComplexOp25 = EditionWorks.OP25;
+        expectedEditionComplexOp12 = EDITION_COMPLEXES.OP12;
+        expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -255,7 +255,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h6.awg-breadcrumb', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                const expectedBreadCrumb = ` ${expectedEditionComplexOp12.edition.short} / ${expectedEditionComplexOp12.series.full} / ${expectedEditionComplexOp12.section.full} `;
+                const expectedBreadCrumb = ` ${expectedEditionComplexOp12.editionRoute.short} / ${expectedEditionComplexOp12.series.full} / ${expectedEditionComplexOp12.section.full} `;
 
                 expect(headerEl).toBeDefined();
                 expect(headerEl.textContent).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -298,11 +298,11 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(catalogue1El).toBeDefined();
 
                 expect(catalogue0El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexOp12.work.short}`)
-                    .toBe(expectedEditionComplexOp12.work.short);
+                    .withContext(`should be ${expectedEditionComplexOp12.complex.short}`)
+                    .toBe(expectedEditionComplexOp12.complex.short);
                 expect(catalogue1El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexOp25.work.short}`)
-                    .toBe(expectedEditionComplexOp25.work.short);
+                    .withContext(`should be ${expectedEditionComplexOp25.complex.short}`)
+                    .toBe(expectedEditionComplexOp25.complex.short);
             });
 
             it('... should render part links in first div.para', () => {

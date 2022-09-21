@@ -7,7 +7,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
     Folio,
     EditionSvgSheet,
@@ -58,7 +58,7 @@ describe('EditionSheetsComponent', () => {
 
     let getEditionSheetsDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
     let getTextcriticsListSpy;
-    let getEditionWorkSpy;
+    let getEditionComplexSpy;
 
     beforeEach(waitForAsync(() => {
         // Create a fake service object with a `getEditionSheetsData()` spy
@@ -70,12 +70,14 @@ describe('EditionSheetsComponent', () => {
         // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
         const mockEditionService = jasmine.createSpyObj('EditionService', [
             'getTextcriticalComments',
-            'getEditionWork',
+            'getEditionComplex',
         ]);
         // Make the spies return a synchronous Observable with the test data
         getTextcriticsListSpy =
             mockEditionService.getTextcriticalComments.and.returnValue(expectedTextcriticalComments);
-        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
+        getEditionComplexSpy = mockEditionService.getEditionComplex.and.returnValue(
+            observableOf(EDITION_COMPLEXES.OP12)
+        );
         /*
         MockEditionService = {
             // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,

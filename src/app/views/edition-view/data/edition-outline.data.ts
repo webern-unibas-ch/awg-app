@@ -1,5 +1,5 @@
 import { EditionConstants, EditionSeriesRoute } from '@awg-views/edition-view/models';
-import { EditionWorks } from '@awg-views/edition-view/data/edition-works';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data/edition-complexes.data';
 
 /**
  * Object constant with the outline of the edition.
@@ -29,9 +29,9 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             {
                 section: EditionConstants.SECTION_5,
                 complexes: [
-                    { complex: EditionWorks.OP12, disabled: false },
-                    { complex: EditionWorks.OP23, disabled: false },
-                    { complex: EditionWorks.OP25, disabled: false },
+                    { complex: EDITION_COMPLEXES.OP12, disabled: false },
+                    { complex: EDITION_COMPLEXES.OP23, disabled: false },
+                    { complex: EDITION_COMPLEXES.OP25, disabled: false },
                 ],
             },
         ],
@@ -45,7 +45,7 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             },
             {
                 section: EditionConstants.SECTION_2A,
-                complexes: [{ complex: EditionWorks.M34, disabled: false }],
+                complexes: [{ complex: EDITION_COMPLEXES.M34, disabled: false }],
             },
             {
                 section: EditionConstants.SECTION_2B,

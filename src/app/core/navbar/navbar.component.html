@@ -50,23 +50,25 @@
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>
                     <div class="dropdown-divider"></div>
-                    <div *ngFor="let editionWork of EDITION_WORKS">
-                        <h6 class="dropdown-header">{{ editionWork.work.full }}</h6>
+                    <div *ngFor="let editionComplex of DISPLAYED_EDITION_COMPLEXES">
+                        <h6 class="dropdown-header">
+                            {{ editionComplex.complex.full }}
+                        </h6>
                         <a
                             class="dropdown-item"
-                            [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"
+                            [routerLink]="[editionComplex.baseRoute, editionComplex.introRoute.route]"
                             routerLinkActive="active"
                             >Einleitung</a
                         >
                         <a
                             class="dropdown-item"
-                            [routerLink]="[editionWork.baseRoute, editionWork.sheetsRoute.route]"
+                            [routerLink]="[editionComplex.baseRoute, editionComplex.sheetsRoute.route]"
                             routerLinkActive="active"
                             >Edierter Notentext</a
                         >
                         <a
                             class="dropdown-item"
-                            [routerLink]="[editionWork.baseRoute, editionWork.reportRoute.route]"
+                            [routerLink]="[editionComplex.baseRoute, editionComplex.reportRoute.route]"
                             routerLinkActive="active"
                             >Kritischer Bericht</a
                         >

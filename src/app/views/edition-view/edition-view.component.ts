@@ -8,7 +8,7 @@ import {
     EditionRoute,
     EditionSectionRoute,
     EditionSeriesRoute,
-    EditionWork,
+    EditionComplex,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -67,7 +67,7 @@ export class EditionViewComponent implements OnInit {
      * Observable that keeps the information
      * about the current edition complex.
      */
-    selectedEditionComplex$: Observable<EditionWork>;
+    selectedEditionComplex$: Observable<EditionComplex>;
 
     /**
      * Public variable: selectedEditionSection$.
@@ -116,7 +116,7 @@ export class EditionViewComponent implements OnInit {
     getSelectionsFromRoute(): void {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
         this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 

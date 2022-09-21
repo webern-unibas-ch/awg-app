@@ -14,13 +14,12 @@ import {
 } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
-    EditionRoute,
     EditionSectionRoute,
     EditionSeriesRoute,
-    EditionWork,
+    EditionComplex,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -52,7 +51,7 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetSelectedEditionSectionSpy: Spy;
     let editionServiceGetIsRowTableViewSpy: Spy;
 
-    let expectedSelectedEditionComplex: EditionWork;
+    let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionSeries: EditionSeriesRoute;
     let expectedSelectedEditionSection: EditionSectionRoute;
     let expectedIsRowTableView: boolean;
@@ -72,10 +71,10 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Mock edition service
         mockEditionService = {
-            getEditionWork: (): Observable<EditionWork> =>
+            getEditionComplex: (): Observable<EditionComplex> =>
                 // Return op. 12 by default
-                observableOf(EditionWorks[expectedSelectedEditionComplexId]),
-            updateEditionWork: (editionWork: EditionWork): void => {
+                observableOf(EDITION_COMPLEXES[expectedSelectedEditionComplexId]),
+            updateEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
             getSelectedEditionSeries: (): Observable<EditionSeriesRoute> => observableOf(expectedSelectedEditionSeries),
@@ -110,7 +109,7 @@ describe('EditionViewComponent (DONE)', () => {
         mockEditionService = TestBed.inject(EditionService);
 
         // Test data
-        expectedSelectedEditionComplex = EditionWorks[expectedSelectedEditionComplexId]; // Op. 12
+        expectedSelectedEditionComplex = EDITION_COMPLEXES[expectedSelectedEditionComplexId]; // Op. 12
         expectedSelectedEditionSeries = {
             series: EditionConstants.SERIES_1,
             sections: [
@@ -133,9 +132,9 @@ describe('EditionViewComponent (DONE)', () => {
                 {
                     section: EditionConstants.SECTION_5,
                     complexes: [
-                        { complex: EditionWorks.OP12, disabled: false },
-                        { complex: EditionWorks.OP23, disabled: false },
-                        { complex: EditionWorks.OP25, disabled: false },
+                        { complex: EDITION_COMPLEXES.OP12, disabled: false },
+                        { complex: EDITION_COMPLEXES.OP23, disabled: false },
+                        { complex: EDITION_COMPLEXES.OP25, disabled: false },
                     ],
                 },
             ],
@@ -150,7 +149,7 @@ describe('EditionViewComponent (DONE)', () => {
         routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
 
         // Spies for service methods
-        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionWork').and.callThrough();
+        editionServiceGetEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.callThrough();
         editionServiceGetSelectedEditionSeriesSpy = spyOn(
             mockEditionService,
             'getSelectedEditionSeries'
@@ -319,10 +318,10 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.selectedEditionComplex$).toBeDefined();
                 component.selectedEditionComplex$.subscribe({
-                    next: (work: EditionWork) => {
-                        expect(work)
-                            .withContext(`should equal ${EditionWorks[expectedSelectedEditionComplexId]}`)
-                            .toEqual(EditionWorks[expectedSelectedEditionComplexId]);
+                    next: (complex: EditionComplex) => {
+                        expect(complex)
+                            .withContext(`should equal ${EDITION_COMPLEXES[expectedSelectedEditionComplexId]}`)
+                            .toEqual(EDITION_COMPLEXES[expectedSelectedEditionComplexId]);
                     },
                 });
             }));
@@ -459,7 +458,7 @@ describe('EditionViewComponent (DONE)', () => {
                     );
                     const hEl = hDes[0].nativeElement;
 
-                    const expectedBreadCrumb = `${expectedSelectedEditionComplex.edition.short} / ${expectedSelectedEditionComplex.series.full} / ${expectedSelectedEditionComplex.section.full}`;
+                    const expectedBreadCrumb = `${expectedSelectedEditionComplex.editionRoute.short} / ${expectedSelectedEditionComplex.series.full} / ${expectedSelectedEditionComplex.section.full}`;
 
                     expect(hEl.innerText).toBeTruthy();
                     expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -483,7 +482,7 @@ describe('EditionViewComponent (DONE)', () => {
                     const catalogueEl = catalogueDes[0].nativeElement;
 
                     const expectedHeaderTitle = expectedSelectedEditionComplex.titleStatement.title;
-                    const expectedHeaderCatalogue = expectedSelectedEditionComplex.work.short;
+                    const expectedHeaderCatalogue = expectedSelectedEditionComplex.complex.short;
 
                     expect(titleEl.innerText).toBeTruthy();
                     expect(titleEl.innerText).withContext(`should be ${expectedHeaderTitle}`).toBe(expectedHeaderTitle);

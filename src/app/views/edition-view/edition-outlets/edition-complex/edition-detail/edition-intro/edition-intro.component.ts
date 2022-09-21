@@ -6,7 +6,7 @@ import { EMPTY, Observable } from 'rxjs';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
-import { EditionWork, IntroList } from '@awg-views/edition-view/models';
+import { EditionComplex, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -30,11 +30,11 @@ export class EditionIntroComponent implements OnInit {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
      * It keeps the information about the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Public variable: editionIntroData$.
@@ -87,22 +87,22 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: getEditionIntroData.
      *
-     * It gets the the current edition work of the edition service
+     * It gets the current edition complex of the edition service
      * and the observable of the corresponding intro data
      * from the EditionDataService.
      *
-     * @returns {void} Gets the current edition work and the corresponding intro data.
+     * @returns {void} Gets the current edition complex and the corresponding intro data.
      */
     getEditionIntroData(): void {
         this.editionIntroData$ = this.editionService
-            // Get current editionWork from editionService
-            .getEditionWork()
+            // Get current editionComplex from editionService
+            .getEditionComplex()
             .pipe(
-                switchMap((work: EditionWork) => {
-                    // Set current editionWork
-                    this.editionWork = work;
+                switchMap((complex: EditionComplex) => {
+                    // Set current editionComplex
+                    this.editionComplex = complex;
                     // Get intro data from editionDataService
-                    return this.editionDataService.getEditionIntroData(this.editionWork);
+                    return this.editionDataService.getEditionIntroData(this.editionComplex);
                 }),
                 // Error handling
                 catchError(err => {
@@ -127,7 +127,7 @@ export class EditionIntroComponent implements OnInit {
         const navigationExtras: NavigationExtras = {
             fragment: fragmentId,
         };
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
+        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.reportRoute.route], navigationExtras);
     }
 
     /**
@@ -163,6 +163,6 @@ export class EditionIntroComponent implements OnInit {
             queryParamsHandling: '',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
+        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
     }
 }

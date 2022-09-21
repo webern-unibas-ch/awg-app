@@ -6,7 +6,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
-    EditionWork,
+    EditionComplex,
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
@@ -36,11 +36,11 @@ export class EditionReportComponent implements OnInit {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
      * It keeps the information about the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Public variable: editionReportData$.
@@ -104,14 +104,14 @@ export class EditionReportComponent implements OnInit {
      */
     getEditionReportData(): void {
         this.editionReportData$ = this.editionService
-            // Get current editionWork from editionService
-            .getEditionWork()
+            // Get current editionComplex from editionService
+            .getEditionComplex()
             .pipe(
-                switchMap((work: EditionWork) => {
-                    // Set current editionWork
-                    this.editionWork = work;
+                switchMap((complex: EditionComplex) => {
+                    // Set current editionComplex
+                    this.editionComplex = complex;
                     // Get intro data from editionDataService
-                    return this.editionDataService.getEditionReportData(this.editionWork);
+                    return this.editionDataService.getEditionReportData(this.editionComplex);
                 }),
                 // Error handling
                 catchError(err => {
@@ -151,7 +151,7 @@ export class EditionReportComponent implements OnInit {
         const navigationExtras: NavigationExtras = {
             fragment: fragmentId,
         };
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
+        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.reportRoute.route], navigationExtras);
     }
 
     /**
@@ -172,6 +172,6 @@ export class EditionReportComponent implements OnInit {
             // .queryParamsHandling: '',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
+        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
     }
 }

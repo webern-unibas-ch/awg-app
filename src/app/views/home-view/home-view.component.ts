@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 
 /**
  * The HomeView component.
@@ -37,14 +37,14 @@ export class HomeViewComponent implements OnInit {
      *
      * It keeps the edition complex Opus 12.
      */
-    readonly EDITION_COMPLEX_OP12 = EditionWorks.OP12;
+    readonly EDITION_COMPLEX_OP12 = EDITION_COMPLEXES.OP12;
 
     /**
      * Readonly constant: EDITION_COMPLEX_OP25.
      *
      * It keeps the edition complex Opus 25.
      */
-    readonly EDITION_COMPLEX_OP25 = EditionWorks.OP25;
+    readonly EDITION_COMPLEX_OP25 = EDITION_COMPLEXES.OP25;
 
     /**
      * Constructor of the HomeViewComponent.

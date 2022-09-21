@@ -7,7 +7,7 @@ import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
-    EditionWork,
+    EditionComplex,
     EditionSvgSheetList,
     FolioConvoluteList,
     GraphList,
@@ -33,11 +33,11 @@ import {
 })
 export class EditionDataService {
     /**
-     * Private variable: _assetWorkPath.
+     * Private variable: _assetPath.
      *
-     * It keeps the asset path to the JSON files of a work.
+     * It keeps the asset path to the JSON files of an edition complex.
      */
-    private _assetWorkPath = '';
+    private _assetPath = '';
 
     /**
      * Constructor of the EditionDataService.
@@ -57,7 +57,7 @@ export class EditionDataService {
      * (folio convolute, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
-     * @param {EditionWork} editionWork The current edition complex.
+     * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
      * The fork-joined observable array with the FolioConvoluteList,
@@ -65,9 +65,9 @@ export class EditionDataService {
      * Only the first emit is needed.
      */
     getEditionSheetsData(
-        editionWork: EditionWork
+        editionComplex: EditionComplex
     ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
-        this._setAssetWorkPath(editionWork);
+        this._setAssetPath(editionComplex);
 
         const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
         const svgSheetsData$: Observable<EditionSvgSheetList> = this._getSvgSheetsData();
@@ -87,12 +87,12 @@ export class EditionDataService {
      * It provides the data from a JSON file
      * for the graph of the edition view.
      *
-     * @param {EditionWork} editionWork The current edition complex.
+     * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {Observable<GraphList>} The observable with the GraphList data.
      */
-    getEditionGraphData(editionWork: EditionWork): Observable<GraphList> {
-        this._setAssetWorkPath(editionWork);
+    getEditionGraphData(editionComplex: EditionComplex): Observable<GraphList> {
+        this._setAssetPath(editionComplex);
         const graphData$: Observable<GraphList> = this._getGraphData();
 
         return graphData$.pipe(
@@ -109,12 +109,12 @@ export class EditionDataService {
      * It provides the data from a JSON file
      * for the intro of the edition view.
      *
-     * @param {EditionWork} editionWork The current edition complex.
+     * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
-    getEditionIntroData(editionWork: EditionWork): Observable<IntroList> {
-        this._setAssetWorkPath(editionWork);
+    getEditionIntroData(editionComplex: EditionComplex): Observable<IntroList> {
+        this._setAssetPath(editionComplex);
         const introData$: Observable<IntroList> = this._getIntroData();
 
         return introData$.pipe(
@@ -128,22 +128,20 @@ export class EditionDataService {
     /**
      * Public method: getEditionReportData.
      *
-     * It provides the data from a JSON file
-     * for the edition report view
-     * (source list, source description list,
-     * source evaluation list and textcritics list)
+     * It provides the data from a JSON file for the edition report view
+     * (source list, source description list, source evaluation list and textcritics list)
      * as a fork-joined observable array.
      *
-     * @param {EditionWork} editionWork The current edition complex input.
+     * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>}
      * The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
      * and TextcriticsList data. Only the first emit is needed.
      */
     getEditionReportData(
-        editionWork: EditionWork
+        editionComplex: EditionComplex
     ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> {
-        this._setAssetWorkPath(editionWork);
+        this._setAssetPath(editionComplex);
         const sourceListData$: Observable<SourceList> = this._getSourceListData();
         const sourceDescriptionListData$: Observable<SourceDescriptionList> = this._getSourceDescriptionListData();
         const sourceEvaluationListData$: Observable<SourceEvaluationList> = this._getSourceEvaluationListData();
@@ -179,22 +177,22 @@ export class EditionDataService {
     }
 
     /**
-     * Private method: _setAssetWorkPath.
+     * Private method: _setAssetPath.
      *
-     * It sets the path to correct assets folder of a given work.
+     * It sets the path to correct assets folder of a given edition complex.
      *
-     * @param {EditionWork} editionWork The current edition complex.
+     * @param {EditionComplex} editionComplex The current edition complex.
      *
      * @returns {void} It sets the asset path.
      */
-    private _setAssetWorkPath(editionWork: EditionWork): void {
-        const workRoute =
+    private _setAssetPath(editionComplex: EditionComplex): void {
+        const complexRoute =
             EditionConstants.SERIES.route +
-            editionWork.series.route +
+            editionComplex.series.route +
             EditionConstants.SECTION.route +
-            editionWork.section.route +
-            editionWork.work.route;
-        this._assetWorkPath = EditionConstants.EDITION_ASSETS.baseRoute + workRoute;
+            editionComplex.section.route +
+            editionComplex.complex.route;
+        this._assetPath = EditionConstants.EDITION_ASSETS.baseRoute + complexRoute;
     }
 
     /**
@@ -208,7 +206,7 @@ export class EditionDataService {
      */
     private _getFolioConvoluteData(): Observable<FolioConvoluteList> {
         const file = EditionConstants.EDITION_ASSETS.folioConvoluteFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -223,7 +221,7 @@ export class EditionDataService {
      */
     private _getGraphData(): Observable<GraphList> {
         const file = EditionConstants.EDITION_ASSETS.graphFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -238,7 +236,7 @@ export class EditionDataService {
      */
     private _getIntroData(): Observable<IntroList> {
         const file = EditionConstants.EDITION_ASSETS.introFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -253,7 +251,7 @@ export class EditionDataService {
      */
     private _getSourceListData(): Observable<SourceList> {
         const file = EditionConstants.EDITION_ASSETS.sourceListFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -268,7 +266,7 @@ export class EditionDataService {
      */
     private _getSourceDescriptionListData(): Observable<SourceDescriptionList> {
         const file = EditionConstants.EDITION_ASSETS.sourceDescriptionListFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -283,7 +281,7 @@ export class EditionDataService {
      */
     private _getSourceEvaluationListData(): Observable<SourceEvaluationList> {
         const file = EditionConstants.EDITION_ASSETS.sourceEvaluationListFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -298,7 +296,7 @@ export class EditionDataService {
      */
     private _getSvgSheetsData(): Observable<EditionSvgSheetList> {
         const file = EditionConstants.EDITION_ASSETS.svgSheetsFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 
@@ -313,7 +311,7 @@ export class EditionDataService {
      */
     private _getTextcriticsListData(): Observable<TextcriticsList> {
         const file = EditionConstants.EDITION_ASSETS.textcriticsFile;
-        const url = `${this._assetWorkPath}/${file}`;
+        const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
 

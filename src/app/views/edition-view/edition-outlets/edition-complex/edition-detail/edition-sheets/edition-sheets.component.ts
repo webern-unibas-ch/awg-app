@@ -9,7 +9,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionWork,
+    EditionComplex,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
@@ -41,11 +41,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
      * It keeps the information about the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Public variable: folioConvoluteData.
@@ -158,21 +158,21 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: getEditionSheetsData.
      *
-     * It subscribes to the current edition work
+     * It subscribes to the current edition complex
      * of the edition service and gets all necessary edition data
      * from the EditionDataService and the queryParams.
      *
-     * @returns {void} Gets the current edition work and all necessary edition data.
+     * @returns {void} Gets the current edition complex and all necessary edition data.
      */
     getEditionSheetsData(): void {
         this.route.paramMap
             .pipe(
-                switchMap(() => this.editionService.getEditionWork()),
-                switchMap((work: EditionWork) => {
-                    // Set current editionWork
-                    this.editionWork = work;
+                switchMap(() => this.editionService.getEditionComplex()),
+                switchMap((complex: EditionComplex) => {
+                    // Set current editionComplex
+                    this.editionComplex = complex;
                     // Return EditionSheetsData from editionDataService
-                    return this.editionDataService.getEditionSheetsData(this.editionWork);
+                    return this.editionDataService.getEditionSheetsData(this.editionComplex);
                 }),
                 switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
                     this.folioConvoluteData = data[0];
@@ -223,7 +223,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             queryParams: { convolute: convolute.convoluteId, sketch: this.filteredSvgSheetsData.sheets[0].id },
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
+        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
     }
 
     /**
@@ -279,7 +279,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             queryParamsHandling: 'merge',
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.sheetsRoute.route], navigationExtras);
+        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
     }
 
     /**

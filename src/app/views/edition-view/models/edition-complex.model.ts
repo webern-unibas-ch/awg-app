@@ -5,7 +5,7 @@ import { EditionConstants, EditionRoute } from './edition-constants';
  * The EditionTitleStatement class.
  *
  * It is used in the context of the edition view
- * to store information about the title statement of a work.
+ * to store information about the title statement of an edition complex.
  */
 export class EditionTitleStatement {
     /**
@@ -28,66 +28,66 @@ export class EditionTitleStatement {
  * The EditionResponsibilityStatement class.
  *
  * It is used in the context of the edition view
- * to store information about the responsibility statement of a work.
+ * to store information about the responsibility statement of an edition complex.
  */
 export class EditionResponsibilityStatement {
     /**
-     * The editors of an edition.
+     * The editors of an edition complex.
      */
     editors: MetaPerson[];
 
     /**
-     * The last modification date of an edition.
+     * The last modification date of an edition complex.
      */
     lastModified: string;
 }
 
 /**
- * The EditionWork class.
+ * The EditionComplex class.
  *
  * It is used in the context of the edition view
- * to store information about a work of an edition.
+ * to store information about an edition complex.
  */
-export class EditionWork {
+export class EditionComplex {
     /**
-     * The title statement of the current work.
+     * The title statement of the current edition complex.
      */
     titleStatement: EditionTitleStatement;
 
     /**
-     * The responsibility statement of the current work.
+     * The responsibility statement of the current edition complex.
      */
     responsibilityStatement: EditionResponsibilityStatement;
 
     /**
-     * The edition route for the current work.
+     * The edition route for the current edition complex.
      */
-    work: EditionRoute;
+    complex: EditionRoute;
 
     /**
-     * The edition route for series.
+     * The edition route for the current series.
      */
     series: EditionRoute;
 
     /**
-     * The edition route for section.
+     * The edition route for the current section.
      */
     section: EditionRoute;
 
     /**
-     * The edition route for the type of an edition.
+     * The edition route for the current type of an edition.
      */
     type: EditionRoute;
 
     /**
-     * The edition route for edition.
+     * The route to the edition section of the app.
      */
-    edition: EditionRoute = EditionConstants.EDITION;
+    editionRoute: EditionRoute = EditionConstants.EDITION;
 
     /**
-     * The edition route for an edition complex.
+     * The route to the complex section of an edition.
      */
-    complex: EditionRoute = EditionConstants.COMPLEX;
+    complexRoute: EditionRoute = EditionConstants.COMPLEX;
 
     /**
      * The route to the graph section of an edition.
@@ -110,7 +110,7 @@ export class EditionWork {
     reportRoute: EditionRoute = EditionConstants.EDITION_REPORT;
 
     /**
-     * The base route of a work.
+     * The base route of an edition complex.
      *
      * @example 'edition/{series/1/section/5/}complex/op12
      * TODO: Parts in {} muted at the moment.
@@ -118,26 +118,26 @@ export class EditionWork {
     baseRoute: string;
 
     /**
-     * Constructor of the EditionWork class.
+     * Constructor of the EditionComplex class.
      *
-     * It initializes the class with am edition complex Object from the EditionConstants.
+     * It initializes the class with an edition complex Object from the EditionConstants.
      *
      * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
      * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
-     * @param {EditionRoute} complexRoute The given EditionRoute for the edition complex.
-     * @param {EditionRoute} seriesRoute The given EditionRoute for the series.
-     * @param {EditionRoute} sectionRoute The given EditionRoute for the section.
-     * @param {EditionRoute} typeRoute The given EditionRoute for the edition type.
+     * @param {EditionRoute} complex The given edition complex.
+     * @param {EditionRoute} series The given series.
+     * @param {EditionRoute} section The given section.
+     * @param {EditionRoute} type The given edition type.
      */
     constructor(
         titleStatement: EditionTitleStatement,
         responsibilityStatement: EditionResponsibilityStatement,
-        complexRoute: EditionRoute,
-        seriesRoute?: EditionRoute,
-        sectionRoute?: EditionRoute,
-        typeRoute?: EditionRoute
+        complex: EditionRoute,
+        series?: EditionRoute,
+        section?: EditionRoute,
+        type?: EditionRoute
     ) {
-        if (!complexRoute) {
+        if (!complex) {
             return;
         }
 
@@ -151,21 +151,21 @@ export class EditionWork {
             ? responsibilityStatement
             : new EditionResponsibilityStatement();
 
-        this.work = complexRoute ? complexRoute : new EditionRoute();
-        this.work.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
-        this.work.full = this.titleStatement.title + spacer + this.work.short;
+        this.complex = complex ? complex : new EditionRoute();
+        this.complex.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.complex.full = this.titleStatement.title + spacer + this.complex.short;
 
-        this.series = seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.SERIES_1;
-        this.section = sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.SECTION_5;
-        this.type = typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.SKETCH_EDITION;
+        this.series = series ? series : new EditionRoute(); // EditionConstants.SERIES_1;
+        this.section = section ? section : new EditionRoute(); // EditionConstants.SECTION_5;
+        this.type = type ? type : new EditionRoute(); // EditionConstants.SKETCH_EDITION;
 
         // Set base route
-        let rootPath = this.edition.route; // '/edition'
+        let rootPath = this.editionRoute.route; // '/edition'
         // RootPath += this.series.route;     // '/series'
         // RootPath += this.section.route;    // '/section'
-        rootPath += this.complex.route; // '/complex'
+        rootPath += this.complexRoute.route; // '/complex'
         // RootPath += this.type.route;       // '/sketches' or // '/texts'
 
-        this.baseRoute = rootPath + this.work.route + delimiter;
+        this.baseRoute = rootPath + this.complex.route + delimiter;
     }
 }

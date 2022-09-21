@@ -1,4 +1,4 @@
-import { EditionWork } from './edition-work.model';
+import { EditionComplex } from './edition-complex.model';
 
 /**
  * The EditionRoute class.
@@ -69,7 +69,7 @@ export class EditionComplexRoute {
     /**
      * The edition complex.
      */
-    complex: EditionWork;
+    complex: EditionComplex;
 
     /**
      * Boolean flag if an edition complex is disabled.

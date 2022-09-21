@@ -6,8 +6,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionRoute, EditionWork } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionConstants, EditionRoute, EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 
@@ -20,8 +20,8 @@ describe('EditionInfoComponent (DONE)', () => {
     let routerLinks;
 
     let expectedEditionRowTables: EditionRoute;
-    let expectedEditionComplexOp12: EditionWork;
-    let expectedEditionComplexOp25: EditionWork;
+    let expectedEditionComplexOp12: EditionComplex;
+    let expectedEditionComplexOp25: EditionComplex;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -36,8 +36,8 @@ describe('EditionInfoComponent (DONE)', () => {
 
         // Test data
         expectedEditionRowTables = EditionConstants.ROWTABLES;
-        expectedEditionComplexOp12 = EditionWorks.OP12;
-        expectedEditionComplexOp25 = EditionWorks.OP25;
+        expectedEditionComplexOp12 = EDITION_COMPLEXES.OP12;
+        expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;
     });
 
     afterAll(() => {
@@ -199,8 +199,8 @@ describe('EditionInfoComponent (DONE)', () => {
                 const series1El = seriesDes[0].nativeElement;
                 const series2El = seriesDes[1].nativeElement;
 
-                const expectedBreadCrumb1 = `${expectedEditionComplexOp12.edition.short} ${expectedEditionComplexOp12.series.short}/${expectedEditionComplexOp12.section.short}`;
-                const expectedBreadCrumb2 = `${expectedEditionComplexOp25.edition.short} ${expectedEditionComplexOp25.series.short}/${expectedEditionComplexOp25.section.short}`;
+                const expectedBreadCrumb1 = `${expectedEditionComplexOp12.editionRoute.short} ${expectedEditionComplexOp12.series.short}/${expectedEditionComplexOp12.section.short}`;
+                const expectedBreadCrumb2 = `${expectedEditionComplexOp25.editionRoute.short} ${expectedEditionComplexOp25.series.short}/${expectedEditionComplexOp25.section.short}`;
 
                 expect(series1El).toBeDefined();
                 expect(series2El).toBeDefined();
@@ -246,11 +246,11 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(catalogue2El).toBeDefined();
 
                 expect(catalogue1El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexOp12.work.short}`)
-                    .toBe(expectedEditionComplexOp12.work.short);
+                    .withContext(`should be ${expectedEditionComplexOp12.complex.short}`)
+                    .toBe(expectedEditionComplexOp12.complex.short);
                 expect(catalogue2El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexOp25.work.short}`)
-                    .toBe(expectedEditionComplexOp25.work.short);
+                    .withContext(`should be ${expectedEditionComplexOp25.complex.short}`)
+                    .toBe(expectedEditionComplexOp25.complex.short);
             });
         });
 

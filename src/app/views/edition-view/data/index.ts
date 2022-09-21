@@ -9,6 +9,6 @@
 
 import { EDITION_OUTLINE_DATA } from './edition-outline.data';
 import { EDITION_ROW_TABLES_DATA } from './edition-row-tables.data';
-import { EditionWorks } from './edition-works';
+import { EDITION_COMPLEXES } from './edition-complexes.data';
 
-export { EDITION_OUTLINE_DATA, EDITION_ROW_TABLES_DATA, EditionWorks };
+export { EDITION_OUTLINE_DATA, EDITION_ROW_TABLES_DATA, EDITION_COMPLEXES };

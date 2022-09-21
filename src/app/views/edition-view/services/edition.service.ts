@@ -8,7 +8,7 @@ import {
     EditionRoute,
     EditionSeriesRoute,
     EditionSvgOverlay,
-    EditionWork,
+    EditionComplex,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-constants';
@@ -16,7 +16,7 @@ import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-cons
 /**
  * The Edition service.
  *
- * It handles the provision of the current work and
+ * It handles the provision of the current edition complex and
  * of the textcritical comments for a selected overlay item.
  *
  * Provided in: `root`.
@@ -32,14 +32,14 @@ export class EditionService {
     private _bufferSize = 1;
 
     /**
-     * Private replay subject to handle edition work.
+     * Private replay subject to handle edition complex.
      */
-    private _editionWorkSubject = new ReplaySubject<EditionWork>(this._bufferSize);
+    private _editionComplexSubject = new ReplaySubject<EditionComplex>(this._bufferSize);
 
     /**
-     * Private readonly edition work stream as observable (`ReplaySubject`).
+     * Private readonly edition complex stream as observable (`ReplaySubject`).
      */
-    private readonly _editionWorkStream$ = this._editionWorkSubject.asObservable();
+    private readonly _editionComplexStream$ = this._editionComplexSubject.asObservable();
 
     /**
      * Private replay subject to flag row table view.
@@ -91,38 +91,38 @@ export class EditionService {
     }
 
     /**
-     * Public method: getEditionWork.
+     * Public method: getEditionComplex.
      *
-     * It provides the latest edition work from the edition work stream.
+     * It provides the latest edition complex from the edition complex stream.
      *
-     * @returns {Observable<EditionWork>} The edition work stream as observable.
+     * @returns {Observable<EditionComplex>} The edition complex stream as observable.
      */
-    getEditionWork(): Observable<EditionWork> {
-        return this._editionWorkStream$;
+    getEditionComplex(): Observable<EditionComplex> {
+        return this._editionComplexStream$;
     }
 
     /**
-     * Public method: updateEditionWork.
+     * Public method: updateEditionComplex.
      *
-     * It updates the edition work stream with the given work.
+     * It updates the edition complex stream with the given edition complex.
      *
-     * @param {EditionWork} editionWork The given edition work.
+     * @param {EditionComplex} editionComplex The given edition complex.
      *
-     * @returns {void} Sets the next edition work to the stream.
+     * @returns {void} Sets the next edition complex to the stream.
      */
-    updateEditionWork(editionWork: EditionWork): void {
-        this._editionWorkSubject.next(editionWork);
+    updateEditionComplex(editionComplex: EditionComplex): void {
+        this._editionComplexSubject.next(editionComplex);
     }
 
     /**
-     * Public method: clearEditionWork.
+     * Public method: clearEditionComplex.
      *
-     * It clears the edition work stream.
+     * It clears the edition complex stream.
      *
-     * @returns {void} Clears the edition work stream.
+     * @returns {void} Clears the edition complex stream.
      */
-    clearEditionWork(): void {
-        this._editionWorkSubject.next(null);
+    clearEditionComplex(): void {
+        this._editionComplexSubject.next(null);
     }
 
     /**
