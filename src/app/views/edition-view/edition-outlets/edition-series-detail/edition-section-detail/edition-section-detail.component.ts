@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { delay, Observable, Subject } from 'rxjs';
+import { delay, Subject } from 'rxjs';
 
 import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
