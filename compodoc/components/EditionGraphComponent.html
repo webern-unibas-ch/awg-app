@@ -151,10 +151,10 @@ of the edition view of the app.</p>
                                 <a href="#child" >child</a>
                             </li>
                             <li>
-                                <a href="#editionGraphData$" >editionGraphData$</a>
+                                <a href="#editionComplex" >editionComplex</a>
                             </li>
                             <li>
-                                <a href="#editionWork" >editionWork</a>
+                                <a href="#editionGraphData$" >editionGraphData$</a>
                             </li>
                             <li>
                                 <a href="#errorObject" >errorObject</a>
@@ -498,7 +498,7 @@ the EditionDataService and EditionService.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: getEditionGraphData.</p>
-<p>It gets the the current edition work of the edition service
+<p>It gets the current edition complex of the edition service
 and the observable of the corresponding graph data
 from the EditionDataService.</p>
 </div>
@@ -510,7 +510,7 @@ from the EditionDataService.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Gets the current edition work and the corresponding graph data.</p>
+                        <p>Gets the current edition complex and the corresponding graph data.</p>
 
                     </div>
                 </td>
@@ -735,6 +735,39 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="editionComplex"></a>
+                    <span class="name">
+                        <span ><b>editionComplex</b></span>
+                        <a href="#editionComplex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: editionComplex.</p>
+<p>It keeps the information about the current edition complex.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="editionGraphData$"></a>
                     <span class="name">
                         <span ><b>editionGraphData$</b></span>
@@ -758,39 +791,6 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: editionGraphData$.</p>
 <p>It keeps the observable of the edition graph data.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="editionWork"></a>
-                    <span class="name">
-                        <span ><b>editionWork</b></span>
-                        <a href="#editionWork"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:67</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: editionWork.</p>
-<p>It keeps the information about the current composition.</p>
 </div>
                 </td>
             </tr>
@@ -1036,7 +1036,7 @@ import { catchError, switchMap } from &#x27;rxjs/operators&#x27;;
 
 import { faCompress, faExpand } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
 
-import { EditionConstants, EditionWork, GraphList } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionConstants, EditionComplex, GraphList } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionDataService, EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
 import { GraphVisualizerComponent } from &#x27;./graph-visualizer&#x27;;
 
@@ -1082,11 +1082,11 @@ export class EditionGraphComponent implements OnInit {
     faCompress &#x3D; faCompress;
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
-     * It keeps the information about the current composition.
+     * It keeps the information about the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Public variable: editionGraphData$.
@@ -1163,22 +1163,22 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Public method: getEditionGraphData.
      *
-     * It gets the the current edition work of the edition service
+     * It gets the current edition complex of the edition service
      * and the observable of the corresponding graph data
      * from the EditionDataService.
      *
-     * @returns {void} Gets the current edition work and the corresponding graph data.
+     * @returns {void} Gets the current edition complex and the corresponding graph data.
      */
     getEditionGraphData(): void {
         this.editionGraphData$ &#x3D; this.editionService
-            // Get current editionWork from editionService
-            .getEditionWork()
+            // Get current editionComplex from editionService
+            .getEditionComplex()
             .pipe(
-                switchMap((work: EditionWork) &#x3D;&gt; {
-                    // Set current editionWork
-                    this.editionWork &#x3D; work;
+                switchMap((complex: EditionComplex) &#x3D;&gt; {
+                    // Set current editionComplex
+                    this.editionComplex &#x3D; complex;
                     // Get graph data from editionDataService
-                    return this.editionDataService.getEditionGraphData(this.editionWork);
+                    return this.editionDataService.getEditionGraphData(this.editionComplex);
                 }),
                 // Error handling
                 catchError(err &#x3D;&gt; {

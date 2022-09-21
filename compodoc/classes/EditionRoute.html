@@ -139,7 +139,7 @@ to store routing constants of the editions parts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/views/edition-view/models/edition-constants.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/models/edition-constants.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -171,7 +171,7 @@ to store routing constants of the editions parts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/views/edition-view/models/edition-constants.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/views/edition-view/models/edition-constants.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -203,7 +203,7 @@ to store routing constants of the editions parts.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/views/edition-view/models/edition-constants.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/models/edition-constants.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -228,7 +228,15 @@ to store routing constants of the editions parts.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class EditionRoute {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionComplex } from &#x27;./edition-complex.model&#x27;;
+
+/**
+ * The EditionRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of the editions parts.
+ */
+export class EditionRoute {
     /**
      * The route path of an edition route.
      */
@@ -246,21 +254,62 @@ to store routing constants of the editions parts.</p>
 }
 
 /**
- * The EditionSeriesRoutes class.
+ * The EditionSeriesRoute class.
  *
  * It is used in the context of the edition view
  * to store routing constants of the edition series.
  */
-export class EditionSeriesRoutes {
+export class EditionSeriesRoute {
     /**
      * The series route of an edition series.
      */
     series: EditionRoute;
 
     /**
-     * The sections routes of an edition series.
+     * The section route of an edition series.
      */
-    sections: EditionRoute[];
+    sections: EditionSectionRoute[];
+}
+
+/**
+ * The EditionSectionRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of the edition sections.
+ */
+export class EditionSectionRoute {
+    /**
+     * The section route of an edition section.
+     */
+    section: EditionRoute;
+
+    /**
+     * The edition complexes of an edition section.
+     */
+    complexes: EditionComplexRoute[];
+
+    /**
+     * Boolean flag if an edition section is disabled.
+     */
+    disabled: boolean;
+}
+
+/**
+ * The EditionComplexRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of an edition complex.
+ */
+export class EditionComplexRoute {
+    /**
+     * The edition complex.
+     */
+    complex: EditionComplex;
+
+    /**
+     * Boolean flag if an edition complex is disabled.
+     */
+    disabled: boolean;
 }
 
 /**
@@ -289,19 +338,19 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for a composition.
+     * The edition route for an edition complex.
      */
-    static readonly COMPOSITION: EditionRoute &#x3D; {
-        route: &#x27;/composition&#x27;,
-        short: &#x27;Komposition&#x27;,
-        full: &#x27;Komposition&#x27;,
+    static readonly COMPLEX: EditionRoute &#x3D; {
+        route: &#x27;/complex&#x27;,
+        short: &#x27;Editionskomplex&#x27;,
+        full: &#x27;Editionskomplex&#x27;,
     };
 
     /**
      * The edition route for the opus number.
      */
     static readonly OPUS: EditionRoute &#x3D; {
-        route: &#x27;/opus&#x27;,
+        route: &#x27;/op&#x27;,
         short: &#x27;op.&#x27;,
         full: &#x27;Opus&#x27;,
     };
@@ -310,7 +359,7 @@ export class EditionConstants {
      * The editon route for the Moldenhauer number.
      */
     static readonly MNR: EditionRoute &#x3D; {
-        route: &#x27;/mnr&#x27;,
+        route: &#x27;/m&#x27;,
         short: &#x27;M&#x27;,
         full: &#x27;Moldenhauer-Nr.&#x27;,
     };
@@ -379,12 +428,21 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for section 2.
+     * The edition route for section 2a.
      */
     static readonly SECTION_2A: EditionRoute &#x3D; {
         route: &#x27;2a&#x27;,
         short: &#x27;2a&#x27;,
         full: &#x27;Abteilung 2a (Klaviermusik)&#x27;,
+    };
+
+    /**
+     * The edition route for section 2b.
+     */
+    static readonly SECTION_2B: EditionRoute &#x3D; {
+        route: &#x27;2a&#x27;,
+        short: &#x27;2a&#x27;,
+        full: &#x27;Abteilung 2b (Kammermusik)&#x27;,
     };
 
     /**
@@ -521,6 +579,15 @@ export class EditionConstants {
         route: &#x27;assets/img/edition/firm-signs/firm_je_no9_lin28.png&#x27;,
         short: &#x27;[JE] | No. 9 | 28 linig.&#x27;,
         full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.&#x27;,
+    };
+
+    /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines.
+     */
+    static readonly FIRM_JE_NO_2_LIN_12: EditionRoute &#x3D; {
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no2_lin12.png&#x27;,
+        short: &#x27;[JE] | No. 2 | 12 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 2 | 12 linig.&#x27;,
     };
 
     /**

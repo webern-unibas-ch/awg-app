@@ -63,7 +63,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/edition-view/models/edition-work.model.ts</code>
+            <code>src/app/views/edition-view/models/edition-complex.model.ts</code>
         </p>
 
 
@@ -73,7 +73,7 @@
             <p class="comment">
                 <p>The EditionResponsibilityStatement class.</p>
 <p>It is used in the context of the edition view
-to store information about the responsibility statement of a work.</p>
+to store information about the responsibility statement of an edition complex.</p>
 
             </p>
 
@@ -136,13 +136,13 @@ to store information about the responsibility statement of a work.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:37</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The editors of an edition.</p>
+                    <div class="io-description"><p>The editors of an edition complex.</p>
 </div>
                 </td>
             </tr>
@@ -168,13 +168,13 @@ to store information about the responsibility statement of a work.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:42</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/models/edition-complex.model.ts:42</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The last modification date of an edition.</p>
+                    <div class="io-description"><p>The last modification date of an edition complex.</p>
 </div>
                 </td>
             </tr>
@@ -200,7 +200,7 @@ import { EditionConstants, EditionRoute } from &#x27;./edition-constants&#x27;;
  * The EditionTitleStatement class.
  *
  * It is used in the context of the edition view
- * to store information about the title statement of a work.
+ * to store information about the title statement of an edition complex.
  */
 export class EditionTitleStatement {
     /**
@@ -223,66 +223,66 @@ export class EditionTitleStatement {
  * The EditionResponsibilityStatement class.
  *
  * It is used in the context of the edition view
- * to store information about the responsibility statement of a work.
+ * to store information about the responsibility statement of an edition complex.
  */
 export class EditionResponsibilityStatement {
     /**
-     * The editors of an edition.
+     * The editors of an edition complex.
      */
     editors: MetaPerson[];
 
     /**
-     * The last modification date of an edition.
+     * The last modification date of an edition complex.
      */
     lastModified: string;
 }
 
 /**
- * The EditionWork class.
+ * The EditionComplex class.
  *
  * It is used in the context of the edition view
- * to store information about a work of an edition.
+ * to store information about an edition complex.
  */
-export class EditionWork {
+export class EditionComplex {
     /**
-     * The title statement of the current work.
+     * The title statement of the current edition complex.
      */
     titleStatement: EditionTitleStatement;
 
     /**
-     * The responsibility statement of the current work.
+     * The responsibility statement of the current edition complex.
      */
     responsibilityStatement: EditionResponsibilityStatement;
 
     /**
-     * The edition route for the current work.
+     * The id for the current edition complex.
      */
-    work: EditionRoute;
+    complexId: EditionRoute;
 
     /**
-     * The edition route for series.
+     * The edition route for the current series.
      */
     series: EditionRoute;
 
     /**
-     * The edition route for section.
+     * The edition route for the current section.
      */
     section: EditionRoute;
 
     /**
-     * The edition route for the type of an edition.
+     * The edition route for the current type of an edition.
      */
     type: EditionRoute;
 
     /**
-     * The edition route for edition.
+     * The route to the edition section of the app.
      */
-    edition: EditionRoute &#x3D; EditionConstants.EDITION;
+    editionRoute: EditionRoute &#x3D; EditionConstants.EDITION;
 
     /**
-     * The edition route for composition.
+     * The route to the complex section of an edition.
      */
-    composition: EditionRoute &#x3D; EditionConstants.COMPOSITION;
+    complexRoute: EditionRoute &#x3D; EditionConstants.COMPLEX;
 
     /**
      * The route to the graph section of an edition.
@@ -305,34 +305,32 @@ export class EditionWork {
     reportRoute: EditionRoute &#x3D; EditionConstants.EDITION_REPORT;
 
     /**
-     * The base route of a work.
+     * The base route of an edition complex.
      *
-     * @example &#x27;edition/{series/1/section/5/}composition/op12
+     * @example &#x27;edition/{series/1/section/5/}complex/op12
      * TODO: Parts in {} muted at the moment.
      */
     baseRoute: string;
 
     /**
-     * Constructor of the EditionWork class.
+     * Constructor of the EditionComplex class.
      *
-     * It initializes the class with a composition Object from the EditionConstants.
+     * It initializes the class with an edition complex Object from the EditionConstants.
      *
-     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the composition.
-     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the composition.
-     * @param {EditionRoute} workRoute The given EditionRoute for the composition.
-     * @param {EditionRoute} seriesRoute The given EditionRoute for the series.
-     * @param {EditionRoute} sectionRoute The given EditionRoute for the section.
-     * @param {EditionRoute} typeRoute The given EditionRoute for the edition type.
+     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
+     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
+     * @param {EditionRoute} series The given series.
+     * @param {EditionRoute} section The given section.
+     * @param {EditionRoute} type The given edition type.
      */
     constructor(
         titleStatement: EditionTitleStatement,
         responsibilityStatement: EditionResponsibilityStatement,
-        workRoute: EditionRoute,
-        seriesRoute?: EditionRoute,
-        sectionRoute?: EditionRoute,
-        typeRoute?: EditionRoute
+        series?: EditionRoute,
+        section?: EditionRoute,
+        type?: EditionRoute
     ) {
-        if (!workRoute) {
+        if (!titleStatement || !titleStatement.catalogueType || !titleStatement.catalogueNumber) {
             return;
         }
 
@@ -346,22 +344,28 @@ export class EditionWork {
             ? responsibilityStatement
             : new EditionResponsibilityStatement();
 
-        this.work &#x3D; workRoute ? workRoute : new EditionRoute();
-        this.work.short &#x3D; this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
-        this.work.full &#x3D; this.titleStatement.title + spacer + this.work.short;
+        this.complexId &#x3D; new EditionRoute();
+        if (this.titleStatement.catalogueType &#x3D;&#x3D;&#x3D; EditionConstants.OPUS) {
+            this.complexId.route &#x3D; EditionConstants.OPUS.route;
+        } else if (this.titleStatement.catalogueType &#x3D;&#x3D;&#x3D; EditionConstants.MNR) {
+            this.complexId.route &#x3D; EditionConstants.MNR.route;
+        }
+        this.complexId.route +&#x3D; this.titleStatement.catalogueNumber;
+        this.complexId.short &#x3D; this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.complexId.full &#x3D; this.titleStatement.title + spacer + this.complexId.short;
 
-        this.series &#x3D; seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.SERIES_1;
-        this.section &#x3D; sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.SECTION_5;
-        this.type &#x3D; typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.SKETCH_EDITION;
+        this.series &#x3D; series ? series : new EditionRoute(); // EditionConstants.SERIES_1;
+        this.section &#x3D; section ? section : new EditionRoute(); // EditionConstants.SECTION_5;
+        this.type &#x3D; type ? type : new EditionRoute(); // EditionConstants.SKETCH_EDITION;
 
         // Set base route
-        let rootPath &#x3D; this.edition.route; // &#x27;/edition&#x27;
+        let rootPath &#x3D; this.editionRoute.route; // &#x27;/edition&#x27;
         // RootPath +&#x3D; this.series.route;     // &#x27;/series&#x27;
         // RootPath +&#x3D; this.section.route;    // &#x27;/section&#x27;
-        rootPath +&#x3D; this.composition.route; // &#x27;/composition&#x27;
+        rootPath +&#x3D; this.complexRoute.route; // &#x27;/complex&#x27;
         // RootPath +&#x3D; this.type.route;       // &#x27;/sketches&#x27; or // &#x27;/texts&#x27;
 
-        this.baseRoute &#x3D; rootPath + this.work.route + delimiter;
+        this.baseRoute &#x3D; rootPath + this.complexId.route + delimiter;
     }
 }
 </code></pre>

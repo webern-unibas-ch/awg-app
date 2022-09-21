@@ -151,10 +151,10 @@ another router outlet for the edition routes.</p>
                                 <a href="#_destroyed$" >_destroyed$</a>
                             </li>
                             <li>
-                                <a href="#editionRouterLinkButtons" >editionRouterLinkButtons</a>
+                                <a href="#editionComplex" >editionComplex</a>
                             </li>
                             <li>
-                                <a href="#editionWork" >editionWork</a>
+                                <a href="#editionRouterLinkButtons" >editionRouterLinkButtons</a>
                             </li>
                         </ul>
                     </td>
@@ -169,7 +169,7 @@ another router outlet for the edition routes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getEditionWork" >getEditionWork</a>
+                                <a href="#getEditionComplex" >getEditionComplex</a>
                             </li>
                             <li>
                                 <a href="#ngOnDestroy" >ngOnDestroy</a>
@@ -262,16 +262,16 @@ another router outlet for the edition routes.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getEditionWork"></a>
+                    <a name="getEditionComplex"></a>
                     <span class="name">
-                        <span ><b>getEditionWork</b></span>
-                        <a href="#getEditionWork"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getEditionComplex</b></span>
+                        <a href="#getEditionComplex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getEditionWork()</code>
+<code>getEditionComplex()</code>
                 </td>
             </tr>
 
@@ -286,8 +286,8 @@ another router outlet for the edition routes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionWork.</p>
-<p>It subscribes to the current edition work
+                    <div class="io-description"><p>Public method: getEditionComplex.</p>
+<p>It subscribes to the current edition complex
 of the edition service.</p>
 </div>
 
@@ -298,7 +298,7 @@ of the edition service.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Gets the current edition work.</p>
+                        <p>Gets the current edition complex.</p>
 
                     </div>
                 </td>
@@ -483,6 +483,39 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="editionComplex"></a>
+                    <span class="name">
+                        <span ><b>editionComplex</b></span>
+                        <a href="#editionComplex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: editionComplex.</p>
+<p>It keeps the current edition complex.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="editionRouterLinkButtons"></a>
                     <span class="name">
                         <span ><b>editionRouterLinkButtons</b></span>
@@ -512,39 +545,6 @@ when initializing the component.</p>
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="editionWork"></a>
-                    <span class="name">
-                        <span ><b>editionWork</b></span>
-                        <a href="#editionWork"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component.ts:35</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: editionWork.</p>
-<p>It keeps the current composition.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 </section>
 
 </div>
@@ -556,7 +556,7 @@ import { Subject } from &#x27;rxjs&#x27;;
 import { takeUntil } from &#x27;rxjs/operators&#x27;;
 
 import { RouterLinkButton } from &#x27;@awg-shared/router-link-button-group/router-link-button.model&#x27;;
-import { EditionConstants, EditionWork } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionConstants, EditionComplex } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 /**
@@ -581,11 +581,11 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     editionRouterLinkButtons: RouterLinkButton[];
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
-     * It keeps the current composition.
+     * It keeps the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Private variable: _destroyed$.
@@ -610,24 +610,24 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionWork();
+        this.getEditionComplex();
     }
 
     /**
-     * Public method: getEditionWork.
+     * Public method: getEditionComplex.
      *
-     * It subscribes to the current edition work
+     * It subscribes to the current edition complex
      * of the edition service.
      *
-     * @returns {void} Gets the current edition work.
+     * @returns {void} Gets the current edition complex.
      */
-    getEditionWork(): void {
+    getEditionComplex(): void {
         this.editionService
-            .getEditionWork()
+            .getEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({
-                next: (work: EditionWork) &#x3D;&gt; {
-                    this.editionWork &#x3D; work;
+                next: (complex: EditionComplex) &#x3D;&gt; {
+                    this.editionComplex &#x3D; complex;
                     this.setButtons();
                 },
             });
@@ -643,26 +643,26 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     setButtons(): void {
         this.editionRouterLinkButtons &#x3D; [
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.introRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.introRoute.route,
                 EditionConstants.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.sheetsRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.sheetsRoute.route,
                 EditionConstants.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.reportRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.reportRoute.route,
                 EditionConstants.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.graphRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.graphRoute.route,
                 EditionConstants.EDITION_GRAPH.short,
                 false
             ),

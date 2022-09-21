@@ -68,7 +68,7 @@
             </p>
             <p class="comment">
                 <p>The Edition service.</p>
-<p>It handles the provision of the current work and
+<p>It handles the provision of the current edition complex and
 of the textcritical comments for a selected overlay item.</p>
 <p>Provided in: <code>root</code>.</p>
 
@@ -94,16 +94,12 @@ of the textcritical comments for a selected overlay item.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_editionOutline" >_editionOutline</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#_editionWorkStream$" >_editionWorkStream$</a>
+                                <a href="#_editionComplexStream$" >_editionComplexStream$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_editionWorkSubject" >_editionWorkSubject</a>
+                                <a href="#_editionComplexSubject" >_editionComplexSubject</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -145,7 +141,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#clearEditionWork" >clearEditionWork</a>
+                                <a href="#clearEditionComplex" >clearEditionComplex</a>
                             </li>
                             <li>
                                 <a href="#clearIsRowTableView" >clearIsRowTableView</a>
@@ -155,6 +151,9 @@ of the textcritical comments for a selected overlay item.</p>
                             </li>
                             <li>
                                 <a href="#clearSelectedEditionSeries" >clearSelectedEditionSeries</a>
+                            </li>
+                            <li>
+                                <a href="#getEditionComplex" >getEditionComplex</a>
                             </li>
                             <li>
                                 <a href="#getEditionOutline" >getEditionOutline</a>
@@ -169,9 +168,6 @@ of the textcritical comments for a selected overlay item.</p>
                                 <a href="#getEditionSeriesRoute" >getEditionSeriesRoute</a>
                             </li>
                             <li>
-                                <a href="#getEditionWork" >getEditionWork</a>
-                            </li>
-                            <li>
                                 <a href="#getIsRowTableView" >getIsRowTableView</a>
                             </li>
                             <li>
@@ -184,7 +180,7 @@ of the textcritical comments for a selected overlay item.</p>
                                 <a href="#getTextcriticalCommentsForOverlays" >getTextcriticalCommentsForOverlays</a>
                             </li>
                             <li>
-                                <a href="#updateEditionWork" >updateEditionWork</a>
+                                <a href="#updateEditionComplex" >updateEditionComplex</a>
                             </li>
                             <li>
                                 <a href="#updateIsRowTableView" >updateIsRowTableView</a>
@@ -217,32 +213,32 @@ of the textcritical comments for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="clearEditionWork"></a>
+                    <a name="clearEditionComplex"></a>
                     <span class="name">
-                        <span ><b>clearEditionWork</b></span>
-                        <a href="#clearEditionWork"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>clearEditionComplex</b></span>
+                        <a href="#clearEditionComplex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>clearEditionWork()</code>
+<code>clearEditionComplex()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="160"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:160</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="124"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:124</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: clearEditionWork.</p>
-<p>It clears the edition work stream.</p>
+                    <div class="io-description"><p>Public method: clearEditionComplex.</p>
+<p>It clears the edition complex stream.</p>
 </div>
 
                     <div>
@@ -252,7 +248,7 @@ of the textcritical comments for a selected overlay item.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Clears the edition work stream.</p>
+                        <p>Clears the edition complex stream.</p>
 
                     </div>
                 </td>
@@ -279,8 +275,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="311"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:311</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="277"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:277</a></div>
                 </td>
             </tr>
 
@@ -325,8 +321,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="276"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:276</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="242"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:242</a></div>
                 </td>
             </tr>
 
@@ -371,8 +367,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="243"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:243</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="207"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:207</a></div>
                 </td>
             </tr>
 
@@ -401,6 +397,52 @@ of the textcritical comments for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getEditionComplex"></a>
+                    <span class="name">
+                        <span ><b>getEditionComplex</b></span>
+                        <a href="#getEditionComplex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEditionComplex()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getEditionComplex.</p>
+<p>It provides the latest edition complex from the edition complex stream.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The edition complex stream as observable.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getEditionOutline"></a>
                     <span class="name">
                         <span ><b>getEditionOutline</b></span>
@@ -417,8 +459,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="171"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:171</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="135"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:135</a></div>
                 </td>
             </tr>
 
@@ -432,7 +474,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoutes.html" target="_self" >EditionSeriesRoutes[]</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoute.html" target="_self" >EditionSeriesRoute[]</a></code>
 
                     </div>
                     <div class="io-description">
@@ -463,8 +505,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="209"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:209</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:173</a></div>
                 </td>
             </tr>
 
@@ -526,7 +568,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionRoute.html" target="_self" >EditionRoute</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/EditionSectionRoute.html" target="_self" >EditionSectionRoute</a></code>
 
                     </div>
                     <div class="io-description">
@@ -557,8 +599,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="195"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:195</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:159</a></div>
                 </td>
             </tr>
 
@@ -578,6 +620,7 @@ of the textcritical comments for a selected overlay item.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -592,6 +635,10 @@ of the textcritical comments for a selected overlay item.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>The given series id.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -599,7 +646,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoutes.html" target="_self" >EditionSeriesRoutes</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoute.html" target="_self" >EditionSeriesRoute</a></code>
 
                     </div>
                     <div class="io-description">
@@ -630,8 +677,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="182"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:182</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:146</a></div>
                 </td>
             </tr>
 
@@ -660,52 +707,6 @@ of the textcritical comments for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getEditionWork"></a>
-                    <span class="name">
-                        <span ><b>getEditionWork</b></span>
-                        <a href="#getEditionWork"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>getEditionWork()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:136</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionWork.</p>
-<p>It provides the latest edition work from the edition work stream.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionWork.html" target="_self" >Observable&lt;EditionWork&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The edition work stream as observable.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getIsRowTableView"></a>
                     <span class="name">
                         <span ><b>getIsRowTableView</b></span>
@@ -722,8 +723,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="287"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:287</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="253"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:253</a></div>
                 </td>
             </tr>
 
@@ -768,8 +769,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="254"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:254</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:218</a></div>
                 </td>
             </tr>
 
@@ -783,7 +784,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionRoute.html" target="_self" >Observable&lt;EditionRoute&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/EditionSectionRoute.html" target="_self" >Observable&lt;EditionSectionRoute&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -814,8 +815,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="221"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:221</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:185</a></div>
                 </td>
             </tr>
 
@@ -829,7 +830,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoutes.html" target="_self" >Observable&lt;EditionSeriesRoutes&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoute.html" target="_self" >Observable&lt;EditionSeriesRoute&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -860,8 +861,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -938,32 +939,32 @@ of the textcritical comments for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="updateEditionWork"></a>
+                    <a name="updateEditionComplex"></a>
                     <span class="name">
-                        <span ><b>updateEditionWork</b></span>
-                        <a href="#updateEditionWork"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>updateEditionComplex</b></span>
+                        <a href="#updateEditionComplex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateEditionWork(editionWork: <a href="../classes/EditionWork.html" target="_self">EditionWork</a>)</code>
+<code>updateEditionComplex(editionComplex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:113</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: updateEditionWork.</p>
-<p>It updates the edition work stream with the given work.</p>
+                    <div class="io-description"><p>Public method: updateEditionComplex.</p>
+<p>It updates the edition complex stream with the given edition complex.</p>
 </div>
 
                     <div class="io-description">
@@ -980,9 +981,9 @@ of the textcritical comments for a selected overlay item.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>editionWork</td>
+                                    <td>editionComplex</td>
                                     <td>
-                                                <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
+                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
                                     </td>
 
                                     <td>
@@ -991,7 +992,7 @@ of the textcritical comments for a selected overlay item.</p>
 
 
                                     <td>
-                                        <p>The given edition work.</p>
+                                        <p>The given edition complex.</p>
 
                                     </td>
                                 </tr>
@@ -1005,7 +1006,7 @@ of the textcritical comments for a selected overlay item.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Sets the next edition work to the stream.</p>
+                        <p>Sets the next edition complex to the stream.</p>
 
                     </div>
                 </td>
@@ -1032,8 +1033,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="300"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:300</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:266</a></div>
                 </td>
             </tr>
 
@@ -1103,15 +1104,15 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionSection(editionSection: <a href="../classes/EditionRoute.html" target="_self">EditionRoute</a>)</code>
+<code>updateSelectedEditionSection(editionSection: <a href="../classes/EditionSectionRoute.html" target="_self">EditionSectionRoute</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="265"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:265</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="231"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:231</a></div>
                 </td>
             </tr>
 
@@ -1131,13 +1132,14 @@ of the textcritical comments for a selected overlay item.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>editionSection</td>
                                     <td>
-                                                <code><a href="../classes/EditionRoute.html" target="_self" >EditionRoute</a></code>
+                                                <code><a href="../classes/EditionSectionRoute.html" target="_self" >EditionSectionRoute</a></code>
                                     </td>
 
                                     <td>
@@ -1145,6 +1147,10 @@ of the textcritical comments for a selected overlay item.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>The given edition section.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1176,15 +1182,15 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionSeries(editionSeries: <a href="../classes/EditionSeriesRoutes.html" target="_self">EditionSeriesRoutes</a>)</code>
+<code>updateSelectedEditionSeries(editionSeries: <a href="../classes/EditionSeriesRoute.html" target="_self">EditionSeriesRoute</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="232"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:232</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:196</a></div>
                 </td>
             </tr>
 
@@ -1210,7 +1216,7 @@ of the textcritical comments for a selected overlay item.</p>
                                 <tr>
                                     <td>editionSeries</td>
                                     <td>
-                                                <code><a href="../classes/EditionSeriesRoutes.html" target="_self" >EditionSeriesRoutes</a></code>
+                                                <code><a href="../classes/EditionSeriesRoute.html" target="_self" >EditionSeriesRoute</a></code>
                                     </td>
 
                                     <td>
@@ -1267,7 +1273,7 @@ of the textcritical comments for a selected overlay item.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:68</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -1284,99 +1290,29 @@ of the textcritical comments for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_editionOutline"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_editionOutline</b></span>
-                        <a href="#_editionOutline"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionSeriesRoutes.html" target="_self" >EditionSeriesRoutes[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>[
-        {
-            series: EditionConstants.SERIES_1,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SECTION_5,
-            ],
-        },
-        {
-            series: EditionConstants.SERIES_2,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SECTION_5,
-            ],
-        },
-        {
-            series: EditionConstants.SERIES_3,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SERIES_3_SECTION_5,
-            ],
-        },
-    ]</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:32</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private variable: _editionOutline.</p>
-<p>It keeps the outline of the edition as an array of routes.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_editionWorkStream$"></a>
+                    <a name="_editionComplexStream$"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
                             <span class="modifier">Readonly</span>
-                        <span ><b>_editionWorkStream$</b></span>
-                        <a href="#_editionWorkStream$"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_editionComplexStream$</b></span>
+                        <a href="#_editionComplexStream$"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>this._editionWorkSubject.asObservable()</code>
+                        <i>Default value : </i><code>this._editionComplexSubject.asObservable()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:78</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:42</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private readonly edition work stream as observable (<code>ReplaySubject</code>).</p>
+                    <div class="io-description"><p>Private readonly edition complex stream as observable (<code>ReplaySubject</code>).</p>
 </div>
                 </td>
             </tr>
@@ -1387,28 +1323,28 @@ of the textcritical comments for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_editionWorkSubject"></a>
+                    <a name="_editionComplexSubject"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_editionWorkSubject</b></span>
-                        <a href="#_editionWorkSubject"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_editionComplexSubject</b></span>
+                        <a href="#_editionComplexSubject"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionWork&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>new ReplaySubject&lt;EditionComplex&gt;(this._bufferSize)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:73</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:37</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private replay subject to handle edition work.</p>
+                    <div class="io-description"><p>Private replay subject to handle edition complex.</p>
 </div>
                 </td>
             </tr>
@@ -1435,7 +1371,7 @@ of the textcritical comments for a selected overlay item.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:88</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -1467,7 +1403,7 @@ of the textcritical comments for a selected overlay item.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -1500,7 +1436,7 @@ of the textcritical comments for a selected overlay item.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:108</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:72</a></div>
                         </td>
                     </tr>
 
@@ -1527,12 +1463,12 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionRoute&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>new ReplaySubject&lt;EditionSectionRoute&gt;(this._bufferSize)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:103</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:67</a></div>
                         </td>
                     </tr>
 
@@ -1565,7 +1501,7 @@ of the textcritical comments for a selected overlay item.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:98</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -1592,12 +1528,12 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionSeriesRoutes&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>new ReplaySubject&lt;EditionSeriesRoute&gt;(this._bufferSize)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:93</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:57</a></div>
                         </td>
                     </tr>
 
@@ -1620,19 +1556,21 @@ of the textcritical comments for a selected overlay item.</p>
 
 import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
 
+import { EDITION_OUTLINE_DATA } from &#x27;@awg-views/edition-view/data&#x27;;
 import {
     EditionConstants,
     EditionRoute,
-    EditionSeriesRoutes,
+    EditionSeriesRoute,
     EditionSvgOverlay,
-    EditionWork,
+    EditionComplex,
     TextcriticalComment,
 } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionSectionRoute } from &#x27;@awg-views/edition-view/models/edition-constants&#x27;;
 
 /**
  * The Edition service.
  *
- * It handles the provision of the current work and
+ * It handles the provision of the current edition complex and
  * of the textcritical comments for a selected overlay item.
  *
  * Provided in: &#x60;root&#x60;.
@@ -1643,57 +1581,19 @@ import {
 })
 export class EditionService {
     /**
-     * Private variable: _editionOutline.
-     *
-     * It keeps the outline of the edition as an array of routes.
-     */
-    private _editionOutline: EditionSeriesRoutes[] &#x3D; [
-        {
-            series: EditionConstants.SERIES_1,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SECTION_5,
-            ],
-        },
-        {
-            series: EditionConstants.SERIES_2,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SECTION_5,
-            ],
-        },
-        {
-            series: EditionConstants.SERIES_3,
-            sections: [
-                EditionConstants.SECTION_1,
-                EditionConstants.SECTION_2,
-                EditionConstants.SECTION_3,
-                EditionConstants.SECTION_4,
-                EditionConstants.SERIES_3_SECTION_5,
-            ],
-        },
-    ];
-
-    /**
      * Private variable for the replay subject´s buffer size.
      */
     private _bufferSize &#x3D; 1;
 
     /**
-     * Private replay subject to handle edition work.
+     * Private replay subject to handle edition complex.
      */
-    private _editionWorkSubject &#x3D; new ReplaySubject&lt;EditionWork&gt;(this._bufferSize);
+    private _editionComplexSubject &#x3D; new ReplaySubject&lt;EditionComplex&gt;(this._bufferSize);
 
     /**
-     * Private readonly edition work stream as observable (&#x60;ReplaySubject&#x60;).
+     * Private readonly edition complex stream as observable (&#x60;ReplaySubject&#x60;).
      */
-    private readonly _editionWorkStream$ &#x3D; this._editionWorkSubject.asObservable();
+    private readonly _editionComplexStream$ &#x3D; this._editionComplexSubject.asObservable();
 
     /**
      * Private replay subject to flag row table view.
@@ -1708,7 +1608,7 @@ export class EditionService {
     /**
      * Private replay subject to handle the selected edition series.
      */
-    private _selectedEditionSeriesSubject &#x3D; new ReplaySubject&lt;EditionSeriesRoutes&gt;(this._bufferSize);
+    private _selectedEditionSeriesSubject &#x3D; new ReplaySubject&lt;EditionSeriesRoute&gt;(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (&#x60;ReplaySubject&#x60;).
@@ -1718,7 +1618,7 @@ export class EditionService {
     /**
      * Private replay subject to handle the selected edition series.
      */
-    private _selectedEditionSectionSubject &#x3D; new ReplaySubject&lt;EditionRoute&gt;(this._bufferSize);
+    private _selectedEditionSectionSubject &#x3D; new ReplaySubject&lt;EditionSectionRoute&gt;(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (&#x60;ReplaySubject&#x60;).
@@ -1745,38 +1645,38 @@ export class EditionService {
     }
 
     /**
-     * Public method: getEditionWork.
+     * Public method: getEditionComplex.
      *
-     * It provides the latest edition work from the edition work stream.
+     * It provides the latest edition complex from the edition complex stream.
      *
-     * @returns {Observable&lt;EditionWork&gt;} The edition work stream as observable.
+     * @returns {Observable&lt;EditionComplex&gt;} The edition complex stream as observable.
      */
-    getEditionWork(): Observable&lt;EditionWork&gt; {
-        return this._editionWorkStream$;
+    getEditionComplex(): Observable&lt;EditionComplex&gt; {
+        return this._editionComplexStream$;
     }
 
     /**
-     * Public method: updateEditionWork.
+     * Public method: updateEditionComplex.
      *
-     * It updates the edition work stream with the given work.
+     * It updates the edition complex stream with the given edition complex.
      *
-     * @param {EditionWork} editionWork The given edition work.
+     * @param {EditionComplex} editionComplex The given edition complex.
      *
-     * @returns {void} Sets the next edition work to the stream.
+     * @returns {void} Sets the next edition complex to the stream.
      */
-    updateEditionWork(editionWork: EditionWork): void {
-        this._editionWorkSubject.next(editionWork);
+    updateEditionComplex(editionComplex: EditionComplex): void {
+        this._editionComplexSubject.next(editionComplex);
     }
 
     /**
-     * Public method: clearEditionWork.
+     * Public method: clearEditionComplex.
      *
-     * It clears the edition work stream.
+     * It clears the edition complex stream.
      *
-     * @returns {void} Clears the edition work stream.
+     * @returns {void} Clears the edition complex stream.
      */
-    clearEditionWork(): void {
-        this._editionWorkSubject.next(null);
+    clearEditionComplex(): void {
+        this._editionComplexSubject.next(null);
     }
 
     /**
@@ -1784,10 +1684,10 @@ export class EditionService {
      *
      * It provides the outline of the edition with its series.
      *
-     * @returns {EditionSeriesRoutes[]} The edition outline.
+     * @returns {EditionSeriesRoute[]} The edition outline.
      */
-    getEditionOutline(): EditionSeriesRoutes[] {
-        return this._editionOutline;
+    getEditionOutline(): EditionSeriesRoute[] {
+        return EDITION_OUTLINE_DATA;
     }
 
     /**
@@ -1806,12 +1706,12 @@ export class EditionService {
      *
      * It finds a series of the edition by a given id.
      *
-     * @param {string} id The given series id.
+     * @param {string} seriesId The given series id.
      *
-     * @returns {EditionSeriesRoutes} The found edition series.
+     * @returns {EditionSeriesRoute} The found edition series.
      */
-    getEditionSeriesById(seriesId: string): EditionSeriesRoutes {
-        return this._editionOutline.find(series &#x3D;&gt; series.series.route &#x3D;&#x3D;&#x3D; seriesId);
+    getEditionSeriesById(seriesId: string): EditionSeriesRoute {
+        return EDITION_OUTLINE_DATA.find(series &#x3D;&gt; series.series.route &#x3D;&#x3D;&#x3D; seriesId);
     }
 
     /**
@@ -1822,11 +1722,11 @@ export class EditionService {
      * @param {string} seriesId The given series id.
      * @param {string} sectionId The given series id.
      *
-     * @returns {EditionRoute} The found edition section.
+     * @returns {EditionSectionRoute} The found edition section.
      */
-    getEditionSectionById(seriesId: string, sectionId: string): EditionRoute {
+    getEditionSectionById(seriesId: string, sectionId: string): EditionSectionRoute {
         const series &#x3D; this.getEditionSeriesById(seriesId);
-        return series.sections.find(section &#x3D;&gt; section.route &#x3D;&#x3D;&#x3D; sectionId);
+        return series.sections.find(section &#x3D;&gt; section.section.route &#x3D;&#x3D;&#x3D; sectionId);
     }
 
     /**
@@ -1834,9 +1734,9 @@ export class EditionService {
      *
      * It provides the latest selected series from the edition series stream.
      *
-     * @returns {Observable&lt;EditionSeriesRoutes&gt;} The edition series stream as observable.
+     * @returns {Observable&lt;EditionSeriesRoute&gt;} The edition series stream as observable.
      */
-    getSelectedEditionSeries(): Observable&lt;EditionSeriesRoutes&gt; {
+    getSelectedEditionSeries(): Observable&lt;EditionSeriesRoute&gt; {
         return this._selectedEditionSeriesStream$;
     }
 
@@ -1847,7 +1747,7 @@ export class EditionService {
      *
      * @returns {void} Sets the next edition series to the stream.
      */
-    updateSelectedEditionSeries(editionSeries: EditionSeriesRoutes): void {
+    updateSelectedEditionSeries(editionSeries: EditionSeriesRoute): void {
         this._selectedEditionSeriesSubject.next(editionSeries);
     }
 
@@ -1867,9 +1767,9 @@ export class EditionService {
      *
      * It provides the latest selected section from the edition section stream.
      *
-     * @returns {Observable&lt;EditionRoute&gt;} The edition section stream as observable.
+     * @returns {Observable&lt;EditionSectionRoute&gt;} The edition section stream as observable.
      */
-    getSelectedEditionSection(): Observable&lt;EditionRoute&gt; {
+    getSelectedEditionSection(): Observable&lt;EditionSectionRoute&gt; {
         return this._selectedEditionSectionStream$;
     }
 
@@ -1878,9 +1778,11 @@ export class EditionService {
      *
      * It updates the selected edition section stream with the given section.
      *
+     * @param {EditionSectionRoute} editionSection The given edition section.
+     *
      * @returns {void} Sets the next edition section to the stream.
      */
-    updateSelectedEditionSection(editionSection: EditionRoute): void {
+    updateSelectedEditionSection(editionSection: EditionSectionRoute): void {
         this._selectedEditionSectionSubject.next(editionSection);
     }
 

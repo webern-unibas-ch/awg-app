@@ -891,6 +891,15 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/D3SimulationNodeTriple.html" data-type="entity-link" >D3SimulationNodeTriple</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EDITION_COMPLEXES.html" data-type="entity-link" >EDITION_COMPLEXES</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionComplex.html" data-type="entity-link" >EditionComplex</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionComplexRoute.html" data-type="entity-link" >EditionComplexRoute</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EditionConstants.html" data-type="entity-link" >EditionConstants</a>
                             </li>
                             <li class="link">
@@ -903,7 +912,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionRowTables.html" data-type="entity-link" >EditionRowTables</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionSeriesRoutes.html" data-type="entity-link" >EditionSeriesRoutes</a>
+                                <a href="classes/EditionSectionRoute.html" data-type="entity-link" >EditionSectionRoute</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionSeriesRoute.html" data-type="entity-link" >EditionSeriesRoute</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionSvgOverlay.html" data-type="entity-link" >EditionSvgOverlay</a>
@@ -919,12 +931,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/EditionTitleStatement.html" data-type="entity-link" >EditionTitleStatement</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionWork.html" data-type="entity-link" >EditionWork</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/EditionWorks.html" data-type="entity-link" >EditionWorks</a>
                             </li>
                             <li class="link">
                                 <a href="classes/ExtendedSearchParams.html" data-type="entity-link" >ExtendedSearchParams</a>
