@@ -81,7 +81,11 @@ export class NavbarComponent implements OnInit {
      *
      * It keeps the array of displayed edition complexes.
      */
-    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [EDITION_COMPLEXES.OP12, EDITION_COMPLEXES.OP25];
+    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
+        EDITION_COMPLEXES.OP12,
+        EDITION_COMPLEXES.OP25,
+        EDITION_COMPLEXES.M34,
+    ];
 
     /**
      * Constructor of the HeaderComponent.

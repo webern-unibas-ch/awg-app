@@ -52,6 +52,7 @@
                     <div class="dropdown-divider"></div>
                     <div *ngFor="let editionComplex of DISPLAYED_EDITION_COMPLEXES">
                         <h6 class="dropdown-header">
+                            [AWG {{ editionComplex.series.short }}/{{ editionComplex.section.short }}]
                             {{ editionComplex.complex.full }}
                         </h6>
                         <a

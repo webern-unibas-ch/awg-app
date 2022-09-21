@@ -16,7 +16,7 @@
             <em class="awg-edition-info-header-title">{{ EDITION_COMPLEX_OP12.titleStatement.title }}</em
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP12.complex.short }}</span>
             <br />
-            (<a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, EDITION_COMPLEX_OP12.introRoute.route]">{{
+            (<a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, EDITION_COMPLEX_OP12.sheetsRoute.route]">{{
                 EDITION_COMPLEX_OP12.type.full
             }}</a
             >)
@@ -38,6 +38,22 @@
             &
             <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, EDITION_COMPLEX_OP25.graphRoute.route]">{{
                 EDITION_COMPLEX_OP25.graphRoute.short
+            }}</a
+            >)
+        </h6>
+        <p>&#9671;</p>
+        <h6 class="awg-edition-info-header">
+            <span class="awg-breadcrumb"
+                >{{ EDITION_COMPLEX_M34.editionRoute.short }} {{ EDITION_COMPLEX_M34.series.short }}/{{
+                    EDITION_COMPLEX_M34.section.short
+                }}</span
+            >
+            <br />
+            <em class="awg-edition-info-header-title">{{ EDITION_COMPLEX_M34.titleStatement.title }}</em
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_M34.complex.short }}</span>
+            <br />
+            (<a [routerLink]="[EDITION_COMPLEX_M34.baseRoute, EDITION_COMPLEX_M34.sheetsRoute.route]">{{
+                EDITION_COMPLEX_M34.type.full
             }}</a
             >)
         </h6>

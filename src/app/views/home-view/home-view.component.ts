@@ -33,6 +33,13 @@ export class HomeViewComponent implements OnInit {
     homeViewId = 'awg-home-view';
 
     /**
+     * Readonly constant: EDITION_COMPLEX_M34.
+     *
+     * It keeps the edition complex M 34.
+     */
+    readonly EDITION_COMPLEX_M34 = EDITION_COMPLEXES.M34;
+
+    /**
      * Readonly constant: EDITION_COMPLEX_OP12.
      *
      * It keeps the edition complex Opus 12.

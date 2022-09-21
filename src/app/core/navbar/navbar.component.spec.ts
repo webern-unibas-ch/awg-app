@@ -327,14 +327,14 @@ describe('NavbarComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 12, 12);
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 15, 15);
 
                 // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get 12 routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 12 routerLinks').toBe(12);
+            it('... can get 15 routerLinks from template', () => {
+                expect(routerLinks.length).withContext('should have 12 routerLinks').toBe(15);
             });
 
             it('... can get correct routes from routerLinks', () => {
@@ -402,9 +402,36 @@ describe('NavbarComponent (DONE)', () => {
                     )
                     .toEqual([expectedEditionComplexes[1].baseRoute, expectedEditionComplexes[1].reportRoute.route]);
 
-                expect(routerLinks[9].linkParams).withContext(`should equal ['/structure']`).toEqual(['/structure']);
-                expect(routerLinks[10].linkParams).withContext(`should equal ['/data']`).toEqual(['/data']);
-                expect(routerLinks[11].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+                expect(routerLinks[9].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexes[2].baseRoute,
+                            expectedEditionComplexes[2].introRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexes[2].baseRoute, expectedEditionComplexes[2].introRoute.route]);
+
+                expect(routerLinks[10].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexes[2].baseRoute,
+                            expectedEditionComplexes[2].sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexes[2].baseRoute, expectedEditionComplexes[2].sheetsRoute.route]);
+
+                expect(routerLinks[11].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexes[2].baseRoute,
+                            expectedEditionComplexes[2].reportRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexes[2].baseRoute, expectedEditionComplexes[2].reportRoute.route]);
+
+                expect(routerLinks[12].linkParams).withContext(`should equal ['/structure']`).toEqual(['/structure']);
+                expect(routerLinks[13].linkParams).withContext(`should equal ['/data']`).toEqual(['/data']);
+                expect(routerLinks[14].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
             });
 
             it('... can click Home link in template', () => {
@@ -441,8 +468,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Structure link in template', () => {
-                const structureLinkDe = linkDes[9]; // Structure link DebugElement
-                const structureLink = routerLinks[9]; // Structure link directive
+                const structureLinkDe = linkDes[12]; // Structure link DebugElement
+                const structureLink = routerLinks[12]; // Structure link directive
 
                 const expectedRoute = ['/structure'];
 
@@ -456,8 +483,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Data link in template', () => {
-                const dataLinkDe = linkDes[10]; // Data link DebugElement
-                const dataLink = routerLinks[10]; // Data link directive
+                const dataLinkDe = linkDes[13]; // Data link DebugElement
+                const dataLink = routerLinks[13]; // Data link directive
 
                 const expectedRoute = ['/data'];
 
@@ -471,8 +498,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[11]; // Contact link DebugElement
-                const contactLink = routerLinks[11]; // Contact link directive
+                const contactLinkDe = linkDes[14]; // Contact link DebugElement
+                const contactLink = routerLinks[14]; // Contact link directive
 
                 const expectedRoute = ['/contact'];
 
