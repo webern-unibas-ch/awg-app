@@ -146,7 +146,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'h3.awg-edition-info-header em.awg-edition-info-header-title',
+                    'h3.awg-edition-info-header .awg-edition-info-header-title',
                     2,
                     2
                 );
@@ -216,7 +216,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[1],
-                    'h3.awg-edition-info-header em.awg-edition-info-header-title',
+                    'h3.awg-edition-info-header .awg-edition-info-header-title',
                     1,
                     1
                 );
@@ -331,7 +331,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'h3.awg-edition-info-header em.awg-edition-info-header-title',
+                    'h3.awg-edition-info-header .awg-edition-info-header-title',
                     2,
                     2
                 );
@@ -342,10 +342,10 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(title0El).toBeDefined();
                 expect(title1El).toBeDefined();
 
-                expect(title0El.textContent)
+                expect(title0El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexOp12.titleStatement.title}`)
                     .toBe(expectedEditionComplexOp12.titleStatement.title);
-                expect(title1El.textContent)
+                expect(title1El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexOp25.titleStatement.title}`)
                     .toBe(expectedEditionComplexOp25.titleStatement.title);
             });
@@ -411,14 +411,14 @@ describe('HomeViewComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[1],
-                    'h3.awg-edition-info-header em.awg-edition-info-header-title',
+                    'h3.awg-edition-info-header .awg-edition-info-header-title',
                     1,
                     1
                 );
                 const title0El = titleDes[0].nativeElement;
 
                 expect(title0El).toBeDefined();
-                expect(title0El.textContent)
+                expect(title0El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexM34.titleStatement.title}`)
                     .toBe(expectedEditionComplexM34.titleStatement.title);
             });

@@ -134,7 +134,7 @@ describe('EditionInfoComponent (DONE)', () => {
             it('... should not render title of edition info headers yet', () => {
                 const titleDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'h6.awg-edition-info-header em.awg-edition-info-header-title',
+                    'h6.awg-edition-info-header .awg-edition-info-header-title',
                     3,
                     3
                 );
@@ -242,7 +242,7 @@ describe('EditionInfoComponent (DONE)', () => {
             it('... should render title of edition info headers', () => {
                 const titleDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'h6.awg-edition-info-header em.awg-edition-info-header-title',
+                    'h6.awg-edition-info-header .awg-edition-info-header-title',
                     3,
                     3
                 );
@@ -255,13 +255,13 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(title2El).toBeDefined();
                 expect(title3El).toBeDefined();
 
-                expect(title1El.textContent)
+                expect(title1El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexOp12.titleStatement.title}`)
                     .toBe(expectedEditionComplexOp12.titleStatement.title);
-                expect(title2El.textContent)
+                expect(title2El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexOp25.titleStatement.title}`)
                     .toBe(expectedEditionComplexOp25.titleStatement.title);
-                expect(title3El.textContent)
+                expect(title3El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexM34.titleStatement.title}`)
                     .toBe(expectedEditionComplexM34.titleStatement.title);
             });

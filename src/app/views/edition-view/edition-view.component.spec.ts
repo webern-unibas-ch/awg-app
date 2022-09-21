@@ -471,10 +471,10 @@ describe('EditionViewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const titleDes = getAndExpectDebugElementByCss(hDes[0], 'em.awg-edition-info-header-title', 1, 1);
+                    const titleDes = getAndExpectDebugElementByCss(hDes[0], '.awg-edition-info-header-title', 1, 1);
                     const catalogueDes = getAndExpectDebugElementByCss(
                         hDes[0],
-                        'span.awg-edition-info-header-catalogue',
+                        '.awg-edition-info-header-catalogue',
                         1,
                         1
                     );
@@ -484,8 +484,8 @@ describe('EditionViewComponent (DONE)', () => {
                     const expectedHeaderTitle = expectedSelectedEditionComplex.titleStatement.title;
                     const expectedHeaderCatalogue = expectedSelectedEditionComplex.complexId.short;
 
-                    expect(titleEl.innerText).toBeTruthy();
-                    expect(titleEl.innerText).withContext(`should be ${expectedHeaderTitle}`).toBe(expectedHeaderTitle);
+                    expect(titleEl.innerHTML).toBeTruthy();
+                    expect(titleEl.innerHTML).withContext(`should be ${expectedHeaderTitle}`).toBe(expectedHeaderTitle);
 
                     expect(catalogueEl.innerText).toBeTruthy();
                     expect(catalogueEl.innerText)
