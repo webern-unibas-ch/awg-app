@@ -13,8 +13,8 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionConstants, EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
@@ -34,16 +34,18 @@ describe('EditionDetailNavComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedEditionRouterLinkButtons: RouterLinkButton[];
-    let expectedEditionWork: EditionWork;
+    let expectedEditionComplex: EditionComplex;
 
     let setButtonsSpy: Spy;
-    let getEditionWorkSpy: Spy;
+    let getEditionComplexSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         // Create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
+        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionComplex']);
         // Make the spy return a synchronous Observable with the test data
-        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
+        getEditionComplexSpy = mockEditionService.getEditionComplex.and.returnValue(
+            observableOf(EDITION_COMPLEXES.OP12)
+        );
 
         TestBed.configureTestingModule({
             declarations: [EditionDetailNavComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
@@ -57,29 +59,29 @@ describe('EditionDetailNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionWork = EditionWorks.OP12;
+        expectedEditionComplex = EDITION_COMPLEXES.OP12;
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
-                expectedEditionWork.baseRoute,
-                expectedEditionWork.introRoute.route,
+                expectedEditionComplex.baseRoute,
+                expectedEditionComplex.introRoute.route,
                 EditionConstants.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionWork.baseRoute,
-                expectedEditionWork.sheetsRoute.route,
+                expectedEditionComplex.baseRoute,
+                expectedEditionComplex.sheetsRoute.route,
                 EditionConstants.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionWork.baseRoute,
-                expectedEditionWork.reportRoute.route,
+                expectedEditionComplex.baseRoute,
+                expectedEditionComplex.reportRoute.route,
                 EditionConstants.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionWork.baseRoute,
-                expectedEditionWork.graphRoute.route,
+                expectedEditionComplex.baseRoute,
+                expectedEditionComplex.graphRoute.route,
                 EditionConstants.EDITION_GRAPH.short,
                 false
             ),
@@ -104,13 +106,13 @@ describe('EditionDetailNavComponent (DONE)', () => {
             expect(component.editionRouterLinkButtons).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should not have `editionWork`', () => {
-            expect(component.editionWork).withContext('should be undefined').toBeUndefined();
+        it('should not have `editionComplex`', () => {
+            expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
         });
 
-        describe('#getEditionWork', () => {
+        describe('#getEditionComplex', () => {
             it('... should not have been called', () => {
-                expectSpyCall(getEditionWorkSpy, 0);
+                expectSpyCall(getEditionComplexSpy, 0);
             });
         });
 
@@ -137,17 +139,17 @@ describe('EditionDetailNavComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getEditionWork', () => {
+        describe('#getEditionComplex', () => {
             it('should have been called', () => {
-                expectSpyCall(getEditionWorkSpy, 1);
+                expectSpyCall(getEditionComplexSpy, 1);
             });
         });
 
-        it('should have `editionWork`', () => {
-            expect(component.editionWork).withContext('should be defined').toBeDefined();
-            expect(component.editionWork)
-                .withContext(`should equal ${expectedEditionWork}`)
-                .toEqual(expectedEditionWork);
+        it('should have `editionComplex`', () => {
+            expect(component.editionComplex).withContext('should be defined').toBeDefined();
+            expect(component.editionComplex)
+                .withContext(`should equal ${expectedEditionComplex}`)
+                .toEqual(expectedEditionComplex);
         });
 
         describe('#setButtons', () => {

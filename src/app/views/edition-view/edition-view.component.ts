@@ -3,7 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoutes, EditionWork } from '@awg-views/edition-view/models';
+import {
+    EditionConstants,
+    EditionRoute,
+    EditionSectionRoute,
+    EditionSeriesRoute,
+    EditionComplex,
+} from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -61,21 +67,21 @@ export class EditionViewComponent implements OnInit {
      * Observable that keeps the information
      * about the current edition complex.
      */
-    selectedEditionComplex$: Observable<EditionWork>;
-
-    /**
-     * Public variable: selectedEditionSeries$.
-     *
-     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
-     */
-    selectedEditionSeries$: Observable<EditionSeriesRoutes>;
+    selectedEditionComplex$: Observable<EditionComplex>;
 
     /**
      * Public variable: selectedEditionSection$.
      *
      * It keeps the selected section of the edition as an Observable of EditionRoute.
      */
-    selectedEditionSection$: Observable<EditionRoute>;
+    selectedEditionSection$: Observable<EditionSectionRoute>;
+
+    /**
+     * Public variable: selectedEditionSeries$.
+     *
+     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     */
+    selectedEditionSeries$: Observable<EditionSeriesRoute>;
 
     /**
      * Constructor of the EditionViewComponent.
@@ -110,7 +116,7 @@ export class EditionViewComponent implements OnInit {
     getSelectionsFromRoute(): void {
         this.selectedEditionSeries$ = this.editionService.getSelectedEditionSeries().pipe(delay(0));
         this.selectedEditionSection$ = this.editionService.getSelectedEditionSection().pipe(delay(0));
-        this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
+        this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
         this.isRowTableView$ = this.editionService.getIsRowTableView().pipe(delay(0));
     }
 

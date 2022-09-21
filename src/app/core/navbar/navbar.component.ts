@@ -4,8 +4,8 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionWork } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplex } from '@awg-views/edition-view/models';
 import { Router } from '@angular/router';
 
 /**
@@ -70,18 +70,22 @@ export class NavbarComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Public variable: selectedEditionWork.
+     * Public variable: selectedEditionComplex.
      *
-     * It keeps the currently selected composition.
+     * It keeps the currently selected edition complex.
      */
-    selectedEditionWork: EditionWork;
+    selectedEditionComplex: EditionComplex;
 
     /**
-     * Readonly constant: EDITION_WORKS.
+     * Readonly constant: DISPLAYED_EDITION_COMPLEXES.
      *
-     * It keeps the array of compositions.
+     * It keeps the array of displayed edition complexes.
      */
-    readonly EDITION_WORKS: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
+    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
+        EDITION_COMPLEXES.OP12,
+        EDITION_COMPLEXES.OP25,
+        EDITION_COMPLEXES.M34,
+    ];
 
     /**
      * Constructor of the HeaderComponent.
@@ -100,7 +104,7 @@ export class NavbarComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionWork();
+        this.getEditionComplex();
         this.provideMetaData();
     }
 
@@ -123,14 +127,14 @@ export class NavbarComponent implements OnInit {
     }
 
     /**
-     * Public method: getEditionWork.
+     * Public method: getEditionComplex.
      *
-     * It gets the selected EditionWork.
+     * It gets the selected edition complex.
      *
-     * @returns {void} Sets the selectedEditionWork variable.
+     * @returns {void} Sets the selectedEditionComplex variable.
      */
-    getEditionWork(): void {
-        this.selectedEditionWork = this.EDITION_WORKS[0];
+    getEditionComplex(): void {
+        this.selectedEditionComplex = this.DISPLAYED_EDITION_COMPLEXES[0];
     }
 
     /**

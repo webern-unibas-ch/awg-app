@@ -1,16 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
-
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall } from '@testing/expect-helper';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
-    EditionWork,
+    EditionComplex,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
@@ -19,7 +16,7 @@ import { EditionService } from './edition.service';
 describe('EditionService (DONE)', () => {
     let editionService: EditionService;
 
-    let expectedEditionWork: EditionWork;
+    let expectedEditionComplex: EditionComplex;
 
     let expectedTka: TextcriticalComment[];
     let expectedOverlays: EditionSvgOverlay[];
@@ -34,8 +31,8 @@ describe('EditionService (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data (default)
-        expectedEditionWork = EditionWorks.OP12;
-        // Textcritial comments
+        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        // Textcritical comments
         expectedTka = [
             {
                 svgGroupId: 'tka-1',
@@ -95,100 +92,100 @@ describe('EditionService (DONE)', () => {
             .toBe(1);
     });
 
-    it('should have editionWorkSubject', () => {
-        expect((editionService as any)._editionWorkSubject).toBeTruthy();
+    it('should have _editionComplexSubject', () => {
+        expect((editionService as any)._editionComplexSubject).toBeTruthy();
     });
 
-    it('should have editionWorkStream$', () => {
-        expect((editionService as any)._editionWorkStream$).toBeTruthy();
+    it('should have _editionComplexStream$', () => {
+        expect((editionService as any)._editionComplexStream$).toBeTruthy();
     });
 
-    describe('EditionWork', () => {
-        describe('#getEditionWork', () => {
-            it('... should return given editionWork', waitForAsync(() => {
-                editionService.getEditionWork().subscribe({
-                    next: (editionWork: EditionWork) => {
-                        expect(editionWork).toBeTruthy();
-                        expect(editionWork)
-                            .withContext(`should equal ${expectedEditionWork}`)
-                            .toEqual(expectedEditionWork);
+    describe('EditionComplex', () => {
+        describe('#getEditionComplex', () => {
+            it('... should return given editionComplex', waitForAsync(() => {
+                editionService.getEditionComplex().subscribe({
+                    next: (editionComplex: EditionComplex) => {
+                        expect(editionComplex).toBeTruthy();
+                        expect(editionComplex)
+                            .withContext(`should equal ${expectedEditionComplex}`)
+                            .toEqual(expectedEditionComplex);
                     },
                 });
 
-                // Set editionWork (with default value)
-                editionService.updateEditionWork(expectedEditionWork);
+                // Set editionComplex (with default value)
+                editionService.updateEditionComplex(expectedEditionComplex);
             }));
 
-            it('... should return updated editionWork', waitForAsync(() => {
-                editionService.getEditionWork().subscribe({
-                    next: (editionWork: EditionWork) => {
-                        expect(editionWork).toBeTruthy();
-                        expect(editionWork)
-                            .withContext(`should equal ${expectedEditionWork}`)
-                            .toEqual(expectedEditionWork);
+            it('... should return updated editionComplex', waitForAsync(() => {
+                editionService.getEditionComplex().subscribe({
+                    next: (editionComplex: EditionComplex) => {
+                        expect(editionComplex).toBeTruthy();
+                        expect(editionComplex)
+                            .withContext(`should equal ${expectedEditionComplex}`)
+                            .toEqual(expectedEditionComplex);
                     },
                 });
 
-                // Set editionWork (with default value)
-                editionService.updateEditionWork(expectedEditionWork);
+                // Set editionComplex (with default value)
+                editionService.updateEditionComplex(expectedEditionComplex);
 
-                // Update editionWork
-                expectedEditionWork = EditionWorks.OP25;
-                editionService.updateEditionWork(expectedEditionWork);
+                // Update editionComplex
+                expectedEditionComplex = EDITION_COMPLEXES.OP25;
+                editionService.updateEditionComplex(expectedEditionComplex);
             }));
         });
 
-        describe('#updateEditionWork', () => {
-            it('... should emit updated editionWork', waitForAsync(() => {
-                editionService.getEditionWork().subscribe({
-                    next: (editionWork: EditionWork) => {
-                        expect(editionWork).toBeTruthy();
-                        expect(editionWork)
-                            .withContext(`should equal ${expectedEditionWork}`)
-                            .toEqual(expectedEditionWork);
+        describe('#updateEditionComplex', () => {
+            it('... should emit updated editionComplex', waitForAsync(() => {
+                editionService.getEditionComplex().subscribe({
+                    next: (editionComplex: EditionComplex) => {
+                        expect(editionComplex).toBeTruthy();
+                        expect(editionComplex)
+                            .withContext(`should equal ${expectedEditionComplex}`)
+                            .toEqual(expectedEditionComplex);
                     },
                 });
 
-                // Set editionWork
-                editionService.updateEditionWork(expectedEditionWork);
+                // Set editionComplex
+                editionService.updateEditionComplex(expectedEditionComplex);
 
-                // Update editionWork
-                expectedEditionWork = EditionWorks.OP25;
-                editionService.updateEditionWork(expectedEditionWork);
+                // Update editionComplex
+                expectedEditionComplex = EDITION_COMPLEXES.OP25;
+                editionService.updateEditionComplex(expectedEditionComplex);
             }));
         });
 
-        describe('#clearEditionWork', () => {
-            it('... should update edition work with null value', waitForAsync(() => {
-                editionService.getEditionWork().subscribe({
-                    next: (editionWork: EditionWork) => {
-                        expect(editionWork).toBeNull();
-                        expect(editionWork)
-                            .withContext(`should equal ${expectedEditionWork}`)
-                            .toEqual(expectedEditionWork);
+        describe('#clearEditionComplex', () => {
+            it('... should update edition complex with null value', waitForAsync(() => {
+                editionService.getEditionComplex().subscribe({
+                    next: (editionComplex: EditionComplex) => {
+                        expect(editionComplex).toBeNull();
+                        expect(editionComplex)
+                            .withContext(`should equal ${expectedEditionComplex}`)
+                            .toEqual(expectedEditionComplex);
                     },
                 });
 
-                // Clear editionWork
-                expectedEditionWork = null;
-                editionService.clearEditionWork();
+                // Clear editionComplex
+                expectedEditionComplex = null;
+                editionService.clearEditionComplex();
             }));
 
             it('... should overwrite existing search results', waitForAsync(() => {
-                editionService.getEditionWork().subscribe({
-                    next: (editionWork: EditionWork) => {
-                        expect(editionWork)
-                            .withContext(`should equal ${expectedEditionWork}`)
-                            .toEqual(expectedEditionWork);
+                editionService.getEditionComplex().subscribe({
+                    next: (editionComplex: EditionComplex) => {
+                        expect(editionComplex)
+                            .withContext(`should equal ${expectedEditionComplex}`)
+                            .toEqual(expectedEditionComplex);
                     },
                 });
 
-                // Update editionWork
-                editionService.updateEditionWork(expectedEditionWork);
+                // Update editionComplex
+                editionService.updateEditionComplex(expectedEditionComplex);
 
-                // Clear editionWork
-                expectedEditionWork = null;
-                editionService.clearEditionWork();
+                // Clear editionComplex
+                expectedEditionComplex = null;
+                editionService.clearEditionComplex();
             }));
         });
     });

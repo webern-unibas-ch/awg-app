@@ -47,8 +47,8 @@ const EDITION_VIEW_ROUTES: Routes = [
                 ],
             },
             {
-                // CompositionID (op12, M317, etc.).
-                path: 'composition/:compositionId',
+                // ComplexID (OP12, M34, etc.).
+                path: 'complex/:complexId',
                 component: EditionComplexComponent,
                 children: [
                     {

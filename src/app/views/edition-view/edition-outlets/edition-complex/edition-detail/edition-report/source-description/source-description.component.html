@@ -117,7 +117,9 @@
                             <span
                                 *ngIf="folio.folio"
                                 class="awg-source-description-content-item-folio"
-                                [ngClass]="{ tab: !folio.folioDescription }">
+                                [ngClass]="{
+                                    tab: content.item
+                                }">
                                 <ng-container *ngIf="folio.folioLinkTo">
                                     <a (click)="selectSvgSheet(folio.folioLinkTo)"
                                         ><ng-template
@@ -135,8 +137,8 @@
                                 ><span
                                     *ngIf="folio.folioDescription"
                                     class="awg-source-description-content-item-folio-description"
-                                    >&nbsp;{{ folio.folioDescription }}</span
-                                >
+                                    >&nbsp;<span [compile-html]="folio.folioDescription" [compile-html-ref]="ref"></span
+                                ></span>
                             </span>
                             <ng-template #folioTemplate let-folio>
                                 <span
@@ -153,7 +155,7 @@
                             </ng-template>
 
                             <!-- content.folios.systemGroups -->
-                            <ng-container *ngIf="utils.isNotEmptyArray(folio.systemGroups)"
+                            <ng-container *ngIf="utils.isNotEmptyArray(folio.systemGroups); else noSystemGroups"
                                 ><ng-container
                                     *ngFor="
                                         let systemGroup of folio.systemGroups;
@@ -239,6 +241,9 @@
                                     </ng-container>
                                 </ng-container>
                             </ng-container>
+                            <ng-template #noSystemGroups>
+                                <br *ngIf="!lastFolio" />
+                            </ng-template>
                         </ng-container>
                     </ng-container>
                 </p>

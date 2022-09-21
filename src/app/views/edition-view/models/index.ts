@@ -10,14 +10,11 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoutes } from './edition-constants';
-
+import { EditionConstants, EditionRoute, EditionSectionRoute, EditionSeriesRoute } from './edition-constants';
+import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
 import { EditionRowTables } from './edition-row-tables.model';
-
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
-
-import { EditionWork, EditionTitleStatement } from './edition-work.model';
 
 import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
@@ -37,16 +34,17 @@ import { ViewBox } from './view-box.model';
 export {
     D3Selection,
     D3ZoomBehaviour,
+    EditionComplex,
     EditionConstants,
     EditionRoute,
     EditionRowTables,
-    EditionSeriesRoutes,
+    EditionSectionRoute,
+    EditionSeriesRoute,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
     EditionTitleStatement,
-    EditionWork,
     FolioConvoluteList,
     FolioConvolute,
     Folio,

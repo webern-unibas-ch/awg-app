@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoutes } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -27,7 +27,7 @@ export class EditionSeriesComponent implements OnInit {
      *
      * It keeps the outline of the edition as an array of routes.
      */
-    editionOutline: EditionSeriesRoutes[];
+    editionOutline: EditionSeriesRoute[];
 
     /**
      * Constructor of the EditionSeriesComponent.

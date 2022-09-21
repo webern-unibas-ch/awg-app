@@ -20,8 +20,8 @@ import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionSvgSheet, EditionWork, IntroList } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionSvgSheet, EditionComplex, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionIntroComponent } from './edition-intro.component';
@@ -45,19 +45,19 @@ describe('IntroComponent (DONE)', () => {
     let editionService: Partial<EditionService>;
 
     let expectedEditionIntroData: IntroList;
-    let expectedEditionWork: EditionWork;
+    let expectedEditionComplex: EditionComplex;
     let expectedModalSnippet: string;
     let expectedFragment: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
-    let expectedEditionWorkRoute: string;
+    let expectedEditionComplexRoute: string;
     let expectedReportRoute: string;
     let expectedSheetsRoute: string;
 
     let editionDataServiceGetEditionIntroDataSpy: Spy;
     let getEditionIntroDataSpy: Spy;
-    let getEditionWorkSpy: Spy;
+    let getEditionComplexSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigationSpy: Spy;
     let modalOpenSpy: Spy;
@@ -70,11 +70,11 @@ describe('IntroComponent (DONE)', () => {
 
         // Mock services
         mockEditionDataService = {
-            getEditionIntroData: (editionWork: EditionWork): Observable<IntroList> =>
+            getEditionIntroData: (editionComplex: EditionComplex): Observable<IntroList> =>
                 observableOf(expectedEditionIntroData),
         };
         mockEditionService = {
-            getEditionWork: (): Observable<EditionWork> => observableOf(expectedEditionWork),
+            getEditionComplex: (): Observable<EditionComplex> => observableOf(expectedEditionComplex),
         };
 
         TestBed.configureTestingModule({
@@ -97,14 +97,14 @@ describe('IntroComponent (DONE)', () => {
         editionDataService = TestBed.inject(EditionDataService);
         editionService = TestBed.inject(EditionService);
 
-        expectedEditionWork = EditionWorks.OP12;
+        expectedEditionComplex = EDITION_COMPLEXES.OP12;
         expectedFragment = 'sourceA';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedEditionIntroData = mockEditionData.mockIntroData;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
 
-        expectedEditionWorkRoute = '/edition/composition/op12/';
+        expectedEditionComplexRoute = '/edition/complex/op12/';
         expectedReportRoute = 'report';
         expectedSheetsRoute = 'sheets';
 
@@ -112,7 +112,9 @@ describe('IntroComponent (DONE)', () => {
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
             observableOf(expectedEditionIntroData)
         );
-        getEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.returnValue(observableOf(expectedEditionWork));
+        getEditionComplexSpy = spyOn(editionService, 'getEditionComplex').and.returnValue(
+            observableOf(expectedEditionComplex)
+        );
         getEditionIntroDataSpy = spyOn(component, 'getEditionIntroData').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigationSpy = mockRouter.navigate as jasmine.Spy;
@@ -134,8 +136,8 @@ describe('IntroComponent (DONE)', () => {
             expect(component.editionIntroData$).toBeUndefined();
         });
 
-        it('... should not have editionWork', () => {
-            expect(component.editionWork).toBeUndefined();
+        it('... should not have editionComplex', () => {
+            expect(component.editionComplex).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -159,15 +161,15 @@ describe('IntroComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.editionIntroData$ = observableOf(expectedEditionIntroData);
-            component.editionWork = expectedEditionWork;
+            component.editionComplex = expectedEditionComplex;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('... should have called `getEditionWork()`', () => {
+        it('... should have called `getEditionComplex()`', () => {
             // `getEditionReportData()` called immediately after init
-            expectSpyCall(getEditionWorkSpy, 1);
+            expectSpyCall(getEditionComplexSpy, 1);
         });
 
         it('... should have called `getEditionIntroData()`', () => {
@@ -175,11 +177,11 @@ describe('IntroComponent (DONE)', () => {
             expectSpyCall(getEditionIntroDataSpy, 1);
         });
 
-        it('... should have editionWork', () => {
-            expect(component.editionWork).toBeDefined();
-            expect(component.editionWork)
-                .withContext(`should equal ${expectedEditionWork}`)
-                .toEqual(expectedEditionWork);
+        it('... should have editionComplex', () => {
+            expect(component.editionComplex).toBeDefined();
+            expect(component.editionComplex)
+                .withContext(`should equal ${expectedEditionComplex}`)
+                .toEqual(expectedEditionComplex);
         });
 
         it('... should have editionIntroData$', waitForAsync(() => {
@@ -228,13 +230,13 @@ describe('IntroComponent (DONE)', () => {
                 expectSpyCall(getEditionIntroDataSpy, 1);
             });
 
-            it('... should have got `editionWork` from editionService', () => {
-                expectSpyCall(getEditionWorkSpy, 1);
+            it('... should have got `editionComplex` from editionService', () => {
+                expectSpyCall(getEditionComplexSpy, 1);
 
-                expect(component.editionWork).toBeTruthy();
-                expect(component.editionWork)
-                    .withContext(`should equal ${expectedEditionWork}`)
-                    .toEqual(expectedEditionWork);
+                expect(component.editionComplex).toBeTruthy();
+                expect(component.editionComplex)
+                    .withContext(`should equal ${expectedEditionComplex}`)
+                    .toEqual(expectedEditionComplex);
             });
 
             it('... should have got editionIntroData from editionDataService', () => {
@@ -284,7 +286,7 @@ describe('IntroComponent (DONE)', () => {
 
                 const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
 
                 const otherFragment = 'otherFragment';
                 qp.fragment = otherFragment;
@@ -292,7 +294,7 @@ describe('IntroComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, otherFragment);
-                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
             });
 
             it('... should navigate without fragment if none is given', () => {
@@ -301,7 +303,7 @@ describe('IntroComponent (DONE)', () => {
 
                 const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
 
                 const noFragment = '';
                 qp.fragment = noFragment;
@@ -309,7 +311,7 @@ describe('IntroComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, '');
-                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
             });
         });
 
@@ -403,14 +405,14 @@ describe('IntroComponent (DONE)', () => {
                     queryParamsHandling: '',
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
 
                 component.selectSvgSheet(expectedNextSvgSheet.id);
                 fixture.detectChanges();
 
                 qp.queryParams.sketch = expectedNextSvgSheet.id;
                 expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
-                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
             });
 
             it('... should navigate without id if none is given', () => {
@@ -422,7 +424,7 @@ describe('IntroComponent (DONE)', () => {
                     queryParamsHandling: '',
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
 
                 const noId = '';
                 qp.queryParams.sketch = noId;
@@ -430,7 +432,7 @@ describe('IntroComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(selectSvgSheetSpy, 2, '');
-                expectSpyCall(navigationSpy, 2, [[expectedEditionWorkRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
             });
         });
     });

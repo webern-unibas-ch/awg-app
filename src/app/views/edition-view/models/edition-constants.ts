@@ -1,3 +1,5 @@
+import { EditionComplex } from './edition-complex.model';
+
 /**
  * The EditionRoute class.
  *
@@ -22,21 +24,62 @@ export class EditionRoute {
 }
 
 /**
- * The EditionSeriesRoutes class.
+ * The EditionSeriesRoute class.
  *
  * It is used in the context of the edition view
  * to store routing constants of the edition series.
  */
-export class EditionSeriesRoutes {
+export class EditionSeriesRoute {
     /**
      * The series route of an edition series.
      */
     series: EditionRoute;
 
     /**
-     * The sections routes of an edition series.
+     * The section route of an edition series.
      */
-    sections: EditionRoute[];
+    sections: EditionSectionRoute[];
+}
+
+/**
+ * The EditionSectionRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of the edition sections.
+ */
+export class EditionSectionRoute {
+    /**
+     * The section route of an edition section.
+     */
+    section: EditionRoute;
+
+    /**
+     * The edition complexes of an edition section.
+     */
+    complexes: EditionComplexRoute[];
+
+    /**
+     * Boolean flag if an edition section is disabled.
+     */
+    disabled: boolean;
+}
+
+/**
+ * The EditionComplexRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store routing constants of an edition complex.
+ */
+export class EditionComplexRoute {
+    /**
+     * The edition complex.
+     */
+    complex: EditionComplex;
+
+    /**
+     * Boolean flag if an edition complex is disabled.
+     */
+    disabled: boolean;
 }
 
 /**
@@ -65,19 +108,19 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for a composition.
+     * The edition route for an edition complex.
      */
-    static readonly COMPOSITION: EditionRoute = {
-        route: '/composition',
-        short: 'Komposition',
-        full: 'Komposition',
+    static readonly COMPLEX: EditionRoute = {
+        route: '/complex',
+        short: 'Editionskomplex',
+        full: 'Editionskomplex',
     };
 
     /**
      * The edition route for the opus number.
      */
     static readonly OPUS: EditionRoute = {
-        route: '/opus',
+        route: '/op',
         short: 'op.',
         full: 'Opus',
     };
@@ -86,7 +129,7 @@ export class EditionConstants {
      * The editon route for the Moldenhauer number.
      */
     static readonly MNR: EditionRoute = {
-        route: '/mnr',
+        route: '/m',
         short: 'M',
         full: 'Moldenhauer-Nr.',
     };
@@ -155,12 +198,21 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for section 2.
+     * The edition route for section 2a.
      */
     static readonly SECTION_2A: EditionRoute = {
         route: '2a',
         short: '2a',
         full: 'Abteilung 2a (Klaviermusik)',
+    };
+
+    /**
+     * The edition route for section 2b.
+     */
+    static readonly SECTION_2B: EditionRoute = {
+        route: '2a',
+        short: '2a',
+        full: 'Abteilung 2b (Kammermusik)',
     };
 
     /**
@@ -297,6 +349,15 @@ export class EditionConstants {
         route: 'assets/img/edition/firm-signs/firm_je_no9_lin28.png',
         short: '[JE] | No. 9 | 28 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.',
+    };
+
+    /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines.
+     */
+    static readonly FIRM_JE_NO_2_LIN_12: EditionRoute = {
+        route: 'assets/img/edition/firm-signs/firm_je_no2_lin12.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 2 | 12 linig.',
     };
 
     /**

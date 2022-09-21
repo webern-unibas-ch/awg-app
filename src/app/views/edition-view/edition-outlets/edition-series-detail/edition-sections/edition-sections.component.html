@@ -2,10 +2,15 @@
     <div class="col" *ngFor="let section of selectedSeries.sections">
         <div class="card h-100">
             <div class="card-body">
-                <h5 class="card-title">{{ section.full }}</h5>
+                <h5 class="card-title" [ngClass]="{ 'text-muted': section.disabled }">{{ section.section.full }}</h5>
             </div>
             <div class="card-footer text-end">
-                <a [routerLink]="[section.route]" class="btn btn-outline-info">Mehr... </a>
+                <a
+                    [routerLink]="[section.section.route]"
+                    class="btn btn-outline-info"
+                    [ngClass]="{ disabled: section.disabled }"
+                    >Mehr...
+                </a>
             </div>
         </div>
     </div>

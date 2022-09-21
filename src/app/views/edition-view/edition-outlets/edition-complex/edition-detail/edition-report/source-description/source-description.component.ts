@@ -53,6 +53,7 @@ export class SourceDescriptionComponent {
         },
         OP25: {
             A: [EditionConstants.FIRM_JE_NO_15_LIN_16],
+            B: [EditionConstants.FIRM_JE_NO_2_LIN_12],
             C: [EditionConstants.FIRM_JE_NO_3_LIN_14],
         },
     };

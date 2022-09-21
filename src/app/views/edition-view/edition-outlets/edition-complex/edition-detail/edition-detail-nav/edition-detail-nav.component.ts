@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -28,11 +28,11 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     editionRouterLinkButtons: RouterLinkButton[];
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
-     * It keeps the current composition.
+     * It keeps the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Private variable: _destroyed$.
@@ -57,24 +57,24 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionWork();
+        this.getEditionComplex();
     }
 
     /**
-     * Public method: getEditionWork.
+     * Public method: getEditionComplex.
      *
-     * It subscribes to the current edition work
+     * It subscribes to the current edition complex
      * of the edition service.
      *
-     * @returns {void} Gets the current edition work.
+     * @returns {void} Gets the current edition complex.
      */
-    getEditionWork(): void {
+    getEditionComplex(): void {
         this.editionService
-            .getEditionWork()
+            .getEditionComplex()
             .pipe(takeUntil(this._destroyed$))
             .subscribe({
-                next: (work: EditionWork) => {
-                    this.editionWork = work;
+                next: (complex: EditionComplex) => {
+                    this.editionComplex = complex;
                     this.setButtons();
                 },
             });
@@ -90,26 +90,26 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     setButtons(): void {
         this.editionRouterLinkButtons = [
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.introRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.introRoute.route,
                 EditionConstants.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.sheetsRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.sheetsRoute.route,
                 EditionConstants.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.reportRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.reportRoute.route,
                 EditionConstants.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.baseRoute,
-                this.editionWork.graphRoute.route,
+                this.editionComplex.baseRoute,
+                this.editionComplex.graphRoute.route,
                 EditionConstants.EDITION_GRAPH.short,
                 false
             ),

@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
-import { EditionWorks } from '@awg-views/edition-view/data';
-import { EditionWork } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -23,9 +23,9 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * Public variable: selectedEditionComplex$.
      *
      * Observable that keeps the information
-     * about the current composition.
+     * about the current edition complex.
      */
-    selectedEditionComplex$: Observable<EditionWork>;
+    selectedEditionComplex$: Observable<EditionComplex>;
 
     /**
      * Constructor of the EditionComplexComponent.
@@ -56,9 +56,9 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      */
     getEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
-            const id: string = params.get('compositionId') ? params.get('compositionId') : '';
-            this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
-            this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
+            const id: string = params.get('complexId') ? params.get('complexId') : '';
+            this.editionService.updateEditionComplex(EDITION_COMPLEXES[id.toUpperCase()]);
+            this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
         });
     }
 
@@ -72,6 +72,6 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      */
     ngOnDestroy() {
         // Remove selected edition complex
-        this.editionService.clearEditionWork();
+        this.editionService.clearEditionComplex();
     }
 }

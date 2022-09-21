@@ -6,7 +6,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { EditionRoute, EditionSeriesRoutes } from '@awg-views/edition-view/models';
+import { EditionRoute, EditionSectionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';
@@ -18,16 +18,16 @@ describe('EditionSectionDetailComponent', () => {
 
     let mockEditionService: Partial<EditionService>;
 
-    let expectedEditionSeries: EditionSeriesRoutes;
+    let expectedEditionSeries: EditionSeriesRoute;
 
     beforeEach(async () => {
         // Mock edition service
         mockEditionService = {
-            getSelectedEditionSeries: (): Observable<EditionSeriesRoutes> => observableOf(expectedEditionSeries),
+            getSelectedEditionSeries: (): Observable<EditionSeriesRoute> => observableOf(expectedEditionSeries),
 
-            getEditionSectionById: (seriesId: string, sectionId: string): EditionRoute =>
+            getEditionSectionById: (seriesId: string, sectionId: string): EditionSectionRoute =>
                 expectedEditionSeries.sections[0],
-            updateSelectedEditionSection: (editionSection: EditionRoute): void => {},
+            updateSelectedEditionSection: (editionSection: EditionSectionRoute): void => {},
         };
 
         // Mocked activated route

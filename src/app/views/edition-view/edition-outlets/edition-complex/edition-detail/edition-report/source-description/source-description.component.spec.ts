@@ -593,17 +593,20 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                     });
 
-                    it('... should have `tab` class on folio spans (content-item-folio) if no folioDescription is given', () => {
+                    it('... should have `tab` class on folio spans (content-item-folio) if content.item is given', () => {
+                        // Get number of all content items of mockdata
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
                             expectedContentLength,
                             expectedContentLength
                         );
+
+                        // Get length of folio array of 1st content item array of mockdata
+                        const expectedFolioLength =
+                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -617,39 +620,45 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(folioCmp1).toHaveClass('tab');
                     });
 
-                    it('... should have no tab class on folio spans (content-item-folio) if folioDescription is given', () => {
+                    it('... should have no tab class on folio spans (content-item-folio) if no content.item is given', () => {
+                        // Get number of all content items of mockdata
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
                             expectedContentLength,
                             expectedContentLength
                         );
+
+                        // Get length of folio array of 4th content item array of mockdata
+                        const expectedFolioLength =
+                            expectedSourceDescriptionListData.sources[1].description.content[3].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
-                            pDes[0],
+                            pDes[3],
                             'span.awg-source-description-content-item-folio',
                             expectedFolioLength,
                             expectedFolioLength
                         );
-                        const folioCmp2 = folioDes[2].nativeElement;
+                        const folioCmp = folioDes[0].nativeElement;
 
-                        expect(folioCmp2).not.toHaveClass('tab');
+                        expect(folioCmp).not.toHaveClass('tab');
                     });
 
                     it('... should display the content-item-folio with anchor link if given', () => {
+                        // Get number of all content items of mockdata
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
                             expectedContentLength,
                             expectedContentLength
                         );
+
+                        // Get length of folio array of 1st content item array of mockdata
+                        const expectedFolioLength =
+                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -672,16 +681,19 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should display the content-item-folio without anchor link if not given', () => {
+                        // Get number of all content items of mockdata
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
                             expectedContentLength,
                             expectedContentLength
                         );
+
+                        // Get length of folio array of 1st content item array of mockdata
+                        const expectedFolioLength =
+                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
                             pDes[0],
                             'span.awg-source-description-content-item-folio',
@@ -689,7 +701,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             expectedFolioLength
                         );
                         getAndExpectDebugElementByCss(folioDes[1], 'a', 0, 0);
-                        getAndExpectDebugElementByCss(folioDes[2], 'a', 0, 0);
 
                         const folioCmp1 = folioDes[1].nativeElement;
 
@@ -705,31 +716,34 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should display the content-item-folio with description if given', () => {
+                        // Get number of all content items of mockdata
                         const expectedContentLength =
                             expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedFolioLength =
-                            expectedSourceDescriptionListData.sources[1].description.content[0].folios.length;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
                             expectedContentLength,
                             expectedContentLength
                         );
+
+                        // Get length of folio array of 4th content item array of mockdata
+                        const expectedFolioLength =
+                            expectedSourceDescriptionListData.sources[1].description.content[3].folios.length;
                         const folioDes = getAndExpectDebugElementByCss(
-                            pDes[0],
+                            pDes[3],
                             'span.awg-source-description-content-item-folio',
                             expectedFolioLength,
                             expectedFolioLength
                         );
-                        const folioCmp2 = folioDes[2].nativeElement;
+                        const folioCmp = folioDes[0].nativeElement;
 
                         // Process HTML expression of expected text content
                         const expectedHtmlTextContent = mockDocument.createElement('a');
                         expectedHtmlTextContent.innerHTML =
-                            '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">2<sup class="awg-source-description-content-item-folio-side">v</sup></span></span><span class="awg-source-description-content-item-folio-description">&nbsp;unbeschriftet</span>';
+                            '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">2<sup class="awg-source-description-content-item-folio-side">v</sup></span></span><span class="awg-source-description-content-item-folio-description">&nbsp;Test item 4 without item</span>';
 
-                        expect(folioCmp2.textContent).toBeTruthy();
-                        expect(folioCmp2.textContent.trim())
+                        expect(folioCmp.textContent).toBeTruthy();
+                        expect(folioCmp.textContent.trim())
                             .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
                             .toBe(expectedHtmlTextContent.textContent.trim());
                     });

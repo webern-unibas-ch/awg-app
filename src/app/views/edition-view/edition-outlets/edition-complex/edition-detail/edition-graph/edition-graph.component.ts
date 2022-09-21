@@ -14,7 +14,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionConstants, EditionWork, GraphList } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionComplex, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { GraphVisualizerComponent } from './graph-visualizer';
 
@@ -60,11 +60,11 @@ export class EditionGraphComponent implements OnInit {
     faCompress = faCompress;
 
     /**
-     * Public variable: editionWork.
+     * Public variable: editionComplex.
      *
-     * It keeps the information about the current composition.
+     * It keeps the information about the current edition complex.
      */
-    editionWork: EditionWork;
+    editionComplex: EditionComplex;
 
     /**
      * Public variable: editionGraphData$.
@@ -141,22 +141,22 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Public method: getEditionGraphData.
      *
-     * It gets the the current edition work of the edition service
+     * It gets the current edition complex of the edition service
      * and the observable of the corresponding graph data
      * from the EditionDataService.
      *
-     * @returns {void} Gets the current edition work and the corresponding graph data.
+     * @returns {void} Gets the current edition complex and the corresponding graph data.
      */
     getEditionGraphData(): void {
         this.editionGraphData$ = this.editionService
-            // Get current editionWork from editionService
-            .getEditionWork()
+            // Get current editionComplex from editionService
+            .getEditionComplex()
             .pipe(
-                switchMap((work: EditionWork) => {
-                    // Set current editionWork
-                    this.editionWork = work;
+                switchMap((complex: EditionComplex) => {
+                    // Set current editionComplex
+                    this.editionComplex = complex;
                     // Get graph data from editionDataService
-                    return this.editionDataService.getEditionGraphData(this.editionWork);
+                    return this.editionDataService.getEditionGraphData(this.editionComplex);
                 }),
                 // Error handling
                 catchError(err => {
