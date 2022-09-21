@@ -461,6 +461,7 @@
                 },
                 "title": "<em>„Wie bin ich froh!“ | von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
                 "date": "<em>David Josef Bach | zum 60. Geburtstag | 13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
+                "annotations": "<em>Wie bin ich froh! | noch einmal wird mir alles grün | und leuchtet so! | noch überblühn || die Blumen mir die Welt! | noch einmal bin ich ganz ins Werden | hingestellt | und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
                 "content": [
                     {
                         "item": "M 317 TF1",
@@ -470,13 +471,13 @@
                             {
                                 "folio": "1r",
                                 "folioLinkTo": "",
-                                "folioDescription": "Titelseite.",
+                                "folioDescription": "Widmung: siehe Datierung.",
                                 "systemGroups": []
                             },
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
-                                "folioDescription": "<em>Wie bin ich froh! | noch einmal wird mir alles grün | und leuchtet so! | noch überblühn || die Blumen mir die Welt! | noch einmal bin ich ganz ins Werden | hingestellt | und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts].",
+                                "folioDescription": "Gedichttext: siehe Eintragungen.",
                                 "systemGroups": []
                             },
                             {
