@@ -29,6 +29,8 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             {
                 section: EditionConstants.SECTION_5,
                 complexes: [
+                    { complex: EDITION_COMPLEXES.OP3, disabled: true },
+                    { complex: EDITION_COMPLEXES.OP4, disabled: true },
                     { complex: EDITION_COMPLEXES.OP12, disabled: false },
                     { complex: EDITION_COMPLEXES.OP23, disabled: false },
                     { complex: EDITION_COMPLEXES.OP25, disabled: false },

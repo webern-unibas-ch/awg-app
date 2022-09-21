@@ -482,7 +482,7 @@ describe('EditionViewComponent (DONE)', () => {
                     const catalogueEl = catalogueDes[0].nativeElement;
 
                     const expectedHeaderTitle = expectedSelectedEditionComplex.titleStatement.title;
-                    const expectedHeaderCatalogue = expectedSelectedEditionComplex.complex.short;
+                    const expectedHeaderCatalogue = expectedSelectedEditionComplex.complexId.short;
 
                     expect(titleEl.innerText).toBeTruthy();
                     expect(titleEl.innerText).withContext(`should be ${expectedHeaderTitle}`).toBe(expectedHeaderTitle);

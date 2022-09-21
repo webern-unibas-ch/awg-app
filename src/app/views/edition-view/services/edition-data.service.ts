@@ -191,7 +191,7 @@ export class EditionDataService {
             editionComplex.series.route +
             EditionConstants.SECTION.route +
             editionComplex.section.route +
-            editionComplex.complex.route;
+            editionComplex.complexId.route;
         this._assetPath = EditionConstants.EDITION_ASSETS.baseRoute + complexRoute;
     }
 

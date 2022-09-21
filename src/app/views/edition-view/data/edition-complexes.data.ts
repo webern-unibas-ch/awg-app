@@ -26,13 +26,54 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '07. Juli 2022',
         },
-        {
-            route: '/m34',
-            short: 'M 34',
-            full: 'M 34',
-        },
         EditionConstants.SERIES_2,
         EditionConstants.SECTION_2A,
+        EditionConstants.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for Opus 3.
+     */
+    static readonly OP3: EditionComplex = new EditionComplex(
+        {
+            title: '<em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em>',
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: '3',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for Opus 4.
+     */
+    static readonly OP4: EditionComplex = new EditionComplex(
+        {
+            title: '<em>Fünf Lieder nach Gedichten von Stefan George</em>',
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: '4',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
         EditionConstants.SKETCH_EDITION
     );
 
@@ -41,7 +82,7 @@ export class EDITION_COMPLEXES {
      */
     static readonly OP12: EditionComplex = new EditionComplex(
         {
-            title: 'Vier Lieder',
+            title: '<em>Vier Lieder</em>',
             catalogueType: EditionConstants.OPUS,
             catalogueNumber: '12',
         },
@@ -54,11 +95,6 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '01. Juni 2022',
         },
-        {
-            route: '/op12',
-            short: 'Op. 12',
-            full: 'Opus 12',
-        },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,
         EditionConstants.SKETCH_EDITION
@@ -69,7 +105,7 @@ export class EDITION_COMPLEXES {
      */
     static readonly OP19: EditionComplex = new EditionComplex(
         {
-            title: 'Zwei Lieder für gemischten Chor und Ensemble',
+            title: '<em>Zwei Lieder für gemischten Chor und Ensemble</em>',
             catalogueType: EditionConstants.OPUS,
             catalogueNumber: '19',
         },
@@ -82,11 +118,6 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. März 2022',
         },
-        {
-            route: '/op19',
-            short: 'Op. 19',
-            full: 'Opus 19',
-        },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_3,
         EditionConstants.SKETCH_EDITION
@@ -97,7 +128,7 @@ export class EDITION_COMPLEXES {
      */
     static readonly OP23: EditionComplex = new EditionComplex(
         {
-            title: 'Drei Gesänge aus Viae Inviae von Hildegard Jone',
+            title: '<em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em>',
             catalogueType: EditionConstants.OPUS,
             catalogueNumber: '23',
         },
@@ -110,11 +141,6 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. März 2022',
         },
-        {
-            route: '/op23',
-            short: 'Op. 23',
-            full: 'Opus 23',
-        },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,
         EditionConstants.SKETCH_EDITION
@@ -125,7 +151,7 @@ export class EDITION_COMPLEXES {
      */
     static readonly OP24: EditionComplex = new EditionComplex(
         {
-            title: 'Konzert für neun Instrumente',
+            title: '<em>Konzert für neun Instrumente</em>',
             catalogueType: EditionConstants.OPUS,
             catalogueNumber: '24',
         },
@@ -138,11 +164,6 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. März 2022',
         },
-        {
-            route: '/op24',
-            short: 'Op. 24',
-            full: 'Opus 24',
-        },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_1,
         EditionConstants.SKETCH_EDITION
@@ -153,7 +174,7 @@ export class EDITION_COMPLEXES {
      */
     static readonly OP25: EditionComplex = new EditionComplex(
         {
-            title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+            title: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em>',
             catalogueType: EditionConstants.OPUS,
             catalogueNumber: '25',
         },
@@ -165,11 +186,6 @@ export class EDITION_COMPLEXES {
                 },
             ],
             lastModified: '23. Februar 2022',
-        },
-        {
-            route: '/op25',
-            short: 'Op. 25',
-            full: 'Opus 25',
         },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,

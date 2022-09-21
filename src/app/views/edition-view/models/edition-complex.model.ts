@@ -60,9 +60,9 @@ export class EditionComplex {
     responsibilityStatement: EditionResponsibilityStatement;
 
     /**
-     * The edition route for the current edition complex.
+     * The id for the current edition complex.
      */
-    complex: EditionRoute;
+    complexId: EditionRoute;
 
     /**
      * The edition route for the current series.
@@ -124,7 +124,6 @@ export class EditionComplex {
      *
      * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
      * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
-     * @param {EditionRoute} complex The given edition complex.
      * @param {EditionRoute} series The given series.
      * @param {EditionRoute} section The given section.
      * @param {EditionRoute} type The given edition type.
@@ -132,12 +131,11 @@ export class EditionComplex {
     constructor(
         titleStatement: EditionTitleStatement,
         responsibilityStatement: EditionResponsibilityStatement,
-        complex: EditionRoute,
         series?: EditionRoute,
         section?: EditionRoute,
         type?: EditionRoute
     ) {
-        if (!complex) {
+        if (!titleStatement || !titleStatement.catalogueType || !titleStatement.catalogueNumber) {
             return;
         }
 
@@ -151,9 +149,15 @@ export class EditionComplex {
             ? responsibilityStatement
             : new EditionResponsibilityStatement();
 
-        this.complex = complex ? complex : new EditionRoute();
-        this.complex.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
-        this.complex.full = this.titleStatement.title + spacer + this.complex.short;
+        this.complexId = new EditionRoute();
+        if (this.titleStatement.catalogueType === EditionConstants.OPUS) {
+            this.complexId.route = EditionConstants.OPUS.route;
+        } else if (this.titleStatement.catalogueType === EditionConstants.MNR) {
+            this.complexId.route = EditionConstants.MNR.route;
+        }
+        this.complexId.route += this.titleStatement.catalogueNumber;
+        this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.complexId.full = this.titleStatement.title + spacer + this.complexId.short;
 
         this.series = series ? series : new EditionRoute(); // EditionConstants.SERIES_1;
         this.section = section ? section : new EditionRoute(); // EditionConstants.SECTION_5;
@@ -166,6 +170,6 @@ export class EditionComplex {
         rootPath += this.complexRoute.route; // '/complex'
         // RootPath += this.type.route;       // '/sketches' or // '/texts'
 
-        this.baseRoute = rootPath + this.complex.route + delimiter;
+        this.baseRoute = rootPath + this.complexId.route + delimiter;
     }
 }

@@ -283,14 +283,14 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(catalogue3El).toBeDefined();
 
                 expect(catalogue1El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexOp12.complex.short}`)
-                    .toBe(expectedEditionComplexOp12.complex.short);
+                    .withContext(`should be ${expectedEditionComplexOp12.complexId.short}`)
+                    .toBe(expectedEditionComplexOp12.complexId.short);
                 expect(catalogue2El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexOp25.complex.short}`)
-                    .toBe(expectedEditionComplexOp25.complex.short);
+                    .withContext(`should be ${expectedEditionComplexOp25.complexId.short}`)
+                    .toBe(expectedEditionComplexOp25.complexId.short);
                 expect(catalogue3El.innerHTML)
-                    .withContext(`should be ${expectedEditionComplexM34.complex.short}`)
-                    .toBe(expectedEditionComplexM34.complex.short);
+                    .withContext(`should be ${expectedEditionComplexM34.complexId.short}`)
+                    .toBe(expectedEditionComplexM34.complexId.short);
             });
         });
 

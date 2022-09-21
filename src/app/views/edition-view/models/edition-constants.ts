@@ -115,7 +115,7 @@ export class EditionConstants {
      * The edition route for the opus number.
      */
     static readonly OPUS: EditionRoute = {
-        route: '/opus',
+        route: '/op',
         short: 'op.',
         full: 'Opus',
     };
@@ -124,7 +124,7 @@ export class EditionConstants {
      * The editon route for the Moldenhauer number.
      */
     static readonly MNR: EditionRoute = {
-        route: '/mnr',
+        route: '/m',
         short: 'M',
         full: 'Moldenhauer-Nr.',
     };
