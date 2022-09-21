@@ -23,7 +23,7 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      * Public variable: selectedEditionComplex$.
      *
      * Observable that keeps the information
-     * about the current composition.
+     * about the current edition complex.
      */
     selectedEditionComplex$: Observable<EditionWork>;
 
@@ -56,7 +56,7 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      */
     getEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
-            const id: string = params.get('compositionId') ? params.get('compositionId') : '';
+            const id: string = params.get('complexId') ? params.get('complexId') : '';
             this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
             this.selectedEditionComplex$ = this.editionService.getEditionWork().pipe(delay(0));
         });

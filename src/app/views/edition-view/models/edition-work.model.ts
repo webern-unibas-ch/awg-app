@@ -85,9 +85,9 @@ export class EditionWork {
     edition: EditionRoute = EditionConstants.EDITION;
 
     /**
-     * The edition route for composition.
+     * The edition route for an edition complex.
      */
-    composition: EditionRoute = EditionConstants.COMPOSITION;
+    complex: EditionRoute = EditionConstants.COMPLEX;
 
     /**
      * The route to the graph section of an edition.
@@ -112,7 +112,7 @@ export class EditionWork {
     /**
      * The base route of a work.
      *
-     * @example 'edition/{series/1/section/5/}composition/op12
+     * @example 'edition/{series/1/section/5/}complex/op12
      * TODO: Parts in {} muted at the moment.
      */
     baseRoute: string;
@@ -120,11 +120,11 @@ export class EditionWork {
     /**
      * Constructor of the EditionWork class.
      *
-     * It initializes the class with a composition Object from the EditionConstants.
+     * It initializes the class with am edition complex Object from the EditionConstants.
      *
-     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the composition.
-     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the composition.
-     * @param {EditionRoute} workRoute The given EditionRoute for the composition.
+     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
+     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
+     * @param {EditionRoute} complexRoute The given EditionRoute for the edition complex.
      * @param {EditionRoute} seriesRoute The given EditionRoute for the series.
      * @param {EditionRoute} sectionRoute The given EditionRoute for the section.
      * @param {EditionRoute} typeRoute The given EditionRoute for the edition type.
@@ -132,12 +132,12 @@ export class EditionWork {
     constructor(
         titleStatement: EditionTitleStatement,
         responsibilityStatement: EditionResponsibilityStatement,
-        workRoute: EditionRoute,
+        complexRoute: EditionRoute,
         seriesRoute?: EditionRoute,
         sectionRoute?: EditionRoute,
         typeRoute?: EditionRoute
     ) {
-        if (!workRoute) {
+        if (!complexRoute) {
             return;
         }
 
@@ -151,7 +151,7 @@ export class EditionWork {
             ? responsibilityStatement
             : new EditionResponsibilityStatement();
 
-        this.work = workRoute ? workRoute : new EditionRoute();
+        this.work = complexRoute ? complexRoute : new EditionRoute();
         this.work.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
         this.work.full = this.titleStatement.title + spacer + this.work.short;
 
@@ -163,7 +163,7 @@ export class EditionWork {
         let rootPath = this.edition.route; // '/edition'
         // RootPath += this.series.route;     // '/series'
         // RootPath += this.section.route;    // '/section'
-        rootPath += this.composition.route; // '/composition'
+        rootPath += this.complex.route; // '/complex'
         // RootPath += this.type.route;       // '/sketches' or // '/texts'
 
         this.baseRoute = rootPath + this.work.route + delimiter;

@@ -36,6 +36,19 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     selectedSection: EditionSectionRoute;
 
     /**
+     * Public variable: editionRoute.
+     *
+     * It keeps the base edition route.
+     */
+    editionRoute: EditionRoute = EditionConstants.EDITION;
+
+    /**
+     * Public variable: complexRoute.
+     *
+     * It keeps the base complex route.
+     */
+    complexRoute: EditionRoute = EditionConstants.SERIES;
+    /**
      * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.

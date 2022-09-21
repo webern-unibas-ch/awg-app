@@ -32,7 +32,7 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public variable: editionWork.
      *
-     * It keeps the information about the current composition.
+     * It keeps the information about the current edition complex.
      */
     editionWork: EditionWork;
 
@@ -148,7 +148,7 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: selectSvgSheet.
      *
-     * It navigates to the '/edition/composition/{id}/detail'
+     * It navigates to the '/edition/complex/{id}/detail'
      * route with the given id.
      *
      * @param {string} id The given svg sheet id.

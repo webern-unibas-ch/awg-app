@@ -72,9 +72,9 @@ export class EditionComplexRoute {
     complex: EditionWork;
 
     /**
-     * Boolean flag if an edition complex is available.
+     * Boolean flag if an edition complex is disabled.
      */
-    available: boolean;
+    disabled: boolean;
 }
 
 /**
@@ -103,12 +103,12 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for a composition.
+     * The edition route for an edition complex.
      */
-    static readonly COMPOSITION: EditionRoute = {
-        route: '/composition',
-        short: 'Komposition',
-        full: 'Komposition',
+    static readonly COMPLEX: EditionRoute = {
+        route: '/complex',
+        short: 'Editionskomplex',
+        full: 'Editionskomplex',
     };
 
     /**
@@ -193,12 +193,21 @@ export class EditionConstants {
     };
 
     /**
-     * The edition route for section 2.
+     * The edition route for section 2a.
      */
     static readonly SECTION_2A: EditionRoute = {
         route: '2a',
         short: '2a',
         full: 'Abteilung 2a (Klaviermusik)',
+    };
+
+    /**
+     * The edition route for section 2b.
+     */
+    static readonly SECTION_2B: EditionRoute = {
+        route: '2a',
+        short: '2a',
+        full: 'Abteilung 2b (Kammermusik)',
     };
 
     /**

@@ -35,14 +35,14 @@ export class HomeViewComponent implements OnInit {
     /**
      * Readonly constant: EDITION_COMPLEX_OP12.
      *
-     * It keeps the current composition.
+     * It keeps the edition complex Opus 12.
      */
     readonly EDITION_COMPLEX_OP12 = EditionWorks.OP12;
 
     /**
      * Readonly constant: EDITION_COMPLEX_OP25.
      *
-     * It keeps the current composition.
+     * It keeps the edition complex Opus 25.
      */
     readonly EDITION_COMPLEX_OP25 = EditionWorks.OP25;
 

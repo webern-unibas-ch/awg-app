@@ -43,7 +43,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public variable: editionWork.
      *
-     * It keeps the information about the current composition.
+     * It keeps the information about the current edition complex.
      */
     editionWork: EditionWork;
 

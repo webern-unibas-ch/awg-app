@@ -104,7 +104,7 @@ describe('IntroComponent (DONE)', () => {
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
 
-        expectedEditionWorkRoute = '/edition/composition/op12/';
+        expectedEditionWorkRoute = '/edition/complex/op12/';
         expectedReportRoute = 'report';
         expectedSheetsRoute = 'sheets';
 

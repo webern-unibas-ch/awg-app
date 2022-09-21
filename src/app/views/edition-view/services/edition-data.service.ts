@@ -53,11 +53,11 @@ export class EditionDataService {
      * Public method: getEditionSheetsData.
      *
      * It provides the data from a JSON file
-     * for the current composition of the edition sheets view
+     * for the current edition complex of the edition sheets view
      * (folio convolute, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
-     * @param {EditionWork} editionWork The current composition input.
+     * @param {EditionWork} editionWork The current edition complex.
      *
      * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
      * The fork-joined observable array with the FolioConvoluteList,
@@ -87,7 +87,7 @@ export class EditionDataService {
      * It provides the data from a JSON file
      * for the graph of the edition view.
      *
-     * @param {EditionWork} editionWork The current composition input.
+     * @param {EditionWork} editionWork The current edition complex.
      *
      * @returns {Observable<GraphList>} The observable with the GraphList data.
      */
@@ -109,7 +109,7 @@ export class EditionDataService {
      * It provides the data from a JSON file
      * for the intro of the edition view.
      *
-     * @param {EditionWork} editionWork The current composition input.
+     * @param {EditionWork} editionWork The current edition complex.
      *
      * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
@@ -134,7 +134,7 @@ export class EditionDataService {
      * source evaluation list and textcritics list)
      * as a fork-joined observable array.
      *
-     * @param {EditionWork} editionWork The current composition input.
+     * @param {EditionWork} editionWork The current edition complex input.
      *
      * @returns {Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>}
      * The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
@@ -183,7 +183,7 @@ export class EditionDataService {
      *
      * It sets the path to correct assets folder of a given work.
      *
-     * @param {EditionWork} editionWork The current composition input.
+     * @param {EditionWork} editionWork The current edition complex.
      *
      * @returns {void} It sets the asset path.
      */

@@ -172,7 +172,7 @@ describe('EditionReportComponent', () => {
         expectedFragment = 'sourceA';
         expectedEditionWork = EditionWorks.OP12;
 
-        expectedEditionWorkRoute = '/edition/composition/op12/';
+        expectedEditionWorkRoute = '/edition/complex/op12/';
         expectedReportRoute = 'report';
         expectedSheetsRoute = 'sheets';
 

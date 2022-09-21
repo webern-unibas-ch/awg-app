@@ -103,7 +103,7 @@ describe('EditionComplexComponent (DONE)', () => {
         beforeEach(() => {
             // Set route params via ActivatedRoute mock
             expectedSelectedEditionComplexId = 'OP12';
-            mockActivatedRoute.testParamMap = { compositionId: expectedSelectedEditionComplexId }; // Op. 12
+            mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId }; // Op. 12
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -127,7 +127,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                 // ----------------
                 // Change to op. 25
-                mockActivatedRoute.testParamMap = { compositionId: 'OP25' };
+                mockActivatedRoute.testParamMap = { complexId: 'OP25' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -137,7 +137,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                 // ------------------
                 // Change to non-existing id
-                mockActivatedRoute.testParamMap = { compositionId: 'fail' };
+                mockActivatedRoute.testParamMap = { complexId: 'fail' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -147,7 +147,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
                 // ------------------
                 // Change to empty id
-                mockActivatedRoute.testParamMap = { compositionId: '' };
+                mockActivatedRoute.testParamMap = { complexId: '' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -189,7 +189,7 @@ describe('EditionComplexComponent (DONE)', () => {
                 // ----------------
                 // Change to op. 25
                 expectedSelectedEditionComplexId = 'OP25';
-                mockActivatedRoute.testParamMap = { compositionId: expectedSelectedEditionComplexId };
+                mockActivatedRoute.testParamMap = { complexId: expectedSelectedEditionComplexId };
 
                 // Apply changes
                 fixture.detectChanges();

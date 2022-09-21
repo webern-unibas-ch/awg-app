@@ -30,7 +30,7 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
     /**
      * Public variable: editionWork.
      *
-     * It keeps the current composition.
+     * It keeps the current edition complex.
      */
     editionWork: EditionWork;
 

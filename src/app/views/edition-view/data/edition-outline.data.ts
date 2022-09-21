@@ -29,9 +29,9 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             {
                 section: EditionConstants.SECTION_5,
                 complexes: [
-                    { complex: EditionWorks.OP12, available: true },
-                    { complex: EditionWorks.OP23, available: true },
-                    { complex: EditionWorks.OP25, available: true },
+                    { complex: EditionWorks.OP12, disabled: false },
+                    { complex: EditionWorks.OP23, disabled: false },
+                    { complex: EditionWorks.OP25, disabled: false },
                 ],
             },
         ],
@@ -44,7 +44,11 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
                 complexes: [],
             },
             {
-                section: EditionConstants.SECTION_2,
+                section: EditionConstants.SECTION_2A,
+                complexes: [{ complex: EditionWorks.M34, disabled: false }],
+            },
+            {
+                section: EditionConstants.SECTION_2B,
                 complexes: [],
             },
             {

@@ -72,14 +72,14 @@ export class NavbarComponent implements OnInit {
     /**
      * Public variable: selectedEditionWork.
      *
-     * It keeps the currently selected composition.
+     * It keeps the currently selected edition complex.
      */
     selectedEditionWork: EditionWork;
 
     /**
      * Readonly constant: EDITION_WORKS.
      *
-     * It keeps the array of compositions.
+     * It keeps the array of edition complexes.
      */
     readonly EDITION_WORKS: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
 
