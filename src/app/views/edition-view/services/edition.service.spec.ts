@@ -1,10 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
-import Spy = jasmine.Spy;
-
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall } from '@testing/expect-helper';
 
 import { EditionWorks } from '@awg-views/edition-view/data';
 import {
@@ -35,7 +32,7 @@ describe('EditionService (DONE)', () => {
 
         // Test data (default)
         expectedEditionWork = EditionWorks.OP12;
-        // Textcritial comments
+        // Textcritical comments
         expectedTka = [
             {
                 svgGroupId: 'tka-1',
