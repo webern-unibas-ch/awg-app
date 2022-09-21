@@ -116,18 +116,22 @@ describe('EditionViewComponent (DONE)', () => {
                 {
                     section: EditionConstants.SECTION_1,
                     complexes: [],
+                    disabled: true,
                 },
                 {
                     section: EditionConstants.SECTION_2,
                     complexes: [],
+                    disabled: true,
                 },
                 {
                     section: EditionConstants.SECTION_3,
                     complexes: [],
+                    disabled: true,
                 },
                 {
                     section: EditionConstants.SECTION_4,
                     complexes: [],
+                    disabled: true,
                 },
                 {
                     section: EditionConstants.SECTION_5,
@@ -136,6 +140,7 @@ describe('EditionViewComponent (DONE)', () => {
                         { complex: EDITION_COMPLEXES.OP23, disabled: false },
                         { complex: EDITION_COMPLEXES.OP25, disabled: false },
                     ],
+                    disabled: true,
                 },
             ],
         };

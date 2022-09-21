@@ -13,18 +13,22 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             {
                 section: EditionConstants.SECTION_1,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_2,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_3,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_4,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_5,
@@ -35,6 +39,7 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
                     { complex: EDITION_COMPLEXES.OP23, disabled: false },
                     { complex: EDITION_COMPLEXES.OP25, disabled: false },
                 ],
+                disabled: false,
             },
         ],
     },
@@ -44,26 +49,32 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             {
                 section: EditionConstants.SECTION_1,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_2A,
                 complexes: [{ complex: EDITION_COMPLEXES.M34, disabled: false }],
+                disabled: false,
             },
             {
                 section: EditionConstants.SECTION_2B,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_3,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_4,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_5,
                 complexes: [],
+                disabled: true,
             },
         ],
     },
@@ -73,22 +84,27 @@ export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
             {
                 section: EditionConstants.SECTION_1,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_2,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_3,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SECTION_4,
                 complexes: [],
+                disabled: true,
             },
             {
                 section: EditionConstants.SERIES_3_SECTION_5,
                 complexes: [],
+                disabled: true,
             },
         ],
     },

@@ -57,6 +57,11 @@ export class EditionSectionRoute {
      * The edition complexes of an edition section.
      */
     complexes: EditionComplexRoute[];
+
+    /**
+     * Boolean flag if an edition section is disabled.
+     */
+    disabled: boolean;
 }
 
 /**
