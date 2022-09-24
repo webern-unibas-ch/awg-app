@@ -47,6 +47,11 @@ const EDITION_VIEW_ROUTES: Routes = [
                 ],
             },
             {
+                path: 'composition',
+                redirectTo: 'complex',
+                pathMatch: 'prefix',
+            },
+            {
                 // ComplexID (OP12, M34, etc.).
                 path: 'complex/:complexId',
                 component: EditionComplexComponent,
