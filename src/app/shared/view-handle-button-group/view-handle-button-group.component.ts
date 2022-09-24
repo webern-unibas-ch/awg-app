@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -47,7 +47,7 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      *
      * It keeps the reactive form group for the view handle.
      */
-    viewHandleControlForm: FormGroup;
+    viewHandleControlForm: UntypedFormGroup;
 
     /**
      * Private variable: _destroyed$.
@@ -63,13 +63,13 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
      *
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: UntypedFormBuilder) {}
 
     /**
      * Getter for the view handle control value.
      */
-    get viewHandleControl(): FormControl {
-        return this.viewHandleControlForm.get('viewHandleControl') as FormControl;
+    get viewHandleControl(): UntypedFormControl {
+        return this.viewHandleControlForm.get('viewHandleControl') as UntypedFormControl;
     }
 
     /**

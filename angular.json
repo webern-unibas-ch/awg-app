@@ -178,13 +178,14 @@
             }
         }
     },
-    "defaultProject": "awg-app",
     "cli": {
-        "defaultCollection": "@angular-eslint/schematics",
         "cache": {
             "enabled": true,
             "path": ".angular/cache",
             "environment": "all"
-        }
+        },
+        "schematicCollections": [
+            "@angular-eslint/schematics"
+        ]
     }
 }

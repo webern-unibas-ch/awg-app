@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UntypedFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
@@ -16,13 +16,13 @@ describe('FulltextSearchFormComponent', () => {
     // See 'Karma formGroup expects a FormGroup instance. Please pass one in',
     // https://medium.com/@charlesprobaker/karma-testing-a-formgroup-instance-a0a90de831d4
     // https://stackoverflow.com/a/48671534
-    const formBuilder: FormBuilder = new FormBuilder();
+    const formBuilder: UntypedFormBuilder = new UntypedFormBuilder();
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, ReactiveFormsModule],
             declarations: [FulltextSearchFormComponent],
-            providers: [{ provide: FormBuilder, useValue: formBuilder }],
+            providers: [{ provide: UntypedFormBuilder, useValue: formBuilder }],
         }).compileComponents();
     }));
 

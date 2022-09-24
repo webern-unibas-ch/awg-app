@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 
@@ -10,13 +10,13 @@ describe('ExtendedSearchFormComponent', () => {
     let component: ExtendedSearchFormComponent;
     let fixture: ComponentFixture<ExtendedSearchFormComponent>;
 
-    let formBuilder: FormBuilder;
+    let formBuilder: UntypedFormBuilder;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, HttpClientTestingModule, ReactiveFormsModule],
             declarations: [ExtendedSearchFormComponent],
-            providers: [FormBuilder],
+            providers: [UntypedFormBuilder],
         }).compileComponents();
     });
 
@@ -24,7 +24,7 @@ describe('ExtendedSearchFormComponent', () => {
         fixture = TestBed.createComponent(ExtendedSearchFormComponent);
         component = fixture.componentInstance;
 
-        formBuilder = TestBed.inject(FormBuilder);
+        formBuilder = TestBed.inject(UntypedFormBuilder);
 
         fixture.detectChanges();
     });

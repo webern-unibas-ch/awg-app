@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -41,7 +41,7 @@ describe('ResourceInfoComponent (DONE)', () => {
     let mockRouter: Partial<Router>;
     let mockDataStreamerService: Partial<DataStreamerService>;
     let dataStreamerService: Partial<DataStreamerService>;
-    let formBuilder: FormBuilder;
+    let formBuilder: UntypedFormBuilder;
 
     let buildFormSpy: Spy;
     let findIndexPositionInSearchResultsByIdSpy: Spy;
@@ -78,7 +78,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             providers: [
                 { provide: Router, useValue: mockRouter },
                 { provide: DataStreamerService, useValue: mockDataStreamerService },
-                FormBuilder,
+                UntypedFormBuilder,
             ],
             declarations: [ResourceInfoComponent, CompileHtmlComponent],
         }).compileComponents();
@@ -91,7 +91,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
         // Inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);
-        formBuilder = TestBed.inject(FormBuilder);
+        formBuilder = TestBed.inject(UntypedFormBuilder);
 
         const expectedSearchResponse = JSON.parse(JSON.stringify(mockSearchResponseJson));
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(expectedSearchResponse, expectedQuery);
