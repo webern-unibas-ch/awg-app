@@ -30,6 +30,7 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": [
                             "@ctrl/ngx-codemirror",
+                            "codemirror",
                             "codemirror/mode/sparql/sparql",
                             "codemirror/mode/turtle/turtle",
                             "json2typescript",
@@ -186,6 +187,7 @@
         },
         "schematicCollections": [
             "@angular-eslint/schematics"
-        ]
+        ],
+        "analytics": false
     }
 }
