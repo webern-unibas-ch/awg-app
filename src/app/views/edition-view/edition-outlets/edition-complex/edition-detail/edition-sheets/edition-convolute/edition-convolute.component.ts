@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
 import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models';
 

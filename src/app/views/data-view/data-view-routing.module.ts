@@ -30,10 +30,12 @@ const DATA_VIEW_ROUTES: Routes = [
                             {
                                 path: 'fulltext',
                                 data: { title: 'AWG Online Edition – Fulltext Search' },
+                                component: SearchPanelComponent,
                             },
                             {
                                 path: 'extended',
                                 data: { title: 'AWG Online Edition – Extended Search' },
+                                component: SearchPanelComponent,
                             },
                             {
                                 path: 'detail/:id',
@@ -66,14 +68,17 @@ const DATA_VIEW_ROUTES: Routes = [
             {
                 path: 'html',
                 data: { title: 'AWG Online Edition – Resource Detail HTML' },
+                component: ResourceDetailComponent,
             },
             {
                 path: 'converted-json',
                 data: { title: 'AWG Online Edition – Resource Detail JSON Converted' },
+                component: ResourceDetailComponent,
             },
             {
                 path: 'raw-json',
                 data: { title: 'AWG Online Edition – Resource Detail JSON Raw' },
+                component: ResourceDetailComponent,
             },
         ],
     },
