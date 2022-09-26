@@ -31,7 +31,6 @@
                             "codemirror/mode/sparql/sparql",
                             "codemirror/mode/turtle/turtle",
                             "json2typescript",
-                            "lodash",
                             "readable-stream",
                             "rdfstore"
                         ],
