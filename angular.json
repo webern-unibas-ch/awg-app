@@ -30,8 +30,8 @@
                             "codemirror",
                             "codemirror/mode/sparql/sparql",
                             "codemirror/mode/turtle/turtle",
-                            "json2typescript",
                             "readable-stream",
+                            "queue-microtask",
                             "rdfstore"
                         ],
                         "styles": [
