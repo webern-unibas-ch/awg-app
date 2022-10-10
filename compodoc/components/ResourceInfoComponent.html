@@ -249,7 +249,7 @@ showing information about search results.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, streamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>)</code>
+<code>constructor(formBuilder: UntypedFormBuilder, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, streamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -282,7 +282,7 @@ to get the streamed search results.</p>
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -1258,7 +1258,7 @@ i.e. search results and current, next &amp; previous resource.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -1357,7 +1357,7 @@ resourceInfoData.searchResults.data.subjects array.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
-import { FormBuilder, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from &#x27;@angular/forms&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
 import { Subject } from &#x27;rxjs&#x27;;
@@ -1436,7 +1436,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      *
      * It keeps the form group of the resource info.
      */
-    resourceInfoFormGroup: FormGroup;
+    resourceInfoFormGroup: UntypedFormGroup;
 
     /**
      * Public variable: resultSize.
@@ -1466,7 +1466,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @param {DataStreamerService} streamerService Instance of the DataStreamerService.
      */
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private router: Router,
         private streamerService: DataStreamerService
     ) {}

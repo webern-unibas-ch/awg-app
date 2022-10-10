@@ -122,6 +122,11 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                 ],
             },
             {
+                path: &#x27;composition&#x27;,
+                redirectTo: &#x27;complex&#x27;,
+                pathMatch: &#x27;prefix&#x27;,
+            },
+            {
                 // ComplexID (OP12, M34, etc.).
                 path: &#x27;complex/:complexId&#x27;,
                 component: EditionComplexComponent,

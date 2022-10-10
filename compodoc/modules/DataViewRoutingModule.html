@@ -105,10 +105,12 @@ const DATA_VIEW_ROUTES: Routes &#x3D; [
                             {
                                 path: &#x27;fulltext&#x27;,
                                 data: { title: &#x27;AWG Online Edition – Fulltext Search&#x27; },
+                                component: SearchPanelComponent,
                             },
                             {
                                 path: &#x27;extended&#x27;,
                                 data: { title: &#x27;AWG Online Edition – Extended Search&#x27; },
+                                component: SearchPanelComponent,
                             },
                             {
                                 path: &#x27;detail/:id&#x27;,
@@ -141,14 +143,17 @@ const DATA_VIEW_ROUTES: Routes &#x3D; [
             {
                 path: &#x27;html&#x27;,
                 data: { title: &#x27;AWG Online Edition – Resource Detail HTML&#x27; },
+                component: ResourceDetailComponent,
             },
             {
                 path: &#x27;converted-json&#x27;,
                 data: { title: &#x27;AWG Online Edition – Resource Detail JSON Converted&#x27; },
+                component: ResourceDetailComponent,
             },
             {
                 path: &#x27;raw-json&#x27;,
                 data: { title: &#x27;AWG Online Edition – Resource Detail JSON Raw&#x27; },
+                component: ResourceDetailComponent,
             },
         ],
     },

@@ -348,7 +348,7 @@ of the data (search) view of the app with a reactive form group.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+<code>constructor(dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, formBuilder: UntypedFormBuilder)</code>
                     </td>
                 </tr>
                         <tr>
@@ -394,7 +394,7 @@ of the data (search) view of the app with a reactive form group.</p>
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>UntypedFormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -587,7 +587,7 @@ of the data (search) view of the app with a reactive form group.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                        <b>Returns : </b>    <code>UntypedFormControl</code>
 
                     </div>
                     <div class="io-description">
@@ -1352,7 +1352,7 @@ with a formGroup and a resource type control and properties control.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                        <b>Returns : </b>    <code>UntypedFormControl</code>
 
                     </div>
                     <div class="io-description">
@@ -1588,7 +1588,7 @@ with a formGroup and a resource type control and properties control.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                        <b>Returns : </b>    <code>UntypedFormControl</code>
 
                     </div>
                     <div class="io-description">
@@ -1785,7 +1785,7 @@ with a formGroup and a resource type control and properties control.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                        <b>Returns : </b>    <code>UntypedFormControl</code>
 
                     </div>
                     <div class="io-description">
@@ -2625,7 +2625,7 @@ when the search form is valid.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
 
                     </td>
                 </tr>
@@ -3022,7 +3022,7 @@ when the search form is valid.</p>
 </div>
 
                                 <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                                    <b>Returns : </b>    <code>UntypedFormControl</code>
 
                                 </div>
                         </td>
@@ -3055,7 +3055,7 @@ when the search form is valid.</p>
 </div>
 
                                 <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormArray" target="_blank" >FormArray</a></code>
+                                    <b>Returns : </b>    <code>UntypedFormArray</code>
 
                                 </div>
                         </td>
@@ -3069,7 +3069,7 @@ when the search form is valid.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from &#x27;@angular/forms&#x27;;
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from &#x27;@angular/forms&#x27;;
 
 import { Subject } from &#x27;rxjs&#x27;;
 import { takeUntil } from &#x27;rxjs/operators&#x27;;
@@ -3136,7 +3136,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * It keeps the reactive form group: extendedSearchForm.
      */
-    extendedSearchForm: FormGroup;
+    extendedSearchForm: UntypedFormGroup;
 
     /**
      * Public variable: extendedSearchParams.
@@ -3213,20 +3213,20 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private dataApiService: DataApiService, private formBuilder: FormBuilder) {}
+    constructor(private dataApiService: DataApiService, private formBuilder: UntypedFormBuilder) {}
 
     /**
      * Getter for the resource type control value.
      */
-    get restypeControl(): FormControl {
-        return this.extendedSearchForm.get(&#x27;restypeControl&#x27;) as FormControl;
+    get restypeControl(): UntypedFormControl {
+        return this.extendedSearchForm.get(&#x27;restypeControl&#x27;) as UntypedFormControl;
     }
 
     /**
      * Getter for the properties control value.
      */
-    get propertiesControls(): FormArray {
-        return this.extendedSearchForm.get(&#x27;propertiesControls&#x27;) as FormArray;
+    get propertiesControls(): UntypedFormArray {
+        return this.extendedSearchForm.get(&#x27;propertiesControls&#x27;) as UntypedFormArray;
     }
 
     /**
@@ -3300,7 +3300,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The compopo control.
      */
-    getCompopoControlAtIndex(index: number): FormControl {
+    getCompopoControlAtIndex(index: number): UntypedFormControl {
         return this._getFormArrayControlAtIndex(&#x27;compopControl&#x27;, index);
     }
 
@@ -3374,7 +3374,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The property id control.
      */
-    getPropertyIdControlAtIndex(index: number): FormControl {
+    getPropertyIdControlAtIndex(index: number): UntypedFormControl {
         this.listenToUserPropertyChange(index);
         return this._getFormArrayControlAtIndex(&#x27;propertyIdControl&#x27;, index);
     }
@@ -3433,7 +3433,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The searchval control.
      */
-    getSearchvalControlAtIndex(index: number): FormControl {
+    getSearchvalControlAtIndex(index: number): UntypedFormControl {
         if (this.isSearchvalControlDisabled(index) &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
             this._getFormArrayControlAtIndex(&#x27;searchvalControl&#x27;, index).setValue(&#x27;&#x27;);
         }
@@ -3648,8 +3648,8 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The properties control.
      */
-    private _getFormArrayControlAtIndex(controlName: string, index: number): FormControl {
-        return this.propertiesControls.controls[index].get(controlName) as FormControl;
+    private _getFormArrayControlAtIndex(controlName: string, index: number): UntypedFormControl {
+        return this.propertiesControls.controls[index].get(controlName) as UntypedFormControl;
     }
 
     /**
