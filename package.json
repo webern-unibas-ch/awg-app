@@ -95,7 +95,7 @@
         "@kolkov/ngx-gallery": "2.0.1",
         "@ng-bootstrap/ng-bootstrap": "^13.0.0",
         "@popperjs/core": "^2.11.6",
-        "bootstrap": "^5.2.1",
+        "bootstrap": "^5.2.2",
         "codemirror": "^5.65.9",
         "d3-drag": "^3.0.0",
         "d3-fetch": "^3.0.1",
