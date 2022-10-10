@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input, SecurityContext } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import Spy = jasmine.Spy;

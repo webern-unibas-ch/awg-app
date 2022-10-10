@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subject } from 'rxjs';
@@ -78,7 +78,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      *
      * It keeps the form group of the resource info.
      */
-    resourceInfoFormGroup: FormGroup;
+    resourceInfoFormGroup: UntypedFormGroup;
 
     /**
      * Public variable: resultSize.
@@ -108,7 +108,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @param {DataStreamerService} streamerService Instance of the DataStreamerService.
      */
     constructor(
-        private formBuilder: FormBuilder,
+        private formBuilder: UntypedFormBuilder,
         private router: Router,
         private streamerService: DataStreamerService
     ) {}

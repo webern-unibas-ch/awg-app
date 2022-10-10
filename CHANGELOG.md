@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.9.1...v0.9.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* **app:** fix linting errors after update to v14 ([4bb6608](https://github.com/webern-unibas-ch/awg-app/commit/4bb66086cbfa092a67480a20e2a8d88126b4dd4d))
+* **app:** remove deprecated tilde from SCSS imports ([ece9560](https://github.com/webern-unibas-ch/awg-app/commit/ece956064aa14586db28de339264fb74e66423f5))
+* **app:** remove last remaining dependency on lodash ([c8d591e](https://github.com/webern-unibas-ch/awg-app/commit/c8d591e2f14302662dd0f1be8f486bd58f507ae6))
+* **app:** update allowedCommonJsDependencies ([d54fb94](https://github.com/webern-unibas-ch/awg-app/commit/d54fb9497d289ddb478f455b25e981fef642564c))
+* **edition:** add redirect from composition to complex route ([c0f8825](https://github.com/webern-unibas-ch/awg-app/commit/c0f8825046c345ee1c8d8397f63be32634c963c1))
+* **edition:** fix deprecated legacy link resolution ([b675066](https://github.com/webern-unibas-ch/awg-app/commit/b675066164f07ceede9f19e3371c3ff8bfcd3614))
+
+
+### Code Refactoring
+
+* **app:** remove unused imports (SonarCloud) ([6f786c5](https://github.com/webern-unibas-ch/awg-app/commit/6f786c5e68bc39c3c5536e44e66f6f508410f1df))
+
+
+### Build System
+
+* **app:** adjust project to cli changes in angular v14 ([29acf03](https://github.com/webern-unibas-ch/awg-app/commit/29acf03c8d82cda86ab1d4a9e9b0e3ae4d19621f))
+* **deps-dev:** bump [@angular-eslint](https://github.com/angular-eslint) packages to v14 ([9871174](https://github.com/webern-unibas-ch/awg-app/commit/987117404b09373bf088f02a9d9255911727746b))
+* **deps-dev:** bump @types/node from 16.11.59 to 16.11.61 ([2bb569b](https://github.com/webern-unibas-ch/awg-app/commit/2bb569b768abcb4698eb532712d01539fbee6014))
+* **deps-dev:** bump @types/node from 16.11.61 to 16.11.64 ([30c7f97](https://github.com/webern-unibas-ch/awg-app/commit/30c7f97bdc722cfccc0f78266fd812e18999dcca))
+* **deps-dev:** bump angular-cli-ghpages from 1.0.0 to 1.0.3 ([7938acc](https://github.com/webern-unibas-ch/awg-app/commit/7938accb24991763415c8ab15c361fbc02d79a87))
+* **deps-dev:** bump eslint from 8.23.1 to 8.24.0 ([93b8534](https://github.com/webern-unibas-ch/awg-app/commit/93b8534094d50483bb841d769bc99345686df93e))
+* **deps-dev:** bump lint related packages to latest version ([323e92f](https://github.com/webern-unibas-ch/awg-app/commit/323e92fc8c8668233d89fcbaa9317910c7734e62))
+* **deps-dev:** bump source-map-explorer from 2.5.2 to 2.5.3 ([101ef34](https://github.com/webern-unibas-ch/awg-app/commit/101ef34b72f800e8ee2fcf1561a414a5b9d8562f))
+* **deps-dev:** bump typescript from 4.6.4 to 4.7.4 ([587bb9b](https://github.com/webern-unibas-ch/awg-app/commit/587bb9bf0789c64d61aaf87e7ae000712e16bb51))
+* **deps:** bump [@angular](https://github.com/angular) packages from 14.2.3 to 14.2.5 ([5f7eece](https://github.com/webern-unibas-ch/awg-app/commit/5f7eecef6e334cdd98571a7c0d18e64b161671a1))
+* **deps:** bump @fortawesome/angular-fontawesome from 0.10.2 to 0.11.1 ([c435d5f](https://github.com/webern-unibas-ch/awg-app/commit/c435d5fc6aeb7aa9ed6aa65aac0777d798dd4183))
+* **deps:** bump @ng-bootstrap/ng-bootstrap to v13 ([57fa099](https://github.com/webern-unibas-ch/awg-app/commit/57fa099b6338f182b3d1272ad85468c6292a0a66))
+* **deps:** bump bootstrap from 5.2.1 to 5.2.2 ([f4f7c32](https://github.com/webern-unibas-ch/awg-app/commit/f4f7c324501beca5dade33bc067da90454937194))
+* **deps:** bump codemirro from 5.65.7 to 5.65.9 ([bde9e00](https://github.com/webern-unibas-ch/awg-app/commit/bde9e00b7685dc00188d531ef470a7d0c715cb51))
+* **deps:** bump rxjs from 7.5.6 to 7.5.7 ([913b705](https://github.com/webern-unibas-ch/awg-app/commit/913b7057ceefc8a9148f8967d2596a8d77ecdccf))
+* **deps:** bump SonarSource/sonarcloud-github-action from 1.6 to 1.7 ([d50311f](https://github.com/webern-unibas-ch/awg-app/commit/d50311f868bcf7d01a5b522ef4f6d468328bb047))
+* **deps:** update [@angular](https://github.com/angular) to version 14 ([f0c7bed](https://github.com/webern-unibas-ch/awg-app/commit/f0c7bed30bb0e79e9f28b57b0bc3d057790e1a13))
+
+
+### Documentation
+
+* **edition:** update JSdocs of EditionRowTablesComponent ([c02dba7](https://github.com/webern-unibas-ch/awg-app/commit/c02dba7db4a16b3a6c180bc8d2c7d972b7088abf))
+
 ### [0.9.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.9.0...v0.9.1) (2022-09-21)
 
 

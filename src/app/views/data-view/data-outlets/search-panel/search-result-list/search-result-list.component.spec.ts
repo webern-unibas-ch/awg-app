@@ -2,7 +2,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -39,7 +39,7 @@ describe('SearchResultListComponent', () => {
     let dataStreamerService: Partial<DataStreamerService>;
     let sideInfoService: Partial<SideInfoService>;
     let getSearchResponseWithQuerySpy: Spy;
-    let formBuilder: FormBuilder;
+    let formBuilder: UntypedFormBuilder;
 
     let expectedSearchResponseWithQuery: SearchResponseWithQuery;
     let expectedSearchResultText: string;
@@ -73,7 +73,7 @@ describe('SearchResultListComponent', () => {
                 { provide: DataStreamerService, useValue: mockDataStreamerService },
                 { provide: ConversionService, useValue: mockConversionService },
                 { provide: SideInfoService, useValue: mockSideInfoService },
-                FormBuilder,
+                UntypedFormBuilder,
             ],
         }).compileComponents();
     }));
@@ -86,7 +86,7 @@ describe('SearchResultListComponent', () => {
         dataStreamerService = TestBed.inject(DataStreamerService);
         conversionService = TestBed.inject(ConversionService);
         sideInfoService = TestBed.inject(SideInfoService);
-        formBuilder = TestBed.inject(FormBuilder);
+        formBuilder = TestBed.inject(UntypedFormBuilder);
 
         // Test data
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -66,7 +66,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * It keeps the reactive form group: extendedSearchForm.
      */
-    extendedSearchForm: FormGroup;
+    extendedSearchForm: UntypedFormGroup;
 
     /**
      * Public variable: extendedSearchParams.
@@ -143,20 +143,20 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private dataApiService: DataApiService, private formBuilder: FormBuilder) {}
+    constructor(private dataApiService: DataApiService, private formBuilder: UntypedFormBuilder) {}
 
     /**
      * Getter for the resource type control value.
      */
-    get restypeControl(): FormControl {
-        return this.extendedSearchForm.get('restypeControl') as FormControl;
+    get restypeControl(): UntypedFormControl {
+        return this.extendedSearchForm.get('restypeControl') as UntypedFormControl;
     }
 
     /**
      * Getter for the properties control value.
      */
-    get propertiesControls(): FormArray {
-        return this.extendedSearchForm.get('propertiesControls') as FormArray;
+    get propertiesControls(): UntypedFormArray {
+        return this.extendedSearchForm.get('propertiesControls') as UntypedFormArray;
     }
 
     /**
@@ -230,7 +230,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The compopo control.
      */
-    getCompopoControlAtIndex(index: number): FormControl {
+    getCompopoControlAtIndex(index: number): UntypedFormControl {
         return this._getFormArrayControlAtIndex('compopControl', index);
     }
 
@@ -304,7 +304,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The property id control.
      */
-    getPropertyIdControlAtIndex(index: number): FormControl {
+    getPropertyIdControlAtIndex(index: number): UntypedFormControl {
         this.listenToUserPropertyChange(index);
         return this._getFormArrayControlAtIndex('propertyIdControl', index);
     }
@@ -363,7 +363,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The searchval control.
      */
-    getSearchvalControlAtIndex(index: number): FormControl {
+    getSearchvalControlAtIndex(index: number): UntypedFormControl {
         if (this.isSearchvalControlDisabled(index) === '') {
             this._getFormArrayControlAtIndex('searchvalControl', index).setValue('');
         }
@@ -578,8 +578,8 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The properties control.
      */
-    private _getFormArrayControlAtIndex(controlName: string, index: number): FormControl {
-        return this.propertiesControls.controls[index].get(controlName) as FormControl;
+    private _getFormArrayControlAtIndex(controlName: string, index: number): UntypedFormControl {
+        return this.propertiesControls.controls[index].get(controlName) as UntypedFormControl;
     }
 
     /**

@@ -6,7 +6,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { EditionRoute, EditionSectionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionSectionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSectionDetailComponent } from './edition-section-detail.component';

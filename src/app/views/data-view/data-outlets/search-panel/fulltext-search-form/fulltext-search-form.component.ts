@@ -9,7 +9,7 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
@@ -57,7 +57,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      *
      * It keeps the reactive form group: searchForm.
      */
-    searchForm: FormGroup;
+    searchForm: UntypedFormGroup;
 
     /**
      * Public variable: searchFormString.
@@ -84,7 +84,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      *
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private formBuilder: FormBuilder) {}
+    constructor(private formBuilder: UntypedFormBuilder) {}
 
     /**
      * Getter for the search value control value.

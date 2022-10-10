@@ -3,7 +3,7 @@ import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
+import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {

@@ -8,9 +8,6 @@
             "schematics": {
                 "@schematics/angular:component": {
                     "style": "scss"
-                },
-                "@schematics/angular:application": {
-                    "strict": true
                 }
             },
             "root": "",
@@ -30,11 +27,11 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": [
                             "@ctrl/ngx-codemirror",
+                            "codemirror",
                             "codemirror/mode/sparql/sparql",
                             "codemirror/mode/turtle/turtle",
-                            "json2typescript",
-                            "lodash",
                             "readable-stream",
+                            "queue-microtask",
                             "rdfstore"
                         ],
                         "styles": [
@@ -178,13 +175,15 @@
             }
         }
     },
-    "defaultProject": "awg-app",
     "cli": {
-        "defaultCollection": "@angular-eslint/schematics",
         "cache": {
             "enabled": true,
             "path": ".angular/cache",
             "environment": "all"
-        }
+        },
+        "schematicCollections": [
+            "@angular-eslint/schematics"
+        ],
+        "analytics": false
     }
 }

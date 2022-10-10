@@ -5,7 +5,6 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import {
     EditionConstants,
-    EditionRoute,
     EditionSeriesRoute,
     EditionSvgOverlay,
     EditionComplex,

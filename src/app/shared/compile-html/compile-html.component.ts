@@ -27,8 +27,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { cloneDeep } from 'lodash';
-
 /**
  * Function: compileHtml.reverse(str)
  *
@@ -216,7 +214,7 @@ export class CompileHtmlComponent implements OnChanges {
         let module: NgModule = { imports: [], declarations: [] };
 
         if (this.module !== undefined) {
-            module = cloneDeep(this.module);
+            module = { ...this.module };
         }
         module.imports = module.imports || [];
         module.imports.push(CommonModule);

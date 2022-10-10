@@ -6,7 +6,6 @@ import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 import { D3Selection, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 
 import * as d3_selection from 'd3-selection';
-import * as d3_fetch from 'd3-fetch';
 
 // Helper functions to create D3 selections
 function createD3TestSvg(): D3Selection {

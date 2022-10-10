@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, SimpleChange } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faDiagramProject, faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
@@ -30,7 +30,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, ReactiveFormsModule],
             declarations: [ViewHandleButtonGroupComponent, NgbTooltip],
-            providers: [FormBuilder],
+            providers: [UntypedFormBuilder],
         }).compileComponents();
     });
 
@@ -164,7 +164,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
             it('should create the viewHandleControlForm', () => {
                 expect(component.viewHandleControlForm).toBeDefined();
-                expect(component.viewHandleControlForm).toBeInstanceOf(FormGroup);
+                expect(component.viewHandleControlForm).toBeInstanceOf(UntypedFormGroup);
                 expect(component.viewHandleControlForm.controls).toBeDefined();
             });
 
@@ -172,7 +172,9 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 expect(component.viewHandleControlForm.controls).toBeDefined();
 
                 expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeDefined();
-                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeInstanceOf(FormControl);
+                expect(component.viewHandleControlForm.controls['viewHandleControl']).toBeInstanceOf(
+                    UntypedFormControl
+                );
             });
 
             it('should create the viewHandleControlForm with correct viewHandleControl value', () => {
@@ -184,7 +186,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
             it('should get the viewHandleControl from its getter', () => {
                 expect(component.viewHandleControl).toBeDefined();
-                expect(component.viewHandleControl).toBeInstanceOf(FormControl);
+                expect(component.viewHandleControl).toBeInstanceOf(UntypedFormControl);
 
                 expect(component.viewHandleControl.value).toBeTruthy();
                 expect(component.viewHandleControl.value).toBe(expectedSelectedViewType);

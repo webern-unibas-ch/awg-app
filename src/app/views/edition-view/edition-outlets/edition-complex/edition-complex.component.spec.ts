@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { Observable, of as observableOf, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { expectSpyCall } from '@testing/expect-helper';
