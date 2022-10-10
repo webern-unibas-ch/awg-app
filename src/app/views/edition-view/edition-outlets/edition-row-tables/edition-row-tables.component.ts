@@ -24,9 +24,10 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**
      * Constructor of the EditionRowTablesComponent.
      *
-     * It declares a private instance of the EditionService.
+     * It declares private instances of the EditionService and EditionDataService.
      *
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      */
     constructor(private editionService: EditionService, private editionDataService: EditionDataService) {}
 
