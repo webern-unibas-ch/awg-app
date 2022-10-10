@@ -72,7 +72,7 @@ export const routedAppComponents = [HomeViewComponent];
             scrollPositionRestoration: 'enabled',
             preloadingStrategy: PreloadAllModules, // Preload all lazy modules
             // EnableTracing: true          // TODO: do not enable tracing for production
-            relativeLinkResolution: 'legacy',
+            relativeLinkResolution: 'corrected',
         }),
     ],
     exports: [RouterModule],
