@@ -5,7 +5,24 @@
 
     <!-- intro -->
     <div class="awg-intro-view p-5 border rounded-3" *ngIf="editionIntroData$ | async as editionIntroData; else error">
-        <p *ngFor="let intro of editionIntroData.intro[0].content" [compile-html]="intro" [compile-html-ref]="this"></p>
+        <ng-container *ngIf="utils.isNotEmptyArray(editionIntroData.intro[0].content); else introPlaceholder">
+            <p
+                *ngFor="let intro of editionIntroData.intro[0].content"
+                [compile-html]="intro"
+                [compile-html-ref]="this"></p>
+        </ng-container>
+        <ng-template #introPlaceholder>
+            <p>
+                <small class="text-muted"
+                    >[Die Einleitung zum Editionskomplex
+                    <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
+                    vollständigen Edition von {{ editionComplex.complexId.short }} in
+                    {{ editionComplex.editionRoute.short }} {{ editionComplex.series.short }}/{{
+                        editionComplex.section.short
+                    }}.]
+                </small>
+            </p>
+        </ng-template>
     </div>
 
     <ng-template #error>
