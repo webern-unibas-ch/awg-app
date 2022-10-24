@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { SourceEvaluationList } from '@awg-views/edition-view/models';
+import { UtilityService } from '@awg-core/services';
+import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceEvaluation component.
@@ -16,6 +17,14 @@ import { SourceEvaluationList } from '@awg-views/edition-view/models';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceEvaluationComponent {
+    /**
+     * Input variable:  editionComplex.
+     *
+     * It keeps the information about the current edition complex.
+     */
+    @Input()
+    editionComplex: EditionComplex;
+
     /**
      * Input variable: sourceEvaluationListData.
      *
@@ -57,10 +66,12 @@ export class SourceEvaluationComponent {
     /**
      * Constructor of the SourceEvaluationComponent.
      *
-     * It declares the self-referring variable
-     * needed for CompileHtml library.
+     * It declares a public instance of the UtilityService and
+     * initializes the self-referring ref variable needed for CompileHtml library.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor() {
+    constructor(public utils: UtilityService) {
         this.ref = this;
     }
 

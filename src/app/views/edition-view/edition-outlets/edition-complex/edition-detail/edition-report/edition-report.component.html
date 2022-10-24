@@ -36,6 +36,7 @@
             <ng-template ngbPanelContent>
                 <awg-source-evaluation
                     *ngIf="editionReportData[2]"
+                    [editionComplex]="editionComplex"
                     [sourceEvaluationListData]="editionReportData[2]"
                     (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                     (openModalRequest)="onModalOpen($event)"
