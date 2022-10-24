@@ -19,7 +19,7 @@ export const MODAL_CONTENT_SNIPPETS = {
     OP25_SHEET_COMING_SOON:
         'Die edierten Notentexte weiterer Skizzen der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheinen in Kürze (02/2022).',
     OP25_SOURCE_NOT_AVAILABLE:
-        '<p>Die Beschreibung der Quellen <strong>B</strong> sowie <strong>D–E</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.</p>',
+        '<p>Die Beschreibung der Quellen <strong>D</strong> und <strong>E</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.</p>',
     M198: '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>',
     HINT_EDITION_SHEETS:
         '<p>\n' +
