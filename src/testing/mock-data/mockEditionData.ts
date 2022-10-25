@@ -347,6 +347,20 @@ export const mockEditionData = {
     },
 
     /**
+     * Test helper data constant: mockSourceEvaluationListEmptyData.
+     *
+     * It provides a mocked sourceEvaluationListData object with empty content.
+     */
+    mockSourceEvaluationListEmptyData: {
+        sources: [
+            {
+                id: 'op25',
+                content: [],
+            },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockSvgSheet_Sk2.
      *
      * It provides a mocked svg sheet object.

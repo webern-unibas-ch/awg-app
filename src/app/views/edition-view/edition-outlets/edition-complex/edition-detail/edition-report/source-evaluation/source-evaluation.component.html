@@ -2,12 +2,13 @@
     <ng-container
         *ngIf="utils.isNotEmptyArray(sourceEvaluationListData.sources[0].content); else evaluationPlaceholder">
         <p
+            class="awg-source-evaluation-entry"
             *ngFor="let evaluation of sourceEvaluationListData.sources[0].content"
             [compile-html]="evaluation"
             [compile-html-ref]="this"></p>
     </ng-container>
     <ng-template #evaluationPlaceholder>
-        <p class="p-5 border rounded-3">
+        <p class="awg-source-evaluation-empty p-5 border rounded-3">
             <small class="text-muted"
                 >[Die Quellenbewertung zum Editionskomplex
                 <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der vollständigen
