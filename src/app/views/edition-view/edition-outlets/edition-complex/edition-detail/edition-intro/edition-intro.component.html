@@ -7,12 +7,13 @@
     <div class="awg-intro-view p-5 border rounded-3" *ngIf="editionIntroData$ | async as editionIntroData; else error">
         <ng-container *ngIf="utils.isNotEmptyArray(editionIntroData.intro[0].content); else introPlaceholder">
             <p
+                class="awg-intro-entry"
                 *ngFor="let intro of editionIntroData.intro[0].content"
                 [compile-html]="intro"
                 [compile-html-ref]="this"></p>
         </ng-container>
         <ng-template #introPlaceholder>
-            <p>
+            <p class="awg-intro-empty">
                 <small class="text-muted"
                     >[Die Einleitung zum Editionskomplex
                     <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der
