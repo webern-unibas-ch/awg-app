@@ -5,12 +5,14 @@ import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EditionSvgSheet, SourceEvaluationList } from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EditionComplex, EditionSvgSheet, SourceEvaluationList } from '@awg-views/edition-view/models';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
@@ -21,7 +23,9 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     let mockDocument: Document;
 
+    let expectedEditionComplex: EditionComplex;
     let expectedSourceEvaluationListData: SourceEvaluationList;
+    let expectedSourceEvaluationListEmptyData: SourceEvaluationList;
     let expectedFragment: string;
     let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
@@ -46,11 +50,13 @@ describe('SourceEvaluationComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedEditionComplex = EDITION_COMPLEXES.OP25;
         expectedFragment = 'sourceA';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSourceEvaluationListData = mockEditionData.mockSourceEvaluationListData;
+        expectedSourceEvaluationListData = { ...mockEditionData.mockSourceEvaluationListData };
+        expectedSourceEvaluationListEmptyData = { ...mockEditionData.mockSourceEvaluationListEmptyData };
 
         mockDocument = TestBed.inject(DOCUMENT);
 
@@ -73,6 +79,10 @@ describe('SourceEvaluationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('should not have editionComplex', () => {
+            expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
+        });
+
         it('should not have sourceDescriptionListData', () => {
             expect(component.sourceEvaluationListData).withContext('should be undefined').toBeUndefined();
         });
@@ -92,10 +102,18 @@ describe('SourceEvaluationComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.sourceEvaluationListData = expectedSourceEvaluationListData;
+            component.editionComplex = expectedEditionComplex;
+            component.sourceEvaluationListData = { ...mockEditionData.mockSourceEvaluationListData };
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('should have editionComplex', () => {
+            expect(component.editionComplex).toBeTruthy();
+            expect(component.editionComplex)
+                .withContext(`should equal ${expectedEditionComplex}`)
+                .toEqual(expectedEditionComplex);
         });
 
         it('should have sourceEvaluationListData', () => {
@@ -145,6 +163,49 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     .withContext(`should be ${htmlEvaluationEntry.textContent.trim()}`)
                     .toBe(htmlEvaluationEntry.textContent.trim());
             });
+
+            it('... should contain a placeholder if content of evaluation data is empty', waitForAsync(() => {
+                // Simulate the parent setting an empty content array
+                component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-empty', 1, 1);
+
+                getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
+            }));
+
+            it('... should display placeholder in paragraph', waitForAsync(() => {
+                // Simulate the parent setting an empty content array
+                component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
+                detectChangesOnPush(fixture);
+
+                const pDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-evaluation-list > p.awg-source-evaluation-empty',
+                    1,
+                    1
+                );
+
+                // Create inner span of evaluation placeholder
+                const htmlEvaluationSpan = mockDocument.createElement('span');
+                htmlEvaluationSpan.innerHTML = expectedEditionComplex.complexId.full;
+
+                // Create evaluation placeholder
+                const htmlEvaluationPlaceholder = mockDocument.createElement('p');
+                htmlEvaluationPlaceholder.innerHTML = `[Die Quellenbewertung zum Editionskomplex ${htmlEvaluationSpan.textContent.trim()} erscheint im Zusammenhang der vollständigen Edition von ${
+                    expectedEditionComplex.complexId.short
+                } in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${
+                    expectedEditionComplex.section.short
+                }.]`;
+
+                const pCmp = pDes[0].nativeElement;
+
+                expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                expect(pCmp.textContent.trim())
+                    .withContext(`should be ${htmlEvaluationPlaceholder.textContent.trim()}`)
+                    .toEqual(htmlEvaluationPlaceholder.textContent.trim());
+            }));
         });
 
         describe('#navigateToReportFragment', () => {
