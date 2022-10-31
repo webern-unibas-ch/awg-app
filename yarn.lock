@@ -8671,10 +8671,10 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ngx-json-viewer@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ngx-json-viewer/-/ngx-json-viewer-3.1.0.tgz#af8404b930f3a7850f96b7ad16ad2ab7bc541334"
-  integrity sha512-+m90gQ/5TJNusqUgRlXU4e7ZwAKfK5jUV/zvvZYv4uiO/yQDM37cKTQ+YPgK/bC3a+03xDssCSpi0y+DrgUUpg==
+ngx-json-viewer@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-json-viewer/-/ngx-json-viewer-3.2.0.tgz#66ad3d76b1c758e21c3328cbd5397660f5ab1065"
+  integrity sha512-A5PvhAePGx5FbvbyaXdp5nEo9UVT96ZdYI+n0kI4+lNMSzK6Z3PnXUVZLPOeTRciDXvgxAFvi/POfiPkt/Ut8Q==
   dependencies:
     tslib "^2.3.0"
 
