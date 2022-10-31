@@ -186,22 +186,18 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     1,
                     1
                 );
-
-                // Create inner span of evaluation placeholder
-                const htmlEvaluationSpan = mockDocument.createElement('span');
-                htmlEvaluationSpan.innerHTML = expectedEditionComplex.complexId.full;
-                const htmlEvaluationSpanText = htmlEvaluationSpan.textContent.trim();
+                const pCmp = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
-                const htmlEvaluationPlaceholder = mockDocument.createElement('p');
-                htmlEvaluationPlaceholder.innerHTML = `[Die Quellenbewertung zum Editionskomplex ${htmlEvaluationSpanText} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-
-                const pCmp = pDes[0].nativeElement;
+                const htmlEvaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const htmlEvaluationPlaceholderText = htmlEvaluationPlaceholder
+                    .replace(/<em>/g, '')
+                    .replace(/<\/em>/g, '');
 
                 expect(pCmp.textContent).withContext('should be defined').toBeDefined();
                 expect(pCmp.textContent.trim())
-                    .withContext(`should be ${htmlEvaluationPlaceholder.textContent.trim()}`)
-                    .toEqual(htmlEvaluationPlaceholder.textContent.trim());
+                    .withContext(`should be ${htmlEvaluationPlaceholderText}`)
+                    .toEqual(htmlEvaluationPlaceholderText);
             }));
         });
 

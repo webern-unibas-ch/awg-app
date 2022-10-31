@@ -248,22 +248,16 @@ describe('IntroComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view > p.awg-intro-empty', 1, 1);
-
-                // Create inner span of intro placeholder
-                const htmlIntroSpan = mockDocument.createElement('span');
-                htmlIntroSpan.innerHTML = expectedEditionComplex.complexId.full;
-                const htmlIntroSpanText = htmlIntroSpan.textContent.trim();
+                const pCmp = pDes[0].nativeElement;
 
                 // Create intro placeholder
-                const htmlIntroPlaceholder = mockDocument.createElement('p');
-                htmlIntroPlaceholder.innerHTML = `[Die Einleitung zum Editionskomplex ${htmlIntroSpanText} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-
-                const pCmp = pDes[0].nativeElement;
+                const htmlIntroPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const htmlIntroPlaceholderText = htmlIntroPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
                 expect(pCmp.textContent).withContext('should be defined').toBeDefined();
                 expect(pCmp.textContent.trim())
-                    .withContext(`should be ${htmlIntroPlaceholder.textContent.trim()}`)
-                    .toEqual(htmlIntroPlaceholder.textContent.trim());
+                    .withContext(`should be ${htmlIntroPlaceholderText}`)
+                    .toEqual(htmlIntroPlaceholderText);
             }));
         });
 
