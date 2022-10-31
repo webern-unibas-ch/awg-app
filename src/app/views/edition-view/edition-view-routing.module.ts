@@ -27,10 +27,12 @@ const EDITION_VIEW_ROUTES: Routes = [
                 component: EditionSeriesDetailComponent,
                 children: [
                     {
+                        // Overview of sections.
                         path: 'sections',
                         component: EditionSectionsComponent,
                     },
                     {
+                        // Section by id (1, 2, 3, 4, 5).
                         path: 'section/:id',
                         component: EditionSectionDetailComponent,
                     },
@@ -55,7 +57,8 @@ const EDITION_VIEW_ROUTES: Routes = [
                 // ComplexID (OP12, M34, etc.).
                 path: 'complex/:complexId',
                 component: EditionComplexComponent,
-                children: [
+                /* 
+                Children: [
                     {
                         path: '',
                         component: EditionDetailNavComponent,
@@ -74,6 +77,7 @@ const EDITION_VIEW_ROUTES: Routes = [
                                         './edition-outlets/edition-complex/edition-detail//edition-sheets/edition-sheets.module'
                                     ).then(m => m.EditionSheetsModule),
                             },
+                            /* 
                             {
                                 path: 'report',
                                 loadChildren: () =>
@@ -88,6 +92,26 @@ const EDITION_VIEW_ROUTES: Routes = [
                                         './edition-outlets/edition-complex/edition-detail//edition-graph/edition-graph.module'
                                     ).then(m => m.EditionGraphModule),
                             },
+                                path: 'workedition',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-workedition/edition-workedition.module'
+                                    ).then(m => m.EditionWorkeditionModule),
+                            },
+                            {
+                                path: 'texteditions',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-texteditions/edition-texteditions.module'
+                                    ).then(m => m.EditionTexteditionModule),
+                            },
+                            {
+                                path: 'sketches',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-sketches/edition-sketches.module'
+                                    ).then(m => m.EditionSketchesModule),
+                            },
                             {
                                 path: '',
                                 redirectTo: 'intro',
@@ -95,7 +119,7 @@ const EDITION_VIEW_ROUTES: Routes = [
                             },
                         ],
                     },
-                ],
+                ], */
             },
             {
                 // Overview of row tables.
