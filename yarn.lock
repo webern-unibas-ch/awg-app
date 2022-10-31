@@ -6874,10 +6874,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-gzipper@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-7.1.0.tgz#a4e2c408b712979496623855bacbfdb097d78e6c"
-  integrity sha512-IhxdCXaOxsW/t8PiTUwg0YfXFI5O17SK80Snci0KJwMSOiqWZ/e00RZr2yhp2Zhnn6hJ0oYC/AJ6u6GQFu5l6w==
+gzipper@^7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-7.2.0.tgz#da8c6069d66fa2a927594cc035ee144ecb853005"
+  integrity sha512-qwYQr7GWBXIm9Cdzud+tyM/s9N+QFzGDZoF9YR8RYJbDKOYowzjMDPEinFtm78EQeeYMC/FJW2FXY0bHkyUgsA==
   dependencies:
     "@gfx/zopfli" "^1.0.15"
     commander "^7.2.0"
