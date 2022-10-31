@@ -190,14 +190,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 // Create inner span of evaluation placeholder
                 const htmlEvaluationSpan = mockDocument.createElement('span');
                 htmlEvaluationSpan.innerHTML = expectedEditionComplex.complexId.full;
+                const htmlEvaluationSpanText = htmlEvaluationSpan.textContent.trim();
 
                 // Create evaluation placeholder
                 const htmlEvaluationPlaceholder = mockDocument.createElement('p');
-                htmlEvaluationPlaceholder.innerHTML = `[Die Quellenbewertung zum Editionskomplex ${htmlEvaluationSpan.textContent.trim()} erscheint im Zusammenhang der vollständigen Edition von ${
-                    expectedEditionComplex.complexId.short
-                } in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${
-                    expectedEditionComplex.section.short
-                }.]`;
+                htmlEvaluationPlaceholder.innerHTML = `[Die Quellenbewertung zum Editionskomplex ${htmlEvaluationSpanText} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
 
                 const pCmp = pDes[0].nativeElement;
 

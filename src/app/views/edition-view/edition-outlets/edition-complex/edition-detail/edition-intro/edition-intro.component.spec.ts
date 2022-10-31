@@ -252,14 +252,11 @@ describe('IntroComponent (DONE)', () => {
                 // Create inner span of intro placeholder
                 const htmlIntroSpan = mockDocument.createElement('span');
                 htmlIntroSpan.innerHTML = expectedEditionComplex.complexId.full;
+                const htmlIntroSpanText = htmlIntroSpan.textContent.trim();
 
                 // Create intro placeholder
                 const htmlIntroPlaceholder = mockDocument.createElement('p');
-                htmlIntroPlaceholder.innerHTML = `[Die Einleitung zum Editionskomplex ${htmlIntroSpan.textContent.trim()} erscheint im Zusammenhang der vollständigen Edition von ${
-                    expectedEditionComplex.complexId.short
-                } in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${
-                    expectedEditionComplex.section.short
-                }.]`;
+                htmlIntroPlaceholder.innerHTML = `[Die Einleitung zum Editionskomplex ${htmlIntroSpanText} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
 
                 const pCmp = pDes[0].nativeElement;
 
