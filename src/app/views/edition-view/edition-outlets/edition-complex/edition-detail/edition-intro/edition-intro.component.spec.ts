@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { DOCUMENT } from '@angular/common';
 import { Component, DebugElement } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -40,7 +39,6 @@ describe('IntroComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let mockRouter;
-    let mockDocument: Document;
 
     let mockEditionDataService: Partial<EditionDataService>;
     let mockEditionService: Partial<EditionService>;
@@ -112,8 +110,6 @@ describe('IntroComponent (DONE)', () => {
         expectedEditionComplexRoute = '/edition/complex/op12/';
         expectedReportRoute = 'report';
         expectedSheetsRoute = 'sheets';
-
-        mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on service functions
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
