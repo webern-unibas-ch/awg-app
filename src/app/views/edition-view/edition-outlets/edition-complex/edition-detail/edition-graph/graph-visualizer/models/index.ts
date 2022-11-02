@@ -7,7 +7,6 @@
  *
  */
 
-import { CmConfig } from './cm-config.model';
 import { D3DragBehaviour } from './d3-drag-behaviour.model';
 import { D3ForceSimulation, D3Simulation, D3ForceSimulationOptions } from './d3-force-simulation.model';
 import { D3SimulationData } from './d3-simulation-data';
@@ -28,7 +27,6 @@ import {
 } from './triple.model';
 
 export {
-    CmConfig,
     D3DragBehaviour,
     D3ForceSimulation,
     D3ForceSimulationOptions,
