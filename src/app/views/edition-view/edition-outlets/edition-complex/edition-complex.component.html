@@ -1,5 +1,5 @@
 <div *ngIf="selectedEditionComplex$ | async as complex">
-    <p>Komplex: {{ complex.complexId | json }}</p>
+    <p>Editionskomplex {{ complex.complexId.short }}: {{ complex.complexId | json }}</p>
     <p>Titel: {{ complex.titleStatement | json }}</p>
     <p>
         <a [routerLink]="[complex.introRoute.route]">
@@ -10,7 +10,7 @@
     <div>
         <p>Werkedition: {{ complex.titleStatement | json }}</p>
         <ul>
-            <li>Vier Lieder op. 12</li>
+            <li [innerHtml]="complex.complexId.full"></li>
             enthält:
             <ul>
                 <li>„Der Tag ist vergangen“ M 212: Textfassung 3</li>
@@ -21,21 +21,15 @@
         </ul>
     </div>
     <div>
-        <p>Textfassungen und nachgelassene Kompositionen: {{ complex.titleStatement | json }}</p>
+        <p>Texteditionen: {{ complex.titleStatement | json }}</p>
         <ul>
             <li>„Der Tag ist vergangen“ M 212: Textfassung 1</li>
             <li>„Der Tag ist vergangen“ M 212: Textfassung 2</li>
-            <li class="text-muted">„Der Tag ist vergangen“ M 212: Textfassung 3</li>
-
-            <li class="text-muted">Die geheimnisvolle Flöte („An einem Abend“) M 217: einzige Textfassung</li>
-            <li class="text-muted">„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung</li>
-
             <li>Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 1</li>
-            <li class="text-muted">Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 2</li>
         </ul>
     </div>
     <div>
-        <p>Skizzen: {{ complex.titleStatement | json }}</p>
+        <p>Skizzeneditionen: {{ complex.titleStatement | json }}</p>
         <ul>
             <li>M 212 Sk 1</li>
             <li>M 212 Sk 2</li>
