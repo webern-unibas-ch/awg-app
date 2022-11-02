@@ -26,10 +26,6 @@
                         "aot": false,
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": [
-                            "@ctrl/ngx-codemirror",
-                            "codemirror",
-                            "codemirror/mode/sparql/sparql",
-                            "codemirror/mode/turtle/turtle",
                             "readable-stream",
                             "queue-microtask",
                             "rdfstore"
@@ -38,15 +34,11 @@
                             "src/index.style.scss",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/font-awesome/scss/font-awesome.scss",
-                            "node_modules/codemirror/lib/codemirror.css",
                             "src/styles.scss"
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
                             "node_modules/rdfstore/dist/rdfstore_min.js",
-                            "node_modules/codemirror/lib/codemirror.js",
-                            "node_modules/codemirror/mode/turtle/turtle.js",
-                            "node_modules/codemirror/mode/sparql/sparql.js",
                             "src/assets/js/dateConverter.js",
                             "src/assets/js/htmlConverter.js"
                         ]
@@ -135,15 +127,11 @@
                             "src/index.style.scss",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/font-awesome/scss/font-awesome.scss",
-                            "node_modules/codemirror/lib/codemirror.css",
                             "src/styles.scss"
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
                             "node_modules/rdfstore/dist/rdfstore_min.js",
-                            "node_modules/codemirror/lib/codemirror.js",
-                            "node_modules/codemirror/mode/turtle/turtle.js",
-                            "node_modules/codemirror/mode/sparql/sparql.js",
                             "src/assets/js/dateConverter.js",
                             "src/assets/js/htmlConverter.js"
                         ],
