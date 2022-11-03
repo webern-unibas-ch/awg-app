@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
-import Spy = jasmine.Spy;
+import { EditorView } from 'codemirror';
+import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordion, NgbAccordionModule, NgbConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -12,19 +14,17 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { CmMode } from '@awg-shared/codemirror/codemirror.component';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
-import { CmConfig } from '../models';
 
 import { TriplesEditorComponent } from './triples-editor.component';
 
-// eslint-disable-next-line @angular-eslint/component-selector
-@Component({ selector: 'ngx-codemirror', template: '' })
+@Component({ selector: 'awg-codemirror', template: '' })
 class CodeMirrorStubComponent {
-    @Input() options: {
-        [key: string]: any;
-    };
-    @Input() ngModel: string;
-    @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() mode: CmMode;
+    @Input() content: string;
+    @Output() contentChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() editor: EditorView;
 }
 
 describe('TriplesEditorComponent (DONE)', () => {
@@ -33,7 +33,7 @@ describe('TriplesEditorComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedTriples: string;
-    let expectedCmTriplesConfig: CmConfig;
+    let expectedCmTurtleMode: CmMode;
     let expectedIsFullscreen: boolean;
 
     let onEditorInputChangeSpy: Spy;
@@ -70,13 +70,7 @@ describe('TriplesEditorComponent (DONE)', () => {
         expectedIsFullscreen = false;
 
         expectedTriples = 'example:Test example:has example:Success';
-        expectedCmTriplesConfig = {
-            lineNumbers: true,
-            firstLineNumber: 1,
-            lineWrapping: true,
-            matchBrackets: true,
-            mode: 'turtle',
-        };
+        expectedCmTurtleMode = turtle;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -104,11 +98,11 @@ describe('TriplesEditorComponent (DONE)', () => {
             expect(component.isFullscreen).toBeUndefined();
         });
 
-        it('should have cmTriplesConfig', () => {
-            expect(component.cmTriplesConfig).toBeDefined();
-            expect(component.cmTriplesConfig)
-                .withContext(`should equal ${expectedCmTriplesConfig}`)
-                .toEqual(expectedCmTriplesConfig);
+        it('should have cmTurtleMode', () => {
+            expect(component.cmTurtleMode).toBeDefined();
+            expect(component.cmTurtleMode)
+                .withContext(`should equal ${expectedCmTurtleMode}`)
+                .toEqual(expectedCmTurtleMode);
         });
 
         describe('VIEW', () => {
@@ -601,7 +595,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
 
                 const changedTriples = 'example:Success example:is example:Testing';
-                codeMirrorCmp.ngModelChange.emit(changedTriples);
+                codeMirrorCmp.contentChange.emit(changedTriples);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
             });
@@ -653,7 +647,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     ) as CodeMirrorStubComponent;
 
                     const changedTriples = 'example:Success example:is example:Testing';
-                    codeMirrorCmp.ngModelChange.emit(changedTriples);
+                    codeMirrorCmp.contentChange.emit(changedTriples);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
                     expectSpyCall(emitUpdateTriplesRequestSpy, 1, changedTriples);
@@ -665,7 +659,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         CodeMirrorStubComponent
                     ) as CodeMirrorStubComponent;
 
-                    codeMirrorCmp.ngModelChange.emit('');
+                    codeMirrorCmp.contentChange.emit('');
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                     expectSpyCall(emitUpdateTriplesRequestSpy, 1, '');

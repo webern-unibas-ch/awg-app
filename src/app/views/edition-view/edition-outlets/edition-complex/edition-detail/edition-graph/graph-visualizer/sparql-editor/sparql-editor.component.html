@@ -57,7 +57,6 @@
             <awg-codemirror
                 ngDefaultControl
                 [mode]="cmSparqlMode"
-                [(ngModel)]="query.queryString"
                 [(content)]="query.queryString"
                 (contentChange)="onEditorInputChange($event)"></awg-codemirror>
 
