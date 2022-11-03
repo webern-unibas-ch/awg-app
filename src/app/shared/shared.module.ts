@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 //
 // Shared modules
 import { CompileHtmlModule } from './compile-html';
-import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { CodeMirrorModule } from './codemirror/codemirror.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
@@ -46,7 +46,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
         ReactiveFormsModule,
         RouterModule,
         CompileHtmlModule,
-        CodemirrorModule,
+        CodeMirrorModule,
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
@@ -69,7 +69,7 @@ import { OrderByPipe } from './order-by-pipe/order-by.pipe';
     ],
     exports: [
         CommonModule,
-        CodemirrorModule,
+        CodeMirrorModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,

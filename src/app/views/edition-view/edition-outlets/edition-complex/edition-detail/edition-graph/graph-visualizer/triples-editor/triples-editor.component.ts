@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-import { ToastMessage } from '@awg-shared/toast/toast.service';
-import { CmConfig } from '../models';
+import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 
-import 'codemirror/mode/turtle/turtle';
+import { CmMode } from '@awg-shared/codemirror/codemirror.component';
+import { ToastMessage } from '@awg-shared/toast/toast.service';
 
 /**
  * The TriplesEditor component.
@@ -75,17 +75,11 @@ export class TriplesEditorComponent {
     updateTriplesRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Public variable: cmTriplesConfig.
+     * Public variable: cmTurtleMode.
      *
-     * It keeps the Codemirror configuration for the triples panel.
+     * It keeps the Codemirror mode for the turtle panel.
      */
-    cmTriplesConfig: CmConfig = {
-        lineNumbers: true,
-        firstLineNumber: 1,
-        lineWrapping: true,
-        matchBrackets: true,
-        mode: 'turtle',
-    };
+    cmTurtleMode: CmMode = turtle;
 
     /**
      * Public method: onEditorInputChange.
