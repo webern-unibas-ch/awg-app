@@ -1,5 +1,8 @@
 <div *ngIf="selectedEditionComplex$ | async as complex">
-    <p>Editionskomplex {{ complex.complexId.short }}: {{ complex.complexId | json }}</p>
+    <p>
+        Editionskomplex {{ complex.complexId.short }}: <br />
+        {{ complex | json }}
+    </p>
     <p>Titel: {{ complex.titleStatement | json }}</p>
     <p>
         <a [routerLink]="[complex.introRoute.route]">

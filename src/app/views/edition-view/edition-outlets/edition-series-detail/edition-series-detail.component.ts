@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models/edition-constants';
+import { EditionSeriesRoute } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -16,13 +16,6 @@ import { EditionService } from '@awg-views/edition-view/services';
     styleUrls: ['./edition-series-detail.component.scss'],
 })
 export class EditionSeriesDetailComponent implements OnInit {
-    /**
-     * Public variable: editionRoute.
-     *
-     * It keeps the edition route of the edition.
-     */
-    editionRoute: EditionRoute;
-
     /**
      * Public variable: selectedSeries.
      *
@@ -64,7 +57,5 @@ export class EditionSeriesDetailComponent implements OnInit {
 
         this.selectedSeries = this.editionService.getEditionSeriesById(id);
         this.editionService.updateSelectedEditionSeries(this.selectedSeries);
-
-        this.editionRoute = EditionConstants.EDITION;
     }
 }

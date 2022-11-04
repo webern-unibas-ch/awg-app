@@ -7,7 +7,7 @@ import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } fr
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionRoute, EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionConstants, EditionRouteInfo } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 
@@ -19,7 +19,7 @@ describe('EditionInfoComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedEditionRowTables: EditionRoute;
+    let expectedEditionRowTables: EditionRouteInfo;
     let expectedEditionComplexM34: EditionComplex;
     let expectedEditionComplexOp12: EditionComplex;
     let expectedEditionComplexOp25: EditionComplex;

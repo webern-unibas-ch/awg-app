@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionConstants } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRouteInfo } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.
@@ -42,4 +42,11 @@ export class EditionInfoComponent {
      * It keeps the edition complex op. 25.
      */
     readonly EDITION_COMPLEX_OP25 = EDITION_COMPLEXES.OP25;
+
+    /**
+     * Readonly variable: EDITION_ROUTE.
+     *
+     * It keeps the edition route info.
+     */
+    readonly EDITION_ROUTE: EditionRouteInfo = EditionConstants.EDITION;
 }

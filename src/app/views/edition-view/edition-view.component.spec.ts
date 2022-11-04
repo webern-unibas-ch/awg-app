@@ -183,12 +183,12 @@ describe('EditionViewComponent (DONE)', () => {
             expect(component.editionViewId).withContext(`should be ${expectedId}`).toBe(expectedId);
         });
 
-        it('... should have editionRoute and seriesRoute', () => {
-            expect(component.editionRoute).toBeDefined();
-            expect(component.editionRoute).withContext(`should be ${expectedEditionRoute}`).toBe(expectedEditionRoute);
+        it('... should have EDITION_ROUTE and SERIES_ROUTE', () => {
+            expect(component.EDITION_ROUTE).toBeDefined();
+            expect(component.EDITION_ROUTE).withContext(`should be ${expectedEditionRoute}`).toBe(expectedEditionRoute);
 
-            expect(component.seriesRoute).toBeDefined();
-            expect(component.seriesRoute).withContext(`should be ${expectedSeriesRoute}`).toBe(expectedSeriesRoute);
+            expect(component.SERIES_ROUTE).toBeDefined();
+            expect(component.SERIES_ROUTE).withContext(`should be ${expectedSeriesRoute}`).toBe(expectedSeriesRoute);
         });
 
         it('... should not have isRowTableView$', () => {

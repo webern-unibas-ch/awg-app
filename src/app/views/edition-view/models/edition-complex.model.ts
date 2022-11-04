@@ -1,5 +1,5 @@
 import { MetaPerson } from '@awg-core/core-models/meta.model';
-import { EditionConstants, EditionRoute } from './edition-constants';
+import { EditionConstants, EditionRouteInfo } from './edition-constants';
 
 /**
  * The EditionTitleStatement class.
@@ -16,7 +16,7 @@ export class EditionTitleStatement {
     /**
      * The catalogue type of a title statement.
      */
-    catalogueType: EditionRoute;
+    catalogueType: EditionRouteInfo;
 
     /**
      * The catalogue number of a title statement.
@@ -62,52 +62,52 @@ export class EditionComplex {
     /**
      * The id for the current edition complex.
      */
-    complexId: EditionRoute;
+    complexId: EditionRouteInfo;
 
     /**
-     * The edition route for the current series.
+     * The route info for the current series.
      */
-    series: EditionRoute;
+    series: EditionRouteInfo;
 
     /**
-     * The edition route for the current section.
+     * The route info for the current section.
      */
-    section: EditionRoute;
+    section: EditionRouteInfo;
 
     /**
-     * The edition route for the current type of an edition.
+     * The route info for the current type of an edition.
      */
-    type: EditionRoute;
+    type: EditionRouteInfo;
 
     /**
-     * The route to the edition section of the app.
+     * The edition route info.
      */
-    editionRoute: EditionRoute = EditionConstants.EDITION;
+    editionRoute: EditionRouteInfo = EditionConstants.EDITION;
 
     /**
-     * The route to the complex section of an edition.
+     * The complex route info.
      */
-    complexRoute: EditionRoute = EditionConstants.COMPLEX;
+    complexRoute: EditionRouteInfo = EditionConstants.COMPLEX;
 
     /**
-     * The route to the graph section of an edition.
+     * The graph route info.
      */
-    graphRoute: EditionRoute = EditionConstants.EDITION_GRAPH;
+    graphRoute: EditionRouteInfo = EditionConstants.EDITION_GRAPH;
 
     /**
-     * The route to the intro section of an edition.
+     * The intro route info.
      */
-    introRoute: EditionRoute = EditionConstants.EDITION_INTRO;
+    introRoute: EditionRouteInfo = EditionConstants.EDITION_INTRO;
 
     /**
-     * The route to the detail section of an edition.
+     * The sheets route info.
      */
-    sheetsRoute: EditionRoute = EditionConstants.EDITION_SHEETS;
+    sheetsRoute: EditionRouteInfo = EditionConstants.EDITION_SHEETS;
 
     /**
-     * The route to the report section of an edition.
+     * The report route info.
      */
-    reportRoute: EditionRoute = EditionConstants.EDITION_REPORT;
+    reportRoute: EditionRouteInfo = EditionConstants.EDITION_REPORT;
 
     /**
      * The base route of an edition complex.
@@ -124,16 +124,16 @@ export class EditionComplex {
      *
      * @param {EditionTitleStatement} titleStatement The given TitleStatement for the edition complex.
      * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the edition complex.
-     * @param {EditionRoute} series The given series.
-     * @param {EditionRoute} section The given section.
-     * @param {EditionRoute} type The given edition type.
+     * @param {EditionRouteInfo} series The given series.
+     * @param {EditionRouteInfo} section The given section.
+     * @param {EditionRouteInfo} type The given edition type.
      */
     constructor(
         titleStatement: EditionTitleStatement,
         responsibilityStatement: EditionResponsibilityStatement,
-        series?: EditionRoute,
-        section?: EditionRoute,
-        type?: EditionRoute
+        series?: EditionRouteInfo,
+        section?: EditionRouteInfo,
+        type?: EditionRouteInfo
     ) {
         if (!titleStatement || !titleStatement.catalogueType || !titleStatement.catalogueNumber) {
             return;
@@ -149,7 +149,7 @@ export class EditionComplex {
             ? responsibilityStatement
             : new EditionResponsibilityStatement();
 
-        this.complexId = new EditionRoute();
+        this.complexId = new EditionRouteInfo();
         if (this.titleStatement.catalogueType === EditionConstants.OPUS) {
             this.complexId.route = EditionConstants.OPUS.route;
         } else if (this.titleStatement.catalogueType === EditionConstants.MNR) {
@@ -159,9 +159,9 @@ export class EditionComplex {
         this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
         this.complexId.full = this.titleStatement.title + spacer + this.complexId.short;
 
-        this.series = series ? series : new EditionRoute(); // EditionConstants.SERIES_1;
-        this.section = section ? section : new EditionRoute(); // EditionConstants.SECTION_5;
-        this.type = type ? type : new EditionRoute(); // EditionConstants.SKETCH_EDITION;
+        this.series = series ? series : new EditionRouteInfo(); // EditionConstants.SERIES_1;
+        this.section = section ? section : new EditionRouteInfo(); // EditionConstants.SECTION_5;
+        this.type = type ? type : new EditionRouteInfo(); // EditionConstants.SKETCH_EDITION;
 
         // Set base route
         let rootPath = this.editionRoute.route; // '/edition'

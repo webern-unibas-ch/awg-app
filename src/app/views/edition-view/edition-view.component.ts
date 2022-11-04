@@ -5,7 +5,7 @@ import { delay, Observable } from 'rxjs';
 
 import {
     EditionConstants,
-    EditionRoute,
+    EditionRouteInfo,
     EditionSectionRoute,
     EditionSeriesRoute,
     EditionComplex,
@@ -40,11 +40,18 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
-     * Public variable: editionRoute.
+     * Readonly variable: EDITION_ROUTE.
      *
-     * It keeps the base edition route.
+     * It keeps the edition route info.
      */
-    editionRoute: EditionRoute = EditionConstants.EDITION;
+    readonly EDITION_ROUTE: EditionRouteInfo = EditionConstants.EDITION;
+
+    /**
+     * Readonly variable: SERIES_ROUTE.
+     *
+     * It keeps the base series route.
+     */
+    readonly SERIES_ROUTE: EditionRouteInfo = EditionConstants.SERIES;
 
     /**
      * Public variable: isRowTableView$.
@@ -53,13 +60,6 @@ export class EditionViewComponent implements OnInit {
      * about the flag for the row table view.
      */
     isRowTableView$: Observable<boolean>;
-
-    /**
-     * Public variable: seriesRoute.
-     *
-     * It keeps the base series route.
-     */
-    seriesRoute: EditionRoute = EditionConstants.SERIES;
 
     /**
      * Public variable: selectedEditionComplex$.
@@ -72,7 +72,7 @@ export class EditionViewComponent implements OnInit {
     /**
      * Public variable: selectedEditionSection$.
      *
-     * It keeps the selected section of the edition as an Observable of EditionRoute.
+     * It keeps the selected section of the edition as an Observable of EditionSectionRoute.
      */
     selectedEditionSection$: Observable<EditionSectionRoute>;
 

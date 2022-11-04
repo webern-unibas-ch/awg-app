@@ -2,12 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { delay, Subject } from 'rxjs';
-
-import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
 import { takeUntil } from 'rxjs/operators';
-import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-constants';
+
 import { UtilityService } from '@awg-core/services';
+import { EditionSectionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetail component.
@@ -35,19 +34,6 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      */
     selectedSection: EditionSectionRoute;
 
-    /**
-     * Public variable: editionRoute.
-     *
-     * It keeps the base edition route.
-     */
-    editionRoute: EditionRoute = EditionConstants.EDITION;
-
-    /**
-     * Public variable: complexRoute.
-     *
-     * It keeps the base complex route.
-     */
-    complexRoute: EditionRoute = EditionConstants.SERIES;
     /**
      * Private variable: _destroyed$.
      *
@@ -82,7 +68,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
      * Public method: getSection.
      *
-     * It gets the selected section by ID from the EditionService and sets the editionRoute constant.
+     * It gets the selected section by ID from the EditionService.
      *
      * @returns {void} Gets the edition section.
      */
