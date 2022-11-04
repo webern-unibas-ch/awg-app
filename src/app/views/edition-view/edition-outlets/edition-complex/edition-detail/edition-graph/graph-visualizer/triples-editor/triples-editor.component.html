@@ -5,11 +5,11 @@
     <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
         <ng-template ngbPanelContent>
             <!-- CodeMirror editor instance -->
-            <ngx-codemirror
-                [(ngModel)]="triples"
-                (ngModelChange)="onEditorInputChange($event)"
-                [options]="cmTriplesConfig">
-            </ngx-codemirror>
+            <awg-codemirror
+                ngDefaultControl
+                [mode]="cmTurtleMode"
+                [(content)]="triples"
+                (contentChange)="onEditorInputChange($event)"></awg-codemirror>
 
             <!-- Handle buttons -->
             <div fxLayout="row" class="awg-graph-visualizer-triples-handle-buttons mt-2">

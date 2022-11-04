@@ -10,15 +10,14 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
+import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+import { CmMode } from '@awg-shared/codemirror/codemirror.component';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
 import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { CmConfig } from '../models';
-
-import 'codemirror/mode/sparql/sparql';
 
 /**
  * The SparqlEditor component.
@@ -97,17 +96,11 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
     updateQueryStringRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Public variable: cmSparqlConfig.
+     * Public variable: cmSparqlMode.
      *
-     * It keeps the Codemirror configuration for the sparql panel.
+     * It keeps the Codemirror mode for the sparql panel.
      */
-    cmSparqlConfig: CmConfig = {
-        lineNumbers: true,
-        firstLineNumber: 1,
-        lineWrapping: true,
-        matchBrackets: true,
-        mode: 'sparql',
-    };
+    cmSparqlMode: CmMode = sparql;
 
     /**
      * Public variable: faDiagramProject.

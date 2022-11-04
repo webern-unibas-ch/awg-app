@@ -1,6 +1,8 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, SimpleChange } from '@angular/core';
 
+import { EditorView } from 'codemirror';
+import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import {
     NgbAccordion,
     NgbAccordionModule,
@@ -19,21 +21,19 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { CmMode } from '@awg-shared/codemirror/codemirror.component';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
-import { ViewHandle, ViewHandleTypes } from '@awg-app/shared/view-handle-button-group/view-handle.model';
+import { ViewHandle, ViewHandleTypes } from '@awg-shared/view-handle-button-group/view-handle.model';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
-import { CmConfig } from '../models';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
 
-// eslint-disable-next-line @angular-eslint/component-selector
-@Component({ selector: 'ngx-codemirror', template: '' })
+@Component({ selector: 'awg-codemirror', template: '' })
 class CodeMirrorStubComponent {
-    @Input() options: {
-        [key: string]: any;
-    };
-    @Input() ngModel: string;
-    @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input() mode: CmMode;
+    @Input() content: string;
+    @Output() contentChange: EventEmitter<string> = new EventEmitter<string>();
+    @Output() editor: EditorView;
 }
 
 @Component({ selector: 'awg-view-handle-button-group', template: '' })
@@ -56,7 +56,7 @@ describe('SparqlEditorComponent (DONE)', () => {
     let expectedSelectQuery1: GraphSparqlQuery;
     let expectedSelectQuery2: GraphSparqlQuery;
     let expectedQueryList: GraphSparqlQuery[];
-    let expectedCmSparqlConfig: CmConfig;
+    let expectedCmSparqlMode: CmMode;
     let expectedIsFullscreen: boolean;
     let expectedViewHandles: ViewHandle[];
 
@@ -131,13 +131,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         expectedIsFullscreen = false;
 
-        expectedCmSparqlConfig = {
-            lineNumbers: true,
-            firstLineNumber: 1,
-            lineWrapping: true,
-            matchBrackets: true,
-            mode: 'sparql',
-        };
+        expectedCmSparqlMode = sparql;
 
         expectedViewHandles = [
             new ViewHandle('Graph view', ViewHandleTypes.GRAPH, component.faDiagramProject),
@@ -179,11 +173,11 @@ describe('SparqlEditorComponent (DONE)', () => {
             expect(component.isFullscreen).toBeUndefined();
         });
 
-        it('should have cmTriplesConfig', () => {
-            expect(component.cmSparqlConfig).toBeDefined();
-            expect(component.cmSparqlConfig)
-                .withContext(`should equal ${expectedCmSparqlConfig}`)
-                .toEqual(expectedCmSparqlConfig);
+        it('should have cmSparqlMode', () => {
+            expect(component.cmSparqlMode).toBeDefined();
+            expect(component.cmSparqlMode)
+                .withContext(`should equal ${expectedCmSparqlMode}`)
+                .toEqual(expectedCmSparqlMode);
         });
 
         it('should have selectedViewType', () => {
@@ -1308,7 +1302,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
 
                 const changedQueryString = expectedConstructQuery2.queryString;
-                codeMirrorCmp.ngModelChange.emit(changedQueryString);
+                codeMirrorCmp.contentChange.emit(changedQueryString);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
             });
@@ -1360,7 +1354,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     ) as CodeMirrorStubComponent;
 
                     const changedQueryString = expectedConstructQuery2.queryString;
-                    codeMirrorCmp.ngModelChange.emit(changedQueryString);
+                    codeMirrorCmp.contentChange.emit(changedQueryString);
 
                     expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
                     expectSpyCall(emitUpdateQueryStringRequestSpy, 1, changedQueryString);
@@ -1373,7 +1367,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     ) as CodeMirrorStubComponent;
 
                     // Query is undefined
-                    codeMirrorCmp.ngModelChange.emit('');
+                    codeMirrorCmp.contentChange.emit('');
 
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                     expectSpyCall(emitUpdateQueryStringRequestSpy, 1, '');

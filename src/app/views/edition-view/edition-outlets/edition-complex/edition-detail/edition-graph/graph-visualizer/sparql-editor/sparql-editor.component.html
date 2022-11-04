@@ -54,11 +54,11 @@
         </ng-template>
         <ng-template ngbPanelContent>
             <!-- CodeMirror editor instance -->
-            <ngx-codemirror
-                [(ngModel)]="query.queryString"
-                (ngModelChange)="onEditorInputChange($event)"
-                [options]="cmSparqlConfig">
-            </ngx-codemirror>
+            <awg-codemirror
+                ngDefaultControl
+                [mode]="cmSparqlMode"
+                [(content)]="query.queryString"
+                (contentChange)="onEditorInputChange($event)"></awg-codemirror>
 
             <!-- Handle buttons -->
             <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
