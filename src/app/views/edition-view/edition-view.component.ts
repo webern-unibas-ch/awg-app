@@ -5,7 +5,7 @@ import { delay, Observable } from 'rxjs';
 
 import {
     EditionConstants,
-    EditionRouteInfo,
+    EditionRouteConstant,
     EditionSectionRoute,
     EditionSeriesRoute,
     EditionComplex,
@@ -44,14 +44,14 @@ export class EditionViewComponent implements OnInit {
      *
      * It keeps the edition route info.
      */
-    readonly EDITION_ROUTE: EditionRouteInfo = EditionConstants.EDITION;
+    readonly EDITION_ROUTE: EditionRouteConstant = EditionConstants.EDITION;
 
     /**
      * Readonly variable: SERIES_ROUTE.
      *
      * It keeps the base series route.
      */
-    readonly SERIES_ROUTE: EditionRouteInfo = EditionConstants.SERIES;
+    readonly SERIES_ROUTE: EditionRouteConstant = EditionConstants.SERIES;
 
     /**
      * Public variable: isRowTableView$.

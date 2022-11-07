@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionRouteInfo } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionRouteConstant } from '@awg-views/edition-view/models';
 
 /**
  * The HomeView component.
@@ -59,7 +59,7 @@ export class HomeViewComponent implements OnInit {
      *
      * It keeps the edition route info.
      */
-    readonly EDITION_ROUTE: EditionRouteInfo = EditionConstants.EDITION;
+    readonly EDITION_ROUTE: EditionRouteConstant = EditionConstants.EDITION;
 
     /**
      * Constructor of the HomeViewComponent.

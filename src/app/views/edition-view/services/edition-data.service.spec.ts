@@ -47,7 +47,7 @@ describe('EditionDataService (DONE)', () => {
     let expectedRowTablesData: EditionRowTables[];
 
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
-    const assets = EditionConstants.EDITION_ASSETS;
+    const assets = EditionAssetsConstants.EDITION_ASSETS;
     const expectedAssetPathBaseRoute = assets.baseRoute;
     const expectedComplexRoute =
         EditionConstants.SERIES.route +

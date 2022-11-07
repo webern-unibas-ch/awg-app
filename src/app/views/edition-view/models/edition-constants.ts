@@ -1,24 +1,24 @@
 import { EditionComplex } from './edition-complex.model';
 
 /**
- * The RouteConstant class.
+ * The EditionRouteConstant class.
  *
  * It is used in the context of the edition view
  * to store routing information of the editions parts.
  */
-export class EditionRouteInfo {
+export class EditionRouteConstant {
     /**
-     * The route path of a route info.
+     * The route path of a route constant.
      */
     route: string;
 
     /**
-     * The short label of a route info.
+     * The short label of a route constant.
      */
     short: string;
 
     /**
-     * The full label of a route info.
+     * The full label of a route constant.
      */
     full: string;
 }
@@ -33,7 +33,7 @@ export class EditionSeriesRoute {
     /**
      * The series route of an edition series.
      */
-    series: EditionRouteInfo;
+    series: EditionRouteConstant;
 
     /**
      * The section route of an edition series.
@@ -51,7 +51,7 @@ export class EditionSectionRoute {
     /**
      * The section route of an edition section.
      */
-    section: EditionRouteInfo;
+    section: EditionRouteConstant;
 
     /**
      * The edition complexes of an edition section.
@@ -92,7 +92,7 @@ export class EditionConstants {
     /**
      * The route info for the edition.
      */
-    static readonly EDITION: EditionRouteInfo = {
+    static readonly EDITION: EditionRouteConstant = {
         route: '/edition',
         short: 'AWG',
         full: 'Anton Webern Gesamtausgabe',
@@ -101,7 +101,7 @@ export class EditionConstants {
     /**
      * The route info for the row tables.
      */
-    static readonly ROWTABLES: EditionRouteInfo = {
+    static readonly ROWTABLES: EditionRouteConstant = {
         route: '/row-tables',
         short: 'Reihentabellen',
         full: 'Reihentabellen',
@@ -110,7 +110,7 @@ export class EditionConstants {
     /**
      * The route info for an edition complex.
      */
-    static readonly COMPLEX: EditionRouteInfo = {
+    static readonly COMPLEX: EditionRouteConstant = {
         route: '/complex',
         short: 'Editionskomplex',
         full: 'Editionskomplex',
@@ -119,7 +119,7 @@ export class EditionConstants {
     /**
      * The route info for the opus number.
      */
-    static readonly OPUS: EditionRouteInfo = {
+    static readonly OPUS: EditionRouteConstant = {
         route: '/op',
         short: 'op.',
         full: 'Opus',
@@ -128,7 +128,7 @@ export class EditionConstants {
     /**
      * The route info for the Moldenhauer number.
      */
-    static readonly MNR: EditionRouteInfo = {
+    static readonly MNR: EditionRouteConstant = {
         route: '/m',
         short: 'M',
         full: 'Moldenhauer-Nr.',
@@ -137,7 +137,7 @@ export class EditionConstants {
     /**
      * The route info for the series.
      */
-    static readonly SERIES: EditionRouteInfo = {
+    static readonly SERIES: EditionRouteConstant = {
         route: '/series/',
         short: 'Serien',
         full: 'Serienübersicht',
@@ -146,7 +146,7 @@ export class EditionConstants {
     /**
      * The route info for series I.
      */
-    static readonly SERIES_1: EditionRouteInfo = {
+    static readonly SERIES_1: EditionRouteConstant = {
         route: '1',
         short: 'I',
         full: 'Serie I (Werke mit Opuszahlen)',
@@ -155,7 +155,7 @@ export class EditionConstants {
     /**
      * The route info for series II.
      */
-    static readonly SERIES_2: EditionRouteInfo = {
+    static readonly SERIES_2: EditionRouteConstant = {
         route: '2',
         short: 'II',
         full: 'Serie II (Nachgelassene Kompositionen und Fragmente)',
@@ -164,7 +164,7 @@ export class EditionConstants {
     /**
      * The route info for series III.
      */
-    static readonly SERIES_3: EditionRouteInfo = {
+    static readonly SERIES_3: EditionRouteConstant = {
         route: '3',
         short: 'III',
         full: 'Serie III (Bearbeitungen von Werken anderer Komponisten)',
@@ -173,7 +173,7 @@ export class EditionConstants {
     /**
      * The route info for the series.
      */
-    static readonly SECTION: EditionRouteInfo = {
+    static readonly SECTION: EditionRouteConstant = {
         route: '/section/',
         short: 'Abteilung',
         full: 'Abteilungsübersicht',
@@ -182,7 +182,7 @@ export class EditionConstants {
     /**
      * The route info for section 1.
      */
-    static readonly SECTION_1: EditionRouteInfo = {
+    static readonly SECTION_1: EditionRouteConstant = {
         route: '1',
         short: '1',
         full: 'Abteilung 1 (Orchestermusik)',
@@ -191,7 +191,7 @@ export class EditionConstants {
     /**
      * The route info for section 2.
      */
-    static readonly SECTION_2: EditionRouteInfo = {
+    static readonly SECTION_2: EditionRouteConstant = {
         route: '2',
         short: '2',
         full: 'Abteilung 2 (Kammer- und Klaviermusik)',
@@ -200,7 +200,7 @@ export class EditionConstants {
     /**
      * The route info for section 2a.
      */
-    static readonly SECTION_2A: EditionRouteInfo = {
+    static readonly SECTION_2A: EditionRouteConstant = {
         route: '2a',
         short: '2a',
         full: 'Abteilung 2a (Klaviermusik)',
@@ -209,7 +209,7 @@ export class EditionConstants {
     /**
      * The route info for section 2b.
      */
-    static readonly SECTION_2B: EditionRouteInfo = {
+    static readonly SECTION_2B: EditionRouteConstant = {
         route: '2a',
         short: '2a',
         full: 'Abteilung 2b (Kammermusik)',
@@ -218,7 +218,7 @@ export class EditionConstants {
     /**
      * The route info for section 3.
      */
-    static readonly SECTION_3: EditionRouteInfo = {
+    static readonly SECTION_3: EditionRouteConstant = {
         route: '3',
         short: '3',
         full: 'Abteilung 3 (Chormusik)',
@@ -227,7 +227,7 @@ export class EditionConstants {
     /**
      * The route info for section 4.
      */
-    static readonly SECTION_4: EditionRouteInfo = {
+    static readonly SECTION_4: EditionRouteConstant = {
         route: '4',
         short: '4',
         full: 'Abteilung 4 (Vokalmusik mit Ensemblebegleitung)',
@@ -254,7 +254,7 @@ export class EditionConstants {
     /**
      * The route info for a work edition.
      */
-    static readonly WORK_EDITION: EditionRouteInfo = {
+    static readonly WORK_EDITION: EditionRouteConstant = {
         route: '/work-edition',
         short: 'WE',
         full: 'Werkedition',
@@ -263,7 +263,7 @@ export class EditionConstants {
     /**
      * The route info for a text edition.
      */
-    static readonly TEXT_EDITION: EditionRouteInfo = {
+    static readonly TEXT_EDITION: EditionRouteConstant = {
         route: '/text-edition',
         short: 'TE',
         full: 'Textedition',
@@ -272,7 +272,7 @@ export class EditionConstants {
     /**
      * The route info for a sketch edition.
      */
-    static readonly SKETCH_EDITION: EditionRouteInfo = {
+    static readonly SKETCH_EDITION: EditionRouteConstant = {
         route: '/sketch-edition',
         short: 'SE',
         full: 'Skizzenedition',
@@ -281,7 +281,7 @@ export class EditionConstants {
     /**
      * The route info for the graph section of an edition.
      */
-    static readonly EDITION_GRAPH: EditionRouteInfo = {
+    static readonly EDITION_GRAPH: EditionRouteConstant = {
         route: 'graph',
         short: 'Graph',
         full: 'Graph',
@@ -290,7 +290,7 @@ export class EditionConstants {
     /**
      * The route info for the intro section of an edition.
      */
-    static readonly EDITION_INTRO: EditionRouteInfo = {
+    static readonly EDITION_INTRO: EditionRouteConstant = {
         route: 'intro',
         short: 'Einleitung',
         full: 'Einleitung',
@@ -299,7 +299,7 @@ export class EditionConstants {
     /**
      * The route info for the sheets section of an edition.
      */
-    static readonly EDITION_SHEETS: EditionRouteInfo = {
+    static readonly EDITION_SHEETS: EditionRouteConstant = {
         route: 'sheets',
         short: 'Edierte Notentexte',
         full: 'Edierte Notentexte',
@@ -308,7 +308,7 @@ export class EditionConstants {
     /**
      * The route info for the report section of an edition.
      */
-    static readonly EDITION_REPORT: EditionRouteInfo = {
+    static readonly EDITION_REPORT: EditionRouteConstant = {
         route: 'report',
         short: 'Kritischer Bericht',
         full: 'Kritischer Bericht',
@@ -345,7 +345,7 @@ export class EditionConstants {
     /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
-    static readonly FIRM_JE_NO_9_LIN_28: EditionRouteInfo = {
+    static readonly FIRM_JE_NO_9_LIN_28: EditionRouteConstant = {
         route: 'assets/img/edition/firm-signs/firm_je_no9_lin28.png',
         short: '[JE] | No. 9 | 28 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.',
@@ -354,7 +354,7 @@ export class EditionConstants {
     /**
      * The path to the assets image of a firm sign: JE No. 12, 12 Lines.
      */
-    static readonly FIRM_JE_NO_2_LIN_12: EditionRouteInfo = {
+    static readonly FIRM_JE_NO_2_LIN_12: EditionRouteConstant = {
         route: 'assets/img/edition/firm-signs/firm_je_no2_lin12.png',
         short: '[JE] | No. 2 | 12 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 2 | 12 linig.',
@@ -363,7 +363,7 @@ export class EditionConstants {
     /**
      * The path to the assets image of a firm sign: JE No. 15, 16 Lines.
      */
-    static readonly FIRM_JE_NO_15_LIN_16: EditionRouteInfo = {
+    static readonly FIRM_JE_NO_15_LIN_16: EditionRouteConstant = {
         route: 'assets/img/edition/firm-signs/firm_je_no15_lin16.png',
         short: '[JE] | No. 15 | 16 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.',
@@ -372,7 +372,7 @@ export class EditionConstants {
     /**
      * The path to the assets image of the graph for op 25.
      */
-    static readonly GRAPH_IMAGE_OP25: EditionRouteInfo = {
+    static readonly GRAPH_IMAGE_OP25: EditionRouteConstant = {
         route: 'assets/img/edition/series/1/section/5/op25/graph_op25_1.png',
         short: 'Statischer Graph op. 25/I',
         full: 'Statischer Graph der Skizzen von Opus 25/I.',
