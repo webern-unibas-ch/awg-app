@@ -6,9 +6,11 @@ import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
 import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
+    EditionAssetsConstants,
     EditionConstants,
     EditionComplex,
     EditionSvgSheetList,
+    EditionRowTables,
     FolioConvoluteList,
     GraphList,
     IntroList,
@@ -16,7 +18,6 @@ import {
     SourceDescriptionList,
     SourceEvaluationList,
     TextcriticsList,
-    EditionRowTables,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -192,7 +193,7 @@ export class EditionDataService {
             EditionConstants.SECTION.route +
             editionComplex.section.route +
             editionComplex.complexId.route;
-        this._assetPath = EditionConstants.EDITION_ASSETS.baseRoute + complexRoute;
+        this._assetPath = EditionAssetsConstants.EDITION_ASSETS.baseRoute + complexRoute;
     }
 
     /**
@@ -205,7 +206,7 @@ export class EditionDataService {
      * @returns {Observable<FolioConvoluteList>} The observable with the FolioConvolute data.
      */
     private _getFolioConvoluteData(): Observable<FolioConvoluteList> {
-        const file = EditionConstants.EDITION_ASSETS.folioConvoluteFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.folioConvoluteFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -220,7 +221,7 @@ export class EditionDataService {
      * @returns {Observable<GraphList>} The observable with the Graph data.
      */
     private _getGraphData(): Observable<GraphList> {
-        const file = EditionConstants.EDITION_ASSETS.graphFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.graphFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -235,7 +236,7 @@ export class EditionDataService {
      * @returns {Observable<IntroList>} The observable with the Intro data.
      */
     private _getIntroData(): Observable<IntroList> {
-        const file = EditionConstants.EDITION_ASSETS.introFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.introFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -250,7 +251,7 @@ export class EditionDataService {
      * @returns {Observable<SourceList>} The observable with the SourceList data.
      */
     private _getSourceListData(): Observable<SourceList> {
-        const file = EditionConstants.EDITION_ASSETS.sourceListFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.sourceListFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -265,7 +266,7 @@ export class EditionDataService {
      * @returns {Observable<SourceDescriptionList>} The observable with the SourceDescriptionList data.
      */
     private _getSourceDescriptionListData(): Observable<SourceDescriptionList> {
-        const file = EditionConstants.EDITION_ASSETS.sourceDescriptionListFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.sourceDescriptionListFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -280,7 +281,7 @@ export class EditionDataService {
      * @returns {Observable<SourceEvaluationList>} The observable with the SourceEvaluationList data.
      */
     private _getSourceEvaluationListData(): Observable<SourceEvaluationList> {
-        const file = EditionConstants.EDITION_ASSETS.sourceEvaluationListFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.sourceEvaluationListFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -295,7 +296,7 @@ export class EditionDataService {
      * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
      */
     private _getSvgSheetsData(): Observable<EditionSvgSheetList> {
-        const file = EditionConstants.EDITION_ASSETS.svgSheetsFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.svgSheetsFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -310,7 +311,7 @@ export class EditionDataService {
      * @returns {Observable<TextcriticsList>} The observable with the TextcriticsList data.
      */
     private _getTextcriticsListData(): Observable<TextcriticsList> {
-        const file = EditionConstants.EDITION_ASSETS.textcriticsFile;
+        const file = EditionAssetsConstants.EDITION_ASSETS.textcriticsFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }

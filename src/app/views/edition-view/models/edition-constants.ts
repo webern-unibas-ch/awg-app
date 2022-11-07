@@ -319,24 +319,9 @@ export class EditionConstants {
      */
 
     /**
-     * The paths to the edition assets JSON files.
-     */
-    static readonly EDITION_ASSETS = {
-        baseRoute: 'assets/data/edition',
-        folioConvoluteFile: 'folio-convolute.json',
-        graphFile: 'graph.json',
-        introFile: 'intro.json',
-        svgSheetsFile: 'svg-sheets.json',
-        sourceListFile: 'source-list.json',
-        sourceDescriptionListFile: 'source-description.json',
-        sourceEvaluationListFile: 'source-evaluation.json',
-        textcriticsFile: 'textcritics.json',
-    };
-
-    /**
      * The path to the assets image of a firm sign: JE No. 3, 14 Lines.
      */
-    static readonly FIRM_JE_NO_3_LIN_14: EditionRouteInfo = {
+    static readonly FIRM_JE_NO_3_LIN_14: EditionRouteConstant = {
         route: 'assets/img/edition/firm-signs/firm_je_no3_lin14.png',
         short: '[JE] | No. 3 | 14 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 3 | 14 linig.',
@@ -376,5 +361,28 @@ export class EditionConstants {
         route: 'assets/img/edition/series/1/section/5/op25/graph_op25_1.png',
         short: 'Statischer Graph op. 25/I',
         full: 'Statischer Graph der Skizzen von Opus 25/I.',
+    };
+}
+
+/**
+ * The EditionAssetsConstants class.
+ *
+ * It is used in the context of the edition view
+ * to store string constants of the edition assets.
+ */
+export class EditionAssetsConstants {
+    /**
+     * The paths to the edition assets JSON files.
+     */
+    static readonly EDITION_ASSETS = {
+        baseRoute: 'assets/data/edition',
+        folioConvoluteFile: 'folio-convolute.json',
+        graphFile: 'graph.json',
+        introFile: 'intro.json',
+        svgSheetsFile: 'svg-sheets.json',
+        sourceListFile: 'source-list.json',
+        sourceDescriptionListFile: 'source-description.json',
+        sourceEvaluationListFile: 'source-evaluation.json',
+        textcriticsFile: 'textcritics.json',
     };
 }
