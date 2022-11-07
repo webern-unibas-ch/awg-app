@@ -13,11 +13,12 @@ import { mockConsole } from '@testing/mock-helper';
 
 import { EDITION_ROW_TABLES_DATA, EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
+    EditionAssetsConstants,
+    EditionComplex,
     EditionConstants,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionComplex,
     FolioConvoluteList,
     FolioConvolute,
     GraphList,
@@ -47,8 +48,7 @@ describe('EditionDataService (DONE)', () => {
     let expectedRowTablesData: EditionRowTables[];
 
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
-    const assets = EditionAssetsConstants.EDITION_ASSETS;
-    const expectedAssetPathBaseRoute = assets.baseRoute;
+    const expectedAssetPathBaseRoute = EditionAssetsConstants.BASE_ROUTE;
     const expectedComplexRoute =
         EditionConstants.SERIES.route +
         expectedEditionComplex.series.route +
@@ -58,14 +58,15 @@ describe('EditionDataService (DONE)', () => {
     const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
     const regexBase = new RegExp(expectedAssetPath);
 
-    const expectedIntroFilePath = `${expectedAssetPath}/${assets.introFile}`;
-    const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${assets.folioConvoluteFile}`;
-    const expectedSheetsFilePath = `${expectedAssetPath}/${assets.svgSheetsFile}`;
-    const expectedSourceListFilePath = `${expectedAssetPath}/${assets.sourceListFile}`;
-    const expectedSourceDescriptionFilePath = `${expectedAssetPath}/${assets.sourceDescriptionListFile}`;
-    const expectedSourceEvaluationFilePath = `${expectedAssetPath}/${assets.sourceEvaluationListFile}`;
-    const expectedTextcriticsFilePath = `${expectedAssetPath}/${assets.textcriticsFile}`;
-    const expectedGraphFilePath = `${expectedAssetPath}/${assets.graphFile}`;
+    const files = EditionAssetsConstants.FILES;
+    const expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
+    const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${files.folioConvoluteFile}`;
+    const expectedSheetsFilePath = `${expectedAssetPath}/${files.svgSheetsFile}`;
+    const expectedSourceListFilePath = `${expectedAssetPath}/${files.sourceListFile}`;
+    const expectedSourceDescriptionFilePath = `${expectedAssetPath}/${files.sourceDescriptionListFile}`;
+    const expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
+    const expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
+    const expectedGraphFilePath = `${expectedAssetPath}/${files.graphFile}`;
 
     beforeEach(() => {
         TestBed.configureTestingModule({

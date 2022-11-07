@@ -14,7 +14,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionConstants, EditionComplex, GraphList } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionGraphImageConstants, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { GraphVisualizerComponent } from './graph-visualizer';
 
@@ -80,7 +80,7 @@ export class EditionGraphComponent implements OnInit {
      */
     readonly GRAPH_IMAGES = {
         OP12: '',
-        OP25: EditionConstants.GRAPH_IMAGE_OP25.route,
+        OP25: EditionGraphImageConstants.GRAPH_IMAGE_OP25.route,
     };
 
     /**

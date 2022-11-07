@@ -19,8 +19,8 @@ import {
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
-    EditionConstants,
     EditionComplex,
+    EditionGraphImageConstants,
     Graph,
     GraphList,
     GraphRDFData,
@@ -170,8 +170,8 @@ describe('EditionGraphComponent (DONE)', () => {
 
             expect(component.GRAPH_IMAGES.OP25).toBeTruthy();
             expect(component.GRAPH_IMAGES.OP25)
-                .withContext(`should be ${EditionConstants.GRAPH_IMAGE_OP25.route}`)
-                .toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
+                .withContext(`should be ${EditionGraphImageConstants.GRAPH_IMAGE_OP25.route}`)
+                .toBe(EditionGraphImageConstants.GRAPH_IMAGE_OP25.route);
         });
 
         it('should have `errorObject` = null', () => {

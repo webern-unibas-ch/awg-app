@@ -13,6 +13,8 @@ import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 import {
     EditionAssetsConstants,
     EditionConstants,
+    EditionFirmSignConstants,
+    EditionGraphImageConstants,
     EditionRouteConstant,
     EditionSectionRoute,
     EditionSeriesRoute,
@@ -44,6 +46,8 @@ export {
     EditionAssetsConstants,
     EditionComplex,
     EditionConstants,
+    EditionFirmSignConstants,
+    EditionGraphImageConstants,
     EditionRouteConstant,
     EditionRowTables,
     EditionSectionRoute,
