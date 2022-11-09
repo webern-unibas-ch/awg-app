@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;

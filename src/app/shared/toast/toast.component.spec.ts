@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 

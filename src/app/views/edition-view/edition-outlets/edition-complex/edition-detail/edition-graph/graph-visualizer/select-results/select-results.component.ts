@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { Observable } from 'rxjs';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
 
 import { QueryResult } from '../models';
 

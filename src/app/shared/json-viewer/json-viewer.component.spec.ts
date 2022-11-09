@@ -1,7 +1,7 @@
+import { JsonPipe } from '@angular/common';
+import { Component, DebugElement, Input, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { Component, DebugElement, Input, NgModule } from '@angular/core';
-import { JsonPipe } from '@angular/common';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';

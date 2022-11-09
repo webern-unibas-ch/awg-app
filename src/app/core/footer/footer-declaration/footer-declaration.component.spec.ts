@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';

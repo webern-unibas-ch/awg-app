@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { FolioModule } from './edition-folio/folio.module';
 import { EditionConvoluteComponent } from './edition-convolute.component';
+import { FolioModule } from './edition-folio/folio.module';
 
 /**
  * The EditionConvolute module.

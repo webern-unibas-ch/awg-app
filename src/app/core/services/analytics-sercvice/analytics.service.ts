@@ -1,8 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
+
 import { AppConfig } from '@awg-app/app.config';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from 'environments/environment';
 
 /**
  * The global gtag variable for Analytics.

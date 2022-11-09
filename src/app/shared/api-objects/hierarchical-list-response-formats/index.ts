@@ -12,8 +12,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { GeoDataJson, GeoDataItemJson } from './src/geo-data-json';
-import { HlistJson, HlistItemJson } from './src/hlist-json';
-import { SelectionJson, SelectionItemJson } from './src/selection-json';
+import { GeoDataItemJson, GeoDataJson } from './src/geo-data-json';
+import { HlistItemJson, HlistJson } from './src/hlist-json';
+import { SelectionItemJson, SelectionJson } from './src/selection-json';
 
 export { GeoDataJson, GeoDataItemJson, HlistJson, HlistItemJson, SelectionJson, SelectionItemJson };

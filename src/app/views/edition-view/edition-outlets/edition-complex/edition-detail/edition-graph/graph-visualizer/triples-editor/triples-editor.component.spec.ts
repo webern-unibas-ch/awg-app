@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EditorView } from 'codemirror';
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';

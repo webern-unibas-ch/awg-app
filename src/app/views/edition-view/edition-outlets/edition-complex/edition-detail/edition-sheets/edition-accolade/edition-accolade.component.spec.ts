@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';

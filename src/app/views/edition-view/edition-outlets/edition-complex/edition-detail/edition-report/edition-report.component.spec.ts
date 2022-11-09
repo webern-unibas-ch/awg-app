@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
@@ -20,8 +20,8 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
-    EditionSvgSheet,
     EditionComplex,
+    EditionSvgSheet,
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,

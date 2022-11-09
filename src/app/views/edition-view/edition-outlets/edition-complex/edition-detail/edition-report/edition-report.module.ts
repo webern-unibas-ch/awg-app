@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
 
-import { SourceListComponent } from './source-list';
 import { SourceDescriptionComponent } from './source-description';
 import { SourceEvaluationComponent } from './source-evaluation';
+import { SourceListComponent } from './source-list';
 import { TextcriticsListComponent } from './textcritics-list';
 
 import { EditionReportRoutingModule, routedEditionReportComponents } from './edition-report-routing.module';

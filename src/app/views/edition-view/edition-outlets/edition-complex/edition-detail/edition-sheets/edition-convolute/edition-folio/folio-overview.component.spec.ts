@@ -4,8 +4,8 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
-import { FolioService } from './folio.service';
 import { FolioOverviewComponent } from './folio-overview.component';
+import { FolioService } from './folio.service';
 
 describe('FolioComponent', () => {
     let component: FolioOverviewComponent;

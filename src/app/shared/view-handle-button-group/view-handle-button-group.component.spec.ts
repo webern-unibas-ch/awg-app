@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, SimpleChange } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faDiagramProject, faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';

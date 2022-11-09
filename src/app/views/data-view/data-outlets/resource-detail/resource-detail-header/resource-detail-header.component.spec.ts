@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BibliographyComponent } from './bibliography.component';
 import { BibliographyDetailComponent } from './bibliography-detail/bibliography-detail.component';
+import { BibliographyComponent } from './bibliography.component';
 
 /* Routes of the BibliographyModule */
 const BIBLIOGRAPHY_ROUTES: Routes = [

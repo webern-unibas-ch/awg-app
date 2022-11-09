@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
 import { of as observableOf } from 'rxjs';
@@ -10,11 +10,10 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionConstants } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 

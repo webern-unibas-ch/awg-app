@@ -1,6 +1,6 @@
-import { D3SimulationNode } from './d3-simulation-node.model';
 import { D3SimulationLink } from './d3-simulation-link.model';
 import { D3SimulationNodeTriple } from './d3-simulation-node-triple.model';
+import { D3SimulationNode } from './d3-simulation-node.model';
 
 /**
  * The D3SimulationData class.

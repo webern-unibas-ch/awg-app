@@ -1,6 +1,6 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
 import { EMPTY, of as observableOf } from 'rxjs';
@@ -18,19 +18,19 @@ import {
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    FolioConvoluteList,
     EDITION_ASSETS_DATA,
     FolioConvolute,
-    GraphList,
+    FolioConvoluteList,
     Graph,
-    IntroList,
+    GraphList,
     Intro,
+    IntroList,
     Source,
-    SourceList,
     SourceDescription,
     SourceDescriptionList,
     SourceEvaluation,
     SourceEvaluationList,
+    SourceList,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';

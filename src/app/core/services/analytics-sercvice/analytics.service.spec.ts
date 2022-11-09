@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
+import { TestBed } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 

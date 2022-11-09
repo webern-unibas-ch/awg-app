@@ -1,5 +1,5 @@
-import { ResourceDetailHeader } from './resource-detail-header.model';
 import { ResourceDetailContent } from './resource-detail-content.model';
+import { ResourceDetailHeader } from './resource-detail-header.model';
 
 /**
  * The ResourceDetail class.

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -16,10 +16,10 @@ import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent 
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
+    EditionComplex,
     EditionConstants,
     EditionSectionRoute,
     EditionSeriesRoute,
-    EditionComplex,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 

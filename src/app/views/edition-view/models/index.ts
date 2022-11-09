@@ -25,17 +25,17 @@ import { EditionRowTables } from './edition-row-tables.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
+import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
 
-import { Graph, GraphList, GraphSparqlQuery, GraphRDFData } from './graph.model';
+import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroList } from './intro.model';
 
-import { Source, SourceList } from './source-list.model';
 import { SourceDescription, SourceDescriptionList } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
+import { Source, SourceList } from './source-list.model';
 
 import { TextcriticalComment, Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';

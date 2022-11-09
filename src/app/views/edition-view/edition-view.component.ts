@@ -4,11 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { delay, Observable } from 'rxjs';
 
 import {
+    EditionComplex,
     EditionConstants,
     EditionRouteConstant,
     EditionSectionRoute,
     EditionSeriesRoute,
-    EditionComplex,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 

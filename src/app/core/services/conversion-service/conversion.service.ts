@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -23,6 +23,7 @@ import {
     SelectionJson,
     SubjectItemJson,
 } from '@awg-shared/api-objects';
+import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 import {
     IResourceDataResponse,
     ResourceDetail,
@@ -34,7 +35,6 @@ import {
     ResourceDetailProperty,
     SearchResponseWithQuery,
 } from '@awg-views/data-view/models';
-import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
 /**
  * Declared variable: htmlConverter.

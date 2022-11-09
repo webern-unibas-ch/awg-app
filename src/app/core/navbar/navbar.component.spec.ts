@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, NgModule } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';

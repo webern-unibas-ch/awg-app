@@ -1,9 +1,9 @@
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localeDeDE from '@angular/common/locales/de';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { registerLocaleData } from '@angular/common';
-import localeDeDE from '@angular/common/locales/de';
 
 //
 // Main app modules

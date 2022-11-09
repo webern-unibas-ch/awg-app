@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -22,7 +22,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionSvgSheet, EditionComplex, IntroList } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionSvgSheet, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionIntroComponent } from './edition-intro.component';

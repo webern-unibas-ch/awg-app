@@ -4,13 +4,13 @@ import { SharedModule } from '@awg-shared/shared.module';
 
 import { ConstructResultsComponent } from './construct-results';
 import { ForceGraphComponent } from './force-graph';
+import { GraphVisualizerComponent } from './graph-visualizer.component';
 import { SelectResultsComponent } from './select-results';
 import { SparqlEditorComponent } from './sparql-editor';
 import { SparqlNoResultsComponent } from './sparql-no-results';
 import { SparqlTableComponent } from './sparql-table';
 import { TriplesEditorComponent } from './triples-editor';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results';
-import { GraphVisualizerComponent } from './graph-visualizer.component';
 
 import { GraphVisualizerService } from './services';
 

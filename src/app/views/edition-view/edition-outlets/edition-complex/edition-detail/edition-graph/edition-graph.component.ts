@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -7,7 +8,6 @@ import {
     OnInit,
     ViewChild,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';

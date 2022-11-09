@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';

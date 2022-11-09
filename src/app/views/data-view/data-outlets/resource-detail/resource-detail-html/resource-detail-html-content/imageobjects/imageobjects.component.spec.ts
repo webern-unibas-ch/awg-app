@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { NgxGalleryComponent, NgxGalleryImage, NgxGalleryModule, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { JsonConvert } from 'json2typescript';
-import { NgxGalleryImage, NgxGalleryComponent, NgxGalleryOptions, NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
 
-import { ResourceDetailImage } from '@awg-views/data-view/models';
 import { ContextJson } from '@awg-shared/api-objects';
+import { ResourceDetailImage } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentImageobjectsComponent } from './imageobjects.component';
 

@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
 import { HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 import { AppConfig } from '@awg-app/app.config';
 

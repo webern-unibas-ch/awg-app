@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
+import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable, Subject } from 'rxjs';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { DataStreamerService, GndService, LoadingService } from '@awg-core/services';
 import { GndEvent } from '@awg-core/services/gnd-service';

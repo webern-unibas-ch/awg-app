@@ -8,8 +8,8 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { DataStreamerService } from '@awg-core/services';
-import { SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-models';
+import { SearchQuery, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 /**
  * The ResourceInfo component.

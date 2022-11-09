@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
-import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 import { SliderConfig } from '@awg-shared/shared-models';
 import {

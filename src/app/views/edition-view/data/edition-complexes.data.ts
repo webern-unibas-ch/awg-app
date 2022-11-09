@@ -1,5 +1,5 @@
 import { AppConfig } from '@awg-app/app.config';
-import { EditionConstants, EditionComplex } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionConstants } from '@awg-views/edition-view/models';
 
 /**
  * The EditionComplexes class.

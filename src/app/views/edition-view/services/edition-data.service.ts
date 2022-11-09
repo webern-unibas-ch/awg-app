@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
 import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
-    EditionConstants,
     EditionComplex,
-    EditionSvgSheetList,
+    EditionConstants,
     EditionRowTables,
+    EditionSvgSheetList,
     EDITION_ASSETS_DATA,
     FolioConvoluteList,
     GraphList,
     IntroList,
-    SourceList,
     SourceDescriptionList,
     SourceEvaluationList,
+    SourceList,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 

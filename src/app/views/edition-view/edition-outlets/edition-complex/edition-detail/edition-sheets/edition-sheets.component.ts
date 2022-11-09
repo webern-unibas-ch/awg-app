@@ -4,19 +4,19 @@ import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/rou
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
+import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
+    EditionComplex,
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionComplex,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
-import { UtilityService } from '@awg-core/services';
 
 /**
  * The EditionSheets component.

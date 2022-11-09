@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { mockSearchResponseJson } from '@testing/mock-data';
 
 import { AppModule } from '@awg-app/app.module';
 
 import { ConversionService } from './conversion.service';
-import { mockSearchResponseJson } from '@testing/mock-data';
 
 describe('ConversionService', () => {
     let conversionService: ConversionService;

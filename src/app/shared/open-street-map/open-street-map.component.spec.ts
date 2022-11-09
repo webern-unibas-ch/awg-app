@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, SecurityContext } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { OpenStreetMapComponent } from './open-street-map.component';
 import { AppConfig } from '@awg-app/app.config';
+import { OpenStreetMapComponent } from './open-street-map.component';
 
 describe('OpenStreetMapComponent (DONE)', () => {
     let component: OpenStreetMapComponent;

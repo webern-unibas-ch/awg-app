@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { catchError, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';

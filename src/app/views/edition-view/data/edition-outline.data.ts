@@ -1,5 +1,5 @@
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EditionConstants, EditionSeriesRoute } from '@awg-views/edition-view/models';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data/edition-complexes.data';
 
 /**
  * Object constant with the outline of the edition.

@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import {
+    EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionSvgOverlay,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 

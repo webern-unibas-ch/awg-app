@@ -5,9 +5,9 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
+    EditionComplex,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
-    EditionComplex,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 

@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 import {
     Folio,
-    FolioSvgData,
     FolioCalculation,
     FolioCalculationLine,
     FolioSettings,
+    FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { SideInfoService } from '@awg-core/services';
+import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 
 /**
  * The SearchOverview component.

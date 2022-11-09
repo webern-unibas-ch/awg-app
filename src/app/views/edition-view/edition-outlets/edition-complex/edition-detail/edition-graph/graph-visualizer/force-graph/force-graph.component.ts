@@ -23,7 +23,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { SliderConfig } from '@awg-shared/shared-models';
-import { D3Selection, D3ZoomBehaviour } from '@awg-app/views/edition-view/models';
+import { D3Selection, D3ZoomBehaviour } from '@awg-views/edition-view/models';
 import {
     D3DragBehaviour,
     D3Simulation,

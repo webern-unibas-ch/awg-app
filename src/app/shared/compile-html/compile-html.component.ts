@@ -14,18 +14,18 @@
  *
  ************************************************/
 
+import { CommonModule } from '@angular/common';
 import {
+    Compiler,
     Component,
-    Input,
     Injectable,
-    OnChanges,
-    Type,
+    Input,
     ModuleWithProviders,
     NgModule,
-    Compiler,
     NgModuleFactory,
+    OnChanges,
+    Type,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 /**
  * Function: compileHtml.reverse(str)

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { UntypedFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ReactiveFormsModule, UntypedFormBuilder, Validators } from '@angular/forms';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 

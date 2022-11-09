@@ -4,10 +4,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import {
+    EditionComplex,
     EditionConstants,
     EditionSeriesRoute,
     EditionSvgOverlay,
-    EditionComplex,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-constants';

@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { METADATA } from '@awg-core/core-data';
-import { MetaStructure, MetaSectionTypes } from '@awg-core/core-models';
+import { MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { StructureInfoComponent } from './structure-info.component';

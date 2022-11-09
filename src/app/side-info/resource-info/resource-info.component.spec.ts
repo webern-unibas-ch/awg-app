@@ -1,7 +1,7 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { AbstractControl, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { AbstractControl, ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';

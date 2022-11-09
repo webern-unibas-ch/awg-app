@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
 import { ElementRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 

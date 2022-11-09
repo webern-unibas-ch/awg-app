@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 
 describe('EditionSvgSheetNavComponent (DONE)', () => {
     let component: EditionSvgSheetNavComponent;

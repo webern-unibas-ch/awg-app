@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, SimpleChange } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
 import { EditorView } from 'codemirror';
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';

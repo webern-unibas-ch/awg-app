@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, SimpleChange } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 

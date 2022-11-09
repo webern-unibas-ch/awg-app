@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionViewComponent } from './edition-view.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
-import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
-import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
+import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
+import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionTypeComponent } from './edition-outlets/edition-type';
+import { EditionViewComponent } from './edition-view.component';
 
 /* Routes of the EditionViewModule */
 const EDITION_VIEW_ROUTES: Routes = [

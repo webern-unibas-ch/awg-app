@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
-import Spy = jasmine.Spy;
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
+import Spy = jasmine.Spy;
 
 import { JsonConvert } from 'json2typescript';
 

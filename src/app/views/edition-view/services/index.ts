@@ -8,7 +8,7 @@
  */
 
 import { EditionDataService } from './edition-data.service';
-import { EditionService } from './edition.service';
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
+import { EditionService } from './edition.service';
 
 export { EditionDataService, EditionService, EditionSvgDrawingService };

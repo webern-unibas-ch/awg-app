@@ -4,8 +4,8 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionTkaTableModule } from '../../edition-tka-table/edition-tka-table.module';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
-import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
 import { EditionSvgSheetComponent } from './edition-svg-sheet';
+import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
 
 /**
  * The EditionAccolade module.

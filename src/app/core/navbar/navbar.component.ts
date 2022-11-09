@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -6,7 +7,6 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EditionComplex } from '@awg-views/edition-view/models';
-import { Router } from '@angular/router';
 
 /**
  * The Header component.

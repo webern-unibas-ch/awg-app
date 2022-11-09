@@ -1,15 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { of as observableOf } from 'rxjs';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { of as observableOf } from 'rxjs';
 
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
-import { DataApiService } from '@awg-views/data-view/services';
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { SearchParams } from '@awg-views/data-view/models';
+import { DataApiService } from '@awg-views/data-view/services';
 
 import { SearchPanelComponent } from './search-panel.component';
 

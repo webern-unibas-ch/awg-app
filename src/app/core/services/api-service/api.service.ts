@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { throwError as observableThrowError, Observable } from 'rxjs';
+import { Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { ApiServiceResult } from './api-service-result.model';
-import { ApiServiceError } from './api-service-error.model';
 import { ApiRequest } from './api-request.model';
+import { ApiServiceError } from './api-service-error.model';
+import { ApiServiceResult } from './api-service-result.model';
 
 /**
  * The Api service.
