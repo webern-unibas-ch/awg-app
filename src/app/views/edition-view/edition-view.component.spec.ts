@@ -18,8 +18,8 @@ import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
     EditionComplex,
     EditionConstants,
-    EditionSectionRoute,
-    EditionSeriesRoute,
+    EditionOutlineSection,
+    EditionOutlineSeries,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -52,8 +52,8 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetIsRowTableViewSpy: Spy;
 
     let expectedSelectedEditionComplex: EditionComplex;
-    let expectedSelectedEditionSeries: EditionSeriesRoute;
-    let expectedSelectedEditionSection: EditionSectionRoute;
+    let expectedSelectedEditionSeries: EditionOutlineSeries;
+    let expectedSelectedEditionSection: EditionOutlineSection;
     let expectedIsRowTableView: boolean;
 
     const expectedSelectedEditionComplexId = 'OP12';
@@ -77,8 +77,9 @@ describe('EditionViewComponent (DONE)', () => {
             updateEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
-            getSelectedEditionSeries: (): Observable<EditionSeriesRoute> => observableOf(expectedSelectedEditionSeries),
-            getSelectedEditionSection: (): Observable<EditionSectionRoute> =>
+            getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
+                observableOf(expectedSelectedEditionSeries),
+            getSelectedEditionSection: (): Observable<EditionOutlineSection> =>
                 observableOf(expectedSelectedEditionSeries.sections[0]),
             getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
         };
@@ -295,7 +296,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.selectedEditionSeries$).toBeDefined();
                 component.selectedEditionSeries$.subscribe({
-                    next: (series: EditionSeriesRoute) => {
+                    next: (series: EditionOutlineSeries) => {
                         expect(series)
                             .withContext(`should equal ${expectedSelectedEditionSeries}`)
                             .toEqual(expectedSelectedEditionSeries);
@@ -309,7 +310,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.selectedEditionSection$).toBeDefined();
                 component.selectedEditionSection$.subscribe({
-                    next: (section: EditionSectionRoute) => {
+                    next: (section: EditionOutlineSection) => {
                         expect(section)
                             .withContext(`should equal ${expectedSelectedEditionSection}`)
                             .toEqual(expectedSelectedEditionSection);

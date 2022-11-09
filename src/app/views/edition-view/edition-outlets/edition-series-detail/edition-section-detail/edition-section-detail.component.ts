@@ -5,7 +5,7 @@ import { delay, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
-import { EditionSectionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -25,14 +25,14 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      *
      * It keeps the selected series of the edition.
      */
-    selectedSeries: EditionSeriesRoute;
+    selectedSeries: EditionOutlineSeries;
 
     /**
      * Public variable: selectedSection.
      *
      * It keeps the selected section of the edition.
      */
-    selectedSection: EditionSectionRoute;
+    selectedSection: EditionOutlineSection;
 
     /**
      * Private variable: _destroyed$.

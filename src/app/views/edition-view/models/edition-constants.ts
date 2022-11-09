@@ -1,5 +1,3 @@
-import { EditionComplex } from './edition-complex.model';
-
 /**
  * The EditionRouteConstant class.
  *
@@ -21,65 +19,6 @@ export class EditionRouteConstant {
      * The full label of a route constant.
      */
     full: string;
-}
-
-/**
- * The EditionSeriesRoute class.
- *
- * It is used in the context of the edition view
- * to store routing information of the edition series.
- */
-export class EditionSeriesRoute {
-    /**
-     * The series route of an edition series.
-     */
-    series: EditionRouteConstant;
-
-    /**
-     * The section route of an edition series.
-     */
-    sections: EditionSectionRoute[];
-}
-
-/**
- * The EditionSectionRoute class.
- *
- * It is used in the context of the edition view
- * to store routing information of the edition sections.
- */
-export class EditionSectionRoute {
-    /**
-     * The section route of an edition section.
-     */
-    section: EditionRouteConstant;
-
-    /**
-     * The edition complexes of an edition section.
-     */
-    complexes: EditionComplexRoute[];
-
-    /**
-     * Boolean flag if an edition section is disabled.
-     */
-    disabled: boolean;
-}
-
-/**
- * The EditionComplexRoute class.
- *
- * It is used in the context of the edition view
- * to store routing information of an edition complex.
- */
-export class EditionComplexRoute {
-    /**
-     * The edition complex.
-     */
-    complex: EditionComplex;
-
-    /**
-     * Boolean flag if an edition complex is disabled.
-     */
-    disabled: boolean;
 }
 
 /**

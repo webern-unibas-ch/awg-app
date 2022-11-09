@@ -1,12 +1,12 @@
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
- * Object constant with the outline of the edition.
+ * Object constant: EDITION_OUTLINE_DATA.
  *
- * It provides metadata for structure of the edition.
+ * It provides metadata for the outline structure of the edition.
  */
-export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
+export const EDITION_OUTLINE_DATA: EditionOutlineSeries[] = [
     {
         series: EditionConstants.SERIES_1,
         sections: [

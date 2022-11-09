@@ -6,9 +6,9 @@ import { delay, Observable } from 'rxjs';
 import {
     EditionComplex,
     EditionConstants,
+    EditionOutlineSection,
+    EditionOutlineSeries,
     EditionRouteConstant,
-    EditionSectionRoute,
-    EditionSeriesRoute,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -72,16 +72,18 @@ export class EditionViewComponent implements OnInit {
     /**
      * Public variable: selectedEditionSection$.
      *
-     * It keeps the selected section of the edition as an Observable of EditionSectionRoute.
+     * It keeps the selected section of the edition as an Observable of EditionOutlineSection;
+;
+.
      */
-    selectedEditionSection$: Observable<EditionSectionRoute>;
+    selectedEditionSection$: Observable<EditionOutlineSection>;
 
     /**
      * Public variable: selectedEditionSeries$.
      *
-     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     * It keeps the selected series of the edition as an Observable of EditionOutlineSeries.
      */
-    selectedEditionSeries$: Observable<EditionSeriesRoute>;
+    selectedEditionSeries$: Observable<EditionOutlineSeries>;
 
     /**
      * Constructor of the EditionViewComponent.

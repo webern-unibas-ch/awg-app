@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -21,7 +21,7 @@ export class EditionSeriesDetailComponent implements OnInit {
      *
      * It keeps the selected series of the edition.
      */
-    selectedSeries: EditionSeriesRoute;
+    selectedSeries: EditionOutlineSeries;
 
     /**
      * Constructor of the EditionSeriesDetailComponent.
