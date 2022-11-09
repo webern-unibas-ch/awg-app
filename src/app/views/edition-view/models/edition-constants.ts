@@ -313,28 +313,24 @@ export class EditionConstants {
         short: 'Kritischer Bericht',
         full: 'Kritischer Bericht',
     };
-
-    /**
-     * ASSETS
-     */
 }
 
 /**
- * The EditionAssetsConstants class.
+ * Object constant: EDITION_ASSETS_DATA.
  *
  * It is used in the context of the edition view
  * to store string constants of the edition assets.
  */
-export class EditionAssetsConstants {
+export const EDITION_ASSETS_DATA = {
     /**
      * The base route to the edition assets JSON files.
      */
-    static readonly BASE_ROUTE: string = 'assets/data/edition';
+    baseRoute: 'assets/data/edition',
 
     /**
      * The names of the edition assets JSON files.
      */
-    static readonly FILES = {
+    files: {
         folioConvoluteFile: 'folio-convolute.json',
         graphFile: 'graph.json',
         introFile: 'intro.json',
@@ -343,8 +339,8 @@ export class EditionAssetsConstants {
         sourceDescriptionListFile: 'source-description.json',
         sourceEvaluationListFile: 'source-evaluation.json',
         textcriticsFile: 'textcritics.json',
-    };
-}
+    },
+} as const;
 
 /**
  * The EditionFirmSignConstants class.
