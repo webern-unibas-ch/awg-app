@@ -10,6 +10,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
 import { SourceDescriptionList } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionComponent } from './source-description.component';
@@ -23,6 +24,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let utils: UtilityService;
 
     let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedFirmSigns;
     let expectedSheetId: string;
     let expectedNextSheetId: string;
     let expectedModalSnippet: string;
@@ -51,6 +53,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedNextSheetId = 'test_item_id_2';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;
+        expectedFirmSigns = {
+            OP12: { A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28] },
+            OP25: {
+                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_15_LIN_16],
+                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12],
+                C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_3_LIN_14],
+            },
+        };
 
         mockDocument = TestBed.inject(DOCUMENT);
 
@@ -75,6 +85,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
         it('should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+        });
+
+        it('should have `FIRM_SIGNS`', () => {
+            expect(component.FIRM_SIGNS).toBeTruthy();
+            expect(component.FIRM_SIGNS).withContext(`should equal ${expectedFirmSigns}`).toEqual(expectedFirmSigns);
         });
 
         describe('VIEW', () => {

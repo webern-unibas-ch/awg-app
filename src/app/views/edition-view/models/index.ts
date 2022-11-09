@@ -10,13 +10,7 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import {
-    EditionConstants,
-    EditionRouteConstant,
-    EditionSectionRoute,
-    EditionSeriesRoute,
-    EDITION_FIRM_SIGNS_DATA,
-} from './edition-constants';
+import { EditionConstants, EditionRouteConstant, EditionSectionRoute, EditionSeriesRoute } from './edition-constants';
 
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
 import { EditionRowTables } from './edition-row-tables.model';
@@ -41,7 +35,6 @@ import { ViewBox } from './view-box.model';
 export {
     D3Selection,
     D3ZoomBehaviour,
-    EDITION_FIRM_SIGNS_DATA,
     EditionComplex,
     EditionConstants,
     EditionRouteConstant,

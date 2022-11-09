@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
-import { EDITION_FIRM_SIGNS_DATA, SourceDescriptionList } from '@awg-views/edition-view/models';
+import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
+import { SourceDescriptionList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
