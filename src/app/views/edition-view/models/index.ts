@@ -10,10 +10,11 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionConstants, EditionRouteConstant } from './edition-constants';
+import { EditionConstants } from './edition-constants';
 
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
 import { EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
+import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables } from './edition-row-tables.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';

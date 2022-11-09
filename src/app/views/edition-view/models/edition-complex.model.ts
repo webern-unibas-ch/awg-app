@@ -1,5 +1,6 @@
 import { MetaPerson } from '@awg-core/core-models/meta.model';
-import { EditionConstants, EditionRouteConstant } from './edition-constants';
+import { EditionConstants } from './edition-constants';
+import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
  * The EditionTitleStatement class.
@@ -112,8 +113,7 @@ export class EditionComplex {
     /**
      * The base route of an edition complex.
      *
-     * @example 'edition/{series/1/section/5/}complex/op12
-     * TODO: Parts in {} muted at the moment.
+     * @example 'edition/complex/op12
      */
     baseRoute: string;
 

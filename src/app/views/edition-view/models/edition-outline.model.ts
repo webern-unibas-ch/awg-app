@@ -1,5 +1,5 @@
 import { EditionComplex } from './edition-complex.model';
-import { EditionRouteConstant } from './edition-constants';
+import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
  * The EditionOutlineSeries interface.
