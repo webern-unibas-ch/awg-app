@@ -11,14 +11,13 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ASSETS_DATA, EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
     EditionComplex,
     EditionConstants,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EDITION_ASSETS_DATA,
     FolioConvolute,
     FolioConvoluteList,
     Graph,
@@ -48,7 +47,7 @@ describe('EditionDataService (DONE)', () => {
     let expectedRowTablesData: EditionRowTables[];
 
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
-    const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.baseRoute;
+    const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
     const expectedComplexRoute =
         EditionConstants.SERIES.route +
         expectedEditionComplex.series.route +
@@ -58,7 +57,7 @@ describe('EditionDataService (DONE)', () => {
     const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
     const regexBase = new RegExp(expectedAssetPath);
 
-    const files = EDITION_ASSETS_DATA.files;
+    const files = EDITION_ASSETS_DATA.FILES;
     const expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
     const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${files.folioConvoluteFile}`;
     const expectedSheetsFilePath = `${expectedAssetPath}/${files.svgSheetsFile}`;

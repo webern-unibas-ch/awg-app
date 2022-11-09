@@ -15,7 +15,6 @@ import {
     EditionRouteConstant,
     EditionSectionRoute,
     EditionSeriesRoute,
-    EDITION_ASSETS_DATA,
     EDITION_FIRM_SIGNS_DATA,
     EDITION_GRAPH_IMAGES_DATA,
 } from './edition-constants';
@@ -43,11 +42,10 @@ import { ViewBox } from './view-box.model';
 export {
     D3Selection,
     D3ZoomBehaviour,
-    EDITION_ASSETS_DATA,
     EDITION_FIRM_SIGNS_DATA,
+    EDITION_GRAPH_IMAGES_DATA,
     EditionComplex,
     EditionConstants,
-    EDITION_GRAPH_IMAGES_DATA,
     EditionRouteConstant,
     EditionRowTables,
     EditionSectionRoute,
