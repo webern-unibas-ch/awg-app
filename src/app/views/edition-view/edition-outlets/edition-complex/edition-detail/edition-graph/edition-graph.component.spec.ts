@@ -17,15 +17,8 @@ import {
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import {
-    EditionComplex,
-    EDITION_GRAPH_IMAGES_DATA,
-    Graph,
-    GraphList,
-    GraphRDFData,
-    GraphSparqlQuery,
-} from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES, EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
+import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';

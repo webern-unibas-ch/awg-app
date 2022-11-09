@@ -14,8 +14,10 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionComplex, EDITION_GRAPH_IMAGES_DATA, GraphList } from '@awg-views/edition-view/models';
+import { EDITION_GRAPH_IMAGES_DATA } from '@awg-app/views/edition-view/data';
+import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+
 import { GraphVisualizerComponent } from './graph-visualizer';
 
 /**

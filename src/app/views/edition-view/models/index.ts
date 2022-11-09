@@ -16,7 +16,6 @@ import {
     EditionSectionRoute,
     EditionSeriesRoute,
     EDITION_FIRM_SIGNS_DATA,
-    EDITION_GRAPH_IMAGES_DATA,
 } from './edition-constants';
 
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
@@ -43,7 +42,6 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EDITION_FIRM_SIGNS_DATA,
-    EDITION_GRAPH_IMAGES_DATA,
     EditionComplex,
     EditionConstants,
     EditionRouteConstant,
