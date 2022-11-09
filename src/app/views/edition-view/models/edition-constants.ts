@@ -319,7 +319,7 @@ export class EditionConstants {
  * Object constant: EDITION_ASSETS_DATA.
  *
  * It is used in the context of the edition view
- * to store string constants of the edition assets.
+ * to store data of the edition assets.
  */
 export const EDITION_ASSETS_DATA = {
     /**
@@ -343,54 +343,54 @@ export const EDITION_ASSETS_DATA = {
 } as const;
 
 /**
- * The EditionFirmSignConstants class.
+ * Object constant: EDITION_FIRM_SIGNS_DATA.
  *
  * It is used in the context of the edition view
- * to store string constants of the edition assets.
+ * to store firm signs data.
  */
-export class EditionFirmSignConstants {
+export const EDITION_FIRM_SIGNS_DATA = {
     /**
      * The path to the assets image of a firm sign: JE No. 3, 14 Lines.
      */
-    static readonly FIRM_JE_NO_3_LIN_14: EditionRouteConstant = {
+    FIRM_JE_NO_3_LIN_14: {
         route: 'assets/img/edition/firm-signs/firm_je_no3_lin14.png',
         short: '[JE] | No. 3 | 14 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 3 | 14 linig.',
-    };
+    },
 
     /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
-    static readonly FIRM_JE_NO_9_LIN_28: EditionRouteConstant = {
+    FIRM_JE_NO_9_LIN_28: {
         route: 'assets/img/edition/firm-signs/firm_je_no9_lin28.png',
         short: '[JE] | No. 9 | 28 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.',
-    };
+    },
 
     /**
      * The path to the assets image of a firm sign: JE No. 12, 12 Lines.
      */
-    static readonly FIRM_JE_NO_2_LIN_12: EditionRouteConstant = {
+    FIRM_JE_NO_2_LIN_12: {
         route: 'assets/img/edition/firm-signs/firm_je_no2_lin12.png',
         short: '[JE] | No. 2 | 12 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 2 | 12 linig.',
-    };
+    },
 
     /**
      * The path to the assets image of a firm sign: JE No. 15, 16 Lines.
      */
-    static readonly FIRM_JE_NO_15_LIN_16: EditionRouteConstant = {
+    FIRM_JE_NO_15_LIN_16: {
         route: 'assets/img/edition/firm-signs/firm_je_no15_lin16.png',
         short: '[JE] | No. 15 | 16 linig.',
         full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.',
-    };
-}
+    },
+} as const;
 
 /**
  * The EditionGraphImageConstants class.
  *
  * It is used in the context of the edition view
- * to store string constants of the edition assets.
+ * to store graph image constants of the edition assets.
  */
 export class EditionGraphImageConstants {
     /**

@@ -12,12 +12,12 @@ import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
 import {
     EditionConstants,
-    EditionFirmSignConstants,
     EditionGraphImageConstants,
     EditionRouteConstant,
     EditionSectionRoute,
     EditionSeriesRoute,
     EDITION_ASSETS_DATA,
+    EDITION_FIRM_SIGNS_DATA,
 } from './edition-constants';
 
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
@@ -44,9 +44,9 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EDITION_ASSETS_DATA,
+    EDITION_FIRM_SIGNS_DATA,
     EditionComplex,
     EditionConstants,
-    EditionFirmSignConstants,
     EditionGraphImageConstants,
     EditionRouteConstant,
     EditionRowTables,

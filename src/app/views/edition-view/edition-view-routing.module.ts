@@ -57,8 +57,7 @@ const EDITION_VIEW_ROUTES: Routes = [
                 // ComplexID (OP12, M34, etc.).
                 path: 'complex/:complexId',
                 component: EditionComplexComponent,
-                /* 
-                Children: [
+                children: [
                     {
                         path: '',
                         component: EditionDetailNavComponent,
@@ -74,25 +73,25 @@ const EDITION_VIEW_ROUTES: Routes = [
                                 path: 'sheets',
                                 loadChildren: () =>
                                     import(
-                                        './edition-outlets/edition-complex/edition-detail//edition-sheets/edition-sheets.module'
+                                        './edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module'
                                     ).then(m => m.EditionSheetsModule),
                             },
-                            /* 
                             {
                                 path: 'report',
                                 loadChildren: () =>
                                     import(
-                                        './edition-outlets/edition-complex/edition-detail//edition-report/edition-report.module'
+                                        './edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module'
                                     ).then(m => m.EditionReportModule),
                             },
                             {
                                 path: 'graph',
                                 loadChildren: () =>
                                     import(
-                                        './edition-outlets/edition-complex/edition-detail//edition-graph/edition-graph.module'
+                                        './edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module'
                                     ).then(m => m.EditionGraphModule),
                             },
-                                path: 'workedition',
+                            /* 
+                                Path: 'workedition',
                                 loadChildren: () =>
                                     import(
                                         './edition-outlets/edition-complex/edition-detail/edition-workedition/edition-workedition.module'
@@ -116,10 +115,10 @@ const EDITION_VIEW_ROUTES: Routes = [
                                 path: '',
                                 redirectTo: 'intro',
                                 pathMatch: 'full',
-                            },
+                            },*/
                         ],
                     },
-                ], */
+                ],
             },
             {
                 // Overview of row tables.
