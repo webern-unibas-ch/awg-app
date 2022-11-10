@@ -77,7 +77,7 @@ export class NavbarComponent implements OnInit {
     selectedEditionComplex: EditionComplex;
 
     /**
-     * Readonly constant: DISPLAYED_EDITION_COMPLEXES.
+     * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
      *
      * It keeps the array of displayed edition complexes.
      */

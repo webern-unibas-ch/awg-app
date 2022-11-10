@@ -1,5 +1,5 @@
 import { MetaPerson } from '@awg-core/core-models/meta.model';
-import { EditionConstants } from './edition-constants';
+import { EDITION_ROUTE_CONSTANTS } from './edition-constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
@@ -66,49 +66,49 @@ export class EditionComplex {
     complexId: EditionRouteConstant;
 
     /**
-     * The route info for the current series.
+     * The route for the current series.
      */
     series: EditionRouteConstant;
 
     /**
-     * The route info for the current section.
+     * The route for the current section.
      */
     section: EditionRouteConstant;
 
     /**
-     * The route info for the current type of an edition.
+     * The route for the current type of an edition.
      */
     type: EditionRouteConstant;
 
     /**
      * The edition route info.
      */
-    editionRoute: EditionRouteConstant = EditionConstants.EDITION;
+    editionRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION;
 
     /**
      * The complex route info.
      */
-    complexRoute: EditionRouteConstant = EditionConstants.COMPLEX;
+    complexRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.COMPLEX;
 
     /**
      * The graph route info.
      */
-    graphRoute: EditionRouteConstant = EditionConstants.EDITION_GRAPH;
+    graphRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_GRAPH;
 
     /**
      * The intro route info.
      */
-    introRoute: EditionRouteConstant = EditionConstants.EDITION_INTRO;
+    introRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_INTRO;
 
     /**
      * The sheets route info.
      */
-    sheetsRoute: EditionRouteConstant = EditionConstants.EDITION_SHEETS;
+    sheetsRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS;
 
     /**
      * The report route info.
      */
-    reportRoute: EditionRouteConstant = EditionConstants.EDITION_REPORT;
+    reportRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_REPORT;
 
     /**
      * The base route of an edition complex.
@@ -150,10 +150,10 @@ export class EditionComplex {
             : new EditionResponsibilityStatement();
 
         this.complexId = new EditionRouteConstant();
-        if (this.titleStatement.catalogueType === EditionConstants.OPUS) {
-            this.complexId.route = EditionConstants.OPUS.route;
-        } else if (this.titleStatement.catalogueType === EditionConstants.MNR) {
-            this.complexId.route = EditionConstants.MNR.route;
+        if (this.titleStatement.catalogueType === EDITION_ROUTE_CONSTANTS.OPUS) {
+            this.complexId.route = EDITION_ROUTE_CONSTANTS.OPUS.route;
+        } else if (this.titleStatement.catalogueType === EDITION_ROUTE_CONSTANTS.MNR) {
+            this.complexId.route = EDITION_ROUTE_CONSTANTS.MNR.route;
         }
         this.complexId.route += this.titleStatement.catalogueNumber;
         this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;

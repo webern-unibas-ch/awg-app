@@ -5,10 +5,10 @@ import { delay, Observable } from 'rxjs';
 
 import {
     EditionComplex,
-    EditionConstants,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionRouteConstant,
+    EDITION_ROUTE_CONSTANTS,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -42,16 +42,16 @@ export class EditionViewComponent implements OnInit {
     /**
      * Readonly variable: EDITION_ROUTE.
      *
-     * It keeps the edition route info.
+     * It keeps the edition route.
      */
-    readonly EDITION_ROUTE: EditionRouteConstant = EditionConstants.EDITION;
+    readonly EDITION_ROUTE: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION;
 
     /**
      * Readonly variable: SERIES_ROUTE.
      *
      * It keeps the base series route.
      */
-    readonly SERIES_ROUTE: EditionRouteConstant = EditionConstants.SERIES;
+    readonly SERIES_ROUTE: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.SERIES;
 
     /**
      * Public variable: isRowTableView$.

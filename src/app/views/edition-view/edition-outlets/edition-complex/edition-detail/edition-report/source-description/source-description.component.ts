@@ -44,7 +44,7 @@ export class SourceDescriptionComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Readonly constant: FIRM_SIGNS.
+     * Readonly variable: FIRM_SIGNS.
      *
      * It keeps the routes to the firm signs.
      */

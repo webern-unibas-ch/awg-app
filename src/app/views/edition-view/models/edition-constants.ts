@@ -1,14 +1,14 @@
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
- * The EditionConstants class.
+ * The EDITION_ROUTE_CONSTANTS class.
  *
  * It is used in the context of the edition view
- * to store string constants of the editions.
+ * to store route constants of the editions.
  */
-export class EditionConstants {
+export class EDITION_ROUTE_CONSTANTS {
     /**
-     * The route info for the edition.
+     * The route constant for the edition.
      */
     static readonly EDITION: EditionRouteConstant = {
         route: '/edition',
@@ -17,7 +17,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the row tables.
+     * The route constant for the row tables.
      */
     static readonly ROWTABLES: EditionRouteConstant = {
         route: '/row-tables',
@@ -26,7 +26,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for an edition complex.
+     * The route constant for an edition complex.
      */
     static readonly COMPLEX: EditionRouteConstant = {
         route: '/complex',
@@ -35,7 +35,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the opus number.
+     * The route constant for the opus number.
      */
     static readonly OPUS: EditionRouteConstant = {
         route: '/op',
@@ -44,7 +44,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the Moldenhauer number.
+     * The route constant for the Moldenhauer number.
      */
     static readonly MNR: EditionRouteConstant = {
         route: '/m',
@@ -53,7 +53,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the series.
+     * The route constant for the series.
      */
     static readonly SERIES: EditionRouteConstant = {
         route: '/series/',
@@ -62,7 +62,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for series I.
+     * The route constant for series I.
      */
     static readonly SERIES_1: EditionRouteConstant = {
         route: '1',
@@ -71,7 +71,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for series II.
+     * The route constant for series II.
      */
     static readonly SERIES_2: EditionRouteConstant = {
         route: '2',
@@ -80,7 +80,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for series III.
+     * The route constant for series III.
      */
     static readonly SERIES_3: EditionRouteConstant = {
         route: '3',
@@ -89,7 +89,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the series.
+     * The route constant for the series.
      */
     static readonly SECTION: EditionRouteConstant = {
         route: '/section/',
@@ -98,7 +98,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 1.
+     * The route constant for section 1.
      */
     static readonly SECTION_1: EditionRouteConstant = {
         route: '1',
@@ -107,7 +107,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 2.
+     * The route constant for section 2.
      */
     static readonly SECTION_2: EditionRouteConstant = {
         route: '2',
@@ -116,7 +116,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 2a.
+     * The route constant for section 2a.
      */
     static readonly SECTION_2A: EditionRouteConstant = {
         route: '2a',
@@ -125,7 +125,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 2b.
+     * The route constant for section 2b.
      */
     static readonly SECTION_2B: EditionRouteConstant = {
         route: '2a',
@@ -134,7 +134,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 3.
+     * The route constant for section 3.
      */
     static readonly SECTION_3: EditionRouteConstant = {
         route: '3',
@@ -143,7 +143,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 4.
+     * The route constant for section 4.
      */
     static readonly SECTION_4: EditionRouteConstant = {
         route: '4',
@@ -152,7 +152,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 5.
+     * The route constant for section 5.
      */
     static readonly SECTION_5 = {
         route: '5',
@@ -161,7 +161,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for section 5.
+     * The route constant for section 5.
      */
     static readonly SERIES_3_SECTION_5 = {
         route: '5',
@@ -170,7 +170,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for a work edition.
+     * The route constant for a work edition.
      */
     static readonly WORK_EDITION: EditionRouteConstant = {
         route: '/work-edition',
@@ -179,7 +179,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for a text edition.
+     * The route constant for a text edition.
      */
     static readonly TEXT_EDITION: EditionRouteConstant = {
         route: '/text-edition',
@@ -188,7 +188,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for a sketch edition.
+     * The route constant for a sketch edition.
      */
     static readonly SKETCH_EDITION: EditionRouteConstant = {
         route: '/sketch-edition',
@@ -197,7 +197,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the graph section of an edition.
+     * The route constant for the graph section of an edition.
      */
     static readonly EDITION_GRAPH: EditionRouteConstant = {
         route: 'graph',
@@ -206,7 +206,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the intro section of an edition.
+     * The route constant for the intro section of an edition.
      */
     static readonly EDITION_INTRO: EditionRouteConstant = {
         route: 'intro',
@@ -215,7 +215,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the sheets section of an edition.
+     * The route constant for the sheets section of an edition.
      */
     static readonly EDITION_SHEETS: EditionRouteConstant = {
         route: 'sheets',
@@ -224,7 +224,7 @@ export class EditionConstants {
     };
 
     /**
-     * The route info for the report section of an edition.
+     * The route constant for the report section of an edition.
      */
     static readonly EDITION_REPORT: EditionRouteConstant = {
         route: 'report',

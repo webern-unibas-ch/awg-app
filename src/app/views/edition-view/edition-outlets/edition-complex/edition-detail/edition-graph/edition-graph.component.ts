@@ -76,7 +76,7 @@ export class EditionGraphComponent implements OnInit {
     editionGraphData$: Observable<GraphList | never>;
 
     /**
-     * Readonly constant: GRAPH_IMAGES.
+     * Readonly variable: GRAPH_IMAGES.
      *
      * It keeps the paths to static graph images.
      */

@@ -12,7 +12,7 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionComplex, EditionConstants } from '@awg-views/edition-view/models';
+import { EditionComplex, EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
@@ -63,25 +63,25 @@ describe('EditionDetailNavComponent (DONE)', () => {
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
                 expectedEditionComplex.introRoute.route,
-                EditionConstants.EDITION_INTRO.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
                 expectedEditionComplex.sheetsRoute.route,
-                EditionConstants.EDITION_SHEETS.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
                 expectedEditionComplex.reportRoute.route,
-                EditionConstants.EDITION_REPORT.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
                 expectedEditionComplex.graphRoute.route,
-                EditionConstants.EDITION_GRAPH.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.short,
                 false
             ),
         ];

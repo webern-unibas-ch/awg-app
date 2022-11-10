@@ -5,10 +5,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import {
     EditionComplex,
-    EditionConstants,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionSvgOverlay,
+    EDITION_ROUTE_CONSTANTS,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
@@ -143,7 +143,7 @@ export class EditionService {
      * @returns {string} The edition series route.
      */
     getEditionSeriesRoute(): string {
-        return EditionConstants.EDITION.route + EditionConstants.SERIES.route;
+        return EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
     }
 
     /**

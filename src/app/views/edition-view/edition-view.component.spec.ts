@@ -17,9 +17,9 @@ import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import {
     EditionComplex,
-    EditionConstants,
     EditionOutlineSection,
     EditionOutlineSeries,
+    EDITION_ROUTE_CONSTANTS,
 } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -59,8 +59,8 @@ describe('EditionViewComponent (DONE)', () => {
     const expectedSelectedEditionComplexId = 'OP12';
     const expectedTitle = 'Inhalt';
     const expectedId = 'awg-edition-view';
-    const expectedEditionRoute = EditionConstants.EDITION;
-    const expectedSeriesRoute = EditionConstants.SERIES;
+    const expectedEditionRoute = EDITION_ROUTE_CONSTANTS.EDITION;
+    const expectedSeriesRoute = EDITION_ROUTE_CONSTANTS.SERIES;
 
     beforeEach(waitForAsync(() => {
         // Mock router with spy object
@@ -112,30 +112,30 @@ describe('EditionViewComponent (DONE)', () => {
         // Test data
         expectedSelectedEditionComplex = EDITION_COMPLEXES[expectedSelectedEditionComplexId]; // Op. 12
         expectedSelectedEditionSeries = {
-            series: EditionConstants.SERIES_1,
+            series: EDITION_ROUTE_CONSTANTS.SERIES_1,
             sections: [
                 {
-                    section: EditionConstants.SECTION_1,
+                    section: EDITION_ROUTE_CONSTANTS.SECTION_1,
                     complexes: [],
                     disabled: true,
                 },
                 {
-                    section: EditionConstants.SECTION_2,
+                    section: EDITION_ROUTE_CONSTANTS.SECTION_2,
                     complexes: [],
                     disabled: true,
                 },
                 {
-                    section: EditionConstants.SECTION_3,
+                    section: EDITION_ROUTE_CONSTANTS.SECTION_3,
                     complexes: [],
                     disabled: true,
                 },
                 {
-                    section: EditionConstants.SECTION_4,
+                    section: EDITION_ROUTE_CONSTANTS.SECTION_4,
                     complexes: [],
                     disabled: true,
                 },
                 {
-                    section: EditionConstants.SECTION_5,
+                    section: EDITION_ROUTE_CONSTANTS.SECTION_5,
                     complexes: [
                         { complex: EDITION_COMPLEXES.OP12, disabled: false },
                         { complex: EDITION_COMPLEXES.OP23, disabled: false },

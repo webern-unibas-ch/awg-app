@@ -14,10 +14,10 @@ import { mockConsole } from '@testing/mock-helper';
 import { EDITION_ASSETS_DATA, EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
     EditionComplex,
-    EditionConstants,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
+    EDITION_ROUTE_CONSTANTS,
     FolioConvolute,
     FolioConvoluteList,
     Graph,
@@ -49,9 +49,9 @@ describe('EditionDataService (DONE)', () => {
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
     const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
     const expectedComplexRoute =
-        EditionConstants.SERIES.route +
+        EDITION_ROUTE_CONSTANTS.SERIES.route +
         expectedEditionComplex.series.route +
-        EditionConstants.SECTION.route +
+        EDITION_ROUTE_CONSTANTS.SECTION.route +
         expectedEditionComplex.section.route +
         expectedEditionComplex.complexId.route;
     const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;

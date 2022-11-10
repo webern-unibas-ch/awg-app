@@ -10,10 +10,10 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionConstants } from './edition-constants';
+import { EDITION_ROUTE_CONSTANTS } from './edition-constants';
 
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
-import { EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
+import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables } from './edition-row-tables.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
@@ -38,9 +38,10 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
-    EditionConstants,
+    EDITION_ROUTE_CONSTANTS,
     EditionRouteConstant,
     EditionRowTables,
+    EditionOutlineComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionSvgOverlay,

@@ -7,7 +7,7 @@ import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } fr
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionComplex, EditionConstants, EditionRouteConstant } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionRouteConstant, EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 
@@ -36,7 +36,7 @@ describe('EditionInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionRowTables = EditionConstants.ROWTABLES;
+        expectedEditionRowTables = EDITION_ROUTE_CONSTANTS.ROWTABLES;
         expectedEditionComplexM34 = EDITION_COMPLEXES.M34;
         expectedEditionComplexOp12 = EDITION_COMPLEXES.OP12;
         expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;

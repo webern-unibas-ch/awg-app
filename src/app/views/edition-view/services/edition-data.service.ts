@@ -7,9 +7,9 @@ import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 import { EDITION_ASSETS_DATA, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
     EditionComplex,
-    EditionConstants,
     EditionRowTables,
     EditionSvgSheetList,
+    EDITION_ROUTE_CONSTANTS,
     FolioConvoluteList,
     GraphList,
     IntroList,
@@ -187,9 +187,9 @@ export class EditionDataService {
      */
     private _setAssetPath(editionComplex: EditionComplex): void {
         const complexRoute =
-            EditionConstants.SERIES.route +
+            EDITION_ROUTE_CONSTANTS.SERIES.route +
             editionComplex.series.route +
-            EditionConstants.SECTION.route +
+            EDITION_ROUTE_CONSTANTS.SECTION.route +
             editionComplex.section.route +
             editionComplex.complexId.route;
         this._assetPath = EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
