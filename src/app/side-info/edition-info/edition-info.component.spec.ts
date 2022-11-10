@@ -20,10 +20,10 @@ describe('EditionInfoComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS;
     let expectedEditionComplexM34: EditionComplex;
     let expectedEditionComplexOp12: EditionComplex;
     let expectedEditionComplexOp25: EditionComplex;
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -37,7 +37,6 @@ describe('EditionInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionRouteConstants = EDITION_ROUTE_CONSTANTS;
         expectedEditionComplexM34 = EDITION_COMPLEXES.M34;
         expectedEditionComplexOp12 = EDITION_COMPLEXES.OP12;
         expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;

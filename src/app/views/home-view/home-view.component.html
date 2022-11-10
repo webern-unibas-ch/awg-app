@@ -6,14 +6,14 @@
 <!-- header -->
 <div class="para">
     <h6 class="awg-breadcrumb">
-        {{ EDITION_ROUTE.short }} / {{ EDITION_COMPLEX_OP12.series.full }} /
+        {{ editionRouteConstants.EDITION.short }} / {{ EDITION_COMPLEX_OP12.series.full }} /
         {{ EDITION_COMPLEX_OP12.section.full }}
     </h6>
 
     <h3 class="awg-edition-info-header">
         <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP12.titleStatement.title"></span
         >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP12.complexId.short }}</span> (<a
-            [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, EDITION_COMPLEX_OP12.sheetsRoute.route]"
+            [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
             >{{ EDITION_COMPLEX_OP12.type.full }}</a
         >)
     </h3>
@@ -21,26 +21,26 @@
     <h3 class="awg-edition-info-header">
         <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP25.titleStatement.title"></span
         >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP25.complexId.short }}</span> (<a
-            [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, EDITION_COMPLEX_OP25.sheetsRoute.route]"
+            [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
             >{{ EDITION_COMPLEX_OP25.type.full }}</a
         >
         &
-        <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, EDITION_COMPLEX_OP25.graphRoute.route]">{{
-            EDITION_COMPLEX_OP25.graphRoute.short
+        <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
+            editionRouteConstants.EDITION_GRAPH.short
         }}</a
         >)
     </h3>
 </div>
 <div class="para">
     <h6 class="awg-breadcrumb">
-        {{ EDITION_ROUTE.short }} / {{ EDITION_COMPLEX_M34.series.full }} /
+        {{ editionRouteConstants.EDITION.short }} / {{ EDITION_COMPLEX_M34.series.full }} /
         {{ EDITION_COMPLEX_M34.section.full }}
     </h6>
 
     <h3 class="awg-edition-info-header">
         <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_M34.titleStatement.title"></span
         >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_M34.complexId.short }}</span> (<a
-            [routerLink]="[EDITION_COMPLEX_M34.baseRoute, EDITION_COMPLEX_M34.sheetsRoute.route]"
+            [routerLink]="[EDITION_COMPLEX_M34.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
             >{{ EDITION_COMPLEX_M34.type.full }}</a
         >)
     </h3>
@@ -69,11 +69,14 @@
     </p>
     <p>
         Über den Menüpunkt <em>Edition</em> sind ausgewählte Skizzeneditionen zu
-        <a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, EDITION_COMPLEX_OP12.sheetsRoute.route]">op. 12</a>,
-        <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, EDITION_COMPLEX_OP25.sheetsRoute.route]">op. 25</a> und
-        <a [routerLink]="[EDITION_COMPLEX_M34.baseRoute, EDITION_COMPLEX_M34.sheetsRoute.route]">M 34</a> sowie die
-        <a [routerLink]="['/edition/row-tables']">Reihentabellen</a> Weberns zugänglich. Bestandteile der Online-Edition
-        umfassen Einleitungen, die edierten Notentexte, kritische Berichte sowie Graph-Visualisierungen.
+        <a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">op. 12</a>,
+        <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">op. 25</a> und
+        <a [routerLink]="[EDITION_COMPLEX_M34.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">M 34</a> sowie die
+        <a [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"
+            >Reihentabellen</a
+        >
+        Weberns zugänglich. Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte, kritische
+        Berichte sowie Graph-Visualisierungen.
     </p>
     <p>
         Zusätzlich werden eine einfache <a [routerLink]="['/data/search', 'fulltext']">Volltextsuche</a> und eine
