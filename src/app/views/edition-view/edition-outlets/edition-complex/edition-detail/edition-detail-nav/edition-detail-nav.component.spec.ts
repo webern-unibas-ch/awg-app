@@ -63,25 +63,25 @@ describe('EditionDetailNavComponent (DONE)', () => {
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.introRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.sheetsRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.reportRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.graphRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.short,
                 false
             ),

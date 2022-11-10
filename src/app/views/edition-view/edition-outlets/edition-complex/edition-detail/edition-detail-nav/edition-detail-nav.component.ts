@@ -92,25 +92,25 @@ export class EditionDetailNavComponent implements OnInit, OnDestroy {
         this.editionRouterLinkButtons = [
             new RouterLinkButton(
                 this.editionComplex.baseRoute,
-                this.editionComplex.introRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionComplex.baseRoute,
-                this.editionComplex.sheetsRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionComplex.baseRoute,
-                this.editionComplex.reportRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionComplex.baseRoute,
-                this.editionComplex.graphRoute.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.route,
                 EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.short,
                 false
             ),
