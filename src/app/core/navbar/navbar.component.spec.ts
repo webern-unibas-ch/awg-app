@@ -23,6 +23,7 @@ import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
@@ -49,6 +50,7 @@ describe('NavbarComponent (DONE)', () => {
 
     let expectedEditionComplexes: EditionComplex[];
     let expectedSelectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
@@ -139,6 +141,13 @@ describe('NavbarComponent (DONE)', () => {
             expect(component.DISPLAYED_EDITION_COMPLEXES)
                 .withContext(`should equal ${expectedEditionComplexes}`)
                 .toEqual(expectedEditionComplexes);
+        });
+
+        it('should have `editionRouteConstants`', () => {
+            expect(component.editionRouteConstants).toBeDefined();
+            expect(component.editionRouteConstants)
+                .withContext(`should be ${expectedEditionRouteConstants}`)
+                .toBe(expectedEditionRouteConstants);
         });
 
         it('should not have `pageMetaData`', () => {
@@ -341,93 +350,133 @@ describe('NavbarComponent (DONE)', () => {
                 expect(routerLinks[0].linkParams).withContext(`should equal ['/home']`).toEqual(['/home']);
 
                 expect(routerLinks[1].linkParams)
-                    .withContext(`should equal ['/edition/series']`)
-                    .toEqual(['/edition/series']);
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionRouteConstants.EDITION.route,
+                            expectedEditionRouteConstants.SERIES.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionRouteConstants.EDITION.route, expectedEditionRouteConstants.SERIES.route]);
 
                 expect(routerLinks[2].linkParams)
-                    .withContext(`should equal ['/edition/row-tables']`)
-                    .toEqual(['/edition/row-tables']);
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionRouteConstants.EDITION.route,
+                            expectedEditionRouteConstants.ROWTABLES.route,
+                        ]}`
+                    )
+                    .toEqual([
+                        expectedEditionRouteConstants.EDITION.route,
+                        expectedEditionRouteConstants.ROWTABLES.route,
+                    ]);
 
                 expect(routerLinks[3].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[0].baseRoute,
-                            expectedEditionComplexes[0].introRoute.route,
+                            expectedEditionRouteConstants.EDITION_INTRO.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[0].baseRoute, expectedEditionComplexes[0].introRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[0].baseRoute,
+                        expectedEditionRouteConstants.EDITION_INTRO.route,
+                    ]);
 
                 expect(routerLinks[4].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[0].baseRoute,
-                            expectedEditionComplexes[0].sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[0].baseRoute, expectedEditionComplexes[0].sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[0].baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
 
                 expect(routerLinks[5].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[0].baseRoute,
-                            expectedEditionComplexes[0].reportRoute.route,
+                            expectedEditionRouteConstants.EDITION_REPORT.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[0].baseRoute, expectedEditionComplexes[0].reportRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[0].baseRoute,
+                        expectedEditionRouteConstants.EDITION_REPORT.route,
+                    ]);
 
                 expect(routerLinks[6].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[1].baseRoute,
-                            expectedEditionComplexes[1].introRoute.route,
+                            expectedEditionRouteConstants.EDITION_INTRO.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[1].baseRoute, expectedEditionComplexes[1].introRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[1].baseRoute,
+                        expectedEditionRouteConstants.EDITION_INTRO.route,
+                    ]);
 
                 expect(routerLinks[7].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[1].baseRoute,
-                            expectedEditionComplexes[1].sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[1].baseRoute, expectedEditionComplexes[1].sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[1].baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
 
                 expect(routerLinks[8].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[1].baseRoute,
-                            expectedEditionComplexes[1].reportRoute.route,
+                            expectedEditionRouteConstants.EDITION_REPORT.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[1].baseRoute, expectedEditionComplexes[1].reportRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[1].baseRoute,
+                        expectedEditionRouteConstants.EDITION_REPORT.route,
+                    ]);
 
                 expect(routerLinks[9].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[2].baseRoute,
-                            expectedEditionComplexes[2].introRoute.route,
+                            expectedEditionRouteConstants.EDITION_INTRO.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[2].baseRoute, expectedEditionComplexes[2].introRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[2].baseRoute,
+                        expectedEditionRouteConstants.EDITION_INTRO.route,
+                    ]);
 
                 expect(routerLinks[10].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[2].baseRoute,
-                            expectedEditionComplexes[2].sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[2].baseRoute, expectedEditionComplexes[2].sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[2].baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
 
                 expect(routerLinks[11].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexes[2].baseRoute,
-                            expectedEditionComplexes[2].reportRoute.route,
+                            expectedEditionRouteConstants.EDITION_REPORT.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexes[2].baseRoute, expectedEditionComplexes[2].reportRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexes[2].baseRoute,
+                        expectedEditionRouteConstants.EDITION_REPORT.route,
+                    ]);
 
                 expect(routerLinks[12].linkParams).withContext(`should equal ['/structure']`).toEqual(['/structure']);
                 expect(routerLinks[13].linkParams).withContext(`should equal ['/data']`).toEqual(['/data']);
@@ -455,7 +504,7 @@ describe('NavbarComponent (DONE)', () => {
 
                 const expectedRoute = [
                     expectedSelectedEditionComplex.baseRoute,
-                    expectedSelectedEditionComplex.introRoute.route,
+                    expectedEditionRouteConstants.EDITION_INTRO.route,
                 ];
 
                 expect(editionLink.navigatedTo).withContext('should not have navigated yet').toBeNull();

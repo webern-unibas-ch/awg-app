@@ -560,8 +560,16 @@ describe('HomeViewComponent (DONE)', () => {
                         ]);
 
                     expect(routerLinks[8].linkParams)
-                        .withContext(`should equal ${['/edition/row-tables']}`)
-                        .toEqual(['/edition/row-tables']);
+                        .withContext(
+                            `should equal ${[
+                                expectedEditionRouteConstants.EDITION.route,
+                                expectedEditionRouteConstants.ROWTABLES.route,
+                            ]}`
+                        )
+                        .toEqual([
+                            expectedEditionRouteConstants.EDITION.route,
+                            expectedEditionRouteConstants.ROWTABLES.route,
+                        ]);
 
                     expect(routerLinks[9].linkParams)
                         .withContext(`should equal ${['/data/search', 'fulltext']}`)
