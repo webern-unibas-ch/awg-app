@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionRouteConstant } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.
@@ -16,13 +15,6 @@ import { EditionRouteConstant } from '@awg-views/edition-view/models';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionInfoComponent {
-    /**
-     * Readonly variable: EDITION_ROW_TABLES.
-     *
-     * It keeps the row tables route.
-     */
-    readonly EDITION_ROW_TABLES = EDITION_ROUTE_CONSTANTS.ROWTABLES;
-
     /**
      * Readonly variable: EDITION_COMPLEX_M34.
      *
@@ -45,9 +37,11 @@ export class EditionInfoComponent {
     readonly EDITION_COMPLEX_OP25 = EDITION_COMPLEXES.OP25;
 
     /**
-     * Readonly variable: EDITION_ROUTE.
+     * Getter variable: editionRouteConstants.
      *
-     * It keeps the edition route.
-     */
-    readonly EDITION_ROUTE: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION;
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
 }

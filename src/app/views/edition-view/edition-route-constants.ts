@@ -20,7 +20,7 @@ export class EDITION_ROUTE_CONSTANTS {
      * The route constant for the row tables.
      */
     static readonly ROWTABLES: EditionRouteConstant = {
-        route: '/row-tables',
+        route: 'row-tables',
         short: 'Reihentabellen',
         full: 'Reihentabellen',
     };

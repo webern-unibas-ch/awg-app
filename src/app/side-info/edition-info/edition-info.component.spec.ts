@@ -8,7 +8,7 @@ import { RouterLinkStubDirective } from 'testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import { EditionComplex, EditionRouteConstant } from '@awg-views/edition-view/models';
+import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 
@@ -20,7 +20,7 @@ describe('EditionInfoComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedEditionRowTables: EditionRouteConstant;
+    let expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS;
     let expectedEditionComplexM34: EditionComplex;
     let expectedEditionComplexOp12: EditionComplex;
     let expectedEditionComplexOp25: EditionComplex;
@@ -37,7 +37,7 @@ describe('EditionInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedEditionRowTables = EDITION_ROUTE_CONSTANTS.ROWTABLES;
+        expectedEditionRouteConstants = EDITION_ROUTE_CONSTANTS;
         expectedEditionComplexM34 = EDITION_COMPLEXES.M34;
         expectedEditionComplexOp12 = EDITION_COMPLEXES.OP12;
         expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;
@@ -52,30 +52,32 @@ describe('EditionInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have edition row tables', () => {
-            expect(component.EDITION_ROW_TABLES).toBeDefined();
-            expect(component.EDITION_ROW_TABLES).toBe(expectedEditionRowTables);
-        });
-
         it('should have edition complex M 34', () => {
-            expect(component.EDITION_COMPLEX_M34).withContext('should be defined').toBeDefined();
+            expect(component.EDITION_COMPLEX_M34).toBeDefined();
             expect(component.EDITION_COMPLEX_M34)
                 .withContext(`should be ${expectedEditionComplexM34}`)
                 .toEqual(expectedEditionComplexM34);
         });
 
         it('should have edition complex op. 12', () => {
-            expect(component.EDITION_COMPLEX_OP12).withContext('should be defined').toBeDefined();
+            expect(component.EDITION_COMPLEX_OP12).toBeDefined();
             expect(component.EDITION_COMPLEX_OP12)
                 .withContext(`should be ${expectedEditionComplexOp12}`)
                 .toEqual(expectedEditionComplexOp12);
         });
 
         it('should have edition complex op. 25', () => {
-            expect(component.EDITION_COMPLEX_OP25).withContext('should be defined').toBeDefined();
+            expect(component.EDITION_COMPLEX_OP25).toBeDefined();
             expect(component.EDITION_COMPLEX_OP25)
                 .withContext(`should be ${expectedEditionComplexOp25}`)
                 .toEqual(expectedEditionComplexOp25);
+        });
+
+        it('should have `editionRouteConstants`', () => {
+            expect(component.editionRouteConstants).toBeDefined();
+            expect(component.editionRouteConstants)
+                .withContext(`should be ${expectedEditionRouteConstants}`)
+                .toBe(expectedEditionRouteConstants);
         });
 
         describe('VIEW', () => {
@@ -199,8 +201,8 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(a4El).toBeDefined();
 
                 expect(a0El.textContent)
-                    .withContext(`should be ${expectedEditionRowTables.full}`)
-                    .toBe(expectedEditionRowTables.full);
+                    .withContext(`should be ${expectedEditionRouteConstants.ROWTABLES.full}`)
+                    .toBe(expectedEditionRouteConstants.ROWTABLES.full);
                 expect(a1El.textContent)
                     .withContext(`should be ${expectedEditionComplexOp12.type.full}`)
                     .toBe(expectedEditionComplexOp12.type.full);
@@ -208,8 +210,8 @@ describe('EditionInfoComponent (DONE)', () => {
                     .withContext(`should be ${expectedEditionComplexOp25.type.full}`)
                     .toBe(expectedEditionComplexOp25.type.full);
                 expect(a3El.textContent)
-                    .withContext(`should be ${expectedEditionComplexOp25.graphRoute.short}`)
-                    .toBe(expectedEditionComplexOp25.graphRoute.short);
+                    .withContext(`should be ${expectedEditionRouteConstants.EDITION_GRAPH.short}`)
+                    .toBe(expectedEditionRouteConstants.EDITION_GRAPH.short);
                 expect(a4El.textContent)
                     .withContext(`should be ${expectedEditionComplexM34.type.full}`)
                     .toBe(expectedEditionComplexM34.type.full);
@@ -308,44 +310,58 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(routerLinks.length).withContext('should have 3 routerLinks').toBe(5);
 
                 expect(routerLinks[0].linkParams)
-                    .withContext(`should equal ${['/edition' + expectedEditionRowTables.route]}`)
-                    .toEqual(['/edition' + expectedEditionRowTables.route]);
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionRouteConstants.EDITION.route,
+                            expectedEditionRouteConstants.ROWTABLES.route,
+                        ]}`
+                    )
+                    .toEqual([
+                        expectedEditionRouteConstants.EDITION.route,
+                        expectedEditionRouteConstants.ROWTABLES.route,
+                    ]);
 
                 expect(routerLinks[1].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexOp12.baseRoute,
-                            expectedEditionComplexOp12.introRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexOp12.baseRoute, expectedEditionComplexOp12.sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexOp12.baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
 
                 expect(routerLinks[2].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexOp25.baseRoute,
-                            expectedEditionComplexOp25.sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexOp25.baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
 
                 expect(routerLinks[3].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexOp25.baseRoute,
-                            expectedEditionComplexOp25.graphRoute.route,
+                            expectedEditionRouteConstants.EDITION_GRAPH.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.graphRoute.route]);
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_GRAPH.route]);
 
                 expect(routerLinks[4].linkParams)
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexM34.baseRoute,
-                            expectedEditionComplexM34.sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionComplexM34.sheetsRoute.route]);
+                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
             });
 
             it('... can click `row tables` link in template', () => {
@@ -359,8 +375,16 @@ describe('EditionInfoComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expect(rowTablesLink.navigatedTo)
-                    .withContext(`should equal ${['/edition' + expectedEditionRowTables.route]}`)
-                    .toEqual(['/edition' + expectedEditionRowTables.route]);
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionRouteConstants.EDITION.route,
+                            expectedEditionRouteConstants.ROWTABLES.route,
+                        ]}`
+                    )
+                    .toEqual([
+                        expectedEditionRouteConstants.EDITION.route,
+                        expectedEditionRouteConstants.ROWTABLES.route,
+                    ]);
             });
 
             it('... can click `sheets op. 12` link in template', () => {
@@ -377,10 +401,13 @@ describe('EditionInfoComponent (DONE)', () => {
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexOp12.baseRoute,
-                            expectedEditionComplexOp12.sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexOp12.baseRoute, expectedEditionComplexOp12.sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexOp12.baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
             });
 
             it('... can click `sheets op. 25` link in template', () => {
@@ -397,10 +424,13 @@ describe('EditionInfoComponent (DONE)', () => {
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexOp25.baseRoute,
-                            expectedEditionComplexOp25.sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
+                    .toEqual([
+                        expectedEditionComplexOp25.baseRoute,
+                        expectedEditionRouteConstants.EDITION_SHEETS.route,
+                    ]);
             });
 
             it('... can click `graph` link in template', () => {
@@ -417,10 +447,10 @@ describe('EditionInfoComponent (DONE)', () => {
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexOp25.baseRoute,
-                            expectedEditionComplexOp25.graphRoute.route,
+                            expectedEditionRouteConstants.EDITION_GRAPH.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.graphRoute.route]);
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_GRAPH.route]);
             });
 
             it('... can click `sheets M 34` link in template', () => {
@@ -437,10 +467,10 @@ describe('EditionInfoComponent (DONE)', () => {
                     .withContext(
                         `should equal ${[
                             expectedEditionComplexM34.baseRoute,
-                            expectedEditionComplexM34.sheetsRoute.route,
+                            expectedEditionRouteConstants.EDITION_SHEETS.route,
                         ]}`
                     )
-                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionComplexM34.sheetsRoute.route]);
+                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
             });
         });
     });
