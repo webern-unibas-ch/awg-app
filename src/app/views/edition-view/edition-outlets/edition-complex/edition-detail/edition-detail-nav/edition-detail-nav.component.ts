@@ -3,7 +3,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionComplex, EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**

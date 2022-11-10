@@ -1,5 +1,6 @@
 import { AppConfig } from '@awg-app/app.config';
-import { EditionComplex, EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex } from '@awg-views/edition-view/models';
 
 /**
  * The EditionComplexes class.

@@ -1,5 +1,5 @@
 import { MetaPerson } from '@awg-core/core-models/meta.model';
-import { EDITION_ROUTE_CONSTANTS } from './edition-constants';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**

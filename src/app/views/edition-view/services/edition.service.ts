@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
     EditionSvgOverlay,
-    EDITION_ROUTE_CONSTANTS,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
 

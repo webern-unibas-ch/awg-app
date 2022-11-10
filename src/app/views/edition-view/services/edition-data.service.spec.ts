@@ -12,12 +12,12 @@ import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
 import { EDITION_ASSETS_DATA, EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EDITION_ROUTE_CONSTANTS,
     FolioConvolute,
     FolioConvoluteList,
     Graph,

@@ -1,4 +1,4 @@
-import { EditionRouteConstant } from './edition-route-constant.model';
+import { EditionRouteConstant } from '@awg-views/edition-view/models';
 
 /**
  * The EDITION_ROUTE_CONSTANTS class.

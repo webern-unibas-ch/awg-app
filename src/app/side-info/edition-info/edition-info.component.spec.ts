@@ -7,7 +7,8 @@ import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } fr
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionComplex, EditionRouteConstant, EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex, EditionRouteConstant } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 

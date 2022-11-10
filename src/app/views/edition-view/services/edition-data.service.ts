@@ -5,11 +5,11 @@ import { forkJoin as observableForkJoin, Observable, of as observableOf } from '
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
 import { EDITION_ASSETS_DATA, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
     EditionRowTables,
     EditionSvgSheetList,
-    EDITION_ROUTE_CONSTANTS,
     FolioConvoluteList,
     GraphList,
     IntroList,
