@@ -5,10 +5,10 @@
     </p>
     <p>Titel: {{ complex.titleStatement | json }}</p>
     <p>
-        <a [routerLink]="[complex.introRoute.route]">
-            {{ complex.introRoute.short }}
+        <a [routerLink]="[editionRouteConstants.EDITION_INTRO.route]">
+            {{ editionRouteConstants.EDITION_INTRO.short }}
         </a>
-        {{ complex.introRoute | json }}
+        {{ editionRouteConstants.EDITION_INTRO | json }}
     </p>
     <div>
         <p>Werkedition: {{ complex.titleStatement | json }}</p>
@@ -42,10 +42,10 @@
         </ul>
     </div>
     <p>
-        <a [routerLink]="[complex.reportRoute.route]">
-            {{ complex.reportRoute.short }}
+        <a [routerLink]="[editionRouteConstants.EDITION_REPORT.route]">
+            {{ editionRouteConstants.EDITION_REPORT.short }}
         </a>
-        {{ complex.reportRoute | json }}
+        {{ editionRouteConstants.EDITION_REPORT | json }}
     </p>
 </div>
 

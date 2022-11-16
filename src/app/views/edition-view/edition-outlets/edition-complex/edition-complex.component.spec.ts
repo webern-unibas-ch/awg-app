@@ -10,6 +10,7 @@ import { expectSpyCall } from '@testing/expect-helper';
 import { ActivatedRouteStub } from '@testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -32,6 +33,7 @@ describe('EditionComplexComponent (DONE)', () => {
 
     let expectedSelectedEditionComplex: EditionComplex;
     let expectedSelectedEditionComplexId = 'OP12';
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     beforeEach(async () => {
         mockEditionComplexSubject = new ReplaySubject<EditionComplex>(1);
@@ -80,8 +82,15 @@ describe('EditionComplexComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have selectedEditionComplex$', () => {
+        it('... should not have `selectedEditionComplex$`', () => {
             expect(component.selectedEditionComplex$).toBeUndefined();
+        });
+
+        it('should have `editionRouteConstants`', () => {
+            expect(component.editionRouteConstants).toBeDefined();
+            expect(component.editionRouteConstants)
+                .withContext(`should be ${expectedEditionRouteConstants}`)
+                .toBe(expectedEditionRouteConstants);
         });
 
         describe('#getEditionComplexFromRoute', () => {
