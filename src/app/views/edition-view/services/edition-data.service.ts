@@ -186,8 +186,11 @@ export class EditionDataService {
      * @returns {void} It sets the asset path.
      */
     private _setAssetPath(editionComplex: EditionComplex): void {
+        const delimiter = '/';
         const complexRoute =
+            delimiter +
             EDITION_ROUTE_CONSTANTS.SERIES.route +
+            delimiter +
             editionComplex.series.route +
             EDITION_ROUTE_CONSTANTS.SECTION.route +
             editionComplex.section.route +

@@ -56,7 +56,7 @@ export class EDITION_ROUTE_CONSTANTS {
      * The route constant for the series.
      */
     static readonly SERIES: EditionRouteConstant = {
-        route: '/series/',
+        route: 'series',
         short: 'Serien',
         full: 'Serienübersicht',
     };

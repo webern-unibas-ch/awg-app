@@ -48,8 +48,11 @@ describe('EditionDataService (DONE)', () => {
 
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
     const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
+    const delimiter = '/';
     const expectedComplexRoute =
+        delimiter +
         EDITION_ROUTE_CONSTANTS.SERIES.route +
+        delimiter +
         expectedEditionComplex.series.route +
         EDITION_ROUTE_CONSTANTS.SECTION.route +
         expectedEditionComplex.section.route +
