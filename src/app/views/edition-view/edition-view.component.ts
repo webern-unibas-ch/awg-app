@@ -4,12 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { delay, Observable } from 'rxjs';
 
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import {
-    EditionComplex,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    EditionRouteConstant,
-} from '@awg-views/edition-view/models';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -38,20 +33,6 @@ export class EditionViewComponent implements OnInit {
      * It keeps the id of the edition view section.
      */
     editionViewId = 'awg-edition-view';
-
-    /**
-     * Readonly variable: EDITION_ROUTE.
-     *
-     * It keeps the edition route.
-     */
-    readonly EDITION_ROUTE: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION;
-
-    /**
-     * Readonly variable: SERIES_ROUTE.
-     *
-     * It keeps the base series route.
-     */
-    readonly SERIES_ROUTE: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.SERIES;
 
     /**
      * Public variable: isRowTableView$.
@@ -96,6 +77,15 @@ export class EditionViewComponent implements OnInit {
      * @param {Router} router Instance of the Angular router.
      */
     constructor(private editionService: EditionService, private route: ActivatedRoute, private router: Router) {}
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.
