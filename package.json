@@ -104,7 +104,7 @@
         "d3-zoom": "^3.0.0",
         "font-awesome": "^4.7.0",
         "json2typescript": "^1.5.1",
-        "n3": "^1.16.2",
+        "n3": "^1.16.3",
         "ngx-json-viewer": "^3.2.0",
         "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.6",
         "rxjs": "~7.5.7",
