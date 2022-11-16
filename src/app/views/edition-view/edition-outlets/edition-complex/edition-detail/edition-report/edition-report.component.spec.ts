@@ -19,6 +19,7 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
     EditionSvgSheet,
@@ -104,8 +105,7 @@ describe('EditionReportComponent', () => {
     let expectedPanelId: string;
 
     let expectedEditionComplexRoute: string;
-    let expectedReportRoute: string;
-    let expectedSheetsRoute: string;
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let editionDataServiceGetEditionReportDataSpy: Spy;
     let getEditionReportDataSpy: Spy;
@@ -175,8 +175,6 @@ describe('EditionReportComponent', () => {
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
 
         expectedEditionComplexRoute = '/edition/complex/op12/';
-        expectedReportRoute = 'report';
-        expectedSheetsRoute = 'sheets';
 
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
@@ -218,12 +216,19 @@ describe('EditionReportComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have editionReportData$', () => {
+        it('... should not have `editionReportData$`', () => {
             expect(component.editionReportData$).toBeUndefined();
         });
 
-        it('... should not have editionComplex', () => {
+        it('... should not have `editionComplex`', () => {
             expect(component.editionComplex).toBeUndefined();
+        });
+
+        it('should have `editionRouteConstants`', () => {
+            expect(component.editionRouteConstants).toBeDefined();
+            expect(component.editionRouteConstants)
+                .withContext(`should be ${expectedEditionRouteConstants}`)
+                .toBe(expectedEditionRouteConstants);
         });
 
         describe('VIEW', () => {
@@ -613,7 +618,10 @@ describe('EditionReportComponent', () => {
 
                 const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
 
                 const otherFragment = 'otherFragment';
                 qp.fragment = otherFragment;
@@ -621,7 +629,10 @@ describe('EditionReportComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, otherFragment);
-                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
             });
 
             it('... should navigate without fragment if none is given', () => {
@@ -630,7 +641,10 @@ describe('EditionReportComponent', () => {
 
                 const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
 
                 const noFragment = '';
                 qp.fragment = noFragment;
@@ -638,7 +652,10 @@ describe('EditionReportComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, '');
-                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedReportRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
             });
         });
 
@@ -755,14 +772,20 @@ describe('EditionReportComponent', () => {
                     queryParams: { sketch: expectedSvgSheet.id },
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    qp,
+                ]);
 
                 component.onSvgSheetSelect(expectedNextSvgSheet.id);
                 fixture.detectChanges();
 
                 qp.queryParams.sketch = expectedNextSvgSheet.id;
                 expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
-                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    qp,
+                ]);
             });
 
             it('... should navigate without id if none is given', () => {
@@ -773,7 +796,10 @@ describe('EditionReportComponent', () => {
                     queryParams: { sketch: expectedSvgSheet.id },
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
-                expectSpyCall(navigationSpy, 1, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 1, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    qp,
+                ]);
 
                 const noId = '';
                 qp.queryParams.sketch = noId;
@@ -781,7 +807,10 @@ describe('EditionReportComponent', () => {
                 fixture.detectChanges();
 
                 expectSpyCall(selectSvgSheetSpy, 2, '');
-                expectSpyCall(navigationSpy, 2, [[expectedEditionComplexRoute, expectedSheetsRoute], qp]);
+                expectSpyCall(navigationSpy, 2, [
+                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    qp,
+                ]);
             });
         });
     });
