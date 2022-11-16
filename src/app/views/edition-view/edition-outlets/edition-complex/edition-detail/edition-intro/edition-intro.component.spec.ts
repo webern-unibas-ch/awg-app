@@ -54,7 +54,7 @@ describe('IntroComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
-    let expectedEditionComplexRoute: string;
+    let expectedEditionComplexBaseRoute: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let editionDataServiceGetEditionIntroDataSpy: Spy;
@@ -107,7 +107,7 @@ describe('IntroComponent (DONE)', () => {
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
 
-        expectedEditionComplexRoute = '/edition/complex/op12/';
+        expectedEditionComplexBaseRoute = '/edition/complex/op12/';
 
         // Spies on service functions
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
@@ -324,7 +324,7 @@ describe('IntroComponent (DONE)', () => {
                 const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
                 expectSpyCall(navigationSpy, 1, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
                     qp,
                 ]);
 
@@ -335,7 +335,7 @@ describe('IntroComponent (DONE)', () => {
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, otherFragment);
                 expectSpyCall(navigationSpy, 2, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
                     qp,
                 ]);
             });
@@ -347,7 +347,7 @@ describe('IntroComponent (DONE)', () => {
                 const qp = { fragment: expectedFragment };
                 expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
                 expectSpyCall(navigationSpy, 1, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
                     qp,
                 ]);
 
@@ -358,7 +358,7 @@ describe('IntroComponent (DONE)', () => {
 
                 expectSpyCall(navigateToReportFragmentSpy, 2, '');
                 expectSpyCall(navigationSpy, 2, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
                     qp,
                 ]);
             });
@@ -455,7 +455,7 @@ describe('IntroComponent (DONE)', () => {
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
                 expectSpyCall(navigationSpy, 1, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
                     qp,
                 ]);
 
@@ -465,7 +465,7 @@ describe('IntroComponent (DONE)', () => {
                 qp.queryParams.sketch = expectedNextSvgSheet.id;
                 expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
                 expectSpyCall(navigationSpy, 2, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
                     qp,
                 ]);
             });
@@ -480,7 +480,7 @@ describe('IntroComponent (DONE)', () => {
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
                 expectSpyCall(navigationSpy, 1, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
                     qp,
                 ]);
 
@@ -491,7 +491,7 @@ describe('IntroComponent (DONE)', () => {
 
                 expectSpyCall(selectSvgSheetSpy, 2, '');
                 expectSpyCall(navigationSpy, 2, [
-                    [expectedEditionComplexRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
                     qp,
                 ]);
             });
