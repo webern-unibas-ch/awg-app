@@ -228,9 +228,9 @@ describe('EditionInfoComponent (DONE)', () => {
                 const series2El = seriesDes[1].nativeElement;
                 const series3El = seriesDes[2].nativeElement;
 
-                const expectedBreadCrumb1 = `${expectedEditionComplexOp12.editionRoute.short} ${expectedEditionComplexOp12.series.short}/${expectedEditionComplexOp12.section.short}`;
-                const expectedBreadCrumb2 = `${expectedEditionComplexOp25.editionRoute.short} ${expectedEditionComplexOp25.series.short}/${expectedEditionComplexOp25.section.short}`;
-                const expectedBreadCrumb3 = `${expectedEditionComplexM34.editionRoute.short} ${expectedEditionComplexM34.series.short}/${expectedEditionComplexM34.section.short}`;
+                const expectedBreadCrumb1 = `${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplexOp12.series.short}/${expectedEditionComplexOp12.section.short}`;
+                const expectedBreadCrumb2 = `${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplexOp25.series.short}/${expectedEditionComplexOp25.section.short}`;
+                const expectedBreadCrumb3 = `${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplexM34.series.short}/${expectedEditionComplexM34.section.short}`;
 
                 expect(series1El).toBeDefined();
                 expect(series2El).toBeDefined();

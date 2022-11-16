@@ -330,7 +330,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h6.awg-breadcrumb', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                const expectedBreadCrumb = ` ${expectedEditionComplexOp12.editionRoute.short} / ${expectedEditionComplexOp12.series.full} / ${expectedEditionComplexOp12.section.full} `;
+                const expectedBreadCrumb = ` ${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionComplexOp12.series.full} / ${expectedEditionComplexOp12.section.full} `;
 
                 expect(headerEl).toBeDefined();
                 expect(headerEl.textContent).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);

@@ -48,7 +48,7 @@ export class EditionSeriesDetailComponent implements OnInit {
     /**
      * Public method: getSeries.
      *
-     * It gets the selected series by ID from the EditionService and sets the editionRoute constant.
+     * It gets the selected series by ID from the EditionService.
      *
      * @returns {void} Gets the edition series.
      */
