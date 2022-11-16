@@ -6,7 +6,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
-
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
@@ -77,6 +77,15 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -129,7 +138,10 @@ export class EditionIntroComponent implements OnInit {
         const navigationExtras: NavigationExtras = {
             fragment: fragmentId,
         };
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.reportRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
+            navigationExtras
+        );
     }
 
     /**
@@ -165,6 +177,9 @@ export class EditionIntroComponent implements OnInit {
             queryParamsHandling: '',
         };
 
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
+            navigationExtras
+        );
     }
 }
