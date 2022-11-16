@@ -81,36 +81,6 @@ export class EditionComplex {
     type: EditionRouteConstant;
 
     /**
-     * The edition route info.
-     */
-    editionRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION;
-
-    /**
-     * The complex route info.
-     */
-    complexRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.COMPLEX;
-
-    /**
-     * The graph route info.
-     */
-    graphRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_GRAPH;
-
-    /**
-     * The intro route info.
-     */
-    introRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_INTRO;
-
-    /**
-     * The sheets route info.
-     */
-    sheetsRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_SHEETS;
-
-    /**
-     * The report route info.
-     */
-    reportRoute: EditionRouteConstant = EDITION_ROUTE_CONSTANTS.EDITION_REPORT;
-
-    /**
      * The base route of an edition complex.
      *
      * @example 'edition/complex/op12
@@ -164,10 +134,10 @@ export class EditionComplex {
         this.type = type ? type : new EditionRouteConstant(); // EditionConstants.SKETCH_EDITION;
 
         // Set base route
-        let rootPath = this.editionRoute.route; // '/edition'
+        let rootPath = EDITION_ROUTE_CONSTANTS.EDITION.route; // '/edition'
         // RootPath += this.series.route;     // '/series'
         // RootPath += this.section.route;    // '/section'
-        rootPath += this.complexRoute.route; // '/complex'
+        rootPath += EDITION_ROUTE_CONSTANTS.COMPLEX.route; // '/complex'
         // RootPath += this.type.route;       // '/sketches' or // '/texts'
 
         this.baseRoute = rootPath + this.complexId.route + delimiter;
