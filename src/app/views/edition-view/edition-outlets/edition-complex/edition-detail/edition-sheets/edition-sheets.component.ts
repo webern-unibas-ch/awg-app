@@ -6,6 +6,7 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
     EditionSvgOverlay,
@@ -146,6 +147,15 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     ) {}
 
     /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -223,7 +233,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             queryParams: { convolute: convolute.convoluteId, sketch: this.filteredSvgSheetsData.sheets[0].id },
         };
 
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
+            navigationExtras
+        );
     }
 
     /**
@@ -279,7 +292,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             queryParamsHandling: 'merge',
         };
 
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
+            navigationExtras
+        );
     }
 
     /**
