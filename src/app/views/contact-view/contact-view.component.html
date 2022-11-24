@@ -12,7 +12,7 @@
     <p class="awg-citation-text">
         {{ pageMetaData.awgProjectName }}. Projekt-Website:
         <a href="{{ pageMetaData?.awgProjectUrl }}"> {{ pageMetaData?.awgProjectUrl }} </a>, abgerufen am
-        <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        <span class="awg-citation-date">{{ today | date : dateFormat }}</span
         >.
     </p>
 
@@ -22,7 +22,7 @@
         <span class="awg-citation-version">{{ pageMetaData?.version }}</span> vom
         <span class="awg-citation-version-release">{{ pageMetaData?.versionReleaseDate }}</span
         >): <a href="{{ pageMetaData?.awgAppUrl }}"> {{ pageMetaData?.awgAppUrl }} </a>, abgerufen am
-        <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        <span class="awg-citation-date">{{ today | date : dateFormat }}</span
         >.
     </p>
 </div>
