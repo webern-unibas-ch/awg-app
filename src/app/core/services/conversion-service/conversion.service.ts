@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { ApiService } from '@awg-core/services/api-service';
 
 import { GeoNames } from '@awg-core/core-models';
+import { UtilityService } from '@awg-core/services/utility-service';
 import {
     ContextJson,
     GeoDataItemJson,
@@ -23,6 +24,7 @@ import {
     SelectionJson,
     SubjectItemJson,
 } from '@awg-shared/api-objects';
+import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 import {
     IResourceDataResponse,
     ResourceDetail,
@@ -34,7 +36,6 @@ import {
     ResourceDetailProperty,
     SearchResponseWithQuery,
 } from '@awg-views/data-view/models';
-import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
 /**
  * Declared variable: htmlConverter.
@@ -75,11 +76,12 @@ export class ConversionService extends ApiService {
      *
      * It declares a public {@link HttpClient} instance
      * with a super reference to base class (ApiService)
-     * and a private {@link StorageService} instance.
+     * and a private {@link UtilityService} instance.
      *
      * @param {HttpClient} http Instance of the HttpClient.
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(public override http: HttpClient) {
+    constructor(public override http: HttpClient, private utils: UtilityService) {
         super(http);
     }
 
@@ -195,7 +197,7 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
-                        if (prop.values !== []) {
+                        if (this.utils.isNotEmptyArray(prop.values)) {
                             propValue = this._convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection
