@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 
 /**
  * The EditionInfo component.
@@ -43,5 +43,14 @@ export class EditionInfoComponent {
      **/
     get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
         return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
+     * Getter variable: editionTypeConstants.
+     *
+     *  It returns the EDITION_TYPE_CONSTANTS.
+     **/
+    get editionTypeConstants(): typeof EDITION_TYPE_CONSTANTS {
+        return EDITION_TYPE_CONSTANTS;
     }
 }

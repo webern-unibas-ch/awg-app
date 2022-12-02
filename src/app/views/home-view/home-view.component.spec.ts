@@ -14,7 +14,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { HomeViewComponent } from './home-view.component';
@@ -45,6 +45,7 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedEditionComplexOp25: EditionComplex;
     let expectedEditionComplexM34: EditionComplex;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+    const expectedEditionTypeConstants: typeof EDITION_TYPE_CONSTANTS = EDITION_TYPE_CONSTANTS;
 
     beforeEach(waitForAsync(() => {
         // Router spy object
@@ -115,6 +116,13 @@ describe('HomeViewComponent (DONE)', () => {
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
                 .toBe(expectedEditionRouteConstants);
+        });
+
+        it('should have `editionTypeConstants`', () => {
+            expect(component.editionTypeConstants).toBeDefined();
+            expect(component.editionTypeConstants)
+                .withContext(`should be ${expectedEditionTypeConstants}`)
+                .toBe(expectedEditionTypeConstants);
         });
 
         describe('#routeToSidenav', () => {
@@ -382,7 +390,7 @@ describe('HomeViewComponent (DONE)', () => {
                     .toBe(expectedEditionComplexOp25.complexId.short);
             });
 
-            it('... should render part links in first div.para', () => {
+            it('... should render edition type links in first div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 const aDes = getAndExpectDebugElementByCss(divDes[0], '.awg-edition-info-header a', 3, 3);
 
@@ -395,11 +403,11 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(a2El).toBeDefined();
 
                 expect(a0El.textContent)
-                    .withContext(`should be ${expectedEditionComplexOp12.type.full}`)
-                    .toBe(expectedEditionComplexOp12.type.full);
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
                 expect(a1El.textContent)
-                    .withContext(`should be ${expectedEditionComplexOp25.type.full}`)
-                    .toBe(expectedEditionComplexOp25.type.full);
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
                 expect(a2El.textContent)
                     .withContext(`should be ${expectedEditionRouteConstants.EDITION_GRAPH.short}`)
                     .toBe(expectedEditionRouteConstants.EDITION_GRAPH.short);
@@ -448,15 +456,15 @@ describe('HomeViewComponent (DONE)', () => {
                     .toBe(expectedEditionComplexM34.complexId.short);
             });
 
-            it('... should render part links in second div.para', () => {
+            it('... should render edition type links in second div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 const aDes = getAndExpectDebugElementByCss(divDes[1], '.awg-edition-info-header a', 1, 1);
                 const a0El = aDes[0].nativeElement;
 
                 expect(a0El).toBeDefined();
                 expect(a0El.textContent)
-                    .withContext(`should be ${expectedEditionComplexM34.type.full}`)
-                    .toBe(expectedEditionComplexM34.type.full);
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
             });
 
             describe('[routerLink]', () => {

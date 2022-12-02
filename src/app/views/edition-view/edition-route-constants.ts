@@ -34,6 +34,40 @@ export class EDITION_CATALOGUE_TYPES {
         full: 'Moldenhauer-Nr. (AWG-ID)',
     };
 }
+/**
+ * The EDITION_TYPE_CONSTANTS class.
+ *
+ * It is used in the context of the edition view
+ * to store the route constants of the edition types.
+ */
+export class EDITION_TYPE_CONSTANTS {
+    /**
+     * The route constant for a work edition.
+     */
+    static readonly WORK_EDITION: EditionRouteConstant = {
+        route: '/work-edition',
+        short: 'WE',
+        full: 'Werkedition',
+    };
+
+    /**
+     * The route constant for a text edition.
+     */
+    static readonly TEXT_EDITION: EditionRouteConstant = {
+        route: '/text-edition',
+        short: 'TE',
+        full: 'Textedition',
+    };
+
+    /**
+     * The route constant for a sketch edition.
+     */
+    static readonly SKETCH_EDITION: EditionRouteConstant = {
+        route: '/sketch-edition',
+        short: 'SE',
+        full: 'Skizzenedition',
+    };
+}
 
 /**
  * The EDITION_ROUTE_CONSTANTS class.
@@ -184,33 +218,6 @@ export class EDITION_ROUTE_CONSTANTS {
         route: '5',
         short: '5',
         full: 'Abteilung 5 (Klavierauszüge)',
-    };
-
-    /**
-     * The route constant for a work edition.
-     */
-    static readonly WORK_EDITION: EditionRouteConstant = {
-        route: '/work-edition',
-        short: 'WE',
-        full: 'Werkedition',
-    };
-
-    /**
-     * The route constant for a text edition.
-     */
-    static readonly TEXT_EDITION: EditionRouteConstant = {
-        route: '/text-edition',
-        short: 'TE',
-        full: 'Textedition',
-    };
-
-    /**
-     * The route constant for a sketch edition.
-     */
-    static readonly SKETCH_EDITION: EditionRouteConstant = {
-        route: '/sketch-edition',
-        short: 'SE',
-        full: 'Skizzenedition',
     };
 
     /**

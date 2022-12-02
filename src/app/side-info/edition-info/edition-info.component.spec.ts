@@ -7,7 +7,7 @@ import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } fr
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
@@ -24,6 +24,7 @@ describe('EditionInfoComponent (DONE)', () => {
     let expectedEditionComplexOp12: EditionComplex;
     let expectedEditionComplexOp25: EditionComplex;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
+    const expectedEditionTypeConstants: typeof EDITION_TYPE_CONSTANTS = EDITION_TYPE_CONSTANTS;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -77,6 +78,13 @@ describe('EditionInfoComponent (DONE)', () => {
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
                 .toBe(expectedEditionRouteConstants);
+        });
+
+        it('should have `editionTypeConstants`', () => {
+            expect(component.editionTypeConstants).toBeDefined();
+            expect(component.editionTypeConstants)
+                .withContext(`should be ${expectedEditionTypeConstants}`)
+                .toBe(expectedEditionTypeConstants);
         });
 
         describe('VIEW', () => {
@@ -203,17 +211,17 @@ describe('EditionInfoComponent (DONE)', () => {
                     .withContext(`should be ${expectedEditionRouteConstants.ROWTABLES.full}`)
                     .toBe(expectedEditionRouteConstants.ROWTABLES.full);
                 expect(a1El.textContent)
-                    .withContext(`should be ${expectedEditionComplexOp12.type.full}`)
-                    .toBe(expectedEditionComplexOp12.type.full);
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
                 expect(a2El.textContent)
-                    .withContext(`should be ${expectedEditionComplexOp25.type.full}`)
-                    .toBe(expectedEditionComplexOp25.type.full);
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
                 expect(a3El.textContent)
                     .withContext(`should be ${expectedEditionRouteConstants.EDITION_GRAPH.short}`)
                     .toBe(expectedEditionRouteConstants.EDITION_GRAPH.short);
                 expect(a4El.textContent)
-                    .withContext(`should be ${expectedEditionComplexM34.type.full}`)
-                    .toBe(expectedEditionComplexM34.type.full);
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
             });
 
             it('... should render edition series in breadcrumb of edition info headers', () => {
