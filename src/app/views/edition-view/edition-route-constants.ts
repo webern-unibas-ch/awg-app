@@ -1,12 +1,12 @@
 import { EditionRouteConstant } from '@awg-views/edition-view/models';
 
 /**
- * The EDITION_CATALOGUE_TYPES class.
+ * The EDITION_CATALOGUE_TYPE_CONSTANTS class.
  *
  * It is used in the context of the edition view
- * to store the catalogue types used in the editions.
+ * to store the route constants of the edition catalogue types.
  */
-export class EDITION_CATALOGUE_TYPES {
+export class EDITION_CATALOGUE_TYPE_CONSTANTS {
     /**
      * The route constant for the opus number.
      */

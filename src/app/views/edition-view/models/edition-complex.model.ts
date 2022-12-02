@@ -1,5 +1,8 @@
 import { MetaPerson } from '@awg-core/core-models/meta.model';
-import { EDITION_CATALOGUE_TYPES, EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+} from '@awg-views/edition-view/edition-route-constants';
 import { EditionRouteConstant } from './edition-route-constant.model';
 
 /**
@@ -120,12 +123,12 @@ export class EditionComplex {
             : new EditionResponsibilityStatement();
 
         this.complexId = new EditionRouteConstant();
-        if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPES.OPUS) {
-            this.complexId.route = EDITION_CATALOGUE_TYPES.OPUS.route;
-        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPES.MNR) {
-            this.complexId.route = EDITION_CATALOGUE_TYPES.MNR.route;
-        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPES.MNR_PLUS) {
-            this.complexId.route = EDITION_CATALOGUE_TYPES.MNR_PLUS.route;
+        if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS) {
+            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS.route;
+        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR) {
+            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR.route;
+        } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS) {
+            this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS.route;
         }
         this.complexId.route += this.titleStatement.catalogueNumber;
         this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
