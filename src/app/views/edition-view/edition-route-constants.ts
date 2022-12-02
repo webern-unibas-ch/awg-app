@@ -1,6 +1,41 @@
 import { EditionRouteConstant } from '@awg-views/edition-view/models';
 
 /**
+ * The EDITION_CATALOGUE_TYPES class.
+ *
+ * It is used in the context of the edition view
+ * to store the catalogue types used in the editions.
+ */
+export class EDITION_CATALOGUE_TYPES {
+    /**
+     * The route constant for the opus number.
+     */
+    static readonly OPUS: EditionRouteConstant = {
+        route: '/op',
+        short: 'op.',
+        full: 'Opus',
+    };
+
+    /**
+     * The route constant for the Moldenhauer number.
+     */
+    static readonly MNR: EditionRouteConstant = {
+        route: '/m',
+        short: 'M',
+        full: 'Moldenhauer-Nr.',
+    };
+
+    /**
+     * The route constant for an extended Moldenhauer number (AWG-ID).
+     */
+    static readonly MNR_PLUS: EditionRouteConstant = {
+        route: '/m_plus',
+        short: 'M*',
+        full: 'Moldenhauer-Nr. (AWG-ID)',
+    };
+}
+
+/**
  * The EDITION_ROUTE_CONSTANTS class.
  *
  * It is used in the context of the edition view
@@ -32,24 +67,6 @@ export class EDITION_ROUTE_CONSTANTS {
         route: '/complex',
         short: 'Editionskomplex',
         full: 'Editionskomplex',
-    };
-
-    /**
-     * The route constant for the opus number.
-     */
-    static readonly OPUS: EditionRouteConstant = {
-        route: '/op',
-        short: 'op.',
-        full: 'Opus',
-    };
-
-    /**
-     * The route constant for the Moldenhauer number.
-     */
-    static readonly MNR: EditionRouteConstant = {
-        route: '/m',
-        short: 'M',
-        full: 'Moldenhauer-Nr.',
     };
 
     /**
