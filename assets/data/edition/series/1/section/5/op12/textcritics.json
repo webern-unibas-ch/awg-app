@@ -179,17 +179,17 @@
                 },
                 {
                     "svgGroupId": "g1006",
-                    "measure": "[11]",
+                    "measure": "11",
                     "system": "14",
                     "position": "(1/4)",
-                    "comment": "punktierte Achtelpause, Sechzehntelnote &#9837;b radiert."
+                    "comment": "Punktierte Achtelpause, Sechzehntelnote &#9837;b radiert."
                 },
                 {
                     "svgGroupId": "g1405",
-                    "measure": "[12]",
+                    "measure": "12",
                     "system": "13",
                     "position": "",
-                    "comment": "radierte, nicht entzifferbare Schicht."
+                    "comment": "Radierte, nicht entzifferbare Schicht."
                 }
             ]
         },

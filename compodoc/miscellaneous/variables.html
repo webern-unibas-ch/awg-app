@@ -481,7 +481,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.9.2&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.9.3&#x27;</code>
                     </td>
                 </tr>
 
@@ -513,7 +513,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;10. Oktober 2022&#x27;</code>
+                        <i>Default value : </i><code>&#x27;21. Dezember 2022&#x27;</code>
                     </td>
                 </tr>
 
@@ -2535,7 +2535,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     /**
      * Test helper data constant: mockIntroData.
      *
-     * It provides a mocked folioConvoluteData object.
+     * It provides a mocked intro data object.
      */
     mockIntroData: {
         intro: [
@@ -2545,6 +2545,20 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;sourceA\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&#x27;,
                     &#x27;In &lt;a (click)&#x3D;&quot;ref.selectSvgSheet(\&#x27;M_212_Sk2\&#x27;)&quot;&gt;&lt;strong&gt;M 212 Sk2&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;M 212 Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert&#x27;,
                 ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockIntroEmptyData.
+     *
+     * It provides a mocked intro data object with empty content.
+     */
+    mockIntroEmptyData: {
+        intro: [
+            {
+                id: &#x27;op12&#x27;,
+                content: [],
             },
         ],
     },
@@ -2817,9 +2831,23 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             {
                 id: &#x27;op25&#x27;,
                 content: [
-                    &#x27;&lt;small class&#x3D;&quot;text-muted&quot;&gt;[Die Quellenbewertung zum gesamten Werkkomplex &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]&lt;/small&gt;&#x27;,
+                    &#x27;&lt;small class&#x3D;&quot;text-muted&quot;&gt;[Die Quellenbewertung zum gesamten Editionskomplex &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]&lt;/small&gt;&#x27;,
                     &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;sourceA\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten u. a. &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;M 212 Sk1&lt;/strong&gt;&lt;/a&gt; (13. Januar 1915) als Korrekturen einer in &lt;strong&gt;B&lt;/strong&gt; und in &lt;a (click)&#x3D;&quot;ref.selectSvgSheet(\&#x27;M_212_Sk2\&#x27;)&quot;&gt;&lt;strong&gt;M 212 Sk2–5&lt;/strong&gt;&lt;/a&gt; vorformulierten Fassung dar.&#x27;,
                 ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockSourceEvaluationListEmptyData.
+     *
+     * It provides a mocked sourceEvaluationListData object with empty content.
+     */
+    mockSourceEvaluationListEmptyData: {
+        sources: [
+            {
+                id: &#x27;op25&#x27;,
+                content: [],
             },
         ],
     },
@@ -4241,7 +4269,7 @@ from the Salsah API.</p>
     OP25_SHEET_COMING_SOON:
         &#x27;Die edierten Notentexte weiterer Skizzen der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheinen in Kürze (02/2022).&#x27;,
     OP25_SOURCE_NOT_AVAILABLE:
-        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;B&lt;/strong&gt; sowie &lt;strong&gt;D–E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
+        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;D&lt;/strong&gt; und &lt;strong&gt;E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
     M198: &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;,
     HINT_EDITION_SHEETS:
         &#x27;&lt;p&gt;\n&#x27; +
