@@ -25,7 +25,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [14.17, 16.15, 18.x]
+                node-version: [14.21, 16.18, 18.x]
 
         steps:
             - name: Checkout repo
@@ -48,15 +48,15 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 16.15 # upload coverage report for current node version only
+              if: matrix.node-version == 16.18 # upload coverage report for current node version only
               uses: codecov/codecov-action@v3.1.1
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 16.15 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@v1.7
+              if: matrix.node-version == 16.18 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
+              uses: SonarSource/sonarcloud-github-action@v1.8
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -77,7 +77,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [ 16.15 ]
+                node-version: [ 16.18 ]
 
         steps:
             - name: Checkout repo
@@ -114,7 +114,7 @@ jobs:
         strategy:
             matrix:
                 os: [ ubuntu-latest ]
-                node-version: [ 16.15 ]
+                node-version: [ 16.18 ]
 
         steps:
             - name: Get tag version

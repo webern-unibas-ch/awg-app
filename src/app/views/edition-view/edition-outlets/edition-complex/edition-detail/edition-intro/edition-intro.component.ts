@@ -4,6 +4,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { catchError, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable } from 'rxjs';
 
+import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 import { EditionComplex, IntroList } from '@awg-views/edition-view/models';
@@ -58,18 +59,19 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Constructor of the EditionIntroComponent.
      *
-     * It declares private instances of
-     * EditionDataService, EditionService
-     * and the Angular Router.
+     * It declares private instances of the EditionDataService, EditionService,
+     * and the Angular Router; as well as a public instance of the UtilityService.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionService} editionService Instance of the EditionService.
      * @param {Router} router Instance of the Router.
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor(
         private editionDataService: EditionDataService,
         private editionService: EditionService,
-        private router: Router
+        private router: Router,
+        public utils: UtilityService
     ) {
         this.ref = this;
     }

@@ -11,6 +11,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -44,8 +45,9 @@ describe('IntroComponent (DONE)', () => {
     let editionDataService: Partial<EditionDataService>;
     let editionService: Partial<EditionService>;
 
-    let expectedEditionIntroData: IntroList;
     let expectedEditionComplex: EditionComplex;
+    let expectedEditionIntroData: IntroList;
+    let expectedEditionIntroEmptyData: IntroList;
     let expectedModalSnippet: string;
     let expectedFragment: string;
     let expectedSvgSheet: EditionSvgSheet;
@@ -101,6 +103,7 @@ describe('IntroComponent (DONE)', () => {
         expectedFragment = 'sourceA';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedEditionIntroData = mockEditionData.mockIntroData;
+        expectedEditionIntroEmptyData = mockEditionData.mockIntroEmptyData;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
 
@@ -192,7 +195,7 @@ describe('IntroComponent (DONE)', () => {
         }));
 
         describe('VIEW', () => {
-            it('... should contain one div.awg-intro-view n', () => {
+            it('... should contain one div.awg-intro-view', () => {
                 // Div debug element
                 getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view', 1, 1);
             });
@@ -203,7 +206,7 @@ describe('IntroComponent (DONE)', () => {
 
                 getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p',
+                    'p.awg-intro-entry',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -215,7 +218,7 @@ describe('IntroComponent (DONE)', () => {
 
                 const pDes = getAndExpectDebugElementByCss(
                     divDes[0],
-                    'p',
+                    'p.awg-intro-entry',
                     expectedEditionIntroData.intro[0].content.length,
                     expectedEditionIntroData.intro[0].content.length
                 );
@@ -223,6 +226,35 @@ describe('IntroComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(pDes[0], 'a', 1, 1);
                 getAndExpectDebugElementByCss(pDes[1], 'a', 2, 2);
             });
+
+            it('... should contain a placeholder if content of intro data is empty', waitForAsync(() => {
+                // Simulate the parent setting an empty content array
+                component.editionIntroData$ = observableOf(expectedEditionIntroEmptyData);
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-intro-empty', 1, 1);
+
+                getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
+            }));
+
+            it('... should display placeholder in paragraph', waitForAsync(() => {
+                // Simulate the parent setting an empty content array
+                component.editionIntroData$ = observableOf(expectedEditionIntroEmptyData);
+                detectChangesOnPush(fixture);
+
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view > p.awg-intro-empty', 1, 1);
+                const pCmp = pDes[0].nativeElement;
+
+                // Create intro placeholder
+                const htmlIntroPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const htmlIntroPlaceholderText = htmlIntroPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+
+                expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                expect(pCmp.textContent.trim())
+                    .withContext(`should be ${htmlIntroPlaceholderText}`)
+                    .toEqual(htmlIntroPlaceholderText);
+            }));
         });
 
         describe('#getEditionReportData', () => {

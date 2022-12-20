@@ -57,7 +57,7 @@ export const mockEditionData = {
     /**
      * Test helper data constant: mockIntroData.
      *
-     * It provides a mocked folioConvoluteData object.
+     * It provides a mocked intro data object.
      */
     mockIntroData: {
         intro: [
@@ -67,6 +67,20 @@ export const mockEditionData = {
                     'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
                     'In <a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> neu skizziert',
                 ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockIntroEmptyData.
+     *
+     * It provides a mocked intro data object with empty content.
+     */
+    mockIntroEmptyData: {
+        intro: [
+            {
+                id: 'op12',
+                content: [],
             },
         ],
     },
@@ -339,9 +353,23 @@ export const mockEditionData = {
             {
                 id: 'op25',
                 content: [
-                    '<small class="text-muted">[Die Quellenbewertung zum gesamten Werkkomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
+                    '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
                     'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2–5</strong></a> vorformulierten Fassung dar.',
                 ],
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockSourceEvaluationListEmptyData.
+     *
+     * It provides a mocked sourceEvaluationListData object with empty content.
+     */
+    mockSourceEvaluationListEmptyData: {
+        sources: [
+            {
+                id: 'op25',
+                content: [],
             },
         ],
     },

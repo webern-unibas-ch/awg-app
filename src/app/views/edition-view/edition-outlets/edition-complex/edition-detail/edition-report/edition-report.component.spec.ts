@@ -58,6 +58,8 @@ class SourceDescriptionStubComponent {
 @Component({ selector: 'awg-source-evaluation', template: '' })
 class SourceEvaluationStubComponent {
     @Input()
+    editionComplex: EditionComplex;
+    @Input()
     sourceEvaluationListData: SourceEvaluationList;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
