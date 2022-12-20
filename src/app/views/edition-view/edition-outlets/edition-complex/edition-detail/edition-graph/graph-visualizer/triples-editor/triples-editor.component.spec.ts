@@ -1,9 +1,9 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { EditorView } from 'codemirror';
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 import { NgbAccordion, NgbAccordionModule, NgbConfig, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { EditorView } from 'codemirror';
 import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
@@ -56,8 +56,8 @@ describe('TriplesEditorComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [NgbAccordionWithConfigModule],
-            declarations: [TriplesEditorComponent, CodeMirrorStubComponent, NgbAccordion],
+            imports: [NgbAccordionWithConfigModule, NgbAccordion],
+            declarations: [TriplesEditorComponent, CodeMirrorStubComponent],
         }).compileComponents();
     }));
 

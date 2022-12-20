@@ -9,8 +9,8 @@ import Spy = jasmine.Spy;
 
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { ViewHandle, ViewHandleTypes } from './view-handle.model';
 import { ViewHandleButtonGroupComponent } from './view-handle-button-group.component';
+import { ViewHandle, ViewHandleTypes } from './view-handle.model';
 
 describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let component: ViewHandleButtonGroupComponent;
@@ -28,8 +28,8 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-            declarations: [ViewHandleButtonGroupComponent, NgbTooltip],
+            imports: [FontAwesomeTestingModule, NgbTooltip, ReactiveFormsModule],
+            declarations: [ViewHandleButtonGroupComponent],
             providers: [UntypedFormBuilder],
         }).compileComponents();
     });

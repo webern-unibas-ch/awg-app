@@ -91,7 +91,7 @@
                                     [
                                         {
                                             "system": "13a–14a",
-                                            "measure": "8 1–2/4, {8 3/4A} bis {9A}, {10}, 8 3/4B bis 9B",
+                                            "measure": "8(1–2/4), {8(3/4)A–9A, 10}, 8(3/4)B–9B",
                                             "linkTo": ""
                                         }
                                     ]
@@ -168,14 +168,14 @@
                                     [
                                         {
                                             "system": "4–5",
-                                            "measure": "5B, {6A}–{7A}, 6B–7B",
+                                            "measure": "5B, {6A–7A}, 6B–7B",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11",
-                                            "measure": "8A–9A, 8B 3/4 bis 9B, 10–11",
+                                            "measure": "8A–9A, 8B(3/4)–9B, 10–11",
                                             "linkTo": ""
                                         }
                                     ],
@@ -322,7 +322,7 @@
                                     [
                                         {
                                             "system": "1–2",
-                                            "measure": "9–10, {11A}–{12A}, 11B–12B",
+                                            "measure": "9–10, {11A–12A}, 11B–12B",
                                             "linkTo": ""
                                         }
                                     ],
@@ -371,7 +371,7 @@
                                     [
                                         {
                                             "system": "11a–12a",
-                                            "measure": "6A, {7A}–{8A}",
+                                            "measure": "6A, {7A–8A}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -385,7 +385,7 @@
                                     [
                                         {
                                             "system": "16–17",
-                                            "measure": "{9B}, {10A}, {11 1–2/4}, {11 2–4/4}, {12A}–{13A}",
+                                            "measure": "{9B, 10A, 11A(1–2/4), 11B(2–4/4), 12A–13A}",
                                             "linkTo": ""
                                         }
                                     ],
@@ -648,7 +648,7 @@
                                     [
                                         {
                                             "system": "10b–11b (Bleistift)",
-                                            "measure": "7 2–3/4 bis 9",
+                                            "measure": "7(2–3/4)–9",
                                             "linkTo": ""
                                         }
                                     ]
@@ -851,14 +851,14 @@
                                     [
                                         {
                                             "system": "13b–14b (Bleistift)",
-                                            "measure": "16 bis 17 1–2/4",
+                                            "measure": "16–17(1–2/4)",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16b–17b (Bleistift)",
-                                            "measure": "17 3–4/4 bis 19",
+                                            "measure": "17(3–4/4)–19",
                                             "linkTo": ""
                                         }
                                     ]

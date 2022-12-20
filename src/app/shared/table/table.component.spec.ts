@@ -62,14 +62,8 @@ describe('TableComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, FormsModule, NgbPaginationModule],
-            declarations: [
-                TableComponent,
-                TablePaginationStubComponent,
-                NgbHighlight,
-                TwelveToneSpinnerStubComponent,
-                OrderByPipe,
-            ],
+            imports: [FontAwesomeTestingModule, FormsModule, NgbHighlight, NgbPaginationModule],
+            declarations: [TableComponent, TablePaginationStubComponent, TwelveToneSpinnerStubComponent, OrderByPipe],
         }).compileComponents();
     });
 
