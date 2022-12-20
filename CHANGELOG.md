@@ -8,14 +8,14 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 * **edition:** use updated codemirror editor in GraphVisualizer ([e635a26](https://github.com/webern-unibas-ch/awg-app/commit/e635a2672539edc5b02dbd6c2d1a529af2a54fae))
-* **shared:** add editor instance of CodeMIrror 6 ([d2f1ff8](https://github.com/webern-unibas-ch/awg-app/commit/d2f1ff82d02a2ffbb6058e79bef78c648f49d555))
+* **shared:** add editor instance of CodeMirror 6 ([d2f1ff8](https://github.com/webern-unibas-ch/awg-app/commit/d2f1ff82d02a2ffbb6058e79bef78c648f49d555))
 
 
 ### Bug Fixes
 
-* **assets:** fix brackets in source description for M34 ([07a9c95](https://github.com/webern-unibas-ch/awg-app/commit/07a9c9571fa0087080b973a6a0043e837c715f32))
-* **assets:** fix typo in source description for M34 Sk3 ([f2d4486](https://github.com/webern-unibas-ch/awg-app/commit/f2d448689341022dc01453a0d736e0fef9c1492e))
-* **assets:** minor fixes in textcritics of M212_Sk2 ([90d8a90](https://github.com/webern-unibas-ch/awg-app/commit/90d8a90654c78d366d341cf3d10c19411e55c91f))
+* **assets:** fix brackets in source description for M34 ([07a9c95](https://github.com/webern-unibas-ch/awg-app/commit/07a9c9571fa0087080b973a6a0043e837c715f32); thanks to [@chael-mi](https://github.com/chael-mi))
+* **assets:** fix typo in source description for M34 Sk3 ([f2d4486](https://github.com/webern-unibas-ch/awg-app/commit/f2d448689341022dc01453a0d736e0fef9c1492e); thanks to [@chael-mi](https://github.com/chael-mi))
+* **assets:** minor fixes in textcritics of M212_Sk2 ([90d8a90](https://github.com/webern-unibas-ch/awg-app/commit/90d8a90654c78d366d341cf3d10c19411e55c91f); thanks to [@masthom](https://github.com/masthom))
 * **edition:** generate evaluation placeholder from component ([b06ac37](https://github.com/webern-unibas-ch/awg-app/commit/b06ac373f76833d1cbdb7c3db46392e55dc935a3))
 * **edition:** generate intro placeholder from component ([ceac4b8](https://github.com/webern-unibas-ch/awg-app/commit/ceac4b8f11499881a83bbae79ffbe6f1b4079175))
 * **shared:** remove B from OP25_SOURCE_NOT_AVAILABLE modal ([3dca7fa](https://github.com/webern-unibas-ch/awg-app/commit/3dca7fafe66bdd272bf8796cd6511ca984c0323c)), closes [#650](https://github.com/webern-unibas-ch/awg-app/issues/650)
