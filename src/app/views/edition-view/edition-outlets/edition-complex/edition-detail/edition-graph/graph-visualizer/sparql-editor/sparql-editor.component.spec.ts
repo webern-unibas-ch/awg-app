@@ -1,7 +1,6 @@
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output, SimpleChange } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 
-import { EditorView } from 'codemirror';
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import {
     NgbAccordion,
@@ -11,6 +10,7 @@ import {
     NgbDropdownModule,
     NgbPanelChangeEvent,
 } from '@ng-bootstrap/ng-bootstrap';
+import { EditorView } from 'codemirror';
 import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
@@ -85,14 +85,8 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            imports: [NgbAnimationConfigModule],
-            declarations: [
-                SparqlEditorComponent,
-                CodeMirrorStubComponent,
-                ViewHandleButtongGroupStubComponent,
-                NgbAccordion,
-                NgbDropdown,
-            ],
+            imports: [NgbAnimationConfigModule, NgbAccordion, NgbDropdown],
+            declarations: [SparqlEditorComponent, CodeMirrorStubComponent, ViewHandleButtongGroupStubComponent],
         }).compileComponents();
     }));
 

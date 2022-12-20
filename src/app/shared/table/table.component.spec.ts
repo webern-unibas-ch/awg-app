@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import Spy = jasmine.Spy;
@@ -7,7 +7,7 @@ import Spy = jasmine.Spy;
 import { EMPTY, lastValueFrom } from 'rxjs';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
-import { faSortUp, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 import { NgbHighlight, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BUTTON_CLICK_EVENTS, clickAndAwaitChanges } from '@testing/click-helper';
@@ -62,14 +62,8 @@ describe('TableComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, FormsModule, NgbPaginationModule],
-            declarations: [
-                TableComponent,
-                TablePaginationStubComponent,
-                NgbHighlight,
-                TwelveToneSpinnerStubComponent,
-                OrderByPipe,
-            ],
+            imports: [FontAwesomeTestingModule, FormsModule, NgbHighlight, NgbPaginationModule],
+            declarations: [TableComponent, TablePaginationStubComponent, TwelveToneSpinnerStubComponent, OrderByPipe],
         }).compileComponents();
     });
 
