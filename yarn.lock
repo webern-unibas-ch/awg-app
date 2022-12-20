@@ -9788,15 +9788,15 @@ rdf-canonize@^3.0.0:
   dependencies:
     setimmediate "^1.0.5"
 
-rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.6:
-  version "0.9.18-alpha.6"
-  resolved "https://codeload.github.com/musicenfanthen/rdfstore-js/tar.gz/ad11b615d98eeb1fbfb255d9858ddf86679f18e9"
+rdfstore@musicenfanthen/rdfstore-js#v0.9.18-alpha.7:
+  version "0.9.18-alpha.7"
+  resolved "https://codeload.github.com/musicenfanthen/rdfstore-js/tar.gz/91c64e146fd8205cc46c1a8514856f4383499b76"
   dependencies:
     jsonld "^8.1.0"
     n3 "^0.11.3"
   optionalDependencies:
     indexeddb-js "0.0.14"
-    sqlite3 "^5.0.8"
+    sqlite3 "^5.1.4"
 
 read-package-json-fast@^3.0.0:
   version "3.0.1"
@@ -10740,10 +10740,21 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sqlite3@>=2.1.1, sqlite3@^5.0.8:
+sqlite3@>=2.1.1:
   version "5.0.8"
   resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.0.8.tgz#b4b7eab7156debec80866ef492e01165b4688272"
   integrity sha512-f2ACsbSyb2D1qFFcqIXPfFscLtPVOWJr5GmUzYxf4W+0qelu5MWrR+FAQE1d5IUArEltBrzSDxDORG8P/IkqyQ==
+  dependencies:
+    "@mapbox/node-pre-gyp" "^1.0.0"
+    node-addon-api "^4.2.0"
+    tar "^6.1.11"
+  optionalDependencies:
+    node-gyp "8.x"
+
+sqlite3@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-5.1.4.tgz#35f83d368963168b324ad2f0fffce09f3b8723a7"
+  integrity sha512-i0UlWAzPlzX3B5XP2cYuhWQJsTtlMD6obOa1PgeEQ4DHEXUuyJkgv50I3isqZAP5oFc2T8OFvakmDh2W6I+YpA==
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     node-addon-api "^4.2.0"
