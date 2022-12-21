@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import Spy = jasmine.Spy;
@@ -13,6 +13,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { METADATA } from '@awg-app/core/core-data';
+import { MetaPage, MetaSectionTypes } from '@awg-app/core/core-models';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -43,6 +45,7 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedEditionComplexOp12: EditionComplex;
     let expectedEditionComplexOp25: EditionComplex;
     let expectedEditionComplexM34: EditionComplex;
+    let expectedPageMetaData: MetaPage;
 
     beforeEach(waitForAsync(() => {
         // Router spy object
@@ -64,9 +67,12 @@ describe('HomeViewComponent (DONE)', () => {
         expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;
         expectedEditionComplexM34 = EDITION_COMPLEXES.M34;
 
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'routeToSidenav').and.callThrough();
     });
 
@@ -106,6 +112,16 @@ describe('HomeViewComponent (DONE)', () => {
             expect(component.EDITION_COMPLEX_M34)
                 .withContext(`should be ${expectedEditionComplexM34}`)
                 .toEqual(expectedEditionComplexM34);
+        });
+
+        it('should not have pageMetaData', () => {
+            expect(component.pageMetaData).toBeUndefined();
+        });
+
+        describe('#provideMetaData', () => {
+            it('... should not have been called', () => {
+                expect(component.provideMetaData).not.toHaveBeenCalled();
+            });
         });
 
         describe('#routeToSidenav', () => {
@@ -250,6 +266,66 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(a1El).toBeDefined();
                 expect(a1El.textContent).withContext('should be empty string').not.toBeTruthy();
             });
+
+            describe('... should not render links to', () => {
+                it('... DSP', () => {
+                    const dspDes = getAndExpectDebugElementByCss(compDe, 'a#dsp-link', 1, 1);
+                    const dspEl = dspDes[0].nativeElement;
+
+                    expect(dspEl).toBeDefined();
+                    expect(dspEl.href).not.toBeTruthy();
+                });
+
+                it('... SALSAH', () => {
+                    const salsahDes = getAndExpectDebugElementByCss(compDe, 'a#salsah-link', 1, 1);
+                    const salsahEl = salsahDes[0].nativeElement;
+
+                    expect(salsahEl).toBeDefined();
+                    expect(salsahEl.href).not.toBeTruthy();
+                });
+
+                it('... DHLAB', () => {
+                    const dhlabDes = getAndExpectDebugElementByCss(compDe, 'a#dhlab-link', 1, 1);
+                    const dhlabEl = dhlabDes[0].nativeElement;
+
+                    expect(dhlabEl).toBeDefined();
+                    expect(dhlabEl.href).not.toBeTruthy();
+                });
+
+                it('... DaSCH', () => {
+                    const daschDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-link', 1, 1);
+                    const daschEl = daschDes[0].nativeElement;
+
+                    expect(daschEl).toBeDefined();
+                    expect(daschEl.href).not.toBeTruthy();
+                });
+
+                it('... DaSCH mission', () => {
+                    const daschMissionDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-mission-link', 1, 1);
+                    const daschMissionEl = daschMissionDes[0].nativeElement;
+
+                    const missionRoute = 'visionandmission';
+
+                    expect(daschMissionEl).toBeDefined();
+                    expect(daschMissionEl.href).not.toBeTruthy();
+                });
+
+                it('... GitHub', () => {
+                    const githubDes = getAndExpectDebugElementByCss(compDe, 'a#github-link', 1, 1);
+                    const githubEl = githubDes[0].nativeElement;
+
+                    expect(githubEl).toBeDefined();
+                    expect(githubEl.href).not.toBeTruthy();
+                });
+
+                it('... Compodoc', () => {
+                    const compodocDes = getAndExpectDebugElementByCss(compDe, 'a#compodoc-link', 1, 1);
+                    const compodocEl = compodocDes[0].nativeElement;
+
+                    expect(compodocEl).toBeDefined();
+                    expect(compodocEl.href).not.toBeTruthy();
+                });
+            });
         });
     });
 
@@ -301,6 +377,19 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(navExtras.preserveFragment).withContext('should be `preserveFragment:true`').toBe(true);
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+            });
+        });
+
+        describe('#provideMetaData', () => {
+            it('... should have been called', () => {
+                expect(component.provideMetaData).toHaveBeenCalled();
+            });
+
+            it('... should return pageMetaData', () => {
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData)
+                    .withContext(`should be: ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
             });
         });
 
@@ -450,216 +539,320 @@ describe('HomeViewComponent (DONE)', () => {
                     .toBe(expectedEditionComplexM34.type.full);
             });
 
-            describe('[routerLink]', () => {
-                beforeEach(() => {
-                    // Find DebugElements with an attached RouterLinkStubDirective
-                    linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 12, 12);
+            describe('... should render links to', () => {
+                it('... DSP', () => {
+                    const dspDes = getAndExpectDebugElementByCss(compDe, 'a#dsp-link', 1, 1);
+                    const dspEl = dspDes[0].nativeElement;
 
-                    // Get attached link directive instances using each DebugElement's injector
-                    routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                    const dspRoute = 'dsp-app';
+
+                    expect(dspEl).toBeDefined();
+                    expect(dspEl.href).toBeTruthy();
+                    expect(dspEl.href)
+                        .withContext(`should be ${expectedPageMetaData.daschUrl + dspRoute}`)
+                        .toBe(expectedPageMetaData.daschUrl + dspRoute);
+                    expect(dspEl.textContent).toBeTruthy();
+                    expect(dspEl.textContent)
+                        .withContext(`should be 'DaSCH Service Platform (DSP)'`)
+                        .toBe('DaSCH Service Platform (DSP)');
                 });
 
-                it('... can get routerLinks from template', () => {
-                    expect(routerLinks.length).withContext('should have 12 routerLinks').toBe(12);
+                it('... SALSAH', () => {
+                    const salsahDes = getAndExpectDebugElementByCss(compDe, 'a#salsah-link', 1, 1);
+                    const salsahEl = salsahDes[0].nativeElement;
 
-                    expect(routerLinks[0].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp12.baseRoute,
-                                expectedEditionComplexOp12.introRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp12.baseRoute, expectedEditionComplexOp12.sheetsRoute.route]);
-
-                    expect(routerLinks[1].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp25.baseRoute,
-                                expectedEditionComplexOp25.sheetsRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
-
-                    expect(routerLinks[2].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp25.baseRoute,
-                                expectedEditionComplexOp25.graphRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.graphRoute.route]);
-
-                    expect(routerLinks[3].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexM34.baseRoute,
-                                expectedEditionComplexM34.sheetsRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionComplexM34.sheetsRoute.route]);
-
-                    expect(routerLinks[4].linkParams)
-                        .withContext(`should equal ${['/structure']}`)
-                        .toEqual(['/structure']);
-
-                    expect(routerLinks[5].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp12.baseRoute,
-                                expectedEditionComplexOp12.sheetsRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp12.baseRoute, expectedEditionComplexOp12.sheetsRoute.route]);
-
-                    expect(routerLinks[6].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp25.baseRoute,
-                                expectedEditionComplexOp25.sheetsRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
-
-                    expect(routerLinks[7].linkParams)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexM34.baseRoute,
-                                expectedEditionComplexM34.sheetsRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionComplexM34.sheetsRoute.route]);
-
-                    expect(routerLinks[8].linkParams)
-                        .withContext(`should equal ${['/edition/row-tables']}`)
-                        .toEqual(['/edition/row-tables']);
-
-                    expect(routerLinks[9].linkParams)
-                        .withContext(`should equal ${['/data/search', 'fulltext']}`)
-                        .toEqual(['/data/search', 'fulltext']);
-
-                    expect(routerLinks[10].linkParams)
-                        .withContext(`should equal ${['/data/search', 'extended']}`)
-                        .toEqual(['/data/search', 'extended']);
-
-                    expect(routerLinks[11].linkParams)
-                        .withContext(`should equal ${['/contact']}`)
-                        .toEqual(['/contact']);
+                    expect(salsahEl).toBeDefined();
+                    expect(salsahEl.href).toBeTruthy();
+                    expect(salsahEl.href)
+                        .withContext(`should be ${expectedPageMetaData.salsahUrl}`)
+                        .toBe(expectedPageMetaData.salsahUrl);
+                    expect(salsahEl.textContent).toBeTruthy();
+                    expect(salsahEl.textContent).withContext(`should be 'SALSAH'`).toBe('SALSAH');
                 });
 
-                it('... can click `sheets` link in template', () => {
-                    const sheetsLinkDe = linkDes[1]; // Sheets link DebugElement
-                    const sheetsLink = routerLinks[1]; // Sheets link directive
+                it('... DHLAB', () => {
+                    const dhlabDes = getAndExpectDebugElementByCss(compDe, 'a#dhlab-link', 1, 1);
+                    const dhlabEl = dhlabDes[0].nativeElement;
 
-                    expect(sheetsLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                    sheetsLinkDe.triggerEventHandler('click', null);
-
-                    fixture.detectChanges();
-
-                    expect(sheetsLink.navigatedTo)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp25.baseRoute,
-                                expectedEditionComplexOp25.sheetsRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
+                    expect(dhlabEl).toBeDefined();
+                    expect(dhlabEl.href).toBeTruthy();
+                    expect(dhlabEl.href)
+                        .withContext(`should be ${expectedPageMetaData.dhlabUrl}`)
+                        .toBe(expectedPageMetaData.dhlabUrl);
+                    expect(dhlabEl.textContent)
+                        .withContext(`should be 'Digital Humanities Lab'`)
+                        .toBe('Digital Humanities Lab');
                 });
 
-                it('... can click `graph` link in template', () => {
-                    const graphLinkDe = linkDes[2]; // Gaph link DebugElement
-                    const graphLink = routerLinks[2]; // Graph link directive
+                it('... DaSCH', () => {
+                    const daschDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-link', 1, 1);
+                    const daschEl = daschDes[0].nativeElement;
 
-                    expect(graphLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                    graphLinkDe.triggerEventHandler('click', null);
-
-                    fixture.detectChanges();
-
-                    expect(graphLink.navigatedTo)
-                        .withContext(
-                            `should equal ${[
-                                expectedEditionComplexOp25.baseRoute,
-                                expectedEditionComplexOp25.graphRoute.route,
-                            ]}`
-                        )
-                        .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.graphRoute.route]);
+                    expect(daschEl).toBeDefined();
+                    expect(daschEl.href).toBeTruthy();
+                    expect(daschEl.href)
+                        .withContext(`should be ${expectedPageMetaData.daschUrl}`)
+                        .toBe(expectedPageMetaData.daschUrl);
+                    expect(daschEl.textContent).toBeTruthy();
+                    expect(daschEl.textContent)
+                        .withContext(`should be 'Swiss National Data & Service Center for the Humanities (DaSCH)'`)
+                        .toBe('Swiss National Data & Service Center for the Humanities (DaSCH)');
                 });
 
-                it('... can click `structure` link in template', () => {
-                    const structureLinkDe = linkDes[4]; // Structure link DebugElement
-                    const structureLink = routerLinks[4]; // Structure link directive
+                it('... DaSCH mission', () => {
+                    const daschMissionDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-mission-link', 1, 1);
+                    const daschMissionEl = daschMissionDes[0].nativeElement;
 
-                    expect(structureLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+                    const missionRoute = 'visionandmission';
 
-                    structureLinkDe.triggerEventHandler('click', null);
-
-                    fixture.detectChanges();
-
-                    expect(structureLink.navigatedTo)
-                        .withContext(`should equal ${['/structure']}`)
-                        .toEqual(['/structure']);
+                    expect(daschMissionEl).toBeDefined();
+                    expect(daschMissionEl.href).toBeTruthy();
+                    expect(daschMissionEl.href)
+                        .withContext(`should be ${expectedPageMetaData.daschUrl + missionRoute}`)
+                        .toBe(expectedPageMetaData.daschUrl + missionRoute);
+                    expect(daschMissionEl.textContent).toBeTruthy();
+                    expect(daschMissionEl.textContent)
+                        .withContext(`should be 'Mission Statement DaSCH'`)
+                        .toBe('Mission Statement DaSCH');
                 });
 
-                it('... can click `row tables` link in template', () => {
-                    const rowTablesLinkDe = linkDes[8]; // RowTables link DebugElement
-                    const rowTablesLink = routerLinks[8]; // RowTables link directive
+                it('... GitHub', () => {
+                    const githubDes = getAndExpectDebugElementByCss(compDe, 'a#github-link', 1, 1);
+                    const githubEl = githubDes[0].nativeElement;
 
-                    expect(rowTablesLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                    rowTablesLinkDe.triggerEventHandler('click', null);
-
-                    fixture.detectChanges();
-
-                    expect(rowTablesLink.navigatedTo)
-                        .withContext(`should equal ${['/edition/row-tables']}`)
-                        .toEqual(['/edition/row-tables']);
+                    expect(githubEl).toBeDefined();
+                    expect(githubEl.href).toBeTruthy();
+                    expect(githubEl.href)
+                        .withContext(`should be ${expectedPageMetaData.githubUrl}`)
+                        .toBe(expectedPageMetaData.githubUrl);
+                    expect(githubEl.textContent).toBeTruthy();
+                    expect(githubEl.textContent).withContext(`should be 'GitHub'`).toBe('GitHub');
                 });
 
-                it('... can click `fulltext search` link in template', () => {
-                    const searchLinkDe = linkDes[9]; // Fulltext search link DebugElement
-                    const searchLink = routerLinks[9]; // Fulltext search link directive
+                it('... Compodoc', () => {
+                    const compodocDes = getAndExpectDebugElementByCss(compDe, 'a#compodoc-link', 1, 1);
+                    const compodocEl = compodocDes[0].nativeElement;
 
-                    expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                    searchLinkDe.triggerEventHandler('click', null);
-
-                    fixture.detectChanges();
-
-                    expect(searchLink.navigatedTo)
-                        .withContext(`should equal ${['/data/search', 'fulltext']}`)
-                        .toEqual(['/data/search', 'fulltext']);
+                    expect(compodocEl).toBeDefined();
+                    expect(compodocEl.href).toBeTruthy();
+                    expect(compodocEl.href)
+                        .withContext(`should contain ${expectedPageMetaData.compodocUrl}`)
+                        .toContain(expectedPageMetaData.compodocUrl);
+                    expect(compodocEl.textContent).toBeTruthy();
+                    expect(compodocEl.textContent).withContext(`should be 'dokumentiert'`).toBe('dokumentiert');
                 });
+            });
+        });
 
-                it('... can click `extended search` link in template', () => {
-                    const searchLinkDe = linkDes[10]; // Extended search link DebugElement
-                    const searchLink = routerLinks[10]; // Extended search link directive
+        describe('[routerLink]', () => {
+            beforeEach(() => {
+                // Find DebugElements with an attached RouterLinkStubDirective
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 12, 12);
 
-                    expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+                // Get attached link directive instances using each DebugElement's injector
+                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            });
 
-                    searchLinkDe.triggerEventHandler('click', null);
+            it('... can get routerLinks from template', () => {
+                expect(routerLinks.length).withContext('should have 12 routerLinks').toBe(12);
 
-                    fixture.detectChanges();
+                expect(routerLinks[0].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp12.baseRoute,
+                            expectedEditionComplexOp12.introRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp12.baseRoute, expectedEditionComplexOp12.sheetsRoute.route]);
 
-                    expect(searchLink.navigatedTo)
-                        .withContext(`should equal ${['/data/search', 'extended']}`)
-                        .toEqual(['/data/search', 'extended']);
-                });
+                expect(routerLinks[1].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp25.baseRoute,
+                            expectedEditionComplexOp25.sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
 
-                it('... can click `contact` link in template', () => {
-                    const searchLinkDe = linkDes[11]; // Contact link DebugElement
-                    const searchLink = routerLinks[11]; // Contact link directive
+                expect(routerLinks[2].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp25.baseRoute,
+                            expectedEditionComplexOp25.graphRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.graphRoute.route]);
 
-                    expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+                expect(routerLinks[3].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexM34.baseRoute,
+                            expectedEditionComplexM34.sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionComplexM34.sheetsRoute.route]);
 
-                    searchLinkDe.triggerEventHandler('click', null);
+                expect(routerLinks[4].linkParams)
+                    .withContext(`should equal ${['/structure']}`)
+                    .toEqual(['/structure']);
 
-                    fixture.detectChanges();
+                expect(routerLinks[5].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp12.baseRoute,
+                            expectedEditionComplexOp12.sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp12.baseRoute, expectedEditionComplexOp12.sheetsRoute.route]);
 
-                    expect(searchLink.navigatedTo)
-                        .withContext(`should equal ${['/contact']}`)
-                        .toEqual(['/contact']);
-                });
+                expect(routerLinks[6].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp25.baseRoute,
+                            expectedEditionComplexOp25.sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
+
+                expect(routerLinks[7].linkParams)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexM34.baseRoute,
+                            expectedEditionComplexM34.sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionComplexM34.sheetsRoute.route]);
+
+                expect(routerLinks[8].linkParams)
+                    .withContext(`should equal ${['/edition/row-tables']}`)
+                    .toEqual(['/edition/row-tables']);
+
+                expect(routerLinks[9].linkParams)
+                    .withContext(`should equal ${['/data/search', 'fulltext']}`)
+                    .toEqual(['/data/search', 'fulltext']);
+
+                expect(routerLinks[10].linkParams)
+                    .withContext(`should equal ${['/data/search', 'extended']}`)
+                    .toEqual(['/data/search', 'extended']);
+
+                expect(routerLinks[11].linkParams)
+                    .withContext(`should equal ${['/contact']}`)
+                    .toEqual(['/contact']);
+            });
+
+            it('... can click `sheets` link in template', () => {
+                const sheetsLinkDe = linkDes[1]; // Sheets link DebugElement
+                const sheetsLink = routerLinks[1]; // Sheets link directive
+
+                expect(sheetsLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                sheetsLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(sheetsLink.navigatedTo)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp25.baseRoute,
+                            expectedEditionComplexOp25.sheetsRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.sheetsRoute.route]);
+            });
+
+            it('... can click `graph` link in template', () => {
+                const graphLinkDe = linkDes[2]; // Gaph link DebugElement
+                const graphLink = routerLinks[2]; // Graph link directive
+
+                expect(graphLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                graphLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(graphLink.navigatedTo)
+                    .withContext(
+                        `should equal ${[
+                            expectedEditionComplexOp25.baseRoute,
+                            expectedEditionComplexOp25.graphRoute.route,
+                        ]}`
+                    )
+                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionComplexOp25.graphRoute.route]);
+            });
+
+            it('... can click `structure` link in template', () => {
+                const structureLinkDe = linkDes[4]; // Structure link DebugElement
+                const structureLink = routerLinks[4]; // Structure link directive
+
+                expect(structureLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                structureLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(structureLink.navigatedTo)
+                    .withContext(`should equal ${['/structure']}`)
+                    .toEqual(['/structure']);
+            });
+
+            it('... can click `row tables` link in template', () => {
+                const rowTablesLinkDe = linkDes[8]; // RowTables link DebugElement
+                const rowTablesLink = routerLinks[8]; // RowTables link directive
+
+                expect(rowTablesLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                rowTablesLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(rowTablesLink.navigatedTo)
+                    .withContext(`should equal ${['/edition/row-tables']}`)
+                    .toEqual(['/edition/row-tables']);
+            });
+
+            it('... can click `fulltext search` link in template', () => {
+                const searchLinkDe = linkDes[9]; // Fulltext search link DebugElement
+                const searchLink = routerLinks[9]; // Fulltext search link directive
+
+                expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                searchLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(searchLink.navigatedTo)
+                    .withContext(`should equal ${['/data/search', 'fulltext']}`)
+                    .toEqual(['/data/search', 'fulltext']);
+            });
+
+            it('... can click `extended search` link in template', () => {
+                const searchLinkDe = linkDes[10]; // Extended search link DebugElement
+                const searchLink = routerLinks[10]; // Extended search link directive
+
+                expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                searchLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(searchLink.navigatedTo)
+                    .withContext(`should equal ${['/data/search', 'extended']}`)
+                    .toEqual(['/data/search', 'extended']);
+            });
+
+            it('... can click `contact` link in template', () => {
+                const searchLinkDe = linkDes[11]; // Contact link DebugElement
+                const searchLink = routerLinks[11]; // Contact link directive
+
+                expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+
+                searchLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(searchLink.navigatedTo)
+                    .withContext(`should equal ${['/contact']}`)
+                    .toEqual(['/contact']);
             });
         });
     });
