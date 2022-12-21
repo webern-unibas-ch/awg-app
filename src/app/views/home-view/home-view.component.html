@@ -52,15 +52,22 @@
     <p>
         Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über diese
         Webapplikation präsentiert und über das Software-Framework
-        <a href="https://dsp.dasch.swiss/">DaSCH Service Platform (DSP)</a>/<a href="https://www.salsah.org">SALSAH</a>
+        <a id="dsp-link" href="{{ pageMetaData?.daschUrl + 'dsp-app' }}">DaSCH Service Platform (DSP)</a>/<a
+            id="salsah-link"
+            href="{{ pageMetaData?.salsahUrl }}"
+            >SALSAH</a
+        >
         des
-        <a href="https://dhlab.philhist.unibas.ch">Digital Humanities Lab</a>
+        <a id="dhlab-link" href="{{ pageMetaData?.dhlabUrl }}">Digital Humanities Lab</a>
         der Universität Basel aufbereitet. Zudem werden die Datenbestände durch das
-        <a href="https://www.dasch.swiss">Swiss National Data & Service Center for the Humanities (DaSCH)</a>
+        <a id="dasch-link" href="{{ pageMetaData?.daschUrl }}"
+            >Swiss National Data & Service Center for the Humanities (DaSCH)</a
+        >
         zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit der Daten gemäss
         FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren Metadaten und den langfristigen
         Betrieb der technischen Infrastruktur (vgl.
-        <a href="https://www.dasch.swiss/consulting">https://www.dasch.swiss/consulting</a>).
+        <a id="dasch-mission-link" href="{{ pageMetaData?.daschUrl + 'visionandmission' }}">Mission Statement DaSCH</a
+        >).
     </p>
     <p>
         Der Protoyp simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von
@@ -87,9 +94,9 @@
             >prospektiven Simulation (PDF)</a
         >
         vom 31. März 2015 sowie vom 29. Januar 2016. Der Programmcode ist als Open Access-Projekt frei zugänglich auf
-        <a href="https://github.com/webern-unibas-ch/awg-app">GitHub</a>
+        <a id="github-link" href="{{ pageMetaData?.githubUrl }}">GitHub</a>
         abgelegt und vollumfänglich
-        <a href="https://edition.anton-webern.ch/compodoc/index.html">dokumentiert</a>
+        <a id="compodoc-link" href="{{ pageMetaData?.compodocUrl }}">dokumentiert</a>
         (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
     </p>
     <p>Der Prototyp und die Suche werden in ihrer Funktionalität sukzessiv erweitert.</p>
