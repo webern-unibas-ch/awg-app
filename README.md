@@ -2,8 +2,7 @@
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=red&label=angular&logo=angular)](https://github.com/angular/angular)
-![Deployment](https://github.com/webern-unibas-ch/awg-app/workflows/Deployment/badge.svg)
-![CI tests](https://github.com/webern-unibas-ch/awg-app/workflows/CI%20Tests/badge.svg)
+![CI Workflow](https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg)
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg)](https://codecov.io/gh/webern-unibas-ch/awg-app)
 [![compodoc](https://edition.anton-webern.ch/compodoc/images/coverage-badge-documentation.svg)](https://edition.anton-webern.ch/compodoc/index.html)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
