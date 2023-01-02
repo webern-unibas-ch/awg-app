@@ -401,4 +401,14 @@ describe('StorageService (DONE)', () => {
             });
         });
     });
+
+    describe('#_storageIsAvailable', () => {
+        it('... should return true if the storage is available', () => {
+            expect((storageService as any)._storageIsAvailable(expectedStorage)).toBe(true);
+        });
+
+        it('... should return false if the storage is not available', () => {
+            expect((storageService as any)._storageIsAvailable(null)).toBe(false);
+        });
+    });
 });
