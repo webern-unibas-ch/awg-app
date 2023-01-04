@@ -1,12 +1,13 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, SecurityContext } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { OpenStreetMapComponent } from './open-street-map.component';
 import { AppConfig } from '@awg-app/app.config';
+
+import { OpenStreetMapComponent } from './open-street-map.component';
 
 describe('OpenStreetMapComponent (DONE)', () => {
     let component: OpenStreetMapComponent;
@@ -61,24 +62,23 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `osmEmbedUrl` input', () => {
-            expect(component.osmEmbedUrl).toBeUndefined('should be undefined');
+            expect(component.osmEmbedUrl).toBeUndefined();
         });
 
         it('should not have `osmLinkUrl` input', () => {
-            expect(component.osmLinkUrl).toBeUndefined('should be undefined');
+            expect(component.osmLinkUrl).toBeUndefined();
         });
 
         it('should have `osmLinkLabel`', () => {
             expect(component.osmLinkLabel).toBeDefined();
-            expect(component.osmLinkLabel).toBe(expectedOsmLinkLabel, `should be ${expectedOsmLinkLabel}`);
+            expect(component.osmLinkLabel).withContext(`should be ${expectedOsmLinkLabel}`).toBe(expectedOsmLinkLabel);
         });
 
         it('should have `osmIFrameSettings`', () => {
             expect(component.osmIFrameSettings).toBeDefined();
-            expect(component.osmIFrameSettings).toEqual(
-                expectedOsmIFrameSettings,
-                `should equal ${expectedOsmIFrameSettings}`
-            );
+            expect(component.osmIFrameSettings)
+                .withContext(`should equal ${expectedOsmIFrameSettings}`)
+                .toEqual(expectedOsmIFrameSettings);
         });
 
         describe('VIEW', () => {
@@ -95,7 +95,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const mapEl = mapDes[0].nativeElement;
 
                 expect(mapEl.src).toBeDefined();
-                expect(mapEl.src).toBe('', 'should be empty string');
+                expect(mapEl.src).toBeFalsy();
             });
 
             it('... should not render the link to OSM homepage yet', () => {
@@ -103,7 +103,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const linkEl = linkDes[0].nativeElement;
 
                 expect(linkEl.href).toBeDefined();
-                expect(linkEl.href).toBe('', 'should be empty string');
+                expect(linkEl.href).toBeFalsy();
             });
         });
     });
@@ -128,8 +128,8 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const sanitizedEmbedUrl = domSanitizer.sanitize(SecurityContext.RESOURCE_URL, expectedOsmEmbedUrl);
                 // Check for the src attribute to contain the sanitized SafeResourceUrl
                 expect(mapEl.src).toBeDefined();
-                expect(mapEl.src).toBe(sanitizedEmbedUrl, `should be ${sanitizedEmbedUrl}`);
-                expect(mapEl.src).toBe(expectedUnsafeOsmEmbedUrl, `should be ${expectedUnsafeOsmEmbedUrl}`);
+                expect(mapEl.src).withContext(`should be ${sanitizedEmbedUrl}`).toBe(sanitizedEmbedUrl);
+                expect(mapEl.src).withContext(`should be ${expectedUnsafeOsmEmbedUrl}`).toBe(expectedUnsafeOsmEmbedUrl);
             });
 
             it('... should render the link to OSM homepage', () => {
@@ -140,7 +140,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const sanitizedLinkUrl = expectedOsmLinkUrl;
                 // Check for the href attribute to contain the link url
                 expect(linkEl.href).toBeDefined();
-                expect(linkEl.href).toBe(expectedOsmLinkUrl, `should be ${expectedOsmLinkUrl}`);
+                expect(linkEl.href).withContext(`should be ${expectedOsmLinkUrl}`).toBe(expectedOsmLinkUrl);
             });
         });
     });

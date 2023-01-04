@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -60,7 +60,9 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
                 expect(viewerCmp.jsonViewerHeader).toBeDefined();
-                expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have header: ${expectedHeader}`);
+                expect(viewerCmp.jsonViewerHeader)
+                    .withContext(`should have header: ${expectedHeader}`)
+                    .toBe(expectedHeader);
             });
 
             it('... should not pass down `resourceJsonRawData` to json viewer component', () => {
@@ -82,8 +84,8 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
         });
 
         it('should have `resourceJsonRawData`', () => {
-            expect(component.resourceJsonRawData).toBeDefined('should be defined');
-            expect(component.resourceJsonRawData).toEqual(expectedData, `should equal ${expectedData}`);
+            expect(component.resourceJsonRawData).toBeDefined();
+            expect(component.resourceJsonRawData).withContext(`should equal ${expectedData}`).toEqual(expectedData);
         });
 
         describe('VIEW', () => {
@@ -92,7 +94,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
                 expect(viewerCmp.jsonViewerData).toBeDefined();
-                expect(viewerCmp.jsonViewerData).toBe(expectedData, `should have data: ${expectedData}`);
+                expect(viewerCmp.jsonViewerData).withContext(`should have data: ${expectedData}`).toBe(expectedData);
             });
         });
     });

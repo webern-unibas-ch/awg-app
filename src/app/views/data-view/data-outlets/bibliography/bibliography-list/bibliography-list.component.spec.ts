@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -35,7 +35,7 @@ describe('BibliographyListComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not get bibList input', () => {
-            expect(component.bibList).toBeUndefined('should be undefined');
+            expect(component.bibList).toBeUndefined();
         });
 
         describe('VIEW', () => {

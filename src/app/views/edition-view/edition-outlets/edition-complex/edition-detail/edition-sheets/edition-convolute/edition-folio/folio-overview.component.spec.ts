@@ -4,8 +4,8 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
-import { FolioService } from './folio.service';
 import { FolioOverviewComponent } from './folio-overview.component';
+import { FolioService } from './folio.service';
 
 describe('FolioComponent', () => {
     let component: FolioOverviewComponent;
@@ -37,11 +37,11 @@ describe('FolioComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have folios input', () => {
-            expect(component.selectedConvolute).toBeUndefined('should be undefined');
+            expect(component.selectedConvolute).toBeUndefined();
         });
 
         it('should not have svg file input', () => {
-            expect(component.selectedSvgSheet).toBeUndefined('should be undefined');
+            expect(component.selectedSvgSheet).toBeUndefined();
         });
     });
 
@@ -56,11 +56,13 @@ describe('FolioComponent', () => {
         });
 
         it('should have svg file input', () => {
-            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
+            expect(component.selectedSvgSheet).toBeTruthy();
+            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
         it('should have folios input', () => {
-            expect(component.selectedConvolute).toBe(expectedConvolute);
+            expect(component.selectedConvolute).toBeTruthy();
+            expect(component.selectedConvolute).withContext(`should be ${expectedConvolute}`).toBe(expectedConvolute);
         });
     });
 });

@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
 import { HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 import { AppConfig } from '@awg-app/app.config';
 
@@ -38,7 +38,9 @@ describe('HttpCacheService (DONE)', () => {
 
     it('should have empty _cachedResponses before any call is made', () => {
         expect((httpCacheService as any)._cachedResponses).toBeTruthy();
-        expect((httpCacheService as any)._cachedResponses.size).toBe(0, 'should be 0');
+        expect((httpCacheService as any)._cachedResponses.size)
+            .withContext('should be 0')
+            .toBe(0);
     });
 
     describe('#put', () => {
@@ -50,7 +52,7 @@ describe('HttpCacheService (DONE)', () => {
             );
 
             expect(expectedCachedResponse).toBeTruthy();
-            expect(expectedCachedResponse).toEqual(expectedResponse, `should be ${expectedResponse}`);
+            expect(expectedCachedResponse).withContext(`should be ${expectedResponse}`).toEqual(expectedResponse);
         });
     });
 
@@ -59,10 +61,10 @@ describe('HttpCacheService (DONE)', () => {
             const expectedCachedResponse = (httpCacheService as any)._cachedResponses.get(
                 expectedRequest.urlWithParams
             );
-            expect(expectedCachedResponse).toBeUndefined('should be undefined');
+            expect(expectedCachedResponse).toBeUndefined();
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
-            expect(expectedGetCache).toBeNull('should be null');
+            expect(expectedGetCache).toBeNull();
         });
 
         it('... should return an HTTP response from cache if available', () => {
@@ -72,11 +74,11 @@ describe('HttpCacheService (DONE)', () => {
                 expectedRequest.urlWithParams
             );
             expect(expectedCachedResponse).toBeTruthy();
-            expect(expectedCachedResponse).toEqual(expectedResponse, `should be ${expectedResponse}`);
+            expect(expectedCachedResponse).withContext(`should be ${expectedResponse}`).toEqual(expectedResponse);
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
-            expect(expectedGetCache).toBeTruthy('should be truthy');
-            expect(expectedGetCache).toEqual(expectedResponse, `should equal ${expectedResponse}`);
+            expect(expectedGetCache).toBeTruthy();
+            expect(expectedGetCache).withContext(`should equal ${expectedResponse}`).toEqual(expectedResponse);
         });
     });
 });

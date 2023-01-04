@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientModule, HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpParams, HttpRequest } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
 import { throwError as observableThrowError } from 'rxjs';
@@ -88,12 +88,12 @@ describe('ApiService', () => {
             const expectedServiceName = 'ApiService';
 
             expect(apiService.serviceName).toBeDefined();
-            expect(apiService.serviceName).toBe(expectedServiceName);
+            expect(apiService.serviceName).withContext(`should be ${expectedServiceName}`).toBe(expectedServiceName);
         });
 
         it("... should have empty 'httpGetUrl'", () => {
             expect(apiService.httpGetUrl).toBeDefined();
-            expect(apiService.httpGetUrl).toBe('');
+            expect(apiService.httpGetUrl).toBeFalsy();
         });
     });
 
@@ -103,7 +103,7 @@ describe('ApiService', () => {
 
             httpClient.get<Data>('/foo/bar').subscribe({
                 next: data => {
-                    expect(data).toEqual(testData);
+                    expect(data).withContext(`should equal ${testData}`).toEqual(testData);
                 },
             });
 
@@ -113,7 +113,7 @@ describe('ApiService', () => {
             });
 
             // Check for GET request
-            expect(call.request.method).toEqual('GET');
+            expect(call.request.method).withContext(`should be 'GET'`).toBe('GET');
 
             // Respond with mocked data
             call.flush(testData);
@@ -133,9 +133,9 @@ describe('ApiService', () => {
                     `GET to ${expectedUrl}`
                 );
 
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.method).withContext(`should be 'GET'`).toBe('GET');
+                expect(call.request.responseType).withContext(`should be 'json'`).toBe('json');
+                expect(call.request.url).withContext(`should be ${expectedUrl}`).toEqual(expectedUrl);
             }));
 
             it('... should apply an empty param object for HTTP GET if none is provided', waitForAsync(() => {
@@ -152,11 +152,11 @@ describe('ApiService', () => {
                     `GET to ${expectedUrl} without params`
                 );
 
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.method).withContext(`should be 'GET'`).toBe('GET');
+                expect(call.request.responseType).withContext(`should be 'json'`).toBe('json');
+                expect(call.request.url).withContext(`should be ${expectedUrl}`).toEqual(expectedUrl);
                 expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).toBe(0, 'should be 0');
+                expect(call.request.params.keys().length).withContext('should be 0').toBe(0);
             }));
 
             it('... should apply provided params for HTTP GET', waitForAsync(() => {
@@ -175,16 +175,17 @@ describe('ApiService', () => {
                     `GET to ${expectedUrl} with 'searchtype=fulltext' and 'nrows=10'`
                 );
 
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.method).withContext(`should be 'GET'`).toBe('GET');
+                expect(call.request.responseType).withContext(`should be 'json'`).toBe('json');
+                expect(call.request.url).withContext(`should be ${expectedUrl}`).toEqual(expectedUrl);
                 expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).toBe(2, 'should be 2');
-                expect(call.request.params.get('searchtype')).toBe(
-                    expectedSearchType,
-                    `should be ${expectedSearchType}`
-                );
-                expect(call.request.params.get('show_nrows')).toBe(expectedNRows, `should be ${expectedNRows}`);
+                expect(call.request.params.keys().length).withContext('should be 2').toBe(2);
+                expect(call.request.params.get('searchtype'))
+                    .withContext(`should be ${expectedSearchType}`)
+                    .toBe(expectedSearchType);
+                expect(call.request.params.get('show_nrows'))
+                    .withContext(`should be ${expectedNRows}`)
+                    .toBe(expectedNRows);
             }));
         });
 
@@ -197,9 +198,15 @@ describe('ApiService', () => {
                     apiService.getApiResponse(ApiServiceResult, queryPath, queryHttpParams).subscribe({
                         next: (res: ApiServiceResult) => {
                             expect(res).toBeTruthy();
-                            expect(res.status).toEqual(expectedApiServiceResult.status);
-                            expect(res.statusText).toEqual(expectedApiServiceResult.statusText);
-                            expect(res.url).toEqual(expectedApiServiceResult.url);
+                            expect(res.status)
+                                .withContext(`should equal ${expectedApiServiceResult.status}`)
+                                .toEqual(expectedApiServiceResult.status);
+                            expect(res.statusText)
+                                .withContext(`should equal ${expectedApiServiceResult.statusText}`)
+                                .toEqual(expectedApiServiceResult.statusText);
+                            expect(res.url)
+                                .withContext(`should equal ${expectedApiServiceResult.url}`)
+                                .toEqual(expectedApiServiceResult.url);
                             expect(res.body).toBeUndefined();
                         },
                     });
@@ -221,7 +228,9 @@ describe('ApiService', () => {
                     apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe({
                         next: (res: UserDataJson) => {
                             expect(res).toBeTruthy();
-                            expect(res).toEqual(expectedJsonResponse);
+                            expect(res)
+                                .withContext(`should equal ${expectedJsonResponse}`)
+                                .toEqual(expectedJsonResponse);
                         },
                     });
 

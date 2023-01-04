@@ -296,7 +296,7 @@ describe('ContactViewComponent (DONE)', () => {
         it('should have `today`', () => {
             expectSpyCall(dateSpy, 1);
             expect(component.today).toBeDefined();
-            expect(component.today).toBe(expectedToday, `should be ${expectedToday}`);
+            expect(component.today).withContext(`should be ${expectedToday}`).toBe(expectedToday);
         });
 
         describe('VIEW', () => {

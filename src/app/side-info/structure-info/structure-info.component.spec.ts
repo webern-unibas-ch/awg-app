@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { METADATA } from '@awg-core/core-data';
-import { MetaStructure, MetaSectionTypes } from '@awg-core/core-models';
+import { MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { StructureInfoComponent } from './structure-info.component';
@@ -60,10 +60,9 @@ describe('StructureInfoComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should have structureInfoHeader', () => {
             expect(component.structureInfoHeader).toBeDefined();
-            expect(component.structureInfoHeader).toBe(
-                expectedStructureInfoHeader,
-                `should be ${expectedStructureInfoHeader}`
-            );
+            expect(component.structureInfoHeader)
+                .withContext(`should be ${expectedStructureInfoHeader}`)
+                .toBe(expectedStructureInfoHeader);
         });
 
         describe('#provideMetaData', () => {
@@ -72,7 +71,7 @@ describe('StructureInfoComponent (DONE)', () => {
             });
 
             it('... should not have structureMetaData', () => {
-                expect(component.structureMetaData).toBeUndefined('should be undefined');
+                expect(component.structureMetaData).toBeUndefined();
             });
         });
 
@@ -92,7 +91,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).toBe('', 'should be empty string');
+                expect(headerEl.textContent).toBeFalsy();
             });
 
             it('... should not render author information yet', () => {
@@ -100,16 +99,16 @@ describe('StructureInfoComponent (DONE)', () => {
                 const authorEl = authorDes[0].nativeElement;
 
                 expect(authorEl).toBeDefined();
-                expect(authorEl.href).toBe('', 'should be empty string');
-                expect(authorEl.innerHTML).toBe('', 'should be empty string');
+                expect(authorEl.href).toBeFalsy();
+                expect(authorEl.innerHTML).toBeFalsy();
             });
 
             it('... should not render last modification date yet', () => {
                 const dateDes = getAndExpectDebugElementByCss(compDe, 'span#awg-structure-info-lastmodified', 1, 1);
                 const dateEl = dateDes[0].nativeElement;
 
-                expect(dateEl.textContent).toBeDefined();
-                expect(dateEl.textContent).toBe('', 'should be empty string');
+                expect(dateEl).toBeDefined();
+                expect(dateEl.textContent).toBeFalsy();
             });
         });
     });
@@ -130,7 +129,9 @@ describe('StructureInfoComponent (DONE)', () => {
 
             it('... should return structureMetaData', () => {
                 expect(component.structureMetaData).toBeDefined();
-                expect(component.structureMetaData).toBe(expectedStructureMetaData);
+                expect(component.structureMetaData)
+                    .withContext(`should be ${expectedStructureMetaData}`)
+                    .toBe(expectedStructureMetaData);
             });
         });
 
@@ -140,10 +141,9 @@ describe('StructureInfoComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).toBe(
-                    expectedStructureInfoHeader,
-                    `should be ${expectedStructureInfoHeader}`
-                );
+                expect(headerEl.textContent)
+                    .withContext(`should be ${expectedStructureInfoHeader}`)
+                    .toBe(expectedStructureInfoHeader);
             });
 
             it('should render author information', () => {
@@ -153,8 +153,8 @@ describe('StructureInfoComponent (DONE)', () => {
                 const authorEl = authorDes[0].nativeElement;
 
                 expect(authorEl).toBeDefined();
-                expect(authorEl.href).toBe(expectedAuthor.homepage, `should be ${expectedAuthor.homepage}`);
-                expect(authorEl.innerHTML).toBe(expectedAuthor.name, `should be ${expectedAuthor.name}`);
+                expect(authorEl.href).withContext(`should be ${expectedAuthor.homepage}`).toBe(expectedAuthor.homepage);
+                expect(authorEl.innerHTML).withContext(`should be ${expectedAuthor.name}`).toBe(expectedAuthor.name);
             });
 
             it('should render last modification date', () => {
@@ -164,7 +164,9 @@ describe('StructureInfoComponent (DONE)', () => {
                 const lastmodEl = lastmodDes[0].nativeElement;
 
                 expect(lastmodEl.textContent).toBeDefined();
-                expect(lastmodEl.textContent).toContain(expectedLastModified, `should contain ${expectedLastModified}`);
+                expect(lastmodEl.textContent)
+                    .withContext(`should contain ${expectedLastModified}`)
+                    .toContain(expectedLastModified);
             });
         });
     });

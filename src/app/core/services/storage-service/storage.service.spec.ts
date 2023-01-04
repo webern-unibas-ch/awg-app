@@ -124,7 +124,7 @@ describe('StorageService (DONE)', () => {
         });
 
         it('... should clear mock storage after each run', () => {
-            expect(mockStorage.getItem('testkey')).toBeNull('should be undefined');
+            expect(mockStorage.getItem('testkey')).toBeNull();
         });
     });
 

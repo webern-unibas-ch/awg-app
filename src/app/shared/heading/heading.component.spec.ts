@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -72,10 +72,10 @@ describe('HeadingComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(divEl.id).toBeDefined();
-                expect(divEl.id).toContain(expectedId, `should contain ${expectedId}`);
+                expect(divEl.id).withContext(`should contain ${expectedId}`).toContain(expectedId);
 
                 expect(headerEl.textContent).toBeDefined();
-                expect(headerEl.textContent).toContain(expectedTitle, `should contain ${expectedTitle}`);
+                expect(headerEl.textContent).withContext(`should contain ${expectedTitle}`).toContain(expectedTitle);
             });
         });
     });
