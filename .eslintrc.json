@@ -21,7 +21,13 @@
                 "project": ["tsconfig.eslint.json"],
                 "createDefaultProgram": true
             },
-            "plugins": ["eslint-plugin-import", "eslint-plugin-jsdoc", "@typescript-eslint", "@angular-eslint"],
+            "plugins": [
+                "deprecation",
+                "eslint-plugin-import",
+                "eslint-plugin-jsdoc",
+                "@typescript-eslint",
+                "@angular-eslint"
+            ],
             "extends": ["prettier"],
             "rules": {
                 "@angular-eslint/component-class-suffix": "error",
@@ -118,7 +124,7 @@
                 ],
                 "constructor-super": "error",
                 "curly": "error",
-                "object-curly-spacing": "off", // Checked by prettier
+                "deprecation/deprecation": "warn",
                 "eol-last": "off", // Checked by prettier
                 "eqeqeq": ["error", "smart"],
                 "guard-for-in": "error",
@@ -173,6 +179,7 @@
                 "no-underscore-dangle": "off",
                 "no-unused-labels": "error",
                 "no-var": "error",
+                "object-curly-spacing": "off", // Checked by prettier
                 "prefer-const": "error",
                 "radix": "error",
                 "spaced-comment": [

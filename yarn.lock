@@ -2506,6 +2506,13 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
+"@typescript-eslint/experimental-utils@^5.0.0":
+  version "5.48.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-5.48.0.tgz#10c0871a1dfee734fbcd49399b6a07ce38bdb61c"
+  integrity sha512-ehoJFf67UViwnYuz6JUneZ8qxgDk0qEWKiTLmpE8WpPEr15e2cSLtp0E6Zicx2DaYdwctUA0uLRTbLckxQpurg==
+  dependencies:
+    "@typescript-eslint/utils" "5.48.0"
+
 "@typescript-eslint/parser@^5.48.0":
   version "5.48.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-5.48.0.tgz#02803355b23884a83e543755349809a50b7ed9ba"
@@ -5853,6 +5860,15 @@ eslint-plugin-angular@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-angular/-/eslint-plugin-angular-4.1.0.tgz#53d03d829edff50d517e81f862782e3efa591953"
   integrity sha512-dacledMPxVOZA3T0xcYFuvrMCy5dHxg0ZTMWUaHqSBQef3/XLyXJ9s1LNj0NikJ/dYx6OhqlnnNpKmrJhEUB+Q==
+
+eslint-plugin-deprecation@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-deprecation/-/eslint-plugin-deprecation-1.3.3.tgz#065b5d36ff220afe139f2b19af57454a13464731"
+  integrity sha512-Bbkv6ZN2cCthVXz/oZKPwsSY5S/CbgTLRG4Q2s2gpPpgNsT0uJ0dB5oLNiWzFYY8AgKX4ULxXFG1l/rDav9QFA==
+  dependencies:
+    "@typescript-eslint/experimental-utils" "^5.0.0"
+    tslib "^2.3.1"
+    tsutils "^3.21.0"
 
 eslint-plugin-import@^2.26.0:
   version "2.26.0"
@@ -10966,7 +10982,7 @@ tsconfig-paths@^3.14.1:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.4.1, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.4.1:
+tslib@2.4.1, tslib@^2.1.0, tslib@^2.3.0, tslib@^2.3.1, tslib@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.1.tgz#0d0bfbaac2880b91e22df0768e55be9753a5b17e"
   integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
