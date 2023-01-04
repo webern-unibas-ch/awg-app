@@ -9,7 +9,7 @@ import {
     Output,
     SimpleChanges,
 } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
@@ -57,7 +57,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      *
      * It keeps the reactive form group: searchForm.
      */
-    searchForm: UntypedFormGroup;
+    searchForm: FormGroup;
 
     /**
      * Public variable: searchFormString.
@@ -84,7 +84,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      *
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private formBuilder: UntypedFormBuilder) {}
+    constructor(private formBuilder: FormBuilder) {}
 
     /**
      * Getter for the search value control value.
@@ -100,7 +100,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * when initializing the component.
      */
     ngOnInit() {
-        this.createFulltextSearchForm();
+        this.createFulltextSearchFormGroup();
         this.listenToUserInputChange();
     }
 
@@ -112,22 +112,22 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     ngOnChanges(changes: SimpleChanges) {
         if (
             changes['searchValue'] &&
-            !changes['searchValue'].isFirstChange() &&
-            typeof changes['searchValue'].currentValue === 'string'
+            typeof changes['searchValue'].currentValue === 'string' &&
+            !changes['searchValue'].isFirstChange()
         ) {
             this.setSearchvalFromInput();
         }
     }
 
     /**
-     * Public method: createFulltextSearchForm.
+     * Public method: createFulltextSearchFormGroup.
      *
-     * It creates the search form using the reactive FormBuilder
+     * It creates the search form group using the reactive FormBuilder
      * with a formGroup and a search value control.
      *
      * @returns {void} Creates the search form.
      */
-    createFulltextSearchForm(): void {
+    createFulltextSearchFormGroup(): void {
         this.searchForm = this.formBuilder.group({
             searchvalControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
@@ -136,12 +136,13 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     /**
      * Public method: isFulltextSearchInputInvalid.
      *
-     * It checks if the searchval control is missing or has any errors and returns a boolean flag.
+     * It checks if the searchval control has a missing input, any errors, or is too short,
+     * and returns a boolean flag.
      *
      * @returns {boolean} The result of the check.
      */
     isFulltextSearchInputInvalid(): boolean {
-        return (
+        return !!(
             this.searchvalControl.hasError('required') ||
             (this.searchvalControl.errors && this.searchvalControl.errors['minlength'])
         );
@@ -195,6 +196,9 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * @returns {void} Emits the search query.
      */
     onSearch(query: string): void {
+        if (!query) {
+            return;
+        }
         if (this.searchForm.valid) {
             this.searchRequest.emit(query);
         }
