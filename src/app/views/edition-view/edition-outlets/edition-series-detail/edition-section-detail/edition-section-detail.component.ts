@@ -2,12 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { delay, Subject } from 'rxjs';
-
-import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
-import { EditionService } from '@awg-views/edition-view/services';
 import { takeUntil } from 'rxjs/operators';
-import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-constants';
+
 import { UtilityService } from '@awg-core/services';
+import {
+    EditionConstants,
+    EditionRoute,
+    EditionSectionRoute,
+    EditionSeriesRoute,
+} from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSectionDetail component.
@@ -42,12 +46,6 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      */
     editionRoute: EditionRoute = EditionConstants.EDITION;
 
-    /**
-     * Public variable: complexRoute.
-     *
-     * It keeps the base complex route.
-     */
-    complexRoute: EditionRoute = EditionConstants.SERIES;
     /**
      * Private variable: _destroyed$.
      *
