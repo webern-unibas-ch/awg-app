@@ -27,12 +27,12 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the Analytics id ('UA-XXXXXXX-Y').
+     * Getter for the Analytics id ('G-XXXXXXXXXX').
      *
      * @returns {string}
      */
     public static get ANALYTICS_ID(): string {
-        return 'UA-64657372-2';
+        return 'G-8KDNK9HM70';
     }
 
     /**

@@ -29,7 +29,7 @@ describe('AnalyticsService (DONE)', () => {
     let consoleSpy: Spy;
 
     const expectedAnalyticsEndpoint = 'https://example.com/endpoint/';
-    const expectedAnalyticsId = 'UA-XXXXX-Y';
+    const expectedAnalyticsId = 'G-XXXXXXXXXX';
     const expectedSendPageView = false;
 
     const expectedPage = '/test';
@@ -218,7 +218,7 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView },
+                { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
 
             // Init analytics
@@ -237,13 +237,13 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView },
+                { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
             const otherAnalyticsEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: otherPage, anonymize_ip: true, send_page_view: expectedSendPageView },
+                { page_path: otherPage, send_page_view: expectedSendPageView },
             ];
 
             // Init analytics
