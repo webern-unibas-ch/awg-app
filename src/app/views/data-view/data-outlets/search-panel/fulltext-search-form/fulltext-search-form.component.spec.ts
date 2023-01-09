@@ -82,7 +82,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
 
         it('... should have `faSearch` icon', () => {
             expect(component.faSearch).toBeTruthy();
-            expect(component.faSearch).withContext(`should equal ${expectedSearchIcon}`).toBe(expectedSearchIcon);
+            expect(component.faSearch).withContext(`should equal ${expectedSearchIcon}`).toEqual(expectedSearchIcon);
         });
 
         it('... should have `searchFormStrings`', () => {

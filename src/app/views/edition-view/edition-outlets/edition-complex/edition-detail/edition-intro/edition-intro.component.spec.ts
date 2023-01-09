@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -22,7 +22,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionSvgSheet, EditionComplex, IntroList } from '@awg-views/edition-view/models';
+import { EditionComplex, EditionSvgSheet, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionIntroComponent } from './edition-intro.component';
@@ -247,13 +247,13 @@ describe('IntroComponent (DONE)', () => {
                 const pCmp = pDes[0].nativeElement;
 
                 // Create intro placeholder
-                const htmlIntroPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const htmlIntroPlaceholderText = htmlIntroPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const strippedIntroPlaceholder = introPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                expect(pCmp.textContent).toBeTruthy();
                 expect(pCmp.textContent.trim())
-                    .withContext(`should be ${htmlIntroPlaceholderText}`)
-                    .toEqual(htmlIntroPlaceholderText);
+                    .withContext(`should be ${strippedIntroPlaceholder}`)
+                    .toEqual(strippedIntroPlaceholder);
             }));
         });
 

@@ -1,6 +1,6 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
 import { EMPTY, of as observableOf } from 'rxjs';
@@ -11,25 +11,25 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_ROW_TABLES_DATA, EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import {
+    EditionComplex,
     EditionConstants,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionComplex,
-    FolioConvoluteList,
     FolioConvolute,
-    GraphList,
+    FolioConvoluteList,
     Graph,
-    IntroList,
+    GraphList,
     Intro,
+    IntroList,
     Source,
-    SourceList,
     SourceDescription,
     SourceDescriptionList,
     SourceEvaluation,
     SourceEvaluationList,
+    SourceList,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -100,7 +100,7 @@ describe('EditionDataService (DONE)', () => {
     });
 
     it('should have empty assetPath', () => {
-        expect((editionDataService as any)._assetPath).not.toBeTruthy();
+        expect((editionDataService as any)._assetPath).toBeFalsy();
     });
 
     describe('httpTestingController', () => {
@@ -1813,7 +1813,7 @@ describe('EditionDataService (DONE)', () => {
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
                             expect(res).toBeTruthy();
-                            expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
+                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
