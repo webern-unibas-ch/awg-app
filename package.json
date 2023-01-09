@@ -74,7 +74,7 @@
         "sourcemap": "yarn pre_sourcemap && source-map-explorer dist/awg-app/*.js",
         "-- DEPLOY --": "",
         "pre-release": "standard-version -a",
-        "update-appversion": "cross-var ./version.sh $npm_package_version $npm_package_homepage",
+        "update-appversion": "sh ./version.sh",
         "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\""
     },
     "dependencies": {
@@ -131,7 +131,6 @@
         "@typescript-eslint/parser": "^5.48.0",
         "angular-cli-ghpages": "^1.0.5",
         "conventional-recommended-bump": "^6.1.0",
-        "cross-var": "^1.1.0",
         "eslint": "^8.31.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-angular": "^4.1.0",
