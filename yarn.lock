@@ -1727,10 +1727,10 @@
   resolved "https://registry.yarnpkg.com/@foliojs-fork/restructure/-/restructure-2.0.2.tgz#73759aba2aff1da87b7c4554e6839c70d43c92b4"
   integrity sha512-59SgoZ3EXbkfSX7b63tsou/SDGzwUEK6MuB5sKqgVK1/XE0fxmpsOb9DQI8LXW3KfGnAjImCGhhEb7uPPAUVNA==
 
-"@fortawesome/angular-fontawesome@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.12.0.tgz#510f12a4cf762684c274e20c506d6bbea5a8b3bd"
-  integrity sha512-5d0Kei7mDcaoeik4mqBXa0bP0RnVwVic80vjV3Z4LOHgIKfc6n3p3YJi6aAEUd7ZDIErhH+y4zAjbY+t1pCwSQ==
+"@fortawesome/angular-fontawesome@^0.12.1":
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/angular-fontawesome/-/angular-fontawesome-0.12.1.tgz#00f0d43563701f2253741b556292ada42a0374b0"
+  integrity sha512-vGGUfmWhsCtC+wUhnLXPeWBod33XKMFERwvD21LTbVBOCwUDUfwcS9nqfTmrULcpFl/bn20REZH/1vSreWd3ZA==
   dependencies:
     tslib "^2.4.1"
 
