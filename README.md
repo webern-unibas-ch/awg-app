@@ -9,7 +9,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg)](https://doi.org/10.5281/zenodo.4717678)
 
-A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
+A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
 
 ## Contributors ✨
 
