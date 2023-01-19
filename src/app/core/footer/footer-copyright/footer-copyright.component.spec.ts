@@ -41,7 +41,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have pageMetaData', () => {
-            expect(component.pageMetaData).toBeUndefined('should be undefined');
+            expect(component.pageMetaData).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -54,7 +54,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const copyEl = copyDes[0].nativeElement;
 
                 expect(copyEl.textContent).toBeDefined();
-                expect(copyEl.textContent).toBe('', 'should be empty string');
+                expect(copyEl.textContent).toBeFalsy();
             });
 
             it('... should not render project name yet', () => {
@@ -62,7 +62,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const nameEl = nameDes[0].nativeElement;
 
                 expect(nameEl.textContent).toBeDefined();
-                expect(nameEl.textContent).toBe('', 'should be empty string');
+                expect(nameEl.textContent).toBeFalsy();
             });
         });
     });
@@ -84,11 +84,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
                 const copyEl = copyDes[0].nativeElement;
 
-                expect(copyEl.textContent).toBeDefined();
-                expect(copyEl.textContent).toContain(
-                    expectedYearStart + '–' + expectedYearCurrent,
-                    `should contain ${expectedYearStart}-${expectedYearCurrent}`
-                );
+                expect(copyEl.textContent).toBeTruthy();
+                expect(copyEl.textContent)
+                    .withContext(`should contain ${expectedYearStart}-${expectedYearCurrent}`)
+                    .toContain(expectedYearStart + '–' + expectedYearCurrent);
             });
 
             it('should render project name', () => {
@@ -97,8 +96,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
                 const nameEl = nameDes[0].nativeElement;
 
-                expect(nameEl.textContent).toBeDefined();
-                expect(nameEl.textContent).toContain(expectedProjectName, `should contain ${expectedProjectName}`);
+                expect(nameEl.textContent).toBeTruthy();
+                expect(nameEl.textContent)
+                    .withContext(`should contain ${expectedProjectName}`)
+                    .toContain(expectedProjectName);
             });
         });
     });

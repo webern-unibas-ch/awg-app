@@ -127,10 +127,10 @@ describe('StructureViewComponent (DONE)', () => {
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
-                expect(navArgs).toBeDefined('should have navArgs');
-                expect(navArgs[0]).toBeDefined('should have navCommand');
-                expect(outletRoute).toBeDefined('should have outletRoute');
-                expect(outletRoute).toBe(expectedRoute, `should be: ${expectedRoute}`);
+                expect(navArgs).toBeDefined();
+                expect(navArgs[0]).toBeDefined();
+                expect(outletRoute).toBeDefined();
+                expect(outletRoute).withContext(`should be: ${expectedRoute}`).toBe(expectedRoute);
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
@@ -140,9 +140,9 @@ describe('StructureViewComponent (DONE)', () => {
                 const navArgs = navigationSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
-                expect(navExtras).toBeDefined('should have navExtras');
-                expect(navExtras.preserveFragment).toBeDefined('should have preserveFragment extra');
-                expect(navExtras.preserveFragment).toBe(true, 'should be `preserveFragment:true`');
+                expect(navExtras).toBeDefined();
+                expect(navExtras.preserveFragment).toBeDefined();
+                expect(navExtras.preserveFragment).withContext('should be `preserveFragment:true`').toBe(true);
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
@@ -154,10 +154,10 @@ describe('StructureViewComponent (DONE)', () => {
                 const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(headingCmp.title).toBeTruthy();
-                expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);
+                expect(headingCmp.title).withContext(`should have title: ${expectedTitle}`).toBe(expectedTitle);
 
                 expect(headingCmp.id).toBeTruthy();
-                expect(headingCmp.id).toBe(expectedId, `should have title: ${expectedId}`);
+                expect(headingCmp.id).withContext(`should have title: ${expectedId}`).toBe(expectedId);
             });
         });
     });

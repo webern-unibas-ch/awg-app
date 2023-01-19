@@ -35,7 +35,7 @@ describe('BibliographyListComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not get bibList input', () => {
-            expect(component.bibList).toBeUndefined('should be undefined');
+            expect(component.bibList).toBeUndefined();
         });
 
         describe('VIEW', () => {

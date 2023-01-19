@@ -252,13 +252,13 @@ describe('IntroComponent (DONE)', () => {
                 const pCmp = pDes[0].nativeElement;
 
                 // Create intro placeholder
-                const htmlIntroPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const htmlIntroPlaceholderText = htmlIntroPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
+                const introPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const strippedIntroPlaceholder = introPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                expect(pCmp.textContent).toBeTruthy();
                 expect(pCmp.textContent.trim())
-                    .withContext(`should be ${htmlIntroPlaceholderText}`)
-                    .toEqual(htmlIntroPlaceholderText);
+                    .withContext(`should be ${strippedIntroPlaceholder}`)
+                    .toEqual(strippedIntroPlaceholder);
             }));
         });
 

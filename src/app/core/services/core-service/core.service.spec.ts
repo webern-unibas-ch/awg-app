@@ -36,7 +36,7 @@ describe('CoreService (DONE)', () => {
     describe('#getMetaData', () => {
         it('... should return METADATA', () => {
             // Call service function
-            expect(coreService.getMetaData()).toBe(expectedMetaData, `should be ${expectedMetaData}`);
+            expect(coreService.getMetaData()).withContext(`should be ${expectedMetaData}`).toBe(expectedMetaData);
         });
     });
 

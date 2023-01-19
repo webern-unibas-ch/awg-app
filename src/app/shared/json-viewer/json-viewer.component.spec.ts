@@ -27,33 +27,33 @@ function getNavLinks(fixture: ComponentFixture<any>): HTMLElement[] {
 function expectNavLinks(fixture: ComponentFixture<any>, expected: boolean[], shouldHaveNavItemClass = false) {
     const links = getNavLinks(fixture);
 
-    expect(links.length).toBe(expected.length, `expected to find ${expected.length} links, but found ${links.length}`);
+    expect(links.length)
+        .withContext(`expected to find ${expected.length} links, but found ${links.length}`)
+        .toBe(expected.length);
 
     links.forEach(({ classList }, i) => {
-        expect(classList.contains('nav-link')).toBe(true, `link should have 'nav-link' class`);
-        expect(classList.contains('active')).toBe(
-            expected[i],
-            `link should ${expected[i] ? '' : 'not'} have 'active' class`
-        );
-        expect(classList.contains('nav-item')).toBe(
-            shouldHaveNavItemClass,
-            `link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`
-        );
+        expect(classList.contains('nav-link')).withContext(`link should have 'nav-link' class`).toBe(true);
+
+        expect(classList.contains('active'))
+            .withContext(`link should ${expected[i] ? '' : 'not'} have 'active' class`)
+            .toBe(expected[i]);
+
+        expect(classList.contains('nav-item'))
+            .withContext(`link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`)
+            .toBe(shouldHaveNavItemClass);
     });
 }
 
 function expectNavContents(fixture: ComponentFixture<any>, expected: string[], activeIndex = 0) {
     const contents = getNavContents(fixture);
-    expect(contents.length).toBe(
-        expected.length,
-        `expected to find ${expected.length} contents, but found ${contents.length}`
-    );
+    expect(contents.length)
+        .withContext(`expected to find ${expected.length} contents, but found ${contents.length}`)
+        .toBe(expected.length);
 
     for (let i = 0; i < expected.length; ++i) {
-        expect(contents[i].classList.contains('active')).toBe(
-            i === activeIndex,
-            `content should ${i === activeIndex ? '' : 'not'} have 'active' class`
-        );
+        expect(contents[i].classList.contains('active'))
+            .withContext(`content should ${i === activeIndex ? '' : 'not'} have 'active' class`)
+            .toBe(i === activeIndex);
     }
 }
 
@@ -132,23 +132,23 @@ describe('JsonViewerComponent (DONE)', () => {
                 const navLinkDes = getNavLinks(fixture);
 
                 expect(navLinkDes).toBeTruthy();
-                expect(navLinkDes.length).toBe(2, 'should have 2 navLinks');
+                expect(navLinkDes.length).withContext('should have 2 navLinks').toBe(2);
             });
 
             it('... should have one Formatted and one Plain navItem and display titles', () => {
                 const navLinks = getNavLinks(fixture);
 
-                expect(navLinks[0].textContent).toBeDefined();
-                expect(navLinks[0].textContent).toMatch(/Formatted/);
+                expect(navLinks[0].textContent).toBeTruthy();
+                expect(navLinks[0].textContent).withContext(`should be 'Formatted'`).toBe('Formatted');
 
-                expect(navLinks[1].textContent).toBeDefined();
-                expect(navLinks[1].textContent).toMatch(/Plain/);
+                expect(navLinks[1].textContent).toBeTruthy();
+                expect(navLinks[1].textContent).withContext(`should be 'Plain'`).toBe('Plain');
             });
 
             it('... should not render navItem content yet', () => {
                 const navContent = getNavContents(fixture);
 
-                expect(navContent.length).toBe(0);
+                expect(navContent.length).withContext(`should be 0`).toBe(0);
             });
 
             it('... should not contain ngx-json-viewer component (stubbed)', () => {
@@ -212,7 +212,7 @@ describe('JsonViewerComponent (DONE)', () => {
                 const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerStubComponent) as NgxJsonViewerStubComponent;
 
                 expect(viewerCmp.json).toBeDefined();
-                expect(viewerCmp.json).toEqual(expectedData, `should equal: ${expectedData}`);
+                expect(viewerCmp.json).withContext(`should equal: ${expectedData}`).toEqual(expectedData);
             });
 
             it('... should render `jsonViewerData` in Plain view', async () => {
@@ -227,9 +227,9 @@ describe('JsonViewerComponent (DONE)', () => {
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
-                expect(navContent.length).toBe(1, 'should be 1');
-                expect(navContent[0].textContent).toBeDefined();
-                expect(navContent[0].textContent).toContain(pipedData, `should contain ${pipedData}`);
+                expect(navContent.length).withContext('should be 1').toBe(1);
+                expect(navContent[0].textContent).toBeTruthy();
+                expect(navContent[0].textContent).withContext(`should contain ${pipedData}`).toContain(pipedData);
             });
         });
     });

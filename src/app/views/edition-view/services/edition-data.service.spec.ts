@@ -103,7 +103,7 @@ describe('EditionDataService (DONE)', () => {
     });
 
     it('should have empty assetPath', () => {
-        expect((editionDataService as any)._assetPath).not.toBeTruthy();
+        expect((editionDataService as any)._assetPath).toBeFalsy();
     });
 
     describe('httpTestingController', () => {
@@ -1816,7 +1816,7 @@ describe('EditionDataService (DONE)', () => {
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
                             expect(res).toBeTruthy();
-                            expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
+                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
                         },
                         error: () => {
                             fail('should not call error');

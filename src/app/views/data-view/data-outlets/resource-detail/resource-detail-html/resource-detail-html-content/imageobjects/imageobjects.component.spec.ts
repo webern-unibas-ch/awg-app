@@ -78,15 +78,14 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `images` inputs', () => {
-            expect(component.images).toBeUndefined('should be undefined');
+            expect(component.images).toBeUndefined();
         });
 
         it('should have galleryOptions', () => {
-            expect(component.galleryOptions).toBeDefined('should be defined');
-            expect(component.galleryOptions).toEqual(
-                jasmine.arrayContaining(expectedGalleryOptions),
-                `should equal expectedGalleryOptions: ${expectedGalleryOptions}`
-            );
+            expect(component.galleryOptions).toBeDefined();
+            expect(component.galleryOptions)
+                .withContext(`should equal expectedGalleryOptions: ${expectedGalleryOptions}`)
+                .toEqual(jasmine.arrayContaining(expectedGalleryOptions));
         });
 
         describe('VIEW', () => {
@@ -106,8 +105,8 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         });
 
         it('should have `images` inputs', () => {
-            expect(component.images).toBeDefined('should be defined');
-            expect(component.images).toBe(expectedImages, `should be expectedImages: ${expectedImages}`);
+            expect(component.images).toBeDefined();
+            expect(component.images).withContext(`should be expectedImages: ${expectedImages}`).toBe(expectedImages);
         });
 
         describe('VIEW', () => {
@@ -124,10 +123,9 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
 
                 // Check size output
                 expect(sizeEl.textContent).toBeDefined();
-                expect(sizeEl.textContent).toBe(
-                    expectedImages.length.toString(),
-                    `should be ${expectedImages.length.toString()}`
-                );
+                expect(sizeEl.textContent)
+                    .withContext(`should be ${expectedImages.length.toString()}`)
+                    .toBe(expectedImages.length.toString());
             });
 
             it('... should contain one div.awg-image-slider with one NgxGalleryComponent', () => {
@@ -147,16 +145,14 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 const galleryCmp = galleryDes[0].injector.get(NgxGalleryComponent) as NgxGalleryComponent;
 
                 expect(galleryCmp.options).toBeDefined();
-                expect(galleryCmp.options).toEqual(
-                    expectedGalleryOptions,
-                    `should equal expectedGalleryOptions: ${expectedGalleryOptions}`
-                );
+                expect(galleryCmp.options)
+                    .withContext(`should equal expectedGalleryOptions: ${expectedGalleryOptions}`)
+                    .toEqual(expectedGalleryOptions);
 
                 expect(galleryCmp.images).toBeDefined();
-                expect(galleryCmp.images).toEqual(
-                    expectedImages,
-                    `should equal expectedGalleryImages: ${expectedImages}`
-                );
+                expect(galleryCmp.images)
+                    .withContext(`should equal expectedGalleryImages: ${expectedImages}`)
+                    .toEqual(expectedImages);
             });
         });
     });

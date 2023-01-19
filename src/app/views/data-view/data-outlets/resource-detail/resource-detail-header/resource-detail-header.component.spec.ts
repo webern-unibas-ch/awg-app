@@ -61,8 +61,8 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `header` or `resourceUrl` inputs', () => {
-            expect(component.header).toBeUndefined('should be undefined');
-            expect(component.resourceUrl).toBeUndefined('should be undefined');
+            expect(component.header).toBeUndefined();
+            expect(component.resourceUrl).toBeUndefined();
         });
 
         describe('#navigateToResource', () => {
@@ -89,7 +89,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.subtitle', 1, 1);
             });
 
-            it('... should contain span in div.title with compile html component', () => {
+            it('... should contain span in div.title with compile html component with no inner html yet', () => {
                 const titleDe = getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.title', 1, 1);
 
                 // Find DebugElements with an attached CompileHtmlComponent
@@ -97,9 +97,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 expect(htmlDes[0].name).toBe('span');
 
                 // Find anchor links of CompileHtmlComponent
-                const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 0, 0);
-
-                expect(anchorDes).toEqual([], 'should be empty (no inner html yet)');
+                getAndExpectDebugElementByCss(htmlDes[0], 'a', 0, 0);
             });
 
             it('... should contain one div.resource-link (empty yet)', () => {
@@ -107,10 +105,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const rLinkEl = rLinkDe[0].nativeElement;
 
                 expect(rLinkEl.textContent).toBeDefined();
-                expect(rLinkEl.textContent).toContain(
-                    ' API-Request: ',
-                    `should contain ' API-Request: ${expectedResourceUrl}'`
-                );
+                expect(rLinkEl.textContent).withContext(`should contain ' API-Request: '`).toContain(' API-Request: ');
             });
 
             it('... should contain one table.resource-header-table', () => {
@@ -130,11 +125,11 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
         });
 
         it('should have `header` or `resourceUrl` inputs', () => {
-            expect(component.header).toBeDefined('should be defined');
-            expect(component.header).toBe(expectedHeader);
+            expect(component.header).toBeDefined();
+            expect(component.header).withContext(`should be ${expectedHeader}`).toBe(expectedHeader);
 
-            expect(component.resourceUrl).toBeDefined('should be defined');
-            expect(component.resourceUrl).toBe(expectedResourceUrl);
+            expect(component.resourceUrl).toBeDefined();
+            expect(component.resourceUrl).withContext(`should be ${expectedResourceUrl}`).toBe(expectedResourceUrl);
         });
 
         describe('VIEW', () => {
@@ -146,10 +141,10 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const htmlEl = htmlDes[0].nativeElement;
 
                 expect(htmlDes[0].name).toBeDefined();
-                expect(htmlDes[0].name).toBe('span');
+                expect(htmlDes[0].name).withContext(`should be 'span'`).toBe('span');
 
                 expect(htmlEl.textContent).toBeDefined();
-                expect(htmlEl.textContent).toContain(expectedTitle, `should contain ${expectedTitle}`);
+                expect(htmlEl.textContent).withContext(`should contain ${expectedTitle}`).toContain(expectedTitle);
             });
 
             it('... should have 3 anchor links in compile html component span', () => {
@@ -174,31 +169,33 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const lastModEl = lastModDes[0].nativeElement;
 
                 // Check output
-                expect(tdEl.textContent).toBeDefined();
-                expect(tdEl.textContent).toContain(expectedHeader.objID, `should contain ${expectedHeader.objID}`);
+                expect(tdEl.textContent).toBeTruthy();
+                expect(tdEl.textContent)
+                    .withContext(`should contain ${expectedHeader.objID}`)
+                    .toContain(expectedHeader.objID);
 
-                expect(typeEl.textContent).toBeDefined();
-                expect(typeEl.textContent).toContain(expectedHeader.type, `should contain ${expectedHeader.type}`);
+                expect(typeEl.textContent).toBeTruthy();
+                expect(typeEl.textContent)
+                    .withContext(`should contain ${expectedHeader.type}`)
+                    .toContain(expectedHeader.type);
 
-                expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).toContain(expectedHeader.icon, `should be ${expectedHeader.icon}`);
+                expect(imgEl.src).toBeTruthy();
+                expect(imgEl.src).withContext(`should be ${expectedHeader.icon}`).toContain(expectedHeader.icon);
 
-                expect(lastModEl.textContent).toBeDefined();
-                expect(lastModEl.textContent).toContain(
-                    expectedHeader.lastmod,
-                    `should contain '${expectedHeader.lastmod}'`
-                );
+                expect(lastModEl.textContent).toBeTruthy();
+                expect(lastModEl.textContent)
+                    .withContext(`should contain '${expectedHeader.lastmod}'`)
+                    .toContain(expectedHeader.lastmod);
             });
 
             it('... should render resourceUrl in div.resource-link', () => {
                 const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.resource-link', 1, 1);
                 const rLinkEl = rLinkDe[0].nativeElement;
 
-                expect(rLinkEl.textContent).toBeDefined();
-                expect(rLinkEl.textContent).toContain(
-                    ' API-Request: ' + expectedResourceUrl,
-                    `should contain ' API-Request: ${expectedResourceUrl}'`
-                );
+                expect(rLinkEl.textContent).toBeTruthy();
+                expect(rLinkEl.textContent)
+                    .withContext(`should contain ' API-Request: ${expectedResourceUrl}'`)
+                    .toContain(' API-Request: ' + expectedResourceUrl);
             });
         });
 

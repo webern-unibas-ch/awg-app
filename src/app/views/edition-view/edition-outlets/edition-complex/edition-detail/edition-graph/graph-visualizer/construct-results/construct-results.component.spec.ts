@@ -98,15 +98,15 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have queryResult', () => {
-            expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
+            expect(component.queryResult$).toBeUndefined();
         });
 
         it('should not have defaultForceGraphHeight', () => {
-            expect(component.defaultForceGraphHeight).withContext('should be undefined').toBeUndefined();
+            expect(component.defaultForceGraphHeight).toBeUndefined();
         });
 
         it('should not have isFullscreen', () => {
-            expect(component.isFullscreen).withContext('should be undefined').toBeUndefined();
+            expect(component.isFullscreen).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -132,18 +132,20 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         it('should have `queryResult` input', () => {
-            expect(component.queryResult$).withContext('should be defined').toBeDefined();
-            expect(component.queryResult$).toEqual(expectedQueryResult$, `should equal ${expectedQueryResult$}`);
+            expect(component.queryResult$).toBeDefined();
+            expect(component.queryResult$)
+                .withContext(`should equal ${expectedQueryResult$}`)
+                .toEqual(expectedQueryResult$);
         });
 
         it('should have `defaultForceGraphHeight` input', () => {
-            expect(component.defaultForceGraphHeight).withContext('should be defined').toBeDefined();
-            expect(component.defaultForceGraphHeight).toBe(expectedHeight, `should be ${expectedHeight}`);
+            expect(component.defaultForceGraphHeight).toBeDefined();
+            expect(component.defaultForceGraphHeight).withContext(`should be ${expectedHeight}`).toBe(expectedHeight);
         });
 
         it('should have `isFullscreen` input', () => {
-            expect(component.isFullscreen).withContext('should be defined').toBeDefined();
-            expect(component.isFullscreen).withContext(`should be ${expectedHeight}`).toBe(expectedIsFullscreen);
+            expect(component.isFullscreen).toBeDefined();
+            expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -328,12 +330,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
-                expect(forceGraphCmp.queryResultTriples).withContext('should be defined').toBeDefined();
+                expect(forceGraphCmp.queryResultTriples).toBeDefined();
                 expect(forceGraphCmp.queryResultTriples)
                     .withContext(`should equal ${expectedTriples}`)
                     .toEqual(expectedTriples);
 
-                expect(forceGraphCmp.height).withContext('should be defined').toBeDefined();
+                expect(forceGraphCmp.height).toBeDefined();
                 expect(forceGraphCmp.height).withContext(`should be: ${expectedHeight}`).toBe(expectedHeight);
             });
         });

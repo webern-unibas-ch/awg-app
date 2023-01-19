@@ -1,5 +1,5 @@
 import { DebugElement, SimpleChange } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -26,13 +26,13 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
     let viewChangeRequestSpy: Spy;
     let viewHandleTrackerSpy: Spy;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
+    beforeEach(waitForAsync(() => {
+        TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbTooltip, ReactiveFormsModule],
             declarations: [ViewHandleButtonGroupComponent],
             providers: [UntypedFormBuilder],
         }).compileComponents();
-    });
+    }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ViewHandleButtonGroupComponent);
@@ -150,7 +150,7 @@ describe('ViewHandleButtonGroupComponent (DONE)', () => {
                 expectSpyCall(createFormGroupSpy, 2, ViewHandleTypes.GRID);
             });
 
-            it('... should only trigger on changes of selectedViewType if not first change', () => {
+            it('... should not trigger on changes of selectedViewType if first change', () => {
                 expectSpyCall(createFormGroupSpy, 1, ViewHandleTypes.GRAPH);
 
                 // Directly trigger ngOnChanges

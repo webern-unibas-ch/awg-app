@@ -1470,7 +1470,9 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                         it('... should have current.displayIndex === 1', () => {
                             expect(component.resourceInfoData.resources.current.displayIndex).toBeTruthy();
-                            expect(component.resourceInfoData.resources.current.displayIndex).toBe(1, 'should be 1');
+                            expect(component.resourceInfoData.resources.current.displayIndex)
+                                .withContext('should be 1')
+                                .toBe(1);
                         });
 
                         it('... should have list-group-item-danger class', () => {

@@ -130,7 +130,7 @@ jobs:
                   TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}
               with:
                   name: Release ${{ env.TAG_VERSION }}
-                  body: "A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n
+                  body: "A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Department of Musicology of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n
                     Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
                   draft: false
                   prerelease: false

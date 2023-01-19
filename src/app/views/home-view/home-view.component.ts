@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { MetaPage, MetaSectionTypes } from '@awg-app/core/core-models';
+import { CoreService } from '@awg-app/core/services';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 
@@ -20,7 +22,7 @@ export class HomeViewComponent implements OnInit {
     /**
      * Public variable: homeViewTitle.
      *
-     * It keeps the title for the heading component
+     * It keeps the title for the heading componentp
      * of the home view section.
      */
     homeViewTitle = 'Beispieleditionen ausgewählter Skizzen';
@@ -34,7 +36,14 @@ export class HomeViewComponent implements OnInit {
     homeViewId = 'awg-home-view';
 
     /**
-     * Readonly variable: EDITION_COMPLEX_M34.
+     * Public variable: pageMetaData.
+     *
+     * It keeps the page metadata for the contact view.
+     */
+    pageMetaData: MetaPage;
+
+    /**
+     * Readonly constant: EDITION_COMPLEX_M34.
      *
      * It keeps the edition complex M 34.
      */
@@ -57,11 +66,13 @@ export class HomeViewComponent implements OnInit {
     /**
      * Constructor of the HomeViewComponent.
      *
-     * It declares a private Router instance.
+     * It declares a private CoreService instance
+     * to get the metadata and a private Router instance.
      *
+     * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private router: Router) {}
+    constructor(private coreService: CoreService, private router: Router) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -89,6 +100,19 @@ export class HomeViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
+        this.provideMetaData();
+    }
+
+    /**
+     * Public method: provideMetaData.
+     *
+     * It calls the CoreService to provide
+     * the metadata for the contact view.
+     *
+     * @returns {void} Sets the pageMetaData variable.
+     */
+    provideMetaData(): void {
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
     }
 
     /**

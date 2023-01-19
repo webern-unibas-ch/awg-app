@@ -99,31 +99,43 @@ describe('ContactViewComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('should have imprint title and id', () => {
             expect(component.imprintTitle).toBeDefined();
-            expect(component.imprintTitle).toBe(expectedImprintTitle);
+            expect(component.imprintTitle).withContext(`should be ${expectedImprintTitle}`).toBe(expectedImprintTitle);
 
             expect(component.imprintId).toBeDefined();
-            expect(component.imprintId).toBe(expectedImprintId);
+            expect(component.imprintId).withContext(`should be ${expectedImprintId}`).toBe(expectedImprintId);
         });
 
         it('should have citation title and id', () => {
             expect(component.citationTitle).toBeDefined();
-            expect(component.citationTitle).toBe(expectedCitationTitle);
+            expect(component.citationTitle)
+                .withContext(`should be ${expectedCitationTitle}`)
+                .toBe(expectedCitationTitle);
 
             expect(component.citationId).toBeDefined();
-            expect(component.citationId).toBe(expectedCitationId);
+            expect(component.citationId).withContext(`should be ${expectedCitationId}`).toBe(expectedCitationId);
         });
 
         it('should have documentation title and id', () => {
             expect(component.documentationTitle).toBeDefined();
-            expect(component.documentationTitle).toBe(expectedDocumentationTitle);
+            expect(component.documentationTitle)
+                .withContext(`should be ${expectedDocumentationTitle}`)
+                .toBe(expectedDocumentationTitle);
 
             expect(component.documentationId).toBeDefined();
-            expect(component.documentationId).toBe(expectedDocumentationId);
+            expect(component.documentationId)
+                .withContext(`should be ${expectedDocumentationId}`)
+                .toBe(expectedDocumentationId);
         });
 
         it('should have dateFormat', () => {
             expect(component.dateFormat).toBeDefined();
-            expect(component.dateFormat).toBe(expectedDateFormat);
+            expect(component.dateFormat).withContext(`should be ${expectedDateFormat}`).toBe(expectedDateFormat);
+        });
+
+        it('should not have metadata nor `today`', () => {
+            expect(component.pageMetaData).toBeUndefined();
+            expect(component.contactMetaData).toBeUndefined();
+            expect(component.today).toBeUndefined();
         });
 
         describe('#routeToSidenav', () => {
@@ -136,12 +148,6 @@ describe('ContactViewComponent (DONE)', () => {
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
-        });
-
-        it('should not have metadata nor `today`', () => {
-            expect(component.pageMetaData).toBeUndefined('should be undefined');
-            expect(component.contactMetaData).toBeUndefined('should be undefined');
-            expect(component.today).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -197,15 +203,15 @@ describe('ContactViewComponent (DONE)', () => {
 
                 // Check output
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toBe('', 'should be empty string');
+                expect(versionEl.textContent).withContext('should be empty string').toBe('');
 
                 expect(releaseEl).toBeDefined();
-                expect(releaseEl.textContent).toBe('', 'should be empty string');
+                expect(releaseEl.textContent).withContext('should be empty string').toBe('');
 
                 expect(dateEl0).toBeDefined();
-                expect(dateEl0.textContent).toBe('', 'should be empty string');
+                expect(dateEl0.textContent).withContext('should be empty string').toBe('');
                 expect(dateEl1).toBeDefined();
-                expect(dateEl1.textContent).toBe('', 'should be empty string');
+                expect(dateEl1.textContent).withContext('should be empty string').toBe('');
             });
         });
     });
@@ -239,8 +245,8 @@ describe('ContactViewComponent (DONE)', () => {
 
             it('... should have triggered `router.navigate`', () => {
                 expect(navigationSpy).toHaveBeenCalled();
-                expect(navigationSpy.calls.any()).toEqual(true, 'has any calls');
-                expect(navigationSpy.calls.count()).toEqual(1, 'has been called only once');
+                expect(navigationSpy.calls.any()).withContext('has any calls').toEqual(true);
+                expect(navigationSpy.calls.count()).withContext('has been called only once').toEqual(1);
             });
 
             it('... should tell ROUTER to navigate to `contactInfo` outlet', () => {
@@ -250,10 +256,10 @@ describe('ContactViewComponent (DONE)', () => {
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
-                expect(navArgs).toBeDefined('should have navArgs');
-                expect(navArgs[0]).toBeDefined('should have navCommand');
-                expect(outletRoute).toBeDefined('should have outletRoute');
-                expect(outletRoute).toBe(expectedRoute, `should be: ${expectedRoute}`);
+                expect(navArgs).toBeDefined();
+                expect(navArgs[0]).toBeDefined();
+                expect(outletRoute).toBeDefined();
+                expect(outletRoute).withContext(`should be: ${expectedRoute}`).toBe(expectedRoute);
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
 
@@ -262,9 +268,9 @@ describe('ContactViewComponent (DONE)', () => {
                 const navArgs = navigationSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
-                expect(navExtras).toBeDefined('should have navExtras');
-                expect(navExtras.preserveFragment).toBeDefined('should have preserveFragment extra');
-                expect(navExtras.preserveFragment).toBe(true, 'should be `preserveFragment:true`');
+                expect(navExtras).toBeDefined();
+                expect(navExtras.preserveFragment).toBeDefined();
+                expect(navExtras.preserveFragment).toBeTrue();
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
@@ -276,17 +282,21 @@ describe('ContactViewComponent (DONE)', () => {
 
             it('... should return metadata', () => {
                 expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData).toBe(expectedPageMetaData);
+                expect(component.pageMetaData)
+                    .withContext(`should be: ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
 
                 expect(component.contactMetaData).toBeDefined();
-                expect(component.contactMetaData).toBe(expectedContactMetaData);
+                expect(component.contactMetaData)
+                    .withContext(`should be: ${expectedContactMetaData}`)
+                    .toBe(expectedContactMetaData);
             });
         });
 
         it('should have `today`', () => {
             expectSpyCall(dateSpy, 1);
             expect(component.today).toBeDefined();
-            expect(component.today).toBe(expectedToday, `should be ${expectedToday}`);
+            expect(component.today).withContext(`should be ${expectedToday}`).toBe(expectedToday);
         });
 
         describe('VIEW', () => {
@@ -295,25 +305,30 @@ describe('ContactViewComponent (DONE)', () => {
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeTruthy();
-                expect(headingCmps[0].title).toBe(expectedCitationTitle, `should have title: ${expectedCitationTitle}`);
+                expect(headingCmps[0].title)
+                    .withContext(`should have title: ${expectedCitationTitle}`)
+                    .toBe(expectedCitationTitle);
 
                 expect(headingCmps[0].id).toBeTruthy();
-                expect(headingCmps[0].id).toBe(expectedCitationId, `should have id: ${expectedCitationId}`);
+                expect(headingCmps[0].id).withContext(`should have id: ${expectedCitationId}`).toBe(expectedCitationId);
 
                 expect(headingCmps[1].title).toBeTruthy();
-                expect(headingCmps[1].title).toBe(
-                    expectedDocumentationTitle,
-                    `should have title: ${expectedDocumentationTitle}`
-                );
+                expect(headingCmps[1].title)
+                    .withContext(`should have title: ${expectedDocumentationTitle}`)
+                    .toBe(expectedDocumentationTitle);
 
                 expect(headingCmps[1].id).toBeTruthy();
-                expect(headingCmps[1].id).toBe(expectedDocumentationId, `should have id: ${expectedDocumentationId}`);
+                expect(headingCmps[1].id)
+                    .withContext(`should have id: ${expectedDocumentationId}`)
+                    .toBe(expectedDocumentationId);
 
                 expect(headingCmps[2].title).toBeTruthy();
-                expect(headingCmps[2].title).toBe(expectedImprintTitle, `should have title: ${expectedImprintTitle}`);
+                expect(headingCmps[2].title)
+                    .withContext(`should have title: ${expectedImprintTitle}`)
+                    .toBe(expectedImprintTitle);
 
                 expect(headingCmps[2].id).toBeTruthy();
-                expect(headingCmps[2].id).toBe(expectedImprintId, `should have id: ${expectedImprintId}`);
+                expect(headingCmps[2].id).withContext(`should have id: ${expectedImprintId}`).toBe(expectedImprintId);
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
@@ -333,21 +348,19 @@ describe('ContactViewComponent (DONE)', () => {
 
                 // Check output
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toContain(
-                    expectedPageMetaData.version,
-                    `should contain ${expectedPageMetaData.version}`
-                );
+                expect(versionEl.textContent)
+                    .withContext(`should contain ${expectedPageMetaData.version}`)
+                    .toContain(expectedPageMetaData.version);
 
                 expect(releaseEl).toBeDefined();
-                expect(releaseEl.textContent).toContain(
-                    expectedPageMetaData.versionReleaseDate,
-                    `should contain ${expectedPageMetaData.versionReleaseDate}`
-                );
+                expect(releaseEl.textContent)
+                    .withContext(`should contain ${expectedPageMetaData.versionReleaseDate}`)
+                    .toContain(expectedPageMetaData.versionReleaseDate);
 
                 expect(dateEl0).toBeDefined();
-                expect(dateEl0.textContent).toContain(pipedToday, `should contain ${pipedToday}`);
+                expect(dateEl0.textContent).withContext(`should contain ${pipedToday}`).toContain(pipedToday);
                 expect(dateEl1).toBeDefined();
-                expect(dateEl1.textContent).toContain(pipedToday, `should contain ${pipedToday}`);
+                expect(dateEl1.textContent).withContext(`should contain ${pipedToday}`).toContain(pipedToday);
             });
         });
     });

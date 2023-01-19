@@ -184,7 +184,9 @@ describe('FooterComponent (DONE)', () => {
                     ) as FooterDeclarationStubComponent;
 
                     expect(footerDeclarationCmp.pageMetaData).toBeTruthy();
-                    expect(footerDeclarationCmp.pageMetaData).toEqual(expectedPageMetaData, 'should have pageMetaData');
+                    expect(footerDeclarationCmp.pageMetaData)
+                        .withContext('should have pageMetaData')
+                        .toEqual(expectedPageMetaData);
                 });
 
                 it('... should pass down logos to footer logo components', () => {

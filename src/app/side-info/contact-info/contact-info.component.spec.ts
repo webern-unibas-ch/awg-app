@@ -113,10 +113,10 @@ describe('ContactInfoComponent (DONE)', () => {
         });
 
         it('should not have metadata nor open street map links', () => {
-            expect(component.pageMetaData).toBeUndefined('should be undefined');
-            expect(component.contactMetaData).toBeUndefined('should be undefined');
-            expect(component.osmEmbedUrl).toBeUndefined('should be undefined');
-            expect(component.osmLinkUrl).toBeUndefined('should be undefined');
+            expect(component.pageMetaData).toBeUndefined();
+            expect(component.contactMetaData).toBeUndefined();
+            expect(component.osmEmbedUrl).toBeUndefined();
+            expect(component.osmLinkUrl).toBeUndefined();
         });
 
         describe('#provideMetaData', () => {
@@ -146,7 +146,7 @@ describe('ContactInfoComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).toBe('', 'should be empty string');
+                expect(headerEl.textContent).toBeFalsy();
             });
 
             it('... should contain one address component (stubbed)', () => {
@@ -197,12 +197,16 @@ describe('ContactInfoComponent (DONE)', () => {
 
             it('... should return pageMetaData', () => {
                 expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData).toBe(expectedPageMetaData, `should be ${expectedPageMetaData}`);
+                expect(component.pageMetaData)
+                    .withContext(`should be ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
             });
 
             it('... should return contactMetaData', () => {
                 expect(component.contactMetaData).toBeDefined();
-                expect(component.contactMetaData).toBe(expectedContactMetaData, `should be ${expectedContactMetaData}`);
+                expect(component.contactMetaData)
+                    .withContext(`should be ${expectedContactMetaData}`)
+                    .toBe(expectedContactMetaData);
             });
         });
 
@@ -213,12 +217,16 @@ describe('ContactInfoComponent (DONE)', () => {
 
             it('... should return osmEmbedUrl', () => {
                 expect(component.osmEmbedUrl).toBeDefined();
-                expect(component.osmEmbedUrl).toEqual(expectedOsmEmbedUrl, `should equal ${expectedOsmEmbedUrl}`);
+                expect(component.osmEmbedUrl)
+                    .withContext(`should equal ${expectedOsmEmbedUrl}`)
+                    .toEqual(expectedOsmEmbedUrl);
             });
 
             it('... should return osmLinkUrl', () => {
                 expect(component.osmLinkUrl).toBeDefined();
-                expect(component.osmLinkUrl).toEqual(expectedOsmLinkUrl, `should equal ${expectedOsmLinkUrl}`);
+                expect(component.osmLinkUrl)
+                    .withContext(`should equal ${expectedOsmLinkUrl}`)
+                    .toEqual(expectedOsmLinkUrl);
             });
         });
 
@@ -228,7 +236,9 @@ describe('ContactInfoComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).toBe(expectedContactInfoHeader, `should be ${expectedContactInfoHeader}`);
+                expect(headerEl.textContent)
+                    .withContext(`should be ${expectedContactInfoHeader}`)
+                    .toBe(expectedContactInfoHeader);
             });
 
             it('... should pass down `pageMetaData` and `contactMetaData` to address component', () => {
@@ -236,13 +246,14 @@ describe('ContactInfoComponent (DONE)', () => {
                 const addressCmp = addressDes[0].injector.get(AddressStubComponent) as AddressStubComponent;
 
                 expect(addressCmp.pageMetaData).toBeTruthy();
-                expect(addressCmp.pageMetaData).toBe(expectedPageMetaData, `should be ${expectedPageMetaData}`);
+                expect(addressCmp.pageMetaData)
+                    .withContext(`should be ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
 
                 expect(addressCmp.contactMetaData).toBeTruthy();
-                expect(addressCmp.contactMetaData).toBe(
-                    expectedContactMetaData,
-                    `should be ${expectedContactMetaData}`
-                );
+                expect(addressCmp.contactMetaData)
+                    .withContext(`should be ${expectedContactMetaData}`)
+                    .toBe(expectedContactMetaData);
             });
 
             it('... should pass down `osmEmbedUrl` and `osmLinkUrl` to OpenStreetMap component', () => {
@@ -250,10 +261,12 @@ describe('ContactInfoComponent (DONE)', () => {
                 const osmCmp = osmDes[0].injector.get(OpenStreetMapStubComponent) as OpenStreetMapStubComponent;
 
                 expect(osmCmp.osmEmbedUrl).toBeTruthy();
-                expect(osmCmp.osmEmbedUrl).toEqual(expectedOsmEmbedUrl, `should equal ${expectedOsmEmbedUrl}`);
+                expect(osmCmp.osmEmbedUrl)
+                    .withContext(`should equal ${expectedOsmEmbedUrl}`)
+                    .toEqual(expectedOsmEmbedUrl);
 
                 expect(osmCmp.osmLinkUrl).toBeTruthy();
-                expect(osmCmp.osmLinkUrl).toEqual(expectedOsmLinkUrl, `should equal ${expectedOsmLinkUrl}`);
+                expect(osmCmp.osmLinkUrl).withContext(`should equal ${expectedOsmLinkUrl}`).toEqual(expectedOsmLinkUrl);
             });
         });
     });

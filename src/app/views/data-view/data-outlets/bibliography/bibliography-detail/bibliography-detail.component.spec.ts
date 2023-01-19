@@ -59,7 +59,7 @@ describe('BibliographyDetailComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have objId input', () => {
-            expect(component.objId).toBeUndefined('should be undefined');
+            expect(component.objId).toBeUndefined();
         });
     });
 
@@ -73,7 +73,8 @@ describe('BibliographyDetailComponent', () => {
         });
 
         it('should have objId input', () => {
-            expect(component.objId).toBe(expectedObjId);
+            expect(component.objId).toBeTruthy();
+            expect(component.objId).withContext(`should be ${expectedObjId}`).toBe(expectedObjId);
         });
     });
 });

@@ -198,15 +198,13 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const pCmp = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
-                const htmlEvaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const htmlEvaluationPlaceholderText = htmlEvaluationPlaceholder
-                    .replace(/<em>/g, '')
-                    .replace(/<\/em>/g, '');
+                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const strippedEvaluationPlaceholder = evaluationPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                expect(pCmp.textContent).toBeTruthy();
                 expect(pCmp.textContent.trim())
-                    .withContext(`should be ${htmlEvaluationPlaceholderText}`)
-                    .toEqual(htmlEvaluationPlaceholderText);
+                    .withContext(`should be ${strippedEvaluationPlaceholder}`)
+                    .toEqual(strippedEvaluationPlaceholder);
             }));
         });
 

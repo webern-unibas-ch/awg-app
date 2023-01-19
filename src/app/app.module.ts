@@ -7,10 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //
 // Main app modules
-import { AppComponent } from './app.component';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
+import { AppComponent } from './app.component';
 
 /* Routing Module */
 import { AppRoutingModule, routedAppComponents } from './app-routing.module';
