@@ -22,7 +22,7 @@ export class HomeViewComponent implements OnInit {
     /**
      * Public variable: homeViewTitle.
      *
-     * It keeps the title for the heading componentp
+     * It keeps the title for the heading component
      * of the home view section.
      */
     homeViewTitle = 'Beispieleditionen ausgewählter Skizzen';

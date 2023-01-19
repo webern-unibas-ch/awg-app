@@ -754,8 +754,8 @@ describe('HomeViewComponent (DONE)', () => {
                     .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
 
                 expect(routerLinks[8].linkParams)
-                    .withContext(`should equal ${['/edition/row-tables']}`)
-                    .toEqual(['/edition/row-tables']);
+                    .withContext(`should equal ${['/edition', 'row-tables']}`)
+                    .toEqual(['/edition', 'row-tables']);
 
                 expect(routerLinks[9].linkParams)
                     .withContext(`should equal ${['/data/search', 'fulltext']}`)
@@ -839,8 +839,8 @@ describe('HomeViewComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expect(rowTablesLink.navigatedTo)
-                    .withContext(`should equal ${['/edition/row-tables']}`)
-                    .toEqual(['/edition/row-tables']);
+                    .withContext(`should equal ${['/edition', 'row-tables']}`)
+                    .toEqual(['/edition', 'row-tables']);
             });
 
             it('... can click `fulltext search` link in template', () => {
