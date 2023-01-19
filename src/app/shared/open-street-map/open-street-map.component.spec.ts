@@ -6,7 +6,6 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { OpenStreetMapComponent } from './open-street-map.component';
 
 import { OpenStreetMapComponent } from './open-street-map.component';
 
