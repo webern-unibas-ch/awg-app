@@ -45,7 +45,7 @@ export class EDITION_TYPE_CONSTANTS {
      * The route constant for a work edition.
      */
     static readonly WORK_EDITION: EditionRouteConstant = {
-        route: '/work-edition',
+        route: 'work-edition',
         short: 'WE',
         full: 'Werkedition',
     };
@@ -54,7 +54,7 @@ export class EDITION_TYPE_CONSTANTS {
      * The route constant for a text edition.
      */
     static readonly TEXT_EDITION: EditionRouteConstant = {
-        route: '/text-edition',
+        route: 'text-edition',
         short: 'TE',
         full: 'Textedition',
     };
@@ -63,7 +63,7 @@ export class EDITION_TYPE_CONSTANTS {
      * The route constant for a sketch edition.
      */
     static readonly SKETCH_EDITION: EditionRouteConstant = {
-        route: '/sketch-edition',
+        route: 'sketch-edition',
         short: 'SE',
         full: 'Skizzenedition',
     };
