@@ -34,12 +34,30 @@ export interface EditionOutlineSection {
     /**
      * The edition complexes of an edition section.
      */
-    complexes: EditionOutlineComplex[];
+    complexes: EditionOutlineComplexTypes;
 
     /**
      * Boolean flag if an edition section is disabled.
      */
     disabled: boolean;
+}
+
+/**
+ * The EditionOutlineComplexTypes interface.
+ *
+ * It is used in the context of the edition view
+ * to structure outline information of the edition complex types.
+ */
+export interface EditionOutlineComplexTypes {
+    /**
+     * The opus parts of an edition complex.
+     */
+    opus: EditionOutlineComplex[];
+
+    /**
+     * The mnr parts of an edition complex.
+     */
+    mnr: EditionOutlineComplex[];
 }
 
 /**

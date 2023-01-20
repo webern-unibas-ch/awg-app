@@ -111,31 +111,34 @@ describe('EditionViewComponent (DONE)', () => {
             sections: [
                 {
                     section: EDITION_ROUTE_CONSTANTS.SECTION_1,
-                    complexes: [],
+                    complexes: { opus: [], mnr: [] },
                     disabled: true,
                 },
                 {
                     section: EDITION_ROUTE_CONSTANTS.SECTION_2,
-                    complexes: [],
+                    complexes: { opus: [], mnr: [] },
                     disabled: true,
                 },
                 {
                     section: EDITION_ROUTE_CONSTANTS.SECTION_3,
-                    complexes: [],
+                    complexes: { opus: [], mnr: [] },
                     disabled: true,
                 },
                 {
                     section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                    complexes: [],
+                    complexes: { opus: [], mnr: [] },
                     disabled: true,
                 },
                 {
                     section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                    complexes: [
-                        { complex: EDITION_COMPLEXES.OP12, disabled: false },
-                        { complex: EDITION_COMPLEXES.OP23, disabled: false },
-                        { complex: EDITION_COMPLEXES.OP25, disabled: false },
-                    ],
+                    complexes: {
+                        opus: [
+                            { complex: EDITION_COMPLEXES.OP12, disabled: false },
+                            { complex: EDITION_COMPLEXES.OP23, disabled: false },
+                            { complex: EDITION_COMPLEXES.OP25, disabled: false },
+                        ],
+                        mnr: [],
+                    },
                     disabled: true,
                 },
             ],

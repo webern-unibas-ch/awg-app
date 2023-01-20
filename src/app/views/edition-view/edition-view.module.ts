@@ -4,7 +4,8 @@ import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionViewRoutingModule, routedEditionViewComponents } from './edition-view-routing.module';
 
-import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron.component';
+import { EditionComplexCardComponent } from './edition-complex-card';
+import { EditionJumbotronComponent } from './edition-jumbotron';
 /**
  * The editionView module.
  *
@@ -14,6 +15,6 @@ import { EditionJumbotronComponent } from './edition-jumbotron/edition-jumbotron
  */
 @NgModule({
     imports: [SharedModule, EditionViewRoutingModule],
-    declarations: [routedEditionViewComponents, EditionJumbotronComponent],
+    declarations: [routedEditionViewComponents, EditionComplexCardComponent, EditionJumbotronComponent],
 })
 export class EditionViewModule {}
