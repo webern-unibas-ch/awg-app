@@ -10,7 +10,7 @@ import { EditionOutlineComplex } from '@awg-views/edition-view/models';
 
 import { EditionComplexCardComponent } from './edition-complex-card.component';
 
-describe('EditionComplexCardComponent', () => {
+describe('EditionComplexCardComponent (DONE)', () => {
     let component: EditionComplexCardComponent;
     let fixture: ComponentFixture<EditionComplexCardComponent>;
     let compDe: DebugElement;
