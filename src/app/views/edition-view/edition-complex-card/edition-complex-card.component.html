@@ -1,6 +1,6 @@
 <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
     <div class="col" *ngFor="let complex of complexes">
-        <div class="card h-100">
+        <div class="card awg-edition-card h-100">
             <div class="card-body">
                 <h5 class="card-title" [ngClass]="{ 'text-muted': complex.disabled }">
                     <span
@@ -9,8 +9,8 @@
                     >&nbsp;<span class="awg-edition-info-header-catalogue">{{ complex.complex.complexId.short }}</span>
                 </h5>
             </div>
-            <div class="awg-edition-responsibility card-footer">
-                <p *ngIf="!complex.disabled">
+            <div class="card-footer">
+                <p *ngIf="!complex.disabled" class="awg-edition-responsibility">
                     <small class="text-muted">
                         Ediert von
                         <span
