@@ -1,15 +1,23 @@
-<div *ngIf="selectedSection && utils.isNotEmptyObject(selectedSection.complexes); else noComplexes">
-    <div *ngIf="utils.isNotEmptyArray(selectedSection.complexes.opus)" class="para p-3 border rounded-3">
-        <div>
-            <h5>nach Opusnummer:</h5>
-        </div>
+<div
+    class="awg-edition-section-detail"
+    *ngIf="
+        selectedSection &&
+            utils.isNotEmptyObject(selectedSection.complexes) &&
+            (utils.isNotEmptyArray(selectedSection.complexes.opus) ||
+                utils.isNotEmptyArray(selectedSection.complexes.mnr));
+        else noComplexes
+    ">
+    <div
+        *ngIf="utils.isNotEmptyArray(selectedSection.complexes.opus)"
+        class="awg-edition-section-detail-opus para p-3 border rounded-3">
+        <h5>nach Opusnummer:</h5>
         <awg-edition-complex-card [complexes]="selectedSection.complexes.opus"></awg-edition-complex-card>
     </div>
 
-    <div *ngIf="utils.isNotEmptyArray(selectedSection.complexes.mnr)" class="p-3 border rounded-3">
-        <div>
-            <h5>nach Moldenhauer-Nummer:</h5>
-        </div>
+    <div
+        *ngIf="utils.isNotEmptyArray(selectedSection.complexes.mnr)"
+        class="awg-edition-section-detail-mnr p-3 border rounded-3">
+        <h5>nach Moldenhauer-Nummer:</h5>
         <awg-edition-complex-card [complexes]="selectedSection.complexes.mnr"></awg-edition-complex-card>
     </div>
 </div>

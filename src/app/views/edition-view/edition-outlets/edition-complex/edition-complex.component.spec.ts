@@ -65,7 +65,6 @@ describe('EditionComplexComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // TestData
-
         expectedSelectedEditionComplex = EDITION_COMPLEXES.OP12;
 
         // Spies on component functions
@@ -96,15 +95,6 @@ describe('EditionComplexComponent (DONE)', () => {
         describe('#getEditionComplexFromRoute', () => {
             it('... should not have been called', () => {
                 expectSpyCall(getEditionComplexFromRouteSpy, 0);
-            });
-
-            it('... should not have called EditionService', () => {
-                expectSpyCall(editionServiceGetEditionComplexSpy, 0);
-                expectSpyCall(editionServiceUpdateEditionComplexSpy, 0);
-            });
-
-            it('... should not have set selectedEditionComplex$', () => {
-                expect(component.selectedEditionComplex$).toBeUndefined();
             });
         });
     });

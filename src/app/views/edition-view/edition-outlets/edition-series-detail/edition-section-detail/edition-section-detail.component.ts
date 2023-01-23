@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { delay, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
@@ -77,7 +77,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
 
         this.editionService
             .getSelectedEditionSeries()
-            .pipe(delay(0), takeUntil(this._destroyed$))
+            .pipe(takeUntil(this._destroyed$))
             .subscribe(series => {
                 if (series) {
                     this.selectedSeries = series;

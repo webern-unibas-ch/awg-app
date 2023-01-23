@@ -12,6 +12,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
@@ -106,43 +107,7 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Test data
         expectedSelectedEditionComplex = EDITION_COMPLEXES[expectedSelectedEditionComplexId]; // Op. 12
-        expectedSelectedEditionSeries = {
-            series: EDITION_ROUTE_CONSTANTS.SERIES_1,
-            sections: [
-                {
-                    section: EDITION_ROUTE_CONSTANTS.SECTION_1,
-                    complexes: { opus: [], mnr: [] },
-                    disabled: true,
-                },
-                {
-                    section: EDITION_ROUTE_CONSTANTS.SECTION_2,
-                    complexes: { opus: [], mnr: [] },
-                    disabled: true,
-                },
-                {
-                    section: EDITION_ROUTE_CONSTANTS.SECTION_3,
-                    complexes: { opus: [], mnr: [] },
-                    disabled: true,
-                },
-                {
-                    section: EDITION_ROUTE_CONSTANTS.SECTION_4,
-                    complexes: { opus: [], mnr: [] },
-                    disabled: true,
-                },
-                {
-                    section: EDITION_ROUTE_CONSTANTS.SECTION_5,
-                    complexes: {
-                        opus: [
-                            { complex: EDITION_COMPLEXES.OP12, disabled: false },
-                            { complex: EDITION_COMPLEXES.OP23, disabled: false },
-                            { complex: EDITION_COMPLEXES.OP25, disabled: false },
-                        ],
-                        mnr: [],
-                    },
-                    disabled: true,
-                },
-            ],
-        };
+        expectedSelectedEditionSeries = mockEditionOutline[0];
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[0];
         expectedIsRowTableView = true;
 
