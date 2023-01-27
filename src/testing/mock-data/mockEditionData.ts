@@ -156,6 +156,7 @@ export const mockEditionData = {
                     },
                     title: 'test title',
                     date: 'test date',
+                    pagination: 'test pagination',
                     measureNumbers: 'test measure numbers',
                     instrumentation: 'test instrumentation',
                     annotations: 'test annotations',

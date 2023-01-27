@@ -271,12 +271,12 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         .toBe(expectedSourceDescriptionListData.sources[1].location.trim());
                 });
 
-                it('... should contain up to 8 paragraphs in description-body div', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                it('... should contain up to 9 paragraphs in description-body div', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                 });
 
                 it('... the first possible paragraph displaying the description', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                     const pCmp = pDes[0].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -292,7 +292,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the second possible paragraph displaying the writingMaterial', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                     const pCmp = pDes[1].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -310,7 +310,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the third possible paragraph displaying the writingInstruments', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                     const pCmp = pDes[2].nativeElement;
 
                     const instruments = expectedSourceDescriptionListData.sources[1].description.writingInstruments;
@@ -332,7 +332,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the fourth possible paragraph displaying the title', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                     const pCmp = pDes[3].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -348,7 +348,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the fifth possible paragraph displaying the date', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                     const pCmp = pDes[4].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -363,9 +363,25 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         .toBe(expectedHtmlTextContent.textContent.trim());
                 });
 
-                it('... the sixth possible paragraph displaying the measure numbers', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
+                it('... the sixth possible paragraph displaying the pagination', () => {
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
                     const pCmp = pDes[5].nativeElement;
+
+                    // Process HTML expression of expected text content
+                    const expectedHtmlTextContent = mockDocument.createElement('p');
+                    expectedHtmlTextContent.innerHTML =
+                        'Paginierung:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.pagination;
+
+                    expect(pCmp).toHaveClass('awg-source-description-pagination');
+                    expect(pCmp.textContent).toBeTruthy();
+                    expect(pCmp.textContent.trim())
+                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
+                        .toBe(expectedHtmlTextContent.textContent.trim());
+                });
+
+                it('... the seventh possible paragraph displaying the measure numbers', () => {
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const pCmp = pDes[6].nativeElement;
 
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
@@ -379,9 +395,9 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         .toBe(expectedHtmlTextContent.textContent.trim());
                 });
 
-                it('... the seventh possible paragraph displaying the instrumentation', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
-                    const pCmp = pDes[6].nativeElement;
+                it('... the eighth possible paragraph displaying the instrumentation', () => {
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const pCmp = pDes[7].nativeElement;
 
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
@@ -396,9 +412,9 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         .toBe(expectedHtmlTextContent.textContent.trim());
                 });
 
-                it('... the eighth possible paragraph displaying the annotations', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 8, 8);
-                    const pCmp = pDes[7].nativeElement;
+                it('... the ninth possible paragraph displaying the annotations', () => {
+                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const pCmp = pDes[8].nativeElement;
 
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
