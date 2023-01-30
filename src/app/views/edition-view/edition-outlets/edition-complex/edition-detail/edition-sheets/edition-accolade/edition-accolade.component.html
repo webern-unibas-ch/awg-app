@@ -9,31 +9,36 @@
             </div>
         </ng-template>
         <ng-template ngbPanelContent>
-            <!-- svg sheet navigation -->
-            <awg-edition-svg-sheet-nav
-                *ngIf="svgSheetsData && selectedSvgSheet"
-                [svgSheetsData]="svgSheetsData"
-                [selectedSvgSheet]="selectedSvgSheet"
-                (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-svg-sheet-nav>
+            <div class="row">
+                <div class="col-4 col-xl-3">
+                    <!-- svg sheet navigation -->
+                    <awg-edition-svg-sheet-nav
+                        *ngIf="svgSheetsData && selectedSvgSheet"
+                        [svgSheetsData]="svgSheetsData"
+                        [selectedSvgSheet]="selectedSvgSheet"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-svg-sheet-nav>
+                </div>
+                <div class="col-8 col-xl-9">
+                    <!-- svg sheet -->
+                    <awg-edition-svg-sheet
+                        *ngIf="selectedSvgSheet"
+                        [selectedSvgSheet]="selectedSvgSheet"
+                        (openModalRequest)="openModal($event)"
+                        (selectOverlaysRequest)="selectOverlays($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-svg-sheet>
 
-            <!-- svg sheet -->
-            <awg-edition-svg-sheet
-                *ngIf="selectedSvgSheet"
-                [selectedSvgSheet]="selectedSvgSheet"
-                (openModalRequest)="openModal($event)"
-                (selectOverlaysRequest)="selectOverlays($event)"
-                (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-svg-sheet>
-
-            <!-- table for TkA -->
-            <div class="panel-footer" *ngIf="showTkA">
-                <h5 class="mt-4">Textkritischer Kommentar:</h5>
-                <awg-edition-tka-table
-                    [textcriticalComments]="selectedTextcriticalComments"
-                    (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)">
-                </awg-edition-tka-table>
+                    <!-- table for TkA -->
+                    <div class="panel-footer" *ngIf="showTkA">
+                        <h5 class="mt-4">Textkritischer Kommentar:</h5>
+                        <awg-edition-tka-table
+                            [textcriticalComments]="selectedTextcriticalComments"
+                            (openModalRequest)="openModal($event)"
+                            (selectSvgSheetRequest)="selectSvgSheet($event)">
+                        </awg-edition-tka-table>
+                    </div>
+                </div>
             </div>
         </ng-template>
     </ngb-panel>

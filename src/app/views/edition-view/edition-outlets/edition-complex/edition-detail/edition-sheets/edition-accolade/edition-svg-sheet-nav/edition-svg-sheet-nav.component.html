@@ -1,29 +1,25 @@
-<div *ngIf="svgSheetsData" class="btn-group awg-btn-group d-flex" role="group">
-    <ng-container *ngFor="let svgSheet of svgSheetsData.sheets.sketchEditions">
-        <a
-            *ngIf="svgSheet.content.length === 1"
-            class="btn btn-default w-100 awg-svg-sheet-nav-link"
-            [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
-            (click)="selectSvgSheet(svgSheet.id)">
-            {{ svgSheet.label }}
-        </a>
-        <div *ngIf="svgSheet.content.length > 1" class="awg-svg-sheet-nav-link-dropdown" ngbDropdown>
-            <a class="btn text-muted" id="dropDownSheetNav" ngbDropdownToggle>
-                <span>{{ svgSheet.label }}</span>
-            </a>
-            <div ngbDropdownMenu aria-labelledby="dropdownSheetNav">
-                <div *ngFor="let svgSheetContent of svgSheet.content">
-                    <a
-                        class="dropdown-item"
-                        [ngClass]="{
-                            active: isSelectedSvgSheet(svgSheet.id + svgSheetContent.partial),
-                            'text-muted': !isSelectedSvgSheet(svgSheet.id + svgSheetContent.partial)
-                        }"
-                        (click)="selectSvgSheet(svgSheet.id + svgSheetContent.partial)"
-                        >{{ svgSheet.label + svgSheetContent.partial }}</a
-                    >
-                </div>
-            </div>
-        </div>
-    </ng-container>
+<div *ngIf="svgSheetsData" class="awg-svg-sheet-nav card">
+    <div class="card-body">
+        <awg-edition-svg-sheet-nav-item
+            [navItemLabel]="'Werkeditionen'"
+            [svgSheets]="svgSheetsData.sheets.workEditions"
+            [selectedSvgSheet]="selectedSvgSheet"
+            (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+
+        <hr />
+
+        <awg-edition-svg-sheet-nav-item
+            [navItemLabel]="'Texteditionen'"
+            [svgSheets]="svgSheetsData.sheets.textEditions"
+            [selectedSvgSheet]="selectedSvgSheet"
+            (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+
+        <hr />
+
+        <awg-edition-svg-sheet-nav-item
+            [navItemLabel]="'Skizzeneditionen'"
+            [svgSheets]="svgSheetsData.sheets.sketchEditions"
+            [selectedSvgSheet]="selectedSvgSheet"
+            (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+    </div>
 </div>

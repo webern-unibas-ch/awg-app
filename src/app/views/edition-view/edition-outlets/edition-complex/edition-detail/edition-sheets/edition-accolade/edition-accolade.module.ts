@@ -6,17 +6,23 @@ import { EditionTkaTableModule } from '../../edition-tka-table/edition-tka-table
 import { EditionAccoladeComponent } from './edition-accolade.component';
 import { EditionSvgSheetComponent } from './edition-svg-sheet';
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
+import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component';
 
 /**
  * The EditionAccolade module.
  *
  * It embeds the edition accolade components as well as the
- * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetComponent},
- * {@link EditionTkaTableModule} and {@link SharedModule}.
+ * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetNavItemComponent},
+ * {@link EditionSvgSheetComponent}, {@link EditionTkaTableModule} and {@link SharedModule}.
  */
 @NgModule({
     imports: [SharedModule, EditionTkaTableModule],
-    declarations: [EditionAccoladeComponent, EditionSvgSheetNavComponent, EditionSvgSheetComponent],
+    declarations: [
+        EditionAccoladeComponent,
+        EditionSvgSheetComponent,
+        EditionSvgSheetNavComponent,
+        EditionSvgSheetNavItemComponent,
+    ],
     exports: [EditionAccoladeComponent],
 })
 export class EditionAccoladeModule {}

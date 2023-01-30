@@ -41,24 +41,6 @@ export class EditionSvgSheetNavComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Public method: isSelectedSvgSheet.
-     *
-     * It compares a given id with the id
-     * of the latest selected svg sheet.
-     *
-     * @param {string} id The given sheet id.
-     * @returns {boolean} The boolean value of the comparison result.
-     */
-    isSelectedSvgSheet(id: string): boolean {
-        let selectedId = this.selectedSvgSheet.id;
-        // Compare partial id if needed
-        if (this.selectedSvgSheet.content && this.selectedSvgSheet.content[0].partial) {
-            selectedId = selectedId + this.selectedSvgSheet.content[0].partial;
-        }
-        return id === selectedId;
-    }
-
-    /**
      * Public method: selectSvgSheet.
      *
      * It emits a given id of a selected svg sheet
