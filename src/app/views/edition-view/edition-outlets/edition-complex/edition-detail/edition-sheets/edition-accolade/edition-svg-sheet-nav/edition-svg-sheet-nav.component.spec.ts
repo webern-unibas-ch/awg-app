@@ -41,7 +41,13 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
         expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2_with_partials;
-        expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet, expectedSvgSheetWithPartials] };
+        expectedSvgSheetsData = {
+            sheets: {
+                workEditions: [],
+                textEditions: [],
+                sketchEditions: [expectedSvgSheet, expectedNextSvgSheet, expectedSvgSheetWithPartials],
+            },
+        };
 
         expectedSvgSheetWithPartialsSingleSvg = mockEditionData.mockSvgSheet_Sk2a;
 
@@ -84,7 +90,9 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
 
         it('should have `svgSheetsData` input', () => {
             expect(component.svgSheetsData).toBeDefined();
-            expect(component.svgSheetsData.sheets.length).withContext('should be 3').toBe(3);
+            expect(component.svgSheetsData.sheets.workEditions.length).withContext('should be 0').toBe(0);
+            expect(component.svgSheetsData.sheets.textEditions.length).withContext('should be 0').toBe(0);
+            expect(component.svgSheetsData.sheets.sketchEditions.length).withContext('should be 3').toBe(3);
             expect(component.svgSheetsData)
                 .withContext(`should equal ${expectedSvgSheetsData}`)
                 .toEqual(expectedSvgSheetsData);

@@ -230,7 +230,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         this._filterSvgSheets();
 
         const navigationExtras: NavigationExtras = {
-            queryParams: { convolute: convolute.convoluteId, sketch: this.filteredSvgSheetsData.sheets[0].id },
+            queryParams: {
+                convolute: convolute.convoluteId,
+                sketch: this.filteredSvgSheetsData.sheets.sketchEditions[0].id,
+            },
         };
 
         this.router.navigate(
@@ -283,7 +286,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         // Set default id if none is given
         if (!id) {
-            id = this.filteredSvgSheetsData.sheets[0].id;
+            id = this.filteredSvgSheetsData.sheets.sketchEditions[0].id;
         }
         this.selectedSvgSheet = this._findSvgSheet(id);
 
@@ -344,7 +347,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         // Find index of given id in svgSheetsData.sheets array
         let sheetIndex = 0;
         let partialIndex;
-        const findIndex = this.filteredSvgSheetsData.sheets.findIndex(sheets => {
+        const findIndex = this.filteredSvgSheetsData.sheets.sketchEditions.findIndex(sheets => {
             let i = sheets.id;
             // If we have partial sheets, look into content array for id with extra partial
             if (sheets.content.length > 1) {
@@ -362,12 +365,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         // Copy filtered sheets data for output
         const output = {
-            ...this.filteredSvgSheetsData.sheets[sheetIndex],
+            ...this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex],
         };
 
         // Reduce content array to the svg of partial id only
         if (partialIndex >= 0) {
-            output.content = [this.filteredSvgSheetsData.sheets[sheetIndex].content[partialIndex]];
+            output.content = [this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex].content[partialIndex]];
         }
 
         // Return the sheet with the given id
@@ -412,7 +415,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     private _filterSvgSheets(): void {
         this.filteredSvgSheetsData = new EditionSvgSheetList();
-        this.filteredSvgSheetsData.sheets = this.svgSheetsData.sheets.filter(
+        this.filteredSvgSheetsData.sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
+        this.filteredSvgSheetsData.sheets.sketchEditions = this.svgSheetsData.sheets.sketchEditions.filter(
             sheet => sheet.convolute === this.selectedConvolute.convoluteId
         );
     }
@@ -431,7 +435,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _getSketchParams(queryParams?: ParamMap): string {
         // If there is no id in query params
         // Take first entry of filtered svg sheets data as default
-        return queryParams.get('sketch') ? queryParams.get('sketch') : this.filteredSvgSheetsData.sheets[0].id;
+        return queryParams.get('sketch')
+            ? queryParams.get('sketch')
+            : this.filteredSvgSheetsData.sheets.sketchEditions[0].id;
     }
 
     /**

@@ -260,9 +260,13 @@ describe('EditionDataService (DONE)', () => {
                     fcl.convolutes[0].convoluteId = 'test-convolute-id';
 
                     const esl = new EditionSvgSheetList();
-                    esl.sheets = [];
-                    esl.sheets.push(new EditionSvgSheet());
-                    esl.sheets[0].id = 'test-svg-sheets-id';
+                    esl.sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
+                    esl.sheets.workEditions.push(new EditionSvgSheet());
+                    esl.sheets.textEditions.push(new EditionSvgSheet());
+                    esl.sheets.sketchEditions.push(new EditionSvgSheet());
+                    esl.sheets.workEditions[0].id = 'test-svg-work-sheets-id';
+                    esl.sheets.textEditions[0].id = 'test-svg-text-sheets-id';
+                    esl.sheets.sketchEditions[0].id = 'test-svg-sketch-sheets-id';
 
                     const tcl = new TextcriticsList();
                     tcl.textcritics = [];
@@ -311,9 +315,15 @@ describe('EditionDataService (DONE)', () => {
                             expect(resFcl.convolutes[0].convoluteId)
                                 .withContext('should be test-convolute-id')
                                 .toBe('test-convolute-id');
-                            expect(resEsl.sheets[0].id)
-                                .withContext('should be test-svg-sheet-id')
-                                .toBe('test-svg-sheets-id');
+                            expect(resEsl.sheets.workEditions[0].id)
+                                .withContext('should be test-svg-work-sheets-id')
+                                .toBe('test-svg-work-sheets-id');
+                            expect(resEsl.sheets.textEditions[0].id)
+                                .withContext('should be test-svg-text-sheets-id')
+                                .toBe('test-svg-text-sheets-id');
+                            expect(resEsl.sheets.sketchEditions[0].id)
+                                .withContext('should be test-svg-sketch-sheets-id')
+                                .toBe('test-svg-sketch-sheets-id');
                             expect(resTcl.textcritics[0].id)
                                 .withContext('should be test-textcritics-id')
                                 .toBe('test-textcritics-id');

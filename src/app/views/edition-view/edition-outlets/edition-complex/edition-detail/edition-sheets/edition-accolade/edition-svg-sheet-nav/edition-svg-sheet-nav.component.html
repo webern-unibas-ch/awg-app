@@ -1,5 +1,5 @@
 <div *ngIf="svgSheetsData" class="btn-group awg-btn-group d-flex" role="group">
-    <ng-container *ngFor="let svgSheet of svgSheetsData.sheets">
+    <ng-container *ngFor="let svgSheet of svgSheetsData.sheets.sketchEditions">
         <a
             *ngIf="svgSheet.content.length === 1"
             class="btn btn-default w-100 awg-svg-sheet-nav-link"

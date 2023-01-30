@@ -106,7 +106,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
-        expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet] };
+        expectedSvgSheetsData = {
+            sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
+        };
         expectedSelectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
 
         const type = EditionSvgOverlayTypes.item;
