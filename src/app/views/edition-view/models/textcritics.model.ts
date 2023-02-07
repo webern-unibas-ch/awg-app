@@ -1,3 +1,5 @@
+import { LinkBox } from './link-box.model';
+
 /**
  * The TextcriticalComment class.
  *
@@ -59,6 +61,11 @@ export class Textcritics {
      * The array of textcritical comments from a textcritics list.
      */
     comments: TextcriticalComment[];
+
+    /**
+     * The array of link boxes from a textcritics list.
+     */
+    linkBoxes: LinkBox[];
 
     /**
      * A boolean flag to indicate if the textcritics describe a row table.

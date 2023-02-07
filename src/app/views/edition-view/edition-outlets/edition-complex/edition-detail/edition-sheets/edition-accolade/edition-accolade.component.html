@@ -25,6 +25,7 @@
                         *ngIf="selectedSvgSheet"
                         [selectedSvgSheet]="selectedSvgSheet"
                         (openModalRequest)="openModal($event)"
+                        (selectLinkBoxRequest)="selectLinkBox($event)"
                         (selectOverlaysRequest)="selectOverlays($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)">
                     </awg-edition-svg-sheet>

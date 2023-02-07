@@ -29,6 +29,13 @@ export class EditionSvgDrawingService {
     selectionFillColor = 'green';
 
     /**
+     * Public variable: linkBoxFillColor.
+     *
+     * It keeps the fill color for link boxes.
+     */
+    linkBoxFillColor = '#dddddd';
+
+    /**
      * Private variable: _overlayBoxesOpacity.
      *
      * It keeps the default opacity for an overlay box.
@@ -194,54 +201,20 @@ export class EditionSvgDrawingService {
     }
 
     /**
-     * Public method: getLinkBoxes.
+     * Public method: getGroupsBySelector.
      *
-     * It creates and selects all elements with the "link-box" class, if available, from the given svgRootGroup.
+     * It selects all groups with the "given selector class, if available, from the given svgRootGroup.
      *
      * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {string} selector The given selector class.
      *
-     * @returns {void} Creates and selects the elements.
+     * @returns {D3Selection} The D3 selection of all found groups.
      */
-    getLinkBoxes(svgRootGroup: D3Selection): void {
-        const linkBoxGroups = svgRootGroup.selectAll('g.link-box');
-
-        const _self = this;
-
-        linkBoxGroups.each(function () {
-            const linkBoxGroup: d3_selection.BaseType = this;
-            const linkBoxGroupSelection: D3Selection = d3_selection.select(linkBoxGroup);
-
-            linkBoxGroupSelection.append('g').attr('class', 'link-box-overlay-group');
-            const linkBoxOverlayGroupSelection: D3Selection = linkBoxGroupSelection.select('g.link-box-overlay-group');
-
-            // Create overlay box for tka-overlay-group
-            const linkBoxGroupBbox: DOMRect = (linkBoxGroup as SVGGElement).getBBox();
-
-            linkBoxOverlayGroupSelection
-                .append('rect')
-                .attr('width', linkBoxGroupBbox.width)
-                .attr('height', linkBoxGroupBbox.height)
-                .attr('x', linkBoxGroupBbox.x)
-                .attr('y', linkBoxGroupBbox.y)
-                .attr('fill', _self.selectionFillColor)
-                .attr('opacity', '0')
-                .attr('class', 'link-box-overlay-group-box');
-
-            const linkBoxOverlayGroupRectSelection: D3Selection = linkBoxGroupSelection.select(
-                'rect.link-box-overlay-group-box'
-            );
-
-            linkBoxOverlayGroupSelection
-                .on('mouseover', () => {
-                    linkBoxOverlayGroupRectSelection.attr('opacity', '0');
-                })
-                .on('mouseout', () => {
-                    linkBoxOverlayGroupRectSelection.attr('opacity', '0');
-                })
-                .on('click', () => {
-                    console.info('clicked on link box', linkBoxGroupSelection.attr('id'));
-                });
-        });
+    getGroupsBySelector(svgRootGroup: D3Selection, selector: string): D3Selection {
+        if (!svgRootGroup) {
+            return undefined;
+        }
+        return svgRootGroup.selectAll('g.' + selector);
     }
 
     /**
@@ -263,22 +236,6 @@ export class EditionSvgDrawingService {
         const targetGroupSelection: D3Selection = this.getD3SelectionById(svgRootGroup, id);
         // Get D3 selection of overlay group box
         return targetGroupSelection.select(`rect.${type}-overlay-group-box`);
-    }
-
-    /**
-     * Public method: getTkkGroups.
-     *
-     * It selects all group elements with the "tkk" class, if available, from the given svgRootGroup.
-     *
-     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
-     *
-     * @returns {D3Selection} The D3 selection of the found element.
-     */
-    getTkkGroups(svgRootGroup: D3Selection): D3Selection {
-        if (!svgRootGroup) {
-            return undefined;
-        }
-        return svgRootGroup.selectAll('g.tkk');
     }
 
     /**

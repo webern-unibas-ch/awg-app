@@ -14,6 +14,7 @@ import {
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
+    LinkBox,
     TextcriticalComment,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -243,6 +244,29 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Public method: onLinkBoxSelect.
+     *
+     * It finds the corresponding textcritical comments to a list of selected overlays.
+     *
+     * @param {string} linkBoxId The given link box id.
+     * @returns {void} Sets the selectedOverlay, selectedTextcriticalComments and showTka variable.
+     */
+    onLinkBoxSelect(linkBoxId: string): void {
+        if (!this.selectedSvgSheet) {
+            return;
+        }
+
+        const linkBoxes: LinkBox[] = this._findLinkBoxes();
+
+        const selectedLinkBox = linkBoxes.filter(linkBox => linkBox.svgGroupId === linkBoxId);
+        if (this.utils.isNotEmptyArray(selectedLinkBox)) {
+            const linkToSvgSheet = selectedLinkBox[0].linkTo;
+
+            this.onSvgSheetSelect(linkToSvgSheet);
+        }
+    }
+
+    /**
      * Public method: onOverlaySelect.
      *
      * It finds the corresponding textcritical comments to a list of selected overlays.
@@ -333,6 +357,35 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         // Return the convolute with the given id
         return this.folioConvoluteData.convolutes[convoluteIndex];
+    }
+
+    /**
+     * Private method: _findLinkBoxes.
+     *
+     * It finds the link boxes for an svg.
+     *
+     * @returns {LinkBox[]} The link boxes that were found.
+     */
+    private _findLinkBoxes(): LinkBox[] {
+        if (!this.textcriticsData && !this.selectedSvgSheet) {
+            return undefined;
+        }
+
+        // Find index of the selected link box id in textcriticsData.textcritics array
+        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
+            textcritic => textcritic.id === this.selectedSvgSheet.id
+        );
+
+        if (
+            textcriticsIndex > -1 &&
+            this.textcriticsData.textcritics[textcriticsIndex] &&
+            this.textcriticsData.textcritics[textcriticsIndex].linkBoxes
+        ) {
+            // Return the link boxes
+            return this.textcriticsData.textcritics[textcriticsIndex].linkBoxes;
+        }
+        // Return empty array if no link boxes were found
+        return [];
     }
 
     /**
