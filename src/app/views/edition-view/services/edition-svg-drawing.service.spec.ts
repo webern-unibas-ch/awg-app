@@ -60,14 +60,24 @@ describe('EditionSvgDrawingService', () => {
         expect(service).toBeTruthy();
     });
 
-    it('should have `deselectionFillColor = orange`', () => {
-        expect(service.deselectionFillColor).toBeDefined();
-        expect(service.deselectionFillColor).withContext(`should be orange`).toBe('orange');
+    it('should have `overlayFillColor = orange`', () => {
+        expect(service.overlayFillColor).toBeDefined();
+        expect(service.overlayFillColor).withContext(`should be orange`).toBe('orange');
     });
 
-    it('should have `selectionFillColor = green`', () => {
-        expect(service.selectionFillColor).toBeDefined();
-        expect(service.selectionFillColor).withContext(`should be green`).toBe('green');
+    it('should have `overlaySelectionFillColor = green`', () => {
+        expect(service.overlaySelectionFillColor).toBeDefined();
+        expect(service.overlaySelectionFillColor).withContext(`should be green`).toBe('green');
+    });
+
+    it('should have `linkBoxFillColor = #dddddd`', () => {
+        expect(service.linkBoxFillColor).toBeDefined();
+        expect(service.linkBoxFillColor).withContext(`should be #dddddd`).toBe('#dddddd');
+    });
+
+    it('should have `linkBoxHoverFillColor = #eeeeee`', () => {
+        expect(service.linkBoxHoverFillColor).toBeDefined();
+        expect(service.linkBoxHoverFillColor).withContext(`should be #eeeeee`).toBe('#eeeeee');
     });
 
     it('should have `_overlayBoxesOpacity = 0.3` (private)', () => {

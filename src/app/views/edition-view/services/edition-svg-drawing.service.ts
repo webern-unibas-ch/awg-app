@@ -15,18 +15,18 @@ import * as d3_selection from 'd3-selection';
 @Injectable({ providedIn: 'root' })
 export class EditionSvgDrawingService {
     /**
-     * Public variable: deselectionFillColor.
+     * Public variable: overlayFillColor.
      *
-     * It keeps the fill color for deselected overlays.
+     * It keeps the fill color for overlays.
      */
-    deselectionFillColor = 'orange';
+    overlayFillColor = 'orange';
 
     /**
-     * Public variable: selectionFillColor.
+     * Public variable: overlaySelectionFillColor.
      *
      * It keeps the fill color for selected overlays.
      */
-    selectionFillColor = 'green';
+    overlaySelectionFillColor = 'green';
 
     /**
      * Public variable: linkBoxFillColor.
@@ -34,6 +34,13 @@ export class EditionSvgDrawingService {
      * It keeps the fill color for link boxes.
      */
     linkBoxFillColor = '#dddddd';
+
+    /**
+     * Public variable: linkBoxHoverFillColor.
+     *
+     * It keeps the fill color for hovered link boxes.
+     */
+    linkBoxHoverFillColor = '#eeeeee';
 
     /**
      * Private variable: _overlayBoxesOpacity.
@@ -138,7 +145,7 @@ export class EditionSvgDrawingService {
             .attr('x', dim.x - this._overlayBoxAdditionalSpace)
             .attr('y', dim.y - this._overlayBoxAdditionalSpace)
             .attr('rx', this._overlayBoxCornerRadius)
-            .attr('fill', this.deselectionFillColor)
+            .attr('fill', this.overlayFillColor)
             .attr('opacity', this._overlayBoxesOpacity)
             .attr('class', `${type}-overlay-group-box`);
     }

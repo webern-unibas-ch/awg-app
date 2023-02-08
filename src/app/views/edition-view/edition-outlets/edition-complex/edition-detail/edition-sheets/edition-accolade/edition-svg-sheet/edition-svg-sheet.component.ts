@@ -452,9 +452,17 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                 const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
                 linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
 
-                linkBoxGroupSelection.on('click', () => {
-                    this._onLinkBoxSelect(linkBoxGroupId);
-                });
+                linkBoxGroupSelection
+                    .on('mouseover', () => {
+                        linkBoxGroupSelection.style('cursor', 'pointer');
+                        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxHoverFillColor);
+                    })
+                    .on('mouseout', () => {
+                        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
+                    })
+                    .on('click', () => {
+                        this._onLinkBoxSelect(linkBoxGroupId);
+                    });
             });
         }
     }
@@ -500,15 +508,16 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                 overlayGroupSelection
                     .on('mouseover', () => {
                         if (overlay && !overlay.isSelected) {
-                            const color = this.svgDrawingService.selectionFillColor;
+                            const color = this.svgDrawingService.overlaySelectionFillColor;
                             this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
                         }
+                        overlayGroupRectSelection.style('cursor', 'pointer');
                     })
                     .on('mouseout', () => {
                         const color =
                             overlay && overlay.isSelected
-                                ? this.svgDrawingService.selectionFillColor
-                                : this.svgDrawingService.deselectionFillColor;
+                                ? this.svgDrawingService.overlaySelectionFillColor
+                                : this.svgDrawingService.overlayFillColor;
                         this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
                     })
                     .on('click', () => {
