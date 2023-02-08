@@ -2,6 +2,7 @@ import { AppConfig } from '@awg-app/app.config';
 import {
     EDITION_CATALOGUE_TYPE_CONSTANTS,
     EDITION_ROUTE_CONSTANTS,
+    EDITION_TYPE_CONSTANTS,
 } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 
@@ -18,7 +19,7 @@ export class EDITION_COMPLEXES {
     static readonly M34: EditionComplex = new EditionComplex(
         {
             title: 'Studienkomposition für Klavier',
-            catalogueType: EDITION_ROUTE_CONSTANTS.MNR,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
             catalogueNumber: '34',
         },
         {
@@ -32,7 +33,99 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
         EDITION_ROUTE_CONSTANTS.SECTION_2A,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 212.
+     */
+    static readonly M212: EditionComplex = new EditionComplex(
+        {
+            title: '„Der Tag ist vergangen“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '212',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 213.
+     */
+    static readonly M213: EditionComplex = new EditionComplex(
+        {
+            title: '„Schien mir’s, als ich sah die Sonne“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '213',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 216.
+     */
+    static readonly M216: EditionComplex = new EditionComplex(
+        {
+            title: 'Gleich und Gleich („Ein Blumenglöckchen“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '216',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 217.
+     */
+    static readonly M217: EditionComplex = new EditionComplex(
+        {
+            title: 'Die geheimnisvolle Flöte („An einem Abend“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '217',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -55,7 +148,7 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -78,7 +171,7 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -101,7 +194,7 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -124,7 +217,7 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_3,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -147,7 +240,7 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -170,7 +263,7 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_1,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -193,6 +286,6 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
-        EDITION_ROUTE_CONSTANTS.SKETCH_EDITION
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 }

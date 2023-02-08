@@ -110,12 +110,12 @@ const EDITION_VIEW_ROUTES: Routes = [
                                     import(
                                         './edition-outlets/edition-complex/edition-detail/edition-sketches/edition-sketches.module'
                                     ).then(m => m.EditionSketchesModule),
-                            },
+                            },*/
                             {
                                 path: '',
-                                redirectTo: 'intro',
+                                redirectTo: 'sheets',
                                 pathMatch: 'full',
-                            },*/
+                            },
                         ],
                     },
                 ],
