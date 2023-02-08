@@ -9,12 +9,12 @@ import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
+    EditionSvgLinkBox,
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
     FolioConvoluteList,
-    LinkBox,
     TextcriticalComment,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -256,7 +256,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const linkBoxes: LinkBox[] = this._findLinkBoxes();
+        const linkBoxes: EditionSvgLinkBox[] = this._findLinkBoxes();
 
         const selectedLinkBox = linkBoxes.filter(linkBox => linkBox.svgGroupId === linkBoxId);
         if (this.utils.isNotEmptyArray(selectedLinkBox)) {
@@ -364,9 +364,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      *
      * It finds the link boxes for an svg.
      *
-     * @returns {LinkBox[]} The link boxes that were found.
+     * @returns {EditionSvgLinkBox[]} The link boxes that were found.
      */
-    private _findLinkBoxes(): LinkBox[] {
+    private _findLinkBoxes(): EditionSvgLinkBox[] {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return undefined;
         }

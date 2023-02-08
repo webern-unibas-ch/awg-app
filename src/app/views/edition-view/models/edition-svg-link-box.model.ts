@@ -5,7 +5,7 @@
  * to store the data for a single link box
  * from a textcritics json file.
  */
-export class LinkBox {
+export class EditionSvgLinkBox {
     /**
      * The svgGroupId of the link box.
      */

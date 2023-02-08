@@ -14,6 +14,7 @@ import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
 import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables } from './edition-row-tables.model';
+import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
@@ -24,7 +25,6 @@ import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, F
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroList } from './intro.model';
-import { LinkBox } from './link-box.model';
 
 import { SourceDescription, SourceDescriptionList } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
@@ -42,6 +42,7 @@ export {
     EditionOutlineComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
+    EditionSvgLinkBox,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
@@ -64,7 +65,6 @@ export {
     GraphRDFData,
     Intro,
     IntroList,
-    LinkBox,
     Source,
     SourceList,
     SourceDescription,

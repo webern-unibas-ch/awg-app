@@ -1,4 +1,4 @@
-import { LinkBox } from './link-box.model';
+import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 
 /**
  * The TextcriticalComment class.
@@ -65,7 +65,7 @@ export class Textcritics {
     /**
      * The array of link boxes from a textcritics list.
      */
-    linkBoxes: LinkBox[];
+    linkBoxes?: EditionSvgLinkBox[];
 
     /**
      * A boolean flag to indicate if the textcritics describe a row table.

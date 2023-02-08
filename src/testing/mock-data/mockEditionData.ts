@@ -506,6 +506,7 @@ export const mockEditionData = {
                 label: 'test1',
                 description: ['test description 1', 'test description 2'],
                 comments: [],
+                linkBoxes: [],
             },
             {
                 id: 'test-2',
@@ -527,6 +528,7 @@ export const mockEditionData = {
                             "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\">M 212 Sk3</a>",
                     },
                 ],
+                linkBoxes: [],
             },
         ],
     },
