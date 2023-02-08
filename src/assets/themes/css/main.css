@@ -262,14 +262,12 @@ footer {
     opacity: 0.2;
 }
 .edition-svg-measure,
-.edition-svg-system,
-.edition-svg-linkbox {
+.edition-svg-system {
     fill: white;
     opacity: 0;
 }
 .edition-svg-measure:hover,
 .edition-svg-system:hover,
-.edition-svg-linkbox:hover,
 .edition-svg-item:hover {
     fill: rgba(139, 184, 45, 1); /* some lighter OliveDrab; rgba converted HEX #8bb82d */
     opacity: 0.2;
