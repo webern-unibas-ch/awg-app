@@ -41,6 +41,8 @@ class EditionSvgSheetStubComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
+    selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
@@ -63,6 +65,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
+    let selectLinkBoxSpy: Spy;
+    let selectLinkBoxRequestEmitSpy: Spy;
     let selectOverlaysSpy: Spy;
     let selectOverlaysRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
@@ -75,6 +79,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let expectedSelectedTextcriticalComments: TextcriticalComment[];
     let expectedShowTka: boolean;
     let expectedModalSnippet: string;
+    let expectedLinkBoxId: string;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -115,6 +120,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         const id = 'tka-1';
         const overlay = new EditionSvgOverlay(type, id, true);
         expectedOverlays = [overlay];
+        expectedLinkBoxId = 'link-box-1';
         expectedShowTka = true;
 
         // Spies on component functions
@@ -122,6 +128,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
+        selectLinkBoxSpy = spyOn(component, 'selectLinkBox').and.callThrough();
+        selectLinkBoxRequestEmitSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
         selectOverlaysSpy = spyOn(component, 'selectOverlays').and.callThrough();
         selectOverlaysRequestEmitSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -369,6 +377,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('#openModal', () => {
+            it('... should have a `openModal` method  ', () => {
+                expect(component.openModal).toBeDefined();
+            });
+
             it('... should trigger on click on header button', fakeAsync(() => {
                 // Header
                 const buttonDes = getAndExpectDebugElementByCss(
@@ -408,7 +420,44 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
+        describe('#selectLinkBox', () => {
+            it('... should have a `selectLinkBox` method', () => {
+                expect(component.selectLinkBox).toBeDefined();
+            });
+
+            it('... should trigger on selectLinkBoxRequest event from EditionSvgSheetComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+
+                sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
+
+                expectSpyCall(selectLinkBoxSpy, 1, expectedLinkBoxId);
+            });
+
+            it('... should emit link box id', () => {
+                component.selectLinkBox(expectedLinkBoxId);
+
+                expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
+            });
+
+            it('... should emit correct link box id', () => {
+                component.selectLinkBox(expectedLinkBoxId);
+
+                expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
+
+                // Trigger other link box id
+                const otherLinkBoxId = 'link-box-2';
+                component.selectLinkBox(otherLinkBoxId);
+
+                expectSpyCall(selectLinkBoxRequestEmitSpy, 2, otherLinkBoxId);
+            });
+        });
+
         describe('#selectOverlays', () => {
+            it('... should have a `selectOverlays` method', () => {
+                expect(component.selectOverlays).toBeDefined();
+            });
+
             it('... should trigger on selectOverlaysRequest event from EditionSvgSheetComponent', () => {
                 const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
                 const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
@@ -438,6 +487,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('#selectSvgSheet', () => {
+            it('... should have a `selectSvgSheet` method', () => {
+                expect(component.selectSvgSheet).toBeDefined();
+            });
+
             it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetNavComponent', () => {
                 const sheetNavDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavStubComponent, 1, 1);
                 const sheetNavCmp = sheetNavDes[0].injector.get(
