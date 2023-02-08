@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Logos, MetaSectionTypes, MetaPage } from '@awg-core/core-models';
+import { Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**

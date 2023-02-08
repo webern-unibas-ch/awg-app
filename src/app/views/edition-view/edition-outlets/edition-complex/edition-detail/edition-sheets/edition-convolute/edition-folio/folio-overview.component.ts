@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 
 import {
+    EditionSvgSheet,
     Folio,
+    FolioConvolute,
     FolioSettings,
     FolioSvgData,
-    EditionSvgSheet,
     ViewBox,
-    FolioConvolute,
 } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 

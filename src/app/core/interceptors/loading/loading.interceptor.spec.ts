@@ -1,6 +1,6 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HTTP_INTERCEPTORS, HttpClient, HttpInterceptor, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpInterceptor, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';

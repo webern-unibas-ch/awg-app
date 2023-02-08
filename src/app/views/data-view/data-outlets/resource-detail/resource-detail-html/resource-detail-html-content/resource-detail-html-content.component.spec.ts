@@ -1,9 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
-import { JsonConvert } from 'json2typescript';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+import { JsonConvert } from 'json2typescript';
 
 import {
     expectSpyCall,

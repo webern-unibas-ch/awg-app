@@ -41,37 +41,45 @@
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <h6 class="dropdown-header">Allgemein</h6>
-                    <a class="dropdown-item" [routerLink]="['/edition/series']" routerLinkActive="active"
+                    <a
+                        class="dropdown-item"
+                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.SERIES.route]"
+                        routerLinkActive="active"
                         >Editionsübersicht</a
                     >
-                    <a class="dropdown-item" [routerLink]="['/edition/row-tables']" routerLinkActive="active"
-                        >Reihentabellen</a
+                    <a
+                        class="dropdown-item"
+                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"
+                        routerLinkActive="active"
+                        >{{ editionRouteConstants.ROWTABLES.full }}</a
                     >
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>
                     <div class="dropdown-divider"></div>
                     <div *ngFor="let editionComplex of DISPLAYED_EDITION_COMPLEXES" class="awg-dropdown-complexes">
                         <h6 class="dropdown-header">
-                            [AWG {{ editionComplex.series.short }}/{{ editionComplex.section.short }}]
+                            [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
+                                editionComplex.section.short
+                            }}]
                             <span [innerHTML]="editionComplex.complexId.full"></span>
                         </h6>
                         <a
                             class="dropdown-item"
-                            [routerLink]="[editionComplex.baseRoute, editionComplex.introRoute.route]"
+                            [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_INTRO.route]"
                             routerLinkActive="active"
-                            >Einleitung</a
+                            >{{ editionRouteConstants.EDITION_INTRO.full }}</a
                         >
                         <a
                             class="dropdown-item"
-                            [routerLink]="[editionComplex.baseRoute, editionComplex.sheetsRoute.route]"
+                            [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
                             routerLinkActive="active"
-                            >Edierte Notentexte</a
+                            >{{ editionRouteConstants.EDITION_SHEETS.full }}</a
                         >
                         <a
                             class="dropdown-item"
-                            [routerLink]="[editionComplex.baseRoute, editionComplex.reportRoute.route]"
+                            [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_REPORT.route]"
                             routerLinkActive="active"
-                            >Kritischer Bericht</a
+                            >{{ editionRouteConstants.EDITION_REPORT.full }}</a
                         >
                         <div class="dropdown-divider"></div>
                     </div>

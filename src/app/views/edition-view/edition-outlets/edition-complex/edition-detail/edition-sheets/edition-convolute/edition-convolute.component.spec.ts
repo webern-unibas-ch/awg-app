@@ -1,20 +1,20 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import { mockEditionData } from '@testing/mock-data';
 
-import { EditionSvgSheet, FolioConvoluteList, FolioConvolute } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models';
 import { EditionConvoluteComponent } from './edition-convolute.component';
 
 interface IFolioLegend {

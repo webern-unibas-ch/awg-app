@@ -1,10 +1,10 @@
 import {
-    FolioCalculationPoint,
-    FolioCalculationLine,
+    FolioCalculation,
     FolioCalculationContentItem,
+    FolioCalculationLine,
+    FolioCalculationPoint,
     FolioCalculationSheet,
     FolioCalculationSystems,
-    FolioCalculation,
 } from './folio-calculation.model';
 
 /**

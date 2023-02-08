@@ -2,14 +2,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 
+import { ConversionService } from '@awg-core/services';
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { BibliographyService } from '@awg-views/data-view/services';
+
 import { BibEntry } from '../bibliography-entry.model';
 import { BibliographyFormatPipe } from '../bibliography-format.pipe';
 import { BibliographyDetailComponent } from './bibliography-detail.component';
-
-import { ConversionService } from '@awg-core/services';
-import { BibliographyService } from '@awg-views/data-view/services';
-
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 describe('BibliographyDetailComponent', () => {
     let component: BibliographyDetailComponent;

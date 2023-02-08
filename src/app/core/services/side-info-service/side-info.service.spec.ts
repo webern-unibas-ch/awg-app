@@ -2,8 +2,8 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
-import { SideInfoService } from './side-info.service';
 import { SearchInfo } from '@awg-side-info/side-info-models';
+import { SideInfoService } from './side-info.service';
 
 describe('SideInfoService (DONE)', () => {
     let sideInfoService: SideInfoService;

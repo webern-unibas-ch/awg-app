@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BibliographyService } from '@awg-views/data-view/services';
-import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
-import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
+import { BibliographyService } from '@awg-views/data-view/services';
 
 /**
  * The Bibliography component.

@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {
     HttpErrorResponse,
     HttpEvent,
@@ -7,8 +6,9 @@ import {
     HttpRequest,
     HttpResponse,
 } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
-import { of as observableOf, Observable, throwError as observableThrowError } from 'rxjs';
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { HttpCacheService } from '@awg-core/services';

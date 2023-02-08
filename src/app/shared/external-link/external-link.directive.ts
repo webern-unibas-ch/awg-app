@@ -1,5 +1,5 @@
-import { Directive, HostBinding, Inject, Input, OnChanges, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { Directive, HostBinding, Inject, Input, OnChanges, PLATFORM_ID } from '@angular/core';
 
 /**
  * The external link directive.

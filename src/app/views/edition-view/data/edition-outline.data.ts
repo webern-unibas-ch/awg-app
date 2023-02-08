@@ -1,109 +1,118 @@
-import { EditionConstants, EditionSeriesRoute } from '@awg-views/edition-view/models';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data/edition-complexes.data';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
- * Object constant with the outline of the edition.
+ * Object constant: EDITION_OUTLINE_DATA.
  *
- * It provides metadata for structure of the edition.
+ * It provides metadata for the outline structure of the edition.
  */
-export const EDITION_OUTLINE_DATA: EditionSeriesRoute[] = [
+export const EDITION_OUTLINE_DATA: EditionOutlineSeries[] = [
     {
-        series: EditionConstants.SERIES_1,
+        series: EDITION_ROUTE_CONSTANTS.SERIES_1,
         sections: [
             {
-                section: EditionConstants.SECTION_1,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_1,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_2,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_2,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_3,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_3,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_4,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_4,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_5,
-                complexes: [
-                    { complex: EDITION_COMPLEXES.OP3, disabled: true },
-                    { complex: EDITION_COMPLEXES.OP4, disabled: true },
-                    { complex: EDITION_COMPLEXES.OP12, disabled: false },
-                    { complex: EDITION_COMPLEXES.OP23, disabled: false },
-                    { complex: EDITION_COMPLEXES.OP25, disabled: false },
-                ],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+                complexes: {
+                    opus: [
+                        { complex: EDITION_COMPLEXES.OP3, disabled: true },
+                        { complex: EDITION_COMPLEXES.OP4, disabled: true },
+                        { complex: EDITION_COMPLEXES.OP12, disabled: false },
+                        { complex: EDITION_COMPLEXES.OP23, disabled: false },
+                        { complex: EDITION_COMPLEXES.OP25, disabled: false },
+                    ],
+                    mnr: [
+                        { complex: EDITION_COMPLEXES.M212, disabled: true },
+                        { complex: EDITION_COMPLEXES.M213, disabled: true },
+                        { complex: EDITION_COMPLEXES.M216, disabled: true },
+                        { complex: EDITION_COMPLEXES.M217, disabled: true },
+                    ],
+                },
                 disabled: false,
             },
         ],
     },
     {
-        series: EditionConstants.SERIES_2,
+        series: EDITION_ROUTE_CONSTANTS.SERIES_2,
         sections: [
             {
-                section: EditionConstants.SECTION_1,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_1,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_2A,
-                complexes: [{ complex: EDITION_COMPLEXES.M34, disabled: false }],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_2A,
+                complexes: { opus: [], mnr: [{ complex: EDITION_COMPLEXES.M34, disabled: false }] },
                 disabled: false,
             },
             {
-                section: EditionConstants.SECTION_2B,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_2B,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_3,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_3,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_4,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_4,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_5,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_5,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
         ],
     },
     {
-        series: EditionConstants.SERIES_3,
+        series: EDITION_ROUTE_CONSTANTS.SERIES_3,
         sections: [
             {
-                section: EditionConstants.SECTION_1,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_1,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_2,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_2,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_3,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_3,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SECTION_4,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SECTION_4,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
             {
-                section: EditionConstants.SERIES_3_SECTION_5,
-                complexes: [],
+                section: EDITION_ROUTE_CONSTANTS.SERIES_3_SECTION_5,
+                complexes: { opus: [], mnr: [] },
                 disabled: true,
             },
         ],

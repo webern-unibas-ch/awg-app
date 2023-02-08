@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, SourceEvaluationList } from '@awg-views/edition-view/models';
 
 /**
@@ -73,6 +74,15 @@ export class SourceEvaluationComponent {
      */
     constructor(public utils: UtilityService) {
         this.ref = this;
+    }
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
     }
 
     /**

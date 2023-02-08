@@ -26,7 +26,7 @@ import {
 
 import { StreamLanguage, StreamParser } from '@codemirror/language';
 import { EditorState, Extension } from '@codemirror/state';
-import { EditorView, basicSetup } from 'codemirror';
+import { basicSetup, EditorView } from 'codemirror';
 
 /**
  * The CmMode type.

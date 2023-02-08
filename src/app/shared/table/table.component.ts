@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
-import { TablePaginatorOptions, TableData, TableOptions, TableRows } from './models';
+import { TableData, TableOptions, TablePaginatorOptions, TableRows } from './models';
 
 /**
  * The Table component.

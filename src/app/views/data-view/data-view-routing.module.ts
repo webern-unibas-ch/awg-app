@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DataViewComponent } from './data-view.component';
 import { ResourceDetailComponent } from './data-outlets/resource-detail';
 import { SearchOverviewComponent } from './data-outlets/search-overview.component';
 import { SearchPanelComponent } from './data-outlets/search-panel';
+import { DataViewComponent } from './data-view.component';
 // Import { TimelineComponent } from './data-outlets/timeline/timeline.component';
 
 /* Routes of the DataViewModule */

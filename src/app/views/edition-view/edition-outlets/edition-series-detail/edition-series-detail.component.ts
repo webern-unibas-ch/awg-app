@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models/edition-constants';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -17,18 +17,11 @@ import { EditionService } from '@awg-views/edition-view/services';
 })
 export class EditionSeriesDetailComponent implements OnInit {
     /**
-     * Public variable: editionRoute.
-     *
-     * It keeps the edition route of the edition.
-     */
-    editionRoute: EditionRoute;
-
-    /**
      * Public variable: selectedSeries.
      *
      * It keeps the selected series of the edition.
      */
-    selectedSeries: EditionSeriesRoute;
+    selectedSeries: EditionOutlineSeries;
 
     /**
      * Constructor of the EditionSeriesDetailComponent.
@@ -55,7 +48,7 @@ export class EditionSeriesDetailComponent implements OnInit {
     /**
      * Public method: getSeries.
      *
-     * It gets the selected series by ID from the EditionService and sets the editionRoute constant.
+     * It gets the selected series by ID from the EditionService.
      *
      * @returns {void} Gets the edition series.
      */
@@ -64,7 +57,5 @@ export class EditionSeriesDetailComponent implements OnInit {
 
         this.selectedSeries = this.editionService.getEditionSeriesById(id);
         this.editionService.updateSelectedEditionSeries(this.selectedSeries);
-
-        this.editionRoute = EditionConstants.EDITION;
     }
 }

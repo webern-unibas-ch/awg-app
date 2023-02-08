@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CoreService } from '@awg-core/services';
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
 
 /**
  * The ContactView component.

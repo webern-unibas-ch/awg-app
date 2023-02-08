@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { EditionRowTables } from '@awg-views/edition-view/models';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionRowTables component.

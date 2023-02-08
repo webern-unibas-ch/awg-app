@@ -1,37 +1,41 @@
 {
-    "sheets": [
-        {
-            "id": "M_34_Sk1",
-            "label": "M 34 Sk1",
-            "content": [
-                {
-                    "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1von3_220707_path.svg",
-                    "image": "",
-                    "partial": "a"
-                },
-                {
-                    "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_2von3_220707_path.svg",
-                    "image": "",
-                    "partial": "b"
-                },
-                {
-                    "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_3von3_220707_path.svg",
-                    "image": "",
-                    "partial": "c"
-                }
-            ],
-            "convolute": "A"
-        },
-        {
-            "id": "M_34_Sk1_1",
-            "label": "M 34 Sk1.1",
-            "content": [
-                {
-                    "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1_1von1_220707_path.svg",
-                    "image": ""
-                }
-            ],
-            "convolute": "B"
-        }
-    ]
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [],
+        "sketchEditions": [
+            {
+                "id": "M_34_Sk1",
+                "label": "M 34 Sk1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1von3_220707_path.svg",
+                        "image": "",
+                        "partial": "a"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_2von3_220707_path.svg",
+                        "image": "",
+                        "partial": "b"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_3von3_220707_path.svg",
+                        "image": "",
+                        "partial": "c"
+                    }
+                ],
+                "convolute": "A"
+            },
+            {
+                "id": "M_34_Sk1_1",
+                "label": "M 34 Sk1.1",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1_1von1_220707_path.svg",
+                        "image": ""
+                    }
+                ],
+                "convolute": "A"
+            }
+        ]
+    }
 }

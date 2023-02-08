@@ -1,5 +1,5 @@
-import { Folio, FolioContent, FolioSection } from './folio.model';
 import { FolioSettings } from './folio-settings.model';
+import { Folio, FolioContent, FolioSection } from './folio.model';
 
 /**
  * The FolioCalculationPoint class.

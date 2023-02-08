@@ -1,5 +1,5 @@
-import { ResourceInfoResource } from './resource-info-resources.model';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { ResourceInfoResource } from './resource-info-resources.model';
 
 /**
  * The ResourceInfo class.

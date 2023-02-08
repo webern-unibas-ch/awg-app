@@ -3,13 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
-import {
-    EditionConstants,
-    EditionRoute,
-    EditionSectionRoute,
-    EditionSeriesRoute,
-    EditionComplex,
-} from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -40,26 +35,12 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
-     * Public variable: editionRoute.
-     *
-     * It keeps the base edition route.
-     */
-    editionRoute: EditionRoute = EditionConstants.EDITION;
-
-    /**
      * Public variable: isRowTableView$.
      *
      * Observable that keeps the information
      * about the flag for the row table view.
      */
     isRowTableView$: Observable<boolean>;
-
-    /**
-     * Public variable: seriesRoute.
-     *
-     * It keeps the base series route.
-     */
-    seriesRoute: EditionRoute = EditionConstants.SERIES;
 
     /**
      * Public variable: selectedEditionComplex$.
@@ -72,16 +53,18 @@ export class EditionViewComponent implements OnInit {
     /**
      * Public variable: selectedEditionSection$.
      *
-     * It keeps the selected section of the edition as an Observable of EditionRoute.
+     * It keeps the selected section of the edition as an Observable of EditionOutlineSection;
+;
+.
      */
-    selectedEditionSection$: Observable<EditionSectionRoute>;
+    selectedEditionSection$: Observable<EditionOutlineSection>;
 
     /**
      * Public variable: selectedEditionSeries$.
      *
-     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     * It keeps the selected series of the edition as an Observable of EditionOutlineSeries.
      */
-    selectedEditionSeries$: Observable<EditionSeriesRoute>;
+    selectedEditionSeries$: Observable<EditionOutlineSeries>;
 
     /**
      * Constructor of the EditionViewComponent.
@@ -94,6 +77,15 @@ export class EditionViewComponent implements OnInit {
      * @param {Router} router Instance of the Angular router.
      */
     constructor(private editionService: EditionService, private route: ActivatedRoute, private router: Router) {}
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.

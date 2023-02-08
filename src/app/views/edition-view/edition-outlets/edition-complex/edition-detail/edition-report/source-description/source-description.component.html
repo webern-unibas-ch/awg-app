@@ -73,6 +73,12 @@
                 <span [compile-html]="sourceDescription.description.date" [compile-html-ref]="ref"></span>
             </p>
 
+            <!-- pagination -->
+            <p *ngIf="sourceDescription.description.pagination" class="awg-source-description-pagination">
+                <span class="caps">Paginierung:&nbsp;</span>
+                <span [compile-html]="sourceDescription.description.pagination" [compile-html-ref]="ref"></span>
+            </p>
+
             <!-- measureNumbers -->
             <p *ngIf="sourceDescription.description.measureNumbers" class="awg-source-description-measure-numbers">
                 <span class="caps">Taktzahlen:&nbsp;</span>

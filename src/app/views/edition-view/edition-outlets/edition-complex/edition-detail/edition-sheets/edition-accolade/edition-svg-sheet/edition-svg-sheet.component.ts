@@ -12,8 +12,8 @@ import {
 } from '@angular/core';
 
 import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
-import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 import { SliderConfig } from '@awg-shared/shared-models';
 import {
@@ -92,12 +92,12 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Output variable: selectSvgSheetRequest.
+     * Output variable: selectLinkBoxRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected link box.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output variable: selectOverlaysRequest.
@@ -106,6 +106,14 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
      */
     @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
+
+    /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -415,7 +423,63 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
             return;
         }
 
-        const tkkGroups: D3Selection = this.svgDrawingService.getTkkGroups(this.svgSheetRootGroupSelection);
+        this._createTkkOverlays();
+        this._createLinkBoxOverlays();
+    }
+
+    /**
+     * Private method: _createLinkBoxOverlays.
+     *
+     * It creates the D3 SVG overlays for the link boxes.
+     *
+     * @returns {void} Creates the D3 SVG link box overlays.
+     */
+    private _createLinkBoxOverlays(): void {
+        const linkBoxGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+            this.svgSheetRootGroupSelection,
+            'link-box'
+        );
+
+        if (linkBoxGroups) {
+            linkBoxGroups.nodes().forEach(linkBoxGroup => {
+                const linkBoxGroupId: string = linkBoxGroup['id'];
+                const linkBoxGroupSelection: D3Selection = this.svgDrawingService.getD3SelectionById(
+                    this.svgSheetRootGroupSelection,
+                    linkBoxGroupId
+                );
+
+                // Color link box
+                const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
+                linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
+
+                linkBoxGroupSelection
+                    .on('mouseover', () => {
+                        linkBoxGroupSelection.style('cursor', 'pointer');
+                        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxHoverFillColor);
+                    })
+                    .on('mouseout', () => {
+                        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
+                    })
+                    .on('click', () => {
+                        this._onLinkBoxSelect(linkBoxGroupId);
+                    });
+            });
+        }
+    }
+
+    /**
+     * Private method: _createTkkOverlays.
+     *
+     * It creates the D3 SVG overlays for the textcritical comments.
+     *
+     * @returns {void} Creates the D3 SVG textcritical comment overlays.
+     */
+    private _createTkkOverlays(): void {
+        // Tkk overlays
+        const tkkGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+            this.svgSheetRootGroupSelection,
+            'tkk'
+        );
 
         if (tkkGroups) {
             tkkGroups.nodes().forEach(tkkGroup => {
@@ -444,15 +508,16 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                 overlayGroupSelection
                     .on('mouseover', () => {
                         if (overlay && !overlay.isSelected) {
-                            const color = this.svgDrawingService.selectionFillColor;
+                            const color = this.svgDrawingService.overlaySelectionFillColor;
                             this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
                         }
+                        overlayGroupRectSelection.style('cursor', 'pointer');
                     })
                     .on('mouseout', () => {
                         const color =
                             overlay && overlay.isSelected
-                                ? this.svgDrawingService.selectionFillColor
-                                : this.svgDrawingService.deselectionFillColor;
+                                ? this.svgDrawingService.overlaySelectionFillColor
+                                : this.svgDrawingService.overlayFillColor;
                         this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
                     })
                     .on('click', () => {
@@ -465,8 +530,6 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                     });
             });
         }
-
-        this.svgDrawingService.getLinkBoxes(this.svgSheetRootGroupSelection);
     }
 
     /**
@@ -528,6 +591,19 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
     }
 
     /**
+     * Private method: onLinkBoxSelect.
+     *
+     * It emits the given link box id
+     * to the {@link selectLinkBoxRequest}.
+     *
+     * @param {string} linkBoxId The given link box id.
+     * @returns {void} Emits the id.
+     */
+    private _onLinkBoxSelect(linkBoxId: string): void {
+        this.selectLinkBoxRequest.emit(linkBoxId);
+    }
+
+    /**
      * Private method: _reScaleZoom.
      *
      * It rescales the current zoom with a given slider value.
@@ -562,7 +638,6 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
      * Cf. https://stackoverflow.com/a/13635455
      *
      * @param {number} value The given value to round.
-     *
      * @returns {number} The rounded value.
      */
     private _roundToNearestScaleStep(value: number): number {

@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionViewComponent } from './edition-view.component';
 import { EditionComplexComponent } from './edition-outlets/edition-complex';
 import { EditionDetailNavComponent } from './edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component';
-import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
-import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionSeriesDetailComponent } from './edition-outlets/edition-series-detail';
+import { EditionSectionDetailComponent } from './edition-outlets/edition-series-detail/edition-section-detail';
+import { EditionSectionsComponent } from './edition-outlets/edition-series-detail/edition-sections';
 import { EditionTypeComponent } from './edition-outlets/edition-type';
+import { EditionViewComponent } from './edition-view.component';
 
 /* Routes of the EditionViewModule */
 const EDITION_VIEW_ROUTES: Routes = [
@@ -27,10 +27,12 @@ const EDITION_VIEW_ROUTES: Routes = [
                 component: EditionSeriesDetailComponent,
                 children: [
                     {
+                        // Overview of sections.
                         path: 'sections',
                         component: EditionSectionsComponent,
                     },
                     {
+                        // Section by id (1, 2, 3, 4, 5).
                         path: 'section/:id',
                         component: EditionSectionDetailComponent,
                     },
@@ -71,26 +73,47 @@ const EDITION_VIEW_ROUTES: Routes = [
                                 path: 'sheets',
                                 loadChildren: () =>
                                     import(
-                                        './edition-outlets/edition-complex/edition-detail//edition-sheets/edition-sheets.module'
+                                        './edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module'
                                     ).then(m => m.EditionSheetsModule),
                             },
                             {
                                 path: 'report',
                                 loadChildren: () =>
                                     import(
-                                        './edition-outlets/edition-complex/edition-detail//edition-report/edition-report.module'
+                                        './edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module'
                                     ).then(m => m.EditionReportModule),
                             },
                             {
                                 path: 'graph',
                                 loadChildren: () =>
                                     import(
-                                        './edition-outlets/edition-complex/edition-detail//edition-graph/edition-graph.module'
+                                        './edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module'
                                     ).then(m => m.EditionGraphModule),
                             },
+                            /* 
+                                Path: 'workedition',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-workedition/edition-workedition.module'
+                                    ).then(m => m.EditionWorkeditionModule),
+                            },
+                            {
+                                path: 'texteditions',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-texteditions/edition-texteditions.module'
+                                    ).then(m => m.EditionTexteditionModule),
+                            },
+                            {
+                                path: 'sketches',
+                                loadChildren: () =>
+                                    import(
+                                        './edition-outlets/edition-complex/edition-detail/edition-sketches/edition-sketches.module'
+                                    ).then(m => m.EditionSketchesModule),
+                            },*/
                             {
                                 path: '',
-                                redirectTo: 'intro',
+                                redirectTo: 'sheets',
                                 pathMatch: 'full',
                             },
                         ],

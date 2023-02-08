@@ -14,8 +14,8 @@ import {
 import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-response-formats/src/property-definition-json';
 import {
     ExtendedSearchParams,
-    SEARCH_COMPOP_SETS_LIST,
     SearchCompop,
+    SEARCH_COMPOP_SETS_LIST,
     VALUETYPE_LIST,
 } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';

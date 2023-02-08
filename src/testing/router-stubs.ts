@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
-import { convertToParamMap, QueryParamsHandling, ParamMap, Params } from '@angular/router';
+import { convertToParamMap, ParamMap, Params, QueryParamsHandling } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { AppModule } from '@awg-app/app.module';

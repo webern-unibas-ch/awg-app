@@ -1,5 +1,5 @@
-import { ComponentFixture } from '@angular/core/testing';
 import { ChangeDetectorRef } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 
 /**
  * Test helper method: detectChangesOnPush.

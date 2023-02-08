@@ -1,16 +1,34 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+
+// Mock components
+@Component({ selector: 'awg-edition-svg-sheet-nav-item', template: '' })
+class EditionSvgSheetNavItemStubComponent {
+    @Input()
+    navItemLabel: string;
+
+    @Input()
+    svgSheets: EditionSvgSheet[];
+
+    @Input()
+    selectedSvgSheet: EditionSvgSheet;
+
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+}
 
 describe('EditionSvgSheetNavComponent (DONE)', () => {
     let component: EditionSvgSheetNavComponent;
@@ -28,7 +46,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionSvgSheetNavComponent],
+            declarations: [EditionSvgSheetNavComponent, EditionSvgSheetNavItemStubComponent],
         }).compileComponents();
     }));
 
@@ -41,7 +59,13 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
         expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2_with_partials;
-        expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet, expectedSvgSheetWithPartials] };
+        expectedSvgSheetsData = {
+            sheets: {
+                workEditions: [],
+                textEditions: [],
+                sketchEditions: [expectedSvgSheet, expectedNextSvgSheet, expectedSvgSheetWithPartials],
+            },
+        };
 
         expectedSvgSheetWithPartialsSingleSvg = mockEditionData.mockSvgSheet_Sk2a;
 
@@ -69,6 +93,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             it('... should contain no div (yet)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div', 0, 0);
             });
+
+            it('... should contain no EditionSvgSheetNavItemComponent (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 0, 0);
+            });
         });
     });
 
@@ -84,7 +112,9 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
 
         it('should have `svgSheetsData` input', () => {
             expect(component.svgSheetsData).toBeDefined();
-            expect(component.svgSheetsData.sheets.length).withContext('should be 3').toBe(3);
+            expect(component.svgSheetsData.sheets.workEditions.length).withContext('should be 0').toBe(0);
+            expect(component.svgSheetsData.sheets.textEditions.length).withContext('should be 0').toBe(0);
+            expect(component.svgSheetsData.sheets.sketchEditions.length).withContext('should be 3').toBe(3);
             expect(component.svgSheetsData)
                 .withContext(`should equal ${expectedSvgSheetsData}`)
                 .toEqual(expectedSvgSheetsData);
@@ -96,189 +126,131 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should have one outer div (btn-group)', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-btn-group', 1, 1);
+            it('... should have one outer div.card', () => {
+                const cardDe = getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+                const cardEl = cardDe[0].nativeElement;
+
+                expect(cardEl.classList).toBeTruthy();
+                expect(cardEl.classList)
+                    .withContext(`should contain class 'awg-svg-sheet-nav'`)
+                    .toContain('awg-svg-sheet-nav');
             });
 
-            it('... should have two direct anchors in div.awg-btn-group (no partials)', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-btn-group > a.awg-svg-sheet-nav-link', 2, 2);
+            it('... should have one inner div.card-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
             });
 
-            it('... should have `awg-svg-sheet-nav-link` class on direct anchors (no partials)', () => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'div.awg-btn-group > a', 2, 2);
-
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
-
-                expect(anchorCmp0)
-                    .withContext(`should have class 'awg-svg-sheet-nav-link'`)
-                    .toHaveClass('awg-svg-sheet-nav-link');
-                expect(anchorCmp1)
-                    .withContext(`should have class 'awg-svg-sheet-nav-link'`)
-                    .toHaveClass('awg-svg-sheet-nav-link');
+            it('... should contain 3 EditionSvgSheetNavItemComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavItemStubComponent, 3, 3);
             });
 
-            it('... should have `active` class on direct anchors with selected svg sheet and `text-muted` on others (no partials)', () => {
-                const anchorDes = getAndExpectDebugElementByCss(
+            it('... should pass down navItemLabels to EditionSvgSheetNavItemComponent', () => {
+                const sheetNavItemDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-btn-group > a.awg-svg-sheet-nav-link',
-                    2,
-                    2
+                    EditionSvgSheetNavItemStubComponent,
+                    3,
+                    3
                 );
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const sheetNavItemCmp = sheetNavItemDes.map(
+                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
+                );
 
-                expect(anchorCmp0).withContext(`should have class 'active'`).toHaveClass('active');
-                expect(anchorCmp0).withContext(`should not have class 'text-muted'`).not.toHaveClass('text-muted');
+                expect(sheetNavItemCmp.length).withContext('should have 3 nav item components').toBe(3);
 
-                expect(anchorCmp1).withContext(`should not have class 'active'`).not.toHaveClass('active');
-                expect(anchorCmp1).withContext(`should have class 'text-muted'`).toHaveClass('text-muted');
+                expect(sheetNavItemCmp[0].navItemLabel).toBeTruthy();
+                expect(sheetNavItemCmp[0].navItemLabel).withContext(`should be 'Werkeditionen'`).toBe('Werkeditionen');
+
+                expect(sheetNavItemCmp[1].navItemLabel).toBeTruthy();
+                expect(sheetNavItemCmp[1].navItemLabel).withContext(`should be 'Texteditionen'`).toBe('Texteditionen');
+
+                expect(sheetNavItemCmp[2].navItemLabel).toBeTruthy();
+                expect(sheetNavItemCmp[2].navItemLabel)
+                    .withContext(`should be 'Skizzeneditionen'`)
+                    .toBe('Skizzeneditionen');
             });
 
-            it('... should display sheet label in direct anchors (no partials)', () => {
-                const anchorDes = getAndExpectDebugElementByCss(
+            it('... should pass down selectedSvgSheet to EditionSvgSheetNavItemComponent', () => {
+                const sheetNavItemDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-btn-group > a.awg-svg-sheet-nav-link',
-                    2,
-                    2
+                    EditionSvgSheetNavItemStubComponent,
+                    3,
+                    3
                 );
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const sheetNavItemCmp = sheetNavItemDes.map(
+                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
+                );
 
-                expect(anchorCmp0.textContent.trim())
-                    .withContext(`should be ${expectedSvgSheet.label}`)
-                    .toBe(expectedSvgSheet.label);
-                expect(anchorCmp1.textContent.trim())
-                    .withContext(`should be ${expectedNextSvgSheet.label}`)
-                    .toBe(expectedNextSvgSheet.label);
+                expect(sheetNavItemCmp.length).withContext('should have 3 nav item components').toBe(3);
+
+                expect(sheetNavItemCmp[0].selectedSvgSheet).toBeTruthy();
+                expect(sheetNavItemCmp[0].selectedSvgSheet)
+                    .withContext(`should be ${expectedSvgSheet}`)
+                    .toBe(expectedSvgSheet);
+
+                expect(sheetNavItemCmp[1].selectedSvgSheet).toBeTruthy();
+                expect(sheetNavItemCmp[1].selectedSvgSheet)
+                    .withContext(`should be ${expectedSvgSheet}`)
+                    .toBe(expectedSvgSheet);
+
+                expect(sheetNavItemCmp[2].selectedSvgSheet).toBeTruthy();
+                expect(sheetNavItemCmp[2].selectedSvgSheet)
+                    .withContext(`should be ${expectedSvgSheet}`)
+                    .toBe(expectedSvgSheet);
             });
 
-            it('... should have one dropdown for partial sheets', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-btn-group > div.awg-svg-sheet-nav-link-dropdown', 1, 1);
-            });
-
-            it('... should have one header anchor (#dropDownSheetNav) in dropdown (partials)', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
+            it('... should pass down svgSheets to EditionSvgSheetNavItemComponent', () => {
+                const sheetNavItemDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    'div.awg-btn-group > div.awg-svg-sheet-nav-link-dropdown',
-                    1,
-                    1
+                    EditionSvgSheetNavItemStubComponent,
+                    3,
+                    3
                 );
-                getAndExpectDebugElementByCss(dropdownDes[0], 'a#dropDownSheetNav', 1, 1);
-            });
-
-            it('... should have sheet label in dropdown header anchor (partials)', () => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
-                const anchorCmp = anchorDes[0].nativeElement;
-
-                expect(anchorCmp.textContent.trim())
-                    .withContext(`should be ${expectedSvgSheetWithPartials.label}`)
-                    .toBe(expectedSvgSheetWithPartials.label);
-            });
-
-            it('... should have two item anchors (.dropdown-item) in dropdown (partials)', () => {
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-btn-group > div.awg-svg-sheet-nav-link-dropdown',
-                    1,
-                    1
+                const sheetNavItemCmp = sheetNavItemDes.map(
+                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
                 );
-                getAndExpectDebugElementByCss(dropdownDes[0], 'a.dropdown-item', 2, 2);
-            });
 
-            it('... should have `active` class on dropdown anchor with selected svg sheet and `text-muted` on others (partials)', async () => {
-                component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
-                await detectChangesOnPush(fixture);
+                expect(sheetNavItemCmp.length).withContext('should have 3 nav item components').toBe(3);
 
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 2, 2);
+                expect(sheetNavItemCmp[0].svgSheets).toBeTruthy();
+                expect(sheetNavItemCmp[0].svgSheets)
+                    .withContext(`should be ${expectedSvgSheetsData.sheets.workEditions}`)
+                    .toBe(expectedSvgSheetsData.sheets.workEditions);
 
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                expect(sheetNavItemCmp[1].svgSheets).toBeTruthy();
+                expect(sheetNavItemCmp[1].svgSheets)
+                    .withContext(`should be ${expectedSvgSheetsData.sheets.textEditions}`)
+                    .toBe(expectedSvgSheetsData.sheets.textEditions);
 
-                expect(anchorCmp0).withContext(`should have class 'active'`).toHaveClass('active');
-                expect(anchorCmp0).withContext(`should not have class 'text-muted'`).not.toHaveClass('text-muted');
-
-                expect(anchorCmp1).withContext(`should not have class 'active'`).not.toHaveClass('active');
-                expect(anchorCmp1).withContext(`should have class 'text-muted'`).toHaveClass('text-muted');
-            });
-
-            it('... should display sheet labels in dropdown item anchors (partials)', () => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 2, 2);
-
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
-
-                const anchorLabel0 =
-                    expectedSvgSheetWithPartials.label + expectedSvgSheetWithPartials.content[0].partial;
-                const anchorLabel1 =
-                    expectedSvgSheetWithPartials.label + expectedSvgSheetWithPartials.content[1].partial;
-
-                expect(anchorCmp0.textContent.trim()).withContext(`should be ${anchorLabel0}`).toBe(anchorLabel0);
-                expect(anchorCmp1.textContent.trim()).withContext(`should be ${anchorLabel1}`).toBe(anchorLabel1);
-            });
-        });
-
-        describe('#isSelectedSvgSheet', () => {
-            it('... should return false if given id does not equal id of selected svg sheet', () => {
-                const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
-
-                expect(comparison).toBeFalse();
-            });
-
-            it('... should return true if given id does equal id of selected svg sheet', () => {
-                const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
-
-                expect(comparison).toBeTrue();
-            });
-
-            it('... should recognize ids of selected svg sheet wth partials', async () => {
-                component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
-                await detectChangesOnPush(fixture);
-
-                const expectedId =
-                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
-                const comparison = component.isSelectedSvgSheet(expectedId);
-
-                expect(comparison).toBeTrue();
+                expect(sheetNavItemCmp[2].svgSheets).toBeTruthy();
+                expect(sheetNavItemCmp[2].svgSheets)
+                    .withContext(`should be ${expectedSvgSheetsData.sheets.sketchEditions}`)
+                    .toBe(expectedSvgSheetsData.sheets.sketchEditions);
             });
         });
 
         describe('#selectSvgSheet', () => {
-            describe('... should trigger on click', () => {
-                it('... on direct anchors', fakeAsync(() => {
-                    const expectedId = expectedSvgSheet.id;
+            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetNavItemComponent', () => {
+                const sheetNavItemDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionSvgSheetNavItemStubComponent,
+                    3,
+                    3
+                );
+                const sheetNavItemCmp = sheetNavItemDes.map(
+                    de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
+                );
 
-                    const anchorDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-btn-group > a.awg-svg-sheet-nav-link',
-                        2,
-                        2
-                    );
+                sheetNavItemCmp[0].selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 
-                    // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(anchorDes[0], fixture);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
 
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedId);
-                }));
+                sheetNavItemCmp[1].selectSvgSheetRequest.emit(expectedSvgSheet.id);
 
-                it('... on dropdown anchors', fakeAsync(() => {
-                    const expectedId =
-                        expectedSvgSheetWithPartialsSingleSvg.id +
-                        expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+                expectSpyCall(selectSvgSheetSpy, 2, expectedSvgSheet.id);
 
-                    const dropdownDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div.awg-btn-group > div.awg-svg-sheet-nav-link-dropdown',
-                        1,
-                        1
-                    );
-                    const anchorDes = getAndExpectDebugElementByCss(dropdownDes[0], 'a.dropdown-item', 2, 2);
+                sheetNavItemCmp[2].selectSvgSheetRequest.emit(expectedSvgSheet.id);
 
-                    // Trigger click with click helper & wait for changes
-                    clickAndAwaitChanges(anchorDes[0], fixture);
-
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedId);
-                }));
+                expectSpyCall(selectSvgSheetSpy, 3, expectedSvgSheet.id);
             });
 
             it('... should not emit anything if no id is provided', () => {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -20,9 +20,9 @@ export class EditionSectionsComponent implements OnInit {
     /**
      * Public variable: selectedSeries$.
      *
-     * It keeps the selected series of the edition as an Observable of EditionSeriesRoutes.
+     * It keeps the selected series of the edition as an Observable of EditionOutlineSeries.
      */
-    selectedSeries$: Observable<EditionSeriesRoute>;
+    selectedSeries$: Observable<EditionOutlineSeries>;
 
     /**
      * Constructor of the EditionSectionsComponent.

@@ -1,2 +1,55 @@
+<!--
+<div *ngIf="selectedEditionComplex$ | async as complex">
+    <p>
+        Editionskomplex {{ complex.complexId.short }}: <br />
+        {{ complex | json }}
+    </p>
+    <p>Titel: {{ complex.titleStatement | json }}</p>
+    <p>
+        <a [routerLink]="[editionRouteConstants.EDITION_INTRO.route]">
+            {{ editionRouteConstants.EDITION_INTRO.short }}
+        </a>
+        {{ editionRouteConstants.EDITION_INTRO | json }}
+    </p>
+    <div>
+        <p>Werkedition: {{ complex.titleStatement | json }}</p>
+        <ul>
+            <li [innerHtml]="complex.complexId.full"></li>
+            enthält:
+            <ul>
+                <li>„Der Tag ist vergangen“ M 212: Textfassung 3</li>
+                <li>Die geheimnisvolle Flöte („An einem Abend“) M 217: einzige Textfassung</li>
+                <li>„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung</li>
+                <li>Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 2</li>
+            </ul>
+        </ul>
+    </div>
+    <div>
+        <p>Texteditionen: {{ complex.titleStatement | json }}</p>
+        <ul>
+            <li>„Der Tag ist vergangen“ M 212: Textfassung 1</li>
+            <li>„Der Tag ist vergangen“ M 212: Textfassung 2</li>
+            <li>Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 1</li>
+        </ul>
+    </div>
+    <div>
+        <p>Skizzeneditionen: {{ complex.titleStatement | json }}</p>
+        <ul>
+            <li>M 212 Sk 1</li>
+            <li>M 212 Sk 2</li>
+            <li>M 212 Sk 3</li>
+            <li>M 212 Sk 4</li>
+            <li>M 212 Sk 5</li>
+        </ul>
+    </div>
+    <p>
+        <a [routerLink]="[editionRouteConstants.EDITION_REPORT.route]">
+            {{ editionRouteConstants.EDITION_REPORT.short }}
+        </a>
+        {{ editionRouteConstants.EDITION_REPORT | json }}
+    </p>
+</div>
+-->
+
 <!-- edition routes -->
 <router-outlet></router-outlet>

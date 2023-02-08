@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
+import Spy = jasmine.Spy;
+
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
+import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import {
     ResourceDetail,
     ResourceDetailContent,
@@ -12,11 +16,8 @@ import {
     ResourceDetailImage,
     ResourceDetailProperty,
 } from '@awg-views/data-view/models';
-import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import Spy = jasmine.Spy;
 
 // Mock component
 @Component({ selector: 'awg-resource-detail-html-content', template: '' })

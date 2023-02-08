@@ -1,16 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { delay, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
-import {
-    EditionConstants,
-    EditionRoute,
-    EditionSectionRoute,
-    EditionSeriesRoute,
-} from '@awg-views/edition-view/models';
+import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -30,21 +25,14 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      *
      * It keeps the selected series of the edition.
      */
-    selectedSeries: EditionSeriesRoute;
+    selectedSeries: EditionOutlineSeries;
 
     /**
      * Public variable: selectedSection.
      *
      * It keeps the selected section of the edition.
      */
-    selectedSection: EditionSectionRoute;
-
-    /**
-     * Public variable: editionRoute.
-     *
-     * It keeps the base edition route.
-     */
-    editionRoute: EditionRoute = EditionConstants.EDITION;
+    selectedSection: EditionOutlineSection;
 
     /**
      * Private variable: _destroyed$.
@@ -80,7 +68,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
     /**
      * Public method: getSection.
      *
-     * It gets the selected section by ID from the EditionService and sets the editionRoute constant.
+     * It gets the selected section by ID from the EditionService.
      *
      * @returns {void} Gets the edition section.
      */
@@ -89,7 +77,7 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
 
         this.editionService
             .getSelectedEditionSeries()
-            .pipe(delay(0), takeUntil(this._destroyed$))
+            .pipe(takeUntil(this._destroyed$))
             .subscribe(series => {
                 if (series) {
                     this.selectedSeries = series;

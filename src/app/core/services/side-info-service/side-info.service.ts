@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 

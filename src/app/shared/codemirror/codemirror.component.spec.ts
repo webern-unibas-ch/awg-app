@@ -1,12 +1,12 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, SimpleChange } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { basicSetup, EditorView } from 'codemirror';
-import { StreamLanguage, StreamParser } from '@codemirror/language';
-import { sparql } from '@codemirror/legacy-modes/mode/sparql';
-import { turtle } from '@codemirror/legacy-modes/mode/turtle';
-import { EditorState, EditorStateConfig, Extension } from '@codemirror/state';
 import Spy = jasmine.Spy;
+
+import { StreamLanguage } from '@codemirror/language';
+import { sparql } from '@codemirror/legacy-modes/mode/sparql';
+import { EditorState, EditorStateConfig, Extension } from '@codemirror/state';
+import { basicSetup } from 'codemirror';
 
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 

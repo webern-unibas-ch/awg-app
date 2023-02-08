@@ -3,11 +3,11 @@
 <div>
     <div class="awg-edition-row-tables para" *ngIf="isRowTableView$ | async as isRowTableView">
         <h6 class="awg-edition-info-breadcrumb">
-            <a [routerLink]="['.' + seriesRoute.route]">
-                {{ editionRoute?.short }}
+            <a [routerLink]="[editionRouteConstants.SERIES.route]">
+                {{ editionRouteConstants.EDITION?.short }}
             </a>
             /
-            <span>Reihentabellen</span>
+            <span>{{ editionRouteConstants.ROWTABLES.full }}</span>
         </h6>
         <!-- Jumbotron -->
         <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="'Übersicht'"></awg-edition-jumbotron>
@@ -19,10 +19,10 @@
         <h6 class="awg-edition-info-breadcrumb">
             <a
                 *ngIf="selectedEditionSeries$ | async as selectedSeries; else editionWithoutLink"
-                [routerLink]="['.' + seriesRoute.route]">
-                {{ editionRoute?.short }}
+                [routerLink]="[editionRouteConstants.SERIES.route]">
+                {{ editionRouteConstants.EDITION?.short }}
             </a>
-            <ng-template #editionWithoutLink> {{ editionRoute?.short }} </ng-template>
+            <ng-template #editionWithoutLink> {{ editionRouteConstants.EDITION?.short }} </ng-template>
             /
             <span *ngIf="selectedEditionSeries$ | async as selectedSeries">
                 <a
@@ -45,17 +45,17 @@
 
     <div class="awg-edition-complex" *ngIf="selectedEditionComplex$ | async as selectedEditionComplex">
         <h6 class="awg-edition-info-breadcrumb">
-            <a [routerLink]="['.' + seriesRoute.route]">
-                {{ editionRoute?.short }}
+            <a [routerLink]="[editionRouteConstants.SERIES.route]">
+                {{ editionRouteConstants.EDITION?.short }}
             </a>
             /
-            <a [routerLink]="['.' + seriesRoute.route, selectedEditionComplex.series.route]">
+            <a [routerLink]="[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]">
                 {{ selectedEditionComplex.series.full }}
             </a>
             /
             <a
                 [routerLink]="[
-                    '.' + seriesRoute.route,
+                    editionRouteConstants.SERIES.route,
                     selectedEditionComplex.series.route,
                     'section',
                     selectedEditionComplex.section.route

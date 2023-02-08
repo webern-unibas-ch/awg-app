@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 

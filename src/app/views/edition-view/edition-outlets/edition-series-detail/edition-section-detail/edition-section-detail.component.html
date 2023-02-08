@@ -1,41 +1,24 @@
 <div
-    *ngIf="selectedSection && utils.isNotEmptyArray(selectedSection.complexes); else noComplexes"
-    class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-    <div class="col" *ngFor="let complex of selectedSection.complexes">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title" [ngClass]="{ 'text-muted': complex.disabled }">
-                    <span
-                        class="awg-edition-info-header-title"
-                        [innerHTML]="complex.complex.titleStatement.title"></span
-                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{ complex.complex.complexId.short }}</span>
-                </h5>
-            </div>
-            <div class="awg-edition-responsibility card-footer">
-                <p *ngIf="!complex.disabled">
-                    <small class="text-muted">
-                        Ediert von
-                        <span
-                            class="editor"
-                            *ngFor="let editor of complex.complex.responsibilityStatement.editors; last as isLast">
-                            <a href="{{ editor.homepage }}">{{ editor.name }}</a
-                            ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
-                        </span>
-                        <br />
-                        Versionsdatum:
-                        <span class="version">{{ complex.complex.responsibilityStatement.lastModified }}</span>
-                    </small>
-                </p>
-                <p class="text-end">
-                    <a
-                        [routerLink]="[complex.complex.baseRoute, 'sheets']"
-                        class="btn btn-outline-info"
-                        [ngClass]="{ disabled: complex.disabled }"
-                        >Mehr...
-                    </a>
-                </p>
-            </div>
-        </div>
+    class="awg-edition-section-detail"
+    *ngIf="
+        selectedSection &&
+            utils.isNotEmptyObject(selectedSection.complexes) &&
+            (utils.isNotEmptyArray(selectedSection.complexes.opus) ||
+                utils.isNotEmptyArray(selectedSection.complexes.mnr));
+        else noComplexes
+    ">
+    <div
+        *ngIf="utils.isNotEmptyArray(selectedSection.complexes.opus)"
+        class="awg-edition-section-detail-opus para p-3 border rounded-3">
+        <h5>nach Opusnummer:</h5>
+        <awg-edition-complex-card [complexes]="selectedSection.complexes.opus"></awg-edition-complex-card>
+    </div>
+
+    <div
+        *ngIf="utils.isNotEmptyArray(selectedSection.complexes.mnr)"
+        class="awg-edition-section-detail-mnr p-3 border rounded-3">
+        <h5>nach Moldenhauer-Nummer:</h5>
+        <awg-edition-complex-card [complexes]="selectedSection.complexes.mnr"></awg-edition-complex-card>
     </div>
 </div>
 <ng-template #noComplexes>

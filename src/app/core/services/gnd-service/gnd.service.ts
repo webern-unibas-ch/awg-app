@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { AppConfig } from '@awg-app/app.config';
-import { StorageType, StorageService } from '@awg-core/services/storage-service';
+import { StorageService, StorageType } from '@awg-core/services/storage-service';
 
 /**
  * The GndEventType enumeration.

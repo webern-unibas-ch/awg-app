@@ -191,6 +191,12 @@
                     "position": "",
                     "comment": "Radierte, nicht entzifferbare Schicht."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g3816",
+                    "linkTo": "M_212_Sk3"
+                }
             ]
         },
         {
@@ -221,6 +227,16 @@
                     "position": "nach 2/4",
                     "comment": "Radierspuren."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4399",
+                    "linkTo": "M_212_Sk2"
+                },
+                {
+                    "svgGroupId": "g4410",
+                    "linkTo": "M_212_Sk5"
+                }
             ]
         },
         {
@@ -243,6 +259,12 @@
                     "system": "5",
                     "position": "3. Note",
                     "comment": "Ansatz zu Notenkopf c<sup>2</sup> und f<sup>1</sup>(?)."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4957",
+                    "linkTo": "M_212_Sk5"
                 }
             ]
         },
@@ -267,6 +289,16 @@
                     "system": "9",
                     "position": "1/4",
                     "comment": "sic: Text <em>dir</em> (statt <em>mir</em>)."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5508",
+                    "linkTo": "M_212_Sk3"
+                },
+                {
+                    "svgGroupId": "g5497",
+                    "linkTo": "M_212_Sk4"
                 }
             ]
         }

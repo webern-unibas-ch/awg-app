@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 
 import { AppConfig } from '@awg-app/app.config';
+
 import { environment } from 'environments/environment';
 
 /**

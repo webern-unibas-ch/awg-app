@@ -2,13 +2,15 @@
 <div class="card">
     <div class="card-body bg-light">
         <h6 class="awg-edition-info-header">
-            <a [routerLink]="['/edition' + EDITION_ROW_TABLES.route]">{{ EDITION_ROW_TABLES.full }}</a>
+            <a [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]">{{
+                editionRouteConstants.ROWTABLES.full
+            }}</a>
         </h6>
 
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ EDITION_COMPLEX_OP12.editionRoute.short }} {{ EDITION_COMPLEX_OP12.series.short }}/{{
+                >{{ editionRouteConstants.EDITION.short }} {{ EDITION_COMPLEX_OP12.series.short }}/{{
                     EDITION_COMPLEX_OP12.section.short
                 }}</span
             >
@@ -16,15 +18,15 @@
             <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP12.titleStatement.title"></span
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP12.complexId.short }}</span>
             <br />
-            (<a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, EDITION_COMPLEX_OP12.sheetsRoute.route]">{{
-                EDITION_COMPLEX_OP12.type.full
+            (<a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">{{
+                editionTypeConstants.SKETCH_EDITION.full
             }}</a
             >)
         </h6>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ EDITION_COMPLEX_OP25.editionRoute.short }} {{ EDITION_COMPLEX_OP25.series.short }}/{{
+                >{{ editionRouteConstants.EDITION.short }} {{ EDITION_COMPLEX_OP25.series.short }}/{{
                     EDITION_COMPLEX_OP25.section.short
                 }}</span
             >
@@ -32,19 +34,19 @@
             <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP25.titleStatement.title"></span
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP25.complexId.short }}</span>
             <br />
-            (<a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, EDITION_COMPLEX_OP25.sheetsRoute.route]">{{
-                EDITION_COMPLEX_OP25.type.full
+            (<a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">{{
+                editionTypeConstants.SKETCH_EDITION.full
             }}</a>
             &
-            <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, EDITION_COMPLEX_OP25.graphRoute.route]">{{
-                EDITION_COMPLEX_OP25.graphRoute.short
+            <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
+                editionRouteConstants.EDITION_GRAPH.short
             }}</a
             >)
         </h6>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ EDITION_COMPLEX_M34.editionRoute.short }} {{ EDITION_COMPLEX_M34.series.short }}/{{
+                >{{ editionRouteConstants.EDITION.short }} {{ EDITION_COMPLEX_M34.series.short }}/{{
                     EDITION_COMPLEX_M34.section.short
                 }}</span
             >
@@ -52,8 +54,8 @@
             <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_M34.titleStatement.title"></span
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_M34.complexId.short }}</span>
             <br />
-            (<a [routerLink]="[EDITION_COMPLEX_M34.baseRoute, EDITION_COMPLEX_M34.sheetsRoute.route]">{{
-                EDITION_COMPLEX_M34.type.full
+            (<a [routerLink]="[EDITION_COMPLEX_M34.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">{{
+                editionTypeConstants.SKETCH_EDITION.full
             }}</a
             >)
         </h6>

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MetaPage, MetaSectionTypes } from '@awg-app/core/core-models';
 import { CoreService } from '@awg-app/core/services';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 
 /**
  * The HomeView component.
@@ -21,7 +22,7 @@ export class HomeViewComponent implements OnInit {
     /**
      * Public variable: homeViewTitle.
      *
-     * It keeps the title for the heading componentp
+     * It keeps the title for the heading component
      * of the home view section.
      */
     homeViewTitle = 'Beispieleditionen ausgewählter Skizzen';
@@ -49,14 +50,14 @@ export class HomeViewComponent implements OnInit {
     readonly EDITION_COMPLEX_M34 = EDITION_COMPLEXES.M34;
 
     /**
-     * Readonly constant: EDITION_COMPLEX_OP12.
+     * Readonly variable: EDITION_COMPLEX_OP12.
      *
      * It keeps the edition complex Opus 12.
      */
     readonly EDITION_COMPLEX_OP12 = EDITION_COMPLEXES.OP12;
 
     /**
-     * Readonly constant: EDITION_COMPLEX_OP25.
+     * Readonly variable: EDITION_COMPLEX_OP25.
      *
      * It keeps the edition complex Opus 25.
      */
@@ -72,6 +73,24 @@ export class HomeViewComponent implements OnInit {
      * @param {Router} router Instance of the Angular router.
      */
     constructor(private coreService: CoreService, private router: Router) {}
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
+     * Getter variable: editionTypeConstants.
+     *
+     *  It returns the EDITION_TYPES.
+     **/
+    get editionTypeConstants(): typeof EDITION_TYPE_CONSTANTS {
+        return EDITION_TYPE_CONSTANTS;
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.

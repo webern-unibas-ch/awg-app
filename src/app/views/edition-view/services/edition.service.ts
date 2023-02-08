@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
-    EditionConstants,
-    EditionSeriesRoute,
-    EditionSvgOverlay,
     EditionComplex,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+    EditionSvgOverlay,
     TextcriticalComment,
 } from '@awg-views/edition-view/models';
-import { EditionSectionRoute } from '@awg-views/edition-view/models/edition-constants';
 
 /**
  * The Edition service.
@@ -53,7 +53,7 @@ export class EditionService {
     /**
      * Private replay subject to handle the selected edition series.
      */
-    private _selectedEditionSeriesSubject = new ReplaySubject<EditionSeriesRoute>(this._bufferSize);
+    private _selectedEditionSeriesSubject = new ReplaySubject<EditionOutlineSeries>(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (`ReplaySubject`).
@@ -61,9 +61,9 @@ export class EditionService {
     private readonly _selectedEditionSeriesStream$ = this._selectedEditionSeriesSubject.asObservable();
 
     /**
-     * Private replay subject to handle the selected edition series.
+     * Private replay subject to handle the selected edition section.
      */
-    private _selectedEditionSectionSubject = new ReplaySubject<EditionSectionRoute>(this._bufferSize);
+    private _selectedEditionSectionSubject = new ReplaySubject<EditionOutlineSection>(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (`ReplaySubject`).
@@ -129,9 +129,9 @@ export class EditionService {
      *
      * It provides the outline of the edition with its series.
      *
-     * @returns {EditionSeriesRoute[]} The edition outline.
+     * @returns {EditionOutlineSeries[]} The edition outline.
      */
-    getEditionOutline(): EditionSeriesRoute[] {
+    getEditionOutline(): EditionOutlineSeries[] {
         return EDITION_OUTLINE_DATA;
     }
 
@@ -143,7 +143,7 @@ export class EditionService {
      * @returns {string} The edition series route.
      */
     getEditionSeriesRoute(): string {
-        return EditionConstants.EDITION.route + EditionConstants.SERIES.route;
+        return EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
     }
 
     /**
@@ -153,9 +153,9 @@ export class EditionService {
      *
      * @param {string} seriesId The given series id.
      *
-     * @returns {EditionSeriesRoute} The found edition series.
+     * @returns {EditionOutlineSeries} The found edition series.
      */
-    getEditionSeriesById(seriesId: string): EditionSeriesRoute {
+    getEditionSeriesById(seriesId: string): EditionOutlineSeries {
         return EDITION_OUTLINE_DATA.find(series => series.series.route === seriesId);
     }
 
@@ -167,9 +167,9 @@ export class EditionService {
      * @param {string} seriesId The given series id.
      * @param {string} sectionId The given series id.
      *
-     * @returns {EditionSectionRoute} The found edition section.
+     * @returns {EditionOutlineSection} The found edition section.
      */
-    getEditionSectionById(seriesId: string, sectionId: string): EditionSectionRoute {
+    getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection {
         const series = this.getEditionSeriesById(seriesId);
         return series.sections.find(section => section.section.route === sectionId);
     }
@@ -179,9 +179,9 @@ export class EditionService {
      *
      * It provides the latest selected series from the edition series stream.
      *
-     * @returns {Observable<EditionSeriesRoute>} The edition series stream as observable.
+     * @returns {Observable<EditionOutlineSeries>} The edition series stream as observable.
      */
-    getSelectedEditionSeries(): Observable<EditionSeriesRoute> {
+    getSelectedEditionSeries(): Observable<EditionOutlineSeries> {
         return this._selectedEditionSeriesStream$;
     }
 
@@ -192,7 +192,7 @@ export class EditionService {
      *
      * @returns {void} Sets the next edition series to the stream.
      */
-    updateSelectedEditionSeries(editionSeries: EditionSeriesRoute): void {
+    updateSelectedEditionSeries(editionSeries: EditionOutlineSeries): void {
         this._selectedEditionSeriesSubject.next(editionSeries);
     }
 
@@ -212,9 +212,9 @@ export class EditionService {
      *
      * It provides the latest selected section from the edition section stream.
      *
-     * @returns {Observable<EditionSectionRoute>} The edition section stream as observable.
+     * @returns {Observable<EditionOutlineSection>} The edition section stream as observable.
      */
-    getSelectedEditionSection(): Observable<EditionSectionRoute> {
+    getSelectedEditionSection(): Observable<EditionOutlineSection> {
         return this._selectedEditionSectionStream$;
     }
 
@@ -223,11 +223,11 @@ export class EditionService {
      *
      * It updates the selected edition section stream with the given section.
      *
-     * @param {EditionSectionRoute} editionSection The given edition section.
+     * @param {EditionOutlineSection} editionSection The given edition section.
      *
      * @returns {void} Sets the next edition section to the stream.
      */
-    updateSelectedEditionSection(editionSection: EditionSectionRoute): void {
+    updateSelectedEditionSection(editionSection: EditionOutlineSection): void {
         this._selectedEditionSectionSubject.next(editionSection);
     }
 
