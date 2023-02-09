@@ -33,11 +33,11 @@
    inkscape:window-height="1221"
    id="namedview665"
    showgrid="false"
-   inkscape:zoom="8.974908"
-   inkscape:cx="498.44522"
-   inkscape:cy="218.99946"
+   inkscape:zoom="2.9577146"
+   inkscape:cx="506.64118"
+   inkscape:cy="222.30002"
    inkscape:window-x="217"
-   inkscape:window-y="72"
+   inkscape:window-y="44"
    inkscape:window-maximized="0"
    inkscape:current-layer="Ebene_1"
    inkscape:document-units="mm"
@@ -772,12 +772,14 @@
    id="path330"
    inkscape:connector-curvature="0" />
 </g>
-<path
-   class="st3 tkk"
-   d="m 310.68126,176.19055 v 8.8"
-   id="path334"
-   inkscape:connector-curvature="0"
-   style="fill:none;stroke:#000000;stroke-width:0.49000001" />
+<g
+   id="g4504"
+   class="tkk"><path
+     class="st3"
+     d="m 310.68126,176.19055 v 8.8"
+     id="path334"
+     inkscape:connector-curvature="0"
+     style="fill:none;stroke:#000000;stroke-width:0.49000001" /></g>
 <line
    class="st2"
    x1="372.38129"

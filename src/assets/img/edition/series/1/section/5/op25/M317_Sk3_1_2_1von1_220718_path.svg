@@ -40,10 +40,10 @@
      id="namedview237"
      showgrid="false"
      inkscape:zoom="4.8015451"
-     inkscape:cx="294.17614"
-     inkscape:cy="258.97914"
+     inkscape:cx="406.8482"
+     inkscape:cy="330.41447"
      inkscape:window-x="31"
-     inkscape:window-y="36"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      inkscape:current-layer="Ebene_1"
      inkscape:document-units="mm"
@@ -883,12 +883,16 @@
      id="path194"
      inkscape:connector-curvature="0"
      style="fill:none;stroke:#000000;stroke-width:0.40000001px" />
-  <path
-     class="cls-2 tkk"
-     d="m 357.62496,312.86334 h 11.4 v 35.4 h -11.4"
-     id="path196"
-     inkscape:connector-curvature="0"
-     style="fill:none;stroke:#000000;stroke-width:0.40000001px" />
+  <g
+     id="g1958"
+     class="tkk">
+    <path
+       class="cls-2"
+       d="m 357.62496,312.86334 h 11.4 v 35.4 h -11.4"
+       id="path196"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:0.40000001px" />
+  </g>
   <g
      aria-label="#"
      id="text204"
