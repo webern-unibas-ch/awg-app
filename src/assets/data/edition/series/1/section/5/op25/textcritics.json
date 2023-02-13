@@ -771,84 +771,84 @@
                     "comment": "<em>4</em> nachgezogen mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text476",
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
                     "comment": "<em>gilt</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g12150",
                     "measure": "13",
                     "system": "15, 16",
                     "position": "1. Pause",
                     "comment": "Viertelpause überschreibt Achtelpause."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g12880",
                     "measure": "13",
                     "system": "14",
                     "position": "2. Note",
                     "comment": "Winkel mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g13611",
                     "measure": "13",
                     "system": "15",
-                    "position": "7/8",
+                    "position": "(5/8)",
                     "comment": "Achtelpause gestrichen."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g14343",
                     "measure": "13",
                     "system": "14",
                     "position": "letzte Note",
                     "comment": "<em>u. 4</em> gestrichen mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g15072",
                     "measure": "13",
                     "system": "14–15",
                     "position": "letzte Note",
                     "comment": "Pfeil mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g15803",
                     "measure": "13",
                     "system": "15",
                     "position": "letzte Note",
                     "comment": "Winkel gestrichen."
                 },
                 {
-                    "svgGroupId": "TODO",
-                    "measure": "14",
-                    "system": "15, 16",
-                    "position": "1. Note",
-                    "comment": "Achtelnote überschreibt Viertelnote."
-                },
-                {
-                    "svgGroupId": "TODO",
-                    "measure": "14",
-                    "system": "13",
-                    "position": "2. Note",
-                    "comment": "h (undeutlich, auch als c<sup>1</sup> zu entziffern) durch Einklammerung getilgt und ersetzt durch h<sup>2</sup>."
-                },
-                {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text474",
                     "measure": "14",
                     "system": "15–16",
                     "position": "Taktanfang",
                     "comment": "<em>3</em> mit schwarzem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g17374",
+                    "measure": "14",
+                    "system": "15, 16",
+                    "position": "1. Note",
+                    "comment": "Achtelnote überschreibt Viertelnote."
+                },
+                {
+                    "svgGroupId": "g21745",
                     "measure": "14",
                     "system": "16",
                     "position": "1. Note",
                     "comment": "<em>u.</em> von <em>u. 3</em> sowie Winkel mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g18830",
+                    "measure": "14",
+                    "system": "13",
+                    "position": "2. Note",
+                    "comment": "h (undeutlich, auch als c<sup>1</sup> zu entziffern) durch Einklammerung getilgt und ersetzt durch h<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g19559",
                     "measure": "14",
                     "system": "16",
                     "position": "letzte Note",
@@ -864,28 +864,28 @@
             ],
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g25236",
                     "measure": "2",
                     "system": "14",
                     "position": "1. Note",
                     "comment": "Beide Winkel und <em>1</em> (G<sub>g</sub>) mit rotem Buntstift. "
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g1225",
                     "measure": "2",
                     "system": "13",
                     "position": "6/8–4/4",
                     "comment": "Decrescendogabel zu 4/4 überschrieben zu Decrescendogabel von 6/8–4/4."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g30323",
                     "measure": "{{ '{' }}3{{ '}' }}",
                     "system": "",
                     "position": "",
                     "comment": "Durch Einklammerung links und Streichung getilgt. Streichung mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g31053",
                     "measure": "{{ '{' }}3{{ '}' }}",
                     "system": "14",
                     "position": "letzte Note",
@@ -898,7 +898,7 @@
             "label": "M 317 Sk4.2",
             "description": [
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk4_2')\"><strong>Sk4.2</strong></a> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13.",
-                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
+                "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": []
         },
@@ -910,14 +910,14 @@
             ],
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g35106",
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
                     "comment": "sic: Verweisstrich führt zu <strong>Sk4</strong> T. 14. Inhaltlich bezieht sich <strong>Sk4.3</strong> jedoch auf <strong>Sk4</strong> T. 13. "
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g36576",
                     "measure": "13",
                     "system": "16",
                     "position": "letzte Note",
@@ -961,18 +961,67 @@
             "rowtable": true,
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text440",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "1–2",
-                    "position": "",
-                    "comment": "Reihennummerierung (<em>1</em>–<em>4</em>) mit rotem Buntstift."
+                    "system": "1",
+                    "position": "G<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>1</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text682",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1",
+                    "position": "K<sub>gis</sub>",
+                    "comment": "Reihennummerierung <em>2</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text444",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2",
+                    "position": "U<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>3</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text686",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2",
+                    "position": "KU<sub>fis</sub>",
+                    "comment": "Reihennummerierung <em>4</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text450",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3",
+                    "position": "G<sub>c</sub>",
+                    "comment": "Reihennummerierung <em>5</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text688",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3",
+                    "position": "K<sub>cis</sub>",
+                    "comment": "Reihennummerierung <em>6</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text458",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4",
+                    "position": "U<sub>c</sub>",
+                    "comment": "Reihennummerierung <em>7</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text690",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4",
+                    "position": "KU<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>8</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "g3291",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "3–4",
                     "position": "",
-                    "comment": "<em>2. Lied</em> mit blauem Buntstift. Akkoladenstrich mit blauem Buntstift nachgezogen. Reihennummerierung (<em>5</em>–<em>8</em>) mit grünem Buntstift."
+                    "comment": "<em>2. Lied</em> mit blauem Buntstift. Akkoladenstrich mit blauem Buntstift nachgezogen."
                 }
             ]
         }
