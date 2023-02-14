@@ -226,7 +226,8 @@
                     "system": "4",
                     "position": "1. Note",
                     "comment": "Pfeil unten rechts von Variante T. 4 in <strong>Sk3.1.1</strong>."
-                },{
+                },
+                {
                     "svgGroupId": "text228",
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
@@ -518,7 +519,7 @@
                     "position": "1. Note",
                     "comment": "Winkel mit rotem Buntstift."
                 },
-		{
+                {
                     "svgGroupId": "g9301",
                     "measure": "5",
                     "system": "3–4",
@@ -574,7 +575,7 @@
                     "position": "1.–2. Note",
                     "comment": "<em>leuchtet</em> zusammengeschrieben."
                 },
-		{
+                {
                     "svgGroupId": "g10030",
                     "measure": "6",
                     "system": "3–4",
@@ -914,7 +915,7 @@
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
-                    "comment": "sic: Verweisstrich führt zu <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 14. Inhaltlich bezieht sich <a (click)=\"ref.selectSvgSheet('M_317_Sk4_3')\"><strong>Sk4.3</strong></a> jedoch auf <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk4</strong></a> T. 13. "
+                    "comment": "sic: Verweisstrich führt zu <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 14. Inhaltlich bezieht sich <a (click)=\"ref.selectSvgSheet('M_317_Sk4_3')\"><strong>Sk4.3</strong></a> jedoch auf <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13. "
                 },
                 {
                     "svgGroupId": "g36576",
