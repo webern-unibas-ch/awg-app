@@ -181,7 +181,7 @@
                     "measure": "2",
                     "system": "3",
                     "position": "1. Note",
-                    "comment": "Pfeil zur Variante der Fortsetzung in <strong>Sk3.1</strong>."
+                    "comment": "Pfeil zur Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
                 }
             ]
         },
@@ -204,7 +204,7 @@
                     "measure": "3",
                     "system": "4",
                     "position": "Taktanfang",
-                    "comment": "Asterisk verweist auf Variante der Fortsetzung in <strong>Sk3.1.2</strong>."
+                    "comment": "Asterisk verweist auf Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a>."
                 },
                 {
                     "svgGroupId": "TODO",
@@ -218,14 +218,14 @@
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "1. Note",
-                    "comment": "Pfeil unten rechts von Variante T. 4 in <strong>Sk3.1.1</strong>. <br /> Ligaturbogen gestrichen."
+                    "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a>. <br /> Ligaturbogen gestrichen."
                 },
                 {
                     "svgGroupId": "TODO",
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "6/8",
-                    "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
+                    "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                 },
                 {
                     "svgGroupId": "TODO",
@@ -278,7 +278,7 @@
                     "measure": "3",
                     "system": "4",
                     "position": "Taktanfang",
-                    "comment": "Asterisk verweist auf Anschluss von <strong>Sk3.1</strong>."
+                    "comment": "Asterisk verweist auf Anschluss von <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
                 },
                 {
                     "svgGroupId": "TODO",
@@ -299,7 +299,7 @@
                     "measure": "5",
                     "system": "4",
                     "position": "nach 1. Note",
-                    "comment": "Durch Einklammerung abgegrenzt von <strong>Sk3.1</strong>."
+                    "comment": "Durch Einklammerung abgegrenzt von <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
                 }
             ]
         },
@@ -873,7 +873,7 @@
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
-                    "comment": "sic: Verweisstrich führt zu <strong>Sk4</strong> T. 14. Inhaltlich bezieht sich <strong>Sk4.3</strong> jedoch auf <strong>Sk4</strong> T. 13. "
+                    "comment": "sic: Verweisstrich führt zu <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 14. Inhaltlich bezieht sich <a (click)=\"ref.selectSvgSheet('M_317_Sk4_3')\"><strong>Sk4.3</strong></a> jedoch auf <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk4</strong></a> T. 13. "
                 },
                 {
                     "svgGroupId": "TODO",
@@ -915,7 +915,7 @@
             "id": "SkRT",
             "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
             "description": [
-                "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <strong>Sk3.1.3</strong> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
+                "Die <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>Reihentabelle op. 25</strong></a> weist neben den vier bereits in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
             ],
             "rowtable": true,
             "comments": [
