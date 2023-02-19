@@ -2,30 +2,23 @@
     "textcritics": [
         {
             "id": "M_286_Sk#_M_287_Sk#",
-            "label": "M 286 Sk# / M 287 Sk # (Reihentabelle op. 19)",
+            "label": "M 286 Sk# / M 287 Sk# (Reihentabelle op. 19)",
             "description": [],
             "rowtable": true,
             "comments": [
                 {
-                    "svgGroupId": "g1189",
-                    "measure": "Bl. 1<sup>r</sup>",
-                    "system": "1",
-                    "position": "",
-                    "comment": "Reihenbezeichnungen mit rotem Buntstift."
-                },
-                {
-                    "svgGroupId": "g1196",
+                    "svgGroupId": "g1298",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "1a",
-                    "position": "G<sub>g</sub>: 1. Reihenton",
-                    "comment": "<em>I.</em> überschreibt <em>1</em>."
+                    "position": "G<sub>g</sub>",
+                    "comment": "Vertikaler Strich, Reihennummerierung und -bezeichnung <em>Gr.</em> (lies: Grundform) mit rotem Buntstift. <em>I.</em> überschreibt <em>1</em>."
                 },
                 {
-                    "svgGroupId": "g1204",
+                    "svgGroupId": "g1311",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "1b",
-                    "position": "K(G<sub>g</sub>)<sub>c</sub>: 1. Reihenton",
-                    "comment": "<em>II.</em> überschreibt <em>2</em>."
+                    "position": "K<sub>c</sub>",
+                    "comment": "Reihennummerierung und -bezeichnung <em>Kr</em> (lies: Krebsform) mit rotem Buntstift. <em>II.</em> überschreibt <em>2</em>."
                 },
                 {
                     "svgGroupId": "g1207",
@@ -35,53 +28,46 @@
                     "comment": "<em>’</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "g1230",
-                    "measure": "Bl. 1<sup>r</sup>",
-                    "system": "2",
-                    "position": "",
-                    "comment": "Reihenbezeichnungen mit blauem Buntstift."
-                },
-                {
-                    "svgGroupId": "g1237",
+                    "svgGroupId": "g1324",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "2a",
-                    "position": "K<sub>c</sub>: 1. Reihenton",
-                    "comment": "<em>IV</em> überschreibt <em>4</em>."
+                    "position": "U<sub>g</sub>",
+                    "comment": "Reihennummerierung und -bezeichnung <em>U</em> (lies: Umkehrungsform) mit blauem Buntstift."
                 },
                 {
-                    "svgGroupId": "g1265",
+                    "svgGroupId": "g1337",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "4",
-                    "position": "",
-                    "comment": "Reihenbezeichnungen mit Kopierstift."
+                    "system": "2b",
+                    "position": "KU<sub>d</sub>: 1. Reihenton",
+                    "comment": "Reihennummerierung und -bezeichnung <em>U Kr</em> (lies: Umkehrung der Krebsform) mit blauem Buntstift. <em>IV</em> überschreibt <em>4</em>."
                 },
                 {
-                    "svgGroupId": "g1270",
+                    "svgGroupId": "g1355",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "4a",
-                    "position": "G<sub>cis</sub>: 1. Reihenton",
-                    "comment": "<em>5</em> gestrichen mit Kopierstift."
+                    "position": "G<sub>cis</sub>",
+                    "comment": "Vertikaler Strich, Reihennummerierung und -bezeichnung <em>Transp.</em> (lies: Transposition der Grundform) mit Kopierstift. <em>5</em> gestrichen."
                 },
                 {
-                    "svgGroupId": "g1304",
+                    "svgGroupId": "g1369",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "5",
-                    "position": "",
-                    "comment": "Reihenbezeichnungen mit grünem Buntstift, zum Teil mit Bleistift."
+                    "system": "4b",
+                    "position": "K<sub>ges</sub>",
+                    "comment": "Reihennummerierung und -bezeichnung <em>Kr Tr</em> (lies: Krebs der transponierten Grundform) mit Kopierstift."
                 },
                 {
-                    "svgGroupId": "g1309",
+                    "svgGroupId": "g1416",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "5a",
-                    "position": "U<sub>cis</sub>: 1. Reihenton",
-                    "comment": "<em>7</em> mit Bleistift, gestrichen mit grünem Buntstift."
+                    "position": "U<sub>cis</sub",
+                    "comment": "Vertikaler Strich, Reihennummerierung und -bezeichnung <em>U Tr</em> (lies: Umkehrung der transponierten Grundform) mit grünem Buntstift. <em>7</em> mit Bleistift, gestrichen mit grünem Buntstift."
                 },
                 {
-                    "svgGroupId": "g1315",
+                    "svgGroupId": "g1438",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "5b",
-                    "position": "KU<sub>gis</sub>: 1. Reihenton",
-                    "comment": "<em>8</em> mit grünem Buntstift überschreibt <em>8</em> mit Bleistift (nachgezogen)."
+                    "position": "KU<sub>gis</sub>",
+                    "comment": "Reihennummerierung und -bezeichnung <em>Krebs U Tr</em> (lies: Krebs der Umkehrung der transponierten Grundform) mit grünem Buntstift. <em>8</em> mit grünem Buntstift überschreibt <em>8</em> mit Bleistift (nachgezogen)."
                 },
                 {
                     "svgGroupId": "g1318",
