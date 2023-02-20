@@ -1,11 +1,13 @@
 <div class="awg-edition-svg-sheet-footer mt-4">
     <div class="awg-edition-svg-sheet-footer-evaluation">
         <p (click)="toggleTextcritics()" style="cursor: pointer">
-            <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>
-            &nbsp;
+            <span *ngIf="selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)">
+                <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>
+                &nbsp;
+            </span>
             <span class="caps">Skizzenkommentar:</span>
             <span *ngIf="selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)"
-                >---</span
+                >&nbsp;---</span
             >
         </p>
         <ng-container

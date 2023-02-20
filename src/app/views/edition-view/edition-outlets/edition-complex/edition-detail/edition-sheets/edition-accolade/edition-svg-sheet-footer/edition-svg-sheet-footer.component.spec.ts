@@ -248,7 +248,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const spanCmp = spanDes[1].nativeElement;
 
                 expect(spanCmp.textContent).toBeTruthy();
-                expect(spanCmp.textContent).withContext(`should be '---'`).toBe('---');
+                expect(spanCmp.textContent.trim()).withContext(`should be '---'`).toBe('---');
             });
 
             it('... should contain no description paragraphs if showTextcritics = false', () => {
