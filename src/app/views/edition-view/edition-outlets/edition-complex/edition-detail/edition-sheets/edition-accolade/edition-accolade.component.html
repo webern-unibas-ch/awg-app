@@ -31,14 +31,15 @@
                     </awg-edition-svg-sheet>
 
                     <!-- table for TkA -->
-                    <div class="panel-footer" *ngIf="showTkA">
-                        <h5 class="mt-4">Textkritischer Kommentar:</h5>
-                        <awg-edition-tka-table
-                            [textcriticalComments]="selectedTextcriticalComments"
-                            (openModalRequest)="openModal($event)"
-                            (selectSvgSheetRequest)="selectSvgSheet($event)">
-                        </awg-edition-tka-table>
-                    </div>
+                    <awg-edition-svg-sheet-footer
+                        *ngIf="selectedSvgSheet"
+                        [selectedTextcritics]="selectedTextcritics"
+                        [selectedTextcriticalComments]="selectedTextcriticalComments"
+                        [showTkA]="showTkA"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)"
+                        >></awg-edition-svg-sheet-footer
+                    >
                 </div>
             </div>
         </ng-template>

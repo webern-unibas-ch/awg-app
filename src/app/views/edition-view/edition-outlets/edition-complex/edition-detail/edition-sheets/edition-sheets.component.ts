@@ -16,6 +16,7 @@ import {
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
+    Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
@@ -50,20 +51,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
-     * Public variable: folioConvoluteData.
-     *
-     * It keeps the folio convolute Data of the edition sheets.
-     */
-    folioConvoluteData: FolioConvoluteList;
-
-    /**
-     * Public variable: svgSheetsData.
-     *
-     * It keeps the svg sheets data of the edition sheets.
-     */
-    svgSheetsData: EditionSvgSheetList;
-
-    /**
      * Public variable: filteredSvgSheetsData.
      *
      * It keeps a filtered excerpt of the svg sheets data of the edition sheets.
@@ -71,11 +58,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     filteredSvgSheetsData: EditionSvgSheetList;
 
     /**
-     * Public variable: textcriticsData.
+     * Public variable: folioConvoluteData.
      *
-     * It keeps the textcritics data of the edition sheets.
+     * It keeps the folio convolute Data of the edition sheets.
      */
-    textcriticsData: TextcriticsList;
+    folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: selectedConvolute.
@@ -104,6 +91,27 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It keeps the selected textcritical comments.
      */
     selectedTextcriticalComments: TextcriticalComment[];
+
+    /**
+     * Public variable: selectedTextcritics.
+     *
+     * It keeps the textcritics of the selected svg sheet.
+     */
+    selectedTextcritics: Textcritics;
+
+    /**
+     * Public variable: svgSheetsData.
+     *
+     * It keeps the svg sheets data of the edition sheets.
+     */
+    svgSheetsData: EditionSvgSheetList;
+
+    /**
+     * Public variable: textcriticsData.
+     *
+     * It keeps the textcritics data of the edition sheets.
+     */
+    textcriticsData: TextcriticsList;
 
     /**
      * Public variable: errorMessage.
@@ -246,10 +254,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onLinkBoxSelect.
      *
-     * It finds the corresponding textcritical comments to a list of selected overlays.
+     * It finds the target svg sheet of a link box and selects it.
      *
      * @param {string} linkBoxId The given link box id.
-     * @returns {void} Sets the selectedOverlay, selectedTextcriticalComments and showTka variable.
+     * @returns {void} Finds and selects the target svg sheet of a link box.
      */
     onLinkBoxSelect(linkBoxId: string): void {
         if (!this.selectedSvgSheet) {
@@ -279,12 +287,16 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const textcriticalComments: TextcriticalComment[] = this._findTextcriticalComments();
-
-        this.selectedTextcriticalComments = this.editionService.getTextcriticalCommentsForOverlays(
-            textcriticalComments,
-            overlays
-        );
+        this.selectedTextcritics = this._findTextcritics();
+        if (
+            this.utils.isNotEmptyObject(this.selectedTextcritics) &&
+            this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
+        ) {
+            this.selectedTextcriticalComments = this.editionService.getTextcriticalCommentsForOverlays(
+                this.selectedTextcritics.comments,
+                overlays
+            );
+        }
 
         this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
     }
@@ -431,13 +443,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _findTextcriticalComments.
+     * Private method: _findTextcritics.
      *
-     * It finds the textcritical comments for an svg overlay.
+     * It finds the textcritics for a selected svg sheet.
      *
-     * @returns {TextcriticalComment[]} The textcritical comments that were found.
+     * @returns {Textcritics} The textcritics that were found.
      */
-    private _findTextcriticalComments(): TextcriticalComment[] {
+    private _findTextcritics(): Textcritics {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return undefined;
         }
@@ -447,16 +459,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             textcritic => textcritic.id === this.selectedSvgSheet.id
         );
 
-        if (
-            textcriticsIndex > -1 &&
-            this.textcriticsData.textcritics[textcriticsIndex] &&
-            this.textcriticsData.textcritics[textcriticsIndex].comments
-        ) {
-            // Return the comments with the given id
-            return this.textcriticsData.textcritics[textcriticsIndex].comments;
+        if (textcriticsIndex > -1 && this.utils.isNotEmptyObject(this.textcriticsData.textcritics[textcriticsIndex])) {
+            // Return the textcritics with the given id
+            return this.textcriticsData.textcritics[textcriticsIndex];
         }
-        // Return empty array if no comments were found
-        return [];
+        // Return undefined if no comments were found
+        return undefined;
     }
 
     /**
@@ -536,6 +544,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     private _selectSvgSheet(queryParams: ParamMap): void {
         const sheetId: string = this._getSketchParams(queryParams);
         this.selectedSvgSheet = this._findSvgSheet(sheetId);
-        this.selectedTextcriticalComments = this._findTextcriticalComments();
+        this.selectedTextcritics = this._findTextcritics();
+        if (
+            this.utils.isNotEmptyObject(this.selectedTextcritics) &&
+            this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
+        ) {
+            this.selectedTextcriticalComments = this.selectedTextcritics.comments;
+        }
     }
 }

@@ -5,6 +5,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     TextcriticalComment,
+    Textcritics,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -46,6 +47,14 @@ export class EditionAccoladeComponent {
      */
     @Input()
     selectedTextcriticalComments: TextcriticalComment[];
+
+    /**
+     * Input variable: selectedTextcritics.
+     *
+     * It keeps the selected textcritics of a selected svg sheet.
+     */
+    @Input()
+    selectedTextcritics: Textcritics;
 
     /**
      * Input variable: showTkA.
