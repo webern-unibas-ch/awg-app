@@ -504,14 +504,14 @@ export const mockEditionData = {
             {
                 id: 'test-1',
                 label: 'test1',
-                description: ['test description 1', 'test description 2'],
+                description: [],
                 comments: [],
                 linkBoxes: [],
             },
             {
                 id: 'test-2',
                 label: 'test2',
-                description: [],
+                description: ['test description 1', 'test description 2'],
                 rowtable: true,
                 comments: [
                     {
