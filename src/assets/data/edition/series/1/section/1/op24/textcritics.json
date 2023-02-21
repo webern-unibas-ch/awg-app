@@ -9,27 +9,69 @@
             "rowtable": true,
             "comments": [
                 {
-                    "svgGroupId": "TODO",
-                    "measure": "Bl. 1<sup>r</sup>",
-                    "system": "1–2",
-                    "position": "G<sub>f</sub>, K<sub>es</sub>, U<sub>f</sub>, KU<sub>g</sub>",
-                    "comment": "Reihennummerierung (<em>1</em>–<em>4</em>) mit rotem Buntstift."
-                },
-                {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1164",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "1a",
-                    "position": "G<sub>f</sub>: 4., 7., 10. Reihenton",
-                    "comment": "<em>Kr. d. U.</em>, <em>Krebs</em>, <em>Umkehrung</em> und <em>7</em> mit Bleistift. (<em>7</em> bezieht sich auf das erste Trichord von G<sub>fis</sub> (7)."
+                    "position": "G<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>1</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g3639",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 4. Reihenton",
+                    "comment": "<em>Kr. d. U.</em> (lies: Krebs der Umkehrung) mit Bleistift überschreibt radierte Schicht."
+                },
+                {
+                    "svgGroupId": "text1166",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 7. Reihenton",
+                    "comment": "<em>Krebs</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "g5165",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 10. Reihenton",
+                    "comment": "<em>Umkehrung</em> und <em>7</em> mit Bleistift. <em>7</em> bezieht sich auf das erste Trichord von G<sub>fis</sub> (7)."
+                },
+                {
+                    "svgGroupId": "g8248",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1–2",
+                    "position": "G<sub>f</sub>: 12. Reihenton, KU<sub>g</sub>: 1. Reihenton; U<sub>f</sub>: 12. Reihenton, K<sub>es</sub>: 1. Reihenton",
+                    "comment": "Pfeile mit Bleistift. "
+                },
+                {
+                    "svgGroupId": "text2202",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1b",
+                    "position": "K<sub>es</sub>",
+                    "comment": "Reihennummerierung <em>2</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1172",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2a",
+                    "position": "U<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>3</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "g5982",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "2a",
                     "position": "U<sub>f</sub>: 6.–11. Reihenton",
                     "comment": "Auf Rasur, mit Tinte überschrieben."
                 },
                 {
+                    "svgGroupId": "text2204",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2b",
+                    "position": "KU<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>4</em> mit rotem Buntstift."
+                },
+                #{
                     "svgGroupId": "TODO",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "3–6",
