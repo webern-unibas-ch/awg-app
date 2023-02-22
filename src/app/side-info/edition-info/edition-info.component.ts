@@ -16,6 +16,13 @@ import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edit
 })
 export class EditionInfoComponent {
     /**
+     * Readonly variable: EDITION_COMPLEX_M30.
+     *
+     * It keeps the edition complex M 30.
+     */
+    readonly EDITION_COMPLEX_M30 = EDITION_COMPLEXES.M30;
+
+    /**
      * Readonly variable: EDITION_COMPLEX_M34.
      *
      * It keeps the edition complex M 34.

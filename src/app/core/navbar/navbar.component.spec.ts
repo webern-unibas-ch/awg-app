@@ -100,7 +100,12 @@ describe('NavbarComponent (DONE)', () => {
 
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedEditionComplexes = [EDITION_COMPLEXES.OP12, EDITION_COMPLEXES.OP25, EDITION_COMPLEXES.M34];
+        expectedEditionComplexes = [
+            EDITION_COMPLEXES.OP12,
+            EDITION_COMPLEXES.OP25,
+            EDITION_COMPLEXES.M30,
+            EDITION_COMPLEXES.M34,
+        ];
         expectedSelectedEditionComplex = expectedEditionComplexes[0];
 
         expectedContactIcon = faEnvelope;
@@ -535,8 +540,8 @@ describe('NavbarComponent (DONE)', () => {
                     const divDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
-                        3,
-                        3
+                        expectedEditionComplexes.length,
+                        expectedEditionComplexes.length
                     );
                 });
 
@@ -544,8 +549,8 @@ describe('NavbarComponent (DONE)', () => {
                     const divDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
-                        3,
-                        3
+                        expectedEditionComplexes.length,
+                        expectedEditionComplexes.length
                     );
 
                     // Expect header and 3 dropdown items for each dropdown complex
@@ -559,8 +564,8 @@ describe('NavbarComponent (DONE)', () => {
                     const divDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
-                        3,
-                        3
+                        expectedEditionComplexes.length,
+                        expectedEditionComplexes.length
                     );
 
                     divDe.forEach((complexDe, index) => {
@@ -583,8 +588,8 @@ describe('NavbarComponent (DONE)', () => {
                     const divDe = getAndExpectDebugElementByCss(
                         navItemDe[1],
                         'div.dropdown-menu > div.awg-dropdown-complexes',
-                        3,
-                        3
+                        expectedEditionComplexes.length,
+                        expectedEditionComplexes.length
                     );
 
                     // Expect header and 3 dropdown items for each dropdown complex
@@ -664,14 +669,14 @@ describe('NavbarComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 15, 15);
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 18, 18);
 
                 // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get 15 routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 12 routerLinks').toBe(15);
+            it('... can get 18 routerLinks from template', () => {
+                expect(routerLinks.length).withContext('should have 18 routerLinks').toBe(18);
             });
 
             it('... can get correct routes from routerLinks', () => {
@@ -698,117 +703,40 @@ describe('NavbarComponent (DONE)', () => {
                         expectedEditionRouteConstants.ROWTABLES.route,
                     ]);
 
-                expect(routerLinks[3].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[0].baseRoute,
-                            expectedEditionRouteConstants.EDITION_INTRO.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[0].baseRoute,
-                        expectedEditionRouteConstants.EDITION_INTRO.route,
-                    ]);
+                let routerLinkIndex = 3;
+                expectedEditionComplexes.forEach(complex => {
+                    expect(routerLinks[routerLinkIndex].linkParams)
+                        .withContext(
+                            `should equal ${[complex.baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route]}`
+                        )
+                        .toEqual([complex.baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route]);
 
-                expect(routerLinks[4].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[0].baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[0].baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
+                    expect(routerLinks[routerLinkIndex + 1].linkParams)
+                        .withContext(
+                            `should equal ${[complex.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]}`
+                        )
+                        .toEqual([complex.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
 
-                expect(routerLinks[5].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[0].baseRoute,
-                            expectedEditionRouteConstants.EDITION_REPORT.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[0].baseRoute,
-                        expectedEditionRouteConstants.EDITION_REPORT.route,
-                    ]);
+                    expect(routerLinks[routerLinkIndex + 2].linkParams)
+                        .withContext(
+                            `should equal ${[complex.baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route]}`
+                        )
+                        .toEqual([complex.baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route]);
 
-                expect(routerLinks[6].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[1].baseRoute,
-                            expectedEditionRouteConstants.EDITION_INTRO.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[1].baseRoute,
-                        expectedEditionRouteConstants.EDITION_INTRO.route,
-                    ]);
+                    routerLinkIndex += 3;
+                });
 
-                expect(routerLinks[7].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[1].baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[1].baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
+                expect(routerLinks[routerLinkIndex].linkParams)
+                    .withContext(`should equal ['/structure']`)
+                    .toEqual(['/structure']);
 
-                expect(routerLinks[8].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[1].baseRoute,
-                            expectedEditionRouteConstants.EDITION_REPORT.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[1].baseRoute,
-                        expectedEditionRouteConstants.EDITION_REPORT.route,
-                    ]);
+                expect(routerLinks[routerLinkIndex + 1].linkParams)
+                    .withContext(`should equal ['/data']`)
+                    .toEqual(['/data']);
 
-                expect(routerLinks[9].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[2].baseRoute,
-                            expectedEditionRouteConstants.EDITION_INTRO.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[2].baseRoute,
-                        expectedEditionRouteConstants.EDITION_INTRO.route,
-                    ]);
-
-                expect(routerLinks[10].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[2].baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[2].baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
-
-                expect(routerLinks[11].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexes[2].baseRoute,
-                            expectedEditionRouteConstants.EDITION_REPORT.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexes[2].baseRoute,
-                        expectedEditionRouteConstants.EDITION_REPORT.route,
-                    ]);
-
-                expect(routerLinks[12].linkParams).withContext(`should equal ['/structure']`).toEqual(['/structure']);
-                expect(routerLinks[13].linkParams).withContext(`should equal ['/data']`).toEqual(['/data']);
-                expect(routerLinks[14].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+                expect(routerLinks[routerLinkIndex + 2].linkParams)
+                    .withContext(`should equal ['/contact']`)
+                    .toEqual(['/contact']);
             });
 
             it('... can click Home link in template', () => {
@@ -845,8 +773,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Structure link in template', () => {
-                const structureLinkDe = linkDes[12]; // Structure link DebugElement
-                const structureLink = routerLinks[12]; // Structure link directive
+                const structureLinkDe = linkDes[15]; // Structure link DebugElement
+                const structureLink = routerLinks[15]; // Structure link directive
 
                 const expectedRoute = ['/structure'];
 
@@ -860,8 +788,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Data link in template', () => {
-                const dataLinkDe = linkDes[13]; // Data link DebugElement
-                const dataLink = routerLinks[13]; // Data link directive
+                const dataLinkDe = linkDes[16]; // Data link DebugElement
+                const dataLink = routerLinks[16]; // Data link directive
 
                 const expectedRoute = ['/data'];
 
@@ -875,8 +803,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[14]; // Contact link DebugElement
-                const contactLink = routerLinks[14]; // Contact link directive
+                const contactLinkDe = linkDes[17]; // Contact link DebugElement
+                const contactLink = routerLinks[17]; // Contact link directive
 
                 const expectedRoute = ['/contact'];
 

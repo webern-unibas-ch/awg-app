@@ -8,12 +8,14 @@
         </h6>
 
         <p>&#9671;</p>
+
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ editionRouteConstants.EDITION.short }} {{ EDITION_COMPLEX_OP12.series.short }}/{{
-                    EDITION_COMPLEX_OP12.section.short
+                >{{ editionRouteConstants.EDITION.short }} {{ editionRouteConstants.SERIES_1.short }}/{{
+                    editionRouteConstants.SECTION_5.short
                 }}</span
             >
+            <br />
             <br />
             <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP12.titleStatement.title"></span
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP12.complexId.short }}</span>
@@ -22,14 +24,7 @@
                 editionTypeConstants.SKETCH_EDITION.full
             }}</a
             >)
-        </h6>
-        <p>&#9671;</p>
-        <h6 class="awg-edition-info-header">
-            <span class="awg-breadcrumb"
-                >{{ editionRouteConstants.EDITION.short }} {{ EDITION_COMPLEX_OP25.series.short }}/{{
-                    EDITION_COMPLEX_OP25.section.short
-                }}</span
-            >
+            <br />
             <br />
             <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP25.titleStatement.title"></span
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP25.complexId.short }}</span>
@@ -46,10 +41,20 @@
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ editionRouteConstants.EDITION.short }} {{ EDITION_COMPLEX_M34.series.short }}/{{
-                    EDITION_COMPLEX_M34.section.short
+                >{{ editionRouteConstants.EDITION.short }} {{ editionRouteConstants.SERIES_2.short }}/{{
+                    editionRouteConstants.SECTION_2A.short
                 }}</span
             >
+            <br />
+            <br />
+            <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_M30.titleStatement.title"></span
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_M30.complexId.short }}</span>
+            <br />
+            (<a [routerLink]="[EDITION_COMPLEX_M30.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">{{
+                editionTypeConstants.SKETCH_EDITION.full
+            }}</a
+            >)
+            <br />
             <br />
             <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_M34.titleStatement.title"></span
             >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_M34.complexId.short }}</span>
