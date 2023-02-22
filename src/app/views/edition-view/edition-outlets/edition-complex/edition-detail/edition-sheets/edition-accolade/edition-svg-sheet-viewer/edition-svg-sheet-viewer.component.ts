@@ -36,10 +36,10 @@ import * as d3_zoom from 'd3-zoom';
  */
 @Component({
     selector: 'awg-edition-svg-sheet',
-    templateUrl: './edition-svg-sheet.component.html',
-    styleUrls: ['./edition-svg-sheet.component.scss'],
+    templateUrl: './edition-svg-sheet-viewer.component.html',
+    styleUrls: ['./edition-svg-sheet-viewer.component.scss'],
 })
-export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterViewInit {
+export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, AfterViewInit {
     /**
      * ViewChild variable: svgSheetContainerRef.
      *
@@ -153,7 +153,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: EditionSvgSheetComponent;
+    ref: EditionSvgSheetViewerComponent;
 
     /**
      * Private variable: availableOverlays.
@@ -212,7 +212,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
     private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Constructor of the EditionSvgSheetComponent.
+     * Constructor of the EditionSvgSheetViewerComponent.
      *
      * It declares private instances of the {@link EditionSvgDrawingService} and the self-referring variable
      * needed for CompileHtml library.
