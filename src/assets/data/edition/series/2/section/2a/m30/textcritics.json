@@ -4,7 +4,7 @@
             "id": "M_30_Sk1",
             "label": "M 30 Sk1",
             "description": [
-                "<strong>M 30 Sk1</strong> ist die Verlaufsskizze zu Studienkomposition für Klavier M 30, die allerdings zahlreiche Überarbeitungen in Form von Streichungen und Ersetzungen aufweist."
+                "<a (click)=\"ref.selectSvgSheet('M_30_Sk1a')\"><strong>Sk1</strong></a> ist die Verlaufsskizze zu Studienkomposition für Klavier M 30, die allerdings zahlreiche Überarbeitungen in Form von Streichungen und Ersetzungen aufweist."
             ],
             "comments": [
                 {
@@ -76,7 +76,7 @@
                     "system": "7–8",
                     "position": "",
                     "comment": "Akkolade pauschal gestrichen."
-                },               
+                },
                 {
                     "svgGroupId": "g1116",
                     "measure": "7B",
@@ -182,7 +182,6 @@
                     "position": "3. Note",
                     "comment": "d<sup>2</sup> überschreibt es<sup>2</sup>."
                 },
-                }
                 {
                     "svgGroupId": "g1166",
                     "measure": "12C",
@@ -295,7 +294,7 @@
                     "position": "4. Note",
                     "comment": "Viertelnote [b]des gestrichen."
                 },
-                {   
+                {
                     "svgGroupId": "polyline144",
                     "measure": "{23A}",
                     "system": "4",
@@ -407,7 +406,7 @@
                     "position": "(1/4)",
                     "comment": "Viertelnote As/es gestrichen."
                 }
-            ] 
-        },
+            ]
+        }
     ]
 }
