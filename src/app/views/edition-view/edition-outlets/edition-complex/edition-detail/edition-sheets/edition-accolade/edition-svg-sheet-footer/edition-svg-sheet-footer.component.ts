@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,6 +9,7 @@ import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/mo
     selector: 'awg-edition-svg-sheet-footer',
     templateUrl: './edition-svg-sheet-footer.component.html',
     styleUrls: ['./edition-svg-sheet-footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetFooterComponent {
     /**
@@ -119,7 +120,6 @@ export class EditionSvgSheetFooterComponent {
         if (!id) {
             return;
         }
-        this.showTextcritics = false;
         this.selectSvgSheetRequest.emit(id);
     }
 
