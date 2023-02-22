@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
@@ -15,7 +15,7 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
     styleUrls: ['./edition-svg-sheet-nav.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionSvgSheetNavComponent {
+export class EditionSvgSheetNavComponent implements OnInit {
     /**
      * Input variable: svgSheetsData.
      *
@@ -39,6 +39,10 @@ export class EditionSvgSheetNavComponent {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+
+    ngOnInit() {
+        console.log('awg-edition-svg-sheet-nav onInit', this.svgSheetsData);
+    }
 
     /**
      * Public method: selectSvgSheet.

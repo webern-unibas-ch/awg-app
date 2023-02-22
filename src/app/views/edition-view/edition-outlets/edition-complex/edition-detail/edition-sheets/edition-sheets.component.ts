@@ -204,9 +204,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             )
             .subscribe({
                 next: (queryParams: ParamMap) => {
-                    this._selectConvolute(queryParams);
+                    // This._selectConvolute(queryParams);
                     this._filterSvgSheets();
                     this._selectSvgSheet(queryParams);
+
+                    console.log(this.svgSheetsData);
                 },
                 error: err => {
                     this.errorMessage = err;
@@ -412,7 +414,29 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         // Find index of given id in svgSheetsData.sheets array
         let sheetIndex = 0;
         let partialIndex;
-        const findIndex = this.filteredSvgSheetsData.sheets.sketchEditions.findIndex(sheets => {
+        const workIndex = this.filteredSvgSheetsData.sheets.workEditions.findIndex(sheets => {
+            let i = sheets.id;
+            // If we have partial sheets, look into content array for id with extra partial
+            if (sheets.content.length > 1) {
+                partialIndex = sheets.content.findIndex(content => i + content.partial === id);
+                if (partialIndex >= 0) {
+                    i = i + sheets.content[partialIndex].partial;
+                }
+            }
+            return i === id;
+        });
+        const textIndex = this.filteredSvgSheetsData.sheets.textEditions.findIndex(sheets => {
+            let i = sheets.id;
+            // If we have partial sheets, look into content array for id with extra partial
+            if (sheets.content.length > 1) {
+                partialIndex = sheets.content.findIndex(content => i + content.partial === id);
+                if (partialIndex >= 0) {
+                    i = i + sheets.content[partialIndex].partial;
+                }
+            }
+            return i === id;
+        });
+        const sketchIndex = this.filteredSvgSheetsData.sheets.sketchEditions.findIndex(sheets => {
             let i = sheets.id;
             // If we have partial sheets, look into content array for id with extra partial
             if (sheets.content.length > 1) {
@@ -424,18 +448,44 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             return i === id;
         });
 
-        if (findIndex >= 0) {
-            sheetIndex = findIndex;
-        }
+        let output = new EditionSvgSheet();
 
-        // Copy filtered sheets data for output
-        const output = {
-            ...this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex],
-        };
+        if (workIndex >= 0) {
+            sheetIndex = workIndex;
 
-        // Reduce content array to the svg of partial id only
-        if (partialIndex >= 0) {
-            output.content = [this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex].content[partialIndex]];
+            // Copy filtered sheets data for output
+            output = {
+                ...this.filteredSvgSheetsData.sheets.workEditions[sheetIndex],
+            };
+
+            // Reduce content array to the svg of partial id only
+            if (partialIndex >= 0) {
+                output.content = [this.filteredSvgSheetsData.sheets.workEditions[sheetIndex].content[partialIndex]];
+            }
+        } else if (textIndex >= 0) {
+            sheetIndex = textIndex;
+
+            // Copy filtered sheets data for output
+            output = {
+                ...this.filteredSvgSheetsData.sheets.textEditions[sheetIndex],
+            };
+
+            // Reduce content array to the svg of partial id only
+            if (partialIndex >= 0) {
+                output.content = [this.filteredSvgSheetsData.sheets.textEditions[sheetIndex].content[partialIndex]];
+            }
+        } else if (sketchIndex >= 0) {
+            sheetIndex = sketchIndex;
+
+            // Copy filtered sheets data for output
+            output = {
+                ...this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex],
+            };
+
+            // Reduce content array to the svg of partial id only
+            if (partialIndex >= 0) {
+                output.content = [this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex].content[partialIndex]];
+            }
         }
 
         // Return the sheet with the given id
@@ -472,14 +522,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      *
      * It filters the svg sheets data by the selected convolute id.
      *
-     * @returns {void} Filters the svh sheets data.
+     * @returns {void} Filters the svg sheets data.
      */
     private _filterSvgSheets(): void {
         this.filteredSvgSheetsData = new EditionSvgSheetList();
-        this.filteredSvgSheetsData.sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
-        this.filteredSvgSheetsData.sheets.sketchEditions = this.svgSheetsData.sheets.sketchEditions.filter(
+        // This.filteredSvgSheetsData.sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
+        /* 
+        This.filteredSvgSheetsData.sheets.sketchEditions = this.svgSheetsData.sheets.sketchEditions.filter(
             sheet => sheet.convolute === this.selectedConvolute.convoluteId
-        );
+        ); 
+        */
+        this.filteredSvgSheetsData = this.svgSheetsData;
+        console.log('filteredSvgSheetsData', this.filteredSvgSheetsData);
     }
 
     /**
