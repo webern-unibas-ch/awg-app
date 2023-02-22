@@ -2,7 +2,7 @@
     "convolutes": [
         {
             "convoluteId": "A",
-            "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
             "folios": [
                 {
                     "folioId": "38v",
@@ -223,7 +223,7 @@
         },
         {
             "convoluteId": "C",
-            "convoluteLabel": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "convoluteLabel": "C Reihentabelle (CH-Bps)",
             "folios": [
                 {
                     "folioId": "1r",
