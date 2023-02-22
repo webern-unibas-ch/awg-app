@@ -85,7 +85,7 @@
                     "comment": "Notenkopf F radiert."
                 },
                 {
-                    "svgGroupId": "g220",
+                    "svgGroupId": "g238",
                     "measure": "15",
                     "system": "7",
                     "position": "6/8",
@@ -97,6 +97,12 @@
                     "system": "7–8",
                     "position": "1. Note",
                     "comment": "Halbe Note überschreibt Viertelnote."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g3378",
+                    "linkTo": "M_34_Sk1_1"
                 }
             ]
         },
@@ -134,6 +140,12 @@
                     "system": "6",
                     "position": "",
                     "comment": "Korrektur in Tinte."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1228",
+                    "linkTo": "M_34_Sk1c"
                 }
             ]
         }
