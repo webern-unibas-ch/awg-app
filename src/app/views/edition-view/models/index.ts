@@ -18,7 +18,12 @@ import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
+import {
+    FolioCalculation,
+    FolioCalculationContentItemCornerPoints,
+    FolioCalculationLine,
+    FolioCalculationPoint,
+} from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
@@ -57,6 +62,7 @@ export {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationContentItemCornerPoints,
     FolioSettings,
     FolioSvgData,
     Graph,

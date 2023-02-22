@@ -295,20 +295,35 @@ export class FolioService {
 
             // Item shape
             const snapItemShape = snapCanvas.group();
-            contentItem.lineArray.forEach((line: FolioCalculationLine) => {
-                // Init
-                const x1 = line.startPoint.x;
-                const y1 = line.startPoint.y;
-                const x2 = line.endPoint.x;
-                const y2 = line.endPoint.y;
 
-                const snapItemLine = snapCanvas.line(x1, y1, x2, y2);
-                snapItemShape.add(snapItemLine);
-            });
+            const polygoneCornerPointArray = [];
+            polygoneCornerPointArray.push(
+                contentItem.cornerPoints.upperLeftCorner.x,
+                contentItem.cornerPoints.upperLeftCorner.y
+            );
+            polygoneCornerPointArray.push(
+                contentItem.cornerPoints.upperRightCorner.x,
+                contentItem.cornerPoints.upperRightCorner.y
+            );
+            polygoneCornerPointArray.push(
+                contentItem.cornerPoints.lowerRightCorner.x,
+                contentItem.cornerPoints.lowerRightCorner.y
+            );
+            polygoneCornerPointArray.push(
+                contentItem.cornerPoints.lowerLeftCorner.x,
+                contentItem.cornerPoints.lowerLeftCorner.y
+            );
+            polygoneCornerPointArray.push(
+                contentItem.cornerPoints.upperLeftCorner.x,
+                contentItem.cornerPoints.upperLeftCorner.y
+            );
+            const polygone = snapCanvas.polyline(polygoneCornerPointArray);
+
+            snapItemShape.add(polygone);
             snapItemShape.attr({
                 class: 'item-shape',
                 strokeWidth: 2,
-                fill: 'white',
+                fill: '#eeeeee',
             });
 
             // Item link
