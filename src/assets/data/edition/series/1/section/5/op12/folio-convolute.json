@@ -14,7 +14,7 @@
                     "content": [
                         {
                             "id": "M_212_Sk1a",
-                            "sigle": "M 212 Sk1a",
+                            "sigle": "M 212 Sk1",
                             "sigleAddendum": "T. 1–6",
                             "sectionPartition": 1,
                             "sections": [
@@ -26,7 +26,7 @@
                         },
                         {
                             "id": "M_212_Sk1b",
-                            "sigle": "M 212 Sk1b",
+                            "sigle": "M 212 Sk1",
                             "sigleAddendum": "T. 7–12",
                             "sectionPartition": 1,
                             "sections": [
@@ -39,7 +39,7 @@
                         },
                         {
                             "id": "M_212_Sk1c",
-                            "sigle": "M 212 Sk1c",
+                            "sigle": "M 212 Sk1",
                             "sigleAddendum": "T. 13–17",
                             "sectionPartition": 1,
                             "sections": [
@@ -124,7 +124,7 @@
                     "content": [
                         {
                             "id": "M_212_Sk1d",
-                            "sigle": "/M 212 Sk1d",
+                            "sigle": "M 212 Sk1",
                             "sigleAddendum": "T. 18–22",
                             "sections": [
                                 {
@@ -135,7 +135,7 @@
                         },
                         {
                             "id": "M_212_Sk1e",
-                            "sigle": "M 212 Sk1e",
+                            "sigle": "M 212 Sk1",
                             "sigleAddendum": "T. 23–24",
                             "sectionPartition": 1,
                             "sections": [
