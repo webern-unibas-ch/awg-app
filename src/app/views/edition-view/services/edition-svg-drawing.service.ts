@@ -22,6 +22,13 @@ export class EditionSvgDrawingService {
     overlayFillColor = 'orange';
 
     /**
+     * Public variable: overlayHoverFillColor.
+     *
+     * It keeps the fill color for hovered overlays.
+     */
+    overlayHoverFillColor = 'tomato';
+
+    /**
      * Public variable: overlaySelectionFillColor.
      *
      * It keeps the fill color for selected overlays.

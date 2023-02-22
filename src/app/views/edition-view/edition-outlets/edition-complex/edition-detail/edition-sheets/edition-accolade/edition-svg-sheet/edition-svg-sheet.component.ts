@@ -508,7 +508,7 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                 overlayGroupSelection
                     .on('mouseover', () => {
                         if (overlay && !overlay.isSelected) {
-                            const color = this.svgDrawingService.overlaySelectionFillColor;
+                            const color = this.svgDrawingService.overlayHoverFillColor;
                             this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
                         }
                         overlayGroupRectSelection.style('cursor', 'pointer');
@@ -524,6 +524,12 @@ export class EditionSvgSheetComponent implements OnChanges, OnDestroy, AfterView
                         if (overlay) {
                             overlay.isSelected = !overlay.isSelected;
                         }
+                        const color =
+                            overlay && overlay.isSelected
+                                ? this.svgDrawingService.overlaySelectionFillColor
+                                : this.svgDrawingService.overlayHoverFillColor;
+                        this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
+
                         this._selectedOverlays = this._getSelectedOverlays(this._availableOverlays);
 
                         this._onOverlaySelect(this._selectedOverlays);
