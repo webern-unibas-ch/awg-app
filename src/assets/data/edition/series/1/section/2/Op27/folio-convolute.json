@@ -1,0 +1,48 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (CH-Bps)",
+            ##"folios": [
+                #{
+                    "folioId": "1r",
+                    "systems": "7",
+                    "format": {
+                        "height": 169,
+                        "width": 267
+                    },
+                    "content": [
+                        {
+                            "id": "SkRT",
+                            "sigle": "M 317 Sk5 / M 321 Sk1 / M322 Sk1 (Reihentabelle op. 25)",
+                            "sigleAddendum": "Reihenformen 1–8",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                #{
+                    "folioId": "1v",
+                    "systems": "7",
+                    "format": {
+                        "height": 169,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-G",
+            "convoluteLabel": "A, C–G (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP27_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "sheets": {
+        "workEditions": [],
+        "textEditions": [],
+        "sketchEditions": [
+            {
+                "id": "##SkRT##",
+                "label": "####",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/1/section/1/op27/Op. 27_Reihentabelle_20220120_1von3_path.svg",
+                        "image": "",
+                        "partial": "a"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/1/op27/Op. 27_Reihentabelle_20220120_2von3_path.svg",
+                        "image": "",
+                        "partial": "b"
+                    },
+                    {
+                        "svg": "assets/img/edition/series/1/section/1/op27/Op. 27_Reihentabelle_20220120_3von3_path.svg",
+                        "image": "",
+                        "partial": "c"
+                    }
+                ],
+                "convolute": "B"
+            }
+        ]
+    }
+}
