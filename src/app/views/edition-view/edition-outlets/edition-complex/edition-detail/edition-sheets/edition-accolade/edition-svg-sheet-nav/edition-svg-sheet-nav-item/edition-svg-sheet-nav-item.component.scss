@@ -1,8 +1,11 @@
 @import 'src/assets/themes/scss/shared';
 
 a#dropDownSheetNav {
-    &.active {
+    &.btn {
         border: none !important;
+    }
+    &.active,
+    &:active {
         color: $link-color !important;
     }
     &:hover {
