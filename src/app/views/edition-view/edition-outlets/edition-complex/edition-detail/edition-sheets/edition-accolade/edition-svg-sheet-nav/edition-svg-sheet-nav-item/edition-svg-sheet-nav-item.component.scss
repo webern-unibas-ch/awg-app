@@ -1,7 +1,17 @@
-a#dropDownSheetNav span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100px;
-    display: inline-block;
+@import 'src/assets/themes/scss/shared';
+
+a#dropDownSheetNav {
+    &.active {
+        border: none !important;
+        color: $link-color !important;
+    }
+    &:hover {
+        color: rgb(51, 51, 51) !important;
+    }
+
+    > span {
+        display: inline-block;
+        white-space: break-spaces;
+        text-align: start;
+    }
 }
