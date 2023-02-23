@@ -451,7 +451,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     private _findTextcritics(): Textcritics {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return undefined;
+            return new Textcritics();
         }
 
         // Find index of the selected svg sheet id in textcriticsData.textcritics array
@@ -463,8 +463,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             // Return the textcritics with the given id
             return this.textcriticsData.textcritics[textcriticsIndex];
         }
-        // Return undefined if no comments were found
-        return undefined;
+        // Return empty object if no comments were found
+        return new Textcritics();
     }
 
     /**
