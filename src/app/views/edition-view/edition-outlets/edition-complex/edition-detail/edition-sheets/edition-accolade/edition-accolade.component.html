@@ -21,14 +21,14 @@
                 </div>
                 <div class="col-8 col-xl-9">
                     <!-- svg sheet -->
-                    <awg-edition-svg-sheet
+                    <awg-edition-svg-sheet-viewer
                         *ngIf="selectedSvgSheet"
                         [selectedSvgSheet]="selectedSvgSheet"
                         (openModalRequest)="openModal($event)"
                         (selectLinkBoxRequest)="selectLinkBox($event)"
                         (selectOverlaysRequest)="selectOverlays($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)">
-                    </awg-edition-svg-sheet>
+                    </awg-edition-svg-sheet-viewer>
 
                     <!-- table for TkA -->
                     <awg-edition-svg-sheet-footer
