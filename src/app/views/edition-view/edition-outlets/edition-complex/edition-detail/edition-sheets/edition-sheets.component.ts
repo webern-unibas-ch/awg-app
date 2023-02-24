@@ -51,13 +51,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
-     * Public variable: filteredSvgSheetsData.
-     *
-     * It keeps a filtered excerpt of the svg sheets data of the edition sheets.
-     */
-    filteredSvgSheetsData: EditionSvgSheetList;
-
-    /**
      * Public variable: folioConvoluteData.
      *
      * It keeps the folio convolute Data of the edition sheets.
@@ -197,11 +190,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             )
             .subscribe({
                 next: (queryParams: ParamMap) => {
-                    // This._selectConvolute(queryParams);
-                    this._filterSvgSheets();
                     this._selectSvgSheet(queryParams);
-
-                    console.log(this.svgSheetsData);
                 },
                 error: err => {
                     this.errorMessage = err;
@@ -231,12 +220,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             }
         }
         this.selectedConvolute = convolute;
-        this._filterSvgSheets();
 
         const navigationExtras: NavigationExtras = {
             queryParams: {
                 convolute: convolute.convoluteId,
-                sketch: this.filteredSvgSheetsData.sheets.sketchEditions[0].id,
+                sketch: this.svgSheetsData.sheets.sketchEditions[0].id,
             },
         };
 
@@ -288,30 +276,24 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a svg sheet by its id and
+     * It selects a SVG sheet by its id and
      * navigates to the edition sheets route
      * with this given id.
      *
-     * @param {string} id The given svg sheet id.
+     * @param {string} id The given SVG sheet id.
      * @returns {void} Navigates to the edition sheets.
      */
-    onSvgSheetSelect(id: string): void {
-        // Make sure that there is a convolute selected first
-        if (!this.selectedConvolute) {
-            this.onConvoluteSelect('');
-        }
-
+    onSvgSheetSelect(sheetId: string): void {
         // Clear overlay selections
         this.onOverlaySelect([]);
 
         // Set default id if none is given
-        if (!id) {
-            id = this.filteredSvgSheetsData.sheets.sketchEditions[0].id;
+        if (!sheetId) {
+            sheetId = this.svgSheetsData.sheets.sketchEditions[0].id;
         }
-        this.selectedSvgSheet = this._findSvgSheet(id);
 
         const navigationExtras: NavigationExtras = {
-            queryParams: { convolute: this.selectedConvolute.convoluteId, sketch: id },
+            queryParams: { id: sheetId },
             queryParamsHandling: 'merge',
         };
 
@@ -373,99 +355,74 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _findSvgSheet.
+     * Private method: _findSvgSheetById.
      *
-     * It finds a svg sheet with a given id.
+     * It finds a SVG sheet by a given id.
      *
-     * @param {string} id The given id input.
+     * @param {string} id The given id.
      * @returns {EditionSvgSheet} The sheet that was found.
      */
-    private _findSvgSheet(id: string): EditionSvgSheet {
+    private _findSvgSheetById(id: string): EditionSvgSheet {
         // Find index of given id in svgSheetsData.sheets array
-        let sheetIndex = 0;
-        let partialIndex;
-        const workIndex = this.filteredSvgSheetsData.sheets.workEditions.findIndex(sheets => {
-            let i = sheets.id;
-            // If we have partial sheets, look into content array for id with extra partial
-            if (sheets.content.length > 1) {
-                partialIndex = sheets.content.findIndex(content => i + content.partial === id);
-                if (partialIndex >= 0) {
-                    i = i + sheets.content[partialIndex].partial;
+        const indexes = {
+            workEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.workEditions, id),
+            textEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.textEditions, id),
+            sketchEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.sketchEditions, id),
+        };
+
+        for (const [type, index] of Object.entries(indexes)) {
+            if (index >= 0) {
+                const sheet = this._getSheetContent(this.svgSheetsData.sheets[type], index, id);
+                if (type === 'sketchEditions') {
+                    this._selectConvolute(sheet.convolute);
                 }
-            }
-            return i === id;
-        });
-        const textIndex = this.filteredSvgSheetsData.sheets.textEditions.findIndex(sheets => {
-            let i = sheets.id;
-            // If we have partial sheets, look into content array for id with extra partial
-            if (sheets.content.length > 1) {
-                partialIndex = sheets.content.findIndex(content => i + content.partial === id);
-                if (partialIndex >= 0) {
-                    i = i + sheets.content[partialIndex].partial;
-                }
-            }
-            return i === id;
-        });
-        const sketchIndex = this.filteredSvgSheetsData.sheets.sketchEditions.findIndex(sheets => {
-            let i = sheets.id;
-            // If we have partial sheets, look into content array for id with extra partial
-            if (sheets.content.length > 1) {
-                partialIndex = sheets.content.findIndex(content => i + content.partial === id);
-                if (partialIndex >= 0) {
-                    i = i + sheets.content[partialIndex].partial;
-                }
-            }
-            return i === id;
-        });
-
-        let output = new EditionSvgSheet();
-
-        if (workIndex >= 0) {
-            sheetIndex = workIndex;
-
-            // Copy filtered sheets data for output
-            output = {
-                ...this.filteredSvgSheetsData.sheets.workEditions[sheetIndex],
-            };
-
-            // Reduce content array to the svg of partial id only
-            if (partialIndex >= 0) {
-                output.content = [this.filteredSvgSheetsData.sheets.workEditions[sheetIndex].content[partialIndex]];
-            }
-        } else if (textIndex >= 0) {
-            sheetIndex = textIndex;
-
-            // Copy filtered sheets data for output
-            output = {
-                ...this.filteredSvgSheetsData.sheets.textEditions[sheetIndex],
-            };
-
-            // Reduce content array to the svg of partial id only
-            if (partialIndex >= 0) {
-                output.content = [this.filteredSvgSheetsData.sheets.textEditions[sheetIndex].content[partialIndex]];
-            }
-        } else if (sketchIndex >= 0) {
-            sheetIndex = sketchIndex;
-
-            // Copy filtered sheets data for output
-            output = {
-                ...this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex],
-            };
-
-            // Reduce content array to the svg of partial id only
-            if (partialIndex >= 0) {
-                output.content = [this.filteredSvgSheetsData.sheets.sketchEditions[sheetIndex].content[partialIndex]];
+                return sheet;
             }
         }
 
-        // Return the sheet with the given id
-        return output;
+        return new EditionSvgSheet();
+    }
+
+    /**
+     * Private method: _findSvgSheetIndex.
+     *
+     * It finds the index of an SVG sheet in a given array of sheets.
+     *
+     * @param {EditionSvgSheet[]} sheets The given array of sheets.
+     * @param {string} id The given id.
+     * @returns {number} The index of the sheet in the array.
+     */
+    private _findSvgSheetIndex(sheets: EditionSvgSheet[], id: string): number {
+        return sheets.findIndex(sheet => {
+            let sheetId = sheet.id;
+            // If we have partial sheets, look into content array for id with extra partial
+            if (sheet.content.length > 1) {
+                const partialIndex = this._findSvgSheetPartialIndex(sheet, id);
+                if (partialIndex >= 0) {
+                    sheetId += sheet.content[partialIndex].partial;
+                }
+            }
+            return sheetId === id;
+        });
+    }
+
+    /**
+     * Private method: _findSvgSheetPartialIndex.
+     *
+     * It checks if a given id includes an SVG sheet partial and returns its index.
+     *
+     * @param {EditionSvgSheet} sheet The given sheet.
+     * @param {string} id The given id.
+     * @returns {number} The index of the sheet partial in the sheet.
+     */
+    private _findSvgSheetPartialIndex(sheet: EditionSvgSheet, id: string): number {
+        return sheet.content.findIndex(content => sheet.id + content.partial === id);
     }
 
     /**
      * Private method: _findTextcritics.
      *
-     * It finds the textcritics for a selected svg sheet.
+     * It finds the textcritics for a selected SVG sheet.
      *
      * @returns {Textcritics} The textcritics that were found.
      */
@@ -474,55 +431,30 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             return new Textcritics();
         }
 
-        // Find index of the selected svg sheet id in textcriticsData.textcritics array
-        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
+        // Find the textcritics for the selected SVG sheet id in textcriticsData.textcritics array
+        const textcritics = this.textcriticsData.textcritics.find(
             textcritic => textcritic.id === this.selectedSvgSheet.id
         );
 
-        if (textcriticsIndex > -1 && this.utils.isNotEmptyObject(this.textcriticsData.textcritics[textcriticsIndex])) {
-            // Return the textcritics with the given id
-            return this.textcriticsData.textcritics[textcriticsIndex];
-        }
-        // Return empty object if no comments were found
-        return new Textcritics();
+        // Return the textcritics with the given id or empty object if no comments were found
+        return textcritics || new Textcritics();
     }
 
     /**
-     * Private method: _filterSvgSheets.
+     * Private method: _getIdFromQueryParams.
      *
-     * It filters the svg sheets data by the selected convolute id.
-     *
-     * @returns {void} Filters the svg sheets data.
-     */
-    private _filterSvgSheets(): void {
-        this.filteredSvgSheetsData = new EditionSvgSheetList();
-        // This.filteredSvgSheetsData.sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
-        /* 
-        This.filteredSvgSheetsData.sheets.sketchEditions = this.svgSheetsData.sheets.sketchEditions.filter(
-            sheet => sheet.convolute === this.selectedConvolute.convoluteId
-        ); 
-        */
-        this.filteredSvgSheetsData = this.svgSheetsData;
-        console.log('filteredSvgSheetsData', this.filteredSvgSheetsData);
-    }
-
-    /**
-     * Private method: _getSketchParams.
-     *
-     * It checks the route params for a sketch query
-     * and returns the id of the selected sheet.
+     * It checks the route params for an id of the selected sheet
+     * and returns it.
      *
      * @default first entry of this.svgSheetsData
      *
      * @param {ParamMap} queryParams The query paramMap of the activated route.
      * @returns {string} The id of the selected sheet.
      */
-    private _getSketchParams(queryParams?: ParamMap): string {
+    private _getIdFromQueryParams(queryParams?: ParamMap): string {
         // If there is no id in query params
         // Take first entry of filtered svg sheets data as default
-        return queryParams.get('sketch')
-            ? queryParams.get('sketch')
-            : this.filteredSvgSheetsData.sheets.sketchEditions[0].id;
+        return queryParams.get('id') ? queryParams.get('id') : this.svgSheetsData.sheets.sketchEditions[0].id;
     }
 
     /**
@@ -545,6 +477,35 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Private method: _getSheetContent.
+     *
+     * It gets the content of an SVG sheet by its id within a given array of sheets.
+     *
+     * @param {EditionSvgSheet[]} sheets The given array of sheets.
+     * @param {number} sheetIndex The index of the sheet in the array.
+     * @param {string} id The given id.
+     * @returns {EditionSvgSheet} The sheet that was found.
+     */
+    private _getSheetContent(sheets: EditionSvgSheet[], sheetIndex: number, id: string): EditionSvgSheet {
+        let sheet = new EditionSvgSheet();
+        let partialIndex = -1;
+
+        // Copy filtered sheets data for output
+        sheet = {
+            ...sheets[sheetIndex],
+        };
+
+        partialIndex = this._findSvgSheetPartialIndex(sheet, id);
+
+        // Reduce content array to the SVG of partial id only
+        if (partialIndex >= 0) {
+            sheet.content = [sheets[sheetIndex].content[partialIndex]];
+        }
+
+        return sheet;
+    }
+
+    /**
      * Private method: _selectConvolute.
      *
      * It selects a convolute by the given query params.
@@ -560,14 +521,14 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Private method: _selectSvgSheet.
      *
-     * It selects an svg sheet by the given query params.
+     * It selects an SVG sheet by the given query params.
      *
      * @param {ParamMap} queryParams The given query params.
-     * @returns {void} Selects the svg sheet.
+     * @returns {void} Selects the SVG sheet.
      */
     private _selectSvgSheet(queryParams: ParamMap): void {
-        const sheetId: string = this._getSketchParams(queryParams);
-        this.selectedSvgSheet = this._findSvgSheet(sheetId);
+        const sheetId: string = this._getIdFromQueryParams(queryParams);
+        this.selectedSvgSheet = this._findSvgSheetById(sheetId);
         this.selectedTextcritics = this._findTextcritics();
         if (
             this.utils.isNotEmptyObject(this.selectedTextcritics) &&
