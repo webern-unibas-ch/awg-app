@@ -256,10 +256,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onLinkBoxSelect.
      *
-     * It finds the target svg sheet of a link box and selects it.
+     * It finds the target SVG sheet of a link box and selects it.
      *
      * @param {string} linkBoxId The given link box id.
-     * @returns {void} Finds and selects the target svg sheet of a link box.
+     * @returns {void} Finds and selects the target SVG sheet of a link box.
      */
     onLinkBoxSelect(linkBoxId: string): void {
         if (!this.selectedSvgSheet) {
@@ -267,11 +267,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         }
 
         const linkBoxes: EditionSvgLinkBox[] = this._findLinkBoxes();
+        const selectedLinkBox = linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
 
-        const selectedLinkBox = linkBoxes.filter(linkBox => linkBox.svgGroupId === linkBoxId);
-        if (this.utils.isNotEmptyArray(selectedLinkBox)) {
-            const linkToSvgSheet = selectedLinkBox[0].linkTo;
-
+        if (selectedLinkBox) {
+            const linkToSvgSheet = selectedLinkBox.linkTo;
             this.onSvgSheetSelect(linkToSvgSheet);
         }
     }
@@ -376,30 +375,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Private method: _findLinkBoxes.
      *
-     * It finds the link boxes for an svg.
+     * It finds the link boxes for an SVG.
      *
      * @returns {EditionSvgLinkBox[]} The link boxes that were found.
      */
     private _findLinkBoxes(): EditionSvgLinkBox[] {
-        if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return undefined;
+        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
+            // Return empty array if no link boxes were found
+            return [];
         }
 
-        // Find index of the selected link box id in textcriticsData.textcritics array
-        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
-            textcritic => textcritic.id === this.selectedSvgSheet.id
-        );
-
-        if (
-            textcriticsIndex > -1 &&
-            this.textcriticsData.textcritics[textcriticsIndex] &&
-            this.textcriticsData.textcritics[textcriticsIndex].linkBoxes
-        ) {
-            // Return the link boxes
-            return this.textcriticsData.textcritics[textcriticsIndex].linkBoxes;
-        }
-        // Return empty array if no link boxes were found
-        return [];
+        // Return the link boxes
+        return this.selectedTextcritics.linkBoxes;
     }
 
     /**
