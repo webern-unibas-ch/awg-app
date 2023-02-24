@@ -72,16 +72,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedConvolute: FolioConvolute;
 
     /**
-     * Public variable: selectedOverlays.
-     *
-     * It keeps the selected svg overlays.
-     */
-    selectedOverlays: EditionSvgOverlay[];
-
-    /**
      * Public variable: selectedSvgSheet.
      *
-     * It keeps the selected svg sheet.
+     * It keeps the selected SVG sheet.
      */
     selectedSvgSheet: EditionSvgSheet;
 
@@ -95,14 +88,14 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public variable: selectedTextcritics.
      *
-     * It keeps the textcritics of the selected svg sheet.
+     * It keeps the textcritics of the selected SVG sheet.
      */
     selectedTextcritics: Textcritics;
 
     /**
      * Public variable: svgSheetsData.
      *
-     * It keeps the svg sheets data of the edition sheets.
+     * It keeps the SVG sheets data of the edition sheets.
      */
     svgSheetsData: EditionSvgSheetList;
 
@@ -280,24 +273,14 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      *
      * It finds the corresponding textcritical comments to a list of selected overlays.
      *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {void} Sets the selectedOverlay, selectedTextcriticalComments and showTka variable.
+     * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
+     * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return;
-        }
-
-        this.selectedTextcritics = this._findTextcritics();
-        if (
-            this.utils.isNotEmptyObject(this.selectedTextcritics) &&
-            this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
-        ) {
-            this.selectedTextcriticalComments = this.editionService.getTextcriticalCommentsForOverlays(
-                this.selectedTextcritics.comments,
-                overlays
-            );
-        }
+        this.selectedTextcriticalComments = this.editionService.getTextcriticalCommentsForOverlays(
+            this.selectedTextcritics.comments,
+            overlays
+        );
 
         this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
     }
