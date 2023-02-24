@@ -326,15 +326,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {FolioConvolute} The convolute that was found.
      */
     private _findConvolute(id: string): FolioConvolute {
-        // Find index of given id in folioConvoluteData.convolutes array
-        let convoluteIndex = 0;
-        const findIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
-        if (findIndex >= 0) {
-            convoluteIndex = findIndex;
-        }
+        // Find the convolute with the given id in folioConvoluteData.convolutes array
+        const convolute = this.folioConvoluteData.convolutes.find(conv => conv.convoluteId === id);
 
-        // Return the convolute with the given id
-        return this.folioConvoluteData.convolutes[convoluteIndex];
+        // If the convolute is found, return it; otherwise, return undefined
+        return convolute;
     }
 
     /**
@@ -513,9 +509,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @param {ParamMap} queryParams The given query params.
      * @returns {void} Selects the convolute.
      */
-    private _selectConvolute(queryParams: ParamMap): void {
-        const convId: string = this._getConvoluteParams(queryParams);
-        this.selectedConvolute = this._findConvolute(convId);
+    private _selectConvolute(convoluteId: string): void {
+        this.selectedConvolute = this._findConvolute(convoluteId);
     }
 
     /**
