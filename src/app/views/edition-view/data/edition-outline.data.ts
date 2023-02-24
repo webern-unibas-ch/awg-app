@@ -62,7 +62,13 @@ export const EDITION_OUTLINE_DATA: EditionOutlineSeries[] = [
             },
             {
                 section: EDITION_ROUTE_CONSTANTS.SECTION_2A,
-                complexes: { opus: [], mnr: [{ complex: EDITION_COMPLEXES.M34, disabled: false }] },
+                complexes: {
+                    opus: [],
+                    mnr: [
+                        { complex: EDITION_COMPLEXES.M30, disabled: false },
+                        { complex: EDITION_COMPLEXES.M34, disabled: false },
+                    ],
+                },
                 disabled: false,
             },
             {

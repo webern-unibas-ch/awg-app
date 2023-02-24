@@ -2,7 +2,7 @@
     "convolutes": [
         {
             "convoluteId": "A",
-            "convoluteLabel": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
             "folios": [
                 {
                     "folioId": "38v",
@@ -118,7 +118,7 @@
                         },
                         {
                             "id": "M_317_Sk4a",
-                            "sigle": "M 317 Sk4a",
+                            "sigle": "M 317 Sk4",
                             "sigleAddendum": "T. {1A}–3A",
                             "sectionPartition": 1,
                             "sections": [
@@ -154,7 +154,7 @@
                     "content": [
                         {
                             "id": "M_317_Sk4b",
-                            "sigle": "M 317 Sk4b",
+                            "sigle": "M 317 Sk4",
                             "sigleAddendum": "T. 3B–6",
                             "sectionPartition": 1,
                             "sections": [
@@ -167,7 +167,7 @@
                         },
                         {
                             "id": "M_317_Sk4c",
-                            "sigle": "M 317 Sk4c",
+                            "sigle": "M 317 Sk4",
                             "sigleAddendum": "T. 7–12",
                             "sectionPartition": 1,
                             "sections": [
@@ -180,7 +180,7 @@
                         },
                         {
                             "id": "M_317_Sk4d",
-                            "sigle": "M 317 Sk4d",
+                            "sigle": "M 317 Sk4",
                             "sigleAddendum": "T. 13–15",
                             "sectionPartition": 4,
                             "sections": [
@@ -223,7 +223,7 @@
         },
         {
             "convoluteId": "C",
-            "convoluteLabel": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "convoluteLabel": "C Reihentabelle (CH-Bps)",
             "folios": [
                 {
                     "folioId": "1r",

@@ -90,16 +90,11 @@ export class FolioCalculationLine {
  *
  * Not exposed, only called internally from {@link FolioCalculation}.
  */
-class FolioCalculationContentItemCornerPoints {
+export class FolioCalculationContentItemCornerPoints {
     /**
      * The upper left corner point of a content item (FolioCalculationPoint).
      */
     upperLeftCorner: FolioCalculationPoint;
-
-    /**
-     * The lower left corner point of a content item (FolioCalculationPoint).
-     */
-    lowerLeftCorner: FolioCalculationPoint;
 
     /**
      * The upper right corner point of a content item (FolioCalculationPoint).
@@ -112,6 +107,11 @@ class FolioCalculationContentItemCornerPoints {
     lowerRightCorner: FolioCalculationPoint;
 
     /**
+     * The lower left corner point of a content item (FolioCalculationPoint).
+     */
+    lowerLeftCorner: FolioCalculationPoint;
+
+    /**
      * Constructor of the FolioCalculationContentItemCornerPoints class.
      *
      * It initializes the class with four points
@@ -121,9 +121,9 @@ class FolioCalculationContentItemCornerPoints {
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
         this.upperLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.startY);
-        this.lowerLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.endY);
         this.upperRightCorner = new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.startY);
         this.lowerRightCorner = new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.endY);
+        this.lowerLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.endY);
     }
 }
 
@@ -210,11 +210,6 @@ export class FolioCalculationContentItem {
      * The end position (y-value) of the content item (number).
      */
     endY: number;
-
-    /**
-     * The line array of the content item (FolioCalculationLine[]).
-     */
-    lineArray: FolioCalculationLine[];
 
     /**
      * The current content item (FolioCalculationContentItemCache).
@@ -587,14 +582,6 @@ export class FolioCalculation {
                         calculatedContentItem
                     );
 
-                    // Set item lines
-                    calculatedContentItem.lineArray = this._setContentItemLineArray(
-                        calculatedContentItem,
-                        sectionsLength,
-                        sectionIndex,
-                        sectionPartition
-                    );
-
                     calculatedContentItem.id = content.id;
                     calculatedContentItem.sigle = content.sigle;
                     calculatedContentItem.sigleAddendum = content.sigleAddendum;
@@ -712,174 +699,6 @@ export class FolioCalculation {
             calculatedContentItem.previous.cornerPoints = calculatedContentItem.current.cornerPoints;
         }
         calculatedContentItem.current.section = section;
-    }
-
-    /**
-     * Private helper method for _calculateContentArray: _setContentItemLineArray.
-     *
-     * It calculates the line array for the content items of a folio.
-     *
-     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
-     * @param {number} sectionsLength The given section's length.
-     * @param {number} sectionIndex The given section index.
-     * @param {number} sectionPartition The given section partition.
-     * @returns {FolioCalculationLine[]} The calculated line array.
-     */
-    private _setContentItemLineArray(
-        calculatedContentItem: FolioCalculationContentItem,
-        sectionsLength: number,
-        sectionIndex: number,
-        sectionPartition: number
-    ): FolioCalculationLine[] {
-        if (!calculatedContentItem.current.cornerPoints) {
-            return undefined;
-        }
-
-        // Init
-        const lineArray: FolioCalculationLine[] = [];
-        const lines: string[] = [];
-        const cornerPoints = calculatedContentItem.current.cornerPoints; // Shortcut
-        const correctionValue = this.itemsOffsetCorrection / 2; // Offset correction value
-
-        // Decide which lines to add to array depending on sectionsLength and position in sectionIndex
-        if (sectionsLength === 1) {
-            // Item is a single rectangle => add all 4 lines to line array
-            lines.push('uH', 'lH', 'lV', 'rV');
-        } else if (sectionsLength > 1) {
-            // Item is a joint item
-            if (sectionIndex === 0) {
-                // First item part
-
-                // Offset correction
-                this._setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
-                this._setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
-
-                // Add upper & lower horizontal & left vertical line to line array
-                lines.push('uH', 'lH', 'lV');
-            } else if (sectionIndex === sectionPartition - 1) {
-                // Last item part
-
-                // Offset correction
-                this._setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
-                this._setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
-
-                // Add upper & lower horizontal & right vertical line to line array
-                lines.push('uH', 'lH', 'rV');
-
-                // Check for connector
-                if (sectionIndex > 0) {
-                    this._checkForConnectorLine(calculatedContentItem, lineArray);
-                }
-            } else if (sectionIndex > 0 && sectionIndex < sectionPartition - 1) {
-                // Middle item part
-
-                // Offset correction
-                this._setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
-                this._setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
-                this._setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
-                this._setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
-
-                // Add upper and lower horizontal line to line array
-                lines.push('uH', 'lH');
-
-                // Check for connector
-                if (sectionIndex > 0) {
-                    this._checkForConnectorLine(calculatedContentItem, lineArray);
-                }
-            }
-        }
-
-        // Create lines
-        const upperHorizontalLine = new FolioCalculationLine(
-            cornerPoints.upperLeftCorner,
-            cornerPoints.upperRightCorner
-        );
-        const lowerHorizontalLine = new FolioCalculationLine(
-            cornerPoints.lowerLeftCorner,
-            cornerPoints.lowerRightCorner
-        );
-        const leftVerticalLine = new FolioCalculationLine(cornerPoints.upperLeftCorner, cornerPoints.lowerLeftCorner);
-        const rightVerticalLine = new FolioCalculationLine(
-            cornerPoints.upperRightCorner,
-            cornerPoints.lowerRightCorner
-        );
-
-        lines.forEach((line: string) => {
-            switch (line) {
-                case 'uH':
-                    lineArray.push(upperHorizontalLine);
-                    break;
-                case 'lH':
-                    lineArray.push(lowerHorizontalLine);
-                    break;
-                case 'lV':
-                    lineArray.push(leftVerticalLine);
-                    break;
-                case 'rV':
-                    lineArray.push(rightVerticalLine);
-                    break;
-            }
-        });
-
-        return lineArray;
-    }
-
-    /**
-     * Private helper method for _calculateContentArray: _checkForConnectorLine.
-     *
-     * It calculates the connector lines for the content items of a folio.
-     *
-     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
-     * @param {number} lineArray The given calculated line array.
-     * @returns {void} Sets the connector lines of the calculatedContentItem..
-     */
-    private _checkForConnectorLine(
-        calculatedContentItem: FolioCalculationContentItem,
-        lineArray: FolioCalculationLine[]
-    ): void {
-        // Init
-        const currentSection: FolioSection = calculatedContentItem.current.section;
-        const prevSection: FolioSection = calculatedContentItem.previous.section;
-
-        // Check if sections exist
-        if (
-            !prevSection ||
-            (currentSection.startSystem === prevSection.startSystem &&
-                currentSection.endSystem === prevSection.endSystem)
-        ) {
-            return;
-        }
-
-        // Check for different start or end systems
-        if (currentSection.startSystem !== prevSection.startSystem) {
-            // Draw upper connector
-            const connectorLine: FolioCalculationLine = new FolioCalculationLine(
-                calculatedContentItem.previous.cornerPoints.upperRightCorner,
-                calculatedContentItem.current.cornerPoints.upperLeftCorner
-            );
-            lineArray.push(connectorLine);
-        }
-        if (currentSection.endSystem !== prevSection.endSystem) {
-            // Draw lower connector
-            const connectorLine: FolioCalculationLine = new FolioCalculationLine(
-                calculatedContentItem.previous.cornerPoints.lowerRightCorner,
-                calculatedContentItem.current.cornerPoints.lowerLeftCorner
-            );
-            lineArray.push(connectorLine);
-        }
-    }
-
-    /**
-     * Private helper method for _calculateContentArray: _setContentItemOffsetCorrection.
-     *
-     * It sets the offsetCorrection for a calculated point of a content item of a folio.
-     *
-     * @param {FolioCalculationPoint} cornerPoint The given calculated point.
-     * @param {number} correctionX The given correction value for x (in px).
-     * @returns {void} Sets the offsetCorrection for a calculatedContentItem.
-     */
-    private _setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
-        cornerPoint.add(correctionX, 0);
     }
 
     /**

@@ -14,6 +14,29 @@ import { EditionComplex } from '@awg-views/edition-view/models';
  */
 export class EDITION_COMPLEXES {
     /**
+     * An EditionComplex object for M 30.
+     */
+    static readonly M30: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '30',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '22. Februar 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
      * An EditionComplex object for M 34.
      */
     static readonly M34: EditionComplex = new EditionComplex(
@@ -29,7 +52,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '07. Juli 2022',
+            lastModified: '22. Februar 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
         EDITION_ROUTE_CONSTANTS.SECTION_2A,

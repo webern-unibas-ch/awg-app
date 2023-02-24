@@ -150,7 +150,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `selectedSvgSheet` input', () => {
+        it('should have `selectedTextcritics` input', () => {
             expect(component.selectedTextcritics).toBeDefined();
             expect(component.selectedTextcritics)
                 .withContext(`should be ${expectedSelectedTextcritics}`)
@@ -199,7 +199,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
             it('... should contain fa-icon with chevronUp in p in evaluation div if showTextcritics = true', () => {
                 component.showTextcritics = true;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -258,14 +258,14 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             it('... should contain no description paragraphs if descriptions are empty', () => {
                 component.showTextcritics = true;
                 component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
             });
 
             it('... should contain as many description paragraphs as there are textcritics.description if showTextcritics = true', () => {
                 component.showTextcritics = true;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -415,12 +415,12 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.showTextcritics).toBe(false);
 
                 component.toggleTextcritics();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expect(component.showTextcritics).toBe(true);
 
                 component.toggleTextcritics();
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
                 expect(component.showTextcritics).toBe(false);
             });

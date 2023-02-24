@@ -201,14 +201,38 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                     .toBe(expectedSvgSheetWithPartials.label);
             });
 
+            it('... should have `text-muted` class on dropdown header anchor with not selected svg sheet (partials)', () => {
+                component.selectedSvgSheet = expectedNextSvgSheet;
+                detectChangesOnPush(fixture);
+
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
+                const anchorCmp = anchorDes[0].nativeElement;
+
+                expect(anchorCmp.classList).toBeTruthy();
+                expect(anchorCmp.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                expect(anchorCmp.classList).withContext(`should contain 'text-muted'`).toContain('text-muted');
+            });
+
+            it('... should have `active` class on dropdown header anchor with selected svg sheet (partials)', () => {
+                component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
+                detectChangesOnPush(fixture);
+
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
+                const anchorCmp = anchorDes[0].nativeElement;
+
+                expect(anchorCmp.classList).toBeTruthy();
+                expect(anchorCmp.classList).withContext(`should contain 'active'`).toContain('active');
+                expect(anchorCmp.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
+            });
+
             it('... should have two item anchors (.dropdown-item) in dropdown (partials)', () => {
                 const dropdownDes = getAndExpectDebugElementByCss(compDe, 'div.awg-svg-sheet-nav-link-dropdown', 1, 1);
                 getAndExpectDebugElementByCss(dropdownDes[0], 'a.dropdown-item', 2, 2);
             });
 
-            it('... should have `active` class on dropdown anchor with selected svg sheet and `text-muted` on others (partials)', async () => {
+            it('... should have `active` class on dropdown anchor with selected svg sheet and `text-muted` on others (partials)', () => {
                 component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 2, 2);
 
@@ -239,31 +263,50 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         });
 
         describe('#isSelectedSvgSheet', () => {
-            it('... should return false if given id does not equal id of selected svg sheet', () => {
-                const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
-
-                expect(comparison).toBeFalse();
+            it('... should have a method `isSelectedSvgSheet`', () => {
+                expect(component.isSelectedSvgSheet).toBeTruthy();
             });
 
-            it('... should return true if given id does equal id of selected svg sheet', () => {
-                const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
+            describe('... without partial', () => {
+                it('... should return false if given id does not equal id of selected svg sheet', () => {
+                    const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
 
-                expect(comparison).toBeTrue();
+                    expect(comparison).toBeFalse();
+                });
+
+                it('... should return true if given id does equal id of selected svg sheet', () => {
+                    const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
+
+                    expect(comparison).toBeTrue();
+                });
             });
 
-            it('... should recognize ids of selected svg sheet wth partials', async () => {
-                component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
-                await detectChangesOnPush(fixture);
+            describe('... with partial', () => {
+                it('... should return false if given id does not equal id with partial of selected svg sheet', () => {
+                    component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
+                    detectChangesOnPush(fixture);
 
-                const expectedId =
-                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
-                const comparison = component.isSelectedSvgSheet(expectedId);
+                    const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'XXX');
 
-                expect(comparison).toBeTrue();
+                    expect(comparison).toBeFalse();
+                });
+
+                it('... should return true if given id does equal id with partial of selected svg sheet', () => {
+                    component.selectedSvgSheet = expectedSvgSheetWithPartialsSingleSvg;
+                    detectChangesOnPush(fixture);
+
+                    const comparison = component.isSelectedSvgSheet(expectedSvgSheetWithPartials.id, 'a');
+
+                    expect(comparison).toBeTrue();
+                });
             });
         });
 
         describe('#selectSvgSheet', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeTruthy();
+            });
+
             describe('... should trigger on click', () => {
                 it('... on direct anchors', fakeAsync(() => {
                     const expectedId = expectedSvgSheet.id;

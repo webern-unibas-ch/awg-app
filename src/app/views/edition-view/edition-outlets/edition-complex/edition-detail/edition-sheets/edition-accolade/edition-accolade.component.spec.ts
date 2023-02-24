@@ -34,8 +34,8 @@ class EditionSvgSheetNavStubComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet', template: '' })
-class EditionSvgSheetStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet-viewer', template: '' })
+class EditionSvgSheetViewerStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
@@ -100,7 +100,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
             imports: [NgbAccordionWithConfigModule],
             declarations: [
                 EditionAccoladeComponent,
-                EditionSvgSheetStubComponent,
+                EditionSvgSheetViewerStubComponent,
                 EditionSvgSheetNavStubComponent,
                 EditionSvgSheetFooterStubComponent,
             ],
@@ -309,21 +309,26 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
             });
 
-            describe('EditionSvgSheetComponent', () => {
-                it('... should contain one EditionSvgSheetComponent (stubbed) in the panel body (div.accordion-body)', () => {
+            describe('EditionSvgSheetViewerComponent', () => {
+                it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                     const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
 
-                it('... should pass down selectedSvgSheet to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                it('... should pass down selectedSvgSheet to the EditionSvgSheetViewerComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetViewerStubComponent,
+                        1,
+                        1
+                    );
                     const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetStubComponent
-                    ) as EditionSvgSheetStubComponent;
+                        EditionSvgSheetViewerStubComponent
+                    ) as EditionSvgSheetViewerStubComponent;
 
                     expect(sheetCmp.selectedSvgSheet).toBeTruthy();
                     expect(sheetCmp.selectedSvgSheet)
@@ -444,9 +449,11 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expect(component.selectLinkBox).toBeDefined();
             });
 
-            it('... should trigger on selectLinkBoxRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+            it('... should trigger on selectLinkBoxRequest event from EditionSvgSheetViewerComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetViewerStubComponent
+                ) as EditionSvgSheetViewerStubComponent;
 
                 sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
 
@@ -477,9 +484,11 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expect(component.selectOverlays).toBeDefined();
             });
 
-            it('... should trigger on selectOverlaysRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+            it('... should trigger on selectOverlaysRequest event from EditionSvgSheetViewerComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetViewerStubComponent
+                ) as EditionSvgSheetViewerStubComponent;
 
                 sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
 
@@ -521,9 +530,11 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             });
 
-            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetViewerComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetViewerStubComponent
+                ) as EditionSvgSheetViewerStubComponent;
 
                 sheetCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 

@@ -278,7 +278,11 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isSelectedSvgSheet(id: string): boolean {
-        return id === this.selectedSvgSheet.id;
+        let partial = '';
+        if (this.selectedSvgSheet.content[0].partial) {
+            partial = this.selectedSvgSheet.content[0].partial;
+        }
+        return id === this.selectedSvgSheet.id + partial;
     }
 
     /**

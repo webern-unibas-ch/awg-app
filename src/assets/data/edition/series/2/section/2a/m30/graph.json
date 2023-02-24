@@ -1,0 +1,15 @@
+{
+    "graph": [
+        {
+            "id": "m30",
+            "title": "Skizzengraph M 30",
+            "description": [
+                "<span class=\"text-danger\">[Die Graph-Visualisierungen der Skizzen zu <em>Studienkomposition für Klavier</em> M 30 erscheinen im Zusammenhang der vollständigen Edition von M 30 in AWG II/2a.]</span>"
+            ],
+            "rdfData": {
+                "queryList": [],
+                "triples": ""
+            }
+        }
+    ]
+}

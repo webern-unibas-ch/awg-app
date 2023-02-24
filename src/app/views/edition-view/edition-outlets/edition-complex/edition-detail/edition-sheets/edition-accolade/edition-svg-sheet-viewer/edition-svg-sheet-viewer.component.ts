@@ -35,7 +35,7 @@ import * as d3_zoom from 'd3-zoom';
  * and displays that svg sheet.
  */
 @Component({
-    selector: 'awg-edition-svg-sheet',
+    selector: 'awg-edition-svg-sheet-viewer',
     templateUrl: './edition-svg-sheet-viewer.component.html',
     styleUrls: ['./edition-svg-sheet-viewer.component.scss'],
 })

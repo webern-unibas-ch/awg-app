@@ -1,7 +1,7 @@
 {
     "textcritics": [
         {
-            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#",
+            "id": "SkRT",
             "label": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
             "description": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar erscheint im Zusammenhang der vollständigen Edition von Opus 24 in AWG I/1.]</small>"
@@ -9,105 +9,413 @@
             "rowtable": true,
             "comments": [
                 {
-                    "svgGroupId": "TODO",
-                    "measure": "Bl. 1<sup>r</sup>",
-                    "system": "1–2",
-                    "position": "G<sub>f</sub>, K<sub>es</sub>, U<sub>f</sub>, KU<sub>g</sub>",
-                    "comment": "Reihennummerierung (<em>1</em>–<em>4</em>) mit rotem Buntstift."
-                },
-                {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1164",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "1a",
-                    "position": "G<sub>f</sub>: 4., 7., 10. Reihenton",
-                    "comment": "<em>Kr. d. U.</em>, <em>Krebs</em>, <em>Umkehrung</em> und <em>7</em> mit Bleistift. (<em>7</em> bezieht sich auf das erste Trichord von G<sub>fis</sub> (7)."
+                    "position": "G<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>1</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "g3639",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 4. Reihenton",
+                    "comment": "<em>Kr. d. U.</em> (lies: Krebs der Umkehrung) mit Bleistift überschreibt radierte Schicht."
+                },
+                {
+                    "svgGroupId": "text1166",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 7. Reihenton",
+                    "comment": "<em>Krebs</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "g5165",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1a",
+                    "position": "G<sub>f</sub>: 10. Reihenton",
+                    "comment": "<em>Umkehrung</em> und <em>7</em> mit Bleistift. <em>7</em> bezieht sich auf die Entsprechung des 10.–12. Reihentons mit dem ersten Trichord von G<sub>fis</sub> (7)."
+                },
+                {
+                    "svgGroupId": "g8248",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1–2",
+                    "position": "G<sub>f</sub>: 12. Reihenton, KU<sub>g</sub>: 1. Reihenton; U<sub>f</sub>: 12. Reihenton, K<sub>es</sub>: 1. Reihenton",
+                    "comment": "Pfeile mit Bleistift. "
+                },
+                {
+                    "svgGroupId": "text2202",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "1b",
+                    "position": "K<sub>es</sub>",
+                    "comment": "Reihennummerierung <em>2</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1172",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2a",
+                    "position": "U<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>3</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "g5982",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "2a",
                     "position": "U<sub>f</sub>: 6.–11. Reihenton",
                     "comment": "Auf Rasur, mit Tinte überschrieben."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text2204",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "3–6",
-                    "position": "G<sub>fis</sub>, K<sub>e</sub>, U<sub>fis</sub>, KU<sub>gis</sub>",
-                    "comment": "Reihennummerierung (<em>5</em>–<em>12</em>), Akkoladenklammer und Einkreisungen links mit grünem Buntstift."
+                    "system": "2b",
+                    "position": "KU<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>4</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1174",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3a",
+                    "position": "G<sub>fis</sub>",
+                    "comment": "Reihennummerierung <em>5</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2206",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3b",
+                    "position": "K<sub>e</sub>",
+                    "comment": "Reihennummerierung <em>6</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1176",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4a",
+                    "position": "U<sub>fis</sub>",
+                    "comment": "Reihennummerierung <em>7</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2208",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4b",
+                    "position": "KU<sub>gis</sub>",
+                    "comment": "Reihennummerierung <em>8</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "g8832",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "4b",
                     "position": "KU<sub>gis</sub>: 7.–8. Reihenton",
                     "comment": "Markierung zwischen h und b mit Bleistift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1178",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "7–10",
-                    "position": "G<sub>g</sub>, K<sub>f</sub>, U<sub>g</sub>, KU<sub>a</sub>, G<sub>es</sub>, K<sub>des</sub>, U<sub>es</sub>, KU<sub>f</sub>",
-                    "comment": "Reihennummerierung (<em>13</em>–<em>20</em>), Akkoladenklammer und Einkreisungen links mit blauem Buntstift."
+                    "system": "5a",
+                    "position": "G<sub>e</sub>",
+                    "comment": "Reihennummerierung <em>9</em> mit grünem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text2210",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "5b",
+                    "position": "K<sub>d</sub>",
+                    "comment": "Reihennummerierung <em>10</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1180",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "6a",
+                    "position": "U<sub>e</sub>",
+                    "comment": "Reihennummerierung <em>11</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2212",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "6b",
+                    "position": "KU<sub>fis</sub>",
+                    "comment": "Reihennummerierung <em>12</em> mit grünem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1182",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "7a",
+                    "position": "G<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>13</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2214",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "7b",
+                    "position": "K<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>14</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1184",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "8a",
+                    "position": "U<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>15</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2216",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "8b",
+                    "position": "KU<sub>a</sub>",
+                    "comment": "Reihennummerierung <em>16</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1186",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "9a",
+                    "position": "G<sub>es</sub>",
+                    "comment": "Reihennummerierung <em>17</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2218",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "9b",
+                    "position": "K<sub>des</sub>",
+                    "comment": "Reihennummerierung <em>18</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1188",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "10a",
+                    "position": "U<sub>es</sub>",
+                    "comment": "Reihennummerierung <em>19</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2220",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "10b",
+                    "position": "KU<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>20</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text2230",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "10b",
                     "position": "K<sub>f</sub>: 7. Reihenton",
-                    "comment": "<em>25</em> mit Bleistift. (Bezieht sich auf das erste Trichord von G<sub>as</sub> (25).)"
+                    "comment": "<em>25</em> mit Bleistift. Bezieht sich auf die Entsprechung des 7.–9. Reihentons mit dem ersten Trichord von G<sub>as</sub> (25)."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1190",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "11–12",
-                    "position": "G<sub>h</sub>, K<sub>a</sub>, U<sub>h</sub>, KU<sub>cis</sub>",
-                    "comment": "Reihennummerierung (<em>21</em>–<em>24</em>) und Einkreisung links mit Bleistift."
+                    "system": "11a",
+                    "position": "G<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>21</em> mit Bleistift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text2222",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "11b",
+                    "position": "K<sub>a</sub>",
+                    "comment": "Reihennummerierung <em>22</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1192",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "12a",
+                    "position": "U<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>23</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text2224",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "12b",
+                    "position": "KU<sub>cis</sub>",
+                    "comment": "Reihennummerierung <em>24</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1030",
                     "measure": "Bl. 2<sup>r</sup>",
-                    "system": "1–4",
-                    "position": "G<sub>as</sub>, K<sub>ges</sub>, U<sub>as</sub>, KU<sub>b</sub>, G<sub>d</sub>, K<sub>c</sub>, U<sub>d</sub>, KU<sub>e</sub>",
-                    "comment": "Reihennummerierung (<em>25</em>–<em>30</em>), Akkoladenklammer und Einkreisung links mit rotem Buntstift."
+                    "system": "1a",
+                    "position": "G<sub>as</sub>",
+                    "comment": "Reihennummerierung <em>25</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1838",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "1b",
+                    "position": "K<sub>ges</sub>",
+                    "comment": "Reihennummerierung <em>26</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1032",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "2a",
+                    "position": "U<sub>as</sub>",
+                    "comment": "Reihennummerierung <em>27</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1840",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "2b",
+                    "position": "KU<sub>b</sub>",
+                    "comment": "Reihennummerierung <em>28</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1054",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "3a",
+                    "position": "G<sub>d</sub>",
+                    "comment": "Reihennummerierung <em>29</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "g9145",
                     "measure": "Bl. 2<sup>r</sup>",
                     "system": "3a",
                     "position": "G<sub>d</sub>: 4. Reihenton",
                     "comment": "Auf Rasur, mit Tinte überschrieben."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1842",
                     "measure": "Bl. 2<sup>r</sup>",
-                    "system": "5–8",
-                    "position": "G<sub>a</sub>, K<sub>g</sub>, U<sub>a</sub>, KU<sub>h</sub>, G<sub>des</sub>, K<sub>h</sub>, U<sub>des</sub>, KU<sub>es</sub>",
-                    "comment": "Reihennummerierung (<em>33</em>–<em>40</em>), Akkoladenklammer und Einkreisung links mit blauem Buntstift."
+                    "system": "3b",
+                    "position": "K<sub>c</sub>",
+                    "comment": "Reihennummerierung <em>30</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1034",
                     "measure": "Bl. 2<sup>r</sup>",
-                    "system": "9–12",
-                    "position": "G<sub>b</sub>, K<sub>as</sub>, U<sub>b</sub>, KU<sub>c</sub>, G<sub>c</sub>, K<sub>h</sub>, U<sub>c</sub>, KU<sub>d</sub>",
-                    "comment": "Reihennummerierung (<em>41</em>–<em>48</em>), Akkoladenklammer und Einkreisung links mit Bleistift."
+                    "system": "4a",
+                    "position": "U<sub>d</sub>",
+                    "comment": "Reihennummerierung <em>31</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1844",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "4b",
+                    "position": "KU<sub>e</sub>",
+                    "comment": "Reihennummerierung <em>32</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1036",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "5a",
+                    "position": "G<sub>a</sub>",
+                    "comment": "Reihennummerierung <em>33</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1846",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "5b",
+                    "position": "K<sub>g</sub>",
+                    "comment": "Reihennummerierung <em>34</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1038",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "6a",
+                    "position": "U<sub>a</sub>",
+                    "comment": "Reihennummerierung <em>35</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1848",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "6b",
+                    "position": "KU<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>36</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1040",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "7a",
+                    "position": "G<sub>des</sub>",
+                    "comment": "Reihennummerierung <em>37</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1850",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "7b",
+                    "position": "K<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>38</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1042",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "8a",
+                    "position": "U<sub>des</sub>",
+                    "comment": "Reihennummerierung <em>39</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1852",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "8b",
+                    "position": "KU<sub>es</sub>",
+                    "comment": "Reihennummerierung <em>40</em> mit blauem Buntstift."
+                },
+                {
+                    "svgGroupId": "text1044",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "9a",
+                    "position": "G<sub>b</sub>",
+                    "comment": "Reihennummerierung <em>41</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1854",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "9b",
+                    "position": "K<sub>as</sub>",
+                    "comment": "Reihennummerierung <em>42</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1046",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "10a",
+                    "position": "U<sub>b</sub>",
+                    "comment": "Reihennummerierung <em>43</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1856",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "10b",
+                    "position": "KU<sub>c</sub>",
+                    "comment": "Reihennummerierung <em>44</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1048",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "11a",
+                    "position": "G<sub>c</sub>",
+                    "comment": "Reihennummerierung <em>45</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "g22233",
                     "measure": "Bl. 2<sup>r</sup>",
                     "system": "11a",
                     "position": "G<sub>c</sub>: 9. Reihenton",
                     "comment": "Auf Rasur, mit Tinte überschrieben."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1858",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "11b",
+                    "position": "K<sub>b</sub>",
+                    "comment": "Reihennummerierung <em>46</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "text1050",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "12a",
+                    "position": "U<sub>c</sub>",
+                    "comment": "Reihennummerierung <em>47</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "g22969",
                     "measure": "Bl. 2<sup>r</sup>",
                     "system": "12a",
                     "position": "U<sub>c</sub>: 4. Reihenton",
                     "comment": "Auf Rasur, mit Tinte überschrieben."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text1860",
+                    "measure": "Bl. 2<sup>r</sup>",
+                    "system": "12b",
+                    "position": "KU<sub>d</sub>",
+                    "comment": "Reihennummerierung <em>48</em> mit Bleistift."
+                },
+                {
+                    "svgGroupId": "g15689",
                     "measure": "Bl. 2<sup>r</sup>",
                     "system": "12b",
                     "position": "KU<sub>d</sub>: 12. Reihenton",

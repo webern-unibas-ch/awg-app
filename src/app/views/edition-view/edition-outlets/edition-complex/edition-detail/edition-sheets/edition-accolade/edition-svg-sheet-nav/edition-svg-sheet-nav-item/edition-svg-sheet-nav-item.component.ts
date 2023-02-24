@@ -52,19 +52,25 @@ export class EditionSvgSheetNavItemComponent {
     /**
      * Public method: isSelectedSvgSheet.
      *
-     * It compares a given id with the id
+     * It compares a given id (optionally with a partial) with the id
      * of the latest selected svg sheet.
      *
      * @param {string} id The given sheet id.
+     * @param {string} partial The given partial id.
+     *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isSelectedSvgSheet(id: string): boolean {
+    isSelectedSvgSheet(id: string, partial?: string): boolean {
+        let givenId = id;
         let selectedId = this.selectedSvgSheet.id;
+
         // Compare partial id if needed
-        if (this.selectedSvgSheet.content && this.selectedSvgSheet.content[0].partial) {
-            selectedId = selectedId + this.selectedSvgSheet.content[0].partial;
+        if (partial && this.selectedSvgSheet.content && this.selectedSvgSheet.content[0].partial) {
+            givenId += partial;
+            selectedId += this.selectedSvgSheet.content[0].partial;
         }
-        return id === selectedId;
+
+        return givenId === selectedId;
     }
 
     /**
