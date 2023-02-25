@@ -474,7 +474,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoute.html" target="_self" >EditionSeriesRoute[]</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries[]</a></code>
 
                     </div>
                     <div class="io-description">
@@ -568,7 +568,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSectionRoute.html" target="_self" >EditionSectionRoute</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
 
                     </div>
                     <div class="io-description">
@@ -646,7 +646,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoute.html" target="_self" >EditionSeriesRoute</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
 
                     </div>
                     <div class="io-description">
@@ -784,7 +784,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSectionRoute.html" target="_self" >Observable&lt;EditionSectionRoute&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >Observable&lt;EditionOutlineSection&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -830,7 +830,7 @@ of the textcritical comments for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionSeriesRoute.html" target="_self" >Observable&lt;EditionSeriesRoute&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >Observable&lt;EditionOutlineSeries&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1104,7 +1104,7 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionSection(editionSection: <a href="../classes/EditionSectionRoute.html" target="_self">EditionSectionRoute</a>)</code>
+<code>updateSelectedEditionSection(editionSection: <a href="../interfaces/EditionOutlineSection.html" target="_self">EditionOutlineSection</a>)</code>
                 </td>
             </tr>
 
@@ -1139,7 +1139,7 @@ of the textcritical comments for a selected overlay item.</p>
                                 <tr>
                                     <td>editionSection</td>
                                     <td>
-                                                <code><a href="../classes/EditionSectionRoute.html" target="_self" >EditionSectionRoute</a></code>
+                                                <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
                                     </td>
 
                                     <td>
@@ -1182,7 +1182,7 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSelectedEditionSeries(editionSeries: <a href="../classes/EditionSeriesRoute.html" target="_self">EditionSeriesRoute</a>)</code>
+<code>updateSelectedEditionSeries(editionSeries: <a href="../interfaces/EditionOutlineSeries.html" target="_self">EditionOutlineSeries</a>)</code>
                 </td>
             </tr>
 
@@ -1216,7 +1216,7 @@ of the textcritical comments for a selected overlay item.</p>
                                 <tr>
                                     <td>editionSeries</td>
                                     <td>
-                                                <code><a href="../classes/EditionSeriesRoute.html" target="_self" >EditionSeriesRoute</a></code>
+                                                <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
                                     </td>
 
                                     <td>
@@ -1463,7 +1463,7 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionSectionRoute&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>new ReplaySubject&lt;EditionOutlineSection&gt;(this._bufferSize)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1474,7 +1474,7 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private replay subject to handle the selected edition series.</p>
+                    <div class="io-description"><p>Private replay subject to handle the selected edition section.</p>
 </div>
                 </td>
             </tr>
@@ -1528,7 +1528,7 @@ of the textcritical comments for a selected overlay item.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>new ReplaySubject&lt;EditionSeriesRoute&gt;(this._bufferSize)</code>
+                        <i>Default value : </i><code>new ReplaySubject&lt;EditionOutlineSeries&gt;(this._bufferSize)</code>
                     </td>
                 </tr>
                     <tr>
@@ -1557,14 +1557,14 @@ of the textcritical comments for a selected overlay item.</p>
 import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
 
 import { EDITION_OUTLINE_DATA } from &#x27;@awg-views/edition-view/data&#x27;;
+import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import {
-    EditionConstants,
-    EditionSeriesRoute,
-    EditionSvgOverlay,
     EditionComplex,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+    EditionSvgOverlay,
     TextcriticalComment,
 } from &#x27;@awg-views/edition-view/models&#x27;;
-import { EditionSectionRoute } from &#x27;@awg-views/edition-view/models/edition-constants&#x27;;
 
 /**
  * The Edition service.
@@ -1607,7 +1607,7 @@ export class EditionService {
     /**
      * Private replay subject to handle the selected edition series.
      */
-    private _selectedEditionSeriesSubject &#x3D; new ReplaySubject&lt;EditionSeriesRoute&gt;(this._bufferSize);
+    private _selectedEditionSeriesSubject &#x3D; new ReplaySubject&lt;EditionOutlineSeries&gt;(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (&#x60;ReplaySubject&#x60;).
@@ -1615,9 +1615,9 @@ export class EditionService {
     private readonly _selectedEditionSeriesStream$ &#x3D; this._selectedEditionSeriesSubject.asObservable();
 
     /**
-     * Private replay subject to handle the selected edition series.
+     * Private replay subject to handle the selected edition section.
      */
-    private _selectedEditionSectionSubject &#x3D; new ReplaySubject&lt;EditionSectionRoute&gt;(this._bufferSize);
+    private _selectedEditionSectionSubject &#x3D; new ReplaySubject&lt;EditionOutlineSection&gt;(this._bufferSize);
 
     /**
      * Private readonly selected edition series stream as observable (&#x60;ReplaySubject&#x60;).
@@ -1683,9 +1683,9 @@ export class EditionService {
      *
      * It provides the outline of the edition with its series.
      *
-     * @returns {EditionSeriesRoute[]} The edition outline.
+     * @returns {EditionOutlineSeries[]} The edition outline.
      */
-    getEditionOutline(): EditionSeriesRoute[] {
+    getEditionOutline(): EditionOutlineSeries[] {
         return EDITION_OUTLINE_DATA;
     }
 
@@ -1697,7 +1697,7 @@ export class EditionService {
      * @returns {string} The edition series route.
      */
     getEditionSeriesRoute(): string {
-        return EditionConstants.EDITION.route + EditionConstants.SERIES.route;
+        return EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.SERIES.route;
     }
 
     /**
@@ -1707,9 +1707,9 @@ export class EditionService {
      *
      * @param {string} seriesId The given series id.
      *
-     * @returns {EditionSeriesRoute} The found edition series.
+     * @returns {EditionOutlineSeries} The found edition series.
      */
-    getEditionSeriesById(seriesId: string): EditionSeriesRoute {
+    getEditionSeriesById(seriesId: string): EditionOutlineSeries {
         return EDITION_OUTLINE_DATA.find(series &#x3D;&gt; series.series.route &#x3D;&#x3D;&#x3D; seriesId);
     }
 
@@ -1721,9 +1721,9 @@ export class EditionService {
      * @param {string} seriesId The given series id.
      * @param {string} sectionId The given series id.
      *
-     * @returns {EditionSectionRoute} The found edition section.
+     * @returns {EditionOutlineSection} The found edition section.
      */
-    getEditionSectionById(seriesId: string, sectionId: string): EditionSectionRoute {
+    getEditionSectionById(seriesId: string, sectionId: string): EditionOutlineSection {
         const series &#x3D; this.getEditionSeriesById(seriesId);
         return series.sections.find(section &#x3D;&gt; section.section.route &#x3D;&#x3D;&#x3D; sectionId);
     }
@@ -1733,9 +1733,9 @@ export class EditionService {
      *
      * It provides the latest selected series from the edition series stream.
      *
-     * @returns {Observable&lt;EditionSeriesRoute&gt;} The edition series stream as observable.
+     * @returns {Observable&lt;EditionOutlineSeries&gt;} The edition series stream as observable.
      */
-    getSelectedEditionSeries(): Observable&lt;EditionSeriesRoute&gt; {
+    getSelectedEditionSeries(): Observable&lt;EditionOutlineSeries&gt; {
         return this._selectedEditionSeriesStream$;
     }
 
@@ -1746,7 +1746,7 @@ export class EditionService {
      *
      * @returns {void} Sets the next edition series to the stream.
      */
-    updateSelectedEditionSeries(editionSeries: EditionSeriesRoute): void {
+    updateSelectedEditionSeries(editionSeries: EditionOutlineSeries): void {
         this._selectedEditionSeriesSubject.next(editionSeries);
     }
 
@@ -1766,9 +1766,9 @@ export class EditionService {
      *
      * It provides the latest selected section from the edition section stream.
      *
-     * @returns {Observable&lt;EditionSectionRoute&gt;} The edition section stream as observable.
+     * @returns {Observable&lt;EditionOutlineSection&gt;} The edition section stream as observable.
      */
-    getSelectedEditionSection(): Observable&lt;EditionSectionRoute&gt; {
+    getSelectedEditionSection(): Observable&lt;EditionOutlineSection&gt; {
         return this._selectedEditionSectionStream$;
     }
 
@@ -1777,11 +1777,11 @@ export class EditionService {
      *
      * It updates the selected edition section stream with the given section.
      *
-     * @param {EditionSectionRoute} editionSection The given edition section.
+     * @param {EditionOutlineSection} editionSection The given edition section.
      *
      * @returns {void} Sets the next edition section to the stream.
      */
-    updateSelectedEditionSection(editionSection: EditionSectionRoute): void {
+    updateSelectedEditionSection(editionSection: EditionOutlineSection): void {
         this._selectedEditionSectionSubject.next(editionSection);
     }
 

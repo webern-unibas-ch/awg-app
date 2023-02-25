@@ -1,26 +1,75 @@
 {
     "textcritics": [
         {
-            "id": "M_312_Sk5_M_313_Sk1_M_314_Sk1",
+            "id": "SkRT",
             "label": "M 312 Sk5 / M 313 Sk1 / M 314 Sk1 (Reihentabelle op. 23)",
             "description": [
-                "Die <strong>Reihentabelle op. 23</strong> wiederholt die bereits in <strong>M 312 Sk2</strong> tabellarisch notierten Reihenformen 1–8, ohne die dort ebenfalls (und eingeklammerten) Reihenformen 9–10 (G<sub>f</sub>, K<sub>gis</sub>). Sie wurde vermutlich während oder nach <strong>M 312 Sk4</strong> angefertigt und dürfte als Werkzeug bei den Skizzen zu M 313 und M 314 gedient haben."
+                "Die <strong>Reihentabelle op. 23</strong> wiederholt die bereits in <strong>M 312 Sk2</strong> tabellarisch notierten Reihenformen 1–8, ohne die dort ebenfalls notierten (eingeklammerten) Reihenformen 9–10 (G<sub>f</sub>, K<sub>gis</sub>). Sie wurde vermutlich während oder nach <strong>M 312 Sk4</strong> angefertigt und dürfte als Werkzeug bei den Skizzen zu M 313 und M 314 gedient haben."
             ],
             "rowtable": true,
             "comments": [
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text620",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "1–4",
-                    "position": "",
-                    "comment": "Reihennummerierung (<em>I</em>–<em>VIII</em>) mit rotem Buntstift."
+                    "system": "1a",
+                    "position": "G<sub>gis</sub>",
+                    "comment": "Reihennummerierung <em>I</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "TODO",
+                    "svgGroupId": "text622",
                     "measure": "Bl. 1<sup>r</sup>",
-                    "system": "2",
+                    "system": "1b",
+                    "position": "K<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>II</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text624",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2a",
+                    "position": "U<sub>gis</sub>",
+                    "comment": "Reihennummerierung <em>III</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text626",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2b",
+                    "position": "KU<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>IV</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "g998",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "2b",
                     "position": "KU<sub>f</sub>: 8. Reihenton",
-                    "comment": "&#9839;fis<sup>1</sup> überschreibt &#9837;ges<sup>1</sup>."
+                    "comment": "&#9839;fis<sup>1</sup> überschreibt &#9837; als Ansatz zu ges<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "text628",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3a",
+                    "position": "G<sub>d</sub>",
+                    "comment": "Reihennummerierung <em>V</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text630",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "3b",
+                    "position": "K<sub>f</sub>",
+                    "comment": "Reihennummerierung <em>VI</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text632",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4a",
+                    "position": "U<sub>d</sub>",
+                    "comment": "Reihennummerierung <em>VII</em> mit rotem Buntstift."
+                },
+                {
+                    "svgGroupId": "text634",
+                    "measure": "Bl. 1<sup>r</sup>",
+                    "system": "4b",
+                    "position": "KU<sub>h</sub>",
+                    "comment": "Reihennummerierung <em>VIII</em> mit rotem Buntstift."
                 }
             ]
         }

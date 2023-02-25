@@ -2,7 +2,7 @@
     "convolutes": [
         {
             "convoluteId": "B",
-            "convoluteLabel": "B Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "convoluteLabel": "B Reihentabelle (CH-Bps)",
             "folios": [
                 {
                     "folioId": "1r",
@@ -13,7 +13,7 @@
                     },
                     "content": [
                         {
-                            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#a",
+                            "id": "SkRTa",
                             "sigle": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
                             "sigleAddendum": "Reihenformen 1–24",
                             "sectionPartition": 1,
@@ -45,7 +45,7 @@
                     },
                     "content": [
                         {
-                            "id": "M_316_Sk#_M_318_Sk#_M_319_Sk#_M_320_Sk#b",
+                            "id": "SkRTb",
                             "sigle": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
                             "sigleAddendum": "Reihenformen 25–48",
                             "sectionPartition": 1,

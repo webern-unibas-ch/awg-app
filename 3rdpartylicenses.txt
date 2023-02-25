@@ -55,7 +55,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -105,7 +105,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -230,7 +230,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -303,7 +303,7 @@ as SVG and JS file types.
 In the Font Awesome Free download, the SIL OFL license applies to all icons
 packaged as web and desktop font files.
 
-Copyright (c) 2022 Fonticons, Inc. (https://fontawesome.com)
+Copyright (c) 2023 Fonticons, Inc. (https://fontawesome.com)
 with Reserved Font Name: "Font Awesome".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -403,7 +403,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2022 Fonticons, Inc.
+Copyright 2023 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -472,7 +472,7 @@ as SVG and JS file types.
 In the Font Awesome Free download, the SIL OFL license applies to all icons
 packaged as web and desktop font files.
 
-Copyright (c) 2022 Fonticons, Inc. (https://fontawesome.com)
+Copyright (c) 2023 Fonticons, Inc. (https://fontawesome.com)
 with Reserved Font Name: "Font Awesome".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -572,7 +572,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2022 Fonticons, Inc.
+Copyright 2023 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -839,7 +839,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 d3-color
 ISC
-Copyright 2010-2021 Mike Bostock
+Copyright 2010-2022 Mike Bostock
 
 Permission to use, copy, modify, and/or distribute this software for any purpose
 with or without fee is hereby granted, provided that the above copyright notice

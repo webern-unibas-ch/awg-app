@@ -201,6 +201,20 @@ of the edition view of the app.</p>
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#editionRouteConstants" >editionRouteConstants</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -340,8 +354,8 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:98</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:107</a></div>
                 </td>
             </tr>
 
@@ -388,8 +402,8 @@ from the EditionDataService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:134</a></div>
                 </td>
             </tr>
 
@@ -466,8 +480,8 @@ from the EditionDataService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:94</a></div>
                 </td>
             </tr>
 
@@ -507,8 +521,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="155"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:155</a></div>
                 </td>
             </tr>
 
@@ -585,8 +599,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:159</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:171</a></div>
                 </td>
             </tr>
 
@@ -862,6 +876,41 @@ route with the given id.</p>
     </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionRouteConstants"></a>
+                        <span class="name"><b>editionRouteConstants</b><a href="#editionRouteConstants"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>editionRouteConstants()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:84</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter variable: editionRouteConstants.</p>
+<p> It returns the EDITION_ROUTE_CONSTANTS.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -869,12 +918,12 @@ route with the given id.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
 
-import { catchError, switchMap } from &#x27;rxjs/operators&#x27;;
 import { EMPTY, Observable } from &#x27;rxjs&#x27;;
+import { catchError, switchMap } from &#x27;rxjs/operators&#x27;;
 
 import { UtilityService } from &#x27;@awg-core/services&#x27;;
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
-
+import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import { EditionComplex, IntroList } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionDataService, EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
 
@@ -945,6 +994,15 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -997,7 +1055,10 @@ export class EditionIntroComponent implements OnInit {
         const navigationExtras: NavigationExtras &#x3D; {
             fragment: fragmentId,
         };
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.reportRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
+            navigationExtras
+        );
     }
 
     /**
@@ -1033,7 +1094,10 @@ export class EditionIntroComponent implements OnInit {
             queryParamsHandling: &#x27;&#x27;,
         };
 
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
+            navigationExtras
+        );
     }
 }
 </code></pre>
@@ -1060,7 +1124,7 @@ export class EditionIntroComponent implements OnInit {
                     &gt;[Die Einleitung zum Editionskomplex
                     &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.full&quot;&gt;&lt;/span&gt; erscheint im Zusammenhang der
                     vollständigen Edition von {{ editionComplex.complexId.short }} in
-                    {{ editionComplex.editionRoute.short }} {{ editionComplex.series.short }}/{{
+                    {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
                         editionComplex.section.short
                     }}.]
                 &lt;/small&gt;
@@ -1114,8 +1178,8 @@ export class EditionIntroComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    <div class="awg-intro-view p-5 border rounded-3" *ngIf="editionIntroData$ | async as editionIntroData; else error">        <ng-container *ngIf="utils.isNotEmptyArray(editionIntroData.intro[0].content); else introPlaceholder">            <p                class="awg-intro-entry"                *ngFor="let intro of editionIntroData.intro[0].content"                [compile-html]="intro"                [compile-html-ref]="this"></p>        </ng-container>        <ng-template #introPlaceholder>            <p class="awg-intro-empty">                <small class="text-muted"                    >[Die Einleitung zum Editionskomplex                    <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der                    vollständigen Edition von {{ editionComplex.complexId.short }} in                    {{ editionComplex.editionRoute.short }} {{ editionComplex.series.short }}/{{                        editionComplex.section.short                    }}.]                </small>            </p>        </ng-template>    </div>    <ng-template #error>        <!-- error message -->        <div class="errorMessage" *ngIf="errorObject">            <div class="col-12 text-center">                <div class="alert alert-danger">                    {{ errorObject }}                </div>            </div>        </div>    </ng-template></div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    <div class="awg-intro-view p-5 border rounded-3" *ngIf="editionIntroData$ | async as editionIntroData; else error">        <ng-container *ngIf="utils.isNotEmptyArray(editionIntroData.intro[0].content); else introPlaceholder">            <p                class="awg-intro-entry"                *ngFor="let intro of editionIntroData.intro[0].content"                [compile-html]="intro"                [compile-html-ref]="this"></p>        </ng-container>        <ng-template #introPlaceholder>            <p class="awg-intro-empty">                <small class="text-muted"                    >[Die Einleitung zum Editionskomplex                    <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der                    vollständigen Edition von {{ editionComplex.complexId.short }} in                    {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                        editionComplex.section.short                    }}.]                </small>            </p>        </ng-template>    </div>    <ng-template #error>        <!-- error message -->        <div class="errorMessage" *ngIf="errorObject">            <div class="col-12 text-center">                <div class="alert alert-danger">                    {{ errorObject }}                </div>            </div>        </div>    </ng-template></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionIntroComponent'};
 </script>

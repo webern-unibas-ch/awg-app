@@ -149,7 +149,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -222,8 +222,8 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:114</a></div>
                 </td>
             </tr>
 
@@ -268,8 +268,8 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:73</a></div>
                 </td>
             </tr>
 
@@ -314,8 +314,8 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:93</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:94</a></div>
                 </td>
             </tr>
 
@@ -398,7 +398,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -437,7 +437,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -470,7 +470,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:44</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -503,7 +503,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:54</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:55</a></div>
                         </td>
                     </tr>
 
@@ -525,11 +525,12 @@ PRODUCTION: TRUE</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@angular/core&#x27;;
-import { DOCUMENT } from &#x27;@angular/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
+import { Inject, Injectable } from &#x27;@angular/core&#x27;;
+
 import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
 
-import { environment } from &#x27;../../../../environments/environment&#x27;;
+import { environment } from &#x27;environments/environment&#x27;;
 
 /**
  * The global gtag variable for Analytics.
@@ -625,8 +626,6 @@ export class AnalyticsService {
         gtag(&#x27;config&#x27;, this._analyticsId, {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             page_path: page,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            anonymize_ip: true,
             // eslint-disable-next-line @typescript-eslint/naming-convention
             send_page_view: this._sendPageView,
         });

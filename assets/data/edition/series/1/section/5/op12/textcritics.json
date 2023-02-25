@@ -4,7 +4,7 @@
             "id": "M_212_Sk1",
             "label": "M 212 Sk1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\"><strong>M 212 Sk1</strong></a> ist die Verlaufsskizze zu <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>."
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk1a')\"><strong>Sk1</strong></a> ist die Verlaufsskizze zu <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>."
             ],
             "comments": [
                 {
@@ -160,7 +160,7 @@
             "id": "M_212_Sk2",
             "label": "M 212 Sk2",
             "description": [
-                "In <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>M 212 Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\"><strong>„Der Tag ist vergangen“ M 212: Textfassung 2</strong></a>) entspricht. Da T. 10–11 in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> übernommen wurden und Korrekturen in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet()\"><strong>M 212 Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> entstanden. <br /><a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> bzw. <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> (Gis/cis) getilgt."
+                "In <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>Sk2</strong></a> werden T. 11–12 aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>Sk1</strong></a> bzw. T. 10–11 aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>„Der Tag ist vergangen“ M 212: Textfassung 1</strong></a>) neu skizziert, in <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>Sk3</strong></a>, <a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>Sk5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> (<a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\"><strong>„Der Tag ist vergangen“ M 212: Textfassung 2</strong></a>) entspricht. Da T. 10–11 in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> offensichtlich zunächst aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>Sk1</strong></a> übernommen wurden und Korrekturen in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> mit Bleistift auf die Formulierung von <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>Sk2</strong></a> hindeuten, sind <a (click)=\"ref.selectSvgSheet()\"><strong>Sk2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> entstanden. <br /><a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>Sk2</strong></a> übernimmt bestimmte Merkmale der Korrekturen in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. 12 kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es<sup>1</sup>/as<sup>1</sup> im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>Sk1</strong></a> bzw. <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a> (Gis/cis) getilgt."
             ],
             "comments": [
                 {
@@ -175,7 +175,7 @@
                     "measure": "10",
                     "system": "12",
                     "position": "2. Note",
-                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>M 212 Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>G</strong></a>."
+                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>G</strong></a>."
                 },
                 {
                     "svgGroupId": "g1006",
@@ -191,13 +191,19 @@
                     "position": "",
                     "comment": "Radierte, nicht entzifferbare Schicht."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g3816",
+                    "linkTo": "M_212_Sk3"
+                }
             ]
         },
         {
             "id": "M_212_Sk3",
             "label": "M 212 Sk3",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>M 212 Sk3</strong></a> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>M 212 Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> formulierte und in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> verwendete Variante."
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>Sk3</strong></a> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a (click)=\"ref.selectSvgSheet('M_212_Sk2')\"><strong>Sk2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>Sk5</strong></a> formulierte und in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> verwendete Variante."
             ],
             "comments": [
                 {
@@ -221,13 +227,23 @@
                     "position": "nach 2/4",
                     "comment": "Radierspuren."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4399",
+                    "linkTo": "M_212_Sk2"
+                },
+                {
+                    "svgGroupId": "g4410",
+                    "linkTo": "M_212_Sk5"
+                }
             ]
         },
         {
             "id": "M_212_Sk4",
             "label": "M 212 Sk4",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>M 212 Sk4</strong></a> erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6)."
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk4')\"><strong>Sk4</strong></a> erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6)."
             ],
             "comments": [
                 {
@@ -244,6 +260,12 @@
                     "position": "3. Note",
                     "comment": "Ansatz zu Notenkopf c<sup>2</sup> und f<sup>1</sup>(?)."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4957",
+                    "linkTo": "M_212_Sk5"
+                }
             ]
         },
         {
@@ -251,7 +273,7 @@
             "label": "M 212 Sk5",
 
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>M 212 Sk5</strong></a> bringt in der letzten Korrekturschicht die in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> verwendete Variante."
+                "<a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>Sk5</strong></a> bringt in der letzten Korrekturschicht die in <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a> verwendete Variante."
             ],
             "comments": [
                 {
@@ -267,6 +289,16 @@
                     "system": "9",
                     "position": "1/4",
                     "comment": "sic: Text <em>dir</em> (statt <em>mir</em>)."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5508",
+                    "linkTo": "M_212_Sk3"
+                },
+                {
+                    "svgGroupId": "g5497",
+                    "linkTo": "M_212_Sk4"
                 }
             ]
         }

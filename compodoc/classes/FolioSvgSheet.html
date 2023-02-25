@@ -126,7 +126,7 @@ to store and expose the svg data for the sheet of a folio.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -196,7 +196,7 @@ to store and expose the svg data for the sheet of a folio.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -228,7 +228,7 @@ to store and expose the svg data for the sheet of a folio.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -262,7 +262,7 @@ to draw the svg of the sheet of a folio.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:30</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -290,12 +290,13 @@ to draw the svg of the sheet of a folio.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-    FolioCalculationPoint,
-    FolioCalculationLine,
+    FolioCalculation,
     FolioCalculationContentItem,
+    FolioCalculationContentItemCornerPoints,
+    FolioCalculationLine,
+    FolioCalculationPoint,
     FolioCalculationSheet,
     FolioCalculationSystems,
-    FolioCalculation,
 } from &#x27;./folio-calculation.model&#x27;;
 
 /**
@@ -433,12 +434,12 @@ class FolioSvgContentItem {
     height: number;
 
     /**
-     * The line array of a content item (FolioCalculationLine[]).
+     * The corner points of a content item (FolioCalculationContentItemCornerPoints).
      *
-     * It contains all calculated lines and their positions (in px)
+     * It contains all corner points of a content item (in px)
      * to draw the svg of the content item of a folio.
      */
-    lineArray: FolioCalculationLine[];
+    cornerPoints: FolioCalculationContentItemCornerPoints;
 
     /**
      * Constructor of the FolioSvgContentItem class.
@@ -457,7 +458,7 @@ class FolioSvgContentItem {
         this.upperLeftCorner &#x3D; calculatedContentItem.current.cornerPoints.upperLeftCorner;
         this.width &#x3D; calculatedContentItem.width;
         this.height &#x3D; calculatedContentItem.height;
-        this.lineArray &#x3D; calculatedContentItem.lineArray;
+        this.cornerPoints &#x3D; calculatedContentItem.current.cornerPoints;
     }
 }
 

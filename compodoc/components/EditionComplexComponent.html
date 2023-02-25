@@ -147,6 +147,10 @@ with another router outlet for the edition detail routes.</p>
                             <li>
                                 <a href="#selectedEditionComplex$" >selectedEditionComplex$</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#utils" >utils</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -176,6 +180,20 @@ with another router outlet for the edition detail routes.</p>
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#editionRouteConstants" >editionRouteConstants</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -186,19 +204,20 @@ with another router outlet for the edition detail routes.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>)</code>
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>, utils: <a href="../injectables/UtilityService.html" target="_self">UtilityService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:30</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the EditionComplexComponent.</p>
-<p>It declares private instances of ActivatedRoute and EditionService.</p>
+<p>It declares private instances of ActivatedRoute and EditionService,
+and a public instance of the UtilityService.</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -244,6 +263,22 @@ with another router outlet for the edition detail routes.</p>
 
                                                         </td>
                                                 </tr>
+                                                <tr>
+                                                        <td>utils</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Instance of the UtilityService.</p>
+
+                                                        </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -282,8 +317,8 @@ with another router outlet for the edition detail routes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:70</a></div>
                 </td>
             </tr>
 
@@ -328,8 +363,8 @@ with another router outlet for the edition detail routes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:86</a></div>
                 </td>
             </tr>
 
@@ -370,8 +405,8 @@ when destroying the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:59</a></div>
                 </td>
             </tr>
 
@@ -416,7 +451,7 @@ when initializing the component.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:28</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -431,8 +466,75 @@ about the current edition complex.</p>
 
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="utils"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>utils</b></span>
+                        <a href="#utils"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:42</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">Instance of the UtilityService.</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionRouteConstants"></a>
+                        <span class="name"><b>editionRouteConstants</b><a href="#editionRouteConstants"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>editionRouteConstants()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-complex.component.ts:49</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter variable: editionRouteConstants.</p>
+<p> It returns the EDITION_ROUTE_CONSTANTS.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -442,7 +544,9 @@ import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 
 import { delay, Observable } from &#x27;rxjs&#x27;;
 
+import { UtilityService } from &#x27;@awg-app/core/services&#x27;;
 import { EDITION_COMPLEXES } from &#x27;@awg-views/edition-view/data&#x27;;
+import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import { EditionComplex } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
 
@@ -469,12 +573,23 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     /**
      * Constructor of the EditionComplexComponent.
      *
-     * It declares private instances of ActivatedRoute and EditionService.
+     * It declares private instances of ActivatedRoute and EditionService,
+     * and a public instance of the UtilityService.
      *
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(private route: ActivatedRoute, private editionService: EditionService) {}
+    constructor(private route: ActivatedRoute, private editionService: EditionService, public utils: UtilityService) {}
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -518,7 +633,60 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- edition routes --&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+&lt;div *ngIf&#x3D;&quot;selectedEditionComplex$ | async as complex&quot;&gt;
+    &lt;p&gt;
+        Editionskomplex {{ complex.complexId.short }}: &lt;br /&gt;
+        {{ complex | json }}
+    &lt;/p&gt;
+    &lt;p&gt;Titel: {{ complex.titleStatement | json }}&lt;/p&gt;
+    &lt;p&gt;
+        &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.EDITION_INTRO.route]&quot;&gt;
+            {{ editionRouteConstants.EDITION_INTRO.short }}
+        &lt;/a&gt;
+        {{ editionRouteConstants.EDITION_INTRO | json }}
+    &lt;/p&gt;
+    &lt;div&gt;
+        &lt;p&gt;Werkedition: {{ complex.titleStatement | json }}&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li [innerHtml]&#x3D;&quot;complex.complexId.full&quot;&gt;&lt;/li&gt;
+            enthält:
+            &lt;ul&gt;
+                &lt;li&gt;„Der Tag ist vergangen“ M 212: Textfassung 3&lt;/li&gt;
+                &lt;li&gt;Die geheimnisvolle Flöte („An einem Abend“) M 217: einzige Textfassung&lt;/li&gt;
+                &lt;li&gt;„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung&lt;/li&gt;
+                &lt;li&gt;Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 2&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;p&gt;Texteditionen: {{ complex.titleStatement | json }}&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;„Der Tag ist vergangen“ M 212: Textfassung 1&lt;/li&gt;
+            &lt;li&gt;„Der Tag ist vergangen“ M 212: Textfassung 2&lt;/li&gt;
+            &lt;li&gt;Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 1&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+        &lt;p&gt;Skizzeneditionen: {{ complex.titleStatement | json }}&lt;/p&gt;
+        &lt;ul&gt;
+            &lt;li&gt;M 212 Sk 1&lt;/li&gt;
+            &lt;li&gt;M 212 Sk 2&lt;/li&gt;
+            &lt;li&gt;M 212 Sk 3&lt;/li&gt;
+            &lt;li&gt;M 212 Sk 4&lt;/li&gt;
+            &lt;li&gt;M 212 Sk 5&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;p&gt;
+        &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.EDITION_REPORT.route]&quot;&gt;
+            {{ editionRouteConstants.EDITION_REPORT.short }}
+        &lt;/a&gt;
+        {{ editionRouteConstants.EDITION_REPORT | json }}
+    &lt;/p&gt;
+&lt;/div&gt;
+--&gt;
+
+&lt;!-- edition routes --&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 </code></pre>
     </div>
@@ -555,8 +723,8 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- edition routes --><router-outlet></router-outlet></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><!--<div *ngIf="selectedEditionComplex$ | async as complex">    <p>        Editionskomplex {{ complex.complexId.short }}: <br />        {{ complex | json }}    </p>    <p>Titel: {{ complex.titleStatement | json }}</p>    <p>        <a [routerLink]="[editionRouteConstants.EDITION_INTRO.route]">            {{ editionRouteConstants.EDITION_INTRO.short }}        </a>        {{ editionRouteConstants.EDITION_INTRO | json }}    </p>    <div>        <p>Werkedition: {{ complex.titleStatement | json }}</p>        <ul>            <li [innerHtml]="complex.complexId.full"></li>            enthält:            <ul>                <li>„Der Tag ist vergangen“ M 212: Textfassung 3</li>                <li>Die geheimnisvolle Flöte („An einem Abend“) M 217: einzige Textfassung</li>                <li>„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung</li>                <li>Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 2</li>            </ul>        </ul>    </div>    <div>        <p>Texteditionen: {{ complex.titleStatement | json }}</p>        <ul>            <li>„Der Tag ist vergangen“ M 212: Textfassung 1</li>            <li>„Der Tag ist vergangen“ M 212: Textfassung 2</li>            <li>Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 1</li>        </ul>    </div>    <div>        <p>Skizzeneditionen: {{ complex.titleStatement | json }}</p>        <ul>            <li>M 212 Sk 1</li>            <li>M 212 Sk 2</li>            <li>M 212 Sk 3</li>            <li>M 212 Sk 4</li>            <li>M 212 Sk 5</li>        </ul>    </div>    <p>        <a [routerLink]="[editionRouteConstants.EDITION_REPORT.route]">            {{ editionRouteConstants.EDITION_REPORT.short }}        </a>        {{ editionRouteConstants.EDITION_REPORT | json }}    </p></div>--><!-- edition routes --><router-outlet></router-outlet></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionComplexComponent'};
 </script>

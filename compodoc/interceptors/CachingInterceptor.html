@@ -268,8 +268,7 @@ delegates them to the <a href="../injectables/HttpCacheService.html">HttpCacheSe
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
     HttpErrorResponse,
     HttpEvent,
     HttpHandler,
@@ -277,8 +276,9 @@ import {
     HttpRequest,
     HttpResponse,
 } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { of as observableOf, Observable, throwError as observableThrowError } from &#x27;rxjs&#x27;;
+import { Observable, of as observableOf, throwError as observableThrowError } from &#x27;rxjs&#x27;;
 import { catchError, tap } from &#x27;rxjs/operators&#x27;;
 
 import { HttpCacheService } from &#x27;@awg-core/services&#x27;;

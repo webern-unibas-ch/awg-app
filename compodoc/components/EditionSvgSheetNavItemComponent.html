@@ -1,0 +1,862 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  EditionSvgSheetNavItemComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts</code>
+</p>
+
+
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-edition-svg-sheet-nav-item</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./edition-svg-sheet-nav-item.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./edition-svg-sheet-nav-item.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#utils" >utils</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isSelectedSvgSheet" >isSelectedSvgSheet</a>
+                            </li>
+                            <li>
+                                <a href="#selectSvgSheet" >selectSvgSheet</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#navItemLabel" >navItemLabel</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSvgSheet" >selectedSvgSheet</a>
+                            </li>
+                            <li>
+                                <a href="#svgSheets" >svgSheets</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#selectSvgSheetRequest" >selectSvgSheetRequest</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(utils: <a href="../injectables/UtilityService.html" target="_self">UtilityService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionSvgSheetNavItemComponent.</p>
+<p>It declares a public instance of the UtilityService.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>utils</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Instance of the UtilityService.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="navItemLabel"></a>
+                        <b>navItemLabel</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:17</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: navItemLabel.</p>
+<p>It keeps the label of the nav item.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectedSvgSheet"></a>
+                        <b>selectedSvgSheet</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:33</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: selectedSvgSheet.</p>
+<p>It keeps the selected svg sheet.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="svgSheets"></a>
+                        <b>svgSheets</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:25</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: svgSheets.</p>
+<p>It keeps the svg sheets.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="selectSvgSheetRequest"></a>
+                        <b>selectSvgSheetRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:41</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output variable: selectSvgSheetRequest.</p>
+<p>It keeps an event emitter for the selected id of an svg sheet.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSelectedSvgSheet"></a>
+                    <span class="name">
+                        <span ><b>isSelectedSvgSheet</b></span>
+                        <a href="#isSelectedSvgSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSelectedSvgSheet(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, partial?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: isSelectedSvgSheet.</p>
+<p>It compares a given id (optionally with a partial) with the id
+of the latest selected svg sheet.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given sheet id.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>partial</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The optional given partial id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The boolean value of the comparison result.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectSvgSheet"></a>
+                    <span class="name">
+                        <span ><b>selectSvgSheet</b></span>
+                        <a href="#selectSvgSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectSvgSheet(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="85"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:85</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: selectSvgSheet.</p>
+<p>It emits a given id of a selected svg sheet
+to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given sheet id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Emits the id.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="utils"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>utils</b></span>
+                        <a href="#utils"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/UtilityService.html" target="_self" >UtilityService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component.ts:50</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">Instance of the UtilityService.</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
+import { UtilityService } from &#x27;@awg-app/core/services&#x27;;
+import { EditionSvgSheet } from &#x27;@awg-app/views/edition-view/models&#x27;;
+
+@Component({
+    selector: &#x27;awg-edition-svg-sheet-nav-item&#x27;,
+    templateUrl: &#x27;./edition-svg-sheet-nav-item.component.html&#x27;,
+    styleUrls: [&#x27;./edition-svg-sheet-nav-item.component.scss&#x27;],
+})
+export class EditionSvgSheetNavItemComponent {
+    /**
+     * Input variable: navItemLabel.
+     *
+     * It keeps the label of the nav item.
+     */
+    @Input()
+    navItemLabel: string;
+
+    /**
+     * Input variable: svgSheets.
+     *
+     * It keeps the svg sheets.
+     */
+    @Input()
+    svgSheets: EditionSvgSheet[];
+
+    /**
+     * Input variable: selectedSvgSheet.
+     *
+     * It keeps the selected svg sheet.
+     */
+    @Input()
+    selectedSvgSheet: EditionSvgSheet;
+
+    /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
+    @Output()
+    selectSvgSheetRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+
+    /**
+     * Constructor of the EditionSvgSheetNavItemComponent.
+     *
+     * It declares a public instance of the UtilityService.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
+     */
+    constructor(public utils: UtilityService) {}
+
+    /**
+     * Public method: isSelectedSvgSheet.
+     *
+     * It compares a given id (optionally with a partial) with the id
+     * of the latest selected svg sheet.
+     *
+     * @param {string} id The given sheet id.
+     * @param {string} [partial] The optional given partial id.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isSelectedSvgSheet(id: string, partial?: string): boolean {
+        let givenId &#x3D; id;
+        let selectedId &#x3D; this.selectedSvgSheet.id;
+
+        // Compare partial id if needed
+        if (partial &amp;&amp; this.selectedSvgSheet.content?.[0]?.partial) {
+            givenId +&#x3D; partial;
+            selectedId +&#x3D; this.selectedSvgSheet.content[0].partial;
+        }
+
+        return givenId &#x3D;&#x3D;&#x3D; selectedId;
+    }
+
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
+    selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.selectSvgSheetRequest.emit(id);
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h6 class&#x3D;&quot;card-title&quot;&gt;{{ navItemLabel }}: &lt;span *ngIf&#x3D;&quot;!utils.isNotEmptyArray(svgSheets)&quot;&gt;---&lt;/span&gt;&lt;/h6&gt;
+&lt;ng-container *ngFor&#x3D;&quot;let svgSheet of svgSheets&quot;&gt;
+    &lt;a
+        *ngIf&#x3D;&quot;svgSheet.content.length &#x3D;&#x3D;&#x3D; 1&quot;
+        class&#x3D;&quot;btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start&quot;
+        [ngClass]&#x3D;&quot;{ active: isSelectedSvgSheet(svgSheet.id), &#x27;text-muted&#x27;: !isSelectedSvgSheet(svgSheet.id) }&quot;
+        (click)&#x3D;&quot;selectSvgSheet(svgSheet.id)&quot;&gt;
+        {{ svgSheet.label }}
+    &lt;/a&gt;
+    &lt;div *ngIf&#x3D;&quot;svgSheet.content.length &gt; 1&quot; class&#x3D;&quot;awg-svg-sheet-nav-link-dropdown&quot; ngbDropdown&gt;
+        &lt;a
+            class&#x3D;&quot;btn card-text&quot;
+            id&#x3D;&quot;dropDownSheetNav&quot;
+            ngbDropdownToggle
+            [ngClass]&#x3D;&quot;{ active: isSelectedSvgSheet(svgSheet.id), &#x27;text-muted&#x27;: !isSelectedSvgSheet(svgSheet.id) }&quot;&gt;
+            &lt;span&gt;{{ svgSheet.label }}&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;div ngbDropdownMenu aria-labelledby&#x3D;&quot;dropdownSheetNav&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let svgSheetContent of svgSheet.content&quot;&gt;
+                &lt;a
+                    class&#x3D;&quot;dropdown-item&quot;
+                    [ngClass]&#x3D;&quot;{
+                        active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
+                        &#x27;text-muted&#x27;: !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)
+                    }&quot;
+                    (click)&#x3D;&quot;selectSvgSheet(svgSheet.id + svgSheetContent.partial)&quot;
+                    &gt;{{ svgSheet.label + svgSheetContent.partial }}&lt;/a
+                &gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/ng-container&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./edition-svg-sheet-nav-item.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/assets/themes/scss/shared&#x27;;
+
+a#dropDownSheetNav {
+    &amp;.btn {
+        border: none !important;
+    }
+    &amp;.active,
+    &amp;:active {
+        color: $link-color !important;
+    }
+    &amp;:hover {
+        color: rgb(51, 51, 51) !important;
+    }
+
+    &gt; span {
+        display: inline-block;
+        white-space: break-spaces;
+        text-align: start;
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h6 class="card-title">{{ navItemLabel }}: <span *ngIf="!utils.isNotEmptyArray(svgSheets)">---</span></h6><ng-container *ngFor="let svgSheet of svgSheets">    <a        *ngIf="svgSheet.content.length === 1"        class="btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start"        [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), \'text-muted\': !isSelectedSvgSheet(svgSheet.id) }"        (click)="selectSvgSheet(svgSheet.id)">        {{ svgSheet.label }}    </a>    <div *ngIf="svgSheet.content.length > 1" class="awg-svg-sheet-nav-link-dropdown" ngbDropdown>        <a            class="btn card-text"            id="dropDownSheetNav"            ngbDropdownToggle            [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), \'text-muted\': !isSelectedSvgSheet(svgSheet.id) }">            <span>{{ svgSheet.label }}</span>        </a>        <div ngbDropdownMenu aria-labelledby="dropdownSheetNav">            <div *ngFor="let svgSheetContent of svgSheet.content">                <a                    class="dropdown-item"                    [ngClass]="{                        active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),                        \'text-muted\': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)                    }"                    (click)="selectSvgSheet(svgSheet.id + svgSheetContent.partial)"                    >{{ svgSheet.label + svgSheetContent.partial }}</a                >            </div>        </div>    </div></ng-container></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
+    var ACTUAL_COMPONENT = {'name': 'EditionSvgSheetNavItemComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionSvgSheetNavItemComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

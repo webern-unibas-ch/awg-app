@@ -602,15 +602,15 @@ to handle http requests.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
-import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from &#x27;@angular/common/http&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from &#x27;@angular/common/http&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { throwError as observableThrowError, Observable } from &#x27;rxjs&#x27;;
+import { Observable, throwError as observableThrowError } from &#x27;rxjs&#x27;;
 import { catchError, map, tap } from &#x27;rxjs/operators&#x27;;
 
-import { ApiServiceResult } from &#x27;./api-service-result.model&#x27;;
-import { ApiServiceError } from &#x27;./api-service-error.model&#x27;;
 import { ApiRequest } from &#x27;./api-request.model&#x27;;
+import { ApiServiceError } from &#x27;./api-service-error.model&#x27;;
+import { ApiServiceResult } from &#x27;./api-service-result.model&#x27;;
 
 /**
  * The Api service.

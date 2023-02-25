@@ -158,9 +158,6 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                                 <a href="#errorMessage" >errorMessage</a>
                             </li>
                             <li>
-                                <a href="#filteredSvgSheetsData" >filteredSvgSheetsData</a>
-                            </li>
-                            <li>
                                 <a href="#folioConvoluteData" >folioConvoluteData</a>
                             </li>
                             <li>
@@ -170,13 +167,13 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                                 <a href="#selectedConvolute" >selectedConvolute</a>
                             </li>
                             <li>
-                                <a href="#selectedOverlays" >selectedOverlays</a>
-                            </li>
-                            <li>
                                 <a href="#selectedSvgSheet" >selectedSvgSheet</a>
                             </li>
                             <li>
                                 <a href="#selectedTextcriticalComments" >selectedTextcriticalComments</a>
+                            </li>
+                            <li>
+                                <a href="#selectedTextcritics" >selectedTextcritics</a>
                             </li>
                             <li>
                                 <a href="#showTkA" >showTkA</a>
@@ -201,27 +198,35 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_filterSvgSheets" >_filterSvgSheets</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#_findConvolute" >_findConvolute</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_findSvgSheet" >_findSvgSheet</a>
+                                <a href="#_findLinkBoxes" >_findLinkBoxes</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_findTextcriticalComments" >_findTextcriticalComments</a>
+                                <a href="#_findSvgSheetById" >_findSvgSheetById</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getConvoluteParams" >_getConvoluteParams</a>
+                                <a href="#_findSvgSheetIndex" >_findSvgSheetIndex</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getSketchParams" >_getSketchParams</a>
+                                <a href="#_findSvgSheetPartialIndex" >_findSvgSheetPartialIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_findTextcritics" >_findTextcritics</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getIdFromQueryParams" >_getIdFromQueryParams</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getSheetContent" >_getSheetContent</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -241,7 +246,7 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#onConvoluteSelect" >onConvoluteSelect</a>
+                                <a href="#onLinkBoxSelect" >onLinkBoxSelect</a>
                             </li>
                             <li>
                                 <a href="#onOverlaySelect" >onOverlaySelect</a>
@@ -257,6 +262,20 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#editionRouteConstants" >editionRouteConstants</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -272,7 +291,7 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:121</a></div>
                             </td>
                         </tr>
 
@@ -397,54 +416,6 @@ ActivatedRoute and Router.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_filterSvgSheets"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>_filterSvgSheets</b></span>
-                        <a href="#_filterSvgSheets"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_filterSvgSheets()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="397"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:397</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _filterSvgSheets.</p>
-<p>It filters the svg sheets data by the selected convolute id.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Filters the svh sheets data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="_findConvolute"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -463,8 +434,8 @@ ActivatedRoute and Router.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="307"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:307</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="292"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:292</a></div>
                 </td>
             </tr>
 
@@ -525,34 +496,82 @@ ActivatedRoute and Router.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_findSvgSheet"></a>
+                    <a name="_findLinkBoxes"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_findSvgSheet</b></span>
-                        <a href="#_findSvgSheet"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_findLinkBoxes</b></span>
+                        <a href="#_findLinkBoxes"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_findSvgSheet(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_findLinkBoxes()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="327"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:327</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="307"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:307</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _findSvgSheet.</p>
-<p>It finds a svg sheet with a given id.</p>
+                    <div class="io-description"><p>Private method: _findLinkBoxes.</p>
+<p>It finds the link boxes for an SVG.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/EditionSvgLinkBox.html" target="_self" >EditionSvgLinkBox[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The link boxes that were found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findSvgSheetById"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findSvgSheetById</b></span>
+                        <a href="#_findSvgSheetById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findSvgSheetById(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="325"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:325</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findSvgSheetById.</p>
+<p>It finds a SVG sheet by a given id.</p>
 </div>
 
                     <div class="io-description">
@@ -580,7 +599,7 @@ ActivatedRoute and Router.</p>
 
 
                                     <td>
-                                        <p>The given id input.</p>
+                                        <p>The given id.</p>
 
                                     </td>
                                 </tr>
@@ -605,83 +624,34 @@ ActivatedRoute and Router.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_findTextcriticalComments"></a>
+                    <a name="_findSvgSheetIndex"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_findTextcriticalComments</b></span>
-                        <a href="#_findTextcriticalComments"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_findSvgSheetIndex</b></span>
+                        <a href="#_findSvgSheetIndex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_findTextcriticalComments()</code>
+                    <code>_findSvgSheetIndex(sheets: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="368"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:368</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="359"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:359</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _findTextcriticalComments.</p>
-<p>It finds the textcritical comments for an svg overlay.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment[]</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The textcritical comments that were found.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_getConvoluteParams"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>_getConvoluteParams</b></span>
-                        <a href="#_getConvoluteParams"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getConvoluteParams(queryParams?: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="432"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:432</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getConvoluteParams.</p>
-<p>It checks the route params for a convolute param
-and returns the id of the selected convolute.</p>
+                    <div class="io-description"><p>Private method: _findSvgSheetIndex.</p>
+<p>It finds the index of an SVG sheet in a given array of sheets.</p>
 </div>
 
                     <div class="io-description">
@@ -698,18 +668,34 @@ and returns the id of the selected convolute.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>queryParams</td>
+                                    <td>sheets</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
                                     </td>
 
                                     <td>
-                                        Yes
+                                        No
                                     </td>
 
 
                                     <td>
-                                        <p>The query paramMap of the activated route.</p>
+                                        <p>The given array of sheets.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
 
                                     </td>
                                 </tr>
@@ -719,11 +705,11 @@ and returns the id of the selected convolute.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The id of the selected convolute.</p>
+                        <p>The index of the sheet in the array.</p>
 
                     </div>
                 </td>
@@ -734,35 +720,179 @@ and returns the id of the selected convolute.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_getSketchParams"></a>
+                    <a name="_findSvgSheetPartialIndex"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_getSketchParams</b></span>
-                        <a href="#_getSketchParams"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_findSvgSheetPartialIndex</b></span>
+                        <a href="#_findSvgSheetPartialIndex"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getSketchParams(queryParams?: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>)</code>
+                    <code>_findSvgSheetPartialIndex(sheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="415"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:415</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="382"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:382</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getSketchParams.</p>
-<p>It checks the route params for a sketch query
-and returns the id of the selected sheet.</p>
+                    <div class="io-description"><p>Private method: _findSvgSheetPartialIndex.</p>
+<p>It checks if a given id includes an SVG sheet partial and returns its index.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sheet</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given sheet.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The index of the sheet partial in the sheet.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findTextcritics"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findTextcritics</b></span>
+                        <a href="#_findTextcritics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findTextcritics()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="393"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:393</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findTextcritics.</p>
+<p>It finds the textcritics for a selected SVG sheet.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Textcritics.html" target="_self" >Textcritics</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The textcritics that were found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getIdFromQueryParams"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_getIdFromQueryParams</b></span>
+                        <a href="#_getIdFromQueryParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getIdFromQueryParams(queryParams?: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="418"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:418</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getIdFromQueryParams.</p>
+<p>It checks the route params for an id of the selected sheet
+and returns it.</p>
 </div>
 
                     <div class="io-description">
@@ -815,6 +945,118 @@ and returns the id of the selected sheet.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_getSheetContent"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_getSheetContent</b></span>
+                        <a href="#_getSheetContent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getSheetContent(sheets: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>, sheetIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="434"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:434</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getSheetContent.</p>
+<p>It gets the content of an SVG sheet by its id within a given array of sheets.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sheets</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given array of sheets.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheetIndex</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The index of the sheet in the array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The sheet that was found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_selectConvolute"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
@@ -826,15 +1068,15 @@ and returns the id of the selected sheet.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_selectConvolute(queryParams: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>)</code>
+                    <code>_selectConvolute(convoluteId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="448"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:448</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="454"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:454</a></div>
                 </td>
             </tr>
 
@@ -854,14 +1096,13 @@ and returns the id of the selected sheet.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>queryParams</td>
+                                    <td>convoluteId</td>
                                     <td>
-                                                <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
 
                                     <td>
@@ -869,10 +1110,6 @@ and returns the id of the selected sheet.</p>
                                     </td>
 
 
-                                    <td>
-                                        <p>The given query params.</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -913,8 +1150,8 @@ and returns the id of the selected sheet.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="461"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:461</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="466"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:466</a></div>
                 </td>
             </tr>
 
@@ -922,7 +1159,7 @@ and returns the id of the selected sheet.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Private method: _selectSvgSheet.</p>
-<p>It selects an svg sheet by the given query params.</p>
+<p>It selects an SVG sheet by the given query params.</p>
 </div>
 
                     <div class="io-description">
@@ -964,7 +1201,7 @@ and returns the id of the selected sheet.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Selects the svg sheet.</p>
+                        <p>Selects the SVG sheet.</p>
 
                     </div>
                 </td>
@@ -991,8 +1228,8 @@ and returns the id of the selected sheet.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="167"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:167</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="172"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:172</a></div>
                 </td>
             </tr>
 
@@ -1039,8 +1276,8 @@ from the EditionDataService and the queryParams.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="291"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:291</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:276</a></div>
                 </td>
             </tr>
 
@@ -1080,8 +1317,8 @@ when destroying the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:159</a></div>
                 </td>
             </tr>
 
@@ -1105,32 +1342,32 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onConvoluteSelect"></a>
+                    <a name="onLinkBoxSelect"></a>
                     <span class="name">
-                        <span ><b>onConvoluteSelect</b></span>
-                        <a href="#onConvoluteSelect"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>onLinkBoxSelect</b></span>
+                        <a href="#onLinkBoxSelect"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onConvoluteSelect(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>onLinkBoxSelect(linkBoxId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="209"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:209</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onConvoluteSelect.</p>
-<p>It selects a convolute by its id.</p>
+                    <div class="io-description"><p>Public method: onLinkBoxSelect.</p>
+<p>It finds the target SVG sheet of a link box and selects it.</p>
 </div>
 
                     <div class="io-description">
@@ -1147,7 +1384,7 @@ when initializing the component.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>linkBoxId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -1158,7 +1395,7 @@ when initializing the component.</p>
 
 
                                     <td>
-                                        <p>The given id.</p>
+                                        <p>The given link box id.</p>
 
                                     </td>
                                 </tr>
@@ -1172,7 +1409,7 @@ when initializing the component.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Sets the selectedConvolute variable.</p>
+                        <p>Finds and selects the target SVG sheet of a link box.</p>
 
                     </div>
                 </td>
@@ -1199,8 +1436,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="237"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:237</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="231"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:231</a></div>
                 </td>
             </tr>
 
@@ -1236,7 +1473,7 @@ when initializing the component.</p>
 
 
                                     <td>
-                                        <p>The given svg overlays.</p>
+                                        <p>The given SVG overlays.</p>
 
                                     </td>
                                 </tr>
@@ -1250,7 +1487,7 @@ when initializing the component.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Sets the selectedOverlay, selectedTextcriticalComments and showTka variable.</p>
+                        <p>Sets the selectedTextcriticalComments and showTka variable.</p>
 
                     </div>
                 </td>
@@ -1270,15 +1507,15 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onSvgSheetSelect(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>onSvgSheetSelect(sheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="262"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:262</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:250</a></div>
                 </td>
             </tr>
 
@@ -1286,7 +1523,7 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: onSvgSheetSelect.</p>
-<p>It selects a svg sheet by its id and
+<p>It selects a SVG sheet by its id and
 navigates to the edition sheets route
 with this given id.</p>
 </div>
@@ -1300,12 +1537,11 @@ with this given id.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>sheetId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -1315,10 +1551,6 @@ with this given id.</p>
                                     </td>
 
 
-                                    <td>
-                                        <p>The given svg sheet id.</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1368,7 +1600,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:125</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:121</a></div>
                         </td>
                     </tr>
 
@@ -1401,7 +1633,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:48</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:51</a></div>
                         </td>
                     </tr>
 
@@ -1439,7 +1671,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:111</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:107</a></div>
                         </td>
                     </tr>
 
@@ -1447,39 +1679,6 @@ with this given id.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: errorMessage.</p>
 <p>It keeps an errorMessage for the service calls.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="filteredSvgSheetsData"></a>
-                    <span class="name">
-                        <span ><b>filteredSvgSheetsData</b></span>
-                        <a href="#filteredSvgSheetsData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheetList.html" target="_self" >EditionSvgSheetList</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:69</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: filteredSvgSheetsData.</p>
-<p>It keeps a filtered excerpt of the svg sheets data of the edition sheets.</p>
 </div>
                 </td>
             </tr>
@@ -1505,7 +1704,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:55</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -1547,7 +1746,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -1580,7 +1779,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:83</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -1588,39 +1787,6 @@ with this given id.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: selectedConvolute.</p>
 <p>It keeps the selected convolute.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="selectedOverlays"></a>
-                    <span class="name">
-                        <span ><b>selectedOverlays</b></span>
-                        <a href="#selectedOverlays"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:90</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public variable: selectedOverlays.</p>
-<p>It keeps the selected svg overlays.</p>
 </div>
                 </td>
             </tr>
@@ -1646,14 +1812,14 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:97</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:72</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: selectedSvgSheet.</p>
-<p>It keeps the selected svg sheet.</p>
+<p>It keeps the selected SVG sheet.</p>
 </div>
                 </td>
             </tr>
@@ -1679,7 +1845,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:104</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -1687,6 +1853,39 @@ with this given id.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: selectedTextcriticalComments.</p>
 <p>It keeps the selected textcritical comments.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedTextcritics"></a>
+                    <span class="name">
+                        <span ><b>selectedTextcritics</b></span>
+                        <a href="#selectedTextcritics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Textcritics.html" target="_self" >Textcritics</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: selectedTextcritics.</p>
+<p>It keeps the textcritics of the selected SVG sheet.</p>
 </div>
                 </td>
             </tr>
@@ -1711,7 +1910,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:118</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:114</a></div>
                         </td>
                     </tr>
 
@@ -1744,14 +1943,14 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:62</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:93</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: svgSheetsData.</p>
-<p>It keeps the svg sheets data of the edition sheets.</p>
+<p>It keeps the SVG sheets data of the edition sheets.</p>
 </div>
                 </td>
             </tr>
@@ -1777,7 +1976,7 @@ with this given id.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:100</a></div>
                         </td>
                     </tr>
 
@@ -1793,6 +1992,41 @@ with this given id.</p>
     </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionRouteConstants"></a>
+                        <span class="name"><b>editionRouteConstants</b><a href="#editionRouteConstants"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>editionRouteConstants()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:149</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter variable: editionRouteConstants.</p>
+<p> It returns the EDITION_ROUTE_CONSTANTS.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -1803,19 +2037,22 @@ import { ActivatedRoute, NavigationExtras, ParamMap, Router } from &#x27;@angula
 import { Subject } from &#x27;rxjs&#x27;;
 import { switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
 
+import { UtilityService } from &#x27;@awg-core/services&#x27;;
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
+import { EDITION_ROUTE_CONSTANTS } from &#x27;@awg-views/edition-view/edition-route-constants&#x27;;
 import {
+    EditionComplex,
+    EditionSvgLinkBox,
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionComplex,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
+    Textcritics,
     TextcriticsList,
 } from &#x27;@awg-views/edition-view/models&#x27;;
 import { EditionDataService, EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
-import { UtilityService } from &#x27;@awg-core/services&#x27;;
 
 /**
  * The EditionSheets component.
@@ -1854,27 +2091,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     folioConvoluteData: FolioConvoluteList;
 
     /**
-     * Public variable: svgSheetsData.
-     *
-     * It keeps the svg sheets data of the edition sheets.
-     */
-    svgSheetsData: EditionSvgSheetList;
-
-    /**
-     * Public variable: filteredSvgSheetsData.
-     *
-     * It keeps a filtered excerpt of the svg sheets data of the edition sheets.
-     */
-    filteredSvgSheetsData: EditionSvgSheetList;
-
-    /**
-     * Public variable: textcriticsData.
-     *
-     * It keeps the textcritics data of the edition sheets.
-     */
-    textcriticsData: TextcriticsList;
-
-    /**
      * Public variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -1882,16 +2098,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedConvolute: FolioConvolute;
 
     /**
-     * Public variable: selectedOverlays.
-     *
-     * It keeps the selected svg overlays.
-     */
-    selectedOverlays: EditionSvgOverlay[];
-
-    /**
      * Public variable: selectedSvgSheet.
      *
-     * It keeps the selected svg sheet.
+     * It keeps the selected SVG sheet.
      */
     selectedSvgSheet: EditionSvgSheet;
 
@@ -1901,6 +2110,27 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It keeps the selected textcritical comments.
      */
     selectedTextcriticalComments: TextcriticalComment[];
+
+    /**
+     * Public variable: selectedTextcritics.
+     *
+     * It keeps the textcritics of the selected SVG sheet.
+     */
+    selectedTextcritics: Textcritics;
+
+    /**
+     * Public variable: svgSheetsData.
+     *
+     * It keeps the SVG sheets data of the edition sheets.
+     */
+    svgSheetsData: EditionSvgSheetList;
+
+    /**
+     * Public variable: textcriticsData.
+     *
+     * It keeps the textcritics data of the edition sheets.
+     */
+    textcriticsData: TextcriticsList;
 
     /**
      * Public variable: errorMessage.
@@ -1945,6 +2175,15 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     ) {}
 
     /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -1984,8 +2223,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             )
             .subscribe({
                 next: (queryParams: ParamMap) &#x3D;&gt; {
-                    this._selectConvolute(queryParams);
-                    this._filterSvgSheets();
                     this._selectSvgSheet(queryParams);
                 },
                 error: err &#x3D;&gt; {
@@ -1995,34 +2232,25 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onConvoluteSelect.
+     * Public method: onLinkBoxSelect.
      *
-     * It selects a convolute by its id.
+     * It finds the target SVG sheet of a link box and selects it.
      *
-     * @param {string} id The given id.
-     * @returns {void} Sets the selectedConvolute variable.
+     * @param {string} linkBoxId The given link box id.
+     * @returns {void} Finds and selects the target SVG sheet of a link box.
      */
-    onConvoluteSelect(id: string): void {
-        if (!id) {
-            id &#x3D; this.folioConvoluteData.convolutes[0].convoluteId || &#x27;&#x27;;
+    onLinkBoxSelect(linkBoxId: string): void {
+        if (!this.selectedSvgSheet) {
+            return;
         }
-        const convolute: FolioConvolute &#x3D; this._findConvolute(id);
 
-        if (!this.utils.isNotEmptyArray(convolute.folios)) {
-            // If no folio data provided, open modal
-            if (convolute.linkTo) {
-                this.modal.open(convolute.linkTo);
-                return;
-            }
+        const linkBoxes: EditionSvgLinkBox[] &#x3D; this._findLinkBoxes();
+        const selectedLinkBox &#x3D; linkBoxes.find(linkBox &#x3D;&gt; linkBox.svgGroupId &#x3D;&#x3D;&#x3D; linkBoxId);
+
+        if (selectedLinkBox) {
+            const linkToSvgSheet &#x3D; selectedLinkBox.linkTo;
+            this.onSvgSheetSelect(linkToSvgSheet);
         }
-        this.selectedConvolute &#x3D; convolute;
-        this._filterSvgSheets();
-
-        const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { convolute: convolute.convoluteId, sketch: this.filteredSvgSheetsData.sheets[0].id },
-        };
-
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
     }
 
     /**
@@ -2030,18 +2258,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      *
      * It finds the corresponding textcritical comments to a list of selected overlays.
      *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {void} Sets the selectedOverlay, selectedTextcriticalComments and showTka variable.
+     * @param {EditionSvgOverlay[]} overlays The given SVG overlays.
+     * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        if (!this.textcriticsData &amp;&amp; !this.selectedSvgSheet) {
-            return;
-        }
-
-        const textcriticalComments: TextcriticalComment[] &#x3D; this._findTextcriticalComments();
-
         this.selectedTextcriticalComments &#x3D; this.editionService.getTextcriticalCommentsForOverlays(
-            textcriticalComments,
+            this.selectedTextcritics.comments,
             overlays
         );
 
@@ -2051,34 +2273,31 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a svg sheet by its id and
+     * It selects a SVG sheet by its id and
      * navigates to the edition sheets route
      * with this given id.
      *
-     * @param {string} id The given svg sheet id.
+     * @param {string} id The given SVG sheet id.
      * @returns {void} Navigates to the edition sheets.
      */
-    onSvgSheetSelect(id: string): void {
-        // Make sure that there is a convolute selected first
-        if (!this.selectedConvolute) {
-            this.onConvoluteSelect(&#x27;&#x27;);
-        }
-
+    onSvgSheetSelect(sheetId: string): void {
         // Clear overlay selections
         this.onOverlaySelect([]);
 
         // Set default id if none is given
-        if (!id) {
-            id &#x3D; this.filteredSvgSheetsData.sheets[0].id;
+        if (!sheetId) {
+            sheetId &#x3D; this.svgSheetsData.sheets.sketchEditions[0].id;
         }
-        this.selectedSvgSheet &#x3D; this._findSvgSheet(id);
 
         const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { convolute: this.selectedConvolute.convoluteId, sketch: id },
+            queryParams: { id: sheetId },
             queryParamsHandling: &#x27;merge&#x27;,
         };
 
-        this.router.navigate([this.editionComplex.baseRoute, this.editionComplex.sheetsRoute.route], navigationExtras);
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
+            navigationExtras
+        );
     }
 
     /**
@@ -2104,136 +2323,157 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {FolioConvolute} The convolute that was found.
      */
     private _findConvolute(id: string): FolioConvolute {
-        // Find index of given id in folioConvoluteData.convolutes array
-        let convoluteIndex &#x3D; 0;
-        const findIndex &#x3D; this.folioConvoluteData.convolutes.findIndex(convolute &#x3D;&gt; convolute.convoluteId &#x3D;&#x3D;&#x3D; id);
-        if (findIndex &gt;&#x3D; 0) {
-            convoluteIndex &#x3D; findIndex;
-        }
+        // Find the convolute with the given id in folioConvoluteData.convolutes array
+        const convolute &#x3D; this.folioConvoluteData.convolutes.find(conv &#x3D;&gt; conv.convoluteId &#x3D;&#x3D;&#x3D; id);
 
-        // Return the convolute with the given id
-        return this.folioConvoluteData.convolutes[convoluteIndex];
+        // If the convolute is found, return it; otherwise, return undefined
+        return convolute;
     }
 
     /**
-     * Private method: _findSvgSheet.
+     * Private method: _findLinkBoxes.
      *
-     * It finds a svg sheet with a given id.
+     * It finds the link boxes for an SVG.
      *
-     * @param {string} id The given id input.
+     * @returns {EditionSvgLinkBox[]} The link boxes that were found.
+     */
+    private _findLinkBoxes(): EditionSvgLinkBox[] {
+        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
+            // Return empty array if no link boxes were found
+            return [];
+        }
+
+        // Return the link boxes
+        return this.selectedTextcritics.linkBoxes;
+    }
+
+    /**
+     * Private method: _findSvgSheetById.
+     *
+     * It finds a SVG sheet by a given id.
+     *
+     * @param {string} id The given id.
      * @returns {EditionSvgSheet} The sheet that was found.
      */
-    private _findSvgSheet(id: string): EditionSvgSheet {
+    private _findSvgSheetById(id: string): EditionSvgSheet {
         // Find index of given id in svgSheetsData.sheets array
-        let sheetIndex &#x3D; 0;
-        let partialIndex;
-        const findIndex &#x3D; this.filteredSvgSheetsData.sheets.findIndex(sheets &#x3D;&gt; {
-            let i &#x3D; sheets.id;
-            // If we have partial sheets, look into content array for id with extra partial
-            if (sheets.content.length &gt; 1) {
-                partialIndex &#x3D; sheets.content.findIndex(content &#x3D;&gt; i + content.partial &#x3D;&#x3D;&#x3D; id);
-                if (partialIndex &gt;&#x3D; 0) {
-                    i &#x3D; i + sheets.content[partialIndex].partial;
-                }
-            }
-            return i &#x3D;&#x3D;&#x3D; id;
-        });
-
-        if (findIndex &gt;&#x3D; 0) {
-            sheetIndex &#x3D; findIndex;
-        }
-
-        // Copy filtered sheets data for output
-        const output &#x3D; {
-            ...this.filteredSvgSheetsData.sheets[sheetIndex],
+        const indexes &#x3D; {
+            workEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.workEditions, id),
+            textEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.textEditions, id),
+            sketchEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.sketchEditions, id),
         };
 
-        // Reduce content array to the svg of partial id only
-        if (partialIndex &gt;&#x3D; 0) {
-            output.content &#x3D; [this.filteredSvgSheetsData.sheets[sheetIndex].content[partialIndex]];
+        for (const [type, index] of Object.entries(indexes)) {
+            if (index &lt; 0) {
+                continue;
+            }
+
+            const sheet &#x3D; this._getSheetContent(this.svgSheetsData.sheets[type], index, id);
+            if (type &#x3D;&#x3D;&#x3D; &#x27;sketchEditions&#x27;) {
+                this._selectConvolute(sheet.convolute);
+            } else {
+                this._selectConvolute(&#x27;&#x27;);
+            }
+            return sheet;
         }
 
-        // Return the sheet with the given id
-        return output;
+        return new EditionSvgSheet();
     }
 
     /**
-     * Private method: _findTextcriticalComments.
+     * Private method: _findSvgSheetIndex.
      *
-     * It finds the textcritical comments for an svg overlay.
+     * It finds the index of an SVG sheet in a given array of sheets.
      *
-     * @returns {TextcriticalComment[]} The textcritical comments that were found.
+     * @param {EditionSvgSheet[]} sheets The given array of sheets.
+     * @param {string} id The given id.
+     * @returns {number} The index of the sheet in the array.
      */
-    private _findTextcriticalComments(): TextcriticalComment[] {
+    private _findSvgSheetIndex(sheets: EditionSvgSheet[], id: string): number {
+        return sheets.findIndex(sheet &#x3D;&gt; {
+            let sheetId &#x3D; sheet.id;
+            // If we have partial sheets, look into content array for id with extra partial
+            if (sheet.content.length &gt; 1) {
+                const partialIndex &#x3D; this._findSvgSheetPartialIndex(sheet, id);
+                if (partialIndex &gt;&#x3D; 0) {
+                    sheetId +&#x3D; sheet.content[partialIndex].partial;
+                }
+            }
+            return sheetId &#x3D;&#x3D;&#x3D; id;
+        });
+    }
+
+    /**
+     * Private method: _findSvgSheetPartialIndex.
+     *
+     * It checks if a given id includes an SVG sheet partial and returns its index.
+     *
+     * @param {EditionSvgSheet} sheet The given sheet.
+     * @param {string} id The given id.
+     * @returns {number} The index of the sheet partial in the sheet.
+     */
+    private _findSvgSheetPartialIndex(sheet: EditionSvgSheet, id: string): number {
+        return sheet.content.findIndex(content &#x3D;&gt; sheet.id + content.partial &#x3D;&#x3D;&#x3D; id);
+    }
+
+    /**
+     * Private method: _findTextcritics.
+     *
+     * It finds the textcritics for a selected SVG sheet.
+     *
+     * @returns {Textcritics} The textcritics that were found.
+     */
+    private _findTextcritics(): Textcritics {
         if (!this.textcriticsData &amp;&amp; !this.selectedSvgSheet) {
-            return undefined;
+            return new Textcritics();
         }
 
-        // Find index of the selected svg sheet id in textcriticsData.textcritics array
-        const textcriticsIndex &#x3D; this.textcriticsData.textcritics.findIndex(
+        // Find the textcritics for the selected SVG sheet id in textcriticsData.textcritics array
+        const textcritics &#x3D; this.textcriticsData.textcritics.find(
             textcritic &#x3D;&gt; textcritic.id &#x3D;&#x3D;&#x3D; this.selectedSvgSheet.id
         );
 
-        if (
-            textcriticsIndex &gt; -1 &amp;&amp;
-            this.textcriticsData.textcritics[textcriticsIndex] &amp;&amp;
-            this.textcriticsData.textcritics[textcriticsIndex].comments
-        ) {
-            // Return the comments with the given id
-            return this.textcriticsData.textcritics[textcriticsIndex].comments;
-        }
-        // Return empty array if no comments were found
-        return [];
+        // Return the textcritics with the given id or empty object if no comments were found
+        return textcritics || new Textcritics();
     }
 
     /**
-     * Private method: _filterSvgSheets.
+     * Private method: _getIdFromQueryParams.
      *
-     * It filters the svg sheets data by the selected convolute id.
-     *
-     * @returns {void} Filters the svh sheets data.
-     */
-    private _filterSvgSheets(): void {
-        this.filteredSvgSheetsData &#x3D; new EditionSvgSheetList();
-        this.filteredSvgSheetsData.sheets &#x3D; this.svgSheetsData.sheets.filter(
-            sheet &#x3D;&gt; sheet.convolute &#x3D;&#x3D;&#x3D; this.selectedConvolute.convoluteId
-        );
-    }
-
-    /**
-     * Private method: _getSketchParams.
-     *
-     * It checks the route params for a sketch query
-     * and returns the id of the selected sheet.
+     * It checks the route params for an id of the selected sheet
+     * and returns it.
      *
      * @default first entry of this.svgSheetsData
      *
      * @param {ParamMap} queryParams The query paramMap of the activated route.
      * @returns {string} The id of the selected sheet.
      */
-    private _getSketchParams(queryParams?: ParamMap): string {
+    private _getIdFromQueryParams(queryParams?: ParamMap): string {
         // If there is no id in query params
         // Take first entry of filtered svg sheets data as default
-        return queryParams.get(&#x27;sketch&#x27;) ? queryParams.get(&#x27;sketch&#x27;) : this.filteredSvgSheetsData.sheets[0].id;
+        return queryParams.get(&#x27;id&#x27;) ? queryParams.get(&#x27;id&#x27;) : this.svgSheetsData.sheets.sketchEditions[0].id;
     }
 
     /**
-     * Private method: _getConvoluteParams.
+     * Private method: _getSheetContent.
      *
-     * It checks the route params for a convolute param
-     * and returns the id of the selected convolute.
+     * It gets the content of an SVG sheet by its id within a given array of sheets.
      *
-     * @default first entry of this.folioConvoluteData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected convolute.
+     * @param {EditionSvgSheet[]} sheets The given array of sheets.
+     * @param {number} sheetIndex The index of the sheet in the array.
+     * @param {string} id The given id.
+     * @returns {EditionSvgSheet} The sheet that was found.
      */
-    private _getConvoluteParams(queryParams?: ParamMap): string {
-        // If there is no id in query params
-        // Take first entry of folio convolute data as default
-        return queryParams.get(&#x27;convolute&#x27;)
-            ? queryParams.get(&#x27;convolute&#x27;)
-            : this.folioConvoluteData.convolutes[0].convoluteId;
+    private _getSheetContent(sheets: EditionSvgSheet[], sheetIndex: number, id: string): EditionSvgSheet {
+        const sheet &#x3D; { ...sheets[sheetIndex] };
+
+        const partialIndex &#x3D; this._findSvgSheetPartialIndex(sheet, id);
+
+        if (partialIndex &gt;&#x3D; 0) {
+            sheet.content &#x3D; [sheet.content[partialIndex]];
+        }
+
+        return sheet;
     }
 
     /**
@@ -2244,23 +2484,28 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @param {ParamMap} queryParams The given query params.
      * @returns {void} Selects the convolute.
      */
-    private _selectConvolute(queryParams: ParamMap): void {
-        const convId: string &#x3D; this._getConvoluteParams(queryParams);
-        this.selectedConvolute &#x3D; this._findConvolute(convId);
+    private _selectConvolute(convoluteId: string): void {
+        this.selectedConvolute &#x3D; this._findConvolute(convoluteId);
     }
 
     /**
      * Private method: _selectSvgSheet.
      *
-     * It selects an svg sheet by the given query params.
+     * It selects an SVG sheet by the given query params.
      *
      * @param {ParamMap} queryParams The given query params.
-     * @returns {void} Selects the svg sheet.
+     * @returns {void} Selects the SVG sheet.
      */
     private _selectSvgSheet(queryParams: ParamMap): void {
-        const sheetId: string &#x3D; this._getSketchParams(queryParams);
-        this.selectedSvgSheet &#x3D; this._findSvgSheet(sheetId);
-        this.selectedTextcriticalComments &#x3D; this._findTextcriticalComments();
+        const sheetId: string &#x3D; this._getIdFromQueryParams(queryParams);
+        this.selectedSvgSheet &#x3D; this._findSvgSheetById(sheetId);
+        this.selectedTextcritics &#x3D; this._findTextcritics();
+        if (
+            this.utils.isNotEmptyObject(this.selectedTextcritics) &amp;&amp;
+            this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
+        ) {
+            this.selectedTextcriticalComments &#x3D; this.selectedTextcritics.comments;
+        }
     }
 }
 </code></pre>
@@ -2276,23 +2521,23 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     &lt;!-- accolade view --&gt;
     &lt;awg-edition-accolade
         *ngIf&#x3D;&quot;svgSheetsData &amp;&amp; selectedSvgSheet&quot;
-        [svgSheetsData]&#x3D;&quot;filteredSvgSheetsData&quot;
+        [svgSheetsData]&#x3D;&quot;svgSheetsData&quot;
         [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
+        [selectedTextcritics]&#x3D;&quot;selectedTextcritics&quot;
         [selectedTextcriticalComments]&#x3D;&quot;selectedTextcriticalComments&quot;
         [showTkA]&#x3D;&quot;showTkA&quot;
         (openModalRequest)&#x3D;&quot;modal.open($event)&quot;
-        (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;
-        (selectOverlaysRequest)&#x3D;&quot;onOverlaySelect($event)&quot;&gt;
+        (selectLinkBoxRequest)&#x3D;&quot;onLinkBoxSelect($event)&quot;
+        (selectOverlaysRequest)&#x3D;&quot;onOverlaySelect($event)&quot;
+        (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
     &lt;/awg-edition-accolade&gt;
 
     &lt;!-- convolute view --&gt;
     &lt;awg-edition-convolute
-        *ngIf&#x3D;&quot;folioConvoluteData &amp;&amp; selectedConvolute &amp;&amp; selectedSvgSheet&quot;
-        [folioConvoluteData]&#x3D;&quot;folioConvoluteData&quot;
+        *ngIf&#x3D;&quot;selectedConvolute &amp;&amp; selectedSvgSheet&quot;
         [selectedConvolute]&#x3D;&quot;selectedConvolute&quot;
         [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
         (openModalRequest)&#x3D;&quot;modal.open($event)&quot;
-        (selectConvoluteRequest)&#x3D;&quot;onConvoluteSelect($event)&quot;
         (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
     &lt;/awg-edition-convolute&gt;
 &lt;/div&gt;
@@ -2331,8 +2576,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: edition detail --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- body with embedded svg\'s -->    <!-- accolade view -->    <awg-edition-accolade        *ngIf="svgSheetsData && selectedSvgSheet"        [svgSheetsData]="filteredSvgSheetsData"        [selectedSvgSheet]="selectedSvgSheet"        [selectedTextcriticalComments]="selectedTextcriticalComments"        [showTkA]="showTkA"        (openModalRequest)="modal.open($event)"        (selectSvgSheetRequest)="onSvgSheetSelect($event)"        (selectOverlaysRequest)="onOverlaySelect($event)">    </awg-edition-accolade>    <!-- convolute view -->    <awg-edition-convolute        *ngIf="folioConvoluteData && selectedConvolute && selectedSvgSheet"        [folioConvoluteData]="folioConvoluteData"        [selectedConvolute]="selectedConvolute"        [selectedSvgSheet]="selectedSvgSheet"        (openModalRequest)="modal.open($event)"        (selectConvoluteRequest)="onConvoluteSelect($event)"        (selectSvgSheetRequest)="onSvgSheetSelect($event)">    </awg-edition-convolute></div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><!-- content: edition detail --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- body with embedded svg\'s -->    <!-- accolade view -->    <awg-edition-accolade        *ngIf="svgSheetsData && selectedSvgSheet"        [svgSheetsData]="svgSheetsData"        [selectedSvgSheet]="selectedSvgSheet"        [selectedTextcritics]="selectedTextcritics"        [selectedTextcriticalComments]="selectedTextcriticalComments"        [showTkA]="showTkA"        (openModalRequest)="modal.open($event)"        (selectLinkBoxRequest)="onLinkBoxSelect($event)"        (selectOverlaysRequest)="onOverlaySelect($event)"        (selectSvgSheetRequest)="onSvgSheetSelect($event)">    </awg-edition-accolade>    <!-- convolute view -->    <awg-edition-convolute        *ngIf="selectedConvolute && selectedSvgSheet"        [selectedConvolute]="selectedConvolute"        [selectedSvgSheet]="selectedSvgSheet"        (openModalRequest)="modal.open($event)"        (selectSvgSheetRequest)="onSvgSheetSelect($event)">    </awg-edition-convolute></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSheetsComponent'};
 </script>

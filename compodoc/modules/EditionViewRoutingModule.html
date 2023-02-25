@@ -76,14 +76,14 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
 import { EditionComplexComponent } from &#x27;./edition-outlets/edition-complex&#x27;;
 import { EditionDetailNavComponent } from &#x27;./edition-outlets/edition-complex/edition-detail/edition-detail-nav/edition-detail-nav.component&#x27;;
-import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-series-detail/edition-sections&#x27;;
-import { EditionSectionDetailComponent } from &#x27;./edition-outlets/edition-series-detail/edition-section-detail&#x27;;
 import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
 import { EditionSeriesDetailComponent } from &#x27;./edition-outlets/edition-series-detail&#x27;;
+import { EditionSectionDetailComponent } from &#x27;./edition-outlets/edition-series-detail/edition-section-detail&#x27;;
+import { EditionSectionsComponent } from &#x27;./edition-outlets/edition-series-detail/edition-sections&#x27;;
 import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
+import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
 
 /* Routes of the EditionViewModule */
 const EDITION_VIEW_ROUTES: Routes &#x3D; [
@@ -102,10 +102,12 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                 component: EditionSeriesDetailComponent,
                 children: [
                     {
+                        // Overview of sections.
                         path: &#x27;sections&#x27;,
                         component: EditionSectionsComponent,
                     },
                     {
+                        // Section by id (1, 2, 3, 4, 5).
                         path: &#x27;section/:id&#x27;,
                         component: EditionSectionDetailComponent,
                     },
@@ -146,26 +148,47 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                                 path: &#x27;sheets&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail//edition-sheets/edition-sheets.module&#x27;\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module&#x27;\
                                     ).then(m &#x3D;&gt; m.EditionSheetsModule)&quot;,
                             },
                             {
                                 path: &#x27;report&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail//edition-report/edition-report.module&#x27;\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module&#x27;\
                                     ).then(m &#x3D;&gt; m.EditionReportModule)&quot;,
                             },
                             {
                                 path: &#x27;graph&#x27;,
                                 loadChildren: () &#x3D;&gt;
                                     &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail//edition-graph/edition-graph.module&#x27;\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module&#x27;\
                                     ).then(m &#x3D;&gt; m.EditionGraphModule)&quot;,
                             },
+                            /* 
+                                Path: &#x27;workedition&#x27;,
+                                loadChildren: () &#x3D;&gt;
+                                    import(
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-workedition/edition-workedition.module&#x27;
+                                    ).then(m &#x3D;&gt; m.EditionWorkeditionModule),
+                            },
+                            {
+                                path: &#x27;texteditions&#x27;,
+                                loadChildren: () &#x3D;&gt;
+                                    import(
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-texteditions/edition-texteditions.module&#x27;
+                                    ).then(m &#x3D;&gt; m.EditionTexteditionModule),
+                            },
+                            {
+                                path: &#x27;sketches&#x27;,
+                                loadChildren: () &#x3D;&gt;
+                                    import(
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-sketches/edition-sketches.module&#x27;
+                                    ).then(m &#x3D;&gt; m.EditionSketchesModule),
+                            },*/
                             {
                                 path: &#x27;&#x27;,
-                                redirectTo: &#x27;intro&#x27;,
+                                redirectTo: &#x27;sheets&#x27;,
                                 pathMatch: &#x27;full&#x27;,
                             },
                         ],

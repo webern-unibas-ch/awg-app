@@ -1,0 +1,14 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": []
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
+            "folios": []
+        }
+    ]
+}
