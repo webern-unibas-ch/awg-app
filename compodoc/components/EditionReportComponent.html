@@ -572,7 +572,7 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onSvgSheetSelect(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>onSvgSheetSelect(sheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -588,7 +588,7 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: onSvgSheetSelect.</p>
-<p>It navigates to the &#39;/edition/complex/{id}/detail&#39;
+<p>It navigates to the &#39;/edition/complex/{baseRoute}/sheets&#39;
 route with the given id.</p>
 </div>
 
@@ -606,7 +606,7 @@ route with the given id.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>sheetId</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -1046,18 +1046,18 @@ export class EditionReportComponent implements OnInit {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It navigates to the &#x27;/edition/complex/{id}/detail&#x27;
+     * It navigates to the &#x27;/edition/complex/{baseRoute}/sheets&#x27;
      * route with the given id.
      *
-     * @param {string} id The given svg sheet id.
+     * @param {string} sheetId The given svg sheet id.
      * @returns {void} Navigates to the edition detail.
      */
-    onSvgSheetSelect(id: string): void {
-        if (!id) {
-            id &#x3D; &#x27;&#x27;;
+    onSvgSheetSelect(sheetId: string): void {
+        if (!sheetId) {
+            sheetId &#x3D; &#x27;&#x27;;
         }
         const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { sketch: id },
+            queryParams: { id: sheetId },
             // .queryParamsHandling: &#x27;&#x27;,
         };
 

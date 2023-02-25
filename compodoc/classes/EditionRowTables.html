@@ -93,22 +93,19 @@ to store information about row tables.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#convolute" >convolute</a>
-                            </li>
-                            <li>
                                 <a href="#disabled" >disabled</a>
                             </li>
                             <li>
                                 <a href="#full" >full</a>
                             </li>
                             <li>
+                                <a href="#id" >id</a>
+                            </li>
+                            <li>
                                 <a href="#route" >route</a>
                             </li>
                             <li>
                                 <a href="#short" >short</a>
-                            </li>
-                            <li>
-                                <a href="#sketch" >sketch</a>
                             </li>
                         </ul>
                     </td>
@@ -133,38 +130,6 @@ to store information about row tables.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="convolute"></a>
-                    <span class="name">
-                        <span ><b>convolute</b></span>
-                        <a href="#convolute"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/models/edition-row-tables.model.ts:26</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>The convolute in which the row table is located.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="disabled"></a>
                     <span class="name">
                         <span ><b>disabled</b></span>
@@ -180,7 +145,7 @@ to store information about row tables.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/models/edition-row-tables.model.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/models/edition-row-tables.model.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -219,6 +184,38 @@ to store information about row tables.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>The full label of a row table.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="id"></a>
+                    <span class="name">
+                        <span ><b>id</b></span>
+                        <a href="#id"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/models/edition-row-tables.model.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The id of the sketch which contains the row table.</p>
 </div>
                 </td>
             </tr>
@@ -289,38 +286,6 @@ to store information about row tables.</p>
 
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="sketch"></a>
-                    <span class="name">
-                        <span ><b>sketch</b></span>
-                        <a href="#sketch"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/edition-view/models/edition-row-tables.model.ts:31</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>The sketch which contains the row table.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
 </section>
 
 
@@ -350,14 +315,9 @@ to store information about row tables.</p>
     full: string;
 
     /**
-     * The convolute in which the row table is located.
+     * The id of the sketch which contains the row table.
      */
-    convolute: string;
-
-    /**
-     * The sketch which contains the row table.
-     */
-    sketch: string;
+    id: string;
 
     /**
      * A boolean flag if the row table is diabled
