@@ -554,7 +554,7 @@ describe('NavbarComponent (DONE)', () => {
                     );
 
                     // Expect header and 3 dropdown items for each dropdown complex
-                    divDe.forEach((complexDe, index) => {
+                    divDe.forEach(complexDe => {
                         getAndExpectDebugElementByCss(complexDe, 'h6.dropdown-header', 1, 1);
                         getAndExpectDebugElementByCss(complexDe, 'a.dropdown-item', 3, 3);
                     });
@@ -667,154 +667,65 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
+            let expectedOrderOfRouterlinks: string[][];
+
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 18, 18);
 
                 // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
-            });
 
-            it('... can get 18 routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 18 routerLinks').toBe(18);
-            });
-
-            it('... can get correct routes from routerLinks', () => {
-                expect(routerLinks[0].linkParams).withContext(`should equal ['/home']`).toEqual(['/home']);
-
-                expect(routerLinks[1].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionRouteConstants.EDITION.route,
-                            expectedEditionRouteConstants.SERIES.route,
-                        ]}`
-                    )
-                    .toEqual([expectedEditionRouteConstants.EDITION.route, expectedEditionRouteConstants.SERIES.route]);
-
-                expect(routerLinks[2].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionRouteConstants.EDITION.route,
-                            expectedEditionRouteConstants.ROWTABLES.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionRouteConstants.EDITION.route,
-                        expectedEditionRouteConstants.ROWTABLES.route,
-                    ]);
-
-                let routerLinkIndex = 3;
-                expectedEditionComplexes.forEach(complex => {
-                    expect(routerLinks[routerLinkIndex].linkParams)
-                        .withContext(
-                            `should equal ${[complex.baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route]}`
-                        )
-                        .toEqual([complex.baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route]);
-
-                    expect(routerLinks[routerLinkIndex + 1].linkParams)
-                        .withContext(
-                            `should equal ${[complex.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]}`
-                        )
-                        .toEqual([complex.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
-
-                    expect(routerLinks[routerLinkIndex + 2].linkParams)
-                        .withContext(
-                            `should equal ${[complex.baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route]}`
-                        )
-                        .toEqual([complex.baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route]);
-
-                    routerLinkIndex += 3;
-                });
-
-                expect(routerLinks[routerLinkIndex].linkParams)
-                    .withContext(`should equal ['/structure']`)
-                    .toEqual(['/structure']);
-
-                expect(routerLinks[routerLinkIndex + 1].linkParams)
-                    .withContext(`should equal ['/data']`)
-                    .toEqual(['/data']);
-
-                expect(routerLinks[routerLinkIndex + 2].linkParams)
-                    .withContext(`should equal ['/contact']`)
-                    .toEqual(['/contact']);
-            });
-
-            it('... can click Home link in template', () => {
-                const homeLinkDe = linkDes[0]; // Home link DebugElement
-                const homeLink = routerLinks[0]; // Home link directive
-
-                const expectedRoute = ['/home'];
-
-                expect(homeLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                click(homeLinkDe);
-                fixture.detectChanges();
-
-                expect(homeLink.navigatedTo).toBeTruthy();
-                expect(homeLink.navigatedTo).withContext(`should equal ${expectedRoute}`).toEqual(expectedRoute);
-            });
-
-            it('... can click Edition link in template', () => {
-                const editionLinkDe = linkDes[3]; // Edition link DebugElement
-                const editionLink = routerLinks[3]; // Edition link directive
-
-                const expectedRoute = [
-                    expectedSelectedEditionComplex.baseRoute,
-                    expectedEditionRouteConstants.EDITION_INTRO.route,
+                expectedOrderOfRouterlinks = [
+                    ['/home'],
+                    [expectedEditionRouteConstants.EDITION.route, expectedEditionRouteConstants.SERIES.route],
+                    [expectedEditionRouteConstants.EDITION.route, expectedEditionRouteConstants.ROWTABLES.route],
+                    [expectedEditionComplexes[0].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
+                    [expectedEditionComplexes[0].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexes[0].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexes[1].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
+                    [expectedEditionComplexes[1].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexes[1].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexes[2].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
+                    [expectedEditionComplexes[2].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexes[2].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    [expectedEditionComplexes[3].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
+                    [expectedEditionComplexes[3].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexes[3].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    ['/structure'],
+                    ['/data'],
+                    ['/contact'],
                 ];
-
-                expect(editionLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                click(editionLinkDe);
-                fixture.detectChanges();
-
-                expect(editionLink.navigatedTo).toBeTruthy();
-                expect(editionLink.navigatedTo).withContext(`should equal ${expectedRoute}`).toEqual(expectedRoute);
             });
 
-            it('... can click Structure link in template', () => {
-                const structureLinkDe = linkDes[15]; // Structure link DebugElement
-                const structureLink = routerLinks[15]; // Structure link directive
-
-                const expectedRoute = ['/structure'];
-
-                expect(structureLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                click(structureLinkDe);
-                fixture.detectChanges();
-
-                expect(structureLink.navigatedTo).toBeTruthy();
-                expect(structureLink.navigatedTo).withContext(`should equal ${expectedRoute}`).toEqual(expectedRoute);
+            it('... can get correct numer of routerLinks from template', () => {
+                expect(routerLinks.length)
+                    .withContext(`should have ${expectedOrderOfRouterlinks.length} routerLinks`)
+                    .toBe(expectedOrderOfRouterlinks.length);
             });
 
-            it('... can click Data link in template', () => {
-                const dataLinkDe = linkDes[16]; // Data link DebugElement
-                const dataLink = routerLinks[16]; // Data link directive
-
-                const expectedRoute = ['/data'];
-
-                expect(dataLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                click(dataLinkDe);
-                fixture.detectChanges();
-
-                expect(dataLink.navigatedTo).toBeTruthy();
-                expect(dataLink.navigatedTo).withContext(`should equal ${expectedRoute}`).toEqual(expectedRoute);
+            it('... can get correct linkParams from template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    expect(routerLink.linkParams)
+                        .withContext(`should equal ${expectedOrderOfRouterlinks[index]}`)
+                        .toEqual(expectedOrderOfRouterlinks[index]);
+                });
             });
 
-            it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[17]; // Contact link DebugElement
-                const contactLink = routerLinks[17]; // Contact link directive
+            it('... can click all links in template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    const linkDe = linkDes[index];
+                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
-                const expectedRoute = ['/contact'];
+                    expect(routerLink.navigatedTo).toBeNull();
 
-                expect(contactLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+                    click(linkDe);
+                    fixture.detectChanges();
 
-                click(contactLinkDe);
-                fixture.detectChanges();
-
-                expect(contactLink.navigatedTo).toBeTruthy();
-                expect(contactLink.navigatedTo).withContext(`should equal ${expectedRoute}`).toEqual(expectedRoute);
+                    expect(routerLink.navigatedTo)
+                        .withContext(`should equal ${expectedRouterLink}`)
+                        .toEqual(expectedRouterLink);
+                });
             });
         });
     });

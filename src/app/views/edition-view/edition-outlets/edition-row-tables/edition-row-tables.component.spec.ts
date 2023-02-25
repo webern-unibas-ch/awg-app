@@ -1,11 +1,16 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { ReplaySubject } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall } from '@testing/expect-helper';
+import { click } from '@testing/click-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import { EditionRowTables } from '@awg-views/edition-view/models';
@@ -17,6 +22,9 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let component: EditionRowTablesComponent;
     let fixture: ComponentFixture<EditionRowTablesComponent>;
     let compDe: DebugElement;
+
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let editionServiceUpdateIsRowTablesViewSpy: Spy;
     let editionServiceClearIsRowTablesViewSpy: Spy;
@@ -41,8 +49,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         };
 
         await TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
-            declarations: [EditionRowTablesComponent],
+            declarations: [EditionRowTablesComponent, RouterLinkStubDirective],
             providers: [
                 { provide: EditionService, useValue: mockEditionService },
                 { provide: EditionDataService, useValue: mockEditionDataService },
@@ -71,7 +78,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have rowTablesData', () => {
+        it('... should not have `rowTablesData`', () => {
             expect(component.rowTablesData).toBeUndefined();
         });
 
@@ -81,6 +88,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         it('... should not have called EditionDataService', () => {
             expectSpyCall(editionDataServiceGetRowTablesSpy, 0);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain no outer div.row (yet)', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.row', 0, 0);
+            });
         });
     });
 
@@ -98,8 +111,203 @@ describe('EditionRowTablesComponent (DONE)', () => {
             expectSpyCall(editionDataServiceGetRowTablesSpy, 1);
         });
 
-        it('... should have rowTablesData', () => {
+        it('... should have received `rowTablesData`', () => {
             expect(component.rowTablesData).toEqual(EDITION_ROW_TABLES_DATA);
+        });
+
+        describe('VIEW', () => {
+            it('... should contain 1 outer div.row', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
+            });
+
+            it('... should contain as many inner div.col as entries in rowTablesData', () => {
+                expect(component.rowTablesData.length).toBe(13);
+
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+            });
+
+            it('... should contain 1 div.card with body and footer in each div.col ', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach(divDe => {
+                    getAndExpectDebugElementByCss(divDe, 'div.card', 1, 1);
+                    getAndExpectDebugElementByCss(divDe, 'div.card-body', 1, 1);
+                    getAndExpectDebugElementByCss(divDe, 'div.card-footer', 1, 1);
+                });
+            });
+
+            it('... should contain 1 h5.card-title in each div.card-body', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach(divDe => {
+                    getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                });
+            });
+
+            it('... should display the correct titles in h5.card-title', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach((divDe, index) => {
+                    const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    const headingEl = headingDe[0].nativeElement;
+
+                    const expectedHeading = 'Reihentabelle ' + component.rowTablesData[index].short;
+
+                    expect(headingEl.textContent).toBeTruthy();
+                    expect(headingEl.textContent.trim())
+                        .withContext(`should be ${expectedHeading}`)
+                        .toBe(expectedHeading);
+                });
+            });
+
+            it('... should text-mute the title of disabled rowtables', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach((divDe, index) => {
+                    const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
+                    const headingEl = headingDe[0].nativeElement;
+
+                    if (component.rowTablesData[index].disabled) {
+                        expect(headingEl.classList).toContain('text-muted');
+                    } else {
+                        expect(headingEl.classList).not.toContain('text-muted');
+                    }
+                });
+            });
+
+            it('... should contain 1 anchor button in each div.card-footer', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach(divDe => {
+                    getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                });
+            });
+
+            it('... should display the correct text in anchor buttons', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach((divDe, index) => {
+                    const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    const anchorEl = anchorDe[0].nativeElement;
+
+                    const expectedText = 'Mehr...';
+
+                    expect(anchorEl.textContent).toBeTruthy();
+                    expect(anchorEl.textContent.trim()).withContext(`should be ${expectedText}`).toBe(expectedText);
+                });
+            });
+
+            it('... should disable the buttons of disabled rowtables', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.col',
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                divDes.forEach((divDe, index) => {
+                    const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
+                    const anchorEl = anchorDe[0].nativeElement;
+
+                    if (component.rowTablesData[index].disabled) {
+                        expect(anchorEl.classList).toContain('disabled');
+                    } else {
+                        expect(anchorEl.classList).not.toContain('disabled');
+                    }
+                });
+            });
+        });
+
+        describe('[routerLink]', () => {
+            beforeEach(() => {
+                // Find DebugElements with an attached RouterLinkStubDirective
+                linkDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    RouterLinkStubDirective,
+                    component.rowTablesData.length,
+                    component.rowTablesData.length
+                );
+
+                // Get attached link directive instances using each DebugElement's injector
+                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            });
+
+            it('... can get correct number of routerLinks from template', () => {
+                expect(routerLinks.length)
+                    .withContext(`should have ${component.rowTablesData.length} routerLinks`)
+                    .toBe(component.rowTablesData.length);
+            });
+
+            it('... can get correct linkParams from template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    const expectedRouterLink = ['../complex' + component.rowTablesData[index].route, 'sheets'];
+
+                    expect(routerLink.linkParams)
+                        .withContext(`should equal ${expectedRouterLink}}`)
+                        .toEqual(expectedRouterLink);
+                });
+            });
+
+            it('... can get correct queryParams from template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    const expectedQueryParams = { id: component.rowTablesData[index].id };
+
+                    expect(routerLink.queryParams)
+                        .withContext(`should equal ${expectedQueryParams}}`)
+                        .toEqual(expectedQueryParams);
+                });
+            });
+
+            it('... can click all links in template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    const linkDe = linkDes[index];
+                    const expectedRouterLink = ['../complex' + component.rowTablesData[index].route, 'sheets'];
+
+                    expect(routerLink.navigatedTo).toBeNull();
+
+                    click(linkDe);
+                    fixture.detectChanges();
+
+                    expect(routerLink.navigatedTo)
+                        .withContext(`should equal ${expectedRouterLink}`)
+                        .toEqual(expectedRouterLink);
+                });
+            });
         });
 
         describe('#ngOnDestroy', () => {

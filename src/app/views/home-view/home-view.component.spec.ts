@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { click } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -46,6 +47,7 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedEditionComplexOp12: EditionComplex;
     let expectedEditionComplexOp25: EditionComplex;
+    let expectedEditionComplexM30: EditionComplex;
     let expectedEditionComplexM34: EditionComplex;
 
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -69,6 +71,7 @@ describe('HomeViewComponent (DONE)', () => {
         // Test data
         expectedEditionComplexOp12 = EDITION_COMPLEXES.OP12;
         expectedEditionComplexOp25 = EDITION_COMPLEXES.OP25;
+        expectedEditionComplexM30 = EDITION_COMPLEXES.M30;
         expectedEditionComplexM34 = EDITION_COMPLEXES.M34;
 
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
@@ -109,6 +112,13 @@ describe('HomeViewComponent (DONE)', () => {
             expect(component.EDITION_COMPLEX_OP25)
                 .withContext(`should be ${expectedEditionComplexOp25}`)
                 .toEqual(expectedEditionComplexOp25);
+        });
+
+        it('should have edition complex for M 30', () => {
+            expect(component.EDITION_COMPLEX_M30).toBeDefined();
+            expect(component.EDITION_COMPLEX_M30)
+                .withContext(`should be ${expectedEditionComplexM30}`)
+                .toEqual(expectedEditionComplexM30);
         });
 
         it('should have edition complex for M 34', () => {
@@ -231,10 +241,10 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(a3El.textContent).withContext('should be empty string').not.toBeTruthy();
             });
 
-            it('... should have one h6 and one h3 in second div.para', () => {
+            it('... should have one h6 and two h3 in second div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
                 getAndExpectDebugElementByCss(divDes[1], 'h6.awg-breadcrumb', 1, 1);
-                getAndExpectDebugElementByCss(divDes[1], 'h3.awg-edition-info-header', 1, 1);
+                getAndExpectDebugElementByCss(divDes[1], 'h3.awg-edition-info-header', 2, 2);
             });
 
             it('... should not render bread crumb header in second div.para yet', () => {
@@ -251,15 +261,18 @@ describe('HomeViewComponent (DONE)', () => {
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[1],
                     'h3.awg-edition-info-header .awg-edition-info-header-title',
-                    1,
-                    1
+                    2,
+                    2
                 );
 
                 const title1El = titleDes[0].nativeElement;
+                const title2El = titleDes[1].nativeElement;
 
                 expect(title1El).toBeDefined();
+                expect(title2El).toBeDefined();
 
                 expect(title1El.textContent).withContext('should be empty string').not.toBeTruthy();
+                expect(title2El.textContent).withContext('should be empty string').not.toBeTruthy();
             });
 
             it('... should not render catalogue of edition info headers in second div.para yet', () => {
@@ -267,22 +280,29 @@ describe('HomeViewComponent (DONE)', () => {
                 const catalogueDes = getAndExpectDebugElementByCss(
                     divDes[1],
                     '.awg-edition-info-header .awg-edition-info-header-catalogue',
-                    1,
-                    1
+                    2,
+                    2
                 );
                 const catalogue1El = catalogueDes[0].nativeElement;
+                const catalogue2El = catalogueDes[1].nativeElement;
 
                 expect(catalogue1El).toBeDefined();
+                expect(catalogue2El).toBeDefined();
                 expect(catalogue1El.innerHTML).withContext('should be empty string').not.toBeTruthy();
+                expect(catalogue2El.innerHTML).withContext('should be empty string').not.toBeTruthy();
             });
 
             it('... should not render links of edition info headers in second div.para yet', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const aDes = getAndExpectDebugElementByCss(divDes[1], '.awg-edition-info-header a', 1, 1);
+                const aDes = getAndExpectDebugElementByCss(divDes[1], '.awg-edition-info-header a', 2, 2);
+
                 const a1El = aDes[0].nativeElement;
+                const a2El = aDes[1].nativeElement;
 
                 expect(a1El).toBeDefined();
+                expect(a2El).toBeDefined();
                 expect(a1El.textContent).withContext('should be empty string').not.toBeTruthy();
+                expect(a2El.textContent).withContext('should be empty string').not.toBeTruthy();
             });
 
             describe('... should not render links to', () => {
@@ -508,7 +528,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(divDes[1], 'h6.awg-breadcrumb', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                const expectedBreadCrumb = ` ${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionComplexM34.series.full} / ${expectedEditionComplexM34.section.full} `;
+                const expectedBreadCrumb = ` ${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionComplexM34.series.full} / ${expectedEditionComplexM30.section.full} `;
 
                 expect(headerEl).toBeDefined();
                 expect(headerEl.textContent).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -519,13 +539,18 @@ describe('HomeViewComponent (DONE)', () => {
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[1],
                     'h3.awg-edition-info-header .awg-edition-info-header-title',
-                    1,
-                    1
+                    2,
+                    2
                 );
-                const title0El = titleDes[0].nativeElement;
+                const title1El = titleDes[0].nativeElement;
+                const title2El = titleDes[1].nativeElement;
 
-                expect(title0El).toBeDefined();
-                expect(title0El.innerHTML)
+                expect(title1El).toBeDefined();
+                expect(title2El).toBeDefined();
+                expect(title1El.innerHTML)
+                    .withContext(`should be ${expectedEditionComplexM30.titleStatement.title}`)
+                    .toBe(expectedEditionComplexM30.titleStatement.title);
+                expect(title2El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexM34.titleStatement.title}`)
                     .toBe(expectedEditionComplexM34.titleStatement.title);
             });
@@ -535,24 +560,35 @@ describe('HomeViewComponent (DONE)', () => {
                 const catalogueDes = getAndExpectDebugElementByCss(
                     divDes[1],
                     '.awg-edition-info-header .awg-edition-info-header-catalogue',
-                    1,
-                    1
+                    2,
+                    2
                 );
-                const catalogue0El = catalogueDes[0].nativeElement;
+                const catalogue1El = catalogueDes[0].nativeElement;
+                const catalogue2El = catalogueDes[1].nativeElement;
 
-                expect(catalogue0El).toBeDefined();
-                expect(catalogue0El.innerHTML)
+                expect(catalogue1El).toBeDefined();
+                expect(catalogue2El).toBeDefined();
+                expect(catalogue1El.innerHTML)
+                    .withContext(`should be ${expectedEditionComplexM30.complexId.short}`)
+                    .toBe(expectedEditionComplexM30.complexId.short);
+                expect(catalogue2El.innerHTML)
                     .withContext(`should be ${expectedEditionComplexM34.complexId.short}`)
                     .toBe(expectedEditionComplexM34.complexId.short);
             });
 
             it('... should render edition type links in second div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const aDes = getAndExpectDebugElementByCss(divDes[1], '.awg-edition-info-header a', 1, 1);
-                const a0El = aDes[0].nativeElement;
+                const aDes = getAndExpectDebugElementByCss(divDes[1], '.awg-edition-info-header a', 2, 2);
 
-                expect(a0El).toBeDefined();
-                expect(a0El.textContent)
+                const a1El = aDes[0].nativeElement;
+                const a2El = aDes[1].nativeElement;
+
+                expect(a1El).toBeDefined();
+                expect(a2El).toBeDefined();
+                expect(a1El.textContent)
+                    .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
+                    .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
+                expect(a2El.textContent)
                     .withContext(`should be ${expectedEditionTypeConstants.SKETCH_EDITION.full}`)
                     .toBe(expectedEditionTypeConstants.SKETCH_EDITION.full);
             });
@@ -663,229 +699,61 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
+            let expectedOrderOfRouterlinks: string[][];
+
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 12, 12);
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 14, 14);
 
                 // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+
+                expectedOrderOfRouterlinks = [
+                    [expectedEditionComplexOp12.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_GRAPH.route],
+                    [expectedEditionComplexM30.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    ['/structure'],
+                    [expectedEditionComplexOp12.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexM30.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    [expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
+                    ['/edition', 'row-tables'],
+                    ['/data/search', 'fulltext'],
+                    ['/data/search', 'extended'],
+                    ['/contact'],
+                ];
             });
 
-            it('... can get routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 12 routerLinks').toBe(12);
-
-                expect(routerLinks[0].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp12.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexOp12.baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
-
-                expect(routerLinks[1].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp25.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexOp25.baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
-
-                expect(routerLinks[2].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp25.baseRoute,
-                            expectedEditionRouteConstants.EDITION_GRAPH.route,
-                        ]}`
-                    )
-                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_GRAPH.route]);
-
-                expect(routerLinks[3].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexM34.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
-
-                expect(routerLinks[4].linkParams)
-                    .withContext(`should equal ${['/structure']}`)
-                    .toEqual(['/structure']);
-
-                expect(routerLinks[5].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp12.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexOp12.baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
-
-                expect(routerLinks[6].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp25.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexOp25.baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
-
-                expect(routerLinks[7].linkParams)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexM34.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([expectedEditionComplexM34.baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route]);
-
-                expect(routerLinks[8].linkParams)
-                    .withContext(`should equal ${['/edition', 'row-tables']}`)
-                    .toEqual(['/edition', 'row-tables']);
-
-                expect(routerLinks[9].linkParams)
-                    .withContext(`should equal ${['/data/search', 'fulltext']}`)
-                    .toEqual(['/data/search', 'fulltext']);
-
-                expect(routerLinks[10].linkParams)
-                    .withContext(`should equal ${['/data/search', 'extended']}`)
-                    .toEqual(['/data/search', 'extended']);
-
-                expect(routerLinks[11].linkParams)
-                    .withContext(`should equal ${['/contact']}`)
-                    .toEqual(['/contact']);
+            it('... can get correct number of routerLinks from template', () => {
+                expect(routerLinks.length)
+                    .withContext(`should have ${expectedOrderOfRouterlinks.length} routerLinks`)
+                    .toBe(expectedOrderOfRouterlinks.length);
             });
 
-            it('... can click `sheets` link in template', () => {
-                const sheetsLinkDe = linkDes[1]; // Sheets link DebugElement
-                const sheetsLink = routerLinks[1]; // Sheets link directive
-
-                expect(sheetsLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                sheetsLinkDe.triggerEventHandler('click', null);
-
-                fixture.detectChanges();
-
-                expect(sheetsLink.navigatedTo)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp25.baseRoute,
-                            expectedEditionRouteConstants.EDITION_SHEETS.route,
-                        ]}`
-                    )
-                    .toEqual([
-                        expectedEditionComplexOp25.baseRoute,
-                        expectedEditionRouteConstants.EDITION_SHEETS.route,
-                    ]);
+            it('... can get correct linkParams from template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    expect(routerLink.linkParams)
+                        .withContext(`should equal ${expectedOrderOfRouterlinks[index]}`)
+                        .toEqual(expectedOrderOfRouterlinks[index]);
+                });
             });
 
-            it('... can click `graph` link in template', () => {
-                const graphLinkDe = linkDes[2]; // Gaph link DebugElement
-                const graphLink = routerLinks[2]; // Graph link directive
+            it('... can click all links in template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    const linkDe = linkDes[index];
+                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
 
-                expect(graphLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
+                    expect(routerLink.navigatedTo).toBeNull();
 
-                graphLinkDe.triggerEventHandler('click', null);
+                    click(linkDe);
+                    fixture.detectChanges();
 
-                fixture.detectChanges();
-
-                expect(graphLink.navigatedTo)
-                    .withContext(
-                        `should equal ${[
-                            expectedEditionComplexOp25.baseRoute,
-                            expectedEditionRouteConstants.EDITION_GRAPH.route,
-                        ]}`
-                    )
-                    .toEqual([expectedEditionComplexOp25.baseRoute, expectedEditionRouteConstants.EDITION_GRAPH.route]);
-            });
-
-            it('... can click `structure` link in template', () => {
-                const structureLinkDe = linkDes[4]; // Structure link DebugElement
-                const structureLink = routerLinks[4]; // Structure link directive
-
-                expect(structureLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                structureLinkDe.triggerEventHandler('click', null);
-
-                fixture.detectChanges();
-
-                expect(structureLink.navigatedTo)
-                    .withContext(`should equal ${['/structure']}`)
-                    .toEqual(['/structure']);
-            });
-
-            it('... can click `row tables` link in template', () => {
-                const rowTablesLinkDe = linkDes[8]; // RowTables link DebugElement
-                const rowTablesLink = routerLinks[8]; // RowTables link directive
-
-                expect(rowTablesLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                rowTablesLinkDe.triggerEventHandler('click', null);
-
-                fixture.detectChanges();
-
-                expect(rowTablesLink.navigatedTo)
-                    .withContext(`should equal ${['/edition', 'row-tables']}`)
-                    .toEqual(['/edition', 'row-tables']);
-            });
-
-            it('... can click `fulltext search` link in template', () => {
-                const searchLinkDe = linkDes[9]; // Fulltext search link DebugElement
-                const searchLink = routerLinks[9]; // Fulltext search link directive
-
-                expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                searchLinkDe.triggerEventHandler('click', null);
-
-                fixture.detectChanges();
-
-                expect(searchLink.navigatedTo)
-                    .withContext(`should equal ${['/data/search', 'fulltext']}`)
-                    .toEqual(['/data/search', 'fulltext']);
-            });
-
-            it('... can click `extended search` link in template', () => {
-                const searchLinkDe = linkDes[10]; // Extended search link DebugElement
-                const searchLink = routerLinks[10]; // Extended search link directive
-
-                expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                searchLinkDe.triggerEventHandler('click', null);
-
-                fixture.detectChanges();
-
-                expect(searchLink.navigatedTo)
-                    .withContext(`should equal ${['/data/search', 'extended']}`)
-                    .toEqual(['/data/search', 'extended']);
-            });
-
-            it('... can click `contact` link in template', () => {
-                const searchLinkDe = linkDes[11]; // Contact link DebugElement
-                const searchLink = routerLinks[11]; // Contact link directive
-
-                expect(searchLink.navigatedTo).withContext('should not have navigated yet').toBeNull();
-
-                searchLinkDe.triggerEventHandler('click', null);
-
-                fixture.detectChanges();
-
-                expect(searchLink.navigatedTo)
-                    .withContext(`should equal ${['/contact']}`)
-                    .toEqual(['/contact']);
+                    expect(routerLink.navigatedTo)
+                        .withContext(`should equal ${expectedRouterLink}`)
+                        .toEqual(expectedRouterLink);
+                });
             });
         });
     });

@@ -8,8 +8,8 @@
             </div>
             <div class="card-footer text-end">
                 <a
-                    [routerLink]="['./../complex' + rowTable.route, 'sheets']"
-                    [queryParams]="{ convolute: rowTable.convolute, sketch: rowTable.sketch }"
+                    [routerLink]="['../complex' + rowTable.route, 'sheets']"
+                    [queryParams]="{ id: rowTable.id }"
                     class="btn btn-outline-info"
                     [ngClass]="{ disabled: rowTable.disabled }"
                     >Mehr...

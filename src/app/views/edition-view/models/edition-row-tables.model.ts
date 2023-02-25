@@ -21,14 +21,9 @@ export class EditionRowTables {
     full: string;
 
     /**
-     * The convolute in which the row table is located.
+     * The id of the sketch which contains the row table.
      */
-    convolute: string;
-
-    /**
-     * The sketch which contains the row table.
-     */
-    sketch: string;
+    id: string;
 
     /**
      * A boolean flag if the row table is diabled

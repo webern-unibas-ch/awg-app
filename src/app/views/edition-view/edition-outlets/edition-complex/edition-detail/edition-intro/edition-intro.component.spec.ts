@@ -450,7 +450,7 @@ describe('IntroComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 const qp = {
-                    queryParams: { sketch: expectedSvgSheet.id },
+                    queryParams: { id: expectedSvgSheet.id },
                     queryParamsHandling: '',
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
@@ -462,7 +462,7 @@ describe('IntroComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSvgSheet.id);
                 fixture.detectChanges();
 
-                qp.queryParams.sketch = expectedNextSvgSheet.id;
+                qp.queryParams.id = expectedNextSvgSheet.id;
                 expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
                 expectSpyCall(navigationSpy, 2, [
                     [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
@@ -475,7 +475,7 @@ describe('IntroComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 const qp = {
-                    queryParams: { sketch: expectedSvgSheet.id },
+                    queryParams: { id: expectedSvgSheet.id },
                     queryParamsHandling: '',
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
@@ -485,7 +485,7 @@ describe('IntroComponent (DONE)', () => {
                 ]);
 
                 const noId = '';
-                qp.queryParams.sketch = noId;
+                qp.queryParams.id = noId;
                 component.selectSvgSheet(noId);
                 fixture.detectChanges();
 

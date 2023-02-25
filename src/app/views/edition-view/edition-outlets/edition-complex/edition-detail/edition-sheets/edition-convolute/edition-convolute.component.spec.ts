@@ -53,6 +53,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedFolioLegends: IFolioLegend[];
+    let expectedFragment: string;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
@@ -79,6 +80,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
         expectedSelectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
 
         expectedFolioLegends = [
             {
@@ -371,9 +373,18 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLinks from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+            });
+
+            it('... can get correct linkParams from template', () => {
                 expect(routerLinks[0].linkParams).withContext(`should equal ['../report']`).toEqual(['../report']);
+            });
+
+            it('... can get correct fragment from template', () => {
+                expect(routerLinks[0].fragment)
+                    .withContext(`should equal ${expectedFragment}`)
+                    .toEqual(expectedFragment);
             });
 
             it('... can click report link in template', () => {
@@ -396,8 +407,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 click(reportLinkDe);
                 fixture.detectChanges();
-
-                const expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
 
                 expect(reportLink.navigatedTo).withContext(`should equal ['../report']`).toEqual(['../report']);
                 expect(reportLink.navigatedToFragment)

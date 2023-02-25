@@ -189,8 +189,11 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+            });
+
+            it('... can get correct linkParams from template', () => {
                 expect(routerLinks[0].linkParams).withContext(`should equal ['/home']`).toEqual(['/home']);
             });
 
