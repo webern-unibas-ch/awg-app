@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
 /**
  * The IFolioLegend interface.
@@ -37,14 +37,6 @@ interface IFolioLegend {
 })
 export class EditionConvoluteComponent {
     /**
-     * Input variable: folios.
-     *
-     * It keeps the folios of the edition detail.
-     */
-    @Input()
-    folioConvoluteData: FolioConvoluteList;
-
-    /**
      * Public variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -68,14 +60,6 @@ export class EditionConvoluteComponent {
      */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Output variable: selectConvoluteRequest.
-     *
-     * It keeps an event emitter for the selected convolute.
-     */
-    @Output()
-    selectConvoluteRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output variable: selectSvgSheetRequest.
@@ -126,22 +110,6 @@ export class EditionConvoluteComponent {
             return;
         }
         this.openModalRequest.emit(id);
-    }
-
-    /**
-     * Public method: selectConvolute.
-     *
-     * It sets a given id to the
-     * to the selectedConvolute.
-     *
-     * @param {string} id The given id.
-     * @returns {void} Sets the selectedConvolute variable.
-     */
-    selectConvolute(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.selectConvoluteRequest.emit(id);
     }
 
     /**

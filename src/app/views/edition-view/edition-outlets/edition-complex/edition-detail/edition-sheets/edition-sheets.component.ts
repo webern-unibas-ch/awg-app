@@ -199,42 +199,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onConvoluteSelect.
-     *
-     * It selects a convolute by its id.
-     *
-     * @param {string} id The given id.
-     * @returns {void} Sets the selectedConvolute variable.
-     */
-    onConvoluteSelect(id: string): void {
-        if (!id) {
-            id = this.folioConvoluteData.convolutes[0].convoluteId || '';
-        }
-        const convolute: FolioConvolute = this._findConvolute(id);
-
-        if (!this.utils.isNotEmptyArray(convolute.folios)) {
-            // If no folio data provided, open modal
-            if (convolute.linkTo) {
-                this.modal.open(convolute.linkTo);
-                return;
-            }
-        }
-        this.selectedConvolute = convolute;
-
-        const navigationExtras: NavigationExtras = {
-            queryParams: {
-                convolute: convolute.convoluteId,
-                sketch: this.svgSheetsData.sheets.sketchEditions[0].id,
-            },
-        };
-
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
-            navigationExtras
-        );
-    }
-
-    /**
      * Public method: onLinkBoxSelect.
      *
      * It finds the target SVG sheet of a link box and selects it.
@@ -454,25 +418,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _getConvoluteParams.
-     *
-     * It checks the route params for a convolute param
-     * and returns the id of the selected convolute.
-     *
-     * @default first entry of this.folioConvoluteData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected convolute.
-     */
-    private _getConvoluteParams(queryParams?: ParamMap): string {
-        // If there is no id in query params
-        // Take first entry of folio convolute data as default
-        return queryParams.get('convolute')
-            ? queryParams.get('convolute')
-            : this.folioConvoluteData.convolutes[0].convoluteId;
-    }
-
-    /**
      * Private method: _getSheetContent.
      *
      * It gets the content of an SVG sheet by its id within a given array of sheets.
@@ -483,19 +428,12 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {EditionSvgSheet} The sheet that was found.
      */
     private _getSheetContent(sheets: EditionSvgSheet[], sheetIndex: number, id: string): EditionSvgSheet {
-        let sheet = new EditionSvgSheet();
-        let partialIndex = -1;
+        const sheet = { ...sheets[sheetIndex] };
 
-        // Copy filtered sheets data for output
-        sheet = {
-            ...sheets[sheetIndex],
-        };
+        const partialIndex = this._findSvgSheetPartialIndex(sheet, id);
 
-        partialIndex = this._findSvgSheetPartialIndex(sheet, id);
-
-        // Reduce content array to the SVG of partial id only
         if (partialIndex >= 0) {
-            sheet.content = [sheets[sheetIndex].content[partialIndex]];
+            sheet.content = [sheet.content[partialIndex]];
         }
 
         return sheet;

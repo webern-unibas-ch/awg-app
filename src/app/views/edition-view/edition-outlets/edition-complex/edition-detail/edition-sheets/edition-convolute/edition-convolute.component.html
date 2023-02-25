@@ -2,23 +2,14 @@
     <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">
         <ng-template ngbPanelContent>
             <!-- convolute dropDown -->
-            <div class="awg-convolute-dropdown d-inline-block" ngbDropdown>
-                <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
-                    <span>{{ selectedConvolute.convoluteLabel }}</span>
-                </a>
-                <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
-                    <a
-                        class="dropdown-item awg-convolute-dropdown-item"
-                        *ngFor="let convolute of folioConvoluteData.convolutes"
-                        (click)="selectConvolute(convolute.convoluteId)"
-                        >{{ convolute.convoluteLabel }}</a
-                    >
-                </div>
-            </div>
+            <p>
+                <a [routerLink]="['../report']" fragment="source{{ selectedConvolute.convoluteId }}">{{
+                    selectedConvolute.convoluteLabel
+                }}</a>
+            </p>
 
             <!-- folio overview -->
             <awg-edition-folio
-                *ngIf="selectedConvolute && selectedSvgSheet"
                 [selectedConvolute]="selectedConvolute"
                 [selectedSvgSheet]="selectedSvgSheet"
                 (openModalRequest)="openModal($event)"
