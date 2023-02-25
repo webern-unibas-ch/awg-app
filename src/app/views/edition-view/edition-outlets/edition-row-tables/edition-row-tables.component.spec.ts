@@ -267,11 +267,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length)
-                    .withContext('should have 13 routerLinks')
+                    .withContext(`should have ${component.rowTablesData.length} routerLinks`)
                     .toBe(component.rowTablesData.length);
+            });
 
+            it('... can get correct linkParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
                     const expectedRouterLink = ['../complex' + component.rowTablesData[index].route, 'sheets'];
 
@@ -281,11 +283,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 });
             });
 
-            it('... can get queryParams from template', () => {
-                expect(routerLinks.length)
-                    .withContext('should have 13 routerLinks')
-                    .toBe(component.rowTablesData.length);
-
+            it('... can get correct queryParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
                     const expectedQueryParams = { id: component.rowTablesData[index].id };
 
@@ -296,10 +294,6 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
 
             it('... can click all links in template', () => {
-                expect(routerLinks.length)
-                    .withContext('should have 13 routerLinks')
-                    .toBe(component.rowTablesData.length);
-
                 routerLinks.forEach((routerLink, index) => {
                     const linkDe = linkDes[index];
                     const expectedRouterLink = ['../complex' + component.rowTablesData[index].route, 'sheets'];

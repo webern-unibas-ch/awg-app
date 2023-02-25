@@ -385,20 +385,19 @@ describe('EditionComplexCardComponent (DONE)', () => {
                 });
             });
 
-            it('... can click routerLinks in template', () => {
-                expect(routerLinks.length)
-                    .withContext(`should have ${expectedComplexes.length} routerLinks`)
-                    .toBe(expectedComplexes.length);
-
+            it('... can click all links in template', () => {
                 routerLinks.forEach((routerLink, index) => {
+                    const linkDe = linkDes[index];
+                    const expectedRouterLink = [expectedComplexes[index].complex.baseRoute];
+
                     expect(routerLink.navigatedTo).toBeNull();
 
-                    click(linkDes[index]);
+                    click(linkDe);
                     fixture.detectChanges();
 
                     expect(routerLink.navigatedTo)
-                        .withContext(`should equal ${expectedComplexes[index].complex.baseRoute}`)
-                        .toEqual([expectedComplexes[index].complex.baseRoute]);
+                        .withContext(`should equal ${expectedRouterLink}`)
+                        .toEqual(expectedRouterLink);
                 });
             });
         });

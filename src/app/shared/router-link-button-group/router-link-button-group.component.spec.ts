@@ -26,6 +26,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let routerLinks;
 
     let expectedRouterLinkButtons: RouterLinkButton[];
+    let expectedOrderOfRouterlinks: string[][];
     let expectedQueryParamsHandling: QueryParamsHandling;
 
     let selectButtonSpy: Spy;
@@ -43,10 +44,25 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedOrderOfRouterlinks = [
+            ['/data/search', 'fulltext'],
+            ['/data/search', 'timeline'],
+            ['/data/search', 'bibliography'],
+        ];
         expectedRouterLinkButtons = [
-            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
-            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
+            new RouterLinkButton(
+                expectedOrderOfRouterlinks[0][0],
+                expectedOrderOfRouterlinks[0][1],
+                'Volltext-Suche',
+                false
+            ),
+            new RouterLinkButton(expectedOrderOfRouterlinks[1][0], expectedOrderOfRouterlinks[1][1], 'Timeline', true),
+            new RouterLinkButton(
+                expectedOrderOfRouterlinks[2][0],
+                expectedOrderOfRouterlinks[2][1],
+                'Bibliographie',
+                true
+            ),
         ];
         expectedQueryParamsHandling = 'preserve';
 
@@ -114,76 +130,80 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 3 buttons', () => {
-                getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
+            it('... should contain as many buttons as given routerLinkButtons', () => {
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'button.btn',
+                    expectedRouterLinkButtons.length,
+                    expectedRouterLinkButtons.length
+                );
             });
 
             it('... should disable buttons if necessary', () => {
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
-                const btn0El = btnDes[0].nativeElement;
-                const btn1El = btnDes[1].nativeElement;
-                const btn2El = btnDes[2].nativeElement;
+                const btnDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'button.btn',
+                    expectedRouterLinkButtons.length,
+                    expectedRouterLinkButtons.length
+                );
 
-                expect(btn0El.disabled).toBeDefined();
-                expect(btn0El.disabled)
-                    .withContext('should not be disabled')
-                    .toBe(expectedRouterLinkButtons[0].disabled);
+                btnDes.forEach((btnDe, index) => {
+                    const btnEl = btnDe.nativeElement;
 
-                expect(btn1El.disabled).toBeDefined();
-                expect(btn1El.disabled).withContext('should be disabled').toBe(expectedRouterLinkButtons[1].disabled);
-
-                expect(btn2El.disabled).toBeDefined();
-                expect(btn2El.disabled).withContext('should be disabled').toBe(expectedRouterLinkButtons[2].disabled);
+                    if (expectedRouterLinkButtons[index].disabled) {
+                        expect(btnEl.disabled).toBeDefined();
+                        expect(btnEl.disabled).withContext('should be disabled').toBe(true);
+                    } else {
+                        expect(btnEl.disabled).toBeDefined();
+                        expect(btnEl.disabled).withContext('should not be disabled').toBe(false);
+                    }
+                });
             });
 
             it('... should render button labels', () => {
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
-                const btn0El = btnDes[0].nativeElement;
-                const btn1El = btnDes[1].nativeElement;
-                const btn2El = btnDes[2].nativeElement;
+                const btnDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'button.btn',
+                    expectedRouterLinkButtons.length,
+                    expectedRouterLinkButtons.length
+                );
+                btnDes.forEach((btnDe, index) => {
+                    const btnEl = btnDe.nativeElement;
 
-                expect(btn0El.textContent).toBeTruthy();
-                expect(btn0El.textContent.trim())
-                    .withContext(`should be ${expectedRouterLinkButtons[0].label}`)
-                    .toBe(expectedRouterLinkButtons[0].label.trim());
-
-                expect(btn1El.textContent).toBeTruthy();
-                expect(btn1El.textContent.trim())
-                    .withContext(`should be ${expectedRouterLinkButtons[1].label}`)
-                    .toMatch(expectedRouterLinkButtons[1].label.trim());
-
-                expect(btn2El.textContent).toBeTruthy();
-                expect(btn2El.textContent.trim())
-                    .withContext(`should be ${expectedRouterLinkButtons[2].label}`)
-                    .toBe(expectedRouterLinkButtons[2].label.trim());
+                    expect(btnEl.textContent).toBeTruthy();
+                    expect(btnEl.textContent.trim())
+                        .withContext(`should be ${expectedRouterLinkButtons[index].label}`)
+                        .toBe(expectedRouterLinkButtons[index].label.trim());
+                });
             });
         });
 
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 3, 3);
+                linkDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    RouterLinkStubDirective,
+                    expectedRouterLinkButtons.length,
+                    expectedRouterLinkButtons.length
+                );
 
                 // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 3 routerLinks').toBe(3);
+                expect(routerLinks.length)
+                    .withContext(`should have ${expectedRouterLinkButtons.length} routerLinks`)
+                    .toBe(expectedRouterLinkButtons.length);
             });
 
-            it('... can get correct paths from routerLinks', () => {
-                expect(routerLinks[0].linkParams)
-                    .withContext(`should equal ['/data/search', 'fulltext']`)
-                    .toEqual(['/data/search', 'fulltext']);
-
-                expect(routerLinks[1].linkParams)
-                    .withContext(`should equal ['/data/search', 'timeline']`)
-                    .toEqual(['/data/search', 'timeline']);
-
-                expect(routerLinks[2].linkParams)
-                    .withContext(`should equal ['/data/search', 'bibliography']`)
-                    .toEqual(['/data/search', 'bibliography']);
+            it('... can get correct linkParams from routerLinks', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    expect(routerLink.linkParams)
+                        .withContext(`should be ${expectedOrderOfRouterlinks[index]}`)
+                        .toEqual(expectedOrderOfRouterlinks[index]);
+                });
             });
 
             it('... can click fulltext link in template', () => {
@@ -198,6 +218,22 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 expect(fulltextLink.navigatedTo)
                     .withContext(`should equal ['/data/search', 'fulltext']`)
                     .toEqual(['/data/search', 'fulltext']);
+            });
+
+            it('... can click all links in template', () => {
+                routerLinks.forEach((routerLink, index) => {
+                    const linkDe = linkDes[index];
+                    const expectedRouterLink = expectedOrderOfRouterlinks[index];
+
+                    expect(routerLink.navigatedTo).toBeNull();
+
+                    click(linkDe);
+                    fixture.detectChanges();
+
+                    expect(routerLink.navigatedTo)
+                        .withContext(`should equal ${expectedRouterLink}`)
+                        .toEqual(expectedRouterLink);
+                });
             });
         });
 
