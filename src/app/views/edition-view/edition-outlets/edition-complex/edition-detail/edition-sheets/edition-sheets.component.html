@@ -7,7 +7,7 @@
     <!-- accolade view -->
     <awg-edition-accolade
         *ngIf="svgSheetsData && selectedSvgSheet"
-        [svgSheetsData]="filteredSvgSheetsData"
+        [svgSheetsData]="svgSheetsData"
         [selectedSvgSheet]="selectedSvgSheet"
         [selectedTextcritics]="selectedTextcritics"
         [selectedTextcriticalComments]="selectedTextcriticalComments"
@@ -20,12 +20,10 @@
 
     <!-- convolute view -->
     <awg-edition-convolute
-        *ngIf="folioConvoluteData && selectedConvolute && selectedSvgSheet"
-        [folioConvoluteData]="folioConvoluteData"
+        *ngIf="selectedConvolute && selectedSvgSheet"
         [selectedConvolute]="selectedConvolute"
         [selectedSvgSheet]="selectedSvgSheet"
         (openModalRequest)="modal.open($event)"
-        (selectConvoluteRequest)="onConvoluteSelect($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)">
     </awg-edition-convolute>
 </div>

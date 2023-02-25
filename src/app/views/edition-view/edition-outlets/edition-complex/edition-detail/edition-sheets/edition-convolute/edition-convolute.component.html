@@ -1,32 +1,25 @@
 <ngb-accordion activeIds="awg-convolute-view">
     <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">
         <ng-template ngbPanelContent>
-            <!-- convolute dropDown -->
-            <div class="awg-convolute-dropdown d-inline-block" ngbDropdown>
-                <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
-                    <span>{{ selectedConvolute.convoluteLabel }}</span>
-                </a>
-                <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
-                    <a
-                        class="dropdown-item awg-convolute-dropdown-item"
-                        *ngFor="let convolute of folioConvoluteData.convolutes"
-                        (click)="selectConvolute(convolute.convoluteId)"
-                        >{{ convolute.convoluteLabel }}</a
-                    >
-                </div>
+            <!-- convolute label -->
+            <div class="awg-convolute-label">
+                <p>
+                    <a [routerLink]="['../report']" fragment="source{{ selectedConvolute.convoluteId }}">{{
+                        selectedConvolute.convoluteLabel
+                    }}</a>
+                </p>
             </div>
 
-            <!-- folio overview -->
-            <awg-edition-folio
-                *ngIf="selectedConvolute && selectedSvgSheet"
+            <!-- viewer for convolute folios -->
+            <awg-edition-folio-viewer
                 [selectedConvolute]="selectedConvolute"
                 [selectedSvgSheet]="selectedSvgSheet"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-folio>
+            </awg-edition-folio-viewer>
 
-            <!-- folio legend -->
-            <div class="awg-folio-legend col-12">
+            <!-- convolute legend -->
+            <div class="awg-convolute-legend col-12">
                 Legende:&nbsp;
                 <ng-container *ngFor="let legend of folioLegends">
                     <span class="{{ legend.color }}">

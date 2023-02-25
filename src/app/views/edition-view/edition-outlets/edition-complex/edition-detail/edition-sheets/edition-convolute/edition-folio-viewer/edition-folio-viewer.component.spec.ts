@@ -4,25 +4,25 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
-import { FolioOverviewComponent } from './folio-overview.component';
+import { EditionFolioViewerComponent } from './edition-folio-viewer.component';
 import { FolioService } from './folio.service';
 
-describe('FolioComponent', () => {
-    let component: FolioOverviewComponent;
-    let fixture: ComponentFixture<FolioOverviewComponent>;
+describe('EditionFolioViewerComponent', () => {
+    let component: EditionFolioViewerComponent;
+    let fixture: ComponentFixture<EditionFolioViewerComponent>;
 
     let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [FolioOverviewComponent],
+            declarations: [EditionFolioViewerComponent],
             providers: [FolioService],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FolioOverviewComponent);
+        fixture = TestBed.createComponent(EditionFolioViewerComponent);
         component = fixture.componentInstance;
 
         // Test data
@@ -36,11 +36,11 @@ describe('FolioComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have folios input', () => {
+        it('should not have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeUndefined();
         });
 
-        it('should not have svg file input', () => {
+        it('should not have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
     });
@@ -55,12 +55,12 @@ describe('FolioComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have svg file input', () => {
+        it('should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeTruthy();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
-        it('should have folios input', () => {
+        it('should have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeTruthy();
             expect(component.selectedConvolute).withContext(`should be ${expectedConvolute}`).toBe(expectedConvolute);
         });

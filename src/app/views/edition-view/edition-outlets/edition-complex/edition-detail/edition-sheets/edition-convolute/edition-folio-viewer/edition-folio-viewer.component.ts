@@ -6,6 +6,7 @@ import {
     Input,
     OnChanges,
     Output,
+    SimpleChanges,
 } from '@angular/core';
 
 import {
@@ -33,12 +34,12 @@ declare let Snap: any;
  * and displays the convolute folios.
  */
 @Component({
-    selector: 'awg-edition-folio',
-    templateUrl: './folio-overview.component.html',
-    styleUrls: ['./folio-overview.component.scss'],
+    selector: 'awg-edition-folio-viewer',
+    templateUrl: './edition-folio-viewer.component.html',
+    styleUrls: ['./edition-folio-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
+export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked {
     /**
      * Input variable: selectedConvolute.
      *
@@ -80,12 +81,12 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     canvasArray = [];
 
     /**
-     * Public variable: folioSvgDataArray.
+     * Public variable: folioSvgData.
      *
      * It keeps the array with the svg data
      * needed to draw the Snap canvas of the folios.
      */
-    folioSvgDataArray: FolioSvgData[] = [];
+    folioSvgData: FolioSvgData[] = [];
 
     /**
      * Public variable: vbArray.
@@ -112,7 +113,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: FolioOverviewComponent;
+    ref: EditionFolioViewerComponent;
 
     /**
      * Private variable: _folioSettings.
@@ -160,19 +161,108 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      *
      * It checks for changes of the given input.
      */
-    ngOnChanges() {
-        this.prepareFolioSvgOutput();
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['selectedConvolute']) {
+            this.prepareFolioSvgOutput();
+        }
     }
 
     /**
      * Angular life cycle hook: ngAfterViewChecked.
      *
      * It calls the containing methods
-     * after the view was built and checked.
+     * after the view was checked.
      */
     ngAfterViewChecked() {
-        // Start to render svg only after view, inputs and calculation are available
-        this.renderSnapSvg();
+        // Start to create svg canvas only after view, inputs and calculation are available
+        this.createSVGCanvas();
+    }
+
+    /**
+     * Public method: isSelectedSvgSheet.
+     *
+     * It compares a given id with the id
+     * of the latest selected svg sheet.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isSelectedSvgSheet(id: string): boolean {
+        let partial = '';
+        if (this.selectedSvgSheet.content[0].partial) {
+            partial = this.selectedSvgSheet.content[0].partial;
+        }
+        return id === this.selectedSvgSheet.id + partial;
+    }
+
+    /**
+     * Public method: prepareFolioSvgOutput.
+     *
+     * It prepares the viewbox and svg data for all folios
+     * to render the folio svg object (SnapCanvas).
+     *
+     * @returns {void} Sets the vbArray and folioSvgData.
+     */
+    prepareFolioSvgOutput(): void {
+        // Reset folioSvgData
+        this.folioSvgData = [];
+
+        // Loop over folios of selected convolute
+        this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
+            console.log('getting new folioData');
+            // Update folio settings
+            this.folioSettings = {
+                factor: this.folioSettings.factor,
+                formatX: +folio.format.width,
+                formatY: +folio.format.height,
+                initialOffsetX: this.folioSettings.initialOffsetX,
+                initialOffsetY: this.folioSettings.initialOffsetY,
+                numberOfFolios: +this.selectedConvolute.folios.length,
+            };
+
+            // Prepare viewbox settings by calculating the width and height for the viewBox string
+            const vbWidth =
+                (this.folioSettings.formatX + 2 * this.folioSettings.initialOffsetX) * this.folioSettings.factor;
+            const vbHeight =
+                (this.folioSettings.formatY + 2 * this.folioSettings.initialOffsetY) * this.folioSettings.factor;
+
+            this.vbArray[folioIndex] = new ViewBox(vbWidth, vbHeight);
+
+            // Populate folioSvgData with calculated svg data
+            this.folioSvgData[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
+        });
+    }
+
+    /**
+     * Public method: createSVGCanvas.
+     *
+     * It provides the folio viewbox and svg data
+     * to the SnapCanvas.
+     *
+     * @returns {void} Creates the SVG canvas.
+     */
+    createSVGCanvas(): void {
+        // Empty canvasArray
+        this.canvasArray = [];
+
+        /* Apply data from folioSvgData to render the svg image with snapsvg */
+        this.folioSvgData.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
+            // Init canvas
+            const snapId: string = '#folio-' + this.selectedSvgSheet.id + '-' + folioSvg.sheet.folioId;
+            const snapCanvas: any = Snap(snapId);
+            if (!snapCanvas) {
+                return;
+            }
+
+            // Svg viewBox
+            this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
+
+            // Svg content
+            this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
+
+            this.canvasArray.push(snapCanvas);
+        });
+
         // Toggle active classes after view was checked
         this.toggleActiveClass();
     }
@@ -198,91 +288,6 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
                 itemGroup.toggleClass('active', this.isSelectedSvgSheet(itemId));
             });
         });
-    }
-
-    /**
-     * Public method: prepareFolioSvgOutput.
-     *
-     * It prepares the viewbox and svg data for all folios
-     * to render the folio svg object (SnapCanvas).
-     *
-     * @returns {void} Sets the vbArray and folioSvgDataArray variable.
-     */
-    prepareFolioSvgOutput(): void {
-        // Reset folioSvgDataArray
-        this.folioSvgDataArray = [];
-
-        // Loop over folios of selected convolute
-        this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
-            // Update folio settings
-            this.folioSettings = {
-                factor: this.folioSettings.factor,
-                formatX: +folio.format.width,
-                formatY: +folio.format.height,
-                initialOffsetX: this.folioSettings.initialOffsetX,
-                initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.selectedConvolute.folios.length,
-            };
-
-            // Prepare viewbox settings by calculating the width and height for the viewBox string
-            const vbWidth =
-                (this.folioSettings.formatX + 2 * this.folioSettings.initialOffsetX) * this.folioSettings.factor;
-            const vbHeight =
-                (this.folioSettings.formatY + 2 * this.folioSettings.initialOffsetY) * this.folioSettings.factor;
-
-            this.vbArray[folioIndex] = new ViewBox(vbWidth, vbHeight);
-
-            // Populate folioSvgDataArray with calculated svg data
-            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
-        });
-    }
-
-    /**
-     * Public method: renderSnapSvg.
-     *
-     * It provides the folio viewbox and svg data
-     * to the SnapCanvas to render the folios.
-     *
-     * @returns {void} Sets the canvasArray variable.
-     */
-    renderSnapSvg(): void {
-        // Empty canvasArray
-        this.canvasArray = [];
-
-        /* Apply data from folioSvgDataArray to render the svg image with snapsvg */
-        this.folioSvgDataArray.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
-            // Init canvas
-            const snapId: string = '#folio-' + folioSvg.sheet.folioId;
-            const snapCanvas: any = Snap(snapId);
-            if (!snapCanvas) {
-                return;
-            }
-
-            // Svg viewBox
-            this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
-
-            // Svg content
-            this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
-
-            this.canvasArray.push(snapCanvas);
-        });
-    }
-
-    /**
-     * Public method: isSelectedSvgSheet.
-     *
-     * It compares a given id with the id
-     * of the latest selected svg sheet.
-     *
-     * @param {string} id The given sheet id.
-     * @returns {boolean} The boolean value of the comparison result.
-     */
-    isSelectedSvgSheet(id: string): boolean {
-        let partial = '';
-        if (this.selectedSvgSheet.content[0].partial) {
-            partial = this.selectedSvgSheet.content[0].partial;
-        }
-        return id === this.selectedSvgSheet.id + partial;
     }
 
     /**

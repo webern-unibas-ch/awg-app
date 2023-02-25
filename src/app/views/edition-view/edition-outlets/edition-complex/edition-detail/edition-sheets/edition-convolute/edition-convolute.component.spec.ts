@@ -1,20 +1,22 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
+
+import { click } from '@testing/click-helper';
 import { EditionConvoluteComponent } from './edition-convolute.component';
 
 interface IFolioLegend {
@@ -22,8 +24,8 @@ interface IFolioLegend {
     label: string;
 }
 
-@Component({ selector: 'awg-edition-folio', template: '' })
-class FolioStubComponent {
+@Component({ selector: 'awg-edition-folio-viewer', template: '' })
+class EditionFolioViewerStubComponent {
     @Input()
     selectedConvolute: FolioConvolute;
     @Input()
@@ -39,18 +41,18 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionConvoluteComponent>;
     let compDe: DebugElement;
 
+    let linkDes: DebugElement[];
+    let routerLinks;
+
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
-    let selectConvoluteSpy: Spy;
-    let selectConvoluteRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
-    let expectedFolioLegends: IFolioLegend[];
-    let expectedFolioConvoluteData: FolioConvoluteList;
     let expectedSelectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedFolioLegends: IFolioLegend[];
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule, NgbDropdownModule], exports: [NgbAccordionModule, NgbDropdownModule] })
@@ -64,7 +66,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
-            declarations: [EditionConvoluteComponent, FolioStubComponent],
+            declarations: [EditionConvoluteComponent, EditionFolioViewerStubComponent, RouterLinkStubDirective],
         }).compileComponents();
     }));
 
@@ -74,10 +76,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedSelectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
-        expectedFolioConvoluteData = mockEditionData.mockFolioConvoluteData;
-        expectedSelectedConvolute = expectedFolioConvoluteData.convolutes[0];
 
         expectedFolioLegends = [
             {
@@ -99,8 +100,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectConvoluteSpy = spyOn(component, 'selectConvolute').and.callThrough();
-        selectConvoluteRequestEmitSpy = spyOn(component.selectConvoluteRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
@@ -110,10 +109,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have folioConvoluteData', () => {
-            expect(component.folioConvoluteData).toBeUndefined();
-        });
-
         it('should not have selectedConvolute', () => {
             expect(component.selectedConvolute).toBeUndefined();
         });
@@ -143,8 +138,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
 
-            it('... should contain no FolioComponent (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 0, 0);
+            it('... should contain no EditionFolioViewerComponent (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 0, 0);
             });
         });
     });
@@ -152,19 +147,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.folioConvoluteData = expectedFolioConvoluteData;
             component.selectedConvolute = expectedSelectedConvolute;
             component.selectedSvgSheet = expectedSvgSheet;
 
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('should have `folioConvoluteData` input', () => {
-            expect(component.folioConvoluteData).toBeDefined();
-            expect(component.folioConvoluteData)
-                .withContext(`should equal ${expectedFolioConvoluteData}`)
-                .toEqual(expectedFolioConvoluteData);
         });
 
         it('should have `selectedConvolute` input', () => {
@@ -207,20 +194,22 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 expect(headerCmp.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
             });
 
-            it('... should contain two divs and one FolioComponent (stubbed) in the panel body (div.accordion-body)', () => {
+            it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
                 // Ngb-accordion panel debug element
                 const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                 const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
-                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-dropdown', 1, 1);
-                getAndExpectDebugElementByDirective(bodyDes[0], FolioStubComponent, 1, 1);
-                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-folio-legend', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-label', 1, 1);
+                getAndExpectDebugElementByDirective(bodyDes[0], EditionFolioViewerStubComponent, 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-legend', 1, 1);
             });
 
-            it('... should pass down selectedConvolute to the FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should pass down `selectedConvolute` to the EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
                 expect(folioCmp.selectedConvolute).toBeTruthy();
                 expect(folioCmp.selectedConvolute)
@@ -228,9 +217,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     .toEqual(expectedSelectedConvolute);
             });
 
-            it('... should pass down selectedSvgSheet to the FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should pass down `selectedSvgSheet` to the EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
                 expect(folioCmp.selectedSvgSheet).toBeTruthy();
                 expect(folioCmp.selectedSvgSheet)
@@ -238,59 +229,24 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     .toEqual(expectedSvgSheet);
             });
 
-            it('... should contain one dropdown-toggle link in the dropdown div', () => {
+            it('... should contain one link with convolute label in the convolute label div', () => {
                 // Ngb-accordion panel debug element
                 const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
-                const dropdownDes = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div.accordion-body > div.awg-convolute-dropdown.dropdown',
+                    'div.accordion-body > div.awg-convolute-label',
                     1,
                     1
                 );
 
-                const anchorDes = getAndExpectDebugElementByCss(dropdownDes[0], 'a.dropdown-toggle', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(divDes[0], 'a', 1, 1);
+                const anchorCmp = anchorDes[0].nativeElement;
 
-                const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 1, 1);
-                const spanCmp = spanDes[0].nativeElement;
-
-                expect(spanCmp.textContent).toBeDefined();
-                expect(spanCmp.textContent)
+                expect(anchorCmp.textContent).toBeDefined();
+                expect(anchorCmp.textContent)
                     .withContext(`should be ${expectedSelectedConvolute.convoluteLabel}`)
                     .toBe(expectedSelectedConvolute.convoluteLabel);
-            });
-
-            it('... should contain a dropdown-menu with dropdown-item links in the dropdown div', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-
-                const dropdownDes = getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div.accordion-body > div.awg-convolute-dropdown.dropdown',
-                    1,
-                    1
-                );
-
-                const divDes = getAndExpectDebugElementByCss(dropdownDes[0], 'div.dropdown-menu', 1, 1);
-
-                const anchorDes = getAndExpectDebugElementByCss(
-                    divDes[0],
-                    'a.dropdown-item',
-                    expectedFolioConvoluteData.convolutes.length,
-                    expectedFolioConvoluteData.convolutes.length
-                );
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
-
-                expect(anchorCmp0.textContent).toBeDefined();
-                expect(anchorCmp0.textContent)
-                    .withContext(`should be ${expectedFolioConvoluteData.convolutes[0].convoluteLabel}`)
-                    .toBe(expectedFolioConvoluteData.convolutes[0].convoluteLabel);
-
-                expect(anchorCmp1.textContent).toBeDefined();
-                expect(anchorCmp1.textContent)
-                    .withContext(`should be ${expectedFolioConvoluteData.convolutes[1].convoluteLabel}`)
-                    .toBe(expectedFolioConvoluteData.convolutes[1].convoluteLabel);
             });
 
             it('... should contain three legend labels in the folio legend div', () => {
@@ -299,7 +255,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 const legendDes = getAndExpectDebugElementByCss(
                     panelDes[0],
-                    'div.accordion-body > div.awg-folio-legend',
+                    'div.accordion-body > div.awg-convolute-legend',
                     1,
                     1
                 );
@@ -339,69 +295,54 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         describe('#openModal', () => {
-            it('... should trigger on openModalRequest event from FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeTruthy();
+            });
 
-                folioCmp.openModalRequest.emit(expectedFolioConvoluteData.convolutes[1].linkTo);
+            it('... should trigger on openModalRequest event from EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
-                expectSpyCall(openModalSpy, 1, expectedFolioConvoluteData.convolutes[0].linkTo);
+                const expectedModalSnippet = expectedSelectedConvolute.folios[0].content[0].linkTo;
+
+                folioCmp.openModalRequest.emit(expectedModalSnippet);
+
+                expectSpyCall(openModalSpy, 1, expectedModalSnippet);
             });
 
             it('... should not emit anything if no id is provided', () => {
-                component.openModal(undefined);
+                const expectedModalSnippet = undefined;
 
-                expectSpyCall(openModalRequestEmitSpy, 0, undefined);
+                component.openModal(expectedModalSnippet);
+
+                expectSpyCall(openModalRequestEmitSpy, 0, expectedModalSnippet);
             });
 
             it('... should emit id of given modal snippet', () => {
-                component.openModal(expectedFolioConvoluteData.convolutes[1].linkTo);
+                const expectedModalSnippet = expectedSelectedConvolute.folios[0].content[0].linkTo;
 
-                expectSpyCall(openModalRequestEmitSpy, 1, expectedFolioConvoluteData.convolutes[1].linkTo);
-            });
-        });
+                component.openModal(expectedModalSnippet);
 
-        describe('#selectConvolute', () => {
-            it('... should trigger on click', fakeAsync(() => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.awg-convolute-dropdown-item', 2, 2);
-
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[0], fixture);
-
-                expectSpyCall(selectConvoluteSpy, 1, expectedFolioConvoluteData.convolutes[0].convoluteId);
-
-                // Click second dropdown anchor
-                clickAndAwaitChanges(anchorDes[1], fixture);
-
-                expectSpyCall(selectConvoluteSpy, 2, expectedFolioConvoluteData.convolutes[1].convoluteId);
-            }));
-
-            it('... should not emit anything if no id is provided', () => {
-                component.selectConvolute(undefined);
-
-                expectSpyCall(selectConvoluteRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should emit id of selected convolute', () => {
-                component.selectConvolute(expectedFolioConvoluteData.convolutes[0].convoluteId);
-
-                expectSpyCall(selectConvoluteRequestEmitSpy, 1, expectedFolioConvoluteData.convolutes[0].convoluteId);
-
-                // Emit another id
-                component.selectConvolute(expectedFolioConvoluteData.convolutes[1].convoluteId);
-
-                expectSpyCall(selectConvoluteRequestEmitSpy, 2, expectedFolioConvoluteData.convolutes[1].convoluteId);
+                expectSpyCall(openModalRequestEmitSpy, 1, expectedModalSnippet);
             });
         });
 
         describe('#selectSvgSheet', () => {
-            it('... should trigger on selectSvgSheetRequest event from FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeTruthy();
+            });
 
-                folioCmp.selectSvgSheetRequest.emit(expectedFolioConvoluteData.convolutes[0].convoluteId);
+            it('... should trigger on selectSvgSheetRequest event from EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedFolioConvoluteData.convolutes[0].convoluteId);
+                folioCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
+
+                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             });
 
             it('... should not emit anything if no id is provided', () => {
@@ -418,6 +359,50 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 component.selectSvgSheet(expectedNextSvgSheet.id);
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+            });
+        });
+
+        describe('[routerLink]', () => {
+            beforeEach(() => {
+                // Find DebugElements with an attached RouterLinkStubDirective
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+
+                // Get attached link directive instances using each DebugElement's injector
+                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            });
+
+            it('... can get routerLinks from template', () => {
+                expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+                expect(routerLinks[0].linkParams).withContext(`should equal ['../report']`).toEqual(['../report']);
+            });
+
+            it('... can click report link in template', () => {
+                const reportLinkDe = linkDes[0]; // Contact link DebugElement
+                const reportLink = routerLinks[0]; // Contact link directive
+
+                expect(reportLink.navigatedTo).toBeNull();
+
+                click(reportLinkDe);
+                fixture.detectChanges();
+
+                expect(reportLink.navigatedTo).withContext(`should equal ['../report']`).toEqual(['../report']);
+            });
+
+            it('... should navigate to report page with fragment when report link is clicked', () => {
+                const reportLinkDe = linkDes[0]; // Contact link DebugElement
+                const reportLink = routerLinks[0]; // Contact link directive
+
+                expect(reportLink.navigatedTo).toBeNull();
+
+                click(reportLinkDe);
+                fixture.detectChanges();
+
+                const expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
+
+                expect(reportLink.navigatedTo).withContext(`should equal ['../report']`).toEqual(['../report']);
+                expect(reportLink.navigatedToFragment)
+                    .withContext(`should equal ${expectedFragment}`)
+                    .toEqual(expectedFragment);
             });
         });
     });
