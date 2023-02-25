@@ -36,11 +36,11 @@ describe('FolioComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have folios input', () => {
+        it('should not have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeUndefined();
         });
 
-        it('should not have svg file input', () => {
+        it('should not have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
     });
@@ -55,12 +55,12 @@ describe('FolioComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have svg file input', () => {
+        it('should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeTruthy();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
-        it('should have folios input', () => {
+        it('should have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeTruthy();
             expect(component.selectedConvolute).withContext(`should be ${expectedConvolute}`).toBe(expectedConvolute);
         });

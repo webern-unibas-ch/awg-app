@@ -46,9 +46,20 @@ export class RouterLinkStubDirective {
     queryParamsHandling?: QueryParamsHandling = '';
 
     /**
+     * Input with fragment option.
+     */
+    @Input('fragment')
+    fragment?: string = '';
+
+    /**
      * The router params after navigation.
      */
     navigatedTo: any = null;
+
+    /**
+     * The router fragment after navigation.
+     */
+    navigatedToFragment: string = null;
 
     /**
      * Listener that sets the navigation target after click.
@@ -56,6 +67,7 @@ export class RouterLinkStubDirective {
     @HostListener('click')
     onClick() {
         this.navigatedTo = this.linkParams;
+        this.navigatedToFragment = this.fragment;
     }
 }
 // #enddocregion router-link-stub

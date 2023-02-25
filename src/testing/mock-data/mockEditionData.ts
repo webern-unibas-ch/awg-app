@@ -46,8 +46,8 @@ export const mockEditionData = {
                 ],
             },
             {
-                convoluteId: 'Test convolute B',
-                convoluteLabel: 'B',
+                convoluteId: 'B',
+                convoluteLabel: 'Test convolute B',
                 folios: [],
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
             },
