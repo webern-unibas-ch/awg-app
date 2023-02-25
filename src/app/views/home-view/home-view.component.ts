@@ -43,6 +43,13 @@ export class HomeViewComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
+     * Readonly constant: EDITION_COMPLEX_M30.
+     *
+     * It keeps the edition complex M 30.
+     */
+    readonly EDITION_COMPLEX_M30 = EDITION_COMPLEXES.M30;
+
+    /**
      * Readonly constant: EDITION_COMPLEX_M34.
      *
      * It keeps the edition complex M 34.
