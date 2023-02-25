@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.10.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.10.0...v0.10.1) (2023-02-25)
+
+
+### Bug Fixes
+
+* **assets:** fix id for M 317 Textfassung 1 ([6b83e07](https://github.com/webern-unibas-ch/awg-app/commit/6b83e07bbbac72348dbe6121bc22a4af08b92570))
+* **edition:** fix queryParams for sheet ids ([d44404b](https://github.com/webern-unibas-ch/awg-app/commit/d44404be3ce949591bc20932180fa993c0fb9ab1))
+* **home:** add M 30 to start page ([c041593](https://github.com/webern-unibas-ch/awg-app/commit/c041593b6d425391d42c00fce24c99c081a64e1d))
+
+
+### Tests
+
+* **app:** fix tests for routerLinks ([1500e94](https://github.com/webern-unibas-ch/awg-app/commit/1500e947a9f1197f3ffe34cb64ea326dcb78091c))
+
 ## [0.10.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.9.3...v0.10.0) (2023-02-25)
 
 
