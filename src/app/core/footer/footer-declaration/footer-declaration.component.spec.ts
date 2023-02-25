@@ -116,10 +116,20 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLinks from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length).withContext('should have 2 routerLinks').toBe(2);
+            });
+
+            it('... can get correct linkParams from template', () => {
                 expect(routerLinks[0].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
                 expect(routerLinks[1].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+            });
+
+            it('... can get correct fragments from template', () => {
+                expect(routerLinks[0].fragment).withContext(`should be 'awg-imprint'`).toBe('awg-imprint');
+                expect(routerLinks[1].fragment)
+                    .withContext(`should be 'awg-documentation'`)
+                    .toEqual('awg-documentation');
             });
 
             it('... can click imprint link in template', () => {
@@ -132,6 +142,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expect(imprintLink.navigatedTo).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+                expect(imprintLink.navigatedToFragment).withContext(`should be 'awg-imprint'`).toEqual('awg-imprint');
             });
 
             it('... can click documentation link in template', () => {
@@ -144,6 +155,9 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expect(documentationLink.navigatedTo).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+                expect(documentationLink.navigatedToFragment)
+                    .withContext(`should be 'awg-documentation'`)
+                    .toEqual('awg-documentation');
             });
         });
     });
