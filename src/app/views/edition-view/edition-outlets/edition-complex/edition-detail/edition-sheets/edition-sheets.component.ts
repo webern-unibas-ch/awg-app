@@ -335,6 +335,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
                 const sheet = this._getSheetContent(this.svgSheetsData.sheets[type], index, id);
                 if (type === 'sketchEditions') {
                     this._selectConvolute(sheet.convolute);
+                } else {
+                    this._selectConvolute('');
                 }
                 return sheet;
             }
