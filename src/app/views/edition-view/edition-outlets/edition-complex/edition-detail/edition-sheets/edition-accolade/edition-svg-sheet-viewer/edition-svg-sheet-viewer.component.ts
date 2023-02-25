@@ -28,7 +28,7 @@ import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
 import * as d3_zoom from 'd3-zoom';
 
 /**
- * The EditionSvgSheet component.
+ * The EditionSvgSheetViewer component.
  *
  * It contains a single svg sheet
  * of the edition view of the app

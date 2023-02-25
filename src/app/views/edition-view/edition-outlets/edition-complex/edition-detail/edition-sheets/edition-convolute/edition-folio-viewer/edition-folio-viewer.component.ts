@@ -27,7 +27,7 @@ import { FolioService } from './folio.service';
 declare let Snap: any;
 
 /**
- * The Folio component.
+ * The EditionFolioViewer component.
  *
  * It contains the folio section
  * of the edition view of the app

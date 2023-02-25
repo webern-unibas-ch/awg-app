@@ -2,6 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UtilityService } from '@awg-app/core/services';
 import { EditionSvgSheet } from '@awg-app/views/edition-view/models';
 
+/**
+ * The EditionSvgSheetNavItem component.
+ *
+ * It contains an item of the svg sheet navigation section
+ * of the edition view of the app
+ * and lets the user select an SVG sheet of a specific edition type.
+ */
 @Component({
     selector: 'awg-edition-svg-sheet-nav-item',
     templateUrl: './edition-svg-sheet-nav-item.component.html',
