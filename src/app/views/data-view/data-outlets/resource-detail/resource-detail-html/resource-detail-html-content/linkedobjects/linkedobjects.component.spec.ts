@@ -1,7 +1,8 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, NgModule } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
+import { expectClosedPanelBody, expectOpenPanelBody } from '@testing/accordion-panel-helper';
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -11,7 +12,6 @@ import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceDetailGroupedIncomingLinks, ResourceDetailIncomingLink } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects.component';
-import { expectClosedPanelBody, expectOpenPanelBody } from '@testing/accordion-panel-helper';
 
 describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentLinkedobjectsComponent;

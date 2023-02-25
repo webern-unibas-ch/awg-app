@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 //
 // Shared modules
-import { CompileHtmlModule } from './compile-html';
-import { CodeMirrorModule } from './codemirror/codemirror.module';
+import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
-import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
+import { CodeMirrorModule } from './codemirror/codemirror.module';
+import { CompileHtmlModule } from './compile-html';
 
 //
 // Shared components
@@ -20,8 +20,8 @@ import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
-import { TableComponent } from './table/table.component';
 import { TablePaginationComponent } from './table/table-pagination/table-pagination.component';
+import { TableComponent } from './table/table.component';
 import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 import { ViewHandleButtonGroupComponent } from './view-handle-button-group/view-handle-button-group.component';

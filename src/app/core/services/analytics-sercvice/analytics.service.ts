@@ -1,8 +1,9 @@
-import { Inject, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Inject, Injectable } from '@angular/core';
+
 import { AppConfig } from '@awg-app/app.config';
 
-import { environment } from '../../../../environments/environment';
+import { environment } from 'environments/environment';
 
 /**
  * The global gtag variable for Analytics.
@@ -98,8 +99,6 @@ export class AnalyticsService {
         gtag('config', this._analyticsId, {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             page_path: page,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            anonymize_ip: true,
             // eslint-disable-next-line @typescript-eslint/naming-convention
             send_page_view: this._sendPageView,
         });

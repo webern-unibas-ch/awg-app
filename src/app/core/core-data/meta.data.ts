@@ -10,12 +10,15 @@ const METAPAGE: MetaPage = {
     yearStart: 2015,
     yearCurrent: new Date().getFullYear(),
     awgAppUrl: AppConfig.AWG_APP_URL,
-    compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
-    githubUrl: AppConfig.AWG_APP_GITHUB_URL,
-    version: AppConfig.AWG_APP_VERSION,
-    versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
     awgProjectName: AppConfig.AWG_PROJECT_NAME,
+    compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
+    daschUrl: AppConfig.DASCH_URL,
+    dhlabUrl: AppConfig.DHLAB_URL,
+    githubUrl: AppConfig.AWG_APP_GITHUB_URL,
+    salsahUrl: AppConfig.SALSAH_URL,
+    version: AppConfig.AWG_APP_VERSION,
+    versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
 };
 
 /**

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { ResourceDetailContent } from '@awg-views/data-view/models';
 import { GndEvent } from '@awg-core/services/gnd-service';
+import { ResourceDetailContent } from '@awg-views/data-view/models';
 
 /**
  * The ResourceDetailHtmlContent component.

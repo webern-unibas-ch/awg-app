@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { delay, Observable } from 'rxjs';
 
+import { UtilityService } from '@awg-app/core/services';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
@@ -30,12 +32,23 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
     /**
      * Constructor of the EditionComplexComponent.
      *
-     * It declares private instances of ActivatedRoute and EditionService.
+     * It declares private instances of ActivatedRoute and EditionService,
+     * and a public instance of the UtilityService.
      *
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(private route: ActivatedRoute, private editionService: EditionService) {}
+    constructor(private route: ActivatedRoute, private editionService: EditionService, public utils: UtilityService) {}
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.

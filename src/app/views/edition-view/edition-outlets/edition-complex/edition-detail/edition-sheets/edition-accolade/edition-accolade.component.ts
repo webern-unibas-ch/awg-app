@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import {
+    EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionSvgOverlay,
     TextcriticalComment,
+    Textcritics,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -48,6 +49,14 @@ export class EditionAccoladeComponent {
     selectedTextcriticalComments: TextcriticalComment[];
 
     /**
+     * Input variable: selectedTextcritics.
+     *
+     * It keeps the selected textcritics of a selected svg sheet.
+     */
+    @Input()
+    selectedTextcritics: Textcritics;
+
+    /**
      * Input variable: showTkA.
      *
      * If the textcritics shall be displayed.
@@ -63,6 +72,14 @@ export class EditionAccoladeComponent {
      */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: selectLinkBoxRequest.
+     *
+     * It keeps an event emitter for the selected link box.
+     */
+    @Output()
+    selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output variable: selectOverlaysRequest.
@@ -94,6 +111,20 @@ export class EditionAccoladeComponent {
             return;
         }
         this.openModalRequest.emit(id);
+    }
+
+    /**
+     * Public method: selectLinkBox.
+     *
+     * It emits the given link box id
+     * to the {@link selectLinkBoxRequest}.
+     *
+     * @param {string} linkBoxId The given link box id.
+     *
+     * @returns {void} Emits the id.
+     */
+    selectLinkBox(linkBoxId: string): void {
+        this.selectLinkBoxRequest.emit(linkBoxId);
     }
 
     /**

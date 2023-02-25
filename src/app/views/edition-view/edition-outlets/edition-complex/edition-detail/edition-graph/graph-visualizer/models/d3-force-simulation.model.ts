@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 
-import { D3SimulationNode } from './d3-simulation-node.model';
 import { D3SimulationLink } from './d3-simulation-link.model';
+import { D3SimulationNode } from './d3-simulation-node.model';
 
 import * as d3_force from 'd3-force';
 

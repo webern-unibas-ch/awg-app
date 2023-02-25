@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { ConversionService } from '@awg-core/services';
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 import { BibliographyService } from '@awg-views/data-view/services';
-import { ConversionService } from '@awg-core/services';
 import { BibEntry } from '../bibliography-entry.model';
 
 /**

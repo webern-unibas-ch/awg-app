@@ -98,7 +98,7 @@ export class ViewHandleButtonGroupComponent implements OnInit, OnChanges, OnDest
     /**
      * Public method: createFormGroup.
      *
-     * It creates the view handle control form
+     * It creates the view handle control form group
      * using the reactive FormBuilder with a formGroup
      * and a view handle control.
      *

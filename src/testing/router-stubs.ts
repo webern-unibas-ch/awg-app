@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
-import { convertToParamMap, QueryParamsHandling, ParamMap, Params } from '@angular/router';
+import { convertToParamMap, ParamMap, Params, QueryParamsHandling } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { AppModule } from '@awg-app/app.module';
@@ -46,9 +46,20 @@ export class RouterLinkStubDirective {
     queryParamsHandling?: QueryParamsHandling = '';
 
     /**
+     * Input with fragment option.
+     */
+    @Input('fragment')
+    fragment?: string = '';
+
+    /**
      * The router params after navigation.
      */
     navigatedTo: any = null;
+
+    /**
+     * The router fragment after navigation.
+     */
+    navigatedToFragment: string = null;
 
     /**
      * Listener that sets the navigation target after click.
@@ -56,6 +67,7 @@ export class RouterLinkStubDirective {
     @HostListener('click')
     onClick() {
         this.navigatedTo = this.linkParams;
+        this.navigatedToFragment = this.fragment;
     }
 }
 // #enddocregion router-link-stub

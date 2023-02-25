@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -7,15 +8,16 @@ import {
     OnInit,
     ViewChild,
 } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionConstants, EditionComplex, GraphList } from '@awg-views/edition-view/models';
+import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
+import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+
 import { GraphVisualizerComponent } from './graph-visualizer';
 
 /**
@@ -74,13 +76,13 @@ export class EditionGraphComponent implements OnInit {
     editionGraphData$: Observable<GraphList | never>;
 
     /**
-     * Readonly constant: GRAPH_IMAGES.
+     * Readonly variable: GRAPH_IMAGES.
      *
      * It keeps the paths to static graph images.
      */
     readonly GRAPH_IMAGES = {
         OP12: '',
-        OP25: EditionConstants.GRAPH_IMAGE_OP25.route,
+        OP25: EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route,
     };
 
     /**

@@ -22,66 +22,52 @@
  *
  */
 
-//
-// AddValueFormats
+/**
+ * AddValueFormats
+ */
 // Export * from './add-value-formats';
-//
 
-//
-// BasicMessageComponents
+/**
+ * BasicMessageComponents
+ */
 export * from './basic-message-components';
-//
-
-//
-// ChangeValueFormats
+/**
+ * ChangeValueFormats
+ */
 // Export * from './change-value-formats';
-//
-
-//
-// CreateResourceFormats
+/**
+ * CreateResourceFormats
+ */
 // Export * from './create-resource-formats';
-//
-
-//
-// DeleteResponseFormats
+/**
+ * DeleteResponseFormats
+ */
 // Export * from './delete-response-formats';
-//
-
-//
-// GraphDataResponseFormats
+/**
+ * GraphDataResponseFormats
+ */
 // Export * from './graph-data-response-formats';
-//
-
-//
-// HierarchicalListResponseFormats
+/**
+ * HierarchicalListResponseFormats
+ */
 export * from './hierarchical-list-response-formats';
-//
-
-//
-// ResourceResponseFormats
-export * from './resource-response-formats';
-//
-
-//
-// SearchResponseFormats
-export * from './search-response-formats';
-//
-
-//
-// ValueResponseFormats
+/**
+ * ValueResponseFormats
+ */
 // Export * from './value-response-formats';
-//
-
-//
-// ==================================================
-//
-
-//
-// ProjectResponseFormats
+/**
+ * ProjectResponseFormats
+ */
 export * from './project-response-formats';
-//
-
-//
-// SessionResponseFormats
+/**
+ * ResourceResponseFormats
+ */
+export * from './resource-response-formats';
+/**
+ * SearchResponseFormats
+ */
+export * from './search-response-formats';
+/**
+ * SessionResponseFormats
+ */
 export * from './session-response-formats';
-//

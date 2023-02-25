@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
@@ -63,7 +63,9 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
                 expect(viewerCmp.jsonViewerHeader).toBeDefined();
-                expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have header: ${expectedHeader}`);
+                expect(viewerCmp.jsonViewerHeader)
+                    .withContext(`should have header: ${expectedHeader}`)
+                    .toBe(expectedHeader);
             });
 
             it('... should not pass down `resourceJsonConvertedData` to json viewer component', () => {
@@ -85,8 +87,10 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
         });
 
         it('should have `resourceJsonConvertedData`', () => {
-            expect(component.resourceJsonConvertedData).toBeDefined('should be defined');
-            expect(component.resourceJsonConvertedData).toEqual(expectedData, `should equal ${expectedData}`);
+            expect(component.resourceJsonConvertedData).toBeDefined();
+            expect(component.resourceJsonConvertedData)
+                .withContext(`should equal ${expectedData}`)
+                .toEqual(expectedData);
         });
 
         describe('VIEW', () => {
@@ -95,7 +99,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
                 expect(viewerCmp.jsonViewerData).toBeDefined();
-                expect(viewerCmp.jsonViewerData).toBe(expectedData, `should have data: ${expectedData}`);
+                expect(viewerCmp.jsonViewerData).withContext(`should equal ${expectedData}`).toEqual(expectedData);
             });
         });
     });

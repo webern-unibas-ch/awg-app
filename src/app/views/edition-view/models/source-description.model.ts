@@ -146,6 +146,11 @@ export class SourceDescriptionDesc {
     date?: string;
 
     /**
+     * The pagination as it appears in a source (optional).
+     */
+    pagination?: string;
+
+    /**
      * Measure numbers as they appear in a source (optional).
      */
     measureNumbers?: string;

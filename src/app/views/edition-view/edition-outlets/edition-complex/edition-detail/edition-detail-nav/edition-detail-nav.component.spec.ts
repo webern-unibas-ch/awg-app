@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { QueryParamsHandling } from '@angular/router';
 
 import { of as observableOf } from 'rxjs';
@@ -10,11 +10,11 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import { EditionConstants, EditionComplex } from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionDetailNavComponent } from './edition-detail-nav.component';
 
@@ -63,26 +63,26 @@ describe('EditionDetailNavComponent (DONE)', () => {
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.introRoute.route,
-                EditionConstants.EDITION_INTRO.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.sheetsRoute.route,
-                EditionConstants.EDITION_SHEETS.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.reportRoute.route,
-                EditionConstants.EDITION_REPORT.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionComplex.baseRoute,
-                expectedEditionComplex.graphRoute.route,
-                EditionConstants.EDITION_GRAPH.short,
+                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.route,
+                EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.short,
                 false
             ),
         ];

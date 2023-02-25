@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
+import { TestBed } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
@@ -29,7 +29,7 @@ describe('AnalyticsService (DONE)', () => {
     let consoleSpy: Spy;
 
     const expectedAnalyticsEndpoint = 'https://example.com/endpoint/';
-    const expectedAnalyticsId = 'UA-XXXXX-Y';
+    const expectedAnalyticsId = 'G-XXXXXXXXXX';
     const expectedSendPageView = false;
 
     const expectedPage = '/test';
@@ -83,17 +83,19 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it('... should clear mock console after each run', () => {
-            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
+            expect(mockConsole.get(0)).toBeUndefined();
         });
 
         it('... should use mock analytics', () => {
             (window as any).gtag('test', 'analytics', {});
 
-            expect(mockAnalytics.getGtag(0)).toEqual(['test', 'analytics', {}], "should be '[test', 'analytics', {}]");
+            expect(mockAnalytics.getGtag(0))
+                .withContext(`should equal '[test', 'analytics', {}]`)
+                .toEqual(['test', 'analytics', {}]);
         });
 
         it('... should clear mock analytics store after each run', () => {
-            expect(mockAnalytics.getGtag(0)).toBeNull('should be null');
+            expect(mockAnalytics.getGtag(0)).toBeNull();
         });
     });
 
@@ -123,17 +125,17 @@ describe('AnalyticsService (DONE)', () => {
 
         it('... should log a replacement message in develop mode', () => {
             expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
+            expect(mockConsole.get(0)).toBeUndefined();
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, false);
 
             expectSpyCall(consoleSpy, 1, expectedLogMessage);
-            expect(mockConsole.get(0)).toBe(expectedLogMessage, `should be ${expectedLogMessage}`);
+            expect(mockConsole.get(0)).withContext(`should be ${expectedLogMessage}`).toBe(expectedLogMessage);
         });
 
         it('... should not log a replacement message in production mode', () => {
             expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
+            expect(mockConsole.get(0)).toBeUndefined();
 
             // Prevent setting of real gtag script to document head
             spyOn<any>(doc.head, 'prepend').and.callFake(() => {
@@ -143,7 +145,7 @@ describe('AnalyticsService (DONE)', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
             expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
+            expect(mockConsole.get(0)).toBeUndefined();
         });
 
         it('... should prepend analytics script in production mode', () => {
@@ -216,7 +218,7 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView },
+                { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
 
             // Init analytics
@@ -225,7 +227,9 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(expectedPage);
 
             expectSpyCall(gtagSpy, 1, expectedAnalyticsEvent);
-            expect(mockAnalytics.getGtag(0)).toEqual(expectedAnalyticsEvent, `should be ${expectedAnalyticsEvent}`);
+            expect(mockAnalytics.getGtag(0))
+                .withContext(`should be ${expectedAnalyticsEvent}`)
+                .toEqual(expectedAnalyticsEvent);
         });
 
         it('... should track page changes', () => {
@@ -233,13 +237,13 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView },
+                { page_path: expectedPage, send_page_view: expectedSendPageView },
             ];
             const otherAnalyticsEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: otherPage, anonymize_ip: true, send_page_view: expectedSendPageView },
+                { page_path: otherPage, send_page_view: expectedSendPageView },
             ];
 
             // Init analytics
@@ -250,14 +254,26 @@ describe('AnalyticsService (DONE)', () => {
 
             expectSpyCall(gtagSpy, 2, otherAnalyticsEvent);
             expect(gtagSpy.calls.any()).toBeTruthy();
-            expect(gtagSpy.calls.count()).toBe(2);
-            expect(gtagSpy.calls.first().args).toEqual(expectedAnalyticsEvent);
-            expect(gtagSpy.calls.allArgs()[0]).toEqual(expectedAnalyticsEvent);
-            expect(gtagSpy.calls.allArgs()[1]).toEqual(otherAnalyticsEvent);
-            expect(gtagSpy.calls.mostRecent().args).toEqual(otherAnalyticsEvent);
+            expect(gtagSpy.calls.count()).withContext(`should be 2`).toBe(2);
+            expect(gtagSpy.calls.first().args)
+                .withContext(`should equal ${expectedAnalyticsEvent}`)
+                .toEqual(expectedAnalyticsEvent);
+            expect(gtagSpy.calls.allArgs()[0])
+                .withContext(`should equal ${expectedAnalyticsEvent}`)
+                .toEqual(expectedAnalyticsEvent);
+            expect(gtagSpy.calls.allArgs()[1])
+                .withContext(`should equal ${otherAnalyticsEvent}`)
+                .toEqual(otherAnalyticsEvent);
+            expect(gtagSpy.calls.mostRecent().args)
+                .withContext(`should equal ${otherAnalyticsEvent}`)
+                .toEqual(otherAnalyticsEvent);
 
-            expect(mockAnalytics.getGtag(0)).toEqual(expectedAnalyticsEvent, `should be ${expectedAnalyticsEvent}`);
-            expect(mockAnalytics.getGtag(1)).toEqual(otherAnalyticsEvent, `should be ${otherAnalyticsEvent}`);
+            expect(mockAnalytics.getGtag(0))
+                .withContext(`should equal ${expectedAnalyticsEvent}`)
+                .toEqual(expectedAnalyticsEvent);
+            expect(mockAnalytics.getGtag(1))
+                .withContext(`should equal ${otherAnalyticsEvent}`)
+                .toEqual(otherAnalyticsEvent);
         });
     });
 });

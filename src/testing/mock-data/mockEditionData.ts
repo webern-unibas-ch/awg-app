@@ -46,8 +46,8 @@ export const mockEditionData = {
                 ],
             },
             {
-                convoluteId: 'Test convolute B',
-                convoluteLabel: 'B',
+                convoluteId: 'B',
+                convoluteLabel: 'Test convolute B',
                 folios: [],
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
             },
@@ -156,6 +156,7 @@ export const mockEditionData = {
                     },
                     title: 'test title',
                     date: 'test date',
+                    pagination: 'test pagination',
                     measureNumbers: 'test measure numbers',
                     instrumentation: 'test instrumentation',
                     annotations: 'test annotations',
@@ -503,13 +504,14 @@ export const mockEditionData = {
             {
                 id: 'test-1',
                 label: 'test1',
-                description: ['test description 1', 'test description 2'],
+                description: [],
                 comments: [],
+                linkBoxes: [],
             },
             {
                 id: 'test-2',
                 label: 'test2',
-                description: [],
+                description: ['test description 1', 'test description 2'],
                 rowtable: true,
                 comments: [
                     {
@@ -526,6 +528,7 @@ export const mockEditionData = {
                             "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\">M 212 Sk3</a>",
                     },
                 ],
+                linkBoxes: [],
             },
         ],
     },

@@ -11,7 +11,7 @@ export class AppConfig {
      * @returns {string}
      */
     public static get API_ENDPOINT(): string {
-        const root = 'https://www.salsah.org/';
+        const root = AppConfig.SALSAH_URL;
         const api = 'api/';
         return root + api;
     }
@@ -27,32 +27,12 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the Analytics id ('UA-XXXXXXX-Y').
+     * Getter for the Analytics id ('G-XXXXXXXXXX').
      *
      * @returns {string}
      */
     public static get ANALYTICS_ID(): string {
-        return 'UA-64657372-2';
-    }
-
-    /**
-     * Getter for the URL of the INSERI Instance
-     * ({@link https://apps.inseri.swiss}).
-     *
-     * @returns {string}
-     */
-    public static get INSERI_URL(): string {
-        return 'https://apps.inseri.swiss';
-    }
-
-    /**
-     * Getter for the URL of the localhost
-     * ({@link http://localhost:4200}).
-     *
-     * @returns {string}
-     */
-    public static get LOCALHOST_URL(): string {
-        return 'http://localhost:4200';
+        return 'G-8KDNK9HM70';
     }
 
     /**
@@ -125,17 +105,43 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the unsanitized OSM embed link.
+     * Getter for the URL of the DaSCH
+     * ({@link https://www.dasch.swiss}).
      *
      * @returns {string}
      */
-    public static get UNSAFE_OSM_EMBED_URL(): string {
-        const osmApi = 'https://www.openstreetmap.org/export/embed.html';
-        const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
-        const layer = 'layer=mapnik';
-        const marker = '47.55896585846639%2C7.584506571292877';
+    public static get DASCH_URL(): string {
+        return 'https://www.dasch.swiss/';
+    }
 
-        return osmApi + '?' + bbox + '&' + layer + '&' + marker;
+    /**
+     * Getter for the URL of the DHLAB Basel
+     * ({@link https://dhlab.philhist.unibas.ch}).
+     *
+     * @returns {string}
+     */
+    public static get DHLAB_URL(): string {
+        return 'https://dhlab.philhist.unibas.ch/';
+    }
+
+    /**
+     * Getter for the URL of the INSERI Instance
+     * ({@link https://apps.inseri.swiss}).
+     *
+     * @returns {string}
+     */
+    public static get INSERI_URL(): string {
+        return 'https://apps.inseri.swiss/';
+    }
+
+    /**
+     * Getter for the URL of the localhost
+     * ({@link http://localhost:4200}).
+     *
+     * @returns {string}
+     */
+    public static get LOCALHOST_URL(): string {
+        return 'http://localhost:4200';
     }
 
     /**
@@ -147,5 +153,29 @@ export class AppConfig {
         const osmLinkRoot = 'https://www.openstreetmap.org/';
         const osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
         return osmLinkRoot + osmLinkId;
+    }
+
+    /**
+     * Getter for the URL of SALSAH
+     * ({@link https://www.salsah.org}).
+     *
+     * @returns {string}
+     */
+    public static get SALSAH_URL(): string {
+        return 'https://www.salsah.org/';
+    }
+
+    /**
+     * Getter for the unsanitized OSM embed link.
+     *
+     * @returns {string}
+     */
+    public static get UNSAFE_OSM_EMBED_URL(): string {
+        const osmApi = 'https://www.openstreetmap.org/export/embed.html';
+        const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
+        const layer = 'layer=mapnik';
+        const marker = '47.55896585846639%2C7.584506571292877';
+
+        return osmApi + '?' + bbox + '&' + layer + '&' + marker;
     }
 }

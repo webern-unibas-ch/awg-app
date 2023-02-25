@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
-import { ActivatedRouteStub } from '@testing/router-stubs';
 import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-data';
+import { ActivatedRouteStub } from '@testing/router-stubs';
 
-import { of as observableOf } from 'rxjs';
-import { JsonConvert } from 'json2typescript';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { JsonConvert } from 'json2typescript';
+import { of as observableOf } from 'rxjs';
 
 import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { GndEvent } from '@awg-core/services/gnd-service';

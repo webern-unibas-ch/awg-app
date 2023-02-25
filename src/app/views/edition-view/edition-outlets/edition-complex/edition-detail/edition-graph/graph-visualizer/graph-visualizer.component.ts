@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChil
 import { EMPTY, from, Observable } from 'rxjs';
 
 import { Toast, ToastMessage, ToastService } from '@awg-shared/toast/toast.service';
-import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
+import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { D3SimulationNode, QueryResult, Triple } from './models';
 
 import { GraphVisualizerService } from './services';

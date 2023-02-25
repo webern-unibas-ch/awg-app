@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
@@ -46,7 +46,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have pageMetaData', () => {
-            expect(component.pageMetaData).toBeUndefined('should be undefined');
+            expect(component.pageMetaData).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -65,10 +65,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
                 // Check output
                 expect(versionEl.textContent).toBeDefined();
-                expect(versionEl.textContent).toBe('', 'should contain empty string');
+                expect(versionEl.textContent).toBeFalsy();
 
                 expect(versionDateEl.textContent).toBeDefined();
-                expect(versionDateEl.textContent).toBe('', 'should contain empty string');
+                expect(versionDateEl.textContent).toBeFalsy();
             });
         });
     });
@@ -95,11 +95,15 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const versionEl = versionDes[0].nativeElement;
                 const versionDateEl = versionDateDes[0].nativeElement;
 
-                expect(versionEl.textContent).toContain(expectedVersion, `should contain ${expectedVersion}`);
-                expect(versionDateEl.textContent).toContain(
-                    expectedVersionDate,
-                    `should contain ${expectedVersionDate}`
-                );
+                expect(versionEl.textContent).toBeTruthy();
+                expect(versionEl.textContent)
+                    .withContext(`should contain ${expectedVersion}`)
+                    .toContain(expectedVersion);
+
+                expect(versionDateEl.textContent).toBeTruthy();
+                expect(versionDateEl.textContent)
+                    .withContext(`should contain ${expectedVersionDate}`)
+                    .toContain(expectedVersionDate);
             });
         });
 
@@ -113,33 +117,33 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can get routerLinks from template', () => {
-                expect(routerLinks.length).toBe(2, 'should have 2 routerLinks');
-                expect(routerLinks[0].linkParams).toEqual(['/contact']);
-                expect(routerLinks[1].linkParams).toEqual(['/contact']);
+                expect(routerLinks.length).withContext('should have 2 routerLinks').toBe(2);
+                expect(routerLinks[0].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+                expect(routerLinks[1].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
             });
 
             it('... can click imprint link in template', () => {
                 const imprintLinkDe = linkDes[0]; // Contact link DebugElement
                 const imprintLink = routerLinks[0]; // Contact link directive
 
-                expect(imprintLink.navigatedTo).toBeNull('should not have navigated yet');
+                expect(imprintLink.navigatedTo).toBeNull();
 
                 click(imprintLinkDe);
                 fixture.detectChanges();
 
-                expect(imprintLink.navigatedTo).toEqual(['/contact']);
+                expect(imprintLink.navigatedTo).withContext(`should equal ['/contact']`).toEqual(['/contact']);
             });
 
             it('... can click documentation link in template', () => {
                 const documentationLinkDe = linkDes[1]; // Contact link DebugElement
                 const documentationLink = routerLinks[1]; // Contact link directive
 
-                expect(documentationLink.navigatedTo).toBeNull('should not have navigated yet');
+                expect(documentationLink.navigatedTo).toBeNull();
 
                 click(documentationLinkDe);
                 fixture.detectChanges();
 
-                expect(documentationLink.navigatedTo).toEqual(['/contact']);
+                expect(documentationLink.navigatedTo).withContext(`should equal ['/contact']`).toEqual(['/contact']);
             });
         });
     });

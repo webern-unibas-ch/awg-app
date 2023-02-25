@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -12,15 +12,12 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
+import { mockEditionOutline } from '@testing/mock-data/mockEditionOutline';
 import { ActivatedRouteStub, RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import {
-    EditionConstants,
-    EditionSectionRoute,
-    EditionSeriesRoute,
-    EditionComplex,
-} from '@awg-views/edition-view/models';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 import { EditionViewComponent } from './edition-view.component';
@@ -52,15 +49,14 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetIsRowTableViewSpy: Spy;
 
     let expectedSelectedEditionComplex: EditionComplex;
-    let expectedSelectedEditionSeries: EditionSeriesRoute;
-    let expectedSelectedEditionSection: EditionSectionRoute;
+    let expectedSelectedEditionSeries: EditionOutlineSeries;
+    let expectedSelectedEditionSection: EditionOutlineSection;
     let expectedIsRowTableView: boolean;
 
     const expectedSelectedEditionComplexId = 'OP12';
     const expectedTitle = 'Inhalt';
     const expectedId = 'awg-edition-view';
-    const expectedEditionRoute = EditionConstants.EDITION;
-    const expectedSeriesRoute = EditionConstants.SERIES;
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     beforeEach(waitForAsync(() => {
         // Mock router with spy object
@@ -77,8 +73,9 @@ describe('EditionViewComponent (DONE)', () => {
             updateEditionComplex: (editionComplex: EditionComplex): void => {
                 // Intentional empty test override
             },
-            getSelectedEditionSeries: (): Observable<EditionSeriesRoute> => observableOf(expectedSelectedEditionSeries),
-            getSelectedEditionSection: (): Observable<EditionSectionRoute> =>
+            getSelectedEditionSeries: (): Observable<EditionOutlineSeries> =>
+                observableOf(expectedSelectedEditionSeries),
+            getSelectedEditionSection: (): Observable<EditionOutlineSection> =>
                 observableOf(expectedSelectedEditionSeries.sections[0]),
             getIsRowTableView: (): Observable<boolean> => observableOf(expectedIsRowTableView),
         };
@@ -110,40 +107,7 @@ describe('EditionViewComponent (DONE)', () => {
 
         // Test data
         expectedSelectedEditionComplex = EDITION_COMPLEXES[expectedSelectedEditionComplexId]; // Op. 12
-        expectedSelectedEditionSeries = {
-            series: EditionConstants.SERIES_1,
-            sections: [
-                {
-                    section: EditionConstants.SECTION_1,
-                    complexes: [],
-                    disabled: true,
-                },
-                {
-                    section: EditionConstants.SECTION_2,
-                    complexes: [],
-                    disabled: true,
-                },
-                {
-                    section: EditionConstants.SECTION_3,
-                    complexes: [],
-                    disabled: true,
-                },
-                {
-                    section: EditionConstants.SECTION_4,
-                    complexes: [],
-                    disabled: true,
-                },
-                {
-                    section: EditionConstants.SECTION_5,
-                    complexes: [
-                        { complex: EDITION_COMPLEXES.OP12, disabled: false },
-                        { complex: EDITION_COMPLEXES.OP23, disabled: false },
-                        { complex: EDITION_COMPLEXES.OP25, disabled: false },
-                    ],
-                    disabled: true,
-                },
-            ],
-        };
+        expectedSelectedEditionSeries = mockEditionOutline[0];
         expectedSelectedEditionSection = expectedSelectedEditionSeries.sections[0];
         expectedIsRowTableView = true;
 
@@ -183,27 +147,26 @@ describe('EditionViewComponent (DONE)', () => {
             expect(component.editionViewId).withContext(`should be ${expectedId}`).toBe(expectedId);
         });
 
-        it('... should have editionRoute and seriesRoute', () => {
-            expect(component.editionRoute).toBeDefined();
-            expect(component.editionRoute).withContext(`should be ${expectedEditionRoute}`).toBe(expectedEditionRoute);
-
-            expect(component.seriesRoute).toBeDefined();
-            expect(component.seriesRoute).withContext(`should be ${expectedSeriesRoute}`).toBe(expectedSeriesRoute);
+        it('... should have `editionRouteConstants`', () => {
+            expect(component.editionRouteConstants).toBeDefined();
+            expect(component.editionRouteConstants)
+                .withContext(`should be ${expectedEditionRouteConstants}`)
+                .toBe(expectedEditionRouteConstants);
         });
 
-        it('... should not have isRowTableView$', () => {
+        it('... should not have `isRowTableView$`', () => {
             expect(component.isRowTableView$).toBeUndefined();
         });
 
-        it('... should not have selectedEditionComplex$', () => {
+        it('... should not have `selectedEditionComplex$`', () => {
             expect(component.selectedEditionComplex$).toBeUndefined();
         });
 
-        it('... should not have selectedSeries$', () => {
+        it('... should not have `selectedSeries$`', () => {
             expect(component.selectedEditionSeries$).toBeUndefined();
         });
 
-        it('... should not have selectedSection$', () => {
+        it('... should not have `selectedSection$`', () => {
             expect(component.selectedEditionSection$).toBeUndefined();
         });
 
@@ -295,7 +258,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.selectedEditionSeries$).toBeDefined();
                 component.selectedEditionSeries$.subscribe({
-                    next: (series: EditionSeriesRoute) => {
+                    next: (series: EditionOutlineSeries) => {
                         expect(series)
                             .withContext(`should equal ${expectedSelectedEditionSeries}`)
                             .toEqual(expectedSelectedEditionSeries);
@@ -309,7 +272,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.selectedEditionSection$).toBeDefined();
                 component.selectedEditionSection$.subscribe({
-                    next: (section: EditionSectionRoute) => {
+                    next: (section: EditionOutlineSection) => {
                         expect(section)
                             .withContext(`should equal ${expectedSelectedEditionSection}`)
                             .toEqual(expectedSelectedEditionSection);
@@ -407,7 +370,7 @@ describe('EditionViewComponent (DONE)', () => {
                     );
                     const hEl = hDes[0].nativeElement;
 
-                    const expectedBreadCrumb = `${expectedEditionRoute.short} / Reihentabellen`;
+                    const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedEditionRouteConstants.ROWTABLES.full}`;
 
                     expect(hEl.innerText).toBeTruthy();
                     expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -463,7 +426,7 @@ describe('EditionViewComponent (DONE)', () => {
                     );
                     const hEl = hDes[0].nativeElement;
 
-                    const expectedBreadCrumb = `${expectedSelectedEditionComplex.editionRoute.short} / ${expectedSelectedEditionComplex.series.full} / ${expectedSelectedEditionComplex.section.full}`;
+                    const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedSelectedEditionComplex.series.full} / ${expectedSelectedEditionComplex.section.full}`;
 
                     expect(hEl.innerText).toBeTruthy();
                     expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -592,7 +555,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                         const hEl = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${expectedEditionRoute.short} /`;
+                        const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} /`;
 
                         expect(hEl.innerText).toBeTruthy();
                         expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -612,7 +575,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                         const hEl = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${expectedEditionRoute.short} / ${expectedSelectedEditionSeries.series.full} /`;
+                        const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedSelectedEditionSeries.series.full} /`;
 
                         expect(hEl.innerText).toBeTruthy();
                         expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);
@@ -633,7 +596,7 @@ describe('EditionViewComponent (DONE)', () => {
                         );
                         const hEl = hDes[0].nativeElement;
 
-                        const expectedBreadCrumb = `${expectedEditionRoute.short} / ${expectedSelectedEditionSeries.series.full} / ${expectedSelectedEditionSection.section.full}`;
+                        const expectedBreadCrumb = `${expectedEditionRouteConstants.EDITION.short} / ${expectedSelectedEditionSeries.series.full} / ${expectedSelectedEditionSection.section.full}`;
 
                         expect(hEl.innerText).toBeTruthy();
                         expect(hEl.innerText).withContext(`should be ${expectedBreadCrumb}`).toBe(expectedBreadCrumb);

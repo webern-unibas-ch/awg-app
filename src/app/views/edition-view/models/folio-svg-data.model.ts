@@ -1,10 +1,11 @@
 import {
-    FolioCalculationPoint,
-    FolioCalculationLine,
+    FolioCalculation,
     FolioCalculationContentItem,
+    FolioCalculationContentItemCornerPoints,
+    FolioCalculationLine,
+    FolioCalculationPoint,
     FolioCalculationSheet,
     FolioCalculationSystems,
-    FolioCalculation,
 } from './folio-calculation.model';
 
 /**
@@ -142,12 +143,12 @@ class FolioSvgContentItem {
     height: number;
 
     /**
-     * The line array of a content item (FolioCalculationLine[]).
+     * The corner points of a content item (FolioCalculationContentItemCornerPoints).
      *
-     * It contains all calculated lines and their positions (in px)
+     * It contains all corner points of a content item (in px)
      * to draw the svg of the content item of a folio.
      */
-    lineArray: FolioCalculationLine[];
+    cornerPoints: FolioCalculationContentItemCornerPoints;
 
     /**
      * Constructor of the FolioSvgContentItem class.
@@ -166,7 +167,7 @@ class FolioSvgContentItem {
         this.upperLeftCorner = calculatedContentItem.current.cornerPoints.upperLeftCorner;
         this.width = calculatedContentItem.width;
         this.height = calculatedContentItem.height;
-        this.lineArray = calculatedContentItem.lineArray;
+        this.cornerPoints = calculatedContentItem.current.cornerPoints;
     }
 }
 

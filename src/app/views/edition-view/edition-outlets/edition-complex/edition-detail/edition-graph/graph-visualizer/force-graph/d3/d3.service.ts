@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { D3Selection } from '@awg-app/views/edition-view/models';
+import { D3Selection } from '@awg-views/edition-view/models';
 import {
+    D3DragBehaviour,
     D3ForceSimulation,
-    D3Simulation,
     D3ForceSimulationOptions,
+    D3Simulation,
     D3SimulationLink,
     D3SimulationNode,
-    D3DragBehaviour,
 } from '../../models';
 
 import * as d3_drag from 'd3-drag';

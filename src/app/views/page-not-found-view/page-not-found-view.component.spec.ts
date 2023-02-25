@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
@@ -44,13 +44,27 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
-            expect(component.pageNotFoundTitle).toBe(expectedPageNotFoundTitle);
-            expect(component.pageNotFoundSubTitle).toBe(expectedPageNotFoundSubTitle);
+            expect(component.pageNotFoundTitle).toBeTruthy();
+            expect(component.pageNotFoundTitle)
+                .withContext(`should be ${expectedPageNotFoundTitle}`)
+                .toBe(expectedPageNotFoundTitle);
+
+            expect(component.pageNotFoundSubTitle).toBeTruthy();
+            expect(component.pageNotFoundSubTitle)
+                .withContext(`should be ${expectedPageNotFoundSubTitle}`)
+                .toBe(expectedPageNotFoundSubTitle);
         });
 
         it('should have correct values from getters', () => {
-            expect(component.pageNotFoundImgPath).toBe(expectedPageNotFoundImgPath);
-            expect(component.awgContactUrl).toBe(expectedAwgContactUrl);
+            expect(component.pageNotFoundImgPath).toBeTruthy();
+            expect(component.pageNotFoundImgPath)
+                .withContext(`should be ${expectedPageNotFoundImgPath}`)
+                .toBe(expectedPageNotFoundImgPath);
+
+            expect(component.awgContactUrl).toBeTruthy();
+            expect(component.awgContactUrl)
+                .withContext(`should be ${expectedAwgContactUrl}`)
+                .toBe(expectedAwgContactUrl);
         });
 
         describe('VIEW', () => {
@@ -83,7 +97,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const imgEl = imgDes[0].nativeElement;
 
                 expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).not.toBeTruthy('should be empty');
+                expect(imgEl.src).toBeFalsy();
             });
 
             it('... should contain 2 paragraphs (contact and back) in body', () => {
@@ -102,10 +116,10 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const subtitleEl = subtitleDes[0].nativeElement;
 
                 expect(titleEl.textContent).toBeDefined();
-                expect(titleEl.textContent).not.toBeTruthy('should be empty');
+                expect(titleEl.textContent).toBeFalsy();
 
                 expect(subtitleEl.textContent).toBeDefined();
-                expect(subtitleEl.textContent).not.toBeTruthy('should be empty');
+                expect(subtitleEl.textContent).toBeFalsy();
             });
 
             it('... should not render contact url yet', () => {
@@ -113,7 +127,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const contactEl = contactDes[0].nativeElement;
 
                 expect(contactEl.href).toBeDefined();
-                expect(contactEl.href).not.toBeTruthy('should be empty');
+                expect(contactEl.href).toBeFalsy();
             });
         });
     });
@@ -129,38 +143,40 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const titleDes = getAndExpectDebugElementByCss(compDe, 'h2#awg-page-not-found-title', 1, 1);
                 const titleEl = titleDes[0].nativeElement;
 
-                expect(titleEl.textContent).toBeDefined();
-                expect(titleEl.textContent).toContain(
-                    expectedPageNotFoundTitle,
-                    `should contain ${expectedPageNotFoundTitle}`
-                );
+                expect(titleEl.textContent).toBeTruthy();
+                expect(titleEl.textContent)
+                    .withContext(`should contain ${expectedPageNotFoundTitle}`)
+                    .toContain(expectedPageNotFoundTitle);
             });
 
             it('... should render pageNotFoundSubTitle in the `h5`-element', () => {
                 const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
                 const subtitleEl = subtitleDes[0].nativeElement;
 
-                expect(subtitleEl.textContent).toBeDefined();
-                expect(subtitleEl.textContent).toContain(
-                    expectedPageNotFoundSubTitle,
-                    `should contain ${expectedPageNotFoundSubTitle}`
-                );
+                expect(subtitleEl.textContent).toBeTruthy();
+                expect(subtitleEl.textContent)
+                    .withContext(`should contain ${expectedPageNotFoundSubTitle}`)
+                    .toContain(expectedPageNotFoundSubTitle);
             });
 
             it('... should render image', () => {
                 const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-image > img', 1, 1);
                 const imgEl = imgDes[0].nativeElement;
 
-                expect(imgEl.src).toBeTruthy('should not be empty');
-                expect(imgEl.src).toContain(expectedPageNotFoundImgPath);
+                expect(imgEl.src).toBeTruthy();
+                expect(imgEl.src)
+                    .withContext(`should contain ${expectedPageNotFoundImgPath}`)
+                    .toContain(expectedPageNotFoundImgPath);
             });
 
             it('... should render contact url', () => {
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'p#awg-page-not-found-contact > a', 1, 1);
                 const contactEl = contactDes[0].nativeElement;
 
-                expect(contactEl.href).toBeTruthy('should not be empty');
-                expect(contactEl.href).toBe(expectedAwgContactUrl);
+                expect(contactEl.href).toBeTruthy();
+                expect(contactEl.href)
+                    .withContext(`should contain ${expectedAwgContactUrl}`)
+                    .toBe(expectedAwgContactUrl);
             });
         });
 
@@ -174,20 +190,20 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             });
 
             it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
-                expect(routerLinks[0].linkParams).toEqual(['/home']);
+                expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+                expect(routerLinks[0].linkParams).withContext(`should equal ['/home']`).toEqual(['/home']);
             });
 
             it('... can click home link in template', () => {
                 const homeLinkDe = linkDes[0]; // Home link DebugElement
                 const homeLink = routerLinks[0]; // Home link directive
 
-                expect(homeLink.navigatedTo).toBeNull('should not have navigated yet');
+                expect(homeLink.navigatedTo).toBeNull();
 
                 click(homeLinkDe);
                 fixture.detectChanges();
 
-                expect(homeLink.navigatedTo).toEqual(['/home']);
+                expect(homeLink.navigatedTo).withContext(`should equal ['/home']`).toEqual(['/home']);
             });
         });
     });

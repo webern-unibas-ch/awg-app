@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
-import { EditionConstants, SourceDescriptionList } from '@awg-views/edition-view/models';
+import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
+import { SourceDescriptionList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
@@ -43,18 +44,18 @@ export class SourceDescriptionComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Readonly constant: FIRM_SIGNS.
+     * Readonly variable: FIRM_SIGNS.
      *
      * It keeps the routes to the firm signs.
      */
     readonly FIRM_SIGNS = {
         OP12: {
-            A: [EditionConstants.FIRM_JE_NO_9_LIN_28],
+            A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28],
         },
         OP25: {
-            A: [EditionConstants.FIRM_JE_NO_15_LIN_16],
-            B: [EditionConstants.FIRM_JE_NO_2_LIN_12],
-            C: [EditionConstants.FIRM_JE_NO_3_LIN_14],
+            A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_15_LIN_16],
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12],
+            C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_3_LIN_14],
         },
     };
 

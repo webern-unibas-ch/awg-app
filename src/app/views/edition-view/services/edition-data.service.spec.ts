@@ -1,6 +1,6 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpRequest } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
 
 import { EMPTY, of as observableOf } from 'rxjs';
@@ -11,25 +11,25 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_ROW_TABLES_DATA, EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ASSETS_DATA, EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
-    EditionConstants,
+    EditionComplex,
     EditionRowTables,
     EditionSvgSheet,
     EditionSvgSheetList,
-    EditionComplex,
-    FolioConvoluteList,
     FolioConvolute,
-    GraphList,
+    FolioConvoluteList,
     Graph,
-    IntroList,
+    GraphList,
     Intro,
+    IntroList,
     Source,
-    SourceList,
     SourceDescription,
     SourceDescriptionList,
     SourceEvaluation,
     SourceEvaluationList,
+    SourceList,
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
@@ -47,25 +47,28 @@ describe('EditionDataService (DONE)', () => {
     let expectedRowTablesData: EditionRowTables[];
 
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
-    const assets = EditionConstants.EDITION_ASSETS;
-    const expectedAssetPathBaseRoute = assets.baseRoute;
+    const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
+    const delimiter = '/';
     const expectedComplexRoute =
-        EditionConstants.SERIES.route +
+        delimiter +
+        EDITION_ROUTE_CONSTANTS.SERIES.route +
+        delimiter +
         expectedEditionComplex.series.route +
-        EditionConstants.SECTION.route +
+        EDITION_ROUTE_CONSTANTS.SECTION.route +
         expectedEditionComplex.section.route +
         expectedEditionComplex.complexId.route;
     const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
     const regexBase = new RegExp(expectedAssetPath);
 
-    const expectedIntroFilePath = `${expectedAssetPath}/${assets.introFile}`;
-    const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${assets.folioConvoluteFile}`;
-    const expectedSheetsFilePath = `${expectedAssetPath}/${assets.svgSheetsFile}`;
-    const expectedSourceListFilePath = `${expectedAssetPath}/${assets.sourceListFile}`;
-    const expectedSourceDescriptionFilePath = `${expectedAssetPath}/${assets.sourceDescriptionListFile}`;
-    const expectedSourceEvaluationFilePath = `${expectedAssetPath}/${assets.sourceEvaluationListFile}`;
-    const expectedTextcriticsFilePath = `${expectedAssetPath}/${assets.textcriticsFile}`;
-    const expectedGraphFilePath = `${expectedAssetPath}/${assets.graphFile}`;
+    const files = EDITION_ASSETS_DATA.FILES;
+    const expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
+    const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${files.folioConvoluteFile}`;
+    const expectedSheetsFilePath = `${expectedAssetPath}/${files.svgSheetsFile}`;
+    const expectedSourceListFilePath = `${expectedAssetPath}/${files.sourceListFile}`;
+    const expectedSourceDescriptionFilePath = `${expectedAssetPath}/${files.sourceDescriptionListFile}`;
+    const expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
+    const expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
+    const expectedGraphFilePath = `${expectedAssetPath}/${files.graphFile}`;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -100,7 +103,7 @@ describe('EditionDataService (DONE)', () => {
     });
 
     it('should have empty assetPath', () => {
-        expect((editionDataService as any)._assetPath).not.toBeTruthy();
+        expect((editionDataService as any)._assetPath).toBeFalsy();
     });
 
     describe('httpTestingController', () => {
@@ -257,9 +260,13 @@ describe('EditionDataService (DONE)', () => {
                     fcl.convolutes[0].convoluteId = 'test-convolute-id';
 
                     const esl = new EditionSvgSheetList();
-                    esl.sheets = [];
-                    esl.sheets.push(new EditionSvgSheet());
-                    esl.sheets[0].id = 'test-svg-sheets-id';
+                    esl.sheets = { workEditions: [], textEditions: [], sketchEditions: [] };
+                    esl.sheets.workEditions.push(new EditionSvgSheet());
+                    esl.sheets.textEditions.push(new EditionSvgSheet());
+                    esl.sheets.sketchEditions.push(new EditionSvgSheet());
+                    esl.sheets.workEditions[0].id = 'test-svg-work-sheets-id';
+                    esl.sheets.textEditions[0].id = 'test-svg-text-sheets-id';
+                    esl.sheets.sketchEditions[0].id = 'test-svg-sketch-sheets-id';
 
                     const tcl = new TextcriticsList();
                     tcl.textcritics = [];
@@ -308,9 +315,15 @@ describe('EditionDataService (DONE)', () => {
                             expect(resFcl.convolutes[0].convoluteId)
                                 .withContext('should be test-convolute-id')
                                 .toBe('test-convolute-id');
-                            expect(resEsl.sheets[0].id)
-                                .withContext('should be test-svg-sheet-id')
-                                .toBe('test-svg-sheets-id');
+                            expect(resEsl.sheets.workEditions[0].id)
+                                .withContext('should be test-svg-work-sheets-id')
+                                .toBe('test-svg-work-sheets-id');
+                            expect(resEsl.sheets.textEditions[0].id)
+                                .withContext('should be test-svg-text-sheets-id')
+                                .toBe('test-svg-text-sheets-id');
+                            expect(resEsl.sheets.sketchEditions[0].id)
+                                .withContext('should be test-svg-sketch-sheets-id')
+                                .toBe('test-svg-sketch-sheets-id');
                             expect(resTcl.textcritics[0].id)
                                 .withContext('should be test-textcritics-id')
                                 .toBe('test-textcritics-id');
@@ -1813,7 +1826,7 @@ describe('EditionDataService (DONE)', () => {
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
                             expect(res).toBeTruthy();
-                            expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
+                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
                         },
                         error: () => {
                             fail('should not call error');

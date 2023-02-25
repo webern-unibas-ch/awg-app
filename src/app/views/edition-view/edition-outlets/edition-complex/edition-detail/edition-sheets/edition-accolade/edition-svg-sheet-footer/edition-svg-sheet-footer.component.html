@@ -1,0 +1,35 @@
+<div class="awg-edition-svg-sheet-footer mt-4">
+    <div class="awg-edition-svg-sheet-footer-evaluation">
+        <p (click)="toggleTextcritics()" style="cursor: pointer">
+            <span *ngIf="selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)">
+                <fa-icon [icon]="showTextcritics ? faChevronUp : faChevronRight"></fa-icon>
+                &nbsp;
+            </span>
+            <span class="caps">Skizzenkommentar:</span>
+            <span *ngIf="selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)"
+                >&nbsp;---</span
+            >
+        </p>
+        <ng-container
+            *ngIf="
+                showTextcritics &&
+                selectedTextcritics.description &&
+                utils.isNotEmptyArray(selectedTextcritics.description)
+            ">
+            <p
+                class="awg-edition-svg-sheet-footer-evaluation-desc"
+                *ngFor="let description of selectedTextcritics.description"
+                [compile-html]="description"
+                [compile-html-ref]="ref"></p>
+        </ng-container>
+    </div>
+    <div class="awg-edition-svg-sheet-footer-textcritics" *ngIf="showTkA">
+        <p class="caps">Textkritischer Kommentar:</p>
+        <awg-edition-tka-table
+            [textcriticalComments]="selectedTextcriticalComments"
+            [isRowTable]="selectedTextcritics.rowtable"
+            (openModalRequest)="openModal($event)"
+            (selectSvgSheetRequest)="selectSvgSheet($event)">
+        </awg-edition-tka-table>
+    </div>
+</div>

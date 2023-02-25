@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 version_file=src/app/app.globals.ts
 
-curday=$(date +"%d.")
-curmonth=$(LC_ALL=de_DE.UTF-8 date +"%B");
-curyear=$(date +"%Y")
+CURRENT_VERSION=$(node -p "require('./package.json').version")
+CURRENT_HOMEPAGE=$(node -p "require('./package.json').homepage")
+
+CURRENT_DAY=$(date +"%d.")
+CURRENT_MONTH=$(LC_ALL=de_DE.UTF-8 date +"%B");
+CURRENT_YEAR=$(date +"%Y")
+CURRENT_DATE="$CURRENT_DAY $CURRENT_MONTH $CURRENT_YEAR"
+
 
 echo "Updating app globals...
 "
@@ -15,17 +20,17 @@ echo "// THIS IS AN AUTO-GENERATED FILE. DO NOT CHANGE IT MANUALLY!
 /**
  * The latest version of the AWG App
  */
-export const appVersion = '$1';
+export const appVersion = '$CURRENT_VERSION';
 
 /**
  * The release date of the latest version of the AWG App
  */
-export const appVersionReleaseDate = '$curday $curmonth $curyear';
+export const appVersionReleaseDate = '$CURRENT_DATE';
 
 /**
  * The URL of the AWG App
  */
-export const appHomepage = '$2';" >> $version_file
+export const appHomepage = '$CURRENT_HOMEPAGE';" >> $version_file
 
 
 echo "Adding global file to git...
@@ -34,9 +39,9 @@ echo "Adding global file to git...
 git add $version_file
 
 echo "Updated app globals to
-... version: $1
-... version date: $curday $curmonth $curyear
-... homepage: $2
+... version: $CURRENT_VERSION
+... version date: $CURRENT_DATE
+... homepage: $CURRENT_HOMEPAGE
 
 
 Done."

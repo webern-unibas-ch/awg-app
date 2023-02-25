@@ -10,23 +10,30 @@
 import { D3Selection } from './d3-selection.model';
 import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 
-import { EditionConstants, EditionRoute, EditionSectionRoute, EditionSeriesRoute } from './edition-constants';
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
+import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
+import { EditionRouteConstant } from './edition-route-constant.model';
 import { EditionRowTables } from './edition-row-tables.model';
+import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
-import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
+import {
+    FolioCalculation,
+    FolioCalculationContentItemCornerPoints,
+    FolioCalculationLine,
+    FolioCalculationPoint,
+} from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
+import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
 
-import { Graph, GraphList, GraphSparqlQuery, GraphRDFData } from './graph.model';
+import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroList } from './intro.model';
 
-import { Source, SourceList } from './source-list.model';
 import { SourceDescription, SourceDescriptionList } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
+import { Source, SourceList } from './source-list.model';
 
 import { TextcriticalComment, Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
@@ -35,11 +42,12 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
-    EditionConstants,
-    EditionRoute,
+    EditionRouteConstant,
     EditionRowTables,
-    EditionSectionRoute,
-    EditionSeriesRoute,
+    EditionOutlineComplex,
+    EditionOutlineSection,
+    EditionOutlineSeries,
+    EditionSvgLinkBox,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
@@ -54,6 +62,7 @@ export {
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioCalculationContentItemCornerPoints,
     FolioSettings,
     FolioSvgData,
     Graph,

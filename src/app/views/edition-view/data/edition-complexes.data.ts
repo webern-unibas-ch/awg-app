@@ -1,5 +1,10 @@
 import { AppConfig } from '@awg-app/app.config';
-import { EditionConstants, EditionComplex } from '../models';
+import {
+    EDITION_CATALOGUE_TYPE_CONSTANTS,
+    EDITION_ROUTE_CONSTANTS,
+    EDITION_TYPE_CONSTANTS,
+} from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex } from '@awg-views/edition-view/models';
 
 /**
  * The EditionComplexes class.
@@ -9,12 +14,35 @@ import { EditionConstants, EditionComplex } from '../models';
  */
 export class EDITION_COMPLEXES {
     /**
+     * An EditionComplex object for M 30.
+     */
+    static readonly M30: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '30',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '22. Februar 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
      * An EditionComplex object for M 34.
      */
     static readonly M34: EditionComplex = new EditionComplex(
         {
             title: 'Studienkomposition für Klavier',
-            catalogueType: EditionConstants.MNR,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
             catalogueNumber: '34',
         },
         {
@@ -24,11 +52,103 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '07. Juli 2022',
+            lastModified: '22. Februar 2023',
         },
-        EditionConstants.SERIES_2,
-        EditionConstants.SECTION_2A,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 212.
+     */
+    static readonly M212: EditionComplex = new EditionComplex(
+        {
+            title: '„Der Tag ist vergangen“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '212',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 213.
+     */
+    static readonly M213: EditionComplex = new EditionComplex(
+        {
+            title: '„Schien mir’s, als ich sah die Sonne“',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '213',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 216.
+     */
+    static readonly M216: EditionComplex = new EditionComplex(
+        {
+            title: 'Gleich und Gleich („Ein Blumenglöckchen“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '216',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 217.
+     */
+    static readonly M217: EditionComplex = new EditionComplex(
+        {
+            title: 'Die geheimnisvolle Flöte („An einem Abend“)',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '217',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '---',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -37,7 +157,7 @@ export class EDITION_COMPLEXES {
     static readonly OP3: EditionComplex = new EditionComplex(
         {
             title: '<em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '3',
         },
         {
@@ -49,9 +169,9 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '---',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_5,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -60,7 +180,7 @@ export class EDITION_COMPLEXES {
     static readonly OP4: EditionComplex = new EditionComplex(
         {
             title: '<em>Fünf Lieder nach Gedichten von Stefan George</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '4',
         },
         {
@@ -72,9 +192,9 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '---',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_5,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -83,7 +203,7 @@ export class EDITION_COMPLEXES {
     static readonly OP12: EditionComplex = new EditionComplex(
         {
             title: '<em>Vier Lieder</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '12',
         },
         {
@@ -95,9 +215,9 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '01. Juni 2022',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_5,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -106,7 +226,7 @@ export class EDITION_COMPLEXES {
     static readonly OP19: EditionComplex = new EditionComplex(
         {
             title: '<em>Zwei Lieder für gemischten Chor und Ensemble</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '19',
         },
         {
@@ -118,9 +238,9 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. März 2022',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_3,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_3,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -129,7 +249,7 @@ export class EDITION_COMPLEXES {
     static readonly OP23: EditionComplex = new EditionComplex(
         {
             title: '<em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '23',
         },
         {
@@ -141,9 +261,9 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. März 2022',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_5,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -152,7 +272,7 @@ export class EDITION_COMPLEXES {
     static readonly OP24: EditionComplex = new EditionComplex(
         {
             title: '<em>Konzert für neun Instrumente</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '24',
         },
         {
@@ -164,9 +284,9 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. März 2022',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_1,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_1,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
     /**
@@ -175,7 +295,7 @@ export class EDITION_COMPLEXES {
     static readonly OP25: EditionComplex = new EditionComplex(
         {
             title: '<em>Drei Lieder nach Gedichten von Hildegard Jone</em>',
-            catalogueType: EditionConstants.OPUS,
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
             catalogueNumber: '25',
         },
         {
@@ -187,8 +307,8 @@ export class EDITION_COMPLEXES {
             ],
             lastModified: '23. Februar 2022',
         },
-        EditionConstants.SERIES_1,
-        EditionConstants.SECTION_5,
-        EditionConstants.SKETCH_EDITION
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 }

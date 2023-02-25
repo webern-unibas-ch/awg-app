@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ReplaySubject } from 'rxjs';
@@ -9,7 +9,7 @@ import { expectSpyCall } from '@testing/expect-helper';
 
 import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
 import { EditionRowTables } from '@awg-views/edition-view/models';
-import { EditionService, EditionDataService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionRowTablesComponent } from './edition-row-tables.component';
 

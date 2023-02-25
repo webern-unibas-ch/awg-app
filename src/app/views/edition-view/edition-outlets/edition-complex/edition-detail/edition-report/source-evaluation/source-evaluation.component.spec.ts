@@ -1,6 +1,6 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DOCUMENT } from '@angular/common';
 import { DebugElement } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
@@ -12,6 +12,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, EditionSvgSheet, SourceEvaluationList } from '@awg-views/edition-view/models';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
@@ -26,6 +27,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let expectedEditionComplex: EditionComplex;
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedSourceEvaluationListEmptyData: SourceEvaluationList;
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
     let expectedFragment: string;
     let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
@@ -79,17 +81,24 @@ describe('SourceEvaluationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have editionComplex', () => {
+        it('should not have `editionComplex`', () => {
             expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should not have sourceDescriptionListData', () => {
+        it('should not have `sourceDescriptionListData`', () => {
             expect(component.sourceEvaluationListData).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should have ref', () => {
+        it('should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+        });
+
+        it('should have `editionRouteConstants`', () => {
+            expect(component.editionRouteConstants).toBeDefined();
+            expect(component.editionRouteConstants)
+                .withContext(`should be ${expectedEditionRouteConstants}`)
+                .toBe(expectedEditionRouteConstants);
         });
 
         describe('VIEW', () => {
@@ -189,15 +198,13 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const pCmp = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
-                const htmlEvaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionComplex.editionRoute.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
-                const htmlEvaluationPlaceholderText = htmlEvaluationPlaceholder
-                    .replace(/<em>/g, '')
-                    .replace(/<\/em>/g, '');
+                const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
+                const strippedEvaluationPlaceholder = evaluationPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pCmp.textContent).withContext('should be defined').toBeDefined();
+                expect(pCmp.textContent).toBeTruthy();
                 expect(pCmp.textContent.trim())
-                    .withContext(`should be ${htmlEvaluationPlaceholderText}`)
-                    .toEqual(htmlEvaluationPlaceholderText);
+                    .withContext(`should be ${strippedEvaluationPlaceholder}`)
+                    .toEqual(strippedEvaluationPlaceholder);
             }));
         });
 

@@ -371,45 +371,66 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain panel body with div and paragraphs if description array is not empty', () => {
+                it('... should contain no panel body with div and paragraphs if description array is empty', () => {
+                    const textcritics = expectedTextcriticsData.textcritics[0];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-body`,
+                        `div#${textcritics.id} > div.accordion-body`,
                         1,
                         1,
                         'open'
                     );
 
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+                    getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
+                });
+
+                it('... should contain panel body with as many paragraphs in first div as textcritics.description if description array is not empty', () => {
+                    const textcritics = expectedTextcriticsData.textcritics[1];
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${textcritics.id} > div.accordion-body`,
+                        1,
+                        1,
+                        'open'
+                    );
+
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+
+                    // Number of paragraphs = description array length + 1 (heading)
+                    const pDes = getAndExpectDebugElementByCss(
+                        divDes[0],
+                        'p',
+                        textcritics.description.length + 1,
+                        textcritics.description.length + 1
+                    );
                     const pEl0 = pDes[0].nativeElement;
-                    const pEl1 = pDes[1].nativeElement;
-                    const pEl2 = pDes[2].nativeElement;
 
                     expect(pEl0.textContent).toBeDefined();
                     expect(pEl0.textContent).withContext(`should be 'Skizzenkommentar:'`).toBe('Skizzenkommentar:');
 
-                    expect(pEl1.textContent).toBeDefined();
-                    expect(pEl1.textContent)
-                        .withContext(`should be ${expectedTextcriticsData.textcritics[0].description[0]}`)
-                        .toBe(expectedTextcriticsData.textcritics[0].description[0]);
-
-                    expect(pEl2.textContent).toBeDefined();
-                    expect(pEl2.textContent)
-                        .withContext(`should be ${expectedTextcriticsData.textcritics[0].description[1]}`)
-                        .toBe(expectedTextcriticsData.textcritics[0].description[1]);
+                    pDes.forEach((pDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const pEl = pDe.nativeElement;
+                        expect(pEl.textContent).toBeDefined();
+                        expect(pEl.textContent)
+                            .withContext(`should be ${textcritics.description[index - 1]}`)
+                            .toBe(textcritics.description[index - 1]);
+                    });
                 });
 
                 it('... should contain panel body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
+                    const textcritics = expectedTextcriticsData.textcritics[1];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-body`,
+                        `div#${textcritics.id} > div.accordion-body`,
                         1,
                         1,
                         'open'
                     );
 
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
                     const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                     const pEl0 = pDes[0].nativeElement;
 
@@ -422,7 +443,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionTkaTableStubComponent, 1, 1);
                 });
 
-                it('... should pass down `comments` and `rowtable` data to editionTakTable component', () => {
+                it('... should pass down `comments` and `rowtable` data to EditionTkaTableComponent (stubbed)', () => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionTkaTableStubComponent,

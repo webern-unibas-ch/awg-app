@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -184,7 +184,9 @@ describe('FooterComponent (DONE)', () => {
                     ) as FooterDeclarationStubComponent;
 
                     expect(footerDeclarationCmp.pageMetaData).toBeTruthy();
-                    expect(footerDeclarationCmp.pageMetaData).toEqual(expectedPageMetaData, 'should have pageMetaData');
+                    expect(footerDeclarationCmp.pageMetaData)
+                        .withContext('should have pageMetaData')
+                        .toEqual(expectedPageMetaData);
                 });
 
                 it('... should pass down logos to footer logo components', () => {

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
-import { METADATA, LOGOSDATA } from '@awg-core/core-data';
+import { LOGOSDATA, METADATA } from '@awg-core/core-data';
 import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
 
 import { CoreService } from './core.service';
@@ -36,7 +36,7 @@ describe('CoreService (DONE)', () => {
     describe('#getMetaData', () => {
         it('... should return METADATA', () => {
             // Call service function
-            expect(coreService.getMetaData()).toBe(expectedMetaData, `should be ${expectedMetaData}`);
+            expect(coreService.getMetaData()).withContext(`should be ${expectedMetaData}`).toBe(expectedMetaData);
         });
     });
 

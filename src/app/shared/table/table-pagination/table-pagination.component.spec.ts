@@ -1,5 +1,5 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DebugElement, NgModule } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 import { NgbConfig, NgbPaginationModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';

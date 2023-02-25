@@ -1,16 +1,16 @@
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localeDeDE from '@angular/common/locales/de';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { registerLocaleData } from '@angular/common';
-import localeDeDE from '@angular/common/locales/de';
 
 //
 // Main app modules
-import { AppComponent } from './app.component';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
+import { AppComponent } from './app.component';
 
 /* Routing Module */
 import { AppRoutingModule, routedAppComponents } from './app-routing.module';

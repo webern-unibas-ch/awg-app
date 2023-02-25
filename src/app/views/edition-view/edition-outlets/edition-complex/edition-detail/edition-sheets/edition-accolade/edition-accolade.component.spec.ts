@@ -1,11 +1,10 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -19,6 +18,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     TextcriticalComment,
+    Textcritics,
 } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
@@ -34,22 +34,28 @@ class EditionSvgSheetNavStubComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-svg-sheet', template: '' })
-class EditionSvgSheetStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet-viewer', template: '' })
+class EditionSvgSheetViewerStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
-@Component({ selector: 'awg-edition-tka-table', template: '' })
-class EditionTkaTableStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet-footer', template: '' })
+class EditionSvgSheetFooterStubComponent {
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    selectedTextcriticalComments: TextcriticalComment[];
+    @Input()
+    selectedTextcritics: Textcritics;
+    @Input()
+    showTkA: boolean;
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -63,6 +69,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
+    let selectLinkBoxSpy: Spy;
+    let selectLinkBoxRequestEmitSpy: Spy;
     let selectOverlaysSpy: Spy;
     let selectOverlaysRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
@@ -73,8 +81,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcriticalComments: TextcriticalComment[];
-    let expectedShowTka: boolean;
+    let expectedSelectedTextcritics: Textcritics;
+    let expectedShowTkA: boolean;
     let expectedModalSnippet: string;
+    let expectedLinkBoxId: string;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -90,9 +100,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
             imports: [NgbAccordionWithConfigModule],
             declarations: [
                 EditionAccoladeComponent,
-                EditionSvgSheetStubComponent,
+                EditionSvgSheetViewerStubComponent,
                 EditionSvgSheetNavStubComponent,
-                EditionTkaTableStubComponent,
+                EditionSvgSheetFooterStubComponent,
             ],
         }).compileComponents();
     }));
@@ -106,20 +116,26 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
-        expectedSvgSheetsData = { sheets: [expectedSvgSheet, expectedNextSvgSheet] };
+        expectedSvgSheetsData = {
+            sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
+        };
         expectedSelectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
+        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[1];
 
         const type = EditionSvgOverlayTypes.item;
         const id = 'tka-1';
         const overlay = new EditionSvgOverlay(type, id, true);
         expectedOverlays = [overlay];
-        expectedShowTka = true;
+        expectedLinkBoxId = 'link-box-1';
+        expectedShowTkA = true;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
+        selectLinkBoxSpy = spyOn(component, 'selectLinkBox').and.callThrough();
+        selectLinkBoxRequestEmitSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
         selectOverlaysSpy = spyOn(component, 'selectOverlays').and.callThrough();
         selectOverlaysRequestEmitSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -143,6 +159,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
             expect(component.selectedTextcriticalComments).toBeUndefined();
         });
 
+        it('should not have `selectedTextcritics`', () => {
+            expect(component.selectedTextcritics).toBeUndefined();
+        });
+
         it('should not have `showTkA`', () => {
             expect(component.showTkA).toBeUndefined();
         });
@@ -164,7 +184,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             component.svgSheetsData = expectedSvgSheetsData;
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedTextcriticalComments = expectedSelectedTextcriticalComments;
-            component.showTkA = expectedShowTka;
+            component.selectedTextcritics = expectedSelectedTextcritics;
+            component.showTkA = expectedShowTkA;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -189,9 +210,16 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 .toEqual(expectedSelectedTextcriticalComments);
         });
 
+        it('should have `selectedTextcritics` input', () => {
+            expect(component.selectedTextcritics).toBeDefined();
+            expect(component.selectedTextcritics)
+                .withContext(`should equal ${expectedSelectedTextcritics}`)
+                .toEqual(expectedSelectedTextcritics);
+        });
+
         it('should have `showTkA` input', () => {
             expect(component.showTkA).toBeDefined();
-            expect(component.showTkA).withContext(`should be ${expectedShowTka}`).toBe(expectedShowTka);
+            expect(component.showTkA).withContext(`should be ${expectedShowTkA}`).toBe(expectedShowTkA);
         });
 
         describe('VIEW', () => {
@@ -281,21 +309,26 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
             });
 
-            describe('EditionSvgSheetComponent', () => {
-                it('... should contain one EditionSvgSheetComponent (stubbed) in the panel body (div.accordion-body)', () => {
+            describe('EditionSvgSheetViewerComponent', () => {
+                it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                     const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
 
-                it('... should pass down selectedSvgSheet to the EditionSvgSheetComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
+                it('... should pass down selectedSvgSheet to the EditionSvgSheetViewerComponent', () => {
+                    const sheetDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetViewerStubComponent,
+                        1,
+                        1
+                    );
                     const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetStubComponent
-                    ) as EditionSvgSheetStubComponent;
+                        EditionSvgSheetViewerStubComponent
+                    ) as EditionSvgSheetViewerStubComponent;
 
                     expect(sheetCmp.selectedSvgSheet).toBeTruthy();
                     expect(sheetCmp.selectedSvgSheet)
@@ -304,69 +337,72 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 });
             });
 
-            describe('EditionTkaTableComponent', () => {
-                it('... should contain no footer div if showTka is false', () => {
-                    component.showTkA = false;
-                    detectChangesOnPush(fixture);
-
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
-
-                    getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
-                });
-
-                it('... should contain one footer div if showTka is true', () => {
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
-
-                    getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 1, 1);
-                });
-
-                it('... should contain one header (h5) in footer div', () => {
+            describe('EditionSvgSheetFooterComponent', () => {
+                it('... should contain one EditionSvgSheetFooterComponent (stubbed) in the panel body (div.accordion-body)', () => {
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                     const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.panel-footer', 1, 1);
-
-                    const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h5', 1, 1);
-                    const headerCmp = headerDes[0].nativeElement;
-
-                    expect(headerCmp.textContent).toBeTruthy();
-                    expect(headerCmp.textContent.trim())
-                        .withContext(`should be 'Textkritischer Kommentar:`)
-                        .toBe(`Textkritischer Kommentar:`);
+                    getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                 });
 
-                it('... should contain one EditionTkaTableComponent (stubbed) in footer div', () => {
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                it('... should pass down selectedTextcriticalComments to the EditionSvgSheetFooterComponent', () => {
+                    const footerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFooterStubComponent,
+                        1,
+                        1
+                    );
+                    const footerCmp = footerDes[0].injector.get(
+                        EditionSvgSheetFooterStubComponent
+                    ) as EditionSvgSheetFooterStubComponent;
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
-
-                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.panel-footer', 1, 1);
-
-                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
-                });
-
-                it('... should pass down selectedTextcriticalComments to the EditionTkaTableComponent', () => {
-                    const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                    const tableCmp = tableDes[0].injector.get(
-                        EditionTkaTableStubComponent
-                    ) as EditionTkaTableStubComponent;
-
-                    expect(tableCmp.textcriticalComments).toBeTruthy();
-                    expect(tableCmp.textcriticalComments)
+                    expect(footerCmp.selectedTextcriticalComments).toBeTruthy();
+                    expect(footerCmp.selectedTextcriticalComments)
                         .withContext(`should equal ${expectedSelectedTextcriticalComments}`)
                         .toEqual(expectedSelectedTextcriticalComments);
+                });
+
+                it('... should pass down selectedTextcritics to the EditionSvgSheetFooterComponent', () => {
+                    const footerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFooterStubComponent,
+                        1,
+                        1
+                    );
+                    const footerCmp = footerDes[0].injector.get(
+                        EditionSvgSheetFooterStubComponent
+                    ) as EditionSvgSheetFooterStubComponent;
+
+                    expect(footerCmp.selectedTextcritics).toBeTruthy();
+                    expect(footerCmp.selectedTextcritics)
+                        .withContext(`should equal ${expectedSelectedTextcritics}`)
+                        .toEqual(expectedSelectedTextcritics);
+                });
+
+                it('... should pass down showTkA to the EditionSvgSheetFooterComponent', () => {
+                    const footerDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionSvgSheetFooterStubComponent,
+                        1,
+                        1
+                    );
+                    const footerCmp = footerDes[0].injector.get(
+                        EditionSvgSheetFooterStubComponent
+                    ) as EditionSvgSheetFooterStubComponent;
+
+                    expect(footerCmp.showTkA).toBeTruthy();
+                    expect(footerCmp.showTkA).withContext(`should equal ${expectedShowTkA}`).toEqual(expectedShowTkA);
                 });
             });
         });
 
         describe('#openModal', () => {
+            it('... should have an `openModal` method  ', () => {
+                expect(component.openModal).toBeDefined();
+            });
+
             it('... should trigger on click on header button', fakeAsync(() => {
                 // Header
                 const buttonDes = getAndExpectDebugElementByCss(
@@ -384,9 +420,11 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expectSpyCall(openModalSpy, 1, expectedSnippet);
             }));
 
-            it('... should trigger on openModalRequest event from EditionTkaTableComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+            it('... should trigger on openModalRequest event from EditionSvgSheetFooterStubComponent', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetFooterStubComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(
+                    EditionSvgSheetFooterStubComponent
+                ) as EditionSvgSheetFooterStubComponent;
 
                 tableCmp.openModalRequest.emit(expectedModalSnippet);
 
@@ -406,10 +444,51 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
+        describe('#selectLinkBox', () => {
+            it('... should have a `selectLinkBox` method', () => {
+                expect(component.selectLinkBox).toBeDefined();
+            });
+
+            it('... should trigger on selectLinkBoxRequest event from EditionSvgSheetViewerComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetViewerStubComponent
+                ) as EditionSvgSheetViewerStubComponent;
+
+                sheetCmp.selectLinkBoxRequest.emit(expectedLinkBoxId);
+
+                expectSpyCall(selectLinkBoxSpy, 1, expectedLinkBoxId);
+            });
+
+            it('... should emit link box id', () => {
+                component.selectLinkBox(expectedLinkBoxId);
+
+                expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
+            });
+
+            it('... should emit correct link box id', () => {
+                component.selectLinkBox(expectedLinkBoxId);
+
+                expectSpyCall(selectLinkBoxRequestEmitSpy, 1, expectedLinkBoxId);
+
+                // Trigger other link box id
+                const otherLinkBoxId = 'link-box-2';
+                component.selectLinkBox(otherLinkBoxId);
+
+                expectSpyCall(selectLinkBoxRequestEmitSpy, 2, otherLinkBoxId);
+            });
+        });
+
         describe('#selectOverlays', () => {
-            it('... should trigger on selectOverlaysRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+            it('... should have a `selectOverlays` method', () => {
+                expect(component.selectOverlays).toBeDefined();
+            });
+
+            it('... should trigger on selectOverlaysRequest event from EditionSvgSheetViewerComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetViewerStubComponent
+                ) as EditionSvgSheetViewerStubComponent;
 
                 sheetCmp.selectOverlaysRequest.emit(expectedOverlays);
 
@@ -436,6 +515,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('#selectSvgSheet', () => {
+            it('... should have a `selectSvgSheet` method', () => {
+                expect(component.selectSvgSheet).toBeDefined();
+            });
+
             it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetNavComponent', () => {
                 const sheetNavDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavStubComponent, 1, 1);
                 const sheetNavCmp = sheetNavDes[0].injector.get(
@@ -447,18 +530,22 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             });
 
-            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetComponent', () => {
-                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetStubComponent, 1, 1);
-                const sheetCmp = sheetDes[0].injector.get(EditionSvgSheetStubComponent) as EditionSvgSheetStubComponent;
+            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetViewerComponent', () => {
+                const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
+                const sheetCmp = sheetDes[0].injector.get(
+                    EditionSvgSheetViewerStubComponent
+                ) as EditionSvgSheetViewerStubComponent;
 
                 sheetCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 
                 expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             });
 
-            it('... should trigger on selectSvgSheetRequest event from EditionTkaTableComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+            it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetFooterStubComponent', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetFooterStubComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(
+                    EditionSvgSheetFooterStubComponent
+                ) as EditionSvgSheetFooterStubComponent;
 
                 tableCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 

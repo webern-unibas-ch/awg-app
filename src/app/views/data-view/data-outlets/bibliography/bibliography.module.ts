@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { BibliographySearchComponent } from './bibliography-search/bibliography-search.component';
-import { BibliographyListComponent } from './bibliography-list/bibliography-list.component';
 import { BibliographyFormatPipe } from './bibliography-format.pipe';
+import { BibliographyListComponent } from './bibliography-list/bibliography-list.component';
+import { BibliographySearchComponent } from './bibliography-search/bibliography-search.component';
 
 /* Routing Module */
 import { BibliographyRoutingModule, routedBibliographyComponents } from './bibliography-routing.module';

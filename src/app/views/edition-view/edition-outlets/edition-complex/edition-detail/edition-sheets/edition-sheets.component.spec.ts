@@ -1,26 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { Observable, of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import {
-    Folio,
-    EditionSvgSheet,
-    EditionSvgOverlay,
-    TextcriticalComment,
-    TextcriticsList,
-    EditionSvgSheetList,
-    FolioConvoluteList,
-    FolioConvolute,
-} from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import {
+    EditionSvgOverlay,
+    EditionSvgSheet,
+    EditionSvgSheetList,
+    Folio,
+    FolioConvolute,
+    FolioConvoluteList,
+    TextcriticalComment,
+    TextcriticsList,
+} from '@awg-views/edition-view/models';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionSheetsComponent } from './edition-sheets.component';
 

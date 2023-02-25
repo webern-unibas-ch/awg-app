@@ -124,7 +124,7 @@ describe('StorageService (DONE)', () => {
         });
 
         it('... should clear mock storage after each run', () => {
-            expect(mockStorage.getItem('testkey')).toBeNull('should be undefined');
+            expect(mockStorage.getItem('testkey')).toBeNull();
         });
     });
 
@@ -399,6 +399,16 @@ describe('StorageService (DONE)', () => {
 
                 expect(mockStorage.getItem(expectedKey)).withContext(`should be ${expectedItem}`).toBe(expectedItem);
             });
+        });
+    });
+
+    describe('#_storageIsAvailable', () => {
+        it('... should return true if the storage is available', () => {
+            expect((storageService as any)._storageIsAvailable(expectedStorage)).toBe(true);
+        });
+
+        it('... should return false if the storage is not available', () => {
+            expect((storageService as any)._storageIsAvailable(null)).toBe(false);
         });
     });
 });

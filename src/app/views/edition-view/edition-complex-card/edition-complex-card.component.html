@@ -1,0 +1,38 @@
+<div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+    <div class="col" *ngFor="let complex of complexes">
+        <div class="card awg-edition-card h-100">
+            <div class="card-body">
+                <h5 class="card-title" [ngClass]="{ 'text-muted': complex.disabled }">
+                    <span
+                        class="awg-edition-info-header-title"
+                        [innerHTML]="complex.complex.titleStatement.title"></span
+                    >&nbsp;<span class="awg-edition-info-header-catalogue">{{ complex.complex.complexId.short }}</span>
+                </h5>
+            </div>
+            <div class="card-footer">
+                <p *ngIf="!complex.disabled" class="awg-edition-responsibility">
+                    <small class="text-muted">
+                        Ediert von
+                        <span
+                            class="editor"
+                            *ngFor="let editor of complex.complex.responsibilityStatement.editors; last as isLast">
+                            <a href="{{ editor.homepage }}">{{ editor.name }}</a
+                            ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
+                        </span>
+                        <br />
+                        Versionsdatum:
+                        <span class="version">{{ complex.complex.responsibilityStatement.lastModified }}</span>
+                    </small>
+                </p>
+                <p class="text-end">
+                    <a
+                        [routerLink]="[complex.complex.baseRoute]"
+                        class="btn btn-outline-info"
+                        [ngClass]="{ disabled: complex.disabled }"
+                        >Mehr...
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

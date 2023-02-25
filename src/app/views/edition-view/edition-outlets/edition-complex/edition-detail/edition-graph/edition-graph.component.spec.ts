@@ -1,6 +1,6 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
 import { JsonPipe } from '@angular/common';
+import { Component, DebugElement, Input } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EmptyError, lastValueFrom, Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -17,15 +17,8 @@ import {
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
-import {
-    EditionConstants,
-    EditionComplex,
-    Graph,
-    GraphList,
-    GraphRDFData,
-    GraphSparqlQuery,
-} from '@awg-views/edition-view/models';
+import { EDITION_COMPLEXES, EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
+import { EditionComplex, Graph, GraphList, GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
@@ -170,8 +163,8 @@ describe('EditionGraphComponent (DONE)', () => {
 
             expect(component.GRAPH_IMAGES.OP25).toBeTruthy();
             expect(component.GRAPH_IMAGES.OP25)
-                .withContext(`should be ${EditionConstants.GRAPH_IMAGE_OP25.route}`)
-                .toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
+                .withContext(`should be ${EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route}`)
+                .toBe(EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route);
         });
 
         it('should have `errorObject` = null', () => {

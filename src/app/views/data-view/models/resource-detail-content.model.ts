@@ -1,6 +1,7 @@
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
 import { ResourceDetailProperty } from './resource-detail-property.model';
-import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
 /**
  * The ResourceDetailContent class.

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EditionConstants, EditionRoute, EditionSeriesRoute } from '@awg-views/edition-view/models';
+import { EditionOutlineSeries } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -16,18 +16,11 @@ import { EditionService } from '@awg-views/edition-view/services';
 })
 export class EditionSeriesComponent implements OnInit {
     /**
-     * Public variable: editionRoute.
-     *
-     * It keeps the edition route of the edition.
-     */
-    editionRoute: EditionRoute;
-
-    /**
      * Public variable: editionOutline.
      *
      * It keeps the outline of the edition as an array of routes.
      */
-    editionOutline: EditionSeriesRoute[];
+    editionOutline: EditionOutlineSeries[];
 
     /**
      * Constructor of the EditionSeriesComponent.
@@ -54,13 +47,12 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Public method: getEditionOutline.
      *
-     * It gets the outline with array of series from the EditionService and sets the editionRoute constant.
+     * It gets the outline with array of series from the EditionService.
      *
      * @returns {void} Gets the edition outline.
      */
     getEditionOutline(): void {
         this.editionOutline = this.editionService.getEditionOutline();
-        this.editionRoute = EditionConstants.EDITION;
     }
 
     /**

@@ -1,4 +1,4 @@
-import { NgModule, SkipSelf, Optional } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import { SharedModule } from '@awg-shared/shared.module';

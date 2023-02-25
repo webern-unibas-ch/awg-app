@@ -2,14 +2,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 
-import { BibliographyDetailComponent } from './bibliography-detail.component';
-import { BibliographyFormatPipe } from '../bibliography-format.pipe';
-import { BibEntry } from '../bibliography-entry.model';
-
-import { BibliographyService } from '@awg-views/data-view/services';
 import { ConversionService } from '@awg-core/services';
-
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { BibliographyService } from '@awg-views/data-view/services';
+
+import { BibEntry } from '../bibliography-entry.model';
+import { BibliographyFormatPipe } from '../bibliography-format.pipe';
+import { BibliographyDetailComponent } from './bibliography-detail.component';
 
 describe('BibliographyDetailComponent', () => {
     let component: BibliographyDetailComponent;
@@ -60,7 +59,7 @@ describe('BibliographyDetailComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have objId input', () => {
-            expect(component.objId).toBeUndefined('should be undefined');
+            expect(component.objId).toBeUndefined();
         });
     });
 
@@ -74,7 +73,8 @@ describe('BibliographyDetailComponent', () => {
         });
 
         it('should have objId input', () => {
-            expect(component.objId).toBe(expectedObjId);
+            expect(component.objId).toBeTruthy();
+            expect(component.objId).withContext(`should be ${expectedObjId}`).toBe(expectedObjId);
         });
     });
 });

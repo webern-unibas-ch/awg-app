@@ -62,5 +62,9 @@ export class EditionSvgSheetList {
     /**
      * The array of sheets from a svg sheet list.
      */
-    sheets: EditionSvgSheet[];
+    sheets: {
+        workEditions: EditionSvgSheet[];
+        textEditions: EditionSvgSheet[];
+        sketchEditions: EditionSvgSheet[];
+    };
 }
