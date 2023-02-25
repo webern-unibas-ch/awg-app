@@ -170,18 +170,18 @@ export class EditionReportComponent implements OnInit {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It navigates to the '/edition/complex/{id}/detail'
+     * It navigates to the '/edition/complex/{baseRoute}/sheets'
      * route with the given id.
      *
-     * @param {string} id The given svg sheet id.
+     * @param {string} sheetId The given svg sheet id.
      * @returns {void} Navigates to the edition detail.
      */
-    onSvgSheetSelect(id: string): void {
-        if (!id) {
-            id = '';
+    onSvgSheetSelect(sheetId: string): void {
+        if (!sheetId) {
+            sheetId = '';
         }
         const navigationExtras: NavigationExtras = {
-            queryParams: { sketch: id },
+            queryParams: { id: sheetId },
             // .queryParamsHandling: '',
         };
 

@@ -769,7 +769,7 @@ describe('EditionReportComponent', () => {
                 fixture.detectChanges();
 
                 const qp = {
-                    queryParams: { sketch: expectedSvgSheet.id },
+                    queryParams: { id: expectedSvgSheet.id },
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
                 expectSpyCall(navigationSpy, 1, [
@@ -780,7 +780,7 @@ describe('EditionReportComponent', () => {
                 component.onSvgSheetSelect(expectedNextSvgSheet.id);
                 fixture.detectChanges();
 
-                qp.queryParams.sketch = expectedNextSvgSheet.id;
+                qp.queryParams.id = expectedNextSvgSheet.id;
                 expectSpyCall(selectSvgSheetSpy, 2, expectedNextSvgSheet.id);
                 expectSpyCall(navigationSpy, 2, [
                     [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
@@ -793,7 +793,7 @@ describe('EditionReportComponent', () => {
                 fixture.detectChanges();
 
                 const qp = {
-                    queryParams: { sketch: expectedSvgSheet.id },
+                    queryParams: { id: expectedSvgSheet.id },
                 };
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
                 expectSpyCall(navigationSpy, 1, [
@@ -802,7 +802,7 @@ describe('EditionReportComponent', () => {
                 ]);
 
                 const noId = '';
-                qp.queryParams.sketch = noId;
+                qp.queryParams.id = noId;
                 component.onSvgSheetSelect(noId);
                 fixture.detectChanges();
 
