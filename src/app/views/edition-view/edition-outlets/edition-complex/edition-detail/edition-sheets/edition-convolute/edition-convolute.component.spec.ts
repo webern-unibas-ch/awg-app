@@ -24,8 +24,8 @@ interface IFolioLegend {
     label: string;
 }
 
-@Component({ selector: 'awg-edition-folio', template: '' })
-class FolioStubComponent {
+@Component({ selector: 'awg-edition-folio-viewer', template: '' })
+class EditionFolioViewerStubComponent {
     @Input()
     selectedConvolute: FolioConvolute;
     @Input()
@@ -66,7 +66,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, NgbConfigModule],
-            declarations: [EditionConvoluteComponent, FolioStubComponent, RouterLinkStubDirective],
+            declarations: [EditionConvoluteComponent, EditionFolioViewerStubComponent, RouterLinkStubDirective],
         }).compileComponents();
     }));
 
@@ -138,8 +138,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
             });
 
-            it('... should contain no FolioComponent (stubbed) yet', () => {
-                getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 0, 0);
+            it('... should contain no EditionFolioViewerComponent (stubbed) yet', () => {
+                getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 0, 0);
             });
         });
     });
@@ -194,20 +194,22 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 expect(headerCmp.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
             });
 
-            it('... should contain two divs and one FolioComponent (stubbed) in the panel body (div.accordion-body)', () => {
+            it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
                 // Ngb-accordion panel debug element
                 const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
 
                 const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
 
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-label', 1, 1);
-                getAndExpectDebugElementByDirective(bodyDes[0], FolioStubComponent, 1, 1);
+                getAndExpectDebugElementByDirective(bodyDes[0], EditionFolioViewerStubComponent, 1, 1);
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-legend', 1, 1);
             });
 
-            it('... should pass down `selectedConvolute` to the FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should pass down `selectedConvolute` to the EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
                 expect(folioCmp.selectedConvolute).toBeTruthy();
                 expect(folioCmp.selectedConvolute)
@@ -215,9 +217,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     .toEqual(expectedSelectedConvolute);
             });
 
-            it('... should pass down `selectedSvgSheet` to the FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should pass down `selectedSvgSheet` to the EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
                 expect(folioCmp.selectedSvgSheet).toBeTruthy();
                 expect(folioCmp.selectedSvgSheet)
@@ -295,9 +299,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 expect(component.openModal).toBeTruthy();
             });
 
-            it('... should trigger on openModalRequest event from FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should trigger on openModalRequest event from EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
                 const expectedModalSnippet = expectedSelectedConvolute.folios[0].content[0].linkTo;
 
@@ -328,9 +334,11 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeTruthy();
             });
 
-            it('... should trigger on selectSvgSheetRequest event from FolioComponent', () => {
-                const folioDes = getAndExpectDebugElementByDirective(compDe, FolioStubComponent, 1, 1);
-                const folioCmp = folioDes[0].injector.get(FolioStubComponent) as FolioStubComponent;
+            it('... should trigger on selectSvgSheetRequest event from EditionFolioViewerComponent', () => {
+                const folioDes = getAndExpectDebugElementByDirective(compDe, EditionFolioViewerStubComponent, 1, 1);
+                const folioCmp = folioDes[0].injector.get(
+                    EditionFolioViewerStubComponent
+                ) as EditionFolioViewerStubComponent;
 
                 folioCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 

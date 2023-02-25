@@ -34,12 +34,12 @@ declare let Snap: any;
  * and displays the convolute folios.
  */
 @Component({
-    selector: 'awg-edition-folio',
-    templateUrl: './folio-overview.component.html',
-    styleUrls: ['./folio-overview.component.scss'],
+    selector: 'awg-edition-folio-viewer',
+    templateUrl: './edition-folio-viewer.component.html',
+    styleUrls: ['./edition-folio-viewer.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
+export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked {
     /**
      * Input variable: selectedConvolute.
      *
@@ -113,7 +113,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: FolioOverviewComponent;
+    ref: EditionFolioViewerComponent;
 
     /**
      * Private variable: _folioSettings.

@@ -10,13 +10,13 @@
                 </p>
             </div>
 
-            <!-- overview of convolute folios -->
-            <awg-edition-folio
+            <!-- viewer for convolute folios -->
+            <awg-edition-folio-viewer
                 [selectedConvolute]="selectedConvolute"
                 [selectedSvgSheet]="selectedSvgSheet"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-folio>
+            </awg-edition-folio-viewer>
 
             <!-- convolute legend -->
             <div class="awg-convolute-legend col-12">

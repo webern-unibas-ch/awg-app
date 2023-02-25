@@ -4,25 +4,25 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
-import { FolioOverviewComponent } from './folio-overview.component';
+import { EditionFolioViewerComponent } from './edition-folio-viewer.component';
 import { FolioService } from './folio.service';
 
-describe('FolioComponent', () => {
-    let component: FolioOverviewComponent;
-    let fixture: ComponentFixture<FolioOverviewComponent>;
+describe('EditionFolioViewerComponent', () => {
+    let component: EditionFolioViewerComponent;
+    let fixture: ComponentFixture<EditionFolioViewerComponent>;
 
     let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
-            declarations: [FolioOverviewComponent],
+            declarations: [EditionFolioViewerComponent],
             providers: [FolioService],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FolioOverviewComponent);
+        fixture = TestBed.createComponent(EditionFolioViewerComponent);
         component = fixture.componentInstance;
 
         // Test data
