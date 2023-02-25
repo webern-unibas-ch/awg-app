@@ -331,15 +331,17 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         };
 
         for (const [type, index] of Object.entries(indexes)) {
-            if (index >= 0) {
-                const sheet = this._getSheetContent(this.svgSheetsData.sheets[type], index, id);
-                if (type === 'sketchEditions') {
-                    this._selectConvolute(sheet.convolute);
-                } else {
-                    this._selectConvolute('');
-                }
-                return sheet;
+            if (index < 0) {
+                continue;
             }
+
+            const sheet = this._getSheetContent(this.svgSheetsData.sheets[type], index, id);
+            if (type === 'sketchEditions') {
+                this._selectConvolute(sheet.convolute);
+            } else {
+                this._selectConvolute('');
+            }
+            return sheet;
         }
 
         return new EditionSvgSheet();
