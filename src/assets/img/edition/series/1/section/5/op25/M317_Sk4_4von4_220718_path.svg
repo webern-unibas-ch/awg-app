@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="Ebene_1"
    data-name="Ebene 1"
    viewBox="0 0 1152.8613 517.90423"
    version="1.1"
    sodipodi:docname="M317_Sk4_4von4_220718_path.svg"
-   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    width="305.02789mm"
-   height="137.02882mm">
+   height="137.02882mm"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata
      id="metadata533">
     <rdf:RDF>
@@ -37,12 +37,12 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="986"
+     inkscape:window-height="974"
      id="namedview531"
      showgrid="false"
      inkscape:zoom="2.2356819"
-     inkscape:cx="351.25569"
-     inkscape:cy="244.72348"
+     inkscape:cx="309.30161"
+     inkscape:cy="244.66808"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
@@ -2226,7 +2226,7 @@
        aria-label="u. 3"
        id="text500"
        style="font-size: 6.75px; font-family: TimesNewRomanPSMT, 'Times New Roman'; isolation: isolate"
-       class="cls-4 tkk">
+       class="cls-4">
       <path
          d="m 352.91772,307.42429 v 1.82922 q 0,0.52405 0.0231,0.6427 0.0264,0.11536 0.0791,0.1615 0.056,0.0461 0.12854,0.0461 0.10217,0 0.23071,-0.056 l 0.0461,0.11536 -0.90307,0.37243 h -0.14832 v -0.6394 q -0.38891,0.42187 -0.59326,0.53064 -0.20435,0.10876 -0.43176,0.10876 -0.25379,0 -0.44165,-0.14502 -0.18457,-0.14831 -0.25708,-0.37902 -0.0725,-0.23072 -0.0725,-0.65259 v -1.34802 q 0,-0.21424 -0.0461,-0.29664 -0.0461,-0.0824 -0.13842,-0.12524 -0.089,-0.0461 -0.3263,-0.0429 v -0.12194 h 1.05799 v 2.02038 q 0,0.42188 0.14502,0.55371 0.14831,0.13184 0.35595,0.13184 0.14173,0 0.3197,-0.089 0.18128,-0.089 0.42847,-0.33948 v -1.71057 q 0,-0.25708 -0.0956,-0.34607 -0.0923,-0.0923 -0.38892,-0.0989 v -0.12194 z"
          id="path40440" />
