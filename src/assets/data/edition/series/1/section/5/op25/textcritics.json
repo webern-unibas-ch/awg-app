@@ -218,14 +218,14 @@
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "1. Note",
-                    "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a>. <br /> Ligaturbogen gestrichen."
+                    "comment": "Ligaturbogen gestrichen."
                 },
                 {
-                    "svgGroupId": "line376",
+                    "svgGroupId": "g1206",
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "1. Note",
-                    "comment": "Pfeil unten rechts von Variante T. 4 in <strong>Sk3.1.1</strong>."
+                    "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a>."
                 },
                 {
                     "svgGroupId": "text228",
@@ -583,7 +583,7 @@
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
-                    "svgGroupId": "g10030",
+                    "svgGroupId": "g10759",
                     "measure": "6",
                     "system": "5",
                     "position": "1. Note",
