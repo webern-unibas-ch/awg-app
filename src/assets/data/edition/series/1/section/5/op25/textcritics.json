@@ -1420,22 +1420,25 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "g1145",
                     "measure": "1",
                     "system": "",
                     "position": "4/8",
                     "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4/8 und 5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>M 317 Sk4</strong></a>."
                 },
                 {
+                    "svgGroupId": "g1198",
                     "measure": "3",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "&#119185; versetzt von 1. Pause."
+                    "comment": "&#x1D191; versetzt von 1. Pause."
                 },
                 {
+                    "svgGroupId": "g1204",
                     "measure": "6",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "&#119185; versetzt von 3/8."
+                    "comment": "&#x1D191; versetzt von 3/8."
                 }
             ]
         },
