@@ -1284,42 +1284,34 @@
             ],
             "linkBoxes": [
                 {
-                    "id": "M_317_Sk4a",
                     "svgGroupId": "g802",
                     "linkTo": "M_317_Sk4_1"
                 },
                 {
-                    "id": "M_317_Sk4b",
                     "svgGroupId": "g1363",
                     "linkTo": "M_317_Sk4c"
                 },
                 {
-                    "id": "M_317_Sk4c",
                     "svgGroupId": "g1344",
                     "linkTo": "M_317_Sk4b"
                 },
                 {
-                    "id": "M_317_Sk4c",
                     "svgGroupId": "g1367",
                     "linkTo": "M_317_Sk4d"
                 },
                 {
-                    "id": "M_317_Sk4c",
                     "svgGroupId": "g1353",
                     "linkTo": "M_317_Sk4_2"
                 },
                 {
-                    "id": "M_317_Sk4d",
                     "svgGroupId": "g809",
                     "linkTo": "M_317_Sk4c"
                 },
                 {
-                    "id": "M_317_Sk4d",
                     "svgGroupId": "g796",
                     "linkTo": "M_317_Sk4_2"
                 },
                 {
-                    "id": "M_317_Sk4d",
                     "svgGroupId": "g818",
                     "linkTo": "M_317_Sk4_3"
                 }
