@@ -22,23 +22,23 @@
                 },
                 {
                     "svgGroupId": "g6443",
-                    "linkTo": "M_317_Sk2.1"
+                    "linkTo": "M_317_Sk2_1"
                 },
                 {
                     "svgGroupId": "g6490",
-                    "linkTo": "M_317_Sk2.1.1"
+                    "linkTo": "M_317_Sk2_1_1"
                 },
                 {
                     "svgGroupId": "g6454",
-                    "linkTo": "M_317_Sk2.1.2"
+                    "linkTo": "M_317_Sk2_1_2"
                 },
                 {
                     "svgGroupId": "g6468",
-                    "linkTo": "M_317_Sk2.1.2.1"
+                    "linkTo": "M_317_Sk2_1_2_1"
                 },
                 {
                     "svgGroupId": "g6479",
-                    "linkTo": "M_317_Sk2.1.3"
+                    "linkTo": "M_317_Sk2_1_3"
                 },
                 {
                     "svgGroupId": "g6414",
@@ -46,11 +46,11 @@
                 },
                 {
                     "svgGroupId": "g6434",
-                    "linkTo": "M_317_Sk3.1"
+                    "linkTo": "M_317_Sk3_1"
                 },
                 {
                     "svgGroupId": "g6425",
-                    "linkTo": "M_317_Sk3.1.2"
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -91,23 +91,23 @@
                 },
                 {
                     "svgGroupId": "g572",
-                    "linkTo": "M_317_Sk2.1"
+                    "linkTo": "M_317_Sk2_1"
                 },
                 {
                     "svgGroupId": "g608",
-                    "linkTo": "M_317_Sk2.1.1"
+                    "linkTo": "M_317_Sk2_1_1"
                 },
                 {
                     "svgGroupId": "g583",
-                    "linkTo": "M_317_Sk2.1.2"
+                    "linkTo": "M_317_Sk2_1_2"
                 },
                 {
                     "svgGroupId": "g597",
-                    "linkTo": "M_317_Sk2.1.2.1"
+                    "linkTo": "M_317_Sk2_1_2_1"
                 },
                 {
                     "svgGroupId": "g619",
-                    "linkTo": "M_317_Sk2.1.3"
+                    "linkTo": "M_317_Sk2_1_3"
                 },
                 {
                     "svgGroupId": "g554",
@@ -115,11 +115,11 @@
                 },
                 {
                     "svgGroupId": "g563",
-                    "linkTo": "M_317_Sk3.1"
+                    "linkTo": "M_317_Sk3_1"
                 },
                 {
                     "svgGroupId": "g547",
-                    "linkTo": "M_317_Sk3.1.2"
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -198,19 +198,19 @@
                 },
                 {
                     "svgGroupId": "g1221",
-                    "linkTo": "M_317_Sk2.1.1"
+                    "linkTo": "M_317_Sk2_1_1"
                 },
                 {
                     "svgGroupId": "g1232",
-                    "linkTo": "M_317_Sk2.1.2"
+                    "linkTo": "M_317_Sk2_1_2"
                 },
                 {
                     "svgGroupId": "g1273",
-                    "linkTo": "M_317_Sk2.1.2.1"
+                    "linkTo": "M_317_Sk2_1_2_1"
                 },
                 {
                     "svgGroupId": "g1284",
-                    "linkTo": "M_317_Sk2.1.3"
+                    "linkTo": "M_317_Sk2_1_3"
                 },
                 {
                     "svgGroupId": "g1239",
@@ -218,11 +218,11 @@
                 },
                 {
                     "svgGroupId": "g1259",
-                    "linkTo": "M_317_Sk3.1"
+                    "linkTo": "M_317_Sk3_1"
                 },
                 {
                     "svgGroupId": "g1250",
-                    "linkTo": "M_317_Sk3.1.2"
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -234,42 +234,42 @@
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": [],
-            ##"linkBoxes": [
+            "linkBoxes": [
                 {
-                    "svgGroupId": "g1210",
+                    "svgGroupId": "g1022",
                     "linkTo": "M_317_Sk1"
                 },
                 {
-                    "svgGroupId": "g1203",
+                    "svgGroupId": "g1015",
                     "linkTo": "M_317_Sk2"
                 },
                 {
-                    "svgGroupId": "g1221",
-                    "linkTo": "M_317_Sk2.1.1"
+                    "svgGroupId": "g1031",
+                    "linkTo": "M_317_Sk2_1"
                 },
                 {
-                    "svgGroupId": "g1232",
-                    "linkTo": "M_317_Sk2.1.2"
+                    "svgGroupId": "g1042",
+                    "linkTo": "M_317_Sk2_1_2"
                 },
                 {
-                    "svgGroupId": "g1273",
-                    "linkTo": "M_317_Sk2.1.2.1"
+                    "svgGroupId": "g1083",
+                    "linkTo": "M_317_Sk2_1_2_1"
                 },
                 {
-                    "svgGroupId": "g1284",
-                    "linkTo": "M_317_Sk2.1.3"
+                    "svgGroupId": "g1094",
+                    "linkTo": "M_317_Sk2_1_3"
                 },
                 {
-                    "svgGroupId": "g1239",
+                    "svgGroupId": "g1049",
                     "linkTo": "M_317_Sk3"
                 },
                 {
-                    "svgGroupId": "g1259",
-                    "linkTo": "M_317_Sk3.1"
+                    "svgGroupId": "g1069",
+                    "linkTo": "M_317_Sk3_1"
                 },
                 {
-                    "svgGroupId": "g1250",
-                    "linkTo": "M_317_Sk3.1.2"
+                    "svgGroupId": "g1060",
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -288,42 +288,42 @@
                     "comment": "Durch Einklammerung getilgt."
                 }
             ],
-            ##"linkBoxes": [
+            "linkBoxes": [
                 {
-                    "svgGroupId": "g1210",
+                    "svgGroupId": "g1029",
                     "linkTo": "M_317_Sk1"
                 },
                 {
-                    "svgGroupId": "g1203",
+                    "svgGroupId": "g1022",
                     "linkTo": "M_317_Sk2"
                 },
                 {
-                    "svgGroupId": "g1221",
-                    "linkTo": "M_317_Sk2.1.1"
+                    "svgGroupId": "g1038",
+                    "linkTo": "M_317_Sk2_1"
                 },
                 {
-                    "svgGroupId": "g1232",
-                    "linkTo": "M_317_Sk2.1.2"
+                    "svgGroupId": "g1049",
+                    "linkTo": "M_317_Sk2_1_1"
                 },
                 {
-                    "svgGroupId": "g1273",
-                    "linkTo": "M_317_Sk2.1.2.1"
+                    "svgGroupId": "g1090",
+                    "linkTo": "M_317_Sk2_1_2_1"
                 },
                 {
-                    "svgGroupId": "g1284",
-                    "linkTo": "M_317_Sk2.1.3"
+                    "svgGroupId": "g1101",
+                    "linkTo": "M_317_Sk2_1_3"
                 },
                 {
-                    "svgGroupId": "g1239",
+                    "svgGroupId": "g1056",
                     "linkTo": "M_317_Sk3"
                 },
                 {
-                    "svgGroupId": "g1259",
-                    "linkTo": "M_317_Sk3.1"
+                    "svgGroupId": "g1076",
+                    "linkTo": "M_317_Sk3_1"
                 },
                 {
-                    "svgGroupId": "g1250",
-                    "linkTo": "M_317_Sk3.1.2"
+                    "svgGroupId": "g1067",
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -334,7 +334,45 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1009",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g1002",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g1018",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g1029",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g1040",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g1078",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g1047",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1067",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1058",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
+            ]
         },
         {
             "id": "M_317_Sk2_1_3",
@@ -343,7 +381,45 @@
                 "Die in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g988",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g981",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g997",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g1008",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g1019",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g1060",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g1026",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1046",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1037",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
+            ]
         },
         {
             "id": "M_317_Sk3",
@@ -372,6 +448,44 @@
                     "system": "3",
                     "position": "1. Note",
                     "comment": "Pfeil zur Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g588",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g581",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g628",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g653",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g619",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g642",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g664",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g608",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g599",
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -438,6 +552,52 @@
                     "position": "1–2/8",
                     "comment": "Text: <em>leuch</em>[-]<em>tet</em> zusammengeschrieben."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1214",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g698",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g725",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g761",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g736",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g750",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g772",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g705",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g716",
+                    "linkTo": "M_317_Sk3_1_1"
+                },
+                {
+                    "svgGroupId": "g691",
+                    "linkTo": "M_317_Sk3_1_2"
+                },
+                {
+                    "svgGroupId": "g680",
+                    "linkTo": "M_317_Sk3_1_3"
+                }
             ]
         },
         {
@@ -453,6 +613,20 @@
                     "system": "6",
                     "position": "",
                     "comment": "Halbe Note überschreibt Viertelnote."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g441",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g432",
+                    "linkTo": "M_317_Sk3_1_3"
+                },
+                {
+                    "svgGroupId": "g454",
+                    "linkTo": "M_317_Sk3_1_3_1"
                 }
             ]
         },
@@ -497,6 +671,44 @@
                     "system": "4",
                     "position": "nach 1. Note",
                     "comment": "Durch Einklammerung abgegrenzt von <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1091",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g559",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g584",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g631",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g595",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g609",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g620",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g566",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g575",
+                    "linkTo": "M_317_Sk3_1"
                 }
             ]
         },
@@ -585,6 +797,20 @@
                     "position": "nach letzter Note",
                     "comment": "Klammer rechts mit rotem Buntstift."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g631",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g642",
+                    "linkTo": "M_317_Sk3_1_1"
+                },
+                {
+                    "svgGroupId": "g655",
+                    "linkTo": "M_317_Sk3_1_3_1"
+                }
             ]
         },
         {
@@ -594,7 +820,17 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g410",
+                    "linkTo": "M_317_Sk3_1_3"
+                },
+                {
+                    "svgGroupId": "g421",
+                    "linkTo": "M_317_Sk3_1_1"
+                }
+            ]
         },
         {
             "id": "M_317_Sk4",
@@ -1045,6 +1281,48 @@
                     "position": "letzte Note",
                     "comment": "Durch Einkreisung getilgt. Siehe Korrektur in T. 15."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "id": "M_317_Sk4a",
+                    "svgGroupId": "g802",
+                    "linkTo": "M_317_Sk4_1"
+                },
+                {
+                    "id": "M_317_Sk4b",
+                    "svgGroupId": "g1363",
+                    "linkTo": "M_317_Sk4c"
+                },
+                {
+                    "id": "M_317_Sk4c",
+                    "svgGroupId": "g1344",
+                    "linkTo": "M_317_Sk4b"
+                },
+                {
+                    "id": "M_317_Sk4c",
+                    "svgGroupId": "g1367",
+                    "linkTo": "M_317_Sk4d"
+                },
+                {
+                    "id": "M_317_Sk4c",
+                    "svgGroupId": "g1353",
+                    "linkTo": "M_317_Sk4_2"
+                },
+                {
+                    "id": "M_317_Sk4d",
+                    "svgGroupId": "g809",
+                    "linkTo": "M_317_Sk4c"
+                },
+                {
+                    "id": "M_317_Sk4d",
+                    "svgGroupId": "g796",
+                    "linkTo": "M_317_Sk4_2"
+                },
+                {
+                    "id": "M_317_Sk4d",
+                    "svgGroupId": "g818",
+                    "linkTo": "M_317_Sk4_3"
+                }
             ]
         },
         {
@@ -1082,6 +1360,12 @@
                     "position": "letzte Note",
                     "comment": "Winkel mit rotem Buntstift."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g604",
+                    "linkTo": "M_317_Sk4a"
+                }
             ]
         },
         {
@@ -1091,7 +1375,17 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk4_2')\"><strong>Sk4.2</strong></a> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g371",
+                    "linkTo": "M_317_Sk4d"
+                },
+                {
+                    "svgGroupId": "g388",
+                    "linkTo": "M_317_Sk4c"
+                }
+            ]
         },
         {
             "id": "M_317_Sk4_3",
@@ -1113,6 +1407,16 @@
                     "system": "16",
                     "position": "letzte Note",
                     "comment": "Entzifferung von &#9839;ais unsicher: möglicherweise auch &#9837;b."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g453",
+                    "linkTo": "M_317_Sk4d"
+                },
+                {
+                    "svgGroupId": "g466",
+                    "linkTo": "M_317_Sk4c"
                 }
             ]
         },
