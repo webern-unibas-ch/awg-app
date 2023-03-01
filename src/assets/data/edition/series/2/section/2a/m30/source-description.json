@@ -1,0 +1,577 @@
+{
+    "sources": [
+        {
+            "id": "sourceA",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "2 Blätter (Bl. 1–2). Schnittspuren am rechten Rand von Bl. 1: von Bogen abgeschnitten. Riss unten Mitte sowie Ecke oben links abgetrennt auf Bl. 1. Rissspuren am rechten Rand von Bl. 2: von Bogen abgetrennt. Kleiner Risse am linken Rand von Bl. 2."
+                ],
+                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>–2<sup>v</sup>.",
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 31 Sk3",
+                        "itemLinkTo": "M_31_Sk3",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "11–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a–6a",
+                                            "measure": "17–18",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk3.1",
+                        "itemLinkTo": "M_31_Sk3_1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–6b",
+                                            "measure": "10+1",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk3.2",
+                        "itemLinkTo": "M_31_Sk3_2",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5c–6c",
+                                            "measure": "17–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk4",
+                        "itemLinkTo": "M_31_Sk4",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "12–15, {16A–18A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "{19A, 19B}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "{16B–18B}, 16C–17C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 403 Sk1",
+                        "itemLinkTo": "",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 403)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 30 Sk1",
+                        "itemLinkTo": "M_30_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 30)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–6",
+                                            "linkTo": "M_30_Sk1a"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "{7A–10A, 9B–10B}",
+                                            "linkTo": "M_30_Sk1b"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "{11A–16A}",
+                                            "linkTo": "M_30_Sk1c"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "7B–8B, 9C–10C",
+                                            "linkTo": "M_30_Sk1d"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13",
+                                            "measure": "{9D–10D, 11B}, 12B",
+                                            "linkTo": "M_30_Sk1e"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "9E–10E, 11C–12C, {13B–15B}",
+                                            "linkTo": "M_30_Sk1f"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–18",
+                                            "measure": "16B, {13C}, 13D, 14C–15C",
+                                            "linkTo": "M_30_Sk1g"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk5",
+                        "itemLinkTo": "M_31_Sk5",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "{20–24}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "{25–26, 27A, 27B, 28–29}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a–8a",
+                                            "measure": "{30}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 403 Sk2",
+                        "itemLinkTo": "",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 403)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "9–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7b–8b",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "x+16 bis x+23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 30 Sk1",
+                        "itemLinkTo": "M_30_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 30)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "17–21",
+                                            "linkTo": "M_30_Sk1h"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "22, {23A}, 23B, {24A}, 24B, 25(1–3/8)",
+                                            "linkTo": "M_30_Sk1i"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "25(4–6/8)–27, {28A–29A}, 28B–29B",
+                                            "linkTo": "M_30_Sk1j"
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10a–11a",
+                                            "measure": "28C–29C",
+                                            "linkTo": "M_30_Sk1k"
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk1",
+                        "itemLinkTo": "M_31_Sk1",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10b",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11b",
+                                            "measure": "5–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk2",
+                        "itemLinkTo": "M_31_Sk2",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13",
+                                            "measure": "x+1 bis x+4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 31 Sk3",
+                        "itemLinkTo": "M_31_Sk3",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15–16",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "sourceB",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": ["1 Blatt. Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
+                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift"]
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 31",
+                        "itemLinkTo": "",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 31)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "11–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "18–22",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "23–27",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "28–30",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 30",
+                        "itemLinkTo": "",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 30)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–5",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–8",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–11",
+                                            "measure": "16–20",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "21–24",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 402 Sk1",
+                        "itemLinkTo": "",
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 402)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–17",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "18",
+                                            "measure": "6–7, 8A, 8B, 9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
