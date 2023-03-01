@@ -131,7 +131,7 @@
         "@typescript-eslint/parser": "^5.54.0",
         "angular-cli-ghpages": "^1.0.5",
         "conventional-recommended-bump": "^6.1.0",
-        "eslint": "^8.34.0",
+        "eslint": "^8.35.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-angular": "^4.1.0",
         "eslint-plugin-deprecation": "^1.3.3",
