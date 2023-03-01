@@ -202,6 +202,15 @@
                                             >&nbsp;&nbsp;System&nbsp;{{ system }}:&nbsp;</ng-template
                                         >
 
+                                        <span
+                                            class="awg-source-description-content-item-system-description"
+                                            *ngIf="system.systemDescription">
+                                            <span
+                                                [compile-html]="system.systemDescription"
+                                                [compile-html-ref]="ref"></span>
+                                            <span *ngIf="system.measure">&nbsp;</span>
+                                        </span>
+
                                         <span class="awg-source-description-content-item-measure" *ngIf="system.measure"
                                             ><ng-container *ngIf="system.linkTo"
                                                 ><a (click)="selectSvgSheet(system.linkTo)"

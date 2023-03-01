@@ -782,38 +782,164 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                 describe('... the content item systems', () => {
                     it('... should contain as many system spans (content-item-system) in content item folios as given systems', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedSystemLength = 4;
-
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            expectedContent.length,
+                            expectedContent.length
                         );
-                        getAndExpectDebugElementByCss(
-                            pDes[0],
-                            'span.awg-source-description-content-item-system',
-                            expectedSystemLength,
-                            expectedSystemLength
-                        );
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+
+                            getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-system',
+                                expectedSystems.length,
+                                expectedSystems.length
+                            );
+                        });
                     });
 
-                    it('... should have `doubletab` class if the system has measures,is not in the first systemGroup, and the folio length equals 2', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedSystemLength = 4;
-
+                    it('... should display the system labels', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            expectedContent.length,
+                            expectedContent.length
                         );
-                        // Systems with measures
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+
+                            const systemDes = getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-system',
+                                expectedSystems.length,
+                                expectedSystems.length
+                            );
+                            systemDes.forEach((system, index) => {
+                                const systemCmp = system.nativeElement;
+
+                                const expectedHtmlTextContent = mockDocument.createElement('span');
+                                expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}:`;
+
+                                expect(systemCmp.textContent).toBeTruthy();
+                                expect(systemCmp.textContent.trim())
+                                    .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
+                                    .toBe(expectedHtmlTextContent.textContent.trim());
+                            });
+                        });
+                    });
+
+                    it('... should display the system description if given', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const pDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            expectedContent.length,
+                            expectedContent.length
+                        );
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+                            const expectedSystemDescriptions = expectedSystems.filter(
+                                system => system.systemDescription !== undefined && system.systemDescription !== ''
+                            );
+
+                            const systemDescDes = getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-system-description',
+                                expectedSystemDescriptions.length,
+                                expectedSystemDescriptions.length
+                            );
+                            systemDescDes.forEach((systemDesc, index) => {
+                                const systemDescCmp = systemDesc.nativeElement;
+                                const expectedSystemDescText = expectedSystemDescriptions[index].systemDescription;
+
+                                expect(systemDescCmp.textContent).toBeTruthy();
+                                expect(systemDescCmp.textContent.trim())
+                                    .withContext(`should be ${expectedSystemDescText}`)
+                                    .toBe(expectedSystemDescText);
+                            });
+                        });
+                    });
+
+                    it('... should display measure numbers if given', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const pDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            expectedContent.length,
+                            expectedContent.length
+                        );
+                        pDes.forEach((pDe, pIndex) => {
+                            // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                            const systemGroups = [];
+                            expectedContent[pIndex].folios.forEach(folio => {
+                                systemGroups.push(folio.systemGroups.flat());
+                            });
+                            const expectedSystems = systemGroups.flat();
+                            const expectedSystemMeasures = expectedSystems.filter(
+                                system => system.measure !== undefined && system.measure !== ''
+                            );
+                            const systemMeasureDes = getAndExpectDebugElementByCss(
+                                pDe,
+                                'span.awg-source-description-content-item-measure',
+                                expectedSystemMeasures.length,
+                                expectedSystemMeasures.length
+                            );
+                            systemMeasureDes.forEach((systemMeasure, index) => {
+                                const systemMeasureCmp = systemMeasure.nativeElement;
+
+                                const expectedHtmlTextContent = mockDocument.createElement('span');
+                                expectedHtmlTextContent.innerHTML = `T.&nbsp;${expectedSystemMeasures[index].measure}`;
+
+                                expect(systemMeasureCmp.textContent).toBeTruthy();
+                                expect(systemMeasureCmp.textContent.trim())
+                                    .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
+                                    .toBe(expectedHtmlTextContent.textContent.trim());
+                            });
+                        });
+                    });
+
+                    it('... should have `doubletab` class if the folio label length equals 2 and the system is not in the first systemGroup, and has measures', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
+                        const pDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
+                            expectedContent.length,
+                            expectedContent.length
+                        );
+
+                        // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                        const contentIndex = 0;
+                        let expectedSystemLength = 0;
+                        expectedContent[contentIndex].folios.forEach(folio => {
+                            expectedSystemLength += folio.systemGroups.flat().length;
+                        });
+
                         const systemDes = getAndExpectDebugElementByCss(
-                            pDes[0],
+                            pDes[contentIndex],
                             'span.awg-source-description-content-item-system',
                             expectedSystemLength,
                             expectedSystemLength
@@ -832,20 +958,25 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemCmp3).not.toHaveClass('doubletab');
                     });
 
-                    it('... should have `doubletab_two` class if the system has measures, is not in the first systemGroup, and the folio length is greater 2', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedSystemLength = 4;
-
+                    it('... should have `doubletab_two` class if the folio label length is greater 2 and the system is not in the first systemGroup, and has measures', () => {
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            expectedContent.length,
+                            expectedContent.length
                         );
-                        // Systems with measures
+
+                        // Get length of nested system groups array of all folios of 1st content item array of mockdata
+                        const contentIndex = 0;
+                        let expectedSystemLength = 0;
+                        expectedContent[contentIndex].folios.forEach(folio => {
+                            expectedSystemLength += folio.systemGroups.flat().length;
+                        });
+
                         const systemDes = getAndExpectDebugElementByCss(
-                            pDes[0],
+                            pDes[contentIndex],
                             'span.awg-source-description-content-item-system',
                             expectedSystemLength,
                             expectedSystemLength
@@ -865,19 +996,24 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     });
 
                     it('... should have `tab` class if the system has rows and is not the first system', () => {
-                        const expectedContentLength =
-                            expectedSourceDescriptionListData.sources[1].description.content.length;
-                        const expectedSystemLength = 8;
-
+                        // Get number of all content items of mockdata
+                        const expectedContent = expectedSourceDescriptionListData.sources[1].description.content;
                         const pDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-source-description-body > div.awg-source-description-content > p.half-para',
-                            expectedContentLength,
-                            expectedContentLength
+                            expectedContent.length,
+                            expectedContent.length
                         );
-                        // Systems with measures
+
+                        // Get length of nested system groups array of all folios of 2nd content item array of mockdata
+                        const contentIndex = 1;
+                        let expectedSystemLength = 0;
+                        expectedContent[contentIndex].folios.forEach(folio => {
+                            expectedSystemLength += folio.systemGroups.flat().length;
+                        });
+
                         const systemDes = getAndExpectDebugElementByCss(
-                            pDes[1],
+                            pDes[contentIndex],
                             'span.awg-source-description-content-item-system',
                             expectedSystemLength,
                             expectedSystemLength

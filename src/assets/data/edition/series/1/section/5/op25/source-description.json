@@ -32,7 +32,8 @@
                                     [
                                         {
                                             "system": "1a",
-                                            "measure": "Reihenfragment (A) und Zwölftonreihenform G<sub>cis</sub> (B)",
+                                            "systemDescription": "Reihenfragment (A) und Zwölftonreihenform G<sub>cis</sub> (B)",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -158,7 +159,8 @@
                                     [
                                         {
                                             "system": "3d–4d",
-                                            "measure": "Tonbuchstaben",
+                                            "systemDescription": "Tonbuchstaben",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -321,7 +323,8 @@
                                     [
                                         {
                                             "system": "6c",
-                                            "measure": "Zwölftonreihenform G<sub>g</sub>",
+                                            "systemDescription": "Zwölftonreihenform G<sub>g</sub>",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]

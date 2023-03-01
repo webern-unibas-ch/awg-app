@@ -181,6 +181,7 @@ export const mockEditionData = {
                                         [
                                             {
                                                 system: '3–4',
+                                                systemDescription: '(test system description)',
                                                 measure: '4–6',
                                                 linkTo: 'test_id_2',
                                             },
