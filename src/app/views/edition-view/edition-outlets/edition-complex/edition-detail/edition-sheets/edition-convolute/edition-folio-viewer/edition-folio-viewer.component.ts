@@ -209,7 +209,6 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
 
         // Loop over folios of selected convolute
         this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
-            console.log('getting new folioData');
             // Update folio settings
             this.folioSettings = {
                 factor: this.folioSettings.factor,

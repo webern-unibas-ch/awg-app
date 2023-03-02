@@ -248,9 +248,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetId: string): void {
-        // Clear overlay selections
-        this.onOverlaySelect([]);
-
         // Set default id if none is given
         if (!sheetId) {
             sheetId = this.svgSheetsData.sheets.sketchEditions[0].id;
@@ -467,6 +464,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         const sheetId: string = this._getIdFromQueryParams(queryParams);
         this.selectedSvgSheet = this._findSvgSheetById(sheetId);
         this.selectedTextcritics = this._findTextcritics();
+
+        // Clear overlay selections and textcritical comments
+        this.onOverlaySelect([]);
         if (
             this.utils.isNotEmptyObject(this.selectedTextcritics) &&
             this.utils.isNotEmptyArray(this.selectedTextcritics.comments)
