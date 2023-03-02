@@ -318,7 +318,7 @@
         id="path130"
         d="m 455.40336,188.92538 4.74399,0.23467 v 2.73332 l -4.74399,-0.23466 z" />
 
-    <g id="g998" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g998" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="line100"
             style="fill: none; stroke: #000000; stroke-width: 0.483"
@@ -793,7 +793,7 @@
         id="path1173"
         inkscape:connector-curvature="0"
         sodipodi:nodetypes="caac"
-        awg="tkk" />
+        class="tkk" />
     <g transform="translate(176.94793,-308.97543)" id="g1218">
         <g
             aria-label="&amp;"

@@ -336,19 +336,7 @@
         style="fill: none; stroke: #000000; stroke-width: 0.362251"
         transform="matrix(1.33333,0,0,1.33333,34.599078,30.047085)"
         d="M 425.204,258.971 664.2,133.408" />
-    <g id="g1062" awg="tkk" transform="translate(34.599078,29.780419)">
-        <path
-            id="polyline136"
-            style="fill: none; stroke: #000000; stroke-width: 0.304239"
-            transform="matrix(1.7949481,0,0,1.4041504,-194.06475,-13.003299)"
-            d="m 420.421,187.392 49.2,-66.113" />
-        <path
-            id="polyline138"
-            style="fill: none; stroke: #000000; stroke-width: 0.301593"
-            transform="matrix(2.1705886,0,0,1.1816092,-357.55057,18.230626)"
-            d="m 427.083,118.375 43.05,70.554" />
-    </g>
-    <g id="g1058" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1058" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="polyline130"
             style="fill: none; stroke: #000000; stroke-width: 0.362251"
@@ -364,6 +352,18 @@
             style="fill: none; stroke: #000000; stroke-width: 0.362251"
             transform="matrix(1.33333,0,0,1.33333,0,0.266666)"
             d="m 402.825,116.667 49.029,143.158" />
+    </g>
+    <g id="g1062" class="tkk" transform="translate(34.599078,29.780419)">
+        <path
+            id="polyline136"
+            style="fill: none; stroke: #000000; stroke-width: 0.304239"
+            transform="matrix(1.7949481,0,0,1.4041504,-194.06475,-13.003299)"
+            d="m 420.421,187.392 49.2,-66.113" />
+        <path
+            id="polyline138"
+            style="fill: none; stroke: #000000; stroke-width: 0.301593"
+            transform="matrix(2.1705886,0,0,1.1816092,-357.55057,18.230626)"
+            d="m 427.083,118.375 43.05,70.554" />
     </g>
     <g aria-label="œ" id="text142" style="font-size: 21.8666px; font-family: Maestro; stroke-width: 0.750002">
         <path
@@ -697,7 +697,7 @@
 
     <path id="line286" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 430.8981,276.71313 V 251.6572" />
 
-    <g id="g1067" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1067" class="tkk" transform="translate(34.599078,29.780419)">
         <g aria-label="œ" id="text290" style="font-size: 21.8666px; font-family: Maestro; stroke-width: 0.750002">
             <path
                 d="m 415.41257,242.39859 q 0.21867,-0.5904 0.656,-1.09333 0.4592,-0.50293 1.0496,-0.87466 0.5904,-0.3936 1.26826,-0.5904 0.67787,-0.21867 1.3776,-0.21867 0.69973,0 1.22453,0.24054 0.52479,0.21866 0.83093,0.61226 0.30613,0.37173 0.37173,0.89653 0.0875,0.50293 -0.1312,1.09333 -0.21867,0.5904 -0.67787,1.09333 -0.45919,0.5248 -1.04959,0.89653 -0.5904,0.3936 -1.29013,0.5904 -0.67787,0.21867 -1.35573,0.21867 -0.69973,0 -1.22453,-0.24054 -0.50293,-0.21866 -0.83093,-0.61226 -0.30613,-0.3936 -0.37173,-0.9184 -0.0656,-0.50293 0.15306,-1.09333 z"
@@ -1230,7 +1230,7 @@
             id="path564" />
     </g>
 
-    <g id="g1075" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1075" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="line324"
             style="fill: none; stroke: #000000; stroke-width: 0.483"
