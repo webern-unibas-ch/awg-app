@@ -1,0 +1,112 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Reihentabelle (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "8",
+                    "format": {
+                        "height": 172,
+                        "width": 270
+                    },
+                    "content": [
+                        {
+                            "id": "SkRTa",
+                            "sigle": "M 305 Sk# / M 308 Sk# / M 309 Sk# (Reihentabelle op. 22)",
+                            "sigleAddendum": "Reihenformen 1–16",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "8",
+                    "format": {
+                        "height": 172,
+                        "width": 270
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "9",
+                    "format": {
+                        "height": 135,
+                        "width": 260
+                    },
+                    "content": [
+                        {
+                            "id": "SkRTb",
+                            "sigle": "M 305 Sk# / M 308 Sk# / M 309 Sk# (Reihentabelle op. 22)",
+                            "sigleAddendum": "Reihenformen 17–32",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "9",
+                    "format": {
+                        "height": 135,
+                        "width": 260
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "3r",
+                    "systems": "8",
+                    "format": {
+                        "height": 170,
+                        "width": 270
+                    },
+                    "content": [
+                        {
+                            "id": "SkRTb",
+                            "sigle": "M 305 Sk# / M 308 Sk# / M 309 Sk# (Reihentabelle op. 22)",
+                            "sigleAddendum": "Reihenformen 33–48",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "3v",
+                    "systems": "7",
+                    "format": {
+                        "height": 170,
+                        "width": 270
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "A-C-D",
+            "convoluteLabel": "A, C–D (siehe kritischer Bericht)",
+            "folios": [],
+            "linkTo": "OP22_SOURCE_NOT_AVAILABLE"
+        }
+    ]
+}
