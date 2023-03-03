@@ -74,14 +74,14 @@
                     "measure": "A",
                     "system": "1",
                     "position": "2. Reihenton",
-                    "comment": "&#9838; nachgezogen (überschreibt &#9837;?)."
+                    "comment": "{{ref.getGlyph('[a]')}} nachgezogen (überschreibt {{ref.getGlyph('[b]')}}?)."
                 },
                 {
                     "svgGroupId": "g1065",
                     "measure": "B",
                     "system": "1",
                     "position": "4. Reihenton",
-                    "comment": "&#9839;fis<sup>2</sup> überschreibt &#9838;g<sup>2</sup>."
+                    "comment": "{{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
                 }
             ],
             "linkBoxes": [
@@ -142,7 +142,7 @@
                     "measure": "1",
                     "system": "1",
                     "position": "6/8",
-                    "comment": "&#9837; nachgezogen (überschreibt Ansatz von &#9839; zu dis<sup>2</sup>?)."
+                    "comment": "{{ref.getGlyph('[b]')}} nachgezogen (überschreibt Ansatz von {{ref.getGlyph('[#]')}} zu dis<sup>2</sup>?)."
                 },
                 {
                     "svgGroupId": "g1254",
@@ -156,7 +156,7 @@
                     "measure": "2",
                     "system": "1",
                     "position": "3/8",
-                    "comment": "&#9839; nachgezogen (überschreibt &#9838;?)."
+                    "comment": "{{ref.getGlyph('[#]')}} nachgezogen (überschreibt {{ref.getGlyph('[a]')}}?)."
                 },
                 {
                     "svgGroupId": "text338",
@@ -184,7 +184,7 @@
                     "measure": "3",
                     "system": "2",
                     "position": "4/8",
-                    "comment": "Punktierte Achtelnote &#9838;c<sup>1</sup> überschreibt radierte Achtelpause."
+                    "comment": "Punktierte Achtelnote {{ref.getGlyph('[a]')}}c<sup>1</sup> überschreibt radierte Achtelpause."
                 }
             ],
             "linkBoxes": [
@@ -739,14 +739,14 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): 7. Reihenton",
-                    "comment": "sic: kein &#9838;."
+                    "comment": "sic: kein {{ref.getGlyph('[a]')}}."
                 },
                 {
                     "svgGroupId": "g1554",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
-                    "comment": "&#9838;a, &#9838;c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein &#9838;), &#9838;a<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[a]')}}a, {{ref.getGlyph('[a]')}}c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein {{ref.getGlyph('[a]')}}), {{ref.getGlyph('[a]')}}a<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g570",
@@ -760,7 +760,7 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
-                    "comment": "&#9838;c<sup>1</sup>, &#9838;a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine &#9838;)."
+                    "comment": "{{ref.getGlyph('[a]')}}c<sup>1</sup>, {{ref.getGlyph('[a]')}}a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine {{ref.getGlyph('[a]')}})."
                 },
                 {
                     "svgGroupId": "g318",
@@ -774,7 +774,7 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
-                    "comment": "&#9838;f<sup>2</sup>, &#9838;d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;d<sup>1</sup>, &#9838;f<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[a]')}}f<sup>2</sup>, {{ref.getGlyph('[a]')}}d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}d<sup>1</sup>, {{ref.getGlyph('[a]')}}f<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g566",
@@ -788,7 +788,7 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "KU<sub>fis</sub> (4): 2.–3. Note",
-                    "comment": "&#9838;d<sup>2</sup>, &#9838;f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;f<sup>1</sup>, d<sup>1</sup> (sic: kein &#9838;)."
+                    "comment": "{{ref.getGlyph('[a]')}}d<sup>2</sup>, {{ref.getGlyph('[a]')}}f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}f<sup>1</sup>, d<sup>1</sup> (sic: kein {{ref.getGlyph('[a]')}})."
                 },
                 {
                     "svgGroupId": "g1613",
@@ -1097,7 +1097,7 @@
                     "measure": "9",
                     "system": "11",
                     "position": "3. Note",
-                    "comment": "sic: &#9837; (zu es<sup>2</sup>). Vermutlich Verschreibung für &#9838; (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                    "comment": "sic: {{ref.getGlyph('[b]')}} (zu es<sup>2</sup>). Vermutlich Verschreibung für {{ref.getGlyph('[a]')}} (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                 },
                 {
                     "svgGroupId": "g1247",
@@ -1398,7 +1398,7 @@
                     "measure": "13",
                     "system": "16",
                     "position": "letzte Note",
-                    "comment": "Entzifferung von &#9839;ais unsicher: möglicherweise auch &#9837;b."
+                    "comment": "Entzifferung von {{ref.getGlyph('[#]')}}ais unsicher: möglicherweise auch {{ref.getGlyph('[b]')}}b."
                 }
             ],
             "linkBoxes": [
@@ -1431,14 +1431,14 @@
                     "measure": "3",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "&#x1D191; versetzt von 1. Pause."
+                    "comment": "{{ref.getGlyph('[f]')}} versetzt von 1. Pause."
                 },
                 {
                     "svgGroupId": "g1204",
                     "measure": "6",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "&#x1D191; versetzt von 3/8."
+                    "comment": "{{ref.getGlyph('[f]')}} versetzt von 3/8."
                 }
             ]
         },

@@ -33,14 +33,14 @@
                     "measure": "6",
                     "system": "1",
                     "position": "letzte Note",
-                    "comment": "&#9838; zu e<sup>2</sup> überschreibt &#9837;."
+                    "comment": "{{ref.getGlyph('[a]')}} zu e<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}."
                 },
                 {
                     "svgGroupId": "g1182",
                     "measure": "6",
                     "system": "2",
                     "position": "4/8",
-                    "comment": "Oberstimmenschicht: Pause überschreibt &#9837; zu b."
+                    "comment": "Oberstimmenschicht: Pause überschreibt {{ref.getGlyph('[b]')}} zu b."
                 },
                 {
                     "svgGroupId": "g1058",
@@ -96,7 +96,7 @@
                     "measure": "7B",
                     "system": "10",
                     "position": "4/8",
-                    "comment": "Oberstimmenschicht: Viertelnote as<sup>1</sup> überschreibt Achtelnote f<sup>2</sup> (oder &#9837; zu b<sup>1</sup> oder as<sup>1</sup>?)."
+                    "comment": "Oberstimmenschicht: Viertelnote as<sup>1</sup> überschreibt Achtelnote f<sup>2</sup> (oder {{ref.getGlyph('[b]')}} zu b<sup>1</sup> oder as<sup>1</sup>?)."
                 },
                 {
                     "svgGroupId": "g1137",
@@ -117,21 +117,21 @@
                     "measure": "9C",
                     "system": "10",
                     "position": "(1/4)",
-                    "comment": "&#9837; zu des<sup>2</sup> überschreibt Viertelnote as<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[b]')}} zu des<sup>2</sup> überschreibt Viertelnote as<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1157",
                     "measure": "9C",
                     "system": "11",
                     "position": "1. Note",
-                    "comment": "des gestrichen."
+                    "comment": "Des gestrichen."
                 },
                 {
                     "svgGroupId": "g998",
                     "measure": "9D",
                     "system": "13",
                     "position": "",
-                    "comment": "&#9837;des<sup>2</sup>–f<sup>2</sup> überschreibt &#9838;f<sup>2</sup>–&#9837;b<sup>2</sup>."
+                    "comment": "{{ref.getGlyph('[b]')}}des<sup>2</sup>–f<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}f<sup>2</sup>–{{ref.getGlyph('[b]')}}b<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "path1173",
@@ -191,7 +191,7 @@
                 },
                 {
                     "svgGroupId": "g1197",
-                    "measure": "{{'{'}}13B–14B{{'}'}}",
+                    "measure": "{{'{'}}13B–15B{{'}'}}",
                     "system": "14–15",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
@@ -257,7 +257,7 @@
                     "measure": "19",
                     "system": "1",
                     "position": "6/8",
-                    "comment": "b<sup>2</sup> überschreibt g<sup>2</sup>."
+                    "comment": "{{ref.getGlyph('[b]')}}b<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g1172",
@@ -292,7 +292,7 @@
                     "measure": "22",
                     "system": "5",
                     "position": "4. Note",
-                    "comment": "Viertelnote &#9837;des gestrichen."
+                    "comment": "Viertelnote {{ref.getGlyph('[b]')}}des gestrichen."
                 },
                 {
                     "svgGroupId": "g1129",
@@ -397,7 +397,7 @@
                     "measure": "{{'{'}}28A{{'}'}}",
                     "system": "7",
                     "position": "4/8",
-                    "comment": "[bb] gestrichen."
+                    "comment": "{{ref.getGlyph('[bb]')}} gestrichen."
                 },
                 {
                     "svgGroupId": "g1125",

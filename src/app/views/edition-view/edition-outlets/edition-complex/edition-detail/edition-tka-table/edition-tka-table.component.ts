@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { EDITION_GLYPHS_DATA } from '@awg-app/views/edition-view/data';
 
 import { TextcriticalComment } from '@awg-views/edition-view/models';
 
@@ -49,6 +50,13 @@ export class EditionTkaTableComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
+     * Readonly variable: GLYPHS.
+     *
+     * It keeps the data for musical glyphs.
+     */
+    readonly GLYPHS = EDITION_GLYPHS_DATA;
+
+    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionTkaTableComponent;
@@ -80,6 +88,19 @@ export class EditionTkaTableComponent {
      */
     constructor() {
         this.ref = this;
+    }
+
+    /**
+     * Public method: getGlyph.
+     *
+     * It returns the hex value string for a glyph referenced by the given glyph string.
+     *
+     * @param {string} glyphString The given glyph string.
+     * @returns {string} The hex value string of the given glyph string or empty string.
+     */
+    getGlyph(glyphString: string): string {
+        const glyph = Object.values(this.GLYPHS).find(g => g.alt === glyphString);
+        return glyph ? glyph.hex : '';
     }
 
     /**
