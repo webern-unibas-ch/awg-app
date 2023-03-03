@@ -1,13 +1,20 @@
+import { DOCUMENT } from '@angular/common';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
 import { EditionSvgSheet, TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
@@ -17,21 +24,25 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionTkaTableComponent>;
     let compDe: DebugElement;
 
-    let expectedTextcriticalComments: TextcriticalComment[];
+    let mockDocument: Document;
+
+    let expectedGlyphs;
     let expectedIsRowTable: boolean;
-    let expectedSvgSheet: EditionSvgSheet;
-    let expectedNextSvgSheet: EditionSvgSheet;
     let expectedModalSnippet: string;
+    let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedSvgSheet: EditionSvgSheet;
+    let expectedTextcriticalComments: TextcriticalComment[];
     let expectedTableHeaderStrings: {
         default: { reference: string; label: string }[];
         rowTable: { reference: string; label: string }[];
     };
 
+    let getGlyphSpy: Spy;
+    let getTableHeaderStringsSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
-    let getTableHeaderStringsSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -44,7 +55,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockDocument = TestBed.inject(DOCUMENT);
+
         // Test data
+        expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk5;
@@ -69,6 +83,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
@@ -90,15 +105,15 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('should have ref', () => {
-            expect(component.ref).toBeTruthy();
-            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+            expectToBe(component.ref, component);
         });
 
         it('should have tableHeaderStrings', () => {
-            expect(component.tableHeaderStrings).toBeTruthy();
-            expect(component.tableHeaderStrings)
-                .withContext(`should equal ${expectedTableHeaderStrings}`)
-                .toEqual(expectedTableHeaderStrings);
+            expectToBe(component.tableHeaderStrings, expectedTableHeaderStrings);
+        });
+
+        it('should have glyphs', () => {
+            expectToBe(component.GLYPHS, expectedGlyphs);
         });
 
         describe('VIEW', () => {
@@ -127,10 +142,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('should have textcriticalComments', () => {
-            expect(component.textcriticalComments).toBeTruthy();
-            expect(component.textcriticalComments)
-                .withContext(`should equal ${expectedTextcriticalComments}`)
-                .toEqual(expectedTextcriticalComments);
+            expectToBe(component.textcriticalComments, expectedTextcriticalComments);
         });
 
         describe('VIEW', () => {
@@ -143,30 +155,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                 const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
-                const columnCmp0 = columnDes[0].nativeElement;
-                const columnCmp1 = columnDes[1].nativeElement;
-                const columnCmp2 = columnDes[2].nativeElement;
-                const columnCmp3 = columnDes[3].nativeElement;
-
-                expect(columnCmp0.textContent).toBeDefined();
-                expect(columnCmp0.textContent.trim())
-                    .withContext(`should be 'Takt'`)
-                    .toBe(expectedTableHeaderStrings.default[0].label);
-
-                expect(columnCmp1.textContent).toBeDefined();
-                expect(columnCmp1.textContent.trim())
-                    .withContext(`should be 'System'`)
-                    .toBe(expectedTableHeaderStrings.default[1].label);
-
-                expect(columnCmp2.textContent).toBeDefined();
-                expect(columnCmp2.textContent.trim())
-                    .withContext(`should be 'Ort im Takt'`)
-                    .toBe(expectedTableHeaderStrings.default[2].label);
-
-                expect(columnCmp3.textContent).toBeDefined();
-                expect(columnCmp3.textContent.trim())
-                    .withContext(`should be 'Kommentar'`)
-                    .toBe(expectedTableHeaderStrings.default[3].label);
+                columnDes.forEach((columnDe, index) => {
+                    const columnCmp = columnDe.nativeElement;
+                    expect(columnCmp.textContent).toBeDefined();
+                    expect(columnCmp.textContent.trim())
+                        .withContext(`should be '${expectedTableHeaderStrings.default[index].label}'`)
+                        .toBe(expectedTableHeaderStrings.default[index].label);
+                });
             });
 
             it('... should display rowTable table header if `isRowTable` flag is given', () => {
@@ -176,30 +171,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
                 const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
-                const columnCmp0 = columnDes[0].nativeElement;
-                const columnCmp1 = columnDes[1].nativeElement;
-                const columnCmp2 = columnDes[2].nativeElement;
-                const columnCmp3 = columnDes[3].nativeElement;
-
-                expect(columnCmp0.textContent).toBeDefined();
-                expect(columnCmp0.textContent.trim())
-                    .withContext(`should be 'Folio'`)
-                    .toBe(expectedTableHeaderStrings.rowTable[0].label);
-
-                expect(columnCmp1.textContent).toBeDefined();
-                expect(columnCmp1.textContent.trim())
-                    .withContext(`should be 'System'`)
-                    .toBe(expectedTableHeaderStrings.rowTable[1].label);
-
-                expect(columnCmp2.textContent).toBeDefined();
-                expect(columnCmp2.textContent.trim())
-                    .withContext(`should be 'Reihe/Reihenton'`)
-                    .toBe(expectedTableHeaderStrings.rowTable[2].label);
-
-                expect(columnCmp3.textContent).toBeDefined();
-                expect(columnCmp3.textContent.trim())
-                    .withContext(`should be 'Kommentar'`)
-                    .toBe(expectedTableHeaderStrings.rowTable[3].label);
+                columnDes.forEach((columnDe, index) => {
+                    const columnCmp = columnDe.nativeElement;
+                    expect(columnCmp.textContent).toBeDefined();
+                    expect(columnCmp.textContent.trim())
+                        .withContext(`should be '${expectedTableHeaderStrings.rowTable[index].label}'`)
+                        .toBe(expectedTableHeaderStrings.rowTable[index].label);
+                });
             });
 
             it('... should contain one table body', () => {
@@ -209,109 +187,113 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(tableDes[0], 'tbody', 1, 1);
             });
 
-            it('... should contain 3 rows (tr) with four columns (td) each in table body', () => {
-                const tableheadDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
-
-                getAndExpectDebugElementByCss(tableheadDes[0], 'td', 4, 4);
-                getAndExpectDebugElementByCss(tableheadDes[1], 'td', 4, 4);
-                getAndExpectDebugElementByCss(tableheadDes[2], 'td', 4, 4);
+            it('... should contain as many rows (tr) in table body as entries in textcritical comments', () => {
+                getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
             });
 
-            it('... should contain correct data in first row', () => {
-                const tableheadDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+            it('... should contain four cells (td) in each row (tr) in table body', () => {
+                const rows = getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
 
-                const columnDes = getAndExpectDebugElementByCss(tableheadDes[0], 'td', 4, 4);
-
-                const columnCmp0 = columnDes[0].nativeElement;
-                const columnCmp1 = columnDes[1].nativeElement;
-                const columnCmp2 = columnDes[2].nativeElement;
-                const columnCmp3 = columnDes[3].nativeElement;
-
-                expect(columnCmp0.textContent).toBeDefined();
-                expect(columnCmp0.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[0].measure}`)
-                    .toBe(expectedTextcriticalComments[0].measure);
-
-                expect(columnCmp1.textContent).toBeDefined();
-                expect(columnCmp1.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[0].system}`)
-                    .toBe(expectedTextcriticalComments[0].system);
-
-                expect(columnCmp2.textContent).toBeDefined();
-                expect(columnCmp2.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[0].position}`)
-                    .toBe(expectedTextcriticalComments[0].position);
-
-                expect(columnCmp3.textContent).toBeDefined();
-                expect(columnCmp3.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[0].comment}`)
-                    .toBe(expectedTextcriticalComments[0].comment);
+                rows.forEach(row => {
+                    getAndExpectDebugElementByCss(row, 'td', 4, 4);
+                });
             });
 
-            it('... should contain correct data in second row', () => {
-                const tableheadDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+            it('... should contain correct data in all row cells (tr/td)', () => {
+                const rows = getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
+                rows.forEach((row, index) => {
+                    const rowCells = getAndExpectDebugElementByCss(row, 'td', 4, 4);
 
-                const columnDes = getAndExpectDebugElementByCss(tableheadDes[1], 'td', 4, 4);
+                    const measureCell = rowCells[0].nativeElement;
+                    const systemCell = rowCells[1].nativeElement;
+                    const positionCell = rowCells[2].nativeElement;
+                    const commentCell = rowCells[3].nativeElement;
 
-                const columnCmp0 = columnDes[0].nativeElement;
-                const columnCmp1 = columnDes[1].nativeElement;
-                const columnCmp2 = columnDes[2].nativeElement;
-                const columnCmp3 = columnDes[3].nativeElement;
+                    const measureCellHtmlSnippet = mockDocument.createElement('span');
+                    measureCellHtmlSnippet.innerHTML = expectedTextcriticalComments[index].measure;
+                    if (index === 2) {
+                        measureCellHtmlSnippet.innerHTML = '{13}';
+                    }
 
-                expect(columnCmp0.textContent).toBeDefined();
-                expect(columnCmp0.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[1].measure}`)
-                    .toBe(expectedTextcriticalComments[1].measure);
+                    const commentCellHtmlSnippet = mockDocument.createElement('span');
+                    commentCellHtmlSnippet.innerHTML = expectedTextcriticalComments[index].comment;
+                    if (index === 2) {
+                        commentCellHtmlSnippet.innerHTML = '♮ überschreibt ♭.';
+                    }
 
-                expect(columnCmp1.textContent).toBeDefined();
-                expect(columnCmp1.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[1].system}`)
-                    .toBe(expectedTextcriticalComments[1].system);
-
-                expect(columnCmp2.textContent).toBeDefined();
-                expect(columnCmp2.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[1].position}`)
-                    .toBe(expectedTextcriticalComments[1].position);
-
-                expect(columnCmp3.textContent).toBeDefined();
-                expect(columnCmp3.textContent)
-                    .withContext(`should be 'Siehe M 212 Sk1 T. [11] und M 212 Sk5.'`)
-                    .toBe('Siehe M 212 Sk1 T. [11] und M 212 Sk5.');
+                    expectToBe(measureCell.textContent, measureCellHtmlSnippet.textContent);
+                    expectToBe(systemCell.textContent, expectedTextcriticalComments[index].system);
+                    expectToBe(positionCell.textContent, expectedTextcriticalComments[index].position);
+                    expectToBe(commentCell.textContent, commentCellHtmlSnippet.textContent);
+                });
             });
 
-            it('... should contain correct data in third row', () => {
-                const tableheadDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+            it('... should contain CompileHtmlComponent in first and fourth cell (td) of each row (tr)', () => {
+                const rows = getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
+                rows.forEach(row => {
+                    const rowCells = getAndExpectDebugElementByCss(row, 'td', 4, 4);
 
-                const columnDes = getAndExpectDebugElementByCss(tableheadDes[2], 'td', 4, 4);
+                    getAndExpectDebugElementByDirective(rowCells[0], CompileHtmlComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(rowCells[3], CompileHtmlComponent, 1, 1);
+                });
+            });
+        });
 
-                const columnCmp0 = columnDes[0].nativeElement;
-                const columnCmp1 = columnDes[1].nativeElement;
-                const columnCmp2 = columnDes[2].nativeElement;
-                const columnCmp3 = columnDes[3].nativeElement;
+        describe('#getGlyph', () => {
+            it('... should have a method `getGlyph`', () => {
+                expect(component.getGlyph).toBeTruthy();
+            });
 
-                expect(columnCmp0.textContent).toBeDefined();
-                expect(columnCmp0.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[2].measure}`)
-                    .toBe(expectedTextcriticalComments[2].measure);
+            it('... should trigger on change detection', () => {
+                expectSpyCall(getGlyphSpy, 2);
 
-                expect(columnCmp1.textContent).toBeDefined();
-                expect(columnCmp1.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[2].system}`)
-                    .toBe(expectedTextcriticalComments[2].system);
+                component.isRowTable = true;
+                detectChangesOnPush(fixture);
 
-                expect(columnCmp2.textContent).toBeDefined();
-                expect(columnCmp2.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[2].position}`)
-                    .toBe(expectedTextcriticalComments[2].position);
+                expectSpyCall(getGlyphSpy, 4);
+            });
 
-                expect(columnCmp3.textContent).toBeDefined();
-                expect(columnCmp3.textContent)
-                    .withContext(`should be ${expectedTextcriticalComments[2].comment}`)
-                    .toBe(expectedTextcriticalComments[2].comment);
+            it('... should return the correct hex value for a valid glyph alt value', () => {
+                expect(component.getGlyph('[bb]')).withContext(`should be '\uD834\uDD2B'`).toBe('\uD834\uDD2B'); // DOUBLE_FLAT
+                expect(component.getGlyph('[x]')).withContext(`should be '\uD834\uDD2A'`).toBe('\uD834\uDD2A'); // DOUBLE_SHARP
+                expect(component.getGlyph('[b]')).withContext(`should be '\u266D'`).toBe('\u266D'); // FLAT
+                expect(component.getGlyph('[#]')).withContext(`should be '\u266F'`).toBe('\u266F'); // SHARP
+                expect(component.getGlyph('[a]')).withContext(`should be '\u266E'`).toBe('\u266E'); // NATURAL
+                expect(component.getGlyph('[f]')).withContext(`should be '\uD834\uDD91'`).toBe('\uD834\uDD91'); // FORTE
+            });
+
+            it('... should return an empty string for an invalid glyph alt value', () => {
+                expect(component.getGlyph('')).toBe('');
+                expect(component.getGlyph('[invalid]')).toBe('');
+                expect(component.getGlyph('[not found]')).toBe('');
             });
         });
 
         describe('#getTableHeaderStrings', () => {
+            it('... should have a method `getTableHeaderStrings`', () => {
+                expect(component.getTableHeaderStrings).toBeTruthy();
+            });
+
             it('... should trigger on change detection', () => {
                 expectSpyCall(getTableHeaderStringsSpy, 1);
 
@@ -327,10 +309,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 const re = component.getTableHeaderStrings();
 
-                expect(re).toBeTruthy();
-                expect(re)
-                    .withContext(`should equal ${expectedTableHeaderStrings.default}`)
-                    .toEqual(expectedTableHeaderStrings.default);
+                expectToBe(re, expectedTableHeaderStrings.default);
             });
 
             it('... should return rowTable table header if `isRowTable` flag is given', () => {
@@ -339,19 +318,25 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 const re = component.getTableHeaderStrings();
 
-                expect(re).toBeTruthy();
-                expect(re)
-                    .withContext(`should equal ${expectedTableHeaderStrings.rowTable}`)
-                    .toEqual(expectedTableHeaderStrings.rowTable);
+                expectToBe(re, expectedTableHeaderStrings.rowTable);
             });
         });
 
         describe('#openModal', () => {
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeTruthy();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+                const rows = getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
 
                 // Find spans of second row
-                const spanDes = getAndExpectDebugElementByCss(rowDes[1], 'td > span', 2, 2);
+                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 2, 2);
 
                 // Find anchors in second span
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[1], 'a', 2, 2);
@@ -376,11 +361,20 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         describe('#selectSvgSheet', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeTruthy();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+                const rows = getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
 
                 // Find spans of second row
-                const spanDes = getAndExpectDebugElementByCss(rowDes[1], 'td > span', 2, 2);
+                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 2, 2);
 
                 // Find anchors in second span
                 const anchorDes = getAndExpectDebugElementByCss(spanDes[1], 'a', 2, 2);
