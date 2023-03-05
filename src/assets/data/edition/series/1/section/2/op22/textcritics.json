@@ -274,82 +274,33 @@
                     "position": "KU<sub>a</sub>",
                     "comment": "Reihennummerierung <em>40</em> mit blauem Buntstift."
                 },
-                ##{
-                    "svgGroupId": "text1044",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "9a",
-                    "position": "G<sub>b</sub>",
-                    "comment": "Reihennummerierung <em>41</em> mit Bleistift."
+                {
+                    "svgGroupId": "g2012",
+                    "measure": "Bl. 3<sup>r</sup>",
+                    "system": "5a",
+                    "position": "G<sub>b</sub>: 2. Reihenton",
+                    "comment": "{{ref.getGlyph('[a]')}} mit Bleistift nachgezogen."
                 },
                 {
-                    "svgGroupId": "text1854",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "9b",
-                    "position": "K<sub>as</sub>",
-                    "comment": "Reihennummerierung <em>42</em> mit Bleistift."
+                    "svgGroupId": "g2041",
+                    "measure": "Bl. 3<sup>r</sup>",
+                    "system": "5a",
+                    "position": "G<sub>b</sub>: 3. Reihenton",
+                    "comment": "{{ref.getGlyph('[#]')}}fis<sup>1</sup> mit Bleistift nachgezogen."
                 },
                 {
-                    "svgGroupId": "text1046",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "10a",
+                    "svgGroupId": "g2051",
+                    "measure": "Bl. 3<sup>r</sup>",
+                    "system": "5a",
+                    "position": "G<sub>b</sub>: 4. Reihenton",
+                    "comment": "{{ref.getGlyph('[a]')}}a<sup>1</sup> mit Bleistift nachgezogen."
+                },
+                {
+                    "svgGroupId": "g2061",
+                    "measure": "Bl. 3<sup>r</sup>",
+                    "system": "8a",
                     "position": "U<sub>b</sub>",
-                    "comment": "Reihennummerierung <em>43</em> mit Bleistift."
-                },
-                {
-                    "svgGroupId": "text1856",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "10b",
-                    "position": "KU<sub>c</sub>",
-                    "comment": "Reihennummerierung <em>44</em> mit Bleistift."
-                },
-                {
-                    "svgGroupId": "text1048",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "11a",
-                    "position": "G<sub>c</sub>",
-                    "comment": "Reihennummerierung <em>45</em> mit Bleistift."
-                },
-                {
-                    "svgGroupId": "g22233",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "11a",
-                    "position": "G<sub>c</sub>: 9. Reihenton",
-                    "comment": "Auf Rasur, mit Tinte überschrieben."
-                },
-                {
-                    "svgGroupId": "text1858",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "11b",
-                    "position": "K<sub>b</sub>",
-                    "comment": "Reihennummerierung <em>46</em> mit Bleistift."
-                },
-                {
-                    "svgGroupId": "text1050",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "12a",
-                    "position": "U<sub>c</sub>",
-                    "comment": "Reihennummerierung <em>47</em> mit Bleistift."
-                },
-                {
-                    "svgGroupId": "g22969",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "12a",
-                    "position": "U<sub>c</sub>: 4. Reihenton",
-                    "comment": "Auf Rasur, mit Tinte überschrieben."
-                },
-                {
-                    "svgGroupId": "text1860",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "12b",
-                    "position": "KU<sub>d</sub>",
-                    "comment": "Reihennummerierung <em>48</em> mit Bleistift."
-                },
-                {
-                    "svgGroupId": "g15689",
-                    "measure": "Bl. 2<sup>r</sup>",
-                    "system": "12b",
-                    "position": "KU<sub>d</sub>: 12. Reihenton",
-                    "comment": "Auf Rasur, mit Tinte überschrieben."
+                    "comment": "<em>4</em> in Reihennummerierung <em>47.</em> überschreibt nicht entzifferbare Schicht."
                 }
             ]
         }
