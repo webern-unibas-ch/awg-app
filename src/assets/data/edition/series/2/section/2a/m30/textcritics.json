@@ -44,35 +44,35 @@
                 },
                 {
                     "svgGroupId": "g1058",
-                    "measure": "{{'{'}}7A–10B{{'}'}}",
+                    "measure": "{7A–10B}",
                     "system": "4–5",
                     "position": "",
                     "comment": "Akkolade pauschal gestrichen."
                 },
                 {
                     "svgGroupId": "g1067",
-                    "measure": "{{'{'}}8A{{'}'}}",
+                    "measure": "{8A}",
                     "system": "5",
                     "position": "3/8",
                     "comment": "e überschreibt c."
                 },
                 {
                     "svgGroupId": "g1075",
-                    "measure": "{{'{'}}8A{{'}'}}",
+                    "measure": "{8A}",
                     "system": "5",
                     "position": "2. Note",
                     "comment": "Unterstimmenschicht: C radiert und ersetzt durch c."
                 },
                 {
                     "svgGroupId": "g1062",
-                    "measure": "{{'{'}}9A–10B{{'}'}}",
+                    "measure": "{9A–10B}",
                     "system": "4–5",
                     "position": "1–3/4",
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
                     "svgGroupId": "g985",
-                    "measure": "{{'{'}}11A–16A{{'}'}}",
+                    "measure": "{11A–16A}",
                     "system": "7–8",
                     "position": "",
                     "comment": "Akkolade pauschal gestrichen."
@@ -135,7 +135,7 @@
                 },
                 {
                     "svgGroupId": "path1173",
-                    "measure": "{{'{'}}10D–11B{{'}'}}",
+                    "measure": "{10D–11B}",
                     "system": "13",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
@@ -191,21 +191,21 @@
                 },
                 {
                     "svgGroupId": "g1197",
-                    "measure": "{{'{'}}13B–15B{{'}'}}",
+                    "measure": "{13B–15B}",
                     "system": "14–15",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
                     "svgGroupId": "g1193",
-                    "measure": "{{'{'}}13B{{'}'}}",
+                    "measure": "{13B}",
                     "system": "14",
                     "position": "1/8",
                     "comment": "Unterstimmenschicht: h<sup>1</sup> überschreibt f<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1213",
-                    "measure": "{{'{'}}14B{{'}'}}",
+                    "measure": "{14B}",
                     "system": "15",
                     "position": "4–6/8",
                     "comment": "Unterstimmenschicht: c<sup>2</sup>–es<sup>2</sup>–c<sup>2</sup> überschreibt es<sup>2</sup>–c<sup>2</sup>–es<sup>2</sup>."
@@ -219,14 +219,14 @@
                 },
                 {
                     "svgGroupId": "g1117",
-                    "measure": "{{'{'}}13C{{'}'}}",
+                    "measure": "{13C}",
                     "system": "16–17",
                     "position": "",
                     "comment": "Takt pauschal gestrichen."
                 },
                 {
                     "svgGroupId": "g1112",
-                    "measure": "{{'{'}}13C{{'}'}}",
+                    "measure": "{13C}",
                     "system": "16",
                     "position": "3. Note",
                     "comment": "f<sup>2</sup> überschreibt des<sup>2</sup>."
@@ -296,7 +296,7 @@
                 },
                 {
                     "svgGroupId": "g1129",
-                    "measure": "{{'{'}}23A{{'}'}}",
+                    "measure": "{23A}",
                     "system": "4",
                     "position": "",
                     "comment": "Noten gestrichen."
@@ -317,28 +317,28 @@
                 },
                 {
                     "svgGroupId": "g1144",
-                    "measure": "{{'{'}}24A{{'}'}}",
+                    "measure": "{24A}",
                     "system": "4",
                     "position": "1. Note",
                     "comment": "heses<sup>1</sup> überschreibt as<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1148",
-                    "measure": "{{'{'}}24A{{'}'}}",
+                    "measure": "{24A}",
                     "system": "24–5",
                     "position": "Taktmitte",
                     "comment": "Taktstrich gestrichen."
                 },
                 {
                     "svgGroupId": "g1155",
-                    "measure": "{{'{'}}24A{{'}'}}",
+                    "measure": "{24A}",
                     "system": "4",
                     "position": "letzte Note",
                     "comment": "Viertelnote überschreibt Achtelnote."
                 },
                 {
                     "svgGroupId": "g1159",
-                    "measure": "{{'{'}}24A{{'}'}}",
+                    "measure": "{24A}",
                     "system": "",
                     "position": "",
                     "comment": "Takt pauschal gestrichen."
@@ -387,14 +387,14 @@
                 },
                 {
                     "svgGroupId": "g37",
-                    "measure": "{{'{'}}28A–29A{{'}'}}",
+                    "measure": "{28A–29A}",
                     "system": "7",
                     "position": "",
                     "comment": "Noten pauschal gestrichen."
                 },
                 {
                     "svgGroupId": "g1118",
-                    "measure": "{{'{'}}28A{{'}'}}",
+                    "measure": "{28A}",
                     "system": "7",
                     "position": "4/8",
                     "comment": "{{ref.getGlyph('[bb]')}} gestrichen."

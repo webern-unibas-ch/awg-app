@@ -8,6 +8,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -109,11 +110,11 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('should have tableHeaderStrings', () => {
-            expectToBe(component.tableHeaderStrings, expectedTableHeaderStrings);
+            expectToEqual(component.tableHeaderStrings, expectedTableHeaderStrings);
         });
 
         it('should have glyphs', () => {
-            expectToBe(component.GLYPHS, expectedGlyphs);
+            expectToEqual(component.GLYPHS, expectedGlyphs);
         });
 
         describe('VIEW', () => {
@@ -243,7 +244,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain CompileHtmlComponent in first and fourth cell (td) of each row (tr)', () => {
+            it('... should contain CompileHtmlComponent only in fourth cell (td) of each row (tr)', () => {
                 const rows = getAndExpectDebugElementByCss(
                     compDe,
                     'table > tbody > tr',
@@ -253,7 +254,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 rows.forEach(row => {
                     const rowCells = getAndExpectDebugElementByCss(row, 'td', 4, 4);
 
-                    getAndExpectDebugElementByDirective(rowCells[0], CompileHtmlComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(rowCells[0], CompileHtmlComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(rowCells[1], CompileHtmlComponent, 0, 0);
+                    getAndExpectDebugElementByDirective(rowCells[2], CompileHtmlComponent, 0, 0);
                     getAndExpectDebugElementByDirective(rowCells[3], CompileHtmlComponent, 1, 1);
                 });
             });
@@ -307,18 +310,18 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 component.isRowTable = false;
                 detectChangesOnPush(fixture);
 
-                const re = component.getTableHeaderStrings();
+                const tableHeaders = component.getTableHeaderStrings();
 
-                expectToBe(re, expectedTableHeaderStrings.default);
+                expectToEqual(tableHeaders, expectedTableHeaderStrings.default);
             });
 
             it('... should return rowTable table header if `isRowTable` flag is given', () => {
                 component.isRowTable = true;
                 detectChangesOnPush(fixture);
 
-                const re = component.getTableHeaderStrings();
+                const tableHeaders = component.getTableHeaderStrings();
 
-                expectToBe(re, expectedTableHeaderStrings.rowTable);
+                expectToEqual(tableHeaders, expectedTableHeaderStrings.rowTable);
             });
         });
 
@@ -336,10 +339,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of second row
-                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 2, 2);
+                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 1, 1);
 
                 // Find anchors in second span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[1], 'a', 2, 2);
+                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 2, 2);
 
                 // Click on first anchor with modal call
                 clickAndAwaitChanges(anchorDes[0], fixture);
@@ -374,10 +377,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 );
 
                 // Find spans of second row
-                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 2, 2);
+                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 1, 1);
 
                 // Find anchors in second span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[1], 'a', 2, 2);
+                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 2, 2);
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)

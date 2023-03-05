@@ -11,7 +11,7 @@
     </thead>
     <tbody *ngIf="textcriticalComments">
         <tr *ngFor="let textcriticalComment of textcriticalComments">
-            <td><span [compile-html]="textcriticalComment.measure" [compile-html-ref]="ref"></span></td>
+            <td [innerHTML]="textcriticalComment.measure"></td>
             <td [innerHTML]="textcriticalComment.system"></td>
             <td [innerHTML]="textcriticalComment.position"></td>
             <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>

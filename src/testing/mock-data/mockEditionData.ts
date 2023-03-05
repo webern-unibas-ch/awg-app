@@ -488,7 +488,7 @@ export const mockEditionData = {
                 'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'M_212_Sk5\')"><strong>M 212 Sk5</strong></a>.',
         },
         {
-            measure: '{{"{"}}13{{"}"}}',
+            measure: '{13}',
             system: '12',
             position: '3. Note',
             comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',

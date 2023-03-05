@@ -512,42 +512,42 @@
                 },
                 {
                     "svgGroupId": "g1213",
-                    "measure": "{{ '{' }}5–6{{ '}' }}",
+                    "measure": "{5–6}",
                     "system": "4",
                     "position": "",
                     "comment": "Durch Einklammerung getilgt. (Die Variante in System 3 wird allerdings nicht von der Einklammerung eingeschlossen.)"
                 },
                 {
                     "svgGroupId": "g1218",
-                    "measure": "{{ '{' }}5{{ '}' }}",
+                    "measure": "{5}",
                     "system": "4",
                     "position": "1. Note",
                     "comment": "Ligaturbogen gestrichen."
                 },
                 {
                     "svgGroupId": "g1206",
-                    "measure": "{{ '{' }}5{{ '}' }}",
+                    "measure": "{5}",
                     "system": "4",
                     "position": "1. Note",
                     "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a>."
                 },
                 {
                     "svgGroupId": "text228",
-                    "measure": "{{ '{' }}5{{ '}' }}",
+                    "measure": "{5}",
                     "system": "4",
                     "position": "6/8",
                     "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                 },
                 {
                     "svgGroupId": "g1241",
-                    "measure": "{{ '{' }}5{{ '}' }} <br /> bis {{ '{' }}6{{ '}' }}",
+                    "measure": "{5} <br /> bis {6}",
                     "system": "4",
                     "position": "6/8 <br /> 3. Note",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
                     "svgGroupId": "g1225",
-                    "measure": "{{ '{' }}6{{ '}' }}",
+                    "measure": "{6}",
                     "system": "4",
                     "position": "1–2/8",
                     "comment": "Text: <em>leuch</em>[-]<em>tet</em> zusammengeschrieben."
@@ -842,14 +842,14 @@
             "comments": [
                 {
                     "svgGroupId": "g678",
-                    "measure": "{{ '{' }}1A{{ '}' }}",
+                    "measure": "{1A}",
                     "system": "10–12",
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
                 },
                 {
                     "svgGroupId": "g683",
-                    "measure": "{{ '{' }}1B{{ '}' }}",
+                    "measure": "{1B}",
                     "system": "10–12",
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
@@ -1340,14 +1340,14 @@
                 },
                 {
                     "svgGroupId": "g30323",
-                    "measure": "{{ '{' }}3{{ '}' }}",
+                    "measure": "{3}",
                     "system": "",
                     "position": "",
                     "comment": "Durch Einklammerung links und Streichung getilgt. Streichung mit rotem Buntstift."
                 },
                 {
                     "svgGroupId": "g31053",
-                    "measure": "{{ '{' }}3{{ '}' }}",
+                    "measure": "{3}",
                     "system": "14",
                     "position": "letzte Note",
                     "comment": "Winkel mit rotem Buntstift."
