@@ -322,13 +322,13 @@
     <path id="line144" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 175.8214,274.66248 H 962.79138" />
     <path id="line146" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 175.8214,280.12912 H 962.79138" />
     <path id="line148" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 175.8214,285.59576 H 962.79138" />
-    <path
-        id="polyline152"
-        style="fill: none; stroke: #000000; stroke-width: 0.362251"
-        transform="matrix(1.33333,0,0,1.33333,34.599077,30.047084)"
-        d="m 445.533,116.154 83.196,24.942"
-        class="tkk" />
-
+    <g id="g37" class="tkk">
+        <path
+            id="polyline152"
+            style="fill: none; stroke: #000000; stroke-width: 0.362251"
+            transform="matrix(1.33333,0,0,1.33333,34.599077,30.047084)"
+            d="m 445.533,116.154 83.196,24.942" />
+    </g>
     <g id="g1071" class="tkk" transform="translate(34.599077,29.780418)">
         <path
             id="line156"
