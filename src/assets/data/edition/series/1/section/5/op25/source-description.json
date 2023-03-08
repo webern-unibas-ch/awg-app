@@ -462,14 +462,14 @@
                     "main": "schwarze Tinte",
                     "secondary": "Bleistift"
                 },
-                "title": "<em>„Wie bin ich froh!“ | von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
-                "date": "<em>David Josef Bach | zum 60. Geburtstag | 13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
-                "annotations": "<em>Wie bin ich froh! | noch einmal wird mir alles grün | und leuchtet so! | noch überblühn || die Blumen mir die Welt! | noch einmal bin ich ganz ins Werden | hingestellt | und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
+                "title": "<em>„Wie bin ich froh!“</em> | <em>von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
+                "date": "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
+                "annotations": "<em>Wie bin ich froh!</em> | <em>noch einmal wird mir alles grün</em> | <em>und leuchtet so!</em> | <em>noch überblühn</em> || <em>die Blumen mir die Welt!</em> | <em>noch einmal bin ich ganz ins Werden</em> | <em>hingestellt</em> | <em>und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
                 "content": [
                     {
-                        "item": "M 317 TF1",
+                        "item": "",
                         "itemLinkTo": "M_317_TF1",
-                        "itemDescription": "(Autograph von „Wie bin ich froh!“ M 317: Textfassung 1)",
+                        "itemDescription": "Autograph von „Wie bin ich froh!“ <a (click)=\"ref.selectSvgSheet('M_317_TF1')\">M 317: Textfassung 1</a>",
                         "folios": [
                             {
                                 "folio": "1r",
