@@ -467,8 +467,8 @@
                 "annotations": "<em>Wie bin ich froh!</em> | <em>noch einmal wird mir alles grün</em> | <em>und leuchtet so!</em> | <em>noch überblühn</em> || <em>die Blumen mir die Welt!</em> | <em>noch einmal bin ich ganz ins Werden</em> | <em>hingestellt</em> | <em>und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
                 "content": [
                     {
-                        "item": "",
-                        "itemLinkTo": "M_317_TF1",
+                        "item": " ",
+                        "itemLinkTo": "",
                         "itemDescription": "Autograph von „Wie bin ich froh!“ <a (click)=\"ref.selectSvgSheet('M_317_TF1')\">M 317: Textfassung 1</a>",
                         "folios": [
                             {
