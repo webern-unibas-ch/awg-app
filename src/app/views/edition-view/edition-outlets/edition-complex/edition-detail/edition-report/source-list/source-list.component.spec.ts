@@ -54,7 +54,7 @@ describe('SourceListComponent (DONE)', () => {
             expect(component.sourceListData).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should have ref', () => {
+        it('should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
         });

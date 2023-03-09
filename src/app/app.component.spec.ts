@@ -69,10 +69,7 @@ describe('AppComponent (DONE)', () => {
                 RoutedTestMockComponent,
                 RoutedTest2MockComponent,
             ],
-            providers: [
-                //  Mocked router provided wth RouterTestingModule
-                { provide: AnalyticsService, useValue: mockAnalyticsService },
-            ],
+            providers: [{ provide: AnalyticsService, useValue: mockAnalyticsService }],
         }).compileComponents();
 
         // Spies for service methods

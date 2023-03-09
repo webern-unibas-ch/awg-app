@@ -46,6 +46,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockDocument = TestBed.inject(DOCUMENT);
         utils = TestBed.inject(UtilityService);
 
         // Test data
@@ -61,8 +62,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_3_LIN_14],
             },
         };
-
-        mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

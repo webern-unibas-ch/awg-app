@@ -1,8 +1,8 @@
 import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-
 import Spy = jasmine.Spy;
-import { NgbConfig, NgbPaginationModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
     expectSpyCall,
@@ -231,7 +231,7 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('#replaceNonNumberInput()', () => {
-            it('should have a replaceNonNumberInput method', () => {
+            it('should have a `replaceNonNumberInput` method', () => {
                 expect(component.replaceNonNumberInput).toBeDefined();
             });
 
@@ -266,7 +266,7 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('#onPageChange()', () => {
-            it('should have a onPageChange method', () => {
+            it('should have a `onPageChange` method', () => {
                 expect(component.onPageChange).toBeDefined();
             });
 
@@ -302,7 +302,7 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('#selectPage()', () => {
-            it('should have a selectChange method', () => {
+            it('should have a `selectPage` method', () => {
                 expect(component.selectPage).toBeDefined();
             });
 

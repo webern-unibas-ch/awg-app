@@ -102,10 +102,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
         });
 
         it('should have isRowTable = false', () => {
-            expect(component.isRowTable).toBeFalse();
+            expectToBe(component.isRowTable, false);
         });
 
-        it('should have ref', () => {
+        it('should have `ref`', () => {
             expectToBe(component.ref, component);
         });
 
