@@ -29,12 +29,12 @@ describe('BibliographyListComponent', () => {
         compDe = fixture.debugElement;
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not get bibList input', () => {
+        it('... should not get bibList input', () => {
             expect(component.bibList).toBeUndefined();
         });
 

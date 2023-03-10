@@ -71,11 +71,11 @@ describe('BibliographyComponent', () => {
         );
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected bibliography service should use provided mockValue', () => {
+    it('... injected bibliography service should use provided mockValue', () => {
         expect(bibliographyService === mockBibliographyService).toBe(true);
     });
 });

@@ -40,12 +40,12 @@ describe('FooterDeclarationComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have pageMetaData', () => {
+        it('... should not have pageMetaData', () => {
             expect(component.pageMetaData).toBeUndefined();
         });
 
@@ -83,7 +83,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should render values', () => {
+            it('... should render values', () => {
                 const expectedVersion = expectedPageMetaData.version;
                 const expectedVersionDate = expectedPageMetaData.versionReleaseDate;
 

@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Toast, ToastService } from './toast.service';
 import { ToastComponent } from './toast.component';
+import { Toast, ToastService } from './toast.service';
 
 // Mock component to get templateRef
 @Component({
@@ -59,7 +59,7 @@ describe('ToastComponent (DONE)', () => {
         expectedToast = new Toast(expectedTextMessage, expectedOptions);
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
@@ -154,7 +154,11 @@ describe('ToastComponent (DONE)', () => {
             });
         });
 
-        describe('#isTemplate', () => {
+        describe('#isTemplate()', () => {
+            it('... should have a method `isTemplate`', () => {
+                expect(component.isTemplate).toBeDefined();
+            });
+
             it('... should return false if given toast is not a template, but string', () => {
                 const check = component.isTemplate(expectedToast);
 

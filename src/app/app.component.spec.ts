@@ -106,11 +106,11 @@ describe('AppComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create the app', waitForAsync(() => {
+    it('... should create the app', waitForAsync(() => {
         expect(component).toBeTruthy();
     }));
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
         expect(analyticsService === mockAnalyticsService).toBe(true);
     });

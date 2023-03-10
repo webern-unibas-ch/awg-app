@@ -104,23 +104,31 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         resourceRequestEmitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `content` inputs', () => {
+        it('... should not have `content` inputs', () => {
             expect(component.content).withContext('should be undefined').toBeUndefined();
         });
 
-        describe('#exposeGnd', () => {
+        describe('#exposeGnd()', () => {
+            it('... should have a method `exposeGnd`', () => {
+                expect(component.exposeGnd).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(exposeGndSpy).not.toHaveBeenCalled();
                 expect(gndRequestEmitSpy).not.toHaveBeenCalled();
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
                 expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
@@ -165,7 +173,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `content` inputs', () => {
+        it('... should have `content` inputs', () => {
             expect(component.content).withContext('should be defined').toBeDefined();
             expect(component.content)
                 .withContext(`should be expectedIncoming: ${expectedContent}`)
@@ -226,7 +234,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             });
         });
 
-        describe('#exposeGnd', () => {
+        describe('#exposeGnd()', () => {
             let htmlContentDes;
             let htmlContentCmp;
             let gndEvent: GndEvent;
@@ -326,7 +334,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             let propsDes;
             let propsCmp;
             let linkObjDes;

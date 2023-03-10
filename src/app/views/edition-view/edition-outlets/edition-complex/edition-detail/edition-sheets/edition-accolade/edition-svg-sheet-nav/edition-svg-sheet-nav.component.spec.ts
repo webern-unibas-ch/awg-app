@@ -76,16 +76,16 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have svgSheetsData', () => {
+        it('... should not have svgSheetsData', () => {
             expect(component.svgSheetsData).toBeUndefined();
         });
 
-        it('should not have selectedSvgSheet', () => {
+        it('... should not have selectedSvgSheet', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
@@ -110,7 +110,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `svgSheetsData` input', () => {
+        it('... should have `svgSheetsData` input', () => {
             expect(component.svgSheetsData).toBeDefined();
             expect(component.svgSheetsData.sheets.workEditions.length).withContext('should be 0').toBe(0);
             expect(component.svgSheetsData.sheets.textEditions.length).withContext('should be 0').toBe(0);
@@ -120,7 +120,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 .toEqual(expectedSvgSheetsData);
         });
 
-        it('should have `selectedSvgSheet` input', () => {
+        it('... should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeDefined();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
@@ -228,7 +228,11 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeDefined();
+            });
+
             it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetNavItemComponent', () => {
                 const sheetNavItemDes = getAndExpectDebugElementByDirective(
                     compDe,

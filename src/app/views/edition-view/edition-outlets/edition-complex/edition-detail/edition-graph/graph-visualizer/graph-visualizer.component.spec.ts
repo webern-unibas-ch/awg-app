@@ -190,49 +190,49 @@ describe('GraphVisualizerComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have graphRDFInputData', () => {
+        it('... should not have graphRDFInputData', () => {
             expect(component.graphRDFInputData).toBeUndefined();
         });
 
-        it('should not have isFullscreen', () => {
+        it('... should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined();
         });
 
-        it('should not have query', () => {
+        it('... should not have query', () => {
             expect(component.query).toBeUndefined();
         });
 
-        it('should not have queryList', () => {
+        it('... should not have queryList', () => {
             expect(component.queryList).toBeUndefined();
         });
 
-        it('should not have queryResult', () => {
+        it('... should not have queryResult', () => {
             expect(component.queryResult$).toBeUndefined();
         });
 
-        it('should not have queryTime', () => {
+        it('... should not have queryTime', () => {
             expect(component.queryTime).toBeUndefined();
         });
 
-        it('should not have triples', () => {
+        it('... should not have triples', () => {
             expect(component.triples).toBeUndefined();
         });
 
-        it('should have defaultForceGraphHeight ', () => {
+        it('... should have defaultForceGraphHeight ', () => {
             expect(component.defaultForceGraphHeight).toBeTruthy();
             expect(component.defaultForceGraphHeight).withContext('should be 500').toBe(500);
         });
 
-        it('should not have triggered `resetTriples()`', () => {
+        it('... should not have triggered `resetTriples()`', () => {
             expectSpyCall(resetTriplesSpy, 0);
         });
 
-        it('should not have triggered `resetQuery()`', () => {
+        it('... should not have triggered `resetQuery()`', () => {
             expectSpyCall(resetQuerySpy, 0);
         });
 
@@ -253,48 +253,48 @@ describe('GraphVisualizerComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have triggered `resetTriples()`', () => {
+        it('... should have triggered `resetTriples()`', () => {
             expectSpyCall(resetTriplesSpy, 1, undefined);
         });
 
-        it('should have triggered `resetQuery()`', () => {
+        it('... should have triggered `resetQuery()`', () => {
             expectSpyCall(resetQuerySpy, 1, undefined);
         });
 
-        it('should have graphRDFInputData', () => {
+        it('... should have graphRDFInputData', () => {
             expect(component.graphRDFInputData).toBeDefined();
             expect(component.graphRDFInputData)
                 .withContext(`should equal ${expectedGraphRDFData}`)
                 .toEqual(expectedGraphRDFData);
         });
 
-        it('should have `isFullScreen` input', () => {
+        it('... should have `isFullScreen` input', () => {
             expect(component.isFullscreen).toBeDefined();
             expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
         });
 
-        it('should have triples', () => {
+        it('... should have triples', () => {
             expect(component.triples).toBeDefined();
             expect(component.triples)
                 .withContext(`should equal ${expectedGraphRDFData.triples}`)
                 .toEqual(expectedGraphRDFData.triples);
         });
 
-        it('should have queryList', () => {
+        it('... should have queryList', () => {
             expect(component.queryList).toBeDefined();
             expect(component.queryList)
                 .withContext(`should equal ${expectedGraphRDFData.triples}`)
                 .toEqual(expectedGraphRDFData.queryList);
         });
 
-        it('should have query', () => {
+        it('... should have query', () => {
             expect(component.query).toBeDefined();
             expect(component.query)
                 .withContext(`should equal ${expectedGraphRDFData.triples}`)
                 .toEqual(expectedGraphRDFData.queryList[0]);
         });
 
-        it('should have queryResult', () => {
+        it('... should have queryResult', () => {
             expect(component.queryResult$).toBeDefined();
             component.queryResult$.subscribe(result => {
                 expect(result).toBeTruthy();
@@ -302,7 +302,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        it('should have queryTime', async () => {
+        it('... should have queryTime', async () => {
             const expectedCallback = [
                 'construct',
                 expectedGraphRDFData.queryList[0].queryString,
@@ -317,7 +317,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
             // Value is not predictable
         });
 
-        describe('#resetTriples', () => {
+        describe('#resetTriples()', () => {
+            it('... should have a method `resetTriples`', () => {
+                expect(component.resetTriples).toBeDefined();
+            });
+
             it('... should trigger on resetTriplesRequest event from TriplesEditorComponent', () => {
                 expectSpyCall(resetTriplesSpy, 1, undefined);
 
@@ -379,7 +383,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        describe('#resetQuery', () => {
+        describe('#resetQuery()', () => {
+            it('... should have a method `resetQuery`', () => {
+                expect(component.resetQuery).toBeDefined();
+            });
+
             it('... should trigger on resetQueryRequest event from SparqlEditorComponent', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
@@ -583,7 +591,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        describe('#performQuery', () => {
+        describe('#performQuery()', () => {
+            it('... should have a method `performQuery`', () => {
+                expect(component.performQuery).toBeDefined();
+            });
+
             it('... should trigger on event from TriplesEditorComponent', () => {
                 // First time called on ngOnInit
                 expectSpyCall(performQuerySpy, 1, undefined);
@@ -747,7 +759,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             }));
         });
 
-        describe('#_queryLocalStore', () => {
+        describe('#_queryLocalStore()', () => {
             let showErrorMessageSpy: Spy;
 
             beforeEach(() => {
@@ -756,6 +768,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
+            });
+
+            it('... should have a method `_queryLocalStore`', () => {
+                expect((component as any)._queryLocalStore).toBeDefined();
             });
 
             it('... should trigger `graphVisualizerService.doQuery`', () => {
@@ -914,7 +930,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        describe('#showErrorMessage', () => {
+        describe('#showErrorMessage()', () => {
             let showErrorMessageSpy: Spy;
 
             beforeEach(() => {
@@ -924,6 +940,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
                 consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+            });
+
+            it('... should have a method `showErrorMessage`', () => {
+                expect(component.showErrorMessage).toBeDefined();
             });
 
             it('... should trigger on event from TriplesEditorComponent', () => {
@@ -1015,7 +1035,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        describe('#onGraphNodeClick', () => {
+        describe('#onGraphNodeClick()', () => {
             let onGraphNodeClickSpy: Spy;
 
             beforeEach(() => {
@@ -1025,6 +1045,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
                 consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+            });
+
+            it('... should have a method `onGraphNodeClick`', () => {
+                expect(component.onGraphNodeClick).toBeDefined();
             });
 
             it('... should trigger on event from ConstructResultsComponent', () => {
@@ -1072,7 +1096,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        describe('#onTableNodeClick', () => {
+        describe('#onTableNodeClick()', () => {
             let onTableNodeClickSpy: Spy;
 
             beforeEach(() => {
@@ -1083,6 +1107,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
                 consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
+            });
+
+            it('... should have a method `onTableNodeClick`', () => {
+                expect(component.onTableNodeClick).toBeDefined();
             });
 
             it('... should trigger on event from SelectResultsComponent', () => {

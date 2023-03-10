@@ -76,25 +76,25 @@ describe('SourceEvaluationComponent (DONE)', () => {
         ).and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `editionComplex`', () => {
+        it('... should not have `editionComplex`', () => {
             expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should not have `sourceDescriptionListData`', () => {
+        it('... should not have `sourceDescriptionListData`', () => {
             expect(component.sourceEvaluationListData).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should have `ref`', () => {
+        it('... should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
@@ -118,14 +118,14 @@ describe('SourceEvaluationComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have editionComplex', () => {
+        it('... should have editionComplex', () => {
             expect(component.editionComplex).toBeTruthy();
             expect(component.editionComplex)
                 .withContext(`should equal ${expectedEditionComplex}`)
                 .toEqual(expectedEditionComplex);
         });
 
-        it('should have sourceEvaluationListData', () => {
+        it('... should have sourceEvaluationListData', () => {
             expect(component.sourceEvaluationListData).toBeTruthy();
             expect(component.sourceEvaluationListData)
                 .withContext(`should equal ${expectedSourceEvaluationListData}`)
@@ -151,15 +151,15 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     2
                 );
 
-                const pCmp0 = pDes[0].nativeElement;
-                const pCmp1 = pDes[1].nativeElement;
+                const pEl0 = pDes[0].nativeElement;
+                const pEl1 = pDes[1].nativeElement;
 
                 // Process HTML expression of first evaluation entry
                 let htmlEvaluationEntry = mockDocument.createElement('p');
                 htmlEvaluationEntry.innerHTML = expectedSourceEvaluationListData.sources[0].content[0];
 
-                expect(pCmp0.textContent).withContext('should be defined').toBeDefined();
-                expect(pCmp0.textContent.trim())
+                expect(pEl0.textContent).withContext('should be defined').toBeDefined();
+                expect(pEl0.textContent.trim())
                     .withContext(`should be ${htmlEvaluationEntry.textContent.trim()}`)
                     .toEqual(htmlEvaluationEntry.textContent.trim());
 
@@ -167,8 +167,8 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 htmlEvaluationEntry = mockDocument.createElement('p');
                 htmlEvaluationEntry.innerHTML = expectedSourceEvaluationListData.sources[0].content[1];
 
-                expect(pCmp1.textContent).withContext('should be defined').toBeDefined();
-                expect(pCmp1.textContent.trim())
+                expect(pEl1.textContent).withContext('should be defined').toBeDefined();
+                expect(pEl1.textContent.trim())
                     .withContext(`should be ${htmlEvaluationEntry.textContent.trim()}`)
                     .toBe(htmlEvaluationEntry.textContent.trim());
             });
@@ -195,20 +195,24 @@ describe('SourceEvaluationComponent (DONE)', () => {
                     1,
                     1
                 );
-                const pCmp = pDes[0].nativeElement;
+                const pEl = pDes[0].nativeElement;
 
                 // Create evaluation placeholder
                 const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
                 const strippedEvaluationPlaceholder = evaluationPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pCmp.textContent).toBeTruthy();
-                expect(pCmp.textContent.trim())
+                expect(pEl.textContent).toBeTruthy();
+                expect(pEl.textContent.trim())
                     .withContext(`should be ${strippedEvaluationPlaceholder}`)
                     .toEqual(strippedEvaluationPlaceholder);
             }));
         });
 
-        describe('#navigateToReportFragment', () => {
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 
@@ -254,7 +258,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal', () => {
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 
@@ -296,7 +304,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
 

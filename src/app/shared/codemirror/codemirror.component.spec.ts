@@ -54,16 +54,16 @@ describe('CodemirrorComponent', () => {
         emitContentChangeSpy = spyOn(component.contentChange, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have mode', () => {
+        it('... should not have mode', () => {
             expect(component.mode).toBeUndefined();
         });
 
-        it('should not have content', () => {
+        it('... should not have content', () => {
             expect(component.content).toBeUndefined();
         });
 
@@ -85,18 +85,18 @@ describe('CodemirrorComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have mode', () => {
+        it('... should have mode', () => {
             expect(component.mode).toBeDefined();
             expect(component.mode).withContext(`should equal ${expectedMode}`).toEqual(expectedMode);
         });
 
-        it('should have content', () => {
+        it('... should have content', () => {
             expect(component.content).toBeDefined();
             expect(component.content).withContext(`should equal ${expectedContent}`).toEqual(expectedContent);
         });
 
         describe('#init()', () => {
-            it('... should have `init()` method', () => {
+            it('... should have a method `init`', () => {
                 expect(component.init).toBeDefined();
             });
 
@@ -138,7 +138,7 @@ describe('CodemirrorComponent', () => {
         });
 
         describe('#onContentChange()', () => {
-            it('... should have `onContentChange()` method', () => {
+            it('... should have a method `onContentChange`', () => {
                 expect(component.onContentChange).toBeDefined();
             });
 
@@ -207,7 +207,7 @@ describe('CodemirrorComponent', () => {
                     editorDispatchSpy = spyOn(component.editor, 'dispatch').and.callThrough();
                 });
 
-                it('...if first change', () => {
+                it('... if first change', () => {
                     // Directly trigger ngOnChanges
                     component.content = 'SELECT * WHERE { ?s ?changed ?o }';
                     component.ngOnChanges({

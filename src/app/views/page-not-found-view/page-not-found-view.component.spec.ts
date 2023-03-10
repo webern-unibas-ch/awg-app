@@ -38,12 +38,12 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
+        it('... should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
             expect(component.pageNotFoundTitle).toBeTruthy();
             expect(component.pageNotFoundTitle)
                 .withContext(`should be ${expectedPageNotFoundTitle}`)
@@ -55,7 +55,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 .toBe(expectedPageNotFoundSubTitle);
         });
 
-        it('should have correct values from getters', () => {
+        it('... should have correct values from getters', () => {
             expect(component.pageNotFoundImgPath).toBeTruthy();
             expect(component.pageNotFoundImgPath)
                 .withContext(`should be ${expectedPageNotFoundImgPath}`)

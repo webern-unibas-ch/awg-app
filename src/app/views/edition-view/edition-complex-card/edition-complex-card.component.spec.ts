@@ -41,7 +41,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
         ];
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 

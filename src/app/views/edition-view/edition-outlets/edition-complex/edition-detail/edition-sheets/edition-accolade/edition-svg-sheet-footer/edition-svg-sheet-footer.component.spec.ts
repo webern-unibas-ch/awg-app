@@ -87,24 +87,24 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `selectedTextcriticalComments`', () => {
+        it('... should not have `selectedTextcriticalComments`', () => {
             expect(component.selectedTextcriticalComments).toBeUndefined();
         });
 
-        it('should not have `selectedTextcritics`', () => {
+        it('... should not have `selectedTextcritics`', () => {
             expect(component.selectedTextcritics).toBeUndefined();
         });
 
-        it('should not have `showTkA`', () => {
+        it('... should not have `showTkA`', () => {
             expect(component.showTkA).toBeUndefined();
         });
 
-        it('should have fontawesome icons', () => {
+        it('... should have fontawesome icons', () => {
             expect(component.faChevronRight).toBeTruthy();
             expect(component.faChevronRight)
                 .withContext(`should equal ${expectedChevronRightIcon}`)
@@ -116,11 +116,11 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 .toEqual(expectedChevronUpIcon);
         });
 
-        it('should have `ref`', () => {
+        it('... should have `ref`', () => {
             expect(component.ref).toBeDefined();
         });
 
-        it('should have `showTextcritics = false`', () => {
+        it('... should have `showTextcritics = false`', () => {
             expect(component.showTextcritics).toBeDefined();
             expect(component.showTextcritics).toBe(false);
         });
@@ -150,21 +150,21 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `selectedTextcritics` input', () => {
+        it('... should have `selectedTextcritics` input', () => {
             expect(component.selectedTextcritics).toBeDefined();
             expect(component.selectedTextcritics)
                 .withContext(`should be ${expectedSelectedTextcritics}`)
                 .toBe(expectedSelectedTextcritics);
         });
 
-        it('should have `selectedTextcriticalComments` input', () => {
+        it('... should have `selectedTextcriticalComments` input', () => {
             expect(component.selectedTextcriticalComments).toBeDefined();
             expect(component.selectedTextcriticalComments)
                 .withContext(`should equal ${expectedSelectedTextcriticalComments}`)
                 .toEqual(expectedSelectedTextcriticalComments);
         });
 
-        it('should have `showTkA` input', () => {
+        it('... should have `showTkA` input', () => {
             expect(component.showTkA).toBeDefined();
             expect(component.showTkA).withContext(`should be ${expectedShowTka}`).toBe(expectedShowTka);
         });
@@ -245,10 +245,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
-                const spanCmp = spanDes[1].nativeElement;
+                const spanEl = spanDes[1].nativeElement;
 
-                expect(spanCmp.textContent).toBeTruthy();
-                expect(spanCmp.textContent.trim()).withContext(`should be '---'`).toBe('---');
+                expect(spanEl.textContent).toBeTruthy();
+                expect(spanEl.textContent.trim()).withContext(`should be '---'`).toBe('---');
             });
 
             it('... should contain no description paragraphs if showTextcritics = false', () => {
@@ -305,13 +305,13 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1
                 );
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const pCmp = pDes[0].nativeElement;
+                const pEl = pDes[0].nativeElement;
 
-                expect(pCmp.classList).toBeDefined();
-                expect(pCmp.classList).toContain('caps');
+                expect(pEl.classList).toBeDefined();
+                expect(pEl.classList).toContain('caps');
 
-                expect(pCmp.textContent).toBeTruthy();
-                expect(pCmp.textContent.trim())
+                expect(pEl.textContent).toBeTruthy();
+                expect(pEl.textContent.trim())
                     .withContext(`should be 'Textkritischer Kommentar:`)
                     .toBe(`Textkritischer Kommentar:`);
             });
@@ -348,8 +348,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal', () => {
-            it('... should have an `openModal` method  ', () => {
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
             });
 
@@ -375,8 +375,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
-            it('... should have a `selectSvgSheet` method', () => {
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
@@ -406,8 +406,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
         });
 
-        describe('#toggleTextcritics', () => {
-            it('... should have a `toggleTextcritics` method', () => {
+        describe('#toggleTextcritics()', () => {
+            it('... should have a method `toggleTextcritics`', () => {
                 expect(component.toggleTextcritics).toBeDefined();
             });
 

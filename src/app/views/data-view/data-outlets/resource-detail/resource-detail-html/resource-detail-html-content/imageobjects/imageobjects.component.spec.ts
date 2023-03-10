@@ -72,16 +72,16 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         });
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `images` inputs', () => {
+        it('... should not have `images` inputs', () => {
             expect(component.images).toBeUndefined();
         });
 
-        it('should have galleryOptions', () => {
+        it('... should have galleryOptions', () => {
             expect(component.galleryOptions).toBeDefined();
             expect(component.galleryOptions)
                 .withContext(`should equal expectedGalleryOptions: ${expectedGalleryOptions}`)
@@ -104,7 +104,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have `images` inputs', () => {
+        it('... should have `images` inputs', () => {
             expect(component.images).toBeDefined();
             expect(component.images).withContext(`should be expectedImages: ${expectedImages}`).toBe(expectedImages);
         });

@@ -88,16 +88,16 @@ describe('TextcriticsListComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `textcriticsData`', () => {
+        it('... should not have `textcriticsData`', () => {
             expect(component.textcriticsData).toBeUndefined();
         });
 
-        it('should have `ref`', () => {
+        it('... should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
         });
@@ -119,7 +119,7 @@ describe('TextcriticsListComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `textcriticsData`', () => {
+        it('... should have `textcriticsData`', () => {
             expect(component.textcriticsData).toBeTruthy();
             expect(component.textcriticsData)
                 .withContext(`should equal ${expectedTextcriticsData}`)
@@ -467,9 +467,9 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal', () => {
-            it('should have a `openModal` method', () => {
-                expect(component.openModal).toBeTruthy();
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeDefined();
             });
 
             it('... should trigger on event from EditionTkaTableComponent', () => {
@@ -530,9 +530,9 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
-            it('should have a `selectSvgSheet` method', () => {
-                expect(component.selectSvgSheet).toBeTruthy();
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeDefined();
             });
 
             it('... should trigger on event from EditionTkaTableComponent', () => {

@@ -9,7 +9,7 @@ describe('FolioService', () => {
         });
     });
 
-    it('should be created', inject([FolioService], (service: FolioService) => {
+    it('... should create', inject([FolioService], (service: FolioService) => {
         expect(service).toBeTruthy();
     }));
 });

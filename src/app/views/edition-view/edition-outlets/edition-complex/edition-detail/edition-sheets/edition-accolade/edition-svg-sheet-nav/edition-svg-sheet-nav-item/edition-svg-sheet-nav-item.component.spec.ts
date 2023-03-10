@@ -53,29 +53,29 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have navItemLabel', () => {
+        it('... should not have navItemLabel', () => {
             expect(component.navItemLabel).toBeUndefined();
         });
 
-        it('should not have svgSheets', () => {
+        it('... should not have svgSheets', () => {
             expect(component.svgSheets).toBeUndefined();
         });
 
-        it('should not have selectedSvgSheet', () => {
+        it('... should not have selectedSvgSheet', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
         describe('VIEW', () => {
             it('... should contain 1 h6.card-title without navItemLabel (yet)', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-                const headerCmp = headerDes[0].nativeElement;
+                const headerEl = headerDes[0].nativeElement;
 
-                expect(headerCmp.textContent).not.toBeTruthy();
+                expect(headerEl.textContent).not.toBeTruthy();
             });
 
             it('... should not contain any anchors (yet)', () => {
@@ -95,18 +95,18 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `navItemLabel` input', () => {
+        it('... should have `navItemLabel` input', () => {
             expect(component.navItemLabel).toBeDefined();
             expect(component.navItemLabel).withContext(`should be ${expectedNavItemLabel}`).toBe(expectedNavItemLabel);
         });
 
-        it('should have `svgSheets` input', () => {
+        it('... should have `svgSheets` input', () => {
             expect(component.svgSheets).toBeDefined();
             expect(component.svgSheets.length).withContext('should be 3').toBe(3);
             expect(component.svgSheets).withContext(`should equal ${expectedSvgSheets}`).toEqual(expectedSvgSheets);
         });
 
-        it('should have `selectedSvgSheet` input', () => {
+        it('... should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeDefined();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
@@ -114,10 +114,10 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should contain 1 h6.card-title with navItemLabel', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
-                const headerCmp = headerDes[0].nativeElement;
+                const headerEl = headerDes[0].nativeElement;
 
-                expect(headerCmp.textContent).toBeTruthy();
-                expect(headerCmp.textContent)
+                expect(headerEl.textContent).toBeTruthy();
+                expect(headerEl.textContent)
                     .withContext(`should be ${expectedNavItemLabel}`)
                     .toBe(expectedNavItemLabel + ': ');
             });
@@ -128,10 +128,10 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
                 const spanDes = getAndExpectDebugElementByCss(headerDes[0], 'span', 1, 1);
-                const spanCmp = spanDes[0].nativeElement;
+                const spanEl = spanDes[0].nativeElement;
 
-                expect(spanCmp.textContent).toBeTruthy();
-                expect(spanCmp.textContent).withContext(`should be '---'`).toBe('---');
+                expect(spanEl.textContent).toBeTruthy();
+                expect(spanEl.textContent).withContext(`should be '---'`).toBe('---');
             });
 
             it('... should contain as many direct anchors (a.btn) as svgSheets without partials', () => {
@@ -140,45 +140,45 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
             it('... should have `awg-svg-sheet-nav-link` class on direct anchors (no partials)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.btn.btn-default', 2, 2);
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const anchorEl0 = anchorDes[0].nativeElement;
+                const anchorEl1 = anchorDes[1].nativeElement;
 
-                expect(anchorCmp0.classList).toBeTruthy();
-                expect(anchorCmp0.classList)
+                expect(anchorEl0.classList).toBeTruthy();
+                expect(anchorEl0.classList)
                     .withContext(`should contain 'awg-svg-sheet-nav-link'`)
                     .toContain('awg-svg-sheet-nav-link');
-                expect(anchorCmp1.classList).toBeTruthy();
-                expect(anchorCmp1.classList)
+                expect(anchorEl1.classList).toBeTruthy();
+                expect(anchorEl1.classList)
                     .withContext(`should contain 'awg-svg-sheet-nav-link'`)
                     .toContain('awg-svg-sheet-nav-link');
             });
 
             it('... should have `active` class on direct anchors with selected svg sheet and `text-muted` on others (no partials)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.btn.btn-default', 2, 2);
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const anchorEl0 = anchorDes[0].nativeElement;
+                const anchorEl1 = anchorDes[1].nativeElement;
 
-                expect(anchorCmp0.classList).toBeTruthy();
-                expect(anchorCmp0.classList).withContext(`should contain 'active'`).toContain('active');
-                expect(anchorCmp0.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
+                expect(anchorEl0.classList).toBeTruthy();
+                expect(anchorEl0.classList).withContext(`should contain 'active'`).toContain('active');
+                expect(anchorEl0.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
 
-                expect(anchorCmp1.classList).toBeTruthy();
-                expect(anchorCmp1.classList).withContext(`should not contain 'active'`).not.toContain('active');
-                expect(anchorCmp1.classList).withContext(`should contain 'text-muted'`).toContain('text-muted');
+                expect(anchorEl1.classList).toBeTruthy();
+                expect(anchorEl1.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                expect(anchorEl1.classList).withContext(`should contain 'text-muted'`).toContain('text-muted');
             });
 
             it('... should display sheet label in direct anchors (no partials)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.btn.btn-default', 2, 2);
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const anchorEl0 = anchorDes[0].nativeElement;
+                const anchorEl1 = anchorDes[1].nativeElement;
 
-                expect(anchorCmp0.textContent).toBeTruthy();
-                expect(anchorCmp0.textContent.trim())
+                expect(anchorEl0.textContent).toBeTruthy();
+                expect(anchorEl0.textContent.trim())
                     .withContext(`should be ${expectedSvgSheet.label}`)
                     .toBe(expectedSvgSheet.label);
 
-                expect(anchorCmp1.textContent).toBeTruthy();
-                expect(anchorCmp1.textContent.trim())
+                expect(anchorEl1.textContent).toBeTruthy();
+                expect(anchorEl1.textContent.trim())
                     .withContext(`should be ${expectedNextSvgSheet.label}`)
                     .toBe(expectedNextSvgSheet.label);
             });
@@ -194,9 +194,9 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
             it('... should have sheet label in dropdown header anchor (partials)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
-                const anchorCmp = anchorDes[0].nativeElement;
+                const anchorEl = anchorDes[0].nativeElement;
 
-                expect(anchorCmp.textContent.trim())
+                expect(anchorEl.textContent.trim())
                     .withContext(`should be ${expectedSvgSheetWithPartials.label}`)
                     .toBe(expectedSvgSheetWithPartials.label);
             });
@@ -206,11 +206,11 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
-                const anchorCmp = anchorDes[0].nativeElement;
+                const anchorEl = anchorDes[0].nativeElement;
 
-                expect(anchorCmp.classList).toBeTruthy();
-                expect(anchorCmp.classList).withContext(`should not contain 'active'`).not.toContain('active');
-                expect(anchorCmp.classList).withContext(`should contain 'text-muted'`).toContain('text-muted');
+                expect(anchorEl.classList).toBeTruthy();
+                expect(anchorEl.classList).withContext(`should not contain 'active'`).not.toContain('active');
+                expect(anchorEl.classList).withContext(`should contain 'text-muted'`).toContain('text-muted');
             });
 
             it('... should have `active` class on dropdown header anchor with selected svg sheet (partials)', () => {
@@ -218,11 +218,11 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a#dropDownSheetNav', 1, 1);
-                const anchorCmp = anchorDes[0].nativeElement;
+                const anchorEl = anchorDes[0].nativeElement;
 
-                expect(anchorCmp.classList).toBeTruthy();
-                expect(anchorCmp.classList).withContext(`should contain 'active'`).toContain('active');
-                expect(anchorCmp.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
+                expect(anchorEl.classList).toBeTruthy();
+                expect(anchorEl.classList).withContext(`should contain 'active'`).toContain('active');
+                expect(anchorEl.classList).withContext(`should not contain 'text-muted'`).not.toContain('text-muted');
             });
 
             it('... should have two item anchors (.dropdown-item) in dropdown (partials)', () => {
@@ -236,35 +236,35 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
 
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 2, 2);
 
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const anchorEl0 = anchorDes[0].nativeElement;
+                const anchorEl1 = anchorDes[1].nativeElement;
 
-                expect(anchorCmp0).withContext(`should have class 'active'`).toHaveClass('active');
-                expect(anchorCmp0).withContext(`should not have class 'text-muted'`).not.toHaveClass('text-muted');
+                expect(anchorEl0).withContext(`should have class 'active'`).toHaveClass('active');
+                expect(anchorEl0).withContext(`should not have class 'text-muted'`).not.toHaveClass('text-muted');
 
-                expect(anchorCmp1).withContext(`should not have class 'active'`).not.toHaveClass('active');
-                expect(anchorCmp1).withContext(`should have class 'text-muted'`).toHaveClass('text-muted');
+                expect(anchorEl1).withContext(`should not have class 'active'`).not.toHaveClass('active');
+                expect(anchorEl1).withContext(`should have class 'text-muted'`).toHaveClass('text-muted');
             });
 
             it('... should display sheet labels in dropdown item anchors (partials)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.dropdown-item', 2, 2);
 
-                const anchorCmp0 = anchorDes[0].nativeElement;
-                const anchorCmp1 = anchorDes[1].nativeElement;
+                const anchorEl0 = anchorDes[0].nativeElement;
+                const anchorEl1 = anchorDes[1].nativeElement;
 
                 const anchorLabel0 =
                     expectedSvgSheetWithPartials.label + expectedSvgSheetWithPartials.content[0].partial;
                 const anchorLabel1 =
                     expectedSvgSheetWithPartials.label + expectedSvgSheetWithPartials.content[1].partial;
 
-                expect(anchorCmp0.textContent.trim()).withContext(`should be ${anchorLabel0}`).toBe(anchorLabel0);
-                expect(anchorCmp1.textContent.trim()).withContext(`should be ${anchorLabel1}`).toBe(anchorLabel1);
+                expect(anchorEl0.textContent.trim()).withContext(`should be ${anchorLabel0}`).toBe(anchorLabel0);
+                expect(anchorEl1.textContent.trim()).withContext(`should be ${anchorLabel1}`).toBe(anchorLabel1);
             });
         });
 
-        describe('#isSelectedSvgSheet', () => {
+        describe('#isSelectedSvgSheet()', () => {
             it('... should have a method `isSelectedSvgSheet`', () => {
-                expect(component.isSelectedSvgSheet).toBeTruthy();
+                expect(component.isSelectedSvgSheet).toBeDefined();
             });
 
             describe('... without partial', () => {
@@ -302,9 +302,9 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
             it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeTruthy();
+                expect(component.selectSvgSheet).toBeDefined();
             });
 
             describe('... should trigger on click', () => {

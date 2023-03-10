@@ -40,12 +40,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         expectedQueryType = 'ask';
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have queryType', () => {
+        it('... should not have queryType', () => {
             expect(component.queryType).toBeUndefined();
         });
 
@@ -69,7 +69,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `queryType` input', () => {
+        it('... should have `queryType` input', () => {
             expect(component.queryType).toBeDefined();
             expect(component.queryType).withContext(`should be ${expectedQueryType}`).toBe(expectedQueryType);
         });

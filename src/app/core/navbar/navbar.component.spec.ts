@@ -129,17 +129,17 @@ describe('NavbarComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have fontawesome icons', () => {
+        it('... should have fontawesome icons', () => {
             expect(component.faEnvelope).toBeTruthy();
             expect(component.faEnvelope)
                 .withContext(`should equal ${expectedContactIcon}`)
@@ -160,29 +160,29 @@ describe('NavbarComponent (DONE)', () => {
             expect(component.faSearch).withContext(`should equal ${expectedSearchIcon}`).toEqual(expectedSearchIcon);
         });
 
-        it('should have `isCollapsed = true`', () => {
+        it('... should have `isCollapsed = true`', () => {
             expect(component.isCollapsed).withContext('should be true').toBeTrue();
         });
 
-        it('should have `DISPLAYED_EDITION_COMPLEXES`', () => {
+        it('... should have `DISPLAYED_EDITION_COMPLEXES`', () => {
             expect(component.DISPLAYED_EDITION_COMPLEXES).toBeTruthy();
             expect(component.DISPLAYED_EDITION_COMPLEXES)
                 .withContext(`should equal ${expectedEditionComplexes}`)
                 .toEqual(expectedEditionComplexes);
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
                 .toBe(expectedEditionRouteConstants);
         });
 
-        it('should not have `pageMetaData`', () => {
+        it('... should not have `pageMetaData`', () => {
             expect(component.pageMetaData).toBeUndefined();
         });
 
-        it('should not have `selectedEditionComplex`', () => {
+        it('... should not have `selectedEditionComplex`', () => {
             expect(component.selectedEditionComplex).toBeUndefined();
         });
 
@@ -306,9 +306,9 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#getEditionComplex', () => {
-            it('should have a `getEditionComplex` method', () => {
-                expect(component.getEditionComplex).toBeTruthy();
+        describe('#getEditionComplex()', () => {
+            it('... should have a method `getEditionComplex`', () => {
+                expect(component.getEditionComplex).toBeDefined();
             });
 
             it('... should not have been called', () => {
@@ -320,9 +320,9 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#isActiveRoute', () => {
-            it('should have a `isActiveRoute` method', () => {
-                expect(component.isActiveRoute).toBeTruthy();
+        describe('#isActiveRoute()', () => {
+            it('... should have a method `isActiveRoute`', () => {
+                expect(component.isActiveRoute).toBeDefined();
             });
 
             it('... should not have been called', () => {
@@ -330,9 +330,9 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#provideMetaData', () => {
-            it('should have a `provideMetaData` method', () => {
-                expect(component.provideMetaData).toBeTruthy();
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
             });
 
             it('... should not have been called', () => {
@@ -344,9 +344,9 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#toggleNav', () => {
-            it('should have a `toggleNav` method', () => {
-                expect(component.toggleNav).toBeTruthy();
+        describe('#toggleNav()', () => {
+            it('... should have a method `toggleNav`', () => {
+                expect(component.toggleNav).toBeDefined();
             });
 
             it('... should not have been called', () => {
@@ -616,7 +616,7 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#getEditionComplex', () => {
+        describe('#getEditionComplex()', () => {
             it('... should have been called', () => {
                 expectSpyCall(getEditionComplexSpy, 1);
             });
@@ -629,7 +629,7 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#isActiveRoute', () => {
+        describe('#isActiveRoute()', () => {
             it('... should have been called 2 times', () => {
                 expectSpyCall(isActiveRouteSpy, 2);
             });
@@ -649,7 +649,7 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
             it('... should have been called', () => {
                 expectSpyCall(provideMetaDataSpy, 1);
             });

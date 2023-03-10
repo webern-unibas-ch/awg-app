@@ -52,16 +52,20 @@ describe('FooterLogoComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have logo', () => {
+        it('... should not have logo', () => {
             expect(component.logo).toBeUndefined();
         });
 
-        describe('#getLogoClass', () => {
+        describe('#getLogoClass()', () => {
+            it('... should have a method `getLogoClass`', () => {
+                expect(component.getLogoClass).toBeDefined();
+            });
+
             it('... should not have been called yet', () => {
                 expectSpyCall(getLogoClassSpy, 0);
             });
@@ -105,12 +109,12 @@ describe('FooterLogoComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have logo', () => {
+        it('... should have logo', () => {
             expect(component.logo).toBeDefined();
             expect(component.logo).withContext(`should be ${expectedLogo}`).toBe(expectedLogo);
         });
 
-        it('should change logo if input changes', () => {
+        it('... should change logo if input changes', () => {
             expect(component.logo).toBeDefined();
             expect(component.logo).withContext(`should be ${expectedLogo}`).toBe(expectedLogo);
 
@@ -133,7 +137,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 .toEqual(expectedNonMainFooterLogo);
         });
 
-        describe('#getLogoClass', () => {
+        describe('#getLogoClass()', () => {
             it('... should have been called with logo id', () => {
                 expectSpyCall(getLogoClassSpy, 1, expectedLogo.id);
             });

@@ -142,20 +142,20 @@ describe('EditionGraphComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected editionService should use provided mockValue', () => {
+    it('... injected editionService should use provided mockValue', () => {
         expect(mockEditionService === editionService).toBe(true);
     });
 
-    it('injected editionDataService should use provided mockValue', () => {
+    it('... injected editionDataService should use provided mockValue', () => {
         expect(mockEditionDataService === editionDataService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have correct static `GRAPH_IMAGES`', () => {
+        it('... should have correct static `GRAPH_IMAGES`', () => {
             expect(component.GRAPH_IMAGES).toBeTruthy();
 
             expect(component.GRAPH_IMAGES.OP12).toBeDefined();
@@ -167,24 +167,24 @@ describe('EditionGraphComponent (DONE)', () => {
                 .toBe(EDITION_GRAPH_IMAGES_DATA.GRAPH_IMAGE_OP25.route);
         });
 
-        it('should have `errorObject` = null', () => {
+        it('... should have `errorObject` = null', () => {
             expect(component.errorObject).toBeNull();
         });
 
-        it('should have `isFullscreen`', () => {
+        it('... should have `isFullscreen`', () => {
             expect(component.isFullscreen).toBeDefined();
             expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
         });
 
-        it('should not have `editionComplex`', () => {
+        it('... should not have `editionComplex`', () => {
             expect(component.editionComplex).toBeUndefined();
         });
 
-        it('should not have `editionGraphData$`', () => {
+        it('... should not have `editionGraphData$`', () => {
             expect(component.editionGraphData$).toBeUndefined();
         });
 
-        it('should not have called `getEditionGraphData()`', () => {
+        it('... should not have called `getEditionGraphData()`', () => {
             expectSpyCall(compGetEditonGraphDataSpy, 0);
         });
 
@@ -217,11 +217,15 @@ describe('EditionGraphComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have called `getEditionGraphData()`', () => {
+        it('... should have called `getEditionGraphData()`', () => {
             expectSpyCall(compGetEditonGraphDataSpy, 1);
         });
 
-        describe('#getEditionGraphData', () => {
+        describe('#getEditionGraphData()', () => {
+            it('... should have a method `getEditionGraphData`', () => {
+                expect(component.getEditionGraphData).toBeDefined();
+            });
+
             it('... should trigger editionService.getEditionComplex', () => {
                 expectSpyCall(editionServiceGetEditionComplexSpy, 1);
             });

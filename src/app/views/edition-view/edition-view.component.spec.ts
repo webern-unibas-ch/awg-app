@@ -170,7 +170,11 @@ describe('EditionViewComponent (DONE)', () => {
             expect(component.selectedEditionSection$).toBeUndefined();
         });
 
-        describe('#getSelectionsFromRoute', () => {
+        describe('#getSelectionsFromRoute()', () => {
+            it('... should have a method `getSelectionsFromRoute`', () => {
+                expect(component.getSelectionsFromRoute).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(getSelectionsFromRouteSpy, 0);
             });
@@ -198,7 +202,11 @@ describe('EditionViewComponent (DONE)', () => {
             });
         });
 
-        describe('#routeToSidenav', () => {
+        describe('#routeToSidenav()', () => {
+            it('... should have a method `routeToSidenav`', () => {
+                expect(component.routeToSidenav).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(routeToSidenavSpy, 0);
             });
@@ -233,7 +241,7 @@ describe('EditionViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getSelectionsFromRoute', () => {
+        describe('#getSelectionsFromRoute()', () => {
             it('... should have been called', () => {
                 expectSpyCall(getSelectionsFromRouteSpy, 1);
             });
@@ -295,7 +303,7 @@ describe('EditionViewComponent (DONE)', () => {
             }));
         });
 
-        describe('#routeToSideNav', () => {
+        describe('#routeToSideNav()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {

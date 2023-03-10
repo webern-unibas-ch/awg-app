@@ -98,11 +98,11 @@ describe('EditionDataService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(editionDataService).toBeTruthy();
     });
 
-    it('should have empty assetPath', () => {
+    it('... should have empty assetPath', () => {
         expect((editionDataService as any)._assetPath).toBeFalsy();
     });
 
@@ -130,7 +130,11 @@ describe('EditionDataService (DONE)', () => {
         }));
     });
 
-    describe('#getEditionSheetsData', () => {
+    describe('#getEditionSheetsData()', () => {
+        it('... should have a method `getEditionSheetsData`', () => {
+            expect(editionDataService.getEditionSheetsData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -834,7 +838,11 @@ describe('EditionDataService (DONE)', () => {
         });
     });
 
-    describe('#getEditionReportData', () => {
+    describe('#getEditionReportData()', () => {
+        it('... should have a method `getEditionReportData`', () => {
+            expect(editionDataService.getEditionReportData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -1675,7 +1683,11 @@ describe('EditionDataService (DONE)', () => {
         });
     });
 
-    describe('#getEditionGraphData', () => {
+    describe('#getEditionGraphData()', () => {
+        it('... should have a method `getEditionGraphData`', () => {
+            expect(editionDataService.getEditionGraphData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -1895,6 +1907,10 @@ describe('EditionDataService (DONE)', () => {
     });
 
     describe('#getEditionIntroData', () => {
+        it('... should have a method `getEditionIntroData`', () => {
+            expect(editionDataService.getEditionIntroData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -2113,7 +2129,11 @@ describe('EditionDataService (DONE)', () => {
         });
     });
 
-    describe('#getRowTables', () => {
+    describe('#getRowTables()', () => {
+        it('... should have a method `getRowTables`', () => {
+            expect(editionDataService.getRowTables).toBeDefined();
+        });
+
         it('... should return EDITION_ROW_TABLES_DATA', () => {
             // Call service function
             expect(editionDataService.getRowTables())

@@ -45,16 +45,16 @@ describe('SourceListComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have sourceListData', () => {
+        it('... should not have sourceListData', () => {
             expect(component.sourceListData).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should have `ref`', () => {
+        it('... should have `ref`', () => {
             expect(component.ref).toBeTruthy();
             expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
         });
@@ -77,7 +77,7 @@ describe('SourceListComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have sourceListData', () => {
+        it('... should have sourceListData', () => {
             expect(component.sourceListData).toBeTruthy();
             expect(component.sourceListData)
                 .withContext(`should equal ${expectedSourceListData}`)
@@ -115,22 +115,22 @@ describe('SourceListComponent (DONE)', () => {
                 const anchorDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'a', 1, 1);
                 const anchorDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'a', 1, 1);
 
-                const anchorCmp0 = anchorDes0[0].nativeElement;
-                const anchorCmp1 = anchorDes1[0].nativeElement;
-                const anchorCmp2 = anchorDes2[0].nativeElement;
+                const anchorEl0 = anchorDes0[0].nativeElement;
+                const anchorEl1 = anchorDes1[0].nativeElement;
+                const anchorEl2 = anchorDes2[0].nativeElement;
 
-                expect(anchorCmp0.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorCmp0.textContent)
+                expect(anchorEl0.textContent).withContext('should be defined').toBeDefined();
+                expect(anchorEl0.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[0].siglum}`)
                     .toBe(expectedSourceListData.sources[0].siglum);
 
-                expect(anchorCmp1.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorCmp1.textContent)
+                expect(anchorEl1.textContent).withContext('should be defined').toBeDefined();
+                expect(anchorEl1.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[1].siglum}`)
                     .toBe(expectedSourceListData.sources[1].siglum);
 
-                expect(anchorCmp2.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorCmp2.textContent)
+                expect(anchorEl2.textContent).withContext('should be defined').toBeDefined();
+                expect(anchorEl2.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[2].siglum}`)
                     .toBe(expectedSourceListData.sources[2].siglum);
             });
@@ -148,46 +148,50 @@ describe('SourceListComponent (DONE)', () => {
                 const spanDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'span', 2, 2);
                 const spanDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'span', 2, 2);
 
-                const spanCmp00 = spanDes0[0].nativeElement;
-                const spanCmp01 = spanDes0[1].nativeElement;
-                const spanCmp10 = spanDes1[0].nativeElement;
-                const spanCmp11 = spanDes1[1].nativeElement;
-                const spanCmp20 = spanDes2[0].nativeElement;
-                const spanCmp21 = spanDes2[1].nativeElement;
+                const spanEl00 = spanDes0[0].nativeElement;
+                const spanEl01 = spanDes0[1].nativeElement;
+                const spanEl10 = spanDes1[0].nativeElement;
+                const spanEl11 = spanDes1[1].nativeElement;
+                const spanEl20 = spanDes2[0].nativeElement;
+                const spanEl21 = spanDes2[1].nativeElement;
 
-                expect(spanCmp00.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp00.textContent)
+                expect(spanEl00.textContent).withContext('should be defined').toBeDefined();
+                expect(spanEl00.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[0].type}`)
                     .toBe(expectedSourceListData.sources[0].type);
 
-                expect(spanCmp01.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp01.textContent)
+                expect(spanEl01.textContent).withContext('should be defined').toBeDefined();
+                expect(spanEl01.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[0].location}`)
                     .toBe(expectedSourceListData.sources[0].location);
 
-                expect(spanCmp10.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp10.textContent)
+                expect(spanEl10.textContent).withContext('should be defined').toBeDefined();
+                expect(spanEl10.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[1].type}`)
                     .toBe(expectedSourceListData.sources[1].type);
 
-                expect(spanCmp11.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp11.textContent)
+                expect(spanEl11.textContent).withContext('should be defined').toBeDefined();
+                expect(spanEl11.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[1].location}`)
                     .toBe(expectedSourceListData.sources[1].location);
 
-                expect(spanCmp20.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp20.textContent)
+                expect(spanEl20.textContent).withContext('should be defined').toBeDefined();
+                expect(spanEl20.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[2].type}`)
                     .toBe(expectedSourceListData.sources[2].type);
 
-                expect(spanCmp21.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp21.textContent)
+                expect(spanEl21.textContent).withContext('should be defined').toBeDefined();
+                expect(spanEl21.textContent)
                     .withContext(`should be ${expectedSourceListData.sources[2].location}`)
                     .toBe(expectedSourceListData.sources[2].location);
             });
         });
 
-        describe('#openModal', () => {
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 // Get anhors in th column
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);

@@ -35,12 +35,12 @@ describe('FooterCopyrightComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have pageMetaData', () => {
+        it('... should not have pageMetaData', () => {
             expect(component.pageMetaData).toBeUndefined();
         });
 
@@ -77,7 +77,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should render copyright period', () => {
+            it('... should render copyright period', () => {
                 const expectedYearStart = expectedPageMetaData.yearStart;
                 const expectedYearCurrent = expectedPageMetaData.yearCurrent;
 
@@ -90,7 +90,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
                     .toContain(expectedYearStart + '–' + expectedYearCurrent);
             });
 
-            it('should render project name', () => {
+            it('... should render project name', () => {
                 const expectedProjectName = expectedPageMetaData.awgProjectName;
 
                 const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);

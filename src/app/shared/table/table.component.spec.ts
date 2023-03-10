@@ -133,36 +133,36 @@ describe('TableComponent', () => {
         clickedTableRowRequestSpy = spyOn(component.clickedTableRowRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have tableTitle yet', () => {
+        it('... should not have tableTitle yet', () => {
             expect(component.tableTitle).toBeUndefined();
         });
 
-        it('should not have headerInputData yet', () => {
+        it('... should not have headerInputData yet', () => {
             expect(component.headerInputData).toBeUndefined();
         });
 
-        it('should not have rowInputData yet', () => {
+        it('... should not have rowInputData yet', () => {
             expect(component.rowInputData).toBeUndefined();
         });
 
-        it('should not have paginatorOptions yet', () => {
+        it('... should not have paginatorOptions yet', () => {
             expect(component.paginatorOptions).toBeUndefined();
         });
 
-        it('should not have searchFilter yet', () => {
+        it('... should not have searchFilter yet', () => {
             expect(component.searchFilter).toBeUndefined();
         });
 
-        it('should not have tableData yet', () => {
+        it('... should not have tableData yet', () => {
             expect(component.tableData).toBeUndefined();
         });
 
-        it('should have faSortUp and faSortDown icons', () => {
+        it('... should have faSortUp and faSortDown icons', () => {
             expect(component.faSortUp).toBeDefined();
             expect(component.faSortUp).withContext(`should be faSortUp`).toBe(faSortUp);
 
@@ -170,22 +170,22 @@ describe('TableComponent', () => {
             expect(component.faSortDown).withContext(`should be faSortDown`).toBe(faSortDown);
         });
 
-        it('should have tableOptions', () => {
+        it('... should have tableOptions', () => {
             expect(component.tableOptions).toBeDefined();
             expect(component.tableOptions)
                 .withContext(`should equal ${expectedTableOptions}`)
                 .toEqual(expectedTableOptions);
         });
 
-        it('should not have called initTable()', () => {
+        it('... should not have called initTable()', () => {
             expectSpyCall(initSpy, 0);
         });
 
-        it('should not have called onSort()', () => {
+        it('... should not have called onSort()', () => {
             expectSpyCall(onSortSpy, 0);
         });
 
-        it('should not have called onPageSizeChange()', () => {
+        it('... should not have called onPageSizeChange()', () => {
             expectSpyCall(onPageSizeChangeSpy, 0);
         });
 
@@ -219,19 +219,19 @@ describe('TableComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have tableTitle', () => {
+        it('... should have tableTitle', () => {
             expect(component.tableTitle).toBeDefined();
             expect(component.tableTitle).withContext(`should be ${expectedTableTitle}`).toBe(expectedTableTitle);
         });
 
-        it('should have headerInputData', () => {
+        it('... should have headerInputData', () => {
             expect(component.headerInputData).toBeDefined();
             expect(component.headerInputData)
                 .withContext(`should equal ${expectedHeaderInputData}`)
                 .toEqual(expectedHeaderInputData);
         });
 
-        it('should have rowInputData', () => {
+        it('... should have rowInputData', () => {
             expect(component.rowInputData).toBeDefined();
             expect(component.rowInputData)
                 .withContext(`should equal ${expectedRowInputData}`)
@@ -239,11 +239,11 @@ describe('TableComponent', () => {
         });
 
         describe('#initTable()', () => {
-            it('should have an initTable() method', () => {
+            it('... should have a method `initTable`', () => {
                 expect(component.initTable).toBeDefined();
             });
 
-            it('should have been called', () => {
+            it('... should have been called', () => {
                 expectSpyCall(initSpy, 1);
             });
 
@@ -353,21 +353,21 @@ describe('TableComponent', () => {
                 });
             });
 
-            it('should set paginatorOptions', () => {
+            it('... should set paginatorOptions', () => {
                 expect(component.paginatorOptions).toBeDefined();
                 expect(component.paginatorOptions)
                     .withContext(`should equal ${expectedPaginatorOptions}`)
                     .toEqual(expectedPaginatorOptions);
             });
 
-            it('should set paginatorOptions.collectionSize to tableData.rowInputData.length', () => {
+            it('... should set paginatorOptions.collectionSize to tableData.rowInputData.length', () => {
                 expect(component.paginatorOptions.collectionSize).toBeDefined();
                 expect(component.paginatorOptions.collectionSize)
                     .withContext(`should equal ${expectedPaginatorOptions.collectionSize}`)
                     .toEqual(expectedPaginatorOptions.collectionSize);
             });
 
-            it('should set paginatorOptions.collectionSize to 0 if tableData.rowInputData is not given', () => {
+            it('... should set paginatorOptions.collectionSize to 0 if tableData.rowInputData is not given', () => {
                 component.rowInputData = undefined;
                 component.initTable();
                 fixture.detectChanges();
@@ -376,25 +376,25 @@ describe('TableComponent', () => {
                 expect(component.paginatorOptions.collectionSize).withContext(`should equal 0`).toEqual(0);
             });
 
-            it('should trigger onSort()', () => {
+            it('... should trigger onSort()', () => {
                 expectSpyCall(onSortSpy, 1);
             });
 
-            it('should trigger onPageSizeChange()', () => {
+            it('... should trigger onPageSizeChange()', () => {
                 expectSpyCall(onPageSizeChangeSpy, 1);
             });
         });
 
         describe('#onPageSizeChange()', () => {
-            it('should have an onPageSizeChange() method', () => {
+            it('... should have a method `onPageSizeChange`', () => {
                 expect(component.onPageSizeChange).toBeDefined();
             });
 
-            it('should have been called', () => {
+            it('... should have been called', () => {
                 expectSpyCall(onPageSizeChangeSpy, 1);
             });
 
-            it('should trigger on change of searchFilter in input', async () => {
+            it('... should trigger on change of searchFilter in input', async () => {
                 await fixture.whenStable(); // Needed to wait for the ngModelto be initialized, cf. https://github.com/angular/angular/issues/22606#issuecomment-514760743
 
                 const expectedSearchFilter = 'test';
@@ -423,7 +423,7 @@ describe('TableComponent', () => {
                 expect(component.searchFilter).withContext(`should equal ${otherSearchFilter}`).toBe(otherSearchFilter);
             });
 
-            it('should trigger on change of selectedPageSize in upper dropdown menu', fakeAsync(() => {
+            it('... should trigger on change of selectedPageSize in upper dropdown menu', fakeAsync(() => {
                 const expectedItemNumber = component.paginatorOptions.pageSizeOptions.length;
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 2, 2);
@@ -472,7 +472,7 @@ describe('TableComponent', () => {
                 expectSpyCall(onPageSizeChangeSpy, 7, ['', component.paginatorOptions.pageSizeOptions[5]]);
             }));
 
-            it('should trigger on change of selectedPageSize in lower dropdown menu', fakeAsync(() => {
+            it('... should trigger on change of selectedPageSize in lower dropdown menu', fakeAsync(() => {
                 const expectedItemNumber = component.paginatorOptions.pageSizeOptions.length;
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 2, 2);
@@ -521,7 +521,7 @@ describe('TableComponent', () => {
                 expectSpyCall(onPageSizeChangeSpy, 7, ['', component.paginatorOptions.pageSizeOptions[5]]);
             }));
 
-            it('should trigger on event from both TablePaginationComponents', fakeAsync(() => {
+            it('... should trigger on event from both TablePaginationComponents', fakeAsync(() => {
                 component.searchFilter = 'test';
 
                 const tablePaginationDes = getAndExpectDebugElementByDirective(
@@ -544,7 +544,7 @@ describe('TableComponent', () => {
                 expectSpyCall(onPageSizeChangeSpy, 3, 'test');
             }));
 
-            it('should call paginateRows() with given searchfilter', () => {
+            it('... should call paginateRows() with given searchfilter', () => {
                 component.onPageSizeChange('test');
                 fixture.detectChanges();
 
@@ -628,7 +628,7 @@ describe('TableComponent', () => {
                 });
             });
 
-            it('should slice tableData by range of paginatorOptions.selectedPageSize', waitForAsync(() => {
+            it('... should slice tableData by range of paginatorOptions.selectedPageSize', waitForAsync(() => {
                 const expectedPageSize = component.paginatorOptions.pageSizeOptions[0];
                 const expectedPaginatedRows = expectedRowInputData.slice(0, expectedPageSize);
 
@@ -671,11 +671,11 @@ describe('TableComponent', () => {
         });
 
         describe('#onSort()', () => {
-            it('should have an onSort() method', () => {
+            it('... should have a method `onSort`', () => {
                 expect(component.onSort).toBeDefined();
             });
 
-            it('should have been called', () => {
+            it('... should have been called', () => {
                 expectSpyCall(onSortSpy, 1);
             });
 
@@ -699,7 +699,7 @@ describe('TableComponent', () => {
                 expectSpyCall(onSortSpy, 4, expectedHeaderInputData[2]);
             }));
 
-            it('should set tableOptions.selectedKey to the given key', () => {
+            it('... should set tableOptions.selectedKey to the given key', () => {
                 expect(component.tableOptions.selectedKey).toBeDefined();
                 expect(component.tableOptions.selectedKey)
                     .withContext(`should equal ${expectedHeaderInputData[0]}`)
@@ -710,7 +710,7 @@ describe('TableComponent', () => {
                 expect(component.tableOptions.selectedKey).toBe('key');
             });
 
-            it('should set tableOptions.sortKey', () => {
+            it('... should set tableOptions.sortKey', () => {
                 expect(component.tableOptions.sortKey).toBeDefined();
                 expect(component.tableOptions.sortKey)
                     .withContext(`should equal ${expectedHeaderInputData[0] + '.label'}`)
@@ -812,7 +812,7 @@ describe('TableComponent', () => {
                 });
             });
 
-            it('should not do anything if no key is given', () => {
+            it('... should not do anything if no key is given', () => {
                 component.onSort(undefined);
                 fixture.detectChanges();
 
@@ -830,7 +830,7 @@ describe('TableComponent', () => {
         });
 
         describe('#onTableValueClick()', () => {
-            it('should have an onTableValueClick() method', () => {
+            it('... should have a method `onTableValueClick`', () => {
                 expect(component.onTableValueClick).toBeDefined();
             });
 
@@ -887,7 +887,7 @@ describe('TableComponent', () => {
         });
 
         describe('#onTableRowClick()', () => {
-            it('should have an onTableRowClick() method', () => {
+            it('... should have a method `onTableRowClick`', () => {
                 expect(component.onTableRowClick).toBeDefined();
             });
 
@@ -940,7 +940,7 @@ describe('TableComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('should pass down paginatorOptions to pagination component', () => {
+            it('... should pass down paginatorOptions to pagination component', () => {
                 const tablePaginationDes = getAndExpectDebugElementByDirective(
                     compDe,
                     TablePaginationStubComponent,

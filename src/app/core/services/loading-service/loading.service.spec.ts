@@ -24,19 +24,23 @@ describe('LoadingService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(loadingService).toBeTruthy();
     });
 
-    it('should have _isLoadingSubject', () => {
+    it('... should have _isLoadingSubject', () => {
         expect((loadingService as any)._isLoadingSubject).toBeTruthy();
     });
 
-    it('should have _isLoadingStream$', () => {
+    it('... should have _isLoadingStream$', () => {
         expect((loadingService as any)._isLoadingStream$).toBeTruthy();
     });
 
-    describe('#getLoadingStatus', () => {
+    describe('#getLoadingStatus()', () => {
+        it('... should have a method `getLoadingStatus`', () => {
+            expect(loadingService.getLoadingStatus).toBeDefined();
+        });
+
         it('... should return default false value', waitForAsync(() => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
@@ -58,7 +62,11 @@ describe('LoadingService (DONE)', () => {
         }));
     });
 
-    describe('#updateLoadingStatus', () => {
+    describe('#updateLoadingStatus()', () => {
+        it('... should have a method `updateLoadingStatus`', () => {
+            expect(loadingService.updateLoadingStatus).toBeDefined();
+        });
+
         it('... should emit updated loading status', waitForAsync(() => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {

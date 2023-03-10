@@ -90,7 +90,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
         ).and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
@@ -103,7 +103,11 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             expect(component.selectedSection).toBeUndefined();
         });
 
-        describe('#getSection', () => {
+        describe('#getSection()', () => {
+            it('... should have a method `getSection`', () => {
+                expect(component.getSection).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(getSectionSpy, 0);
             });
@@ -129,7 +133,7 @@ describe('EditionSectionDetailComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getSection', () => {
+        describe('#getSection()', () => {
             it('... should have been called', () => {
                 expectSpyCall(getSectionSpy, 1);
             });

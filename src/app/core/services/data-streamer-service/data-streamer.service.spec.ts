@@ -28,35 +28,39 @@ describe('DataStreamerService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(dataStreamerService).toBeTruthy();
     });
 
-    it('should have bufferSize = 1', () => {
+    it('... should have bufferSize = 1', () => {
         expect((dataStreamerService as any)._bufferSize).toBeTruthy();
         expect((dataStreamerService as any)._bufferSize)
             .withContext('should be 1')
             .toBe(1);
     });
 
-    it('should have searchResponseWithQuerySubject', () => {
+    it('... should have searchResponseWithQuerySubject', () => {
         expect((dataStreamerService as any)._searchResponseWithQuerySubject).toBeTruthy();
     });
 
-    it('should have searchResponseWithQueryStream$', () => {
+    it('... should have searchResponseWithQueryStream$', () => {
         expect((dataStreamerService as any)._searchResponseWithQueryStream$).toBeTruthy();
     });
 
-    it('should have resourceIdSubject', () => {
+    it('... should have resourceIdSubject', () => {
         expect((dataStreamerService as any)._resourceIdSubject).toBeTruthy();
     });
 
-    it('should have resourceIdStream$', () => {
+    it('... should have resourceIdStream$', () => {
         expect((dataStreamerService as any)._resourceIdStream$).toBeTruthy();
     });
 
     describe('SearchResponseWithQuery', () => {
-        describe('#getSearchResponseWithQuery', () => {
+        describe('#getSearchResponseWithQuery()', () => {
+            it('... should have a method `getSearchResponseWithQuery`', () => {
+                expect(dataStreamerService.getSearchResponseWithQuery).toBeDefined();
+            });
+
             it('... should return given searchResponse', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -88,7 +92,11 @@ describe('DataStreamerService (DONE)', () => {
             }));
         });
 
-        describe('#updateSearchResponseWithQuery', () => {
+        describe('#updateSearchResponseWithQuery()', () => {
+            it('... should have a method `updateSearchResponseWithQuery`', () => {
+                expect(dataStreamerService.updateSearchResponseWithQuery).toBeDefined();
+            });
+
             it('... should emit updated searchResponse', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -107,7 +115,11 @@ describe('DataStreamerService (DONE)', () => {
             }));
         });
 
-        describe('#clearSearchResponseWithQuery', () => {
+        describe('#clearSearchResponseWithQuery()', () => {
+            it('... should have a method `clearSearchResponseWithQuery`', () => {
+                expect(dataStreamerService.clearSearchResponseWithQuery).toBeDefined();
+            });
+
             it('... should update search results with empty SearchResponseWithQuery', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -142,7 +154,11 @@ describe('DataStreamerService (DONE)', () => {
     });
 
     describe('ResourceId', () => {
-        describe('#getResourceId', () => {
+        describe('#getResourceId()', () => {
+            it('... should have a method `getResourceId`', () => {
+                expect(dataStreamerService.getResourceId).toBeDefined();
+            });
+
             it('... should return given id', waitForAsync(() => {
                 // Init resource id
                 const expectedResourceId = 'Test';
@@ -178,7 +194,11 @@ describe('DataStreamerService (DONE)', () => {
             }));
         });
 
-        describe('#updateResourceId', () => {
+        describe('#updateResourceId()', () => {
+            it('... should have a method `updateResourceId`', () => {
+                expect(dataStreamerService.updateResourceId).toBeDefined();
+            });
+
             it('... should emit updated id', waitForAsync(() => {
                 // Init resource id
                 let expectedResourceId = 'Test';
@@ -199,7 +219,11 @@ describe('DataStreamerService (DONE)', () => {
             }));
         });
 
-        describe('#clearResourceId', () => {
+        describe('#clearResourceId()', () => {
+            it('... should have a method `clearResourceId`', () => {
+                expect(dataStreamerService.clearResourceId).toBeDefined();
+            });
+
             it('... should update resource id with empty string', waitForAsync(() => {
                 // Init resource id
                 const expectedResourceId = '';

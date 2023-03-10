@@ -142,28 +142,32 @@ describe('EditionAccoladeComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `svgSheetsData`', () => {
+        it('... should not have `svgSheetsData`', () => {
             expect(component.svgSheetsData).toBeUndefined();
         });
 
-        it('should not have `selectedSvgSheet`', () => {
+        it('... should not have `selectedSvgSheet`', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('should not have `selectedTextcriticalComments`', () => {
+        it('... should not have `selectedTextcriticalComments`', () => {
             expect(component.selectedTextcriticalComments).toBeUndefined();
         });
 
-        it('should not have `selectedTextcritics`', () => {
+        it('... should not have `selectedTextcritics`', () => {
             expect(component.selectedTextcritics).toBeUndefined();
         });
 
-        it('should not have `showTkA`', () => {
+        it('... should not have `showTkA`', () => {
             expect(component.showTkA).toBeUndefined();
         });
 
@@ -398,8 +402,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal', () => {
-            it('... should have an `openModal` method  ', () => {
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
             });
 
@@ -444,8 +448,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
-        describe('#selectLinkBox', () => {
-            it('... should have a `selectLinkBox` method', () => {
+        describe('#selectLinkBox()', () => {
+            it('... should have a method `selectLinkBox`', () => {
                 expect(component.selectLinkBox).toBeDefined();
             });
 
@@ -479,8 +483,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
-        describe('#selectOverlays', () => {
-            it('... should have a `selectOverlays` method', () => {
+        describe('#selectOverlays()', () => {
+            it('... should have a method `selectOverlays`', () => {
                 expect(component.selectOverlays).toBeDefined();
             });
 
@@ -514,8 +518,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
-            it('... should have a `selectSvgSheet` method', () => {
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 

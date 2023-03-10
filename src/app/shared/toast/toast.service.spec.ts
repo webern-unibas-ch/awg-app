@@ -40,17 +40,21 @@ describe('ToastService (DONE)', () => {
         expectedToast2 = new Toast(expectedTextMessage2, expectedOptions);
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(toastService).toBeTruthy();
     });
 
-    it('should have empty toast array', () => {
+    it('... should have empty toast array', () => {
         expect(toastService.toasts).toBeTruthy();
         expect(toastService.toasts).withContext('should equal empty array []').toEqual([]);
     });
 
-    describe('#add', () => {
-        it('should add given string to toast array', () => {
+    describe('#add()', () => {
+        it('... should have a method `add`', () => {
+            expect(toastService.add).toBeDefined();
+        });
+
+        it('... should add given string to toast array', () => {
             // Call service method
             toastService.add(expectedToast1);
 
@@ -59,7 +63,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
         });
 
-        it('should add given template to toast array', () => {
+        it('... should add given template to toast array', () => {
             const fixture = TestBed.createComponent(MockTemplateComponent);
             const mockComponent = fixture.componentInstance;
 
@@ -74,7 +78,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[0]).withContext(`should equal ${expectedTplToast}`).toEqual(expectedTplToast);
         });
 
-        it('should only add textOrTpl if options not given', () => {
+        it('... should only add textOrTpl if options not given', () => {
             // Call service method
             toastService.add(expectedToast1);
 
@@ -83,7 +87,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[0]).withContext(`should equal ${expectedToast1}`).toEqual(expectedToast1);
         });
 
-        it('should add options if given with text message', () => {
+        it('... should add options if given with text message', () => {
             // Call service method
             toastService.add(expectedToast2);
 
@@ -92,7 +96,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[0]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
-        it('should add options if given with template message', () => {
+        it('... should add options if given with template message', () => {
             const fixture = TestBed.createComponent(MockTemplateComponent);
             const mockComponent = fixture.componentInstance;
 
@@ -108,13 +112,17 @@ describe('ToastService (DONE)', () => {
         });
     });
 
-    describe('#remove', () => {
+    describe('#remove()', () => {
         beforeEach(() => {
             toastService.add(expectedToast1);
             toastService.add(expectedToast2);
         });
 
-        it('should do nothing if toast does not exist', () => {
+        it('... should have a method `remove`', () => {
+            expect(toastService.remove).toBeDefined();
+        });
+
+        it('... should do nothing if toast does not exist', () => {
             const expectedOtherToast = new Toast('Test message 3');
 
             // Call service method
@@ -126,7 +134,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[1]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
-        it('should do nothing if options do not match', () => {
+        it('... should do nothing if options do not match', () => {
             const otherOptionsToast = new Toast(expectedTextMessage1, expectedOptions);
             // Call service method
             toastService.remove(otherOptionsToast);
@@ -137,7 +145,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[1]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
-        it('should remove existing toast from toast array (without options)', () => {
+        it('... should remove existing toast from toast array (without options)', () => {
             // Call service method
             toastService.remove(expectedToast1);
 
@@ -149,7 +157,7 @@ describe('ToastService (DONE)', () => {
             expect(toastService.toasts[0]).withContext(`should equal ${expectedToast2}`).toEqual(expectedToast2);
         });
 
-        it('should remove existing toast from toast array (with options)', () => {
+        it('... should remove existing toast from toast array (with options)', () => {
             // Call service method
             toastService.remove(expectedToast2);
 

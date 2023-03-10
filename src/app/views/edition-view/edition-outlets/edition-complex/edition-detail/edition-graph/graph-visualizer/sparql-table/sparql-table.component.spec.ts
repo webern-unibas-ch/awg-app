@@ -63,16 +63,16 @@ describe('SparqlTableComponent (DONE)', () => {
         emitSpy = spyOn(component.clickedTableRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have queryResult', () => {
+        it('... should not have queryResult', () => {
             expect(component.queryResult).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should not have queryTime', () => {
+        it('... should not have queryTime', () => {
             expect(component.queryTime).withContext('should be undefined').toBeUndefined();
         });
 
@@ -93,14 +93,14 @@ describe('SparqlTableComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `queryResult` input', () => {
+        it('... should have `queryResult` input', () => {
             expect(component.queryResult).withContext('should be defined').toBeDefined();
             expect(component.queryResult)
                 .withContext(`should equal ${expectedQueryResult}`)
                 .toEqual(expectedQueryResult);
         });
 
-        it('should have `queryTime` input', () => {
+        it('... should have `queryTime` input', () => {
             expect(component.queryTime).withContext('should be defined').toBeDefined();
             expect(component.queryTime).withContext(`should equal ${expectedQueryTime}`).toEqual(expectedQueryTime);
         });
@@ -141,7 +141,11 @@ describe('SparqlTableComponent (DONE)', () => {
             });
         });
 
-        describe('#onTableNodeClick', () => {
+        describe('#onTableNodeClick()', () => {
+            it('... should have a method `onTableNodeClick`', () => {
+                expect(component.onTableNodeClick).toBeDefined();
+            });
+
             it('... should trigger on clickedTableValueRequest event from TableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, TableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(TableStubComponent) as TableStubComponent;

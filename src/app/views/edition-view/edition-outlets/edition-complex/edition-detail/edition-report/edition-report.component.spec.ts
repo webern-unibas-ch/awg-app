@@ -224,7 +224,7 @@ describe('EditionReportComponent', () => {
             expect(component.editionComplex).toBeUndefined();
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
@@ -363,7 +363,11 @@ describe('EditionReportComponent', () => {
             });
         });
 
-        describe('#getEditionReportData', () => {
+        describe('#getEditionReportData()', () => {
+            it('... should have a method `getEditionReportData`', () => {
+                expect(component.getEditionReportData).toBeDefined();
+            });
+
             it('... should have been called', () => {
                 expectSpyCall(getEditionReportDataSpy, 1);
             });
@@ -397,7 +401,11 @@ describe('EditionReportComponent', () => {
             }));
         });
 
-        describe('#onModalOpen', () => {
+        describe('#onModalOpen()', () => {
+            it('... should have a method `onModalOpen`', () => {
+                expect(component.onModalOpen).toBeDefined();
+            });
+
             describe('... should trigger on event from', () => {
                 describe('... SourceListComponent if', () => {
                     it('... modal snippet is undefined', () => {
@@ -575,7 +583,11 @@ describe('EditionReportComponent', () => {
             });
         });
 
-        describe('#onReportFragmentNavigate', () => {
+        describe('#onReportFragmentNavigate()', () => {
+            it('... should have a method `onReportFragmentNavigate`', () => {
+                expect(component.onReportFragmentNavigate).toBeDefined();
+            });
+
             describe('... should trigger on event from', () => {
                 describe('... SourceEvaluationComponent if', () => {
                     it('... fragment id is undefined', () => {
@@ -659,7 +671,11 @@ describe('EditionReportComponent', () => {
             });
         });
 
-        describe('#onSvgSheetSelect', () => {
+        describe('#onSvgSheetSelect()', () => {
+            it('... should have a method `onSvgSheetSelect`', () => {
+                expect(component.onSvgSheetSelect).toBeDefined();
+            });
+
             describe('... should trigger on event from', () => {
                 describe('... SourceDescriptionComponent if', () => {
                     it('... svg sheet id is undefined', () => {
