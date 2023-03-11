@@ -104,8 +104,8 @@ describe('IntroComponent (DONE)', () => {
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedEditionIntroData = mockEditionData.mockIntroData;
         expectedEditionIntroEmptyData = mockEditionData.mockIntroEmptyData;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
 

@@ -27,7 +27,7 @@ describe('EditionFolioViewerComponent', () => {
 
         // Test data
         // Mock the inputs supplied by the parent component
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
     });
 

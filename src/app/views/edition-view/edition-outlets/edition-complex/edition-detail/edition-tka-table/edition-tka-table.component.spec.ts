@@ -61,9 +61,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // Test data
         expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk5;
-        expectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedTextcriticalComments = mockEditionData.mockTextcriticsData.textcritics.at(1).comments;
 
         expectedIsRowTable = false;
         expectedTableHeaderStrings = {
@@ -386,7 +386,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 // CLick on second anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
             }));
 
             it('... should not emit anything if no id is provided', () => {

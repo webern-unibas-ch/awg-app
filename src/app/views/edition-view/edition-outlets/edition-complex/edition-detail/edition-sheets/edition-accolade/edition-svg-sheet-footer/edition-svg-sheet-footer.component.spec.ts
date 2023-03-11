@@ -69,10 +69,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
         // Test data
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
-        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[1];
-        expectedSelectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics.at(1);
+        expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
         expectedShowTka = true;
 
         expectedChevronRightIcon = faChevronRight;

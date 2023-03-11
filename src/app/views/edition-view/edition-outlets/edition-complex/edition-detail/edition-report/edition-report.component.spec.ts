@@ -177,8 +177,8 @@ describe('EditionReportComponent', () => {
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
 
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
         expectedSourceListData = mockEditionData.mockSourceListData;
         expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;

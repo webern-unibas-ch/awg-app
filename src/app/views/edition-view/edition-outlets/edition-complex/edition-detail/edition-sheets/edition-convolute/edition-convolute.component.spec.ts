@@ -78,8 +78,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
         // Test data
         expectedSelectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
 
         expectedFolioLegends = [

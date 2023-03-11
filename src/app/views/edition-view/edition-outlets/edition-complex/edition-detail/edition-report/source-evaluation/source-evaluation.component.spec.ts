@@ -54,8 +54,8 @@ describe('SourceEvaluationComponent (DONE)', () => {
         // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP25;
         expectedFragment = 'sourceA';
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSourceEvaluationListData = { ...mockEditionData.mockSourceEvaluationListData };
         expectedSourceEvaluationListEmptyData = { ...mockEditionData.mockSourceEvaluationListEmptyData };

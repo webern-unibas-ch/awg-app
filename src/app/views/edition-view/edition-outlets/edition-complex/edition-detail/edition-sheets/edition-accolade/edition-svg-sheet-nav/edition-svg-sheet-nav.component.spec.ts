@@ -38,7 +38,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
-    let expectedSvgSheetWithPartialsSingleSvg: EditionSvgSheet;
+    let expectedSvgSheetWithPartialA: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
     let selectSvgSheetSpy: Spy;
@@ -56,9 +56,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
-        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2_with_partials;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk4;
+        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2;
+        expectedSvgSheetWithPartialA = mockEditionData.mockSvgSheet_Sk2a;
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -66,8 +67,6 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 sketchEditions: [expectedSvgSheet, expectedNextSvgSheet, expectedSvgSheetWithPartials],
             },
         };
-
-        expectedSvgSheetWithPartialsSingleSvg = mockEditionData.mockSvgSheet_Sk2a;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -274,8 +273,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             });
 
             it('... should emit id of selected svg sheet with partial', () => {
-                const expectedId =
-                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+                const expectedId = expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
 
                 component.selectSvgSheet(expectedId);
 

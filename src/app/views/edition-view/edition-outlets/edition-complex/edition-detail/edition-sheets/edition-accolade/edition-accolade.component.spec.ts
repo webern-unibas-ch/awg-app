@@ -4,6 +4,7 @@ import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
@@ -114,13 +115,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
         // Test data
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedSvgSheetsData = {
             sheets: { workEditions: [], textEditions: [], sketchEditions: [expectedSvgSheet, expectedNextSvgSheet] },
         };
-        expectedSelectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
-        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[1];
+        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics.at(1);
+        expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
 
         const type = EditionSvgOverlayTypes.item;
         const id = 'tka-1';
