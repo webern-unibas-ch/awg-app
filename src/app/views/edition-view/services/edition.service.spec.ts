@@ -4,14 +4,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { EDITION_COMPLEXES, EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
-import {
-    EditionComplex,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
-    TextcriticalComment,
-} from '@awg-views/edition-view/models';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-route-constants';
 import { EditionService } from './edition.service';
@@ -25,11 +18,6 @@ describe('EditionService (DONE)', () => {
     let expectedEditionSeriesRoute: string;
     let expectedEditionSection: EditionOutlineSection;
     let expectedIsRowTableView: boolean;
-
-    let expectedTka: TextcriticalComment[];
-    let expectedOverlays: EditionSvgOverlay[];
-    let expectedResult: TextcriticalComment[];
-    let filteredComments: TextcriticalComment[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -45,57 +33,13 @@ describe('EditionService (DONE)', () => {
         expectedEditionSeries = EDITION_OUTLINE_DATA[0];
         expectedEditionSection = EDITION_OUTLINE_DATA[0].sections[0];
         expectedIsRowTableView = true;
-
-        // Textcritical comments
-        expectedTka = [
-            {
-                svgGroupId: 'tka-1',
-                measure: '1',
-                system: '11',
-                position: '1. Note',
-                comment: '1. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-2',
-                measure: '2',
-                system: '12',
-                position: '2. Note',
-                comment: '2. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-3',
-                measure: '2',
-                system: '14',
-                position: '3. Note',
-                comment: '3. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-4',
-                measure: '[3]',
-                system: '14',
-                position: '4. Note',
-                comment: '4. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-5',
-                measure: '4',
-                system: '[13]',
-                position: '5. Note',
-                comment: '5. Kommentar.',
-            },
-        ];
-        // Overlay for measure 9 entries
-        expectedOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-1', true),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-3', true),
-        ];
     });
 
     afterAll(() => {
         cleanStylesFromDOM();
     });
 
-    it('... should be created', () => {
+    it('... should create', () => {
         expect(editionService).toBeTruthy();
     });
 
@@ -132,47 +76,6 @@ describe('EditionService (DONE)', () => {
 
     it('... should have _selectedEditionSectionSubject', () => {
         expect((editionService as any)._selectedEditionSectionSubject).toBeTruthy();
-    });
-
-    describe('#getTextcriticalCommentsForOverlays', () => {
-        it('... should have a method `getTextcriticalCommentsForOverlays`', () => {
-            expect(editionService.getTextcriticalCommentsForOverlays).toBeTruthy();
-        });
-
-        describe('... should return empty array', () => {
-            it('if no TkA are given', () => {
-                const value = editionService.getTextcriticalCommentsForOverlays(undefined, expectedOverlays);
-
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
-            });
-
-            it('... if no overlays are given', () => {
-                const value = editionService.getTextcriticalCommentsForOverlays(expectedTka, undefined);
-
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
-            });
-        });
-
-        it('... should find a comment for a selected item by id', () => {
-            // Overlay for item tka-1 and tka-3
-            expectedResult = [expectedTka[0], expectedTka[2]];
-
-            filteredComments = editionService.getTextcriticalCommentsForOverlays(expectedTka, expectedOverlays);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-
-            // Overlay for item tka-2
-            expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-2', true)];
-            expectedResult = [expectedTka[1]];
-
-            filteredComments = editionService.getTextcriticalCommentsForOverlays(expectedTka, expectedOverlays);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
     });
 
     describe('EditionComplex', () => {
