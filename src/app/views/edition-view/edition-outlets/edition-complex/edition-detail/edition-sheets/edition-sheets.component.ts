@@ -238,6 +238,35 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     *
+     * Public method: onBrowseSvgSheet.
+     *
+     * It evaluates the id of the previous or next SVG sheet
+     * based on the given direction and calls it with onSvgSheetSelect.
+     *
+     * @param {number} direction - A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
+     */
+    onBrowseSvgSheet(direction: number): void {
+        const editionType = this.editionSheetsService.getCurrentEditionType(
+            this.selectedSvgSheet,
+            this.svgSheetsData.sheets
+        );
+        if (!editionType) {
+            return;
+        }
+
+        const editionTypeSheets = this.svgSheetsData.sheets[editionType];
+        const nextSheetId = this.editionSheetsService.getNextSheetId(
+            direction,
+            this.selectedSvgSheet,
+            editionTypeSheets
+        );
+
+        this.onSvgSheetSelect(nextSheetId);
+    }
+
+    /**
      * Public method: onSvgSheetSelect.
      *
      * It selects a SVG sheet by its id and

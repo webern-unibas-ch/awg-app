@@ -24,7 +24,7 @@
                     <awg-edition-svg-sheet-viewer
                         *ngIf="selectedSvgSheet"
                         [selectedSvgSheet]="selectedSvgSheet"
-                        (openModalRequest)="openModal($event)"
+                        (browseSvgSheetRequest)="browseSvgSheet($event)"
                         (selectLinkBoxRequest)="selectLinkBox($event)"
                         (selectOverlaysRequest)="selectOverlays($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)">
@@ -37,9 +37,7 @@
                         [selectedTextcriticalComments]="selectedTextcriticalComments"
                         [showTkA]="showTkA"
                         (openModalRequest)="openModal($event)"
-                        (selectSvgSheetRequest)="selectSvgSheet($event)"
-                        >></awg-edition-svg-sheet-footer
-                    >
+                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>
                 </div>
             </div>
         </ng-template>
