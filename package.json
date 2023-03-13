@@ -109,7 +109,7 @@
         "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.10",
         "rxjs": "~7.8.0",
         "snapsvg": "^0.5.1",
-        "tslib": "^2.4.1",
+        "tslib": "^2.5.0",
         "zone.js": "~0.12.0"
     },
     "devDependencies": {
