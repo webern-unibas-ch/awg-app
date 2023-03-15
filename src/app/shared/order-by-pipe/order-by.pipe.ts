@@ -95,14 +95,14 @@ export class OrderByPipe implements PipeTransform {
      * @returns {any}
      */
     static getValue(object: any, expression: string[]): any {
-        for (let i = 0; i < expression.length; ++i) {
-            const key = expression[i];
-            if (!object || !(key in object)) {
+        for (const key of expression) {
+            if (object && key in object) {
+                object = object[key];
+                if (typeof object === 'function') {
+                    object = object();
+                }
+            } else {
                 return undefined;
-            }
-            object = object[key];
-            if (typeof object === 'function') {
-                object = object();
             }
         }
         return object;
