@@ -112,7 +112,7 @@ describe('SearchOverviewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have `searchRouterLinkButtons`', () => {
-            expect(component.searchRouterLinkButtons).withContext('should be undefined').toBeUndefined();
+            expect(component.searchRouterLinkButtons).toBeUndefined();
         });
 
         describe('VIEW', () => {

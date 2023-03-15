@@ -88,7 +88,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
         });
 
         it('... should not have `props` input', () => {
-            expect(component.props).withContext('should be undefined').toBeUndefined();
+            expect(component.props).toBeUndefined();
         });
 
         describe('#exposeGnd()', () => {

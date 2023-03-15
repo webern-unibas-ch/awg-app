@@ -51,7 +51,7 @@ describe('SourceListComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have sourceListData', () => {
-            expect(component.sourceListData).withContext('should be undefined').toBeUndefined();
+            expect(component.sourceListData).toBeUndefined();
         });
 
         it('... should have `ref`', () => {

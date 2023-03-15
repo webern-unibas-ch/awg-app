@@ -101,15 +101,15 @@ describe('SelectResultsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have queryResult', () => {
-            expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
+            expect(component.queryResult$).toBeUndefined();
         });
 
         it('... should not have queryTime', () => {
-            expect(component.queryTime).withContext('should be undefined').toBeUndefined();
+            expect(component.queryTime).toBeUndefined();
         });
 
         it('... should not have isFullscreen', () => {
-            expect(component.isFullscreen).withContext('should be undefined').toBeUndefined();
+            expect(component.isFullscreen).toBeUndefined();
         });
 
         describe('VIEW', () => {

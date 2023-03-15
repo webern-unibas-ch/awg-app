@@ -82,11 +82,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
+            expect(component.editionComplex).toBeUndefined();
         });
 
         it('... should not have `sourceDescriptionListData`', () => {
-            expect(component.sourceEvaluationListData).withContext('should be undefined').toBeUndefined();
+            expect(component.sourceEvaluationListData).toBeUndefined();
         });
 
         it('... should have `ref`', () => {
