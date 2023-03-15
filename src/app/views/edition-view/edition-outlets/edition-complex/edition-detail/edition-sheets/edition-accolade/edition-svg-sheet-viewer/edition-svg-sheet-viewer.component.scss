@@ -10,15 +10,18 @@
     }
 }
 
-.awg-edition-svg-panel-container {
+.awg-edition-svg-sheet-container {
     position: inherit;
     height: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 /* slider */
 .input-group.awg-edition-svg-zoom-slider-container {
     flex-wrap: nowrap;
     width: auto;
+    margin-left: 2rem !important;
 
     > :not(:first-child) {
         margin-left: 0px !important;
@@ -113,5 +116,43 @@ input[type='range'].awg-edition-svg-zoom-slider {
         @include slider-thumb(29px);
         margin-top: 0px;
         /*Needed to keep the Edge thumb centred*/
+    }
+}
+
+/* Next & previous buttons */
+.awg-edition-svg-sheet-viewer-nav {
+    > .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        width: auto;
+        padding: 8px;
+        user-select: none;
+
+        /* On hover, add a black background color with a little bit see-through */
+        &:hover {
+            background-color: #dddddd;
+        }
+
+        span {
+            position: relative;
+            top: 45%;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            color: $link-color;
+        }
+    }
+
+    > .prev {
+        border-right: 1px solid #dddddd;
+    }
+
+    /* Position the "next button" to the right */
+    > .next {
+        right: 0;
+        border-left: 1px solid #dddddd;
     }
 }

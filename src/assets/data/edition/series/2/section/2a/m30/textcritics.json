@@ -278,7 +278,7 @@
                     "measure": "21",
                     "system": "2",
                     "position": "1/8",
-                    "comment": "B ersetzt durch B<sub>1</sub>."
+                    "comment": "{{ref.getGlyph('[b]')}}B ersetzt durch B<sub>1</sub>."
                 },
                 {
                     "svgGroupId": "g1160",

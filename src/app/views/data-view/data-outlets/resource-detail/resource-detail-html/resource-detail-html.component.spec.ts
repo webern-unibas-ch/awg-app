@@ -73,23 +73,31 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         resourceRequestEmitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `resourceDetailData` inputs', () => {
+        it('... should not have `resourceDetailData` inputs', () => {
             expect(component.resourceDetailData).withContext('should be undefined').toBeUndefined();
         });
 
-        describe('#exposeGnd', () => {
+        describe('#exposeGnd()', () => {
+            it('... should have a method `exposeGnd`', () => {
+                expect(component.exposeGnd).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(exposeGndSpy).not.toHaveBeenCalled();
                 expect(gndRequestEmitSpy).not.toHaveBeenCalled();
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
                 expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
@@ -97,7 +105,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should not contain resource detail html content component (stubbed)', () => {
+            it('... should not contain resource detail html content component (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 0, 0);
             });
         });
@@ -112,7 +120,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `resourceDetailData` inputs', () => {
+        it('... should have `resourceDetailData` inputs', () => {
             expect(component.resourceDetailData).withContext('should be defined').toBeDefined();
             expect(component.resourceDetailData)
                 .withContext(`should be ${expectedResourceDetailData}`)
@@ -120,11 +128,11 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should contain resource detail html content component (stubbed)', () => {
+            it('... should contain resource detail html content component (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 1, 1);
             });
 
-            it('should contain resource detail html content component (stubbed) only if content provided', () => {
+            it('... should contain resource detail html content component (stubbed) only if content provided', () => {
                 // Provide data without content property
                 expectedResourceDetailData = new ResourceDetail(undefined, undefined);
 
@@ -153,7 +161,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
             });
         });
 
-        describe('#exposeGnd', () => {
+        describe('#exposeGnd()', () => {
             let htmlContentDes;
             let htmlContentCmp;
             let gndEvent: GndEvent;
@@ -253,7 +261,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             let htmlContentDes;
             let htmlContentCmp;
             let id;

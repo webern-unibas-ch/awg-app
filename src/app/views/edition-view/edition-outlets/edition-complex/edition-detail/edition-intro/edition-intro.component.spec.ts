@@ -104,8 +104,8 @@ describe('IntroComponent (DONE)', () => {
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedEditionIntroData = mockEditionData.mockIntroData;
         expectedEditionIntroEmptyData = mockEditionData.mockIntroEmptyData;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
 
@@ -128,7 +128,7 @@ describe('IntroComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
@@ -141,7 +141,7 @@ describe('IntroComponent (DONE)', () => {
             expect(component.editionComplex).toBeUndefined();
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
@@ -249,20 +249,24 @@ describe('IntroComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view > p.awg-intro-empty', 1, 1);
-                const pCmp = pDes[0].nativeElement;
+                const pEl = pDes[0].nativeElement;
 
                 // Create intro placeholder
                 const introPlaceholder = `[Die Einleitung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
                 const strippedIntroPlaceholder = introPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pCmp.textContent).toBeTruthy();
-                expect(pCmp.textContent.trim())
+                expect(pEl.textContent).toBeTruthy();
+                expect(pEl.textContent.trim())
                     .withContext(`should be ${strippedIntroPlaceholder}`)
                     .toEqual(strippedIntroPlaceholder);
             }));
         });
 
-        describe('#getEditionReportData', () => {
+        describe('#getEditionIntroData()', () => {
+            it('... should have a method `getEditionIntroData`', () => {
+                expect(component.getEditionIntroData).toBeDefined();
+            });
+
             it('... should have been called', () => {
                 expectSpyCall(getEditionIntroDataSpy, 1);
             });
@@ -296,7 +300,11 @@ describe('IntroComponent (DONE)', () => {
             }));
         });
 
-        describe('#navigateToReportFragment', () => {
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view', 1, 1);
 
@@ -364,7 +372,11 @@ describe('IntroComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal', () => {
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view', 1, 1);
 
@@ -424,7 +436,11 @@ describe('IntroComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-intro-view', 1, 1);
 

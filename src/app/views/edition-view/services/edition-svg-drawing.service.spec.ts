@@ -100,53 +100,53 @@ describe('EditionSvgDrawingService (DONE)', () => {
         expectedSvgRootGroup.remove();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(service).toBeTruthy();
     });
 
-    it('should have `overlayFillColor = orange`', () => {
+    it('... should have `overlayFillColor = orange`', () => {
         expect(service.overlayFillColor).toBeDefined();
         expect(service.overlayFillColor)
             .withContext(`should be ${expectedOverlayFillColor}`)
             .toBe(expectedOverlayFillColor);
     });
 
-    it('should have `overlaySelectionFillColor = green`', () => {
+    it('... should have `overlaySelectionFillColor = green`', () => {
         expect(service.overlaySelectionFillColor).toBeDefined();
         expect(service.overlaySelectionFillColor)
             .withContext(`should be ${expectedOverlaySelectionFillColor}`)
             .toBe(expectedOverlaySelectionFillColor);
     });
 
-    it('should have `linkBoxFillColor = #dddddd`', () => {
+    it('... should have `linkBoxFillColor = #dddddd`', () => {
         expect(service.linkBoxFillColor).toBeDefined();
         expect(service.linkBoxFillColor)
             .withContext(`should be ${expectedLinkBoxFillColor}`)
             .toBe(expectedLinkBoxFillColor);
     });
 
-    it('should have `linkBoxHoverFillColor = #eeeeee`', () => {
+    it('... should have `linkBoxHoverFillColor = #eeeeee`', () => {
         expect(service.linkBoxHoverFillColor).toBeDefined();
         expect(service.linkBoxHoverFillColor)
             .withContext(`should be ${expectedLinkBoxHoverFillColor}`)
             .toBe(expectedLinkBoxHoverFillColor);
     });
 
-    it('should have `_overlayBoxesOpacity = 0.3` (private)', () => {
+    it('... should have `_overlayBoxesOpacity = 0.3` (private)', () => {
         expect(service['_overlayBoxesOpacity']).toBeDefined();
         expect(service['_overlayBoxesOpacity'])
             .withContext(`should be ${expectedOverlayBoxesOpacity}`)
             .toBe(expectedOverlayBoxesOpacity);
     });
 
-    it('should have `_overlayBoxAdditionalSpace = 5.5` (private)', () => {
+    it('... should have `_overlayBoxAdditionalSpace = 5.5` (private)', () => {
         expect(service['_overlayBoxAdditionalSpace']).toBeDefined();
         expect(service['_overlayBoxAdditionalSpace'])
             .withContext(`should be ${expectedOverlayBoxAdditionalSpace}`)
             .toBe(expectedOverlayBoxAdditionalSpace);
     });
 
-    it('should have `_overlayBoxCornerRadius = 2` (private)', () => {
+    it('... should have `_overlayBoxCornerRadius = 2` (private)', () => {
         expect(service['_overlayBoxCornerRadius']).toBeDefined();
         expect(service['_overlayBoxCornerRadius'])
             .withContext(`should be ${expectedOverlayBoxCornerRadius}`)
@@ -160,7 +160,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             fetchSvgFileSpy = spyOn(service as any, '_fetchSvgFile').and.callThrough();
         });
 
-        it('... should have a `createSvg()` method', () => {
+        it('... should have a method `createSvg`', () => {
             expect(service.createSvg).toBeDefined();
         });
 
@@ -202,7 +202,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#_fetchSvgFile', () => {
-        it('... should have a `_fetchSvgFile()` method', () => {
+        it('... should have a method `_fetchSvgFile`', () => {
             expect((service as any)._fetchSvgFile).toBeDefined();
         });
 
@@ -219,7 +219,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#createOverlayGroup()', () => {
-        it('... should have a `createOverlayGroup()` method', () => {
+        it('... should have a method `createOverlayGroup`', () => {
             expect(service.createOverlayGroup).toBeDefined();
         });
 
@@ -276,7 +276,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#fillD3SelectionWithColor()', () => {
-        it('... should have a `fillD3SelectionWithColor()` method', () => {
+        it('... should have a method `fillD3SelectionWithColor`', () => {
             expect(service.fillD3SelectionWithColor).toBeDefined();
         });
 
@@ -310,7 +310,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#getContainerDimensions()', () => {
-        it('... should have a `getContainerDimensions()` method', () => {
+        it('... should have a method `getContainerDimensions`', () => {
             expect(service.getContainerDimensions).toBeDefined();
         });
 
@@ -354,7 +354,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#getD3SelectionById()', () => {
-        it('... should have a `getD3SelectionById()` method', () => {
+        it('... should have a method `getD3SelectionById`', () => {
             expect(service.getD3SelectionById).toBeDefined();
         });
 
@@ -410,7 +410,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#getGroupsBySelector()', () => {
-        it('... should have a `getGroupsBySelector()` method', () => {
+        it('... should have a method `getGroupsBySelector`', () => {
             expect(service.getGroupsBySelector).toBeDefined();
         });
 
@@ -491,7 +491,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
     });
 
     describe('#getOverlayGroupRectSelection()', () => {
-        it('... should have a `getOverlayGroupRectSelection()` method', () => {
+        it('... should have a method `getOverlayGroupRectSelection`', () => {
             expect(service.getOverlayGroupRectSelection).toBeDefined();
         });
 

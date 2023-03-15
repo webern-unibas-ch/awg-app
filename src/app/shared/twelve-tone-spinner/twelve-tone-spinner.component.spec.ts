@@ -24,7 +24,7 @@ describe('TwelveToneSpinnerComponent', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 });

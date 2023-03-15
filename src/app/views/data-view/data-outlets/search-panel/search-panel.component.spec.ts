@@ -110,11 +110,11 @@ describe('SearchPanelComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should change urls', () => {
+    it('... should change urls', () => {
         expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
         expect(mockActivatedRoute.snapshot.url[0].path)
             .withContext(`should equal ${expectedPath}`)

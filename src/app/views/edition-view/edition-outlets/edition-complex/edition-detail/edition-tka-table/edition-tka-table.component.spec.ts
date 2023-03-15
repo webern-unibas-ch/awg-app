@@ -61,9 +61,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // Test data
         expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk5;
-        expectedTextcriticalComments = mockEditionData.mockTextcriticalComments;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedTextcriticalComments = mockEditionData.mockTextcriticsData.textcritics.at(1).comments;
 
         expectedIsRowTable = false;
         expectedTableHeaderStrings = {
@@ -92,28 +92,28 @@ describe('EditionTkaTableComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have textcriticalComments', () => {
+        it('... should not have textcriticalComments', () => {
             expect(component.textcriticalComments).toBeUndefined();
         });
 
-        it('should have isRowTable = false', () => {
-            expect(component.isRowTable).toBeFalse();
+        it('... should have isRowTable = false', () => {
+            expectToBe(component.isRowTable, false);
         });
 
-        it('should have ref', () => {
+        it('... should have `ref`', () => {
             expectToBe(component.ref, component);
         });
 
-        it('should have tableHeaderStrings', () => {
+        it('... should have tableHeaderStrings', () => {
             expectToEqual(component.tableHeaderStrings, expectedTableHeaderStrings);
         });
 
-        it('should have glyphs', () => {
+        it('... should have glyphs', () => {
             expectToEqual(component.GLYPHS, expectedGlyphs);
         });
 
@@ -142,7 +142,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have textcriticalComments', () => {
+        it('... should have textcriticalComments', () => {
             expectToBe(component.textcriticalComments, expectedTextcriticalComments);
         });
 
@@ -157,9 +157,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                 columnDes.forEach((columnDe, index) => {
-                    const columnCmp = columnDe.nativeElement;
-                    expect(columnCmp.textContent).toBeDefined();
-                    expect(columnCmp.textContent.trim())
+                    const columnEl = columnDe.nativeElement;
+                    expect(columnEl.textContent).toBeDefined();
+                    expect(columnEl.textContent.trim())
                         .withContext(`should be '${expectedTableHeaderStrings.default[index].label}'`)
                         .toBe(expectedTableHeaderStrings.default[index].label);
                 });
@@ -173,9 +173,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
 
                 columnDes.forEach((columnDe, index) => {
-                    const columnCmp = columnDe.nativeElement;
-                    expect(columnCmp.textContent).toBeDefined();
-                    expect(columnCmp.textContent.trim())
+                    const columnEl = columnDe.nativeElement;
+                    expect(columnEl.textContent).toBeDefined();
+                    expect(columnEl.textContent.trim())
                         .withContext(`should be '${expectedTableHeaderStrings.rowTable[index].label}'`)
                         .toBe(expectedTableHeaderStrings.rowTable[index].label);
                 });
@@ -262,9 +262,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
-        describe('#getGlyph', () => {
+        describe('#getGlyph()', () => {
             it('... should have a method `getGlyph`', () => {
-                expect(component.getGlyph).toBeTruthy();
+                expect(component.getGlyph).toBeDefined();
             });
 
             it('... should trigger on change detection', () => {
@@ -292,9 +292,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
-        describe('#getTableHeaderStrings', () => {
+        describe('#getTableHeaderStrings()', () => {
             it('... should have a method `getTableHeaderStrings`', () => {
-                expect(component.getTableHeaderStrings).toBeTruthy();
+                expect(component.getTableHeaderStrings).toBeDefined();
             });
 
             it('... should trigger on change detection', () => {
@@ -325,9 +325,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
-        describe('#openModal', () => {
+        describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeTruthy();
+                expect(component.openModal).toBeDefined();
             });
 
             it('... should trigger on click', fakeAsync(() => {
@@ -363,9 +363,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
             it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeTruthy();
+                expect(component.selectSvgSheet).toBeDefined();
             });
 
             it('... should trigger on click', fakeAsync(() => {
@@ -386,7 +386,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 // CLick on second anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
             }));
 
             it('... should not emit anything if no id is provided', () => {

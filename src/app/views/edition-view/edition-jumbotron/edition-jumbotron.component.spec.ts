@@ -25,7 +25,7 @@ describe('EditionJumbotronComponent', () => {
         compDe = fixture.debugElement;
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 

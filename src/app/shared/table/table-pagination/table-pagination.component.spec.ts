@@ -1,8 +1,8 @@
 import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-
 import Spy = jasmine.Spy;
-import { NgbConfig, NgbPaginationModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
     expectSpyCall,
@@ -59,43 +59,43 @@ describe('TablePaginationComponent (DONE)', () => {
         selectPageSpy = spyOn(component, 'selectPage').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have collectionSize', () => {
+        it('... should not have collectionSize', () => {
             expect(component.collectionSize).toBeUndefined();
         });
 
-        it('should not have page', () => {
+        it('... should not have page', () => {
             expect(component.page).toBeUndefined();
         });
 
-        it('should have FILTER_PAG_REGEX', () => {
+        it('... should have FILTER_PAG_REGEX', () => {
             expect(component.FILTER_PAG_REGEX).toBeDefined();
 
             expect(component.FILTER_PAG_REGEX).withContext(`should equal /\\D/g`).toEqual(/\D/g);
         });
 
-        it('should not have called formatInput', () => {
+        it('... should not have called formatInput', () => {
             expectSpyCall(replaceNonNumberInputSpy, 0);
         });
 
-        it('should not have called onPageChange', () => {
+        it('... should not have called onPageChange', () => {
             expectSpyCall(onPageChangeSpy, 0);
         });
 
-        it('should not have called selectPage', () => {
+        it('... should not have called selectPage', () => {
             expectSpyCall(selectPageSpy, 0);
         });
 
         describe('VIEW', () => {
-            it('should have one ngbPagination component', () => {
+            it('... should have one ngbPagination component', () => {
                 getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
             });
 
-            it('should have one ul in ngbPagination with no content yet', () => {
+            it('... should have one ul in ngbPagination with no content yet', () => {
                 const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul', 1, 1);
                 getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 0, 0);
             });
@@ -112,29 +112,29 @@ describe('TablePaginationComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have collectionSize', () => {
+        it('... should have collectionSize', () => {
             expect(component.collectionSize).toBeDefined();
             expect(component.collectionSize)
                 .withContext(`should equal ${expectedCollectionSize}`)
                 .toEqual(expectedCollectionSize);
         });
 
-        it('should have page', () => {
+        it('... should have page', () => {
             expect(component.page).toBeDefined();
             expect(component.page).withContext(`should equal ${expectedPage}`).toEqual(expectedPage);
         });
 
         describe('VIEW', () => {
-            it('should have one ngbPagination component', () => {
+            it('... should have one ngbPagination component', () => {
                 getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
             });
 
-            it('should have one ul.pagination in ngbPagination with 4 li.page-item', () => {
+            it('... should have one ul.pagination in ngbPagination with 4 li.page-item', () => {
                 const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
                 getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
             });
 
-            it('should have first two li.page-item with class .disabled', () => {
+            it('... should have first two li.page-item with class .disabled', () => {
                 const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
                 const liDe = getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
@@ -148,7 +148,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 expect(liEl2).toHaveClass('disabled');
             });
 
-            it('should have last two li.page-item not with class .disabled', () => {
+            it('... should have last two li.page-item not with class .disabled', () => {
                 const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
                 const liDe = getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
@@ -162,7 +162,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 expect(liEl4).not.toHaveClass('disabled');
             });
 
-            it('should have a.page-link in all li.page-item', () => {
+            it('... should have a.page-link in all li.page-item', () => {
                 const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
                 const liDe = getAndExpectDebugElementByCss(ulDe[0], 'li.page-item', 4, 4);
@@ -173,13 +173,13 @@ describe('TablePaginationComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(liDe[3], 'a.page-link', 1, 1);
             });
 
-            it('should have one li.ngb-custom-pages-item in ul.pagination', () => {
+            it('... should have one li.ngb-custom-pages-item in ul.pagination', () => {
                 const ulDe = getAndExpectDebugElementByCss(compDe, 'ngb-pagination > ul.pagination', 1, 1);
 
                 getAndExpectDebugElementByCss(ulDe[0], 'li.ngb-custom-pages-item', 1, 1);
             });
 
-            it('should have one div with label, input and span in li.ngb-custom-page-item', () => {
+            it('... should have one div with label, input and span in li.ngb-custom-page-item', () => {
                 const liDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item', 1, 1);
                 const divDe = getAndExpectDebugElementByCss(liDe[0], 'div', 1, 1);
 
@@ -188,7 +188,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDe[0], 'span#paginationDescription', 1, 1);
             });
 
-            it('should display `Seite` in label', () => {
+            it('... should display `Seite` in label', () => {
                 const expectedLabel = 'Seite';
 
                 const divDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
@@ -200,7 +200,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 expect(labelEl.textContent).withContext(`should be ${expectedLabel}`).toBe(expectedLabel);
             });
 
-            it('should display recent page in input', () => {
+            it('... should display recent page in input', () => {
                 const expectedInputValue = expectedPage.toString();
 
                 const divDe = getAndExpectDebugElementByCss(compDe, 'li.ngb-custom-pages-item > div', 1, 1);
@@ -216,7 +216,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 expect(inputEl.value).withContext(`should be ${expectedInputValue}`).toBe(expectedInputValue);
             });
 
-            it('should display `von pages.length` in span', () => {
+            it('... should display `von pages.length` in span', () => {
                 const expectedPagesLength = expectedCollectionSize / 10;
                 const expectedSpanText = `von ${expectedPagesLength}`;
 
@@ -231,11 +231,11 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('#replaceNonNumberInput()', () => {
-            it('should have a replaceNonNumberInput method', () => {
+            it('... should have a method `replaceNonNumberInput`', () => {
                 expect(component.replaceNonNumberInput).toBeDefined();
             });
 
-            it('should trigger on input event', () => {
+            it('... should trigger on input event', () => {
                 const inputDe = getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
                 const inputEl = inputDe[0].nativeElement;
 
@@ -266,11 +266,11 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('#onPageChange()', () => {
-            it('should have a onPageChange method', () => {
+            it('... should have a method `onPageChange`', () => {
                 expect(component.onPageChange).toBeDefined();
             });
 
-            it('should trigger on pageChange event of NgbPagination', fakeAsync(() => {
+            it('... should trigger on pageChange event of NgbPagination', fakeAsync(() => {
                 const expectedNewPage = 3;
 
                 const ngbPaginationDe = getAndExpectDebugElementByDirective(compDe, NgbPagination, 1, 1);
@@ -284,14 +284,14 @@ describe('TablePaginationComponent (DONE)', () => {
                 expectSpyCall(onPageChangeSpy, 1, expectedNewPage);
             }));
 
-            it('should not do anything if newPage is not given', () => {
+            it('... should not do anything if newPage is not given', () => {
                 component.onPageChange(undefined);
 
                 expectSpyCall(emitPageChangeSpy, 0);
                 expectSpyCall(emitPageChangeRequestSpy, 0);
             });
 
-            it('should emit the newPage', () => {
+            it('... should emit the newPage', () => {
                 const expectedNewPage = 3;
 
                 component.onPageChange(expectedNewPage);
@@ -302,11 +302,11 @@ describe('TablePaginationComponent (DONE)', () => {
         });
 
         describe('#selectPage()', () => {
-            it('should have a selectChange method', () => {
+            it('... should have a method `selectPage`', () => {
                 expect(component.selectPage).toBeDefined();
             });
 
-            it('should trigger on blur event', () => {
+            it('... should trigger on blur event', () => {
                 const inputDe = getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
                 const inputEl = inputDe[0].nativeElement;
 
@@ -318,7 +318,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 expectSpyCall(selectPageSpy, 1, '5');
             });
 
-            it('should trigger on keyup.enter event', () => {
+            it('... should trigger on keyup.enter event', () => {
                 const inputDe = getAndExpectDebugElementByCss(compDe, 'input#paginationInput.custom-pages-input', 1, 1);
                 const inputEl = inputDe[0].nativeElement;
 

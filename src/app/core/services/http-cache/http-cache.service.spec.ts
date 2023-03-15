@@ -32,18 +32,22 @@ describe('HttpCacheService (DONE)', () => {
         httpCacheService = TestBed.inject(HttpCacheService);
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(httpCacheService).toBeTruthy();
     });
 
-    it('should have empty _cachedResponses before any call is made', () => {
+    it('... should have empty _cachedResponses before any call is made', () => {
         expect((httpCacheService as any)._cachedResponses).toBeTruthy();
         expect((httpCacheService as any)._cachedResponses.size)
             .withContext('should be 0')
             .toBe(0);
     });
 
-    describe('#put', () => {
+    describe('#put()', () => {
+        it('... should have a method `put`', () => {
+            expect(httpCacheService.put).toBeDefined();
+        });
+
         it('... should add an HTTP request to cache', () => {
             httpCacheService.put(expectedRequest, expectedResponse);
 
@@ -56,7 +60,11 @@ describe('HttpCacheService (DONE)', () => {
         });
     });
 
-    describe('#get', () => {
+    describe('#get()', () => {
+        it('... should have a method `get`', () => {
+            expect(httpCacheService.get).toBeDefined();
+        });
+
         it('... should return null if an HTTP request is not available from cache', () => {
             const expectedCachedResponse = (httpCacheService as any)._cachedResponses.get(
                 expectedRequest.urlWithParams

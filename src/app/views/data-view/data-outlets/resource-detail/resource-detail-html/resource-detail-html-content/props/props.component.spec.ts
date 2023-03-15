@@ -75,30 +75,38 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
         resourceRequestEmitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have `metaBreakLine`', () => {
+        it('... should have `metaBreakLine`', () => {
             expect(component.metaBreakLine).withContext('should be defined').toBeDefined();
             expect(component.metaBreakLine)
                 .withContext(`should be ${expectedMetaBreakLine}`)
                 .toBe(expectedMetaBreakLine);
         });
 
-        it('should not have `props` input', () => {
+        it('... should not have `props` input', () => {
             expect(component.props).withContext('should be undefined').toBeUndefined();
         });
 
-        describe('#exposeGnd', () => {
+        describe('#exposeGnd()', () => {
+            it('... should have a method `exposeGnd`', () => {
+                expect(component.exposeGnd).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(exposeGndSpy).not.toHaveBeenCalled();
                 expect(gndRequestEmitSpy).not.toHaveBeenCalled();
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
                 expect(resourceRequestEmitSpy).not.toHaveBeenCalled();
@@ -135,7 +143,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
             await detectChangesOnPush(fixture);
         });
 
-        it('should have `props` input', () => {
+        it('... should have `props` input', () => {
             expect(component.props).withContext('should be defined').toBeDefined();
             expect(component.props).withContext(`should be expectedProps: ${expectedProps}`).toBe(expectedProps);
         });
@@ -189,7 +197,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
             });
         });
 
-        describe('#exposeGnd', () => {
+        describe('#exposeGnd()', () => {
             let gndEvent: GndEvent;
 
             describe('... should trigger', () => {
@@ -276,7 +284,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             it('... should trigger on click', fakeAsync(() => {
                 const innerLiDes = getAndExpectDebugElementByCss(
                     compDe,

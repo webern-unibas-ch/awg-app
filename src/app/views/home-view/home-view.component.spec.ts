@@ -87,12 +87,12 @@ describe('HomeViewComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have title and id', () => {
+        it('... should have title and id', () => {
             expect(component.homeViewTitle).toBeDefined();
             expect(component.homeViewTitle).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
 
@@ -100,59 +100,67 @@ describe('HomeViewComponent (DONE)', () => {
             expect(component.homeViewId).withContext(`should be ${expectedId}`).toBe(expectedId);
         });
 
-        it('should have edition complex for op. 12', () => {
+        it('... should have edition complex for op. 12', () => {
             expect(component.EDITION_COMPLEX_OP12).toBeDefined();
             expect(component.EDITION_COMPLEX_OP12)
                 .withContext(`should be ${expectedEditionComplexOp12}`)
                 .toEqual(expectedEditionComplexOp12);
         });
 
-        it('should have edition complex for op. 25', () => {
+        it('... should have edition complex for op. 25', () => {
             expect(component.EDITION_COMPLEX_OP25).toBeDefined();
             expect(component.EDITION_COMPLEX_OP25)
                 .withContext(`should be ${expectedEditionComplexOp25}`)
                 .toEqual(expectedEditionComplexOp25);
         });
 
-        it('should have edition complex for M 30', () => {
+        it('... should have edition complex for M 30', () => {
             expect(component.EDITION_COMPLEX_M30).toBeDefined();
             expect(component.EDITION_COMPLEX_M30)
                 .withContext(`should be ${expectedEditionComplexM30}`)
                 .toEqual(expectedEditionComplexM30);
         });
 
-        it('should have edition complex for M 34', () => {
+        it('... should have edition complex for M 34', () => {
             expect(component.EDITION_COMPLEX_M34).toBeDefined();
             expect(component.EDITION_COMPLEX_M34)
                 .withContext(`should be ${expectedEditionComplexM34}`)
                 .toEqual(expectedEditionComplexM34);
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
                 .toBe(expectedEditionRouteConstants);
         });
 
-        it('should have `editionTypeConstants`', () => {
+        it('... should have `editionTypeConstants`', () => {
             expect(component.editionTypeConstants).toBeDefined();
             expect(component.editionTypeConstants)
                 .withContext(`should be ${expectedEditionTypeConstants}`)
                 .toBe(expectedEditionTypeConstants);
         });
 
-        it('should not have pageMetaData', () => {
+        it('... should not have pageMetaData', () => {
             expect(component.pageMetaData).toBeUndefined();
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
         });
 
-        describe('#routeToSidenav', () => {
+        describe('#routeToSidenav()', () => {
+            it('... should have a method `routeToSidenav`', () => {
+                expect(component.routeToSidenav).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.routeToSidenav).not.toHaveBeenCalled();
             });
@@ -373,7 +381,20 @@ describe('HomeViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have been called', () => {
+                expect(component.provideMetaData).toHaveBeenCalled();
+            });
+
+            it('... should return pageMetaData', () => {
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData)
+                    .withContext(`should be: ${expectedPageMetaData}`)
+                    .toBe(expectedPageMetaData);
+            });
+        });
+
+        describe('#routeToSideNav()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -415,19 +436,6 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(navExtras.preserveFragment).withContext('should be `preserveFragment:true`').toBe(true);
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-        });
-
-        describe('#provideMetaData', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return pageMetaData', () => {
-                expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData)
-                    .withContext(`should be: ${expectedPageMetaData}`)
-                    .toBe(expectedPageMetaData);
             });
         });
 

@@ -35,12 +35,12 @@ describe('HeadingComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `title` and `id`', () => {
+        it('... should not have `title` and `id`', () => {
             expect(component.title).toBeUndefined();
             expect(component.id).toBeUndefined();
         });

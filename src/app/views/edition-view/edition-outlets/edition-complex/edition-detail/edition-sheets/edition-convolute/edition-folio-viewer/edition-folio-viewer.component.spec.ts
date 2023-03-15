@@ -27,20 +27,20 @@ describe('EditionFolioViewerComponent', () => {
 
         // Test data
         // Mock the inputs supplied by the parent component
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `selectedConvolute` input', () => {
+        it('... should not have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeUndefined();
         });
 
-        it('should not have `selectedSvgSheet` input', () => {
+        it('... should not have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
     });
@@ -55,12 +55,12 @@ describe('EditionFolioViewerComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have `selectedSvgSheet` input', () => {
+        it('... should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeTruthy();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
 
-        it('should have `selectedConvolute` input', () => {
+        it('... should have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeTruthy();
             expect(component.selectedConvolute).withContext(`should be ${expectedConvolute}`).toBe(expectedConvolute);
         });

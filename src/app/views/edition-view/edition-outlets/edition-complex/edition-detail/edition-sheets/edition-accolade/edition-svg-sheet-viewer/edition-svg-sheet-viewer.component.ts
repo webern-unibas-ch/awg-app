@@ -83,13 +83,12 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     @Input() selectedSvgSheet?: EditionSvgSheet;
 
     /**
-     * Output variable: openModalRequest.
+     * Output variable: browseSvgSheetRequest.
      *
-     * It keeps an event emitter to open the modal
-     * with the selected modal text snippet.
+     * It keeps an event emitter for the next or pevious index of an svg sheet.
      */
     @Output()
-    openModalRequest: EventEmitter<string> = new EventEmitter();
+    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
 
     /**
      * Output variable: selectLinkBoxRequest.
@@ -269,6 +268,51 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // Emit truthy value to end all subscriptions
+        this._destroyed$.next(true);
+
+        // Now let's also complete the subject itself
+        this._destroyed$.complete();
+    }
+
+    /**
+     * Public method: browseSvgSheet.
+     *
+     * It emits a given direction to the {@link browseSvgSheetRequest}
+     * to browse to the previous or next sheet of the selected svg sheet.
+     *
+     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     *
+     * @returns {void} Emits the direction.
+     */
+    browseSvgSheet(direction: number): void {
+        if (!direction) {
+            return;
+        }
+        this.browseSvgSheetRequest.emit(direction);
+    }
+
+    /**
+     * Public method: onZoomChange.
+     *
+     * It sets the slider value to a given scale step.
+     *
+     * @param {number} newSliderValue The new slider value.
+     *
+     * @returns {void} Sets the new slider value and calls for rescale.
+     */
+    onZoomChange(newSliderValue: number): void {
+        this.sliderConfig.value = newSliderValue;
+        this._rescaleZoom();
+    }
+
+    /**
      * Public method: renderSheet.
      *
      * It renders the SVG sheet with zoom handler and overlays.
@@ -304,38 +348,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         }
 
         this.onZoomChange(this.sliderConfig.initial);
-        this._reTranslateZoom();
-    }
-
-    /**
-     * Public method: onZoomChange.
-     *
-     * It sets the slider value to a given scale step.
-     *
-     * @param {number} newSliderValue The new slider value.
-     *
-     * @returns {void} Sets the new slider value and calls for rescale.
-     */
-    onZoomChange(newSliderValue: number): void {
-        this.sliderConfig.value = newSliderValue;
-        this._reScaleZoom();
-    }
-
-    /**
-     * Public method: openModal.
-     *
-     * It emits a given id of a modal snippet text
-     * to the {@link openModalRequest}.
-     *
-     * @param {string} id The given modal snippet id.
-     *
-     * @returns {void} Emits the id.
-     */
-    openModal(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.openModalRequest.emit(id);
+        this._retranslateZoom();
     }
 
     /**
@@ -353,20 +366,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             return;
         }
         this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this._destroyed$.next(true);
-
-        // Now let's also complete the subject itself
-        this._destroyed$.complete();
     }
 
     /**
@@ -610,13 +609,13 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _reScaleZoom.
+     * Private method: _rescaleZoom.
      *
      * It rescales the current zoom with a given slider value.
      *
      * @returns {void} Sets the zoom for the rescale.
      */
-    private _reScaleZoom(): void {
+    private _rescaleZoom(): void {
         if (!this.svgSheetSelection || !this.sliderConfig.value) {
             return;
         }
@@ -624,13 +623,13 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _reTranslateZoom.
+     * Private method: _retranslateZoom.
      *
      * It retranlsates the current zoom to the given x and y values.
      *
      * @returns {void} Sets the zoom for the rescale.
      */
-    private _reTranslateZoom(): void {
+    private _retranslateZoom(): void {
         if (!this.svgSheetSelection) {
             return;
         }

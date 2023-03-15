@@ -78,8 +78,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
         // Test data
         expectedSelectedConvolute = mockEditionData.mockFolioConvoluteData.convolutes[0];
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedFragment = `source${expectedSelectedConvolute.convoluteId}`;
 
         expectedFolioLegends = [
@@ -106,25 +106,25 @@ describe('EditionConvoluteComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have selectedConvolute', () => {
+        it('... should not have selectedConvolute', () => {
             expect(component.selectedConvolute).toBeUndefined();
         });
 
-        it('should not have selectedSvgSheet', () => {
+        it('... should not have selectedSvgSheet', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
-        it('should have faSquare', () => {
+        it('... should have faSquare', () => {
             expect(component.faSquare).toBeDefined();
             expect(component.faSquare).withContext(`should be faSquare`).toBe(faSquare);
         });
 
-        it('should have folioLegends', () => {
+        it('... should have folioLegends', () => {
             expect(component.folioLegends).toBeDefined();
             expect(component.folioLegends)
                 .withContext(`should equal ${expectedFolioLegends}`)
@@ -156,14 +156,14 @@ describe('EditionConvoluteComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `selectedConvolute` input', () => {
+        it('... should have `selectedConvolute` input', () => {
             expect(component.selectedConvolute).toBeDefined();
             expect(component.selectedConvolute)
                 .withContext(`should be ${expectedSelectedConvolute}`)
                 .toBe(expectedSelectedConvolute);
         });
 
-        it('should have `selectedSvgSheet` input', () => {
+        it('... should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeDefined();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
@@ -188,12 +188,12 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     1,
                     1
                 );
-                const headerCmp = headerDes[0].nativeElement;
+                const headerEl = headerDes[0].nativeElement;
 
                 const expectedTitle = 'Konvolutübersicht';
 
-                expect(headerCmp.textContent).toBeDefined();
-                expect(headerCmp.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+                expect(headerEl.textContent).toBeDefined();
+                expect(headerEl.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
             });
 
             it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
@@ -243,10 +243,10 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 );
 
                 const anchorDes = getAndExpectDebugElementByCss(divDes[0], 'a', 1, 1);
-                const anchorCmp = anchorDes[0].nativeElement;
+                const anchorEl = anchorDes[0].nativeElement;
 
-                expect(anchorCmp.textContent).toBeDefined();
-                expect(anchorCmp.textContent)
+                expect(anchorEl.textContent).toBeDefined();
+                expect(anchorEl.textContent)
                     .withContext(`should be ${expectedSelectedConvolute.convoluteLabel}`)
                     .toBe(expectedSelectedConvolute.convoluteLabel);
             });
@@ -263,42 +263,42 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 );
 
                 const spanDes = getAndExpectDebugElementByCss(legendDes[0], 'span', 3, 3);
-                const spanCmp0 = spanDes[0].nativeElement;
-                const spanCmp1 = spanDes[1].nativeElement;
-                const spanCmp2 = spanDes[2].nativeElement;
+                const spanEl0 = spanDes[0].nativeElement;
+                const spanEl1 = spanDes[1].nativeElement;
+                const spanEl2 = spanDes[2].nativeElement;
 
-                expect(spanCmp0.className).toBeDefined();
-                expect(spanCmp0.className)
+                expect(spanEl0.className).toBeDefined();
+                expect(spanEl0.className)
                     .withContext(`should be ${expectedFolioLegends[0].color}`)
                     .toBe(expectedFolioLegends[0].color);
-                expect(spanCmp0.textContent).toBeDefined();
-                expect(spanCmp0.textContent.trim())
+                expect(spanEl0.textContent).toBeDefined();
+                expect(spanEl0.textContent.trim())
                     .withContext(`should be ${expectedFolioLegends[0].label}`)
                     .toBe(expectedFolioLegends[0].label);
 
-                expect(spanCmp1.className).toBeDefined();
-                expect(spanCmp1.className)
+                expect(spanEl1.className).toBeDefined();
+                expect(spanEl1.className)
                     .withContext(`should be ${expectedFolioLegends[1].color}`)
                     .toBe(expectedFolioLegends[1].color);
-                expect(spanCmp1.textContent).toBeDefined();
-                expect(spanCmp1.textContent.trim())
+                expect(spanEl1.textContent).toBeDefined();
+                expect(spanEl1.textContent.trim())
                     .withContext(`should be ${expectedFolioLegends[1].label}`)
                     .toBe(expectedFolioLegends[1].label);
 
-                expect(spanCmp2.className).toBeDefined();
-                expect(spanCmp2.className)
+                expect(spanEl2.className).toBeDefined();
+                expect(spanEl2.className)
                     .withContext(`should be ${expectedFolioLegends[2].color}`)
                     .toBe(expectedFolioLegends[2].color);
-                expect(spanCmp2.textContent).toBeDefined();
-                expect(spanCmp2.textContent.trim())
+                expect(spanEl2.textContent).toBeDefined();
+                expect(spanEl2.textContent.trim())
                     .withContext(`should be ${expectedFolioLegends[2].label}`)
                     .toBe(expectedFolioLegends[2].label);
             });
         });
 
-        describe('#openModal', () => {
+        describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
-                expect(component.openModal).toBeTruthy();
+                expect(component.openModal).toBeDefined();
             });
 
             it('... should trigger on openModalRequest event from EditionFolioViewerComponent', () => {
@@ -331,9 +331,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
             it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeTruthy();
+                expect(component.selectSvgSheet).toBeDefined();
             });
 
             it('... should trigger on selectSvgSheetRequest event from EditionFolioViewerComponent', () => {

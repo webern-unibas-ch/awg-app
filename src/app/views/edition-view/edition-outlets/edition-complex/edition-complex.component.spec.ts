@@ -76,7 +76,7 @@ describe('EditionComplexComponent (DONE)', () => {
         editionServiceClearEditionComplexSpy = spyOn(mockEditionService, 'clearEditionComplex').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
@@ -85,14 +85,18 @@ describe('EditionComplexComponent (DONE)', () => {
             expect(component.selectedEditionComplex$).toBeUndefined();
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
                 .toBe(expectedEditionRouteConstants);
         });
 
-        describe('#getEditionComplexFromRoute', () => {
+        describe('#getEditionComplexFromRoute()', () => {
+            it('... should have a method `getEditionComplexFromRoute`', () => {
+                expect(component.getEditionComplexFromRoute).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(getEditionComplexFromRouteSpy, 0);
             });
@@ -109,7 +113,7 @@ describe('EditionComplexComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getEditionComplexFromRoute', () => {
+        describe('#getEditionComplexFromRoute()', () => {
             it('... should have been called', () => {
                 expectSpyCall(getEditionComplexFromRouteSpy, 1);
             });
@@ -222,7 +226,7 @@ describe('EditionComplexComponent (DONE)', () => {
             });
         });
 
-        describe('#ngOnDestroy', () => {
+        describe('#ngOnDestroy()', () => {
             it('... should have cleared selectedEditionComplex$ on destroy (via EditionService)', () => {
                 component.ngOnDestroy();
 

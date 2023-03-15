@@ -69,10 +69,7 @@ describe('AppComponent (DONE)', () => {
                 RoutedTestMockComponent,
                 RoutedTest2MockComponent,
             ],
-            providers: [
-                //  Mocked router provided wth RouterTestingModule
-                { provide: AnalyticsService, useValue: mockAnalyticsService },
-            ],
+            providers: [{ provide: AnalyticsService, useValue: mockAnalyticsService }],
         }).compileComponents();
 
         // Spies for service methods
@@ -109,11 +106,11 @@ describe('AppComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create the app', waitForAsync(() => {
+    it('... should create the app', waitForAsync(() => {
         expect(component).toBeTruthy();
     }));
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const analyticsService = TestBed.inject(AnalyticsService);
         expect(analyticsService === mockAnalyticsService).toBe(true);
     });

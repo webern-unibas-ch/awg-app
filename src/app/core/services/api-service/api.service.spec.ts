@@ -79,7 +79,7 @@ describe('ApiService', () => {
         cleanStylesFromDOM();
     });
 
-    it('should inject', () => {
+    it('... should inject', () => {
         expect(apiService).toBeTruthy();
     });
 
@@ -120,7 +120,11 @@ describe('ApiService', () => {
         }));
     });
 
-    describe('#getApiResponse', () => {
+    describe('#getApiResponse()', () => {
+        it('... should have a method `getApiResponse`', () => {
+            expect(apiService.getApiResponse).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should perform an HTTP GET request to the Knora API', waitForAsync(() => {
                 // Call service function

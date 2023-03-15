@@ -9,7 +9,6 @@ import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
-    EditionSvgLinkBox,
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
@@ -19,7 +18,7 @@ import {
     Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
-import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionService, EditionSheetsService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionSheets component.
@@ -124,10 +123,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * Constructor of the EditionSheetsComponent.
      *
      * It declares private instances of
-     * EditionDataService, EditionService, UtilityService,
+     * EditionDataService, EditionSheetsService, EditionService, UtilityService,
      * ActivatedRoute and Router.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
+     * @param {EditionSheetsService} editionSheetsService Instance of the EditionSheetsService.
      * @param {EditionService} editionService Instance of the EditionService.
      * @param {UtilityService} utils Instance of the UtilityService.
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
@@ -135,6 +135,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     constructor(
         private editionDataService: EditionDataService,
+        private editionSheetsService: EditionSheetsService,
         private editionService: EditionService,
         private utils: UtilityService,
         private route: ActivatedRoute,
@@ -207,12 +208,11 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Finds and selects the target SVG sheet of a link box.
      */
     onLinkBoxSelect(linkBoxId: string): void {
-        if (!this.selectedSvgSheet) {
+        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
             return;
         }
 
-        const linkBoxes: EditionSvgLinkBox[] = this._findLinkBoxes();
-        const selectedLinkBox = linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
+        const selectedLinkBox = this.selectedTextcritics.linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
 
         if (selectedLinkBox) {
             const linkToSvgSheet = selectedLinkBox.linkTo;
@@ -229,12 +229,41 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlays: EditionSvgOverlay[]): void {
-        this.selectedTextcriticalComments = this.editionService.getTextcriticalCommentsForOverlays(
+        this.selectedTextcriticalComments = this.editionSheetsService.getTextcriticalCommentsForOverlays(
             this.selectedTextcritics.comments,
             overlays
         );
 
         this.showTkA = this.utils.isNotEmptyArray(this.selectedTextcriticalComments);
+    }
+
+    /**
+     *
+     * Public method: onBrowseSvgSheet.
+     *
+     * It evaluates the id of the previous or next SVG sheet
+     * based on the given direction and calls it with onSvgSheetSelect.
+     *
+     * @param {number} direction - A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @returns {void} Evaluates the sheet id to be called with onSvgSheetSelect.
+     */
+    onBrowseSvgSheet(direction: number): void {
+        const editionType = this.editionSheetsService.getCurrentEditionType(
+            this.selectedSvgSheet,
+            this.svgSheetsData.sheets
+        );
+        if (!editionType) {
+            return;
+        }
+
+        const editionTypeSheets = this.svgSheetsData.sheets[editionType];
+        const nextSheetId = this.editionSheetsService.getNextSheetId(
+            direction,
+            this.selectedSvgSheet,
+            editionTypeSheets
+        );
+
+        this.onSvgSheetSelect(nextSheetId);
     }
 
     /**
@@ -279,129 +308,6 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _findConvolute.
-     *
-     * It finds a convolute with a given id.
-     *
-     * @param {string} id The given id input.
-     * @returns {FolioConvolute} The convolute that was found.
-     */
-    private _findConvolute(id: string): FolioConvolute {
-        // Find the convolute with the given id in folioConvoluteData.convolutes array
-        const convolute = this.folioConvoluteData.convolutes.find(conv => conv.convoluteId === id);
-
-        // If the convolute is found, return it; otherwise, return undefined
-        return convolute;
-    }
-
-    /**
-     * Private method: _findLinkBoxes.
-     *
-     * It finds the link boxes for an SVG.
-     *
-     * @returns {EditionSvgLinkBox[]} The link boxes that were found.
-     */
-    private _findLinkBoxes(): EditionSvgLinkBox[] {
-        if (!this.selectedSvgSheet || !this.selectedTextcritics?.linkBoxes) {
-            // Return empty array if no link boxes were found
-            return [];
-        }
-
-        // Return the link boxes
-        return this.selectedTextcritics.linkBoxes;
-    }
-
-    /**
-     * Private method: _findSvgSheetById.
-     *
-     * It finds a SVG sheet by a given id.
-     *
-     * @param {string} id The given id.
-     * @returns {EditionSvgSheet} The sheet that was found.
-     */
-    private _findSvgSheetById(id: string): EditionSvgSheet {
-        // Find index of given id in svgSheetsData.sheets array
-        const indexes = {
-            workEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.workEditions, id),
-            textEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.textEditions, id),
-            sketchEditions: this._findSvgSheetIndex(this.svgSheetsData.sheets.sketchEditions, id),
-        };
-
-        for (const [type, index] of Object.entries(indexes)) {
-            if (index < 0) {
-                continue;
-            }
-
-            const sheet = this._getSheetContent(this.svgSheetsData.sheets[type], index, id);
-            if (type === 'sketchEditions') {
-                this._selectConvolute(sheet.convolute);
-            } else {
-                this._selectConvolute('');
-            }
-            return sheet;
-        }
-
-        return new EditionSvgSheet();
-    }
-
-    /**
-     * Private method: _findSvgSheetIndex.
-     *
-     * It finds the index of an SVG sheet in a given array of sheets.
-     *
-     * @param {EditionSvgSheet[]} sheets The given array of sheets.
-     * @param {string} id The given id.
-     * @returns {number} The index of the sheet in the array.
-     */
-    private _findSvgSheetIndex(sheets: EditionSvgSheet[], id: string): number {
-        return sheets.findIndex(sheet => {
-            let sheetId = sheet.id;
-            // If we have partial sheets, look into content array for id with extra partial
-            if (sheet.content.length > 1) {
-                const partialIndex = this._findSvgSheetPartialIndex(sheet, id);
-                if (partialIndex >= 0) {
-                    sheetId += sheet.content[partialIndex].partial;
-                }
-            }
-            return sheetId === id;
-        });
-    }
-
-    /**
-     * Private method: _findSvgSheetPartialIndex.
-     *
-     * It checks if a given id includes an SVG sheet partial and returns its index.
-     *
-     * @param {EditionSvgSheet} sheet The given sheet.
-     * @param {string} id The given id.
-     * @returns {number} The index of the sheet partial in the sheet.
-     */
-    private _findSvgSheetPartialIndex(sheet: EditionSvgSheet, id: string): number {
-        return sheet.content.findIndex(content => sheet.id + content.partial === id);
-    }
-
-    /**
-     * Private method: _findTextcritics.
-     *
-     * It finds the textcritics for a selected SVG sheet.
-     *
-     * @returns {Textcritics} The textcritics that were found.
-     */
-    private _findTextcritics(): Textcritics {
-        if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return new Textcritics();
-        }
-
-        // Find the textcritics for the selected SVG sheet id in textcriticsData.textcritics array
-        const textcritics = this.textcriticsData.textcritics.find(
-            textcritic => textcritic.id === this.selectedSvgSheet.id
-        );
-
-        // Return the textcritics with the given id or empty object if no comments were found
-        return textcritics || new Textcritics();
-    }
-
-    /**
      * Private method: _getIdFromQueryParams.
      *
      * It checks the route params for an id of the selected sheet
@@ -419,51 +325,26 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _getSheetContent.
-     *
-     * It gets the content of an SVG sheet by its id within a given array of sheets.
-     *
-     * @param {EditionSvgSheet[]} sheets The given array of sheets.
-     * @param {number} sheetIndex The index of the sheet in the array.
-     * @param {string} id The given id.
-     * @returns {EditionSvgSheet} The sheet that was found.
-     */
-    private _getSheetContent(sheets: EditionSvgSheet[], sheetIndex: number, id: string): EditionSvgSheet {
-        const sheet = { ...sheets[sheetIndex] };
-
-        const partialIndex = this._findSvgSheetPartialIndex(sheet, id);
-
-        if (partialIndex >= 0) {
-            sheet.content = [sheet.content[partialIndex]];
-        }
-
-        return sheet;
-    }
-
-    /**
-     * Private method: _selectConvolute.
-     *
-     * It selects a convolute by the given query params.
-     *
-     * @param {ParamMap} queryParams The given query params.
-     * @returns {void} Selects the convolute.
-     */
-    private _selectConvolute(convoluteId: string): void {
-        this.selectedConvolute = this._findConvolute(convoluteId);
-    }
-
-    /**
      * Private method: _selectSvgSheet.
      *
      * It selects an SVG sheet by the given query params.
      *
      * @param {ParamMap} queryParams The given query params.
+     *
      * @returns {void} Selects the SVG sheet.
      */
     private _selectSvgSheet(queryParams: ParamMap): void {
         const sheetId: string = this._getIdFromQueryParams(queryParams);
-        this.selectedSvgSheet = this._findSvgSheetById(sheetId);
-        this.selectedTextcritics = this._findTextcritics();
+        this.selectedSvgSheet = this.editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
+        this.selectedConvolute = this.editionSheetsService.selectConvolute(
+            this.folioConvoluteData.convolutes,
+            this.svgSheetsData.sheets,
+            this.selectedSvgSheet
+        );
+        this.selectedTextcritics = this.editionSheetsService.findTextcritics(
+            this.textcriticsData.textcritics,
+            this.selectedSvgSheet
+        );
 
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);

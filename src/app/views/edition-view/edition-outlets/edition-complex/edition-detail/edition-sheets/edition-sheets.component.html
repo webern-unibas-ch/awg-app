@@ -12,6 +12,7 @@
         [selectedTextcritics]="selectedTextcritics"
         [selectedTextcriticalComments]="selectedTextcriticalComments"
         [showTkA]="showTkA"
+        (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
         (openModalRequest)="modal.open($event)"
         (selectLinkBoxRequest)="onLinkBoxSelect($event)"
         (selectOverlaysRequest)="onOverlaySelect($event)"

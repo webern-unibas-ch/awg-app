@@ -55,21 +55,14 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
         emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `header` or `resourceUrl` inputs', () => {
+        it('... should not have `header` or `resourceUrl` inputs', () => {
             expect(component.header).toBeUndefined();
             expect(component.resourceUrl).toBeUndefined();
-        });
-
-        describe('#navigateToResource', () => {
-            it('... should not have been called', () => {
-                expect(navigateToResourceSpy).not.toHaveBeenCalled();
-                expect(emitSpy).not.toHaveBeenCalled();
-            });
         });
 
         describe('VIEW', () => {
@@ -112,6 +105,17 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'table.resource-header-table', 1, 1);
             });
         });
+
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
+            it('... should not have been called', () => {
+                expect(navigateToResourceSpy).not.toHaveBeenCalled();
+                expect(emitSpy).not.toHaveBeenCalled();
+            });
+        });
     });
 
     describe('AFTER initial data binding', () => {
@@ -124,7 +128,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `header` or `resourceUrl` inputs', () => {
+        it('... should have `header` or `resourceUrl` inputs', () => {
             expect(component.header).toBeDefined();
             expect(component.header).withContext(`should be ${expectedHeader}`).toBe(expectedHeader);
 
@@ -199,7 +203,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             it('... should trigger on click', fakeAsync(() => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);

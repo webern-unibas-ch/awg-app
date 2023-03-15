@@ -91,11 +91,11 @@ describe('SearchOverviewComponent (DONE)', () => {
         updateSearchInfoTitleFromPathSpy = spyOn(component, 'updateSearchInfoTitleFromPath').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should change urls', () => {
+    it('... should change urls', () => {
         expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
         expect(mockActivatedRoute.snapshot.url[0].path)
             .withContext(`should equal ${expectedPath}`)
@@ -111,23 +111,45 @@ describe('SearchOverviewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `searchRouterLinkButtons`', () => {
+        it('... should not have `searchRouterLinkButtons`', () => {
             expect(component.searchRouterLinkButtons).withContext('should be undefined').toBeUndefined();
         });
 
-        describe('#setButtons', () => {
+        describe('VIEW', () => {
+            it('... should contain one router outlet (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
+            });
+
+            it('... should contain no RouterLinkButtonGroupComponent yet', () => {
+                getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 0, 0);
+            });
+        });
+
+        describe('#setButtons()', () => {
+            it('... should have a method `setButtons`', () => {
+                expect(component.setButtons).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(setButtonsSpy, 0);
             });
         });
 
-        describe('#updateSearchInfoTitleFromPath', () => {
+        describe('#updateSearchInfoTitleFromPath()', () => {
+            it('... should have a method `updateSearchInfoTitleFromPath`', () => {
+                expect(component.updateSearchInfoTitleFromPath).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(updateSearchInfoTitleFromPathSpy, 0);
             });
         });
 
-        describe('#onButtonSelect', () => {
+        describe('#onButtonSelect()', () => {
+            it('... should have a method `onButtonSelect`', () => {
+                expect(component.onButtonSelect).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(selectButtonSpy, 0);
             });
@@ -144,35 +166,12 @@ describe('SearchOverviewComponent (DONE)', () => {
                 });
             });
         });
-
-        describe('VIEW', () => {
-            it('... should contain one router outlet (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 1, 1);
-            });
-
-            it('... should contain no RouterLinkButtonGroupComponent yet', () => {
-                getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 0, 0);
-            });
-        });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        describe('#setButtons', () => {
-            it('... should have been called', () => {
-                expectSpyCall(setButtonsSpy, 1);
-            });
-
-            it('should have `searchRouterLinkButtons`', () => {
-                expect(component.searchRouterLinkButtons).withContext('should be defined').toBeDefined();
-                expect(component.searchRouterLinkButtons)
-                    .withContext(`should equal ${expectedSearchRouterLinkButtons}`)
-                    .toEqual(expectedSearchRouterLinkButtons);
-            });
         });
 
         describe('VIEW', () => {
@@ -193,7 +192,20 @@ describe('SearchOverviewComponent (DONE)', () => {
             });
         });
 
-        describe('#updateSearchInfoTitleFromPath', () => {
+        describe('#setButtons()', () => {
+            it('... should have been called', () => {
+                expectSpyCall(setButtonsSpy, 1);
+            });
+
+            it('... should have `searchRouterLinkButtons`', () => {
+                expect(component.searchRouterLinkButtons).withContext('should be defined').toBeDefined();
+                expect(component.searchRouterLinkButtons)
+                    .withContext(`should equal ${expectedSearchRouterLinkButtons}`)
+                    .toEqual(expectedSearchRouterLinkButtons);
+            });
+        });
+
+        describe('#updateSearchInfoTitleFromPath()', () => {
             it('... should have been called', () => {
                 expectSpyCall(updateSearchInfoTitleFromPathSpy, 1);
             });
@@ -223,7 +235,7 @@ describe('SearchOverviewComponent (DONE)', () => {
             });
         });
 
-        describe('#onButtonSelect', () => {
+        describe('#onButtonSelect()', () => {
             it('... should not have been called', () => {
                 expect(component.onButtonSelect).not.toHaveBeenCalled();
             });
