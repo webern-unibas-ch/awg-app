@@ -71,7 +71,7 @@
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "g985",
+                    "svgGroupId": "g827",
                     "measure": "{11A–16A}",
                     "system": "7–8",
                     "position": "",
@@ -134,8 +134,8 @@
                     "comment": "{{ref.getGlyph('[b]')}}des<sup>2</sup>–f<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}f<sup>2</sup>–{{ref.getGlyph('[b]')}}b<sup>2</sup>."
                 },
                 {
-                    "svgGroupId": "path1173",
-                    "measure": "{10D–11B}",
+                    "svgGroupId": "g2571",
+                    "measure": "{9E–12B}",
                     "system": "13",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
