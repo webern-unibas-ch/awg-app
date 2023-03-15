@@ -68,47 +68,47 @@ describe('EditionInfoComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have edition complex M 30', () => {
+        it('... should have edition complex M 30', () => {
             expect(component.EDITION_COMPLEX_M30).toBeDefined();
             expect(component.EDITION_COMPLEX_M30)
                 .withContext(`should be ${expectedEditionComplexM30}`)
                 .toEqual(expectedEditionComplexM30);
         });
 
-        it('should have edition complex M 34', () => {
+        it('... should have edition complex M 34', () => {
             expect(component.EDITION_COMPLEX_M34).toBeDefined();
             expect(component.EDITION_COMPLEX_M34)
                 .withContext(`should be ${expectedEditionComplexM34}`)
                 .toEqual(expectedEditionComplexM34);
         });
 
-        it('should have edition complex op. 12', () => {
+        it('... should have edition complex op. 12', () => {
             expect(component.EDITION_COMPLEX_OP12).toBeDefined();
             expect(component.EDITION_COMPLEX_OP12)
                 .withContext(`should be ${expectedEditionComplexOp12}`)
                 .toEqual(expectedEditionComplexOp12);
         });
 
-        it('should have edition complex op. 25', () => {
+        it('... should have edition complex op. 25', () => {
             expect(component.EDITION_COMPLEX_OP25).toBeDefined();
             expect(component.EDITION_COMPLEX_OP25)
                 .withContext(`should be ${expectedEditionComplexOp25}`)
                 .toEqual(expectedEditionComplexOp25);
         });
 
-        it('should have `editionRouteConstants`', () => {
+        it('... should have `editionRouteConstants`', () => {
             expect(component.editionRouteConstants).toBeDefined();
             expect(component.editionRouteConstants)
                 .withContext(`should be ${expectedEditionRouteConstants}`)
                 .toBe(expectedEditionRouteConstants);
         });
 
-        it('should have `editionTypeConstants`', () => {
+        it('... should have `editionTypeConstants`', () => {
             expect(component.editionTypeConstants).toBeDefined();
             expect(component.editionTypeConstants)
                 .withContext(`should be ${expectedEditionTypeConstants}`)

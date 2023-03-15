@@ -95,20 +95,20 @@ describe('SelectResultsComponent (DONE)', () => {
         preventPanelCollapseOnFullscreenSpy = spyOn(component, 'preventPanelCollapseOnFullscreen').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have queryResult', () => {
+        it('... should not have queryResult', () => {
             expect(component.queryResult$).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should not have queryTime', () => {
+        it('... should not have queryTime', () => {
             expect(component.queryTime).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should not have isFullscreen', () => {
+        it('... should not have isFullscreen', () => {
             expect(component.isFullscreen).withContext('should be undefined').toBeUndefined();
         });
 
@@ -134,19 +134,19 @@ describe('SelectResultsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `queryResult` input', () => {
+        it('... should have `queryResult` input', () => {
             expect(component.queryResult$).toBeDefined();
             expect(component.queryResult$)
                 .withContext(`should equal ${expectedQueryResult$}`)
                 .toEqual(expectedQueryResult$);
         });
 
-        it('should have `queryTime` input', () => {
+        it('... should have `queryTime` input', () => {
             expect(component.queryTime).toBeDefined();
             expect(component.queryTime).withContext(`should equal ${expectedQueryTime}`).toEqual(expectedQueryTime);
         });
 
-        it('should have `isFullscreen` input', () => {
+        it('... should have `isFullscreen` input', () => {
             expect(component.isFullscreen).toBeDefined();
             expect(component.isFullscreen)
                 .withContext(`should equal ${expectedIsFullscreen}`)
@@ -349,7 +349,11 @@ describe('SelectResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#onTableNodeClick', () => {
+        describe('#onTableNodeClick()', () => {
+            it('... should have a method `onTableNodeClick`', () => {
+                expect(component.onTableNodeClick).toBeDefined();
+            });
+
             it('... should trigger on event from SparqlTableComponent', () => {
                 const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
                 const sparqlTableCmp = sparqlTableDes[0].injector.get(
@@ -389,7 +393,11 @@ describe('SelectResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#isNotEmpty', () => {
+        describe('#isNotEmpty()', () => {
+            it('... should have a method `isNotEmpty`', () => {
+                expect(component.isNotEmpty).toBeDefined();
+            });
+
             it('... should not do anything if no queryResult.head is provided', () => {
                 expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
 
@@ -469,7 +477,11 @@ describe('SelectResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#preventPanelCollapseOnFullscreen', () => {
+        describe('#preventPanelCollapseOnFullscreen()', () => {
+            it('... should have a method `preventPanelCollapseOnFullscreen`', () => {
+                expect(component.preventPanelCollapseOnFullscreen).toBeDefined();
+            });
+
             it('... should trigger on event from ngb-accordion', () => {
                 const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
                 const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;

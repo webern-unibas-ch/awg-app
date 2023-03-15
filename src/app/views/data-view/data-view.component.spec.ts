@@ -59,12 +59,12 @@ describe('DataViewComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have title and id', () => {
+        it('... should have title and id', () => {
             expect(component.searchTitle).toBeDefined();
             expect(component.searchTitle).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
 
@@ -72,7 +72,11 @@ describe('DataViewComponent (DONE)', () => {
             expect(component.searchId).withContext(`should be ${expectedId}`).toBe(expectedId);
         });
 
-        describe('#routeToSidenav', () => {
+        describe('#routeToSidenav()', () => {
+            it('... should have a method `routeToSidenav`', () => {
+                expect(component.routeToSidenav).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.routeToSidenav).not.toHaveBeenCalled();
             });
@@ -107,7 +111,7 @@ describe('DataViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav', () => {
+        describe('#routeToSideNav()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {

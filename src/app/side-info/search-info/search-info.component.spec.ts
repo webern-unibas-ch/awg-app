@@ -24,7 +24,7 @@ describe('SearchInfoComponent', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 });

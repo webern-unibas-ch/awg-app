@@ -4,14 +4,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { EDITION_COMPLEXES, EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
-import {
-    EditionComplex,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    EditionSvgOverlay,
-    EditionSvgOverlayTypes,
-    TextcriticalComment,
-} from '@awg-views/edition-view/models';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 import { EDITION_ROUTE_CONSTANTS } from '../edition-route-constants';
 import { EditionService } from './edition.service';
@@ -25,11 +18,6 @@ describe('EditionService (DONE)', () => {
     let expectedEditionSeriesRoute: string;
     let expectedEditionSection: EditionOutlineSection;
     let expectedIsRowTableView: boolean;
-
-    let expectedTka: TextcriticalComment[];
-    let expectedOverlays: EditionSvgOverlay[];
-    let expectedResult: TextcriticalComment[];
-    let filteredComments: TextcriticalComment[];
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -45,140 +33,55 @@ describe('EditionService (DONE)', () => {
         expectedEditionSeries = EDITION_OUTLINE_DATA[0];
         expectedEditionSection = EDITION_OUTLINE_DATA[0].sections[0];
         expectedIsRowTableView = true;
-
-        // Textcritical comments
-        expectedTka = [
-            {
-                svgGroupId: 'tka-1',
-                measure: '1',
-                system: '11',
-                position: '1. Note',
-                comment: '1. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-2',
-                measure: '2',
-                system: '12',
-                position: '2. Note',
-                comment: '2. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-3',
-                measure: '2',
-                system: '14',
-                position: '3. Note',
-                comment: '3. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-4',
-                measure: '[3]',
-                system: '14',
-                position: '4. Note',
-                comment: '4. Kommentar.',
-            },
-            {
-                svgGroupId: 'tka-5',
-                measure: '4',
-                system: '[13]',
-                position: '5. Note',
-                comment: '5. Kommentar.',
-            },
-        ];
-        // Overlay for measure 9 entries
-        expectedOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-1', true),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-3', true),
-        ];
     });
 
     afterAll(() => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(editionService).toBeTruthy();
     });
 
-    it('should have bufferSize = 1', () => {
+    it('... should have bufferSize = 1', () => {
         expect((editionService as any)._bufferSize).toBeTruthy();
         expect((editionService as any)._bufferSize)
             .withContext('should be 1')
             .toBe(1);
     });
 
-    it('should have _editionComplexSubject', () => {
+    it('... should have _editionComplexSubject', () => {
         expect((editionService as any)._editionComplexSubject).toBeTruthy();
     });
 
-    it('should have _editionComplexStream$', () => {
+    it('... should have _editionComplexStream$', () => {
         expect((editionService as any)._editionComplexStream$).toBeTruthy();
     });
 
-    it('should have _isRowTableViewSubject', () => {
+    it('... should have _isRowTableViewSubject', () => {
         expect((editionService as any)._isRowTableViewSubject).toBeTruthy();
     });
 
-    it('should have _isRowTableViewStream$', () => {
+    it('... should have _isRowTableViewStream$', () => {
         expect((editionService as any)._isRowTableViewStream$).toBeTruthy();
     });
 
-    it('should have _selectedEditionSeriesSubject', () => {
+    it('... should have _selectedEditionSeriesSubject', () => {
         expect((editionService as any)._selectedEditionSeriesSubject).toBeTruthy();
     });
 
-    it('should have _selectedEditionSeriesStream$', () => {
+    it('... should have _selectedEditionSeriesStream$', () => {
         expect((editionService as any)._selectedEditionSeriesStream$).toBeTruthy();
     });
 
-    it('should have _selectedEditionSectionSubject', () => {
+    it('... should have _selectedEditionSectionSubject', () => {
         expect((editionService as any)._selectedEditionSectionSubject).toBeTruthy();
     });
 
-    describe('#getTextcriticalCommentsForOverlays', () => {
-        it('... should have a method `getTextcriticalCommentsForOverlays`', () => {
-            expect(editionService.getTextcriticalCommentsForOverlays).toBeTruthy();
-        });
-
-        describe('... should return empty array', () => {
-            it('if no TkA are given', () => {
-                const value = editionService.getTextcriticalCommentsForOverlays(undefined, expectedOverlays);
-
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
-            });
-
-            it('... if no overlays are given', () => {
-                const value = editionService.getTextcriticalCommentsForOverlays(expectedTka, undefined);
-
-                expect(value).toBeDefined();
-                expect(value).toEqual([]);
-            });
-        });
-
-        it('... should find a comment for a selected item by id', () => {
-            // Overlay for item tka-1 and tka-3
-            expectedResult = [expectedTka[0], expectedTka[2]];
-
-            filteredComments = editionService.getTextcriticalCommentsForOverlays(expectedTka, expectedOverlays);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-
-            // Overlay for item tka-2
-            expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-2', true)];
-            expectedResult = [expectedTka[1]];
-
-            filteredComments = editionService.getTextcriticalCommentsForOverlays(expectedTka, expectedOverlays);
-
-            expect(filteredComments).toBeTruthy();
-            expect(filteredComments).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-        });
-    });
-
     describe('EditionComplex', () => {
-        describe('#getEditionComplex', () => {
+        describe('#getEditionComplex()', () => {
             it('... should have a method `getEditionComplex`', () => {
-                expect(editionService.getEditionComplex).toBeTruthy();
+                expect(editionService.getEditionComplex).toBeDefined();
             });
 
             it('... should return given editionComplex', waitForAsync(() => {
@@ -214,9 +117,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#updateEditionComplex', () => {
+        describe('#updateEditionComplex()', () => {
             it('... should have a method `updateEditionComplex`', () => {
-                expect(editionService.updateEditionComplex).toBeTruthy();
+                expect(editionService.updateEditionComplex).toBeDefined();
             });
 
             it('... should emit updated editionComplex', waitForAsync(() => {
@@ -238,9 +141,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#clearEditionComplex', () => {
+        describe('#clearEditionComplex()', () => {
             it('... should have a method `clearEditionComplex`', () => {
-                expect(editionService.clearEditionComplex).toBeTruthy();
+                expect(editionService.clearEditionComplex).toBeDefined();
             });
 
             it('... should update edition complex with null value', waitForAsync(() => {
@@ -277,9 +180,9 @@ describe('EditionService (DONE)', () => {
         });
     });
 
-    describe('#getEditionOutline', () => {
+    describe('#getEditionOutline()', () => {
         it('... should have a method `getEditionOutline`', () => {
-            expect(editionService.getEditionOutline).toBeTruthy();
+            expect(editionService.getEditionOutline).toBeDefined();
         });
 
         it('... should return editionOutline', () => {
@@ -291,9 +194,9 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('EditionSeries', () => {
-        describe('#getEditionSeriesRoute', () => {
+        describe('#getEditionSeriesRoute()', () => {
             it('... should have a method `getEditionSeriesRoute`', () => {
-                expect(editionService.getEditionSeriesRoute).toBeTruthy();
+                expect(editionService.getEditionSeriesRoute).toBeDefined();
             });
 
             it('... should return editionSeriesRoute', () => {
@@ -306,9 +209,9 @@ describe('EditionService (DONE)', () => {
             });
         });
 
-        describe('#getEditionSeriesById', () => {
+        describe('#getEditionSeriesById()', () => {
             it('... should have a method `getEditionSeriesById`', () => {
-                expect(editionService.getEditionSeriesById).toBeTruthy();
+                expect(editionService.getEditionSeriesById).toBeDefined();
             });
 
             it('... should return editionSeries with given id', () => {
@@ -319,9 +222,9 @@ describe('EditionService (DONE)', () => {
             });
         });
 
-        describe('#getSelectedEditionSeries', () => {
+        describe('#getSelectedEditionSeries()', () => {
             it('... should have a method `getSelectedEditionSeries`', () => {
-                expect(editionService.getSelectedEditionSeries).toBeTruthy();
+                expect(editionService.getSelectedEditionSeries).toBeDefined();
             });
 
             it('... should return selected editionSeries', waitForAsync(() => {
@@ -357,9 +260,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#updateSelectedEditionSeries', () => {
+        describe('#updateSelectedEditionSeries()', () => {
             it('... should have a method `updateSelectedEditionSeries`', () => {
-                expect(editionService.updateSelectedEditionSeries).toBeTruthy();
+                expect(editionService.updateSelectedEditionSeries).toBeDefined();
             });
 
             it('... should emit updated editionSeries', waitForAsync(() => {
@@ -381,9 +284,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#clearSelectedEditionSeries', () => {
+        describe('#clearSelectedEditionSeries()', () => {
             it('... should have a method `clearSelectedEditionSeries`', () => {
-                expect(editionService.clearSelectedEditionSeries).toBeTruthy();
+                expect(editionService.clearSelectedEditionSeries).toBeDefined();
             });
 
             it('... should update editionSeries with null value', waitForAsync(() => {
@@ -421,9 +324,9 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('EditionSection', () => {
-        describe('#getEditionSectionById', () => {
+        describe('#getEditionSectionById()', () => {
             it('... should have a method `getEditionSectionById`', () => {
-                expect(editionService.getEditionSectionById).toBeTruthy();
+                expect(editionService.getEditionSectionById).toBeDefined();
             });
 
             it('... should return editionSection with given id', () => {
@@ -443,9 +346,9 @@ describe('EditionService (DONE)', () => {
             });
         });
 
-        describe('#getSelectedEditionSection', () => {
-            it('... should have a method `getSelectedEditionSection`', () => {
-                expect(editionService.getSelectedEditionSection).toBeTruthy();
+        describe('#getSelectedEditionSection()', () => {
+            it('... should have a method  `getSelectedEditionSection`', () => {
+                expect(editionService.getSelectedEditionSection).toBeDefined();
             });
 
             it('... should return selected editionSection', waitForAsync(() => {
@@ -481,9 +384,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#updateSelectedEditionSection', () => {
-            it('... should have a method `updateSelectedEditionSection`', () => {
-                expect(editionService.updateSelectedEditionSection).toBeTruthy();
+        describe('#updateSelectedEditionSection()', () => {
+            it('... should have a method  `updateSelectedEditionSection`', () => {
+                expect(editionService.updateSelectedEditionSection).toBeDefined();
             });
 
             it('... should emit updated editionSection', waitForAsync(() => {
@@ -505,9 +408,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#clearSelectedEditionSection', () => {
+        describe('#clearSelectedEditionSection()', () => {
             it('... should have a method `clearSelectedEditionSection`', () => {
-                expect(editionService.clearSelectedEditionSection).toBeTruthy();
+                expect(editionService.clearSelectedEditionSection).toBeDefined();
             });
 
             it('... should update editionSection with null value', waitForAsync(() => {
@@ -545,9 +448,9 @@ describe('EditionService (DONE)', () => {
     });
 
     describe('RowTableView', () => {
-        describe('#getIsRowTableView', () => {
+        describe('#getIsRowTableView()', () => {
             it('... should have a method `getIsRowTableView`', () => {
-                expect(editionService.getIsRowTableView).toBeTruthy();
+                expect(editionService.getIsRowTableView).toBeDefined();
             });
 
             it('... should return isRowTableView', waitForAsync(() => {
@@ -583,9 +486,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#updateIsRowTableView', () => {
+        describe('#updateIsRowTableView()', () => {
             it('... should have a method `updateIsRowTableView`', () => {
-                expect(editionService.updateIsRowTableView).toBeTruthy();
+                expect(editionService.updateIsRowTableView).toBeDefined();
             });
 
             it('... should emit updated isRowTableView', waitForAsync(() => {
@@ -607,9 +510,9 @@ describe('EditionService (DONE)', () => {
             }));
         });
 
-        describe('#clearIsRowTableView', () => {
+        describe('#clearIsRowTableView()', () => {
             it('... should have a method `clearIsRowTableView`', () => {
-                expect(editionService.clearIsRowTableView).toBeTruthy();
+                expect(editionService.clearIsRowTableView).toBeDefined();
             });
 
             it('... should update isRowTableView with null value', waitForAsync(() => {

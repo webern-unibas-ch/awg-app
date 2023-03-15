@@ -37,16 +37,16 @@ describe('AddressComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `pageMetaData` input', () => {
+        it('... should not have `pageMetaData` input', () => {
             expect(component.pageMetaData).toBeUndefined();
         });
 
-        it('should not have `contactMetaData` input', () => {
+        it('... should not have `contactMetaData` input', () => {
             expect(component.contactMetaData).toBeUndefined();
         });
 

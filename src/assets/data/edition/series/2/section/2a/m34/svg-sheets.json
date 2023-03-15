@@ -8,17 +8,17 @@
                 "label": "M 34 Sk1",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1von3_final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1-1von3-final.svg",
                         "image": "",
                         "partial": "a"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_2von3_final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1-2von3-final.svg",
                         "image": "",
                         "partial": "b"
                     },
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_3von3_final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1-3von3-final.svg",
                         "image": "",
                         "partial": "c"
                     }
@@ -30,7 +30,7 @@
                 "label": "M 34 Sk1.1",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1_1von1_final.svg",
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Sk1_1-1von1-final.svg",
                         "image": ""
                     }
                 ],

@@ -519,7 +519,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         });
 
         describe('#createFulltextSearchFormGroup()', () => {
-            it('... should have a `createFulltextSearchFormGroup()` method', () => {
+            it('... should have a method `createFulltextSearchFormGroup()`', () => {
                 expect(component.createFulltextSearchFormGroup).toBeDefined();
             });
 
@@ -553,7 +553,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         });
 
         describe('#isFulltextSearchInputInvalid()', () => {
-            it('... should have a `isFulltextSearchInputInvalid()` method', () => {
+            it('... should have a method `isFulltextSearchInputInvalid()`', () => {
                 expect(component.isFulltextSearchInputInvalid).toBeDefined();
             });
 
@@ -601,7 +601,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         });
 
         describe('#listenToUserInputChange()', () => {
-            it('... should have a `listenToUserInputChange()` method', () => {
+            it('... should have a method `listenToUserInputChange()`', () => {
                 expect(component.listenToUserInputChange).toBeDefined();
             });
 
@@ -687,7 +687,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         });
 
         describe('#setSearchvalFromInput()', () => {
-            it('... should have a `setSearchvalFromInput()` method', () => {
+            it('... should have a method `setSearchvalFromInput()`', () => {
                 expect(component.setSearchvalFromInput).toBeDefined();
             });
 
@@ -741,7 +741,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         });
 
         describe('#onSearch()', () => {
-            it('... should have a `onSearch()` method', () => {
+            it('... should have a method `onSearch()`', () => {
                 expect(component.onSearch).toBeDefined();
             });
 

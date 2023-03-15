@@ -85,20 +85,20 @@ describe('TriplesEditorComponent (DONE)', () => {
         emitUpdateTriplesRequestSpy = spyOn(component.updateTriplesRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have triples', () => {
+        it('... should not have triples', () => {
             expect(component.triples).toBeUndefined();
         });
 
-        it('should not have isFullscreen', () => {
+        it('... should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined();
         });
 
-        it('should have cmTurtleMode', () => {
+        it('... should have cmTurtleMode', () => {
             expect(component.cmTurtleMode).toBeDefined();
             expect(component.cmTurtleMode)
                 .withContext(`should equal ${expectedCmTurtleMode}`)
@@ -126,12 +126,12 @@ describe('TriplesEditorComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `triples` input', () => {
+        it('... should have `triples` input', () => {
             expect(component.triples).toBeDefined();
             expect(component.triples).withContext(`should equal ${expectedTriples}`).toEqual(expectedTriples);
         });
 
-        it('should have `isFullScreen` input', () => {
+        it('... should have `isFullScreen` input', () => {
             expect(component.isFullscreen).toBeDefined();
             expect(component.isFullscreen)
                 .withContext(`should equal ${expectedIsFullscreen}`)
@@ -571,7 +571,7 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
         });
 
-        describe('#onEditorInputChange', () => {
+        describe('#onEditorInputChange()', () => {
             beforeEach(async () => {
                 // Header debug elements
                 const panelHeaderDes = getAndExpectDebugElementByCss(
@@ -588,6 +588,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                 // Click header button
                 click(btnEl as HTMLElement);
                 await detectChangesOnPush(fixture);
+            });
+
+            it('... should have a method `onEditorInputChange`', () => {
+                expect(component.onEditorInputChange).toBeDefined();
             });
 
             it('... should trigger on event from CodeMirrorComponent', () => {
@@ -667,7 +671,7 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
         });
 
-        describe('#performQuery', () => {
+        describe('#performQuery()', () => {
             beforeEach(async () => {
                 // Header debug elements
                 const panelHeaderDes = getAndExpectDebugElementByCss(
@@ -684,6 +688,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                 // Click header button
                 click(btnEl as HTMLElement);
                 await detectChangesOnPush(fixture);
+            });
+
+            it('... should have a method `performQuery`', () => {
+                expect(component.performQuery).toBeDefined();
             });
 
             it('... should trigger on click on Query button', async () => {
@@ -755,7 +763,7 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
         });
 
-        describe('#resetTriples', () => {
+        describe('#resetTriples()', () => {
             beforeEach(async () => {
                 // Header debug elements
                 const panelHeaderDes = getAndExpectDebugElementByCss(
@@ -772,6 +780,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                 // Click header button
                 click(btnEl as HTMLElement);
                 await detectChangesOnPush(fixture);
+            });
+
+            it('... should have a method `resetTriples`', () => {
+                expect(component.resetTriples).toBeDefined();
             });
 
             it('... should trigger on click on Reset button', async () => {
@@ -814,7 +826,11 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
         });
 
-        describe('#togglePanel', () => {
+        describe('#togglePanel()', () => {
+            it('... should have a method `togglePanel`', () => {
+                expect(component.togglePanel).toBeDefined();
+            });
+
             it('... should return empty string if isFullscreen = false', () => {
                 expect(component.togglePanel()).not.toBeTruthy();
             });
@@ -828,7 +844,11 @@ describe('TriplesEditorComponent (DONE)', () => {
             });
         });
 
-        describe('#preventPanelCollapseOnFullscreen', () => {
+        describe('#preventPanelCollapseOnFullscreen()', () => {
+            it('... should have a method `preventPanelCollapseOnFullscreen`', () => {
+                expect(component.preventPanelCollapseOnFullscreen).toBeDefined();
+            });
+
             it('... should trigger on event from ngb-accordion', () => {
                 const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
                 const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;

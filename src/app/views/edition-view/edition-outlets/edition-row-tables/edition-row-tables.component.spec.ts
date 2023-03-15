@@ -73,7 +73,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         editionDataServiceGetRowTablesSpy = spyOn(mockEditionDataService, 'getRowTables').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
@@ -310,7 +310,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
         });
 
-        describe('#ngOnDestroy', () => {
+        describe('#ngOnDestroy()', () => {
             it('... should have cleared isRowTableView$ on destroy (via EditionService)', () => {
                 component.ngOnDestroy();
 

@@ -150,38 +150,38 @@ describe('SparqlEditorComponent (DONE)', () => {
         emitUpdateQueryStringRequestSpy = spyOn(component.updateQueryStringRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have queryList', () => {
+        it('... should not have queryList', () => {
             expect(component.queryList).toBeUndefined();
         });
 
-        it('should not have query', () => {
+        it('... should not have query', () => {
             expect(component.query).toBeUndefined();
         });
 
-        it('should not have isFullscreen', () => {
+        it('... should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined();
         });
 
-        it('should have cmSparqlMode', () => {
+        it('... should have cmSparqlMode', () => {
             expect(component.cmSparqlMode).toBeDefined();
             expect(component.cmSparqlMode)
                 .withContext(`should equal ${expectedCmSparqlMode}`)
                 .toEqual(expectedCmSparqlMode);
         });
 
-        it('should have selectedViewType', () => {
+        it('... should have selectedViewType', () => {
             expect(component.selectedViewType).toBeDefined();
             expect(component.selectedViewType)
                 .withContext(`should equal ${ViewHandleTypes.GRAPH}`)
                 .toEqual(ViewHandleTypes.GRAPH);
         });
 
-        it('should have viewHandles', () => {
+        it('... should have viewHandles', () => {
             expect(component.viewHandles).toBeDefined();
             expect(component.viewHandles)
                 .withContext(`should equal ${expectedViewHandles}`)
@@ -210,19 +210,19 @@ describe('SparqlEditorComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `queryList` input', () => {
+        it('... should have `queryList` input', () => {
             expect(component.queryList).toBeDefined();
             expect(component.queryList).withContext(`should equal ${expectedQueryList}`).toEqual(expectedQueryList);
         });
 
-        it('should have `query` input', () => {
+        it('... should have `query` input', () => {
             expect(component.query).toBeDefined();
             expect(component.query)
                 .withContext(`should equal ${expectedConstructQuery1}`)
                 .toEqual(expectedConstructQuery1);
         });
 
-        it('should have `isFullScreen` input', () => {
+        it('... should have `isFullScreen` input', () => {
             expect(component.isFullscreen).toBeDefined();
             expect(component.isFullscreen)
                 .withContext(`should equal ${expectedIsFullscreen}`)
@@ -1207,7 +1207,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#isExampleQueriesEnabled()', () => {
-            it('... should have `isExampleQueriesEnabled()` method', () => {
+            it('... should have a method `isExampleQueriesEnabled`', () => {
                 expect(component.isExampleQueriesEnabled).toBeDefined();
             });
 
@@ -1287,7 +1287,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
             });
 
-            it('... should have `onEditorInputChange()` method', () => {
+            it('... should have a method `onEditorInputChange`', () => {
                 expect(component.onEditorInputChange).toBeDefined();
             });
 
@@ -1370,7 +1370,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#onQueryListChange()', () => {
-            it('... should have `onQueryListChange()` method', () => {
+            it('... should have a method `onQueryListChange()`', () => {
                 expect(component.onQueryListChange).toBeDefined();
             });
 
@@ -1467,9 +1467,8 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
         });
 
-        // TODO onViewChange
         describe('#onViewChange()', () => {
-            it('... should have `onViewChange()` method', () => {
+            it('... should have a method `onViewChange`', () => {
                 expect(component.onViewChange).toBeDefined();
             });
 
@@ -1523,7 +1522,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
             });
 
-            it('... should have `performQuery()` method', () => {
+            it('... should have a method `performQuery`', () => {
                 expect(component.performQuery).toBeDefined();
             });
 
@@ -1612,7 +1611,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 await detectChangesOnPush(fixture);
             });
 
-            it('... should have `resetQuery()` method', () => {
+            it('... should have a method `resetQuery`', () => {
                 expect(component.resetQuery).toBeDefined();
             });
 
@@ -1666,7 +1665,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#setViewType()', () => {
-            it('... should have `setViewType()` method', () => {
+            it('... should have a method `setViewType`', () => {
                 expect(component.setViewType).toBeDefined();
             });
 
@@ -1722,7 +1721,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#switchQueryType()', () => {
-            it('... should have `switchQueryType()` method', () => {
+            it('... should have a method `switchQueryType`', () => {
                 expect(component.switchQueryType).toBeDefined();
             });
 
@@ -1789,7 +1788,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#togglePanel()', () => {
-            it('... should have `togglePanel()` method', () => {
+            it('... should have a method `togglePanel()`', () => {
                 expect(component.togglePanel).toBeDefined();
             });
 
@@ -1806,8 +1805,8 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
         });
 
-        describe('#preventPanelCollapseOnFullscreen', () => {
-            it('... should have `preventPanelCollapseOnFullscreen()` method', () => {
+        describe('#preventPanelCollapseOnFullscreen()', () => {
+            it('... should have a method `preventPanelCollapseOnFullscreen`', () => {
                 expect(component.preventPanelCollapseOnFullscreen).toBeDefined();
             });
 

@@ -69,16 +69,16 @@ describe('GraphVisualizerService', () => {
         mockConsole.clear();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(graphVisualizerService).toBeTruthy();
     });
 
-    it('should have not _store property yet', () => {
+    it('... should have not _store property yet', () => {
         expect((graphVisualizerService as any)._store).toBeUndefined();
     });
 
     describe('#limitTriples()', () => {
-        it('should have a `limitTriples` method', () => {
+        it('... should have a method `limitTriples`', () => {
             expect(graphVisualizerService.limitTriples).toBeDefined();
         });
 
@@ -149,7 +149,7 @@ describe('GraphVisualizerService', () => {
     });
 
     describe('#abbreviateTriples()', () => {
-        it('should have an `abbreviateTriples` method', () => {
+        it('... should have a method `abbreviateTriples`', () => {
             expect(graphVisualizerService.abbreviateTriples).toBeDefined();
         });
 
@@ -303,7 +303,7 @@ describe('GraphVisualizerService', () => {
     });
 
     describe('#getQuerytype()', () => {
-        it('should have a method getQuerytype()', () => {
+        it('... should have a method `getQuerytype`', () => {
             expect(graphVisualizerService.getQuerytype).toBeDefined();
         });
 
@@ -381,7 +381,7 @@ describe('GraphVisualizerService', () => {
             });
         });
 
-        it('should return the first query type if the query uses multiple query types', () => {
+        it('... should return the first query type if the query uses multiple query types', () => {
             const query = 'CONSTRUCT { ?s ?p ?y } WHERE { SELECT ?s ?p ( bnode() AS ?y ) WHERE { ?s ?p ?o } }';
 
             const result = graphVisualizerService.getQuerytype(query);
@@ -390,7 +390,7 @@ describe('GraphVisualizerService', () => {
             expect(result).withContext('should be `construct`').toBe('construct');
         });
 
-        it('should return `null` if the query is not a SELECT, CONSTRUCT, ASK, COUNT, DESCRIBE, INSERT or DELETE query', () => {
+        it('... should return `null` if the query is not a SELECT, CONSTRUCT, ASK, COUNT, DESCRIBE, INSERT or DELETE query', () => {
             const query = 'LOAD <http://example.org/graph>';
 
             const result = graphVisualizerService.getQuerytype(query);
@@ -400,7 +400,7 @@ describe('GraphVisualizerService', () => {
     });
 
     describe('#checkNamespacesInQuery()', () => {
-        it('should have a method checkNamespacesInQuery()', () => {
+        it('... should have a method `checkNamespacesInQuery`', () => {
             expect(graphVisualizerService.checkNamespacesInQuery).toBeDefined();
         });
 
@@ -428,7 +428,7 @@ describe('GraphVisualizerService', () => {
             });
         });
 
-        it('should add missing namespaces from the tripleString to the queryString', () => {
+        it('... should add missing namespaces from the tripleString to the queryString', () => {
             const tripleStr =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
             const queryStr = 'SELECT * WHERE { ?s ?p ?o }';
@@ -502,7 +502,7 @@ describe('GraphVisualizerService', () => {
             });
         });
 
-        it('should throw an error if extractNamespacesFromString() is called with another type than TURTLE or SPARQL', () => {
+        it('... should throw an error if extractNamespacesFromString() is called with another type than TURTLE or SPARQL', () => {
             const tripleStr =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>';
             const expectedError = 'The type must be TURTLE or SPARQL, but was: undefined.';
@@ -514,11 +514,11 @@ describe('GraphVisualizerService', () => {
     });
 
     describe('#doQuery()', () => {
-        it('should have a `doQuery` method', () => {
+        it('... should have a method `doQuery`', () => {
             expect(graphVisualizerService.doQuery).toBeDefined();
         });
 
-        it('should create an instance of rdfstore', async () => {
+        it('... should create an instance of rdfstore', async () => {
             const queryStr = 'CONSTRUCT WHERE { ?s ?p ?o }';
             const tripleStr =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
@@ -691,11 +691,11 @@ describe('GraphVisualizerService', () => {
     });
 
     describe('#parseTripleString()', () => {
-        it('should have a `parseTripleString` method', () => {
+        it('... should have a method `parseTripleString`', () => {
             expect(graphVisualizerService.parseTripleString).toBeDefined();
         });
 
-        it('should return a Promise of triples and namespaces', async () => {
+        it('... should return a Promise of triples and namespaces', async () => {
             const triples =
                 '@prefix ex: <http://example.org/>. <http://example.org/subject> <http://example.org/predicate> <http://example.org/object>.';
 

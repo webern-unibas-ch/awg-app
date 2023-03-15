@@ -71,7 +71,7 @@ describe('AnalyticsService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(analyticsService).toBeTruthy();
     });
 
@@ -99,7 +99,11 @@ describe('AnalyticsService (DONE)', () => {
         });
     });
 
-    describe('#initializeAnalytics', () => {
+    describe('#initializeAnalytics()', () => {
+        it('... should have a method `initializeAnalytics`', () => {
+            expect(analyticsService.initializeAnalytics).toBeDefined();
+        });
+
         it('... should not initialize the analytics tracker without endpoint', () => {
             // No endpoint provided
             setupAnalytics(analyticsService, null, expectedAnalyticsId);
@@ -166,7 +170,11 @@ describe('AnalyticsService (DONE)', () => {
         });
     });
 
-    describe('#trackPageView', () => {
+    describe('#trackPageView()', () => {
+        it('... should have a method `trackPageView`', () => {
+            expect(analyticsService.trackPageView).toBeDefined();
+        });
+
         it('... should do nothing if analytics is not initialized successfully', () => {
             // Init analytics
             setupAnalytics(analyticsService, null, expectedAnalyticsId);

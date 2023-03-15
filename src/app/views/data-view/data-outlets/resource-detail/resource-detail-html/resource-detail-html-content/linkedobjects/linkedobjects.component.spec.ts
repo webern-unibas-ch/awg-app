@@ -84,16 +84,16 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
         emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `incomingGroups` inputs', () => {
+        it('... should not have `incomingGroups` inputs', () => {
             expect(component.incomingGroups).withContext('should be undefined').toBeUndefined();
         });
 
-        it('should have totalNumber = 0', () => {
+        it('... should have totalNumber = 0', () => {
             expect(component.totalNumber).toBeDefined();
             expect(component.totalNumber).withContext('should be 0').toBe(0);
         });
@@ -119,7 +119,11 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
                 expect(emitSpy).not.toHaveBeenCalled();
@@ -470,7 +474,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             let listDes: DebugElement[];
             let listItemDes: DebugElement[];
             let anchorDes0: DebugElement[];

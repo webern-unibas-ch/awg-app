@@ -77,20 +77,24 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `buttonArray` input', () => {
+        it('... should not have `buttonArray` input', () => {
             expect(component.routerLinkButtons).toBeUndefined();
         });
 
-        it('should have default empty `queryParamsHandling` input', () => {
+        it('... should have default empty `queryParamsHandling` input', () => {
             expect(component.queryParamsHandling).toBeFalsy();
         });
 
-        describe('#onButtonSelect', () => {
+        describe('#selectButton()', () => {
+            it('... should have a method `selectButton`', () => {
+                expect(component.selectButton).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.selectButton).not.toHaveBeenCalled();
             });
@@ -117,14 +121,14 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `buttonArray` input', () => {
+        it('... should have `buttonArray` input', () => {
             expect(component.routerLinkButtons).toBeDefined();
             expect(component.routerLinkButtons)
                 .withContext(`should equal ${expectedRouterLinkButtons}`)
                 .toEqual(expectedRouterLinkButtons);
         });
 
-        it('should have `queryParamsHandling` input', () => {
+        it('... should have `queryParamsHandling` input', () => {
             expect(component.queryParamsHandling).toBeTruthy();
             expect(component.queryParamsHandling).withContext(`should be 'preserve'`).toBe(expectedQueryParamsHandling);
         });
@@ -237,7 +241,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             });
         });
 
-        describe('#onButtonSelect', () => {
+        describe('#selectButton()', () => {
             it('... should trigger on click if enabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 

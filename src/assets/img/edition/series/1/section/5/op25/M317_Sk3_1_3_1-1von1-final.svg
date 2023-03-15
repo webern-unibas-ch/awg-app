@@ -37,7 +37,7 @@
         id="namedview109"
         showgrid="false"
         inkscape:zoom="2.243727"
-        inkscape:cx="572.26213"
+        inkscape:cx="525.465"
         inkscape:cy="180.05756"
         inkscape:window-x="2869"
         inkscape:window-y="-11"
@@ -484,25 +484,27 @@
             d="m 179.74796,84.326881 h -1.64649 v -6.205078 q -0.90234,0.84375 -2.12695,1.248047 v -1.49414 q 0.64453,-0.210938 1.40039,-0.796875 0.75586,-0.591797 1.03711,-1.376954 h 1.33594 z"
             id="path23944" />
     </g>
-    <path
-        id="polyline90"
-        style="fill: #ffffff"
-        class="cls-7"
-        transform="translate(66.281101,70.963337)"
-        d="m 455,113.4 v 44 H 89 v -44" />
     <g id="g410" class="link-box">
         <g id="g934" transform="translate(66.281101,70.963337)">
             <path
-                id="line92"
-                style="fill: none; stroke: #7d7d7d; stroke-width: 0.4px; stroke-miterlimit: 10"
-                class="cls-8"
-                d="m 89,113.4 v 43.99999" />
-            <path
-                id="line94"
-                style="fill: none; stroke: #7d7d7d; stroke-width: 0.4px; stroke-miterlimit: 10"
-                class="cls-8"
-                d="m 455,113.1 v 44.00001" />
+                id="polyline90"
+                style="
+                    fill: #ffffff;
+                    stroke: #7d7d7d;
+                    stroke-width: 0.529134;
+                    stroke-dasharray: none;
+                    stroke-opacity: 1;
+                "
+                class="cls-7"
+                d="m 465.2811,112.36334 v 44 h -366 v -44" />
         </g>
+        <rect
+            style="fill: #ffffff; stroke: none; stroke-width: 0.529134; stroke-dasharray: none; stroke-opacity: 1"
+            id="rect6759"
+            width="371.70297"
+            height="8.0223694"
+            x="164.45851"
+            y="223.77962" />
         <g
             aria-label="Sk3.1.3"
             id="text96"

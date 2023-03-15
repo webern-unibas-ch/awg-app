@@ -9,7 +9,7 @@
     enable-background="new 0 0 765 595"
     xml:space="preserve"
     id="svg695"
-    sodipodi:docname="Skizzen M30_Sk1(1)_final.svg"
+    sodipodi:docname="Skizzen M30_Sk1(1)-final.svg"
     inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -866,7 +866,7 @@
             id="path891" />
     </g>
 
-    <g id="g1186" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1186" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="polyline128"
             style="fill: none; stroke: #000000; stroke-width: 0.293811"
@@ -1195,7 +1195,7 @@
         inkscape:connector-curvature="0"
         id="path564"
         d="m 797.52517,242.31856 15.2213,-2.73333 v 2.73333 l -15.2213,2.73332 z" />
-    <g id="g1174" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1174" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="line542"
             style="fill: none; stroke: #000000; stroke-width: 0.483"
@@ -1353,7 +1353,7 @@
             id="path657" />
     </g>
 
-    <g id="g1178" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1178" class="tkk" transform="translate(34.599078,29.780419)">
         <g aria-label="n" id="text594" style="font-size: 21.8666px; font-family: Maestro; stroke-width: 0.750002">
             <path
                 d="m 851.50002,170.18251 v 3.43306 l 2.49279,-0.656 v -3.43306 z m 3.06132,-2.93013 v 12.48583 h -0.56853 v -4.67945 l -3.03946,0.7872 v -12.6389 h 0.54667 v 4.87626 z"
@@ -1611,7 +1611,7 @@
         </g>
     </g>
 
-    <g id="g1187" awg="tkk">
+    <g id="g1187" class="tkk">
         <path
             id="line278"
             style="fill: none; stroke: #000000; stroke-width: 0.483"

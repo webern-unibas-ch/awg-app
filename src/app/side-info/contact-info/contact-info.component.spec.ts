@@ -97,35 +97,43 @@ describe('ContactInfoComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have contact info header', () => {
+        it('... should have contact info header', () => {
             expect(component.contactInfoHeader).toBeDefined();
             expect(component.contactInfoHeader).toBe(expectedContactInfoHeader);
         });
 
-        it('should not have metadata nor open street map links', () => {
+        it('... should not have metadata nor open street map links', () => {
             expect(component.pageMetaData).toBeUndefined();
             expect(component.contactMetaData).toBeUndefined();
             expect(component.osmEmbedUrl).toBeUndefined();
             expect(component.osmLinkUrl).toBeUndefined();
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(provideMetaDataSpy, 0);
             });
         });
 
-        describe('#provideOSMUrls', () => {
+        describe('#provideOSMUrls()', () => {
+            it('... should have a method `provideOSMUrls`', () => {
+                expect(component.provideOSMUrls).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(provideOSMUrlSpy, 0);
             });
@@ -190,7 +198,7 @@ describe('ContactInfoComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
             it('... should have been called', () => {
                 expectSpyCall(provideMetaDataSpy, 1);
             });
@@ -210,7 +218,7 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#provideOSMUrls', () => {
+        describe('#provideOSMUrls()', () => {
             it('... should have been called', () => {
                 expectSpyCall(provideOSMUrlSpy, 1);
             });

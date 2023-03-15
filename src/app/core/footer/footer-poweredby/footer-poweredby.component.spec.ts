@@ -41,12 +41,12 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have logos', () => {
+        it('... should not have logos', () => {
             expect(component.logos).toBeUndefined();
         });
 
@@ -70,7 +70,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have logos', () => {
+        it('... should have logos', () => {
             expect(component.logos).toBeDefined();
             expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
         });

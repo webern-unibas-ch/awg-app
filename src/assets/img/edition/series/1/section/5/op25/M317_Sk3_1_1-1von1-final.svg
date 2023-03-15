@@ -37,7 +37,7 @@
         id="namedview139"
         showgrid="false"
         inkscape:zoom="2.947377"
-        inkscape:cx="521.14134"
+        inkscape:cx="600.02504"
         inkscape:cy="246.32071"
         inkscape:window-x="2869"
         inkscape:window-y="-11"
@@ -531,7 +531,8 @@
             style="fill: #ffffff; stroke: #7d7d7d; stroke-width: 0.4px; stroke-miterlimit: 10"
             class="cls-10"
             transform="translate(66.281101,70.963337)"
-            d="m 326.3,97.56 v 50.84 h 128 v -39.3 h 199 v -8.7" />
+            d="M 326.3,97.558241 V 148.4 h 128 v -39.3 h 199 V 97.558241"
+            sodipodi:nodetypes="cccccc" />
         <g
             aria-label="Sk3.1"
             id="text118"

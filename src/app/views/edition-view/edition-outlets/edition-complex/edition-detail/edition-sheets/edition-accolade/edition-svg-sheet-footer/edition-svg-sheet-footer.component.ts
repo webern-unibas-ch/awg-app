@@ -5,6 +5,13 @@ import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { UtilityService } from '@awg-app/core/services';
 import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
 
+/**
+ * The EditionSvgSheetFooter component.
+ *
+ * It contains the footer of the svg sheet navigation section
+ * of the edition view of the app
+ * and lets the user display textcritical comments.
+ */
 @Component({
     selector: 'awg-edition-svg-sheet-footer',
     templateUrl: './edition-svg-sheet-footer.component.html',

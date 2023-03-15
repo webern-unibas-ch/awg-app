@@ -38,7 +38,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
-    let expectedSvgSheetWithPartialsSingleSvg: EditionSvgSheet;
+    let expectedSvgSheetWithPartialA: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
     let selectSvgSheetSpy: Spy;
@@ -56,9 +56,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk2;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk3;
-        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2_with_partials;
+        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
+        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk4;
+        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2;
+        expectedSvgSheetWithPartialA = mockEditionData.mockSvgSheet_Sk2a;
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],
@@ -67,8 +68,6 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             },
         };
 
-        expectedSvgSheetWithPartialsSingleSvg = mockEditionData.mockSvgSheet_Sk2a;
-
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
@@ -76,16 +75,16 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have svgSheetsData', () => {
+        it('... should not have svgSheetsData', () => {
             expect(component.svgSheetsData).toBeUndefined();
         });
 
-        it('should not have selectedSvgSheet', () => {
+        it('... should not have selectedSvgSheet', () => {
             expect(component.selectedSvgSheet).toBeUndefined();
         });
 
@@ -110,7 +109,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `svgSheetsData` input', () => {
+        it('... should have `svgSheetsData` input', () => {
             expect(component.svgSheetsData).toBeDefined();
             expect(component.svgSheetsData.sheets.workEditions.length).withContext('should be 0').toBe(0);
             expect(component.svgSheetsData.sheets.textEditions.length).withContext('should be 0').toBe(0);
@@ -120,7 +119,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                 .toEqual(expectedSvgSheetsData);
         });
 
-        it('should have `selectedSvgSheet` input', () => {
+        it('... should have `selectedSvgSheet` input', () => {
             expect(component.selectedSvgSheet).toBeDefined();
             expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
         });
@@ -228,7 +227,11 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             });
         });
 
-        describe('#selectSvgSheet', () => {
+        describe('#selectSvgSheet()', () => {
+            it('... should have a method `selectSvgSheet`', () => {
+                expect(component.selectSvgSheet).toBeDefined();
+            });
+
             it('... should trigger on selectSvgSheetRequest event from EditionSvgSheetNavItemComponent', () => {
                 const sheetNavItemDes = getAndExpectDebugElementByDirective(
                     compDe,
@@ -270,8 +273,7 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
             });
 
             it('... should emit id of selected svg sheet with partial', () => {
-                const expectedId =
-                    expectedSvgSheetWithPartialsSingleSvg.id + expectedSvgSheetWithPartialsSingleSvg.content[0].partial;
+                const expectedId = expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
 
                 component.selectSvgSheet(expectedId);
 

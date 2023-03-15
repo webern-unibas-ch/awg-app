@@ -92,20 +92,20 @@ describe('ConstructResultsComponent (DONE)', () => {
         emitClickedNodeRequestSpy = spyOn(component.clickedNodeRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have queryResult', () => {
+        it('... should not have queryResult', () => {
             expect(component.queryResult$).toBeUndefined();
         });
 
-        it('should not have defaultForceGraphHeight', () => {
+        it('... should not have defaultForceGraphHeight', () => {
             expect(component.defaultForceGraphHeight).toBeUndefined();
         });
 
-        it('should not have isFullscreen', () => {
+        it('... should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined();
         });
 
@@ -131,19 +131,19 @@ describe('ConstructResultsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `queryResult` input', () => {
+        it('... should have `queryResult` input', () => {
             expect(component.queryResult$).toBeDefined();
             expect(component.queryResult$)
                 .withContext(`should equal ${expectedQueryResult$}`)
                 .toEqual(expectedQueryResult$);
         });
 
-        it('should have `defaultForceGraphHeight` input', () => {
+        it('... should have `defaultForceGraphHeight` input', () => {
             expect(component.defaultForceGraphHeight).toBeDefined();
             expect(component.defaultForceGraphHeight).withContext(`should be ${expectedHeight}`).toBe(expectedHeight);
         });
 
-        it('should have `isFullscreen` input', () => {
+        it('... should have `isFullscreen` input', () => {
             expect(component.isFullscreen).toBeDefined();
             expect(component.isFullscreen).withContext(`should be ${expectedIsFullscreen}`).toBe(expectedIsFullscreen);
         });
@@ -340,7 +340,11 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#onGraphNodeClick', () => {
+        describe('#onGraphNodeClick()', () => {
+            it('... should have a method `onGraphNodeClick`', () => {
+                expect(component.onGraphNodeClick).toBeDefined();
+            });
+
             it('... should trigger on event from ForceGraphCompnent', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
@@ -374,7 +378,11 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
         });
 
-        describe('#preventPanelCollapseOnFullscreen', () => {
+        describe('#preventPanelCollapseOnFullscreen()', () => {
+            it('... should have a method `preventPanelCollapseOnFullscreen`', () => {
+                expect(component.preventPanelCollapseOnFullscreen).toBeDefined();
+            });
+
             it('... should trigger on event from ngb-accordion', () => {
                 const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
                 const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;

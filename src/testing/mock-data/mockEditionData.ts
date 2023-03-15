@@ -65,7 +65,7 @@ export const mockEditionData = {
                 id: 'op12',
                 content: [
                     'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
-                    'In <a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> neu skizziert',
+                    'In <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> neu skizziert',
                 ],
             },
         ],
@@ -181,6 +181,7 @@ export const mockEditionData = {
                                         [
                                             {
                                                 system: '3–4',
+                                                systemDescription: '(test system description)',
                                                 measure: '4–6',
                                                 linkTo: 'test_id_2',
                                             },
@@ -355,7 +356,7 @@ export const mockEditionData = {
                 id: 'op25',
                 content: [
                     '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'M_212_Sk2\')"><strong>M 212 Sk2–5</strong></a> vorformulierten Fassung dar.',
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.',
                 ],
             },
         ],
@@ -376,13 +377,59 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockSvgSheet_Sk2.
+     * Test helper data constant: mockSvgSheet_WE1.
      *
-     * It provides a mocked svg sheet object.
+     * It provides a mocked svg sheet workEdition object.
      */
-    mockSvgSheet_Sk2: {
-        id: 'M_212_Sk2',
-        label: 'M 212 Sk2',
+    mockSvgSheet_WE1: {
+        id: 'test-WE1',
+        label: 'Test WE1',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
+                image: '',
+                partial: 'a',
+            },
+            {
+                svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
+                image: '',
+                partial: 'b',
+            },
+        ],
+        convolute: '',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_TF1.
+     *
+     * It provides a mocked svg sheet textEdition object.
+     */
+    mockSvgSheet_TF1: {
+        id: 'test-TF1',
+        label: 'Test TF1',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
+                image: '',
+                partial: 'a',
+            },
+            {
+                svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
+                image: '',
+                partial: 'b',
+            },
+        ],
+        convolute: '',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk1.
+     *
+     * It provides a mocked svg sheet sketchEdition object.
+     */
+    mockSvgSheet_Sk1: {
+        id: 'test-1',
+        label: 'Test Sk1',
         content: [
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
@@ -393,13 +440,13 @@ export const mockEditionData = {
     },
 
     /**
-     * Test helper data constant: mockSvgSheet_Sk2_with_partials.
+     * Test helper data constant: mockSvgSheet_Sk2.
      *
-     * It provides a mocked svg sheet object with partials.
+     * It provides a mocked svg sheet sketchEdition object with partials.
      */
-    mockSvgSheet_Sk2_with_partials: {
-        id: 'M_212_Sk2',
-        label: 'M 212 Sk2',
+    mockSvgSheet_Sk2: {
+        id: 'test-2',
+        label: 'Test Sk2 with partials',
         content: [
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
@@ -418,11 +465,11 @@ export const mockEditionData = {
     /**
      * Test helper data constant: mockSvgSheet_Sk2a.
      *
-     * It provides a mocked partial svg sheet object.
+     * It provides a mocked partial svg sheet sketchEdition object.
      */
     mockSvgSheet_Sk2a: {
-        id: 'M_212_Sk2',
-        label: 'M 212 Sk2',
+        id: 'test-2',
+        label: 'Test Sk2 with partials',
         content: [
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
@@ -434,65 +481,277 @@ export const mockEditionData = {
     },
 
     /**
+     * Test helper data constant: mockSvgSheet_Sk2b.
+     *
+     * It provides a mocked partial svg sheet sketchEdition object.
+     */
+    mockSvgSheet_Sk2b: {
+        id: 'test-2',
+        label: 'Test Sk2 with partials',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
+                partial: 'b',
+            },
+        ],
+        convolute: 'A',
+    },
+
+    /**
      * Test helper data constant: mockSvgSheet_Sk3.
      *
-     * It provides another mocked svg sheet object.
+     * It provides a mocked svg sheet sketchEdition object with partials.
      */
     mockSvgSheet_Sk3: {
-        id: 'M_212_Sk3',
-        label: 'M 212 Sk3',
+        id: 'test-3',
+        label: 'Test Sk3 with partials',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                image: '',
+                partial: 'a',
+            },
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                image: '',
+                partial: 'b',
+            },
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                image: '',
+                partial: 'c',
+            },
+        ],
+        convolute: 'B',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk3a.
+     *
+     * It provides another mocked svg sheet sketchEdition object.
+     */
+    mockSvgSheet_Sk3a: {
+        id: 'test-3',
+        label: 'Test Sk3 with partials',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                image: '',
+                partial: 'a',
+            },
+        ],
+        convolute: 'B',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk3b.
+     *
+     * It provides another mocked svg sheet sketchEdition object.
+     */
+    mockSvgSheet_Sk3b: {
+        id: 'test-3',
+        label: 'Test Sk3 with partials',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+                image: '',
+                partial: 'b',
+            },
+        ],
+        convolute: 'B',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk3c.
+     *
+     * It provides another mocked svg sheet sketchEdition object.
+     */
+    mockSvgSheet_Sk3c: {
+        id: 'test-3',
+        label: 'Test Sk3 with partials',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                image: '',
+                partial: 'c',
+            },
+        ],
+        convolute: 'B',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheet_Sk4.
+     *
+     * It provides another mocked svg sheet sketchEdition object.
+     */
+    mockSvgSheet_Sk4: {
+        id: 'test-4',
+        label: 'Test Sk4',
         content: [
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
                 image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
             },
         ],
-        convolute: 'A',
+        convolute: 'B',
     },
 
     /**
      * Test helper data constant: mockSvgSheet_Sk5.
      *
-     * It provides another mocked svg sheet object.
+     * It provides another mocked svg sheet sketchEdition object.
      */
     mockSvgSheet_Sk5: {
-        id: 'M_212_Sk5',
-        label: 'M 212 Sk5',
+        id: 'test-5',
+        label: 'Test Sk5',
         content: [
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
                 image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
             },
         ],
-        convolute: 'A',
+        convolute: 'C',
     },
 
     /**
-     * Test helper data constant: mockTextcriticalComments.
+     * Test helper data constant: mockSvgSheet_Sk6.
      *
-     * It provides a mocked textcriticalComments object.
+     * It provides another mocked svg sheet sketchEdition object.
      */
-    mockTextcriticalComments: [
-        {
-            measure: '10',
-            system: '12',
-            position: '1. Note',
-            comment: 'Viertelnote überschreibt Halbe Note.',
+    mockSvgSheet_Sk6: {
+        id: 'test-6',
+        label: 'Test Sk6',
+        content: [
+            {
+                svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
+                image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+            },
+        ],
+        convolute: 'D',
+    },
+
+    /**
+     * Test helper data constant: mockSvgSheetList.
+     *
+     * It provides a mocked svg sheet list object.
+     */
+    mockSvgSheetList: {
+        sheets: {
+            workEditions: [
+                {
+                    id: 'test-WE1',
+                    label: 'Test WE1',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
+                            image: '',
+                            partial: 'a',
+                        },
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
+                            image: '',
+                            partial: 'b',
+                        },
+                    ],
+                    convolute: '',
+                },
+            ],
+            textEditions: [
+                {
+                    id: 'test-TF1',
+                    label: 'Test TF1',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
+                            image: '',
+                            partial: 'a',
+                        },
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
+                            image: '',
+                            partial: 'b',
+                        },
+                    ],
+                    convolute: '',
+                },
+            ],
+            sketchEditions: [
+                {
+                    id: 'test-1',
+                    label: 'Test Sk1',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                            image: '',
+                        },
+                    ],
+                    convolute: 'A',
+                },
+                {
+                    id: 'test-2',
+                    label: 'Test Sk2 with partials',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                            image: '',
+                            partial: 'a',
+                        },
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                            image: '',
+                            partial: 'b',
+                        },
+                    ],
+                    convolute: 'A',
+                },
+                {
+                    id: 'test-3',
+                    label: 'Test Sk3 with partials',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                            image: '',
+                            partial: 'a',
+                        },
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                            image: '',
+                            partial: 'b',
+                        },
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                            image: '',
+                            partial: 'c',
+                        },
+                    ],
+                    convolute: 'B',
+                },
+                {
+                    id: 'test-4',
+                    label: 'Test Sk4',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
+                            image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                        },
+                    ],
+                    convolute: 'B',
+                },
+                {
+                    id: 'test-5',
+                    label: 'Test Sk5',
+                    content: [
+                        {
+                            svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
+                            image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+                        },
+                    ],
+                    convolute: 'C',
+                },
+            ],
         },
-        {
-            measure: '10',
-            system: '12',
-            position: '2. Note',
-            comment:
-                'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>M 212 Sk1</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'M_212_Sk5\')"><strong>M 212 Sk5</strong></a>.',
-        },
-        {
-            measure: '[12]',
-            system: '13',
-            position: '',
-            comment: 'radierte, nicht entzifferbare Schicht.',
-        },
-    ],
+    },
 
     /**
      * Test helper data constant: mockTextcriticsData.
@@ -515,17 +774,33 @@ export const mockEditionData = {
                 rowtable: true,
                 comments: [
                     {
+                        svgGroupId: 'svg-group-1',
                         measure: '10',
                         system: '12',
                         position: '1. Note',
                         comment: 'Viertelnote überschreibt Halbe Note.',
                     },
                     {
+                        svgGroupId: 'svg-group-2',
                         measure: '10',
                         system: '12',
                         position: '2. Note',
                         comment:
-                            "Modal click: <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON'); SVG Sheet select: <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\">M 212 Sk3</a>",
+                            'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a>.',
+                    },
+                    {
+                        svgGroupId: 'svg-group-3',
+                        measure: '{13}',
+                        system: '12',
+                        position: '3. Note',
+                        comment: '{{ref.getGlyph("[a]")}} überschreibt {{ref.getGlyph("[b]")}}.',
+                    },
+                    {
+                        svgGroupId: 'svg-group-4',
+                        measure: '[12]',
+                        system: '13',
+                        position: '',
+                        comment: 'radierte, nicht entzifferbare Schicht.',
                     },
                 ],
                 linkBoxes: [],

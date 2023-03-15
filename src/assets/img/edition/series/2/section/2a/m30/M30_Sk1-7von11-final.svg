@@ -9,7 +9,7 @@
     enable-background="new 0 0 765 595"
     xml:space="preserve"
     id="svg567"
-    sodipodi:docname="Skizzen M30_Sk1(7)_final.svg"
+    sodipodi:docname="Skizzen M30_Sk1(7)-final.svg"
     inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -272,7 +272,7 @@
     <path id="line132" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 175.5934,354.57965 H 952.7688" />
     <path id="line134" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 175.5934,360.0463 H 952.7688" />
     <path id="line136" style="fill: none; stroke: #000000; stroke-width: 0.483" d="M 175.5934,365.51297 H 952.7688" />
-    <g id="g1117" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1117" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="polyline138"
             style="fill: none; stroke: #000000; stroke-width: 0.362251"
@@ -340,7 +340,7 @@
             id="path958" />
     </g>
 
-    <g id="g1121" awg="tkk">
+    <g id="g1123" class="tkk">
         <path
             id="line174"
             style="fill: none; stroke: #000000; stroke-width: 0.483"
@@ -1436,7 +1436,7 @@
         inkscape:connector-curvature="0"
         id="path546-4"
         d="m 272.38529,278.64844 c 1.80886,3.26508 7.03197,3.26508 8.84083,0 l -0.18583,-0.0565 c -1.62303,2.43101 -6.84614,2.43101 -8.46918,0 z" />
-    <g id="g1113" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1112" class="tkk" transform="translate(34.599078,29.780419)">
         <path
             id="line288"
             style="fill: none; stroke: #000000; stroke-width: 0.483"
@@ -1541,7 +1541,7 @@
             id="path1579-9-2"
             sodipodi:nodetypes="cccc" />
     </g>
-    <g id="g1134" awg="tkk" transform="translate(34.599078,29.780419)">
+    <g id="g1134" class="tkk" transform="translate(34.599078,29.780419)">
         <g aria-label="œ" id="text400" style="font-size: 21.8666px; font-family: Maestro; stroke-width: 0.750002">
             <path
                 d="m 779.17298,207.28806 q 0.21867,-0.5904 0.656,-1.09333 0.4592,-0.50294 1.04959,-0.87467 0.5904,-0.3936 1.26827,-0.5904 0.67786,-0.21866 1.37759,-0.21866 0.69973,0 1.22453,0.24053 0.5248,0.21867 0.83093,0.61227 0.30614,0.37173 0.37174,0.89653 0.0875,0.50293 -0.1312,1.09333 -0.21867,0.59039 -0.67787,1.09333 -0.4592,0.52479 -1.0496,0.89653 -0.59039,0.3936 -1.29012,0.59039 -0.67787,0.21867 -1.35573,0.21867 -0.69974,0 -1.22453,-0.24053 -0.50294,-0.21867 -0.83093,-0.61227 -0.30614,-0.3936 -0.37174,-0.91839 -0.0656,-0.50294 0.15307,-1.09333 z"

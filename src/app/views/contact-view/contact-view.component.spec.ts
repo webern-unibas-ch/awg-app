@@ -87,17 +87,17 @@ describe('ContactViewComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have imprint title and id', () => {
+        it('... should have imprint title and id', () => {
             expect(component.imprintTitle).toBeDefined();
             expect(component.imprintTitle).withContext(`should be ${expectedImprintTitle}`).toBe(expectedImprintTitle);
 
@@ -105,7 +105,7 @@ describe('ContactViewComponent (DONE)', () => {
             expect(component.imprintId).withContext(`should be ${expectedImprintId}`).toBe(expectedImprintId);
         });
 
-        it('should have citation title and id', () => {
+        it('... should have citation title and id', () => {
             expect(component.citationTitle).toBeDefined();
             expect(component.citationTitle)
                 .withContext(`should be ${expectedCitationTitle}`)
@@ -115,7 +115,7 @@ describe('ContactViewComponent (DONE)', () => {
             expect(component.citationId).withContext(`should be ${expectedCitationId}`).toBe(expectedCitationId);
         });
 
-        it('should have documentation title and id', () => {
+        it('... should have documentation title and id', () => {
             expect(component.documentationTitle).toBeDefined();
             expect(component.documentationTitle)
                 .withContext(`should be ${expectedDocumentationTitle}`)
@@ -127,24 +127,32 @@ describe('ContactViewComponent (DONE)', () => {
                 .toBe(expectedDocumentationId);
         });
 
-        it('should have dateFormat', () => {
+        it('... should have dateFormat', () => {
             expect(component.dateFormat).toBeDefined();
             expect(component.dateFormat).withContext(`should be ${expectedDateFormat}`).toBe(expectedDateFormat);
         });
 
-        it('should not have metadata nor `today`', () => {
+        it('... should not have metadata nor `today`', () => {
             expect(component.pageMetaData).toBeUndefined();
             expect(component.contactMetaData).toBeUndefined();
             expect(component.today).toBeUndefined();
         });
 
-        describe('#routeToSidenav', () => {
+        describe('#routeToSidenav()', () => {
+            it('... should have a method `routeToSidenav`', () => {
+                expect(component.routeToSidenav).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.routeToSidenav).not.toHaveBeenCalled();
             });
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
@@ -230,7 +238,7 @@ describe('ContactViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav', () => {
+        describe('#routeToSideNav()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -275,7 +283,7 @@ describe('ContactViewComponent (DONE)', () => {
             });
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
             it('... should have been called', () => {
                 expect(component.provideMetaData).toHaveBeenCalled();
             });
@@ -293,7 +301,7 @@ describe('ContactViewComponent (DONE)', () => {
             });
         });
 
-        it('should have `today`', () => {
+        it('... should have `today`', () => {
             expectSpyCall(dateSpy, 1);
             expect(component.today).toBeDefined();
             expect(component.today).withContext(`should be ${expectedToday}`).toBe(expectedToday);

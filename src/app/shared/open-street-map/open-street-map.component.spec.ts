@@ -56,25 +56,25 @@ describe('OpenStreetMapComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `osmEmbedUrl` input', () => {
+        it('... should not have `osmEmbedUrl` input', () => {
             expect(component.osmEmbedUrl).toBeUndefined();
         });
 
-        it('should not have `osmLinkUrl` input', () => {
+        it('... should not have `osmLinkUrl` input', () => {
             expect(component.osmLinkUrl).toBeUndefined();
         });
 
-        it('should have `osmLinkLabel`', () => {
+        it('... should have `osmLinkLabel`', () => {
             expect(component.osmLinkLabel).toBeDefined();
             expect(component.osmLinkLabel).withContext(`should be ${expectedOsmLinkLabel}`).toBe(expectedOsmLinkLabel);
         });
 
-        it('should have `osmIFrameSettings`', () => {
+        it('... should have `osmIFrameSettings`', () => {
             expect(component.osmIFrameSettings).toBeDefined();
             expect(component.osmIFrameSettings)
                 .withContext(`should equal ${expectedOsmIFrameSettings}`)

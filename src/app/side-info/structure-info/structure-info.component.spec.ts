@@ -48,11 +48,11 @@ describe('StructureInfoComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBe(true);
     });
@@ -65,7 +65,11 @@ describe('StructureInfoComponent (DONE)', () => {
                 .toBe(expectedStructureInfoHeader);
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
@@ -122,7 +126,7 @@ describe('StructureInfoComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
             it('... should have been called', () => {
                 expect(component.provideMetaData).toHaveBeenCalled();
             });
@@ -146,7 +150,7 @@ describe('StructureInfoComponent (DONE)', () => {
                     .toBe(expectedStructureInfoHeader);
             });
 
-            it('should render author information', () => {
+            it('... should render author information', () => {
                 const expectedAuthor = expectedStructureMetaData.authors[0];
 
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
@@ -157,7 +161,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 expect(authorEl.innerHTML).withContext(`should be ${expectedAuthor.name}`).toBe(expectedAuthor.name);
             });
 
-            it('should render last modification date', () => {
+            it('... should render last modification date', () => {
                 const expectedLastModified = expectedStructureMetaData.lastModified;
 
                 const lastmodDes = getAndExpectDebugElementByCss(compDe, 'span#awg-structure-info-lastmodified', 1, 1);

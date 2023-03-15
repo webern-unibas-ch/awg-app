@@ -66,7 +66,7 @@ describe('BibliographyService (DONE)', () => {
         httpTestingController.verify();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(bibliographyService).toBeTruthy();
     });
 
@@ -140,7 +140,11 @@ describe('BibliographyService (DONE)', () => {
         }));
     });
 
-    describe('#getBibliographyList', () => {
+    describe('#getBibliographyList()', () => {
+        it('... should have a method `getBibliographyList`', () => {
+            expect(bibliographyService.getBibliographyList).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should perform an HTTP GET request to the Knora API (via ApiService)', waitForAsync(() => {
                 const expectedUrl = apiUrl + expectedSearchRoute;
@@ -266,7 +270,11 @@ describe('BibliographyService (DONE)', () => {
         });
     });
 
-    describe('#getBibliographyItemDetail', () => {
+    describe('#getBibliographyItemDetail()', () => {
+        it('... should have a method `getBibliographyItemDetail`', () => {
+            expect(bibliographyService.getBibliographyItemDetail).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should perform an HTTP GET request to the Knora API (via ApiService)', waitForAsync(() => {
                 const expectedResourceId = '11398';

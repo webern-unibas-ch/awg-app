@@ -26,11 +26,11 @@ describe('ConversionService', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(conversionService).toBeTruthy();
     });
 
-    it('should not have filteredOut before convertFullTextSearchResults call', () => {
+    it('... should not have filteredOut before convertFullTextSearchResults call', () => {
         expect(conversionService.filteredOut).toBeUndefined();
 
         conversionService.convertFullTextSearchResults(mockSearchResponseJson);

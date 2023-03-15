@@ -54,7 +54,7 @@ describe('StorageService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(storageService).toBeTruthy();
     });
 
@@ -128,7 +128,11 @@ describe('StorageService (DONE)', () => {
         });
     });
 
-    describe('#setStorageKey', () => {
+    describe('#setStorageKey()', () => {
+        it('... should have a method `setStorageKey`', () => {
+            expect(storageService.setStorageKey).toBeDefined();
+        });
+
         it('... should set a given key/item string pair to a given storage type', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
@@ -223,7 +227,11 @@ describe('StorageService (DONE)', () => {
         });
     });
 
-    describe('#getStorageKey', () => {
+    describe('#getStorageKey()', () => {
+        it('... should have a method `getStorageKey`', () => {
+            expect(storageService.getStorageKey).toBeDefined();
+        });
+
         it('... should get an item by key from a given storage type', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             expectedStorage.setItem(expectedKey, expectedItem);
@@ -302,7 +310,11 @@ describe('StorageService (DONE)', () => {
         });
     });
 
-    describe('#removeStorageKey', () => {
+    describe('#removeStorageKey()', () => {
+        it('... should have a method `removeStorageKey`', () => {
+            expect(storageService.removeStorageKey).toBeDefined();
+        });
+
         it('... should remove an item by key from a given storage type', () => {
             expect(mockStorage.getItem(expectedKey)).toBeNull();
             storageService.setStorageKey(sessionType, expectedKey, expectedItem);
@@ -402,7 +414,11 @@ describe('StorageService (DONE)', () => {
         });
     });
 
-    describe('#_storageIsAvailable', () => {
+    describe('#_storageIsAvailable()', () => {
+        it('... should have a method `_storageIsAvailable`', () => {
+            expect((storageService as any)._storageIsAvailable).toBeDefined();
+        });
+
         it('... should return true if the storage is available', () => {
             expect((storageService as any)._storageIsAvailable(expectedStorage)).toBe(true);
         });

@@ -59,7 +59,7 @@ describe('ExternalLinkDirective', () => {
         cleanStylesFromDOM();
     });
 
-    it('should have 4 anchor elements with href attributes', () => {
+    it('... should have 4 anchor elements with href attributes', () => {
         // All elements with an attached ExternalLinkDirective (a[href])
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
 
@@ -67,14 +67,14 @@ describe('ExternalLinkDirective', () => {
         expect(aDes.length).withContext('should be 4').toBe(4);
     });
 
-    it('should have 1 anchor element without href attributes', () => {
+    it('... should have 1 anchor element without href attributes', () => {
         bareADes = fixture.debugElement.queryAll(By.css('a:not([href])'));
 
         expect(bareADes).toBeDefined();
         expect(bareADes.length).withContext('should be 1').toBe(1);
     });
 
-    it('should apply [href|target|rel] values to 1st anchor element (external)', () => {
+    it('... should apply [href|target|rel] values to 1st anchor element (external)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[0].nativeElement;
 
@@ -90,7 +90,7 @@ describe('ExternalLinkDirective', () => {
         expect(aEl.innerText).withContext('should be "Link External"').toBe('Link External');
     });
 
-    it('should apply [href|target|rel] values to 2nd anchor element (dynamic external)', () => {
+    it('... should apply [href|target|rel] values to 2nd anchor element (dynamic external)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[1].nativeElement;
 
@@ -106,7 +106,7 @@ describe('ExternalLinkDirective', () => {
         expect(aEl.innerText).withContext('should be "Link External Dynamic"').toBe('Link External Dynamic');
     });
 
-    it('should not apply [target|rel] values to 3rd anchor element (internal)', () => {
+    it('... should not apply [target|rel] values to 3rd anchor element (internal)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[2].nativeElement;
 
@@ -121,7 +121,7 @@ describe('ExternalLinkDirective', () => {
         expect(aEl.innerText).withContext('should be "Link Internal"').toBe('Link Internal');
     });
 
-    it('should not apply [target|rel] values to 4th anchor element (dynamic internal)', () => {
+    it('... should not apply [target|rel] values to 4th anchor element (dynamic internal)', () => {
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
         const aEl = aDes[3].nativeElement;
 
@@ -136,7 +136,7 @@ describe('ExternalLinkDirective', () => {
         expect(aEl.innerText).withContext('should be "Link Internal Dynamic"').toBe('Link Internal Dynamic');
     });
 
-    it('should not apply [href|target|rel] values to bare anchor', () => {
+    it('... should not apply [href|target|rel] values to bare anchor', () => {
         bareADes = fixture.debugElement.queryAll(By.css('a:not([href])'));
 
         expect(bareADes[0].properties['href']).withContext('should be empty string').not.toBeTruthy();
@@ -147,7 +147,7 @@ describe('ExternalLinkDirective', () => {
             .toBe('Link without href');
     });
 
-    it('should reflect input change for [href] values', () => {
+    it('... should reflect input change for [href] values', () => {
         component.dynamicExternalLink = expectedNewExternalLink;
 
         // Apply changes

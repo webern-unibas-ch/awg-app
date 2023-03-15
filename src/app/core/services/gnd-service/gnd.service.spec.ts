@@ -83,7 +83,7 @@ describe('GndService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(gndService).toBeTruthy();
     });
 
@@ -183,17 +183,17 @@ describe('GndService (DONE)', () => {
         });
     });
 
-    it('should have GND_KEY', () => {
+    it('... should have GND_KEY', () => {
         expect(gndService.GND_KEY).toBeTruthy();
         expect(gndService.GND_KEY).withContext(`should equal ${expectedGndKey}`).toEqual(expectedGndKey);
     });
 
-    it('should have DNB_REG', () => {
+    it('... should have DNB_REG', () => {
         expect(gndService.DNB_REG).toBeTruthy();
         expect<RegExp>(gndService.DNB_REG).withContext(`should equal ${expectedDnbReg}`).toEqual(expectedDnbReg);
     });
 
-    it('should not have linkRegArr before exposeGnd call', () => {
+    it('... should not have linkRegArr before exposeGnd call', () => {
         expect(gndService.linkRegArr).withContext('should be undefined').toBeUndefined();
 
         gndService.exposeGnd(expectedSetEvent);
@@ -201,7 +201,11 @@ describe('GndService (DONE)', () => {
         expect(gndService.linkRegArr).withContext('should be defined').toBeDefined();
     });
 
-    describe('#exposeGnd', () => {
+    describe('#exposeGnd()', () => {
+        it('... should have a method `exposeGnd`', () => {
+            expect(gndService.exposeGnd).toBeDefined();
+        });
+
         describe('... should not do anything if', () => {
             it('... gndEvent is undefined', () => {
                 expect(mockStorage.getItem(expectedGndKey)).withContext('should be null').toBeNull();
@@ -394,7 +398,11 @@ describe('GndService (DONE)', () => {
                 expectSpyCall(valueHasGndSpy, 1, expectedGndEventValue);
             });
 
-            describe('#_valueHasGnd', () => {
+            describe('#_valueHasGnd()', () => {
+                it('... should have a method `_valueHasGnd`', () => {
+                    expect((gndService as any)._valueHasGnd).toBeDefined();
+                });
+
                 it('... should execute regex check and populate linkRegArr if value has gnd link', () => {
                     expect(gndService.linkRegArr).withContext('should be undefined').toBeUndefined();
                     expect(mockStorage.getItem(expectedGndKey)).withContext('should be null').toBeNull();

@@ -41,7 +41,7 @@
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "2b",
                     "position": "KU<sub>f</sub>: 8. Reihenton",
-                    "comment": "&#9839;fis<sup>1</sup> überschreibt &#9837; als Ansatz zu ges<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[#]')}}fis<sup>1</sup> überschreibt {{ref.getGlyph('[b]')}} als Ansatz zu ges<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "text628",
