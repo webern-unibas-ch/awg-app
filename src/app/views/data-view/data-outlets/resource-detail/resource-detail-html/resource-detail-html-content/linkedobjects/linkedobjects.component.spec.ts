@@ -5,7 +5,7 @@ import Spy = jasmine.Spy;
 import { expectClosedPanelBody, expectOpenPanelBody } from '@testing/accordion-panel-helper';
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -90,12 +90,11 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have `incomingGroups` inputs', () => {
-            expect(component.incomingGroups).withContext('should be undefined').toBeUndefined();
+            expect(component.incomingGroups).toBeUndefined();
         });
 
         it('... should have totalNumber = 0', () => {
-            expect(component.totalNumber).toBeDefined();
-            expect(component.totalNumber).withContext('should be 0').toBe(0);
+            expectToBe(component.totalNumber, 0);
         });
 
         describe('VIEW', () => {
@@ -141,18 +140,13 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
         });
 
         it('... should have `incomingGroups` inputs', () => {
-            expect(component.incomingGroups).toBeDefined();
-            expect(component.incomingGroups)
-                .withContext(`should be expectedIncoming: ${expectedIncoming}`)
-                .toBe(expectedIncoming);
+            expectToBe(component.incomingGroups, expectedIncoming);
         });
 
         it('... should have updated totalNumber with number of nested items in `incomingGroups`', fakeAsync(() => {
             expectSpyCall(totalNumberSpy, 1);
 
-            expect(component.totalNumber)
-                .withContext(`should be expectedTotalItems: ${expectedTotalItems}`)
-                .toBe(expectedTotalItems);
+            expectToBe(component.totalNumber, expectedTotalItems);
         }));
 
         it('... should recalculate total number on input changes (second & more)', fakeAsync(() => {
@@ -169,9 +163,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
             component.incomingGroups = newExpectedIncomingGroups;
 
             // Output has changed
-            expect(component.totalNumber)
-                .withContext(`should be newExpectedTotalItems: ${newExpectedTotalItems}`)
-                .toBe(newExpectedTotalItems);
+            expectToBe(component.totalNumber, newExpectedTotalItems);
         }));
 
         describe('VIEW', () => {
@@ -186,10 +178,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 const sizeEl = sizeDes[0].nativeElement;
 
                 // Check size output
-                expect(sizeEl.textContent).toBeDefined();
-                expect(sizeEl.textContent)
-                    .withContext(`should contain expectedTotalItems: ${component.totalNumber}`)
-                    .toContain(component.totalNumber);
+                expectToBe(sizeEl.textContent, component.totalNumber.toString());
             });
 
             it('... should contain 2 ngb-panel elements in accordion (div.accordion-item) with header but no body (closed)', () => {
@@ -215,32 +204,19 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     2,
                     2
                 );
-                const badgeDes0 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[0],
-                    'span.badge',
-                    1,
-                    1,
-                    'in first panel'
-                );
-                const badgeDes1 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[1],
-                    'span.badge',
-                    1,
-                    1,
-                    'in second panel'
-                );
 
-                const badge0El = badgeDes0[0].nativeElement;
-                const badge1El = badgeDes1[0].nativeElement;
+                panelHeaderDes.forEach((panelHeaderDe, index) => {
+                    const badgeDes = getAndExpectDebugElementByCss(
+                        panelHeaderDe,
+                        'span.badge',
+                        1,
+                        1,
+                        `in panel ${index}`
+                    );
+                    const badgeEl = badgeDes[0].nativeElement;
 
-                expect(badge0El.textContent).toBeDefined();
-                expect(badge0El.textContent)
-                    .withContext(`should contain ${expectedIncoming[0].links.length}`)
-                    .toContain(expectedIncoming[0].links.length);
-                expect(badge1El.textContent).toBeDefined();
-                expect(badge1El.textContent)
-                    .withContext(`should contain ${expectedIncoming[1].links.length}`)
-                    .toContain(expectedIncoming[1].links.length);
+                    expectToBe(badgeEl.textContent, expectedIncoming[index].links.length.toString());
+                });
             });
 
             it('... should render restype label in panel header (div.accordion-header)', () => {
@@ -251,32 +227,19 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     2,
                     2
                 );
-                const labelDes0 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[0],
-                    'span.awg-linked-obj-title',
-                    1,
-                    1,
-                    'in first panel'
-                );
-                const labelDes1 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[1],
-                    'span.awg-linked-obj-title',
-                    1,
-                    1,
-                    'in second panel'
-                );
 
-                const label0El = labelDes0[0].nativeElement;
-                const label1El = labelDes1[0].nativeElement;
+                panelHeaderDes.forEach((panelHeaderDe, index) => {
+                    const labelDes = getAndExpectDebugElementByCss(
+                        panelHeaderDe,
+                        'span.awg-linked-obj-title',
+                        1,
+                        1,
+                        `in panel ${index}`
+                    );
+                    const labelEl = labelDes[0].nativeElement;
 
-                expect(label0El.textContent).toBeDefined();
-                expect(label0El.textContent)
-                    .withContext(`should contain ${expectedIncoming[0].restypeLabel}`)
-                    .toContain(expectedIncoming[0].restypeLabel);
-                expect(label0El.textContent).toBeDefined();
-                expect(label1El.textContent)
-                    .withContext(`should contain ${expectedIncoming[1].restypeLabel}`)
-                    .toContain(expectedIncoming[1].restypeLabel);
+                    expectToBe(labelEl.textContent, expectedIncoming[index].restypeLabel);
+                });
             });
 
             it('... should open and close panels on click', fakeAsync(() => {
@@ -405,29 +368,16 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 });
 
                 it('... should render restype icon', () => {
-                    const expectedIcon0 = expectedIncoming[0].links[0].restype.icon;
-                    const expectedIcon1 = expectedIncoming[0].links[1].restype.icon;
-
                     const imgDes = getAndExpectDebugElementByCss(listDes[0], 'a.awg-linked-obj-link > img', 2, 2);
 
-                    const imgEl0 = imgDes[0].nativeElement;
-                    const imgEl1 = imgDes[1].nativeElement;
+                    imgDes.forEach((imgDe, index) => {
+                        const imgEl = imgDe.nativeElement;
 
-                    expect(imgEl0.src).toBeDefined();
-                    expect(imgEl0.src)
-                        .withContext(`should contain expectedIcon0: ${expectedIcon0}`)
-                        .toContain(expectedIcon0);
-
-                    expect(imgEl1.src).toBeDefined();
-                    expect(imgEl1.src)
-                        .withContext(`should contain expectedIcon1: ${expectedIcon1}`)
-                        .toContain(expectedIcon1);
+                        expectToContain(imgEl.src, expectedIncoming[0].links[index].restype.icon);
+                    });
                 });
 
                 it('... should render restpye id', () => {
-                    const expectedId0 = expectedIncoming[0].links[0].id;
-                    const expectedId1 = expectedIncoming[0].links[1].id;
-
                     const idDes = getAndExpectDebugElementByCss(
                         listDes[0],
                         'a.awg-linked-obj-link > span.awg-linked-obj-link-id',
@@ -435,22 +385,14 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         2
                     );
 
-                    const idEl0 = idDes[0].nativeElement;
-                    const idEl1 = idDes[1].nativeElement;
+                    idDes.forEach((idDe, index) => {
+                        const idEl = idDe.nativeElement;
 
-                    expect(idEl0.textContent).toBeDefined();
-                    expect(idEl0.textContent).withContext(`should be expectedId0: ${expectedId0}`).toBe(expectedId0);
-
-                    expect(idEl1.textContent).toBeDefined();
-                    expect(idEl1.textContent)
-                        .withContext(`should contain expectedId1: ${expectedId1}`)
-                        .toContain(expectedId1);
+                        expectToBe(idEl.textContent, expectedIncoming[0].links[index].id);
+                    });
                 });
 
                 it('... should render link value', () => {
-                    const expectedLinkValue0 = expectedIncoming[0].links[0].value;
-                    const expectedLinkValue1 = expectedIncoming[0].links[1].value;
-
                     const linkValueDes = getAndExpectDebugElementByCss(
                         listDes[0],
                         'a.awg-linked-obj-link > span.awg-linked-obj-link-value',
@@ -458,18 +400,11 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         2
                     );
 
-                    const linkValueEl0 = linkValueDes[0].nativeElement;
-                    const linkValueEl1 = linkValueDes[1].nativeElement;
+                    linkValueDes.forEach((linkValueDe, index) => {
+                        const linkValueEl = linkValueDe.nativeElement;
 
-                    expect(linkValueEl0.textContent).toBeDefined();
-                    expect(linkValueEl0.textContent)
-                        .withContext(`should contain expectedLinkValue0: ${expectedLinkValue0}`)
-                        .toContain(expectedLinkValue0);
-
-                    expect(linkValueEl1.textContent).toBeDefined();
-                    expect(linkValueEl1.textContent)
-                        .withContext(`should contain expectedLinkValue1: ${expectedLinkValue1}`)
-                        .toContain(expectedLinkValue1);
+                        expectToBe(linkValueEl.textContent, expectedIncoming[0].links[index].value);
+                    });
                 });
             });
         });
