@@ -14,6 +14,44 @@
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6407",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g6443",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g6490",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g6454",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g6468",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g6479",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g6414",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g6434",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g6425",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
             ]
         },
         {
@@ -36,14 +74,52 @@
                     "measure": "A",
                     "system": "1",
                     "position": "2. Reihenton",
-                    "comment": "&#9838; nachgezogen (überschreibt &#9837;?)."
+                    "comment": "{{ref.getGlyph('[a]')}} nachgezogen (überschreibt {{ref.getGlyph('[b]')}}?)."
                 },
                 {
                     "svgGroupId": "g1065",
                     "measure": "B",
                     "system": "1",
                     "position": "4. Reihenton",
-                    "comment": "&#9839;fis<sup>2</sup> überschreibt &#9838;g<sup>2</sup>."
+                    "comment": "{{ref.getGlyph('[#]')}}fis<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g536",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g572",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g608",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g583",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g597",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g619",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g554",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g563",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g547",
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -66,7 +142,7 @@
                     "measure": "1",
                     "system": "1",
                     "position": "6/8",
-                    "comment": "&#9837; nachgezogen (überschreibt Ansatz von &#9839; zu dis<sup>2</sup>?)."
+                    "comment": "{{ref.getGlyph('[b]')}} nachgezogen (überschreibt Ansatz von {{ref.getGlyph('[#]')}} zu dis<sup>2</sup>?)."
                 },
                 {
                     "svgGroupId": "g1254",
@@ -80,7 +156,7 @@
                     "measure": "2",
                     "system": "1",
                     "position": "3/8",
-                    "comment": "&#9839; nachgezogen (überschreibt &#9838;?)."
+                    "comment": "{{ref.getGlyph('[#]')}} nachgezogen (überschreibt {{ref.getGlyph('[a]')}}?)."
                 },
                 {
                     "svgGroupId": "text338",
@@ -108,7 +184,45 @@
                     "measure": "3",
                     "system": "2",
                     "position": "4/8",
-                    "comment": "Punktierte Achtelnote &#9838;c<sup>1</sup> überschreibt radierte Achtelpause."
+                    "comment": "Punktierte Achtelnote {{ref.getGlyph('[a]')}}c<sup>1</sup> überschreibt radierte Achtelpause."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1210",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g1203",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g1221",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g1232",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g1273",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g1284",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g1239",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1259",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1250",
+                    "linkTo": "M_317_Sk3_1_2"
                 }
             ]
         },
@@ -119,7 +233,45 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a> formuliert eine Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> auf der Grundlage des 1.–5. Reihentons von Reihe B in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1022",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g1015",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g1031",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g1042",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g1083",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g1094",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g1049",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1069",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1060",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
+            ]
         },
         {
             "id": "M_317_Sk2_1_2",
@@ -135,6 +287,44 @@
                     "position": "",
                     "comment": "Durch Einklammerung getilgt."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1029",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g1022",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g1038",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g1049",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g1090",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g1101",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g1056",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1076",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1067",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
             ]
         },
         {
@@ -144,7 +334,45 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1009",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g1002",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g1018",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g1029",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g1040",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g1078",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g1047",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1067",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1058",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
+            ]
         },
         {
             "id": "M_317_Sk2_1_3",
@@ -153,7 +381,45 @@
                 "Die in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g988",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g981",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g997",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g1008",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g1019",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g1060",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g1026",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g1046",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g1037",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
+            ]
         },
         {
             "id": "M_317_Sk3",
@@ -183,6 +449,44 @@
                     "position": "1. Note",
                     "comment": "Pfeil zur Variante der Fortsetzung in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g588",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g581",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g628",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g653",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g619",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g642",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g664",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g608",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g599",
+                    "linkTo": "M_317_Sk3_1_2"
+                }
             ]
         },
         {
@@ -208,45 +512,91 @@
                 },
                 {
                     "svgGroupId": "g1213",
-                    "measure": "{{ '{' }}5–6{{ '}' }}",
+                    "measure": "{5–6}",
                     "system": "4",
                     "position": "",
                     "comment": "Durch Einklammerung getilgt. (Die Variante in System 3 wird allerdings nicht von der Einklammerung eingeschlossen.)"
                 },
                 {
                     "svgGroupId": "g1218",
-                    "measure": "{{ '{' }}5{{ '}' }}",
+                    "measure": "{5}",
                     "system": "4",
                     "position": "1. Note",
-                    "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a>. <br /> Ligaturbogen gestrichen."
+                    "comment": "Ligaturbogen gestrichen."
                 },
                 {
-                    "svgGroupId": "line376",
-                    "measure": "{{ '{' }}5{{ '}' }}",
+                    "svgGroupId": "g1206",
+                    "measure": "{5}",
                     "system": "4",
                     "position": "1. Note",
-                    "comment": "Pfeil unten rechts von Variante T. 4 in <strong>Sk3.1.1</strong>."
+                    "comment": "Pfeil unten rechts von Variante T. 4 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a>."
                 },
                 {
                     "svgGroupId": "text228",
-                    "measure": "{{ '{' }}5{{ '}' }}",
+                    "measure": "{5}",
                     "system": "4",
                     "position": "6/8",
                     "comment": "<em>I</em> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> T. 1–2 1. Note und in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</em> bezeichnet)."
                 },
                 {
                     "svgGroupId": "g1241",
-                    "measure": "{{ '{' }}5{{ '}' }} <br /> bis {{ '{' }}6{{ '}' }}",
+                    "measure": "{5} <br /> bis {6}",
                     "system": "4",
                     "position": "6/8 <br /> 3. Note",
                     "comment": "Text in Kurrentschrift."
                 },
                 {
                     "svgGroupId": "g1225",
-                    "measure": "{{ '{' }}6{{ '}' }}",
+                    "measure": "{6}",
                     "system": "4",
                     "position": "1–2/8",
                     "comment": "Text: <em>leuch</em>[-]<em>tet</em> zusammengeschrieben."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1214",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g698",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g725",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g761",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g736",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g750",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g772",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g705",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g716",
+                    "linkTo": "M_317_Sk3_1_1"
+                },
+                {
+                    "svgGroupId": "g691",
+                    "linkTo": "M_317_Sk3_1_2"
+                },
+                {
+                    "svgGroupId": "g680",
+                    "linkTo": "M_317_Sk3_1_3"
                 }
             ]
         },
@@ -263,6 +613,20 @@
                     "system": "6",
                     "position": "",
                     "comment": "Halbe Note überschreibt Viertelnote."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g441",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g432",
+                    "linkTo": "M_317_Sk3_1_3"
+                },
+                {
+                    "svgGroupId": "g454",
+                    "linkTo": "M_317_Sk3_1_3_1"
                 }
             ]
         },
@@ -308,6 +672,44 @@
                     "position": "nach 1. Note",
                     "comment": "Durch Einklammerung abgegrenzt von <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1091",
+                    "linkTo": "M_317_Sk1"
+                },
+                {
+                    "svgGroupId": "g559",
+                    "linkTo": "M_317_Sk2"
+                },
+                {
+                    "svgGroupId": "g584",
+                    "linkTo": "M_317_Sk2_1"
+                },
+                {
+                    "svgGroupId": "g631",
+                    "linkTo": "M_317_Sk2_1_1"
+                },
+                {
+                    "svgGroupId": "g595",
+                    "linkTo": "M_317_Sk2_1_2"
+                },
+                {
+                    "svgGroupId": "g609",
+                    "linkTo": "M_317_Sk2_1_2_1"
+                },
+                {
+                    "svgGroupId": "g620",
+                    "linkTo": "M_317_Sk2_1_3"
+                },
+                {
+                    "svgGroupId": "g566",
+                    "linkTo": "M_317_Sk3"
+                },
+                {
+                    "svgGroupId": "g575",
+                    "linkTo": "M_317_Sk3_1"
+                }
             ]
         },
         {
@@ -337,14 +739,14 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): 7. Reihenton",
-                    "comment": "sic: kein &#9838;."
+                    "comment": "sic: kein {{ref.getGlyph('[a]')}}."
                 },
                 {
                     "svgGroupId": "g1554",
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "G<sub>g</sub> (1): 10.–11. Reihenton",
-                    "comment": "&#9838;a, &#9838;c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein &#9838;), &#9838;a<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[a]')}}a, {{ref.getGlyph('[a]')}}c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein {{ref.getGlyph('[a]')}}), {{ref.getGlyph('[a]')}}a<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g570",
@@ -358,7 +760,7 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "6",
                     "position": "K<sub>gis</sub> (2): 2.–3. Reihenton",
-                    "comment": "&#9838;c<sup>1</sup>, &#9838;a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine &#9838;)."
+                    "comment": "{{ref.getGlyph('[a]')}}c<sup>1</sup>, {{ref.getGlyph('[a]')}}a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine {{ref.getGlyph('[a]')}})."
                 },
                 {
                     "svgGroupId": "g318",
@@ -372,7 +774,7 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "U<sub>g</sub> (3): 10.–11. Reihenton",
-                    "comment": "&#9838;f<sup>2</sup>, &#9838;d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;d<sup>1</sup>, &#9838;f<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[a]')}}f<sup>2</sup>, {{ref.getGlyph('[a]')}}d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}d<sup>1</sup>, {{ref.getGlyph('[a]')}}f<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g566",
@@ -386,7 +788,7 @@
                     "measure": "Bl. 38<sup>v</sup>",
                     "system": "7",
                     "position": "KU<sub>fis</sub> (4): 2.–3. Note",
-                    "comment": "&#9838;d<sup>2</sup>, &#9838;f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;f<sup>1</sup>, d<sup>1</sup> (sic: kein &#9838;)."
+                    "comment": "{{ref.getGlyph('[a]')}}d<sup>2</sup>, {{ref.getGlyph('[a]')}}f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch {{ref.getGlyph('[a]')}}f<sup>1</sup>, d<sup>1</sup> (sic: kein {{ref.getGlyph('[a]')}})."
                 },
                 {
                     "svgGroupId": "g1613",
@@ -394,6 +796,20 @@
                     "system": "6–7",
                     "position": "nach letzter Note",
                     "comment": "Klammer rechts mit rotem Buntstift."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g631",
+                    "linkTo": "M_317_Sk3_1"
+                },
+                {
+                    "svgGroupId": "g642",
+                    "linkTo": "M_317_Sk3_1_1"
+                },
+                {
+                    "svgGroupId": "g655",
+                    "linkTo": "M_317_Sk3_1_3_1"
                 }
             ]
         },
@@ -404,26 +820,36 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g410",
+                    "linkTo": "M_317_Sk3_1_3"
+                },
+                {
+                    "svgGroupId": "g421",
+                    "linkTo": "M_317_Sk3_1_1"
+                }
+            ]
         },
         {
             "id": "M_317_Sk4",
             "label": "M 317 Sk4",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> ist eine vollständige Verlaufskizze des Liedes „Wie bin ich froh!“. Die Verlaufskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <strong>Textfassung 1</strong> und <strong>Textfassung 2</strong> in <strong>B</strong> und <strong>E</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a>].) <br /> <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk 4</strong></a> ist laut der nach T. 15 folgenden Datierung am 16. Juli 1934 beendet worden.",
-                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a> in <strong>C</strong>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+                "<a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> ist eine vollständige Verlaufskizze des Liedes „Wie bin ich froh!“. Die Verlaufskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet('M_317_TF1')\"><strong>Textfassung 1</strong></a> und <strong>Textfassung 2</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a>].) <br /> <strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
+                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
                 {
                     "svgGroupId": "g678",
-                    "measure": "{{ '{' }}1A{{ '}' }}",
+                    "measure": "{1A}",
                     "system": "10–12",
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
                 },
                 {
                     "svgGroupId": "g683",
-                    "measure": "{{ '{' }}1B{{ '}' }}",
+                    "measure": "{1B}",
                     "system": "10–12",
                     "position": "",
                     "comment": "Durch Einklammerung rechts getilgt."
@@ -583,7 +1009,7 @@
                     "comment": "Durch Einkreisung getilgt."
                 },
                 {
-                    "svgGroupId": "g10030",
+                    "svgGroupId": "g10759",
                     "measure": "6",
                     "system": "5",
                     "position": "1. Note",
@@ -671,7 +1097,7 @@
                     "measure": "9",
                     "system": "11",
                     "position": "3. Note",
-                    "comment": "sic: &#9837; (zu es<sup>2</sup>). Vermutlich Verschreibung für &#9838; (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                    "comment": "sic: {{ref.getGlyph('[b]')}} (zu es<sup>2</sup>). Vermutlich Verschreibung für {{ref.getGlyph('[a]')}} (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
                 },
                 {
                     "svgGroupId": "g1247",
@@ -855,6 +1281,40 @@
                     "position": "letzte Note",
                     "comment": "Durch Einkreisung getilgt. Siehe Korrektur in T. 15."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g802",
+                    "linkTo": "M_317_Sk4_1"
+                },
+                {
+                    "svgGroupId": "g1363",
+                    "linkTo": "M_317_Sk4c"
+                },
+                {
+                    "svgGroupId": "g1344",
+                    "linkTo": "M_317_Sk4b"
+                },
+                {
+                    "svgGroupId": "g1367",
+                    "linkTo": "M_317_Sk4d"
+                },
+                {
+                    "svgGroupId": "g1353",
+                    "linkTo": "M_317_Sk4_2"
+                },
+                {
+                    "svgGroupId": "g809",
+                    "linkTo": "M_317_Sk4c"
+                },
+                {
+                    "svgGroupId": "g796",
+                    "linkTo": "M_317_Sk4_2"
+                },
+                {
+                    "svgGroupId": "g818",
+                    "linkTo": "M_317_Sk4_3"
+                }
             ]
         },
         {
@@ -880,17 +1340,23 @@
                 },
                 {
                     "svgGroupId": "g30323",
-                    "measure": "{{ '{' }}3{{ '}' }}",
+                    "measure": "{3}",
                     "system": "",
                     "position": "",
                     "comment": "Durch Einklammerung links und Streichung getilgt. Streichung mit rotem Buntstift."
                 },
                 {
                     "svgGroupId": "g31053",
-                    "measure": "{{ '{' }}3{{ '}' }}",
+                    "measure": "{3}",
                     "system": "14",
                     "position": "letzte Note",
                     "comment": "Winkel mit rotem Buntstift."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g604",
+                    "linkTo": "M_317_Sk4a"
                 }
             ]
         },
@@ -901,7 +1367,17 @@
                 "<a (click)=\"ref.selectSvgSheet('M_317_Sk4_2')\"><strong>Sk4.2</strong></a> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
-            "comments": []
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g371",
+                    "linkTo": "M_317_Sk4d"
+                },
+                {
+                    "svgGroupId": "g388",
+                    "linkTo": "M_317_Sk4c"
+                }
+            ]
         },
         {
             "id": "M_317_Sk4_3",
@@ -922,7 +1398,17 @@
                     "measure": "13",
                     "system": "16",
                     "position": "letzte Note",
-                    "comment": "Entzifferung von &#9839;ais unsicher: möglicherweise auch &#9837;b."
+                    "comment": "Entzifferung von {{ref.getGlyph('[#]')}}ais unsicher: möglicherweise auch {{ref.getGlyph('[b]')}}b."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g453",
+                    "linkTo": "M_317_Sk4d"
+                },
+                {
+                    "svgGroupId": "g466",
+                    "linkTo": "M_317_Sk4c"
                 }
             ]
         },
@@ -934,22 +1420,25 @@
             ],
             "comments": [
                 {
+                    "svgGroupId": "g1145",
                     "measure": "1",
                     "system": "",
                     "position": "4/8",
                     "comment": "<em>rit.</em> versetzt von ungenauer Position zwischen 4/8 und 5/8 mit Blick auf <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>M 317 Sk4</strong></a>."
                 },
                 {
+                    "svgGroupId": "g1198",
                     "measure": "3",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "&#119185; versetzt von 1. Pause."
+                    "comment": "{{ref.getGlyph('[f]')}} versetzt von 1. Pause."
                 },
                 {
+                    "svgGroupId": "g1204",
                     "measure": "6",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "&#119185; versetzt von 3/8."
+                    "comment": "{{ref.getGlyph('[f]')}} versetzt von 3/8."
                 }
             ]
         },

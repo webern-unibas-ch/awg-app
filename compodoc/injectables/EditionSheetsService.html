@@ -1,0 +1,1832 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li >EditionSheetsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/services/edition-sheets.service.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The Edition sheets service.</p>
+<p>It handles the provision of the current edition complex and
+of the textcritical comments for a selected overlay item.</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_findConvoluteById" >_findConvoluteById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_findNextSheetIdForNonPartialSheet" >_findNextSheetIdForNonPartialSheet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_findNextSheetIdForPartialSheet" >_findNextSheetIdForPartialSheet</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_findSvgSheetIndexById" >_findSvgSheetIndexById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_findSvgSheetPartialIndexById" >_findSvgSheetPartialIndexById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getSheetWithPartialContentById" >_getSheetWithPartialContentById</a>
+                            </li>
+                            <li>
+                                <a href="#findTextcritics" >findTextcritics</a>
+                            </li>
+                            <li>
+                                <a href="#getCurrentEditionType" >getCurrentEditionType</a>
+                            </li>
+                            <li>
+                                <a href="#getNextSheetId" >getNextSheetId</a>
+                            </li>
+                            <li>
+                                <a href="#getTextcriticalCommentsForOverlays" >getTextcriticalCommentsForOverlays</a>
+                            </li>
+                            <li>
+                                <a href="#selectConvolute" >selectConvolute</a>
+                            </li>
+                            <li>
+                                <a href="#selectSvgSheetById" >selectSvgSheetById</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findConvoluteById"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findConvoluteById</b></span>
+                        <a href="#_findConvoluteById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findConvoluteById(folioConvolutes: FolioConvolute[], id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findConvoluteById.</p>
+<p>It finds a convolute with a given id in a given convolute array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>folioConvolutes</td>
+                                    <td>
+                                            <code>FolioConvolute[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given folio convolutes input.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/FolioConvolute.html" target="_self" >FolioConvolute</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The convolute that was found, or undefined.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findNextSheetIdForNonPartialSheet"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findNextSheetIdForNonPartialSheet</b></span>
+                        <a href="#_findNextSheetIdForNonPartialSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findNextSheetIdForNonPartialSheet(direction: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, sheetArray: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>, currentSheetIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentSheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:248</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findNextSheetIdForNonPartialSheet</p>
+<p>It finds the id of the next sheet of a given sheet array in the specified direction
+when the selected sheet is not a partial sheet.</p>
+<div><pre class="line-numbers"><code class="language-none">                 otherwise the currentSheetId.</code></pre></div></div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>direction</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A number indicating the direction of navigation. -1 for previous and 1 for next.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheetArray</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given EditionSvgSheet array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>currentSheetIndex</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The index of the currently selected sheet in the sheets array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>currentSheetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The id of the currently selected sheet.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The id of the next sheet in the specified direction if there is one,
+otherwise the currentSheetId.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findNextSheetIdForPartialSheet"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findNextSheetIdForPartialSheet</b></span>
+                        <a href="#_findNextSheetIdForPartialSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findNextSheetIdForPartialSheet(direction: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, sheetArray: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>, currentSheetIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, currentSheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, partial: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:215</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findNextSheetIdForPartialSheet</p>
+<p>It finds the id of the next sheet of a given sheet array in the specified direction
+when the selected sheet is a partial sheet.</p>
+<div><pre class="line-numbers"><code class="language-none">                 otherwise tries to get the next sheed id for non-partial sheets.</code></pre></div></div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>direction</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A number indicating the direction of navigation. -1 for previous and 1 for next.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheetArray</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given EditionSvgSheet array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>currentSheetIndex</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The index of the currently selected sheet in the sheets array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>currentSheetId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The id of the currently selected sheet.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>partial</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The partial id of the currently selected sheet.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The id of the next partial sheet in the specified direction,
+otherwise tries to get the next sheed id for non-partial sheets.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findSvgSheetIndexById"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findSvgSheetIndexById</b></span>
+                        <a href="#_findSvgSheetIndexById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findSvgSheetIndexById(sheetArray: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:276</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findSvgSheetIndex.</p>
+<p>It finds the index of an SVG sheet in a given array of sheets.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sheetArray</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given EditionSvgSheet array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The index of the sheet in the array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_findSvgSheetPartialIndexById"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_findSvgSheetPartialIndexById</b></span>
+                        <a href="#_findSvgSheetPartialIndexById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_findSvgSheetPartialIndexById(sheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="300"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:300</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _findSvgSheetPartialIndex.</p>
+<p>It checks if a given id includes an SVG sheet partial and returns its index.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sheet</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given sheet.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The index of the sheet partial in the sheet.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getSheetWithPartialContentById"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_getSheetWithPartialContentById</b></span>
+                        <a href="#_getSheetWithPartialContentById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getSheetWithPartialContentById(sheetArray: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>, sheetIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="315"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:315</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getSheetWithPartialContentById.</p>
+<p>It gets an SVG sheet and its content identified by its (partial) id within a given array of sheets.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sheetArray</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given EditionSvgSheet array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheetIndex</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The index of the sheet in the array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The sheet that was found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findTextcritics"></a>
+                    <span class="name">
+                        <span ><b>findTextcritics</b></span>
+                        <a href="#findTextcritics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>findTextcritics(textcriticsArray: <a href="../classes/Textcritics.html" target="_self">Textcritics[] | undefined</a>, selectedSheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet | undefined</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:35</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: findTextcritics.</p>
+<p>It finds the textcritics for a selected SVG sheet.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>textcriticsArray</td>
+                                    <td>
+                                                <code><a href="../classes/Textcritics.html" target="_self" >Textcritics[] | undefined</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given textcritics array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectedSheet</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet | undefined</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given selected SVG sheet.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/Textcritics.html" target="_self" >Textcritics</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The textcritics that were found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCurrentEditionType"></a>
+                    <span class="name">
+                        <span ><b>getCurrentEditionType</b></span>
+                        <a href="#getCurrentEditionType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCurrentEditionType(selectedSvgSheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>, sheets)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="60"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:60</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getCurrentEditionType.</p>
+<p>It returns the current edition type of the selected SVG sheet.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>selectedSvgSheet</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given selected SVG sheet.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheets</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given array of objects representing the available SVG sheets.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code> | undefined</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A string representing the current edition type, or undefined if not found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getNextSheetId"></a>
+                    <span class="name">
+                        <span ><b>getNextSheetId</b></span>
+                        <a href="#getNextSheetId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getNextSheetId(direction: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, selectedSheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>, sheetArray: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:86</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getNextSheetId</p>
+<p>Returns the next sheet id in the specified direction, given a selected sheet and a list of sheets.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>direction</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A number indicating the direction of navigation. -1 for previous and 1 for next.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectedSheet</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given selected sheet.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheetArray</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given EditionSvgSheet array.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The id of the next sheet in the specified direction.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTextcriticalCommentsForOverlays"></a>
+                    <span class="name">
+                        <span ><b>getTextcriticalCommentsForOverlays</b></span>
+                        <a href="#getTextcriticalCommentsForOverlays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTextcriticalCommentsForOverlays(textcriticalComments: <a href="../classes/TextcriticalComment.html" target="_self">TextcriticalComment[]</a>, overlays: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlay[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:113</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getTextcriticalCommentsForOverlays.</p>
+<p>It provides the textcritical comments for the selected svg overlays.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>textcriticalComments</td>
+                                    <td>
+                                                <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given textcritical comments.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>overlays</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given svg overlays.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Array with filtered textcritical comments.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectConvolute"></a>
+                    <span class="name">
+                        <span ><b>selectConvolute</b></span>
+                        <a href="#selectConvolute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectConvolute(convolutes: FolioConvolute[], sheets, selectedSheet: <a href="../classes/EditionSvgSheet.html" target="_self">EditionSvgSheet</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="134"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:134</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: selectConvolute.</p>
+<p>It selects a FolioConvolute based on the currently selected sheet and edition type.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>convolutes</td>
+                                    <td>
+                                            <code>FolioConvolute[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given folio convolutes.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sheets</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given sheets object.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectedSheet</td>
+                                    <td>
+                                                <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given selected sheet.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/FolioConvolute.html" target="_self" >FolioConvolute</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The convolute that was found, or undefined.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectSvgSheetById"></a>
+                    <span class="name">
+                        <span ><b>selectSvgSheetById</b></span>
+                        <a href="#selectSvgSheetById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectSvgSheetById(sheets, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="159"
+                            class="link-to-prism">src/app/views/edition-view/services/edition-sheets.service.ts:159</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: selectSvgSheetById.</p>
+<p>It selects an SVG sheet from a given sheets object by a given id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sheets</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given sheets object.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The sheet that was found.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import {
+    EditionSvgOverlay,
+    EditionSvgSheet,
+    EditionSvgSheetList,
+    FolioConvolute,
+    TextcriticalComment,
+    Textcritics,
+} from &#x27;@awg-views/edition-view/models&#x27;;
+
+/**
+ * The Edition sheets service.
+ *
+ * It handles the provision of the current edition complex and
+ * of the textcritical comments for a selected overlay item.
+ *
+ * Provided in: &#x60;root&#x60;.
+ * @used in the {@link EditionSheetsComponent}.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;,
+})
+export class EditionSheetsService {
+    /**
+     * Public method: findTextcritics.
+     *
+     * It finds the textcritics for a selected SVG sheet.
+     *
+     * @param {Textcritics[]} textcriticsArray The given textcritics array.
+     * @param {EditionSvgSheet} selectedSheet The given selected SVG sheet.
+     *
+     * @returns {Textcritics} The textcritics that were found.
+     */
+    findTextcritics(
+        textcriticsArray: Textcritics[] | undefined,
+        selectedSheet: EditionSvgSheet | undefined
+    ): Textcritics {
+        if (!textcriticsArray || !selectedSheet) {
+            return new Textcritics();
+        }
+
+        // Find the textcritics for the selected SVG sheet id in textcriticsData.textcritics array
+        const textcritics &#x3D; textcriticsArray.find(textcritic &#x3D;&gt; textcritic.id &#x3D;&#x3D;&#x3D; selectedSheet.id);
+
+        // Return the textcritics with the given id or empty object if no comments were found
+        return textcritics || new Textcritics();
+    }
+
+    /**
+     * Public method: getCurrentEditionType.
+     *
+     * It returns the current edition type of the selected SVG sheet.
+     *
+     * @param {EditionSvgSheet} selectedSvgSheet The given selected SVG sheet.
+     * @param {EditionSvgSheetList[&#x27;sheets&#x27;]} sheets The given array of objects representing the available SVG sheets.
+     *
+     * @returns {keyof EditionSvgSheetList[&#x27;sheets&#x27;] | undefined} A string representing the current edition type, or undefined if not found.
+     */
+    getCurrentEditionType(
+        selectedSvgSheet: EditionSvgSheet,
+        sheets: EditionSvgSheetList[&#x27;sheets&#x27;]
+    ): keyof EditionSvgSheetList[&#x27;sheets&#x27;] | undefined {
+        const selectedSheetContent &#x3D; selectedSvgSheet?.content?.[0];
+        const partial &#x3D; selectedSheetContent?.partial;
+        const sheetId &#x3D; partial ? selectedSvgSheet.id + partial : selectedSvgSheet.id;
+
+        const editionType &#x3D; Object.keys(sheets).find(
+            type &#x3D;&gt; this._findSvgSheetIndexById(sheets[type], sheetId) &gt;&#x3D; 0
+        ) as keyof EditionSvgSheetList[&#x27;sheets&#x27;] | undefined;
+
+        return editionType;
+    }
+
+    /**
+     * Public method: getNextSheetId
+     *
+     * Returns the next sheet id in the specified direction, given a selected sheet and a list of sheets.
+     *
+     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {EditionSvgSheet} selectedSheet The given selected sheet.
+     * @param {EditionSvgSheet[]} sheetArray The given EditionSvgSheet array.
+     *
+     * @returns {string} The id of the next sheet in the specified direction.
+     **/
+    getNextSheetId(direction: number, selectedSheet: EditionSvgSheet, sheetArray: EditionSvgSheet[]): string {
+        const partial &#x3D; selectedSheet?.content?.[0]?.partial;
+        const currentSheetId &#x3D; selectedSheet.id + (partial || &#x27;&#x27;);
+        const currentSheetIndex &#x3D; this._findSvgSheetIndexById(sheetArray, selectedSheet.id);
+
+        if (partial) {
+            return this._findNextSheetIdForPartialSheet(
+                direction,
+                sheetArray,
+                currentSheetIndex,
+                currentSheetId,
+                partial
+            );
+        } else {
+            return this._findNextSheetIdForNonPartialSheet(direction, sheetArray, currentSheetIndex, currentSheetId);
+        }
+    }
+
+    /**
+     * Public method: getTextcriticalCommentsForOverlays.
+     *
+     * It provides the textcritical comments for the selected svg overlays.
+     *
+     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
+     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
+     */
+    getTextcriticalCommentsForOverlays(
+        textcriticalComments: TextcriticalComment[],
+        overlays: EditionSvgOverlay[]
+    ): TextcriticalComment[] {
+        if (!textcriticalComments || !overlays) {
+            return [];
+        }
+        return textcriticalComments.filter(comment &#x3D;&gt; overlays.some(overlay &#x3D;&gt; comment.svgGroupId &#x3D;&#x3D;&#x3D; overlay.id));
+    }
+
+    /**
+     * Public method: selectConvolute.
+     *
+     * It selects a FolioConvolute based on the currently selected sheet and edition type.
+     *
+     * @param {FolioConvolute[]} convolutes The given folio convolutes.
+     * @param {EditionSvgSheetList[&#x27;sheets&#x27;]} sheets The given sheets object.
+     * @param {EditionSvgSheet} selectedSheet The given selected sheet.
+     *
+     * @returns {FolioConvolute} The convolute that was found, or undefined.
+     */
+    selectConvolute(
+        convolutes: FolioConvolute[],
+        sheets: EditionSvgSheetList[&#x27;sheets&#x27;],
+        selectedSheet: EditionSvgSheet
+    ): FolioConvolute {
+        if (!convolutes || !sheets || !selectedSheet) {
+            return undefined;
+        }
+
+        const editionType &#x3D; this.getCurrentEditionType(selectedSheet, sheets);
+        const convoluteId &#x3D; editionType &#x3D;&#x3D;&#x3D; &#x27;sketchEditions&#x27; ? selectedSheet.convolute : &#x27;&#x27;;
+
+        return this._findConvoluteById(convolutes, convoluteId);
+    }
+
+    /**
+     * Public method: selectSvgSheetById.
+     *
+     * It selects an SVG sheet from a given sheets object by a given id.
+     *
+     * @param {EditionSvgSheetList[&#x27;sheets&#x27;]} sheets The given sheets object.
+     * @param {string} id The given id.
+     *
+     * @returns {EditionSvgSheet} The sheet that was found.
+     */
+    selectSvgSheetById(sheets: EditionSvgSheetList[&#x27;sheets&#x27;], id: string): EditionSvgSheet {
+        if (!sheets || !id) {
+            return new EditionSvgSheet();
+        }
+
+        const indexes &#x3D; {
+            workEditions: this._findSvgSheetIndexById(sheets.workEditions, id),
+            textEditions: this._findSvgSheetIndexById(sheets.textEditions, id),
+            sketchEditions: this._findSvgSheetIndexById(sheets.sketchEditions, id),
+        };
+
+        for (const [type, index] of Object.entries(indexes)) {
+            if (index &lt; 0) {
+                continue;
+            }
+
+            const sheet &#x3D; this._getSheetWithPartialContentById(sheets[type], index, id);
+            return sheet;
+        }
+
+        return new EditionSvgSheet();
+    }
+
+    /**
+     * Private method: _findConvoluteById.
+     *
+     * It finds a convolute with a given id in a given convolute array.
+     *
+     * @param {FolioConvolute[]} folioConvolutes The given folio convolutes input.
+     * @param {string} id The given id input.
+     *
+     * @returns {FolioConvolute} The convolute that was found, or undefined.
+     */
+    private _findConvoluteById(folioConvolutes: FolioConvolute[], id: string): FolioConvolute {
+        // Find the convolute with the given id in folioConvoluteData.convolutes array
+        const convolute &#x3D; folioConvolutes.find(conv &#x3D;&gt; conv.convoluteId &#x3D;&#x3D;&#x3D; id);
+
+        // If the convolute is found, return it; otherwise, return undefined
+        return convolute;
+    }
+
+    /**
+     * Private method: _findNextSheetIdForPartialSheet
+     *
+     * It finds the id of the next sheet of a given sheet array in the specified direction
+     * when the selected sheet is a partial sheet.
+     *
+     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {EditionSvgSheet[]} sheetArray The given EditionSvgSheet array.
+     * @param {number} currentSheetIndex The index of the currently selected sheet in the sheets array.
+     * @param {string} currentSheetId The id of the currently selected sheet.
+     * @param {string} partial The partial id of the currently selected sheet.
+     *
+     * @returns {string}    The id of the next partial sheet in the specified direction,
+     *                      otherwise tries to get the next sheed id for non-partial sheets.
+     **/
+    private _findNextSheetIdForPartialSheet(
+        direction: number,
+        sheetArray: EditionSvgSheet[],
+        currentSheetIndex: number,
+        currentSheetId: string,
+        partial: string
+    ): string {
+        const currentSheet &#x3D; sheetArray[currentSheetIndex];
+        const currentContentIndex &#x3D; currentSheet.content.findIndex(content &#x3D;&gt; content.partial &#x3D;&#x3D;&#x3D; partial);
+        const nextContentIndex &#x3D; currentContentIndex + direction;
+
+        if (nextContentIndex &gt;&#x3D; 0 &amp;&amp; nextContentIndex &lt; currentSheet.content?.length) {
+            const nextSheetId &#x3D; currentSheet.id + currentSheet.content[nextContentIndex].partial;
+            return nextSheetId;
+        } else {
+            return this._findNextSheetIdForNonPartialSheet(direction, sheetArray, currentSheetIndex, currentSheetId);
+        }
+    }
+
+    /**
+     * Private method: _findNextSheetIdForNonPartialSheet
+     *
+     * It finds the id of the next sheet of a given sheet array in the specified direction
+     * when the selected sheet is not a partial sheet.
+     *
+     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     * @param {EditionSvgSheet[]} sheetArray The given EditionSvgSheet array.
+     * @param {number} currentSheetIndex The index of the currently selected sheet in the sheets array.
+     * @param {string} currentSheetId The id of the currently selected sheet.
+     *
+     * @returns {string}    The id of the next sheet in the specified direction if there is one,
+     *                      otherwise the currentSheetId.
+     **/
+    private _findNextSheetIdForNonPartialSheet(
+        direction: number,
+        sheetArray: EditionSvgSheet[],
+        currentSheetIndex: number,
+        currentSheetId: string
+    ): string {
+        const nextIndex &#x3D; currentSheetIndex + direction;
+
+        if (nextIndex &gt;&#x3D; 0 &amp;&amp; nextIndex &lt; sheetArray.length) {
+            const nextSheet &#x3D; sheetArray[nextIndex];
+            const nextContentIndex &#x3D; direction &gt; 0 ? 0 : nextSheet.content.length - 1;
+            const nextSheetId &#x3D; nextSheet.id + (nextSheet.content[nextContentIndex]?.partial || &#x27;&#x27;);
+            return nextSheetId;
+        } else {
+            return currentSheetId;
+        }
+    }
+
+    /**
+     * Private method: _findSvgSheetIndex.
+     *
+     * It finds the index of an SVG sheet in a given array of sheets.
+     *
+     * @param {EditionSvgSheet[]} sheetArray The given EditionSvgSheet array.
+     * @param {string} id The given id.
+     *
+     * @returns {number} The index of the sheet in the array.
+     */
+    private _findSvgSheetIndexById(sheetArray: EditionSvgSheet[], id: string): number {
+        return sheetArray.findIndex(sheet &#x3D;&gt; {
+            let sheetId &#x3D; sheet.id;
+            // If we have partial sheets, look into content array for id with extra partial
+            if (sheet.content.length &gt; 1) {
+                const partialIndex &#x3D; this._findSvgSheetPartialIndexById(sheet, id);
+                if (partialIndex &gt;&#x3D; 0) {
+                    sheetId +&#x3D; sheet.content[partialIndex].partial;
+                }
+            }
+            return sheetId &#x3D;&#x3D;&#x3D; id;
+        });
+    }
+
+    /**
+     * Private method: _findSvgSheetPartialIndex.
+     *
+     * It checks if a given id includes an SVG sheet partial and returns its index.
+     *
+     * @param {EditionSvgSheet} sheet The given sheet.
+     * @param {string} id The given id.
+     *
+     * @returns {number} The index of the sheet partial in the sheet.
+     */
+    private _findSvgSheetPartialIndexById(sheet: EditionSvgSheet, id: string): number {
+        return sheet.content.findIndex(content &#x3D;&gt; sheet.id + content.partial &#x3D;&#x3D;&#x3D; id);
+    }
+
+    /**
+     * Private method: _getSheetWithPartialContentById.
+     *
+     * It gets an SVG sheet and its content identified by its (partial) id within a given array of sheets.
+     *
+     * @param {EditionSvgSheet[]} sheetArray The given EditionSvgSheet array.
+     * @param {number} sheetIndex The index of the sheet in the array.
+     * @param {string} id The given id.
+     *
+     * @returns {EditionSvgSheet} The sheet that was found.
+     */
+    private _getSheetWithPartialContentById(
+        sheetArray: EditionSvgSheet[],
+        sheetIndex: number,
+        id: string
+    ): EditionSvgSheet {
+        const sheet &#x3D; { ...sheetArray[sheetIndex] };
+
+        const partialIndex &#x3D; this._findSvgSheetPartialIndexById(sheet, id);
+
+        if (partialIndex &gt;&#x3D; 0) {
+            sheet.content &#x3D; [sheet.content[partialIndex]];
+        }
+
+        return sheet;
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'EditionSheetsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -3,7 +3,179 @@
         {
             "convoluteId": "A",
             "convoluteLabel": "A Skizzen (CH-Bps)",
-            "folios": []
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "id": "M_30_Sk1a",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 1–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1b",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. {7A–10B}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1c",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. {11A–16A}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1d",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 7B–8B, 9C–10C",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 9,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1e",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. {9D–12B}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1f",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 9E–{15B}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 14,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1g",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 16B–15C",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "id": "M_30_Sk1h",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 17–21",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1i",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 22–25(1–3/8)",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1j",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 25(4–6/8)–29B",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_30_Sk1k",
+                            "sigle": "M 30 Sk1",
+                            "sigleAddendum": "T. 28C–29C",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "convoluteId": "B",

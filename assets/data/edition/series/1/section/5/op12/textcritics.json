@@ -12,21 +12,21 @@
                     "measure": "1",
                     "system": "3",
                     "position": "2/8",
-                    "comment": "&#9838;c<sup>2</sup> überschreibt &#9837;b<sup>1</sup> (oder &#9837;ces<sup>2</sup>?)."
+                    "comment": "{{ref.getGlyph('[a]')}}c<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}b<sup>1</sup> (oder {{ref.getGlyph('[b]')}}ces<sup>2</sup>?)."
                 },
                 {
                     "svgGroupId": "g1153",
                     "measure": "2",
                     "system": "3",
                     "position": "4/8",
-                    "comment": "&#9839; zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 2</strong></a> und <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 3</strong></a>."
+                    "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 2</strong></a> und <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\" ><strong>Textfassung 3</strong></a>."
                 },
                 {
                     "svgGroupId": "g1320",
                     "measure": "8",
                     "system": "6",
                     "position": "1/4",
-                    "comment": "&#9838;g<sup>2</sup> gestrichen und geändert zu &#9838;g<sup>1</sup>."
+                    "comment": "{{ref.getGlyph('[a]')}}g<sup>2</sup> gestrichen und geändert zu {{ref.getGlyph('[a]')}}g<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1389",
@@ -61,7 +61,7 @@
                     "measure": "13",
                     "system": "11",
                     "position": "2.–3. Note",
-                    "comment": "Zwei triolische Achtelnoten &#9838;g<sup>1</sup>–&#9838;c<sup>2</sup> gestrichen und geändert zu Achtelpause."
+                    "comment": "Zwei triolische Achtelnoten {{ref.getGlyph('[a]')}}g<sup>1</sup>–{{ref.getGlyph('[a]')}}c<sup>2</sup> gestrichen und geändert zu Achtelpause."
                 },
                 {
                     "svgGroupId": "g5850",
@@ -82,42 +82,42 @@
                     "measure": "15",
                     "system": "11",
                     "position": "",
-                    "comment": "&#9837;as<sup>2</sup>/&#9838;c<sup>3</sup>–&#9838;g<sup>1</sup>/&#9839;cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
+                    "comment": "{{ref.getGlyph('[b]')}}as<sup>2</sup>/{{ref.getGlyph('[a]')}}c<sup>3</sup>–{{ref.getGlyph('[a]')}}g<sup>1</sup>/{{ref.getGlyph('[#]')}}cis<sup>2</sup> durch Einkreisung getilgt. Siehe Änderung in System 14."
                 },
                 {
                     "svgGroupId": "g911",
                     "measure": "16",
                     "system": "10",
                     "position": "2/8",
-                    "comment": "&#9838;a<sup>1</sup> ersetzt &#9838;g<sup>2</sup>."
+                    "comment": "{{ref.getGlyph('[a]')}}a<sup>1</sup> ersetzt {{ref.getGlyph('[a]')}}g<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g5891",
                     "measure": "16",
                     "system": "11",
                     "position": "3–4/16",
-                    "comment": "sic: &#9838; nach &#9837;es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
+                    "comment": "sic: {{ref.getGlyph('[a]')}} nach {{ref.getGlyph('[b]')}}es<sup>2</sup>. (Ansatz zu e<sup>2</sup> bei 4/16?)"
                 },
                 {
                     "svgGroupId": "g5905",
                     "measure": "16",
                     "system": "10",
                     "position": "3.–4. Note",
-                    "comment": "Zwei Achtelnoten &#9837;as<sup>2</sup>–&#9838;g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
+                    "comment": "Zwei Achtelnoten {{ref.getGlyph('[b]')}}as<sup>2</sup>–{{ref.getGlyph('[a]')}}g<sup>2</sup> geändert zu punktierter Achtelnote und Sechzehntelnote."
                 },
                 {
                     "svgGroupId": "g1256",
                     "measure": "20",
                     "system": "8",
                     "position": "",
-                    "comment": "&#9837; überschreibt &#9838;."
+                    "comment": "{{ref.getGlyph('[b]')}} überschreibt {{ref.getGlyph('[a]')}}."
                 },
                 {
                     "svgGroupId": "g1276",
                     "measure": "21",
                     "system": "6",
                     "position": "3. Note",
-                    "comment": "d<sup>1</sup> gestrichen und geändert zu &#9839;fis<sup>1</sup>."
+                    "comment": "d<sup>1</sup> gestrichen und geändert zu {{ref.getGlyph('[#]')}}fis<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1194",
@@ -138,21 +138,21 @@
                     "measure": "23",
                     "system": "14",
                     "position": "1/4",
-                    "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote &#9838;H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
+                    "comment": "Entzifferung nicht eindeutig. Zuerst: Halbe Note e/a überschreibt Viertelnote {{ref.getGlyph('[a]')}}H/g (?); dann: Halbe Note e/a gestrichen und geändert zu Viertelnote H/e sowie pauschale Ligaturbögen von T. 22 hinzugefügt."
                 },
                 {
                     "svgGroupId": "g1094",
                     "measure": "23",
                     "system": "13",
                     "position": "2/4",
-                    "comment": "&#9839;cis<sup>1</sup>/&#9839;gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
+                    "comment": "{{ref.getGlyph('[#]')}}cis<sup>1</sup>/{{ref.getGlyph('[#]')}}gis<sup>1</sup> gestrichen. Siehe Änderung in System 15."
                 },
                 {
                     "svgGroupId": "g1104",
                     "measure": "24",
                     "system": "14",
                     "position": "",
-                    "comment": "&#9837;B/&#9838;f/&#9838;h durch Einkreisung getilgt."
+                    "comment": "{{ref.getGlyph('[b]')}}B/{{ref.getGlyph('[a]')}}f/{{ref.getGlyph('[a]')}}h durch Einkreisung getilgt."
                 }
             ]
         },
@@ -175,14 +175,14 @@
                     "measure": "10",
                     "system": "12",
                     "position": "2. Note",
-                    "comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>G</strong></a>."
+                    "comment": "{{ref.getGlyph('[a]')}}e oder {{ref.getGlyph('[b]')}}es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [{{ref.getGlyph('[b]')}}]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a (click)=\"ref.selectSvgSheet('M_212_Sk1b')\"><strong>Sk1</strong></a> T. 11, <a (click)=\"ref.selectSvgSheet('M_212_Sk3')\"><strong>Sk3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_212_Sk5')\"><strong>Sk5</strong></a> sowie in den <a (click)=\"ref.openModal('OP12_EDITION_COMING_SOON')\">Reinschrift- bzw. Druckfassungen</a> aus <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>B</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>C</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a>, <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>F</strong></a> und <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>G</strong></a>."
                 },
                 {
                     "svgGroupId": "g1006",
                     "measure": "11",
                     "system": "14",
                     "position": "(1/4)",
-                    "comment": "Punktierte Achtelpause, Sechzehntelnote &#9837;b radiert."
+                    "comment": "Punktierte Achtelpause, Sechzehntelnote {{ref.getGlyph('[b]')}}b radiert."
                 },
                 {
                     "svgGroupId": "g1405",
@@ -211,7 +211,7 @@
                     "measure": "10",
                     "system": "9",
                     "position": "2/4",
-                    "comment": "c gestrichen; &#9838;e oder &#9837;es (?)."
+                    "comment": "c gestrichen; {{ref.getGlyph('[a]')}}e oder {{ref.getGlyph('[b]')}}es (?)."
                 },
                 {
                     "svgGroupId": "g1543",
@@ -281,7 +281,7 @@
                     "measure": "10",
                     "system": "9",
                     "position": "3/8",
-                    "comment": "&#9837; zu ces<sup>1</sup> überschreibt &#9838; zu c<sup>1</sup>. (Oder: &#9837;ces<sup>1</sup> überschreibt &#9838;h?)."
+                    "comment": "{{ref.getGlyph('[b]')}} zu ces<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}} zu c<sup>1</sup>. (Oder: {{ref.getGlyph('[b]')}}ces<sup>1</sup> überschreibt {{ref.getGlyph('[a]')}}h?)."
                 },
                 {
                     "svgGroupId": "g1434",
