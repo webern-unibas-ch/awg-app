@@ -12,12 +12,8 @@ import {
     ResTypeItemJson,
 } from '@awg-shared/api-objects';
 import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-response-formats/src/property-definition-json';
-import {
-    ExtendedSearchParams,
-    SearchCompop,
-    SEARCH_COMPOP_SETS_LIST,
-    VALUETYPE_LIST,
-} from '@awg-views/data-view/models';
+import { SEARCH_COMPOP_SETS_LIST, VALUETYPE_LIST } from '@awg-views/data-view/data';
+import { ExtendedSearchParams, SearchCompop } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
 /**
