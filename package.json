@@ -121,7 +121,7 @@
         "@angular-eslint/template-parser": "^15.2.1",
         "@angular/cli": "^15.2.4",
         "@angular/compiler-cli": "^15.2.3",
-        "@commitlint/cli": "^17.4.4",
+        "@commitlint/cli": "^17.5.0",
         "@commitlint/config-angular": "^17.4.4",
         "@compodoc/compodoc": "^1.1.19",
         "@types/d3": "^7.4.0",
