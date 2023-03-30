@@ -58,4 +58,31 @@ export const EDITION_GLYPHS_DATA = {
         alt: '[f]',
         hex: '\uD834\uDD91',
     },
+
+    /**
+     * The glyph of a musical fortissimo (double forte) symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%91
+     */
+    FORTISSIMO: {
+        alt: '[ff]',
+        hex: '\uD834\uDD91\uD834\uDD91',
+    },
+
+    /**
+     * The glyph of a musical piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANO: {
+        alt: '[p]',
+        hex: '\uD834\uDD8F',
+    },
+
+    /**
+     * The glyph of a musical pianissimo (double piano) symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANISSIMO: {
+        alt: '[pp]',
+        hex: '\uD834\uDD8F\uD834\uDD8F',
+    },
 } as const;
