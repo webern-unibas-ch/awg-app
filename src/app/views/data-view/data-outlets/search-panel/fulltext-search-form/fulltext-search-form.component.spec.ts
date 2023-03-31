@@ -6,7 +6,7 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faSearch, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { FulltextSearchFormComponent } from './fulltext-search-form.component';
 
@@ -19,14 +19,14 @@ describe('FulltextSearchFormComponent (DONE)', () => {
     const formBuilder: FormBuilder = new FormBuilder();
 
     let expectedSearchValue: string;
-    let expectedSearchFormStrings: {
+    let expectedFulltextSearchFormStrings: {
         label: string;
         placeholder: string;
         errorMessage: string;
     };
     let expectedSearchIcon: IconDefinition;
 
-    let createFulltextSearchFormGroupSpy: Spy;
+    let createFulltextSearchFormSpy: Spy;
     let listenToUserInputChangeSpy: Spy;
     let setSearchvalFromInputSpy: Spy;
     let onSearchSpy: Spy;
@@ -50,7 +50,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
 
         // Test data
         expectedSearchValue = 'Test';
-        expectedSearchFormStrings = {
+        expectedFulltextSearchFormStrings = {
             label: 'Input für Volltextsuche',
             placeholder: 'Volltextsuche in der Webern-Datenbank …',
             errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
@@ -60,7 +60,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        createFulltextSearchFormGroupSpy = spyOn(component, 'createFulltextSearchFormGroup').and.callThrough();
+        createFulltextSearchFormSpy = spyOn(component, 'createFulltextSearchForm').and.callThrough();
         listenToUserInputChangeSpy = spyOn(component, 'listenToUserInputChange').and.callThrough();
         setSearchvalFromInputSpy = spyOn(component, 'setSearchvalFromInput').and.callThrough();
         onSearchSpy = spyOn(component, 'onSearch').and.callThrough();
@@ -76,20 +76,16 @@ describe('FulltextSearchFormComponent (DONE)', () => {
             expect(component.searchValue).toBeUndefined();
         });
 
-        it('... should not have `searchForm`', () => {
-            expect(component.searchForm).toBeUndefined();
+        it('... should not have `fulltextSearchForm`', () => {
+            expect(component.fulltextSearchForm).toBeUndefined();
         });
 
         it('... should have `faSearch` icon', () => {
-            expect(component.faSearch).toBeTruthy();
-            expect(component.faSearch).withContext(`should equal ${expectedSearchIcon}`).toEqual(expectedSearchIcon);
+            expectToEqual(component.faSearch, expectedSearchIcon);
         });
 
-        it('... should have `searchFormStrings`', () => {
-            expect(component.searchFormStrings).toBeTruthy();
-            expect(component.searchFormStrings)
-                .withContext(`should equal ${expectedSearchFormStrings}`)
-                .toEqual(expectedSearchFormStrings);
+        it('... should have `fulltextSearchFormStrings`', () => {
+            expectToEqual(component.fulltextSearchFormStrings, expectedFulltextSearchFormStrings);
         });
 
         describe('VIEW', () => {
@@ -164,8 +160,8 @@ describe('FulltextSearchFormComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should trigger the `createFulltextSearchFormGroup()` method', () => {
-            expectSpyCall(createFulltextSearchFormGroupSpy, 1, undefined);
+        it('... should trigger the `createFulltextSearchForm()` method', () => {
+            expectSpyCall(createFulltextSearchFormSpy, 1, undefined);
         });
 
         it('... should trigger the `listenToUserInputChange()` method', () => {
@@ -173,13 +169,12 @@ describe('FulltextSearchFormComponent (DONE)', () => {
         });
 
         it('... should have `searchValue` input', () => {
-            expect(component.searchValue).toBeTruthy();
-            expect(component.searchValue).withContext(`should be ${expectedSearchValue}`).toBe(expectedSearchValue);
+            expectToBe(component.searchValue, expectedSearchValue);
         });
 
-        it('... should have `searchForm`', () => {
-            expect(component.searchForm).toBeTruthy();
-            expect(component.searchForm).toBeInstanceOf(FormGroup);
+        it('... should have `fulltextSearchForm`', () => {
+            expect(component.fulltextSearchForm).toBeDefined();
+            expect(component.fulltextSearchForm).toBeInstanceOf(FormGroup);
         });
 
         describe('VIEW', () => {
@@ -188,8 +183,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 const faIconDe = getAndExpectDebugElementByCss(inputGroupTextDe[0], 'fa-icon', 1, 1);
                 const faIconIns = faIconDe[0].componentInstance.icon;
 
-                expect(faIconIns).toBeTruthy();
-                expect(faIconIns).withContext(`should equal ${expectedSearchIcon}`).toEqual(expectedSearchIcon);
+                expectToEqual(faIconIns, expectedSearchIcon);
             });
 
             it('... should have a title for input.form-control', () => {
@@ -197,10 +191,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
                 const inputEl = inputDe[0].nativeElement;
 
-                expect(inputEl.title).toBeTruthy();
-                expect(inputEl.title)
-                    .withContext(`should be ${expectedSearchFormStrings.label}`)
-                    .toBe(expectedSearchFormStrings.label);
+                expectToBe(inputEl.title, expectedFulltextSearchFormStrings.label);
             });
 
             it('... should have a placeholder in label.text-muted', () => {
@@ -208,10 +199,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 const labelDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'label.text-muted', 1, 1);
                 const labelEl = labelDe[0].nativeElement;
 
-                expect(labelEl.textContent).toBeTruthy();
-                expect(labelEl.textContent)
-                    .withContext(`should be ${expectedSearchFormStrings.placeholder}`)
-                    .toBe(expectedSearchFormStrings.placeholder);
+                expectToBe(labelEl.textContent, expectedFulltextSearchFormStrings.placeholder);
             });
 
             describe('... form untouched (pristine && invalid)', () => {
@@ -226,10 +214,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     const inputEl = inputDe[0].nativeElement;
 
                     expect(inputEl.value).toBeFalsy();
-                    expect(inputEl.placeholder).toBeTruthy();
-                    expect(inputEl.placeholder)
-                        .withContext(`should be ${expectedSearchFormStrings.placeholder}`)
-                        .toBe(expectedSearchFormStrings.placeholder);
+                    expectToBe(inputEl.placeholder, expectedFulltextSearchFormStrings.placeholder);
                 });
 
                 it('... should have class `is-invalid` in input.form-control', () => {
@@ -264,7 +249,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 });
 
                 it('... should have an invalid form', () => {
-                    expect(component.searchForm.valid).toBeFalse();
+                    expect(component.fulltextSearchForm.valid).toBeFalse();
                 });
 
                 it('... should not have a div.invalid-feedback', () => {
@@ -295,13 +280,9 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
                     const inputEl = inputDe[0].nativeElement;
 
-                    expect(inputEl.value).toBeTruthy();
-                    expect(inputEl.value).withContext(`should be ${expectedSearchValue}`).toBe(expectedSearchValue);
+                    expectToBe(inputEl.value, expectedSearchValue);
 
-                    expect(inputEl.placeholder).toBeTruthy();
-                    expect(inputEl.placeholder)
-                        .withContext(`should be ${expectedSearchFormStrings.placeholder}`)
-                        .toBe(expectedSearchFormStrings.placeholder);
+                    expectToBe(inputEl.placeholder, expectedFulltextSearchFormStrings.placeholder);
                 });
 
                 it('... should have class `is-invalid` in input.form-control', () => {
@@ -362,7 +343,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.searchForm.valid).toBeFalse();
+                    expect(component.fulltextSearchForm.valid).toBeFalse();
                 });
 
                 it('... should have a div.invalid-feedback if form is invalid after input', () => {
@@ -412,10 +393,10 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     );
                     const invalidFeedbackEl = invalidFeedbackDe[0].nativeElement;
 
-                    expect(invalidFeedbackEl.textContent).toBeTruthy();
-                    expect(invalidFeedbackEl.textContent.trim())
-                        .withContext(`should be ${expectedSearchFormStrings.errorMessage}`)
-                        .toBe(expectedSearchFormStrings.errorMessage.trim());
+                    expectToBe(
+                        invalidFeedbackEl.textContent.trim(),
+                        expectedFulltextSearchFormStrings.errorMessage.trim()
+                    );
                 });
             });
 
@@ -435,13 +416,9 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     const inputDe = getAndExpectDebugElementByCss(formFloatingGroupDe[0], 'input.form-control', 1, 1);
                     const inputEl = inputDe[0].nativeElement;
 
-                    expect(inputEl.value).toBeTruthy();
-                    expect(inputEl.value).withContext(`should be ${expectedSearchValue}`).toBe(expectedSearchValue);
+                    expectToBe(inputEl.value, expectedSearchValue);
 
-                    expect(inputEl.placeholder).toBeTruthy();
-                    expect(inputEl.placeholder)
-                        .withContext(`should be ${expectedSearchFormStrings.placeholder}`)
-                        .toBe(expectedSearchFormStrings.placeholder);
+                    expectToBe(inputEl.placeholder, expectedFulltextSearchFormStrings.placeholder);
                 });
 
                 it('... should not have class `is-invalid` in input.form-control', () => {
@@ -493,7 +470,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.searchvalControl.valid).toBeTruthy();
+                    expectToBe(component.searchvalControl.valid, true);
                 });
 
                 it('... should have a valid form', () => {
@@ -502,7 +479,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.setSearchvalFromInput();
                     fixture.detectChanges();
 
-                    expect(component.searchForm.valid).toBeTrue();
+                    expectToBe(component.fulltextSearchForm.valid, true);
                 });
 
                 it('... should not have a div.invalid-feedback', () => {
@@ -518,33 +495,33 @@ describe('FulltextSearchFormComponent (DONE)', () => {
             });
         });
 
-        describe('#createFulltextSearchFormGroup()', () => {
-            it('... should have a method `createFulltextSearchFormGroup()`', () => {
-                expect(component.createFulltextSearchFormGroup).toBeDefined();
+        describe('#createFulltextSearchForm()', () => {
+            it('... should have a method `createFulltextSearchForm()`', () => {
+                expect(component.createFulltextSearchForm).toBeDefined();
             });
 
             it('... should trigger on init', () => {
-                expectSpyCall(createFulltextSearchFormGroupSpy, 1, undefined);
+                expectSpyCall(createFulltextSearchFormSpy, 1, undefined);
             });
 
-            it('... should create the searchForm', () => {
-                expect(component.searchForm).toBeDefined();
-                expect(component.searchForm).toBeInstanceOf(FormGroup);
-                expect(component.searchForm.controls).toBeDefined();
+            it('... should create the fulltext searchForm', () => {
+                expect(component.fulltextSearchForm).toBeDefined();
+                expect(component.fulltextSearchForm).toBeInstanceOf(FormGroup);
+                expect(component.fulltextSearchForm.controls).toBeDefined();
             });
 
-            it('... should create the searchForm with correct searchvalControl', () => {
-                expect(component.searchForm.controls).toBeDefined();
+            it('... should create the fulltext searchForm with FormControl `searchvalControl`', () => {
+                expect(component.fulltextSearchForm.controls).toBeDefined();
 
-                expect(component.searchForm.controls['searchvalControl']).toBeDefined();
-                expect(component.searchForm.controls['searchvalControl']).toBeInstanceOf(FormControl);
+                expect(component.fulltextSearchForm.controls['searchvalControl']).toBeDefined();
+                expect(component.fulltextSearchForm.controls['searchvalControl']).toBeInstanceOf(FormControl);
             });
 
-            it('... should create the searchForm with empty searchvalControl value', () => {
-                expect(component.searchForm.controls['searchvalControl'].value).toBeFalsy();
+            it('... should create the fulltext searchForm with empty searchvalControl value', () => {
+                expect(component.fulltextSearchForm.controls['searchvalControl'].value).toBeFalsy();
             });
 
-            it('... should get the searchvalControl from its getter', () => {
+            it('... should get the empty searchvalControl from its getter', () => {
                 expect(component.searchvalControl).toBeDefined();
                 expect(component.searchvalControl).toBeInstanceOf(FormControl);
 
@@ -562,26 +539,26 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.searchvalControl.setValue('');
                     fixture.detectChanges();
 
-                    expect(component.isFulltextSearchInputInvalid()).toBeTrue();
+                    expectToBe(component.isFulltextSearchInputInvalid(), true);
                 });
 
                 it('... searchvalControl value is whitespace', () => {
                     component.searchvalControl.setValue(' ');
                     fixture.detectChanges();
 
-                    expect(component.isFulltextSearchInputInvalid()).toBeTrue();
+                    expectToBe(component.isFulltextSearchInputInvalid(), true);
                 });
 
                 it('... searchvalControl value has less than 3 characters', () => {
                     component.searchvalControl.setValue('a');
                     fixture.detectChanges();
 
-                    expect(component.isFulltextSearchInputInvalid()).toBeTrue();
+                    expectToBe(component.isFulltextSearchInputInvalid(), true);
 
                     component.searchvalControl.setValue('ab');
                     fixture.detectChanges();
 
-                    expect(component.isFulltextSearchInputInvalid()).toBeTrue();
+                    expectToBe(component.isFulltextSearchInputInvalid(), true);
                 });
             });
 
@@ -590,12 +567,12 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                     component.searchvalControl.setValue('abc');
                     fixture.detectChanges();
 
-                    expect(component.isFulltextSearchInputInvalid()).toBeFalsy();
+                    expectToBe(component.isFulltextSearchInputInvalid(), false);
 
                     component.searchvalControl.setValue('abcd');
                     fixture.detectChanges();
 
-                    expect(component.isFulltextSearchInputInvalid()).toBeFalsy();
+                    expectToBe(component.isFulltextSearchInputInvalid(), false);
                 });
             });
         });
@@ -695,9 +672,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 component.setSearchvalFromInput();
                 fixture.detectChanges();
 
-                expect(component.searchvalControl.value)
-                    .withContext(`should be ${expectedSearchValue}`)
-                    .toBe(expectedSearchValue);
+                expectToBe(component.searchvalControl.value, expectedSearchValue);
             });
 
             it('... should change the searchvalControl value if the current search value changes', () => {
@@ -706,9 +681,7 @@ describe('FulltextSearchFormComponent (DONE)', () => {
                 component.setSearchvalFromInput();
                 fixture.detectChanges();
 
-                expect(component.searchvalControl.value)
-                    .withContext(`should be ${otherSearchValue}`)
-                    .toBe(otherSearchValue);
+                expectToBe(component.searchvalControl.value, otherSearchValue);
             });
 
             it('... should trigger on changes of searchValue', () => {
