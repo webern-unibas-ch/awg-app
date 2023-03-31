@@ -364,6 +364,48 @@
                     "system": "Ges.",
                     "position": "2. Note",
                     "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                },
+                {
+                    "svgGroupId": "text318",
+                    "measure": "13",
+                    "system": "Ges.",
+                    "position": "2/8",
+                    "comment": "{{ref.getGlyph('[ppp]')}}: Entzifferung unsicher, Tinte stark verschmiert."
+                },
+                {
+                    "svgGroupId": "text484",
+                    "measure": "14",
+                    "system": "Klav. u.",
+                    "position": "1/8",
+                    "comment": "({{ref.getGlyph('[a]')}}) zu e/a als redundant weggelassen. <strong>B</strong>: Akkoladenwechsel nach T. 12."
+                },
+                {
+                    "svgGroupId": "g6096",
+                    "measure": "14",
+                    "system": "Ges.",
+                    "position": "2. Note",
+                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "18",
+                    "system": "Ges.",
+                    "position": "1. Note",
+                    "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <strong>Rosegger_PM</strong>: <em>Verstorb’nen</em>."
+                },
+                {
+                    "svgGroupId": "text1556",
+                    "measure": "22",
+                    "system": "Klav. o.",
+                    "position": "",
+                    "comment": "Anfang der Ligaturbögen zu H/g ergänzt analog Fortsetzung der Bögen in T. 23. <strong>B</strong>: Akkoladenwechsel nach T. 22."
+                },
+                {
+                    "svgGroupId": "text484",
+                    "measure": "14",
+                    "system": "Klav.",
+                    "position": "1/8",
+                    "comment": "({{ref.getGlyph('[#]')}}) zu Gis<sub>1</sub>/Cis und ({{ref.getGlyph('[a]')}}) zu H/g als redundant weggelassen. <strong>B</strong>: Akkoladenwechsel nach T. 22."
                 }
             ]
         }
