@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
@@ -8,7 +9,7 @@ import Spy = jasmine.Spy;
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faRefresh, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -31,15 +32,15 @@ import { ExtendedSearchFormComponent } from './extended-search-form.component';
 
 // Helper functions for ExtendedSearchFormComponent
 function selectOptionById(selectId: string, optionIndex: number, de: DebugElement) {
-    const optionDe = getAndExpectDebugElementByCss(de, `select#${selectId}`, 1, 1);
-    const optionEl = optionDe[0].nativeElement as HTMLSelectElement;
+    const optionDes = getAndExpectDebugElementByCss(de, `select#${selectId}`, 1, 1);
+    const optionEl = optionDes[0].nativeElement as HTMLSelectElement;
     optionEl.value = optionEl.options[optionIndex].value;
     optionEl.dispatchEvent(new Event('change'));
 }
 
 function setInputValueById(inputId: string, inputValue: string, de: DebugElement) {
-    const inputDe = getAndExpectDebugElementByCss(de, `input#${inputId}`, 1, 1);
-    const inputEl = inputDe[0].nativeElement as HTMLInputElement;
+    const inputDes = getAndExpectDebugElementByCss(de, `input#${inputId}`, 1, 1);
+    const inputEl = inputDes[0].nativeElement as HTMLInputElement;
     inputEl.value = inputValue;
     inputEl.dispatchEvent(new Event('input'));
 }
@@ -65,8 +66,9 @@ describe('ExtendedSearchFormComponent', () => {
     let fixture: ComponentFixture<ExtendedSearchFormComponent>;
     let compDe: DebugElement;
 
-    let formBuilder: FormBuilder;
     let dataApiService: DataApiService;
+    let formBuilder: FormBuilder;
+    let mockDocument: Document;
 
     let addPropertiesControlSpy: Spy;
     let alertSpy: Spy;
@@ -76,6 +78,7 @@ describe('ExtendedSearchFormComponent', () => {
     let getPropertyListsSpy: Spy;
     let getPropertyListEntryByIdSpy: Spy;
     let getResourcetypesSpy: Spy;
+    let isAddButtonDisabledSpy: Spy;
     let isCompopMissingSpy: Spy;
     let isFormControlValueMissingSpy: Spy;
     let isPropertyIdMissingSpy: Spy;
@@ -88,6 +91,7 @@ describe('ExtendedSearchFormComponent', () => {
     let listenToUserCompopChangeSpy: Spy;
     let onResetSpy: Spy;
     let onSearchSpy: Spy;
+    let removePropertiesControlSpy: Spy;
     let resetFormSpy: Spy;
     let searchRequestEmitSpy: Spy;
 
@@ -98,11 +102,13 @@ describe('ExtendedSearchFormComponent', () => {
     let expectedResourceTypesResponse: ResourceTypesInVocabularyResponseJson;
     let expectedPropertyListsResponse: PropertyTypesInResourceClassResponseJson;
 
+    let expectedDefaultFormString: string;
     let expectedExtendedSearchFormStrings: {
         label: string;
         placeholder: string;
         errorMessage: string;
     };
+
     let expectedSearchCompopSetsList: SearchCompopSetsList;
     let expectedValueTypeIds: string[];
     let expectedEmptyPropertiesControlValue: {
@@ -112,6 +118,7 @@ describe('ExtendedSearchFormComponent', () => {
     };
 
     let expectedPlusIcon: IconDefinition;
+    let expectedRefreshIcon: IconDefinition;
     let expectedSearchIcon: IconDefinition;
     let expectedTrashIcon: IconDefinition;
 
@@ -128,12 +135,15 @@ describe('ExtendedSearchFormComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
-        formBuilder = TestBed.inject(FormBuilder);
         dataApiService = TestBed.inject(DataApiService);
+        formBuilder = TestBed.inject(FormBuilder);
+        mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
         expectedResourceTypesResponse = mockResourceTypesInVocabularyResponseJson;
         expectedPropertyListsResponse = mockPropertyTypesInResourceClassResponseJson;
+
+        expectedDefaultFormString = '---';
         expectedExtendedSearchFormStrings = {
             label: 'Search Input',
             placeholder: 'Volltextsuche in der Webern-Datenbank …',
@@ -145,6 +155,7 @@ describe('ExtendedSearchFormComponent', () => {
         expectedEmptyPropertiesControlValue = { propertyIdControl: '', compopControl: '', searchvalControl: '' };
 
         expectedPlusIcon = faPlus;
+        expectedRefreshIcon = faRefresh;
         expectedSearchIcon = faSearch;
         expectedTrashIcon = faTrash;
 
@@ -160,6 +171,7 @@ describe('ExtendedSearchFormComponent', () => {
         getPropertyListsSpy = spyOn(component, 'getPropertyLists').and.callThrough();
         getPropertyListEntryByIdSpy = spyOn(component, 'getPropertyListEntryById').and.callThrough();
         getResourcetypesSpy = spyOn(component, 'getResourcetypes').and.callThrough();
+        isAddButtonDisabledSpy = spyOn(component, 'isAddButtonDisabled').and.callThrough();
         isCompopMissingSpy = spyOn<any>(component, '_isCompopMissing').and.callThrough();
         isFormControlValueMissingSpy = spyOn<any>(component, '_isFormControlValueMissing').and.callThrough();
         isPropertyIdMissingSpy = spyOn<any>(component, '_isPropertyIdMissing').and.callThrough();
@@ -172,6 +184,7 @@ describe('ExtendedSearchFormComponent', () => {
         listenToUserCompopChangeSpy = spyOn(component, 'listenToUserCompopChange').and.callThrough();
         onResetSpy = spyOn(component, 'onReset').and.callThrough();
         onSearchSpy = spyOn(component, 'onSearch').and.callThrough();
+        removePropertiesControlSpy = spyOn(component, 'removePropertiesControl').and.callThrough();
         resetFormSpy = spyOn<any>(component, '_resetForm').and.callThrough();
         searchRequestEmitSpy = spyOn(component.searchRequest, 'emit').and.callThrough();
 
@@ -213,6 +226,10 @@ describe('ExtendedSearchFormComponent', () => {
             expectToEqual(component.faPlus, expectedPlusIcon);
         });
 
+        it('... should have `faRefresh` icon', () => {
+            expectToEqual(component.faRefresh, expectedRefreshIcon);
+        });
+
         it('... should have `faSearch` icon', () => {
             expectToEqual(component.faSearch, expectedSearchIcon);
         });
@@ -222,7 +239,7 @@ describe('ExtendedSearchFormComponent', () => {
         });
 
         it('... should have `defaultFormString`', () => {
-            expectToEqual(component.defaultFormString, '---');
+            expectToEqual(component.defaultFormString, expectedDefaultFormString);
         });
 
         it('... should have `extendedSearchFormStrings`', () => {
@@ -239,7 +256,7 @@ describe('ExtendedSearchFormComponent', () => {
 
         describe('VIEW', () => {
             it('... should not have a form yet', () => {
-                const formDe = getAndExpectDebugElementByCss(compDe, 'form', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'form', 0, 0);
             });
         });
     });
@@ -261,6 +278,861 @@ describe('ExtendedSearchFormComponent', () => {
         it('... should have `extendedSearchForm`', () => {
             expect(component.extendedSearchForm).toBeDefined();
             expect(component.extendedSearchForm).toBeInstanceOf(FormGroup);
+        });
+
+        describe('VIEW', () => {
+            it('... should have a form', () => {
+                getAndExpectDebugElementByCss(compDe, 'form', 1, 1);
+            });
+
+            describe('... restype control', () => {
+                it('... should have a div.awg-form-floating-group as a first child', () => {
+                    getAndExpectDebugElementByCss(compDe, 'form > div.awg-form-floating-group:first-child', 1, 1);
+                });
+
+                it('... should have a select with restypeControl in the first div', () => {
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'form > div.awg-form-floating-group:first-child > select#awg-extended-search-resourcetype-input',
+                        1,
+                        1
+                    );
+                });
+
+                it('... should have as many options in the restypeControl select as resource types plus one default', () => {
+                    const selectDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'select#awg-extended-search-resourcetype-input',
+                        1,
+                        1
+                    );
+
+                    const expectedOptionLength = expectedResourceTypesResponse.resourcetypes.length + 1;
+                    getAndExpectDebugElementByCss(selectDes[0], 'option', expectedOptionLength, expectedOptionLength);
+                });
+
+                it('... should have a hidden default option in the restypeControl select with the defaultFormString', () => {
+                    const selectDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'select#awg-extended-search-resourcetype-input',
+                        1,
+                        1
+                    );
+
+                    const expectedOptionLength = expectedResourceTypesResponse.resourcetypes.length + 1;
+                    const optionDes = getAndExpectDebugElementByCss(
+                        selectDes[0],
+                        'option',
+                        expectedOptionLength,
+                        expectedOptionLength
+                    );
+                    const optionEl = optionDes[0].nativeElement;
+
+                    expectToEqual(optionEl.value, '');
+                    expectToEqual(optionEl.textContent, expectedDefaultFormString);
+                    expectToBe(optionEl.hidden, true);
+                });
+
+                it('... should have a visible option in the restypeControl select for each resource type', () => {
+                    const selectDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'select#awg-extended-search-resourcetype-input',
+                        1,
+                        1
+                    );
+
+                    const expectedOptionLength = expectedResourceTypesResponse.resourcetypes.length + 1;
+                    const optionDes = getAndExpectDebugElementByCss(
+                        selectDes[0],
+                        'option',
+                        expectedOptionLength,
+                        expectedOptionLength
+                    );
+
+                    optionDes.forEach((optionDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const optionEl = optionDe.nativeElement;
+
+                        const restype = expectedResourceTypesResponse.resourcetypes[index - 1];
+                        const expectedRestypeLabel = `${restype.id} | ${restype.label}`;
+
+                        expectToEqual(optionEl.value, restype.id);
+                        expectToEqual(optionEl.title, restype.label);
+                        expectToEqual(optionEl.textContent.trim(), expectedRestypeLabel.trim());
+                        expectToBe(optionEl.hidden, false);
+                    });
+                });
+
+                it('... should have a muted label for the restypeControl select', () => {
+                    const labelDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'form > div.awg-form-floating-group:first-child > label[for="awg-extended-search-resourcetype-input"]',
+                        1,
+                        1
+                    );
+                    const labelEl = labelDes[0].nativeElement;
+
+                    expect(labelEl.classList).toContain('text-muted');
+                    expectToBe(labelEl.textContent, 'Resource type');
+                });
+            });
+
+            describe('... properties controls', () => {
+                it('... should have as many div.row in the form as there are controls in the properties controls', () => {
+                    const expectedLength = component.propertiesControls.controls.length;
+
+                    getAndExpectDebugElementByCss(compDe, 'form > div.row', expectedLength, expectedLength);
+                });
+
+                it('... should have 3 div.form-floating in each div.row', () => {
+                    const expectedLength = 3;
+
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'form > div.row > div.form-floating',
+                        expectedLength,
+                        expectedLength
+                    );
+                });
+
+                describe('... propertyIdControl', () => {
+                    beforeEach(() => {
+                        // Select resource type to activate propertyId control
+                        selectRestype(1, compDe);
+                        fixture.detectChanges();
+                    });
+
+                    it('... should have a select with propertyIdControl in the first div.form-floating', () => {
+                        const expectedRowLength = component.propertiesControls.controls.length;
+                        const rowDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'form > div.row',
+                            expectedRowLength,
+                            expectedRowLength
+                        );
+
+                        rowDes.forEach((rowDe, index) => {
+                            getAndExpectDebugElementByCss(
+                                rowDe,
+                                `div.form-floating:first-child > select#awg-extended-search-property-${index}`,
+                                1,
+                                1
+                            );
+                        });
+                    });
+
+                    it('... should have as many options in the propertyIdControl select as properties in the selectedResourceType plus one default', () => {
+                        const selectDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'select#awg-extended-search-property-0',
+                            1,
+                            1
+                        );
+
+                        const expectedOptionLength = component.selectedResourcetype.properties.length + 1;
+                        getAndExpectDebugElementByCss(
+                            selectDes[0],
+                            'option',
+                            expectedOptionLength,
+                            expectedOptionLength
+                        );
+                    });
+
+                    it('... should have a hidden default option in the propertyIdControl select with the defaultFormString', () => {
+                        const selectDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'select#awg-extended-search-property-0',
+                            1,
+                            1
+                        );
+
+                        const expectedOptionLength = component.selectedResourcetype.properties.length + 1;
+                        const optionDes = getAndExpectDebugElementByCss(
+                            selectDes[0],
+                            'option',
+                            expectedOptionLength,
+                            expectedOptionLength
+                        );
+                        const optionEl = optionDes[0].nativeElement;
+
+                        expectToEqual(optionEl.value, '');
+                        expectToEqual(optionEl.textContent, expectedDefaultFormString);
+                        expectToBe(optionEl.hidden, true);
+                    });
+
+                    it('... should have a visible option in the propertyIdControl select for each property', () => {
+                        const selectDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'select#awg-extended-search-property-0',
+                            1,
+                            1
+                        );
+
+                        const expectedOptionLength = component.selectedResourcetype.properties.length + 1;
+                        const optionDes = getAndExpectDebugElementByCss(
+                            selectDes[0],
+                            'option',
+                            expectedOptionLength,
+                            expectedOptionLength
+                        );
+
+                        optionDes.forEach((optionDe, index) => {
+                            if (index === 0) {
+                                return;
+                            }
+                            const optionEl = optionDe.nativeElement;
+
+                            const property = component.selectedResourcetype.properties[index - 1];
+                            const expectedPropertyLabel = `${property.id} | ${property.label}`;
+
+                            expectToEqual(optionEl.value, property.id);
+                            expectToEqual(optionEl.title, property.label);
+                            expectToEqual(optionEl.textContent.trim(), expectedPropertyLabel.trim());
+                            expectToBe(optionEl.hidden, false);
+                        });
+                    });
+
+                    it('... should have a muted label for the propertyIdControl select', () => {
+                        const labelDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'form > div.row > div.form-floating:first-child > label[for="awg-extended-search-property-0"]',
+                            1,
+                            1
+                        );
+                        const labelEl = labelDes[0].nativeElement;
+
+                        expect(labelEl.classList).toContain('text-muted');
+                        expectToBe(labelEl.textContent, 'Property');
+                    });
+                });
+
+                describe('... compopControl', () => {
+                    beforeEach(() => {
+                        // Select resource type to activate propertyId control
+                        selectRestype(1, compDe);
+                        fixture.detectChanges();
+
+                        // Select propertyId to activate compop control
+                        selectPropertyIdAtIndex(1, 0, compDe);
+                        fixture.detectChanges();
+                    });
+
+                    it('... should have a select with compopControl in the second div.form-floating', () => {
+                        const expectedRowLength = component.propertiesControls.controls.length;
+                        const rowDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'form > div.row',
+                            expectedRowLength,
+                            expectedRowLength
+                        );
+
+                        rowDes.forEach((rowDe, index) => {
+                            getAndExpectDebugElementByCss(
+                                rowDe,
+                                `div.form-floating:nth-child(2) > select#awg-extended-search-compop-${index}`,
+                                1,
+                                1
+                            );
+                        });
+                    });
+
+                    it('... should have as many options in the compopControl select as compops in the selectedCompopSets array plus one default', () => {
+                        const selectDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'select#awg-extended-search-compop-0',
+                            1,
+                            1
+                        );
+
+                        const index = 0;
+                        const expectedOptionLength = component.selectedCompopSets[index].length + 1;
+                        getAndExpectDebugElementByCss(
+                            selectDes[index],
+                            'option',
+                            expectedOptionLength,
+                            expectedOptionLength
+                        );
+                    });
+
+                    it('... should have a hidden default option in the compopControl select with the defaultFormString', () => {
+                        const selectDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'select#awg-extended-search-compop-0',
+                            1,
+                            1
+                        );
+
+                        const index = 0;
+                        const expectedOptionLength = component.selectedCompopSets[index].length + 1;
+                        const optionDes = getAndExpectDebugElementByCss(
+                            selectDes[index],
+                            'option',
+                            expectedOptionLength,
+                            expectedOptionLength
+                        );
+                        const optionEl = optionDes[0].nativeElement;
+
+                        expectToEqual(optionEl.value, '');
+                        expectToEqual(optionEl.textContent, expectedDefaultFormString);
+                        expectToBe(optionEl.hidden, true);
+                    });
+
+                    it('... should have a visible option in the compopControl select for each compop in the selectedCompopSets array', () => {
+                        const selectDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'select#awg-extended-search-compop-0',
+                            1,
+                            1
+                        );
+
+                        const index = 0;
+                        const expectedOptionLength = component.selectedCompopSets[index].length + 1;
+                        const optionDes = getAndExpectDebugElementByCss(
+                            selectDes[index],
+                            'option',
+                            expectedOptionLength,
+                            expectedOptionLength
+                        );
+
+                        optionDes.forEach((optionDe, i) => {
+                            if (i === 0) {
+                                return;
+                            }
+                            const optionEl = optionDe.nativeElement as HTMLOptionElement;
+                            const compop = component.selectedCompopSets[0][i - 1];
+
+                            const expectedOption = mockDocument.createElement('option');
+                            expectedOption.innerHTML = compop.label;
+
+                            expectToEqual(optionEl.value, compop.value);
+                            expectToEqual(optionEl.title, compop.title);
+                            expectToEqual(optionEl.textContent, expectedOption.textContent);
+                            expectToBe(optionEl.hidden, false);
+                        });
+                    });
+
+                    it('... should have a muted label for the compopControl select', () => {
+                        const labelDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'form > div.row > div.form-floating:nth-child(2) > label[for="awg-extended-search-compop-0"]',
+                            1,
+                            1
+                        );
+                        const labelEl = labelDes[0].nativeElement;
+
+                        expect(labelEl.classList).toContain('text-muted');
+                        expectToBe(labelEl.textContent, 'Operator');
+                    });
+                });
+
+                describe('... searchvalControl', () => {
+                    beforeEach(() => {
+                        // Select resource type to activate propertyId control
+                        selectRestype(1, compDe);
+                        fixture.detectChanges();
+
+                        // Select propertyId to activate compop control
+                        selectPropertyIdAtIndex(1, 0, compDe);
+                        fixture.detectChanges();
+
+                        // Select compop with other value than `EXISTS` to activate searchval control
+                        selectCompopAtIndex(2, 0, compDe);
+                        fixture.detectChanges();
+                    });
+
+                    it('... should have an input with searchvalControl in the third div.form-floating', () => {
+                        const expectedRowLength = component.propertiesControls.controls.length;
+                        const rowDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'form > div.row',
+                            expectedRowLength,
+                            expectedRowLength
+                        );
+
+                        rowDes.forEach((rowDe, index) => {
+                            getAndExpectDebugElementByCss(
+                                rowDe,
+                                `div.form-floating:nth-child(3) > input#awg-extended-search-value-${index}`,
+                                1,
+                                1
+                            );
+                        });
+                    });
+
+                    it('... should have a placeholder with defaultFormString for the searchvalControl input', () => {
+                        const inputDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'input#awg-extended-search-value-0',
+                            1,
+                            1
+                        );
+                        const inputEl = inputDes[0].nativeElement;
+
+                        expectToEqual(inputEl.placeholder, expectedDefaultFormString);
+                    });
+
+                    it('... should have a muted label for the searchvalControl input', () => {
+                        const labelDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'form > div.row > div.form-floating:nth-child(3) > label[for="awg-extended-search-value-0"]',
+                            1,
+                            1
+                        );
+                        const labelEl = labelDes[0].nativeElement;
+
+                        expect(labelEl.classList).toContain('text-muted');
+                        expectToBe(labelEl.textContent, 'Search value');
+                    });
+                });
+
+                describe('... btn-toolbar', () => {
+                    describe('... add property button', () => {
+                        it('... should have a div.btn-toolbar as the last child of each div.row', () => {
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach(rowDe => {
+                                getAndExpectDebugElementByCss(rowDe, 'div.btn-toolbar:last-child', 1, 1);
+                            });
+                        });
+
+                        it('... should have a button#awg-extended-search-add-property-{index} as the last child of the button toolbar', () => {
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach((rowDe, index) => {
+                                getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
+                                    1,
+                                    1
+                                );
+                            });
+                        });
+
+                        it('... should have a btn-outline-info class on the add property button', () => {
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                const buttonEl = buttonDes[0].nativeElement;
+
+                                expect(buttonEl.classList).toContain('btn-outline-info');
+                            });
+                        });
+
+                        it('... should have the add button disabled as long as `isAddButtonDisabled` is true ', () => {
+                            isAddButtonDisabledSpy.and.returnValue(true);
+
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                const buttonEl = buttonDes[0].nativeElement;
+
+                                expectToBe(buttonEl.disabled, true);
+                            });
+                        });
+
+                        it('... should have the add button enabled as long as `isAddButtonDisabled` is false ', () => {
+                            // Create simplest valid form with restype, property and compop = EXISTS
+                            selectRestype(1, compDe);
+                            fixture.detectChanges();
+
+                            selectPropertyIdAtIndex(1, 0, compDe);
+                            fixture.detectChanges();
+
+                            selectCompopAtIndex(1, 0, compDe);
+                            fixture.detectChanges();
+
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                const buttonEl = buttonDes[0].nativeElement;
+
+                                expectToBe(buttonEl.disabled, false);
+                            });
+                        });
+
+                        it('... should display faPlus icon on the add property button', () => {
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                                const faIconIns = faIconDes[0].componentInstance.icon;
+
+                                expectToEqual(faIconIns, expectedPlusIcon);
+                            });
+                        });
+
+                        it('... should trigger the `addPropertiesControl` method on click of the add property button', fakeAsync(() => {
+                            // Create simplest valid form with restype, property and compop = EXISTS
+                            selectRestype(1, compDe);
+                            fixture.detectChanges();
+
+                            selectPropertyIdAtIndex(1, 0, compDe);
+                            fixture.detectChanges();
+
+                            selectCompopAtIndex(1, 0, compDe);
+                            fixture.detectChanges();
+
+                            expectSpyCall(addPropertiesControlSpy, 2);
+
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            const rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-add-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                clickAndAwaitChanges(buttonDes[0], fixture);
+
+                                expectSpyCall(addPropertiesControlSpy, 3);
+                            });
+                        }));
+                    });
+
+                    describe('... remove property button', () => {
+                        let rowDes: DebugElement[];
+
+                        beforeEach(fakeAsync(() => {
+                            // Create simplest valid form with restype, property and compop = EXISTS
+                            selectRestype(1, compDe);
+                            fixture.detectChanges();
+
+                            selectPropertyIdAtIndex(1, 0, compDe);
+                            fixture.detectChanges();
+
+                            selectCompopAtIndex(1, 0, compDe);
+                            fixture.detectChanges();
+
+                            const addButtonDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                `button#awg-extended-search-add-property-0`,
+                                1,
+                                1
+                            );
+                            clickAndAwaitChanges(addButtonDes[0], fixture);
+
+                            const expectedRowLength = component.propertiesControls.controls.length;
+                            rowDes = getAndExpectDebugElementByCss(
+                                compDe,
+                                'form > div.row',
+                                expectedRowLength,
+                                expectedRowLength
+                            );
+                        }));
+
+                        it('... should have a button#awg-extended-search-remove-property as the first child of the button panel when there is at least a second line of properties', () => {
+                            rowDes.forEach((rowDe, index) => {
+                                getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-remove-property-${index}`,
+                                    1,
+                                    1
+                                );
+                            });
+                        });
+
+                        it('... should have a btn-outline-danger class on the remove property button', () => {
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-remove-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                const buttonEl = buttonDes[0].nativeElement;
+
+                                expect(buttonEl.classList).toContain('btn-outline-danger');
+                            });
+                        });
+
+                        it('... should display faTrash icon on the remove property button', () => {
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group >  button#awg-extended-search-remove-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                                const faIconIns = faIconDes[0].componentInstance.icon;
+
+                                expectToEqual(faIconIns, expectedTrashIcon);
+                            });
+                        });
+
+                        it('... should trigger the `removePropertiesControl` method on click of the remove property button', fakeAsync(() => {
+                            const buttons = [];
+
+                            rowDes.forEach((rowDe, index) => {
+                                const buttonDes = getAndExpectDebugElementByCss(
+                                    rowDe,
+                                    `div.btn-toolbar > div.btn-group > button#awg-extended-search-remove-property-${index}`,
+                                    1,
+                                    1
+                                );
+                                buttons.push(buttonDes[0]);
+                            });
+
+                            clickAndAwaitChanges(buttons[1], fixture);
+
+                            expectSpyCall(removePropertiesControlSpy, 1);
+                        }));
+                    });
+                });
+            });
+
+            describe('... search button panel', () => {
+                it('... should have a div.awg-extended-search-button-panel as the last child', () => {
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'form > div.awg-extended-search-button-panel:last-child',
+                        1,
+                        1
+                    );
+                });
+
+                describe('... search button', () => {
+                    it('... should have a button#awg-extended-search-submit as the first child of the button panel', () => {
+                        getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-extended-search-button-panel > button#awg-extended-search-submit:first-child',
+                            1,
+                            1
+                        );
+                    });
+
+                    it('... should have btn-outline-info class on the search button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-submit',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expect(buttonEl.classList).toContain('btn-outline-info');
+                    });
+
+                    it('... should have the search button disabled as long as the form is not valid', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-submit',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.disabled, true);
+                    });
+
+                    it('... should have the search button enabled when the form is valid', () => {
+                        // Create simplest valid form with restype, property and compop = EXISTS
+                        selectRestype(1, compDe);
+                        fixture.detectChanges();
+
+                        selectPropertyIdAtIndex(1, 0, compDe);
+                        fixture.detectChanges();
+
+                        selectCompopAtIndex(1, 0, compDe);
+                        fixture.detectChanges();
+
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-submit',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.disabled, false);
+                    });
+
+                    it('... should display faSearch icon on the search button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-submit',
+                            1,
+                            1
+                        );
+                        const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                        const faIconIns = faIconDes[0].componentInstance.icon;
+
+                        expectToEqual(faIconIns, expectedSearchIcon);
+                    });
+
+                    it('... should have a label for the search button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-submit',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.textContent.trim(), 'Submit');
+                    });
+                });
+
+                describe('... reset button', () => {
+                    it('... should have a button#awg-extended-search-reset as the last child of the button panel', () => {
+                        getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-extended-search-button-panel > button#awg-extended-search-reset:last-child',
+                            1,
+                            1
+                        );
+                    });
+
+                    it('... should have btn-outline-danger class on reset button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-reset',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expect(buttonEl.classList).toContain('btn-outline-danger');
+                    });
+
+                    it('... should have the reset button disabled as long as the restypeControl is not valid', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-reset',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.disabled, true);
+                    });
+
+                    it('... should have the reset button enabled when the restypeControl is valid', () => {
+                        selectRestype(1, compDe);
+                        fixture.detectChanges();
+
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-reset',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.disabled, false);
+                    });
+
+                    it('... should display faRefresh icon on the reset button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-reset',
+                            1,
+                            1
+                        );
+                        const faIconDes = getAndExpectDebugElementByCss(buttonDes[0], 'fa-icon', 1, 1);
+                        const faIconIns = faIconDes[0].componentInstance.icon;
+
+                        expectToEqual(faIconIns, expectedRefreshIcon);
+                    });
+
+                    it('... should have a label for the reset button', () => {
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-reset',
+                            1,
+                            1
+                        );
+                        const buttonEl = buttonDes[0].nativeElement;
+
+                        expectToBe(buttonEl.textContent.trim(), 'Reset');
+                    });
+
+                    it('... should trigger the `onReset` method on click', fakeAsync(() => {
+                        selectRestype(1, compDe);
+                        fixture.detectChanges();
+
+                        const buttonDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'button#awg-extended-search-reset',
+                            1,
+                            1
+                        );
+
+                        clickAndAwaitChanges(buttonDes[0], fixture);
+
+                        expectSpyCall(onResetSpy, 1, undefined);
+                    }));
+                });
+            });
         });
 
         describe('#createExtendedSearchForm()', () => {
@@ -2018,7 +2890,7 @@ describe('ExtendedSearchFormComponent', () => {
 
                     component.extendedSearchForm.controls['propertiesControls']['controls'][index]['controls'][
                         'searchvalControl'
-                    ].setValue(component.defaultFormString);
+                    ].setValue(expectedDefaultFormString);
 
                     expect((component as any)._isFormControlValueMissing('searchvalControl', index)).toBeTrue();
                 });
@@ -2254,7 +3126,7 @@ describe('ExtendedSearchFormComponent', () => {
                 });
 
                 it('... the default formString', () => {
-                    component.extendedSearchForm.controls['restypeControl'].setValue(component.defaultFormString);
+                    component.extendedSearchForm.controls['restypeControl'].setValue(expectedDefaultFormString);
 
                     expect((component as any)._isResourecetypeMissing()).toBeTrue();
                 });

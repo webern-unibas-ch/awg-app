@@ -7,7 +7,10 @@
             formControlName="restypeControl"
             required>
             <option value="" disabled hidden>{{ defaultFormString }}</option>
-            <option *ngFor="let resourcetype of restypesResponse?.resourcetypes" [ngValue]="resourcetype.id">
+            <option
+                *ngFor="let resourcetype of restypesResponse?.resourcetypes"
+                [value]="resourcetype.id"
+                [title]="resourcetype.label">
                 {{ resourcetype.id }} | {{ resourcetype.label }}
             </option>
         </select>
@@ -45,7 +48,7 @@
                         <ng-container *ngIf="selectedCompopSets">
                             <option
                                 *ngFor="let compop of selectedCompopSets[idx]"
-                                [ngValue]="compop.value"
+                                [value]="compop.value"
                                 [title]="compop.title"
                                 [innerHtml]="compop.label"></option>
                         </ng-container>
@@ -66,15 +69,17 @@
                 <div class="btn-toolbar col-2" role="toolbar" aria-label="Toolbar for property inputs">
                     <div class="btn-group" role="group" aria-label="Group of handle buttons">
                         <button
-                            type="button"
+                            id="awg-extended-search-remove-property-{{ idx }}"
                             class="btn btn-outline-danger"
+                            type="button"
                             *ngIf="propertiesControls.controls.length > 1"
                             (click)="removePropertiesControl(idx)">
                             <fa-icon [icon]="faTrash"></fa-icon>
                         </button>
                         <button
-                            type="button"
+                            id="awg-extended-search-add-property-{{ idx }}"
                             class="btn btn-outline-info"
+                            type="button"
                             (click)="addPropertiesControl()"
                             [disabled]="isAddButtonDisabled(idx)">
                             <fa-icon [icon]="faPlus"></fa-icon>
@@ -90,14 +95,14 @@
             </div>
         </div>
     </ng-container>
-    <div class="mb-4">
+    <div class="awg-extended-search-button-panel mb-4">
         <button
             id="awg-extended-search-submit"
             class="btn btn-outline-info"
             type="submit"
             [disabled]="!extendedSearchForm.valid">
             <fa-icon [icon]="faSearch"></fa-icon>
-            Suche
+            Submit
         </button>
         <button
             id="awg-extended-search-reset"
