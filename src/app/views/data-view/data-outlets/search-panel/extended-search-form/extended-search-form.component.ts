@@ -13,7 +13,7 @@ import {
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faRefresh, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import {
     PropertyTypesInResourceClassResponseJson,
@@ -51,6 +51,13 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * It instantiates fontawesome's faPlus icon.
      */
     faPlus = faPlus;
+
+    /**
+     * Public variable: faRefresh.
+     *
+     * It instantiates fontawesome's faRefresh icon.
+     */
+    faRefresh = faRefresh;
 
     /**
      * Public variable: faSearch.
