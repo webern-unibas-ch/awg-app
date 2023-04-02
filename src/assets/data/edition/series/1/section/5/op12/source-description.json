@@ -190,15 +190,12 @@
                 "desc": [
                     "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecken auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecken auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: auf Bl. 1<sup>r </sup>unten links.",
+                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: auf Bl. 1<sup>r</sup> unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "rote Tinte [Teile des Titels und vertonter Text]",
-                        "Bleistift"
-                    ]
+                    "secondary": ["rote Tinte [Teile des Titels und vertonter Text]", "Bleistift"]
                 },
-                "title": "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte. <b/><em>„Der Tag ist vergangen.....“ </em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben.",
+                "title": "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte. <br /><em>„Der Tag ist vergangen.....“ </em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben.",
                 "date": "",
                 "pagination": "",
                 "measureNumbers": "",
