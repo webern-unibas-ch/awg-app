@@ -5,6 +5,9 @@
  * to store glyph data.
  */
 export const EDITION_GLYPHS_DATA = {
+    /** ***********************************/
+    /** ********** ACCIDENTALS ************/
+    /** ***********************************/
     /**
      * The glyph of a music double flat sign.
      * Cf. https://graphemica.com/%F0%9D%84%AB
@@ -50,6 +53,9 @@ export const EDITION_GLYPHS_DATA = {
         hex: '\u266F',
     },
 
+    /** ********************************/
+    /** ********** DYNAMICS ************/
+    /** ********************************/
     /**
      * The glyph of a musical forte symbol.
      * Cf. https://graphemica.com/%F0%9D%86%91
@@ -68,22 +74,13 @@ export const EDITION_GLYPHS_DATA = {
         hex: '\uD834\uDD91\uD834\uDD91',
     },
 
-        /**
+    /**
      * The glyph of a musical triple fortissimo (three times forte) symbol.
      * Cf. https://graphemica.com/%F0%9D%86%91
      */
     FORTISSIMO3: {
         alt: '[fff]',
         hex: '\uD834\uDD91\uD834\uDD91\uD834\uDD91',
-    },
-    
-    /**
-     * The glyph of a musical piano symbol.
-     * Cf. https://graphemica.com/%F0%9D%86%8F
-     */
-    PIANO: {
-        alt: '[p]',
-        hex: '\uD834\uDD8F',
     },
 
     /**
@@ -94,7 +91,7 @@ export const EDITION_GLYPHS_DATA = {
         alt: '[pp]',
         hex: '\uD834\uDD8F\uD834\uDD8F',
     },
-    
+
     /**
      * The glyph of a musical triple pianissimo (three times piano) symbol.
      * Cf. https://graphemica.com/%F0%9D%86%8F
@@ -102,5 +99,14 @@ export const EDITION_GLYPHS_DATA = {
     PIANISSIMO3: {
         alt: '[ppp]',
         hex: '\uD834\uDD8F\uD834\uDD8F\uD834\uDD8F',
+    },
+
+    /**
+     * The glyph of a musical piano symbol.
+     * Cf. https://graphemica.com/%F0%9D%86%8F
+     */
+    PIANO: {
+        alt: '[p]',
+        hex: '\uD834\uDD8F',
     },
 } as const;
