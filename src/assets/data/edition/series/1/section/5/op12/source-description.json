@@ -181,6 +181,97 @@
             }
         },
         {
+            "id": "sourceB",
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Autograph von „Der Tag ist vergangen“ M 212: Textfassung 1→2",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecken auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecken auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
+                ],
+                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: auf Bl. 1<sup>r </sup>unten links.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "rote Tinte [Teile des Titels und vertonter Text]",
+                        "Bleistift"
+                    ]
+                },
+                "title": "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte. <b/><em>„Der Tag ist vergangen.....“ </em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('M_212_TF1')\">M 212: Textfassung 1</a>→2",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "5–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "18–22",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "notA",
             "siglum": "",
             "siglumAddendum": "",
@@ -188,7 +279,7 @@
             "location": "",
             "description": {
                 "desc": [
-                    "<small class=\"text-muted\">[Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G<sup>H</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
+                    "<small class=\"text-muted\">[Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>C</strong> bis <strong>G<sup>H</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
                 ]
             }
         }

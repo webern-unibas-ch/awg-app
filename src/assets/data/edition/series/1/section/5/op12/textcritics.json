@@ -301,6 +301,113 @@
                     "linkTo": "M_212_Sk4"
                 }
             ]
+        },
+        {
+            "id": "M_212_TF1",
+            "label": "M 212 Textfassung 1",
+            "description": [
+                "##Quellenbewertung:## Für die Edition von „Der Tag ist vergangen“ Textfassung 1 ist <strong>B</strong> einzige relevante Quelle. <br />Die Korrekturen in <strong>B</strong>B betreffen Textfassung 2.<br />Hauptquelle für die Textedition von „Der Tag ist vergangen“ Textfassung 1 ist <strong>B</strong> ante correcturam."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "text200",
+                    "measure": "1",
+                    "system": "Klav.",
+                    "position": "(2/8) bis Taktende",
+                    "comment": "Crescendogabel versetzt von über Klav. o."
+                },
+                {
+                    "svgGroupId": "text262",
+                    "measure": "2",
+                    "system": "Klav.",
+                    "position": "(1-4/8)",
+                    "comment": "Decrescendogabel versetzt von über Klav. o."
+                },
+                {
+                    "svgGroupId": "g5702",
+                    "measure": "2",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "{{ref.getGlyph('[#]')}} zu gis<sup>1</sup> ergänzt mit Blick auf Textfassung 2 und Textfassung 3 (op. 12/1)."
+                },
+                {
+                    "svgGroupId": "text748",
+                    "measure": "5",
+                    "system": "Klav. o.",
+                    "position": "(1/4)",
+                    "comment": "Triolenklammer versetzt von über Klav. u."
+                },
+                {
+                    "svgGroupId": "text766",
+                    "measure": "5",
+                    "system": "Klav.",
+                    "position": "1. Note",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von unter Klav. u."
+                },
+                {
+                    "svgGroupId": "g5708",
+                    "measure": "5",
+                    "system": "Ges.",
+                    "position": "3/8",
+                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                },
+                {
+                    "svgGroupId": "text902",
+                    "measure": "6",
+                    "system": "Klav.",
+                    "position": "1. Note",
+                    "comment": "Ende der Crescendogabel versetzt von Ende T. 5."
+                },
+                {
+                    "svgGroupId": "g5714",
+                    "measure": "9",
+                    "system": "Ges.",
+                    "position": "2. Note",
+                    "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                },
+                {
+                    "svgGroupId": "text318",
+                    "measure": "13",
+                    "system": "Ges.",
+                    "position": "2/8",
+                    "comment": "{{ref.getGlyph('[ppp]')}}: Entzifferung unsicher, Tinte stark verschmiert."
+                },
+                {
+                    "svgGroupId": "text484",
+                    "measure": "14",
+                    "system": "Klav. u.",
+                    "position": "1/8",
+                    "comment": "({{ref.getGlyph('[a]')}}) zu e/a als redundant weggelassen. <strong>B</strong>: Akkoladenwechsel nach T. 12."
+                },
+                {
+                    "svgGroupId": "g6096",
+                    "measure": "14",
+                    "system": "Ges.",
+                    "position": "2. Note",
+                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "18",
+                    "system": "Ges.",
+                    "position": "1. Note",
+                    "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <strong>Rosegger_PM</strong>: <em>Verstorb’nen</em>."
+                },
+                {
+                    "svgGroupId": "text1556",
+                    "measure": "22",
+                    "system": "Klav. o.",
+                    "position": "",
+                    "comment": "Anfang der Ligaturbögen zu H/g ergänzt analog Fortsetzung der Bögen in T. 23. <strong>B</strong>: Akkoladenwechsel nach T. 22."
+                },
+                {
+                    "svgGroupId": "text484",
+                    "measure": "14",
+                    "system": "Klav.",
+                    "position": "1/8",
+                    "comment": "({{ref.getGlyph('[#]')}}) zu Gis<sub>1</sub>/Cis und ({{ref.getGlyph('[a]')}}) zu H/g als redundant weggelassen. <strong>B</strong>: Akkoladenwechsel nach T. 22."
+                }
+            ]
         }
     ]
 }
