@@ -21,7 +21,7 @@
                 </p>
                 <ng-container
                     *ngIf="
-                        utils.isNotEmptyArray(graph.description) || graph.rdfData.triples;
+                        utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples;
                         else graphDescriptionPlaceholder
                     ">
                     <p

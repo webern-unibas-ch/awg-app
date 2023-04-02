@@ -55,6 +55,25 @@ export const mockEditionData = {
     },
 
     /**
+     * Test helper data constant: mockGraphEmptyData.
+     *
+     * It provides a mocked graph data object with empty content.
+     */
+    mockGraphEmptyData: {
+        graph: [
+            {
+                id: 'test-graph-empty-id',
+                title: 'Test graph empty',
+                description: [],
+                rdfData: {
+                    queryList: [],
+                    triples: '',
+                },
+            },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockIntroData.
      *
      * It provides a mocked intro data object.
