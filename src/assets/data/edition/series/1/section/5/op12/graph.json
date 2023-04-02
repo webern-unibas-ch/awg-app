@@ -3,9 +3,7 @@
         {
             "id": "op12",
             "title": "Skizzengraph Opus 12",
-            "description": [
-                "<span class=\"text-danger\">[Die Graph-Visualisierungen der Skizzen zu <em>Vier Lieder</em> op. 12 erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</span>"
-            ],
+            "description": [],
             "rdfData": {
                 "queryList": [],
                 "triples": ""
