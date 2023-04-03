@@ -244,11 +244,14 @@
                                                     *ngTemplateOutlet="
                                                         rowTemplate;
                                                         context: { $implicit: system.row }
-                                                    "></ng-template
-                                            ></ng-container>
-                                            <ng-template #rowTemplate let-row>
-                                                {{ row.rowType }}<sub>{{ row.rowBase }}</sub> ({{ row.rowNumber }})
-                                            </ng-template></span
+                                                    "></ng-template></ng-container
+                                            ><ng-template #rowTemplate let-row>
+                                                <span
+                                                    >{{ row.rowType }}<sub>{{ row.rowBase }}</sub> ({{
+                                                        row.rowNumber
+                                                    }})</span
+                                                ></ng-template
+                                            ></span
                                         ><span *ngIf="lastFolio && lastSystemGroup && lastSystem; else notLast">.</span>
                                         <ng-template #notLast
                                             ><span>;<br *ngIf="(i + 1) % systemGroup.length === 0" /></span
