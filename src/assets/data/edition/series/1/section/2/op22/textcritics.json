@@ -30,7 +30,7 @@
                     "comment": "Reihennummerierung <em>III</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "text2204",
+                    "svgGroupId": "g2095",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "2b",
                     "position": "KU<sub>c</sub>",
@@ -72,7 +72,7 @@
                     "comment": "Reihennummerierung <em>IX.</em> mit grünem Buntstift."
                 },
                 {
-                    "svgGroupId": "text1238",
+                    "svgGroupId": "text1237",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "5b",
                     "position": "K<sub>h</sub>",
@@ -86,7 +86,7 @@
                     "comment": "Reihennummerierung <em>XI</em> mit grünem Buntstift."
                 },
                 {
-                    "svgGroupId": "text1240",
+                    "svgGroupId": "text1235",
                     "measure": "Bl. 1<sup>r</sup>",
                     "system": "6b",
                     "position": "KU<sub>h</sub>",
@@ -142,7 +142,7 @@
                     "comment": "Reihennummerierung <em>22</em> mit rotem Buntstift."
                 },
                 {
-                    "svgGroupId": "text756",
+                    "svgGroupId": "text757",
                     "measure": "Bl. 2<sup>r</sup>",
                     "system": "4a",
                     "position": "U<sub>e</sub>",
@@ -163,7 +163,7 @@
                     "comment": "Reihennummerierung <em>25.</em> mit blauem Buntstift, <em>25</em> mit Bleistift nachgezogen."
                 },
                 {
-                    "svgGroupId": "g2051",
+                    "svgGroupId": "g2050",
                     "measure": "Bl. 2<sup>r</sup>",
                     "system": "5b",
                     "position": "K<sub>f</sub>",
@@ -219,7 +219,7 @@
                     "comment": "Reihennummerierung <em>33.</em> mit blauem Buntstift."
                 },
                 {
-                    "svgGroupId": "text1238",
+                    "svgGroupId": "text1239",
                     "measure": "Bl. 3<sup>r</sup>",
                     "system": "1b",
                     "position": "K<sub>es</sub>",
@@ -233,7 +233,7 @@
                     "comment": "Reihennummerierung <em>35.</em> mit blauem Buntstift."
                 },
                 {
-                    "svgGroupId": "text1240",
+                    "svgGroupId": "text1241",
                     "measure": "Bl. 3<sup>r</sup>",
                     "system": "2b",
                     "position": "KU<sub>es</sub>",
@@ -247,14 +247,14 @@
                     "comment": "Reihennummerierung <em>37.</em> mit blauem Buntstift."
                 },
                 {
-                    "svgGroupId": "text1242",
+                    "svgGroupId": "text1243",
                     "measure": "Bl. 3<sup>r</sup>",
                     "system": "3b",
                     "position": "K<sub>a</sub>",
                     "comment": "Reihennummerierung <em>38</em> mit blauem Buntstift."
                 },
                 {
-                    "svgGroupId": "text760",
+                    "svgGroupId": "text761",
                     "measure": "Bl. 3<sup>r</sup>",
                     "system": "4a",
                     "position": "U<sub>es</sub>",
@@ -268,7 +268,7 @@
                     "comment": "es<sup>1</sup> radiert und geändert zu es<sup>2</sup>."
                 },
                 {
-                    "svgGroupId": "text1244",
+                    "svgGroupId": "text1245",
                     "measure": "Bl. 3<sup>r</sup>",
                     "system": "4b",
                     "position": "KU<sub>a</sub>",
@@ -299,7 +299,7 @@
                     "svgGroupId": "g2061",
                     "measure": "Bl. 3<sup>r</sup>",
                     "system": "8a",
-                    "position": "U<sub>b</sub>",
+                    "position": "U<sub>d</sub>",
                     "comment": "<em>4</em> in Reihennummerierung <em>47.</em> überschreibt nicht entzifferbare Schicht."
                 }
             ]
