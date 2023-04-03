@@ -203,7 +203,7 @@
                 "annotations": "",
                 "content": [
                     {
-                        "item": "",
+                        "item": " ",
                         "itemLinkTo": "",
                         "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('M_212_TF1')\">M 212: Textfassung 1</a>→2",
                         "folios": [
