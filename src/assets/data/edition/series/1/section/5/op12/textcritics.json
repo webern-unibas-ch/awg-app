@@ -313,14 +313,14 @@
                     "svgGroupId": "text200",
                     "measure": "1",
                     "system": "Klav.",
-                    "position": "(2/8) bis Taktende",
+                    "position": "2/8 bis 2/4",
                     "comment": "Crescendogabel versetzt von über Klav. o."
                 },
                 {
                     "svgGroupId": "text262",
                     "measure": "2",
                     "system": "Klav.",
-                    "position": "(1-4/8)",
+                    "position": "1-4/8",
                     "comment": "Decrescendogabel versetzt von über Klav. o."
                 },
                 {
@@ -402,7 +402,7 @@
                 },
                 {
                     "svgGroupId": "text484",
-                    "measure": "14",
+                    "measure": "23",
                     "system": "Klav.",
                     "position": "1/8",
                     "comment": "({{ref.getGlyph('[#]')}}) zu Gis<sub>1</sub>/Cis und ({{ref.getGlyph('[a]')}}) zu H/g als redundant weggelassen. <strong>B</strong>: Akkoladenwechsel nach T. 22."

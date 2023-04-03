@@ -188,9 +188,9 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecken auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecken auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
+                    "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecke auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecke auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: auf Bl. 1<sup>r</sup> unten links.",
+                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["rote Tinte [Teile des Titels und vertonter Text]", "Bleistift"]
