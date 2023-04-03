@@ -53,7 +53,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
         // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP25;
-        expectedFragment = 'sourceA';
+        expectedFragment = 'source_A';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
@@ -251,7 +251,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
 
-                const otherFragment = 'sourceB';
+                const otherFragment = 'source_B';
                 component.navigateToReportFragment(otherFragment);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);

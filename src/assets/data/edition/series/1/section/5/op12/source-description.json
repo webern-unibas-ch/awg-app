@@ -1,7 +1,7 @@
 {
     "sources": [
         {
-            "id": "sourceA",
+            "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
             "type": "",
@@ -9,7 +9,7 @@
             "description": {}
         },
         {
-            "id": "sourceAa",
+            "id": "source_Aa",
             "siglum": "A",
             "siglumAddendum": "a",
             "type": "Skizzen zu „Der Tag ist vergangen“ M 212: Textfassung 1/2.",
@@ -181,7 +181,7 @@
             }
         },
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
             "type": "Autograph von „Der Tag ist vergangen“ M 212: Textfassung 1→2",

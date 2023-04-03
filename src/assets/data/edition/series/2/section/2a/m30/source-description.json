@@ -1,7 +1,7 @@
 {
     "sources": [
         {
-            "id": "sourceA",
+            "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
             "type": "Skizzen.",
@@ -418,7 +418,7 @@
             }
         },
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
             "type": "Tintenniederschrift.",

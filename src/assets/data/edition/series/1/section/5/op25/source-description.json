@@ -1,7 +1,7 @@
 {
     "sources": [
         {
-            "id": "sourceA",
+            "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
             "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in Skizzenbuch 3).",
@@ -448,7 +448,7 @@
             }
         },
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
             "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
@@ -552,7 +552,7 @@
             }
         },
         {
-            "id": "sourceC",
+            "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
             "type": "Reihentabelle.",

@@ -100,7 +100,7 @@ describe('IntroComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
-        expectedFragment = 'sourceA';
+        expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedEditionIntroData = mockEditionData.mockIntroData;
         expectedEditionIntroEmptyData = mockEditionData.mockIntroEmptyData;

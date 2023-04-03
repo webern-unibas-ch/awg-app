@@ -6,7 +6,7 @@
             "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
@@ -14,7 +14,7 @@
             "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         },
         {
             "siglum": "C",
@@ -22,7 +22,7 @@
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceC"
+            "linkTo": "source_C"
         },
         {
             "siglum": "D",

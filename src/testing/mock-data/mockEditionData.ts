@@ -83,7 +83,7 @@ export const mockEditionData = {
             {
                 id: 'op12',
                 content: [
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
                     'In <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> neu skizziert',
                 ],
             },
@@ -124,7 +124,7 @@ export const mockEditionData = {
                 type: 'Test type 1',
                 location: 'Test location 1.',
                 hasDescription: true,
-                linkTo: 'sourceA',
+                linkTo: 'source_A',
             },
             {
                 siglum: 'B',
@@ -158,7 +158,7 @@ export const mockEditionData = {
                 type: 'Test type 1',
                 location: 'Test location 1.',
                 hasDescription: true,
-                linkTo: 'sourceAa',
+                linkTo: 'source_Aa',
             },
             {
                 siglum: 'B',
@@ -195,7 +195,7 @@ export const mockEditionData = {
     mockSourceDescriptionListData: {
         sources: [
             {
-                id: 'sourceA',
+                id: 'source_A',
                 siglum: 'A',
                 siglumAddendum: '',
                 type: 'Skizzen',
@@ -203,7 +203,7 @@ export const mockEditionData = {
                 description: {},
             },
             {
-                id: 'sourceAa',
+                id: 'source_Aa',
                 siglum: 'A',
                 siglumAddendum: 'a',
                 type: '',
@@ -420,7 +420,7 @@ export const mockEditionData = {
                 id: 'op25',
                 content: [
                     '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.',
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.',
                 ],
             },
         ],

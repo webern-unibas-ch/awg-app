@@ -171,7 +171,7 @@ describe('EditionReportComponent', () => {
 
         // Test data
         expectedPanelId = 'awg-sources-panel';
-        expectedFragment = 'sourceA';
+        expectedFragment = 'source_A';
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
 
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';

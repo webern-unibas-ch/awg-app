@@ -6,7 +6,7 @@
             "type": "Skizzen zu <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1/2 (<strong>A<sup>a</sup></strong>)<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 (<strong>A<sup>b</sup></strong>)<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213 (<strong>A<sup>c</sup></strong>)<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216 (<strong>A<sup>d</sup></strong>).<br />Enthält auch Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
@@ -14,7 +14,7 @@
             "type": "Autograph von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1→2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         },
         {
             "siglum": "C",
