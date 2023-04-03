@@ -1,6 +1,5 @@
-<table aria-label="Table for list of sources" class="table table-hover borderless">
+<table aria-label="Table for list of sources" class="table table-hover borderless awg-source-description-sources">
     <tbody>
-        <!--  at the moment only for the first item ("source.siglum == 'A'") -->
         <tr *ngFor="let source of sourceListData.sources; let sourceIndex = index">
             <th scope="row">
                 <ng-container *ngIf="source.hasDescription === true; else modalHint">
@@ -17,6 +16,27 @@
             <td>
                 <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br />
                 <span class="text-muted" [innerHTML]="source.location"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table
+    aria-label="Table for list of text sources"
+    class="table table-hover borderless awg-source-description-text-sources"
+    *ngIf="utils.isNotEmptyArray(sourceListData.textSources)">
+    <tbody>
+        <tr>
+            <td colspan="2">Zum vertonten Text:</td>
+        </tr>
+        <tr *ngFor="let text of sourceListData.textSources; let textIndex = index">
+            <th scope="row">
+                <span id="{{ text.id }}"
+                    >{{ text.siglum }}<sup *ngIf="text.siglumAddendum">{{ text.siglumAddendum }}</sup></span
+                >
+            </th>
+            <td>
+                <span [compile-html]="text.type" [compile-html-ref]="ref"></span> <br />
+                <span class="text-muted" [innerHTML]="text.location"></span>
             </td>
         </tr>
     </tbody>

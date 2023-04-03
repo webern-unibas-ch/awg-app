@@ -4,13 +4,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { SourceList } from '@awg-views/edition-view/models';
 
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { SourceListComponent } from './source-list.component';
 
 describe('SourceListComponent (DONE)', () => {
@@ -55,12 +56,11 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         it('... should have `ref`', () => {
-            expect(component.ref).toBeTruthy();
-            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+            expectToEqual(component.ref, component);
         });
 
         describe('VIEW', () => {
-            it('... should contain one table with table body, but no rows (tr) yet', () => {
+            it('... should contain one table with table body (no text sources), but no rows (tr) yet', () => {
                 const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
                 getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', 0, 0);
@@ -78,112 +78,250 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         it('... should have sourceListData', () => {
-            expect(component.sourceListData).toBeTruthy();
-            expect(component.sourceListData)
-                .withContext(`should equal ${expectedSourceListData}`)
-                .toEqual(expectedSourceListData);
+            expectToEqual(component.sourceListData, expectedSourceListData);
         });
 
         describe('VIEW', () => {
-            it('... should contain three rows (tr) in table body', () => {
-                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+            describe('... if text sources are not present', () => {
+                it('... should contain one table with table body', () => {
+                    getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+                });
 
-                getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', 3, 3);
+                it('... should contain as many rows (tr) in first table body as sources in sourceListData', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+
+                    getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', expectedSourcesLength, expectedSourcesLength);
+                });
+
+                it('... should contain two columns (one th, one td) per table row (tr)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach(rowDe => {
+                        getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+                    });
+                });
+
+                it('... should contain siglum link in header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+
+                        expectToBe(anchorEl.textContent, expectedSiglum);
+                    });
+                });
+
+                it('... should display siglum addendum if present in header column (th)', () => {
+                    expectedSourceListData.sources[0].siglumAddendum = 'a';
+                    expectedSourceListData.sources[1].siglumAddendum = 'b';
+                    expectedSourceListData.sources[2].siglumAddendum = 'H';
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const expectedSiglum =
+                            expectedSourceListData.sources[index].siglum +
+                            expectedSourceListData.sources[index].siglumAddendum;
+
+                        expectToBe(anchorEl.textContent, expectedSiglum);
+                    });
+                });
+
+                it('... should contain source type and source location in second table column (td)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+
+                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 2, 2);
+                        const spanEl0 = spanDes[0].nativeElement;
+                        const spanEl1 = spanDes[1].nativeElement;
+
+                        expectToBe(spanEl0.textContent, expectedSourceListData.sources[index].type);
+                        expectToBe(spanEl1.textContent, expectedSourceListData.sources[index].location);
+                    });
+                });
             });
 
-            it('... should contain two columns (one th, one td) per table row (tr)', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+            describe('... if text sources are present', () => {
+                beforeEach(() => {
+                    expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+                });
 
-                getAndExpectDebugElementByCss(rowDes[0], 'th', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[0], 'td', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[1], 'th', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[1], 'td', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[2], 'th', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[2], 'td', 1, 1);
-            });
+                it('... should contain two tables with table body', () => {
+                    expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
 
-            it('... should contain siglum link in header column (th)', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+                    getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+                });
 
-                // Get th columns
-                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'th', 1, 1);
-                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'th', 1, 1);
-                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'th', 1, 1);
+                it('... should contain a row (tr) with introductory text as a first child in the second table', () => {
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-                // Get anchors in th column
-                const anchorDes0 = getAndExpectDebugElementByCss(columnDes0[0], 'a', 1, 1);
-                const anchorDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'a', 1, 1);
-                const anchorDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'a', 1, 1);
+                    const firstTrDes = getAndExpectDebugElementByCss(tableBodyDes[1], 'tr:first-child', 1, 1);
+                    const firstTrEl = firstTrDes[0].nativeElement;
 
-                const anchorEl0 = anchorDes0[0].nativeElement;
-                const anchorEl1 = anchorDes1[0].nativeElement;
-                const anchorEl2 = anchorDes2[0].nativeElement;
+                    expectToBe(firstTrEl.textContent, 'Zum vertonten Text:');
+                });
 
-                expect(anchorEl0.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorEl0.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[0].siglum}`)
-                    .toBe(expectedSourceListData.sources[0].siglum);
+                it('... should contain as many additional rows (tr) in second table body as text sources in sourceListData', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-                expect(anchorEl1.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorEl1.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[1].siglum}`)
-                    .toBe(expectedSourceListData.sources[1].siglum);
+                    getAndExpectDebugElementByCss(tableBodyDes[1], 'tr', expectedSourcesLength, expectedSourcesLength);
+                });
 
-                expect(anchorEl2.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorEl2.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[2].siglum}`)
-                    .toBe(expectedSourceListData.sources[2].siglum);
-            });
+                it('... should contain two columns (one th, one td) in each additional row (tr)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-            it('... should contain source type and source location in second table column (td)', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
 
-                // Get td columns
-                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'td', 1, 1);
-                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'td', 1, 1);
-                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'td', 1, 1);
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+                    });
+                });
 
-                // Get spans in td column
-                const spanDes0 = getAndExpectDebugElementByCss(columnDes0[0], 'span', 2, 2);
-                const spanDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'span', 2, 2);
-                const spanDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'span', 2, 2);
+                it('... should contain siglum span in header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-                const spanEl00 = spanDes0[0].nativeElement;
-                const spanEl01 = spanDes0[1].nativeElement;
-                const spanEl10 = spanDes1[0].nativeElement;
-                const spanEl11 = spanDes1[1].nativeElement;
-                const spanEl20 = spanDes2[0].nativeElement;
-                const spanEl21 = spanDes2[1].nativeElement;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
 
-                expect(spanEl00.textContent).withContext('should be defined').toBeDefined();
-                expect(spanEl00.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[0].type}`)
-                    .toBe(expectedSourceListData.sources[0].type);
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
 
-                expect(spanEl01.textContent).withContext('should be defined').toBeDefined();
-                expect(spanEl01.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[0].location}`)
-                    .toBe(expectedSourceListData.sources[0].location);
+                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 1, 1);
+                        const spanEl = spanDes[0].nativeElement;
 
-                expect(spanEl10.textContent).withContext('should be defined').toBeDefined();
-                expect(spanEl10.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[1].type}`)
-                    .toBe(expectedSourceListData.sources[1].type);
+                        const expectedId = expectedSourceListData.textSources[index - 1].id;
 
-                expect(spanEl11.textContent).withContext('should be defined').toBeDefined();
-                expect(spanEl11.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[1].location}`)
-                    .toBe(expectedSourceListData.sources[1].location);
+                        expectToBe(spanEl.id, expectedId);
 
-                expect(spanEl20.textContent).withContext('should be defined').toBeDefined();
-                expect(spanEl20.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[2].type}`)
-                    .toBe(expectedSourceListData.sources[2].type);
+                        const expectedSiglum =
+                            expectedSourceListData.textSources[index - 1].siglum +
+                            expectedSourceListData.textSources[index - 1].siglumAddendum;
 
-                expect(spanEl21.textContent).withContext('should be defined').toBeDefined();
-                expect(spanEl21.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[2].location}`)
-                    .toBe(expectedSourceListData.sources[2].location);
+                        expectToBe(spanEl.textContent, expectedSiglum);
+                    });
+                });
+
+                it('... should display siglum addendum if present in header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 1, 1);
+                        const spanEl = spanDes[0].nativeElement;
+
+                        const expectedId = expectedSourceListData.textSources[index - 1].id;
+
+                        expectToBe(spanEl.id, expectedId);
+
+                        const expectedSiglum =
+                            expectedSourceListData.textSources[index - 1].siglum +
+                            expectedSourceListData.textSources[index - 1].siglumAddendum;
+
+                        expectToBe(spanEl.textContent, expectedSiglum);
+                    });
+                });
+
+                it('... should contain text source type and text source location in second table column (td)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+
+                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 2, 2);
+                        const spanEl0 = spanDes[0].nativeElement;
+                        const spanEl1 = spanDes[1].nativeElement;
+
+                        expectToBe(spanEl0.textContent, expectedSourceListData.textSources[index - 1].type);
+                        expectToBe(spanEl1.textContent, expectedSourceListData.textSources[index - 1].location);
+                    });
+                });
             });
         });
 

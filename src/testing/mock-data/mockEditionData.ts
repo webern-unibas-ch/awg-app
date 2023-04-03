@@ -120,24 +120,69 @@ export const mockEditionData = {
         sources: [
             {
                 siglum: 'A',
-                type: 'Skizzen',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                siglumAddendum: '',
+                type: 'Test type 1',
+                location: 'Test location 1.',
                 hasDescription: true,
                 linkTo: 'sourceA',
             },
             {
                 siglum: 'B',
-                type: 'Autograph von Nr. I.',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                siglumAddendum: '',
+                type: 'Test type 2',
+                location: 'Test location 2.',
                 hasDescription: false,
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
             },
             {
                 siglum: 'C',
-                type: 'Autograph von Nr. I–IV.',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                siglumAddendum: '',
+                type: 'Test type 3',
+                location: 'Test location 3.',
                 hasDescription: false,
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockSourceListDataWithTexts.
+     *
+     * It provides a mocked sourceListData object with text sources.
+     */
+    mockSourceListDataWithTexts: {
+        sources: [
+            {
+                siglum: 'A',
+                siglumAddendum: 'a',
+                type: 'Test type 1',
+                location: 'Test location 1.',
+                hasDescription: true,
+                linkTo: 'sourceAa',
+            },
+            {
+                siglum: 'B',
+                siglumAddendum: 'H',
+                type: 'Test type 2',
+                location: 'Test location 2.',
+                hasDescription: false,
+                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+            },
+        ],
+        textSources: [
+            {
+                id: 'text_textA',
+                siglum: 'textA',
+                siglumAddendum: '',
+                type: 'Text type 1',
+                location: 'Text location 1.',
+            },
+            {
+                id: 'text_textB',
+                siglum: 'textB',
+                siglumAddendum: 'H',
+                type: 'Text type 2',
+                location: 'Text location 2.',
             },
         ],
     },
@@ -154,7 +199,7 @@ export const mockEditionData = {
                 siglum: 'A',
                 siglumAddendum: '',
                 type: 'Skizzen',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                location: 'CH-Bps, Sammlung Anton Webern.',
                 description: {},
             },
             {

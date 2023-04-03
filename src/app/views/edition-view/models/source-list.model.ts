@@ -37,6 +37,33 @@ export class Source {
     linkTo: string;
 }
 
+export class TextSource {
+    /**
+     * The id of a text source.
+     */
+    id: string;
+
+    /**
+     * The siglum of a text source.
+     */
+    siglum: string;
+
+    /**
+     * The addendum to a siglum of a text source.
+     */
+    siglumAddendum?: string;
+
+    /**
+     * The type description of a text source.
+     */
+    type: string;
+
+    /**
+     * The physical location of a text source.
+     */
+    location: string;
+}
+
 /**
  * The SourceList class.
  *
@@ -49,4 +76,9 @@ export class SourceList {
      * The array of sources from a source list.
      */
     sources: Source[];
+
+    /**
+     * The array of text sources from a source list.
+     */
+    textSources?: TextSource[];
 }

@@ -72,5 +72,35 @@
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_AVAILABLE"
         }
+    ],
+    "textSources": [
+        {
+            "id": "text_Bethge_DchF",
+            "siglum": "Bethge_DchF",
+            "siglumAddendum": "",
+            "type": "Hans Bethge, <em>Die chinesische Flöte</em>, Leipzig: Inselverlag, <sup>4</sup>[1914], S. 35 (Die geheimnisvolle Flöte).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1027."
+        },
+        {
+            "id": "text_Goethe_JA",
+            "siglum": "Goethe_JA",
+            "siglumAddendum": "",
+            "type": "Johann Wolfgang von Goethe, <em>Sämtliche Werke. Jubiläumsausgabe in 40 Bänden</em>, Stuttgart und Berlin: Cotta, [1902–1912], Bd. 1, <em>Gedichte. Erster Teil</em>, S. 19 (<em>Gleich und Gleich</em>). ",
+            "location": "Webern besaß laut seinem eigenhändigen in den 1910er Jahren begonnenen Bücher- und Notenverzeichnis (CH-Bps, Sammlung Anton Webern) diese Goethe-Ausgabe. Exemplare sind nicht überliefert. "
+        },
+        {
+            "id": "text_Rosegger_PM",
+            "siglum": "Rosegger_PM",
+            "siglumAddendum": "",
+            "type": "Peter Rosegger, <em>Peter Mayr</em>[,] <em>der Wirt an der Mahr. Eine Geschichte aus deutscher Heldenzeit</em>, Leipzig: Staackmann, 1914 (Gesammelte Werke 19), S. 214 („Der Tag ist vergangen …“).",
+            "location": "Der Roman erschien zuerst in Wien: A. Hartleben, 1891. Webern besaß laut seinem eigenhändigen in den 1910er Jahren begonnenen Bücher- und Notenverzeichnis (CH-Bps, Sammlung Anton Webern) die ab 1913 erschienenen 40 Bände der „Gesammelten Werke“ Roseggers. Weberns Exemplar des betreffenden Bandes ist nicht überliefert."
+        },
+        {
+            "id": "text_Strindberg_Gs",
+            "siglum": "Strindberg_Gs",
+            "siglumAddendum": "",
+            "type": "August Strindberg, <em>Gespenstersonate</em>, in: ders., <em>Kammerspiele</em>, verdeutscht von Emil Schering, München und Leipzig: Georg Müller, 1908 (Strindbergs Werke. Deutsche Gesamtausgabe unter Mitwirkung von Emil Schering als Übersetzer, vom Dichter selbst veranstaltet. I. Abteilung: Dramen. Kammerspiele [Band 9]), [Heft 3], S. 46[c] („Schien mirs, als ich sah die Sonne!“).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1129."
+        }
     ]
 }
