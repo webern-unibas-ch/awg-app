@@ -12,6 +12,11 @@ export class Source {
     siglum: string;
 
     /**
+     * The addendum to a siglum of a source.
+     */
+    siglumAddendum?: string;
+
+    /**
      * The type description of a source.
      */
     type: string;
@@ -22,12 +27,12 @@ export class Source {
     location: string;
 
     /**
-     * A flag if the source has a source description in the critical report.
+     * A flag if the source has a source description.
      */
     hasDescription: boolean;
 
     /**
-     * The link to a source description in the critical report.
+     * The link to the source description.
      */
     linkTo: string;
 }

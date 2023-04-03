@@ -3,6 +3,7 @@
         {
             "id": "sourceB",
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
@@ -573,6 +574,7 @@
         {
             "id": "notA",
             "siglum": "",
+            "siglumAddendum": "",
             "type": "",
             "location": "",
             "description": {

@@ -3,6 +3,7 @@
         {
             "id": "sourceA",
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Skizzen.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
@@ -567,6 +568,7 @@
         {
             "id": "sourceB",
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {

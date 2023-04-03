@@ -2,6 +2,7 @@
     "sources": [
         {
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Skizzen (in Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
@@ -9,6 +10,7 @@
         },
         {
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
@@ -16,6 +18,7 @@
         },
         {
             "siglum": "C",
+            "siglumAddendum": "",
             "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I (\"Das dunkle Herz\" M 314: einzige Textfassung) <br /><span class=\"tab\"></span>II (\"Es stürzt aus Höhen Frische\" M 313: einzige Textfassung) <br /><span class=\"tab\"></span>III (\"Herr Jesus mein\" M 312: einzige Textfassung).",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
             "hasDescription": false,
@@ -23,6 +26,7 @@
         },
         {
             "siglum": "D",
+            "siglumAddendum": "",
             "type": "Druck von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23:<br /><span class=\"tab\"></span>I (\"Das dunkle Herz\" M 314: einzige Textfassung) <br /><span class=\"tab\"></span>II (\"Es stürzt aus Höhen Frische\" M 313: einzige Textfassung) <br /><span class=\"tab\"></span>III (\"Herr Jesus mein\" M 312: einzige Textfassung).",
             "location": "Wien: Universal Edition, 1936.",
             "hasDescription": false,
