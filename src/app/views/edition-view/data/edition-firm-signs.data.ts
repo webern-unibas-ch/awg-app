@@ -33,6 +33,15 @@ export const EDITION_FIRM_SIGNS_DATA = {
     },
 
     /**
+     * The path to the assets image of a firm sign: JE No. 12, 12 Lines (variant "b").
+     */
+    FIRM_JE_NO_2_LIN_12_b: {
+        route: 'assets/img/edition/firm-signs/firm_je_no2_lin12_b.png',
+        short: '[JE] | No. 2 | 12 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 2 | 12 linig.',
+    },
+
+    /**
      * The path to the assets image of a firm sign: JE No. 15, 16 Lines.
      */
     FIRM_JE_NO_15_LIN_16: {
