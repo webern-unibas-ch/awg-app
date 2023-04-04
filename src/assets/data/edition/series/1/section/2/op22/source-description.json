@@ -575,13 +575,27 @@
                                         }
                                     ]
                                 ]
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
                                 "folioDescription": "siehe Eintragungen.",
                                 "systemGroups": []
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
                             {
                                 "folio": "3v",
                                 "folioLinkTo": "",
