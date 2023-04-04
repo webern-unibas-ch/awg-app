@@ -51,7 +51,7 @@ export class SourceDescriptionComponent {
     readonly FIRM_SIGNS = {
         OP12: {
             A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28],
-            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12_b],
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12_B],
         },
         OP25: {
             A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_15_LIN_16],

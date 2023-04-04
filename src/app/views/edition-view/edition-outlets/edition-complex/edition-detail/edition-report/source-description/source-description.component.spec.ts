@@ -4,7 +4,13 @@ import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/cor
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -55,7 +61,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;
         expectedFirmSigns = {
-            OP12: { A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28] },
+            OP12: {
+                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28],
+                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12_B],
+            },
             OP25: {
                 A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_15_LIN_16],
                 B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12],
@@ -82,13 +91,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
         });
 
         it('... should have `ref`', () => {
-            expect(component.ref).toBeTruthy();
-            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+            expectToEqual(component.ref, component);
         });
 
         it('... should have `FIRM_SIGNS`', () => {
-            expect(component.FIRM_SIGNS).toBeTruthy();
-            expect(component.FIRM_SIGNS).withContext(`should equal ${expectedFirmSigns}`).toEqual(expectedFirmSigns);
+            expectToEqual(component.FIRM_SIGNS, expectedFirmSigns);
         });
 
         describe('VIEW', () => {
@@ -108,10 +115,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         });
 
         it('... should have `sourceDescriptionListData`', () => {
-            expect(component.sourceDescriptionListData).toBeTruthy();
-            expect(component.sourceDescriptionListData)
-                .withContext(`should equal ${expectedSourceDescriptionListData}`)
-                .toEqual(expectedSourceDescriptionListData);
+            expectToEqual(component.sourceDescriptionListData, expectedSourceDescriptionListData);
         });
 
         describe('VIEW', () => {
@@ -137,7 +141,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 );
 
                 divDes.forEach(divDe => {
-                    expect(divDe.nativeElement.classList.contains('para')).toBeTruthy();
+                    expectToContain(divDe.nativeElement.classList, 'para');
                     expect(divDe.nativeElement).toHaveClass('para');
                 });
             });
@@ -174,10 +178,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     expect(pEl).toHaveClass('awg-source-description-siglum');
                     expect(pEl).toHaveClass('bold');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedSiglum.trim()}`)
-                        .toBe(expectedSiglum.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
                 });
 
                 it('... the second paragraph displaying the source type', () => {
@@ -188,10 +189,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pEl = pDes[1].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-type');
-                    expect(pEl.textContent).withContext('should be defined').toBeDefined();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedSourceDescriptionListData.sources[0].type.trim()}`)
-                        .toBe(expectedSourceDescriptionListData.sources[0].type.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[0].type.trim());
                 });
 
                 it('... the third paragraph displaying the source location', () => {
@@ -202,10 +200,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pEl = pDes[2].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-location');
-                    expect(pEl.textContent).withContext('should be defined').toBeDefined();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedSourceDescriptionListData.sources[0].location.trim()}`)
-                        .toBe(expectedSourceDescriptionListData.sources[0].location.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[0].location.trim());
                 });
             });
 
@@ -243,18 +238,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
                     expect(pEl).toHaveClass('awg-source-description-siglum');
                     expect(pEl).toHaveClass('bold');
-
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent).withContext('should be defined').toBeDefined();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedSiglum.trim()}`)
-                        .toBe(expectedSiglum.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
 
                     expect(addendumEl).toHaveClass('awg-source-description-siglum-addendum');
-                    expect(addendumEl.textContent).toBeTruthy();
-                    expect(addendumEl.textContent.trim())
-                        .withContext(`should be ${expectedSourceDescriptionListData.sources[1].siglumAddendum}`)
-                        .toBe(expectedSourceDescriptionListData.sources[1].siglumAddendum);
+                    expectToBe(
+                        addendumEl.textContent.trim(),
+                        expectedSourceDescriptionListData.sources[1].siglumAddendum
+                    );
                 });
 
                 it('... the second paragraph displaying the source location', () => {
@@ -264,10 +254,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pEl = pDes[1].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-location');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedSourceDescriptionListData.sources[1].location.trim()}`)
-                        .toBe(expectedSourceDescriptionListData.sources[1].location.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[1].location.trim());
                 });
 
                 it('... should contain up to 9 paragraphs in description-body div', () => {
@@ -284,10 +271,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expectedSourceDescriptionListData.sources[1].description.desc[0];
 
                     expect(pEl).toHaveClass('awg-source-description-desc');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... the second possible paragraph displaying the writingMaterial', () => {
@@ -302,10 +286,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         '</span>';
 
                     expect(pEl).toHaveClass('awg-source-description-writing-material');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim().toLowerCase())
-                        // .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim().toLowerCase());
+                    expectToBe(
+                        pEl.textContent.trim().toLowerCase(),
+                        expectedHtmlTextContent.textContent.trim().toLowerCase()
+                    );
                 });
 
                 it('... the third possible paragraph displaying the writingInstruments', () => {
@@ -324,10 +308,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         '.</span>';
 
                     expect(pEl).toHaveClass('awg-source-description-writing-instruments');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim().toLowerCase())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim().toLowerCase());
+                    expectToBe(
+                        pEl.textContent.trim().toLowerCase(),
+                        expectedHtmlTextContent.textContent.trim().toLowerCase()
+                    );
                 });
 
                 it('... the fourth possible paragraph displaying the title', () => {
@@ -340,10 +324,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         'Titel:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.title;
 
                     expect(pEl).toHaveClass('awg-source-description-title');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... the fifth possible paragraph displaying the date', () => {
@@ -356,10 +337,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         'Datierung:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.date;
 
                     expect(pEl).toHaveClass('awg-source-description-date');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... the sixth possible paragraph displaying the pagination', () => {
@@ -372,10 +350,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         'Paginierung:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.pagination;
 
                     expect(pEl).toHaveClass('awg-source-description-pagination');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... the seventh possible paragraph displaying the measure numbers', () => {
@@ -388,10 +363,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         'Taktzahlen:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.measureNumbers;
 
                     expect(pEl).toHaveClass('awg-source-description-measure-numbers');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... the eighth possible paragraph displaying the instrumentation', () => {
@@ -405,10 +377,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expectedSourceDescriptionListData.sources[1].description.instrumentation;
 
                     expect(pEl).toHaveClass('awg-source-description-instrumentation');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... the ninth possible paragraph displaying the annotations', () => {
@@ -421,10 +390,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         'Eintragungen:&nbsp;' + expectedSourceDescriptionListData.sources[1].description.annotations;
 
                     expect(pEl).toHaveClass('awg-source-description-annotations');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim())
-                        .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                        .toBe(expectedHtmlTextContent.textContent.trim());
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
 
                 it('... should contain one description-content div in description-body div', () => {
@@ -446,8 +412,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pEl = pDes[0].nativeElement;
 
                     expect(pEl).toHaveClass('no-para');
-                    expect(pEl.textContent).toBeTruthy();
-                    expect(pEl.textContent.trim()).withContext(`should be 'Inhalt:'`).toBe('Inhalt:');
+                    expectToBe(pEl.textContent.trim(), 'Inhalt:');
                 });
 
                 it('... should contain as many item paragraphs (half-para) in description-content div as given content items', () => {
@@ -494,14 +459,9 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                         const itemEl2 = itemDes2[0].nativeElement;
 
-                        expect(itemEl0.textContent).toBeTruthy();
-                        expect(itemEl0.textContent.trim()).toBe('Test item (test description):');
-
-                        expect(itemEl1.textContent).toBeTruthy();
-                        expect(itemEl1.textContent.trim()).toBe('Test item 2 without link (test description 2):');
-
-                        expect(itemEl2.textContent).toBeTruthy();
-                        expect(itemEl2.textContent.trim()).toBe('Test item 3 without description:');
+                        expectToBe(itemEl0.textContent.trim(), 'Test item (test description):');
+                        expectToBe(itemEl1.textContent.trim(), 'Test item 2 without link (test description 2):');
+                        expectToBe(itemEl2.textContent.trim(), 'Test item 3 without description:');
                     });
 
                     it('... should display the content-item (strong) with anchor link and description if given', () => {
@@ -531,11 +491,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                         const contentItemDescriptionEl = contentItemDescriptionDes[0].nativeElement;
 
-                        expect(strongEl.textContent).toBeTruthy();
-                        expect(strongEl.textContent.trim()).toBe('Test item');
-
-                        expect(contentItemDescriptionEl.textContent).toBeTruthy();
-                        expect(contentItemDescriptionEl.textContent.trim()).toBe('(test description)');
+                        expectToBe(strongEl.textContent.trim(), 'Test item');
+                        expectToBe(contentItemDescriptionEl.textContent.trim(), '(test description)');
                     });
 
                     it('... should display the content-item (strong) without anchor link if not given', () => {
@@ -565,11 +522,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         );
                         const contentItemDescriptionEl = contentItemDescriptionDes[0].nativeElement;
 
-                        expect(strongEl.textContent).toBeTruthy();
-                        expect(strongEl.textContent.trim()).toBe('Test item 2 without link');
-
-                        expect(contentItemDescriptionEl.textContent).toBeTruthy();
-                        expect(contentItemDescriptionEl.textContent.trim()).toBe('(test description 2)');
+                        expectToBe(strongEl.textContent.trim(), 'Test item 2 without link');
+                        expectToBe(contentItemDescriptionEl.textContent.trim(), '(test description 2)');
                     });
 
                     it('... should display the content-item (strong) without description if not given', () => {
@@ -598,8 +552,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                             0
                         );
 
-                        expect(strongEl.textContent).toBeTruthy();
-                        expect(strongEl.textContent.trim()).toBe('Test item 3 without description');
+                        expectToBe(strongEl.textContent.trim(), 'Test item 3 without description');
                     });
                 });
 
@@ -704,10 +657,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expectedHtmlTextContent.innerHTML =
                             '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">1<sup class="awg-source-description-content-item-folio-side">r</sup></span></span>';
 
-                        expect(anchorEl0.textContent).toBeTruthy();
-                        expect(anchorEl0.textContent.trim())
-                            .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                            .toBe(expectedHtmlTextContent.textContent.trim());
+                        expectToBe(anchorEl0.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                     });
 
                     it('... should display the content-item-folio without anchor link if not given', () => {
@@ -739,10 +689,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expectedHtmlTextContent.innerHTML =
                             '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">29<sup class="awg-source-description-content-item-folio-side">v</sup></span></span>';
 
-                        expect(folioEl1.textContent).toBeTruthy();
-                        expect(folioEl1.textContent.trim())
-                            .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                            .toBe(expectedHtmlTextContent.textContent.trim());
+                        expectToBe(folioEl1.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                     });
 
                     it('... should display the content-item-folio with description if given', () => {
@@ -772,10 +719,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expectedHtmlTextContent.innerHTML =
                             '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">2<sup class="awg-source-description-content-item-folio-side">v</sup></span></span><span class="awg-source-description-content-item-folio-description">&nbsp;Test item 4 without item</span>';
 
-                        expect(folioEl.textContent).toBeTruthy();
-                        expect(folioEl.textContent.trim())
-                            .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                            .toBe(expectedHtmlTextContent.textContent.trim());
+                        expectToBe(folioEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                     });
                 });
 
@@ -835,10 +779,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
                                 expectedHtmlTextContent.innerHTML = `System&nbsp;${expectedSystems[index].system}:`;
 
-                                expect(systemEl.textContent).toBeTruthy();
-                                expect(systemEl.textContent.trim())
-                                    .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                                    .toBe(expectedHtmlTextContent.textContent.trim());
+                                expectToBe(systemEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                             });
                         });
                     });
@@ -873,10 +814,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const systemDescEl = systemDesc.nativeElement;
                                 const expectedSystemDescText = expectedSystemDescriptions[index].systemDescription;
 
-                                expect(systemDescEl.textContent).toBeTruthy();
-                                expect(systemDescEl.textContent.trim())
-                                    .withContext(`should be ${expectedSystemDescText}`)
-                                    .toBe(expectedSystemDescText);
+                                expectToBe(systemDescEl.textContent.trim(), expectedSystemDescText);
                             });
                         });
                     });
@@ -912,10 +850,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
                                 const expectedHtmlTextContent = mockDocument.createElement('span');
                                 expectedHtmlTextContent.innerHTML = `T.&nbsp;${expectedSystemMeasures[index].measure}`;
 
-                                expect(systemMeasureEl.textContent).toBeTruthy();
-                                expect(systemMeasureEl.textContent.trim())
-                                    .withContext(`should be ${expectedHtmlTextContent.textContent.trim()}`)
-                                    .toBe(expectedHtmlTextContent.textContent.trim());
+                                expectToBe(
+                                    systemMeasureEl.textContent.trim(),
+                                    expectedHtmlTextContent.textContent.trim()
+                                );
                             });
                         });
                     });
