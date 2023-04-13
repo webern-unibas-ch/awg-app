@@ -10,7 +10,7 @@
         </ng-template>
         <ng-template ngbPanelContent>
             <div class="row">
-                <div class="col-4 col-xl-3">
+                <div class="order-2 order-lg-1 col-12 col-lg-4 col-xl-3">
                     <!-- svg sheet navigation -->
                     <awg-edition-svg-sheet-nav
                         *ngIf="svgSheetsData && selectedSvgSheet"
@@ -19,7 +19,7 @@
                         (selectSvgSheetRequest)="selectSvgSheet($event)">
                     </awg-edition-svg-sheet-nav>
                 </div>
-                <div class="col-8 col-xl-9">
+                <div class="order-1 order-lg-2 col-12 col-lg-8 col-xl-9">
                     <!-- svg sheet -->
                     <awg-edition-svg-sheet-viewer
                         *ngIf="selectedSvgSheet"
