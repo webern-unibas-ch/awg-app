@@ -204,7 +204,7 @@
                                         }
                                     ]
                                 ]
-                            },    
+                            },
                             {
                                 "folio": "2r",
                                 "folioLinkTo": "SkRTb",
@@ -296,7 +296,9 @@
                                                 "rowBase": "a",
                                                 "rowNumber": "24"
                                             }
-                                        },
+                                        }
+                                    ],
+                                    [
                                         {
                                             "system": "5a",
                                             "measure": "",
