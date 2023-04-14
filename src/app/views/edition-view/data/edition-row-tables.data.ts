@@ -14,7 +14,7 @@ export const EDITION_ROW_TABLES_DATA: EditionRowTables[] = [
     { route: '/op24', short: 'Op. 24', full: 'Opus 24', id: 'SkRT', disabled: false },
     { route: '/op25', short: 'Op. 25', full: 'Opus 25', id: 'SkRT', disabled: false },
     { route: '/op26', short: 'Op. 26', full: 'Opus 26', id: 'SkRT', disabled: true },
-    { route: '/op27', short: 'Op. 27', full: 'Opus 27', id: 'SkRT', disabled: true },
+    { route: '/op27', short: 'Op. 27', full: 'Opus 27', id: 'SkRT', disabled: false },
     { route: '/op28', short: 'Op. 28', full: 'Opus 28', id: 'SkRT', disabled: true },
     { route: '/op29', short: 'Op. 29', full: 'Opus 29', id: 'SkRT', disabled: true },
     { route: '/op30', short: 'Op. 30', full: 'Opus 30', id: 'SkRT', disabled: true },
