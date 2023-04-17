@@ -422,119 +422,118 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             return;
         }
 
-        this._createTkkOverlays();
-        this._createLinkBoxOverlays();
+        this._createOverlays('link-box', this._createLinkBoxOverlay.bind(this));
+        this._createOverlays('tkk', this._createTkkOverlay.bind(this));
     }
 
     /**
-     * Private method: _createLinkBoxOverlays.
+     * Private method: _createOverlays.
      *
-     * It creates the D3 SVG overlays for the link boxes.
+     * It creates the D3 SVG overlays for the given overlayType.
+     *
+     * @param {string} overlayType The type of the overlay to create.
+     * @param {Function} createOverlayFn The function to create the overlay.
      *
      * @returns {void} Creates the D3 SVG link box overlays.
      */
-    private _createLinkBoxOverlays(): void {
-        const linkBoxGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+    private _createOverlays(overlayType: string, createOverlayFn: (group: SVGGElement, type: string) => void): void {
+        const overlayGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
             this.svgSheetRootGroupSelection,
-            'link-box'
+            overlayType
         );
 
-        if (linkBoxGroups) {
-            linkBoxGroups.nodes().forEach(linkBoxGroup => {
-                const linkBoxGroupId: string = linkBoxGroup['id'];
-                const linkBoxGroupSelection: D3Selection = this.svgDrawingService.getD3SelectionById(
-                    this.svgSheetRootGroupSelection,
-                    linkBoxGroupId
-                );
-
-                // Color link box
-                const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
-                linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
-
-                linkBoxGroupSelection
-                    .on('mouseover', () => {
-                        linkBoxGroupSelection.style('cursor', 'pointer');
-                        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxHoverFillColor);
-                    })
-                    .on('mouseout', () => {
-                        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
-                    })
-                    .on('click', () => {
-                        this._onLinkBoxSelect(linkBoxGroupId);
-                    });
-            });
+        if (!overlayGroups) {
+            return;
         }
+
+        overlayGroups.nodes().forEach(overlayGroup => {
+            createOverlayFn(overlayGroup as SVGGElement, overlayType);
+        });
     }
 
     /**
-     * Private method: _createTkkOverlays.
+     * Private method: _createLinkBoxOverlay.
      *
-     * It creates the D3 SVG overlays for the textcritical comments.
+     * It creates the D3 SVG overlay for the given link box group.
      *
-     * @returns {void} Creates the D3 SVG textcritical comment overlays.
+     * @param {SVGGElement} group The given link box group.
+     * @param {string} _overlayType The type of the overlay to create.
+     *
+     * @returns {void} Creates the D3 SVG link box overlay.
      */
-    private _createTkkOverlays(): void {
-        // Tkk overlays
-        const tkkGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+    private _createLinkBoxOverlay(group: SVGGElement, _overlayType: string): void {
+        const linkBoxGroupId: string = group['id'];
+        const linkBoxGroupSelection: D3Selection = this.svgDrawingService.getD3SelectionById(
             this.svgSheetRootGroupSelection,
-            'tkk'
+            linkBoxGroupId
         );
 
-        if (tkkGroups) {
-            tkkGroups.nodes().forEach(tkkGroup => {
-                const id: string = tkkGroup['id'];
+        // Color link box
+        const linkBoxGroupPathSelection: D3Selection = linkBoxGroupSelection.select('path');
+        linkBoxGroupPathSelection.style('fill', this.svgDrawingService.linkBoxFillColor);
 
-                this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
-
-                // Get D3 selection of overlay group
-                const type = 'tkk';
-                const dim: DOMRect = (tkkGroup as SVGGElement).getBBox();
-                const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(
-                    this.svgSheetRootGroupSelection,
-                    id,
-                    dim,
-                    type
-                );
-
-                const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
-                    this.svgSheetRootGroupSelection,
-                    id,
-                    type
-                );
-
-                const overlay = this._getOverlayById(this._availableOverlays, id);
-
-                overlayGroupSelection
-                    .on('mouseover', () => {
-                        if (overlay && !overlay.isSelected) {
-                            const color = this.svgDrawingService.overlayHoverFillColor;
-                            this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-                        }
-                        overlayGroupRectSelection.style('cursor', 'pointer');
-                    })
-                    .on('mouseout', () => {
-                        const color =
-                            overlay && overlay.isSelected
-                                ? this.svgDrawingService.overlaySelectionFillColor
-                                : this.svgDrawingService.overlayFillColor;
-                        this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-                    })
-                    .on('click', () => {
-                        if (overlay) {
-                            overlay.isSelected = !overlay.isSelected;
-                        }
-                        const color =
-                            overlay && overlay.isSelected
-                                ? this.svgDrawingService.overlaySelectionFillColor
-                                : this.svgDrawingService.overlayHoverFillColor;
-                        this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-
-                        this._selectedOverlays = this._getSelectedOverlays(this._availableOverlays);
-
-                        this._onOverlaySelect(this._selectedOverlays);
-                    });
+        linkBoxGroupSelection
+            .on('mouseover', () => {
+                const hoverColor = this.svgDrawingService.linkBoxHoverFillColor;
+                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, hoverColor);
+                linkBoxGroupSelection.style('cursor', 'pointer');
+            })
+            .on('mouseout', () => {
+                const fillColor = this.svgDrawingService.linkBoxFillColor;
+                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, fillColor);
+            })
+            .on('click', () => {
+                this._onLinkBoxSelect(linkBoxGroupId);
             });
-        }
+    }
+
+    /**
+     * Private method: _createTkkOverlay.
+     *
+     * It creates the D3 SVG overlay for the given tkk group.
+     *
+     * @param {SVGGElement} group The given tkk group.
+     * @param {string} overlayType The type of the overlay to create.
+     *
+     * @returns {void} Creates the D3 SVG tkk overlay.
+     */
+    private _createTkkOverlay(group: SVGGElement, overlayType: string): void {
+        const id: string = group['id'];
+        const dim: DOMRect = (group as SVGGElement).getBBox();
+
+        this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
+        const overlay = this._getOverlayById(this._availableOverlays, id);
+
+        // Get D3 selection of overlay group
+        const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(
+            this.svgSheetRootGroupSelection,
+            id,
+            dim,
+            overlayType
+        );
+
+        const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
+            this.svgSheetRootGroupSelection,
+            id,
+            overlayType
+        );
+
+        overlayGroupSelection
+            .on('mouseover', () => {
+                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'hover');
+                overlayGroupRectSelection.style('cursor', 'pointer');
+            })
+            .on('mouseout', () => {
+                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'fill');
+            })
+            .on('click', () => {
+                if (overlay) {
+                    overlay.isSelected = !overlay.isSelected;
+                }
+                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'hover');
+                this._selectedOverlays = this._getSelectedOverlays(this._availableOverlays);
+                this._onOverlaySelect(this._selectedOverlays);
+            });
     }
 
     /**
