@@ -13,7 +13,7 @@ import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
 import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
-import { EditionRowTables } from './edition-row-tables.model';
+import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
@@ -44,6 +44,7 @@ export {
     EditionComplex,
     EditionRouteConstant,
     EditionRowTables,
+    EditionRowTablesList,
     EditionOutlineComplex,
     EditionOutlineSection,
     EditionOutlineSeries,

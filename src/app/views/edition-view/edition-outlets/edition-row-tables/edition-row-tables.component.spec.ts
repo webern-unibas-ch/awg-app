@@ -1,21 +1,24 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, lastValueFrom, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
-import { EditionRowTables } from '@awg-views/edition-view/models';
+import { EditionRowTablesList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
+import { mockEditionData } from '@testing/mock-data';
 import { EditionRowTablesComponent } from './edition-row-tables.component';
 
 describe('EditionRowTablesComponent (DONE)', () => {
@@ -34,6 +37,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
     let mockEditionDataService: Partial<EditionDataService>;
     let mockIsRowTableViewSubject: ReplaySubject<boolean>;
 
+    let expectedRowTablesData: EditionRowTablesList;
+
     beforeEach(async () => {
         mockIsRowTableViewSubject = new ReplaySubject<boolean>(1);
 
@@ -45,7 +50,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
         // Mock edition data service
         mockEditionDataService = {
-            getRowTables: (): EditionRowTables[] => EDITION_ROW_TABLES_DATA,
+            getEditionRowTablesData: (): Observable<EditionRowTablesList> => observableOf(expectedRowTablesData),
         };
 
         await TestBed.configureTestingModule({
@@ -65,12 +70,15 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockEditionService = TestBed.inject(EditionService);
         mockEditionDataService = TestBed.inject(EditionDataService);
 
+        // Test data
+        expectedRowTablesData = mockEditionData.mockRowTablesData;
+
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         editionServiceUpdateIsRowTablesViewSpy = spyOn(mockEditionService, 'updateIsRowTableView').and.callThrough();
         editionServiceClearIsRowTablesViewSpy = spyOn(mockEditionService, 'clearIsRowTableView').and.callThrough();
-        editionDataServiceGetRowTablesSpy = spyOn(mockEditionDataService, 'getRowTables').and.callThrough();
+        editionDataServiceGetRowTablesSpy = spyOn(mockEditionDataService, 'getEditionRowTablesData').and.callThrough();
     });
 
     it('... should create', () => {
@@ -78,8 +86,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `rowTablesData`', () => {
-            expect(component.rowTablesData).toBeUndefined();
+        it('... should not have `rowTablesData$`', () => {
+            expect(component.rowTablesData$).toBeUndefined();
         });
 
         it('... should not have called EditionService', () => {
@@ -111,9 +119,12 @@ describe('EditionRowTablesComponent (DONE)', () => {
             expectSpyCall(editionDataServiceGetRowTablesSpy, 1);
         });
 
-        it('... should have received `rowTablesData`', () => {
-            expect(component.rowTablesData).toEqual(EDITION_ROW_TABLES_DATA);
-        });
+        it('... should have rowTablesData$', waitForAsync(() => {
+            expectAsync(lastValueFrom(component.rowTablesData$)).toBeResolved();
+            expectAsync(lastValueFrom(component.rowTablesData$))
+                .withContext(`should be resolved to ${expectedRowTablesData}`)
+                .toBeResolvedTo(expectedRowTablesData);
+        }));
 
         describe('VIEW', () => {
             it('... should contain 1 outer div.row', () => {
@@ -121,13 +132,13 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
 
             it('... should contain as many inner div.col as entries in rowTablesData', () => {
-                expect(component.rowTablesData.length).toBe(13);
+                expectToBe(expectedRowTablesData.rowTables.length, 4);
 
                 getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
             });
 
@@ -135,8 +146,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -150,8 +161,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -163,20 +174,17 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach((divDe, index) => {
                     const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
                     const headingEl = headingDe[0].nativeElement;
 
-                    const expectedHeading = 'Reihentabelle ' + component.rowTablesData[index].short;
+                    const expectedHeading = 'Reihentabelle ' + expectedRowTablesData.rowTables[index].short;
 
-                    expect(headingEl.textContent).toBeTruthy();
-                    expect(headingEl.textContent.trim())
-                        .withContext(`should be ${expectedHeading}`)
-                        .toBe(expectedHeading);
+                    expectToBe(headingEl.textContent.trim(), expectedHeading);
                 });
             });
 
@@ -184,16 +192,16 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach((divDe, index) => {
                     const headingDe = getAndExpectDebugElementByCss(divDe, 'div.card-body h5.card-title', 1, 1);
                     const headingEl = headingDe[0].nativeElement;
 
-                    if (component.rowTablesData[index].disabled) {
-                        expect(headingEl.classList).toContain('text-muted');
+                    if (expectedRowTablesData.rowTables[index].disabled) {
+                        expectToContain(headingEl.classList, 'text-muted');
                     } else {
                         expect(headingEl.classList).not.toContain('text-muted');
                     }
@@ -204,8 +212,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach(divDe => {
@@ -217,8 +225,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach((divDe, index) => {
@@ -227,8 +235,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
 
                     const expectedText = 'Mehr...';
 
-                    expect(anchorEl.textContent).toBeTruthy();
-                    expect(anchorEl.textContent.trim()).withContext(`should be ${expectedText}`).toBe(expectedText);
+                    expectToBe(anchorEl.textContent.trim(), expectedText);
                 });
             });
 
@@ -236,16 +243,16 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.col',
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 divDes.forEach((divDe, index) => {
                     const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
                     const anchorEl = anchorDe[0].nativeElement;
 
-                    if (component.rowTablesData[index].disabled) {
-                        expect(anchorEl.classList).toContain('disabled');
+                    if (expectedRowTablesData.rowTables[index].disabled) {
+                        expectToContain(anchorEl.classList, 'disabled');
                     } else {
                         expect(anchorEl.classList).not.toContain('disabled');
                     }
@@ -259,8 +266,8 @@ describe('EditionRowTablesComponent (DONE)', () => {
                 linkDes = getAndExpectDebugElementByDirective(
                     compDe,
                     RouterLinkStubDirective,
-                    component.rowTablesData.length,
-                    component.rowTablesData.length
+                    expectedRowTablesData.rowTables.length,
+                    expectedRowTablesData.rowTables.length
                 );
 
                 // Get attached link directive instances using each DebugElement's injector
@@ -268,44 +275,36 @@ describe('EditionRowTablesComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expect(routerLinks.length)
-                    .withContext(`should have ${component.rowTablesData.length} routerLinks`)
-                    .toBe(component.rowTablesData.length);
+                expectToBe(routerLinks.length, expectedRowTablesData.rowTables.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
-                    const expectedRouterLink = ['../complex' + component.rowTablesData[index].route, 'sheets'];
+                    const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
-                    expect(routerLink.linkParams)
-                        .withContext(`should equal ${expectedRouterLink}}`)
-                        .toEqual(expectedRouterLink);
+                    expectToEqual(routerLink.linkParams, expectedRouterLink);
                 });
             });
 
             it('... can get correct queryParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
-                    const expectedQueryParams = { id: component.rowTablesData[index].id };
+                    const expectedQueryParams = { id: expectedRowTablesData.rowTables[index].id };
 
-                    expect(routerLink.queryParams)
-                        .withContext(`should equal ${expectedQueryParams}}`)
-                        .toEqual(expectedQueryParams);
+                    expectToEqual(routerLink.queryParams, expectedQueryParams);
                 });
             });
 
             it('... can click all links in template', () => {
                 routerLinks.forEach((routerLink, index) => {
                     const linkDe = linkDes[index];
-                    const expectedRouterLink = ['../complex' + component.rowTablesData[index].route, 'sheets'];
+                    const expectedRouterLink = ['../complex' + expectedRowTablesData.rowTables[index].route, 'sheets'];
 
                     expect(routerLink.navigatedTo).toBeNull();
 
                     click(linkDe);
                     fixture.detectChanges();
 
-                    expect(routerLink.navigatedTo)
-                        .withContext(`should equal ${expectedRouterLink}`)
-                        .toEqual(expectedRouterLink);
+                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
                 });
             });
         });

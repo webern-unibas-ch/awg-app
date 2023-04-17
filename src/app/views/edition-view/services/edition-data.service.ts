@@ -1,14 +1,14 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
+import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
-import { EDITION_ASSETS_DATA, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ASSETS_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
-    EditionRowTables,
+    EditionRowTablesList,
     EditionSvgSheetList,
     FolioConvoluteList,
     GraphList,
@@ -67,8 +67,7 @@ export class EditionDataService {
     getEditionSheetsData(
         editionComplex: EditionComplex
     ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
-        this._setAssetPath(editionComplex);
-
+        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
         const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
         const svgSheetsData$: Observable<EditionSvgSheetList> = this._getSvgSheetsData();
         const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
@@ -92,7 +91,7 @@ export class EditionDataService {
      * @returns {Observable<GraphList>} The observable with the GraphList data.
      */
     getEditionGraphData(editionComplex: EditionComplex): Observable<GraphList> {
-        this._setAssetPath(editionComplex);
+        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
         const graphData$: Observable<GraphList> = this._getGraphData();
 
         return graphData$.pipe(
@@ -114,7 +113,7 @@ export class EditionDataService {
      * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
     getEditionIntroData(editionComplex: EditionComplex): Observable<IntroList> {
-        this._setAssetPath(editionComplex);
+        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
         const introData$: Observable<IntroList> = this._getIntroData();
 
         return introData$.pipe(
@@ -141,7 +140,7 @@ export class EditionDataService {
     getEditionReportData(
         editionComplex: EditionComplex
     ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> {
-        this._setAssetPath(editionComplex);
+        this._assetPath = this._setAssetPathForEditionComplex(editionComplex);
         const sourceListData$: Observable<SourceList> = this._getSourceListData();
         const sourceDescriptionListData$: Observable<SourceDescriptionList> = this._getSourceDescriptionListData();
         const sourceEvaluationListData$: Observable<SourceEvaluationList> = this._getSourceEvaluationListData();
@@ -166,26 +165,35 @@ export class EditionDataService {
     }
 
     /**
-     * Public method: getRowTables.
+     * Public method: getRowTablesData.
      *
-     * It provides the data for the row tables.
+     * It provides the data from a JSON file
+     * for the row tables of the edition view.
      *
-     * @returns {EditionRowTables[]} The row tables data.
+     * @returns {Observable<EditionRowTablesList>} The observable with the EditionRowTablesList data.
      */
-    getRowTables(): EditionRowTables[] {
-        return EDITION_ROW_TABLES_DATA;
+    getEditionRowTablesData(): Observable<EditionRowTablesList> {
+        this._assetPath = EDITION_ASSETS_DATA.BASE_ROUTE;
+        const rowTablesData$: Observable<EditionRowTablesList> = this._getRowTablesData();
+
+        return rowTablesData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new EditionRowTablesList()),
+            // Take only first request (JSON fetch)
+            take(1)
+        );
     }
 
     /**
-     * Private method: _setAssetPath.
+     * Private method: _setAssetPathForEditionComplex.
      *
      * It sets the path to correct assets folder of a given edition complex.
      *
      * @param {EditionComplex} editionComplex The current edition complex.
      *
-     * @returns {void} It sets the asset path.
+     * @returns {string} The path to the correct assets folder of a given edition complex.
      */
-    private _setAssetPath(editionComplex: EditionComplex): void {
+    private _setAssetPathForEditionComplex(editionComplex: EditionComplex): string {
         const delimiter = '/';
         const complexRoute =
             delimiter +
@@ -195,7 +203,7 @@ export class EditionDataService {
             EDITION_ROUTE_CONSTANTS.SECTION.route +
             editionComplex.section.route +
             editionComplex.complexId.route;
-        this._assetPath = EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
+        return EDITION_ASSETS_DATA.BASE_ROUTE + complexRoute;
     }
 
     /**
@@ -239,6 +247,21 @@ export class EditionDataService {
      */
     private _getIntroData(): Observable<IntroList> {
         const file = EDITION_ASSETS_DATA.FILES.introFile;
+        const url = `${this._assetPath}/${file}`;
+        return this._getJsonData(url);
+    }
+
+    /**
+     * Private method: _getRowTablesData.
+     *
+     * It sets the path to the JSON file with
+     * the row tables data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<EditionRowTablesList>} The observable with the EditionRowTablesList data.
+     */
+    private _getRowTablesData(): Observable<EditionRowTablesList> {
+        const file = EDITION_ASSETS_DATA.FILES.rowTablesFile;
         const url = `${this._assetPath}/${file}`;
         return this._getJsonData(url);
     }
@@ -328,7 +351,7 @@ export class EditionDataService {
      */
     private _getJsonData(path: string): Observable<any> {
         return this.http.get(path).pipe(
-            // Tap(res => this._logError(`fetched jsonData with url=${url}`)),
+            // Tap(_res => console.log(`fetched jsonData with path=${path}`)),
             catchError(this._handleError('_getJsonData', []))
         );
     }

@@ -30,3 +30,16 @@ export class EditionRowTables {
      */
     disabled: boolean;
 }
+
+/**
+ * The EditionRowTablesList class.
+ *
+ * It is used in the context of the edition view
+ * to store a list of row tables.
+ */
+export class EditionRowTablesList {
+    /**
+     * The array of row tables from a row tables list.
+     */
+    rowTables: EditionRowTables[];
+}

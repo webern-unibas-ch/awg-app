@@ -112,6 +112,20 @@ export const mockEditionData = {
     mockModalSnippet: 'OP12_SHEET_COMING_SOON',
 
     /**
+     * Test helper data constant: mockRowTablesData.
+     *
+     * It provides a mocked rowTablesData object.
+     */
+    mockRowTablesData: {
+        rowTables: [
+            { route: '/enrt1', short: 'En RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
+            { route: '/enrt2', short: 'En RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
+            { route: '/disrt1', short: 'Dis RT1', full: 'Diabled Test Rowtable 1', id: 'SkRT', disabled: true },
+            { route: '/disrt2', short: 'Dis RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockSourceListData.
      *
      * It provides a mocked sourceListData object.

@@ -1,5 +1,5 @@
-<div *ngIf="rowTablesData" class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-    <div class="col" *ngFor="let rowTable of rowTablesData">
+<div *ngIf="rowTablesData$ | async as rowTablesData" class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+    <div class="col" *ngFor="let rowTable of rowTablesData?.rowTables">
         <div class="card h-100">
             <div class="card-body">
                 <h5 class="card-title" [ngClass]="{ 'text-muted': rowTable.disabled }">
