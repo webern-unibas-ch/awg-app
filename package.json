@@ -74,7 +74,7 @@
         "-- ANALYZE --": "",
         "pre_wpanalyzer": "yarn build:prod --stats-json",
         "wpanalyzer": "yarn pre_wpanalyzer && webpack-bundle-analyzer dist/awg-app/stats.json",
-        "pre_sourcemap": "yarn build:prod --sourceMap",
+        "pre_sourcemap": "yarn build:prod --source-map",
         "sourcemap": "yarn pre_sourcemap && source-map-explorer dist/awg-app/*.js",
         "-- DEPLOY --": "",
         "pre-release": "standard-version -a",
