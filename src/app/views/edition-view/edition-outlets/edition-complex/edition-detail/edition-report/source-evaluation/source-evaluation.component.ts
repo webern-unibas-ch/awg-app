@@ -94,7 +94,7 @@ export class SourceEvaluationComponent {
      * @param {string} id The given fragment id.
      * @returns {void} Navigates to the edition report.
      */
-    navigateToReportFragment(id: string) {
+    navigateToReportFragment(id: string): void {
         if (!id) {
             return;
         }

@@ -864,7 +864,7 @@ export const mockEditionData = {
                         system: '12',
                         position: '2. Note',
                         comment:
-                            'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a>.',
+                            'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a>.',
                     },
                     {
                         svgGroupId: 'svg-group-3',

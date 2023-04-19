@@ -27,6 +27,8 @@ class EditionTkaTableStubComponent {
     @Input()
     isRowTable: boolean;
     @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
@@ -39,11 +41,14 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
     let utils: UtilityService;
 
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
+    let expectedFragment: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedSelectedTextcritics: Textcritics;
@@ -68,6 +73,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         utils = TestBed.inject(UtilityService);
 
         // Test data
+        expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
@@ -81,6 +87,11 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -348,16 +359,74 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
         });
 
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionTkaTableComponent', () => {
+                const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionTkaTableStubComponent,
+                    1,
+                    1
+                );
+                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    EditionTkaTableStubComponent
+                ) as EditionTkaTableStubComponent;
+
+                editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            });
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+            });
+        });
+
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
             });
 
-            it('... should trigger on openModalRequest event from EditionTkaTableComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+            it('... should trigger on event from EditionTkaTableComponent', () => {
+                const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionTkaTableStubComponent,
+                    1,
+                    1
+                );
+                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    EditionTkaTableStubComponent
+                ) as EditionTkaTableStubComponent;
 
-                tableCmp.openModalRequest.emit(expectedModalSnippet);
+                editionTkaTableCmp.openModalRequest.emit(expectedModalSnippet);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
             });
@@ -380,11 +449,18 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on selectSvgSheetRequest event from EditionTkaTableComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+            it('... should trigger on event from EditionTkaTableComponent', () => {
+                const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionTkaTableStubComponent,
+                    1,
+                    1
+                );
+                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    EditionTkaTableStubComponent
+                ) as EditionTkaTableStubComponent;
 
-                tableCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
+                editionTkaTableCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
 
                 expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             });

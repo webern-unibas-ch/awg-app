@@ -221,6 +221,27 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Public method: onNavigateToReportFragment.
+     *
+     * It navigates to the '/report/' route with the given fragmentId.
+     *
+     * @param {string}  fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    onNavigateToReportFragment(fragmentId: string): void {
+        if (!fragmentId) {
+            fragmentId = '';
+        }
+        const navigationExtras: NavigationExtras = {
+            fragment: fragmentId,
+        };
+        this.router.navigate(
+            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
+            navigationExtras
+        );
+    }
+
+    /**
      * Public method: onOverlaySelect.
      *
      * It finds the corresponding textcritical comments to a list of selected overlays.

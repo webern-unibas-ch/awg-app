@@ -35,7 +35,7 @@ import { EditionReportComponent } from './edition-report.component';
 // Mock components
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
-    open(modalContentSnippetKey: string): void {}
+    open(_modalContentSnippetKey: string): void {}
 }
 
 @Component({ selector: 'awg-source-list', template: '' })

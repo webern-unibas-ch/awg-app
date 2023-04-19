@@ -21,6 +21,7 @@
                 <awg-edition-tka-table
                     [textcriticalComments]="textcritic.comments"
                     [isRowTable]="textcritic.rowtable"
+                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                     (openModalRequest)="openModal($event)"
                     (selectSvgSheetRequest)="selectSvgSheet($event)">
                 </awg-edition-tka-table>

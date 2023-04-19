@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { TextcriticsList } from '@awg-views/edition-view/models';
@@ -14,6 +14,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     selector: 'awg-textcritics-list',
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextcriticsListComponent {
     /**
@@ -23,6 +24,14 @@ export class TextcriticsListComponent {
      */
     @Input()
     textcriticsData: TextcriticsList;
+
+    /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -56,6 +65,22 @@ export class TextcriticsListComponent {
      */
     constructor(public utils: UtilityService) {
         this.ref = this;
+    }
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given id of a fragment of the edition report
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {string} id The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(id);
     }
 
     /**

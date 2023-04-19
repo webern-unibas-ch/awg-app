@@ -1,5 +1,5 @@
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -62,6 +62,8 @@ class EditionSvgSheetFooterStubComponent {
     @Input()
     showTkA: boolean;
     @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
@@ -74,6 +76,8 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectLinkBoxSpy: Spy;
@@ -83,6 +87,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
+    let expectedFragment: string;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedSvgSheet: EditionSvgSheet;
@@ -120,6 +125,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
@@ -141,6 +147,11 @@ describe('EditionAccoladeComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectLinkBoxSpy = spyOn(component, 'selectLinkBox').and.callThrough();
@@ -421,6 +432,57 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
         });
 
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
+                const sheetFooterDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionSvgSheetFooterStubComponent,
+                    1,
+                    1
+                );
+                const sheetFooterCmp = sheetFooterDes[0].injector.get(
+                    EditionSvgSheetFooterStubComponent
+                ) as EditionSvgSheetFooterStubComponent;
+
+                sheetFooterCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            });
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+            });
+        });
+
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
@@ -443,13 +505,18 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expectSpyCall(openModalSpy, 1, expectedSnippet);
             }));
 
-            it('... should trigger on openModalRequest event from EditionSvgSheetFooterStubComponent', () => {
-                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetFooterStubComponent, 1, 1);
-                const tableCmp = tableDes[0].injector.get(
+            it('... should trigger on event from EditionSvgSheetFooterStubComponent', () => {
+                const sheetFooterDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionSvgSheetFooterStubComponent,
+                    1,
+                    1
+                );
+                const sheetFooterCmp = sheetFooterDes[0].injector.get(
                     EditionSvgSheetFooterStubComponent
                 ) as EditionSvgSheetFooterStubComponent;
 
-                tableCmp.openModalRequest.emit(expectedModalSnippet);
+                sheetFooterCmp.openModalRequest.emit(expectedModalSnippet);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
             });
@@ -472,7 +539,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expect(component.selectLinkBox).toBeDefined();
             });
 
-            it('... should trigger on selectLinkBoxRequest event from EditionSvgSheetViewerComponent', () => {
+            it('... should trigger on event from EditionSvgSheetViewerComponent', () => {
                 const sheetDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetViewerStubComponent, 1, 1);
                 const sheetCmp = sheetDes[0].injector.get(
                     EditionSvgSheetViewerStubComponent

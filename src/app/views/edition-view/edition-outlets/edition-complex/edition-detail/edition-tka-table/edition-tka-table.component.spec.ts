@@ -27,7 +27,17 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
     let mockDocument: Document;
 
-    let expectedGlyphs;
+    let getGlyphSpy: Spy;
+    let getTableHeaderStringsSpy: Spy;
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
+    let openModalSpy: Spy;
+    let openModalRequestEmitSpy: Spy;
+    let selectSvgSheetSpy: Spy;
+    let selectSvgSheetRequestEmitSpy: Spy;
+
+    let expectedFragment: string;
+    let expectedGlyphs: typeof EDITION_GLYPHS_DATA;
     let expectedIsRowTable: boolean;
     let expectedModalSnippet: string;
     let expectedNextSvgSheet: EditionSvgSheet;
@@ -37,13 +47,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
         default: { reference: string; label: string }[];
         rowTable: { reference: string; label: string }[];
     };
-
-    let getGlyphSpy: Spy;
-    let getTableHeaderStringsSpy: Spy;
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -59,6 +62,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
+        expectedFragment = 'source_A';
         expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
@@ -86,6 +90,11 @@ describe('EditionTkaTableComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         getGlyphSpy = spyOn(component, 'getGlyph').and.callThrough();
         getTableHeaderStringsSpy = spyOn(component, 'getTableHeaderStrings').and.callThrough();
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -325,6 +334,62 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
         });
 
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                const rows = getAndExpectDebugElementByCss(
+                    compDe,
+                    'table > tbody > tr',
+                    expectedTextcriticalComments.length,
+                    expectedTextcriticalComments.length
+                );
+
+                // Find spans of second row
+                const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 1, 1);
+
+                // Find anchors in second span
+                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
+
+                // Trigger click with click helper & wait for changes
+                // CLick on second anchor (with selectSvgSheet call)
+                clickAndAwaitChanges(anchorDes[0], fixture);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            }));
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+            });
+        });
+
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
@@ -342,10 +407,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 1, 1);
 
                 // Find anchors in second span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 2, 2);
+                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Click on first anchor with modal call
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(openModalSpy, 1, expectedModalSnippet);
             }));
@@ -380,11 +445,11 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(rows[1], 'td > span', 1, 1);
 
                 // Find anchors in second span
-                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 2, 2);
+                const anchorDes = getAndExpectDebugElementByCss(spanDes[0], 'a', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 // CLick on second anchor (with selectSvgSheet call)
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
             }));
