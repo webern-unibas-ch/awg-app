@@ -85,7 +85,7 @@
                     "comment": "Notenkopf F radiert."
                 },
                 {
-                    "svgGroupId": "g238",
+                    "svgGroupId": "g220",
                     "measure": "15",
                     "system": "7",
                     "position": "6/8",
@@ -146,6 +146,22 @@
                 {
                     "svgGroupId": "g1228",
                     "linkTo": "M_34_Sk1c"
+                }
+            ]
+        },
+        {
+            "id": "M_34_TF",
+            "label": "M 34 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 34 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <strong>B</strong>."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g5789",
+                    "measure": "7",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf Sk1 und Sk2 aber sehr unwahrscheinlich."
                 }
             ]
         }
