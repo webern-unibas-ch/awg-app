@@ -349,7 +349,7 @@
                     "measure": "5",
                     "system": "Ges.",
                     "position": "3/8",
-                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment('text_Rosegger_PM')\"><strong>Rosegger_PM</strong></a>."
                 },
                 {
                     "svgGroupId": "text902",
@@ -363,7 +363,7 @@
                     "measure": "9",
                     "system": "Ges.",
                     "position": "2. Note",
-                    "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                    "comment": "Text: Komma nach (Ma-ri-)<em>a</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment('text_Rosegger_PM')\"><strong>Rosegger_PM</strong></a>."
                 },
                 {
                     "svgGroupId": "text318",
@@ -384,14 +384,14 @@
                     "measure": "14",
                     "system": "Ges.",
                     "position": "2. Note",
-                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <strong>Rosegger_PM</strong>."
+                    "comment": "Text: Komma nach (ver-gan-)<em>gen</em> ergänzt mit Blick auf <a (click)=\"ref.navigateToReportFragment('text_Rosegger_PM')\"><strong>Rosegger_PM</strong></a>."
                 },
                 {
                     "svgGroupId": "",
                     "measure": "18",
                     "system": "Ges.",
                     "position": "1. Note",
-                    "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <strong>Rosegger_PM</strong>: <em>Verstorb’nen</em>."
+                    "comment": "Text sic: (Ver-)<em>storb</em>(-nen) ohne Binnen-Apostroph. <a (click)=\"ref.navigateToReportFragment('text_Rosegger_PM')\"><strong>Rosegger_PM</strong></a>: <em>Verstorb’nen</em>."
                 },
                 {
                     "svgGroupId": "text1556",
