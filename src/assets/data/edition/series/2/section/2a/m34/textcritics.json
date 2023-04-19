@@ -110,7 +110,7 @@
             "id": "M_34_Sk1_1",
             "label": "M 34 Sk1.1",
             "description": [
-                "<strong>M 34 Sk1.1</strong> entwirft auf der Basis von <strong>M 34 Sk1</strong> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
+                "<strong>M 34 Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet('M_34_Sk1')\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
             ],
             "comments": [
                 {
@@ -153,7 +153,7 @@
             "id": "M_34_TF1",
             "label": "M 34 einzige Textfassung",
             "description": [
-                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 34 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <strong>B</strong>."
+                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 34 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>."
             ],
             "comments": [
                 {
