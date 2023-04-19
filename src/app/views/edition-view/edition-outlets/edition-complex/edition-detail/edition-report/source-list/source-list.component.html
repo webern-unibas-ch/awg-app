@@ -29,8 +29,8 @@
             <td colspan="2">Zum vertonten Text:</td>
         </tr>
         <tr *ngFor="let text of sourceListData.textSources; let textIndex = index">
-            <th scope="row">
-                <span id="{{ text.id }}"
+            <th scope="row" id="{{ text.id }}">
+                <span
                     >{{ text.siglum }}<sup *ngIf="text.siglumAddendum">{{ text.siglumAddendum }}</sup></span
                 >
             </th>
