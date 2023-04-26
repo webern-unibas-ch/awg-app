@@ -7,7 +7,7 @@
  *
  */
 
-import { SEARCH_COMPOP_SETS_LIST } from './search-compop.data';
+import { COMPOPSET_LOOKUP_MAP, SEARCH_COMPOP_SETS_LIST } from './search-compop.data';
 import { VALUETYPE_LIST } from './value-type.data';
 
-export { SEARCH_COMPOP_SETS_LIST, VALUETYPE_LIST };
+export { COMPOPSET_LOOKUP_MAP, SEARCH_COMPOP_SETS_LIST, VALUETYPE_LIST };
