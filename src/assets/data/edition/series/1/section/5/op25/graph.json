@@ -14,12 +14,12 @@
                     {
                         "queryType": "construct",
                         "queryLabel": "Finde alle Skizzen von op. 25",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?sketch a awg:Sketch . \n }"
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?sketch a awg:Sketch  \n }"
                     },
                     {
                         "queryType": "construct",
-                        "queryLabel": "Finde alle Paratexte von op. 25",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?paratext a awg:Paratext . \n }"
+                        "queryLabel": "Finde alle Paratexte von op. 25/1",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?paratext a awg:Paratext ; dc:isPartOf awg:Op25_1 . \n }"
                     },
                     {
                         "queryType": "construct",
@@ -53,8 +53,8 @@
                     },
                     {
                         "queryType": "select",
-                        "queryLabel": "Finde alle Paratexte von op. 25",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?paratext a awg:Paratext . \n }"
+                        "queryLabel": "Finde alle Paratexte von op. 25/1",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?paratext a awg:Paratext ; dc:isPartOf awg:Op25_1 . \n }"
                     },
                     {
                         "queryType": "select",
