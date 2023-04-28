@@ -6,7 +6,13 @@ import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -127,8 +133,26 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
             });
 
-            it('... should contain as many paragraphs in div as evaluation data has content entries', () => {
+            it('... should have `card` class on evaluation list div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+                const divEl = divDes[0].nativeElement;
+
+                expectToContain(divEl.classList, 'card');
+            });
+
+            it('... should have 1 div. card-body in evaluation list div', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+
+                getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
+            });
+
+            it('... should contain as many paragraphs in div.card-body as evaluation data has content entries', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-evaluation-list > div.card-body',
+                    1,
+                    1
+                );
 
                 getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-entry', 2, 2);
             });
@@ -136,7 +160,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
             it('... should display evaluation entries in paragraphs', () => {
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-source-evaluation-list > p.awg-source-evaluation-entry',
+                    'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-entry',
                     2,
                     2
                 );
@@ -162,7 +186,12 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
                 detectChangesOnPush(fixture);
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-evaluation-list > div.card-body',
+                    1,
+                    1
+                );
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-empty', 1, 1);
 
                 getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
@@ -175,7 +204,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-source-evaluation-list > p.awg-source-evaluation-empty',
+                    'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-empty',
                     1,
                     1
                 );

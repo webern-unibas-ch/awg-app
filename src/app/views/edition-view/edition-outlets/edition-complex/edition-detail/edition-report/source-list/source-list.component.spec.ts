@@ -82,9 +82,17 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain one div.card', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+            });
+
+            it('... should contain one div.card-body in div.card', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+            });
+
             describe('... if text sources are not present', () => {
-                it('... should contain one table with table body', () => {
-                    getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+                it('... should contain one table with table body in div.card-body', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 1, 1);
                 });
 
                 it('... should contain as many rows (tr) in first table body as sources in sourceListData', () => {
@@ -189,12 +197,12 @@ describe('SourceListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain two tables with table body', () => {
+                it('... should contain two tables with table body in div.card-body', () => {
                     expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
                     component.sourceListData = expectedSourceListData;
                     detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+                    getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 2, 2);
                 });
 
                 it('... should contain a row (tr) with introductory text as a first child in the second table', () => {
