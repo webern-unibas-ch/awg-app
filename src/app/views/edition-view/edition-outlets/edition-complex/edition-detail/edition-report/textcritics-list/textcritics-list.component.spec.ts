@@ -217,21 +217,21 @@ describe('TextcriticsListComponent (DONE)', () => {
                 const buttonEl10 = button1Des[0].nativeElement;
                 const buttonEl11 = button1Des[1].nativeElement;
 
-                const expectedTitle0 = expectedTextcriticsData.textcritics[0].label;
-                const expectedTitle1 = expectedTextcriticsData.textcritics[1].label;
-                const expectedTitleT = 'Zur Transkription';
+                const expectedButtonLabel0 = expectedTextcriticsData.textcritics[0].label;
+                const expectedButtonLabel1 = expectedTextcriticsData.textcritics[1].label;
+                const expectedButtonLabelGeneric = 'Zum edierten Notentext';
 
                 expect(buttonEl00).toHaveClass('text-start');
-                expectToBe(buttonEl00.textContent.trim(), expectedTitle0);
+                expectToBe(buttonEl00.textContent.trim(), expectedButtonLabel0);
 
                 expect(buttonEl01).toHaveClass('btn-outline-info');
-                expectToBe(buttonEl01.textContent.trim(), expectedTitleT);
+                expectToBe(buttonEl01.textContent.trim(), expectedButtonLabelGeneric);
 
                 expect(buttonEl10).toHaveClass('text-start');
-                expectToBe(buttonEl10.textContent.trim(), expectedTitle1);
+                expectToBe(buttonEl10.textContent.trim(), expectedButtonLabel1);
 
                 expect(buttonEl11).toHaveClass('btn-outline-info');
-                expectToBe(buttonEl11.textContent.trim(), expectedTitleT);
+                expectToBe(buttonEl11.textContent.trim(), expectedButtonLabelGeneric);
             });
 
             it('... should toggle first panel body on click on first header', () => {
