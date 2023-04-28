@@ -43,7 +43,8 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk3-1von3-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "a"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk3-2von3-final.svg.svg",
