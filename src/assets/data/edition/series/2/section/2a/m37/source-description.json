@@ -4,11 +4,11 @@
             "id": "sourceA",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 1/2) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8).",
-            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: ##[JE]## | Protokoll. Schutzmarke | No. 5 | 18 linig. unten links auf Bl. 1r–2r.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 37.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 34–36, M 38, M 39 Textfassung 1→2 und M* 404.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "Schreibstoff: Bleistift."
+                    "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 1/2) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8)."
                 ],
                 "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: ##[JE]## | <em>Protokoll. Schutzmarke | N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
                 "writingInstruments": {
@@ -575,11 +575,11 @@
             "id": "sourceB",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 3/4) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens.",
-            "location": "Beschreibstoff: Notenpapier, 18 Systeme, Format (hoch): 349 × 267 mm, Firmenzeichen [JE] | Protokoll. Schutzmarke | No. 5 | 18 linig. unten links auf Bl. 1r–2r.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 37.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 34–36, M 38, M 39 Textfassung 1→2 und M 41 sowie Skizzen zu Studienkomposition für Klavier M 35/42 und 39 Textfassung 2.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "Schreibstoff: schwarze Tinte; Bleistift."
+                    "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 3/4) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."
                 ],
                 "writingMaterial": "Notenpapier, 18 Systeme, Format (hoch): 349 × 267 mm, Firmenzeichen [JE] | Protokoll. Schutzmarke | No. 5 | 18 linig. unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
                 "writingInstruments": {
