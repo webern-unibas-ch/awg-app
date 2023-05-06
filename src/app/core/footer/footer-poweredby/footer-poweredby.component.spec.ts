@@ -2,7 +2,12 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { LOGOSDATA } from '@awg-core/core-data';
 import { Logo, Logos } from '@awg-core/core-models';
@@ -71,8 +76,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         });
 
         it('... should have logos', () => {
-            expect(component.logos).toBeDefined();
-            expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
+            expectToEqual(component.logos, expectedLogos);
         });
 
         describe('VIEW', () => {
@@ -82,20 +86,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                     de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
                 );
 
-                expect(footerLogoCmps.length).withContext('should have 3 logo components').toBe(3);
-
-                expect(footerLogoCmps[0].logo).toBeTruthy();
-                expect(footerLogoCmps[0].logo).withContext('should have github logo').toEqual(expectedLogos['github']);
-
-                expect(footerLogoCmps[1].logo).toBeTruthy();
-                expect(footerLogoCmps[1].logo)
-                    .withContext('should have angular logo')
-                    .toEqual(expectedLogos['angular']);
-
-                expect(footerLogoCmps[2].logo).toBeTruthy();
-                expect(footerLogoCmps[2].logo)
-                    .withContext('should have bootstrap logo')
-                    .toEqual(expectedLogos['bootstrap']);
+                expectToBe(footerLogoCmps.length, 3);
+                expectToEqual(footerLogoCmps[0].logo, expectedLogos['github']);
+                expectToEqual(footerLogoCmps[1].logo, expectedLogos['angular']);
+                expectToEqual(footerLogoCmps[2].logo, expectedLogos['bootstrap']);
             });
         });
     });

@@ -3,7 +3,13 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { METADATA } from '@awg-core/core-data';
@@ -95,15 +101,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const versionEl = versionDes[0].nativeElement;
                 const versionDateEl = versionDateDes[0].nativeElement;
 
-                expect(versionEl.textContent).toBeTruthy();
-                expect(versionEl.textContent)
-                    .withContext(`should contain ${expectedVersion}`)
-                    .toContain(expectedVersion);
-
-                expect(versionDateEl.textContent).toBeTruthy();
-                expect(versionDateEl.textContent)
-                    .withContext(`should contain ${expectedVersionDate}`)
-                    .toContain(expectedVersionDate);
+                expectToContain(versionEl.textContent, expectedVersion);
+                expectToContain(versionDateEl.textContent, expectedVersionDate);
             });
         });
 
@@ -117,19 +116,17 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 2 routerLinks').toBe(2);
+                expectToBe(routerLinks.length, 2);
             });
 
             it('... can get correct linkParams from template', () => {
-                expect(routerLinks[0].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
-                expect(routerLinks[1].linkParams).withContext(`should equal ['/contact']`).toEqual(['/contact']);
+                expectToEqual(routerLinks[0].linkParams, ['/contact']);
+                expectToEqual(routerLinks[1].linkParams, ['/contact']);
             });
 
             it('... can get correct fragments from template', () => {
-                expect(routerLinks[0].fragment).withContext(`should be 'awg-imprint'`).toBe('awg-imprint');
-                expect(routerLinks[1].fragment)
-                    .withContext(`should be 'awg-documentation'`)
-                    .toEqual('awg-documentation');
+                expectToBe(routerLinks[0].fragment, 'awg-imprint');
+                expectToBe(routerLinks[1].fragment, 'awg-documentation');
             });
 
             it('... can click imprint link in template', () => {
@@ -141,8 +138,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 click(imprintLinkDe);
                 fixture.detectChanges();
 
-                expect(imprintLink.navigatedTo).withContext(`should equal ['/contact']`).toEqual(['/contact']);
-                expect(imprintLink.navigatedToFragment).withContext(`should be 'awg-imprint'`).toEqual('awg-imprint');
+                expectToEqual(imprintLink.navigatedTo, ['/contact']);
+                expectToBe(imprintLink.navigatedToFragment, 'awg-imprint');
             });
 
             it('... can click documentation link in template', () => {
@@ -154,10 +151,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 click(documentationLinkDe);
                 fixture.detectChanges();
 
-                expect(documentationLink.navigatedTo).withContext(`should equal ['/contact']`).toEqual(['/contact']);
-                expect(documentationLink.navigatedToFragment)
-                    .withContext(`should be 'awg-documentation'`)
-                    .toEqual('awg-documentation');
+                expectToEqual(documentationLink.navigatedTo, ['/contact']);
+                expectToBe(documentationLink.navigatedToFragment, 'awg-documentation');
             });
         });
     });

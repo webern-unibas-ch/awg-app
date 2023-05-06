@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { METADATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -53,16 +53,14 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
                 const copyEl = copyDes[0].nativeElement;
 
-                expect(copyEl.textContent).toBeDefined();
-                expect(copyEl.textContent).toBeFalsy();
+                expectToBe(copyEl.textContent, '');
             });
 
             it('... should not render project name yet', () => {
                 const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
                 const nameEl = nameDes[0].nativeElement;
 
-                expect(nameEl.textContent).toBeDefined();
-                expect(nameEl.textContent).toBeFalsy();
+                expectToBe(nameEl.textContent, '');
             });
         });
     });
@@ -84,10 +82,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
                 const copyEl = copyDes[0].nativeElement;
 
-                expect(copyEl.textContent).toBeTruthy();
-                expect(copyEl.textContent)
-                    .withContext(`should contain ${expectedYearStart}-${expectedYearCurrent}`)
-                    .toContain(expectedYearStart + '–' + expectedYearCurrent);
+                expectToContain(copyEl.textContent, expectedYearStart + '–' + expectedYearCurrent);
             });
 
             it('... should render project name', () => {
@@ -96,10 +91,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
                 const nameEl = nameDes[0].nativeElement;
 
-                expect(nameEl.textContent).toBeTruthy();
-                expect(nameEl.textContent)
-                    .withContext(`should contain ${expectedProjectName}`)
-                    .toContain(expectedProjectName);
+                expectToContain(nameEl.textContent, expectedProjectName);
             });
         });
     });
