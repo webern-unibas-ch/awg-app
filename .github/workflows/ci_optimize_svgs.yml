@@ -25,6 +25,14 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # ratchet:actions/checkout@v3
+              with:
+                  # Checkout the fork/head-repository and push changes to the fork.
+                  # If you skip this, the base repository will be checked out and changes
+                  # will be committed to the base repository!
+                  repository: ${{ github.event.pull_request.head.repo.full_name }}
+                  # Checkout the branch made in the fork. Will automatically push changes
+                  # back to this branch.
+                  ref: ${{ github.head_ref }}
             - name: Optimize SVGs
               uses: ericcornelissen/svgo-action@ee5df7574a3256289c336be4a5e3118666096c86 # ratchet:ericcornelissen/svgo-action@v3
               id: svgo
