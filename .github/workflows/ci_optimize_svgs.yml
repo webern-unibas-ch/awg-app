@@ -1,0 +1,38 @@
+name: SVG Optimization Workflow
+on:
+    pull_request:
+        branches:
+            - develop
+        paths:
+            - '**.svg'
+    workflow_dispatch:
+
+# The minimum required permissions
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    svgs:
+        name: Optimize SVGs
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # ratchet:actions/checkout@v3
+            - name: Optimize SVGs
+              uses: ericcornelissen/svgo-action@ee5df7574a3256289c336be4a5e3118666096c86 # ratchet:ericcornelissen/svgo-action@v3
+              id: svgo
+              with:
+                  repo-token: ${{secrets.GITHUB_TOKEN}}
+                  svgo-version: 3 # defaults to 2
+            - name: Commit optimizations
+              uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # ratchet:stefanzweifel/git-auto-commit-action@v4
+              if: ${{steps.svgo.outputs.DID_OPTIMIZE}}
+              with:
+                  commit_message: 'fix(assets): optimize ${{steps.svgo.outputs.OPTIMIZED_COUNT}} SVG(s) with SVGO'
+            - name: Comment on Pull Request
+              uses: thollander/actions-comment-pull-request@8a3fad13c20088e9eb0805666b9fe49509d2fec8 # ratchet:thollander/actions-comment-pull-request@v1
+              if: ${{steps.svgo.outputs.DID_OPTIMIZE && github.event_name == 'pull_request'}}
+              with:
+                  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+                  message: Optimized ${{steps.svgo.outputs.OPTIMIZED_COUNT}} of ${{steps.svgo.outputs.SVG_COUNT}} SVG(s)
