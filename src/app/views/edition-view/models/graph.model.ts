@@ -28,9 +28,9 @@ export class Graph {
     rdfData: GraphRDFData;
 
     /**
-     * A staticImage of a graph.
+     * An optional staticImage of a graph.
      */
-    staticImage: string;
+    staticImage?: string;
 }
 
 /**

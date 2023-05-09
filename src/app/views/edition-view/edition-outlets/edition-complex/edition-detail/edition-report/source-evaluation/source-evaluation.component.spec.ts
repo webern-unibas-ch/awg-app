@@ -6,7 +6,13 @@ import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -53,7 +59,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
         // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP25;
-        expectedFragment = 'sourceA';
+        expectedFragment = 'source_A';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
@@ -65,15 +71,15 @@ describe('SourceEvaluationComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        openModalSpy = spyOn(component, 'openModal').and.callThrough();
-        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
         navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
         navigateToReportFragmentRequestEmitSpy = spyOn(
             component.navigateToReportFragmentRequest,
             'emit'
         ).and.callThrough();
+        openModalSpy = spyOn(component, 'openModal').and.callThrough();
+        openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
+        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
+        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
     });
 
     it('... should create', () => {
@@ -82,23 +88,19 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
+            expect(component.editionComplex).toBeUndefined();
         });
 
         it('... should not have `sourceDescriptionListData`', () => {
-            expect(component.sourceEvaluationListData).withContext('should be undefined').toBeUndefined();
+            expect(component.sourceEvaluationListData).toBeUndefined();
         });
 
         it('... should have `ref`', () => {
-            expect(component.ref).toBeTruthy();
-            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+            expectToEqual(component.ref, component);
         });
 
         it('... should have `editionRouteConstants`', () => {
-            expect(component.editionRouteConstants).toBeDefined();
-            expect(component.editionRouteConstants)
-                .withContext(`should be ${expectedEditionRouteConstants}`)
-                .toBe(expectedEditionRouteConstants);
+            expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
         describe('VIEW', () => {
@@ -119,17 +121,11 @@ describe('SourceEvaluationComponent (DONE)', () => {
         });
 
         it('... should have editionComplex', () => {
-            expect(component.editionComplex).toBeTruthy();
-            expect(component.editionComplex)
-                .withContext(`should equal ${expectedEditionComplex}`)
-                .toEqual(expectedEditionComplex);
+            expectToEqual(component.editionComplex, expectedEditionComplex);
         });
 
         it('... should have sourceEvaluationListData', () => {
-            expect(component.sourceEvaluationListData).toBeTruthy();
-            expect(component.sourceEvaluationListData)
-                .withContext(`should equal ${expectedSourceEvaluationListData}`)
-                .toEqual(expectedSourceEvaluationListData);
+            expectToEqual(component.sourceEvaluationListData, expectedSourceEvaluationListData);
         });
 
         describe('VIEW', () => {
@@ -137,8 +133,26 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
             });
 
-            it('... should contain as many paragraphs in div as evaluation data has content entries', () => {
+            it('... should have `card` class on evaluation list div', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+                const divEl = divDes[0].nativeElement;
+
+                expectToContain(divEl.classList, 'card');
+            });
+
+            it('... should have 1 div. card-body in evaluation list div', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+
+                getAndExpectDebugElementByCss(divDes[0], 'div.card-body', 1, 1);
+            });
+
+            it('... should contain as many paragraphs in div.card-body as evaluation data has content entries', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-evaluation-list > div.card-body',
+                    1,
+                    1
+                );
 
                 getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-entry', 2, 2);
             });
@@ -146,7 +160,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
             it('... should display evaluation entries in paragraphs', () => {
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-source-evaluation-list > p.awg-source-evaluation-entry',
+                    'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-entry',
                     2,
                     2
                 );
@@ -158,19 +172,13 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 let htmlEvaluationEntry = mockDocument.createElement('p');
                 htmlEvaluationEntry.innerHTML = expectedSourceEvaluationListData.sources[0].content[0];
 
-                expect(pEl0.textContent).withContext('should be defined').toBeDefined();
-                expect(pEl0.textContent.trim())
-                    .withContext(`should be ${htmlEvaluationEntry.textContent.trim()}`)
-                    .toEqual(htmlEvaluationEntry.textContent.trim());
+                expectToEqual(pEl0.textContent.trim(), htmlEvaluationEntry.textContent.trim());
 
                 // Process HTML expression of second evaluation entry
                 htmlEvaluationEntry = mockDocument.createElement('p');
                 htmlEvaluationEntry.innerHTML = expectedSourceEvaluationListData.sources[0].content[1];
 
-                expect(pEl1.textContent).withContext('should be defined').toBeDefined();
-                expect(pEl1.textContent.trim())
-                    .withContext(`should be ${htmlEvaluationEntry.textContent.trim()}`)
-                    .toBe(htmlEvaluationEntry.textContent.trim());
+                expectToEqual(pEl1.textContent.trim(), htmlEvaluationEntry.textContent.trim());
             });
 
             it('... should contain a placeholder if content of evaluation data is empty', waitForAsync(() => {
@@ -178,7 +186,12 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 component.sourceEvaluationListData = expectedSourceEvaluationListEmptyData;
                 detectChangesOnPush(fixture);
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-evaluation-list', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-evaluation-list > div.card-body',
+                    1,
+                    1
+                );
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-evaluation-empty', 1, 1);
 
                 getAndExpectDebugElementByCss(pDes[0], 'small.text-muted', 1, 1);
@@ -191,7 +204,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.awg-source-evaluation-list > p.awg-source-evaluation-empty',
+                    'div.awg-source-evaluation-list > div.card-body > p.awg-source-evaluation-empty',
                     1,
                     1
                 );
@@ -201,10 +214,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 const evaluationPlaceholder = `[Die Quellenbewertung zum Editionskomplex ${expectedEditionComplex.complexId.full} erscheint im Zusammenhang der vollständigen Edition von ${expectedEditionComplex.complexId.short} in ${expectedEditionRouteConstants.EDITION.short} ${expectedEditionComplex.series.short}/${expectedEditionComplex.section.short}.]`;
                 const strippedEvaluationPlaceholder = evaluationPlaceholder.replace(/<em>/g, '').replace(/<\/em>/g, '');
 
-                expect(pEl.textContent).toBeTruthy();
-                expect(pEl.textContent.trim())
-                    .withContext(`should be ${strippedEvaluationPlaceholder}`)
-                    .toEqual(strippedEvaluationPlaceholder);
+                expectToEqual(pEl.textContent.trim(), strippedEvaluationPlaceholder);
             }));
         });
 
@@ -251,7 +261,7 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
 
-                const otherFragment = 'sourceB';
+                const otherFragment = 'source_B';
                 component.navigateToReportFragment(otherFragment);
 
                 expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);

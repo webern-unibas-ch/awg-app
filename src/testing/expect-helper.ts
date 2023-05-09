@@ -114,7 +114,7 @@ export function getAndExpectDebugElementByDirective(
 /**
  * Test helper function: expectToBe.
  *
- * It checks if a given source value is truthy and if it is the same as the expected value ('toBe').
+ * It checks if a given source value is defined and if it is the same as the expected value ('toBe').
  *
  * Exposed to be called from tests.
  *
@@ -129,9 +129,26 @@ export function expectToBe(source: any, expected: any): void {
 }
 
 /**
+ * Test helper function: expectToContain.
+ *
+ * It checks if a given source value is defined and if it contains the expected value ('toContain').
+ *
+ * Exposed to be called from tests.
+ *
+ * @param {any} source The input value to be checked.
+ * @param {any} expected The expected value.
+ *
+ * @returns {void} Throws the expectation statements.
+ */
+export function expectToContain(source: any, expected: any): void {
+    expect(source).toBeDefined();
+    expect(source).withContext(`should contain ${expected}`).toContain(expected);
+}
+
+/**
  * Test helper function: expectToEqual.
  *
- * It checks if a given source value is truthy and if it equals the expected value ('toEqual').
+ * It checks if a given source value is defined and if it equals the expected value ('toEqual').
  *
  * Exposed to be called from tests.
  *

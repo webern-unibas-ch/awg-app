@@ -4,7 +4,7 @@
             <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
                 <button ngbPanelToggle class="p-0 btn btn-link text-start">{{ textcritic.label }}</button>
                 <button type="button" class="btn btn-sm btn-outline-info" (click)="selectSvgSheet(textcritic.id)">
-                    Zur Transkription
+                    Zum edierten Notentext
                 </button>
             </div>
         </ng-template>
@@ -21,6 +21,7 @@
                 <awg-edition-tka-table
                     [textcriticalComments]="textcritic.comments"
                     [isRowTable]="textcritic.rowtable"
+                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                     (openModalRequest)="openModal($event)"
                     (selectSvgSheetRequest)="selectSvgSheet($event)">
                 </awg-edition-tka-table>

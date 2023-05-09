@@ -1,22 +1,29 @@
-<ngb-accordion
-    #triplesAcc="ngbAccordion"
-    [activeIds]="togglePanel()"
-    (panelChange)="preventPanelCollapseOnFullscreen($event)">
-    <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
-        <ng-template ngbPanelContent>
-            <!-- CodeMirror editor instance -->
-            <awg-codemirror
-                ngDefaultControl
-                [mode]="cmTurtleMode"
-                [(content)]="triples"
-                (contentChange)="onEditorInputChange($event)"></awg-codemirror>
+<div ngbAccordion>
+    <div
+        ngbAccordionItem="awg-graph-visualizer-triples"
+        [collapsed]="isAccordionItemCollapsed()"
+        [disabled]="isAccordionItemDisabled()">
+        <h2 ngbAccordionHeader>
+            <button ngbAccordionButton>RDF Triples</button>
+        </h2>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    <!-- CodeMirror editor instance -->
+                    <awg-codemirror
+                        ngDefaultControl
+                        [mode]="cmTurtleMode"
+                        [(content)]="triples"
+                        (contentChange)="onEditorInputChange($event)"></awg-codemirror>
 
-            <!-- Handle buttons -->
-            <div fxLayout="row" class="awg-graph-visualizer-triples-handle-buttons mt-2">
-                <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
-                <button class="btn btn-warning" (click)="resetTriples()">Reset</button>
-                <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
+                    <!-- Handle buttons -->
+                    <div fxLayout="row" class="awg-graph-visualizer-triples-handle-buttons mt-2">
+                        <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
+                        <button class="btn btn-warning" (click)="resetTriples()">Reset</button>
+                        <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
+                    </div>
+                </ng-template>
             </div>
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,8 @@ import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -27,6 +29,8 @@ class EditionTkaTableStubComponent {
     @Input()
     isRowTable = false;
     @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
@@ -39,11 +43,14 @@ describe('TextcriticsListComponent (DONE)', () => {
 
     let utils: UtilityService;
 
-    let expectedTextcriticsData: TextcriticsList;
-    let expectedSheetId: string;
-    let expectedNextSheetId: string;
+    let expectedFragment: string;
     let expectedModalSnippet: string;
+    let expectedNextSheetId: string;
+    let expectedSheetId: string;
+    let expectedTextcriticsData: TextcriticsList;
 
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
@@ -74,14 +81,20 @@ describe('TextcriticsListComponent (DONE)', () => {
         utils = TestBed.inject(UtilityService);
 
         // Test data
-        expectedTextcriticsData = mockEditionData.mockTextcriticsData;
+        expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
+        expectedSheetId = 'test_item_id_1';
+        expectedTextcriticsData = mockEditionData.mockTextcriticsData;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -98,8 +111,7 @@ describe('TextcriticsListComponent (DONE)', () => {
         });
 
         it('... should have `ref`', () => {
-            expect(component.ref).toBeTruthy();
-            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+            expectToEqual(component.ref, component);
         });
 
         describe('VIEW', () => {
@@ -120,10 +132,7 @@ describe('TextcriticsListComponent (DONE)', () => {
         });
 
         it('... should have `textcriticsData`', () => {
-            expect(component.textcriticsData).toBeTruthy();
-            expect(component.textcriticsData)
-                .withContext(`should equal ${expectedTextcriticsData}`)
-                .toEqual(expectedTextcriticsData);
+            expectToEqual(component.textcriticsData, expectedTextcriticsData);
         });
 
         describe('VIEW', () => {
@@ -208,29 +217,21 @@ describe('TextcriticsListComponent (DONE)', () => {
                 const buttonEl10 = button1Des[0].nativeElement;
                 const buttonEl11 = button1Des[1].nativeElement;
 
-                const expectedTitle0 = expectedTextcriticsData.textcritics[0].label;
-                const expectedTitle1 = expectedTextcriticsData.textcritics[1].label;
-                const expectedTitleT = 'Zur Transkription';
+                const expectedButtonLabel0 = expectedTextcriticsData.textcritics[0].label;
+                const expectedButtonLabel1 = expectedTextcriticsData.textcritics[1].label;
+                const expectedButtonLabelGeneric = 'Zum edierten Notentext';
 
                 expect(buttonEl00).toHaveClass('text-start');
-                expect(buttonEl00.textContent).toBeDefined();
-                expect(buttonEl00.textContent).withContext(`should be ${expectedTitle0}`).toBe(expectedTitle0);
+                expectToBe(buttonEl00.textContent.trim(), expectedButtonLabel0);
 
                 expect(buttonEl01).toHaveClass('btn-outline-info');
-                expect(buttonEl01.textContent).toBeDefined();
-                expect(buttonEl01.textContent.trim())
-                    .withContext(`should be ${expectedTitleT}`)
-                    .toBe(expectedTitleT.trim());
+                expectToBe(buttonEl01.textContent.trim(), expectedButtonLabelGeneric);
 
                 expect(buttonEl10).toHaveClass('text-start');
-                expect(buttonEl10.textContent).toBeDefined();
-                expect(buttonEl10.textContent).withContext(`should be ${expectedTitle1}`).toBe(expectedTitle1);
+                expectToBe(buttonEl10.textContent.trim(), expectedButtonLabel1);
 
                 expect(buttonEl11).toHaveClass('btn-outline-info');
-                expect(buttonEl11.textContent).toBeDefined();
-                expect(buttonEl11.innerText.trim())
-                    .withContext(`should be ${expectedTitleT}`)
-                    .toBe(expectedTitleT.trim());
+                expectToBe(buttonEl11.textContent.trim(), expectedButtonLabelGeneric);
             });
 
             it('... should toggle first panel body on click on first header', () => {
@@ -405,18 +406,15 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
                     const pEl0 = pDes[0].nativeElement;
 
-                    expect(pEl0.textContent).toBeDefined();
-                    expect(pEl0.textContent).withContext(`should be 'Skizzenkommentar:'`).toBe('Skizzenkommentar:');
+                    expectToBe(pEl0.textContent, 'Skizzenkommentar:');
 
                     pDes.forEach((pDe, index) => {
                         if (index === 0) {
                             return;
                         }
                         const pEl = pDe.nativeElement;
-                        expect(pEl.textContent).toBeDefined();
-                        expect(pEl.textContent)
-                            .withContext(`should be ${textcritics.description[index - 1]}`)
-                            .toBe(textcritics.description[index - 1]);
+
+                        expectToBe(pEl.textContent, textcritics.description[index - 1]);
                     });
                 });
 
@@ -434,10 +432,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                     const pEl0 = pDes[0].nativeElement;
 
-                    expect(pEl0.textContent).toBeDefined();
-                    expect(pEl0.textContent)
-                        .withContext(`should be 'Textkritischer Kommentar:'`)
-                        .toBe('Textkritischer Kommentar:');
+                    expectToBe(pEl0.textContent, 'Textkritischer Kommentar:');
 
                     // EditionTkaTableStubComponent
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionTkaTableStubComponent, 1, 1);
@@ -454,16 +449,79 @@ describe('TextcriticsListComponent (DONE)', () => {
                         EditionTkaTableStubComponent
                     ) as EditionTkaTableStubComponent;
 
-                    expect(editionTkaTableCmp.textcriticalComments).toBeDefined();
-                    expect(editionTkaTableCmp.textcriticalComments)
-                        .withContext(`should equal ${expectedTextcriticsData.textcritics[1].comments}`)
-                        .toEqual(expectedTextcriticsData.textcritics[1].comments);
-
-                    expect(editionTkaTableCmp.isRowTable).toBeDefined();
-                    expect(editionTkaTableCmp.isRowTable)
-                        .withContext(`should equal ${expectedTextcriticsData.textcritics[1].rowtable}`)
-                        .toEqual(expectedTextcriticsData.textcritics[1].rowtable);
+                    expectToEqual(
+                        editionTkaTableCmp.textcriticalComments,
+                        expectedTextcriticsData.textcritics[1].comments
+                    );
+                    expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
                 });
+            });
+        });
+
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on event from EditionTkaTableComponent', () => {
+                // Open second panel
+                const header1Des = getAndExpectDebugElementByCss(
+                    compDe,
+                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    1,
+                    1
+                );
+
+                // Header Button
+                const btn1Des = getAndExpectDebugElementByCss(header1Des[0], 'div.accordion-button > button.btn', 2, 2);
+                const btn1El = btn1Des[0].nativeElement;
+
+                // Click header buttons to open body
+                click(btn1El as HTMLElement);
+                detectChangesOnPush(fixture);
+
+                const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    EditionTkaTableStubComponent,
+                    1,
+                    1
+                );
+                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                    EditionTkaTableStubComponent
+                ) as EditionTkaTableStubComponent;
+
+                editionTkaTableCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            });
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
             });
         });
 

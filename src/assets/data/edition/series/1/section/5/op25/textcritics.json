@@ -4,7 +4,7 @@
             "id": "M_317_Sk1",
             "label": "M 317 Sk1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu op. 24/I auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup> und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39<sup>r</sup> System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>].) <br /> Die Datierung <em>4. VII. 34</em> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a>, vielleicht aber auch erst mit <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> notiert worden. <br /> Der über System 1 stehende Titel <em>„Wie bin ich froh!“</em> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
+                "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufsskizze zu op. 24/I auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup> und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39<sup>r</sup> System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>].) <br /> Die Datierung <em>4. VII. 34</em> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> notiert worden. <br /> Der über System 1 stehende Titel <em>„Wie bin ich froh!“</em> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
             ],
             "comments": [
                 {
@@ -58,7 +58,7 @@
             "id": "M_317_Sk2",
             "label": "M 317 Sk2",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> entwirft eine Zwölftonreihe in zwei Anläufen. Reihe A umfasst lediglich fünf Töne, Reihe B ergänzt nach einer Permutation des 3.–4. Reihentons die Reihe zur vollständigen Zwölftönigkeit. Die ersten fünf Töne beider Reihen ergänzen den ungeordneten Tonvorrat von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> um den Anfangston cis. Die Niederschrift von Reihe B erfolgt dann im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a>."
+                "<strong>Sk2</strong> entwirft eine Zwölftonreihe in zwei Anläufen. Reihe A umfasst lediglich fünf Töne, Reihe B ergänzt nach einer Permutation des 3.–4. Reihentons die Reihe zur vollständigen Zwölftönigkeit. Die ersten fünf Töne beider Reihen ergänzen den ungeordneten Tonvorrat von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> um den Anfangston cis. Die Niederschrift von Reihe B erfolgt dann im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a>."
             ],
             "rowtable": true,
             "comments": [
@@ -127,7 +127,7 @@
             "id": "M_317_Sk2_1",
             "label": "M 317 Sk2.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> entwirft auf der Grundlage der rhythmischen Kontur von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> eine Melodielinie mit Text, die in ihrer ausführlichsten und vermutlich letzten Schicht (T. 1 bis T. 2 1. TH: System 1; T. 2 2. TH bis T. 4: System 2) Reihe B aus <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> artikuliert. Die Niederschrift erfolgt im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a>."
+                "<strong>Sk2.1</strong> entwirft auf der Grundlage der rhythmischen Kontur von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> eine Melodielinie mit Text, die in ihrer ausführlichsten und vermutlich letzten Schicht (T. 1 bis T. 2 1. TH: System 1; T. 2 2. TH bis T. 4: System 2) Reihe B aus <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> artikuliert. Die Niederschrift erfolgt im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a>."
             ],
             "comments": [
                 {
@@ -230,7 +230,7 @@
             "id": "M_317_Sk2_1_1",
             "label": "M 317 Sk2.1.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a> formuliert eine Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> auf der Grundlage des 1.–5. Reihentons von Reihe B in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>.",
+                "<strong>Sk2.1.1</strong> formuliert eine Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> auf der Grundlage des 1.–5. Reihentons von Reihe B in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": [],
@@ -277,7 +277,7 @@
             "id": "M_317_Sk2_1_2",
             "label": "M 317 Sk2.1.2",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a> ist vermutlich eine inhaltliche Fortsetzung von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a> (als T. 3): Hierfür spricht der Anfangston b<sup>1</sup> an entsprechender Stelle von Varianten in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> (System 1 und 2) sowie die dort ebenfalls anzutreffende Ligatur über den Taktstrich (System 1 und 3). Allerdings artikuliert <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a> einen anderen Reihenverlauf als Reihe B in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>."
+                "<strong>Sk2.1.2</strong> ist vermutlich eine inhaltliche Fortsetzung von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_1')\"><strong>Sk2.1.1</strong></a> (als T. 3): Hierfür spricht der Anfangston b<sup>1</sup> an entsprechender Stelle von Varianten in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> (System 1 und 2) sowie die dort ebenfalls anzutreffende Ligatur über den Taktstrich (System 1 und 3). Allerdings artikuliert <strong>Sk2.1.2</strong> einen anderen Reihenverlauf als Reihe B in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a>."
             ],
             "comments": [
                 {
@@ -331,7 +331,7 @@
             "id": "M_317_Sk2_1_2_1",
             "label": "M 317 Sk2.1.2.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2_1')\"><strong>Sk2.1.2.1</strong></a> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
+                "<strong>Sk2.1.2.1</strong> formuliert eine rhythmisch-metrische Variante des Anfangs von <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": [],
@@ -378,7 +378,7 @@
             "id": "M_317_Sk2_1_3",
             "label": "M 317 Sk2.1.3",
             "description": [
-                "Die in <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_3')\"><strong>Sk2.1.3</strong></a> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
+                "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</em> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> (Reihe B), <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1')\"><strong>Sk2.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk2_1_2')\"><strong>Sk2.1.2</strong></a>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": [],
@@ -425,7 +425,7 @@
             "id": "M_317_Sk3",
             "label": "M 317 Sk3",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> stellt gegenüber <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> und deren begleitenden Skizzeneinheiten einen inhaltlichen Neuansatz dar, insofern die in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> notierte vollständige Zwölftonreihe (Reihe B) nicht mehr verwendet wird. Stattdessen formuliert <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> auf der Grundlage des permutierten Tonvorrats von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> einen neuen zwölftönigen Verlauf. Im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a> wird dieser Verlauf weiter verändert und als rhythmisch abstrahierte Zwölftonreihe in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> notiert."
+                "<strong>Sk3</strong> stellt gegenüber <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> und deren begleitenden Skizzeneinheiten einen inhaltlichen Neuansatz dar, insofern die in <a (click)=\"ref.selectSvgSheet('M_317_Sk2')\"><strong>Sk2</strong></a> notierte vollständige Zwölftonreihe (Reihe B) nicht mehr verwendet wird. Stattdessen formuliert <strong>Sk3</strong> auf der Grundlage des permutierten Tonvorrats von <a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> einen neuen zwölftönigen Verlauf. Im dynamischen Abgleich mit <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>, <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1.1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a> wird dieser Verlauf weiter verändert und als rhythmisch abstrahierte Zwölftonreihe in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> notiert."
             ],
             "comments": [
                 {
@@ -493,7 +493,7 @@
             "id": "M_317_Sk3_1",
             "label": "M 317 Sk3.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> führt den Anfang von <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> ab dem Auftakt zu T. 3 in Varianten weiter bis T. {{ '{' }}6{{ '}' }}."
+                "<strong>Sk3.1</strong> führt den Anfang von <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> ab dem Auftakt zu T. 3 in Varianten weiter bis T. {{ '{' }}6{{ '}' }}."
             ],
             "comments": [
                 {
@@ -604,7 +604,7 @@
             "id": "M_317_Sk3_1_1",
             "label": "M 317 Sk3.1.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_1')\"><strong>Sk3.1.1</strong></a> formuliert Varianten von T. 4–5 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
+                "<strong>Sk3.1.1</strong> formuliert Varianten von T. 4–5 in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a>."
             ],
             "comments": [
                 {
@@ -634,7 +634,7 @@
             "id": "M_317_Sk3_1_2",
             "label": "M 317 Sk3.1.2",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a> formuliert eine Variante von <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> ab T. 3. Zusammen mit <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> T. 1–2 1. Note und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</em>) der Zwölftonreihe in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> entspricht."
+                "<strong>Sk3.1.2</strong> formuliert eine Variante von <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> ab T. 3. Zusammen mit <a (click)=\"ref.selectSvgSheet('M_317_Sk3')\"><strong>Sk3</strong></a> T. 1–2 1. Note und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1')\"><strong>Sk3.1</strong></a> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</em>) der Zwölftonreihe in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> entspricht."
             ],
             "comments": [
                 {
@@ -716,7 +716,7 @@
             "id": "M_317_Sk3_1_3",
             "label": "M 317 Sk3.1.3",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> notiert die vier in M 317 verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>Sk4.1</strong></a> verwendeten Reihenziffern <em>1</em> bis <em>4</em>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a> vollzogen. "
+                "<strong>Sk3.1.3</strong> notiert die vier in M 317 verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> und <a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>Sk4.1</strong></a> verwendeten Reihenziffern <em>1</em> bis <em>4</em>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a> vollzogen. "
             ],
             "rowtable": true,
             "comments": [
@@ -817,7 +817,7 @@
             "id": "M_317_Sk3_1_3_1",
             "label": "M 317 Sk3.1.3.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3_1')\"><strong>Sk3.1.3.1</strong></a> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister.",
+                "<strong>Sk3.1.3.1</strong> notiert das Ergebnis der in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": [],
@@ -836,7 +836,7 @@
             "id": "M_317_Sk4",
             "label": "M 317 Sk4",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> ist eine vollständige Verlaufskizze des Liedes „Wie bin ich froh!“. Die Verlaufskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet('M_317_TF1')\"><strong>Textfassung 1</strong></a> und <strong>Textfassung 2</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a>].) <br /> <strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
+                "<strong>Sk4</strong> ist eine vollständige Verlaufskizze des Liedes „Wie bin ich froh!“. Die Verlaufskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <a (click)=\"ref.selectSvgSheet('M_317_TF1')\"><strong>Textfassung 1</strong></a> und <strong>Textfassung 2</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu M 316 (op. 24/I) auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im selben <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufskizze zu M 316 fungieren [<a (click)=\"ref.selectSvgSheet('M_317_Sk1')\"><strong>Sk1</strong></a> bis <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_2')\"><strong>Sk3.1.2</strong></a>].) <br /> <strong>Sk4</strong> ist laut der nach <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\">T. 15</a> folgenden Datierung am 16. Juli 1934 beendet worden.",
                 "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> und <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong></a>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
@@ -1321,7 +1321,7 @@
             "id": "M_317_Sk4_1",
             "label": "M 317 Sk4.1",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>Sk4.1</strong></a> formuliert eine rhythmisch-metrische Variante von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> T. 2–3A. Der dort im Klavier offen gelassene Takt 3A wird in <a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>Sk4.1</strong></a> ansatzweise gefüllt, aber dann insgesamt gestrichen (T. {{ '{' }}3{{ '}' }}): möglicherweise auch auf Grund des in skripturaler Hinsicht engen Raumes. Der Takt wird in <a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong></a> T. 3B weiter ausgearbeitet. <br /> Vor der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>Sk4.1</strong></a> war die Seite am linken Rand von System 14–16 mit einer Akkoladenklammer beschriftet, die offensichtlich einer Präparierung der Fortsetzung von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> nach T. {{ '{' }}1A{{ '}' }}–3A dient. Nach der Niederschrift von <a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>Sk4.1</strong></a> erfolgt die Fortsetzung von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> jedoch auf Bl. 39<sup>r</sup> (<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>)."
+                "<strong>Sk4.1</strong> formuliert eine rhythmisch-metrische Variante von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> T. 2–3A. Der dort im Klavier offen gelassene Takt 3A wird in <strong>Sk4.1</strong> ansatzweise gefüllt, aber dann insgesamt gestrichen (T. {{ '{' }}3{{ '}' }}): möglicherweise auch auf Grund des in skripturaler Hinsicht engen Raumes. Der Takt wird in <a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong></a> T. 3B weiter ausgearbeitet. <br /> Vor der Niederschrift von <strong>Sk4.1</strong> war die Seite am linken Rand von System 14–16 mit einer Akkoladenklammer beschriftet, die offensichtlich einer Präparierung der Fortsetzung von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> nach T. {{ '{' }}1A{{ '}' }}–3A dient. Nach der Niederschrift von <strong>Sk4.1</strong> erfolgt die Fortsetzung von <a (click)=\"ref.selectSvgSheet('M_317_Sk4a')\"><strong>Sk4</strong></a> jedoch auf Bl. 39<sup>r</sup> (<a (click)=\"ref.selectSvgSheet('M_317_Sk4b')\"><strong>Sk4</strong> T. 3B–6</a>)."
             ],
             "comments": [
                 {
@@ -1364,7 +1364,7 @@
             "id": "M_317_Sk4_2",
             "label": "M 317 Sk4.2",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk4_2')\"><strong>Sk4.2</strong></a> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13.",
+                "<strong>Sk4.2</strong> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen Kommentare.]</small>"
             ],
             "comments": [],
@@ -1383,7 +1383,7 @@
             "id": "M_317_Sk4_3",
             "label": "M 317 Sk4.3",
             "description": [
-                "<a (click)=\"ref.selectSvgSheet('M_317_Sk4_3')\"><strong>Sk4.3</strong></a> formuliert eine fragmentarische Variante von <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13."
+                "<strong>Sk4.3</strong> formuliert eine fragmentarische Variante von <a (click)=\"ref.selectSvgSheet('M_317_Sk4d')\"><strong>Sk4</strong></a> T. 13."
             ],
             "comments": [
                 {
@@ -1416,7 +1416,7 @@
             "id": "M_317_TF1",
             "label": "M 317 Textfassung 1",
             "description": [
-                "##Quellenbewertung:## Für die Edition von „Wie bin ich froh!“ M 317 Textfassung 1 sind <strong>B</strong> und <strong>E</strong> relevante Quellen. <br />Korrekturschicht 1 in <strong>E</strong> etabliert Textfassung 1, wobei dese Überarbeitung vor oder gleichzeitig mit der Niederschrift von <strong>B</strong> stattgefunden haben dürfte. Korrekturschicht 2 in <strong>E</strong> betrifft Textfassung 2. Der Zustand von <strong>E</strong> vor Korrekturschicht 2 lässt sich nicht immer eindeutig entziffern. <br /> Hauptquelle der Textedition von „Wie bin ich froh!“ M 317 Textfassung 1 ist <strong>B</strong>."
+                "##Quellenbewertung:## Für die Edition von „Wie bin ich froh!“ <strong>M 317 Textfassung 1</strong> sind <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> und <strong>E</strong> relevante Quellen. <br />Korrekturschicht 1 in <strong>E</strong> etabliert Textfassung 1, wobei dese Überarbeitung vor oder gleichzeitig mit der Niederschrift von <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> stattgefunden haben dürfte. Korrekturschicht 2 in <strong>E</strong> betrifft Textfassung 2. Der Zustand von <strong>E</strong> vor Korrekturschicht 2 lässt sich nicht immer eindeutig entziffern. <br /> Hauptquelle der Textedition von „Wie bin ich froh!“ <strong>M 317 Textfassung 1</strong> ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>."
             ],
             "comments": [
                 {
@@ -1446,7 +1446,7 @@
             "id": "SkRT",
             "label": "M 317 Sk5 / M 321 Sk1 / M 322 Sk1 (Reihentabelle op. 25)",
             "description": [
-                "Die <a (click)=\"ref.selectSvgSheet('SkRT')\"><strong>Reihentabelle op. 25</strong></a> weist neben den vier bereits in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
+                "Die <strong>Reihentabelle op. 25</strong> weist neben den vier bereits in <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>Sk3.1.3</strong></a> tabellarisch notierten Reihenformen 1–4 die entsprechenden Transpositionen der <em>Unterquint</em> (Reihenformen 5–8) auf, die lediglich im <em>2. Lied</em> (M 322) kompositorisch verwendet werden."
             ],
             "rowtable": true,
             "comments": [

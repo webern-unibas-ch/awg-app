@@ -19,12 +19,28 @@
                         sukzessive ergänzt.</span
                     >
                 </p>
-                <ng-container *ngIf="graph.description">
+                <ng-container
+                    *ngIf="
+                        utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples;
+                        else graphDescriptionPlaceholder
+                    ">
                     <p
                         *ngFor="let description of graph.description"
                         [compile-html]="description"
                         [compile-html-ref]="ref"></p>
                 </ng-container>
+                <ng-template #graphDescriptionPlaceholder>
+                    <p class="awg-graph-description-empty">
+                        <small class="text-muted"
+                            >[Die Graph-Visualisierungen zum Editionskomplex
+                            <span [innerHTML]="editionComplex.complexId.full"></span> erscheinen im Zusammenhang der
+                            vollständigen Edition von {{ editionComplex.complexId.short }} in
+                            {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
+                                editionComplex.section.short
+                            }}.]
+                        </small>
+                    </p>
+                </ng-template>
             </div>
 
             <!-- dynamic graph -->

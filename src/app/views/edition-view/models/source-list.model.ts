@@ -12,6 +12,11 @@ export class Source {
     siglum: string;
 
     /**
+     * The addendum to a siglum of a source.
+     */
+    siglumAddendum?: string;
+
+    /**
      * The type description of a source.
      */
     type: string;
@@ -22,14 +27,41 @@ export class Source {
     location: string;
 
     /**
-     * A flag if the source has a source description in the critical report.
+     * A flag if the source has a source description.
      */
     hasDescription: boolean;
 
     /**
-     * The link to a source description in the critical report.
+     * The link to the source description.
      */
     linkTo: string;
+}
+
+export class TextSource {
+    /**
+     * The id of a text source.
+     */
+    id: string;
+
+    /**
+     * The siglum of a text source.
+     */
+    siglum: string;
+
+    /**
+     * The addendum to a siglum of a text source.
+     */
+    siglumAddendum?: string;
+
+    /**
+     * The type description of a text source.
+     */
+    type: string;
+
+    /**
+     * The physical location of a text source.
+     */
+    location: string;
 }
 
 /**
@@ -44,4 +76,9 @@ export class SourceList {
      * The array of sources from a source list.
      */
     sources: Source[];
+
+    /**
+     * The array of text sources from a source list.
+     */
+    textSources?: TextSource[];
 }

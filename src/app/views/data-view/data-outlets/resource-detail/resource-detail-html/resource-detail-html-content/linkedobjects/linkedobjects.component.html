@@ -15,14 +15,8 @@
 <!-- resourceDetailData content: linked objects -->
 <div class="awg-linked-obj">
     <h5>
-        <!-- TODO: link to linked objects overview
-        <a (click)="navigateToSearchResults()">
-        -->
         Verknüpfte Objekte (<span id="awg-incoming-size" *ngIf="incomingGroups">{{ totalNumber }}</span
         >)
-        <!--
-        </a>
-        -->
     </h5>
 
     <ngb-accordion [closeOthers]="true">
@@ -32,7 +26,7 @@
             *ngFor="let restypeGroup of incomingGroups; let i = index">
             <ng-template ngbPanelTitle>
                 <span class="awg-linked-obj-title-group single-line">
-                    <span class="badge badge-info me-2">{{ restypeGroup?.links?.length }}</span>
+                    <span class="badge bg-info me-2">{{ restypeGroup?.links?.length }}</span>
                     <span class="awg-linked-obj-title">{{ restypeGroup?.restypeLabel }}</span>
                 </span>
             </ng-template>

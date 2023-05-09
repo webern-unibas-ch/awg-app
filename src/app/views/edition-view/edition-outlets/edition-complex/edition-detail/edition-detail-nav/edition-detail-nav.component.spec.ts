@@ -103,11 +103,11 @@ describe('EditionDetailNavComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have `editionRouterLinkButtons`', () => {
-            expect(component.editionRouterLinkButtons).withContext('should be undefined').toBeUndefined();
+            expect(component.editionRouterLinkButtons).toBeUndefined();
         });
 
         it('... should not have `editionComplex`', () => {
-            expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
+            expect(component.editionComplex).toBeUndefined();
         });
 
         describe('#getEditionComplex()', () => {

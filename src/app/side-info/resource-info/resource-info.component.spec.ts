@@ -136,19 +136,19 @@ describe('ResourceInfoComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have goToIndex', () => {
-            expect(component.goToIndex).withContext('should be undefined').toBeUndefined();
+            expect(component.goToIndex).toBeUndefined();
         });
 
         it('... should not have resourceId', () => {
-            expect(component.resourceId).withContext('should be undefined').toBeUndefined();
+            expect(component.resourceId).toBeUndefined();
         });
 
         it('... should not have resourceInfoFormGroup', () => {
-            expect(component.resourceInfoFormGroup).withContext('should be undefined').toBeUndefined();
+            expect(component.resourceInfoFormGroup).toBeUndefined();
         });
 
         it('... should not have resultSize', () => {
-            expect(component.resultSize).withContext('should be undefined').toBeUndefined();
+            expect(component.resultSize).toBeUndefined();
         });
 
         it('... should have empty resourceInfoData', () => {
@@ -287,7 +287,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).withContext('should be undefined').toBeUndefined();
+                expect(mockConsole.get(0)).toBeUndefined();
             });
 
             it('... should throw an error if subscription fails and log to console', () => {
@@ -298,7 +298,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).withContext('should be undefined').toBeUndefined();
+                expect(mockConsole.get(0)).toBeUndefined();
 
                 // Spy on dataStreamerService to return an error
                 dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableThrowError(() => new Error('error')));

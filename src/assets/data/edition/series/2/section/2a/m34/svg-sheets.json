@@ -1,7 +1,20 @@
 {
     "sheets": {
         "workEditions": [],
-        "textEditions": [],
+        "textEditions": [
+            {
+                "id": "M_34_TF1",
+                "label": "M 34 einzige Textfassung",
+                "content": [
+                    {
+                        "svg": "assets/img/edition/series/2/section/2a/m34/M34_Textfassung1-1von1-final.svg",
+                        "image": "",
+                        "partial": ""
+                    }
+                ],
+                "convolute": ""
+            }
+        ],
         "sketchEditions": [
             {
                 "id": "M_34_Sk1",

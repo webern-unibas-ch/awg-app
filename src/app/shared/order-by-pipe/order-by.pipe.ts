@@ -50,8 +50,10 @@ export class OrderByPipe implements PipeTransform {
      *
      * @param a
      * @param b
+     *
+     * @returns {number}
      */
-    static defaultCompare(a: any, b: any) {
+    static defaultCompare(a: any, b: any): number {
         if (a && a instanceof Date) {
             a = a.getTime();
         }
@@ -73,7 +75,9 @@ export class OrderByPipe implements PipeTransform {
 
     /**
      * Parse expression, split into items
+     *
      * @param expression
+     *
      * @returns {string[]}
      */
     static parseExpression(expression: string): string[] {
@@ -87,24 +91,20 @@ export class OrderByPipe implements PipeTransform {
      *
      * @param object
      * @param expression
+     *
      * @returns {any}
      */
     static getValue(object: any, expression: string[]): any {
-        for (let i = 0, n = expression.length; i < n; ++i) {
-            if (!object) {
-                return;
-            }
-            const k = expression[i];
-            if (!(k in object)) {
-                return;
-            }
-            if (typeof object[k] === 'function') {
-                object = object[k]();
+        for (const key of expression) {
+            if (object && key in object) {
+                object = object[key];
+                if (typeof object === 'function') {
+                    object = object();
+                }
             } else {
-                object = object[k];
+                return undefined;
             }
         }
-
         return object;
     }
 
@@ -115,7 +115,7 @@ export class OrderByPipe implements PipeTransform {
      * @param value
      * @param expression
      */
-    static setValue(object: any, value: any, expression: string[]) {
+    static setValue(object: any, value: any, expression: string[]): void {
         let i;
         for (i = 0; i < expression.length - 1; i++) {
             object = object[expression[i]];
@@ -144,44 +144,40 @@ export class OrderByPipe implements PipeTransform {
         }
 
         if (typeof value === 'object') {
-            return this._transformObject(Object.assign({}, value), expression, reverse, isCaseInsensitive, comparator);
+            return this._transformObject(Object.assign({}, value), expression, reverse, isCaseInsensitive);
         }
 
         return value;
     }
 
     /**
-     * Sort array, returns sorted array
+     * Sorts an array and returns the sorted array.
      *
-     * @param array
-     * @param expression
-     * @param reverse
-     * @param isCaseInsensitive
-     * @param comparator
-     * @returns {Type[]}
+     * @param array The array to sort.
+     * @param expression An optional string or array of strings representing the properties to sort by.
+     * @param reverse Whether to sort in reverse order.
+     * @param isCaseInsensitive Whether to perform a case-insensitive sort.
+     * @param comparator An optional function to use for comparison.
+     *
+     * @returns {T[]} The sorted array.
      */
-    private _sortArray<Type>(
-        array: Type[],
+    private _sortArray<T>(
+        array: T[],
         expression?: any,
         reverse?: boolean,
         isCaseInsensitive?: boolean,
         comparator?: Function
-    ): Type[] {
+    ): T[] {
         const isDeepLink = expression && expression.indexOf('.') !== -1;
 
         if (isDeepLink) {
             expression = OrderByPipe.parseExpression(expression);
         }
 
-        let compareFn: Function;
+        const compareFn =
+            comparator ?? (isCaseInsensitive ? OrderByPipe.caseInsensitiveSort : OrderByPipe.defaultCompare);
 
-        if (comparator && typeof comparator === 'function') {
-            compareFn = comparator;
-        } else {
-            compareFn = isCaseInsensitive ? OrderByPipe.caseInsensitiveSort : OrderByPipe.defaultCompare;
-        }
-
-        const sortedArray: any[] = array.sort((a: any, b: any): number => {
+        const sortedArray: any[] = array.slice().sort((a: any, b: any): number => {
             if (!expression) {
                 return compareFn(a, b);
             }
@@ -197,7 +193,7 @@ export class OrderByPipe implements PipeTransform {
         });
 
         if (reverse) {
-            return sortedArray.reverse();
+            sortedArray.reverse();
         }
 
         return sortedArray;
@@ -210,15 +206,14 @@ export class OrderByPipe implements PipeTransform {
      * @param expression
      * @param reverse
      * @param isCaseInsensitive
-     * @param comparator
+     *
      * @returns {any[]}
      */
     private _transformObject(
         value: any | any[],
         expression?: any,
         reverse?: boolean,
-        isCaseInsensitive?: boolean,
-        comparator?: Function
+        isCaseInsensitive?: boolean
     ): any {
         const parsedExpression = OrderByPipe.parseExpression(expression);
         let lastPredicate = parsedExpression.pop();
@@ -234,11 +229,10 @@ export class OrderByPipe implements PipeTransform {
             return value;
         }
 
-        OrderByPipe.setValue(
-            value,
-            this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive),
-            parsedExpression
-        );
+        const newValue = this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive);
+
+        OrderByPipe.setValue(value, newValue, parsedExpression);
+
         return value;
     }
 
@@ -259,7 +253,7 @@ export class OrderByPipe implements PipeTransform {
         isCaseInsensitive: boolean,
         comparator?: Function
     ): any {
-        return expressions
+        return [...expressions]
             .reverse()
             .reduce(
                 (result: any, expression: any) =>

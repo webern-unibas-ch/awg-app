@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { DebugElement, NgModule } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { NgbConfig, NgbPagination, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +17,8 @@ describe('TablePaginationComponent (DONE)', () => {
     let component: TablePaginationComponent;
     let fixture: ComponentFixture<TablePaginationComponent>;
     let compDe: DebugElement;
+
+    let mockDocument: Document;
 
     let emitPageChangeSpy: Spy;
     let emitPageChangeRequestSpy: Spy;
@@ -46,6 +49,8 @@ describe('TablePaginationComponent (DONE)', () => {
         fixture = TestBed.createComponent(TablePaginationComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
+
+        mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
         expectedCollectionSize = 100;
@@ -248,7 +253,7 @@ describe('TablePaginationComponent (DONE)', () => {
 
             describe('should format the HTMLInputElement input', () => {
                 it('... by keeping numbers', () => {
-                    const input = document.createElement('input');
+                    const input = mockDocument.createElement('input');
                     input.value = '3';
 
                     component.replaceNonNumberInput(input);
@@ -256,7 +261,7 @@ describe('TablePaginationComponent (DONE)', () => {
                 });
 
                 it('... by replacing non-numbers with empty string', () => {
-                    const input = document.createElement('input');
+                    const input = mockDocument.createElement('input');
                     input.value = 'Test';
 
                     component.replaceNonNumberInput(input);

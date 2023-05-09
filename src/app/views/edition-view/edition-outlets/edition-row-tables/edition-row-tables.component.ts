@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { EditionRowTables } from '@awg-views/edition-view/models';
+import { EditionRowTablesList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { Observable } from 'rxjs';
 
 /**
  * The EditionRowTables component.
@@ -15,11 +16,11 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 })
 export class EditionRowTablesComponent implements OnDestroy, OnInit {
     /**
-     * Public variable: rowTablesData.
+     * Public variable: rowTablesData$.
      *
-     * It keeps the data of the edition row tables as an array of extended routes.
+     * It keeps an observable of the data of the edition row tables.
      */
-    rowTablesData: EditionRowTables[];
+    rowTablesData$: Observable<EditionRowTablesList>;
 
     /**
      * Constructor of the EditionRowTablesComponent.
@@ -39,7 +40,7 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      */
     ngOnInit(): void {
         this.editionService.updateIsRowTableView(true);
-        this.rowTablesData = this.editionDataService.getRowTables();
+        this.rowTablesData$ = this.editionDataService.getEditionRowTablesData();
     }
 
     /**

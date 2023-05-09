@@ -110,7 +110,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have `content` inputs', () => {
-            expect(component.content).withContext('should be undefined').toBeUndefined();
+            expect(component.content).toBeUndefined();
         });
 
         describe('#exposeGnd()', () => {

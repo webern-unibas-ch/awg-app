@@ -1,9 +1,9 @@
 /**
  *
- *              ResourceDetailModels
+ *              DataViewModels
  *
  * This file exports models that are used
- * for the resource detail view.
+ * for the Data view.
  *
  */
 
@@ -15,10 +15,10 @@ import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.model';
 import { ResourceDetailProperty } from './resource-detail-property.model';
 import { ResourceDetail } from './resource-detail.model';
-import { SearchCompop, SEARCH_COMPOP_SETS_LIST } from './search-compop.model';
+import { SearchCompop, SearchCompopSetsList } from './search-compop.model';
 import { ExtendedSearchParams, SearchParams, SearchQuery } from './search-params.model';
 import { SearchResponseWithQuery } from './search-response-with-query.model';
-import { VALUETYPE_LIST } from './value-type.model';
+import { ValueType, ValueTypeList } from './value-type.model';
 
 export {
     ExtendedSearchParams,
@@ -31,10 +31,11 @@ export {
     ResourceDetailIncomingLink,
     ResourceDetailProperty,
     ResourceDetailGroupedIncomingLinks,
-    SearchQuery,
-    SearchParams,
-    SearchResponseWithQuery,
     SearchCompop,
-    SEARCH_COMPOP_SETS_LIST,
-    VALUETYPE_LIST,
+    SearchCompopSetsList,
+    SearchParams,
+    SearchQuery,
+    SearchResponseWithQuery,
+    ValueType,
+    ValueTypeList,
 };

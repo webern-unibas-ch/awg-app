@@ -55,6 +55,25 @@ export const mockEditionData = {
     },
 
     /**
+     * Test helper data constant: mockGraphEmptyData.
+     *
+     * It provides a mocked graph data object with empty content.
+     */
+    mockGraphEmptyData: {
+        graph: [
+            {
+                id: 'test-graph-empty-id',
+                title: 'Test graph empty',
+                description: [],
+                rdfData: {
+                    queryList: [],
+                    triples: '',
+                },
+            },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockIntroData.
      *
      * It provides a mocked intro data object.
@@ -64,7 +83,7 @@ export const mockEditionData = {
             {
                 id: 'op12',
                 content: [
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
                     'In <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> neu skizziert',
                 ],
             },
@@ -93,6 +112,20 @@ export const mockEditionData = {
     mockModalSnippet: 'OP12_SHEET_COMING_SOON',
 
     /**
+     * Test helper data constant: mockRowTablesData.
+     *
+     * It provides a mocked rowTablesData object.
+     */
+    mockRowTablesData: {
+        rowTables: [
+            { route: '/enrt1', short: 'En RT1', full: 'Enabled Test Rowtable 1', id: 'SkRT', disabled: false },
+            { route: '/enrt2', short: 'En RT2', full: 'Enabled Test Rowtable 2', id: 'SkRT', disabled: false },
+            { route: '/disrt1', short: 'Dis RT1', full: 'Diabled Test Rowtable 1', id: 'SkRT', disabled: true },
+            { route: '/disrt2', short: 'Dis RT2', full: 'Disabled Test Rowtable 2', id: 'SkRT', disabled: true },
+        ],
+    },
+
+    /**
      * Test helper data constant: mockSourceListData.
      *
      * It provides a mocked sourceListData object.
@@ -101,24 +134,69 @@ export const mockEditionData = {
         sources: [
             {
                 siglum: 'A',
-                type: 'Skizzen',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                siglumAddendum: '',
+                type: 'Test type 1',
+                location: 'Test location 1.',
                 hasDescription: true,
-                linkTo: 'sourceA',
+                linkTo: 'source_A',
             },
             {
                 siglum: 'B',
-                type: 'Autograph von Nr. I.',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                siglumAddendum: '',
+                type: 'Test type 2',
+                location: 'Test location 2.',
                 hasDescription: false,
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
             },
             {
                 siglum: 'C',
-                type: 'Autograph von Nr. I–IV.',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                siglumAddendum: '',
+                type: 'Test type 3',
+                location: 'Test location 3.',
                 hasDescription: false,
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockSourceListDataWithTexts.
+     *
+     * It provides a mocked sourceListData object with text sources.
+     */
+    mockSourceListDataWithTexts: {
+        sources: [
+            {
+                siglum: 'A',
+                siglumAddendum: 'a',
+                type: 'Test type 1',
+                location: 'Test location 1.',
+                hasDescription: true,
+                linkTo: 'source_Aa',
+            },
+            {
+                siglum: 'B',
+                siglumAddendum: 'H',
+                type: 'Test type 2',
+                location: 'Test location 2.',
+                hasDescription: false,
+                linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+            },
+        ],
+        textSources: [
+            {
+                id: 'text_textA',
+                siglum: 'textA',
+                siglumAddendum: '',
+                type: 'Text type 1',
+                location: 'Text location 1.',
+            },
+            {
+                id: 'text_textB',
+                siglum: 'textB',
+                siglumAddendum: 'H',
+                type: 'Text type 2',
+                location: 'Text location 2.',
             },
         ],
     },
@@ -131,15 +209,15 @@ export const mockEditionData = {
     mockSourceDescriptionListData: {
         sources: [
             {
-                id: 'sourceA',
+                id: 'source_A',
                 siglum: 'A',
                 siglumAddendum: '',
                 type: 'Skizzen',
-                location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                location: 'CH-Bps, Sammlung Anton Webern.',
                 description: {},
             },
             {
-                id: 'sourceAa',
+                id: 'source_Aa',
                 siglum: 'A',
                 siglumAddendum: 'a',
                 type: '',
@@ -356,7 +434,7 @@ export const mockEditionData = {
                 id: 'op25',
                 content: [
                     '<small class="text-muted">[Die Quellenbewertung zum gesamten Editionskomplex <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]</small>',
-                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'sourceA\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.',
+                    'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten u. a. <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test Sk1</strong></a> (13. Januar 1915) als Korrekturen einer in <strong>B</strong> und in <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a> vorformulierten Fassung dar.',
                 ],
             },
         ],
@@ -786,7 +864,7 @@ export const mockEditionData = {
                         system: '12',
                         position: '2. Note',
                         comment:
-                            'Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a>.',
+                            'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')"><strong>Test SkXYZ</strong></a> T. [11] und <a (click)="ref.selectSvgSheet(\'test-1\')"><strong>Test Sk1</strong></a>.',
                     },
                     {
                         svgGroupId: 'svg-group-3',

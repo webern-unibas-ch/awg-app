@@ -13,7 +13,6 @@ import { EDITION_FIRM_SIGNS_DATA } from './edition-firm-signs.data';
 import { EDITION_GLYPHS_DATA } from './edition-glyphs.data';
 import { EDITION_GRAPH_IMAGES_DATA } from './edition-graph-images.data';
 import { EDITION_OUTLINE_DATA } from './edition-outline.data';
-import { EDITION_ROW_TABLES_DATA } from './edition-row-tables.data';
 
 export {
     EDITION_ASSETS_DATA,
@@ -21,6 +20,5 @@ export {
     EDITION_GLYPHS_DATA,
     EDITION_GRAPH_IMAGES_DATA,
     EDITION_OUTLINE_DATA,
-    EDITION_ROW_TABLES_DATA,
     EDITION_COMPLEXES,
 };

@@ -131,7 +131,7 @@ export class EditionIntroComponent implements OnInit {
      * @param {string}  fragmentId The given fragment id.
      * @returns {void} Navigates to the edition report.
      */
-    navigateToReportFragment(fragmentId: string) {
+    navigateToReportFragment(fragmentId: string): void {
         if (!fragmentId) {
             fragmentId = '';
         }

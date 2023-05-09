@@ -227,15 +227,16 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * not exists (first call), use resourceId.
      *
      * @param {string} [id] The given resource id.
+     *
      * @returns {void} Navigates to the resource.
      */
     navigateToResource(id?: string): void {
-        const nextId = id ? id : this.oldId ? this.oldId : this.resourceId;
+        const nextId = id ?? this.oldId ?? this.resourceId;
 
-        // Save resourceId as oldId
+        // Save current resourceId as oldId
         this.oldId = this.resourceId;
 
-        // Navigate to new resource
+        // Navigate to resource with the nextId
         this.router.navigate(['/data/resource', +nextId]);
     }
 

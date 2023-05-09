@@ -3,9 +3,7 @@
         {
             "id": "op24",
             "title": "Skizzengraph Opus 24",
-            "description": [
-                "<span class=\"text-danger\">[Die Graph-Visualisierungen der Skizzen zu <em>Konzert für neun Instrumente</em> op. 24 erscheinen im Zusammenhang der vollständigen Edition von Opus 24 in AWG I/1.]</span>"
-            ],
+            "description": [],
             "rdfData": {
                 "queryList": [],
                 "triples": ""

@@ -244,6 +244,29 @@ export class EDITION_COMPLEXES {
     );
 
     /**
+     * An EditionComplex object for Opus 22.
+     */
+    static readonly OP22: EditionComplex = new EditionComplex(
+        {
+            title: 'Quartett für Geige, Klarinette, Tenorsaxophon und Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+            catalogueNumber: '22',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '19. Januar 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_2,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
      * An EditionComplex object for Opus 23.
      */
     static readonly OP23: EditionComplex = new EditionComplex(
@@ -309,6 +332,29 @@ export class EDITION_COMPLEXES {
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for Opus 27.
+     */
+    static readonly OP27: EditionComplex = new EditionComplex(
+        {
+            title: 'Variationen für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+            catalogueNumber: '27',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '13. April 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_2,
         EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 }

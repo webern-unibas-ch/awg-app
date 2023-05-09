@@ -1,267 +1,295 @@
 <div class="awg-source-description-list" *ngIf="sourceDescriptionListData">
     <div
-        class="awg-source-description para"
+        class="awg-source-description card mb-2"
         *ngFor="let sourceDescription of sourceDescriptionListData.sources"
         [id]="sourceDescription.id">
-        <div class="awg-source-description-head">
-            <p *ngIf="sourceDescription.siglum" class="awg-source-description-siglum bold">
-                {{ sourceDescription.siglum
-                }}<span *ngIf="sourceDescription.siglumAddendum" class="awg-source-description-siglum-addendum"
-                    ><sup>{{ sourceDescription.siglumAddendum }}</sup></span
-                >
-            </p>
-            <p
-                *ngIf="sourceDescription.type"
-                class="awg-source-description-type"
-                [compile-html]="sourceDescription.type"
-                [compile-html-ref]="ref"></p>
-            <p
-                *ngIf="sourceDescription.location"
-                class="awg-source-description-location"
-                [compile-html]="sourceDescription.location"
-                [compile-html-ref]="ref"></p>
-        </div>
-        <div *ngIf="utils.isNotEmptyObject(sourceDescription.description)" class="awg-source-description-body">
-            <!-- description -->
-            <ng-container *ngIf="utils.isNotEmptyArray(sourceDescription.description.desc)">
-                <p
-                    class="awg-source-description-desc"
-                    *ngFor="let description of sourceDescription.description.desc"
-                    [compile-html]="description"
-                    [compile-html-ref]="ref"></p>
-            </ng-container>
-
-            <!-- writingMaterial -->
-            <p *ngIf="sourceDescription.description.writingMaterial" class="awg-source-description-writing-material">
-                <span class="caps">Beschreibstoff:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.writingMaterial" [compile-html-ref]="ref"></span>
-            </p>
-
-            <!-- writingInstruments -->
-            <ng-container *ngIf="utils.isNotEmptyObject(sourceDescription.description.writingInstruments)">
-                <p
-                    *ngIf="sourceDescription.description.writingInstruments.main"
-                    class="awg-source-description-writing-instruments">
-                    <span class="caps">Schreibstoff:&nbsp;</span>
-                    <span
-                        [compile-html]="sourceDescription.description.writingInstruments.main"
-                        [compile-html-ref]="ref"></span>
-                    <ng-container
-                        *ngIf="utils.isNotEmptyArray(sourceDescription.description.writingInstruments.secondary)">
-                        <span>;&nbsp;</span>
-                        <span
-                            *ngFor="
-                                let secondary of sourceDescription?.description?.writingInstruments?.secondary;
-                                let last = last
-                            ">
-                            <span [compile-html]="secondary" [compile-html-ref]="ref"></span>
-                            <span *ngIf="!last">,&nbsp;</span>
-                        </span></ng-container
-                    >.
+        <div class="card-body">
+            <div class="awg-source-description-head">
+                <p *ngIf="sourceDescription.siglum" class="awg-source-description-siglum bold">
+                    {{ sourceDescription.siglum
+                    }}<span *ngIf="sourceDescription.siglumAddendum" class="awg-source-description-siglum-addendum"
+                        ><sup>{{ sourceDescription.siglumAddendum }}</sup></span
+                    >
                 </p>
-            </ng-container>
+                <p
+                    *ngIf="sourceDescription.type"
+                    class="awg-source-description-type"
+                    [compile-html]="sourceDescription.type"
+                    [compile-html-ref]="ref"></p>
+                <p
+                    *ngIf="sourceDescription.location"
+                    class="awg-source-description-location"
+                    [compile-html]="sourceDescription.location"
+                    [compile-html-ref]="ref"></p>
+            </div>
+            <div *ngIf="utils.isNotEmptyObject(sourceDescription.description)" class="awg-source-description-body">
+                <!-- description -->
+                <ng-container *ngIf="utils.isNotEmptyArray(sourceDescription.description.desc)">
+                    <p
+                        class="awg-source-description-desc"
+                        *ngFor="let description of sourceDescription.description.desc"
+                        [compile-html]="description"
+                        [compile-html-ref]="ref"></p>
+                </ng-container>
 
-            <!-- title -->
-            <p *ngIf="sourceDescription.description.title" class="awg-source-description-title">
-                <span class="caps">Titel:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.title" [compile-html-ref]="ref"></span>
-            </p>
+                <!-- writingMaterial -->
+                <p
+                    *ngIf="sourceDescription.description.writingMaterial"
+                    class="awg-source-description-writing-material">
+                    <span class="caps">Beschreibstoff:&nbsp;</span>
+                    <span
+                        [compile-html]="sourceDescription.description.writingMaterial"
+                        [compile-html-ref]="ref"></span>
+                </p>
 
-            <!-- date -->
-            <p *ngIf="sourceDescription.description.date" class="awg-source-description-date">
-                <span class="caps">Datierung:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.date" [compile-html-ref]="ref"></span>
-            </p>
-
-            <!-- pagination -->
-            <p *ngIf="sourceDescription.description.pagination" class="awg-source-description-pagination">
-                <span class="caps">Paginierung:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.pagination" [compile-html-ref]="ref"></span>
-            </p>
-
-            <!-- measureNumbers -->
-            <p *ngIf="sourceDescription.description.measureNumbers" class="awg-source-description-measure-numbers">
-                <span class="caps">Taktzahlen:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.measureNumbers" [compile-html-ref]="ref"></span>
-            </p>
-
-            <!-- instrumentation -->
-            <p *ngIf="sourceDescription.description.instrumentation" class="awg-source-description-instrumentation">
-                <span class="caps">Instrumentenvorsatz:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.instrumentation" [compile-html-ref]="ref"></span>
-            </p>
-
-            <!-- annotations -->
-            <p *ngIf="sourceDescription.description.annotations" class="awg-source-description-annotations">
-                <span class="caps">Eintragungen:&nbsp;</span>
-                <span [compile-html]="sourceDescription.description.annotations" [compile-html-ref]="ref"></span>
-            </p>
-
-            <!-- content -->
-            <div
-                *ngIf="utils.isNotEmptyArray(sourceDescription.description.content)"
-                class="awg-source-description-content">
-                <p class="no-para"><span class="caps">Inhalt:</span></p>
-                <p class="half-para" *ngFor="let content of sourceDescription.description.content">
-                    <!-- content.itemDescription -->
-                    <span *ngIf="content.item || content.itemDescription" class="awg-source-description-content-item"
-                        ><ng-container *ngIf="content.itemLinkTo"
-                            ><a (click)="selectSvgSheet(content.itemLinkTo)"
-                                ><strong>{{ content.item }}</strong></a
-                            ></ng-container
-                        ><ng-container *ngIf="!content.itemLinkTo"
-                            ><strong>{{ content.item }}</strong></ng-container
-                        >
-                        <span *ngIf="content.itemDescription" class="awg-source-description-content-item-description"
-                            >&nbsp;<span [compile-html]="content.itemDescription" [compile-html-ref]="ref"></span></span
-                        >:<br />
-                    </span>
-
-                    <!-- content.folios -->
-                    <ng-container *ngIf="utils.isNotEmptyArray(content.folios)">
-                        <ng-container *ngFor="let folio of content.folios; let lastFolio = last">
+                <!-- writingInstruments -->
+                <ng-container *ngIf="utils.isNotEmptyObject(sourceDescription.description.writingInstruments)">
+                    <p
+                        *ngIf="sourceDescription.description.writingInstruments.main"
+                        class="awg-source-description-writing-instruments">
+                        <span class="caps">Schreibstoff:&nbsp;</span>
+                        <span
+                            [compile-html]="sourceDescription.description.writingInstruments.main"
+                            [compile-html-ref]="ref"></span>
+                        <ng-container
+                            *ngIf="utils.isNotEmptyArray(sourceDescription.description.writingInstruments.secondary)">
+                            <span>;&nbsp;</span>
                             <span
-                                *ngIf="folio.folio"
-                                class="awg-source-description-content-item-folio"
-                                [ngClass]="{
-                                    tab: content.item
-                                }">
-                                <ng-container *ngIf="folio.folioLinkTo">
-                                    <a (click)="selectSvgSheet(folio.folioLinkTo)"
-                                        ><ng-template
+                                *ngFor="
+                                    let secondary of sourceDescription?.description?.writingInstruments?.secondary;
+                                    let last = last
+                                ">
+                                <span [compile-html]="secondary" [compile-html-ref]="ref"></span>
+                                <span *ngIf="!last">,&nbsp;</span>
+                            </span></ng-container
+                        >.
+                    </p>
+                </ng-container>
+
+                <!-- title -->
+                <p *ngIf="sourceDescription.description.title" class="awg-source-description-title">
+                    <span class="caps">Titel:&nbsp;</span>
+                    <span [compile-html]="sourceDescription.description.title" [compile-html-ref]="ref"></span>
+                </p>
+
+                <!-- date -->
+                <p *ngIf="sourceDescription.description.date" class="awg-source-description-date">
+                    <span class="caps">Datierung:&nbsp;</span>
+                    <span [compile-html]="sourceDescription.description.date" [compile-html-ref]="ref"></span>
+                </p>
+
+                <!-- pagination -->
+                <p *ngIf="sourceDescription.description.pagination" class="awg-source-description-pagination">
+                    <span class="caps">Paginierung:&nbsp;</span>
+                    <span [compile-html]="sourceDescription.description.pagination" [compile-html-ref]="ref"></span>
+                </p>
+
+                <!-- measureNumbers -->
+                <p *ngIf="sourceDescription.description.measureNumbers" class="awg-source-description-measure-numbers">
+                    <span class="caps">Taktzahlen:&nbsp;</span>
+                    <span [compile-html]="sourceDescription.description.measureNumbers" [compile-html-ref]="ref"></span>
+                </p>
+
+                <!-- instrumentation -->
+                <p *ngIf="sourceDescription.description.instrumentation" class="awg-source-description-instrumentation">
+                    <span class="caps">Instrumentenvorsatz:&nbsp;</span>
+                    <span
+                        [compile-html]="sourceDescription.description.instrumentation"
+                        [compile-html-ref]="ref"></span>
+                </p>
+
+                <!-- annotations -->
+                <p *ngIf="sourceDescription.description.annotations" class="awg-source-description-annotations">
+                    <span class="caps">Eintragungen:&nbsp;</span>
+                    <span [compile-html]="sourceDescription.description.annotations" [compile-html-ref]="ref"></span>
+                </p>
+
+                <!-- content -->
+                <div
+                    *ngIf="utils.isNotEmptyArray(sourceDescription.description.content)"
+                    class="awg-source-description-content">
+                    <p class="no-para"><span class="caps">Inhalt:</span></p>
+                    <p class="half-para" *ngFor="let content of sourceDescription.description.content">
+                        <!-- content.itemDescription -->
+                        <span
+                            *ngIf="content.item || content.itemDescription"
+                            class="awg-source-description-content-item"
+                            ><ng-container *ngIf="content.itemLinkTo"
+                                ><a (click)="selectSvgSheet(content.itemLinkTo)"
+                                    ><strong>{{ content.item }}</strong></a
+                                ></ng-container
+                            ><ng-container *ngIf="!content.itemLinkTo"
+                                ><strong>{{ content.item }}</strong></ng-container
+                            >
+                            <span
+                                *ngIf="content.itemDescription"
+                                class="awg-source-description-content-item-description"
+                                >&nbsp;<span
+                                    [compile-html]="content.itemDescription"
+                                    [compile-html-ref]="ref"></span></span
+                            >:<br />
+                        </span>
+
+                        <!-- content.folios -->
+                        <ng-container *ngIf="utils.isNotEmptyArray(content.folios)">
+                            <ng-container *ngFor="let folio of content.folios; let lastFolio = last">
+                                <span
+                                    *ngIf="folio.folio"
+                                    class="awg-source-description-content-item-folio"
+                                    [ngClass]="{
+                                        tab: content.item
+                                    }">
+                                    <ng-container *ngIf="folio.folioLinkTo">
+                                        <a (click)="selectSvgSheet(folio.folioLinkTo)"
+                                            ><ng-template
+                                                *ngTemplateOutlet="
+                                                    folioTemplate;
+                                                    context: { $implicit: folio }
+                                                "></ng-template></a
+                                    ></ng-container>
+                                    <ng-container *ngIf="!folio.folioLinkTo">
+                                        <ng-template
                                             *ngTemplateOutlet="
                                                 folioTemplate;
                                                 context: { $implicit: folio }
-                                            "></ng-template></a
-                                ></ng-container>
-                                <ng-container *ngIf="!folio.folioLinkTo">
-                                    <ng-template
-                                        *ngTemplateOutlet="
-                                            folioTemplate;
-                                            context: { $implicit: folio }
-                                        "></ng-template></ng-container
-                                ><span
-                                    *ngIf="folio.folioDescription"
-                                    class="awg-source-description-content-item-folio-description"
-                                    >&nbsp;<span [compile-html]="folio.folioDescription" [compile-html-ref]="ref"></span
-                                ></span>
-                            </span>
-                            <ng-template #folioTemplate let-folio>
-                                <span
-                                    >Bl.&nbsp;<span
-                                        class="awg-source-description-content-item-folio-number"
-                                        *ngIf="folio.folio.endsWith('v') || folio.folio.endsWith('r'); else plainFolio"
-                                        >{{ folio.folio.slice(0, -1)
-                                        }}<sup class="awg-source-description-content-item-folio-side">{{
-                                            folio.folio.slice(-1)
-                                        }}</sup></span
-                                    ></span
-                                >
-                                <ng-template #plainFolio>{{ folio.folio }}</ng-template>
-                            </ng-template>
+                                            "></ng-template></ng-container
+                                    ><span
+                                        *ngIf="folio.folioDescription"
+                                        class="awg-source-description-content-item-folio-description"
+                                        >&nbsp;<span
+                                            [compile-html]="folio.folioDescription"
+                                            [compile-html-ref]="ref"></span
+                                    ></span>
+                                </span>
+                                <ng-template #folioTemplate let-folio>
+                                    <span
+                                        >Bl.&nbsp;<span
+                                            class="awg-source-description-content-item-folio-number"
+                                            *ngIf="
+                                                folio.folio.endsWith('v') || folio.folio.endsWith('r');
+                                                else plainFolio
+                                            "
+                                            >{{ folio.folio.slice(0, -1)
+                                            }}<sup class="awg-source-description-content-item-folio-side">{{
+                                                folio.folio.slice(-1)
+                                            }}</sup></span
+                                        ></span
+                                    >
+                                    <ng-template #plainFolio>{{ folio.folio }}</ng-template>
+                                </ng-template>
 
-                            <!-- content.folios.systemGroups -->
-                            <ng-container *ngIf="utils.isNotEmptyArray(folio.systemGroups); else noSystemGroups"
-                                ><ng-container
-                                    *ngFor="
-                                        let systemGroup of folio.systemGroups;
-                                        let firstSystemGroup = first;
-                                        let lastSystemGroup = last
-                                    "
+                                <!-- content.folios.systemGroups -->
+                                <ng-container *ngIf="utils.isNotEmptyArray(folio.systemGroups); else noSystemGroups"
                                     ><ng-container
                                         *ngFor="
-                                            let system of systemGroup;
-                                            let i = index;
-                                            let firstSystem = first;
-                                            let lastSystem = last
+                                            let systemGroup of folio.systemGroups;
+                                            let firstSystemGroup = first;
+                                            let lastSystemGroup = last
                                         "
-                                        ><span
-                                            class="awg-source-description-content-item-system"
-                                            *ngIf="system.system"
-                                            [ngClass]="{
-                                                tab: system.row && !firstSystem,
-                                                doubletab:
-                                                    (system.row &&
-                                                        !firstSystemGroup &&
-                                                        firstSystem &&
-                                                        folio.folio.length === 2) ||
-                                                    (system.measure && !firstSystemGroup && folio.folio.length === 2),
-                                                doubletab_two:
-                                                    (system.row &&
-                                                        !firstSystemGroup &&
-                                                        firstSystem &&
-                                                        folio.folio.length > 2) ||
-                                                    (system.measure && !firstSystemGroup && folio.folio.length > 2)
-                                            }"
-                                            ><ng-template
-                                                *ngTemplateOutlet="
-                                                    systemTemplate;
-                                                    context: { $implicit: system.system }
-                                                "></ng-template></span
-                                        ><ng-template #systemTemplate let-system
-                                            >&nbsp;&nbsp;System&nbsp;{{ system }}:&nbsp;</ng-template
-                                        >
+                                        ><ng-container
+                                            *ngFor="
+                                                let system of systemGroup;
+                                                let i = index;
+                                                let firstSystem = first;
+                                                let lastSystem = last
+                                            "
+                                            ><span
+                                                class="awg-source-description-content-item-system"
+                                                *ngIf="system.system"
+                                                [ngClass]="{
+                                                    tab: system.row && !firstSystem,
+                                                    doubletab:
+                                                        (system.row &&
+                                                            !firstSystemGroup &&
+                                                            firstSystem &&
+                                                            folio.folio.length === 2) ||
+                                                        (system.measure &&
+                                                            !firstSystemGroup &&
+                                                            folio.folio.length === 2),
+                                                    doubletab_two:
+                                                        (system.row &&
+                                                            !firstSystemGroup &&
+                                                            firstSystem &&
+                                                            folio.folio.length > 2) ||
+                                                        (system.measure && !firstSystemGroup && folio.folio.length > 2)
+                                                }"
+                                                ><ng-template
+                                                    *ngTemplateOutlet="
+                                                        systemTemplate;
+                                                        context: { $implicit: system.system }
+                                                    "></ng-template></span
+                                            ><ng-template #systemTemplate let-system
+                                                >&nbsp;&nbsp;System&nbsp;{{ system }}:&nbsp;</ng-template
+                                            >
 
-                                        <span
-                                            class="awg-source-description-content-item-system-description"
-                                            *ngIf="system.systemDescription">
                                             <span
-                                                [compile-html]="system.systemDescription"
-                                                [compile-html-ref]="ref"></span>
-                                            <span *ngIf="system.measure">&nbsp;</span>
-                                        </span>
+                                                class="awg-source-description-content-item-system-description"
+                                                *ngIf="system.systemDescription">
+                                                <span
+                                                    [compile-html]="system.systemDescription"
+                                                    [compile-html-ref]="ref"></span>
+                                                <span *ngIf="system.measure">&nbsp;</span>
+                                            </span>
 
-                                        <span class="awg-source-description-content-item-measure" *ngIf="system.measure"
-                                            ><ng-container *ngIf="system.linkTo"
-                                                ><a (click)="selectSvgSheet(system.linkTo)"
+                                            <span
+                                                class="awg-source-description-content-item-measure"
+                                                *ngIf="system.measure"
+                                                ><ng-container *ngIf="system.linkTo"
+                                                    ><a (click)="selectSvgSheet(system.linkTo)"
+                                                        ><ng-template
+                                                            *ngTemplateOutlet="
+                                                                measureTemplate;
+                                                                context: { $implicit: system.measure }
+                                                            "></ng-template></a></ng-container
+                                                ><ng-container *ngIf="!system.linkTo"
                                                     ><ng-template
                                                         *ngTemplateOutlet="
                                                             measureTemplate;
                                                             context: { $implicit: system.measure }
-                                                        "></ng-template></a></ng-container
-                                            ><ng-container *ngIf="!system.linkTo"
-                                                ><ng-template
-                                                    *ngTemplateOutlet="
-                                                        measureTemplate;
-                                                        context: { $implicit: system.measure }
-                                                    "></ng-template
-                                            ></ng-container>
-                                            <ng-template #measureTemplate let-measure
-                                                ><span>T.&nbsp;{{ measure }}</span></ng-template
-                                            ></span
-                                        ><span
-                                            class="awg-source-description-content-item-row"
-                                            *ngIf="utils.isNotEmptyObject(system.row)"
-                                            ><ng-container *ngIf="system.linkTo">
-                                                <a (click)="selectSvgSheet(system.linkTo)"
+                                                        "></ng-template
+                                                ></ng-container>
+                                                <ng-template #measureTemplate let-measure
+                                                    ><span>T.&nbsp;{{ measure }}</span></ng-template
+                                                ></span
+                                            ><span
+                                                class="awg-source-description-content-item-row"
+                                                *ngIf="utils.isNotEmptyObject(system.row)"
+                                                ><ng-container *ngIf="system.linkTo">
+                                                    <a (click)="selectSvgSheet(system.linkTo)"
+                                                        ><ng-template
+                                                            *ngTemplateOutlet="
+                                                                rowTemplate;
+                                                                context: { $implicit: system.row }
+                                                            "></ng-template> </a></ng-container
+                                                ><ng-container *ngIf="!system.linkTo"
                                                     ><ng-template
                                                         *ngTemplateOutlet="
                                                             rowTemplate;
                                                             context: { $implicit: system.row }
-                                                        "></ng-template> </a></ng-container
-                                            ><ng-container *ngIf="!system.linkTo"
-                                                ><ng-template
-                                                    *ngTemplateOutlet="
-                                                        rowTemplate;
-                                                        context: { $implicit: system.row }
-                                                    "></ng-template
-                                            ></ng-container>
-                                            <ng-template #rowTemplate let-row>
-                                                {{ row.rowType }}<sub>{{ row.rowBase }}</sub> ({{ row.rowNumber }})
-                                            </ng-template></span
-                                        ><span *ngIf="lastFolio && lastSystemGroup && lastSystem; else notLast">.</span>
-                                        <ng-template #notLast
-                                            ><span>;<br *ngIf="(i + 1) % systemGroup.length === 0" /></span
-                                        ></ng-template>
+                                                        "></ng-template></ng-container
+                                                ><ng-template #rowTemplate let-row>
+                                                    <span
+                                                        >{{ row.rowType }}<sub>{{ row.rowBase }}</sub> ({{
+                                                            row.rowNumber
+                                                        }})</span
+                                                    ></ng-template
+                                                ></span
+                                            ><span *ngIf="lastFolio && lastSystemGroup && lastSystem; else notLast"
+                                                >.</span
+                                            >
+                                            <ng-template #notLast
+                                                ><span>;<br *ngIf="(i + 1) % systemGroup.length === 0" /></span
+                                            ></ng-template>
+                                        </ng-container>
                                     </ng-container>
                                 </ng-container>
+                                <ng-template #noSystemGroups>
+                                    <br *ngIf="!lastFolio" />
+                                </ng-template>
                             </ng-container>
-                            <ng-template #noSystemGroups>
-                                <br *ngIf="!lastFolio" />
-                            </ng-template>
                         </ng-container>
-                    </ng-container>
-                </p>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

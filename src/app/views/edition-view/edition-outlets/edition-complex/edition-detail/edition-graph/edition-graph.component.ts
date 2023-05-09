@@ -14,7 +14,9 @@ import { catchError, switchMap } from 'rxjs/operators';
 
 import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
+import { UtilityService } from '@awg-core/services';
 import { EDITION_GRAPH_IMAGES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import { EditionComplex, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
@@ -100,19 +102,30 @@ export class EditionGraphComponent implements OnInit {
     /**
      * Constructor of the EditionGraphComponent.
      *
-     * It declares a private instances of
-     * the EditionDataService and EditionService.
+     * It declares a private instances of the EditionDataService and EditionService;
+     * injects the DOCUMENT; and declares a public instance of the UtilityService.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionService} editionService Instance of the EditionService.
-     * @param {DOCUMENT} document Instance of DOCUMENT:
+     * @param {DOCUMENT} document Instance of DOCUMENT
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
     constructor(
         private editionDataService: EditionDataService,
         private editionService: EditionService,
-        @Inject(DOCUMENT) private document: any
+        @Inject(DOCUMENT) private document: any,
+        public utils: UtilityService
     ) {
         this.ref = this;
+    }
+
+    /**
+     * Getter variable: editionRouteConstants.
+     *
+     *  It returns the EDITION_ROUTE_CONSTANTS.
+     **/
+    get editionRouteConstants(): typeof EDITION_ROUTE_CONSTANTS {
+        return EDITION_ROUTE_CONSTANTS;
     }
 
     /**

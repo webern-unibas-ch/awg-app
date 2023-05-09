@@ -53,18 +53,18 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     faSearch = faSearch;
 
     /**
-     * Public variable: searchForm.
+     * Public variable: fulltextSearchForm.
      *
-     * It keeps the reactive form group: searchForm.
+     * It keeps the reactive form group: fulltextSearchForm.
      */
-    searchForm: FormGroup;
+    fulltextSearchForm: FormGroup;
 
     /**
-     * Public variable: searchFormString.
+     * Public variable: fulltextSearchFormStrings.
      *
      * It keeps the default texts for the search form.
      */
-    searchFormStrings = {
+    fulltextSearchFormStrings = {
         label: 'Input für Volltextsuche',
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
@@ -90,7 +90,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * Getter for the search value control value.
      */
     get searchvalControl() {
-        return this.searchForm.get('searchvalControl');
+        return this.fulltextSearchForm.get('searchvalControl');
     }
 
     /**
@@ -100,7 +100,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * when initializing the component.
      */
     ngOnInit() {
-        this.createFulltextSearchFormGroup();
+        this.createFulltextSearchForm();
         this.listenToUserInputChange();
     }
 
@@ -120,15 +120,15 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     }
 
     /**
-     * Public method: createFulltextSearchFormGroup.
+     * Public method: createFulltextSearchForm.
      *
-     * It creates the search form group using the reactive FormBuilder
+     * It creates the search form using the reactive FormBuilder
      * with a formGroup and a search value control.
      *
      * @returns {void} Creates the search form.
      */
-    createFulltextSearchFormGroup(): void {
-        this.searchForm = this.formBuilder.group({
+    createFulltextSearchForm(): void {
+        this.fulltextSearchForm = this.formBuilder.group({
             searchvalControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
     }
@@ -142,10 +142,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * @returns {boolean} The result of the check.
      */
     isFulltextSearchInputInvalid(): boolean {
-        return !!(
-            this.searchvalControl.hasError('required') ||
-            (this.searchvalControl.errors && this.searchvalControl.errors['minlength'])
-        );
+        return !!(this.searchvalControl.hasError('required') || this.searchvalControl.hasError('minlength'));
     }
 
     /**
@@ -199,7 +196,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
         if (!query) {
             return;
         }
-        if (this.searchForm.valid) {
+        if (this.fulltextSearchForm.valid) {
             this.searchRequest.emit(query);
         }
     }

@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
@@ -9,7 +9,13 @@ import { faCompressArrowsAlt, IconDefinition } from '@fortawesome/free-solid-svg
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    expectToBe,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 
 import { SliderConfig } from '@awg-shared/shared-models';
@@ -19,6 +25,9 @@ import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
 import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer.component';
 
 import * as d3_selection from 'd3-selection';
+
+@Component({ selector: 'awg-license', template: '' })
+class LicenseStubComponent {}
 
 describe('EditionSvgSheetViewerComponent', () => {
     let component: EditionSvgSheetViewerComponent;
@@ -61,7 +70,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule, FormsModule],
-            declarations: [EditionSvgSheetViewerComponent],
+            declarations: [EditionSvgSheetViewerComponent, LicenseStubComponent],
             providers: [{ provide: EditionSvgDrawingService, useValue: mockEditionSvgDrawingService }],
         }).compileComponents();
     }));
@@ -311,6 +320,36 @@ describe('EditionSvgSheetViewerComponent', () => {
                         const faIconIns = faIconDe[0].componentInstance.icon;
 
                         expectToEqual(faIconIns, expectedCompressIcon);
+                    });
+                });
+
+                describe('awg-edition-svg-sheet-container', () => {
+                    it('... should contain 1 svg#awg-edition-svg-sheet element with a g element', () => {
+                        const divSheetContainerDe = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-svg-sheet-container',
+                            1,
+                            1
+                        );
+
+                        const svgDes = getAndExpectDebugElementByCss(
+                            divSheetContainerDe[0],
+                            'svg#awg-edition-svg-sheet',
+                            1,
+                            1
+                        );
+                        getAndExpectDebugElementByCss(svgDes[0], 'g#awg-edition-svg-sheet-root-group', 1, 1);
+                    });
+
+                    it('... should contain 1 license component (stubbed)', () => {
+                        const divSheetContainerDe = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-svg-sheet-container',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(divSheetContainerDe[0], LicenseStubComponent, 1, 1);
                     });
                 });
             });

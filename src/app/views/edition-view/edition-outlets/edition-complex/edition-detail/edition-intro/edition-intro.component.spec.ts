@@ -47,14 +47,13 @@ describe('IntroComponent (DONE)', () => {
     let editionService: Partial<EditionService>;
 
     let expectedEditionComplex: EditionComplex;
+    let expectedEditionComplexBaseRoute: string;
     let expectedEditionIntroData: IntroList;
     let expectedEditionIntroEmptyData: IntroList;
-    let expectedModalSnippet: string;
     let expectedFragment: string;
+    let expectedModalSnippet: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
-
-    let expectedEditionComplexBaseRoute: string;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     let editionDataServiceGetEditionIntroDataSpy: Spy;
@@ -99,17 +98,17 @@ describe('IntroComponent (DONE)', () => {
         editionDataService = TestBed.inject(EditionDataService);
         editionService = TestBed.inject(EditionService);
 
+        // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
-        expectedFragment = 'sourceA';
+        expectedEditionComplexBaseRoute = '/edition/complex/op12/';
+        expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedEditionIntroData = mockEditionData.mockIntroData;
         expectedEditionIntroEmptyData = mockEditionData.mockIntroEmptyData;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
-        expectedEditionComplexBaseRoute = '/edition/complex/op12/';
-
-        // Spies on service functions
+        // Spies on functions
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(
             observableOf(expectedEditionIntroData)
         );

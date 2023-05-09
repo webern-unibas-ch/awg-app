@@ -1,6 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 
-import { D3Selection, ViewBox } from '@awg-views/edition-view/models';
+import { D3Selection, EditionSvgOverlay, ViewBox } from '@awg-views/edition-view/models';
 
 import * as d3_fetch from 'd3-fetch';
 import * as d3_selection from 'd3-selection';
@@ -253,6 +253,26 @@ export class EditionSvgDrawingService {
     }
 
     /**
+     * Public method: updateTkkOverlayColor.
+     *
+     * It updates the color of the given tkk overlay.
+     *
+     * @param {EditionSvgOverlay} overlay The given overlay.
+     * @param {D3Selection} overlayGroupRectSelection The given overlay group rect selection.
+     * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
+     *
+     * @returns {void} Updates the color of the given tkk overlay.
+     */
+    updateTkkOverlayColor(
+        overlay: EditionSvgOverlay,
+        overlayGroupRectSelection: D3Selection,
+        overlayActionType: 'fill' | 'hover'
+    ): void {
+        const color = this._getTkkOverlayColor(overlay, overlayActionType);
+        this.fillD3SelectionWithColor(overlayGroupRectSelection, color);
+    }
+
+    /**
      * Private method; _fetchSvgFile.
      *
      * It fetches an SVG file from the given path via fetch method from D3 library.
@@ -263,6 +283,28 @@ export class EditionSvgDrawingService {
      */
     private _fetchSvgFile(path: string): Promise<Document> {
         return d3_fetch.svg(path);
+    }
+
+    /**
+     * Private method: _getTkkOverlayColor.
+     *
+     * It returns the color of the given tkk overlay.
+     *
+     * @param {EditionSvgOverlay} overlay The given overlay.
+     * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
+     *
+     * @returns {string} The color of the given tkk overlay.
+     */
+    private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: 'fill' | 'hover'): string {
+        let color = this.overlayFillColor;
+        if (overlay) {
+            if (overlay.isSelected) {
+                color = this.overlaySelectionFillColor;
+            } else if (overlayActionType === 'hover') {
+                color = this.overlayHoverFillColor;
+            }
+        }
+        return color;
     }
 
     /**

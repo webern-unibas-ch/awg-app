@@ -2,27 +2,31 @@
     "sources": [
         {
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         },
         {
             "siglum": "C",
+            "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceC"
+            "linkTo": "source_C"
         },
         {
             "siglum": "D",
+            "siglumAddendum": "",
             "type": "Skizzen zu „Sterne, Ihr silbernen Bienen“ M 321 und „Des Herzens Purpurvogel“ M 322 (in Skizzenbuch 4).",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
@@ -30,6 +34,7 @@
         },
         {
             "siglum": "E",
+            "siglumAddendum": "",
             "type": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25:<br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Wie bin ich froh!“ M 317: Textfassung 1→2 <br /><span class=\"tab\"></span>II<span class=\"tab\"></span>„Des Herzens Purpurvogel“ M 322: einzige Textfassung <br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung.",
             "location": "A-Wue, UEQ 493.",
             "hasDescription": false,

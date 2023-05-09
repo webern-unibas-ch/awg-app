@@ -17,10 +17,11 @@ export const EDITION_ASSETS_DATA = {
         folioConvoluteFile: 'folio-convolute.json',
         graphFile: 'graph.json',
         introFile: 'intro.json',
-        svgSheetsFile: 'svg-sheets.json',
+        rowTablesFile: 'row-tables.json',
         sourceListFile: 'source-list.json',
         sourceDescriptionListFile: 'source-description.json',
         sourceEvaluationListFile: 'source-evaluation.json',
+        svgSheetsFile: 'svg-sheets.json',
         textcriticsFile: 'textcritics.json',
     },
 } as const;

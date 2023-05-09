@@ -1,10 +1,19 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { UntypedFormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+    AbstractControl,
+    FormArray,
+    FormBuilder,
+    FormControl,
+    FormGroup,
+    ValidationErrors,
+    ValidatorFn,
+    Validators,
+} from '@angular/forms';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faRefresh, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import {
     PropertyTypesInResourceClassResponseJson,
@@ -12,12 +21,8 @@ import {
     ResTypeItemJson,
 } from '@awg-shared/api-objects';
 import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-response-formats/src/property-definition-json';
-import {
-    ExtendedSearchParams,
-    SearchCompop,
-    SEARCH_COMPOP_SETS_LIST,
-    VALUETYPE_LIST,
-} from '@awg-views/data-view/models';
+import { COMPOPSET_LOOKUP_MAP, SEARCH_COMPOP_SETS_LIST, VALUETYPE_LIST } from '@awg-views/data-view/data';
+import { ExtendedSearchParams, SearchCompop } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
 /**
@@ -48,6 +53,13 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     faPlus = faPlus;
 
     /**
+     * Public variable: faRefresh.
+     *
+     * It instantiates fontawesome's faRefresh icon.
+     */
+    faRefresh = faRefresh;
+
+    /**
      * Public variable: faSearch.
      *
      * It instantiates fontawesome's faSearch icon.
@@ -66,7 +78,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * It keeps the reactive form group: extendedSearchForm.
      */
-    extendedSearchForm: UntypedFormGroup;
+    extendedSearchForm: FormGroup;
 
     /**
      * Public variable: extendedSearchParams.
@@ -76,18 +88,18 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     extendedSearchParams: ExtendedSearchParams = new ExtendedSearchParams();
 
     /**
-     * Public variable: restypesResponse.
-     *
-     * It keeps the API response for the restypes query.
-     */
-    restypesResponse: ResourceTypesInVocabularyResponseJson;
-
-    /**
      * Public variable: propertyListsResponse.
      *
      * It keeps the API response for the propertyLists query.
      */
     propertyListsResponse: PropertyTypesInResourceClassResponseJson;
+
+    /**
+     * Public variable: restypesResponse.
+     *
+     * It keeps the API response for the restypes query.
+     */
+    restypesResponse: ResourceTypesInVocabularyResponseJson;
 
     /**
      * Public variable: selectedResourcetype.
@@ -118,11 +130,11 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     defaultFormString = '---';
 
     /**
-     * Public variable: searchFormString.
+     * Public variable: extendedSearchFormStrings.
      *
      * It keeps the default text strings for the search form.
      */
-    searchFormStrings = {
+    extendedSearchFormStrings = {
         label: 'Search Input',
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
@@ -143,20 +155,20 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private dataApiService: DataApiService, private formBuilder: UntypedFormBuilder) {}
+    constructor(private dataApiService: DataApiService, private formBuilder: FormBuilder) {}
 
     /**
      * Getter for the resource type control value.
      */
-    get restypeControl(): UntypedFormControl {
-        return this.extendedSearchForm.get('restypeControl') as UntypedFormControl;
+    get restypeControl(): FormControl<string | null> {
+        return this.extendedSearchForm.get('restypeControl') as FormControl<string | null>;
     }
 
     /**
      * Getter for the properties control value.
      */
-    get propertiesControls(): UntypedFormArray {
-        return this.extendedSearchForm.get('propertiesControls') as UntypedFormArray;
+    get propertiesControls(): FormArray {
+        return this.extendedSearchForm.get('propertiesControls') as FormArray;
     }
 
     /**
@@ -198,10 +210,14 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      */
     addPropertiesControl(): void {
         const group = this.formBuilder.group({
-            propertyIdControl: ['', [Validators.required]],
-            compopControl: ['', [Validators.required]],
-            searchvalControl: [''],
+            propertyIdControl: [{ value: '', disabled: true }, [Validators.required]],
+            compopControl: [{ value: '', disabled: true }, [Validators.required]],
+            searchvalControl: [{ value: '', disabled: true }, [this._validateSearchval()]],
         });
+
+        if (!this._isResourecetypeMissing()) {
+            group.controls.propertyIdControl.enable();
+        }
 
         this.propertiesControls.push(group);
     }
@@ -222,7 +238,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: getCompopoControlAtIndex.
+     * Public method: getCompopControlAtIndex.
      *
      * It gets a compop control from the propertiesControls FormArray at a given index.
      *
@@ -230,7 +246,8 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The compopo control.
      */
-    getCompopoControlAtIndex(index: number): UntypedFormControl {
+    getCompopControlAtIndex(index: number): FormControl {
+        this.listenToUserCompopChange(index);
         return this._getFormArrayControlAtIndex('compopControl', index);
     }
 
@@ -245,54 +262,15 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @returns {SearchCompop[]} The compop set.
      */
     getCompopSetByValueType(valueTypeId: string, guiElementId: string): SearchCompop[] {
-        let compopSet: SearchCompop[] = [];
-        const valueType = VALUETYPE_LIST.typeList.filter(vt => vt.id === valueTypeId);
-
-        if (!valueType || valueType.length !== 1 || !valueType[0].id) {
+        const valueType = VALUETYPE_LIST.typeList.find(type => type.id === valueTypeId);
+        if (!valueType) {
             return [];
-        } else {
-            const id = valueType[0].id;
-
-            if (id === '1' || (id === '6' && guiElementId === '14') || id === '14') {
-                // 1 TEXT, 6 RESPTR if gui 14, 14 RICHTEXT
-                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[5].compopSet;
-            } else if (id === '2' || id === '3') {
-                // 2 INTEGER, 3 FLOAT
-                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[4].compopSet;
-            } else if (id === '4' || id === '5') {
-                // 4 DATE, 5 PERIOD
-                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[3].compopSet;
-            } else if (id === '13') {
-                // 13 ICONCLASS
-                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[2].compopSet;
-            } else if (
-                (id === '6' && (guiElementId === '3' || guiElementId === '6')) ||
-                id === '7' ||
-                id === '11' ||
-                id === '12' ||
-                id === '15'
-            ) {
-                // 6 RESPTR if gui 3 or 6 (not 14), 7 SELECTION, 11 COLOR, 12 HLIST, 15 GEONAMES
-                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[1].compopSet;
-            } else {
-                // Minimal set for all other cases
-                compopSet = SEARCH_COMPOP_SETS_LIST.compopList[0].compopSet;
-            }
         }
-        return compopSet;
-    }
 
-    /**
-     * Public method: getPopertyListEntryById.
-     *
-     * It filters the list of properties in the propertyLists response by a given id.
-     *
-     * @params {string} propertyId The given property id.
-     *
-     * @returns {PropertyDefinitionJson} The property list entry.
-     */
-    getPopertyListEntryById(propertyId: string): PropertyDefinitionJson[] {
-        return this.propertyListsResponse.properties.filter(property => property.id === propertyId);
+        const compopLookupKey = valueTypeId === '6' ? `${valueTypeId}-${guiElementId}` : valueTypeId;
+        const compopIndex = COMPOPSET_LOOKUP_MAP.has(compopLookupKey) ? COMPOPSET_LOOKUP_MAP.get(compopLookupKey) : 0;
+
+        return SEARCH_COMPOP_SETS_LIST.compopList[compopIndex].compopSet;
     }
 
     /**
@@ -304,9 +282,22 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The property id control.
      */
-    getPropertyIdControlAtIndex(index: number): UntypedFormControl {
+    getPropertyIdControlAtIndex(index: number): FormControl {
         this.listenToUserPropertyChange(index);
         return this._getFormArrayControlAtIndex('propertyIdControl', index);
+    }
+
+    /**
+     * Public method: getPropertyListEntryById.
+     *
+     * It finds a property with the given id in the list of properties of the propertyLists response.
+     *
+     * @params {string} propertyId The given property id.
+     *
+     * @returns {PropertyDefinitionJson} The property list entry, or undefined if not found.
+     */
+    getPropertyListEntryById(propertyId: string): PropertyDefinitionJson {
+        return this.propertyListsResponse.properties.find(property => property.id === propertyId);
     }
 
     /**
@@ -363,28 +354,8 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The searchval control.
      */
-    getSearchvalControlAtIndex(index: number): UntypedFormControl {
-        if (this.isSearchvalControlDisabled(index) === '') {
-            this._getFormArrayControlAtIndex('searchvalControl', index).setValue('');
-        }
+    getSearchvalControlAtIndex(index: number): FormControl {
         return this._getFormArrayControlAtIndex('searchvalControl', index);
-    }
-
-    /**
-     * Public method: getSearchvalPlaceholder.
-     *
-     * It gets a placeholder for the searchval control from the propertiesControls FormArray at a given index.
-     *
-     * @param {number} index The given array index.
-     *
-     * @returns {string} The searchval control placeholder.
-     */
-    getSearchvalPlaceholder(index: number): string {
-        let placeholder = 'Suchbegriff';
-        if (this.isSearchvalControlDisabled(index)) {
-            placeholder = this.defaultFormString;
-        }
-        return placeholder;
     }
 
     /**
@@ -396,55 +367,12 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {string | null} The result of the check.
      */
-    isAddButtonDisabled(index: number): string | null {
-        const compopValue = this.getCompopoControlAtIndex(index).value;
-
-        return this._isPropertyIdOrCompopMissing(index) ||
-            (compopValue !== 'EXISTS' && this._isSearchvalMissing(index)) ||
-            this.getSearchvalControlAtIndex(index).errors?.['minlength'] ||
-            this._isNotLastProperty(index)
-            ? ''
-            : null;
-    }
-
-    /**
-     * Public method: isCompopControlDisabled.
-     *
-     * It checks if the compop control at a given index is to be  disabled and returns an empty string or null depending on the check (needed to populate "attr.disabled" input of the HTML element).
-     *
-     * @param {number} index The given array index.
-     *
-     * @returns {string | null} The result of the check.
-     */
-    isCompopControlDisabled(index: number): string | null {
-        return this.isPropertyIdControlDisabled() || this._isPropertyIdMissing(index) ? '' : null;
-    }
-
-    /**
-     * Public method: isPropertyIdControlDisabled.
-     *
-     * It checks if the first property id control is to be  disabled (only when resource type is missing) and returns an empty string or null depending on the check (needed to populate "attr.disabled" input of the HTML element).
-     *
-     * @returns {string | null} The result of the check.
-     */
-    isPropertyIdControlDisabled(): string | null {
-        return this._isResourecetypeMissing() ? '' : null; // Mechanism needed to populate "attr.disabled", cf. https://stackoverflow.com/a/49087915
-    }
-
-    /**
-     * Public method: isSearchvalControlDisabled.
-     *
-     * It checks if the search value control at a given index is to be  disabled and returns an empty string or null depending on the check (needed to populate "attr.disabled" input of the HTML element).
-     *
-     * @param {number} index The given array index.
-     *
-     * @returns {string | null} The result of the check.
-     */
-    isSearchvalControlDisabled(index: number): string | null {
-        const compopValue = this.getCompopoControlAtIndex(index).value;
-        return this._isResourecetypeMissing() || this._isPropertyIdOrCompopMissing(index) || compopValue === 'EXISTS'
-            ? ''
-            : null;
+    isAddButtonDisabled(index: number): boolean {
+        return (
+            this._isPropertyIdOrCompopMissing(index) ||
+            this._isNotLastProperty(index) ||
+            (!this._isCompopExists(index) && this._isSearchvalMissingOrTooShort(index))
+        );
     }
 
     /**
@@ -467,9 +395,6 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
                     this.getPropertyLists(this.selectedResourcetype.id);
                 }
             },
-            error: err => {
-                console.error(err);
-            },
         });
     }
 
@@ -483,20 +408,50 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      */
     listenToUserPropertyChange(index: number): void {
         this._getFormArrayControlAtIndex('propertyIdControl', index)
-            .valueChanges.pipe(takeUntil(this._destroyed$))
+            ?.valueChanges.pipe(takeUntil(this._destroyed$))
             .subscribe({
                 next: (propertyId: string) => {
-                    const propertyListEntry = this.getPopertyListEntryById(propertyId)[0];
+                    const propertyListEntry = this.getPropertyListEntryById(propertyId);
+                    if (!propertyListEntry) {
+                        return;
+                    }
                     const guiElementId = propertyListEntry.guielement_id;
                     const valueTypeId = propertyListEntry.valuetype_id;
 
-                    this.getCompopoControlAtIndex(index).setValue('');
-                    this.getSearchvalControlAtIndex(index).setValue('');
+                    // Enable compop control and set value to default
+                    this._getFormArrayControlAtIndex('compopControl', index).enable();
+                    this._getFormArrayControlAtIndex('compopControl', index).setValue('');
+
+                    // Disable searchval control and set value to default
+                    this._getFormArrayControlAtIndex('searchvalControl', index).disable();
+                    this._getFormArrayControlAtIndex('searchvalControl', index).setValue('');
 
                     this.selectedCompopSets[index] = this.getCompopSetByValueType(valueTypeId, guiElementId);
                 },
-                error: err => {
-                    console.error(err);
+            });
+    }
+
+    /**
+     * Public method: listenToUserCompopChange.
+     *
+     * It listens to the user's changes in the compop control,
+     * and activates the searchval control accordingly to the selected compop.
+     *
+     * @returns {void} Listens to changing compop input.
+     */
+    listenToUserCompopChange(index: number): void {
+        this._getFormArrayControlAtIndex('compopControl', index)
+            ?.valueChanges.pipe(takeUntil(this._destroyed$))
+            .subscribe({
+                next: (compop: string) => {
+                    if (compop && compop !== 'EXISTS') {
+                        // Enable searchval control
+                        this.getSearchvalControlAtIndex(index).enable();
+                    } else if (compop && compop === 'EXISTS') {
+                        // Disable searchval control and set value to default
+                        this.getSearchvalControlAtIndex(index).disable();
+                        this.getSearchvalControlAtIndex(index).setValue('');
+                    }
                 },
             });
     }
@@ -530,15 +485,13 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
                 searchval: [],
             };
 
-            this.extendedSearchForm.value.propertiesControls.forEach(property => {
+            this.extendedSearchForm.value.propertiesControls?.forEach(property => {
                 this.extendedSearchParams.propertyId.push(property.propertyIdControl);
                 this.extendedSearchParams.compop.push(property.compopControl);
                 this.extendedSearchParams.searchval.push(property.searchvalControl);
             });
 
             this.searchRequest.emit(this.extendedSearchParams);
-
-            // .this._resetForm();
         }
     }
 
@@ -578,8 +531,53 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      *
      * @returns {FormControl} The properties control.
      */
-    private _getFormArrayControlAtIndex(controlName: string, index: number): UntypedFormControl {
-        return this.propertiesControls.controls[index].get(controlName) as UntypedFormControl;
+    private _getFormArrayControlAtIndex(controlName: string, index: number): FormControl {
+        const formArrayControl = this.propertiesControls.controls.at(index);
+        if (!formArrayControl) {
+            return null;
+        }
+        return formArrayControl.get(controlName) as FormControl;
+    }
+
+    /**
+     * Private method: _isCompopExists.
+     *
+     * It checks if the compop control at a given index has the value 'EXISTS'.
+     *
+     * @param {number} index The given array index.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    private _isCompopExists(index: number): boolean {
+        return this._getFormArrayControlAtIndex('compopControl', index).value === 'EXISTS';
+    }
+
+    /**
+     * Private method: _isCompopMissing.
+     *
+     * It checks if the compop control at a given index does not have a value yet.
+     *
+     * @param {number} index The given array index.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    private _isCompopMissing(index: number): boolean {
+        return this._isFormControlValueMissing('compopControl', index);
+    }
+
+    /**
+     * Private method: _isFormControlValueMissing.
+     *
+     * It checks if a given control of the form array at a given index does not have a value yet.
+     *
+     * @param {string} controlName The given array index.
+     * @param {number} index The given array index.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    private _isFormControlValueMissing(controlName: string, index: number): boolean {
+        const formControlValue = this._getFormArrayControlAtIndex(controlName, index)?.value;
+        return !formControlValue || formControlValue === this.defaultFormString;
     }
 
     /**
@@ -597,18 +595,6 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _isResourecetypeMissing.
-     *
-     * It checks if the resourcetype control does not have a value yet.
-     *
-     * @returns {boolean} The result of the check.
-     */
-    private _isResourecetypeMissing(): boolean {
-        const resourceValue = this.restypeControl.value;
-        return !resourceValue || resourceValue === this.defaultFormString;
-    }
-
-    /**
      * Private method: _isPropertyIdMissing.
      *
      * It checks if the property id control at a given index does not have a value yet.
@@ -622,22 +608,9 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _isCompopMissing.
-     *
-     * It checks if the compop control at a given index does not have a value yet.
-     *
-     * @param {number} index The given array index.
-     *
-     * @returns {boolean} The result of the check.
-     */
-    private _isCompopMissing(index: number): boolean {
-        return this._isFormControlValueMissing('compopControl', index);
-    }
-
-    /**
      * Private method: _isPropertyIdOrCompopMissing.
      *
-     * It checks if the propoerty id or ompop control at a given index do not have a value yet.
+     * It checks if the propoerty id or compop control at a given index do not have a value yet.
      *
      * @param {number} index The given array index.
      *
@@ -645,6 +618,18 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      */
     private _isPropertyIdOrCompopMissing(index: number): boolean {
         return this._isPropertyIdMissing(index) || this._isCompopMissing(index);
+    }
+
+    /**
+     * Private method: _isResourecetypeMissing.
+     *
+     * It checks if the resourcetype control does not have a value yet.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    private _isResourecetypeMissing(): boolean {
+        const resourceValue = this.restypeControl.value;
+        return !resourceValue || resourceValue === this.defaultFormString;
     }
 
     /**
@@ -661,18 +646,30 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _isFormControlValueMissing.
+     * Private method: _isSearchvalMissingOrTooShort.
      *
-     * It checks if a given control of the form array at a given index does not have a value yet.
+     * It checks if the searchval control at a given index does not have a value yet
+     * or if the value is shorter than 3 characters.
      *
-     * @param {string} controlName The given array index.
      * @param {number} index The given array index.
      *
      * @returns {boolean} The result of the check.
      */
-    private _isFormControlValueMissing(controlName: string, index: number): boolean {
-        const formControlValue = this._getFormArrayControlAtIndex(controlName, index).value;
-        return !formControlValue || formControlValue === this.defaultFormString;
+    private _isSearchvalMissingOrTooShort(index: number): boolean {
+        return this._isSearchvalMissing(index) || this._isSearchvalTooShort(index);
+    }
+
+    /**
+     * Private method: _isSearchvalTooShort.
+     *
+     * It checks if the searchval control at a given index has a value that is shorter than 3 characters.
+     *
+     * @param {number} index The given array index.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    private _isSearchvalTooShort(index: number): boolean {
+        return this.getSearchvalControlAtIndex(index).value.length < 3;
     }
 
     /**
@@ -684,5 +681,29 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      */
     private _resetForm(): void {
         return this.extendedSearchForm.reset();
+    }
+
+    /**
+     * Private method: _validateSearchval.
+     *
+     * It creates a custom Validator for the searchval control.
+     *
+     * @returns {ValidatorFn} The custom validator function, or null.
+     */
+    private _validateSearchval(): ValidatorFn {
+        return (control: AbstractControl): ValidationErrors | null => {
+            const value = control.value;
+            const compopValue = control.parent.get('compopControl').value;
+
+            if (compopValue === 'EXISTS') {
+                // If compopControl value is EXISTS, return null so searchvalControl is not required
+                return null;
+            }
+
+            if (!value || value.length < 3) {
+                return { minlength: true };
+            }
+            return null;
+        };
     }
 }

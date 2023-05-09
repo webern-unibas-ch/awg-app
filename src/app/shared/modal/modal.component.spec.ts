@@ -56,7 +56,7 @@ describe('ModalComponent', () => {
     const expectedModalCloseLabel = 'Schließen';
     const EXPECTED_MODAL_CONTENT_SNIPPETS = {
         OP12_SOURCE_NOT_AVAILABLE:
-            '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
+            '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>C</strong> bis <strong>G<sup>H</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.</p>',
         OP12_SHEET_COMING_SOON:
             'Die edierten Notentexte der Skizzen zu M 213 (<strong>A<sup>c</sup></strong>), M 216 (<strong>A<sup>d</sup></strong>) und M 217 (<strong>A<sup>b</sup></strong>) erscheinen im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.',
     };
