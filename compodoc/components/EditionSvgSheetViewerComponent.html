@@ -229,7 +229,11 @@ and displays that svg sheet.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_createLinkBoxOverlays" >_createLinkBoxOverlays</a>
+                                <a href="#_createLinkBoxOverlay" >_createLinkBoxOverlay</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createOverlays" >_createOverlays</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -242,7 +246,7 @@ and displays that svg sheet.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_createTkkOverlays" >_createTkkOverlays</a>
+                                <a href="#_createTkkOverlay" >_createTkkOverlay</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -670,36 +674,180 @@ needed for CompileHtml library.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_createLinkBoxOverlays"></a>
+                    <a name="_createLinkBoxOverlay"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_createLinkBoxOverlays</b></span>
-                        <a href="#_createLinkBoxOverlays"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_createLinkBoxOverlay</b></span>
+                        <a href="#_createLinkBoxOverlay"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createLinkBoxOverlays()</code>
+                    <code>_createLinkBoxOverlay(group: SVGGElement, _overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="436"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:436</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="464"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:464</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _createLinkBoxOverlays.</p>
-<p>It creates the D3 SVG overlays for the link boxes.</p>
+                    <div class="io-description"><p>Private method: _createLinkBoxOverlay.</p>
+<p>It creates the D3 SVG overlay for the given link box group.</p>
 </div>
 
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>group</td>
+                                    <td>
+                                            <code>SVGGElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given link box group.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>_overlayType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The type of the overlay to create.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Creates the D3 SVG link box overlay.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createOverlays"></a>
+                    <span class="name">
+                        <span class="modifier">Private</span>
+                        <span ><b>_createOverlays</b></span>
+                        <a href="#_createOverlays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_createOverlays(overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createOverlayFn: (group: SVGGElement,type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>) => void)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="439"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:439</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _createOverlays.</p>
+<p>It creates the D3 SVG overlays for the given overlayType.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>overlayType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The type of the overlay to create.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>createOverlayFn</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The function to create the overlay.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div>
                     </div>
                     <div class="io-description">
@@ -815,36 +963,84 @@ needed for CompileHtml library.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_createTkkOverlays"></a>
+                    <a name="_createTkkOverlay"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_createTkkOverlays</b></span>
-                        <a href="#_createTkkOverlays"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_createTkkOverlay</b></span>
+                        <a href="#_createTkkOverlay"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_createTkkOverlays()</code>
+                    <code>_createTkkOverlay(group: SVGGElement, overlayType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="476"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:476</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="500"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:500</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _createTkkOverlays.</p>
-<p>It creates the D3 SVG overlays for the textcritical comments.</p>
+                    <div class="io-description"><p>Private method: _createTkkOverlay.</p>
+<p>It creates the D3 SVG overlay for the given tkk group.</p>
 </div>
 
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>group</td>
+                                    <td>
+                                            <code>SVGGElement</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given tkk group.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>overlayType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The type of the overlay to create.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div>
                     </div>
                     <div class="io-description">
@@ -852,7 +1048,7 @@ needed for CompileHtml library.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Creates the D3 SVG textcritical comment overlays.</p>
+                        <p>Creates the D3 SVG tkk overlay.</p>
 
                     </div>
                 </td>
@@ -881,8 +1077,8 @@ needed for CompileHtml library.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="550"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:550</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="549"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:549</a></div>
                 </td>
             </tr>
 
@@ -962,8 +1158,8 @@ or the dimensions (width and height) of the given container.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="580"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:580</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="579"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:579</a></div>
                 </td>
             </tr>
 
@@ -1058,8 +1254,8 @@ or the dimensions (width and height) of the given container.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="566"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:566</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="565"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:565</a></div>
                 </td>
             </tr>
 
@@ -1138,8 +1334,8 @@ or the dimensions (width and height) of the given container.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="607"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:607</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="606"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:606</a></div>
                 </td>
             </tr>
 
@@ -1219,8 +1415,8 @@ to the <a href="selectLinkBoxRequest">selectLinkBoxRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="594"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:594</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="593"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:593</a></div>
                 </td>
             </tr>
 
@@ -1300,8 +1496,8 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="618"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:618</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="617"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:617</a></div>
                 </td>
             </tr>
 
@@ -1348,8 +1544,8 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="632"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:632</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="631"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:631</a></div>
                 </td>
             </tr>
 
@@ -1396,8 +1592,8 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="648"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:648</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="647"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:647</a></div>
                 </td>
             </tr>
 
@@ -1477,8 +1673,8 @@ Cf. <a href="https://stackoverflow.com/a/13635455">https://stackoverflow.com/a/1
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="680"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:680</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="679"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-svg-sheet-viewer/edition-svg-sheet-viewer.component.ts:679</a></div>
                 </td>
             </tr>
 
@@ -3186,119 +3382,118 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             return;
         }
 
-        this._createTkkOverlays();
-        this._createLinkBoxOverlays();
+        this._createOverlays(&#x27;link-box&#x27;, this._createLinkBoxOverlay.bind(this));
+        this._createOverlays(&#x27;tkk&#x27;, this._createTkkOverlay.bind(this));
     }
 
     /**
-     * Private method: _createLinkBoxOverlays.
+     * Private method: _createOverlays.
      *
-     * It creates the D3 SVG overlays for the link boxes.
+     * It creates the D3 SVG overlays for the given overlayType.
+     *
+     * @param {string} overlayType The type of the overlay to create.
+     * @param {Function} createOverlayFn The function to create the overlay.
      *
      * @returns {void} Creates the D3 SVG link box overlays.
      */
-    private _createLinkBoxOverlays(): void {
-        const linkBoxGroups: D3Selection &#x3D; this.svgDrawingService.getGroupsBySelector(
+    private _createOverlays(overlayType: string, createOverlayFn: (group: SVGGElement, type: string) &#x3D;&gt; void): void {
+        const overlayGroups: D3Selection &#x3D; this.svgDrawingService.getGroupsBySelector(
             this.svgSheetRootGroupSelection,
-            &#x27;link-box&#x27;
+            overlayType
         );
 
-        if (linkBoxGroups) {
-            linkBoxGroups.nodes().forEach(linkBoxGroup &#x3D;&gt; {
-                const linkBoxGroupId: string &#x3D; linkBoxGroup[&#x27;id&#x27;];
-                const linkBoxGroupSelection: D3Selection &#x3D; this.svgDrawingService.getD3SelectionById(
-                    this.svgSheetRootGroupSelection,
-                    linkBoxGroupId
-                );
-
-                // Color link box
-                const linkBoxGroupPathSelection: D3Selection &#x3D; linkBoxGroupSelection.select(&#x27;path&#x27;);
-                linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this.svgDrawingService.linkBoxFillColor);
-
-                linkBoxGroupSelection
-                    .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
-                        linkBoxGroupSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
-                        linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this.svgDrawingService.linkBoxHoverFillColor);
-                    })
-                    .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
-                        linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this.svgDrawingService.linkBoxFillColor);
-                    })
-                    .on(&#x27;click&#x27;, () &#x3D;&gt; {
-                        this._onLinkBoxSelect(linkBoxGroupId);
-                    });
-            });
+        if (!overlayGroups) {
+            return;
         }
+
+        overlayGroups.nodes().forEach(overlayGroup &#x3D;&gt; {
+            createOverlayFn(overlayGroup as SVGGElement, overlayType);
+        });
     }
 
     /**
-     * Private method: _createTkkOverlays.
+     * Private method: _createLinkBoxOverlay.
      *
-     * It creates the D3 SVG overlays for the textcritical comments.
+     * It creates the D3 SVG overlay for the given link box group.
      *
-     * @returns {void} Creates the D3 SVG textcritical comment overlays.
+     * @param {SVGGElement} group The given link box group.
+     * @param {string} _overlayType The type of the overlay to create.
+     *
+     * @returns {void} Creates the D3 SVG link box overlay.
      */
-    private _createTkkOverlays(): void {
-        // Tkk overlays
-        const tkkGroups: D3Selection &#x3D; this.svgDrawingService.getGroupsBySelector(
+    private _createLinkBoxOverlay(group: SVGGElement, _overlayType: string): void {
+        const linkBoxGroupId: string &#x3D; group[&#x27;id&#x27;];
+        const linkBoxGroupSelection: D3Selection &#x3D; this.svgDrawingService.getD3SelectionById(
             this.svgSheetRootGroupSelection,
-            &#x27;tkk&#x27;
+            linkBoxGroupId
         );
 
-        if (tkkGroups) {
-            tkkGroups.nodes().forEach(tkkGroup &#x3D;&gt; {
-                const id: string &#x3D; tkkGroup[&#x27;id&#x27;];
+        // Color link box
+        const linkBoxGroupPathSelection: D3Selection &#x3D; linkBoxGroupSelection.select(&#x27;path&#x27;);
+        linkBoxGroupPathSelection.style(&#x27;fill&#x27;, this.svgDrawingService.linkBoxFillColor);
 
-                this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
-
-                // Get D3 selection of overlay group
-                const type &#x3D; &#x27;tkk&#x27;;
-                const dim: DOMRect &#x3D; (tkkGroup as SVGGElement).getBBox();
-                const overlayGroupSelection &#x3D; this.svgDrawingService.createOverlayGroup(
-                    this.svgSheetRootGroupSelection,
-                    id,
-                    dim,
-                    type
-                );
-
-                const overlayGroupRectSelection &#x3D; this.svgDrawingService.getOverlayGroupRectSelection(
-                    this.svgSheetRootGroupSelection,
-                    id,
-                    type
-                );
-
-                const overlay &#x3D; this._getOverlayById(this._availableOverlays, id);
-
-                overlayGroupSelection
-                    .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
-                        if (overlay &amp;&amp; !overlay.isSelected) {
-                            const color &#x3D; this.svgDrawingService.overlayHoverFillColor;
-                            this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-                        }
-                        overlayGroupRectSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
-                    })
-                    .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
-                        const color &#x3D;
-                            overlay &amp;&amp; overlay.isSelected
-                                ? this.svgDrawingService.overlaySelectionFillColor
-                                : this.svgDrawingService.overlayFillColor;
-                        this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-                    })
-                    .on(&#x27;click&#x27;, () &#x3D;&gt; {
-                        if (overlay) {
-                            overlay.isSelected &#x3D; !overlay.isSelected;
-                        }
-                        const color &#x3D;
-                            overlay &amp;&amp; overlay.isSelected
-                                ? this.svgDrawingService.overlaySelectionFillColor
-                                : this.svgDrawingService.overlayHoverFillColor;
-                        this.svgDrawingService.fillD3SelectionWithColor(overlayGroupRectSelection, color);
-
-                        this._selectedOverlays &#x3D; this._getSelectedOverlays(this._availableOverlays);
-
-                        this._onOverlaySelect(this._selectedOverlays);
-                    });
+        linkBoxGroupSelection
+            .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
+                const hoverColor &#x3D; this.svgDrawingService.linkBoxHoverFillColor;
+                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, hoverColor);
+                linkBoxGroupSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
+            })
+            .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
+                const fillColor &#x3D; this.svgDrawingService.linkBoxFillColor;
+                this.svgDrawingService.fillD3SelectionWithColor(linkBoxGroupPathSelection, fillColor);
+            })
+            .on(&#x27;click&#x27;, () &#x3D;&gt; {
+                this._onLinkBoxSelect(linkBoxGroupId);
             });
-        }
+    }
+
+    /**
+     * Private method: _createTkkOverlay.
+     *
+     * It creates the D3 SVG overlay for the given tkk group.
+     *
+     * @param {SVGGElement} group The given tkk group.
+     * @param {string} overlayType The type of the overlay to create.
+     *
+     * @returns {void} Creates the D3 SVG tkk overlay.
+     */
+    private _createTkkOverlay(group: SVGGElement, overlayType: string): void {
+        const id: string &#x3D; group[&#x27;id&#x27;];
+        const dim: DOMRect &#x3D; group.getBBox();
+
+        this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
+        const overlay &#x3D; this._getOverlayById(this._availableOverlays, id);
+
+        // Get D3 selection of overlay group
+        const overlayGroupSelection &#x3D; this.svgDrawingService.createOverlayGroup(
+            this.svgSheetRootGroupSelection,
+            id,
+            dim,
+            overlayType
+        );
+
+        const overlayGroupRectSelection &#x3D; this.svgDrawingService.getOverlayGroupRectSelection(
+            this.svgSheetRootGroupSelection,
+            id,
+            overlayType
+        );
+
+        overlayGroupSelection
+            .on(&#x27;mouseover&#x27;, () &#x3D;&gt; {
+                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, &#x27;hover&#x27;);
+                overlayGroupRectSelection.style(&#x27;cursor&#x27;, &#x27;pointer&#x27;);
+            })
+            .on(&#x27;mouseout&#x27;, () &#x3D;&gt; {
+                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, &#x27;fill&#x27;);
+            })
+            .on(&#x27;click&#x27;, () &#x3D;&gt; {
+                if (overlay) {
+                    overlay.isSelected &#x3D; !overlay.isSelected;
+                }
+                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, &#x27;hover&#x27;);
+                this._selectedOverlays &#x3D; this._getSelectedOverlays(this._availableOverlays);
+                this._onOverlaySelect(this._selectedOverlays);
+            });
     }
 
     /**
@@ -3504,6 +3699,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             &lt;svg #svgSheetElement id&#x3D;&quot;awg-edition-svg-sheet&quot;&gt;
                 &lt;g #svgSheetRootGroup id&#x3D;&quot;awg-edition-svg-sheet-root-group&quot;&gt;&lt;/g&gt;
             &lt;/svg&gt;
+            &lt;awg-license class&#x3D;&quot;d-flex mt-3 text-center small&quot;&gt;&lt;/awg-license&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 
@@ -3710,8 +3906,8 @@ input[type&#x3D;&#x27;range&#x27;].awg-edition-svg-zoom-slider {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div id="awg-edition-svg-container" *ngIf="selectedSvgSheet">    <div class="awg-edition-svg-sheet-viewer">        <div class="awg-edition-svg-icon-bar">            <!-- Slider -->            <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start m-2">                <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>                <input                    type="range"                    #sliderInput                    class="awg-edition-svg-zoom-slider"                    id="awg-edition-svg-zoom-slider"                    name="zoomSlider"                    aria-label="Zoom slider"                    aria-describedby="slider-label"                    [min]="sliderConfig.min"                    [max]="sliderConfig.max"                    [step]="sliderConfig.stepSize"                    [(ngModel)]="sliderConfig.value"                    (ngModelChange)="onZoomChange($event)" />                <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">                    <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>                </button>            </div>        </div>        <div #svgSheetContainer class="awg-edition-svg-sheet-container">            <svg #svgSheetElement id="awg-edition-svg-sheet">                <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>            </svg>        </div>    </div>    <!-- Next and previous buttons -->    <div class="awg-edition-svg-sheet-viewer-nav">        <div class="prev" (click)="browseSvgSheet(-1)">            <span>&#10094;</span>        </div>        <div class="next" (click)="browseSvgSheet(1)">            <span>&#10095;</span>        </div>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div><div id="awg-edition-svg-container" *ngIf="selectedSvgSheet">    <div class="awg-edition-svg-sheet-viewer">        <div class="awg-edition-svg-icon-bar">            <!-- Slider -->            <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start m-2">                <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>                <input                    type="range"                    #sliderInput                    class="awg-edition-svg-zoom-slider"                    id="awg-edition-svg-zoom-slider"                    name="zoomSlider"                    aria-label="Zoom slider"                    aria-describedby="slider-label"                    [min]="sliderConfig.min"                    [max]="sliderConfig.max"                    [step]="sliderConfig.stepSize"                    [(ngModel)]="sliderConfig.value"                    (ngModelChange)="onZoomChange($event)" />                <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">                    <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>                </button>            </div>        </div>        <div #svgSheetContainer class="awg-edition-svg-sheet-container">            <svg #svgSheetElement id="awg-edition-svg-sheet">                <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>            </svg>            <awg-license class="d-flex mt-3 text-center small"></awg-license>        </div>    </div>    <!-- Next and previous buttons -->    <div class="awg-edition-svg-sheet-viewer-nav">        <div class="prev" (click)="browseSvgSheet(-1)">            <span>&#10094;</span>        </div>        <div class="next" (click)="browseSvgSheet(1)">            <span>&#10095;</span>        </div>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionSvgSheetViewerComponent'};
 </script>

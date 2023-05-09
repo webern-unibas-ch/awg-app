@@ -103,6 +103,7 @@ from a graph json file.</p>
                                 <a href="#rdfData" >rdfData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Optional</span>
                                 <a href="#staticImage" >staticImage</a>
                             </li>
                             <li>
@@ -230,6 +231,7 @@ with additional information.</p>
                 <td class="col-md-4">
                     <a name="staticImage"></a>
                     <span class="name">
+                            <span class="modifier">Optional</span>
                         <span ><b>staticImage</b></span>
                         <a href="#staticImage"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -249,7 +251,7 @@ with additional information.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>A staticImage of a graph.</p>
+                    <div class="io-description"><p>An optional staticImage of a graph.</p>
 </div>
                 </td>
             </tr>
@@ -323,9 +325,9 @@ with additional information.</p>
     rdfData: GraphRDFData;
 
     /**
-     * A staticImage of a graph.
+     * An optional staticImage of a graph.
      */
-    staticImage: string;
+    staticImage?: string;
 }
 
 /**

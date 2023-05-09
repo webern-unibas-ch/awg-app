@@ -158,7 +158,7 @@ to store the data of the previous resource.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:16</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:14</a></code>
 </div>
                         </td>
                     </tr>
@@ -198,7 +198,7 @@ in the search result list.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:21</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:19</a></code>
 </div>
                         </td>
                     </tr>
@@ -237,7 +237,7 @@ in the search result list.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:26</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:24</a></code>
 </div>
                         </td>
                     </tr>
@@ -276,7 +276,7 @@ in the search result list.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:36</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:34</a></code>
 </div>
                         </td>
                     </tr>
@@ -315,7 +315,7 @@ in the search result list.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:31</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/ResourceInfoResource.html#source" target="_self" >ResourceInfoResource:29</a></code>
 </div>
                         </td>
                     </tr>
@@ -350,8 +350,6 @@ in the search result list.</p>
  * to store the data of a resource.
  */
 export class ResourceInfoResource {
-    // Resource: SubjectItemJson;
-
     /**
      * The array index position of a resource
      * in the search result list.
@@ -389,7 +387,6 @@ export class ResourceInfoResource {
      * @param {number} index The given index position.
      */
     constructor(resource: SubjectItemJson, index: number) {
-        // This.resource &#x3D; resource;
         this.id &#x3D; resource.obj_id;
         this.title &#x3D; resource.value[0];
         this.subtitle &#x3D; resource.icontitle;

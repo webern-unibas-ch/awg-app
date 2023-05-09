@@ -2,10 +2,11 @@
     "sources": [
         {
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Reihentabelle und Skizze.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         }
     ]
 }

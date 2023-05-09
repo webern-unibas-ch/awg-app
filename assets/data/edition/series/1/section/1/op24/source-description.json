@@ -1,8 +1,9 @@
 {
     "sources": [
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
@@ -571,8 +572,9 @@
             }
         },
         {
-            "id": "notA",
+            "id": "notB",
             "siglum": "",
+            "siglumAddendum": "",
             "type": "",
             "location": "",
             "description": {

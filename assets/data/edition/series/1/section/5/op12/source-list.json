@@ -2,20 +2,23 @@
     "sources": [
         {
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1/2 (<strong>A<sup>a</sup></strong>)<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217 (<strong>A<sup>b</sup></strong>)<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213 (<strong>A<sup>c</sup></strong>)<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216 (<strong>A<sup>d</sup></strong>).<br />Enthält auch Skizze zu „Schien mir’s, als ich sah die Sonne“ für Chor und Instrumente M 198.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Autograph von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 1→2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "hasDescription": false,
-            "linkTo": "OP12_SOURCE_NOT_AVAILABLE"
+            "hasDescription": true,
+            "linkTo": "source_B"
         },
         {
             "siglum": "C",
+            "siglumAddendum": "",
             "type": "Autographe von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2<br /><span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: Textfassung 1<br /><span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: Textfassung 1<br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1→2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
@@ -23,6 +26,7 @@
         },
         {
             "siglum": "D",
+            "siglumAddendum": "",
             "type": "Autograph von <br /><span class=\"tab\"></span><em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
             "location": "GB-Lbl, O. W. Neighbour Collection.",
             "hasDescription": false,
@@ -30,13 +34,15 @@
         },
         {
             "siglum": "E",
+            "siglumAddendum": "",
             "type": "Druck von <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2.",
             "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_AVAILABLE"
         },
         {
-            "siglum": "E<sup>H</sup>",
+            "siglum": "E",
+            "siglumAddendum": "H",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a> mit Korrekturen Weberns: <br /><span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 2→3.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": false,
@@ -44,6 +50,7 @@
         },
         {
             "siglum": "F",
+            "siglumAddendum": "",
             "type": "Autograph von <em>Vier Lieder</em> op. 12: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 3<br /><span class=\"tab\"></span>II<span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung<br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung<br /><span class=\"tab\"></span>IV<span class=\"tab\"></span><em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2.",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "hasDescription": false,
@@ -51,17 +58,49 @@
         },
         {
             "siglum": "G",
+            "siglumAddendum": "",
             "type": "Druck von <em>Vier Lieder</em> op. 12: <br /><span class=\"tab\"></span>I<span class=\"tab\"></span>„Der Tag ist vergangen“ M 212: Textfassung 3<br /><span class=\"tab\"></span>II<span class=\"tab\"></span><em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217: einzige Textfassung<br /><span class=\"tab\"></span>III<span class=\"tab\"></span>„Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung<br /><span class=\"tab\"></span>IV<span class=\"tab\"></span><em>Gleich und Gleich</em> [„Ein Blumenglöckchen“] M 216: Textfassung 2.",
             "location": "Wien: Universal Edition, 1925.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_AVAILABLE"
         },
         {
-            "siglum": "G<sup>H</sup>",
+            "siglum": "G",
+            "siglumAddendum": "H",
             "type": "Handexemplar von <a (click)=\"ref.openModal('OP12_SOURCE_NOT_AVAILABLE')\"><strong>G</strong></a>.",
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "hasDescription": false,
             "linkTo": "OP12_SOURCE_NOT_AVAILABLE"
+        }
+    ],
+    "textSources": [
+        {
+            "id": "text_Bethge_DchF",
+            "siglum": "Bethge_DchF",
+            "siglumAddendum": "",
+            "type": "Hans Bethge, <em>Die chinesische Flöte</em>, Leipzig: Inselverlag, <sup>4</sup>[1914], S. 35 (Die geheimnisvolle Flöte).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1027."
+        },
+        {
+            "id": "text_Goethe_JA",
+            "siglum": "Goethe_JA",
+            "siglumAddendum": "",
+            "type": "Johann Wolfgang von Goethe, <em>Sämtliche Werke. Jubiläumsausgabe in 40 Bänden</em>, Stuttgart und Berlin: Cotta, [1902–1912], Bd. 1, <em>Gedichte. Erster Teil</em>, S. 19 (<em>Gleich und Gleich</em>). ",
+            "location": "Webern besaß laut seinem eigenhändigen in den 1910er Jahren begonnenen Bücher- und Notenverzeichnis (CH-Bps, Sammlung Anton Webern) diese Goethe-Ausgabe. Exemplare sind nicht überliefert. "
+        },
+        {
+            "id": "text_Rosegger_PM",
+            "siglum": "Rosegger_PM",
+            "siglumAddendum": "",
+            "type": "Peter Rosegger, <em>Peter Mayr</em>[,] <em>der Wirt an der Mahr. Eine Geschichte aus deutscher Heldenzeit</em>, Leipzig: Staackmann, 1914 (Gesammelte Werke 19), S. 214 („Der Tag ist vergangen …“).",
+            "location": "Der Roman erschien zuerst in Wien: A. Hartleben, 1891. Webern besaß laut seinem eigenhändigen in den 1910er Jahren begonnenen Bücher- und Notenverzeichnis (CH-Bps, Sammlung Anton Webern) die ab 1913 erschienenen 40 Bände der „Gesammelten Werke“ Roseggers. Weberns Exemplar des betreffenden Bandes ist nicht überliefert."
+        },
+        {
+            "id": "text_Strindberg_Gs",
+            "siglum": "Strindberg_Gs",
+            "siglumAddendum": "",
+            "type": "August Strindberg, <em>Gespenstersonate</em>, in: ders., <em>Kammerspiele</em>, verdeutscht von Emil Schering, München und Leipzig: Georg Müller, 1908 (Strindbergs Werke. Deutsche Gesamtausgabe unter Mitwirkung von Emil Schering als Übersetzer, vom Dichter selbst veranstaltet. I. Abteilung: Dramen. Kammerspiele [Band 9]), [Heft 3], S. 46[c] („Schien mirs, als ich sah die Sonne!“).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1129."
         }
     ]
 }

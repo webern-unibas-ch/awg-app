@@ -117,8 +117,8 @@ to order a given collection by a given field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="255"
-                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:255</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="249"
+                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:249</a></div>
                 </td>
             </tr>
 
@@ -231,15 +231,15 @@ to order a given collection by a given field.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_sortArray(array: Type[], expression?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reverse?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, isCaseInsensitive?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, comparator?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
+                    <code>_sortArray(array: T[], expression?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reverse?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, isCaseInsensitive?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, comparator?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:164</a></div>
                 </td>
             </tr>
 
@@ -247,14 +247,14 @@ to order a given collection by a given field.</p>
                 <td class="col-md-4">
                     <b>Type parameters :</b>
                     <ul class="type-parameters">
-                        <li>Type</li>
+                        <li>T</li>
                     </ul>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Sort array, returns sorted array</p>
+                    <div class="io-description"><p>Sorts an array and returns the sorted array.</p>
 </div>
 
                     <div class="io-description">
@@ -266,13 +266,14 @@ to order a given collection by a given field.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>array</td>
                                     <td>
-                                            <code>Type[]</code>
+                                            <code>T[]</code>
                                     </td>
 
                                     <td>
@@ -280,6 +281,10 @@ to order a given collection by a given field.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>The array to sort.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>expression</td>
@@ -292,6 +297,10 @@ to order a given collection by a given field.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>An optional string or array of strings representing the properties to sort by.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>reverse</td>
@@ -304,6 +313,10 @@ to order a given collection by a given field.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>Whether to sort in reverse order.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>isCaseInsensitive</td>
@@ -316,6 +329,10 @@ to order a given collection by a given field.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>Whether to perform a case-insensitive sort.</p>
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>comparator</td>
@@ -328,6 +345,10 @@ to order a given collection by a given field.</p>
                                     </td>
 
 
+                                    <td>
+                                        <p>An optional function to use for comparison.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -335,11 +356,12 @@ to order a given collection by a given field.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Type[]</code>
+                        <b>Returns : </b>    <code>T[]</code>
 
                     </div>
                     <div class="io-description">
-                        
+                        <p>The sorted array.</p>
+
                     </div>
                 </td>
             </tr>
@@ -360,15 +382,15 @@ to order a given collection by a given field.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_transformObject(value: any | any[], expression?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reverse?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, isCaseInsensitive?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, comparator?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank">Function</a>)</code>
+                    <code>_transformObject(value: any | any[], expression?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, reverse?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, isCaseInsensitive?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:216</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:212</a></div>
                 </td>
             </tr>
 
@@ -430,18 +452,6 @@ to order a given collection by a given field.</p>
                                     <td>isCaseInsensitive</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>comparator</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
                                     </td>
 
                                     <td>
@@ -573,8 +583,8 @@ to order a given collection by a given field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:56</a></div>
                 </td>
             </tr>
 
@@ -626,7 +636,7 @@ to order a given collection by a given field.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>0 | 1 | -1</code>
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </div>
                     <div class="io-description">
@@ -658,8 +668,8 @@ to order a given collection by a given field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="92"
-                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:92</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:97</a></div>
                 </td>
             </tr>
 
@@ -816,8 +826,8 @@ to order a given collection by a given field.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/shared/order-by-pipe/order-by.pipe.ts:83</a></div>
                 </td>
             </tr>
 
@@ -1139,8 +1149,10 @@ export class OrderByPipe implements PipeTransform {
      *
      * @param a
      * @param b
+     *
+     * @returns {number}
      */
-    static defaultCompare(a: any, b: any) {
+    static defaultCompare(a: any, b: any): number {
         if (a &amp;&amp; a instanceof Date) {
             a &#x3D; a.getTime();
         }
@@ -1162,7 +1174,9 @@ export class OrderByPipe implements PipeTransform {
 
     /**
      * Parse expression, split into items
+     *
      * @param expression
+     *
      * @returns {string[]}
      */
     static parseExpression(expression: string): string[] {
@@ -1176,24 +1190,20 @@ export class OrderByPipe implements PipeTransform {
      *
      * @param object
      * @param expression
+     *
      * @returns {any}
      */
     static getValue(object: any, expression: string[]): any {
-        for (let i &#x3D; 0, n &#x3D; expression.length; i &lt; n; ++i) {
-            if (!object) {
-                return;
-            }
-            const k &#x3D; expression[i];
-            if (!(k in object)) {
-                return;
-            }
-            if (typeof object[k] &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
-                object &#x3D; object[k]();
+        for (const key of expression) {
+            if (object &amp;&amp; key in object) {
+                object &#x3D; object[key];
+                if (typeof object &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
+                    object &#x3D; object();
+                }
             } else {
-                object &#x3D; object[k];
+                return undefined;
             }
         }
-
         return object;
     }
 
@@ -1204,7 +1214,7 @@ export class OrderByPipe implements PipeTransform {
      * @param value
      * @param expression
      */
-    static setValue(object: any, value: any, expression: string[]) {
+    static setValue(object: any, value: any, expression: string[]): void {
         let i;
         for (i &#x3D; 0; i &lt; expression.length - 1; i++) {
             object &#x3D; object[expression[i]];
@@ -1233,44 +1243,40 @@ export class OrderByPipe implements PipeTransform {
         }
 
         if (typeof value &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
-            return this._transformObject(Object.assign({}, value), expression, reverse, isCaseInsensitive, comparator);
+            return this._transformObject(Object.assign({}, value), expression, reverse, isCaseInsensitive);
         }
 
         return value;
     }
 
     /**
-     * Sort array, returns sorted array
+     * Sorts an array and returns the sorted array.
      *
-     * @param array
-     * @param expression
-     * @param reverse
-     * @param isCaseInsensitive
-     * @param comparator
-     * @returns {Type[]}
+     * @param array The array to sort.
+     * @param expression An optional string or array of strings representing the properties to sort by.
+     * @param reverse Whether to sort in reverse order.
+     * @param isCaseInsensitive Whether to perform a case-insensitive sort.
+     * @param comparator An optional function to use for comparison.
+     *
+     * @returns {T[]} The sorted array.
      */
-    private _sortArray&lt;Type&gt;(
-        array: Type[],
+    private _sortArray&lt;T&gt;(
+        array: T[],
         expression?: any,
         reverse?: boolean,
         isCaseInsensitive?: boolean,
         comparator?: Function
-    ): Type[] {
+    ): T[] {
         const isDeepLink &#x3D; expression &amp;&amp; expression.indexOf(&#x27;.&#x27;) !&#x3D;&#x3D; -1;
 
         if (isDeepLink) {
             expression &#x3D; OrderByPipe.parseExpression(expression);
         }
 
-        let compareFn: Function;
+        const compareFn &#x3D;
+            comparator ?? (isCaseInsensitive ? OrderByPipe.caseInsensitiveSort : OrderByPipe.defaultCompare);
 
-        if (comparator &amp;&amp; typeof comparator &#x3D;&#x3D;&#x3D; &#x27;function&#x27;) {
-            compareFn &#x3D; comparator;
-        } else {
-            compareFn &#x3D; isCaseInsensitive ? OrderByPipe.caseInsensitiveSort : OrderByPipe.defaultCompare;
-        }
-
-        const sortedArray: any[] &#x3D; array.sort((a: any, b: any): number &#x3D;&gt; {
+        const sortedArray: any[] &#x3D; array.slice().sort((a: any, b: any): number &#x3D;&gt; {
             if (!expression) {
                 return compareFn(a, b);
             }
@@ -1286,7 +1292,7 @@ export class OrderByPipe implements PipeTransform {
         });
 
         if (reverse) {
-            return sortedArray.reverse();
+            sortedArray.reverse();
         }
 
         return sortedArray;
@@ -1299,15 +1305,14 @@ export class OrderByPipe implements PipeTransform {
      * @param expression
      * @param reverse
      * @param isCaseInsensitive
-     * @param comparator
+     *
      * @returns {any[]}
      */
     private _transformObject(
         value: any | any[],
         expression?: any,
         reverse?: boolean,
-        isCaseInsensitive?: boolean,
-        comparator?: Function
+        isCaseInsensitive?: boolean
     ): any {
         const parsedExpression &#x3D; OrderByPipe.parseExpression(expression);
         let lastPredicate &#x3D; parsedExpression.pop();
@@ -1323,11 +1328,10 @@ export class OrderByPipe implements PipeTransform {
             return value;
         }
 
-        OrderByPipe.setValue(
-            value,
-            this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive),
-            parsedExpression
-        );
+        const newValue &#x3D; this.transform(oldValue, lastPredicate, reverse, isCaseInsensitive);
+
+        OrderByPipe.setValue(value, newValue, parsedExpression);
+
         return value;
     }
 
@@ -1348,7 +1352,7 @@ export class OrderByPipe implements PipeTransform {
         isCaseInsensitive: boolean,
         comparator?: Function
     ): any {
-        return expressions
+        return [...expressions]
             .reverse()
             .reduce(
                 (result: any, expression: any) &#x3D;&gt;

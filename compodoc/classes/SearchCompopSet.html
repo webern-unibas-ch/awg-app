@@ -250,121 +250,12 @@ class SearchCompopSet {
  * It is used in the context of the extended search
  * to store the data for a list of comparison operator sets.
  */
-class SearchCompopSetsList {
+export class SearchCompopSetsList {
     /**
      * The list of comparison operator sets.
      */
     compopList: SearchCompopSet[];
 }
-
-/**
- * Object constant for the EXISTS comparison operator.
- */
-const EXISTS: SearchCompop &#x3D; new SearchCompop(&#x27;EXISTS&#x27;, &#x27;exists&#x27;, &#x27;&amp;exist;&#x27;);
-
-/**
- * Object constant for the MATCH comparison operator.
- */
-const MATCH: SearchCompop &#x3D; new SearchCompop(&#x27;MATCH&#x27;, &#x27;match&#x27;, &#x27;&amp;isin;&#x27;);
-
-/**
- * Object constant for the MATCH_BOOLEAN comparison operator.
- */
-const MATCH_BOOLEAN: SearchCompop &#x3D; new SearchCompop(&#x27;MATCH_BOOLEAN&#x27;, &#x27;match boolean&#x27;, &#x27;&amp;isin;&amp;oplus;&#x27;);
-
-/**
- * Object constant for the EQ comparison operator.
- */
-const EQ: SearchCompop &#x3D; new SearchCompop(&#x27;EQ&#x27;, &#x27;equal&#x27;, &#x27;&#x3D;&#x27;);
-
-/**
- * Object constant for the NOT_EQ comparison operator.
- */
-const NOT_EQ: SearchCompop &#x3D; new SearchCompop(&#x27;!EQ&#x27;, &#x27;not equal&#x27;, &#x27;&amp;ne;&#x27;);
-
-/**
- * Object constant for the LIKE comparison operator.
- */
-const LIKE: SearchCompop &#x3D; new SearchCompop(&#x27;LIKE&#x27;, &#x27;like&#x27;, &#x27;&amp;sub;&#x27;);
-
-/**
- * Object constant for the NOT_LIKE comparison operator.
- */
-const NOT_LIKE: SearchCompop &#x3D; new SearchCompop(&#x27;!LIKE&#x27;, &#x27;not like&#x27;, &#x27;&amp;nsub;&#x27;);
-
-/**
- * Object constant for the GT comparison operator.
- */
-const GT: SearchCompop &#x3D; new SearchCompop(&#x27;GT&#x27;, &#x27;greater than&#x27;, &#x27;&amp;gt;&#x27;);
-
-/**
- * Object constant for the GT_EQ comparison operator.
- */
-const GT_EQ: SearchCompop &#x3D; new SearchCompop(&#x27;GT_EQ&#x27;, &#x27;greater equal than&#x27;, &#x27;&amp;ge;&#x27;);
-
-/**
- * Object constant for the LT comparison operator.
- */
-const LT: SearchCompop &#x3D; new SearchCompop(&#x27;LT&#x27;, &#x27;less than&#x27;, &#x27;&amp;lt;&#x27;);
-
-/**
- * Object constant for the LT_EQ comparison operator.
- */
-const LT_EQ: SearchCompop &#x3D; new SearchCompop(&#x27;LT_EQ&#x27;, &#x27;less equal than&#x27;, &#x27;&amp;le;&#x27;);
-
-/**
- * Object constant for the search compop sets list of the extended search.
- *
- * It provides a list of available search compop sets.
- */
-export const SEARCH_COMPOP_SETS_LIST: SearchCompopSetsList &#x3D; {
-    compopList: [
-        // Edge case for uncatched value types
-        {
-            id: 0,
-            compopSet: [EXISTS],
-        },
-        // 6 RESPTR GUI id 3 --&gt; gui pulldown,
-        // 6 RESPTR GUI id 6 --&gt; gui searchbox
-        // 7 SELECTION --&gt; gui pulldown,
-        // 11 COLOR --&gt; gui colorpicker,
-        // 12 HLIST --&gt; gui hlist,
-        // 15 GEONAME --&gt; gui geoname
-        {
-            id: 1,
-            compopSet: [EXISTS, EQ],
-        },
-
-        // 13 ICONCLASS --&gt; gui ??
-        {
-            id: 2,
-            compopSet: [EXISTS, EQ, LIKE],
-        },
-
-        // 4 DATE -&gt; gui datepicker
-        // 5 PERIOD -&gt; gui datepicker
-        // Without !EQ
-        {
-            id: 3,
-            compopSet: [EXISTS, EQ, GT, GT_EQ, LT, LT_EQ],
-        },
-
-        // 2 INTEGER -&gt; gui text
-        // 3 FLOAT -&gt; gui text
-        {
-            id: 4,
-            compopSet: [EXISTS, EQ, NOT_EQ, GT, GT_EQ, LT, LT_EQ],
-        },
-
-        // 1 TEXT --&gt; gui text
-        // 6 RESPTR GUI id 14 richtext --&gt; gui text
-        // 14 RICHTEXT --&gt; gui text
-        {
-            id: 5,
-            compopSet: [EXISTS, EQ, NOT_EQ, MATCH, MATCH_BOOLEAN, LIKE, NOT_LIKE],
-        },
-    ],
-};
 </code></pre>
     </div>
 </div>
