@@ -108,3 +108,28 @@ export const SEARCH_COMPOP_SETS_LIST: SearchCompopSetsList = {
         },
     ],
 };
+
+/**
+ * Object constant for the compopset lookup map of the extended search.
+ *
+ * It provides a map of valueTypes to available search compop sets.
+ */
+export const COMPOPSET_LOOKUP_MAP: Map<string, number> = new Map()
+    .set('1', 5) // TEXT
+    .set('6-14', 5) // RESPTR with GUI element 14
+    .set('14', 5) // RICHTEXT
+
+    .set('2', 4) // INTEGER
+    .set('3', 4) // FLOAT
+
+    .set('4', 3) // DATE
+    .set('5', 3) // PERIOD
+
+    .set('13', 2) // ICONCLASS
+
+    .set('6-3', 1) // RESPTR with GUI element 3
+    .set('6-6', 1) // RESPTR with GUI element 6
+    .set('7', 1) // SELECTION
+    .set('11', 1) // COLOR
+    .set('12', 1) // HLIST
+    .set('15', 1); // GEONAMES

@@ -51,6 +51,7 @@
                 <awg-textcritics-list
                     *ngIf="editionReportData[3]"
                     [textcriticsData]="editionReportData[3]"
+                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                     (openModalRequest)="onModalOpen($event)"
                     (selectSvgSheetRequest)="onSvgSheetSelect($event)">
                 </awg-textcritics-list>

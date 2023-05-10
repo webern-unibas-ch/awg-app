@@ -21,7 +21,7 @@ import {
     ResTypeItemJson,
 } from '@awg-shared/api-objects';
 import { PropertyDefinitionJson } from '@awg-shared/api-objects/resource-response-formats/src/property-definition-json';
-import { SEARCH_COMPOP_SETS_LIST, VALUETYPE_LIST } from '@awg-views/data-view/data';
+import { COMPOPSET_LOOKUP_MAP, SEARCH_COMPOP_SETS_LIST, VALUETYPE_LIST } from '@awg-views/data-view/data';
 import { ExtendedSearchParams, SearchCompop } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
@@ -262,36 +262,13 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @returns {SearchCompop[]} The compop set.
      */
     getCompopSetByValueType(valueTypeId: string, guiElementId: string): SearchCompop[] {
-        const COMPOPSET_LOOKUP = {
-            /* eslint-disable @typescript-eslint/naming-convention */
-            '1': 5, // TEXT
-            '6-14': 5, // RESPTR with GUI element 14
-            '14': 5, // RICHTEXT
-
-            '2': 4, // INTEGER
-            '3': 4, // FLOAT
-
-            '4': 3, // DATE
-            '5': 3, // PERIOD
-
-            '13': 2, // ICONCLASS
-
-            '6-3': 1, // RESPTR with GUI element 3
-            '6-6': 1, // RESPTR with GUI element 6
-            '7': 1, // SELECTION
-            '11': 1, // COLOR
-            '12': 1, // HLIST
-            '15': 1, // GEONAMES
-            /* eslint-enable @typescript-eslint/naming-convention */
-        };
-
         const valueType = VALUETYPE_LIST.typeList.find(type => type.id === valueTypeId);
         if (!valueType) {
             return [];
         }
 
         const compopLookupKey = valueTypeId === '6' ? `${valueTypeId}-${guiElementId}` : valueTypeId;
-        const compopIndex = COMPOPSET_LOOKUP[compopLookupKey] ?? 0;
+        const compopIndex = COMPOPSET_LOOKUP_MAP.has(compopLookupKey) ? COMPOPSET_LOOKUP_MAP.get(compopLookupKey) : 0;
 
         return SEARCH_COMPOP_SETS_LIST.compopList[compopIndex].compopSet;
     }

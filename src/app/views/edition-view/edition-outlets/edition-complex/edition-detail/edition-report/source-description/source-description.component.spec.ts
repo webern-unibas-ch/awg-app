@@ -135,7 +135,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 );
             });
 
-            it('... should contain para class in description divs', () => {
+            it('... should have `card` class on each description div', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-source-description-list > div.awg-source-description',
@@ -144,16 +144,29 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 );
 
                 divDes.forEach(divDe => {
-                    expectToContain(divDe.nativeElement.classList, 'para');
-                    expect(divDe.nativeElement).toHaveClass('para');
+                    const divEl = divDe.nativeElement;
+                    expectToContain(divEl.classList, 'card');
+                });
+            });
+
+            it('... should have 1 div. card-body in each description div', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-source-description-list > div.awg-source-description',
+                    expectedSourceDescriptionListData.sources.length,
+                    expectedSourceDescriptionListData.sources.length
+                );
+
+                divDes.forEach(divDe => {
+                    getAndExpectDebugElementByCss(divDe, 'div.card-body', 1, 1);
                 });
             });
 
             describe('... first description div', () => {
-                it('... should contain a description-head div, but no description-body', () => {
+                it('... should contain a description-head div, but no description-body in div.card-body', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-list > div.awg-source-description',
+                        'div.awg-source-description-list > div.awg-source-description > div.card-body',
                         2,
                         2
                     );
@@ -208,10 +221,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... second description div', () => {
-                it('... should contain a description-head div, and a description-body', () => {
+                it('... should contain a description-head div, and a description-body in div.card-body', () => {
                     const divDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.awg-source-description-list > div.awg-source-description',
+                        'div.awg-source-description-list > div.awg-source-description > div.card-body',
                         2,
                         2
                     );

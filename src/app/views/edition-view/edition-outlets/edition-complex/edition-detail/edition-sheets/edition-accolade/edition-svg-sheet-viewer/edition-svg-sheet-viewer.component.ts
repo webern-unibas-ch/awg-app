@@ -499,7 +499,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _createTkkOverlay(group: SVGGElement, overlayType: string): void {
         const id: string = group['id'];
-        const dim: DOMRect = (group as SVGGElement).getBBox();
+        const dim: DOMRect = group.getBBox();
 
         this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
         const overlay = this._getOverlayById(this._availableOverlays, id);

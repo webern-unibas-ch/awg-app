@@ -13,10 +13,12 @@
             id="dropDownSheetNav"
             ngbDropdownToggle
             [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }">
-            <span>{{ svgSheet.label }}</span>
+            <span
+                >{{ svgSheet.label }} <span class="badge bg-secondary">{{ svgSheet.content.length }}</span></span
+            >
         </a>
         <div ngbDropdownMenu aria-labelledby="dropdownSheetNav">
-            <div *ngFor="let svgSheetContent of svgSheet.content">
+            <div *ngFor="let svgSheetContent of svgSheet.content; let i = index">
                 <a
                     class="dropdown-item"
                     [ngClass]="{
@@ -24,7 +26,7 @@
                         'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)
                     }"
                     (click)="selectSvgSheet(svgSheet.id + svgSheetContent.partial)"
-                    >{{ svgSheet.label + svgSheetContent.partial }}</a
+                    >{{ svgSheet.label }} <span class="text-muted">[{{ i + 1 }}/{{ svgSheet.content.length }}]</span></a
                 >
             </div>
         </div>

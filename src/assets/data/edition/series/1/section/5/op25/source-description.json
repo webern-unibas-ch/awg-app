@@ -15,9 +15,9 @@
                 },
                 "title": "<em>„Wie bin ich froh!“</em> auf Bl. 38<sup>v</sup> oben links mit schwarzem Buntstift.",
                 "date": "",
-                "measureNumbers": "Taktzahlen <em>1–2</em>, <em>3–6</em> und <em>9–15</em> in <strong>M 317 Sk4</strong> sowie <em>2–3</em> in <strong>M 317 Sk4.1</strong> mit schwarzem Buntstift; Taktzahlen <em>7–8</em> in <strong>M 317 Sk4</strong> mit Bleistift und nachgezogen mit schwarzem Buntstift.<br /> Taktzahl <em>52</em> (zu <strong>op. 24/1</strong>) auf Bl. 39<sup>r</sup> oben links mit schwarzem Buntstift.",
+                "measureNumbers": "Taktzahlen <em>1–2</em>, <em>3–6</em> und <em>9–15</em> in <a (click)=\"ref.selectSvgSheet('M_317_Sk4')\"><strong>M 317 Sk4</strong></a> sowie <em>2–3</em> in <a (click)=\"ref.selectSvgSheet('M_317_Sk4_1')\"><strong>M 317 Sk4.1</strong></a> mit schwarzem Buntstift; Taktzahlen <em>7–8</em> in <a (click)=\"ref.selectSvgSheet('M_317_Sk4c')\"><strong>M 317 Sk4</strong></a> mit Bleistift und nachgezogen mit schwarzem Buntstift.<br /> Taktzahl <em>52</em> (zu <strong>op. 24/1</strong>) auf Bl. 39<sup>r</sup> oben links mit schwarzem Buntstift.",
                 "instrumentation": "Akkoladenstrich und teilweise Schlüsselvorsatz auf Bl. 38<sup>v</sup> System 1–4 (zu <strong>op. 24/1</strong>).<br />Akkoladenstrich und Schlüsselvorsatz auf Bl. 39<sup>r</sup> System 1–4 (zu <strong>op. 24/1</strong>), eingekreist und gestrichen mit rotem Buntstift.",
-                "annotations": "<em><u>Reihe</u></em> auf Bl. 38<sup>v</sup> System 5 links (zu <strong>M 317 Sk3.1.3</strong>) mit schwarzem Buntstift.",
+                "annotations": "<em><u>Reihe</u></em> auf Bl. 38<sup>v</sup> System 5 links (zu <a (click)=\"ref.selectSvgSheet('M_317_Sk3_1_3')\"><strong>M 317 Sk3.1.3</strong></a>) mit schwarzem Buntstift.",
                 "content": [
                     {
                         "item": "M 317 Sk2",

@@ -50,7 +50,7 @@ describe('SearchPanelComponent', () => {
     let compDe: DebugElement;
 
     // Stub services for test purposes
-    const mocConversionService = {
+    const mockConversionService = {
         convertFullTextSearchResults: () => {
             // Intentional empty test override
         },
@@ -94,7 +94,7 @@ describe('SearchPanelComponent', () => {
             providers: [
                 { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter },
-                { provide: ConversionService, useValue: mocConversionService },
+                { provide: ConversionService, useValue: mockConversionService },
                 { provide: DataApiService, useValue: mockDataApiService },
                 { provide: DataStreamerService, useValue: mockDataStreamerService },
                 { provide: LoadingService, useValue: mockLoadingService },

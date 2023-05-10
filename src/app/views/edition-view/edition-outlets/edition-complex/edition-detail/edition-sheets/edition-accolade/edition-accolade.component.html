@@ -36,6 +36,7 @@
                         [selectedTextcritics]="selectedTextcritics"
                         [selectedTextcriticalComments]="selectedTextcriticalComments"
                         [showTkA]="showTkA"
+                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                         (openModalRequest)="openModal($event)"
                         (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>
                 </div>

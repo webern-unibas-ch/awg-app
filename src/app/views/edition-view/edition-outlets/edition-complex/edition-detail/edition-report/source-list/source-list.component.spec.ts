@@ -82,9 +82,17 @@ describe('SourceListComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain one div.card', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+            });
+
+            it('... should contain one div.card-body in div.card', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+            });
+
             describe('... if text sources are not present', () => {
-                it('... should contain one table with table body', () => {
-                    getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
+                it('... should contain one table with table body in div.card-body', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 1, 1);
                 });
 
                 it('... should contain as many rows (tr) in first table body as sources in sourceListData', () => {
@@ -189,12 +197,12 @@ describe('SourceListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain two tables with table body', () => {
+                it('... should contain two tables with table body in div.card-body', () => {
                     expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
                     component.sourceListData = expectedSourceListData;
                     detectChangesOnPush(fixture);
 
-                    getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+                    getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 2, 2);
                 });
 
                 it('... should contain a row (tr) with introductory text as a first child in the second table', () => {
@@ -233,7 +241,31 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain siglum span in header column (th)', () => {
+                it('... should have text siglum id on header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const columnEl = columnDes[0].nativeElement;
+
+                        const expectedId = expectedSourceListData.textSources[index - 1].id;
+
+                        expectToBe(columnEl.id, expectedId);
+                    });
+                });
+
+                it('... should contain text siglum span in header column (th)', () => {
                     const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
@@ -252,10 +284,6 @@ describe('SourceListComponent (DONE)', () => {
 
                         const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 1, 1);
                         const spanEl = spanDes[0].nativeElement;
-
-                        const expectedId = expectedSourceListData.textSources[index - 1].id;
-
-                        expectToBe(spanEl.id, expectedId);
 
                         const expectedSiglum =
                             expectedSourceListData.textSources[index - 1].siglum +
@@ -265,7 +293,7 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should display siglum addendum if present in header column (th)', () => {
+                it('... should display text siglum addendum if present in header column (th)', () => {
                     const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
@@ -284,10 +312,6 @@ describe('SourceListComponent (DONE)', () => {
 
                         const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 1, 1);
                         const spanEl = spanDes[0].nativeElement;
-
-                        const expectedId = expectedSourceListData.textSources[index - 1].id;
-
-                        expectToBe(spanEl.id, expectedId);
 
                         const expectedSiglum =
                             expectedSourceListData.textSources[index - 1].siglum +
