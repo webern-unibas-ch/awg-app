@@ -37,6 +37,13 @@ export class Source {
     linkTo: string;
 }
 
+/**
+ * The TextSource class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single text source
+ * from a sourcelist json file.
+ */
 export class TextSource {
     /**
      * The id of a text source.

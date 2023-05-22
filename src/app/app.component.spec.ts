@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { AnalyticsService } from '@awg-core/services';
 
@@ -117,14 +117,13 @@ describe('AppComponent (DONE)', () => {
 
     describe('router setup (self-test)', () => {
         it("... initial navigation should have detected empty route ''", waitForAsync(() => {
-            expect(location.path()).withContext("should be ''").toBe('');
-            expect(location.path()).withContext("should be ''").toBe('');
+            expectToBe(location.path(), '');
         }));
 
         it("... should redirect to /test from '' redirect", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['']).then(() => {
-                    expect(location.path()).withContext('should be /test').toBe('/test');
+                    expectToBe(location.path(), '/test');
                 });
             });
         }));
@@ -132,7 +131,7 @@ describe('AppComponent (DONE)', () => {
         it("... should navigate to 'test' from /test", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['/test']).then(() => {
-                    expect(location.path()).withContext('should be /test').toBe('/test');
+                    expectToBe(location.path(), '/test');
                 });
             });
         }));
@@ -140,7 +139,7 @@ describe('AppComponent (DONE)', () => {
         it("... should navigate to 'test2' from /test2", waitForAsync(() => {
             fixture.ngZone.run(() => {
                 router.navigate(['/test2']).then(() => {
-                    expect(location.path()).withContext('should be /test2').toBe('/test2');
+                    expectToBe(location.path(), '/test2');
                 });
             });
         }));
