@@ -128,7 +128,7 @@
         "@angular/compiler-cli": "^16.0.2",
         "@commitlint/cli": "^17.6.3",
         "@commitlint/config-angular": "^17.6.3",
-        "@compodoc/compodoc": "^1.1.19",
+        "@compodoc/compodoc": "^1.1.20",
         "@types/d3": "^7.4.0",
         "@types/jasmine": "~4.3.1",
         "@types/node": "^18.16.14",
