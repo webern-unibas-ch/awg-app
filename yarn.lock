@@ -2437,10 +2437,10 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@ng-bootstrap/ng-bootstrap@^14.1.1":
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-14.1.1.tgz#d26dfbe1bacdfcc27e49969cbb19dff0f2241cd4"
-  integrity sha512-3EIc+lCmqUlr7sghzx0r28sjk771zvyqe3SXkrT7grYFzQCVbjtms6Wr9OPbdbmpqDNXG6a8llUoyVgtp1B2Tg==
+"@ng-bootstrap/ng-bootstrap@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@ng-bootstrap/ng-bootstrap/-/ng-bootstrap-15.0.0.tgz#e4314a1b9a1ff218d0fff5c2f0f69c91ef1e6095"
+  integrity sha512-BA/SI7sURpKwIex6bj2ujL+xUh8oYMrc5POdGC8sVe+yX3NRS0xNbozI6oke6pL2PpYq+/zaJTmuEJsEMCplZA==
   dependencies:
     tslib "^2.3.0"
 
