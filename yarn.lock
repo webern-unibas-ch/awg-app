@@ -7974,10 +7974,10 @@ n3@^0.11.3:
   resolved "https://registry.yarnpkg.com/n3/-/n3-0.11.3.tgz#8e587495240dd21408c2c3aae385ec1651a837f8"
   integrity sha512-Hk5GSXBeAZrYoqi+NeS/U0H47Hx0Lzj7K6nLWCZpC9E04iUwEwBcrlMb/5foAli7QF4newPNQQQGgM6IAxTxGg==
 
-n3@^1.16.4:
-  version "1.16.4"
-  resolved "https://registry.yarnpkg.com/n3/-/n3-1.16.4.tgz#6747e9e63e1b6656c1ce02a29707471307b23c04"
-  integrity sha512-jtC53efM5/q4BYC3qBnegn1MJDKXHH9PEd6gVDNpIicbgXS6gkANz4DdI0jt4aLvza1xSjCcni33riXWvfoEdw==
+n3@^1.17.0:
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/n3/-/n3-1.17.0.tgz#224d87e235e91e2d3e3fea04043ed34b6524a8ac"
+  integrity sha512-dYdkyUM4tMWHSEf9xMDPiBjOJc+rcjZHtN5cJJGcvAwOWTjE9u1i28sDFWALTwyROvsuUKuLohrz7VFaJbhiDw==
   dependencies:
     queue-microtask "^1.1.2"
     readable-stream "^4.0.0"
