@@ -376,8 +376,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                                 ViewHandleButtongGroupStubComponent
                             ) as ViewHandleButtongGroupStubComponent;
 
-                            expect(viewHandleButtongGroupCmp.selectedViewType).toBeTruthy();
-                            expect(viewHandleButtongGroupCmp.selectedViewType).toBe(ViewHandleTypes.GRAPH);
+                            expectToBe(viewHandleButtongGroupCmp.selectedViewType, ViewHandleTypes.GRAPH);
                         });
                     });
 
@@ -810,6 +809,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Set fullscreen mode
                     component.isFullscreen = true;
+                    detectChangesOnPush(fixture);
                 });
 
                 it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
@@ -905,7 +905,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 describe('View handle button group', () => {
-                    it('... should contain ViewHandleButtongGroupComponent (stubbed) in panel header', () => {
+                    it('... should contain no ViewHandleButtongGroupComponent (stubbed) in panel header', () => {
                         // Header debug elements
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -917,32 +917,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                         getAndExpectDebugElementByDirective(
                             panelHeaderDes[0],
                             ViewHandleButtongGroupStubComponent,
-                            1,
-                            1
+                            0,
+                            0
                         );
-                    });
-
-                    it('... should have selectedViewType===graph (according to querytype)', () => {
-                        // Header debug elements
-                        const panelHeaderDes = getAndExpectDebugElementByCss(
-                            compDe,
-                            'div#awg-graph-visualizer-sparql-query > div.accordion-header',
-                            1,
-                            1
-                        );
-                        // ViewHandleButtongGroupComponent debug elements
-                        const viewHandleButtongGroupDes = getAndExpectDebugElementByDirective(
-                            panelHeaderDes[0],
-                            ViewHandleButtongGroupStubComponent,
-                            1,
-                            1
-                        );
-                        const viewHandleButtongGroupCmp = viewHandleButtongGroupDes[0].injector.get(
-                            ViewHandleButtongGroupStubComponent
-                        ) as ViewHandleButtongGroupStubComponent;
-
-                        expect(viewHandleButtongGroupCmp.selectedViewType).toBeTruthy();
-                        expect(viewHandleButtongGroupCmp.selectedViewType).toBe(ViewHandleTypes.GRAPH);
                     });
                 });
 

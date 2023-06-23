@@ -7,6 +7,7 @@
             <button ngbAccordionToggle class="btn btn-link m-0">SPARQL</button>
             <!-- View Handle -->
             <awg-view-handle-button-group
+                *ngIf="!isFullscreen"
                 [viewHandles]="viewHandles"
                 [selectedViewType]="selectedViewType"
                 (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div ngbAccordionCollapse>
+        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
             <div ngbAccordionBody>
                 <ng-template>
                     <!-- CodeMirror editor instance -->
