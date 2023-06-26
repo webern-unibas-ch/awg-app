@@ -108,8 +108,8 @@ describe('TriplesEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no ngb-accordion yet', () => {
-                // Ngb-accordion debug element
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
@@ -522,26 +522,32 @@ describe('TriplesEditorComponent (DONE)', () => {
                     const btnEl = btnDes[0].nativeElement;
 
                     // Panel body does not close
-                    getAndExpectDebugElementByCss(
+                    let panelBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
+                    let panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).toContain('show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
                     // Panel body does not close again
-                    getAndExpectDebugElementByCss(
+                    panelBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
+                    panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).toContain('show');
                 });
 
                 it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
