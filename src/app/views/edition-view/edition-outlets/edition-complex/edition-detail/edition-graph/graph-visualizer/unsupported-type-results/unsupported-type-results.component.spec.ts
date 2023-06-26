@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
 
@@ -50,12 +50,9 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
-
-                // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
     });
@@ -70,125 +67,132 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         });
 
         it('... should have `queryType` input', () => {
-            expect(component.queryType).toBeDefined();
-            expect(component.queryType).withContext(`should be ${expectedQueryType}`).toBe(expectedQueryType);
+            expectToBe(component.queryType, expectedQueryType);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with panel (div.accordion-item) header and body', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1); // Panel (div.card)
-                // Header
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div#awg-graph-visualizer-unsupported-query-type-result-header.accordion-header',
-                    1,
-                    1
-                ); // Panel (div.card)
-                // Body
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body',
+                // Panel (div.accordion-item)
+                const panelDes = getAndExpectDebugElementByCss(
+                    accordionDes[0],
+                    'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
                     1,
                     1
                 );
+                // Header (div.accordion-header)
+                const panelHeaderDes = getAndExpectDebugElementByCss(
+                    panelDes[0],
+                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                    1,
+                    1
+                );
+                const panelHeaderEl = panelHeaderDes[0].nativeElement;
+
+                expect(panelHeaderEl.classList).not.toContain('collapsed');
+
+                // Body (div.accordion-collapse)
+                const panelBodyDes = getAndExpectDebugElementByCss(
+                    panelDes[0],
+                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                    1,
+                    1
+                );
+                const panelBodyEl = panelBodyDes[0].nativeElement;
+
+                expectToContain(panelBodyEl.classList, 'show');
             });
 
             it('... should display panel header button', () => {
-                // Panel header button
-                const btnDes = getAndExpectDebugElementByCss(
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result-header > button',
+                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
                     1,
                     1
                 );
+
+                // Panel header button
+                const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
 
                 const btnEl = btnDes[0].nativeElement;
 
                 // Check button content
-                expect(btnEl.textContent).toBeTruthy();
-                expect(btnEl.textContent).withContext('should contain Resultat').toContain('Resultat');
+                expectToBe(btnEl.textContent, 'Resultat');
             });
 
             it('... should contain panel body with two centered paragraphs', () => {
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
+                // Body debug elements
+                const panelBodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body > p',
-                    2,
-                    2
+                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                    1,
+                    1
                 );
 
-                const pEl0 = pDes[0].nativeElement;
-                const pEl1 = pDes[1].nativeElement;
+                // Panel body paragraphs
+                const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
 
-                expect(pEl0).toHaveClass('text-center');
-                expect(pEl1).toHaveClass('text-center');
+                pDes.forEach((pDe: DebugElement) => {
+                    const pEl = pDe.nativeElement;
+                    expect(pEl).toBeTruthy();
+                    expect(pEl).toHaveClass('text-center');
+                });
             });
 
             it('... should display messages in panel body paragraphs', () => {
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
+                // Body debug elements
+                const panelBodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body > p',
-                    2,
-                    2
+                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                    1,
+                    1
                 );
+
+                // Panel body paragraphs
+                const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
 
                 const pEl0 = pDes[0].nativeElement;
                 const pEl1 = pDes[1].nativeElement;
 
-                expect(pEl0.textContent).toBeTruthy();
-                expect(pEl0.textContent.trim())
-                    .withContext(
-                        `should contain 'Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet'`
-                    )
-                    .toContain(
-                        `Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet`
-                    );
-
-                expect(pEl1.textContent).toBeTruthy();
-                expect(pEl1.textContent.trim())
-                    .withContext(`should be 'Please try a CONSTRUCT or SELECT query instead.'`)
-                    .toBe('Please try a CONSTRUCT or SELECT query instead.');
+                expectToContain(
+                    pEl0.textContent.trim(),
+                    `Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet`
+                );
+                expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
             });
 
-            it('... should display correct queryType if input changes', () => {
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
+            it('... should display correct queryType in first paragraph if input changes', () => {
+                // Body debug elements
+                const panelBodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body > p',
-                    2,
-                    2
+                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                    1,
+                    1
                 );
+
+                // Panel body paragraphs
+                const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
                 const pEl0 = pDes[0].nativeElement;
 
-                expect(pEl0.textContent).toBeTruthy();
-                expect(pEl0.textContent)
-                    .withContext(`should contain ${expectedQueryType.toUpperCase()}`)
-                    .toContain(expectedQueryType.toUpperCase());
+                expectToContain(pEl0.textContent, expectedQueryType.toUpperCase());
 
                 // DESCRIBE
                 let newQueryType = 'describe';
                 component.queryType = newQueryType;
                 detectChangesOnPush(fixture);
 
-                expect(pEl0.textContent).toBeTruthy();
-                expect(pEl0.textContent)
-                    .withContext(`should contain ${newQueryType.toUpperCase()}`)
-                    .toContain(newQueryType.toUpperCase());
+                expectToContain(pEl0.textContent, newQueryType.toUpperCase());
 
                 // COUNT
                 newQueryType = 'count';
                 component.queryType = newQueryType;
                 detectChangesOnPush(fixture);
 
-                expect(pEl0.textContent)
-                    .withContext(`should contain ${newQueryType.toUpperCase()}`)
-                    .toContain(newQueryType.toUpperCase());
+                expectToContain(pEl0.textContent, newQueryType.toUpperCase());
             });
         });
     });
