@@ -4,8 +4,7 @@
     }
 
     &.accordion-button {
-        padding-top: 0.525rem;
-        padding-bottom: 0.525rem;
+        padding: 0.8rem !important;
 
         > #awg-graph-visualizer-sparql-query-toggle {
             text-decoration: none;
