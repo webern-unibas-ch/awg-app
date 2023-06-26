@@ -53,7 +53,9 @@
         <!-- OTHERS -->
         <!-- awg-graph-unsupported-query-type-result -->
         <ng-template #queryUnsupportedTypeAcc>
-            <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>
+            <awg-unsupported-type-results
+                [queryType]="query.queryType"
+                [isFullscreen]="isFullscreen"></awg-unsupported-type-results>
         </ng-template>
     </div>
 </div>

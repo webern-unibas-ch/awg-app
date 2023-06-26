@@ -2,9 +2,10 @@ import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import Spy = jasmine.Spy;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
 
@@ -14,6 +15,9 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedQueryType: string;
+    let expectedIsFullscreen: boolean;
+
+    let isAccordionItemDisabledSpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -38,6 +42,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
         // Test data
         expectedQueryType = 'ask';
+        expectedIsFullscreen = false;
+
+        // Spies on component functions
+        // `.and.callThrough` will track the spy down the nested describes, see
+        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
     });
 
     it('... should create', () => {
@@ -47,6 +57,10 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have queryType', () => {
             expect(component.queryType).toBeUndefined();
+        });
+
+        it('... should not have isFullscreen', () => {
+            expect(component.isFullscreen).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -68,6 +82,10 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
         it('... should have `queryType` input', () => {
             expectToBe(component.queryType, expectedQueryType);
+        });
+
+        it('... should have `isFullScreen` input', () => {
+            expectToBe(component.isFullscreen, expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
@@ -193,6 +211,27 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 expectToContain(pEl0.textContent, newQueryType.toUpperCase());
+            });
+        });
+
+        describe('#isAccordionItemDisabled()', () => {
+            it('... should have a method `isAccordionItemDisabled`', () => {
+                expect(component.isAccordionItemDisabled).toBeDefined();
+            });
+
+            it('... should be triggered from ngbAccordionItem', () => {
+                expectSpyCall(isAccordionItemDisabledSpy, 1);
+            });
+
+            it('... should return false if isFullscreen is false', () => {
+                expectToBe(component.isAccordionItemDisabled(), false);
+            });
+
+            it('... should return true if isFullscreen is true', () => {
+                // Set fullscreen flag to true
+                component.isFullscreen = true;
+
+                expectToBe(component.isAccordionItemDisabled(), true);
             });
         });
     });

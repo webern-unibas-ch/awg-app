@@ -1,5 +1,8 @@
 <div ngbAccordion>
-    <div ngbAccordionItem="awg-graph-visualizer-unsupported-query-type-result" [collapsed]="false">
+    <div
+        ngbAccordionItem="awg-graph-visualizer-unsupported-query-type-result"
+        [collapsed]="false"
+        [disabled]="isAccordionItemDisabled()">
         <div ngbAccordionHeader>
             <button ngbAccordionButton>Resultat</button>
         </div>
