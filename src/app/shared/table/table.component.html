@@ -58,7 +58,7 @@
         <tr
             *ngFor="
                 let row of paginatedRows
-                    | orderBy : tableOptions.sortKey : tableOptions.reverse : tableOptions.isCaseInsensitive
+                    | orderBy: tableOptions.sortKey : tableOptions.reverse : tableOptions.isCaseInsensitive
             "
             (click)="onTableRowClick($event)">
             <td *ngFor="let headerLabel of tableData.header">
