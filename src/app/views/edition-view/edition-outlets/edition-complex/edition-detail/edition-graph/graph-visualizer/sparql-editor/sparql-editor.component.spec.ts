@@ -321,7 +321,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -443,10 +443,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                             const btnEl = btnDes[0].nativeElement;
 
                             expect(btnEl.disabled).toBeTruthy();
-                            expect(btnEl.getAttribute('aria-disabled')).toBe('true');
-
-                            expect(btnEl.textContent).toBeTruthy();
-                            expect(btnEl.textContent).toContain('Beispielabfragen');
+                            expectToBe(btnEl.getAttribute('aria-disabled'), 'true');
+                            expectToBe(btnEl.textContent.trim(), 'Beispielabfragen');
                         });
 
                         it('... should contain another btn-group dropdown in example query btn-group', () => {
@@ -634,7 +632,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         const collapseEl = collapseDes[0].nativeElement;
 
-                        expect(collapseEl.classList).toContain('show');
+                        expectToContain(collapseEl.classList, 'show');
 
                         // Panel body
                         bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
@@ -668,7 +666,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         let panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -698,7 +696,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                         );
                         panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
                     });
 
                     it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
@@ -986,10 +984,8 @@ describe('SparqlEditorComponent (DONE)', () => {
                         const btnEl = btnDes[0].nativeElement;
 
                         expect(btnEl.disabled).toBeTruthy();
-                        expect(btnEl.getAttribute('aria-disabled')).toBe('true');
-
-                        expect(btnEl.textContent).toBeTruthy();
-                        expect(btnEl.textContent).toContain('Beispielabfragen');
+                        expectToBe(btnEl.getAttribute('aria-disabled'), 'true');
+                        expectToBe(btnEl.textContent.trim(), 'Beispielabfragen');
                     });
 
                     it('... should contain another btn-group dropdown in example query btn-group', () => {

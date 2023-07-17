@@ -241,7 +241,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -285,7 +285,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         const collapseEl = collapseDes[0].nativeElement;
 
-                        expect(collapseEl.classList).toContain('show');
+                        expectToContain(collapseEl.classList, 'show');
 
                         // Panel body
                         bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
@@ -319,7 +319,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         let panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -349,7 +349,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
                     });
 
                     it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
@@ -531,7 +531,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     );
                     let panelBodyEl = panelBodyDes[0].nativeElement;
 
-                    expect(panelBodyEl.classList).toContain('show');
+                    expectToContain(panelBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
@@ -547,7 +547,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     );
                     panelBodyEl = panelBodyDes[0].nativeElement;
 
-                    expect(panelBodyEl.classList).toContain('show');
+                    expectToContain(panelBodyEl.classList, 'show');
                 });
 
                 it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
