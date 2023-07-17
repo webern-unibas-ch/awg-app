@@ -35,7 +35,10 @@ export class SearchOverviewComponent implements OnInit {
      * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
      * @param {ActivatedRoute} route Instance of the ActivatedRoute.
      */
-    constructor(private sideInfoService: SideInfoService, private route: ActivatedRoute) {}
+    constructor(
+        private sideInfoService: SideInfoService,
+        private route: ActivatedRoute
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.

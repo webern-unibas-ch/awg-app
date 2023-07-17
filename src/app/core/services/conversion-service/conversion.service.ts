@@ -81,7 +81,10 @@ export class ConversionService extends ApiService {
      * @param {HttpClient} http Instance of the HttpClient.
      * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(public override http: HttpClient, private utils: UtilityService) {
+    constructor(
+        public override http: HttpClient,
+        private utils: UtilityService
+    ) {
         super(http);
     }
 

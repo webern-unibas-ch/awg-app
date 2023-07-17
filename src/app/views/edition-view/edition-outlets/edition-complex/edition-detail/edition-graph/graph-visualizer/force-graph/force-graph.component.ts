@@ -212,7 +212,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
      * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
      */
-    constructor(private graphVisualizerService: GraphVisualizerService, private prefixPipe: PrefixPipe) {}
+    constructor(
+        private graphVisualizerService: GraphVisualizerService,
+        private prefixPipe: PrefixPipe
+    ) {}
 
     /**
      * HostListener: onResize.
