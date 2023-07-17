@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 
+import { UtilityService } from '@awg-app/core/services';
 import { QueryResult } from '../models';
 
 /**
@@ -51,6 +51,15 @@ export class SelectResultsComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 
     /**
+     * Constructor of the SelectResultsComponent.
+     *
+     * It declares a public instance of the UtilityService.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
+     */
+    constructor(public utils: UtilityService) {}
+
+    /**
      * Public method: isNotEmpty.
      *
      * It checks if a given queryResult is not empty.
@@ -60,10 +69,14 @@ export class SelectResultsComponent {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isNotEmpty(queryResult: QueryResult): boolean {
-        if (!queryResult.head || !queryResult.body) {
-            return undefined;
+        const { head, body } = queryResult;
+        const varsNotEmpty = this.utils.isNotEmptyArray(head?.vars);
+        const bindingsNotEmpty = this.utils.isNotEmptyArray(body?.bindings);
+
+        if (!varsNotEmpty || !bindingsNotEmpty) {
+            return false;
         }
-        return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
+        return true;
     }
 
     /**
@@ -83,18 +96,14 @@ export class SelectResultsComponent {
     }
 
     /**
-     * Public method: preventPanelCollapseOnFullscreen.
+     * Public method: isAccordionItemDisabled.
      *
-     * It prevents the given panel event from being collapsed in fullscreen mode.
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
      *
-     * @returns {void} Prevents the panel collapse.
+     * @returns {boolean} The boolean value of the comparison.
      */
-    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
-        if (!$event) {
-            return;
-        }
-        if (this.isFullscreen && $event.nextState === false) {
-            $event.preventDefault();
-        }
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen ? true : false;
     }
 }
