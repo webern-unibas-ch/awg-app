@@ -152,13 +152,13 @@ describe('SelectResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Ngb-accordion debug element
+                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             describe('not in fullscreen mode', () => {
                 it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
-                    // Ngb-accordion debug element
+                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                     // Panel (div.accordion-item)
@@ -326,7 +326,7 @@ describe('SelectResultsComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
-                    // Ngb-accordion debug element
+                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                     // Panel (div.accordion-item)

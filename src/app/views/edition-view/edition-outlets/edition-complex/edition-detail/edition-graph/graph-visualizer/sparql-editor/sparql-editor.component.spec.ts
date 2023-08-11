@@ -183,8 +183,8 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no ngb-accordion yet', () => {
-                // Ngb-accordion debug element
+            it('... should contain no ngbAccordion yet', () => {
+                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
@@ -215,14 +215,14 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Ngb-accordion debug element
+                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             describe('not in fullscreen mode', () => {
                 describe('with closed panel', () => {
                     it('... should contain one div.accordion with panel (div.accordion-item) header and collapsed body', () => {
-                        // Ngb-accordion debug element
+                        // NgbAccordion debug element
                         const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                         // Panel (div.accordion-item)
@@ -811,7 +811,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
-                    // Ngb-accordion debug element
+                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                     // Panel (div.accordion-item)

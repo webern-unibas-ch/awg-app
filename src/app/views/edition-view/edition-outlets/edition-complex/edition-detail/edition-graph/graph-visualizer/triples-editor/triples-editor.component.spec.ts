@@ -135,14 +135,14 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Ngb-accordion debug element
+                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             describe('not in fullscreen mode', () => {
                 describe('with closed panel', () => {
                     it('... should contain one div.accordion with panel (div.accordion-item) header and collapsed body', () => {
-                        // Ngb-accordion debug element
+                        // NgbAccordion debug element
                         const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                         // Panel (div.accordion-item)
@@ -463,7 +463,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
-                    // Ngb-accordion debug element
+                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                     // Panel (div.accordion-item)
