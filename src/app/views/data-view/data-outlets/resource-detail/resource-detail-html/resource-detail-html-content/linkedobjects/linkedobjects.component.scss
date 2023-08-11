@@ -12,29 +12,33 @@
  *
  ************************************************/
 
-ul.awg-linked-obj-list {
-    padding-left: 0;
-}
-ul.awg-linked-obj-list li:hover {
-    background-color: #e7e7e7;
-}
-ul.awg-linked-obj-list li a {
-    width: inherit;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-}
-ul.awg-linked-obj-list li hr {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-}
+$textlinkColor: #333;
+$backgroundColor: #e7e7e7;
 
 /* link objects */
+ul.awg-linked-obj-list {
+    padding-left: 0;
+    li {
+        &:hover {
+            background-color: $backgroundColor;
+        }
+        a {
+            width: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+        hr {
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+    }
+}
 .awg-linked-obj-link {
     cursor: pointer;
-    color: #333 !important;
-}
-.awg-linked-obj-link:hover {
-    border-bottom: none !important;
+    color: $textlinkColor !important;
+    &:hover {
+        border-bottom: none !important;
+    }
 }
