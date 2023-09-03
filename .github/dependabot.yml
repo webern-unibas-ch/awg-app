@@ -18,3 +18,19 @@ updates:
       open-pull-requests-limit: 15
       labels:
           - 'npm dependencies'
+      groups:
+          angular-packages:
+              patterns:
+                  - '@angular/*'
+              exclude-patterns:
+                  - '@angular/cli'
+          angular-cli/devkit-packages:
+              patterns:
+                  - '@angular/cli'
+                  - '@angular-devkit/*'
+          angular-eslint-packages:
+              patterns:
+                  - '@angular-eslint/*'
+          typescript-eslint-packages:
+              patterns:
+                  - '@typescript-eslint/*'
