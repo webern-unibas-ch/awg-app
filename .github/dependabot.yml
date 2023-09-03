@@ -19,18 +19,18 @@ updates:
       labels:
           - 'npm dependencies'
       groups:
-          angular-packages:
+          angular-cli/devkit:
+              patterns:
+                  - '@angular/cli'
+                  - '@angular-devkit/*'
+          angular:
               patterns:
                   - '@angular/*'
               exclude-patterns:
                   - '@angular/cli'
-          angular-cli/devkit-packages:
-              patterns:
-                  - '@angular/cli'
-                  - '@angular-devkit/*'
-          angular-eslint-packages:
+          angular-eslint:
               patterns:
                   - '@angular-eslint/*'
-          typescript-eslint-packages:
+          typescript-eslint:
               patterns:
                   - '@typescript-eslint/*'
