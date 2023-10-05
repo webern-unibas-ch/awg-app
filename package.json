@@ -130,7 +130,7 @@
         "@commitlint/config-angular": "^17.7.0",
         "@compodoc/compodoc": "^1.1.21",
         "@types/d3": "^7.4.1",
-        "@types/jasmine": "~4.3.6",
+        "@types/jasmine": "~5.1.0",
         "@types/node": "^18.17.14",
         "@typescript-eslint/eslint-plugin": "^6.7.4",
         "@typescript-eslint/parser": "^6.7.4",
