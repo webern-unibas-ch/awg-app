@@ -36,7 +36,7 @@
                     "comment": "{{ref.getGlyph('[a]')}} zu e<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}."
                 },
                 {
-                    "svgGroupId": "g1",
+                    "svgGroupId": "g1182",
                     "measure": "6",
                     "system": "2",
                     "position": "4/8",
