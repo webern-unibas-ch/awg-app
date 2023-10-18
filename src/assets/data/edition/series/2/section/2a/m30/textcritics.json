@@ -40,7 +40,7 @@
                     "measure": "6",
                     "system": "2",
                     "position": "4/8",
-                    "comment": "Oberstimmenschicht: Pause überschreibt {{ref.getGlyph('[b]')}} zu b."
+                    "comment": "Oberstimmenschicht: Achtelpause überschreibt {{ref.getGlyph('[b]')}} zu b."
                 },
                 {
                     "svgGroupId": "g1058",
