@@ -23,7 +23,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [18.12, 20.8, 21.x]
+                node-version: [18.12, 20.8] # TODO (when Angular allows it): 21.x
         steps:
             - name: Checkout repository
               uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # ratchet:actions/checkout@v3
