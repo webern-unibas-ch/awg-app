@@ -17,7 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # ratchet:actions/checkout@v3
+              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v3
             - name: Optimize SVGs
               uses: ericcornelissen/svgo-action@7093d04c5022cc4155dad92d1bd48b6abac495b3 # ratchet:ericcornelissen/svgo-action@v4.0.0
               id: svgo
