@@ -141,7 +141,7 @@
         "eslint-plugin-angular": "^4.1.0",
         "eslint-plugin-deprecation": "^2.0.0",
         "eslint-plugin-import": "^2.29.0",
-        "eslint-plugin-jsdoc": "^46.8.2",
+        "eslint-plugin-jsdoc": "^46.9.0",
         "eslint-plugin-prettier": "^5.0.1",
         "gzipper": "^7.2.0",
         "husky": "^8.0.3",
