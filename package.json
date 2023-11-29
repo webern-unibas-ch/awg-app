@@ -95,7 +95,7 @@
         "@codemirror/legacy-modes": "^6.3.3",
         "@fortawesome/angular-fontawesome": "^0.13.0",
         "@fortawesome/fontawesome-svg-core": "^6.4.2",
-        "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@fortawesome/free-solid-svg-icons": "^6.5.0",
         "@kolkov/ngx-gallery": "2.0.1",
         "@ng-bootstrap/ng-bootstrap": "^15.1.1",
         "@popperjs/core": "^2.11.8",
