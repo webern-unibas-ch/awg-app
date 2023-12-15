@@ -38,10 +38,10 @@ import {
 import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 import { GraphVisualizerService } from '../services/graph-visualizer.service';
 
-import * as d3_drag from 'd3-drag';
-import * as d3_force from 'd3-force';
-import * as d3_selection from 'd3-selection';
-import * as d3_zoom from 'd3-zoom';
+import * as D3_DRAG from 'd3-drag';
+import * as D3_FORCE from 'd3-force';
+import * as D3_SELECTION from 'd3-selection';
+import * as D3_ZOOM from 'd3-zoom';
 
 /**
  * Object constant with a set of forces.
@@ -368,7 +368,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _cleanSVG(): void {
         // Remove everything below the SVG element
-        d3_selection.selectAll('svg.force-graph > *').remove();
+        D3_SELECTION.selectAll('svg.force-graph > *').remove();
     }
 
     /**
@@ -409,8 +409,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== Add SVG =====================
         if (!this._svg) {
-            this._svg = d3_selection
-                .select(this._graphContainer.nativeElement)
+            this._svg = D3_SELECTION.select(this._graphContainer.nativeElement)
                 .append('svg')
                 .attr('class', 'force-graph');
         }
@@ -460,24 +459,22 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _setupForceSimulation(): void {
         // Set up the simulation
-        this._forceSimulation = d3_force.forceSimulation();
+        this._forceSimulation = D3_FORCE.forceSimulation();
 
         // Create forces
-        const chargeForce = d3_force
-            .forceManyBody()
-            .strength((d: D3SimulationNode) => this._nodeRadius(d) * FORCES.CHARGE_STRENGTH);
+        const chargeForce = D3_FORCE.forceManyBody().strength(
+            (d: D3SimulationNode) => this._nodeRadius(d) * FORCES.CHARGE_STRENGTH
+        );
 
-        const centerForce = d3_force.forceCenter(this._divWidth / 2, this._divHeight / 2);
+        const centerForce = D3_FORCE.forceCenter(this._divWidth / 2, this._divHeight / 2);
 
-        const collideForce = d3_force
-            .forceCollide()
+        const collideForce = D3_FORCE.forceCollide()
             .strength(FORCES.COLLISION_STRENGTH)
             .radius(FORCES.COLLISION_RADIUS)
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        const linkForce = d3_force
-            .forceLink()
+        const linkForce = D3_FORCE.forceLink()
             .links(this._simulationData.links)
             .id((d: D3SimulationLink) => d.predicate)
             .distance(FORCES.LINK_DISTANCE);
@@ -708,8 +705,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour = d3_drag
-            .drag()
+        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag()
             .on('start', dragStart)
             .on('drag', dragged)
             .on('end', dragEnd);
@@ -745,8 +741,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // Create zoom behaviour
-        this._zoomBehaviour = d3_zoom
-            .zoom()
+        this._zoomBehaviour = D3_ZOOM.zoom()
             .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
             .on('zoom', zoomed);
 

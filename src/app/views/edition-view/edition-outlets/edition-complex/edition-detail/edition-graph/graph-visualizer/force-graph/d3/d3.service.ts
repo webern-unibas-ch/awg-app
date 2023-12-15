@@ -10,9 +10,9 @@ import {
     D3SimulationNode,
 } from '../../models';
 
-import * as d3_drag from 'd3-drag';
-import * as d3_selection from 'd3-selection';
-import * as d3_zoom from 'd3-zoom';
+import * as D3_DRAG from 'd3-drag';
+import * as D3_SELECTION from 'd3-selection';
+import * as D3_ZOOM from 'd3-zoom';
 
 /**
  * The D3 service.
@@ -37,7 +37,7 @@ export class D3Service {
      *  @returns {void} Sets the drag behaviour.
      */
     applyDragBehaviour(dragContext: D3Selection, simulation: D3Simulation): void {
-        // Const dragElement: D3Selection = d3_selection.select(element);
+        // Const dragElement: D3Selection = D3_SELECTION.select(element);
 
         const dragStart = (event: any, d: D3SimulationNode) => {
             // Prevent propagation of dragstart to parent elements
@@ -66,8 +66,7 @@ export class D3Service {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour = d3_drag
-            .drag()
+        const dragBehaviour: D3DragBehaviour = D3_DRAG.drag()
             .on('start', dragStart)
             .on('drag', dragged)
             .on('end', dragEnd);
@@ -87,8 +86,8 @@ export class D3Service {
      */
     applyZoomBehaviour(zoomContainerElement: any, svgElement: any): void {
         // Select the elements
-        const svg: D3Selection = d3_selection.select(svgElement);
-        const zoomContainer: D3Selection = d3_selection.select(zoomContainerElement);
+        const svg: D3Selection = D3_SELECTION.select(svgElement);
+        const zoomContainer: D3Selection = D3_SELECTION.select(zoomContainerElement);
 
         // Perform the zooming
         const zoomed = (event: any) => {
@@ -98,7 +97,7 @@ export class D3Service {
         };
 
         // Create zoom behaviour that calls the zoomActions on zoom
-        const zoomBehaviour = d3_zoom.zoom().on('zoom', zoomed);
+        const zoomBehaviour = D3_ZOOM.zoom().on('zoom', zoomed);
 
         // Apply zoom behaviour
         svg.call(zoomBehaviour);

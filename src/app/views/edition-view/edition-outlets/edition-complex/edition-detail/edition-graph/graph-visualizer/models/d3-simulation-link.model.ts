@@ -1,6 +1,6 @@
 import { D3SimulationNode } from './d3-simulation-node.model';
 
-import * as d3_force from 'd3-force';
+import * as D3_FORCE from 'd3-force';
 
 /**
  * Type alias: D3SimulationNodeOrStringOrNumber.
@@ -15,7 +15,7 @@ type D3SimulationNodeOrStringOrNumber = D3SimulationNode | string | number;
  * It is used in the context of the graph visualizer
  * to store the data of a d3 simulation link.
  */
-export class D3SimulationLink implements d3_force.SimulationLinkDatum<D3SimulationNode> {
+export class D3SimulationLink implements D3_FORCE.SimulationLinkDatum<D3SimulationNode> {
     /**
      * The source of the simulation link.
      */

@@ -2,8 +2,8 @@ import { ElementRef, Injectable } from '@angular/core';
 
 import { D3Selection, EditionSvgOverlay, ViewBox } from '@awg-views/edition-view/models';
 
-import * as d3_fetch from 'd3-fetch';
-import * as d3_selection from 'd3-selection';
+import * as D3_FETCH from 'd3-fetch';
+import * as D3_SELECTION from 'd3-selection';
 
 /**
  * The EditionSvgDrawing service.
@@ -103,8 +103,7 @@ export class EditionSvgDrawingService {
         // Get the reference to the svg element in the HTML template and append the svg root element to it
         svgEl.appendChild(svgRootGroupEl);
 
-        const svg = d3_selection
-            .select(svgEl)
+        const svg = D3_SELECTION.select(svgEl)
             .attr('width', vb.svgWidth)
             .attr('height', vb.svgHeight)
             .attr('viewBox', vb.viewBox) // Append viewbox
@@ -282,7 +281,7 @@ export class EditionSvgDrawingService {
      * @returns {Promise<Document>} A promise that resolves to the SVG file as Document.
      */
     private _fetchSvgFile(path: string): Promise<Document> {
-        return d3_fetch.svg(path);
+        return D3_FETCH.svg(path);
     }
 
     /**
@@ -318,7 +317,7 @@ export class EditionSvgDrawingService {
      */
     private _getViewBox(svgXML: SVGSVGElement): ViewBox {
         // Get the viewBox attributes from the SVG XML DOM tree
-        const svgXMLViewBox: string = d3_selection.select(svgXML).attr('viewBox');
+        const svgXMLViewBox: string = D3_SELECTION.select(svgXML).attr('viewBox');
 
         const viewBoxParts = svgXMLViewBox.split(' ');
 
