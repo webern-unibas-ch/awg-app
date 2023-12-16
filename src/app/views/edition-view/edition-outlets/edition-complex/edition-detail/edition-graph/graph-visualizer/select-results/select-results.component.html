@@ -10,7 +10,7 @@
             <div ngbAccordionBody>
                 <ng-template>
                     <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
-                        <ng-container *ngIf="isNotEmpty(queryResult); else noResult">
+                        <ng-container *ngIf="isQueryResultNotEmpty(queryResult); else noResult">
                             <!-- SPARQL table visualization -->
                             <awg-sparql-table
                                 [queryResult]="queryResult"

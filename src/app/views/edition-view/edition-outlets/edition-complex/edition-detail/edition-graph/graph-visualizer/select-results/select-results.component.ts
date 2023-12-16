@@ -60,23 +60,29 @@ export class SelectResultsComponent {
     constructor(public utils: UtilityService) {}
 
     /**
-     * Public method: isNotEmpty.
+     * Public method: isAccordionItemDisabled.
+     *
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
+     *
+     * @returns {boolean} The boolean value of the comparison.
+     */
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen ? true : false;
+    }
+
+    /**
+     * Public method: isQueryResultNotEmpty.
      *
      * It checks if a given queryResult is not empty.
      *
-     * @param {string} queryResult The given queryResult.
+     * @param {QueryResult} queryResult The given queryResult.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isNotEmpty(queryResult: QueryResult): boolean {
+    isQueryResultNotEmpty(queryResult: QueryResult): boolean {
         const { head, body } = queryResult;
-        const varsNotEmpty = this.utils.isNotEmptyArray(head?.vars);
-        const bindingsNotEmpty = this.utils.isNotEmptyArray(body?.bindings);
-
-        if (!varsNotEmpty || !bindingsNotEmpty) {
-            return false;
-        }
-        return true;
+        return this.utils.isNotEmptyArray(head?.vars) && this.utils.isNotEmptyArray(body?.bindings);
     }
 
     /**
@@ -93,17 +99,5 @@ export class SelectResultsComponent {
             return;
         }
         this.clickedTableRequest.emit(uri);
-    }
-
-    /**
-     * Public method: isAccordionItemDisabled.
-     *
-     * It returns a boolean flag if the accordion item should be disabled.
-     * It returns true if fullscreenMode is set, otherwise false.
-     *
-     * @returns {boolean} The boolean value of the comparison.
-     */
-    isAccordionItemDisabled(): boolean {
-        return this.isFullscreen ? true : false;
     }
 }
