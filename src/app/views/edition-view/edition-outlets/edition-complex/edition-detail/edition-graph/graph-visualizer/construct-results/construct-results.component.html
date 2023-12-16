@@ -1,26 +1,33 @@
-<ngb-accordion
-    #constructResultsAcc="ngbAccordion"
-    activeIds="awg-graph-visualizer-construct-results"
-    (panelChange)="preventPanelCollapseOnFullscreen($event)">
-    <ngb-panel id="awg-graph-visualizer-construct-results" title="Resultat">
-        <ng-template ngbPanelContent>
-            <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
-                <ng-container *ngIf="queryResult.length > 0; else noResult">
-                    <!-- Force graph visualization -->
-                    <awg-force-graph
-                        class="full-width"
-                        [queryResultTriples]="queryResult"
-                        [height]="defaultForceGraphHeight"
-                        (clickedNodeRequest)="onGraphNodeClick($event)">
-                    </awg-force-graph>
-                </ng-container>
-                <ng-template #noResult>
-                    <awg-sparql-no-results></awg-sparql-no-results>
+<div ngbAccordion>
+    <div
+        ngbAccordionItem="awg-graph-visualizer-construct-results"
+        [collapsed]="false"
+        [disabled]="isAccordionItemDisabled()">
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton class="p-3">Resultat</button>
+        </div>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
+                        <ng-container *ngIf="isQueryResultNotEmpty(queryResult); else noResult">
+                            <!-- Force graph visualization -->
+                            <awg-force-graph
+                                class="full-width"
+                                [queryResultTriples]="queryResult"
+                                [height]="defaultForceGraphHeight"
+                                (clickedNodeRequest)="onGraphNodeClick($event)">
+                            </awg-force-graph>
+                        </ng-container>
+                        <ng-template #noResult>
+                            <awg-sparql-no-results></awg-sparql-no-results>
+                        </ng-template>
+                    </ng-container>
+                    <ng-template #loading>
+                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+                    </ng-template>
                 </ng-template>
-            </ng-container>
-            <ng-template #loading>
-                <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-            </ng-template>
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+            </div>
+        </div>
+    </div>
+</div>
