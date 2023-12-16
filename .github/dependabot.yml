@@ -31,6 +31,14 @@ updates:
           angular-eslint:
               patterns:
                   - '@angular-eslint/*'
+          fortawesome:
+              patterns:
+                  - '@fortawesome/*'
+              exclude-patterns:
+                  - '@fortawesome/angular-fontawesome'
+          commitlint:
+              patterns:
+                  - '@commitlint/*'
           typescript-eslint:
               patterns:
                   - '@typescript-eslint/*'
