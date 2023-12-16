@@ -232,9 +232,9 @@ describe('EditionReportComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no ngb-accordion yet', () => {
-                // Ngb-accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 0, 0);
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
 
             it('... should not contain source list component (stubbed) yet', () => {
@@ -290,9 +290,9 @@ describe('EditionReportComponent', () => {
         }));
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion', () => {
-                // Ngb-accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain one div.accordion', () => {
+                // NgbAccordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             it('... should contain one source list component (stubbed)', () => {

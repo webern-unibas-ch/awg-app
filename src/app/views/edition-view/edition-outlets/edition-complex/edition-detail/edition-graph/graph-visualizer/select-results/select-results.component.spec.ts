@@ -8,7 +8,6 @@ import { NgbAccordionDirective, NgbAccordionModule, NgbConfig } from '@ng-bootst
 
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-
 import {
     expectSpyCall,
     expectToBe,
@@ -45,10 +44,10 @@ describe('SelectResultsComponent (DONE)', () => {
     let expectedQueryTime: number;
     let expectedIsFullscreen: boolean;
 
-    let tableClickSpy: Spy;
     let emitClickedTableRequestSpy: Spy;
     let isAccordionItemDisabledSpy: Spy;
-    let isNotEmptySpy: Spy;
+    let isQueryResultNotEmptySpy: Spy;
+    let tableClickSpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -92,10 +91,10 @@ describe('SelectResultsComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        tableClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
         emitClickedTableRequestSpy = spyOn(component.clickedTableRequest, 'emit').and.callThrough();
-        isNotEmptySpy = spyOn(component, 'isNotEmpty').and.callThrough();
         isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
+        isQueryResultNotEmptySpy = spyOn(component, 'isQueryResultNotEmpty').and.callThrough();
+        tableClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
     });
 
     it('... should create', () => {
@@ -157,12 +156,12 @@ describe('SelectResultsComponent (DONE)', () => {
             });
 
             describe('not in fullscreen mode', () => {
-                it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Panel (div.accordion-item)
-                    const panelDes = getAndExpectDebugElementByCss(
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-select-results.accordion-item',
                         1,
@@ -170,41 +169,44 @@ describe('SelectResultsComponent (DONE)', () => {
                     );
                     // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
-                        panelDes[0],
+                        itemDes[0],
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
                         1,
                         1
                     );
 
                     // Body open (div.accordion-collapse)
-                    getAndExpectDebugElementByCss(
-                        panelDes[0],
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                    const itemBodyDes = getAndExpectDebugElementByCss(
+                        itemDes[0],
+                        'div#awg-graph-visualizer-select-results-collapse',
                         1,
                         1
                     );
+                    const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should display panel header button', () => {
+                it('... should display item header button', () => {
                     // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Panel header button
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+                    // Item header button
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should toggle panel body on click', () => {
+                it('... should toggle item body on click', () => {
                     // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
                         1,
@@ -212,90 +214,180 @@ describe('SelectResultsComponent (DONE)', () => {
                     );
 
                     // Button debug elements
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     // Button native elements to click on
                     const btnEl = btnDes[0].nativeElement;
 
-                    // Panel body is open
-                    let panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body is open
+                    let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
-                    let panelBodyEl = panelBodyDes[0].nativeElement;
+                    let itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'show');
+                    expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel body is collapsed
-                    panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body is collapsed
+                    itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-collapse',
                         1,
                         1,
                         'collapsed'
                     );
-                    panelBodyEl = panelBodyDes[0].nativeElement;
+                    itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'collapse');
+                    expectToContain(itemBodyEl.classList, 'collapse');
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel body is open again
-                    panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body is open again
+                    itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
-                    panelBodyEl = panelBodyDes[0].nativeElement;
+                    itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'show');
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain panel body with SparqlNoResultsStubComponent (stubbed) if no results are available', () => {
-                    // Mock empty response
-                    component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
-                    fixture.detectChanges();
+                describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
+                    it('... queryResult$ is EMPTY', () => {
+                        // Mock empty observable
+                        component.queryResult$ = EMPTY;
+                        detectChangesOnPush(fixture);
 
-                    // Panel body
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                        1,
-                        1
-                    );
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
 
-                    // SparqlNoResultsStubComponent
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult$ is undefined', () => {
+                        // Mock undefined response
+                        component.queryResult$ = undefined;
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult$ is null', () => {
+                        // Mock null response
+                        component.queryResult$ = null;
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
                 });
 
-                it('... should contain TwelveToneSpinnerComponent (stubbed) in panel body while loading', () => {
-                    // Mock empty observable
-                    component.queryResult$ = EMPTY;
-                    fixture.detectChanges();
+                describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
+                    it('... no results are available', () => {
+                        // Mock empty response
+                        component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
+                        detectChangesOnPush(fixture);
 
-                    // Panel body
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                        1,
-                        1
-                    );
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult.head is undefined', () => {
+                        // Mock undefined response
+                        const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
+                        component.queryResult$ = observableOf(undefinedQueryResult);
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult.body is undefined', () => {
+                        // Mock undefined response
+                        const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
+                        component.queryResult$ = observableOf(undefinedQueryResult);
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult.head and queryResult.body are undefined', () => {
+                        // Mock undefined response
+                        const undefinedQueryResult = { head: undefined, body: undefined };
+                        component.queryResult$ = observableOf(undefinedQueryResult);
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const body = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(body[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
                 });
 
-                it('... should contain panel body with SparqlTableComponent (stubbed) if results are available', () => {
-                    // Panel body
+                it('... should contain item body with SparqlTableComponent (stubbed) if results are available', () => {
+                    // Item body
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -325,12 +417,12 @@ describe('SelectResultsComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
+                it('... should contain one div.accordion-item with header and open body in div.accordion', () => {
                     // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                    // Panel (div.accordion-item)
-                    const panelDes = getAndExpectDebugElementByCss(
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(
                         accordionDes[0],
                         'div#awg-graph-visualizer-select-results.accordion-item',
                         1,
@@ -338,41 +430,44 @@ describe('SelectResultsComponent (DONE)', () => {
                     );
                     // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
-                        panelDes[0],
+                        itemDes[0],
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
                         1,
                         1
                     );
 
                     // Body open (div.accordion-collapse)
-                    getAndExpectDebugElementByCss(
-                        panelDes[0],
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                    const itemBodyDes = getAndExpectDebugElementByCss(
+                        itemDes[0],
+                        'div#awg-graph-visualizer-select-results-collapse',
                         1,
                         1
                     );
+                    const itemBodyEl = itemBodyDes[0].nativeElement;
+
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should display panel header button', () => {
+                it('... should display item header button', () => {
                     // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
                         1,
                         1
                     );
 
-                    // Panel header button
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+                    // Item header button
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl = btnDes[0].nativeElement;
 
                     // Check button content
                     expectToBe(btnEl.textContent, 'Resultat');
                 });
 
-                it('... should not toggle panel body on click', () => {
+                it('... should not toggle item body on click', () => {
                     // Header debug elements
-                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                    const itemHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-header',
                         1,
@@ -380,76 +475,166 @@ describe('SelectResultsComponent (DONE)', () => {
                     );
 
                     // Button debug elements
-                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+                    const btnDes = getAndExpectDebugElementByCss(itemHeaderDes[0], 'button.accordion-button', 1, 1);
                     // Button native elements to click on
                     const btnEl = btnDes[0].nativeElement;
 
                     expect(btnEl.disabled).toBeTruthy();
 
-                    // Panel body is open
-                    let panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body is open
+                    let itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
-                    let panelBodyEl = panelBodyDes[0].nativeElement;
+                    let itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'show');
+                    expectToContain(itemBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // Panel body does not close again
-                    panelBodyDes = getAndExpectDebugElementByCss(
+                    // Item body does not close again
+                    itemBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
-                    panelBodyEl = panelBodyDes[0].nativeElement;
+                    itemBodyEl = itemBodyDes[0].nativeElement;
 
-                    expectToContain(panelBodyEl.classList, 'show');
+                    expectToContain(itemBodyEl.classList, 'show');
                 });
 
-                it('... should contain panel body with SparqlNoResultsStubComponent (stubbed) if no results are available', () => {
-                    // Mock empty response
-                    component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
-                    fixture.detectChanges();
+                describe('... should contain TwelveToneSpinnerComponent (stubbed) in item body while loading if ... ', () => {
+                    it('... queryResult$ is EMPTY', () => {
+                        // Mock empty observable
+                        component.queryResult$ = EMPTY;
+                        detectChangesOnPush(fixture);
 
-                    // Panel body
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                        1,
-                        1
-                    );
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
 
-                    // SparqlNoResultsStubComponent
-                    getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult$ is undefined', () => {
+                        // Mock undefined response
+                        component.queryResult$ = undefined;
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult$ is null', () => {
+                        // Mock null response
+                        component.queryResult$ = null;
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                    });
                 });
 
-                it('... should contain TwelveToneSpinnerComponent (stubbed) in panel body while loading', () => {
-                    // Mock empty observable
-                    component.queryResult$ = EMPTY;
-                    fixture.detectChanges();
+                describe('... should contain item body with SparqlNoResultsStubComponent (stubbed) if ... ', () => {
+                    it('... no results are available', () => {
+                        // Mock empty response
+                        component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
+                        detectChangesOnPush(fixture);
 
-                    // Panel body
-                    const bodyDes = getAndExpectDebugElementByCss(
-                        compDe,
-                        'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
-                        1,
-                        1
-                    );
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
 
-                    getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult.head is undefined', () => {
+                        // Mock undefined response
+                        const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
+                        component.queryResult$ = observableOf(undefinedQueryResult);
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult.body is undefined', () => {
+                        // Mock undefined response
+                        const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
+                        component.queryResult$ = observableOf(undefinedQueryResult);
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const bodyDes = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
+
+                    it('... queryResult.head and queryResult.body are undefined', () => {
+                        // Mock undefined response
+                        const undefinedQueryResult = { head: undefined, body: undefined };
+                        component.queryResult$ = observableOf(undefinedQueryResult);
+                        detectChangesOnPush(fixture);
+
+                        // Item body
+                        const body = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
+                            1,
+                            1
+                        );
+
+                        // SparqlNoResultsStubComponent
+                        getAndExpectDebugElementByDirective(body[0], SparqlNoResultsStubComponent, 1, 1);
+                    });
                 });
 
-                it('... should contain panel body with SparqlTableComponent (stubbed) if results are available', () => {
-                    // Panel body
+                it('... should contain item body with SparqlTableComponent (stubbed) if results are available', () => {
+                    // Item body
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-select-results-collapse > div.accordion-body',
@@ -470,6 +655,144 @@ describe('SelectResultsComponent (DONE)', () => {
                     expectToEqual(sparqlTableCmp.queryResult, expectedQueryResult);
                     expectToBe(sparqlTableCmp.queryTime, expectedQueryTime);
                 });
+            });
+        });
+
+        describe('#isAccordionItemDisabled()', () => {
+            it('... should have a method `isAccordionItemDisabled`', () => {
+                expect(component.isAccordionItemDisabled).toBeDefined();
+            });
+
+            it('... should be triggered from ngbAccordionItem', () => {
+                expectSpyCall(isAccordionItemDisabledSpy, 2);
+            });
+
+            it('... should return false if isFullscreen is false', () => {
+                expectToBe(component.isAccordionItemDisabled(), false);
+            });
+
+            it('... should return true if isFullscreen is true', () => {
+                // Set fullscreen flag to true
+                component.isFullscreen = true;
+
+                expectToBe(component.isAccordionItemDisabled(), true);
+            });
+        });
+
+        describe('#isQueryResultNotEmpty()', () => {
+            it('... should have a method `isQueryResultNotEmpty`', () => {
+                expect(component.isQueryResultNotEmpty).toBeDefined();
+            });
+
+            it('... should be triggered from ngbAccordionBody', () => {
+                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult[0]);
+            });
+
+            it('... should be triggered by change of queryResult', () => {
+                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                // Mock another queryResult
+                const queryResult = {
+                    head: { vars: ['AnotherTestHeader'] },
+                    body: { bindings: [{ testKey: 'AnotherTestValue' }] },
+                };
+                component.queryResult$ = observableOf(queryResult);
+
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isQueryResultNotEmptySpy, 3, queryResult);
+            });
+
+            describe('... should return false if ...', () => {
+                it('... queryResult.head is undefined', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                    // Mock undefined response
+                    const undefinedQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
+                    component.queryResult$ = observableOf(undefinedQueryResult);
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult);
+                    expectToBe(component.isQueryResultNotEmpty(undefinedQueryResult), false);
+                });
+
+                it('... queryResult.body is undefined', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                    // Mock undefined response
+                    const undefinedQueryResult = { head: { vars: ['Test'] }, body: undefined };
+                    component.queryResult$ = observableOf(undefinedQueryResult);
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult);
+                    expectToBe(component.isQueryResultNotEmpty(undefinedQueryResult), false);
+                });
+
+                it('... queryResult.head and queryResult.body are undefined', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                    // Mock undefined response
+                    const undefinedQueryResult = { head: undefined, body: undefined };
+                    component.queryResult$ = observableOf(undefinedQueryResult);
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, undefinedQueryResult);
+                    expectToBe(component.isQueryResultNotEmpty(undefinedQueryResult), false);
+                });
+
+                it('... queryResult.head.vars is empty array', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                    // Mock empty response
+                    const emptyQueryResult = { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } };
+                    component.queryResult$ = observableOf(emptyQueryResult);
+
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, emptyQueryResult);
+                    expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
+                });
+
+                it('... queryResult.body.bindings is empty array', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                    // Mock empty response
+                    const emptyQueryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [] } };
+                    component.queryResult$ = observableOf(emptyQueryResult);
+
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, emptyQueryResult);
+                    expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
+                });
+
+                it('... queryResult.head.vars & queryResult.body.bindings are empty arrays', () => {
+                    expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                    // Mock empty response
+                    const emptyQueryResult = { head: { vars: [] }, body: { bindings: [] } };
+                    component.queryResult$ = observableOf(emptyQueryResult);
+
+                    detectChangesOnPush(fixture);
+
+                    expectSpyCall(isQueryResultNotEmptySpy, 3, emptyQueryResult);
+                    expectToBe(component.isQueryResultNotEmpty(emptyQueryResult), false);
+                });
+            });
+
+            it('... should return true if queryResult.head.vars && queryResult.body.bindings is not empty (length > 0)', () => {
+                expectSpyCall(isQueryResultNotEmptySpy, 2, expectedQueryResult);
+
+                // Mock non-empty response
+                const nonEmptyQueryResult = {
+                    head: { vars: ['AnotherTestHeader'] },
+                    body: { bindings: [{ testKey: 'AnotherTestValue' }] },
+                };
+                component.queryResult$ = observableOf(nonEmptyQueryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isQueryResultNotEmptySpy, 3, nonEmptyQueryResult);
+                expectToBe(component.isQueryResultNotEmpty(nonEmptyQueryResult), true);
             });
         });
 
@@ -514,117 +837,6 @@ describe('SelectResultsComponent (DONE)', () => {
 
                 expectSpyCall(tableClickSpy, 1, expectedUri);
                 expectSpyCall(emitClickedTableRequestSpy, 1, expectedUri);
-            });
-        });
-
-        describe('#isNotEmpty()', () => {
-            it('... should have a method `isNotEmpty`', () => {
-                expect(component.isNotEmpty).toBeDefined();
-            });
-
-            describe('... should return false if ...', () => {
-                it('... no queryResult.head is provided', () => {
-                    // Mock empty response
-                    const emptyQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    fixture.detectChanges();
-
-                    expectSpyCall(isNotEmptySpy, 5, emptyQueryResult);
-                    // SparqlNoResultsStubComponent
-                    getAndExpectDebugElementByDirective(compDe, SparqlNoResultsStubComponent, 1, 1);
-                });
-
-                it('... no queryResult.body is provided', () => {
-                    expectSpyCall(isNotEmptySpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: ['Test'] }, body: undefined };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    fixture.detectChanges();
-
-                    expectSpyCall(isNotEmptySpy, 5, emptyQueryResult);
-                    // SparqlNoResultsStubComponent
-                    getAndExpectDebugElementByDirective(compDe, SparqlNoResultsStubComponent, 1, 1);
-                });
-
-                it('... queryResult.head.vars length = 0', () => {
-                    expectSpyCall(isNotEmptySpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    fixture.detectChanges();
-
-                    expectSpyCall(isNotEmptySpy, 5, emptyQueryResult);
-                    expect(component.isNotEmpty(emptyQueryResult)).toBeFalse();
-                });
-
-                it('... queryResult.body.bindings length = 0', () => {
-                    expectSpyCall(isNotEmptySpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    fixture.detectChanges();
-
-                    expectSpyCall(isNotEmptySpy, 5, emptyQueryResult);
-                    expect(component.isNotEmpty(emptyQueryResult)).toBeFalse();
-                });
-
-                it('... queryResult.head.vars & queryResult.body.bindings length = 0', () => {
-                    expectSpyCall(isNotEmptySpy, 3, expectedQueryResult);
-
-                    // Mock empty response
-                    const emptyQueryResult = { head: { vars: [] }, body: { bindings: [] } };
-                    component.queryResult$ = observableOf(emptyQueryResult);
-
-                    fixture.detectChanges();
-
-                    expectSpyCall(isNotEmptySpy, 5, emptyQueryResult);
-                    expect(component.isNotEmpty(emptyQueryResult)).toBeFalse();
-                });
-            });
-
-            it('... should return true if queryResult.head.vars && queryResult.body.bindings is not empty (length > 0)', () => {
-                expectSpyCall(isNotEmptySpy, 3, expectedQueryResult);
-
-                expect(component.isNotEmpty(expectedQueryResult)).toBeTrue();
-                expectSpyCall(isNotEmptySpy, 4, expectedQueryResult);
-
-                // Mock another non-empty response
-                const queryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [{ testKey: 'TestValue' }] } };
-                component.queryResult$ = observableOf(queryResult);
-
-                fixture.detectChanges();
-
-                expectSpyCall(isNotEmptySpy, 6, queryResult);
-                expect(component.isNotEmpty(queryResult)).toBeTrue();
-                expectSpyCall(isNotEmptySpy, 7, queryResult);
-            });
-        });
-
-        describe('#isAccordionItemDisabled()', () => {
-            it('... should have a method `isAccordionItemDisabled`', () => {
-                expect(component.isAccordionItemDisabled).toBeDefined();
-            });
-
-            it('... should be triggered from ngbAccordionItem', () => {
-                expectSpyCall(isAccordionItemDisabledSpy, 2);
-            });
-
-            it('... should return false if isFullscreen is false', () => {
-                expectToBe(component.isAccordionItemDisabled(), false);
-            });
-
-            it('... should return true if isFullscreen is true', () => {
-                // Set fullscreen flag to true
-                component.isFullscreen = true;
-
-                expectToBe(component.isAccordionItemDisabled(), true);
             });
         });
     });

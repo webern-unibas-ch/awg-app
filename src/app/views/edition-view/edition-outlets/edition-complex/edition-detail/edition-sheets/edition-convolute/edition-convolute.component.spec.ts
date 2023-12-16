@@ -6,8 +6,11 @@ import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testi
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 import { NgbAccordionModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { click } from '@testing/click-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -16,7 +19,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
-import { click } from '@testing/click-helper';
 import { EditionConvoluteComponent } from './edition-convolute.component';
 
 interface IFolioLegend {
@@ -120,24 +122,17 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         it('... should have faSquare', () => {
-            expect(component.faSquare).toBeDefined();
-            expect(component.faSquare).withContext(`should be faSquare`).toBe(faSquare);
+            expectToBe(component.faSquare, faSquare);
         });
 
         it('... should have folioLegends', () => {
-            expect(component.folioLegends).toBeDefined();
-            expect(component.folioLegends)
-                .withContext(`should equal ${expectedFolioLegends}`)
-                .toEqual(expectedFolioLegends);
+            expectToEqual(component.folioLegends, expectedFolioLegends);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
-
-                // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
 
             it('... should contain no EditionFolioViewerComponent (stubbed) yet', () => {
@@ -157,34 +152,35 @@ describe('EditionConvoluteComponent (DONE)', () => {
         });
 
         it('... should have `selectedConvolute` input', () => {
-            expect(component.selectedConvolute).toBeDefined();
-            expect(component.selectedConvolute)
-                .withContext(`should be ${expectedSelectedConvolute}`)
-                .toBe(expectedSelectedConvolute);
+            expectToEqual(component.selectedConvolute, expectedSelectedConvolute);
         });
 
         it('... should have `selectedSvgSheet` input', () => {
-            expect(component.selectedSvgSheet).toBeDefined();
-            expect(component.selectedSvgSheet).withContext(`should be ${expectedSvgSheet}`).toBe(expectedSvgSheet);
+            expectToEqual(component.selectedSvgSheet, expectedSvgSheet);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with one panel (div.accordion-item)', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain one div.accordion', () => {
+                // NgbAccordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
 
-                // Panel
+            it('... should contain one item in div.accordion', () => {
+                // NgbAccordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
             });
 
-            it('... should contain header title for the panel (div.accordion-header)', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+            it('... should contain header title for the item (div.accordion-header)', () => {
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
-                // Panel
+                // Header
                 const headerDes = getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div#awg-convolute-view-header.accordion-header',
+                    itemDes[0],
+                    'div#awg-convolute-view > div.accordion-header',
                     1,
                     1
                 );
@@ -192,15 +188,13 @@ describe('EditionConvoluteComponent (DONE)', () => {
 
                 const expectedTitle = 'Konvolutübersicht';
 
-                expect(headerEl.textContent).toBeDefined();
-                expect(headerEl.textContent.trim()).withContext(`should be ${expectedTitle}`).toBe(expectedTitle);
+                expectToBe(headerEl.textContent.trim(), expectedTitle);
             });
 
-            it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-
-                const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
+            it('... should contain two divs and one EditionFolioViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
                 getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-convolute-label', 1, 1);
                 getAndExpectDebugElementByDirective(bodyDes[0], EditionFolioViewerStubComponent, 1, 1);
@@ -213,10 +207,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     EditionFolioViewerStubComponent
                 ) as EditionFolioViewerStubComponent;
 
-                expect(folioCmp.selectedConvolute).toBeTruthy();
-                expect(folioCmp.selectedConvolute)
-                    .withContext(`should equal ${expectedSelectedConvolute}`)
-                    .toEqual(expectedSelectedConvolute);
+                expectToEqual(folioCmp.selectedConvolute, expectedSelectedConvolute);
             });
 
             it('... should pass down `selectedSvgSheet` to the EditionFolioViewerComponent', () => {
@@ -225,18 +216,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     EditionFolioViewerStubComponent
                 ) as EditionFolioViewerStubComponent;
 
-                expect(folioCmp.selectedSvgSheet).toBeTruthy();
-                expect(folioCmp.selectedSvgSheet)
-                    .withContext(`should equal ${expectedSvgSheet}`)
-                    .toEqual(expectedSvgSheet);
+                expectToEqual(folioCmp.selectedSvgSheet, expectedSvgSheet);
             });
 
             it('... should contain one link with convolute label in the convolute label div', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
                 const divDes = getAndExpectDebugElementByCss(
-                    panelDes[0],
+                    itemDes[0],
                     'div.accordion-body > div.awg-convolute-label',
                     1,
                     1
@@ -245,18 +233,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const anchorDes = getAndExpectDebugElementByCss(divDes[0], 'a', 1, 1);
                 const anchorEl = anchorDes[0].nativeElement;
 
-                expect(anchorEl.textContent).toBeDefined();
-                expect(anchorEl.textContent)
-                    .withContext(`should be ${expectedSelectedConvolute.convoluteLabel}`)
-                    .toBe(expectedSelectedConvolute.convoluteLabel);
+                expectToBe(anchorEl.textContent, expectedSelectedConvolute.convoluteLabel);
             });
 
             it('... should contain three legend labels in the folio legend div', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
                 const legendDes = getAndExpectDebugElementByCss(
-                    panelDes[0],
+                    itemDes[0],
                     'div.accordion-body > div.awg-convolute-legend',
                     1,
                     1
@@ -267,32 +252,14 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const spanEl1 = spanDes[1].nativeElement;
                 const spanEl2 = spanDes[2].nativeElement;
 
-                expect(spanEl0.className).toBeDefined();
-                expect(spanEl0.className)
-                    .withContext(`should be ${expectedFolioLegends[0].color}`)
-                    .toBe(expectedFolioLegends[0].color);
-                expect(spanEl0.textContent).toBeDefined();
-                expect(spanEl0.textContent.trim())
-                    .withContext(`should be ${expectedFolioLegends[0].label}`)
-                    .toBe(expectedFolioLegends[0].label);
+                expectToBe(spanEl0.className, expectedFolioLegends[0].color);
+                expectToBe(spanEl0.textContent.trim(), expectedFolioLegends[0].label);
 
-                expect(spanEl1.className).toBeDefined();
-                expect(spanEl1.className)
-                    .withContext(`should be ${expectedFolioLegends[1].color}`)
-                    .toBe(expectedFolioLegends[1].color);
-                expect(spanEl1.textContent).toBeDefined();
-                expect(spanEl1.textContent.trim())
-                    .withContext(`should be ${expectedFolioLegends[1].label}`)
-                    .toBe(expectedFolioLegends[1].label);
+                expectToBe(spanEl1.className, expectedFolioLegends[1].color);
+                expectToBe(spanEl1.textContent.trim(), expectedFolioLegends[1].label);
 
-                expect(spanEl2.className).toBeDefined();
-                expect(spanEl2.className)
-                    .withContext(`should be ${expectedFolioLegends[2].color}`)
-                    .toBe(expectedFolioLegends[2].color);
-                expect(spanEl2.textContent).toBeDefined();
-                expect(spanEl2.textContent.trim())
-                    .withContext(`should be ${expectedFolioLegends[2].label}`)
-                    .toBe(expectedFolioLegends[2].label);
+                expectToBe(spanEl2.className, expectedFolioLegends[2].color);
+                expectToBe(spanEl2.textContent.trim(), expectedFolioLegends[2].label);
             });
         });
 
@@ -374,17 +341,15 @@ describe('EditionConvoluteComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+                expectToBe(routerLinks.length, 1);
             });
 
             it('... can get correct linkParams from template', () => {
-                expect(routerLinks[0].linkParams).withContext(`should equal ['../report']`).toEqual(['../report']);
+                expectToEqual(routerLinks[0].linkParams, ['../report']);
             });
 
             it('... can get correct fragment from template', () => {
-                expect(routerLinks[0].fragment)
-                    .withContext(`should equal ${expectedFragment}`)
-                    .toEqual(expectedFragment);
+                expectToEqual(routerLinks[0].fragment, expectedFragment);
             });
 
             it('... can click report link in template', () => {
@@ -396,7 +361,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 click(reportLinkDe);
                 fixture.detectChanges();
 
-                expect(reportLink.navigatedTo).withContext(`should equal ['../report']`).toEqual(['../report']);
+                expectToEqual(reportLink.navigatedTo, ['../report']);
             });
 
             it('... should navigate to report page with fragment when report link is clicked', () => {
@@ -408,10 +373,8 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 click(reportLinkDe);
                 fixture.detectChanges();
 
-                expect(reportLink.navigatedTo).withContext(`should equal ['../report']`).toEqual(['../report']);
-                expect(reportLink.navigatedToFragment)
-                    .withContext(`should equal ${expectedFragment}`)
-                    .toEqual(expectedFragment);
+                expectToEqual(reportLink.navigatedTo, ['../report']);
+                expectToEqual(reportLink.navigatedToFragment, expectedFragment);
             });
         });
     });
