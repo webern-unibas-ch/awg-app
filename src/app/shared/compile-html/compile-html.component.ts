@@ -93,9 +93,9 @@ const nextId = (): string => {
 @Component({
     selector: '[compile-html]',
     template: `
-        <ng-container *ngIf="html !== undefined && html !== null && html.trim() !== ''">
+        @if (html !== undefined && html !== null && html.trim() !== '') {
             <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
-        </ng-container>
+        }
     `,
 })
 @Injectable()

@@ -1,116 +1,120 @@
-<form [formGroup]="extendedSearchForm" (ngSubmit)="onSearch()" *ngIf="extendedSearchForm" class="p-3 border">
-    <div class="form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3">
-        <select
-            class="form-select"
-            id="awg-extended-search-resourcetype-input"
-            aria-label="Extended search restype control"
-            formControlName="restypeControl"
-            required>
-            <option value="" disabled hidden>{{ defaultFormString }}</option>
-            <option
-                *ngFor="let resourcetype of restypesResponse?.resourcetypes"
-                [value]="resourcetype.id"
-                [title]="resourcetype.label">
-                {{ resourcetype.id }} | {{ resourcetype.label }}
-            </option>
-        </select>
-        <label for="awg-extended-search-resourcetype-input" class="text-muted">Resource type</label>
-    </div>
-
-    <ng-container formArrayName="propertiesControls">
-        <div *ngFor="let propCtrl of propertiesControls.controls; index as idx" class="row mb-4 ms-4 g-2">
-            <ng-container [formGroupName]="idx">
-                <div class="form-floating col-md-4">
-                    <select
-                        id="awg-extended-search-property-{{ idx }}"
-                        class="form-select"
-                        [formControl]="getPropertyIdControlAtIndex(idx)"
-                        required>
-                        <option value="" disabled hidden>{{ defaultFormString }}</option>
-                        <ng-container *ngIf="selectedResourcetype">
-                            <option
-                                *ngFor="let property of selectedResourcetype?.properties"
-                                [value]="property.id"
-                                [title]="property.label">
-                                {{ property.id }} | {{ property.label }}
-                            </option>
-                        </ng-container>
-                    </select>
-                    <label class="text-muted" for="awg-extended-search-property-{{ idx }}">Property</label>
-                </div>
-                <div class="form-floating col-md-2">
-                    <select
-                        id="awg-extended-search-compop-{{ idx }}"
-                        class="form-select"
-                        [formControl]="getCompopControlAtIndex(idx)"
-                        required>
-                        <option value="" disabled hidden>{{ defaultFormString }}</option>
-                        <ng-container *ngIf="selectedCompopSets">
-                            <option
-                                *ngFor="let compop of selectedCompopSets[idx]"
-                                [value]="compop.value"
-                                [title]="compop.title"
-                                [innerHtml]="compop.label"></option>
-                        </ng-container>
-                    </select>
-                    <label class="text-muted" for="awg-extended-search-compop-{{ idx }}">Operator</label>
-                </div>
-                <div class="form-floating col-md-4">
-                    <input
-                        title="Extended Search - Search Value"
-                        type="search"
-                        id="awg-extended-search-value-{{ idx }}"
-                        class="form-control"
-                        [formControl]="getSearchvalControlAtIndex(idx)"
-                        placeholder="{{ defaultFormString }}" />
-                    <label class="text-muted" for="awg-extended-search-value-{{ idx }}">Search value</label>
-                </div>
-
-                <div class="btn-toolbar col-2" role="toolbar" aria-label="Toolbar for property inputs">
-                    <div class="btn-group" role="group" aria-label="Group of handle buttons">
-                        <button
-                            id="awg-extended-search-remove-property-{{ idx }}"
-                            class="btn btn-outline-danger"
-                            type="button"
-                            *ngIf="propertiesControls.controls.length > 1"
-                            (click)="removePropertiesControl(idx)">
-                            <fa-icon [icon]="faTrash"></fa-icon>
-                        </button>
-                        <button
-                            id="awg-extended-search-add-property-{{ idx }}"
-                            class="btn btn-outline-info"
-                            type="button"
-                            (click)="addPropertiesControl()"
-                            [disabled]="isAddButtonDisabled(idx)">
-                            <fa-icon [icon]="faPlus"></fa-icon>
-                        </button>
-                    </div>
-                </div>
-            </ng-container>
-            <div
-                *ngIf="getSearchvalControlAtIndex(idx).invalid && !getSearchvalControlAtIndex(idx).pristine"
-                class="alert alert-danger">
-                <p *ngIf="getSearchvalControlAtIndex(idx).errors"></p>
-                {{ extendedSearchFormStrings.errorMessage }}
-            </div>
+@if (extendedSearchForm) {
+    <form [formGroup]="extendedSearchForm" (ngSubmit)="onSearch()" class="p-3 border">
+        <div class="form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3">
+            <select
+                class="form-select"
+                id="awg-extended-search-resourcetype-input"
+                aria-label="Extended search restype control"
+                formControlName="restypeControl"
+                required>
+                <option value="" disabled hidden>{{ defaultFormString }}</option>
+                @for (resourcetype of restypesResponse?.resourcetypes; track resourcetype) {
+                    <option [value]="resourcetype.id" [title]="resourcetype.label">
+                        {{ resourcetype.id }} | {{ resourcetype.label }}
+                    </option>
+                }
+            </select>
+            <label for="awg-extended-search-resourcetype-input" class="text-muted">Resource type</label>
         </div>
-    </ng-container>
-    <div class="awg-extended-search-button-panel mb-4">
-        <button
-            id="awg-extended-search-submit"
-            class="btn btn-outline-info"
-            type="submit"
-            [disabled]="!extendedSearchForm.valid">
-            <fa-icon [icon]="faSearch"></fa-icon>
-            Submit
-        </button>
-        <button
-            id="awg-extended-search-reset"
-            class="btn btn-outline-danger"
-            (click)="onReset()"
-            [disabled]="!restypeControl.valid">
-            <fa-icon [icon]="faRefresh"></fa-icon>
-            Reset
-        </button>
-    </div>
-</form>
+        <ng-container formArrayName="propertiesControls">
+            @for (propCtrl of propertiesControls.controls; track propCtrl; let idx = $index) {
+                <div class="row mb-4 ms-4 g-2">
+                    <ng-container [formGroupName]="idx">
+                        <div class="form-floating col-md-4">
+                            <select
+                                id="awg-extended-search-property-{{ idx }}"
+                                class="form-select"
+                                [formControl]="getPropertyIdControlAtIndex(idx)"
+                                required>
+                                <option value="" disabled hidden>{{ defaultFormString }}</option>
+                                @if (selectedResourcetype) {
+                                    @for (property of selectedResourcetype?.properties; track property) {
+                                        <option [value]="property.id" [title]="property.label">
+                                            {{ property.id }} | {{ property.label }}
+                                        </option>
+                                    }
+                                }
+                            </select>
+                            <label class="text-muted" for="awg-extended-search-property-{{ idx }}">Property</label>
+                        </div>
+                        <div class="form-floating col-md-2">
+                            <select
+                                id="awg-extended-search-compop-{{ idx }}"
+                                class="form-select"
+                                [formControl]="getCompopControlAtIndex(idx)"
+                                required>
+                                <option value="" disabled hidden>{{ defaultFormString }}</option>
+                                @if (selectedCompopSets) {
+                                    @for (compop of selectedCompopSets[idx]; track compop) {
+                                        <option
+                                            [value]="compop.value"
+                                            [title]="compop.title"
+                                            [innerHtml]="compop.label"></option>
+                                    }
+                                }
+                            </select>
+                            <label class="text-muted" for="awg-extended-search-compop-{{ idx }}">Operator</label>
+                        </div>
+                        <div class="form-floating col-md-4">
+                            <input
+                                title="Extended Search - Search Value"
+                                type="search"
+                                id="awg-extended-search-value-{{ idx }}"
+                                class="form-control"
+                                [formControl]="getSearchvalControlAtIndex(idx)"
+                                placeholder="{{ defaultFormString }}" />
+                            <label class="text-muted" for="awg-extended-search-value-{{ idx }}">Search value</label>
+                        </div>
+                        <div class="btn-toolbar col-2" role="toolbar" aria-label="Toolbar for property inputs">
+                            <div class="btn-group" role="group" aria-label="Group of handle buttons">
+                                @if (propertiesControls.controls.length > 1) {
+                                    <button
+                                        id="awg-extended-search-remove-property-{{ idx }}"
+                                        class="btn btn-outline-danger"
+                                        type="button"
+                                        (click)="removePropertiesControl(idx)">
+                                        <fa-icon [icon]="faTrash"></fa-icon>
+                                    </button>
+                                }
+                                <button
+                                    id="awg-extended-search-add-property-{{ idx }}"
+                                    class="btn btn-outline-info"
+                                    type="button"
+                                    (click)="addPropertiesControl()"
+                                    [disabled]="isAddButtonDisabled(idx)">
+                                    <fa-icon [icon]="faPlus"></fa-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    @if (getSearchvalControlAtIndex(idx).invalid && !getSearchvalControlAtIndex(idx).pristine) {
+                        <div class="alert alert-danger">
+                            @if (getSearchvalControlAtIndex(idx).errors) {
+                                <p></p>
+                            }
+                            {{ extendedSearchFormStrings.errorMessage }}
+                        </div>
+                    }
+                </div>
+            }
+        </ng-container>
+        <div class="awg-extended-search-button-panel mb-4">
+            <button
+                id="awg-extended-search-submit"
+                class="btn btn-outline-info"
+                type="submit"
+                [disabled]="!extendedSearchForm.valid">
+                <fa-icon [icon]="faSearch"></fa-icon>
+                Submit
+            </button>
+            <button
+                id="awg-extended-search-reset"
+                class="btn btn-outline-danger"
+                (click)="onReset()"
+                [disabled]="!restypeControl.valid">
+                <fa-icon [icon]="faRefresh"></fa-icon>
+                Reset
+            </button>
+        </div>
+    </form>
+}

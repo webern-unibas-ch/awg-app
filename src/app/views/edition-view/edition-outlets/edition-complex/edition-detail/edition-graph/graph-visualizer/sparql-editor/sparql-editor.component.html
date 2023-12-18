@@ -6,49 +6,49 @@
         <div ngbAccordionHeader class="accordion-button custom-header justify-content-between">
             <button ngbAccordionToggle class="btn btn-link m-0 p-0">SPARQL</button>
             <!-- View Handle -->
-            <awg-view-handle-button-group
-                *ngIf="!isFullscreen"
-                [viewHandles]="viewHandles"
-                [selectedViewType]="selectedViewType"
-                (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
+            @if (!isFullscreen) {
+                <awg-view-handle-button-group
+                    [viewHandles]="viewHandles"
+                    [selectedViewType]="selectedViewType"
+                    (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
+            }
 
             <!-- Example Query Handle -->
-            <div
-                class="p-0 btn-group awg-example-query-btn-group"
-                *ngIf="isExampleQueriesEnabled()"
-                style="padding: -3rem">
-                <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                    Beispielabfragen
-                </button>
-                <div
-                    class="btn-group"
-                    ngbDropdown
-                    container="body"
-                    placement="bottom-right"
-                    role="group"
-                    aria-label="Button group with nested dropdown for sample queries">
-                    <button class="btn btn-sm btn-info" ngbDropdownToggle></button>
-                    <div ngbDropdownMenu>
-                        <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
-                        <ng-container *ngFor="let q of queryList">
-                            <ng-container *ngIf="q.queryType === 'construct'">
-                                <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
-                                    <span>{{ q.queryLabel }}</span>
-                                </a>
-                            </ng-container>
-                        </ng-container>
-                        <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
-                        <ng-container *ngFor="let q of queryList">
-                            <ng-container *ngIf="q.queryType === 'select'">
-                                <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
-                                    <span>{{ q.queryLabel }}</span>
-                                </a>
-                            </ng-container>
-                        </ng-container>
+            @if (isExampleQueriesEnabled()) {
+                <div class="p-0 btn-group awg-example-query-btn-group" style="padding: -3rem">
+                    <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
+                        Beispielabfragen
+                    </button>
+                    <div
+                        class="btn-group"
+                        ngbDropdown
+                        container="body"
+                        placement="bottom-right"
+                        role="group"
+                        aria-label="Button group with nested dropdown for sample queries">
+                        <button class="btn btn-sm btn-info" ngbDropdownToggle></button>
+                        <div ngbDropdownMenu>
+                            <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
+                            @for (q of queryList; track q) {
+                                @if (q.queryType === 'construct') {
+                                    <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
+                                        <span>{{ q.queryLabel }}</span>
+                                    </a>
+                                }
+                            }
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
+                            @for (q of queryList; track q) {
+                                @if (q.queryType === 'select') {
+                                    <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
+                                        <span>{{ q.queryLabel }}</span>
+                                    </a>
+                                }
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
         <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
             <div ngbAccordionBody>

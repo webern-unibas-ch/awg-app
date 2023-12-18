@@ -1,109 +1,134 @@
-<form *ngIf="tableData.filteredRows && tableData.totalRows$ | async as totalRows">
-    <div class="form-group form-inline">
-        <label class="col-sm-4 col-form-label"
-            >{{ tableTitle }}<br />
-            ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)</label
-        >
-        <div class="col-sm-6">
-            <input
-                id="search"
-                class="form-control ms-2"
-                type="text"
-                name="searchFilter"
-                [(ngModel)]="searchFilter"
-                (ngModelChange)="onPageSizeChange(searchFilter)"
-                placeholder="Ergebnisse filtern..." />
+@if (tableData.filteredRows && tableData.totalRows$ | async; as totalRows) {
+    <form>
+        <div class="form-group form-inline">
+            <label class="col-sm-4 col-form-label"
+                >{{ tableTitle }}<br />
+                ({{ tableData.filteredRows?.length }} von {{ totalRows?.length }} Ergebnissen)</label
+            >
+            <div class="col-sm-6">
+                <input
+                    id="search"
+                    class="form-control ms-2"
+                    type="text"
+                    name="searchFilter"
+                    [(ngModel)]="searchFilter"
+                    (ngModelChange)="onPageSizeChange(searchFilter)"
+                    placeholder="Ergebnisse filtern..." />
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+}
 
-<div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows && paginatorOptions">
-    <!-- top pagination -->
-    <awg-table-pagination
-        [collectionSize]="tableData.filteredRows?.length"
-        [(page)]="paginatorOptions.page"
-        (pageChangeRequest)="onPageSizeChange(searchFilter)">
-    </awg-table-pagination>
-
-    <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuTop" ngbDropdownToggle>
-            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
-        </button>
-        <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuTop" ngbDropdownMenu>
-            <button
-                ngbDropdownItem
-                class="dropdown-item"
-                *ngFor="let pageSizeOption of paginatorOptions.pageSizeOptions"
-                (click)="onPageSizeChange(searchFilter, pageSizeOption)">
-                {{ pageSizeOption }} Ergebnisse pro Seite
+@if (tableData.filteredRows && paginatorOptions) {
+    <div class="awg-pagination d-flex justify-content-between p-2">
+        <!-- top pagination -->
+        <awg-table-pagination
+            [collectionSize]="tableData.filteredRows?.length"
+            [(page)]="paginatorOptions.page"
+            (pageChangeRequest)="onPageSizeChange(searchFilter)">
+        </awg-table-pagination>
+        <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuTop" ngbDropdownToggle>
+                {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
             </button>
+            <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuTop" ngbDropdownMenu>
+                @for (pageSizeOption of paginatorOptions.pageSizeOptions; track pageSizeOption) {
+                    <button
+                        ngbDropdownItem
+                        class="dropdown-item"
+                        (click)="onPageSizeChange(searchFilter, pageSizeOption)">
+                        {{ pageSizeOption }} Ergebnisse pro Seite
+                    </button>
+                }
+            </div>
         </div>
     </div>
-</div>
+}
 
-<table
-    aria-label="Table for SPARQL query results"
-    class="table table-striped"
-    *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">
-    <thead>
-        <tr>
-            <th scope="col" *ngFor="let headerLabel of tableData?.header" (click)="onSort(headerLabel)">
-                {{ headerLabel }}&nbsp;<fa-icon
-                    *ngIf="headerLabel === tableOptions.selectedKey"
-                    [icon]="tableOptions.sortIcon"></fa-icon>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr
-            *ngFor="
-                let row of paginatedRows
-                    | orderBy: tableOptions.sortKey : tableOptions.reverse : tableOptions.isCaseInsensitive
-            "
-            (click)="onTableRowClick($event)">
-            <td *ngFor="let headerLabel of tableData.header">
-                <a
-                    *ngIf="row[headerLabel].type && row[headerLabel].type === 'uri'"
-                    (click)="onTableValueClick(row[headerLabel].value)">
-                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
-                </a>
-                <span *ngIf="row[headerLabel].type === 'search'">
-                    <span class="badge" *ngIf="row[headerLabel].icon">
-                        <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />
-                    </span>
-                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
-                ></span>
-                <span *ngIf="row[headerLabel].type !== 'uri' && row[headerLabel].type !== 'search'">
-                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
-                ></span>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<ng-template #loading>
+@if (tableData?.paginatedRows$ | async; as paginatedRows) {
+    <table aria-label="Table for SPARQL query results" class="table table-striped">
+        <thead>
+            <tr>
+                @for (headerLabel of tableData?.header; track headerLabel) {
+                    <th scope="col" (click)="onSort(headerLabel)">
+                        {{ headerLabel }}&nbsp;
+                        @if (headerLabel === tableOptions.selectedKey) {
+                            <fa-icon [icon]="tableOptions.sortIcon"></fa-icon>
+                        }
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (
+                row of paginatedRows
+                    | orderBy: tableOptions.sortKey : tableOptions.reverse : tableOptions.isCaseInsensitive;
+                track row
+            ) {
+                <tr (click)="onTableRowClick($event)">
+                    @for (headerLabel of tableData.header; track headerLabel) {
+                        <td>
+                            @if (row[headerLabel].type && row[headerLabel].type === 'uri') {
+                                <a (click)="onTableValueClick(row[headerLabel].value)">
+                                    <ngb-highlight
+                                        [result]="row[headerLabel].label"
+                                        [term]="searchFilter"></ngb-highlight>
+                                </a>
+                            }
+                            @if (row[headerLabel].type === 'search') {
+                                <span>
+                                    @if (row[headerLabel].icon) {
+                                        <span class="badge">
+                                            <img [attr.src]="row[headerLabel]?.icon" alt="iconsrc" />
+                                        </span>
+                                    }
+                                    <ngb-highlight
+                                        [result]="row[headerLabel].label"
+                                        [term]="searchFilter"></ngb-highlight
+                                ></span>
+                            }
+                            @if (row[headerLabel].type !== 'uri' && row[headerLabel].type !== 'search') {
+                                <span>
+                                    <ngb-highlight
+                                        [result]="row[headerLabel].label"
+                                        [term]="searchFilter"></ngb-highlight
+                                ></span>
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+} @else {
     <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-</ng-template>
+}
 
-<div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
-    <!-- bottom pagination -->
-    <awg-table-pagination
-        [(page)]="paginatorOptions.page"
-        [collectionSize]="tableData.filteredRows?.length"
-        (pageChangeRequest)="onPageSizeChange(searchFilter)">
-    </awg-table-pagination>
-
-    <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-default awg-pagesize-dropdown-button" id="pageSizeDropdownMenuBottom" ngbDropdownToggle>
-            {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
-        </button>
-        <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuBottom" ngbDropdownMenu>
+@if (tableData.filteredRows) {
+    <div class="awg-pagination d-flex justify-content-between p-2">
+        <!-- bottom pagination -->
+        <awg-table-pagination
+            [(page)]="paginatorOptions.page"
+            [collectionSize]="tableData.filteredRows?.length"
+            (pageChangeRequest)="onPageSizeChange(searchFilter)">
+        </awg-table-pagination>
+        <div ngbDropdown class="d-inline-block">
             <button
-                ngbDropdownItem
-                class="dropdown-item"
-                *ngFor="let pageSizeOption of paginatorOptions.pageSizeOptions"
-                (click)="onPageSizeChange(searchFilter, pageSizeOption)">
-                {{ pageSizeOption }} Ergebnisse pro Seite
+                class="btn btn-default awg-pagesize-dropdown-button"
+                id="pageSizeDropdownMenuBottom"
+                ngbDropdownToggle>
+                {{ paginatorOptions.selectedPageSize }} Ergebnisse pro Seite
             </button>
+            <div class="dropdown-menu" aria-labelledby="pageSizeDropdownMenuBottom" ngbDropdownMenu>
+                @for (pageSizeOption of paginatorOptions.pageSizeOptions; track pageSizeOption) {
+                    <button
+                        ngbDropdownItem
+                        class="dropdown-item"
+                        (click)="onPageSizeChange(searchFilter, pageSizeOption)">
+                        {{ pageSizeOption }} Ergebnisse pro Seite
+                    </button>
+                }
+            </div>
         </div>
     </div>
-</div>
+}

@@ -124,7 +124,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'h6.card-title', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                expectToBe(headerEl.textContent, expectedNavItemLabel + ': ');
+                expectToBe(headerEl.textContent.trim(), expectedNavItemLabel + ':');
             });
 
             it('... should contain a span in h6.card-title with "---" if svgSheets is empty', () => {

@@ -9,22 +9,20 @@
         <div ngbAccordionCollapse>
             <div ngbAccordionBody>
                 <ng-template>
-                    <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
-                        <ng-container *ngIf="isQueryResultNotEmpty(queryResult); else noResult">
+                    @if (queryResult$ | async; as queryResult) {
+                        @if (isQueryResultNotEmpty(queryResult)) {
                             <!-- SPARQL table visualization -->
                             <awg-sparql-table
                                 [queryResult]="queryResult"
                                 [queryTime]="queryTime"
                                 (clickedTableRequest)="onTableNodeClick($event)">
                             </awg-sparql-table>
-                        </ng-container>
-                        <ng-template #noResult>
+                        } @else {
                             <awg-sparql-no-results></awg-sparql-no-results>
-                        </ng-template>
-                    </ng-container>
-                    <ng-template #loading>
+                        }
+                    } @else {
                         <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-                    </ng-template>
+                    }
                 </ng-template>
             </div>
         </div>

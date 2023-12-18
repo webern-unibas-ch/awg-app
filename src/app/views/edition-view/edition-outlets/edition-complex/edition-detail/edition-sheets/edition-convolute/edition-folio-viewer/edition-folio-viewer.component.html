@@ -1,9 +1,13 @@
 <!-- embedded svg: EditionSvgSheet Overview -->
-<div class="container-fluid svgGrid" *ngIf="folioSvgData">
-    <div class="row svgRow">
-        <div class="col-sm-6 col-lg-{{ 12 / folioSvgData?.length }} svgCol" *ngFor="let folio of folioSvgData">
-            <span class="text-muted">[{{ folio.sheet.folioId }}]</span>
-            <svg id="folio-{{ selectedSvgSheet.id }}-{{ folio.sheet.folioId }}"></svg>
+@if (folioSvgData) {
+    <div class="container-fluid svgGrid">
+        <div class="row svgRow">
+            @for (folio of folioSvgData; track folio) {
+                <div class="col-sm-6 col-lg-{{ 12 / folioSvgData?.length }} svgCol">
+                    <span class="text-muted">[{{ folio.sheet.folioId }}]</span>
+                    <svg id="folio-{{ selectedSvgSheet.id }}-{{ folio.sheet.folioId }}"></svg>
+                </div>
+            }
         </div>
     </div>
-</div>
+}

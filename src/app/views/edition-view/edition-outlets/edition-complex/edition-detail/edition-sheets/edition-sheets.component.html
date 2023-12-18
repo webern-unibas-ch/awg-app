@@ -5,27 +5,29 @@
 
     <!-- body with embedded svg's -->
     <!-- accolade view -->
-    <awg-edition-accolade
-        *ngIf="svgSheetsData && selectedSvgSheet"
-        [svgSheetsData]="svgSheetsData"
-        [selectedSvgSheet]="selectedSvgSheet"
-        [selectedTextcritics]="selectedTextcritics"
-        [selectedTextcriticalComments]="selectedTextcriticalComments"
-        [showTkA]="showTkA"
-        (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
-        (navigateToReportFragmentRequest)="onNavigateToReportFragment($event)"
-        (openModalRequest)="modal.open($event)"
-        (selectLinkBoxRequest)="onLinkBoxSelect($event)"
-        (selectOverlaysRequest)="onOverlaySelect($event)"
-        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-    </awg-edition-accolade>
+    @if (svgSheetsData && selectedSvgSheet) {
+        <awg-edition-accolade
+            [svgSheetsData]="svgSheetsData"
+            [selectedSvgSheet]="selectedSvgSheet"
+            [selectedTextcritics]="selectedTextcritics"
+            [selectedTextcriticalComments]="selectedTextcriticalComments"
+            [showTkA]="showTkA"
+            (browseSvgSheetRequest)="onBrowseSvgSheet($event)"
+            (navigateToReportFragmentRequest)="onNavigateToReportFragment($event)"
+            (openModalRequest)="modal.open($event)"
+            (selectLinkBoxRequest)="onLinkBoxSelect($event)"
+            (selectOverlaysRequest)="onOverlaySelect($event)"
+            (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+        </awg-edition-accolade>
+    }
 
     <!-- convolute view -->
-    <awg-edition-convolute
-        *ngIf="selectedConvolute && selectedSvgSheet"
-        [selectedConvolute]="selectedConvolute"
-        [selectedSvgSheet]="selectedSvgSheet"
-        (openModalRequest)="modal.open($event)"
-        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-    </awg-edition-convolute>
+    @if (selectedConvolute && selectedSvgSheet) {
+        <awg-edition-convolute
+            [selectedConvolute]="selectedConvolute"
+            [selectedSvgSheet]="selectedSvgSheet"
+            (openModalRequest)="modal.open($event)"
+            (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+        </awg-edition-convolute>
+    }
 </div>

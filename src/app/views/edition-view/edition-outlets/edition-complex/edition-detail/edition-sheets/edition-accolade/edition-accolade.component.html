@@ -12,33 +12,36 @@
                     <div class="row">
                         <div class="order-2 order-lg-1 col-12 col-lg-4 col-xl-3">
                             <!-- svg sheet navigation -->
-                            <awg-edition-svg-sheet-nav
-                                *ngIf="svgSheetsData && selectedSvgSheet"
-                                [svgSheetsData]="svgSheetsData"
-                                [selectedSvgSheet]="selectedSvgSheet"
-                                (selectSvgSheetRequest)="selectSvgSheet($event)">
-                            </awg-edition-svg-sheet-nav>
+                            @if (svgSheetsData && selectedSvgSheet) {
+                                <awg-edition-svg-sheet-nav
+                                    [svgSheetsData]="svgSheetsData"
+                                    [selectedSvgSheet]="selectedSvgSheet"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)">
+                                </awg-edition-svg-sheet-nav>
+                            }
                         </div>
                         <div class="order-1 order-lg-2 col-12 col-lg-8 col-xl-9">
                             <!-- svg sheet -->
-                            <awg-edition-svg-sheet-viewer
-                                *ngIf="selectedSvgSheet"
-                                [selectedSvgSheet]="selectedSvgSheet"
-                                (browseSvgSheetRequest)="browseSvgSheet($event)"
-                                (selectLinkBoxRequest)="selectLinkBox($event)"
-                                (selectOverlaysRequest)="selectOverlays($event)"
-                                (selectSvgSheetRequest)="selectSvgSheet($event)">
-                            </awg-edition-svg-sheet-viewer>
+                            @if (selectedSvgSheet) {
+                                <awg-edition-svg-sheet-viewer
+                                    [selectedSvgSheet]="selectedSvgSheet"
+                                    (browseSvgSheetRequest)="browseSvgSheet($event)"
+                                    (selectLinkBoxRequest)="selectLinkBox($event)"
+                                    (selectOverlaysRequest)="selectOverlays($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)">
+                                </awg-edition-svg-sheet-viewer>
+                            }
 
                             <!-- table for TkA -->
-                            <awg-edition-svg-sheet-footer
-                                *ngIf="selectedSvgSheet && selectedTextcritics"
-                                [selectedTextcritics]="selectedTextcritics"
-                                [selectedTextcriticalComments]="selectedTextcriticalComments"
-                                [showTkA]="showTkA"
-                                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                                (openModalRequest)="openModal($event)"
-                                (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>
+                            @if (selectedSvgSheet && selectedTextcritics) {
+                                <awg-edition-svg-sheet-footer
+                                    [selectedTextcritics]="selectedTextcritics"
+                                    [selectedTextcriticalComments]="selectedTextcriticalComments"
+                                    [showTkA]="showTkA"
+                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                    (openModalRequest)="openModal($event)"
+                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>
+                            }
                         </div>
                     </div>
                 </ng-template>

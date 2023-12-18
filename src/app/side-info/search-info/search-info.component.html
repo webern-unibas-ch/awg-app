@@ -1,18 +1,24 @@
 <!-- sideinfo: search -->
 <div class="card">
     <div class="card-body bg-light">
-        <h5 id="awg-search-info-header" *ngIf="searchInfoHeader$ | async as searchInfoHeader">
-            {{ searchInfoHeader }}
-        </h5>
+        @if (searchInfoHeader$ | async; as searchInfoHeader) {
+            <h5 id="awg-search-info-header">
+                {{ searchInfoHeader }}
+            </h5>
+        }
         <p>&#9671;</p>
         <p>
-            <strong>Suchanfrage: </strong
-            ><span *ngIf="searchInfoData$ | async as searchInfoData">{{ searchInfoData?.query | json }}</span>
+            <strong>Suchanfrage: </strong>
+            @if (searchInfoData$ | async; as searchInfoData) {
+                <span>{{ searchInfoData?.query | json }}</span>
+            }
         </p>
         <p>&#9671;</p>
         <p>
-            <strong>Suchergebnisse: </strong
-            ><span *ngIf="searchInfoData$ | async as searchInfoData">{{ searchInfoData?.nhits }}</span>
+            <strong>Suchergebnisse: </strong>
+            @if (searchInfoData$ | async; as searchInfoData) {
+                <span>{{ searchInfoData?.nhits }}</span>
+            }
         </p>
     </div>
 </div>

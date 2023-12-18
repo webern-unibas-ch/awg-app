@@ -26,12 +26,12 @@
                     <!-- convolute legend -->
                     <div class="awg-convolute-legend col-12">
                         Legende:&nbsp;
-                        <ng-container *ngFor="let legend of folioLegends">
+                        @for (legend of folioLegends; track legend) {
                             <span class="{{ legend.color }}">
                                 <fa-icon [icon]="faSquare"></fa-icon>
                                 {{ legend.label }}
                             </span>
-                        </ng-container>
+                        }
                     </div>
                 </ng-template>
             </div>

@@ -1,20 +1,24 @@
-<div *ngIf="rowTablesData$ | async as rowTablesData" class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
-    <div class="col" *ngFor="let rowTable of rowTablesData?.rowTables">
-        <div class="card h-100">
-            <div class="card-body">
-                <h5 class="card-title" [ngClass]="{ 'text-muted': rowTable.disabled }">
-                    Reihentabelle {{ rowTable.short }}
-                </h5>
+@if (rowTablesData$ | async; as rowTablesData) {
+    <div class="row row-cols-1 row-cols-md-3 row-cols-xl-5 g-4">
+        @for (rowTable of rowTablesData?.rowTables; track rowTable) {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" [ngClass]="{ 'text-muted': rowTable.disabled }">
+                            Reihentabelle {{ rowTable.short }}
+                        </h5>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a
+                            [routerLink]="['../complex' + rowTable.route, 'sheets']"
+                            [queryParams]="{ id: rowTable.id }"
+                            class="btn btn-outline-info"
+                            [ngClass]="{ disabled: rowTable.disabled }"
+                            >Mehr...
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="card-footer text-end">
-                <a
-                    [routerLink]="['../complex' + rowTable.route, 'sheets']"
-                    [queryParams]="{ id: rowTable.id }"
-                    class="btn btn-outline-info"
-                    [ngClass]="{ disabled: rowTable.disabled }"
-                    >Mehr...
-                </a>
-            </div>
-        </div>
+        }
     </div>
-</div>
+}
