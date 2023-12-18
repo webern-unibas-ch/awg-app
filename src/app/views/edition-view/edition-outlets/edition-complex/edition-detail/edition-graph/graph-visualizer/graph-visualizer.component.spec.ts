@@ -86,6 +86,8 @@ class TriplesEditorStubComponent {
 class UnsupportedTypeResultsStubComponent {
     @Input()
     queryType: string; // Query.queryType ?
+    @Input()
+    isFullscreen: boolean;
 }
 
 describe('GraphVisualizerComponent (DONE)', () => {

@@ -20,11 +20,15 @@
             <label for="awg-fulltext-search-searchValue" class="text-muted">{{
                 fulltextSearchFormStrings.placeholder
             }}</label>
-            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="invalid-feedback">
-                <p *ngIf="isFulltextSearchInputInvalid()">
-                    {{ fulltextSearchFormStrings.errorMessage }}
-                </p>
-            </div>
+            @if (searchvalControl.invalid && !searchvalControl.pristine) {
+                <div class="invalid-feedback">
+                    @if (isFulltextSearchInputInvalid()) {
+                        <p>
+                            {{ fulltextSearchFormStrings.errorMessage }}
+                        </p>
+                    }
+                </div>
+            }
         </div>
     </div>
 </form>

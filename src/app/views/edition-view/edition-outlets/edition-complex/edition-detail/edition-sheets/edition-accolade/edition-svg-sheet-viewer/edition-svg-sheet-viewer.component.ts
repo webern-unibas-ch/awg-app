@@ -25,7 +25,7 @@ import {
 } from '@awg-views/edition-view/models';
 import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
 
-import * as d3_zoom from 'd3-zoom';
+import * as D3_ZOOM from 'd3-zoom';
 
 /**
  * The EditionSvgSheetViewer component.
@@ -697,8 +697,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         };
 
         // Create zoom behaviour
-        this._zoomBehaviour = d3_zoom
-            .zoom()
+        this._zoomBehaviour = D3_ZOOM.zoom()
             .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
             .on('zoom', zoomed);
 

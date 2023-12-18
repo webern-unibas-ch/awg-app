@@ -1,21 +1,33 @@
 <!-- resource detail data content: props -->
 <section class="awg-props">
     <h4 class="awg-props-title ms-0">Objektdaten</h4>
-    <ul *ngFor="let prop of props">
-        <li id="breakLine" *ngIf="prop.label === metaBreakLine">
-            <hr />
-        </li>
-        <li class="awg-prop" *ngIf="prop!.values[0]">
-            <!-- value label -->
-            <strong class="awg-prop-label" *ngIf="prop.label">
-                {{ prop.label }}
-            </strong>
-            <!-- value content -->
-            <ul *ngFor="let value of prop.values">
-                <li class="awg-prop-value" *ngIf="value">
-                    <span [compile-html]="value" [compile-html-ref]="this"></span>
+    @for (prop of props; track prop) {
+        <ul>
+            @if (prop.label === metaBreakLine) {
+                <li id="breakLine">
+                    <hr />
                 </li>
-            </ul>
-        </li>
-    </ul>
+            }
+            @if (prop!.values[0]) {
+                <li class="awg-prop">
+                    <!-- value label -->
+                    @if (prop.label) {
+                        <strong class="awg-prop-label">
+                            {{ prop.label }}
+                        </strong>
+                    }
+                    <!-- value content -->
+                    @for (value of prop.values; track value) {
+                        <ul>
+                            @if (value) {
+                                <li class="awg-prop-value">
+                                    <span [compile-html]="value" [compile-html-ref]="this"></span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+        </ul>
+    }
 </section>

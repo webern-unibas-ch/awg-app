@@ -72,9 +72,9 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         // Test data
         expectedIsFullscreen = false;
+        expectedCmTurtleMode = turtle;
 
         expectedTriples = 'example:Test example:has example:Success';
-        expectedCmTurtleMode = turtle;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -108,8 +108,8 @@ describe('TriplesEditorComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no ngb-accordion yet', () => {
-                // Ngb-accordion debug element
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
@@ -135,14 +135,14 @@ describe('TriplesEditorComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one div.accordion', () => {
-                // Ngb-accordion debug element
+                // NgbAccordion debug element
                 getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
             });
 
             describe('not in fullscreen mode', () => {
                 describe('with closed panel', () => {
                     it('... should contain one div.accordion with panel (div.accordion-item) header and collapsed body', () => {
-                        // Ngb-accordion debug element
+                        // NgbAccordion debug element
                         const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                         // Panel (div.accordion-item)
@@ -152,10 +152,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                             1,
                             1
                         );
-                        // Header (h2.accordion-header)
+                        // Header (div.accordion-header)
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             panelDes[0],
-                            'div#awg-graph-visualizer-triples > h2.accordion-header',
+                            'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
@@ -179,7 +179,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Header debug elements
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > h2.accordion-header',
+                            'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
@@ -202,7 +202,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Header debug elements
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > h2.accordion-header',
+                            'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
@@ -210,7 +210,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Button debug elements
                         const btnDes = getAndExpectDebugElementByCss(
                             panelHeaderDes[0],
-                            'button.accordion-button',
+                            'button#awg-graph-visualizer-triples-toggle',
                             1,
                             1
                         );
@@ -241,7 +241,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -285,7 +285,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         const collapseEl = collapseDes[0].nativeElement;
 
-                        expect(collapseEl.classList).toContain('show');
+                        expectToContain(collapseEl.classList, 'show');
 
                         // Panel body
                         bodyDes = getAndExpectDebugElementByCss(collapseDes[0], 'div.accordion-body', 1, 1);
@@ -295,7 +295,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Header debug elements
                         const panelHeaderDes = getAndExpectDebugElementByCss(
                             compDe,
-                            'div#awg-graph-visualizer-triples > h2.accordion-header',
+                            'div#awg-graph-visualizer-triples > div.accordion-header',
                             1,
                             1
                         );
@@ -303,7 +303,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         // Button debug elements
                         const btnDes = getAndExpectDebugElementByCss(
                             panelHeaderDes[0],
-                            'button.accordion-button',
+                            'button#awg-graph-visualizer-triples-toggle',
                             1,
                             1
                         );
@@ -319,7 +319,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         let panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
 
                         // Click header button
                         click(btnEl as HTMLElement);
@@ -349,7 +349,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                         );
                         panelBodyEl = panelBodyDes[0].nativeElement;
 
-                        expect(panelBodyEl.classList).toContain('show');
+                        expectToContain(panelBodyEl.classList, 'show');
                     });
 
                     it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
@@ -358,7 +358,12 @@ describe('TriplesEditorComponent (DONE)', () => {
                     });
 
                     it('... should contain div with 3 buttons (Query, Reset, Clear) in panel body', () => {
-                        const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
+                        const divDes = getAndExpectDebugElementByCss(
+                            bodyDes[0],
+                            'div.awg-graph-visualizer-triples-handle-buttons',
+                            1,
+                            1
+                        );
 
                         const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 3, 3);
                         const btnEl0 = btnDes[0].nativeElement;
@@ -371,7 +376,12 @@ describe('TriplesEditorComponent (DONE)', () => {
                     });
 
                     it('... should trigger `performQuery()` by click on Query button', () => {
-                        const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
+                        const btnDes = getAndExpectDebugElementByCss(
+                            bodyDes[0],
+                            'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
+                            3,
+                            3
+                        );
                         const btnEl0 = btnDes[0].nativeElement;
 
                         expectToBe(btnEl0.textContent, 'Query');
@@ -385,7 +395,12 @@ describe('TriplesEditorComponent (DONE)', () => {
                     });
 
                     it('... should trigger `resetTriples()` by click on Reset button', () => {
-                        const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
+                        const btnDes = getAndExpectDebugElementByCss(
+                            bodyDes[0],
+                            'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
+                            3,
+                            3
+                        );
                         const btnEl1 = btnDes[1].nativeElement;
 
                         expectToBe(btnEl1.textContent, 'Reset');
@@ -399,7 +414,12 @@ describe('TriplesEditorComponent (DONE)', () => {
                     });
 
                     it('... should trigger `onEditorInputChange()` with empty string by click on Clear button', () => {
-                        const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 3, 3);
+                        const btnDes = getAndExpectDebugElementByCss(
+                            bodyDes[0],
+                            'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
+                            3,
+                            3
+                        );
                         const btnEl2 = btnDes[2].nativeElement;
 
                         expectToBe(btnEl2.textContent, 'Clear');
@@ -408,7 +428,6 @@ describe('TriplesEditorComponent (DONE)', () => {
                         click(btnEl2 as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        expectSpyCall(onEditorInputChangeSpy, 1);
                         expectSpyCall(onEditorInputChangeSpy, 1, '');
                     });
                 });
@@ -444,7 +463,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 });
 
                 it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
-                    // Ngb-accordion debug element
+                    // NgbAccordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                     // Panel (div.accordion-item)
@@ -454,10 +473,10 @@ describe('TriplesEditorComponent (DONE)', () => {
                         1,
                         1
                     );
-                    // Header (h2.accordion-header)
+                    // Header (div.accordion-header)
                     getAndExpectDebugElementByCss(
                         panelDes[0],
-                        'div#awg-graph-visualizer-triples > h2.accordion-header',
+                        'div#awg-graph-visualizer-triples > div.accordion-header',
                         1,
                         1
                     );
@@ -472,14 +491,16 @@ describe('TriplesEditorComponent (DONE)', () => {
                 });
 
                 it('... should display panel header button', () => {
-                    // Panel header button
-                    const btnDes = getAndExpectDebugElementByCss(
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > h2.accordion-header > button.accordion-button',
+                        'div#awg-graph-visualizer-triples > div.accordion-header',
                         1,
                         1
                     );
 
+                    // Panel header button
+                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
                     const btnEl = btnDes[0].nativeElement;
 
                     // Check button content
@@ -490,7 +511,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                     // Header debug elements
                     const panelHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > h2.accordion-header',
+                        'div#awg-graph-visualizer-triples > div.accordion-header',
                         1,
                         1
                     );
@@ -501,26 +522,32 @@ describe('TriplesEditorComponent (DONE)', () => {
                     const btnEl = btnDes[0].nativeElement;
 
                     // Panel body does not close
-                    getAndExpectDebugElementByCss(
+                    let panelBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
+                    let panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expectToContain(panelBodyEl.classList, 'show');
 
                     // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
                     // Panel body does not close again
-                    getAndExpectDebugElementByCss(
+                    panelBodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div#awg-graph-visualizer-triples > div#awg-graph-visualizer-triples-collapse > div.accordion-body',
+                        'div#awg-graph-visualizer-triples > div.accordion-collapse',
                         1,
                         1,
                         'open'
                     );
+                    panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expectToContain(panelBodyEl.classList, 'show');
                 });
 
                 it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
@@ -579,7 +606,6 @@ describe('TriplesEditorComponent (DONE)', () => {
                     click(btnEl2 as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    expectSpyCall(onEditorInputChangeSpy, 1);
                     expectSpyCall(onEditorInputChangeSpy, 1, '');
                 });
             });
@@ -615,7 +641,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectSpyCall(onEditorInputChangeSpy, 1, changedTriples);
             });
 
-            it('... should trigger with empty string from click on Clear button', async () => {
+            it('... should trigger with empty string from click on Clear button', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -633,7 +659,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
             });
 
-            it('... should emit updateTriplesRequest on click', async () => {
+            it('... should emit updateTriplesRequest on click', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -700,7 +726,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.performQuery).toBeDefined();
             });
 
-            it('... should trigger on click on Query button', async () => {
+            it('... should trigger on click on Query button', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -713,13 +739,13 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click query button
                 click(btnEl0 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 1);
             });
 
             describe('... should emit on click', () => {
-                it('`performQueryRequest` if querystring is given', async () => {
+                it('`performQueryRequest` if querystring is given', () => {
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -732,18 +758,18 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 1);
                     expectSpyCall(emitErrorMessageSpy, 0);
                 });
 
-                it('`errorMessageRequest` with errorMessage if querystring is not given', async () => {
+                it('`errorMessageRequest` with errorMessage if querystring is not given', () => {
                     const expectedErrorMessage = new ToastMessage('Empty triples', 'Please enter triple content.');
 
                     component.triples = '';
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -757,7 +783,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
-                    await detectChangesOnPush(fixture);
+                    detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(emitPerformQueryRequestSpy, 0);
@@ -786,7 +812,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 expect(component.resetTriples).toBeDefined();
             });
 
-            it('... should trigger on click on Reset button', async () => {
+            it('... should trigger on click on Reset button', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -799,12 +825,12 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click query button
                 click(btnEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 1);
             });
 
-            it('... should emit request on click', async () => {
+            it('... should emit request on click', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-graph-visualizer-triples-handle-buttons > button.btn',
@@ -817,7 +843,7 @@ describe('TriplesEditorComponent (DONE)', () => {
 
                 // Click reset button
                 click(btnEl1 as HTMLElement);
-                await detectChangesOnPush(fixture);
+                detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 1);
                 expectSpyCall(emitResetTriplesRequestSpy, 1);

@@ -5,7 +5,7 @@ type analyticsType = [
     /* eslint-disable @typescript-eslint/naming-convention */
     string,
     string,
-    { page_path?: string; anonymize_ip?: boolean; send_page_view?: boolean }
+    { page_path?: string; anonymize_ip?: boolean; send_page_view?: boolean },
     /* eslint-enable @typescript-eslint/naming-convention */
 ];
 

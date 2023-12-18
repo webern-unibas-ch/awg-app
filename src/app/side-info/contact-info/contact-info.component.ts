@@ -62,7 +62,10 @@ export class ContactInfoComponent implements OnInit {
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {DomSanitizer} sanitizer Instance of the Angular DomSanitizer.
      */
-    constructor(private coreService: CoreService, private sanitizer: DomSanitizer) {}
+    constructor(
+        private coreService: CoreService,
+        private sanitizer: DomSanitizer
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.

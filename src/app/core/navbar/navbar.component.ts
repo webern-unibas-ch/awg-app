@@ -97,7 +97,10 @@ export class NavbarComponent implements OnInit {
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular Router.
      */
-    constructor(private coreService: CoreService, private router: Router) {}
+    constructor(
+        private coreService: CoreService,
+        private router: Router
+    ) {}
 
     /**
      * Getter variable: editionRouteConstants.

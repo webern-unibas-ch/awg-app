@@ -18,3 +18,27 @@ updates:
       open-pull-requests-limit: 15
       labels:
           - 'npm dependencies'
+      groups:
+          angular-cli/devkit:
+              patterns:
+                  - '@angular/cli'
+                  - '@angular-devkit/*'
+          angular:
+              patterns:
+                  - '@angular/*'
+              exclude-patterns:
+                  - '@angular/cli'
+          angular-eslint:
+              patterns:
+                  - '@angular-eslint/*'
+          fortawesome:
+              patterns:
+                  - '@fortawesome/*'
+              exclude-patterns:
+                  - '@fortawesome/angular-fontawesome'
+          commitlint:
+              patterns:
+                  - '@commitlint/*'
+          typescript-eslint:
+              patterns:
+                  - '@typescript-eslint/*'

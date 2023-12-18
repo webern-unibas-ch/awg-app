@@ -3,10 +3,10 @@
         ngbAccordionItem="awg-graph-visualizer-triples"
         [collapsed]="isAccordionItemCollapsed()"
         [disabled]="isAccordionItemDisabled()">
-        <h2 ngbAccordionHeader>
-            <button ngbAccordionButton>RDF Triples</button>
-        </h2>
-        <div ngbAccordionCollapse>
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton class="p-3">RDF Triples</button>
+        </div>
+        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
             <div ngbAccordionBody>
                 <ng-template>
                     <!-- CodeMirror editor instance -->

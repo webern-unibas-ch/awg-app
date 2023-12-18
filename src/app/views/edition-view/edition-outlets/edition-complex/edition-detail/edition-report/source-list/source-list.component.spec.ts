@@ -4,6 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
@@ -11,7 +12,6 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { SourceList } from '@awg-views/edition-view/models';
 
-import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { SourceListComponent } from './source-list.component';
 
 describe('SourceListComponent (DONE)', () => {
@@ -132,9 +132,16 @@ describe('SourceListComponent (DONE)', () => {
                         const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
                         const anchorEl = anchorDes[0].nativeElement;
 
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 1, 1);
+
+                        const siglumDes = spanDes[0];
+                        const siglumEl = siglumDes.nativeElement;
+
                         const expectedSiglum = expectedSourceListData.sources[index].siglum;
 
-                        expectToBe(anchorEl.textContent, expectedSiglum);
+                        expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim());
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
                     });
                 });
 
@@ -160,11 +167,24 @@ describe('SourceListComponent (DONE)', () => {
                         const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
                         const anchorEl = anchorDes[0].nativeElement;
 
-                        const expectedSiglum =
-                            expectedSourceListData.sources[index].siglum +
-                            expectedSourceListData.sources[index].siglumAddendum;
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 2, 2);
 
-                        expectToBe(anchorEl.textContent, expectedSiglum);
+                        const siglumDes = spanDes[0];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const siglumAddendumDes = spanDes[1];
+                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+                        const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
+
+                        expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+
+                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
                     });
                 });
 
@@ -265,7 +285,7 @@ describe('SourceListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain text siglum span in header column (th)', () => {
+                it('... should contain text siglum container span in header column (th)', () => {
                     const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
@@ -280,20 +300,32 @@ describe('SourceListComponent (DONE)', () => {
                         if (index === 0) {
                             return;
                         }
+
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
 
-                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 1, 1);
-                        const spanEl = spanDes[0].nativeElement;
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-text-siglum-container',
+                            1,
+                            1
+                        );
+                        const containerEl = containerDes[0].nativeElement;
 
                         const expectedSiglum =
                             expectedSourceListData.textSources[index - 1].siglum +
                             expectedSourceListData.textSources[index - 1].siglumAddendum;
 
-                        expectToBe(spanEl.textContent, expectedSiglum);
+                        expectToBe(containerEl.textContent.trim(), expectedSiglum.trim());
                     });
                 });
 
-                it('... should display text siglum addendum if present in header column (th)', () => {
+                it('... should display text siglum and siglum addendum if present in header column (th)', () => {
+                    expectedSourceListData.textSources[0].siglumAddendum = 'a';
+                    expectedSourceListData.textSources[1].siglumAddendum = 'H';
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
                     const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
                     const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
@@ -310,14 +342,31 @@ describe('SourceListComponent (DONE)', () => {
                         }
                         const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
 
-                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 1, 1);
-                        const spanEl = spanDes[0].nativeElement;
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-text-siglum-container',
+                            1,
+                            1
+                        );
+                        const containerEl = containerDes[0].nativeElement;
+                        const spanDes = getAndExpectDebugElementByCss(containerDes[0], 'span', 2, 2);
 
-                        const expectedSiglum =
-                            expectedSourceListData.textSources[index - 1].siglum +
-                            expectedSourceListData.textSources[index - 1].siglumAddendum;
+                        const siglumDes = spanDes[0];
+                        const siglumEl = siglumDes.nativeElement;
 
-                        expectToBe(spanEl.textContent, expectedSiglum);
+                        const siglumAddendumDes = spanDes[1];
+                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.textSources[index - 1].siglum;
+                        const expectedAddendum = expectedSourceListData.textSources[index - 1].siglumAddendum;
+
+                        expectToBe(containerEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                        expect(siglumEl).toHaveClass('awg-source-list-text-siglum');
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+
+                        expect(siglumAddendumEl).toHaveClass('awg-source-list-text-siglum-addendum');
+                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
                     });
                 });
 

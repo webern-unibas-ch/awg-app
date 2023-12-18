@@ -3,60 +3,86 @@
     <!-- modal -->
     <awg-modal #modal></awg-modal>
 
-    <ngb-accordion
-        id="reportAcc"
-        #reportAcc="ngbAccordion"
-        activeIds="awg-source-list, awg-source-desc, awg-source-evaluation, awg-tka-panel"
-        *ngIf="editionReportData$ | async as editionReportData">
-        <!-- source list -->
-        <ngb-panel id="awg-source-list" [title]="titles.sourceList">
-            <ng-template ngbPanelContent>
-                <awg-source-list
-                    *ngIf="editionReportData[0]"
-                    [sourceListData]="editionReportData[0]"
-                    (openModalRequest)="onModalOpen($event)">
-                </awg-source-list>
-            </ng-template>
-        </ngb-panel>
-
-        <!-- source description -->
-        <ngb-panel id="awg-source-desc" [title]="titles.sourceDescription">
-            <ng-template ngbPanelContent>
-                <awg-source-description
-                    *ngIf="editionReportData[1]"
-                    [sourceDescriptionListData]="editionReportData[1]"
-                    (openModalRequest)="onModalOpen($event)"
-                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-                </awg-source-description>
-            </ng-template>
-        </ngb-panel>
-
-        <!-- source evaluation -->
-        <ngb-panel id="awg-source-evaluation" [title]="titles.sourceEvaluation">
-            <ng-template ngbPanelContent>
-                <awg-source-evaluation
-                    *ngIf="editionReportData[2]"
-                    [editionComplex]="editionComplex"
-                    [sourceEvaluationListData]="editionReportData[2]"
-                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                    (openModalRequest)="onModalOpen($event)"
-                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-                </awg-source-evaluation>
-            </ng-template>
-        </ngb-panel>
-
-        <!-- text critics -->
-        <ngb-panel id="awg-tka-panel" [title]="titles.tka">
-            <ng-template ngbPanelContent>
-                <awg-textcritics-list
-                    *ngIf="editionReportData[3]"
-                    [textcriticsData]="editionReportData[3]"
-                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
-                    (openModalRequest)="onModalOpen($event)"
-                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
-                </awg-textcritics-list>
-            </ng-template>
-        </ngb-panel>
-    </ngb-accordion>
-    <!-- END accordion -->
+    @if (editionReportData$ | async; as editionReportData) {
+        <div ngbAccordion>
+            <!-- source list -->
+            <div ngbAccordionItem="awg-source-list" [collapsed]="false">
+                <div ngbAccordionHeader>
+                    <button ngbAccordionButton>{{ titles.sourceList }}</button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            @if (editionReportData[0]) {
+                                <awg-source-list
+                                    [sourceListData]="editionReportData[0]"
+                                    (openModalRequest)="onModalOpen($event)">
+                                </awg-source-list>
+                            }
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <!-- source description -->
+            <div ngbAccordionItem="awg-source-desc" [collapsed]="false">
+                <div ngbAccordionHeader>
+                    <button ngbAccordionButton>{{ titles.sourceDescription }}</button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            @if (editionReportData[1]) {
+                                <awg-source-description
+                                    [sourceDescriptionListData]="editionReportData[1]"
+                                    (openModalRequest)="onModalOpen($event)"
+                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+                                </awg-source-description>
+                            }
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <!-- source evaluation -->
+            <div ngbAccordionItem="awg-source-evaluation" [collapsed]="false">
+                <div ngbAccordionHeader>
+                    <button ngbAccordionButton>{{ titles.sourceEvaluation }}</button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            @if (editionReportData[2]) {
+                                <awg-source-evaluation
+                                    [editionComplex]="editionComplex"
+                                    [sourceEvaluationListData]="editionReportData[2]"
+                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                                    (openModalRequest)="onModalOpen($event)"
+                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+                                </awg-source-evaluation>
+                            }
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <!-- text critics -->
+            <div ngbAccordionItem="awg-tka-panel" [collapsed]="false">
+                <div ngbAccordionHeader>
+                    <button ngbAccordionButton>{{ titles.tka }}</button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            @if (editionReportData[3]) {
+                                <awg-textcritics-list
+                                    [textcriticsData]="editionReportData[3]"
+                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
+                                    (openModalRequest)="onModalOpen($event)"
+                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">
+                                </awg-textcritics-list>
+                            }
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>

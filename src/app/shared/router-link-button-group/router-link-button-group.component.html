@@ -1,13 +1,14 @@
 <div class="btn-group awg-btn-group d-flex" role="group" aria-label="Router link button group">
-    <button
-        type="button"
-        class="btn btn-outline-info w-100"
-        *ngFor="let routerLinkButton of routerLinkButtons"
-        [routerLink]="[routerLinkButton?.root, routerLinkButton?.link]"
-        [queryParamsHandling]="queryParamsHandling"
-        routerLinkActive="active"
-        [disabled]="routerLinkButton?.disabled"
-        (click)="selectButton(routerLinkButton)">
-        {{ routerLinkButton?.label }}
-    </button>
+    @for (routerLinkButton of routerLinkButtons; track routerLinkButton) {
+        <button
+            type="button"
+            class="btn btn-outline-info w-100"
+            [routerLink]="[routerLinkButton?.root, routerLinkButton?.link]"
+            [queryParamsHandling]="queryParamsHandling"
+            routerLinkActive="active"
+            [disabled]="routerLinkButton?.disabled"
+            (click)="selectButton(routerLinkButton)">
+            {{ routerLinkButton?.label }}
+        </button>
+    }
 </div>

@@ -24,7 +24,7 @@ import { EditionSvgDrawingService } from '@awg-views/edition-view/services';
 
 import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer.component';
 
-import * as d3_selection from 'd3-selection';
+import * as D3_SELECTION from 'd3-selection';
 
 @Component({ selector: 'awg-license', template: '' })
 class LicenseStubComponent {}
@@ -61,7 +61,7 @@ describe('EditionSvgSheetViewerComponent', () => {
         mockEditionSvgDrawingService = {
             createSvg: (svgFilePath: string, svgEl: SVGSVGElement, svgRootGroupEl: SVGGElement): Promise<D3Selection> =>
                 new Promise(resolve => {
-                    resolve(d3_selection.select(svgEl));
+                    resolve(D3_SELECTION.select(svgEl));
                 }),
             getContainerDimensions: (): { width: number; height: number } => ({ width: 100, height: 100 }),
             getGroupsBySelector: (svgRootGroup: D3Selection, selector: string): D3Selection =>
@@ -164,8 +164,8 @@ describe('EditionSvgSheetViewerComponent', () => {
             // Trigger initial data binding
             fixture.detectChanges();
 
-            component.svgSheetSelection = d3_selection.select(component.svgSheetElementRef.nativeElement);
-            component.svgSheetRootGroupSelection = d3_selection.select(component.svgSheetRootGroupRef.nativeElement);
+            component.svgSheetSelection = D3_SELECTION.select(component.svgSheetElementRef.nativeElement);
+            component.svgSheetRootGroupSelection = D3_SELECTION.select(component.svgSheetRootGroupRef.nativeElement);
         });
 
         it('... should have `selectedSvgSheet` input', () => {

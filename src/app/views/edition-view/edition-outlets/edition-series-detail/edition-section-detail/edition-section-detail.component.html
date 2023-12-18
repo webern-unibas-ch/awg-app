@@ -1,31 +1,27 @@
-<div
-    class="awg-edition-section-detail"
-    *ngIf="
-        selectedSection &&
-            utils.isNotEmptyObject(selectedSection.complexes) &&
-            (utils.isNotEmptyArray(selectedSection.complexes.opus) ||
-                utils.isNotEmptyArray(selectedSection.complexes.mnr));
-        else noComplexes
-    ">
-    <div
-        *ngIf="utils.isNotEmptyArray(selectedSection.complexes.opus)"
-        class="awg-edition-section-detail-opus para p-3 border rounded-3">
-        <h5>nach Opusnummer:</h5>
-        <awg-edition-complex-card [complexes]="selectedSection.complexes.opus"></awg-edition-complex-card>
+@if (
+    selectedSection &&
+    utils.isNotEmptyObject(selectedSection.complexes) &&
+    (utils.isNotEmptyArray(selectedSection.complexes.opus) || utils.isNotEmptyArray(selectedSection.complexes.mnr))
+) {
+    <div class="awg-edition-section-detail">
+        @if (utils.isNotEmptyArray(selectedSection.complexes.opus)) {
+            <div class="awg-edition-section-detail-opus para p-3 border rounded-3">
+                <h5>nach Opusnummer:</h5>
+                <awg-edition-complex-card [complexes]="selectedSection.complexes.opus"></awg-edition-complex-card>
+            </div>
+        }
+        @if (utils.isNotEmptyArray(selectedSection.complexes.mnr)) {
+            <div class="awg-edition-section-detail-mnr p-3 border rounded-3">
+                <h5>nach Moldenhauer-Nummer:</h5>
+                <awg-edition-complex-card [complexes]="selectedSection.complexes.mnr"></awg-edition-complex-card>
+            </div>
+        }
     </div>
-
-    <div
-        *ngIf="utils.isNotEmptyArray(selectedSection.complexes.mnr)"
-        class="awg-edition-section-detail-mnr p-3 border rounded-3">
-        <h5>nach Moldenhauer-Nummer:</h5>
-        <awg-edition-complex-card [complexes]="selectedSection.complexes.mnr"></awg-edition-complex-card>
-    </div>
-</div>
-<ng-template #noComplexes>
+} @else {
     <div class="alert alert-info" role="alert">
         <p class="text-muted" style="margin-bottom: 0">
             [Diese Inhalte erscheinen im Zusammenhang der vollständigen Edition von AWG
             {{ selectedSeries?.series.short }}/{{ selectedSection?.section.short }}.]
         </p>
     </div>
-</ng-template>
+}

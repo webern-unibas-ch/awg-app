@@ -1,88 +1,108 @@
 <!-- content: edition-view -->
 
 <div>
-    <div class="awg-edition-row-tables para" *ngIf="isRowTableView$ | async as isRowTableView">
-        <h6 class="awg-edition-info-breadcrumb">
-            <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                {{ editionRouteConstants.EDITION?.short }}
-            </a>
-            /
-            <span>{{ editionRouteConstants.ROWTABLES.full }}</span>
-        </h6>
-        <!-- Jumbotron -->
-        <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="'Übersicht'"></awg-edition-jumbotron>
-    </div>
-
-    <div
-        class="awg-edition-series para"
-        *ngIf="(selectedEditionComplex$ | async) === null && (isRowTableView$ | async) === null">
-        <h6 class="awg-edition-info-breadcrumb">
-            <a
-                *ngIf="selectedEditionSeries$ | async as selectedSeries; else editionWithoutLink"
-                [routerLink]="[editionRouteConstants.SERIES.route]">
-                {{ editionRouteConstants.EDITION?.short }}
-            </a>
-            <ng-template #editionWithoutLink> {{ editionRouteConstants.EDITION?.short }} </ng-template>
-            /
-            <span *ngIf="selectedEditionSeries$ | async as selectedSeries">
-                <a
-                    *ngIf="selectedEditionSection$ | async as selectedSection; else seriesWithoutLink"
-                    [routerLink]="['./series', selectedSeries.series.route]">
-                    {{ selectedSeries?.series.full }}
+    @if (isRowTableView$ | async; as isRowTableView) {
+        <div class="awg-edition-row-tables para">
+            <h6 class="awg-edition-info-breadcrumb">
+                <a [routerLink]="[editionRouteConstants.SERIES.route]">
+                    {{ editionRouteConstants.EDITION?.short }}
                 </a>
-                <ng-template #seriesWithoutLink> {{ selectedSeries?.series.full }} </ng-template>
                 /
-            </span>
-            <span *ngIf="selectedEditionSection$ | async as selectedSection">
-                {{ selectedSection?.section.full }}
-            </span>
-        </h6>
-        <!-- Jumbotron -->
-        <awg-edition-jumbotron
-            [jumbotronId]="editionViewId"
-            [jumbotronTitle]="editionViewTitle"></awg-edition-jumbotron>
-    </div>
-
-    <div class="awg-edition-complex" *ngIf="selectedEditionComplex$ | async as selectedEditionComplex">
-        <h6 class="awg-edition-info-breadcrumb">
-            <a [routerLink]="[editionRouteConstants.SERIES.route]">
-                {{ editionRouteConstants.EDITION?.short }}
-            </a>
-            /
-            <a [routerLink]="[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]">
-                {{ selectedEditionComplex.series.full }}
-            </a>
-            /
-            <a
-                [routerLink]="[
-                    editionRouteConstants.SERIES.route,
-                    selectedEditionComplex.series.route,
-                    'section',
-                    selectedEditionComplex.section.route
-                ]">
-                {{ selectedEditionComplex.section.full }}
-            </a>
-        </h6>
-        <h3 class="awg-edition-info-header">
-            <span class="awg-edition-info-header-title" [innerHTML]="selectedEditionComplex.titleStatement.title"></span
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ selectedEditionComplex.complexId.short }}</span>
-        </h3>
-        <!-- declamation -->
-        <div class="awg-edition-responsibility mt-3">
-            <p>
-                Ediert von
-                <span
-                    class="editor"
-                    *ngFor="let editor of selectedEditionComplex.responsibilityStatement.editors; last as isLast">
-                    <a href="{{ editor.homepage }}">{{ editor.name }}</a
-                    ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
-                </span>
-                <br />
-                Versionsdatum:
-                <span class="version">{{ selectedEditionComplex.responsibilityStatement.lastModified }}</span>
-            </p>
+                <span>{{ editionRouteConstants.ROWTABLES.full }}</span>
+            </h6>
+            <!-- Jumbotron -->
+            <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="'Übersicht'"></awg-edition-jumbotron>
         </div>
-    </div>
+    }
+
+    @if ((selectedEditionComplex$ | async) === null && (isRowTableView$ | async) === null) {
+        <div class="awg-edition-series para">
+            <h6 class="awg-edition-info-breadcrumb">
+                @if (selectedEditionSeries$ | async; as selectedSeries) {
+                    <a [routerLink]="[editionRouteConstants.SERIES.route]">
+                        {{ editionRouteConstants.EDITION?.short }}
+                    </a>
+                } @else {
+                    {{ editionRouteConstants.EDITION?.short }}
+                }
+                /
+                @if (selectedEditionSeries$ | async; as selectedSeries) {
+                    <span>
+                        @if (selectedEditionSection$ | async; as selectedSection) {
+                            <a [routerLink]="['./series', selectedSeries.series.route]">
+                                {{ selectedSeries?.series.full }}
+                            </a>
+                        } @else {
+                            {{ selectedSeries?.series.full }}
+                        }
+                        /
+                    </span>
+                }
+                @if (selectedEditionSection$ | async; as selectedSection) {
+                    <span>
+                        {{ selectedSection?.section.full }}
+                    </span>
+                }
+            </h6>
+            <!-- Jumbotron -->
+            <awg-edition-jumbotron
+                [jumbotronId]="editionViewId"
+                [jumbotronTitle]="editionViewTitle"></awg-edition-jumbotron>
+        </div>
+    }
+
+    @if (selectedEditionComplex$ | async; as selectedEditionComplex) {
+        <div class="awg-edition-complex">
+            <h6 class="awg-edition-info-breadcrumb">
+                <a [routerLink]="[editionRouteConstants.SERIES.route]">
+                    {{ editionRouteConstants.EDITION?.short }}
+                </a>
+                /
+                <a [routerLink]="[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]">
+                    {{ selectedEditionComplex.series.full }}
+                </a>
+                /
+                <a
+                    [routerLink]="[
+                        editionRouteConstants.SERIES.route,
+                        selectedEditionComplex.series.route,
+                        'section',
+                        selectedEditionComplex.section.route
+                    ]">
+                    {{ selectedEditionComplex.section.full }}
+                </a>
+            </h6>
+            <h3 class="awg-edition-info-header">
+                <span
+                    class="awg-edition-info-header-title"
+                    [innerHTML]="selectedEditionComplex.titleStatement.title"></span
+                >&nbsp;<span class="awg-edition-info-header-catalogue">{{
+                    selectedEditionComplex.complexId.short
+                }}</span>
+            </h3>
+            <!-- declamation -->
+            <div class="awg-edition-responsibility mt-3">
+                <p>
+                    Ediert von
+                    @for (
+                        editor of selectedEditionComplex.responsibilityStatement.editors;
+                        track editor;
+                        let isLast = $last
+                    ) {
+                        <span class="editor">
+                            <a href="{{ editor.homepage }}">{{ editor.name }}</a>
+                            @if (!isLast) {
+                                <span>&nbsp;&&nbsp;</span>
+                            }
+                        </span>
+                    }
+                    <br />
+                    Versionsdatum:
+                    <span class="version">{{ selectedEditionComplex.responsibilityStatement.lastModified }}</span>
+                </p>
+            </div>
+        </div>
+    }
 
     <!-- edition routes -->
     <router-outlet></router-outlet>

@@ -3,7 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { D3SimulationLink } from './d3-simulation-link.model';
 import { D3SimulationNode } from './d3-simulation-node.model';
 
-import * as d3_force from 'd3-force';
+import * as D3_FORCE from 'd3-force';
 
 /**
  * Object constant with a set of forces.
@@ -23,7 +23,7 @@ const FORCES = {
  *
  * It represents a d3 force simulation.
  */
-export interface D3Simulation extends d3_force.Simulation<D3SimulationNode, D3SimulationLink> {}
+export interface D3Simulation extends D3_FORCE.Simulation<D3SimulationNode, D3SimulationLink> {}
 
 /**
  * The D3ForceSimulationOptions interface.
@@ -140,7 +140,7 @@ export class D3ForceSimulation {
             const ticker = this.ticker;
 
             // Set up the simulation
-            this.forceSimulation = d3_force.forceSimulation();
+            this.forceSimulation = D3_FORCE.forceSimulation();
 
             this._createForces(options);
 
@@ -175,19 +175,17 @@ export class D3ForceSimulation {
      */
     private _createForces(options: D3ForceSimulationOptions): void {
         // Create forces
-        this._chargeForce = d3_force.forceManyBody().strength((d: D3SimulationNode) => d['r'] * FORCES.CHARGE_STRENGTH);
+        this._chargeForce = D3_FORCE.forceManyBody().strength((d: D3SimulationNode) => d['r'] * FORCES.CHARGE_STRENGTH);
 
-        this._centerForce = d3_force.forceCenter(options.width / 2, options.height / 2);
+        this._centerForce = D3_FORCE.forceCenter(options.width / 2, options.height / 2);
 
-        this._collideForce = d3_force
-            .forceCollide()
+        this._collideForce = D3_FORCE.forceCollide()
             .strength(FORCES.COLLISION_STRENGTH)
             .radius(d => d['r'] + 5)
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
-        this._linkForce = d3_force
-            .forceLink()
+        this._linkForce = D3_FORCE.forceLink()
             .links(this.links)
             .id((d: D3SimulationLink) => d.predicate)
             .distance(FORCES.LINK_DISTANCE); // FORCES.LINKS

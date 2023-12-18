@@ -17,15 +17,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repository
-              uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab # ratchet:actions/checkout@v3
+              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v3
             - name: Optimize SVGs
-              uses: ericcornelissen/svgo-action@ee5df7574a3256289c336be4a5e3118666096c86 # ratchet:ericcornelissen/svgo-action@v3
+              uses: ericcornelissen/svgo-action@7a6e0d9e931266b92d0bd87bca0b84123306f91d # ratchet:ericcornelissen/svgo-action@v4.0.4
               id: svgo
               with:
                   repo-token: ${{secrets.GITHUB_TOKEN}}
                   svgo-version: 3 # defaults to 2
             - name: Commit optimizations
-              uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # ratchet:stefanzweifel/git-auto-commit-action@v4
+              uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # ratchet:stefanzweifel/git-auto-commit-action@v4
               if: ${{steps.svgo.outputs.DID_OPTIMIZE}}
               with:
                   commit_message: 'fix(assets): optimize ${{steps.svgo.outputs.OPTIMIZED_COUNT}} SVG(s) with SVGO'

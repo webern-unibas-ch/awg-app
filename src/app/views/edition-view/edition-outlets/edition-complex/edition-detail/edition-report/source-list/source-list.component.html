@@ -4,48 +4,65 @@
             aria-label="Table for list of sources"
             class="table table-hover borderless awg-source-description-sources">
             <tbody>
-                <tr *ngFor="let source of sourceListData.sources; let sourceIndex = index">
-                    <th scope="row">
-                        <ng-container *ngIf="source.hasDescription === true; else modalHint">
-                            <a [routerLink]="['./']" fragment="{{ source.linkTo }}"
-                                >{{ source.siglum
-                                }}<sup *ngIf="source.siglumAddendum">{{ source.siglumAddendum }}</sup></a
-                            >
-                        </ng-container>
-                        <ng-template #modalHint>
-                            <a (click)="openModal(source.linkTo)"
-                                >{{ source.siglum
-                                }}<sup *ngIf="source.siglumAddendum">{{ source.siglumAddendum }}</sup></a
-                            >
-                        </ng-template>
-                    </th>
-                    <td>
-                        <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br />
-                        <span class="text-muted" [innerHTML]="source.location"></span>
-                    </td>
-                </tr>
+                @for (source of sourceListData.sources; track source; let sourceIndex = $index) {
+                    <tr>
+                        <th scope="row">
+                            @if (source.hasDescription === true) {
+                                <a [routerLink]="['./']" fragment="{{ source.linkTo }}"
+                                    ><span class="awg-source-list-siglum">{{ source.siglum }}</span>
+                                    @if (source.siglumAddendum) {
+                                        <span class="awg-source-list-siglum-addendum">
+                                            <sup>{{ source.siglumAddendum }}</sup>
+                                        </span>
+                                    }
+                                </a>
+                            } @else {
+                                <a (click)="openModal(source.linkTo)"
+                                    ><span class="awg-source-list-siglum">{{ source.siglum }}</span>
+                                    @if (source.siglumAddendum) {
+                                        <span class="awg-source-list-siglum-addendum">
+                                            <sup>{{ source.siglumAddendum }}</sup>
+                                        </span>
+                                    }
+                                </a>
+                            }
+                        </th>
+                        <td>
+                            <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br />
+                            <span class="text-muted" [innerHTML]="source.location"></span>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
-        <table
-            aria-label="Table for list of text sources"
-            class="table table-hover borderless awg-source-description-text-sources"
-            *ngIf="utils.isNotEmptyArray(sourceListData.textSources)">
-            <tbody>
-                <tr>
-                    <td colspan="2">Zum vertonten Text:</td>
-                </tr>
-                <tr *ngFor="let text of sourceListData.textSources; let textIndex = index">
-                    <th scope="row" id="{{ text.id }}">
-                        <span
-                            >{{ text.siglum }}<sup *ngIf="text.siglumAddendum">{{ text.siglumAddendum }}</sup></span
-                        >
-                    </th>
-                    <td>
-                        <span [compile-html]="text.type" [compile-html-ref]="ref"></span> <br />
-                        <span class="text-muted" [innerHTML]="text.location"></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        @if (utils.isNotEmptyArray(sourceListData.textSources)) {
+            <table
+                aria-label="Table for list of text sources"
+                class="table table-hover borderless awg-source-description-text-sources">
+                <tbody>
+                    <tr>
+                        <td colspan="2">Zum vertonten Text:</td>
+                    </tr>
+                    @for (text of sourceListData.textSources; track text; let textIndex = $index) {
+                        <tr>
+                            <th scope="row" id="{{ text.id }}">
+                                <span class="awg-source-list-text-siglum-container"
+                                    ><span class="awg-source-list-text-siglum">{{ text.siglum }}</span>
+                                    @if (text.siglumAddendum) {
+                                        <span class="awg-source-list-text-siglum-addendum"
+                                            ><sup>{{ text.siglumAddendum }}</sup></span
+                                        >
+                                    }
+                                </span>
+                            </th>
+                            <td>
+                                <span [compile-html]="text.type" [compile-html-ref]="ref"></span> <br />
+                                <span class="text-muted" [innerHTML]="text.location"></span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
     </div>
 </div>
