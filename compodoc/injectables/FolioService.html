@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -40,21 +98,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >FolioService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >FolioService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -76,7 +140,7 @@ and prepares the Snap svg canvas object.</p>
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -141,7 +205,7 @@ and prepares the Snap svg canvas object.</p>
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -152,7 +216,7 @@ and prepares the Snap svg canvas object.</p>
                 <td class="col-md-4">
                     <a name="_addFolioItemsToSnapSvgCanvas"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_addFolioItemsToSnapSvgCanvas</b></span>
                         <a href="#_addFolioItemsToSnapSvgCanvas"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -160,117 +224,115 @@ and prepares the Snap svg canvas object.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_addFolioItemsToSnapSvgCanvas(snapCanvas: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, snapSheetGroup: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, folioSvg: <a href="../classes/FolioSvgData.html" target="_self">FolioSvgData</a>, fgColor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="255"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:255</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:255</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _addFolioItemsToSnapSvgCanvas.</p>
+                        <div class="io-description"><p>Private method: _addFolioItemsToSnapSvgCanvas.</p>
 <p>It adds the folio&#39;s items from the calculated
 folio svg data to the folio svg object (SnapCanvas).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>snapCanvas</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>snapCanvas</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given Snap canvas svg object.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>snapSheetGroup</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given Snap canvas sheet group object.</p>
+                                            <td>
+                                                    <p>The given Snap canvas svg object.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folioSvg</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>snapSheetGroup</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given calculated folio data.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>fgColor</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given foreground color.</p>
+                                            <td>
+                                                    <p>The given Snap canvas sheet group object.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvg</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Adds the items to the Snap canvas svg object.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given calculated folio data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fgColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given foreground color.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Adds the items to the Snap canvas svg object.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -281,7 +343,7 @@ folio svg data to the folio svg object (SnapCanvas).</p>
                 <td class="col-md-4">
                     <a name="_addFolioSheetToSnapSvgCanvas"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_addFolioSheetToSnapSvgCanvas</b></span>
                         <a href="#_addFolioSheetToSnapSvgCanvas"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -289,117 +351,115 @@ folio svg data to the folio svg object (SnapCanvas).</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_addFolioSheetToSnapSvgCanvas(snapCanvas: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, snapSheetGroup: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, folioSvg: <a href="../classes/FolioSvgData.html" target="_self">FolioSvgData</a>, bgColor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="138"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:138</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:138</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _addFolioSheetToSnapSvgCanvas.</p>
+                        <div class="io-description"><p>Private method: _addFolioSheetToSnapSvgCanvas.</p>
 <p>It adds the folio&#39;s sheet from the calculated
 folio svg data to the folio svg object (SnapCanvas).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>snapCanvas</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>snapCanvas</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given Snap canvas svg object.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>snapSheetGroup</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given Snap canvas sheet group object.</p>
+                                            <td>
+                                                    <p>The given Snap canvas svg object.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folioSvg</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>snapSheetGroup</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given calculated folio data.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>bgColor</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given background color.</p>
+                                            <td>
+                                                    <p>The given Snap canvas sheet group object.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvg</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Adds the sheet to the Snap canvas svg object.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given calculated folio data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>bgColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given background color.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Adds the sheet to the Snap canvas svg object.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -410,7 +470,7 @@ folio svg data to the folio svg object (SnapCanvas).</p>
                 <td class="col-md-4">
                     <a name="_addFolioSystemsToSnapSvgCanvas"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_addFolioSystemsToSnapSvgCanvas</b></span>
                         <a href="#_addFolioSystemsToSnapSvgCanvas"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -418,117 +478,115 @@ folio svg data to the folio svg object (SnapCanvas).</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_addFolioSystemsToSnapSvgCanvas(snapCanvas: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, snapSheetGroup: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, folioSvg: <a href="../classes/FolioSvgData.html" target="_self">FolioSvgData</a>, bgColor: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="187"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:187</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="187"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:187</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _addFolioSystemsToSnapSvgCanvas.</p>
+                        <div class="io-description"><p>Private method: _addFolioSystemsToSnapSvgCanvas.</p>
 <p>It adds the folio&#39;s systems from the calculated
 folio svg data to the folio svg object (SnapCanvas).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>snapCanvas</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>snapCanvas</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given Snap canvas svg object.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>snapSheetGroup</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given Snap canvas sheet group object.</p>
+                                            <td>
+                                                    <p>The given Snap canvas svg object.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folioSvg</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>snapSheetGroup</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given calculated folio data.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>bgColor</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given background color.</p>
+                                            <td>
+                                                    <p>The given Snap canvas sheet group object.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvg</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Adds the systems to the Snap canvas svg object.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given calculated folio data.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>bgColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given background color.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Adds the systems to the Snap canvas svg object.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -551,128 +609,126 @@ folio svg data to the folio svg object (SnapCanvas).</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:99</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="99"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:99</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: addFolioToSnapSvgCanvas.</p>
+                        <div class="io-description"><p>Public method: addFolioToSnapSvgCanvas.</p>
 <p>It coordinates the drawing of the calculated folio svg data
 for a folio&#39;s sheet, systems and items to the folio svg object
 (SnapCanvas).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>snapCanvas</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>snapCanvas</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given Snap canvas svg object.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folioSvg</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given calculated folio data.</p>
+                                            <td>
+                                                    <p>The given Snap canvas svg object.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>bgColor</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioSvg</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given background color.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>fgColor</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given foreground color.</p>
+                                            <td>
+                                                    <p>The given calculated folio data.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>ref</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>bgColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given reference to the calling component.</p>
+                                            <td>
+                                                    <p>The given background color.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fgColor</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Adds the folio to the Snap canvas svg object.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given foreground color.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>ref</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given reference to the calling component.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Adds the folio to the Snap canvas svg object.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -695,78 +751,76 @@ for a folio&#39;s sheet, systems and items to the folio svg object
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:73</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:73</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: addViewBoxToSnapSvgCanvas.</p>
+                        <div class="io-description"><p>Public method: addViewBoxToSnapSvgCanvas.</p>
 <p>It adds the svg viewbox attributes to a Snap canvas svg object.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>snapCanvas</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>snapCanvas</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given Snap canvas svg object.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>vb</td>
-                                    <td>
-                                                <code><a href="../classes/ViewBox.html" target="_self" >ViewBox</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given ViewBox object.</p>
+                                            <td>
+                                                    <p>The given Snap canvas svg object.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>vb</td>
+                                            <td>
+                                                            <code><a href="../classes/ViewBox.html" target="_self" >ViewBox</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Adds the svg viewbox attributes to the Snap canvas svg object.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given ViewBox object.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Adds the svg viewbox attributes to the Snap canvas svg object.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -789,85 +843,83 @@ for a folio&#39;s sheet, systems and items to the folio svg object
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:56</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts:56</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getFolioSvgData.</p>
+                        <div class="io-description"><p>Public method: getFolioSvgData.</p>
 <p>It calculates and provides the folio svg data
 to render the folio svg object (SnapCanvas).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>folioSettings</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>folioSettings</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given folio format settings.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folio</td>
-                                    <td>
-                                                <code><a href="../classes/Folio.html" target="_self" >Folio</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given folio.</p>
+                                            <td>
+                                                    <p>The given folio format settings.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folio</td>
+                                            <td>
+                                                            <code><a href="../classes/Folio.html" target="_self" >Folio</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The calculated folio data.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given folio.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/FolioSvgData.html" target="_self" >FolioSvgData</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated folio data.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -950,7 +1002,7 @@ border collision between rendered svg items.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
 import {

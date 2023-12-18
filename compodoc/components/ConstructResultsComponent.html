@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   ConstructResultsComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -82,7 +145,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -101,10 +164,13 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-construct-results</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -129,7 +195,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -143,10 +209,13 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#onGraphNodeClick" >onGraphNodeClick</a>
+                                <a href="#isAccordionItemDisabled" >isAccordionItemDisabled</a>
                             </li>
                             <li>
-                                <a href="#preventPanelCollapseOnFullscreen" >preventPanelCollapseOnFullscreen</a>
+                                <a href="#isQueryResultNotEmpty" >isQueryResultNotEmpty</a>
+                            </li>
+                            <li>
+                                <a href="#onGraphNodeClick" >onGraphNodeClick</a>
                             </li>
                         </ul>
                     </td>
@@ -195,7 +264,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 </section>
 
 
-    <section>
+    <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -213,7 +282,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:34</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -241,7 +310,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:42</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -269,7 +338,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:26</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -282,7 +351,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
             </tbody>
         </table>
 </section>
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -300,7 +369,7 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:50</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -315,11 +384,132 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
 </section>
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAccordionItemDisabled"></a>
+                    <span class="name">
+                        <span ><b>isAccordionItemDisabled</b></span>
+                        <a href="#isAccordionItemDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAccordionItemDisabled()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: isAccordionItemDisabled.</p>
+<p>It returns a boolean flag if the accordion item should be disabled.
+It returns true if fullscreenMode is set, otherwise false.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The boolean value of the comparison.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isQueryResultNotEmpty"></a>
+                    <span class="name">
+                        <span ><b>isQueryResultNotEmpty</b></span>
+                        <a href="#isQueryResultNotEmpty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isQueryResultNotEmpty(queryResult: <a href="../interfaces/Triple.html" target="_self">Triple[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: isQueryResultNotEmpty.</p>
+<p>It checks if a given queryResult triple is not empty.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>queryResult</td>
+                                            <td>
+                                                            <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given queryResult triples.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The boolean value of the comparison result.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -333,141 +523,66 @@ of the <a href="../components/GraphVisualizerComponent.html">GraphVisualizerComp
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onGraphNodeClick(node: <a href="../interfaces/D3Simulation.html" target="_self">D3SimulationNode</a>)</code>
+<code>onGraphNodeClick(node: <a href="../classes/D3SimulationNode.html" target="_self">D3SimulationNode</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:63</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:93</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onGraphNodeClick.</p>
+                        <div class="io-description"><p>Public method: onGraphNodeClick.</p>
 <p>It emits a trigger to
 the <a href="clickedNodeRequest">clickedNodeRequest</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>node</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>node</td>
+                                            <td>
+                                                            <code><a href="../classes/D3SimulationNode.html" target="_self" >D3SimulationNode</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given graph node.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Triggers the request.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="preventPanelCollapseOnFullscreen"></a>
-                    <span class="name">
-                        <span ><b>preventPanelCollapseOnFullscreen</b></span>
-                        <a href="#preventPanelCollapseOnFullscreen"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent)</code>
-                </td>
-            </tr>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="77"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/construct-results/construct-results.component.ts:77</a></div>
-                </td>
-            </tr>
+                                            <td>
+                                                    <p>The given graph node.</p>
 
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: preventPanelCollapseOnFullscreen.</p>
-<p>It prevents the given panel event from being collapsed in fullscreen mode.</p>
-</div>
+                        </div>
+                            <div class="io-description">
+                                <p>Triggers the request.</p>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>$event</td>
-                                    <td>
-                                            <code>NgbPanelChangeEvent</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Prevents the panel collapse.</p>
-
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -477,10 +592,9 @@ the <a href="clickedNodeRequest">clickedNodeRequest</a>.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 
-import { NgbPanelChangeEvent } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
 
 import { D3SimulationNode, Triple } from &#x27;../models&#x27;;
@@ -531,6 +645,37 @@ export class ConstructResultsComponent {
     clickedNodeRequest: EventEmitter&lt;D3SimulationNode&gt; &#x3D; new EventEmitter();
 
     /**
+     * Public method: isQueryResultNotEmpty.
+     *
+     * It checks if a given queryResult triple is not empty.
+     *
+     * @param {Triple[]} queryResult The given queryResult triples.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isQueryResultNotEmpty(queryResult: Triple[]): boolean {
+        if (queryResult.length &#x3D;&#x3D;&#x3D; 0) {
+            return false;
+        }
+        return queryResult.every(triple &#x3D;&gt; {
+            const { subject, predicate, object } &#x3D; triple;
+            return Boolean(subject) &amp;&amp; Boolean(predicate) &amp;&amp; Boolean(object);
+        });
+    }
+
+    /**
+     * Public method: isAccordionItemDisabled.
+     *
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
+     *
+     * @returns {boolean} The boolean value of the comparison.
+     */
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen ? true : false;
+    }
+
+    /**
      * Public method: onGraphNodeClick.
      *
      * It emits a trigger to
@@ -546,64 +691,53 @@ export class ConstructResultsComponent {
         }
         this.clickedNodeRequest.emit(node);
     }
-
-    /**
-     * Public method: preventPanelCollapseOnFullscreen.
-     *
-     * It prevents the given panel event from being collapsed in fullscreen mode.
-     *
-     * @returns {void} Prevents the panel collapse.
-     */
-    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
-        if (!$event) {
-            return;
-        }
-        if (this.isFullscreen &amp;&amp; $event.nextState &#x3D;&#x3D;&#x3D; false) {
-            $event.preventDefault();
-        }
-    }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ngb-accordion
-    #constructResultsAcc&#x3D;&quot;ngbAccordion&quot;
-    activeIds&#x3D;&quot;awg-graph-visualizer-construct-results&quot;
-    (panelChange)&#x3D;&quot;preventPanelCollapseOnFullscreen($event)&quot;&gt;
-    &lt;ngb-panel id&#x3D;&quot;awg-graph-visualizer-construct-results&quot; title&#x3D;&quot;Resultat&quot;&gt;
-        &lt;ng-template ngbPanelContent&gt;
-            &lt;ng-container *ngIf&#x3D;&quot;queryResult$ | async as queryResult; else loading&quot;&gt;
-                &lt;ng-container *ngIf&#x3D;&quot;queryResult.length &gt; 0; else noResult&quot;&gt;
-                    &lt;!-- Force graph visualization --&gt;
-                    &lt;awg-force-graph
-                        class&#x3D;&quot;full-width&quot;
-                        [queryResultTriples]&#x3D;&quot;queryResult&quot;
-                        [height]&#x3D;&quot;defaultForceGraphHeight&quot;
-                        (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;&gt;
-                    &lt;/awg-force-graph&gt;
-                &lt;/ng-container&gt;
-                &lt;ng-template #noResult&gt;
-                    &lt;awg-sparql-no-results&gt;&lt;/awg-sparql-no-results&gt;
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div ngbAccordion&gt;
+    &lt;div
+        ngbAccordionItem&#x3D;&quot;awg-graph-visualizer-construct-results&quot;
+        [collapsed]&#x3D;&quot;false&quot;
+        [disabled]&#x3D;&quot;isAccordionItemDisabled()&quot;&gt;
+        &lt;div ngbAccordionHeader&gt;
+            &lt;button ngbAccordionButton class&#x3D;&quot;p-3&quot;&gt;Resultat&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div ngbAccordionCollapse&gt;
+            &lt;div ngbAccordionBody&gt;
+                &lt;ng-template&gt;
+                    @if (queryResult$ | async; as queryResult) {
+                        @if (isQueryResultNotEmpty(queryResult)) {
+                            &lt;!-- Force graph visualization --&gt;
+                            &lt;awg-force-graph
+                                class&#x3D;&quot;full-width&quot;
+                                [queryResultTriples]&#x3D;&quot;queryResult&quot;
+                                [height]&#x3D;&quot;defaultForceGraphHeight&quot;
+                                (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;&gt;
+                            &lt;/awg-force-graph&gt;
+                        } @else {
+                            &lt;awg-sparql-no-results&gt;&lt;/awg-sparql-no-results&gt;
+                        }
+                    } @else {
+                        &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
+                    }
                 &lt;/ng-template&gt;
-            &lt;/ng-container&gt;
-            &lt;ng-template #loading&gt;
-                &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
-            &lt;/ng-template&gt;
-        &lt;/ng-template&gt;
-    &lt;/ngb-panel&gt;
-&lt;/ngb-accordion&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./construct-results.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -628,7 +762,7 @@ export class ConstructResultsComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngb-accordion    #constructResultsAcc="ngbAccordion"    activeIds="awg-graph-visualizer-construct-results"    (panelChange)="preventPanelCollapseOnFullscreen($event)">    <ngb-panel id="awg-graph-visualizer-construct-results" title="Resultat">        <ng-template ngbPanelContent>            <ng-container *ngIf="queryResult$ | async as queryResult; else loading">                <ng-container *ngIf="queryResult.length > 0; else noResult">                    <!-- Force graph visualization -->                    <awg-force-graph                        class="full-width"                        [queryResultTriples]="queryResult"                        [height]="defaultForceGraphHeight"                        (clickedNodeRequest)="onGraphNodeClick($event)">                    </awg-force-graph>                </ng-container>                <ng-template #noResult>                    <awg-sparql-no-results></awg-sparql-no-results>                </ng-template>            </ng-container>            <ng-template #loading>                <awg-twelve-tone-spinner></awg-twelve-tone-spinner>            </ng-template>        </ng-template>    </ngb-panel></ngb-accordion></div>'
+        var COMPONENT_TEMPLATE = '<div><div ngbAccordion>    <div        ngbAccordionItem="awg-graph-visualizer-construct-results"        [collapsed]="false"        [disabled]="isAccordionItemDisabled()">        <div ngbAccordionHeader>            <button ngbAccordionButton class="p-3">Resultat</button>        </div>        <div ngbAccordionCollapse>            <div ngbAccordionBody>                <ng-template>                    @if (queryResult$ | async; as queryResult) {                        @if (isQueryResultNotEmpty(queryResult)) {                            <!-- Force graph visualization -->                            <awg-force-graph                                class="full-width"                                [queryResultTriples]="queryResult"                                [height]="defaultForceGraphHeight"                                (clickedNodeRequest)="onGraphNodeClick($event)">                            </awg-force-graph>                        } @else {                            <awg-sparql-no-results></awg-sparql-no-results>                        }                    } @else {                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>                    }                </ng-template>            </div>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'ConstructResultsComponent'};

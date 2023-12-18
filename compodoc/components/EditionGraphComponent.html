@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   EditionGraphComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -84,11 +147,11 @@ of the edition view of the app.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -107,10 +170,13 @@ of the edition view of the app.</p>
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-edition-graph</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -135,7 +201,7 @@ of the edition view of the app.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -148,6 +214,7 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#child" >child</a>
                             </li>
                             <li>
@@ -170,6 +237,7 @@ of the edition view of the app.</p>
                                 <a href="#GRAPH_IMAGES" >GRAPH_IMAGES</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#isFullscreen" >isFullscreen</a>
                             </li>
                             <li>
@@ -201,6 +269,7 @@ of the edition view of the app.</p>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#onKeydownHandler" >onKeydownHandler</a>
                             </li>
                             <li>
@@ -260,7 +329,7 @@ of the edition view of the app.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -368,7 +437,7 @@ injects the DOCUMENT; and declares a public instance of the UtilityService.</p>
 
 
 
-    <section>
+    <section data-compodoc="block-properties">
     <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -409,7 +478,7 @@ injects the DOCUMENT; and declares a public instance of the UtilityService.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-methods">
     <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -433,17 +502,17 @@ injects the DOCUMENT; and declares a public instance of the UtilityService.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:136</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:136</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>HostListener: document:fullscreenchange.</p>
+                        <div class="io-description"><p>HostListener: document:fullscreenchange.</p>
 <p>It listens for fullscreen exit with ESC key.</p>
 </div>
 
@@ -452,7 +521,7 @@ injects the DOCUMENT; and declares a public instance of the UtilityService.</p>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -475,30 +544,28 @@ injects the DOCUMENT; and declares a public instance of the UtilityService.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="225"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:225</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:225</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: closeFullscreen.</p>
+                        <div class="io-description"><p>Public method: closeFullscreen.</p>
 <p>It closes fullscreen mode and sets isFullscreen flag to false.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets isFullscreen flag to false.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets isFullscreen flag to false.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -521,32 +588,30 @@ injects the DOCUMENT; and declares a public instance of the UtilityService.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="165"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:165</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:165</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionGraphData.</p>
+                        <div class="io-description"><p>Public method: getEditionGraphData.</p>
 <p>It gets the current edition complex of the edition service
 and the observable of the corresponding graph data
 from the EditionDataService.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Gets the current edition complex and the corresponding graph data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Gets the current edition complex and the corresponding graph data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -569,25 +634,25 @@ from the EditionDataService.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="152"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:152</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:152</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
 <p>It calls the containing methods
 when initializing the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -598,6 +663,7 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <a name="onKeydownHandler"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>onKeydownHandler</b></span>
                         <a href="#onKeydownHandler"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -605,7 +671,8 @@ when initializing the component.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onKeydownHandler(_event: KeyboardEvent)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onKeydownHandler(_event: KeyboardEvent)</code>
                 </td>
             </tr>
 
@@ -617,56 +684,54 @@ when initializing the component.</p>
                 </td>
             </tr>
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:136</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:136</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>HostListener: document:fullscreenchange.</p>
+                        <div class="io-description"><p>HostListener: document:fullscreenchange.</p>
 <p>It listens for fullscreen exit with ESC key.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>_event</td>
-                                    <td>
-                                            <code>KeyboardEvent</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>_event</td>
+                                            <td>
+                                                        <code>KeyboardEvent</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -689,36 +754,34 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="193"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:193</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.component.ts:193</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: openFullscreen.</p>
+                        <div class="io-description"><p>Public method: openFullscreen.</p>
 <p>It activates fullscreen mode and sets isFullscreen flag to true.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets isFullscreen flag to true.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets isFullscreen flag to true.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -729,6 +792,7 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <a name="child"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>child</b></span>
                         <a href="#child"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -736,7 +800,7 @@ when initializing the component.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Graph.html" target="_self" >GraphVisualizerComponent</a></code>
+                        <i>Type : </i>        <code><a href="../components/GraphVisualizerComponent.html" target="_self" >GraphVisualizerComponent</a></code>
 
                     </td>
                 </tr>
@@ -981,6 +1045,7 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <a name="isFullscreen"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>isFullscreen</b></span>
                         <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1029,7 +1094,7 @@ when initializing the component.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Graph.html" target="_self" >EditionGraphComponent</a></code>
+                        <i>Type : </i>        <code><a href="../components/EditionGraphComponent.html" target="_self" >EditionGraphComponent</a></code>
 
                     </td>
                 </tr>
@@ -1082,7 +1147,7 @@ when initializing the component.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -1120,7 +1185,7 @@ when initializing the component.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DOCUMENT } from &#x27;@angular/common&#x27;;
 import {
     ChangeDetectionStrategy,
@@ -1364,122 +1429,135 @@ export class EditionGraphComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- content: edition graph --&gt;
 &lt;div&gt;
     &lt;!-- modal --&gt;
     &lt;awg-modal #modal&gt;&lt;/awg-modal&gt;
 
     &lt;!-- graph --&gt;
-    &lt;div class&#x3D;&quot;awg-graph-view p-5 border rounded-3&quot; *ngIf&#x3D;&quot;editionGraphData$ | async as editionGraphData; else error&quot;&gt;
-        &lt;div *ngFor&#x3D;&quot;let graph of editionGraphData.graph&quot;&gt;
-            &lt;!-- graph description --&gt;
-            &lt;div class&#x3D;&quot;awg-graph-description&quot;&gt;
-                &lt;p&gt;
-                    So weit vorhanden, präsentiert die vorliegende Ansicht Graph-Visualisierungen des ausgewählten
-                    Editionsbereichs: Der &lt;em&gt;statische Graph&lt;/em&gt; vermittelt dabei einen von den jeweiligen Editoren
-                    fixierten Überblick editionsrelevanter Zusammenhänge und Abhängigkeiten, der
-                    &lt;em&gt;dynamische Graph&lt;/em&gt; bietet zusätzlich einen interaktiven Zugang zu dem zugrundeliegenden
-                    Datenbestand.
-                    &lt;span class&#x3D;&quot;text-danger&quot;
-                        &gt;Diese Funktionalität ist noch nicht für alle Skizzenbestandteile verfügbar, wird aber
-                        sukzessive ergänzt.&lt;/span
-                    &gt;
-                &lt;/p&gt;
-                &lt;ng-container
-                    *ngIf&#x3D;&quot;
-                        utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples;
-                        else graphDescriptionPlaceholder
-                    &quot;&gt;
-                    &lt;p
-                        *ngFor&#x3D;&quot;let description of graph.description&quot;
-                        [compile-html]&#x3D;&quot;description&quot;
-                        [compile-html-ref]&#x3D;&quot;ref&quot;&gt;&lt;/p&gt;
-                &lt;/ng-container&gt;
-                &lt;ng-template #graphDescriptionPlaceholder&gt;
-                    &lt;p class&#x3D;&quot;awg-graph-description-empty&quot;&gt;
-                        &lt;small class&#x3D;&quot;text-muted&quot;
-                            &gt;[Die Graph-Visualisierungen zum Editionskomplex
-                            &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.full&quot;&gt;&lt;/span&gt; erscheinen im Zusammenhang der
-                            vollständigen Edition von {{ editionComplex.complexId.short }} in
-                            {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                                editionComplex.section.short
-                            }}.]
-                        &lt;/small&gt;
-                    &lt;/p&gt;
-                &lt;/ng-template&gt;
-            &lt;/div&gt;
-
-            &lt;!-- dynamic graph --&gt;
-            &lt;div class&#x3D;&quot;awg-graph-dynamic&quot; *ngIf&#x3D;&quot;graph.rdfData &amp;&amp; graph.rdfData.triples &amp;&amp; graph.rdfData.queryList&quot;&gt;
-                &lt;h4&gt;
-                    Dynamischer Graph
-                    &lt;button
-                        type&#x3D;&quot;button&quot;
-                        class&#x3D;&quot;btn btn-sm btn-outline-info ms-2&quot;
-                        (click)&#x3D;&quot;modal.open(&#x27;HINT_EDITION_GRAPH&#x27;)&quot;&gt;
-                        Hinweise zur Nutzung
-                    &lt;/button&gt;
-                    &lt;button
-                        type&#x3D;&quot;button&quot;
-                        title&#x3D;&quot;Open fullscreen&quot;
-                        class&#x3D;&quot;btn btn-sm btn-outline-info ms-2&quot;
-                        (click)&#x3D;&quot;openFullscreen()&quot;
-                        *ngIf&#x3D;&quot;!isFullscreen&quot;&gt;
-                        &lt;fa-icon [icon]&#x3D;&quot;faExpand&quot;&gt;&lt;/fa-icon&gt;
-                    &lt;/button&gt;
-                    &lt;button
-                        type&#x3D;&quot;button&quot;
-                        title&#x3D;&quot;Close fullscreen&quot;
-                        class&#x3D;&quot;btn btn-sm btn-info ms-2&quot;
-                        (click)&#x3D;&quot;closeFullscreen()&quot;
-                        *ngIf&#x3D;&quot;isFullscreen&quot;&gt;
-                        &lt;fa-icon [icon]&#x3D;&quot;faCompress&quot;&gt;&lt;/fa-icon&gt;
-                    &lt;/button&gt;
-                &lt;/h4&gt;
-                &lt;p&gt;
-                    Diese interaktive Visualisierung basiert auf Mads Holten&#x27;s
-                    &lt;a href&#x3D;&quot;https://github.com/MadsHolten/sparql-visualizer&quot;&gt;SPARQL Visualizer&lt;/a&gt;. Sie modelliert den
-                    aktuellen Skizzenkomplex in Form eines &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot;&gt;RDF&lt;/a&gt;-Graphen. Die
-                    zugrundeliegenden RDF-Daten sind unter dem Punkt &lt;em&gt;RDF Triples&lt;/em&gt; einsehbar und lokal
-                    editierbar. Eine Filterung und Eingrenzung dieser RDF-Daten kann mithilfe der Abfragesprache
-                    &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot;&gt;SPARQL&lt;/a&gt;
-                    unter dem Punkt &lt;em&gt;SPARQL Abfrage&lt;/em&gt; vorgenommen werden; in der Voreinstellung werden hierbei
-                    alle vorhandenen Triples abgefragt.
-                &lt;/p&gt;
-                &lt;awg-graph-visualizer
-                    [graphRDFInputData]&#x3D;&quot;graph.rdfData&quot;
-                    [isFullscreen]&#x3D;&quot;isFullscreen&quot;&gt;&lt;/awg-graph-visualizer&gt;
-            &lt;/div&gt;
-
-            &lt;!-- static image --&gt;
-            &lt;div class&#x3D;&quot;awg-graph-static mt-3&quot; *ngIf&#x3D;&quot;graph.staticImage &amp;&amp; graph.staticImage !&#x3D;&#x3D; &#x27;&#x27;&quot;&gt;
-                &lt;h4&gt;Statischer Graph&lt;/h4&gt;
-                &lt;div [compile-html]&#x3D;&quot;graph.staticImage&quot; [compile-html-ref]&#x3D;&quot;ref&quot;&gt;&lt;/div&gt;
-            &lt;/div&gt;
+    @if (editionGraphData$ | async; as editionGraphData) {
+        &lt;div class&#x3D;&quot;awg-graph-view p-5 border rounded-3&quot;&gt;
+            @for (graph of editionGraphData.graph; track graph) {
+                &lt;div&gt;
+                    &lt;!-- graph description --&gt;
+                    &lt;div class&#x3D;&quot;awg-graph-description&quot;&gt;
+                        &lt;p&gt;
+                            So weit vorhanden, präsentiert die vorliegende Ansicht Graph-Visualisierungen des
+                            ausgewählten Editionsbereichs: Der &lt;em&gt;statische Graph&lt;/em&gt; vermittelt dabei einen von den
+                            jeweiligen Editoren fixierten Überblick editionsrelevanter Zusammenhänge und Abhängigkeiten,
+                            der &lt;em&gt;dynamische Graph&lt;/em&gt; bietet zusätzlich einen interaktiven Zugang zu dem
+                            zugrundeliegenden Datenbestand.
+                            &lt;span class&#x3D;&quot;text-danger&quot;
+                                &gt;Diese Funktionalität ist noch nicht für alle Skizzenbestandteile verfügbar, wird aber
+                                sukzessive ergänzt.&lt;/span
+                            &gt;
+                        &lt;/p&gt;
+                        @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {
+                            @for (description of graph.description; track description) {
+                                &lt;p [compile-html]&#x3D;&quot;description&quot; [compile-html-ref]&#x3D;&quot;ref&quot;&gt;&lt;/p&gt;
+                            }
+                        } @else {
+                            &lt;p class&#x3D;&quot;awg-graph-description-empty&quot;&gt;
+                                &lt;small class&#x3D;&quot;text-muted&quot;
+                                    &gt;[Die Graph-Visualisierungen zum Editionskomplex
+                                    &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.full&quot;&gt;&lt;/span&gt; erscheinen im Zusammenhang
+                                    der vollständigen Edition von {{ editionComplex.complexId.short }} in
+                                    {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
+                                        editionComplex.section.short
+                                    }}.]
+                                &lt;/small&gt;
+                            &lt;/p&gt;
+                        }
+                    &lt;/div&gt;
+                    &lt;!-- dynamic graph --&gt;
+                    @if (graph.rdfData &amp;&amp; graph.rdfData.triples &amp;&amp; graph.rdfData.queryList) {
+                        &lt;div class&#x3D;&quot;awg-graph-dynamic&quot;&gt;
+                            &lt;h4&gt;
+                                Dynamischer Graph
+                                &lt;button
+                                    type&#x3D;&quot;button&quot;
+                                    class&#x3D;&quot;btn btn-sm btn-outline-info ms-2&quot;
+                                    (click)&#x3D;&quot;modal.open(&#x27;HINT_EDITION_GRAPH&#x27;)&quot;&gt;
+                                    Hinweise zur Nutzung
+                                &lt;/button&gt;
+                                @if (!isFullscreen) {
+                                    &lt;button
+                                        type&#x3D;&quot;button&quot;
+                                        title&#x3D;&quot;Open fullscreen&quot;
+                                        class&#x3D;&quot;btn btn-sm btn-outline-info ms-2&quot;
+                                        (click)&#x3D;&quot;openFullscreen()&quot;&gt;
+                                        &lt;fa-icon [icon]&#x3D;&quot;faExpand&quot;&gt;&lt;/fa-icon&gt;
+                                    &lt;/button&gt;
+                                }
+                                @if (isFullscreen) {
+                                    &lt;button
+                                        type&#x3D;&quot;button&quot;
+                                        title&#x3D;&quot;Close fullscreen&quot;
+                                        class&#x3D;&quot;btn btn-sm btn-info ms-2&quot;
+                                        (click)&#x3D;&quot;closeFullscreen()&quot;&gt;
+                                        &lt;fa-icon [icon]&#x3D;&quot;faCompress&quot;&gt;&lt;/fa-icon&gt;
+                                    &lt;/button&gt;
+                                }
+                            &lt;/h4&gt;
+                            &lt;p&gt;
+                                Diese interaktive Visualisierung basiert auf Mads Holten&#x27;s
+                                &lt;a href&#x3D;&quot;https://github.com/MadsHolten/sparql-visualizer&quot;&gt;SPARQL Visualizer&lt;/a&gt;. Sie
+                                modelliert den aktuellen Skizzenkomplex in Form eines
+                                &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot;&gt;RDF&lt;/a&gt;-Graphen. Die zugrundeliegenden RDF-Daten sind
+                                unter dem Punkt &lt;em&gt;RDF Triples&lt;/em&gt; einsehbar und lokal editierbar. Eine Filterung und
+                                Eingrenzung dieser RDF-Daten kann mithilfe der Abfragesprache
+                                &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot;&gt;SPARQL&lt;/a&gt;
+                                unter dem Punkt &lt;em&gt;SPARQL Abfrage&lt;/em&gt; vorgenommen werden; in der Voreinstellung werden
+                                hierbei alle vorhandenen Triples abgefragt.
+                            &lt;/p&gt;
+                            &lt;awg-graph-visualizer
+                                [graphRDFInputData]&#x3D;&quot;graph.rdfData&quot;
+                                [isFullscreen]&#x3D;&quot;isFullscreen&quot;&gt;&lt;/awg-graph-visualizer&gt;
+                        &lt;/div&gt;
+                    }
+                    &lt;!-- static image --&gt;
+                    @if (graph.staticImage &amp;&amp; graph.staticImage !&#x3D;&#x3D; &#x27;&#x27;) {
+                        &lt;div class&#x3D;&quot;awg-graph-static mt-3&quot;&gt;
+                            &lt;h4&gt;Statischer Graph&lt;/h4&gt;
+                            &lt;div [compile-html]&#x3D;&quot;graph.staticImage&quot; [compile-html-ref]&#x3D;&quot;ref&quot;&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    }
+                &lt;/div&gt;
+            }
         &lt;/div&gt;
-    &lt;/div&gt;
+    } @else {
+        @if (errorObject) {
+            &lt;div class&#x3D;&quot;errorMessage&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12 text-center&quot;&gt;
+                    &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;{{ errorObject | json }}&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        }
+    }
 
     &lt;!-- error message --&gt;
     &lt;ng-template #error&gt;
-        &lt;div class&#x3D;&quot;errorMessage&quot; *ngIf&#x3D;&quot;errorObject&quot;&gt;
-            &lt;div class&#x3D;&quot;col-12 text-center&quot;&gt;
-                &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;{{ errorObject | json }}&lt;/div&gt;
+        @if (errorObject) {
+            &lt;div class&#x3D;&quot;errorMessage&quot;&gt;
+                &lt;div class&#x3D;&quot;col-12 text-center&quot;&gt;
+                    &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;{{ errorObject | json }}&lt;/div&gt;
+                &lt;/div&gt;
             &lt;/div&gt;
-        &lt;/div&gt;
+        }
     &lt;/ng-template&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./edition-graph.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1504,7 +1582,7 @@ export class EditionGraphComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: edition graph --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- graph -->    <div class="awg-graph-view p-5 border rounded-3" *ngIf="editionGraphData$ | async as editionGraphData; else error">        <div *ngFor="let graph of editionGraphData.graph">            <!-- graph description -->            <div class="awg-graph-description">                <p>                    So weit vorhanden, präsentiert die vorliegende Ansicht Graph-Visualisierungen des ausgewählten                    Editionsbereichs: Der <em>statische Graph</em> vermittelt dabei einen von den jeweiligen Editoren                    fixierten Überblick editionsrelevanter Zusammenhänge und Abhängigkeiten, der                    <em>dynamische Graph</em> bietet zusätzlich einen interaktiven Zugang zu dem zugrundeliegenden                    Datenbestand.                    <span class="text-danger"                        >Diese Funktionalität ist noch nicht für alle Skizzenbestandteile verfügbar, wird aber                        sukzessive ergänzt.</span                    >                </p>                <ng-container                    *ngIf="                        utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples;                        else graphDescriptionPlaceholder                    ">                    <p                        *ngFor="let description of graph.description"                        [compile-html]="description"                        [compile-html-ref]="ref"></p>                </ng-container>                <ng-template #graphDescriptionPlaceholder>                    <p class="awg-graph-description-empty">                        <small class="text-muted"                            >[Die Graph-Visualisierungen zum Editionskomplex                            <span [innerHTML]="editionComplex.complexId.full"></span> erscheinen im Zusammenhang der                            vollständigen Edition von {{ editionComplex.complexId.short }} in                            {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                                editionComplex.section.short                            }}.]                        </small>                    </p>                </ng-template>            </div>            <!-- dynamic graph -->            <div class="awg-graph-dynamic" *ngIf="graph.rdfData && graph.rdfData.triples && graph.rdfData.queryList">                <h4>                    Dynamischer Graph                    <button                        type="button"                        class="btn btn-sm btn-outline-info ms-2"                        (click)="modal.open(\'HINT_EDITION_GRAPH\')">                        Hinweise zur Nutzung                    </button>                    <button                        type="button"                        title="Open fullscreen"                        class="btn btn-sm btn-outline-info ms-2"                        (click)="openFullscreen()"                        *ngIf="!isFullscreen">                        <fa-icon [icon]="faExpand"></fa-icon>                    </button>                    <button                        type="button"                        title="Close fullscreen"                        class="btn btn-sm btn-info ms-2"                        (click)="closeFullscreen()"                        *ngIf="isFullscreen">                        <fa-icon [icon]="faCompress"></fa-icon>                    </button>                </h4>                <p>                    Diese interaktive Visualisierung basiert auf Mads Holten\'s                    <a href="https://github.com/MadsHolten/sparql-visualizer">SPARQL Visualizer</a>. Sie modelliert den                    aktuellen Skizzenkomplex in Form eines <a href="https://www.w3.org/RDF/">RDF</a>-Graphen. Die                    zugrundeliegenden RDF-Daten sind unter dem Punkt <em>RDF Triples</em> einsehbar und lokal                    editierbar. Eine Filterung und Eingrenzung dieser RDF-Daten kann mithilfe der Abfragesprache                    <a href="https://www.w3.org/TR/sparql11-query/">SPARQL</a>                    unter dem Punkt <em>SPARQL Abfrage</em> vorgenommen werden; in der Voreinstellung werden hierbei                    alle vorhandenen Triples abgefragt.                </p>                <awg-graph-visualizer                    [graphRDFInputData]="graph.rdfData"                    [isFullscreen]="isFullscreen"></awg-graph-visualizer>            </div>            <!-- static image -->            <div class="awg-graph-static mt-3" *ngIf="graph.staticImage && graph.staticImage !== \'\'">                <h4>Statischer Graph</h4>                <div [compile-html]="graph.staticImage" [compile-html-ref]="ref"></div>            </div>        </div>    </div>    <!-- error message -->    <ng-template #error>        <div class="errorMessage" *ngIf="errorObject">            <div class="col-12 text-center">                <div class="alert alert-danger">{{ errorObject | json }}</div>            </div>        </div>    </ng-template></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: edition graph --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- graph -->    @if (editionGraphData$ | async; as editionGraphData) {        <div class="awg-graph-view p-5 border rounded-3">            @for (graph of editionGraphData.graph; track graph) {                <div>                    <!-- graph description -->                    <div class="awg-graph-description">                        <p>                            So weit vorhanden, präsentiert die vorliegende Ansicht Graph-Visualisierungen des                            ausgewählten Editionsbereichs: Der <em>statische Graph</em> vermittelt dabei einen von den                            jeweiligen Editoren fixierten Überblick editionsrelevanter Zusammenhänge und Abhängigkeiten,                            der <em>dynamische Graph</em> bietet zusätzlich einen interaktiven Zugang zu dem                            zugrundeliegenden Datenbestand.                            <span class="text-danger"                                >Diese Funktionalität ist noch nicht für alle Skizzenbestandteile verfügbar, wird aber                                sukzessive ergänzt.</span                            >                        </p>                        @if (utils.isNotEmptyArray(graph.description) || graph.rdfData?.triples) {                            @for (description of graph.description; track description) {                                <p [compile-html]="description" [compile-html-ref]="ref"></p>                            }                        } @else {                            <p class="awg-graph-description-empty">                                <small class="text-muted"                                    >[Die Graph-Visualisierungen zum Editionskomplex                                    <span [innerHTML]="editionComplex.complexId.full"></span> erscheinen im Zusammenhang                                    der vollständigen Edition von {{ editionComplex.complexId.short }} in                                    {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                                        editionComplex.section.short                                    }}.]                                </small>                            </p>                        }                    </div>                    <!-- dynamic graph -->                    @if (graph.rdfData && graph.rdfData.triples && graph.rdfData.queryList) {                        <div class="awg-graph-dynamic">                            <h4>                                Dynamischer Graph                                <button                                    type="button"                                    class="btn btn-sm btn-outline-info ms-2"                                    (click)="modal.open(\'HINT_EDITION_GRAPH\')">                                    Hinweise zur Nutzung                                </button>                                @if (!isFullscreen) {                                    <button                                        type="button"                                        title="Open fullscreen"                                        class="btn btn-sm btn-outline-info ms-2"                                        (click)="openFullscreen()">                                        <fa-icon [icon]="faExpand"></fa-icon>                                    </button>                                }                                @if (isFullscreen) {                                    <button                                        type="button"                                        title="Close fullscreen"                                        class="btn btn-sm btn-info ms-2"                                        (click)="closeFullscreen()">                                        <fa-icon [icon]="faCompress"></fa-icon>                                    </button>                                }                            </h4>                            <p>                                Diese interaktive Visualisierung basiert auf Mads Holten\'s                                <a href="https://github.com/MadsHolten/sparql-visualizer">SPARQL Visualizer</a>. Sie                                modelliert den aktuellen Skizzenkomplex in Form eines                                <a href="https://www.w3.org/RDF/">RDF</a>-Graphen. Die zugrundeliegenden RDF-Daten sind                                unter dem Punkt <em>RDF Triples</em> einsehbar und lokal editierbar. Eine Filterung und                                Eingrenzung dieser RDF-Daten kann mithilfe der Abfragesprache                                <a href="https://www.w3.org/TR/sparql11-query/">SPARQL</a>                                unter dem Punkt <em>SPARQL Abfrage</em> vorgenommen werden; in der Voreinstellung werden                                hierbei alle vorhandenen Triples abgefragt.                            </p>                            <awg-graph-visualizer                                [graphRDFInputData]="graph.rdfData"                                [isFullscreen]="isFullscreen"></awg-graph-visualizer>                        </div>                    }                    <!-- static image -->                    @if (graph.staticImage && graph.staticImage !== \'\') {                        <div class="awg-graph-static mt-3">                            <h4>Statischer Graph</h4>                            <div [compile-html]="graph.staticImage" [compile-html-ref]="ref"></div>                        </div>                    }                </div>            }        </div>    } @else {        @if (errorObject) {            <div class="errorMessage">                <div class="col-12 text-center">                    <div class="alert alert-danger">{{ errorObject | json }}</div>                </div>            </div>        }    }    <!-- error message -->    <ng-template #error>        @if (errorObject) {            <div class="errorMessage">                <div class="col-12 text-center">                    <div class="alert alert-danger">{{ errorObject | json }}</div>                </div>            </div>        }    </ng-template></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionGraphComponent'};

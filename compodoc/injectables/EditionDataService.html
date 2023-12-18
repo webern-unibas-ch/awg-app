@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -40,21 +98,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >EditionDataService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >EditionDataService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -77,7 +141,7 @@ and edition report view.</p>
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -184,13 +248,13 @@ and edition report view.</p>
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+<code>constructor(http: HttpClient)</code>
                     </td>
                 </tr>
                         <tr>
@@ -221,7 +285,7 @@ to handle http requests.</p>
                                                         <td>http</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                                    <code>HttpClient</code>
                                                         </td>
                                                   
                                                     <td>
@@ -242,7 +306,7 @@ to handle http requests.</p>
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -253,7 +317,7 @@ to handle http requests.</p>
                 <td class="col-md-4">
                     <a name="_getFolioConvoluteData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getFolioConvoluteData</b></span>
                         <a href="#_getFolioConvoluteData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -261,38 +325,36 @@ to handle http requests.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getFolioConvoluteData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="218"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:218</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:218</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getFolioConvoluteData.</p>
+                        <div class="io-description"><p>Private method: _getFolioConvoluteData.</p>
 <p>It sets the path to the JSON file with
 the folio convolute data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;FolioConvoluteList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;FolioConvoluteList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the FolioConvolute data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the FolioConvolute data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -303,7 +365,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getGraphData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getGraphData</b></span>
                         <a href="#_getGraphData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -311,38 +373,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getGraphData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="233"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:233</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="233"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:233</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getGraphData.</p>
+                        <div class="io-description"><p>Private method: _getGraphData.</p>
 <p>It sets the path to the JSON file with
 the graph data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;GraphList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;GraphList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the Graph data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the Graph data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -353,7 +413,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getIntroData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getIntroData</b></span>
                         <a href="#_getIntroData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -361,38 +421,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getIntroData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="248"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:248</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="248"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:248</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getIntroData.</p>
+                        <div class="io-description"><p>Private method: _getIntroData.</p>
 <p>It sets the path to the JSON file with
 the intro data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the Intro data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the Intro data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -403,7 +461,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getJsonData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getJsonData</b></span>
                         <a href="#_getJsonData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -411,68 +469,66 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getJsonData(path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="352"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:352</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="352"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:352</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getJsonData.</p>
+                        <div class="io-description"><p>Private method: _getJsonData.</p>
 <p>It fetches the given JSON file (path) via HTTP request.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>path</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>path</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The path to the JSON file.</p>
+                                            <td>
+                                                    <p>The path to the JSON file.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the requested data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the requested data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -483,7 +539,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getRowTablesData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getRowTablesData</b></span>
                         <a href="#_getRowTablesData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -491,38 +547,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getRowTablesData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="263"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:263</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:263</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getRowTablesData.</p>
+                        <div class="io-description"><p>Private method: _getRowTablesData.</p>
 <p>It sets the path to the JSON file with
 the row tables data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >Observable&lt;EditionRowTablesList&gt;</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >Observable&lt;EditionRowTablesList&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the EditionRowTablesList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the EditionRowTablesList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -533,7 +587,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getSourceDescriptionListData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getSourceDescriptionListData</b></span>
                         <a href="#_getSourceDescriptionListData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -541,38 +595,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getSourceDescriptionListData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="293"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:293</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="293"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:293</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getSourceDescriptionListData.</p>
+                        <div class="io-description"><p>Private method: _getSourceDescriptionListData.</p>
 <p>It sets the path to the JSON file with
 the source description list data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;SourceDescriptionList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SourceDescriptionList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the SourceDescriptionList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the SourceDescriptionList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -583,7 +635,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getSourceEvaluationListData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getSourceEvaluationListData</b></span>
                         <a href="#_getSourceEvaluationListData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -591,38 +643,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getSourceEvaluationListData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="308"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:308</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:308</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getSourceEvaluationListData.</p>
+                        <div class="io-description"><p>Private method: _getSourceEvaluationListData.</p>
 <p>It sets the path to the JSON file with
 the source evaluation list data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;SourceEvaluationList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SourceEvaluationList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the SourceEvaluationList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the SourceEvaluationList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -633,7 +683,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getSourceListData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getSourceListData</b></span>
                         <a href="#_getSourceListData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -641,38 +691,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getSourceListData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="278"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:278</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="278"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:278</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getSourceListData.</p>
+                        <div class="io-description"><p>Private method: _getSourceListData.</p>
 <p>It sets the path to the JSON file with
 the source list data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;SourceList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;SourceList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the SourceList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the SourceList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -683,7 +731,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getSvgSheetsData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getSvgSheetsData</b></span>
                         <a href="#_getSvgSheetsData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -691,38 +739,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getSvgSheetsData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="323"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:323</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="323"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:323</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getSvgSheetsData.</p>
+                        <div class="io-description"><p>Private method: _getSvgSheetsData.</p>
 <p>It sets the path to the JSON file with
 the svg sheets data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;EditionSvgSheetList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;EditionSvgSheetList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the EditionSvgSheet data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the EditionSvgSheet data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -733,7 +779,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_getTextcriticsListData"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getTextcriticsListData</b></span>
                         <a href="#_getTextcriticsListData"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -741,38 +787,36 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getTextcriticsListData()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="338"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:338</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="338"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:338</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getTextcriticsListData.</p>
+                        <div class="io-description"><p>Private method: _getTextcriticsListData.</p>
 <p>It sets the path to the JSON file with
 the textcritics list data and triggers
 the method to get the JSON data.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;TextcriticsList&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;TextcriticsList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the TextcriticsList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the TextcriticsList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -783,7 +827,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_handleError"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_handleError</b></span>
                         <a href="#_handleError"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -791,92 +835,90 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_handleError(operation: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, result?: T)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="368"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:368</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="368"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:368</a></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Type parameters :</b>
+                            <ul class="type-parameters">
+                                    <li>T</li>
+                            </ul>
+                        </td>
+                    </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <b>Type parameters :</b>
-                    <ul class="type-parameters">
-                        <li>T</li>
-                    </ul>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _handleError.</p>
+                        <div class="io-description"><p>Private method: _handleError.</p>
 <p>It handles errors, if any, of the HTTP request.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>operation</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>operation</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>Name of the requested operation.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>result</td>
-                                    <td>
-                                            <code>T</code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>An optional empty result to let the app keep running.</p>
+                                            <td>
+                                                    <p>Name of the requested operation.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>(error: HttpErrorResponse) &#x3D;&gt; Observable&lt;T&gt;</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>result</td>
+                                            <td>
+                                                        <code>T</code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>An observable of the error.</p>
+                                            <td>
+                                                    Yes
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>An optional empty result to let the app keep running.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>(error: HttpErrorResponse) &#x3D;&gt; Observable&lt;T&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An observable of the error.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -887,7 +929,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_logError"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_logError</b></span>
                         <a href="#_logError"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -895,68 +937,66 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_logError(message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="386"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:386</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="386"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:386</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _logError.</p>
+                        <div class="io-description"><p>Private method: _logError.</p>
 <p>It logs an error message to the console.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>message</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>message</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given error message to be logged.</p>
+                                            <td>
+                                                    <p>The given error message to be logged.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Logs the error message to the console.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Logs the error message to the console.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -967,7 +1007,7 @@ the method to get the JSON data.</p>
                 <td class="col-md-4">
                     <a name="_setAssetPathForEditionComplex"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_setAssetPathForEditionComplex</b></span>
                         <a href="#_setAssetPathForEditionComplex"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -975,68 +1015,66 @@ the method to get the JSON data.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_setAssetPathForEditionComplex(editionComplex: <a href="../classes/EditionComplex.html" target="_self">EditionComplex</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="196"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:196</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="196"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:196</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _setAssetPathForEditionComplex.</p>
+                        <div class="io-description"><p>Private method: _setAssetPathForEditionComplex.</p>
 <p>It sets the path to correct assets folder of a given edition complex.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionComplex</td>
-                                    <td>
-                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The current edition complex.</p>
+                                            <td>
+                                                    <p>The current edition complex.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The path to the correct assets folder of a given edition complex.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The path to the correct assets folder of a given edition complex.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1059,63 +1097,61 @@ the method to get the JSON data.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:93</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:93</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionGraphData.</p>
+                        <div class="io-description"><p>Public method: getEditionGraphData.</p>
 <p>It provides the data from a JSON file
 for the graph of the edition view.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionComplex</td>
-                                    <td>
-                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The current edition complex.</p>
+                                            <td>
+                                                    <p>The current edition complex.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;GraphList&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;GraphList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the GraphList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the GraphList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1138,63 +1174,61 @@ for the graph of the edition view.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:115</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:115</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionIntroData.</p>
+                        <div class="io-description"><p>Public method: getEditionIntroData.</p>
 <p>It provides the data from a JSON file
 for the intro of the edition view.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionComplex</td>
-                                    <td>
-                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The current edition complex.</p>
+                                            <td>
+                                                    <p>The current edition complex.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;IntroList&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the IntroList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the IntroList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1217,17 +1251,17 @@ for the intro of the edition view.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:140</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:140</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionReportData.</p>
+                        <div class="io-description"><p>Public method: getEditionReportData.</p>
 <p>It provides the data from a JSON file for the edition report view
 (source list, source description list, source evaluation list and textcritics list)
 as a fork-joined observable array.</p>
@@ -1235,49 +1269,47 @@ as a fork-joined observable array.</p>
 and TextcriticsList data. Only the first emit is needed.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionComplex</td>
-                                    <td>
-                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The current edition complex.</p>
+                                            <td>
+                                                    <p>The current edition complex.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;[]&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;[]&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
+                        </div>
+                            <div class="io-description">
+                                <p>The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
 and TextcriticsList data. Only the first emit is needed.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1300,31 +1332,29 @@ and TextcriticsList data. Only the first emit is needed.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:175</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:175</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getRowTablesData.</p>
+                        <div class="io-description"><p>Public method: getRowTablesData.</p>
 <p>It provides the data from a JSON file
 for the row tables of the edition view.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >Observable&lt;EditionRowTablesList&gt;</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../miscellaneous/variables.html#w" target="_self" >Observable&lt;EditionRowTablesList&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The observable with the EditionRowTablesList data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The observable with the EditionRowTablesList data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1347,17 +1377,17 @@ for the row tables of the edition view.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:67</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="67"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition-data.service.ts:67</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionSheetsData.</p>
+                        <div class="io-description"><p>Public method: getEditionSheetsData.</p>
 <p>It provides the data from a JSON file
 for the current edition complex of the edition sheets view
 (folio convolute, edition svg sheets and textcritics list)
@@ -1367,56 +1397,54 @@ EditionSvgSheetList and TextcriticsList data.
 Only the first emit is needed.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionComplex</td>
-                                    <td>
-                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The current edition complex.</p>
+                                            <td>
+                                                    <p>The current edition complex.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;[]&gt;</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;[]&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The fork-joined observable array with the FolioConvoluteList,
+                        </div>
+                            <div class="io-description">
+                                <p>The fork-joined observable array with the FolioConvoluteList,
 EditionSvgSheetList and TextcriticsList data.
 Only the first emit is needed.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -1465,7 +1493,7 @@ Only the first emit is needed.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpErrorResponse } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 

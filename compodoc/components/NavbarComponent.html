@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   NavbarComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -84,14 +147,15 @@ with the navigation bar, menu and brand.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -107,6 +171,8 @@ with the navigation bar, menu and brand.</p>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-navbar</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -131,7 +197,7 @@ with the navigation bar, menu and brand.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -224,13 +290,13 @@ with the navigation bar, menu and brand.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
@@ -276,7 +342,7 @@ with the navigation bar, menu and brand.</p>
                                                         <td>router</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -301,7 +367,7 @@ with the navigation bar, menu and brand.</p>
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -324,30 +390,28 @@ with the navigation bar, menu and brand.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:147</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/core/navbar/navbar.component.ts:150</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionComplex.</p>
+                        <div class="io-description"><p>Public method: getEditionComplex.</p>
 <p>It gets the selected edition complex.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the selectedEditionComplex variable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the selectedEditionComplex variable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -370,62 +434,60 @@ with the navigation bar, menu and brand.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:131</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/core/navbar/navbar.component.ts:134</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: isActiveRoute.</p>
+                        <div class="io-description"><p>Public method: isActiveRoute.</p>
 <p>It checks if a given route is active.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>route</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The route to check.</p>
+                                            <td>
+                                                    <p>The route to check.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The boolean value of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The boolean value of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -448,25 +510,25 @@ with the navigation bar, menu and brand.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:117</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/core/navbar/navbar.component.ts:120</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
 <p>It calls the containing methods
 when initializing the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -489,31 +551,29 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:159</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/app/core/navbar/navbar.component.ts:162</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: provideMetaData.</p>
+                        <div class="io-description"><p>Public method: provideMetaData.</p>
 <p>It calls the CoreService to provide
 the metadata for the header.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the pageMetaData variable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the pageMetaData variable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -536,36 +596,34 @@ the metadata for the header.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/app/core/navbar/navbar.component.ts:170</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/core/navbar/navbar.component.ts:173</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: toggleNav.</p>
+                        <div class="io-description"><p>Public method: toggleNav.</p>
 <p>It toggles the isCollapsed flag.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the isCollapsed flag.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the isCollapsed flag.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -874,7 +932,7 @@ the metadata for the header.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -894,7 +952,7 @@ the metadata for the header.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/core/navbar/navbar.component.ts:107</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/core/navbar/navbar.component.ts:110</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -912,7 +970,7 @@ the metadata for the header.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
 
@@ -1012,7 +1070,10 @@ export class NavbarComponent implements OnInit {
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular Router.
      */
-    constructor(private coreService: CoreService, private router: Router) {}
+    constructor(
+        private coreService: CoreService,
+        private router: Router
+    ) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -1090,7 +1151,7 @@ export class NavbarComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2&quot;&gt;
     &lt;!-- Brand --&gt;
     &lt;!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align --&gt;
@@ -1149,33 +1210,35 @@ export class NavbarComponent implements OnInit {
                     &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
                     &lt;h6 class&#x3D;&quot;dropdown-header&quot;&gt;Auswahl Skizzenkomplexe&lt;/h6&gt;
                     &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
-                    &lt;div *ngFor&#x3D;&quot;let editionComplex of DISPLAYED_EDITION_COMPLEXES&quot; class&#x3D;&quot;awg-dropdown-complexes&quot;&gt;
-                        &lt;h6 class&#x3D;&quot;dropdown-header&quot;&gt;
-                            [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
-                                editionComplex.section.short
-                            }}]
-                            &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.full&quot;&gt;&lt;/span&gt;
-                        &lt;/h6&gt;
-                        &lt;a
-                            class&#x3D;&quot;dropdown-item&quot;
-                            [routerLink]&#x3D;&quot;[editionComplex.baseRoute, editionRouteConstants.EDITION_INTRO.route]&quot;
-                            routerLinkActive&#x3D;&quot;active&quot;
-                            &gt;{{ editionRouteConstants.EDITION_INTRO.full }}&lt;/a
-                        &gt;
-                        &lt;a
-                            class&#x3D;&quot;dropdown-item&quot;
-                            [routerLink]&#x3D;&quot;[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]&quot;
-                            routerLinkActive&#x3D;&quot;active&quot;
-                            &gt;{{ editionRouteConstants.EDITION_SHEETS.full }}&lt;/a
-                        &gt;
-                        &lt;a
-                            class&#x3D;&quot;dropdown-item&quot;
-                            [routerLink]&#x3D;&quot;[editionComplex.baseRoute, editionRouteConstants.EDITION_REPORT.route]&quot;
-                            routerLinkActive&#x3D;&quot;active&quot;
-                            &gt;{{ editionRouteConstants.EDITION_REPORT.full }}&lt;/a
-                        &gt;
-                        &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
-                    &lt;/div&gt;
+                    @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex) {
+                        &lt;div class&#x3D;&quot;awg-dropdown-complexes&quot;&gt;
+                            &lt;h6 class&#x3D;&quot;dropdown-header&quot;&gt;
+                                [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{
+                                    editionComplex.section.short
+                                }}]
+                                &lt;span [innerHTML]&#x3D;&quot;editionComplex.complexId.full&quot;&gt;&lt;/span&gt;
+                            &lt;/h6&gt;
+                            &lt;a
+                                class&#x3D;&quot;dropdown-item&quot;
+                                [routerLink]&#x3D;&quot;[editionComplex.baseRoute, editionRouteConstants.EDITION_INTRO.route]&quot;
+                                routerLinkActive&#x3D;&quot;active&quot;
+                                &gt;{{ editionRouteConstants.EDITION_INTRO.full }}&lt;/a
+                            &gt;
+                            &lt;a
+                                class&#x3D;&quot;dropdown-item&quot;
+                                [routerLink]&#x3D;&quot;[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]&quot;
+                                routerLinkActive&#x3D;&quot;active&quot;
+                                &gt;{{ editionRouteConstants.EDITION_SHEETS.full }}&lt;/a
+                            &gt;
+                            &lt;a
+                                class&#x3D;&quot;dropdown-item&quot;
+                                [routerLink]&#x3D;&quot;[editionComplex.baseRoute, editionRouteConstants.EDITION_REPORT.route]&quot;
+                                routerLinkActive&#x3D;&quot;active&quot;
+                                &gt;{{ editionRouteConstants.EDITION_REPORT.full }}&lt;/a
+                            &gt;
+                            &lt;div class&#x3D;&quot;dropdown-divider&quot;&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    }
                 &lt;/div&gt;
             &lt;/li&gt;
             &lt;li class&#x3D;&quot;nav-item&quot;&gt;
@@ -1221,14 +1284,14 @@ export class NavbarComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./navbar.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1253,7 +1316,7 @@ export class NavbarComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2">    <!-- Brand -->    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->    <a        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline me-0 my-auto"        href="{{ pageMetaData?.awgProjectUrl }}">        <span class="webernlogo">            ANTON WEBERN <br />            <span>GESAMTAUSGABE</span>        </span>    </a>    <!-- Toggle button -->    <button        type="button"        class="navbar-toggler"        (click)="toggleNav()"        [attr.aria-expanded]="!isCollapsed"        aria-controls="collapsibleNavbar">        <span class="navbar-toggler-icon"></span>    </button>    <!-- collapsible navigation menu -->    <!-- justify content between (left, center, right) from sm devices up -->    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">        <!-- left nav links, no left margin from sm devices up, auto vertical align -->        <ul class="navbar-nav ms-sm-0 my-auto">            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/home\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">awg-app</span>                    <fa-icon [icon]="faHome"></fa-icon>                    <span class="sr-only">(current)</span>                </a>            </li>            <li class="nav-item" ngbDropdown [class.active]="isActiveRoute(\'/edition\')">                <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline">Edition</span>                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>                </a>                <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">                    <h6 class="dropdown-header">Allgemein</h6>                    <a                        class="dropdown-item"                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.SERIES.route]"                        routerLinkActive="active"                        >Editionsübersicht</a                    >                    <a                        class="dropdown-item"                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"                        routerLinkActive="active"                        >{{ editionRouteConstants.ROWTABLES.full }}</a                    >                    <div class="dropdown-divider"></div>                    <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>                    <div class="dropdown-divider"></div>                    <div *ngFor="let editionComplex of DISPLAYED_EDITION_COMPLEXES" class="awg-dropdown-complexes">                        <h6 class="dropdown-header">                            [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                                editionComplex.section.short                            }}]                            <span [innerHTML]="editionComplex.complexId.full"></span>                        </h6>                        <a                            class="dropdown-item"                            [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_INTRO.route]"                            routerLinkActive="active"                            >{{ editionRouteConstants.EDITION_INTRO.full }}</a                        >                        <a                            class="dropdown-item"                            [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"                            routerLinkActive="active"                            >{{ editionRouteConstants.EDITION_SHEETS.full }}</a                        >                        <a                            class="dropdown-item"                            [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_REPORT.route]"                            routerLinkActive="active"                            >{{ editionRouteConstants.EDITION_REPORT.full }}</a                        >                        <div class="dropdown-divider"></div>                    </div>                </div>            </li>            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/structure\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>                    <fa-icon [icon]="faNetworkWired"></fa-icon>                </a>            </li>        </ul>        <!-- END left navbar -->        <!-- brand to display on center on sm devices, auto vertical align -->        <a            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none me-0 my-auto"            href="{{ pageMetaData?.awgProjectUrl }}">            <span class="webernlogo">                ANTON WEBERN <br />                <span>GESAMTAUSGABE</span>            </span>        </a>        <!-- right nav links, auto vertical align -->        <ul class="navbar-nav my-auto">            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/data\']" routerLinkActive="active">                    <!-- do not show text on sm devices -->                    <span class="d-sm-none d-lg-inline">Suche</span>                    <fa-icon [icon]="faSearch"></fa-icon>                </a>            </li>            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/contact\']" routerLinkActive="active">                    <!-- do not show text on sm devices-->                    <span class="d-sm-none d-lg-inline">Kontakt</span>                    <fa-icon [icon]="faEnvelope"></fa-icon>                </a>            </li>        </ul>        <!-- END right navbar -->    </div>    <!-- END collapse --></nav></div>'
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2">    <!-- Brand -->    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->    <a        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline me-0 my-auto"        href="{{ pageMetaData?.awgProjectUrl }}">        <span class="webernlogo">            ANTON WEBERN <br />            <span>GESAMTAUSGABE</span>        </span>    </a>    <!-- Toggle button -->    <button        type="button"        class="navbar-toggler"        (click)="toggleNav()"        [attr.aria-expanded]="!isCollapsed"        aria-controls="collapsibleNavbar">        <span class="navbar-toggler-icon"></span>    </button>    <!-- collapsible navigation menu -->    <!-- justify content between (left, center, right) from sm devices up -->    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">        <!-- left nav links, no left margin from sm devices up, auto vertical align -->        <ul class="navbar-nav ms-sm-0 my-auto">            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/home\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">awg-app</span>                    <fa-icon [icon]="faHome"></fa-icon>                    <span class="sr-only">(current)</span>                </a>            </li>            <li class="nav-item" ngbDropdown [class.active]="isActiveRoute(\'/edition\')">                <a id="dropdownNavEdition" class="nav-link d-flex" ngbDropdownToggle>                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline">Edition</span>                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>                </a>                <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">                    <h6 class="dropdown-header">Allgemein</h6>                    <a                        class="dropdown-item"                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.SERIES.route]"                        routerLinkActive="active"                        >Editionsübersicht</a                    >                    <a                        class="dropdown-item"                        [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"                        routerLinkActive="active"                        >{{ editionRouteConstants.ROWTABLES.full }}</a                    >                    <div class="dropdown-divider"></div>                    <h6 class="dropdown-header">Auswahl Skizzenkomplexe</h6>                    <div class="dropdown-divider"></div>                    @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex) {                        <div class="awg-dropdown-complexes">                            <h6 class="dropdown-header">                                [{{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                                    editionComplex.section.short                                }}]                                <span [innerHTML]="editionComplex.complexId.full"></span>                            </h6>                            <a                                class="dropdown-item"                                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_INTRO.route]"                                routerLinkActive="active"                                >{{ editionRouteConstants.EDITION_INTRO.full }}</a                            >                            <a                                class="dropdown-item"                                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"                                routerLinkActive="active"                                >{{ editionRouteConstants.EDITION_SHEETS.full }}</a                            >                            <a                                class="dropdown-item"                                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_REPORT.route]"                                routerLinkActive="active"                                >{{ editionRouteConstants.EDITION_REPORT.full }}</a                            >                            <div class="dropdown-divider"></div>                        </div>                    }                </div>            </li>            <li class="nav-item">                <a class="nav-link d-flex" [routerLink]="[\'/structure\']" routerLinkActive="active">                    <!-- do not show text on sm devices, change order from md devices up -->                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>                    <fa-icon [icon]="faNetworkWired"></fa-icon>                </a>            </li>        </ul>        <!-- END left navbar -->        <!-- brand to display on center on sm devices, auto vertical align -->        <a            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none me-0 my-auto"            href="{{ pageMetaData?.awgProjectUrl }}">            <span class="webernlogo">                ANTON WEBERN <br />                <span>GESAMTAUSGABE</span>            </span>        </a>        <!-- right nav links, auto vertical align -->        <ul class="navbar-nav my-auto">            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/data\']" routerLinkActive="active">                    <!-- do not show text on sm devices -->                    <span class="d-sm-none d-lg-inline">Suche</span>                    <fa-icon [icon]="faSearch"></fa-icon>                </a>            </li>            <li class="nav-item">                <a class="nav-link" [routerLink]="[\'/contact\']" routerLinkActive="active">                    <!-- do not show text on sm devices-->                    <span class="d-sm-none d-lg-inline">Kontakt</span>                    <fa-icon [icon]="faEnvelope"></fa-icon>                </a>            </li>        </ul>        <!-- END right navbar -->    </div>    <!-- END collapse --></nav></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'NavbarComponent'};

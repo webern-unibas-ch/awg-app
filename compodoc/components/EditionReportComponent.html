@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   EditionReportComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -85,11 +148,11 @@ the <a href="SourcesComponent">SourcesComponent</a> and the <a href="Textcritics
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -108,10 +171,13 @@ the <a href="SourcesComponent">SourcesComponent</a> and the <a href="Textcritics
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-edition-report</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -136,7 +202,7 @@ the <a href="SourcesComponent">SourcesComponent</a> and the <a href="Textcritics
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -158,6 +224,7 @@ the <a href="SourcesComponent">SourcesComponent</a> and the <a href="Textcritics
                                 <a href="#errorObject" >errorObject</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                 <a href="#modal" >modal</a>
                             </li>
                             <li>
@@ -216,13 +283,13 @@ the <a href="SourcesComponent">SourcesComponent</a> and the <a href="Textcritics
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(editionDataService: <a href="../injectables/EditionDataService.html" target="_self">EditionDataService</a>, editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(editionDataService: <a href="../injectables/EditionDataService.html" target="_self">EditionDataService</a>, editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
@@ -285,7 +352,7 @@ to get the report data and a private Router instance.</p>
                                                         <td>router</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -310,7 +377,7 @@ to get the report data and a private Router instance.</p>
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -333,31 +400,29 @@ to get the report data and a private Router instance.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:115</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:115</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionReportData.</p>
+                        <div class="io-description"><p>Public method: getEditionReportData.</p>
 <p>It calls the EditionDataService to provide
 the data for the edition report.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the editionReportData observable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the editionReportData observable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -380,25 +445,25 @@ the data for the edition report.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:103</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:103</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
 <p>It calls the containing methods
 when initializing the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -421,62 +486,60 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:142</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:142</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onModalOpen.</p>
+                        <div class="io-description"><p>Public method: onModalOpen.</p>
 <p>It opens the <a href="../components/ModalComponent.html">ModalComponent</a> with a given id of a modal snippet text.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given modal snippet id.</p>
+                                            <td>
+                                                    <p>The given modal snippet id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Opens the modal with the snippet id.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Opens the modal with the snippet id.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -499,62 +562,60 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="157"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:157</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:157</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onReportFragmentNavigate.</p>
+                        <div class="io-description"><p>Public method: onReportFragmentNavigate.</p>
 <p>It navigates to the &#39;/report/&#39; route with the given fragmentId.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>fragmentId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fragmentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given fragment id.</p>
+                                            <td>
+                                                    <p>The given fragment id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Navigates to the edition report.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition report.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -577,69 +638,67 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="179"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:179</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-report/edition-report.component.ts:179</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onSvgSheetSelect.</p>
+                        <div class="io-description"><p>Public method: onSvgSheetSelect.</p>
 <p>It navigates to the &#39;/edition/complex/{baseRoute}/sheets&#39;
 route with the given id.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>sheetId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given svg sheet id.</p>
+                                            <td>
+                                                    <p>The given svg sheet id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Navigates to the edition detail.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition detail.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -754,6 +813,7 @@ route with the given id.</p>
                 <td class="col-md-4">
                     <a name="modal"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                         <span ><b>modal</b></span>
                         <a href="#modal"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -835,7 +895,7 @@ route with the given id.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -873,7 +933,7 @@ route with the given id.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { NavigationExtras, Router } from &#x27;@angular/router&#x27;;
 
@@ -1070,80 +1130,106 @@ export class EditionReportComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- content: edition report --&gt;
 &lt;div&gt;
     &lt;!-- modal --&gt;
     &lt;awg-modal #modal&gt;&lt;/awg-modal&gt;
 
-    &lt;ngb-accordion
-        id&#x3D;&quot;reportAcc&quot;
-        #reportAcc&#x3D;&quot;ngbAccordion&quot;
-        activeIds&#x3D;&quot;awg-source-list, awg-source-desc, awg-source-evaluation, awg-tka-panel&quot;
-        *ngIf&#x3D;&quot;editionReportData$ | async as editionReportData&quot;&gt;
-        &lt;!-- source list --&gt;
-        &lt;ngb-panel id&#x3D;&quot;awg-source-list&quot; [title]&#x3D;&quot;titles.sourceList&quot;&gt;
-            &lt;ng-template ngbPanelContent&gt;
-                &lt;awg-source-list
-                    *ngIf&#x3D;&quot;editionReportData[0]&quot;
-                    [sourceListData]&#x3D;&quot;editionReportData[0]&quot;
-                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;&gt;
-                &lt;/awg-source-list&gt;
-            &lt;/ng-template&gt;
-        &lt;/ngb-panel&gt;
-
-        &lt;!-- source description --&gt;
-        &lt;ngb-panel id&#x3D;&quot;awg-source-desc&quot; [title]&#x3D;&quot;titles.sourceDescription&quot;&gt;
-            &lt;ng-template ngbPanelContent&gt;
-                &lt;awg-source-description
-                    *ngIf&#x3D;&quot;editionReportData[1]&quot;
-                    [sourceDescriptionListData]&#x3D;&quot;editionReportData[1]&quot;
-                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
-                    (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
-                &lt;/awg-source-description&gt;
-            &lt;/ng-template&gt;
-        &lt;/ngb-panel&gt;
-
-        &lt;!-- source evaluation --&gt;
-        &lt;ngb-panel id&#x3D;&quot;awg-source-evaluation&quot; [title]&#x3D;&quot;titles.sourceEvaluation&quot;&gt;
-            &lt;ng-template ngbPanelContent&gt;
-                &lt;awg-source-evaluation
-                    *ngIf&#x3D;&quot;editionReportData[2]&quot;
-                    [editionComplex]&#x3D;&quot;editionComplex&quot;
-                    [sourceEvaluationListData]&#x3D;&quot;editionReportData[2]&quot;
-                    (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
-                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
-                    (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
-                &lt;/awg-source-evaluation&gt;
-            &lt;/ng-template&gt;
-        &lt;/ngb-panel&gt;
-
-        &lt;!-- text critics --&gt;
-        &lt;ngb-panel id&#x3D;&quot;awg-tka-panel&quot; [title]&#x3D;&quot;titles.tka&quot;&gt;
-            &lt;ng-template ngbPanelContent&gt;
-                &lt;awg-textcritics-list
-                    *ngIf&#x3D;&quot;editionReportData[3]&quot;
-                    [textcriticsData]&#x3D;&quot;editionReportData[3]&quot;
-                    (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
-                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
-                    (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
-                &lt;/awg-textcritics-list&gt;
-            &lt;/ng-template&gt;
-        &lt;/ngb-panel&gt;
-    &lt;/ngb-accordion&gt;
-    &lt;!-- END accordion --&gt;
+    @if (editionReportData$ | async; as editionReportData) {
+        &lt;div ngbAccordion&gt;
+            &lt;!-- source list --&gt;
+            &lt;div ngbAccordionItem&#x3D;&quot;awg-source-list&quot; [collapsed]&#x3D;&quot;false&quot;&gt;
+                &lt;div ngbAccordionHeader&gt;
+                    &lt;button ngbAccordionButton&gt;{{ titles.sourceList }}&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div ngbAccordionCollapse&gt;
+                    &lt;div ngbAccordionBody&gt;
+                        &lt;ng-template&gt;
+                            @if (editionReportData[0]) {
+                                &lt;awg-source-list
+                                    [sourceListData]&#x3D;&quot;editionReportData[0]&quot;
+                                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;&gt;
+                                &lt;/awg-source-list&gt;
+                            }
+                        &lt;/ng-template&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- source description --&gt;
+            &lt;div ngbAccordionItem&#x3D;&quot;awg-source-desc&quot; [collapsed]&#x3D;&quot;false&quot;&gt;
+                &lt;div ngbAccordionHeader&gt;
+                    &lt;button ngbAccordionButton&gt;{{ titles.sourceDescription }}&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div ngbAccordionCollapse&gt;
+                    &lt;div ngbAccordionBody&gt;
+                        &lt;ng-template&gt;
+                            @if (editionReportData[1]) {
+                                &lt;awg-source-description
+                                    [sourceDescriptionListData]&#x3D;&quot;editionReportData[1]&quot;
+                                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
+                                    (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
+                                &lt;/awg-source-description&gt;
+                            }
+                        &lt;/ng-template&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- source evaluation --&gt;
+            &lt;div ngbAccordionItem&#x3D;&quot;awg-source-evaluation&quot; [collapsed]&#x3D;&quot;false&quot;&gt;
+                &lt;div ngbAccordionHeader&gt;
+                    &lt;button ngbAccordionButton&gt;{{ titles.sourceEvaluation }}&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div ngbAccordionCollapse&gt;
+                    &lt;div ngbAccordionBody&gt;
+                        &lt;ng-template&gt;
+                            @if (editionReportData[2]) {
+                                &lt;awg-source-evaluation
+                                    [editionComplex]&#x3D;&quot;editionComplex&quot;
+                                    [sourceEvaluationListData]&#x3D;&quot;editionReportData[2]&quot;
+                                    (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
+                                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
+                                    (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
+                                &lt;/awg-source-evaluation&gt;
+                            }
+                        &lt;/ng-template&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- text critics --&gt;
+            &lt;div ngbAccordionItem&#x3D;&quot;awg-tka-panel&quot; [collapsed]&#x3D;&quot;false&quot;&gt;
+                &lt;div ngbAccordionHeader&gt;
+                    &lt;button ngbAccordionButton&gt;{{ titles.tka }}&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div ngbAccordionCollapse&gt;
+                    &lt;div ngbAccordionBody&gt;
+                        &lt;ng-template&gt;
+                            @if (editionReportData[3]) {
+                                &lt;awg-textcritics-list
+                                    [textcriticsData]&#x3D;&quot;editionReportData[3]&quot;
+                                    (navigateToReportFragmentRequest)&#x3D;&quot;onReportFragmentNavigate($event)&quot;
+                                    (openModalRequest)&#x3D;&quot;onModalOpen($event)&quot;
+                                    (selectSvgSheetRequest)&#x3D;&quot;onSvgSheetSelect($event)&quot;&gt;
+                                &lt;/awg-textcritics-list&gt;
+                            }
+                        &lt;/ng-template&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    }
 &lt;/div&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./edition-report.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1168,7 +1254,7 @@ export class EditionReportComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: edition report --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <ngb-accordion        id="reportAcc"        #reportAcc="ngbAccordion"        activeIds="awg-source-list, awg-source-desc, awg-source-evaluation, awg-tka-panel"        *ngIf="editionReportData$ | async as editionReportData">        <!-- source list -->        <ngb-panel id="awg-source-list" [title]="titles.sourceList">            <ng-template ngbPanelContent>                <awg-source-list                    *ngIf="editionReportData[0]"                    [sourceListData]="editionReportData[0]"                    (openModalRequest)="onModalOpen($event)">                </awg-source-list>            </ng-template>        </ngb-panel>        <!-- source description -->        <ngb-panel id="awg-source-desc" [title]="titles.sourceDescription">            <ng-template ngbPanelContent>                <awg-source-description                    *ngIf="editionReportData[1]"                    [sourceDescriptionListData]="editionReportData[1]"                    (openModalRequest)="onModalOpen($event)"                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">                </awg-source-description>            </ng-template>        </ngb-panel>        <!-- source evaluation -->        <ngb-panel id="awg-source-evaluation" [title]="titles.sourceEvaluation">            <ng-template ngbPanelContent>                <awg-source-evaluation                    *ngIf="editionReportData[2]"                    [editionComplex]="editionComplex"                    [sourceEvaluationListData]="editionReportData[2]"                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                    (openModalRequest)="onModalOpen($event)"                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">                </awg-source-evaluation>            </ng-template>        </ngb-panel>        <!-- text critics -->        <ngb-panel id="awg-tka-panel" [title]="titles.tka">            <ng-template ngbPanelContent>                <awg-textcritics-list                    *ngIf="editionReportData[3]"                    [textcriticsData]="editionReportData[3]"                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                    (openModalRequest)="onModalOpen($event)"                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">                </awg-textcritics-list>            </ng-template>        </ngb-panel>    </ngb-accordion>    <!-- END accordion --></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: edition report --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    @if (editionReportData$ | async; as editionReportData) {        <div ngbAccordion>            <!-- source list -->            <div ngbAccordionItem="awg-source-list" [collapsed]="false">                <div ngbAccordionHeader>                    <button ngbAccordionButton>{{ titles.sourceList }}</button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            @if (editionReportData[0]) {                                <awg-source-list                                    [sourceListData]="editionReportData[0]"                                    (openModalRequest)="onModalOpen($event)">                                </awg-source-list>                            }                        </ng-template>                    </div>                </div>            </div>            <!-- source description -->            <div ngbAccordionItem="awg-source-desc" [collapsed]="false">                <div ngbAccordionHeader>                    <button ngbAccordionButton>{{ titles.sourceDescription }}</button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            @if (editionReportData[1]) {                                <awg-source-description                                    [sourceDescriptionListData]="editionReportData[1]"                                    (openModalRequest)="onModalOpen($event)"                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">                                </awg-source-description>                            }                        </ng-template>                    </div>                </div>            </div>            <!-- source evaluation -->            <div ngbAccordionItem="awg-source-evaluation" [collapsed]="false">                <div ngbAccordionHeader>                    <button ngbAccordionButton>{{ titles.sourceEvaluation }}</button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            @if (editionReportData[2]) {                                <awg-source-evaluation                                    [editionComplex]="editionComplex"                                    [sourceEvaluationListData]="editionReportData[2]"                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                                    (openModalRequest)="onModalOpen($event)"                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">                                </awg-source-evaluation>                            }                        </ng-template>                    </div>                </div>            </div>            <!-- text critics -->            <div ngbAccordionItem="awg-tka-panel" [collapsed]="false">                <div ngbAccordionHeader>                    <button ngbAccordionButton>{{ titles.tka }}</button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            @if (editionReportData[3]) {                                <awg-textcritics-list                                    [textcriticsData]="editionReportData[3]"                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"                                    (openModalRequest)="onModalOpen($event)"                                    (selectSvgSheetRequest)="onSvgSheetSelect($event)">                                </awg-textcritics-list>                            }                        </ng-template>                    </div>                </div>            </div>        </div>    }</div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionReportComponent'};

@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="./styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -32,11 +90,11 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1 id="contributing">Contributing</h1>
+<h1>Contributing</h1>
 <p>When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change.</p>
 <p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.md">Code of Conduct</a>, please follow it in all your interactions with the project.</p>
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2>Table of Contents</h2>
 <ul>
 <li><a href="#contribution-process">Contribution process</a><ul>
 <li><a href="#branching--git-flow">Branching / Git flow</a></li>
@@ -56,8 +114,8 @@ email, or any other method with the owners of this repository before making a ch
 </li>
 <li><a href="#code-of-conduct">Code of Conduct</a></li>
 </ul>
-<h2 id="contribution-process">Contribution process</h2>
-<h3 id="branching--git-flow">Branching / Git flow</h3>
+<h2>Contribution process</h2>
+<h3>Branching / Git flow</h3>
 <p>This project uses the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> which defines a strict branching model designed around the project releases. Therefore the following branch structure is used</p>
 <ul>
 <li><code>main</code> (stores the official release history; all commits are tagged with a version number)</li>
@@ -69,11 +127,11 @@ email, or any other method with the owners of this repository before making a ch
 <p>To initialize the GitFlow workflow execute <code>git flow init</code> inside your local copy of the repository.</p>
 <p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
 <p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
-<h3 id="commit-message-schema">Commit Message Schema</h3>
+<h3>Commit Message Schema</h3>
 <p>This project follows the <a href="https://conventionalcommits.org">Conventional Commits Specification</a> using <a href="https://conventional-changelog.github.io/commitlint/#/">commitlint</a> based on the <a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular">Angular configuration</a> (further explanation can be found in the <a href="https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines">Angular commit-message-guidelines</a>).</p>
 <p>Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> (see &quot;Release Versioning Convention&quot; section below).</p>
 <p>When writing commit messages, we stick to this schema:</p>
-<div><pre class="line-numbers"><code class="language-none">[mandatory:] type(scope): subject
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">[mandatory:] type(scope): subject
 [optional:] &lt;BLANK LINE&gt;
 [optional:] body...
 [optional:] &lt;BLANK LINE&gt;
@@ -126,27 +184,27 @@ email, or any other method with the owners of this repository before making a ch
 </ul>
 </li>
 </ul>
-<h4 id="examples">Examples:</h4>
-<div><pre class="line-numbers"><code class="language-none">feat(edition): add route for resource creation
+<h4>Examples:</h4>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">feat(edition): add route for resource creation
 
 - add path for multipart request
-- adapt handling of resources responder</code></pre></div><div><pre class="line-numbers"><code class="language-none">docs(README): add new contributors for data</code></pre></div><h3 id="release-versioning-convention">Release Versioning Convention</h3>
+- adapt handling of resources responder</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">docs(README): add new contributors for data</code></pre></div><h3>Release Versioning Convention</h3>
 <p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a>.</p>
-<h2 id="angular-quick-start-guide">Angular quick start guide</h2>
+<h2>Angular quick start guide</h2>
 <p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 8.0.3. Check there for necessary prerequisites (which comprise <code>Node</code> and <code>npm</code>or <code>yarn</code>).</p>
-<h3 id="development-server">Development server</h3>
+<h3>Development server</h3>
 <p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
-<h3 id="code-scaffolding">Code scaffolding</h3>
+<h3>Code scaffolding</h3>
 <p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
-<h3 id="build">Build</h3>
+<h3>Build</h3>
 <p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
-<h3 id="running-unit-tests">Running unit tests</h3>
+<h3>Running unit tests</h3>
 <p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
-<h3 id="running-end-to-end-tests">Running end-to-end tests</h3>
+<h3>Running end-to-end tests</h3>
 <p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
-<h3 id="further-help">Further help</h3>
+<h3>Further help</h3>
 <p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a>.</p>
-<h2 id="code-of-conduct">Code of Conduct</h2>
+<h2>Code of Conduct</h2>
 <p>See <a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a>.</p>
 
 

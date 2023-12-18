@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   SearchPanelComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -87,15 +150,16 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code>OnInit</code>
+                <code>OnDestroy</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -111,6 +175,8 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-search-panel</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -135,7 +201,7 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -264,13 +330,13 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, conversionService: <a href="../injectables/ConversionService.html" target="_self">ConversionService</a>, dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>, loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
+<code>constructor(route: ActivatedRoute, router: Router, conversionService: <a href="../injectables/ConversionService.html" target="_self">ConversionService</a>, dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>, loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -302,7 +368,7 @@ the DataStreamerService, and the LoadingService.</p>
                                                         <td>route</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                                    <code>ActivatedRoute</code>
                                                         </td>
                                                   
                                                     <td>
@@ -318,7 +384,7 @@ the DataStreamerService, and the LoadingService.</p>
                                                         <td>router</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -407,7 +473,7 @@ the DataStreamerService, and the LoadingService.</p>
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -418,7 +484,7 @@ the DataStreamerService, and the LoadingService.</p>
                 <td class="col-md-4">
                     <a name="_createRouterQueryParams"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_createRouterQueryParams</b></span>
                         <a href="#_createRouterQueryParams"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -426,63 +492,61 @@ the DataStreamerService, and the LoadingService.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_createRouterQueryParams(sp: <a href="../classes/SearchParams.html" target="_self">SearchParams</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="509"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:509</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="509"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:509</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _createRouterQueryParams.</p>
+                        <div class="io-description"><p>Private method: _createRouterQueryParams.</p>
 <p>It creates Router params from a given SearchParams object.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>sp</td>
-                                    <td>
-                                                <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sp</td>
+                                            <td>
+                                                            <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/router/Params" target="_blank" >Params</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Params</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The router Params object.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The router Params object.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -493,7 +557,7 @@ the DataStreamerService, and the LoadingService.</p>
                 <td class="col-md-4">
                     <a name="_isValidTabIdInRoute"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isValidTabIdInRoute</b></span>
                         <a href="#_isValidTabIdInRoute"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -501,68 +565,66 @@ the DataStreamerService, and the LoadingService.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_isValidTabIdInRoute(r: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_isValidTabIdInRoute(r: ActivatedRoute)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="539"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:539</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="539"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:539</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isValidTabIdInRoute.</p>
+                        <div class="io-description"><p>Private method: _isValidTabIdInRoute.</p>
 <p>It checks if a given route path provides a valid tab id that is included in the searchTabs.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>r</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>r</td>
+                                            <td>
+                                                        <code>ActivatedRoute</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given activated route</p>
+                                            <td>
+                                                    <p>The given activated route</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The boolean result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The boolean result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -573,7 +635,7 @@ the DataStreamerService, and the LoadingService.</p>
                 <td class="col-md-4">
                     <a name="_routeToSelf"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_routeToSelf</b></span>
                         <a href="#_routeToSelf"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -581,85 +643,83 @@ the DataStreamerService, and the LoadingService.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_routeToSelf(sp: <a href="../classes/SearchParams.html" target="_self">SearchParams</a>, route?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="491"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:491</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="491"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:491</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _routeToSelf.</p>
+                        <div class="io-description"><p>Private method: _routeToSelf.</p>
 <p>It navigates to itself to set
 new search parameters.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>sp</td>
-                                    <td>
-                                                <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sp</td>
+                                            <td>
+                                                            <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given search parameters.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>route</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>Optional route parameter.</p>
+                                            <td>
+                                                    <p>The given search parameters.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Navigates to itself.</p>
+                                            <td>
+                                                    Yes
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>Optional route parameter.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to itself.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -682,32 +742,30 @@ new search parameters.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="151"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:151</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:151</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getSearchData.</p>
+                        <div class="io-description"><p>Public method: getSearchData.</p>
 <p>It gets the query parameters from the route&#39;s query params
 and fetches the corresponding search data
 from the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the search data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -730,63 +788,61 @@ from the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="443"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:443</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="443"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:443</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getSearchQueryType.</p>
+                        <div class="io-description"><p>Public method: getSearchQueryType.</p>
 <p>It checks the type of a SearchQuery value (UNION type)
 and returns the value typed as string or ExtendedSearchParams.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given value.</p>
+                                            <td>
+                                                    <p>The given value.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The value as string or ExtendedSearchParams type.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The value as string or ExtendedSearchParams type.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -809,30 +865,28 @@ and returns the value typed as string or ExtendedSearchParams.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="458"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:458</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="458"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:458</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: isSearchResultListShown.</p>
+                        <div class="io-description"><p>Public method: isSearchResultListShown.</p>
 <p>It checks if the search result list shall be shown (not used yet).</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The boolean result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The boolean result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -855,25 +909,25 @@ and returns the value typed as string or ExtendedSearchParams.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="473"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:473</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="473"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:473</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
 <p>It calls the containing methods
 when destroying the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -896,25 +950,25 @@ when destroying the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:136</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:136</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
 <p>It calls the containing methods
 when initializing the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -937,64 +991,62 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="227"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:227</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:227</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onPageChange.</p>
+                        <div class="io-description"><p>Public method: onPageChange.</p>
 <p>It sets a new start position value in the searchParams
 after a page change request and triggers the
 <a href="_routeToSelf">_routeToSelf</a> method.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>requestedStartAt</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>requestedStartAt</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given start position.</p>
+                                            <td>
+                                                    <p>The given start position.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the search params and routes to itself.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search params and routes to itself.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1017,64 +1069,62 @@ after a page change request and triggers the
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="254"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:254</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="254"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:254</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onRowNumberChange.</p>
+                        <div class="io-description"><p>Public method: onRowNumberChange.</p>
 <p>It sets new row number value in the searchParams
 after a row change request and triggers the
 <a href="_routeToSelf">_routeToSelf</a> method.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>requestedRows</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>requestedRows</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given row.</p>
+                                            <td>
+                                                    <p>The given row.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the search params and routes to itself.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search params and routes to itself.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1097,64 +1147,62 @@ after a row change request and triggers the
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="282"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:282</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:282</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onSearch.</p>
+                        <div class="io-description"><p>Public method: onSearch.</p>
 <p>It sets new query value in the searchParams
 after a search request and triggers the
 <a href="_routeToSelf">_routeToSelf</a> method.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>requestedQuery</td>
-                                    <td>
-                                                <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>requestedQuery</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/typealiases.html#SearchQuery" target="_self" >SearchQuery</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given search query (string or ExtendedSearchParams).</p>
+                                            <td>
+                                                    <p>The given search query (string or ExtendedSearchParams).</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the search params and routes to itself.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search params and routes to itself.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1177,64 +1225,62 @@ after a search request and triggers the
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="310"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:310</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="310"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:310</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onSearchTabChange.</p>
+                        <div class="io-description"><p>Public method: onSearchTabChange.</p>
 <p>It resets the search params and triggers the
 <a href="_routeToSelf">_routeToSelf</a> method after a tab change request
 to update the URL.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>tabEvent</td>
-                                    <td>
-                                            <code>NgbNavChangeEvent</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tabEvent</td>
+                                            <td>
+                                                        <code>NgbNavChangeEvent</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given tabEvent with an id of the next route.</p>
+                                            <td>
+                                                    <p>The given tabEvent with an id of the next route.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Routes to itself with the given id as route.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Routes to itself with the given id as route.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1252,69 +1298,67 @@ to update the URL.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onViewChange(requestedViewType: <a href="../classes/ViewHandle.html" target="_self">ViewHandleTypes</a>)</code>
+<code>onViewChange(requestedViewType: <a href="../undefineds/ViewHandleTypes.html" target="_self">ViewHandleTypes</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="331"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:331</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="331"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:331</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onViewChange.</p>
+                        <div class="io-description"><p>Public method: onViewChange.</p>
 <p>It sets new view type value in the searchParams
 after a view change request and triggers the
 <a href="_routeToSelf">_routeToSelf</a> method.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>requestedViewType</td>
-                                    <td>
-                                                <code><a href="../classes/ViewHandle.html" target="_self" >ViewHandleTypes</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>requestedViewType</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#ViewHandleTypes" target="_self" >ViewHandleTypes</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given view type.</p>
+                                            <td>
+                                                    <p>The given view type.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the search params and routes to itself.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search params and routes to itself.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1337,63 +1381,61 @@ after a view change request and triggers the
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="357"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:357</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="357"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:357</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: resetSearchParams.</p>
+                        <div class="io-description"><p>Public method: resetSearchParams.</p>
 <p>It resets the search params to the default value
 according to the target tab.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>tabId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tabId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    Yes
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given tab id.</p>
+                                            <td>
+                                                    <p>The given tab id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Resets the search params.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Resets the search params.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1416,30 +1458,28 @@ according to the target tab.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="378"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:378</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="378"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:378</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: resetSearchResponse.</p>
+                        <div class="io-description"><p>Public method: resetSearchResponse.</p>
 <p>It resets the search response to an empty searchResponseWithQuery object.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Resets the search response.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Resets the search response.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1457,93 +1497,91 @@ according to the target tab.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateSearchParamsFromRoute(params: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>, routing: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>updateSearchParamsFromRoute(params: ParamMap, routing: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="397"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:397</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="397"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:397</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: updateSearchParamsFromRoute.</p>
+                        <div class="io-description"><p>Public method: updateSearchParamsFromRoute.</p>
 <p>It updates the searchParams from the query params
 of the current route and routes to the component
 itself again if &#39;routing&#39; is truthy.</p>
 <p>by routing to the component itself again.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>params</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>params</td>
+                                            <td>
+                                                        <code>ParamMap</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given url query params.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>routing</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>If the search parameters should be set
+                                            <td>
+                                                    <p>The given url query params.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>routing</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>If the search parameters should be set
 by routing to the component itself again.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the search params and routes to itself if routing is truthy.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the search params and routes to itself if routing is truthy.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -1600,7 +1638,7 @@ by routing to the component itself again.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
+                        <i>Type : </i>    <code>ParamMap</code>
 
                     </td>
                 </tr>
@@ -1832,7 +1870,7 @@ by routing to the component itself again.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -1910,7 +1948,7 @@ by routing to the component itself again.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute, NavigationEnd, ParamMap, Params, Router } from &#x27;@angular/router&#x27;;
 
@@ -2460,7 +2498,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- content: search panel --&gt;
 &lt;div class&#x3D;&quot;awg-search-tabs&quot;&gt;
     &lt;nav
@@ -2492,38 +2530,41 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 &lt;/div&gt;
 
 &lt;!-- loading spinner --&gt;
-&lt;div *ngIf&#x3D;&quot;isLoading$ | async; else notLoading&quot;&gt;
-    &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
-&lt;/div&gt;
+@if (isLoading$ | async) {
+    &lt;div&gt;
+        &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
+    &lt;/div&gt;
+} @else {
+    @if (errorMessage) {
+        &lt;div class&#x3D;&quot;errorMessage&quot;&gt;
+            &lt;p&gt;Die Anfrage &quot;{{ errorMessage?.route }}&quot; ist fehlgeschlagen.&lt;/p&gt;
+            &lt;p&gt;Fehlermeldung: &quot;{{ errorMessage?.statusText || errorMessage }}&quot;.&lt;/p&gt;
+            &lt;p&gt;Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.&lt;/p&gt;
+        &lt;/div&gt;
+    }
+    @if (searchResponseWithQuery?.query) {
+        &lt;awg-search-result-list
+            [searchParams]&#x3D;&quot;searchParams&quot;
+            [searchUrl]&#x3D;&quot;httpGetUrl&quot;
+            (pageChangeRequest)&#x3D;&quot;onPageChange($event)&quot;
+            (rowNumberChangeRequest)&#x3D;&quot;onRowNumberChange($event)&quot;
+            (viewChangeRequest)&#x3D;&quot;onViewChange($event)&quot;&gt;
+        &lt;/awg-search-result-list&gt;
+    }
+}
 
 &lt;!-- search results --&gt;
-&lt;ng-template #notLoading&gt;
-    &lt;div class&#x3D;&quot;errorMessage&quot; *ngIf&#x3D;&quot;errorMessage&quot;&gt;
-        &lt;p&gt;Die Anfrage &quot;{{ errorMessage?.route }}&quot; ist fehlgeschlagen.&lt;/p&gt;
-        &lt;p&gt;Fehlermeldung: &quot;{{ errorMessage?.statusText || errorMessage }}&quot;.&lt;/p&gt;
-        &lt;p&gt;Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.&lt;/p&gt;
-    &lt;/div&gt;
-
-    &lt;awg-search-result-list
-        *ngIf&#x3D;&quot;searchResponseWithQuery?.query&quot;
-        [searchParams]&#x3D;&quot;searchParams&quot;
-        [searchUrl]&#x3D;&quot;httpGetUrl&quot;
-        (pageChangeRequest)&#x3D;&quot;onPageChange($event)&quot;
-        (rowNumberChangeRequest)&#x3D;&quot;onRowNumberChange($event)&quot;
-        (viewChangeRequest)&#x3D;&quot;onViewChange($event)&quot;&gt;
-    &lt;/awg-search-result-list&gt;
-&lt;/ng-template&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./search-panel.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -2548,7 +2589,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: search panel --><div class="awg-search-tabs">    <nav        ngbNav        #searchNav="ngbNav"        class="nav-tabs nav-fill"        [activeId]="selectedSearchTabId"        (navChange)="onSearchTabChange($event)">        <!-- TODO: see https://github.com/ng-bootstrap/ng-bootstrap/issues/1632 -->        <ng-container [ngbNavItem]="searchTabs?.fulltext.id">            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>            <ng-template ngbNavContent>                <!-- full text search -->                <awg-fulltext-search-form                    [searchValue]="getSearchQueryType(searchParams?.query)"                    (searchRequest)="onSearch($event)">                </awg-fulltext-search-form>            </ng-template>        </ng-container>        <ng-container [ngbNavItem]="searchTabs.extended.id">            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabs?.extended.title }}</a>            <ng-template ngbNavContent>                <!-- extended search -->                <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>            </ng-template>        </ng-container>    </nav>    <div [ngbNavOutlet]="searchNav"></div></div><!-- loading spinner --><div *ngIf="isLoading$ | async; else notLoading">    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></div><!-- search results --><ng-template #notLoading>    <div class="errorMessage" *ngIf="errorMessage">        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>    </div>    <awg-search-result-list        *ngIf="searchResponseWithQuery?.query"        [searchParams]="searchParams"        [searchUrl]="httpGetUrl"        (pageChangeRequest)="onPageChange($event)"        (rowNumberChangeRequest)="onRowNumberChange($event)"        (viewChangeRequest)="onViewChange($event)">    </awg-search-result-list></ng-template></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: search panel --><div class="awg-search-tabs">    <nav        ngbNav        #searchNav="ngbNav"        class="nav-tabs nav-fill"        [activeId]="selectedSearchTabId"        (navChange)="onSearchTabChange($event)">        <!-- TODO: see https://github.com/ng-bootstrap/ng-bootstrap/issues/1632 -->        <ng-container [ngbNavItem]="searchTabs?.fulltext.id">            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>            <ng-template ngbNavContent>                <!-- full text search -->                <awg-fulltext-search-form                    [searchValue]="getSearchQueryType(searchParams?.query)"                    (searchRequest)="onSearch($event)">                </awg-fulltext-search-form>            </ng-template>        </ng-container>        <ng-container [ngbNavItem]="searchTabs.extended.id">            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabs?.extended.title }}</a>            <ng-template ngbNavContent>                <!-- extended search -->                <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>            </ng-template>        </ng-container>    </nav>    <div [ngbNavOutlet]="searchNav"></div></div><!-- loading spinner -->@if (isLoading$ | async) {    <div>        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>    </div>} @else {    @if (errorMessage) {        <div class="errorMessage">            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>        </div>    }    @if (searchResponseWithQuery?.query) {        <awg-search-result-list            [searchParams]="searchParams"            [searchUrl]="httpGetUrl"            (pageChangeRequest)="onPageChange($event)"            (rowNumberChangeRequest)="onRowNumberChange($event)"            (viewChangeRequest)="onViewChange($event)">        </awg-search-result-list>    }}<!-- search results --></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'SearchPanelComponent'};

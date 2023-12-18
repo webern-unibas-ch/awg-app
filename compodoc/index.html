@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="./styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -32,9 +90,10 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1 id="awg-app">AWG App</h1>
+<h1>AWG App</h1>
 <p><img src="https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg" alt="GitHub package.json version" class="img-responsive">
-<a href="https://github.com/angular/angular"><img src="https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=red&label=angular&logo=angular" alt="GitHub package.json dependency version (prod)" class="img-responsive"></a>
+<a href="https://github.com/angular/angular"><img src="https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular" alt="GitHub package.json dependency version (prod)" class="img-responsive"></a>
+<img src="https://img.shields.io/badge/node.js-%3E=v18.13.0-blue" alt="Node.js version" class="img-responsive">
 <img src="https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app" alt="GitHub commit activity" class="img-responsive">
 <img src="https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg" alt="CI Workflow" class="img-responsive">
 <a href="https://codecov.io/gh/webern-unibas-ch/awg-app"><img src="https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg" alt="codecov" class="img-responsive"></a>
@@ -43,7 +102,7 @@
 <a href="CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant" class="img-responsive"></a>
 <a href="https://doi.org/10.5281/zenodo.4717678"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg" alt="DOI" class="img-responsive"></a></p>
 <p>A prototype web application for the online edition of the <a href="https://www.anton-webern.ch">Anton Webern Gesamtausgabe</a>, located at the Department of Musicology of the University of Basel. It is written in <a href="https://angular.io/">Angular</a> and runs on <a href="https://edition.anton-webern.ch">edition.anton-webern.ch</a>.</p>
-<h2 id="contributors-✨">Contributors ✨</h2>
+<h2>Contributors ✨</h2>
 <p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -66,9 +125,9 @@
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
-<h2 id="contributing">Contributing</h2>
+<h2>Contributing</h2>
 <p>Please read our <a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> and <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> to see how you may contribute to this project.</p>
-<h2 id="license">License</h2>
+<h2>License</h2>
 <p>The software code of this project is released under <a href="https://opensource.org/licenses/MIT">MIT</a> license, see <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">LICENSE.md</a>.</p>
 <p>The contents of the webpage are released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)</a>, see <a href="http://edition.anton-webern.ch/contact#awg-disclaimer">Disclaimer</a>.</p>
 

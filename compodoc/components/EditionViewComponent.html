@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   EditionViewComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -85,14 +148,15 @@ another router outlet for the edition routes.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -108,6 +172,8 @@ another router outlet for the edition routes.</p>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-edition-view</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -132,7 +198,7 @@ another router outlet for the edition routes.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -209,13 +275,13 @@ another router outlet for the edition routes.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>, route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+<code>constructor(editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>, route: ActivatedRoute, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
@@ -262,7 +328,7 @@ EditionService, ActivatedRoute and Router.</p>
                                                         <td>route</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                                    <code>ActivatedRoute</code>
                                                         </td>
                                                   
                                                     <td>
@@ -278,7 +344,7 @@ EditionService, ActivatedRoute and Router.</p>
                                                         <td>router</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                    <code>Router</code>
                                                         </td>
                                                   
                                                     <td>
@@ -303,7 +369,7 @@ EditionService, ActivatedRoute and Router.</p>
 
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -326,30 +392,28 @@ EditionService, ActivatedRoute and Router.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="108"
-                            class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:108</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:112</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getSelectionsFromRoute.</p>
+                        <div class="io-description"><p>Public method: getSelectionsFromRoute.</p>
 <p>It loads the selected series, section, and edition complex from the edition service (if given).</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Gets the selected series, section, and edition complex from the edition service.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Gets the selected series, section, and edition complex from the edition service.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -372,25 +436,25 @@ EditionService, ActivatedRoute and Router.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:96</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:100</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
 <p>It calls the containing methods
 when initializing the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -413,36 +477,34 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="122"
-                            class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:122</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:126</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: routeToSidenav.</p>
+                        <div class="io-description"><p>Public method: routeToSidenav.</p>
 <p>It activates the secondary outlet with the edition-info.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Activates the edition-info side outlet.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Activates the edition-info side outlet.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -661,7 +723,7 @@ about the current edition complex.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -681,7 +743,7 @@ about the current edition complex.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-view.component.ts:90</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -699,7 +761,7 @@ about the current edition complex.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
 
@@ -778,7 +840,11 @@ export class EditionViewComponent implements OnInit {
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private editionService: EditionService, private route: ActivatedRoute, private router: Router) {}
+    constructor(
+        private editionService: EditionService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
 
     /**
      * Getter variable: editionRouteConstants.
@@ -831,92 +897,112 @@ export class EditionViewComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- content: edition-view --&gt;
 
 &lt;div&gt;
-    &lt;div class&#x3D;&quot;awg-edition-row-tables para&quot; *ngIf&#x3D;&quot;isRowTableView$ | async as isRowTableView&quot;&gt;
-        &lt;h6 class&#x3D;&quot;awg-edition-info-breadcrumb&quot;&gt;
-            &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route]&quot;&gt;
-                {{ editionRouteConstants.EDITION?.short }}
-            &lt;/a&gt;
-            /
-            &lt;span&gt;{{ editionRouteConstants.ROWTABLES.full }}&lt;/span&gt;
-        &lt;/h6&gt;
-        &lt;!-- Jumbotron --&gt;
-        &lt;awg-edition-jumbotron [jumbotronId]&#x3D;&quot;editionViewId&quot; [jumbotronTitle]&#x3D;&quot;&#x27;Übersicht&#x27;&quot;&gt;&lt;/awg-edition-jumbotron&gt;
-    &lt;/div&gt;
-
-    &lt;div
-        class&#x3D;&quot;awg-edition-series para&quot;
-        *ngIf&#x3D;&quot;(selectedEditionComplex$ | async) &#x3D;&#x3D;&#x3D; null &amp;&amp; (isRowTableView$ | async) &#x3D;&#x3D;&#x3D; null&quot;&gt;
-        &lt;h6 class&#x3D;&quot;awg-edition-info-breadcrumb&quot;&gt;
-            &lt;a
-                *ngIf&#x3D;&quot;selectedEditionSeries$ | async as selectedSeries; else editionWithoutLink&quot;
-                [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route]&quot;&gt;
-                {{ editionRouteConstants.EDITION?.short }}
-            &lt;/a&gt;
-            &lt;ng-template #editionWithoutLink&gt; {{ editionRouteConstants.EDITION?.short }} &lt;/ng-template&gt;
-            /
-            &lt;span *ngIf&#x3D;&quot;selectedEditionSeries$ | async as selectedSeries&quot;&gt;
-                &lt;a
-                    *ngIf&#x3D;&quot;selectedEditionSection$ | async as selectedSection; else seriesWithoutLink&quot;
-                    [routerLink]&#x3D;&quot;[&#x27;./series&#x27;, selectedSeries.series.route]&quot;&gt;
-                    {{ selectedSeries?.series.full }}
+    @if (isRowTableView$ | async; as isRowTableView) {
+        &lt;div class&#x3D;&quot;awg-edition-row-tables para&quot;&gt;
+            &lt;h6 class&#x3D;&quot;awg-edition-info-breadcrumb&quot;&gt;
+                &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route]&quot;&gt;
+                    {{ editionRouteConstants.EDITION?.short }}
                 &lt;/a&gt;
-                &lt;ng-template #seriesWithoutLink&gt; {{ selectedSeries?.series.full }} &lt;/ng-template&gt;
                 /
-            &lt;/span&gt;
-            &lt;span *ngIf&#x3D;&quot;selectedEditionSection$ | async as selectedSection&quot;&gt;
-                {{ selectedSection?.section.full }}
-            &lt;/span&gt;
-        &lt;/h6&gt;
-        &lt;!-- Jumbotron --&gt;
-        &lt;awg-edition-jumbotron
-            [jumbotronId]&#x3D;&quot;editionViewId&quot;
-            [jumbotronTitle]&#x3D;&quot;editionViewTitle&quot;&gt;&lt;/awg-edition-jumbotron&gt;
-    &lt;/div&gt;
-
-    &lt;div class&#x3D;&quot;awg-edition-complex&quot; *ngIf&#x3D;&quot;selectedEditionComplex$ | async as selectedEditionComplex&quot;&gt;
-        &lt;h6 class&#x3D;&quot;awg-edition-info-breadcrumb&quot;&gt;
-            &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route]&quot;&gt;
-                {{ editionRouteConstants.EDITION?.short }}
-            &lt;/a&gt;
-            /
-            &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]&quot;&gt;
-                {{ selectedEditionComplex.series.full }}
-            &lt;/a&gt;
-            /
-            &lt;a
-                [routerLink]&#x3D;&quot;[
-                    editionRouteConstants.SERIES.route,
-                    selectedEditionComplex.series.route,
-                    &#x27;section&#x27;,
-                    selectedEditionComplex.section.route
-                ]&quot;&gt;
-                {{ selectedEditionComplex.section.full }}
-            &lt;/a&gt;
-        &lt;/h6&gt;
-        &lt;h3 class&#x3D;&quot;awg-edition-info-header&quot;&gt;
-            &lt;span class&#x3D;&quot;awg-edition-info-header-title&quot; [innerHTML]&#x3D;&quot;selectedEditionComplex.titleStatement.title&quot;&gt;&lt;/span
-            &gt;&amp;nbsp;&lt;span class&#x3D;&quot;awg-edition-info-header-catalogue&quot;&gt;{{ selectedEditionComplex.complexId.short }}&lt;/span&gt;
-        &lt;/h3&gt;
-        &lt;!-- declamation --&gt;
-        &lt;div class&#x3D;&quot;awg-edition-responsibility mt-3&quot;&gt;
-            &lt;p&gt;
-                Ediert von
-                &lt;span
-                    class&#x3D;&quot;editor&quot;
-                    *ngFor&#x3D;&quot;let editor of selectedEditionComplex.responsibilityStatement.editors; last as isLast&quot;&gt;
-                    &lt;a href&#x3D;&quot;{{ editor.homepage }}&quot;&gt;{{ editor.name }}&lt;/a
-                    &gt;&lt;span *ngIf&#x3D;&quot;!isLast&quot;&gt;&amp;nbsp;&amp;&amp;nbsp;&lt;/span&gt;
-                &lt;/span&gt;
-                &lt;br /&gt;
-                Versionsdatum:
-                &lt;span class&#x3D;&quot;version&quot;&gt;{{ selectedEditionComplex.responsibilityStatement.lastModified }}&lt;/span&gt;
-            &lt;/p&gt;
+                &lt;span&gt;{{ editionRouteConstants.ROWTABLES.full }}&lt;/span&gt;
+            &lt;/h6&gt;
+            &lt;!-- Jumbotron --&gt;
+            &lt;awg-edition-jumbotron [jumbotronId]&#x3D;&quot;editionViewId&quot; [jumbotronTitle]&#x3D;&quot;&#x27;Übersicht&#x27;&quot;&gt;&lt;/awg-edition-jumbotron&gt;
         &lt;/div&gt;
-    &lt;/div&gt;
+    }
+
+    @if ((selectedEditionComplex$ | async) &#x3D;&#x3D;&#x3D; null &amp;&amp; (isRowTableView$ | async) &#x3D;&#x3D;&#x3D; null) {
+        &lt;div class&#x3D;&quot;awg-edition-series para&quot;&gt;
+            &lt;h6 class&#x3D;&quot;awg-edition-info-breadcrumb&quot;&gt;
+                @if (selectedEditionSeries$ | async; as selectedSeries) {
+                    &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route]&quot;&gt;
+                        {{ editionRouteConstants.EDITION?.short }}
+                    &lt;/a&gt;
+                } @else {
+                    {{ editionRouteConstants.EDITION?.short }}
+                }
+                /
+                @if (selectedEditionSeries$ | async; as selectedSeries) {
+                    &lt;span&gt;
+                        @if (selectedEditionSection$ | async; as selectedSection) {
+                            &lt;a [routerLink]&#x3D;&quot;[&#x27;./series&#x27;, selectedSeries.series.route]&quot;&gt;
+                                {{ selectedSeries?.series.full }}
+                            &lt;/a&gt;
+                        } @else {
+                            {{ selectedSeries?.series.full }}
+                        }
+                        /
+                    &lt;/span&gt;
+                }
+                @if (selectedEditionSection$ | async; as selectedSection) {
+                    &lt;span&gt;
+                        {{ selectedSection?.section.full }}
+                    &lt;/span&gt;
+                }
+            &lt;/h6&gt;
+            &lt;!-- Jumbotron --&gt;
+            &lt;awg-edition-jumbotron
+                [jumbotronId]&#x3D;&quot;editionViewId&quot;
+                [jumbotronTitle]&#x3D;&quot;editionViewTitle&quot;&gt;&lt;/awg-edition-jumbotron&gt;
+        &lt;/div&gt;
+    }
+
+    @if (selectedEditionComplex$ | async; as selectedEditionComplex) {
+        &lt;div class&#x3D;&quot;awg-edition-complex&quot;&gt;
+            &lt;h6 class&#x3D;&quot;awg-edition-info-breadcrumb&quot;&gt;
+                &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route]&quot;&gt;
+                    {{ editionRouteConstants.EDITION?.short }}
+                &lt;/a&gt;
+                /
+                &lt;a [routerLink]&#x3D;&quot;[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]&quot;&gt;
+                    {{ selectedEditionComplex.series.full }}
+                &lt;/a&gt;
+                /
+                &lt;a
+                    [routerLink]&#x3D;&quot;[
+                        editionRouteConstants.SERIES.route,
+                        selectedEditionComplex.series.route,
+                        &#x27;section&#x27;,
+                        selectedEditionComplex.section.route
+                    ]&quot;&gt;
+                    {{ selectedEditionComplex.section.full }}
+                &lt;/a&gt;
+            &lt;/h6&gt;
+            &lt;h3 class&#x3D;&quot;awg-edition-info-header&quot;&gt;
+                &lt;span
+                    class&#x3D;&quot;awg-edition-info-header-title&quot;
+                    [innerHTML]&#x3D;&quot;selectedEditionComplex.titleStatement.title&quot;&gt;&lt;/span
+                &gt;&amp;nbsp;&lt;span class&#x3D;&quot;awg-edition-info-header-catalogue&quot;&gt;{{
+                    selectedEditionComplex.complexId.short
+                }}&lt;/span&gt;
+            &lt;/h3&gt;
+            &lt;!-- declamation --&gt;
+            &lt;div class&#x3D;&quot;awg-edition-responsibility mt-3&quot;&gt;
+                &lt;p&gt;
+                    Ediert von
+                    @for (
+                        editor of selectedEditionComplex.responsibilityStatement.editors;
+                        track editor;
+                        let isLast &#x3D; $last
+                    ) {
+                        &lt;span class&#x3D;&quot;editor&quot;&gt;
+                            &lt;a href&#x3D;&quot;{{ editor.homepage }}&quot;&gt;{{ editor.name }}&lt;/a&gt;
+                            @if (!isLast) {
+                                &lt;span&gt;&amp;nbsp;&amp;&amp;nbsp;&lt;/span&gt;
+                            }
+                        &lt;/span&gt;
+                    }
+                    &lt;br /&gt;
+                    Versionsdatum:
+                    &lt;span class&#x3D;&quot;version&quot;&gt;{{ selectedEditionComplex.responsibilityStatement.lastModified }}&lt;/span&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    }
 
     &lt;!-- edition routes --&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -924,14 +1010,14 @@ export class EditionViewComponent implements OnInit {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./edition-view.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -956,7 +1042,7 @@ export class EditionViewComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: edition-view --><div>    <div class="awg-edition-row-tables para" *ngIf="isRowTableView$ | async as isRowTableView">        <h6 class="awg-edition-info-breadcrumb">            <a [routerLink]="[editionRouteConstants.SERIES.route]">                {{ editionRouteConstants.EDITION?.short }}            </a>            /            <span>{{ editionRouteConstants.ROWTABLES.full }}</span>        </h6>        <!-- Jumbotron -->        <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="\'Übersicht\'"></awg-edition-jumbotron>    </div>    <div        class="awg-edition-series para"        *ngIf="(selectedEditionComplex$ | async) === null && (isRowTableView$ | async) === null">        <h6 class="awg-edition-info-breadcrumb">            <a                *ngIf="selectedEditionSeries$ | async as selectedSeries; else editionWithoutLink"                [routerLink]="[editionRouteConstants.SERIES.route]">                {{ editionRouteConstants.EDITION?.short }}            </a>            <ng-template #editionWithoutLink> {{ editionRouteConstants.EDITION?.short }} </ng-template>            /            <span *ngIf="selectedEditionSeries$ | async as selectedSeries">                <a                    *ngIf="selectedEditionSection$ | async as selectedSection; else seriesWithoutLink"                    [routerLink]="[\'./series\', selectedSeries.series.route]">                    {{ selectedSeries?.series.full }}                </a>                <ng-template #seriesWithoutLink> {{ selectedSeries?.series.full }} </ng-template>                /            </span>            <span *ngIf="selectedEditionSection$ | async as selectedSection">                {{ selectedSection?.section.full }}            </span>        </h6>        <!-- Jumbotron -->        <awg-edition-jumbotron            [jumbotronId]="editionViewId"            [jumbotronTitle]="editionViewTitle"></awg-edition-jumbotron>    </div>    <div class="awg-edition-complex" *ngIf="selectedEditionComplex$ | async as selectedEditionComplex">        <h6 class="awg-edition-info-breadcrumb">            <a [routerLink]="[editionRouteConstants.SERIES.route]">                {{ editionRouteConstants.EDITION?.short }}            </a>            /            <a [routerLink]="[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]">                {{ selectedEditionComplex.series.full }}            </a>            /            <a                [routerLink]="[                    editionRouteConstants.SERIES.route,                    selectedEditionComplex.series.route,                    \'section\',                    selectedEditionComplex.section.route                ]">                {{ selectedEditionComplex.section.full }}            </a>        </h6>        <h3 class="awg-edition-info-header">            <span class="awg-edition-info-header-title" [innerHTML]="selectedEditionComplex.titleStatement.title"></span            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ selectedEditionComplex.complexId.short }}</span>        </h3>        <!-- declamation -->        <div class="awg-edition-responsibility mt-3">            <p>                Ediert von                <span                    class="editor"                    *ngFor="let editor of selectedEditionComplex.responsibilityStatement.editors; last as isLast">                    <a href="{{ editor.homepage }}">{{ editor.name }}</a                    ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>                </span>                <br />                Versionsdatum:                <span class="version">{{ selectedEditionComplex.responsibilityStatement.lastModified }}</span>            </p>        </div>    </div>    <!-- edition routes -->    <router-outlet></router-outlet></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: edition-view --><div>    @if (isRowTableView$ | async; as isRowTableView) {        <div class="awg-edition-row-tables para">            <h6 class="awg-edition-info-breadcrumb">                <a [routerLink]="[editionRouteConstants.SERIES.route]">                    {{ editionRouteConstants.EDITION?.short }}                </a>                /                <span>{{ editionRouteConstants.ROWTABLES.full }}</span>            </h6>            <!-- Jumbotron -->            <awg-edition-jumbotron [jumbotronId]="editionViewId" [jumbotronTitle]="\'Übersicht\'"></awg-edition-jumbotron>        </div>    }    @if ((selectedEditionComplex$ | async) === null && (isRowTableView$ | async) === null) {        <div class="awg-edition-series para">            <h6 class="awg-edition-info-breadcrumb">                @if (selectedEditionSeries$ | async; as selectedSeries) {                    <a [routerLink]="[editionRouteConstants.SERIES.route]">                        {{ editionRouteConstants.EDITION?.short }}                    </a>                } @else {                    {{ editionRouteConstants.EDITION?.short }}                }                /                @if (selectedEditionSeries$ | async; as selectedSeries) {                    <span>                        @if (selectedEditionSection$ | async; as selectedSection) {                            <a [routerLink]="[\'./series\', selectedSeries.series.route]">                                {{ selectedSeries?.series.full }}                            </a>                        } @else {                            {{ selectedSeries?.series.full }}                        }                        /                    </span>                }                @if (selectedEditionSection$ | async; as selectedSection) {                    <span>                        {{ selectedSection?.section.full }}                    </span>                }            </h6>            <!-- Jumbotron -->            <awg-edition-jumbotron                [jumbotronId]="editionViewId"                [jumbotronTitle]="editionViewTitle"></awg-edition-jumbotron>        </div>    }    @if (selectedEditionComplex$ | async; as selectedEditionComplex) {        <div class="awg-edition-complex">            <h6 class="awg-edition-info-breadcrumb">                <a [routerLink]="[editionRouteConstants.SERIES.route]">                    {{ editionRouteConstants.EDITION?.short }}                </a>                /                <a [routerLink]="[editionRouteConstants.SERIES.route, selectedEditionComplex.series.route]">                    {{ selectedEditionComplex.series.full }}                </a>                /                <a                    [routerLink]="[                        editionRouteConstants.SERIES.route,                        selectedEditionComplex.series.route,                        \'section\',                        selectedEditionComplex.section.route                    ]">                    {{ selectedEditionComplex.section.full }}                </a>            </h6>            <h3 class="awg-edition-info-header">                <span                    class="awg-edition-info-header-title"                    [innerHTML]="selectedEditionComplex.titleStatement.title"></span                >&nbsp;<span class="awg-edition-info-header-catalogue">{{                    selectedEditionComplex.complexId.short                }}</span>            </h3>            <!-- declamation -->            <div class="awg-edition-responsibility mt-3">                <p>                    Ediert von                    @for (                        editor of selectedEditionComplex.responsibilityStatement.editors;                        track editor;                        let isLast = $last                    ) {                        <span class="editor">                            <a href="{{ editor.homepage }}">{{ editor.name }}</a>                            @if (!isLast) {                                <span>&nbsp;&&nbsp;</span>                            }                        </span>                    }                    <br />                    Versionsdatum:                    <span class="version">{{ selectedEditionComplex.responsibilityStatement.lastModified }}</span>                </p>            </div>        </div>    }    <!-- edition routes -->    <router-outlet></router-outlet></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionViewComponent'};

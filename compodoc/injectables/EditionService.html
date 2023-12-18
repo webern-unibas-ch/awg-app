@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -40,21 +98,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >EditionService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >EditionService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -76,7 +140,7 @@ other parts of the edition outline.</p>
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -201,7 +265,7 @@ other parts of the edition outline.</p>
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -224,30 +288,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="98"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:98</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:98</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: clearEditionComplex.</p>
+                        <div class="io-description"><p>Public method: clearEditionComplex.</p>
 <p>It clears the edition complex stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Clears the edition complex stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Clears the edition complex stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -270,30 +332,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="251"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:251</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:251</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: clearIsRowTableView.</p>
+                        <div class="io-description"><p>Public method: clearIsRowTableView.</p>
 <p>It clears the isRowTableView stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Clears the isRowTableView stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Clears the isRowTableView stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -316,30 +376,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:216</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:216</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: clearSelectedEditionSection.</p>
+                        <div class="io-description"><p>Public method: clearSelectedEditionSection.</p>
 <p>It clears the selected edition section stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Clears the edition section stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Clears the edition section stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -362,30 +420,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:181</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:181</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: clearSelectedEditionSeries.</p>
+                        <div class="io-description"><p>Public method: clearSelectedEditionSeries.</p>
 <p>It clears the selected edition series stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Clears the edition series stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Clears the edition series stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -408,30 +464,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="74"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:74</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="74"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:74</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionComplex.</p>
+                        <div class="io-description"><p>Public method: getEditionComplex.</p>
 <p>It provides the latest edition complex from the edition complex stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex&gt;</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The edition complex stream as observable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The edition complex stream as observable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -454,30 +508,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="109"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:109</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:109</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionOutline.</p>
+                        <div class="io-description"><p>Public method: getEditionOutline.</p>
 <p>It provides the outline of the edition with its series.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries[]</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries[]</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The edition outline.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The edition outline.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -500,78 +552,76 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:147</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:147</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionSectionById.</p>
+                        <div class="io-description"><p>Public method: getEditionSectionById.</p>
 <p>It finds a section of an edition series by a given id.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>seriesId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given series id.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>sectionId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given series id.</p>
+                                            <td>
+                                                    <p>The given series id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The found edition section.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given series id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The found edition section.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -594,62 +644,60 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:133</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:133</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionSeriesById.</p>
+                        <div class="io-description"><p>Public method: getEditionSeriesById.</p>
 <p>It finds a series of the edition by a given id.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>seriesId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>seriesId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given series id.</p>
+                                            <td>
+                                                    <p>The given series id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The found edition series.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The found edition series.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -672,30 +720,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="120"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:120</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:120</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getEditionSeriesRoute.</p>
+                        <div class="io-description"><p>Public method: getEditionSeriesRoute.</p>
 <p>It provides the base route for the edition series section of the app.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The edition series route.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The edition series route.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -718,30 +764,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="227"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:227</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:227</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getIsRowTableView.</p>
+                        <div class="io-description"><p>Public method: getIsRowTableView.</p>
 <p>It provides the latest isRowTableView flag from the isRowTableView stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The isRowTableView stream as observable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The isRowTableView stream as observable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -764,30 +808,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="192"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:192</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:192</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getSelectedEditionSection.</p>
+                        <div class="io-description"><p>Public method: getSelectedEditionSection.</p>
 <p>It provides the latest selected section from the edition section stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >Observable&lt;EditionOutlineSection&gt;</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >Observable&lt;EditionOutlineSection&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The edition section stream as observable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The edition section stream as observable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -810,30 +852,28 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="159"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:159</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="159"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:159</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getSelectedEditionSeries.</p>
+                        <div class="io-description"><p>Public method: getSelectedEditionSeries.</p>
 <p>It provides the latest selected series from the edition series stream.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >Observable&lt;EditionOutlineSeries&gt;</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >Observable&lt;EditionOutlineSeries&gt;</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The edition series stream as observable.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The edition series stream as observable.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -856,62 +896,60 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:87</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:87</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: updateEditionComplex.</p>
+                        <div class="io-description"><p>Public method: updateEditionComplex.</p>
 <p>It updates the edition complex stream with the given edition complex.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionComplex</td>
-                                    <td>
-                                                <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionComplex</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionComplex.html" target="_self" >EditionComplex</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given edition complex.</p>
+                                            <td>
+                                                    <p>The given edition complex.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the next edition complex to the stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the next edition complex to the stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -934,62 +972,60 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="240"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:240</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:240</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: updateIsRowTableView.</p>
+                        <div class="io-description"><p>Public method: updateIsRowTableView.</p>
 <p>It updates the isRowTableView stream with the given boolean value.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>isView</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isView</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given isRowTableView flag.</p>
+                                            <td>
+                                                    <p>The given isRowTableView flag.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the next isRowTableView flag to the stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the next isRowTableView flag to the stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1012,62 +1048,60 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="205"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:205</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:205</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: updateSelectedEditionSection.</p>
+                        <div class="io-description"><p>Public method: updateSelectedEditionSection.</p>
 <p>It updates the selected edition section stream with the given section.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionSection</td>
-                                    <td>
-                                                <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionSection</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineSection.html" target="_self" >EditionOutlineSection</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given edition section.</p>
+                                            <td>
+                                                    <p>The given edition section.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the next edition section to the stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the next edition section to the stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1090,63 +1124,61 @@ other parts of the edition outline.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="170"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:170</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:170</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: updateSelectedEditionSeries.</p>
+                        <div class="io-description"><p>Public method: updateSelectedEditionSeries.</p>
 <p>It updates the selected edition series stream with the given series.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>editionSeries</td>
-                                    <td>
-                                                <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>editionSeries</td>
+                                            <td>
+                                                            <code><a href="../interfaces/EditionOutlineSeries.html" target="_self" >EditionOutlineSeries</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the next edition series to the stream.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the next edition series to the stream.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -1454,7 +1486,7 @@ other parts of the edition outline.</p>
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
 import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;

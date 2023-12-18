@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="./styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -51,7 +109,7 @@
 
 
 <ol class="breadcrumb">
-    <li>Documentation coverage</li>
+    <li class="breadcrumb-item">Documentation coverage</li>
 </ol>
 
 <div>
@@ -749,7 +807,7 @@
             <td>GeoDataItemJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(7/7)</span>
+                <span class="coverage-count">(4/4)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -761,7 +819,7 @@
             <td>GeoDataJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -773,7 +831,7 @@
             <td>HlistItemJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -785,7 +843,7 @@
             <td>HlistJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -809,7 +867,7 @@
             <td>SelectionItemJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(6/6)</span>
+                <span class="coverage-count">(3/3)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -821,7 +879,7 @@
             <td>SelectionJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -833,7 +891,7 @@
             <td>ProjectJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -845,7 +903,7 @@
             <td>ProjectListJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -965,7 +1023,7 @@
             <td>PropertyTypesInResourceClassResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1037,7 +1095,7 @@
             <td>ResourceContextResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1049,7 +1107,7 @@
             <td>ResourceFullResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(8/8)</span>
+                <span class="coverage-count">(6/6)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1061,7 +1119,7 @@
             <td>ResourceInfoResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(3/3)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1085,7 +1143,7 @@
             <td>ResourceLabelSearchResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1097,7 +1155,7 @@
             <td>ResourcePropertiesResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1121,7 +1179,7 @@
             <td>ResourceRightsResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1133,7 +1191,7 @@
             <td>ResourceTypeResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1145,7 +1203,7 @@
             <td>ResourceTypesInVocabularyResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1181,7 +1239,7 @@
             <td>VocabularyResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(4/4)</span>
+                <span class="coverage-count">(2/2)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1205,7 +1263,7 @@
             <td>SearchResponseJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(7/7)</span>
+                <span class="coverage-count">(5/5)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1241,7 +1299,7 @@
             <td>SessionJson</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(5/5)</span>
+                <span class="coverage-count">(3/3)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -1376,16 +1434,16 @@
                 <span class="coverage-count">(3/3)</span>
             </td>
         </tr>
-        <tr class="low">
+        <tr class="very-good">
             <td>
                 <!-- miscellaneous -->
                 <a href="./components/LicenseComponent.html">src/app/shared/license/license.component.ts</a>
             </td>
             <td>component</td>
             <td>LicenseComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -2849,7 +2907,7 @@
             <td>ConstructResultsComponent</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(7/7)</span>
+                <span class="coverage-count">(8/8)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -3221,7 +3279,7 @@
             <td>SelectResultsComponent</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(8/8)</span>
+                <span class="coverage-count">(10/10)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -3257,7 +3315,7 @@
             <td>SparqlEditorComponent</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(26/26)</span>
+                <span class="coverage-count">(25/25)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -3305,7 +3363,7 @@
             <td>UnsupportedTypeResultsComponent</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
+                <span class="coverage-count">(4/4)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -4359,9 +4417,9 @@
             </td>
             <td>class</td>
             <td>TextSource</td>
-            <td align="right" data-sort="83">
-                <span class="coverage-percent">83 %</span>
-                <span class="coverage-count">(5/6)</span>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(6/6)</span>
             </td>
         </tr>
         <tr class="very-good">

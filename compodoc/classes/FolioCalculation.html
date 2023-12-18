@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -44,21 +102,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >FolioCalculation</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >FolioCalculation</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -81,7 +145,7 @@ to calculate all the values needed for the folio canvas.</p>
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -175,7 +239,7 @@ to calculate all the values needed for the folio canvas.</p>
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -264,7 +328,7 @@ to calculate all the values needed for the folio canvas.</p>
         </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -466,7 +530,7 @@ of a folio (FolioCalculationSystems).</p>
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -477,7 +541,7 @@ of a folio (FolioCalculationSystems).</p>
                 <td class="col-md-4">
                     <a name="_calculateContentArray"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_calculateContentArray</b></span>
                         <a href="#_calculateContentArray"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -485,68 +549,66 @@ of a folio (FolioCalculationSystems).</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_calculateContentArray(contents: FolioContent[])</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="542"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:542</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="542"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:542</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _calculateContentArray.</p>
+                        <div class="io-description"><p>Private method: _calculateContentArray.</p>
 <p>It provides all the calculated values for the content items of a folio.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>contents</td>
-                                    <td>
-                                            <code>FolioContent[]</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>contents</td>
+                                            <td>
+                                                        <code>FolioContent[]</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given folio contents.</p>
+                                            <td>
+                                                    <p>The given folio contents.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>FolioCalculationContentItem[]</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FolioCalculationContentItem[]</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The array of the calculated content items.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The array of the calculated content items.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -557,7 +619,7 @@ of a folio (FolioCalculationSystems).</p>
                 <td class="col-md-4">
                     <a name="_calculateFolio"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_calculateFolio</b></span>
                         <a href="#_calculateFolio"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -565,85 +627,83 @@ of a folio (FolioCalculationSystems).</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_calculateFolio(folioSettings: <a href="../classes/FolioSettings.html" target="_self">FolioSettings</a>, folioData: <a href="../classes/Folio.html" target="_self">Folio</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="452"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:452</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="452"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:452</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _calculateFolio.</p>
+                        <div class="io-description"><p>Private method: _calculateFolio.</p>
 <p>It calls the calculation methods for the sheet,
 systems and contentItemsArray of a folio.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>folioSettings</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>folioSettings</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given folio settings.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folioData</td>
-                                    <td>
-                                                <code><a href="../classes/Folio.html" target="_self" >Folio</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given folio data.</p>
+                                            <td>
+                                                    <p>The given folio settings.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioData</td>
+                                            <td>
+                                                            <code><a href="../classes/Folio.html" target="_self" >Folio</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the sheet, systems and contentItemsArray variables.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given folio data.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the sheet, systems and contentItemsArray variables.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -654,7 +714,7 @@ systems and contentItemsArray of a folio.</p>
                 <td class="col-md-4">
                     <a name="_calculateSheet"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_calculateSheet</b></span>
                         <a href="#_calculateSheet"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -662,85 +722,83 @@ systems and contentItemsArray of a folio.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_calculateSheet(folioSettings: <a href="../classes/FolioSettings.html" target="_self">FolioSettings</a>, folioId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="469"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:469</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="469"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:469</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _calculateSheet.</p>
+                        <div class="io-description"><p>Private method: _calculateSheet.</p>
 <p>It returns a FolioCalculationSheet class that provides
 all the calculated values for the sheet of a folio.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>folioSettings</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>folioSettings</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSettings.html" target="_self" >FolioSettings</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given folio settings.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>folioId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given folio id.</p>
+                                            <td>
+                                                    <p>The given folio settings.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/FolioCalculationSheet.html" target="_self" >FolioCalculationSheet</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>folioId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The calculated sheet.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given folio id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/FolioCalculationSheet.html" target="_self" >FolioCalculationSheet</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated sheet.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -751,7 +809,7 @@ all the calculated values for the sheet of a folio.</p>
                 <td class="col-md-4">
                     <a name="_calculateSystems"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_calculateSystems</b></span>
                         <a href="#_calculateSystems"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -759,37 +817,35 @@ all the calculated values for the sheet of a folio.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_calculateSystems()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="481"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:481</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="481"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:481</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _calculateSystems.</p>
+                        <div class="io-description"><p>Private method: _calculateSystems.</p>
 <p>It returns a FolioCalculationSystems class that provides
 all the calculated values for the systems of a folio.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/FolioCalculationSystems.html" target="_self" >FolioCalculationSystems</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/FolioCalculationSystems.html" target="_self" >FolioCalculationSystems</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The calculated systems.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated systems.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -800,7 +856,7 @@ all the calculated values for the systems of a folio.</p>
                 <td class="col-md-4">
                     <a name="_getContentItemStart"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getContentItemStart</b></span>
                         <a href="#_getContentItemStart"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -808,118 +864,116 @@ all the calculated values for the systems of a folio.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getContentItemStart(offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, systemStart: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offsetCorrection?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="716"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:716</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="716"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:716</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private helper method for _calculateContentArray: _getContentItemStart.</p>
+                        <div class="io-description"><p>Private helper method for _calculateContentArray: _getContentItemStart.</p>
 <p>It calculates the start position of a content item of a folio.</p>
 <p>(X: start at item 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>offset</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>offset</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given offset.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given index position (offset * index --&gt;
+                                            <td>
+                                                    <p>The given offset.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given index position (offset * index --&gt;
 (X: start at item 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)).</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>systemStart</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>systemStart</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given horizontal(X) or vertical (Y) systemsMargins.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>offsetCorrection</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The optional given offset correction value (mostly needed to center items).</p>
+                                            <td>
+                                                    <p>The given horizontal(X) or vertical (Y) systemsMargins.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>offsetCorrection</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The start position for a calculatedContentItem.</p>
+                                            <td>
+                                                    Yes
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The optional given offset correction value (mostly needed to center items).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The start position for a calculatedContentItem.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -930,7 +984,7 @@ all the calculated values for the systems of a folio.</p>
                 <td class="col-md-4">
                     <a name="_getSystemLineArray"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getSystemLineArray</b></span>
                         <a href="#_getSystemLineArray"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -938,68 +992,66 @@ all the calculated values for the systems of a folio.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getSystemLineArray(y: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="758"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:758</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="758"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:758</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private helper method for _calculateSystems: _getSystemLineArray.</p>
+                        <div class="io-description"><p>Private helper method for _calculateSystems: _getSystemLineArray.</p>
 <p>It calculates the start position of the lines per system of a folio.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>y</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>y</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The Y start value of the first line of a system.</p>
+                                            <td>
+                                                    <p>The Y start value of the first line of a system.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>number[]</code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number[]</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The start position array (Y values) of a system.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The start position array (Y values) of a system.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1010,7 +1062,7 @@ all the calculated values for the systems of a folio.</p>
                 <td class="col-md-4">
                     <a name="_getSystemYArray"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getSystemYArray</b></span>
                         <a href="#_getSystemYArray"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1018,100 +1070,98 @@ all the calculated values for the systems of a folio.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getSystemYArray(offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, systemStartY: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, offsetCorrection?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="739"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:739</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="739"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:739</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private helper method for _calculateSystems: _getSystemYArray.</p>
+                        <div class="io-description"><p>Private helper method for _calculateSystems: _getSystemYArray.</p>
 <p>It calculates the array of start positions of the systems of a folio.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>offset</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>offset</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given offset.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>systemStartY</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given (Y) systemsMargins (begin of sheet plus upper margin).</p>
+                                            <td>
+                                                    <p>The given offset.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>offsetCorrection</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>systemStartY</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The optional given offset correction value (mostly needed to center items).</p>
+                                            <td>
+                                                    <p>The given (Y) systemsMargins (begin of sheet plus upper margin).</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>[][]</code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>offsetCorrection</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The array of start position arrays (Y values) for the calculatedSystems.</p>
+                                            <td>
+                                                    Yes
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The optional given offset correction value (mostly needed to center items).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>[][]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The array of start position arrays (Y values) for the calculatedSystems.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1122,7 +1172,7 @@ all the calculated values for the systems of a folio.</p>
                 <td class="col-md-4">
                     <a name="_round"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_round</b></span>
                         <a href="#_round"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1130,86 +1180,84 @@ all the calculated values for the systems of a folio.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_round(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, decimals: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="784"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:784</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="784"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:784</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private helper method for folio calculation model: _round.</p>
+                        <div class="io-description"><p>Private helper method for folio calculation model: _round.</p>
 <p>It rounds a given number to a given number of decimal places.
 JS in-built round-method is sometimes not correct,
 see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://www.jacklmoore.com/notes/rounding-in-javascript/</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given input value to be rounded.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>decimals</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The number of decimal places to round to.</p>
+                                            <td>
+                                                    <p>The given input value to be rounded.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>decimals</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The rounded number.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The number of decimal places to round to.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The rounded number.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1220,7 +1268,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
                 <td class="col-md-4">
                     <a name="_setContentItemMainValues"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_setContentItemMainValues</b></span>
                         <a href="#_setContentItemMainValues"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1228,116 +1276,114 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_setContentItemMainValues(calculatedContentItem: <a href="../classes/FolioCalculationContentItem.html" target="_self">FolioCalculationContentItem</a>, section: <a href="../classes/FolioSection.html" target="_self">FolioSection</a>, sectionPartition: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, item: <a href="../classes/FolioContent.html" target="_self">FolioContent</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="616"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:616</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="616"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:616</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private helper method for _calculateContentArray: _setContentItemMainValues.</p>
+                        <div class="io-description"><p>Private helper method for _calculateContentArray: _setContentItemMainValues.</p>
 <p>It calculates the main values for the content items of a folio.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>calculatedContentItem</td>
-                                    <td>
-                                                <code><a href="../classes/FolioCalculationContentItem.html" target="_self" >FolioCalculationContentItem</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>calculatedContentItem</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioCalculationContentItem.html" target="_self" >FolioCalculationContentItem</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given calculated content item.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>section</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSection.html" target="_self" >FolioSection</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given section.</p>
+                                            <td>
+                                                    <p>The given calculated content item.</p>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>sectionPartition</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>section</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSection.html" target="_self" >FolioSection</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given section partition.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>item</td>
-                                    <td>
-                                                <code><a href="../classes/FolioContent.html" target="_self" >FolioContent</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given folio content.</p>
+                                            <td>
+                                                    <p>The given section.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>sectionPartition</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Calculates and sets the main values of the calculatedContentItem.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given section partition.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>item</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioContent.html" target="_self" >FolioContent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given folio content.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Calculates and sets the main values of the calculatedContentItem.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1348,7 +1394,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
                 <td class="col-md-4">
                     <a name="_setContentItemSectionCache"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_setContentItemSectionCache</b></span>
                         <a href="#_setContentItemSectionCache"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1356,84 +1402,82 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_setContentItemSectionCache(calculatedContentItem: <a href="../classes/FolioCalculationContentItem.html" target="_self">FolioCalculationContentItem</a>, section: <a href="../classes/FolioSection.html" target="_self">FolioSection</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="689"
-                            class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:689</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="689"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:689</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private helper method for _calculateContentArray: _setContentItemSectionCache.</p>
+                        <div class="io-description"><p>Private helper method for _calculateContentArray: _setContentItemSectionCache.</p>
 <p>It caches the current and previous section of a calculated content item.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>calculatedContentItem</td>
-                                    <td>
-                                                <code><a href="../classes/FolioCalculationContentItem.html" target="_self" >FolioCalculationContentItem</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>calculatedContentItem</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioCalculationContentItem.html" target="_self" >FolioCalculationContentItem</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given calculated content item.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>section</td>
-                                    <td>
-                                                <code><a href="../classes/FolioSection.html" target="_self" >FolioSection</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given section.</p>
+                                            <td>
+                                                    <p>The given calculated content item.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>section</td>
+                                            <td>
+                                                            <code><a href="../classes/FolioSection.html" target="_self" >FolioSection</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Caches the current and previous section of the calculatedContentItem.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given section.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Caches the current and previous section of the calculatedContentItem.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1447,7 +1491,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FolioSettings } from &#x27;./folio-settings.model&#x27;;
 import { Folio, FolioContent, FolioSection } from &#x27;./folio.model&#x27;;
 

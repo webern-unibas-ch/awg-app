@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   ExtendedSearchFormComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -84,15 +147,16 @@ of the data (search) view of the app with a reactive form group.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code>OnInit</code>
+                <code>OnDestroy</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -108,6 +172,8 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-extended-search-form</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -132,7 +198,7 @@ of the data (search) view of the app with a reactive form group.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -352,13 +418,13 @@ of the data (search) view of the app with a reactive form group.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+<code>constructor(dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, formBuilder: FormBuilder)</code>
                     </td>
                 </tr>
                         <tr>
@@ -404,7 +470,7 @@ of the data (search) view of the app with a reactive form group.</p>
                                                         <td>formBuilder</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                                    <code>FormBuilder</code>
                                                         </td>
                                                   
                                                     <td>
@@ -426,7 +492,7 @@ of the data (search) view of the app with a reactive form group.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -459,7 +525,7 @@ of the data (search) view of the app with a reactive form group.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -470,7 +536,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_clearPropertiesControls"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_clearPropertiesControls</b></span>
                         <a href="#_clearPropertiesControls"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -478,36 +544,34 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_clearPropertiesControls()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="519"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:519</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="522"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:522</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _clearPropertiesControls.</p>
+                        <div class="io-description"><p>Private method: _clearPropertiesControls.</p>
 <p>It clears all properties controls from the propertiesControls FormArray, and adds back an empty property input after clearing.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Clears the properties controls.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Clears the properties controls.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -518,7 +582,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_getFormArrayControlAtIndex"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getFormArrayControlAtIndex</b></span>
                         <a href="#_getFormArrayControlAtIndex"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -526,84 +590,82 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getFormArrayControlAtIndex(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="534"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:534</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="537"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:537</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getFormArrayControlAtIndex.</p>
+                        <div class="io-description"><p>Private method: _getFormArrayControlAtIndex.</p>
 <p>It gets a control from the propertiesControls FormArray at a given index.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>controlName</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given control name.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given control name.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The properties control.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given array index.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormControl</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The properties control.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -614,7 +676,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isCompopExists"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isCompopExists</b></span>
                         <a href="#_isCompopExists"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -622,68 +684,66 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isCompopExists(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="551"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:551</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="554"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:554</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isCompopExists.</p>
+                        <div class="io-description"><p>Private method: _isCompopExists.</p>
 <p>It checks if the compop control at a given index has the value &#39;EXISTS&#39;.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -694,7 +754,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isCompopMissing"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isCompopMissing</b></span>
                         <a href="#_isCompopMissing"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -702,68 +762,66 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isCompopMissing(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="564"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:564</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="567"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:567</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isCompopMissing.</p>
+                        <div class="io-description"><p>Private method: _isCompopMissing.</p>
 <p>It checks if the compop control at a given index does not have a value yet.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -774,7 +832,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isFormControlValueMissing"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isFormControlValueMissing</b></span>
                         <a href="#_isFormControlValueMissing"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -782,84 +840,82 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isFormControlValueMissing(controlName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="578"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:578</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="581"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:581</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isFormControlValueMissing.</p>
+                        <div class="io-description"><p>Private method: _isFormControlValueMissing.</p>
 <p>It checks if a given control of the form array at a given index does not have a value yet.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>controlName</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>controlName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given array index.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given array index.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -870,7 +926,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isNotLastProperty"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isNotLastProperty</b></span>
                         <a href="#_isNotLastProperty"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -878,68 +934,66 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isNotLastProperty(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="592"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:592</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="595"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:595</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isNotLastProperty.</p>
+                        <div class="io-description"><p>Private method: _isNotLastProperty.</p>
 <p>It checks if an index is not at the last position of the properties FormArray.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -950,7 +1004,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isPropertyIdMissing"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isPropertyIdMissing</b></span>
                         <a href="#_isPropertyIdMissing"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -958,68 +1012,66 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isPropertyIdMissing(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="606"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:606</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="609"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:609</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isPropertyIdMissing.</p>
+                        <div class="io-description"><p>Private method: _isPropertyIdMissing.</p>
 <p>It checks if the property id control at a given index does not have a value yet.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1030,7 +1082,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isPropertyIdOrCompopMissing"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isPropertyIdOrCompopMissing</b></span>
                         <a href="#_isPropertyIdOrCompopMissing"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1038,68 +1090,66 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isPropertyIdOrCompopMissing(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="619"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:619</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="622"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:622</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isPropertyIdOrCompopMissing.</p>
+                        <div class="io-description"><p>Private method: _isPropertyIdOrCompopMissing.</p>
 <p>It checks if the propoerty id or compop control at a given index do not have a value yet.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1110,7 +1160,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isResourecetypeMissing"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isResourecetypeMissing</b></span>
                         <a href="#_isResourecetypeMissing"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1118,36 +1168,34 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isResourecetypeMissing()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="630"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:630</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="633"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:633</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isResourecetypeMissing.</p>
+                        <div class="io-description"><p>Private method: _isResourecetypeMissing.</p>
 <p>It checks if the resourcetype control does not have a value yet.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1158,7 +1206,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isSearchvalMissing"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isSearchvalMissing</b></span>
                         <a href="#_isSearchvalMissing"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1166,68 +1214,66 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isSearchvalMissing(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="644"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:644</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="647"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:647</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isSearchvalMissing.</p>
+                        <div class="io-description"><p>Private method: _isSearchvalMissing.</p>
 <p>It checks if the searchval control at a given index does not have a value yet.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1238,7 +1284,7 @@ of the data (search) view of the app with a reactive form group.</p>
                 <td class="col-md-4">
                     <a name="_isSearchvalMissingOrTooShort"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isSearchvalMissingOrTooShort</b></span>
                         <a href="#_isSearchvalMissingOrTooShort"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1246,69 +1292,67 @@ of the data (search) view of the app with a reactive form group.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isSearchvalMissingOrTooShort(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="658"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:658</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="661"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:661</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isSearchvalMissingOrTooShort.</p>
+                        <div class="io-description"><p>Private method: _isSearchvalMissingOrTooShort.</p>
 <p>It checks if the searchval control at a given index does not have a value yet
 or if the value is shorter than 3 characters.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1319,7 +1363,7 @@ or if the value is shorter than 3 characters.</p>
                 <td class="col-md-4">
                     <a name="_isSearchvalTooShort"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_isSearchvalTooShort</b></span>
                         <a href="#_isSearchvalTooShort"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1327,68 +1371,66 @@ or if the value is shorter than 3 characters.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_isSearchvalTooShort(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="671"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:671</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="674"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:674</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _isSearchvalTooShort.</p>
+                        <div class="io-description"><p>Private method: _isSearchvalTooShort.</p>
 <p>It checks if the searchval control at a given index has a value that is shorter than 3 characters.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1399,7 +1441,7 @@ or if the value is shorter than 3 characters.</p>
                 <td class="col-md-4">
                     <a name="_resetForm"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_resetForm</b></span>
                         <a href="#_resetForm"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1407,36 +1449,34 @@ or if the value is shorter than 3 characters.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_resetForm()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="682"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:682</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="685"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:685</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _resetForm.</p>
+                        <div class="io-description"><p>Private method: _resetForm.</p>
 <p>It resets the complete extended search from.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Resets the form.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Resets the form.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1447,7 +1487,7 @@ or if the value is shorter than 3 characters.</p>
                 <td class="col-md-4">
                     <a name="_validateSearchval"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_validateSearchval</b></span>
                         <a href="#_validateSearchval"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -1455,36 +1495,34 @@ or if the value is shorter than 3 characters.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_validateSearchval()</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="693"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:693</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="696"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:696</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _validateSearchval.</p>
+                        <div class="io-description"><p>Private method: _validateSearchval.</p>
 <p>It creates a custom Validator for the searchval control.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/ValidatorFn" target="_blank" >ValidatorFn</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidatorFn</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The custom validator function, or null.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The custom validator function, or null.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1507,31 +1545,29 @@ or if the value is shorter than 3 characters.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="211"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:211</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:214</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: addPropertiesControl.</p>
+                        <div class="io-description"><p>Public method: addPropertiesControl.</p>
 <p>It creates a single property control using a reactive FormGroup
 with a property control, compop control, and a searchValue control, and pushes this FormGroup to the propertiesControls FormArray.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Creates the form group and adds it to the FormArray.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Creates the form group and adds it to the FormArray.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1554,32 +1590,30 @@ with a property control, compop control, and a searchValue control, and pushes t
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="195"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:195</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="198"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:198</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: createExtendedSearchForm.</p>
+                        <div class="io-description"><p>Public method: createExtendedSearchForm.</p>
 <p>It creates the search form using the reactive FormBuilder
 with a formGroup and a resource type control and properties control.</p>
 <p>For the mechanism of FormArray with dynamic fields, see <a href="https://www.digitalocean.com/community/tutorials/angular-reactive-forms-formarray-dynamic-fields">https://www.digitalocean.com/community/tutorials/angular-reactive-forms-formarray-dynamic-fields</a></p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Creates the search form.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Creates the search form.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1602,62 +1636,60 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="249"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:249</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="252"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:252</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getCompopControlAtIndex.</p>
+                        <div class="io-description"><p>Public method: getCompopControlAtIndex.</p>
 <p>It gets a compop control from the propertiesControls FormArray at a given index.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormControl</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The compopo control.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The compopo control.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1680,69 +1712,67 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="264"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:264</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="267"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:267</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getCompopSetByValueType.</p>
+                        <div class="io-description"><p>Public method: getCompopSetByValueType.</p>
 <p>It filters the list of compop sets by a given value type id and gui element id.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>valueTypeId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>valueTypeId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>guiElementId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/SearchCompop.html" target="_self" >SearchCompop[]</a></code>
+                                        </tr>
+                                        <tr>
+                                                <td>guiElementId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The compop set.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/SearchCompop.html" target="_self" >SearchCompop[]</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The compop set.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1765,62 +1795,60 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="285"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:285</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:288</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getPropertyIdControlAtIndex.</p>
+                        <div class="io-description"><p>Public method: getPropertyIdControlAtIndex.</p>
 <p>It gets a property id control from the propertiesControls FormArray at a given index.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormControl</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The property id control.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The property id control.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1843,57 +1871,55 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="299"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:299</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="302"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:302</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getPropertyListEntryById.</p>
+                        <div class="io-description"><p>Public method: getPropertyListEntryById.</p>
 <p>It finds a property with the given id in the list of properties of the propertyLists response.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>propertyId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>propertyId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/PropertyDefinitionJson.html" target="_self" >PropertyDefinitionJson</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/PropertyDefinitionJson.html" target="_self" >PropertyDefinitionJson</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The property list entry, or undefined if not found.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The property list entry, or undefined if not found.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1916,57 +1942,55 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="312"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:312</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="315"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:315</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getPropertyLists.</p>
+                        <div class="io-description"><p>Public method: getPropertyLists.</p>
 <p>It gets the list of properties of a given resource type id from the data API service.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>restypeId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>restypeId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the propertyListsResponse data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the propertyListsResponse data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1989,30 +2013,28 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="333"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:333</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="336"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:336</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getResourcetypes.</p>
+                        <div class="io-description"><p>Public method: getResourcetypes.</p>
 <p>It gets the list of resourcetypes from the data API service.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the restypesResponse data.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the restypesResponse data.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2035,62 +2057,60 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="357"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:357</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:360</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getSearchvalControlAtIndex.</p>
+                        <div class="io-description"><p>Public method: getSearchvalControlAtIndex.</p>
 <p>It gets a searchval control from the propertiesControls FormArray at a given index.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormControl" target="_blank" >FormControl</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormControl</code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The searchval control.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The searchval control.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2113,62 +2133,60 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="370"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:370</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="373"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:373</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: isAddButtonDisabled.</p>
+                        <div class="io-description"><p>Public method: isAddButtonDisabled.</p>
 <p>It checks if the add button at a given index is to be disabled and returns an empty string or null depending on the check (needed to populate &quot;attr.disabled&quot; input of the HTML element).</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The result of the check.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The result of the check.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2191,58 +2209,56 @@ with a formGroup and a resource type control and properties control.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="442"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:442</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="445"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:445</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: listenToUserCompopChange.</p>
+                        <div class="io-description"><p>Public method: listenToUserCompopChange.</p>
 <p>It listens to the user&#39;s changes in the compop control,
 and activates the searchval control accordingly to the selected compop.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Listens to changing compop input.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Listens to changing compop input.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2265,58 +2281,56 @@ and activates the searchval control accordingly to the selected compop.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="409"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:409</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="412"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:412</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: listenToUserPropertyChange.</p>
+                        <div class="io-description"><p>Public method: listenToUserPropertyChange.</p>
 <p>It listens to the user&#39;s changes in the property id control,
 and sets the selected compopSet accordingly to the selected property.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Listens to changing property id input.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Listens to changing property id input.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2339,32 +2353,30 @@ and sets the selected compopSet accordingly to the selected property.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="387"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:387</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="390"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:390</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: listenToUserResourcetypeChange.</p>
+                        <div class="io-description"><p>Public method: listenToUserResourcetypeChange.</p>
 <p>It listens to the user&#39;s changes in the restype control,
 sets the selected resource type, and triggers the
 getPropertyLists method with the restype id.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Listens to changing restype input.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Listens to changing restype input.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2387,25 +2399,25 @@ getPropertyLists method with the restype id.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="504"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:504</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="507"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:507</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
 <p>It calls the containing methods
 when destroying the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -2428,25 +2440,25 @@ when destroying the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="180"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:180</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:183</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+                        <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
 <p>It calls the containing methods
 when initializing the component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -2469,30 +2481,28 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="466"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:466</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="469"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:469</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onReset.</p>
+                        <div class="io-description"><p>Public method: onReset.</p>
 <p>It triggers an alert dialog before resetting the form.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Resets the form.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Resets the form.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2515,31 +2525,29 @@ when initializing the component.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="479"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:479</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="482"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:482</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onSearch.</p>
+                        <div class="io-description"><p>Public method: onSearch.</p>
 <p>It emits a search query to the <a href="searchRequest">searchRequest</a>
 when the search form is valid.</p>
 </div>
 
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the search query.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the search query.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -2562,68 +2570,66 @@ when the search form is valid.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="234"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:234</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:237</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: removePropertiesControl.</p>
+                        <div class="io-description"><p>Public method: removePropertiesControl.</p>
 <p>It removes a single property control at a given index from the propertiesControls FormArray.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>index</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given array index.</p>
+                                            <td>
+                                                    <p>The given array index.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Removes the property control from the FormArray.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Removes the property control from the FormArray.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -2718,7 +2724,7 @@ when the search form is valid.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+                        <i>Type : </i>    <code>FormGroup</code>
 
                     </td>
                 </tr>
@@ -3118,7 +3124,7 @@ when the search form is valid.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -3138,7 +3144,7 @@ when the search form is valid.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:163</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="166" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:166</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3171,7 +3177,7 @@ when the search form is valid.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="170" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:170</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/extended-search-form/extended-search-form.component.ts:173</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -3180,7 +3186,7 @@ when the search form is valid.</p>
 </div>
 
                                 <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://angular.io/api/forms/FormArray" target="_blank" >FormArray</a></code>
+                                    <b>Returns : </b>    <code>FormArray</code>
 
                                 </div>
                         </td>
@@ -3192,7 +3198,7 @@ when the search form is valid.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
 import {
     AbstractControl,
@@ -3350,7 +3356,10 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private dataApiService: DataApiService, private formBuilder: FormBuilder) {}
+    constructor(
+        private dataApiService: DataApiService,
+        private formBuilder: FormBuilder
+    ) {}
 
     /**
      * Getter for the resource type control value.
@@ -3905,134 +3914,138 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;extendedSearchForm&quot; (ngSubmit)&#x3D;&quot;onSearch()&quot; *ngIf&#x3D;&quot;extendedSearchForm&quot; class&#x3D;&quot;p-3 border&quot;&gt;
-    &lt;div class&#x3D;&quot;form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3&quot;&gt;
-        &lt;select
-            class&#x3D;&quot;form-select&quot;
-            id&#x3D;&quot;awg-extended-search-resourcetype-input&quot;
-            aria-label&#x3D;&quot;Extended search restype control&quot;
-            formControlName&#x3D;&quot;restypeControl&quot;
-            required&gt;
-            &lt;option value&#x3D;&quot;&quot; disabled hidden&gt;{{ defaultFormString }}&lt;/option&gt;
-            &lt;option
-                *ngFor&#x3D;&quot;let resourcetype of restypesResponse?.resourcetypes&quot;
-                [value]&#x3D;&quot;resourcetype.id&quot;
-                [title]&#x3D;&quot;resourcetype.label&quot;&gt;
-                {{ resourcetype.id }} | {{ resourcetype.label }}
-            &lt;/option&gt;
-        &lt;/select&gt;
-        &lt;label for&#x3D;&quot;awg-extended-search-resourcetype-input&quot; class&#x3D;&quot;text-muted&quot;&gt;Resource type&lt;/label&gt;
-    &lt;/div&gt;
-
-    &lt;ng-container formArrayName&#x3D;&quot;propertiesControls&quot;&gt;
-        &lt;div *ngFor&#x3D;&quot;let propCtrl of propertiesControls.controls; index as idx&quot; class&#x3D;&quot;row mb-4 ms-4 g-2&quot;&gt;
-            &lt;ng-container [formGroupName]&#x3D;&quot;idx&quot;&gt;
-                &lt;div class&#x3D;&quot;form-floating col-md-4&quot;&gt;
-                    &lt;select
-                        id&#x3D;&quot;awg-extended-search-property-{{ idx }}&quot;
-                        class&#x3D;&quot;form-select&quot;
-                        [formControl]&#x3D;&quot;getPropertyIdControlAtIndex(idx)&quot;
-                        required&gt;
-                        &lt;option value&#x3D;&quot;&quot; disabled hidden&gt;{{ defaultFormString }}&lt;/option&gt;
-                        &lt;ng-container *ngIf&#x3D;&quot;selectedResourcetype&quot;&gt;
-                            &lt;option
-                                *ngFor&#x3D;&quot;let property of selectedResourcetype?.properties&quot;
-                                [value]&#x3D;&quot;property.id&quot;
-                                [title]&#x3D;&quot;property.label&quot;&gt;
-                                {{ property.id }} | {{ property.label }}
-                            &lt;/option&gt;
-                        &lt;/ng-container&gt;
-                    &lt;/select&gt;
-                    &lt;label class&#x3D;&quot;text-muted&quot; for&#x3D;&quot;awg-extended-search-property-{{ idx }}&quot;&gt;Property&lt;/label&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;form-floating col-md-2&quot;&gt;
-                    &lt;select
-                        id&#x3D;&quot;awg-extended-search-compop-{{ idx }}&quot;
-                        class&#x3D;&quot;form-select&quot;
-                        [formControl]&#x3D;&quot;getCompopControlAtIndex(idx)&quot;
-                        required&gt;
-                        &lt;option value&#x3D;&quot;&quot; disabled hidden&gt;{{ defaultFormString }}&lt;/option&gt;
-                        &lt;ng-container *ngIf&#x3D;&quot;selectedCompopSets&quot;&gt;
-                            &lt;option
-                                *ngFor&#x3D;&quot;let compop of selectedCompopSets[idx]&quot;
-                                [value]&#x3D;&quot;compop.value&quot;
-                                [title]&#x3D;&quot;compop.title&quot;
-                                [innerHtml]&#x3D;&quot;compop.label&quot;&gt;&lt;/option&gt;
-                        &lt;/ng-container&gt;
-                    &lt;/select&gt;
-                    &lt;label class&#x3D;&quot;text-muted&quot; for&#x3D;&quot;awg-extended-search-compop-{{ idx }}&quot;&gt;Operator&lt;/label&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;form-floating col-md-4&quot;&gt;
-                    &lt;input
-                        title&#x3D;&quot;Extended Search - Search Value&quot;
-                        type&#x3D;&quot;search&quot;
-                        id&#x3D;&quot;awg-extended-search-value-{{ idx }}&quot;
-                        class&#x3D;&quot;form-control&quot;
-                        [formControl]&#x3D;&quot;getSearchvalControlAtIndex(idx)&quot;
-                        placeholder&#x3D;&quot;{{ defaultFormString }}&quot; /&gt;
-                    &lt;label class&#x3D;&quot;text-muted&quot; for&#x3D;&quot;awg-extended-search-value-{{ idx }}&quot;&gt;Search value&lt;/label&gt;
-                &lt;/div&gt;
-
-                &lt;div class&#x3D;&quot;btn-toolbar col-2&quot; role&#x3D;&quot;toolbar&quot; aria-label&#x3D;&quot;Toolbar for property inputs&quot;&gt;
-                    &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Group of handle buttons&quot;&gt;
-                        &lt;button
-                            id&#x3D;&quot;awg-extended-search-remove-property-{{ idx }}&quot;
-                            class&#x3D;&quot;btn btn-outline-danger&quot;
-                            type&#x3D;&quot;button&quot;
-                            *ngIf&#x3D;&quot;propertiesControls.controls.length &gt; 1&quot;
-                            (click)&#x3D;&quot;removePropertiesControl(idx)&quot;&gt;
-                            &lt;fa-icon [icon]&#x3D;&quot;faTrash&quot;&gt;&lt;/fa-icon&gt;
-                        &lt;/button&gt;
-                        &lt;button
-                            id&#x3D;&quot;awg-extended-search-add-property-{{ idx }}&quot;
-                            class&#x3D;&quot;btn btn-outline-info&quot;
-                            type&#x3D;&quot;button&quot;
-                            (click)&#x3D;&quot;addPropertiesControl()&quot;
-                            [disabled]&#x3D;&quot;isAddButtonDisabled(idx)&quot;&gt;
-                            &lt;fa-icon [icon]&#x3D;&quot;faPlus&quot;&gt;&lt;/fa-icon&gt;
-                        &lt;/button&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/ng-container&gt;
-            &lt;div
-                *ngIf&#x3D;&quot;getSearchvalControlAtIndex(idx).invalid &amp;&amp; !getSearchvalControlAtIndex(idx).pristine&quot;
-                class&#x3D;&quot;alert alert-danger&quot;&gt;
-                &lt;p *ngIf&#x3D;&quot;getSearchvalControlAtIndex(idx).errors&quot;&gt;&lt;/p&gt;
-                {{ extendedSearchFormStrings.errorMessage }}
-            &lt;/div&gt;
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">@if (extendedSearchForm) {
+    &lt;form [formGroup]&#x3D;&quot;extendedSearchForm&quot; (ngSubmit)&#x3D;&quot;onSearch()&quot; class&#x3D;&quot;p-3 border&quot;&gt;
+        &lt;div class&#x3D;&quot;form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3&quot;&gt;
+            &lt;select
+                class&#x3D;&quot;form-select&quot;
+                id&#x3D;&quot;awg-extended-search-resourcetype-input&quot;
+                aria-label&#x3D;&quot;Extended search restype control&quot;
+                formControlName&#x3D;&quot;restypeControl&quot;
+                required&gt;
+                &lt;option value&#x3D;&quot;&quot; disabled hidden&gt;{{ defaultFormString }}&lt;/option&gt;
+                @for (resourcetype of restypesResponse?.resourcetypes; track resourcetype) {
+                    &lt;option [value]&#x3D;&quot;resourcetype.id&quot; [title]&#x3D;&quot;resourcetype.label&quot;&gt;
+                        {{ resourcetype.id }} | {{ resourcetype.label }}
+                    &lt;/option&gt;
+                }
+            &lt;/select&gt;
+            &lt;label for&#x3D;&quot;awg-extended-search-resourcetype-input&quot; class&#x3D;&quot;text-muted&quot;&gt;Resource type&lt;/label&gt;
         &lt;/div&gt;
-    &lt;/ng-container&gt;
-    &lt;div class&#x3D;&quot;awg-extended-search-button-panel mb-4&quot;&gt;
-        &lt;button
-            id&#x3D;&quot;awg-extended-search-submit&quot;
-            class&#x3D;&quot;btn btn-outline-info&quot;
-            type&#x3D;&quot;submit&quot;
-            [disabled]&#x3D;&quot;!extendedSearchForm.valid&quot;&gt;
-            &lt;fa-icon [icon]&#x3D;&quot;faSearch&quot;&gt;&lt;/fa-icon&gt;
-            Submit
-        &lt;/button&gt;
-        &lt;button
-            id&#x3D;&quot;awg-extended-search-reset&quot;
-            class&#x3D;&quot;btn btn-outline-danger&quot;
-            (click)&#x3D;&quot;onReset()&quot;
-            [disabled]&#x3D;&quot;!restypeControl.valid&quot;&gt;
-            &lt;fa-icon [icon]&#x3D;&quot;faRefresh&quot;&gt;&lt;/fa-icon&gt;
-            Reset
-        &lt;/button&gt;
-    &lt;/div&gt;
-&lt;/form&gt;
+        &lt;ng-container formArrayName&#x3D;&quot;propertiesControls&quot;&gt;
+            @for (propCtrl of propertiesControls.controls; track propCtrl; let idx &#x3D; $index) {
+                &lt;div class&#x3D;&quot;row mb-4 ms-4 g-2&quot;&gt;
+                    &lt;ng-container [formGroupName]&#x3D;&quot;idx&quot;&gt;
+                        &lt;div class&#x3D;&quot;form-floating col-md-4&quot;&gt;
+                            &lt;select
+                                id&#x3D;&quot;awg-extended-search-property-{{ idx }}&quot;
+                                class&#x3D;&quot;form-select&quot;
+                                [formControl]&#x3D;&quot;getPropertyIdControlAtIndex(idx)&quot;
+                                required&gt;
+                                &lt;option value&#x3D;&quot;&quot; disabled hidden&gt;{{ defaultFormString }}&lt;/option&gt;
+                                @if (selectedResourcetype) {
+                                    @for (property of selectedResourcetype?.properties; track property) {
+                                        &lt;option [value]&#x3D;&quot;property.id&quot; [title]&#x3D;&quot;property.label&quot;&gt;
+                                            {{ property.id }} | {{ property.label }}
+                                        &lt;/option&gt;
+                                    }
+                                }
+                            &lt;/select&gt;
+                            &lt;label class&#x3D;&quot;text-muted&quot; for&#x3D;&quot;awg-extended-search-property-{{ idx }}&quot;&gt;Property&lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;form-floating col-md-2&quot;&gt;
+                            &lt;select
+                                id&#x3D;&quot;awg-extended-search-compop-{{ idx }}&quot;
+                                class&#x3D;&quot;form-select&quot;
+                                [formControl]&#x3D;&quot;getCompopControlAtIndex(idx)&quot;
+                                required&gt;
+                                &lt;option value&#x3D;&quot;&quot; disabled hidden&gt;{{ defaultFormString }}&lt;/option&gt;
+                                @if (selectedCompopSets) {
+                                    @for (compop of selectedCompopSets[idx]; track compop) {
+                                        &lt;option
+                                            [value]&#x3D;&quot;compop.value&quot;
+                                            [title]&#x3D;&quot;compop.title&quot;
+                                            [innerHtml]&#x3D;&quot;compop.label&quot;&gt;&lt;/option&gt;
+                                    }
+                                }
+                            &lt;/select&gt;
+                            &lt;label class&#x3D;&quot;text-muted&quot; for&#x3D;&quot;awg-extended-search-compop-{{ idx }}&quot;&gt;Operator&lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;form-floating col-md-4&quot;&gt;
+                            &lt;input
+                                title&#x3D;&quot;Extended Search - Search Value&quot;
+                                type&#x3D;&quot;search&quot;
+                                id&#x3D;&quot;awg-extended-search-value-{{ idx }}&quot;
+                                class&#x3D;&quot;form-control&quot;
+                                [formControl]&#x3D;&quot;getSearchvalControlAtIndex(idx)&quot;
+                                placeholder&#x3D;&quot;{{ defaultFormString }}&quot; /&gt;
+                            &lt;label class&#x3D;&quot;text-muted&quot; for&#x3D;&quot;awg-extended-search-value-{{ idx }}&quot;&gt;Search value&lt;/label&gt;
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;btn-toolbar col-2&quot; role&#x3D;&quot;toolbar&quot; aria-label&#x3D;&quot;Toolbar for property inputs&quot;&gt;
+                            &lt;div class&#x3D;&quot;btn-group&quot; role&#x3D;&quot;group&quot; aria-label&#x3D;&quot;Group of handle buttons&quot;&gt;
+                                @if (propertiesControls.controls.length &gt; 1) {
+                                    &lt;button
+                                        id&#x3D;&quot;awg-extended-search-remove-property-{{ idx }}&quot;
+                                        class&#x3D;&quot;btn btn-outline-danger&quot;
+                                        type&#x3D;&quot;button&quot;
+                                        (click)&#x3D;&quot;removePropertiesControl(idx)&quot;&gt;
+                                        &lt;fa-icon [icon]&#x3D;&quot;faTrash&quot;&gt;&lt;/fa-icon&gt;
+                                    &lt;/button&gt;
+                                }
+                                &lt;button
+                                    id&#x3D;&quot;awg-extended-search-add-property-{{ idx }}&quot;
+                                    class&#x3D;&quot;btn btn-outline-info&quot;
+                                    type&#x3D;&quot;button&quot;
+                                    (click)&#x3D;&quot;addPropertiesControl()&quot;
+                                    [disabled]&#x3D;&quot;isAddButtonDisabled(idx)&quot;&gt;
+                                    &lt;fa-icon [icon]&#x3D;&quot;faPlus&quot;&gt;&lt;/fa-icon&gt;
+                                &lt;/button&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/ng-container&gt;
+                    @if (getSearchvalControlAtIndex(idx).invalid &amp;&amp; !getSearchvalControlAtIndex(idx).pristine) {
+                        &lt;div class&#x3D;&quot;alert alert-danger&quot;&gt;
+                            @if (getSearchvalControlAtIndex(idx).errors) {
+                                &lt;p&gt;&lt;/p&gt;
+                            }
+                            {{ extendedSearchFormStrings.errorMessage }}
+                        &lt;/div&gt;
+                    }
+                &lt;/div&gt;
+            }
+        &lt;/ng-container&gt;
+        &lt;div class&#x3D;&quot;awg-extended-search-button-panel mb-4&quot;&gt;
+            &lt;button
+                id&#x3D;&quot;awg-extended-search-submit&quot;
+                class&#x3D;&quot;btn btn-outline-info&quot;
+                type&#x3D;&quot;submit&quot;
+                [disabled]&#x3D;&quot;!extendedSearchForm.valid&quot;&gt;
+                &lt;fa-icon [icon]&#x3D;&quot;faSearch&quot;&gt;&lt;/fa-icon&gt;
+                Submit
+            &lt;/button&gt;
+            &lt;button
+                id&#x3D;&quot;awg-extended-search-reset&quot;
+                class&#x3D;&quot;btn btn-outline-danger&quot;
+                (click)&#x3D;&quot;onReset()&quot;
+                [disabled]&#x3D;&quot;!restypeControl.valid&quot;&gt;
+                &lt;fa-icon [icon]&#x3D;&quot;faRefresh&quot;&gt;&lt;/fa-icon&gt;
+                Reset
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+}
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./extended-search-form.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -4057,7 +4070,7 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="extendedSearchForm" (ngSubmit)="onSearch()" *ngIf="extendedSearchForm" class="p-3 border">    <div class="form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3">        <select            class="form-select"            id="awg-extended-search-resourcetype-input"            aria-label="Extended search restype control"            formControlName="restypeControl"            required>            <option value="" disabled hidden>{{ defaultFormString }}</option>            <option                *ngFor="let resourcetype of restypesResponse?.resourcetypes"                [value]="resourcetype.id"                [title]="resourcetype.label">                {{ resourcetype.id }} | {{ resourcetype.label }}            </option>        </select>        <label for="awg-extended-search-resourcetype-input" class="text-muted">Resource type</label>    </div>    <ng-container formArrayName="propertiesControls">        <div *ngFor="let propCtrl of propertiesControls.controls; index as idx" class="row mb-4 ms-4 g-2">            <ng-container [formGroupName]="idx">                <div class="form-floating col-md-4">                    <select                        id="awg-extended-search-property-{{ idx }}"                        class="form-select"                        [formControl]="getPropertyIdControlAtIndex(idx)"                        required>                        <option value="" disabled hidden>{{ defaultFormString }}</option>                        <ng-container *ngIf="selectedResourcetype">                            <option                                *ngFor="let property of selectedResourcetype?.properties"                                [value]="property.id"                                [title]="property.label">                                {{ property.id }} | {{ property.label }}                            </option>                        </ng-container>                    </select>                    <label class="text-muted" for="awg-extended-search-property-{{ idx }}">Property</label>                </div>                <div class="form-floating col-md-2">                    <select                        id="awg-extended-search-compop-{{ idx }}"                        class="form-select"                        [formControl]="getCompopControlAtIndex(idx)"                        required>                        <option value="" disabled hidden>{{ defaultFormString }}</option>                        <ng-container *ngIf="selectedCompopSets">                            <option                                *ngFor="let compop of selectedCompopSets[idx]"                                [value]="compop.value"                                [title]="compop.title"                                [innerHtml]="compop.label"></option>                        </ng-container>                    </select>                    <label class="text-muted" for="awg-extended-search-compop-{{ idx }}">Operator</label>                </div>                <div class="form-floating col-md-4">                    <input                        title="Extended Search - Search Value"                        type="search"                        id="awg-extended-search-value-{{ idx }}"                        class="form-control"                        [formControl]="getSearchvalControlAtIndex(idx)"                        placeholder="{{ defaultFormString }}" />                    <label class="text-muted" for="awg-extended-search-value-{{ idx }}">Search value</label>                </div>                <div class="btn-toolbar col-2" role="toolbar" aria-label="Toolbar for property inputs">                    <div class="btn-group" role="group" aria-label="Group of handle buttons">                        <button                            id="awg-extended-search-remove-property-{{ idx }}"                            class="btn btn-outline-danger"                            type="button"                            *ngIf="propertiesControls.controls.length > 1"                            (click)="removePropertiesControl(idx)">                            <fa-icon [icon]="faTrash"></fa-icon>                        </button>                        <button                            id="awg-extended-search-add-property-{{ idx }}"                            class="btn btn-outline-info"                            type="button"                            (click)="addPropertiesControl()"                            [disabled]="isAddButtonDisabled(idx)">                            <fa-icon [icon]="faPlus"></fa-icon>                        </button>                    </div>                </div>            </ng-container>            <div                *ngIf="getSearchvalControlAtIndex(idx).invalid && !getSearchvalControlAtIndex(idx).pristine"                class="alert alert-danger">                <p *ngIf="getSearchvalControlAtIndex(idx).errors"></p>                {{ extendedSearchFormStrings.errorMessage }}            </div>        </div>    </ng-container>    <div class="awg-extended-search-button-panel mb-4">        <button            id="awg-extended-search-submit"            class="btn btn-outline-info"            type="submit"            [disabled]="!extendedSearchForm.valid">            <fa-icon [icon]="faSearch"></fa-icon>            Submit        </button>        <button            id="awg-extended-search-reset"            class="btn btn-outline-danger"            (click)="onReset()"            [disabled]="!restypeControl.valid">            <fa-icon [icon]="faRefresh"></fa-icon>            Reset        </button>    </div></form></div>'
+        var COMPONENT_TEMPLATE = '<div>@if (extendedSearchForm) {    <form [formGroup]="extendedSearchForm" (ngSubmit)="onSearch()" class="p-3 border">        <div class="form-floating awg-form-floating-group flex-grow-1 mt-3 mb-3">            <select                class="form-select"                id="awg-extended-search-resourcetype-input"                aria-label="Extended search restype control"                formControlName="restypeControl"                required>                <option value="" disabled hidden>{{ defaultFormString }}</option>                @for (resourcetype of restypesResponse?.resourcetypes; track resourcetype) {                    <option [value]="resourcetype.id" [title]="resourcetype.label">                        {{ resourcetype.id }} | {{ resourcetype.label }}                    </option>                }            </select>            <label for="awg-extended-search-resourcetype-input" class="text-muted">Resource type</label>        </div>        <ng-container formArrayName="propertiesControls">            @for (propCtrl of propertiesControls.controls; track propCtrl; let idx = $index) {                <div class="row mb-4 ms-4 g-2">                    <ng-container [formGroupName]="idx">                        <div class="form-floating col-md-4">                            <select                                id="awg-extended-search-property-{{ idx }}"                                class="form-select"                                [formControl]="getPropertyIdControlAtIndex(idx)"                                required>                                <option value="" disabled hidden>{{ defaultFormString }}</option>                                @if (selectedResourcetype) {                                    @for (property of selectedResourcetype?.properties; track property) {                                        <option [value]="property.id" [title]="property.label">                                            {{ property.id }} | {{ property.label }}                                        </option>                                    }                                }                            </select>                            <label class="text-muted" for="awg-extended-search-property-{{ idx }}">Property</label>                        </div>                        <div class="form-floating col-md-2">                            <select                                id="awg-extended-search-compop-{{ idx }}"                                class="form-select"                                [formControl]="getCompopControlAtIndex(idx)"                                required>                                <option value="" disabled hidden>{{ defaultFormString }}</option>                                @if (selectedCompopSets) {                                    @for (compop of selectedCompopSets[idx]; track compop) {                                        <option                                            [value]="compop.value"                                            [title]="compop.title"                                            [innerHtml]="compop.label"></option>                                    }                                }                            </select>                            <label class="text-muted" for="awg-extended-search-compop-{{ idx }}">Operator</label>                        </div>                        <div class="form-floating col-md-4">                            <input                                title="Extended Search - Search Value"                                type="search"                                id="awg-extended-search-value-{{ idx }}"                                class="form-control"                                [formControl]="getSearchvalControlAtIndex(idx)"                                placeholder="{{ defaultFormString }}" />                            <label class="text-muted" for="awg-extended-search-value-{{ idx }}">Search value</label>                        </div>                        <div class="btn-toolbar col-2" role="toolbar" aria-label="Toolbar for property inputs">                            <div class="btn-group" role="group" aria-label="Group of handle buttons">                                @if (propertiesControls.controls.length > 1) {                                    <button                                        id="awg-extended-search-remove-property-{{ idx }}"                                        class="btn btn-outline-danger"                                        type="button"                                        (click)="removePropertiesControl(idx)">                                        <fa-icon [icon]="faTrash"></fa-icon>                                    </button>                                }                                <button                                    id="awg-extended-search-add-property-{{ idx }}"                                    class="btn btn-outline-info"                                    type="button"                                    (click)="addPropertiesControl()"                                    [disabled]="isAddButtonDisabled(idx)">                                    <fa-icon [icon]="faPlus"></fa-icon>                                </button>                            </div>                        </div>                    </ng-container>                    @if (getSearchvalControlAtIndex(idx).invalid && !getSearchvalControlAtIndex(idx).pristine) {                        <div class="alert alert-danger">                            @if (getSearchvalControlAtIndex(idx).errors) {                                <p></p>                            }                            {{ extendedSearchFormStrings.errorMessage }}                        </div>                    }                </div>            }        </ng-container>        <div class="awg-extended-search-button-panel mb-4">            <button                id="awg-extended-search-submit"                class="btn btn-outline-info"                type="submit"                [disabled]="!extendedSearchForm.valid">                <fa-icon [icon]="faSearch"></fa-icon>                Submit            </button>            <button                id="awg-extended-search-reset"                class="btn btn-outline-danger"                (click)="onReset()"                [disabled]="!restypeControl.valid">                <fa-icon [icon]="faRefresh"></fa-icon>                Reset            </button>        </div>    </form>}</div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'ExtendedSearchFormComponent'};

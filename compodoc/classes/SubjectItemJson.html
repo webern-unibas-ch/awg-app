@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -44,21 +102,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Classes</li>
-  <li >SubjectItemJson</li>
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >SubjectItemJson</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -78,7 +142,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -91,46 +155,57 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#iconlabel" >iconlabel</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#iconsrc" >iconsrc</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#icontitle" >icontitle</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#obj_id" >obj_id</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#preview_nx" >preview_nx</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#preview_ny" >preview_ny</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#preview_path" >preview_path</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#rights" >rights</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#value" >value</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#valuelabel" >valuelabel</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Public</span>
                                 <a href="#valuetype_id" >valuetype_id</a>
                             </li>
@@ -148,7 +223,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -159,6 +234,7 @@
                 <td class="col-md-4">
                     <a name="iconlabel"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>iconlabel</b></span>
                         <a href="#iconlabel"><span class="icon ion-ios-link"></span></a>
@@ -230,6 +306,7 @@
                 <td class="col-md-4">
                     <a name="iconsrc"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>iconsrc</b></span>
                         <a href="#iconsrc"><span class="icon ion-ios-link"></span></a>
@@ -301,6 +378,7 @@
                 <td class="col-md-4">
                     <a name="icontitle"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>icontitle</b></span>
                         <a href="#icontitle"><span class="icon ion-ios-link"></span></a>
@@ -372,6 +450,7 @@
                 <td class="col-md-4">
                     <a name="obj_id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>obj_id</b></span>
                         <a href="#obj_id"><span class="icon ion-ios-link"></span></a>
@@ -443,6 +522,7 @@
                 <td class="col-md-4">
                     <a name="preview_nx"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>preview_nx</b></span>
                         <a href="#preview_nx"><span class="icon ion-ios-link"></span></a>
@@ -514,6 +594,7 @@
                 <td class="col-md-4">
                     <a name="preview_ny"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>preview_ny</b></span>
                         <a href="#preview_ny"><span class="icon ion-ios-link"></span></a>
@@ -585,6 +666,7 @@
                 <td class="col-md-4">
                     <a name="preview_path"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>preview_path</b></span>
                         <a href="#preview_path"><span class="icon ion-ios-link"></span></a>
@@ -656,6 +738,7 @@
                 <td class="col-md-4">
                     <a name="rights"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>rights</b></span>
                         <a href="#rights"><span class="icon ion-ios-link"></span></a>
@@ -727,6 +810,7 @@
                 <td class="col-md-4">
                     <a name="value"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>value</b></span>
                         <a href="#value"><span class="icon ion-ios-link"></span></a>
@@ -798,6 +882,7 @@
                 <td class="col-md-4">
                     <a name="valuelabel"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>valuelabel</b></span>
                         <a href="#valuelabel"><span class="icon ion-ios-link"></span></a>
@@ -869,6 +954,7 @@
                 <td class="col-md-4">
                     <a name="valuetype_id"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier">Public</span>
                         <span ><b>valuetype_id</b></span>
                         <a href="#valuetype_id"><span class="icon ion-ios-link"></span></a>
@@ -945,7 +1031,7 @@
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Any, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
 import { KnoraIRI, KnoraRights } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
 

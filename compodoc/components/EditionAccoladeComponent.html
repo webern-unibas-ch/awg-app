@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   EditionAccoladeComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -85,7 +148,7 @@ and the <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
 
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -104,10 +167,13 @@ and the <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-edition-accolade</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -132,7 +198,7 @@ and the <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -231,7 +297,7 @@ and the <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
 </section>
 
 
-    <section>
+    <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -374,7 +440,7 @@ and the <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
             </tbody>
         </table>
 </section>
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -548,7 +614,7 @@ with the selected modal text snippet.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -571,63 +637,61 @@ with the selected modal text snippet.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:126</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:126</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: browseSvgSheet.</p>
+                        <div class="io-description"><p>Public method: browseSvgSheet.</p>
 <p>It emits a given direction to the <a href="browseSvgSheetRequest">browseSvgSheetRequest</a>
 to browse to the previous or next sheet of the selected svg sheet.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>direction</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>direction</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>A number indicating the direction of navigation. -1 for previous and 1 for next.</p>
+                                            <td>
+                                                    <p>A number indicating the direction of navigation. -1 for previous and 1 for next.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the direction.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the direction.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -650,63 +714,61 @@ to browse to the previous or next sheet of the selected svg sheet.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="142"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:142</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:142</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: navigateToReportFragment.</p>
+                        <div class="io-description"><p>Public method: navigateToReportFragment.</p>
 <p>It emits a given id of a fragment of the edition report
 to the <a href="navigateToReportFragmentRequest">navigateToReportFragmentRequest</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given fragment id.</p>
+                                            <td>
+                                                    <p>The given fragment id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Navigates to the edition report.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition report.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -729,63 +791,61 @@ to the <a href="navigateToReportFragmentRequest">navigateToReportFragmentRequest
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="158"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:158</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:158</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: openModal.</p>
+                        <div class="io-description"><p>Public method: openModal.</p>
 <p>It emits a given id of a modal snippet text
 to the <a href="openModalRequest">openModalRequest</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given modal snippet id.</p>
+                                            <td>
+                                                    <p>The given modal snippet id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the id.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the id.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -808,63 +868,61 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:175</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:175</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: selectLinkBox.</p>
+                        <div class="io-description"><p>Public method: selectLinkBox.</p>
 <p>It emits the given link box id
 to the <a href="selectLinkBoxRequest">selectLinkBoxRequest</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>linkBoxId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>linkBoxId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given link box id.</p>
+                                            <td>
+                                                    <p>The given link box id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the id.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the id.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -887,63 +945,61 @@ to the <a href="selectLinkBoxRequest">selectLinkBoxRequest</a>.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="188"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:188</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:188</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: selectOverlays.</p>
+                        <div class="io-description"><p>Public method: selectOverlays.</p>
 <p>It emits the selected svg overlays
 to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>overlays</td>
-                                    <td>
-                                                <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>overlays</td>
+                                            <td>
+                                                            <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay[]</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given svg overlays.</p>
+                                            <td>
+                                                    <p>The given svg overlays.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the overlays.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the overlays.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -966,63 +1022,61 @@ to the <a href="selectOverlaysRequest">selectOverlaysRequest</a>.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="201"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:201</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-accolade/edition-accolade.component.ts:201</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: selectSvgSheet.</p>
+                        <div class="io-description"><p>Public method: selectSvgSheet.</p>
 <p>It emits a given id of a selected svg sheet
 to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given sheet id.</p>
+                                            <td>
+                                                    <p>The given sheet id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the id.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the id.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -1032,7 +1086,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 
 import {
@@ -1243,64 +1297,69 @@ export class EditionAccoladeComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;ngb-accordion #accoladeAcc&#x3D;&quot;ngbAccordion&quot; id&#x3D;&quot;accoladeAcc&quot; activeIds&#x3D;&quot;awg-accolade-view&quot;&gt;
-    &lt;ngb-panel id&#x3D;&quot;awg-accolade-view&quot;&gt;
-        &lt;ng-template ngbPanelHeader&gt;
-            &lt;div class&#x3D;&quot;accordion-button awg-accordion-button-custom-header justify-content-between&quot;&gt;
-                &lt;button ngbPanelToggle class&#x3D;&quot;p-0 btn btn-link text-start&quot;&gt;Edierte Notentexte&lt;/button&gt;
-                &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-info&quot; (click)&#x3D;&quot;openModal(&#x27;HINT_EDITION_SHEETS&#x27;)&quot;&gt;
-                    Hinweise zur Nutzung
-                &lt;/button&gt;
-            &lt;/div&gt;
-        &lt;/ng-template&gt;
-        &lt;ng-template ngbPanelContent&gt;
-            &lt;div class&#x3D;&quot;row&quot;&gt;
-                &lt;div class&#x3D;&quot;order-2 order-lg-1 col-12 col-lg-4 col-xl-3&quot;&gt;
-                    &lt;!-- svg sheet navigation --&gt;
-                    &lt;awg-edition-svg-sheet-nav
-                        *ngIf&#x3D;&quot;svgSheetsData &amp;&amp; selectedSvgSheet&quot;
-                        [svgSheetsData]&#x3D;&quot;svgSheetsData&quot;
-                        [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
-                        (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;
-                    &lt;/awg-edition-svg-sheet-nav&gt;
-                &lt;/div&gt;
-                &lt;div class&#x3D;&quot;order-1 order-lg-2 col-12 col-lg-8 col-xl-9&quot;&gt;
-                    &lt;!-- svg sheet --&gt;
-                    &lt;awg-edition-svg-sheet-viewer
-                        *ngIf&#x3D;&quot;selectedSvgSheet&quot;
-                        [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
-                        (browseSvgSheetRequest)&#x3D;&quot;browseSvgSheet($event)&quot;
-                        (selectLinkBoxRequest)&#x3D;&quot;selectLinkBox($event)&quot;
-                        (selectOverlaysRequest)&#x3D;&quot;selectOverlays($event)&quot;
-                        (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;
-                    &lt;/awg-edition-svg-sheet-viewer&gt;
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div ngbAccordion&gt;
+    &lt;div ngbAccordionItem&#x3D;&quot;awg-accolade-view&quot; [collapsed]&#x3D;&quot;false&quot;&gt;
+        &lt;div ngbAccordionHeader class&#x3D;&quot;accordion-button awg-accordion-button-custom-header justify-content-between&quot;&gt;
+            &lt;button ngbAccordionToggle class&#x3D;&quot;btn btn-link text-start p-0&quot;&gt;Edierte Notentexte&lt;/button&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-info&quot; (click)&#x3D;&quot;openModal(&#x27;HINT_EDITION_SHEETS&#x27;)&quot;&gt;
+                Hinweise zur Nutzung
+            &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div ngbAccordionCollapse&gt;
+            &lt;div ngbAccordionBody&gt;
+                &lt;ng-template&gt;
+                    &lt;div class&#x3D;&quot;row&quot;&gt;
+                        &lt;div class&#x3D;&quot;order-2 order-lg-1 col-12 col-lg-4 col-xl-3&quot;&gt;
+                            &lt;!-- svg sheet navigation --&gt;
+                            @if (svgSheetsData &amp;&amp; selectedSvgSheet) {
+                                &lt;awg-edition-svg-sheet-nav
+                                    [svgSheetsData]&#x3D;&quot;svgSheetsData&quot;
+                                    [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
+                                    (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;
+                                &lt;/awg-edition-svg-sheet-nav&gt;
+                            }
+                        &lt;/div&gt;
+                        &lt;div class&#x3D;&quot;order-1 order-lg-2 col-12 col-lg-8 col-xl-9&quot;&gt;
+                            &lt;!-- svg sheet --&gt;
+                            @if (selectedSvgSheet) {
+                                &lt;awg-edition-svg-sheet-viewer
+                                    [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
+                                    (browseSvgSheetRequest)&#x3D;&quot;browseSvgSheet($event)&quot;
+                                    (selectLinkBoxRequest)&#x3D;&quot;selectLinkBox($event)&quot;
+                                    (selectOverlaysRequest)&#x3D;&quot;selectOverlays($event)&quot;
+                                    (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;
+                                &lt;/awg-edition-svg-sheet-viewer&gt;
+                            }
 
-                    &lt;!-- table for TkA --&gt;
-                    &lt;awg-edition-svg-sheet-footer
-                        *ngIf&#x3D;&quot;selectedSvgSheet &amp;&amp; selectedTextcritics&quot;
-                        [selectedTextcritics]&#x3D;&quot;selectedTextcritics&quot;
-                        [selectedTextcriticalComments]&#x3D;&quot;selectedTextcriticalComments&quot;
-                        [showTkA]&#x3D;&quot;showTkA&quot;
-                        (navigateToReportFragmentRequest)&#x3D;&quot;navigateToReportFragment($event)&quot;
-                        (openModalRequest)&#x3D;&quot;openModal($event)&quot;
-                        (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;&lt;/awg-edition-svg-sheet-footer&gt;
-                &lt;/div&gt;
+                            &lt;!-- table for TkA --&gt;
+                            @if (selectedSvgSheet &amp;&amp; selectedTextcritics) {
+                                &lt;awg-edition-svg-sheet-footer
+                                    [selectedTextcritics]&#x3D;&quot;selectedTextcritics&quot;
+                                    [selectedTextcriticalComments]&#x3D;&quot;selectedTextcriticalComments&quot;
+                                    [showTkA]&#x3D;&quot;showTkA&quot;
+                                    (navigateToReportFragmentRequest)&#x3D;&quot;navigateToReportFragment($event)&quot;
+                                    (openModalRequest)&#x3D;&quot;openModal($event)&quot;
+                                    (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;&lt;/awg-edition-svg-sheet-footer&gt;
+                            }
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/ng-template&gt;
             &lt;/div&gt;
-        &lt;/ng-template&gt;
-    &lt;/ngb-panel&gt;
-&lt;/ngb-accordion&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./edition-accolade.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss"></code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -1325,7 +1384,7 @@ export class EditionAccoladeComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngb-accordion #accoladeAcc="ngbAccordion" id="accoladeAcc" activeIds="awg-accolade-view">    <ngb-panel id="awg-accolade-view">        <ng-template ngbPanelHeader>            <div class="accordion-button awg-accordion-button-custom-header justify-content-between">                <button ngbPanelToggle class="p-0 btn btn-link text-start">Edierte Notentexte</button>                <button type="button" class="btn btn-sm btn-outline-info" (click)="openModal(\'HINT_EDITION_SHEETS\')">                    Hinweise zur Nutzung                </button>            </div>        </ng-template>        <ng-template ngbPanelContent>            <div class="row">                <div class="order-2 order-lg-1 col-12 col-lg-4 col-xl-3">                    <!-- svg sheet navigation -->                    <awg-edition-svg-sheet-nav                        *ngIf="svgSheetsData && selectedSvgSheet"                        [svgSheetsData]="svgSheetsData"                        [selectedSvgSheet]="selectedSvgSheet"                        (selectSvgSheetRequest)="selectSvgSheet($event)">                    </awg-edition-svg-sheet-nav>                </div>                <div class="order-1 order-lg-2 col-12 col-lg-8 col-xl-9">                    <!-- svg sheet -->                    <awg-edition-svg-sheet-viewer                        *ngIf="selectedSvgSheet"                        [selectedSvgSheet]="selectedSvgSheet"                        (browseSvgSheetRequest)="browseSvgSheet($event)"                        (selectLinkBoxRequest)="selectLinkBox($event)"                        (selectOverlaysRequest)="selectOverlays($event)"                        (selectSvgSheetRequest)="selectSvgSheet($event)">                    </awg-edition-svg-sheet-viewer>                    <!-- table for TkA -->                    <awg-edition-svg-sheet-footer                        *ngIf="selectedSvgSheet && selectedTextcritics"                        [selectedTextcritics]="selectedTextcritics"                        [selectedTextcriticalComments]="selectedTextcriticalComments"                        [showTkA]="showTkA"                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                        (openModalRequest)="openModal($event)"                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>                </div>            </div>        </ng-template>    </ngb-panel></ngb-accordion></div>'
+        var COMPONENT_TEMPLATE = '<div><div ngbAccordion>    <div ngbAccordionItem="awg-accolade-view" [collapsed]="false">        <div ngbAccordionHeader class="accordion-button awg-accordion-button-custom-header justify-content-between">            <button ngbAccordionToggle class="btn btn-link text-start p-0">Edierte Notentexte</button>            <button type="button" class="btn btn-sm btn-outline-info" (click)="openModal(\'HINT_EDITION_SHEETS\')">                Hinweise zur Nutzung            </button>        </div>        <div ngbAccordionCollapse>            <div ngbAccordionBody>                <ng-template>                    <div class="row">                        <div class="order-2 order-lg-1 col-12 col-lg-4 col-xl-3">                            <!-- svg sheet navigation -->                            @if (svgSheetsData && selectedSvgSheet) {                                <awg-edition-svg-sheet-nav                                    [svgSheetsData]="svgSheetsData"                                    [selectedSvgSheet]="selectedSvgSheet"                                    (selectSvgSheetRequest)="selectSvgSheet($event)">                                </awg-edition-svg-sheet-nav>                            }                        </div>                        <div class="order-1 order-lg-2 col-12 col-lg-8 col-xl-9">                            <!-- svg sheet -->                            @if (selectedSvgSheet) {                                <awg-edition-svg-sheet-viewer                                    [selectedSvgSheet]="selectedSvgSheet"                                    (browseSvgSheetRequest)="browseSvgSheet($event)"                                    (selectLinkBoxRequest)="selectLinkBox($event)"                                    (selectOverlaysRequest)="selectOverlays($event)"                                    (selectSvgSheetRequest)="selectSvgSheet($event)">                                </awg-edition-svg-sheet-viewer>                            }                            <!-- table for TkA -->                            @if (selectedSvgSheet && selectedTextcritics) {                                <awg-edition-svg-sheet-footer                                    [selectedTextcritics]="selectedTextcritics"                                    [selectedTextcriticalComments]="selectedTextcriticalComments"                                    [showTkA]="showTkA"                                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                                    (openModalRequest)="openModal($event)"                                    (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-footer>                            }                        </div>                    </div>                </ng-template>            </div>        </div>    </div></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionAccoladeComponent'};

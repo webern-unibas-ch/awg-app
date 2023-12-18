@@ -80,7 +80,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -155,7 +155,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -180,7 +180,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -205,7 +205,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -644,7 +644,7 @@ SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -669,7 +669,7 @@ THE SOFTWARE.
 MIT
 MIT License
 
-Copyright (C) 2018 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -743,8 +743,7 @@ bootstrap
 MIT
 The MIT License (MIT)
 
-Copyright (c) 2011-2022 Twitter, Inc.
-Copyright (c) 2011-2022 The Bootstrap Authors
+Copyright (c) 2011-2023 The Bootstrap Authors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -792,7 +791,7 @@ THE SOFTWARE.
 
 crelt
 MIT
-Copyright (C) 2020 by Marijn Haverbeke <marijnh@gmail.com>
+Copyright (C) 2020 by Marijn Haverbeke <marijn@haverbeke.berlin>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1352,7 +1351,7 @@ Apache-2.0
 
 style-mod
 MIT
-Copyright (C) 2018 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2018 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1390,7 +1389,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 w3c-keyname
 MIT
-Copyright (C) 2016 by Marijn Haverbeke <marijnh@gmail.com> and others
+Copyright (C) 2016 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1415,7 +1414,7 @@ zone.js
 MIT
 The MIT License
 
-Copyright (c) 2010-2022 Google LLC. https://angular.io/license
+Copyright (c) 2010-2023 Google LLC. https://angular.io/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

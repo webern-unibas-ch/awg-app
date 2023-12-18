@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -40,21 +98,27 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >D3Service</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >D3Service</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -76,7 +140,7 @@ while maintaining the d3 simulations physics.</p>
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -111,7 +175,7 @@ while maintaining the d3 simulations physics.</p>
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -134,81 +198,79 @@ while maintaining the d3 simulations physics.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:39</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:39</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: applyDragBehaviour.</p>
+                        <div class="io-description"><p>Public method: applyDragBehaviour.</p>
 <p>It binds a draggable behaviour to an svg element.</p>
 <p> @param {D3Selection} dragContext The given context element that shall be dragged.
  @param {D3Simulation} simulation The given force simulation.</p>
 <p> @returns {void} Sets the drag behaviour.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>dragContext</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>dragContext</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given context element that shall be dragged.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>simulation</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3Simulation</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given force simulation.</p>
+                                            <td>
+                                                    <p>The given context element that shall be dragged.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>simulation</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Simulation.html" target="_self" >D3Simulation</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the drag behaviour.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given force simulation.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the drag behaviour.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -231,81 +293,79 @@ while maintaining the d3 simulations physics.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:88</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:87</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: applyZoomBehaviour.</p>
+                        <div class="io-description"><p>Public method: applyZoomBehaviour.</p>
 <p>It binds a pan and zoom behaviour to an svg element.</p>
 <p> @param {any} svgElement The given svg element that contains the zoomContainer.
  @param {any} zoomContainerElement The given zoom container.
  @returns {void} Sets the zoom behaviour.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>zoomContainerElement</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>zoomContainerElement</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given zoom container.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>svgElement</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given svg element that contains the zoomContainer.</p>
+                                            <td>
+                                                    <p>The given zoom container.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>svgElement</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Sets the zoom behaviour.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                            <td>
+                                                    <p>The given svg element that contains the zoomContainer.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Sets the zoom behaviour.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -328,82 +388,80 @@ while maintaining the d3 simulations physics.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:115</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:114</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getForceSimulation.</p>
+                        <div class="io-description"><p>Public method: getForceSimulation.</p>
 <p>It creates a new D3ForceSimulation instance and provides all relevant calculations for the new simulation.
 This method does not interact with the document, purely physical calculations with d3.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>nodes</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode[]</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>nodes</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode[]</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>links</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationLink[]</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                                <tr>
-                                    <td>options</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3ForceSimulationOptions.html" target="_self" >D3ForceSimulationOptions</a></code>
-                                    </td>
+                                        </tr>
+                                        <tr>
+                                                <td>links</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationLink[]</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/D3ForceSimulation.html" target="_self" >D3ForceSimulation</a></code>
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+                                            <td>
+                                                            <code><a href="../interfaces/D3ForceSimulationOptions.html" target="_self" >D3ForceSimulationOptions</a></code>
+                                            </td>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The new D3ForceSimulation.</p>
+                                            <td>
+                                                    No
+                                            </td>
 
-                    </div>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/D3ForceSimulation.html" target="_self" >D3ForceSimulation</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The new D3ForceSimulation.</p>
+
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -413,7 +471,7 @@ This method does not interact with the document, purely physical calculations wi
     </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
 import { D3Selection } from &#x27;@awg-views/edition-view/models&#x27;;
@@ -426,9 +484,9 @@ import {
     D3SimulationNode,
 } from &#x27;../../models&#x27;;
 
-import * as d3_drag from &#x27;d3-drag&#x27;;
-import * as d3_selection from &#x27;d3-selection&#x27;;
-import * as d3_zoom from &#x27;d3-zoom&#x27;;
+import * as D3_DRAG from &#x27;d3-drag&#x27;;
+import * as D3_SELECTION from &#x27;d3-selection&#x27;;
+import * as D3_ZOOM from &#x27;d3-zoom&#x27;;
 
 /**
  * The D3 service.
@@ -453,7 +511,7 @@ export class D3Service {
      *  @returns {void} Sets the drag behaviour.
      */
     applyDragBehaviour(dragContext: D3Selection, simulation: D3Simulation): void {
-        // Const dragElement: D3Selection &#x3D; d3_selection.select(element);
+        // Const dragElement: D3Selection &#x3D; D3_SELECTION.select(element);
 
         const dragStart &#x3D; (event: any, d: D3SimulationNode) &#x3D;&gt; {
             // Prevent propagation of dragstart to parent elements
@@ -482,8 +540,7 @@ export class D3Service {
         };
 
         // Create drag behaviour
-        const dragBehaviour: D3DragBehaviour &#x3D; d3_drag
-            .drag()
+        const dragBehaviour: D3DragBehaviour &#x3D; D3_DRAG.drag()
             .on(&#x27;start&#x27;, dragStart)
             .on(&#x27;drag&#x27;, dragged)
             .on(&#x27;end&#x27;, dragEnd);
@@ -503,8 +560,8 @@ export class D3Service {
      */
     applyZoomBehaviour(zoomContainerElement: any, svgElement: any): void {
         // Select the elements
-        const svg: D3Selection &#x3D; d3_selection.select(svgElement);
-        const zoomContainer: D3Selection &#x3D; d3_selection.select(zoomContainerElement);
+        const svg: D3Selection &#x3D; D3_SELECTION.select(svgElement);
+        const zoomContainer: D3Selection &#x3D; D3_SELECTION.select(zoomContainerElement);
 
         // Perform the zooming
         const zoomed &#x3D; (event: any) &#x3D;&gt; {
@@ -514,7 +571,7 @@ export class D3Service {
         };
 
         // Create zoom behaviour that calls the zoomActions on zoom
-        const zoomBehaviour &#x3D; d3_zoom.zoom().on(&#x27;zoom&#x27;, zoomed);
+        const zoomBehaviour &#x3D; D3_ZOOM.zoom().on(&#x27;zoom&#x27;, zoomed);
 
         // Apply zoom behaviour
         svg.call(zoomBehaviour);

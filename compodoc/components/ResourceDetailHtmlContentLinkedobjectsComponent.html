@@ -13,8 +13,66 @@
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">awg-app documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -36,32 +94,37 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   ResourceDetailHtmlContentLinkedobjectsComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
-        <li >
-            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
         </li>
-        <li >
-            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
         </li>
-        <li >
-            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
         </li>
-        <li >
-            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -82,7 +145,7 @@ their total number.</p>
 
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -101,10 +164,13 @@ their total number.</p>
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>awg-resource-detail-html-content-linkedobjects</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -129,7 +195,7 @@ their total number.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -204,7 +270,7 @@ their total number.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -235,7 +301,7 @@ their total number.</p>
             </tbody>
         </table>
 </section>
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -268,7 +334,7 @@ their total number.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -279,7 +345,7 @@ their total number.</p>
                 <td class="col-md-4">
                     <a name="_getNestedArraysTotalItems"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
+                            <span class="modifier">Private</span>
                         <span ><b>_getNestedArraysTotalItems</b></span>
                         <a href="#_getNestedArraysTotalItems"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -287,70 +353,68 @@ their total number.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>_getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[])</code>
                 </td>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:70</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:70</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _getNestedArraysTotalItems.</p>
+                        <div class="io-description"><p>Private method: _getNestedArraysTotalItems.</p>
 <p>It sums up the total items (length) of all arrays
 nested in an ResourceDetailGroupedIncomingLinks
 array.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>groupedLinksArr</td>
-                                    <td>
-                                            <code>ResourceDetailGroupedIncomingLinks[]</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>groupedLinksArr</td>
+                                            <td>
+                                                        <code>ResourceDetailGroupedIncomingLinks[]</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given grouped incoming links array.</p>
+                                            <td>
+                                                    <p>The given grouped incoming links array.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>The number of total items (length) of the nested array.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>The number of total items (length) of the nested array.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -373,70 +437,68 @@ array.</p>
             </tr>
 
 
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:51</a></div>
-                </td>
-            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:51</a></div>
+                        </td>
+                    </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: navigateToResource.</p>
+                        <div class="io-description"><p>Public method: navigateToResource.</p>
 <p>It emits the given id to be handed
 to the parent component.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        Yes
-                                    </td>
+                                            <td>
+                                                    Yes
+                                            </td>
 
 
-                                    <td>
-                                        <p>The given resource id.</p>
+                                            <td>
+                                                    <p>The given resource id.</p>
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        <p>Emits the id.</p>
+                        </div>
+                            <div class="io-description">
+                                <p>Emits the id.</p>
 
-                    </div>
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -473,7 +535,7 @@ to the parent component.</p>
 </div>
 
 
-    <div class="tab-pane fade  tab-source-code" id="c-source">
+    <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
 
 import { ResourceDetailGroupedIncomingLinks } from &#x27;@awg-views/data-view/models&#x27;;
@@ -559,7 +621,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-templateData">
+    <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!--
 /************************************************
 *
@@ -577,42 +639,54 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
 &lt;!-- resourceDetailData content: linked objects --&gt;
 &lt;div class&#x3D;&quot;awg-linked-obj&quot;&gt;
     &lt;h5&gt;
-        Verknüpfte Objekte (&lt;span id&#x3D;&quot;awg-incoming-size&quot; *ngIf&#x3D;&quot;incomingGroups&quot;&gt;{{ totalNumber }}&lt;/span
-        &gt;)
+        Verknüpfte Objekte (
+        @if (incomingGroups) {
+            &lt;span id&#x3D;&quot;awg-incoming-size&quot;&gt;{{ totalNumber }}&lt;/span&gt;
+        }
+        )
     &lt;/h5&gt;
 
-    &lt;ngb-accordion [closeOthers]&#x3D;&quot;true&quot;&gt;
-        &lt;ngb-panel
-            id&#x3D;&quot;incoming-linkgroup-{{ i }}&quot;
-            class&#x3D;&quot;awg-linked-obj-incoming-linkgroup&quot;
-            *ngFor&#x3D;&quot;let restypeGroup of incomingGroups; let i &#x3D; index&quot;&gt;
-            &lt;ng-template ngbPanelTitle&gt;
-                &lt;span class&#x3D;&quot;awg-linked-obj-title-group single-line&quot;&gt;
-                    &lt;span class&#x3D;&quot;badge bg-info me-2&quot;&gt;{{ restypeGroup?.links?.length }}&lt;/span&gt;
-                    &lt;span class&#x3D;&quot;awg-linked-obj-title&quot;&gt;{{ restypeGroup?.restypeLabel }}&lt;/span&gt;
-                &lt;/span&gt;
-            &lt;/ng-template&gt;
-            &lt;ng-template ngbPanelContent&gt;
-                &lt;ul class&#x3D;&quot;awg-linked-obj-list nobullets mb-0&quot;&gt;
-                    &lt;li *ngFor&#x3D;&quot;let link of restypeGroup.links; last as isLast&quot;&gt;
-                        &lt;a class&#x3D;&quot;awg-linked-obj-link&quot; (click)&#x3D;&quot;navigateToResource(link?.id)&quot;&gt;
-                            &lt;img [src]&#x3D;&quot;link?.restype?.icon&quot; alt&#x3D;&quot;icon&quot; /&gt;
-                            &amp;nbsp;[&lt;span class&#x3D;&quot;awg-linked-obj-link-id&quot;&gt;{{ link?.id }}&lt;/span
-                            &gt;]&amp;nbsp;
-                            &lt;span class&#x3D;&quot;awg-linked-obj-link-value&quot;&gt;{{ link?.value }}&lt;/span&gt;
-                        &lt;/a&gt;
-                        &lt;hr *ngIf&#x3D;&quot;!isLast&quot; /&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/ng-template&gt;
-        &lt;/ngb-panel&gt;
-    &lt;/ngb-accordion&gt;
+    &lt;div ngbAccordion [closeOthers]&#x3D;&quot;true&quot;&gt;
+        @for (restypeGroup of incomingGroups; track restypeGroup; let i &#x3D; $index) {
+            &lt;div ngbAccordionItem&#x3D;&quot;awg-linked-obj-incoming-{{ i }}&quot; class&#x3D;&quot;awg-linked-obj-incoming-linkgroup&quot;&gt;
+                &lt;div ngbAccordionHeader&gt;
+                    &lt;button ngbAccordionButton&gt;
+                        &lt;span class&#x3D;&quot;awg-linked-obj-title-group single-line&quot;&gt;
+                            &lt;span class&#x3D;&quot;badge bg-info me-2&quot;&gt;{{ restypeGroup?.links?.length }}&lt;/span&gt;
+                            &lt;span class&#x3D;&quot;awg-linked-obj-title&quot;&gt;{{ restypeGroup?.restypeLabel }}&lt;/span&gt;
+                        &lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div ngbAccordionCollapse&gt;
+                    &lt;div ngbAccordionBody&gt;
+                        &lt;ng-template&gt;
+                            &lt;ul class&#x3D;&quot;awg-linked-obj-list nobullets mb-0&quot;&gt;
+                                @for (link of restypeGroup.links; track link; let isLast &#x3D; $last) {
+                                    &lt;li&gt;
+                                        &lt;a class&#x3D;&quot;awg-linked-obj-link&quot; (click)&#x3D;&quot;navigateToResource(link?.id)&quot;&gt;
+                                            &lt;img [src]&#x3D;&quot;link?.restype?.icon&quot; alt&#x3D;&quot;icon&quot; /&gt;
+                                            &amp;nbsp;[&lt;span class&#x3D;&quot;awg-linked-obj-link-id&quot;&gt;{{ link?.id }}&lt;/span
+                                            &gt;]&amp;nbsp;
+                                            &lt;span class&#x3D;&quot;awg-linked-obj-link-value&quot;&gt;{{ link?.value }}&lt;/span&gt;
+                                        &lt;/a&gt;
+                                        @if (!isLast) {
+                                            &lt;hr /&gt;
+                                        }
+                                    &lt;/li&gt;
+                                }
+                            &lt;/ul&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        }
+    &lt;/div&gt;
+    &lt;!-- end DIV linkedObj --&gt;
 &lt;/div&gt;
-&lt;!-- end DIV linkedObj --&gt;
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-styleData">
+    <div class="tab-pane fade " id="styleData">
                 <p class="comment">
                     <code>./linkedobjects.component.scss</code>
                 </p>
@@ -630,36 +704,40 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
  *
  ************************************************/
 
-ul.awg-linked-obj-list {
-    padding-left: 0;
-}
-ul.awg-linked-obj-list li:hover {
-    background-color: #e7e7e7;
-}
-ul.awg-linked-obj-list li a {
-    width: inherit;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-}
-ul.awg-linked-obj-list li hr {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-}
+$textlinkColor: #333;
+$backgroundColor: #e7e7e7;
 
 /* link objects */
+ul.awg-linked-obj-list {
+    padding-left: 0;
+    li {
+        &amp;:hover {
+            background-color: $backgroundColor;
+        }
+        a {
+            width: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+        hr {
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+    }
+}
 .awg-linked-obj-link {
     cursor: pointer;
-    color: #333 !important;
-}
-.awg-linked-obj-link:hover {
-    border-bottom: none !important;
+    color: $textlinkColor !important;
+    &amp;:hover {
+        border-bottom: none !important;
+    }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="c-tree">
+    <div class="tab-pane fade " id="tree">
         <div id="tree-container"></div>
         <div class="tree-legend">
             <div class="title">
@@ -684,7 +762,7 @@ ul.awg-linked-obj-list li hr {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229**]* 20.11.2017***************************************************/ --><!-- resourceDetailData content: linked objects --><div class="awg-linked-obj">    <h5>        Verknüpfte Objekte (<span id="awg-incoming-size" *ngIf="incomingGroups">{{ totalNumber }}</span        >)    </h5>    <ngb-accordion [closeOthers]="true">        <ngb-panel            id="incoming-linkgroup-{{ i }}"            class="awg-linked-obj-incoming-linkgroup"            *ngFor="let restypeGroup of incomingGroups; let i = index">            <ng-template ngbPanelTitle>                <span class="awg-linked-obj-title-group single-line">                    <span class="badge bg-info me-2">{{ restypeGroup?.links?.length }}</span>                    <span class="awg-linked-obj-title">{{ restypeGroup?.restypeLabel }}</span>                </span>            </ng-template>            <ng-template ngbPanelContent>                <ul class="awg-linked-obj-list nobullets mb-0">                    <li *ngFor="let link of restypeGroup.links; last as isLast">                        <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">                            <img [src]="link?.restype?.icon" alt="icon" />                            &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span                            >]&nbsp;                            <span class="awg-linked-obj-link-value">{{ link?.value }}</span>                        </a>                        <hr *ngIf="!isLast" />                    </li>                </ul>            </ng-template>        </ngb-panel>    </ngb-accordion></div><!-- end DIV linkedObj --></div>'
+        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229**]* 20.11.2017***************************************************/ --><!-- resourceDetailData content: linked objects --><div class="awg-linked-obj">    <h5>        Verknüpfte Objekte (        @if (incomingGroups) {            <span id="awg-incoming-size">{{ totalNumber }}</span>        }        )    </h5>    <div ngbAccordion [closeOthers]="true">        @for (restypeGroup of incomingGroups; track restypeGroup; let i = $index) {            <div ngbAccordionItem="awg-linked-obj-incoming-{{ i }}" class="awg-linked-obj-incoming-linkgroup">                <div ngbAccordionHeader>                    <button ngbAccordionButton>                        <span class="awg-linked-obj-title-group single-line">                            <span class="badge bg-info me-2">{{ restypeGroup?.links?.length }}</span>                            <span class="awg-linked-obj-title">{{ restypeGroup?.restypeLabel }}</span>                        </span>                    </button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            <ul class="awg-linked-obj-list nobullets mb-0">                                @for (link of restypeGroup.links; track link; let isLast = $last) {                                    <li>                                        <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">                                            <img [src]="link?.restype?.icon" alt="icon" />                                            &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span                                            >]&nbsp;                                            <span class="awg-linked-obj-link-value">{{ link?.value }}</span>                                        </a>                                        @if (!isLast) {                                            <hr />                                        }                                    </li>                                }                            </ul>                        </ng-template>                    </div>                </div>            </div>        }    </div>    <!-- end DIV linkedObj --></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceDetailHtmlContentLinkedobjectsComponent'};
