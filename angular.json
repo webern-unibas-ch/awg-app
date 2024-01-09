@@ -45,7 +45,7 @@
                                 {
                                     "type": "initial",
                                     "maximumWarning": "2mb",
-                                    "maximumError": "3mb"
+                                    "maximumError": "4mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
@@ -96,10 +96,10 @@
                     "options": {},
                     "configurations": {
                         "production": {
-                            "browserTarget": "awg-app:build:production"
+                            "buildTarget": "awg-app:build:production"
                         },
                         "development": {
-                            "browserTarget": "awg-app:build:development"
+                            "buildTarget": "awg-app:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -107,7 +107,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "awg-app:build"
+                        "buildTarget": "awg-app:build"
                     }
                 },
                 "test": {

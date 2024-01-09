@@ -26,36 +26,39 @@
         </div>
 
         <!-- Limit -->
-        <div class="btn-group awg-force-graph-node-limit-container float-end my-auto" *ngIf="queryResultTriples">
-            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                <span *ngIf="limit < queryResultTriples.length">{{ limit }} von </span
-                >{{ queryResultTriples.length }} Triples
-            </button>
-            <div
-                class="btn-group"
-                ngbDropdown
-                container="body"
-                role="group"
-                aria-label="Button group with nested dropdown for node limit">
-                <button
-                    class="btn btn-sm btn-info dropdown-toggle-split"
-                    ngbDropdownToggle
-                    [disabled]="queryResultTriples.length === 0"></button>
-                <div class="dropdown-menu" ngbDropdownMenu>
-                    <ng-container *ngFor="let limitValue of limitValues">
-                        <button
-                            *ngIf="queryResultTriples.length > limitValue"
-                            class="dropdown-item"
-                            (click)="onLimitValueChange(limitValue)">
-                            <span>{{ limitValue }}</span>
+        @if (queryResultTriples) {
+            <div class="btn-group awg-force-graph-node-limit-container float-end my-auto">
+                <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
+                    @if (limit < queryResultTriples.length) {
+                        <span>{{ limit }} von </span>
+                    }
+                    {{ queryResultTriples.length }} Triples
+                </button>
+                <div
+                    class="btn-group"
+                    ngbDropdown
+                    container="body"
+                    role="group"
+                    aria-label="Button group with nested dropdown for node limit">
+                    <button
+                        class="btn btn-sm btn-info dropdown-toggle-split"
+                        ngbDropdownToggle
+                        [disabled]="queryResultTriples.length === 0"></button>
+                    <div class="dropdown-menu" ngbDropdownMenu>
+                        @for (limitValue of limitValues; track limitValue) {
+                            @if (queryResultTriples.length > limitValue) {
+                                <button class="dropdown-item" (click)="onLimitValueChange(limitValue)">
+                                    <span>{{ limitValue }}</span>
+                                </button>
+                            }
+                        }
+                        <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">
+                            <span>Kein Limit</span>
                         </button>
-                    </ng-container>
-                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">
-                        <span>Kein Limit</span>
-                    </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
 
         <!-- <span *ngIf="message" class="message">{{message}}</span> -->
     </div>

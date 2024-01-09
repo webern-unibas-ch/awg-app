@@ -192,12 +192,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
-
-                // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
     });
@@ -236,22 +233,27 @@ describe('EditionAccoladeComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with one panel (div.accordion-item)', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain one div.accordion', () => {
+                // NgbAccordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
 
-                // Panel
+            it('... should contain one item in div.accordion', () => {
+                // NgbAccordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1);
             });
 
             it('... should contain header section with div and two buttons (div.accordion-header)', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
 
                 // Header
                 const headerDes = getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div#awg-accolade-view-header.accordion-header',
+                    itemDes[0],
+                    'div#awg-accolade-view > div.accordion-header',
                     1,
                     1
                 );
@@ -274,10 +276,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             describe('EditionSvgSheetNavComponent', () => {
-                it('... should contain one EditionSvgSheetNavComponent (stubbed) in the panel body (div.accordion-body)', () => {
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
+                it('... should contain one EditionSvgSheetNavComponent (stubbed) in the item body (div.accordion-body)', () => {
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetNavStubComponent, 1, 1);
                 });
@@ -312,10 +314,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             describe('EditionSvgSheetViewerComponent', () => {
-                it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the panel body (div.accordion-body)', () => {
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
+                it('... should contain one EditionSvgSheetViewerComponent (stubbed) in the item body (div.accordion-body)', () => {
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetViewerStubComponent, 1, 1);
                 });
@@ -336,10 +338,10 @@ describe('EditionAccoladeComponent (DONE)', () => {
             });
 
             describe('EditionSvgSheetFooterComponent', () => {
-                it('... should contain one EditionSvgSheetFooterComponent (stubbed) in the panel body (div.accordion-body)', () => {
-                    // Ngb-accordion panel debug element
-                    const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 1, 1);
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 1, 1);
+                it('... should contain one EditionSvgSheetFooterComponent (stubbed) in the item body (div.accordion-body)', () => {
+                    // Div.accordion-item
+                    const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 1, 1);
+                    const bodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionSvgSheetFooterStubComponent, 1, 1);
                 });
@@ -490,9 +492,17 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
             it('... should trigger on click on header button', fakeAsync(() => {
                 // Header
-                const buttonDes = getAndExpectDebugElementByCss(
+                const headerDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-accolade-view-header.accordion-header > div.accordion-button > button',
+                    'div#awg-accolade-view > div.accordion-header',
+                    1,
+                    1
+                );
+
+                // Header Buttons
+                const buttonDes = getAndExpectDebugElementByCss(
+                    headerDes[0],
+                    'div.accordion-button > button.btn',
                     2,
                     2
                 );

@@ -155,7 +155,10 @@ export class ExtendedSearchFormComponent implements OnInit, OnDestroy {
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private dataApiService: DataApiService, private formBuilder: FormBuilder) {}
+    constructor(
+        private dataApiService: DataApiService,
+        private formBuilder: FormBuilder
+    ) {}
 
     /**
      * Getter for the resource type control value.

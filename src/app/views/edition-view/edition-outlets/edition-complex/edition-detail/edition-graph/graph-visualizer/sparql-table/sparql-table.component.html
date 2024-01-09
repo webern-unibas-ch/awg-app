@@ -1,7 +1,8 @@
-<awg-table
-    *ngIf="queryResult"
-    [tableTitle]="'SELECT Anfrage'"
-    [headerInputData]="queryResult.head.vars"
-    [rowInputData]="queryResult.body.bindings"
-    (clickedTableValueRequest)="onTableNodeClick($event)"
-    (clickedTableRowRequest)="(undefined)"></awg-table>
+@if (queryResult) {
+    <awg-table
+        [tableTitle]="'SELECT Anfrage'"
+        [headerInputData]="queryResult.head.vars"
+        [rowInputData]="queryResult.body.bindings"
+        (clickedTableValueRequest)="onTableNodeClick($event)"
+        (clickedTableRowRequest)="(undefined)"></awg-table>
+}

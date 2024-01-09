@@ -79,7 +79,10 @@ export class DataApiService extends ApiService {
      * @param {HttpClient} http Instance of the HttpClient.
      * @param {ConversionService} conversionService Instance of the ConversionService.
      */
-    constructor(http: HttpClient, private conversionService: ConversionService) {
+    constructor(
+        http: HttpClient,
+        private conversionService: ConversionService
+    ) {
         super(http);
         this.serviceName = 'DataApiService';
     }

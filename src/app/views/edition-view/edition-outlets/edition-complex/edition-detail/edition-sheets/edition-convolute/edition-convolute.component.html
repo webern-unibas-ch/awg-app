@@ -1,33 +1,40 @@
-<ngb-accordion activeIds="awg-convolute-view">
-    <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">
-        <ng-template ngbPanelContent>
-            <!-- convolute label -->
-            <div class="awg-convolute-label">
-                <p>
-                    <a [routerLink]="['../report']" fragment="source{{ selectedConvolute.convoluteId }}">{{
-                        selectedConvolute.convoluteLabel
-                    }}</a>
-                </p>
-            </div>
+<div ngbAccordion>
+    <div ngbAccordionItem="awg-convolute-view" [collapsed]="false">
+        <div ngbAccordionHeader>
+            <button ngbAccordionButton>Konvolutübersicht</button>
+        </div>
+        <div ngbAccordionCollapse>
+            <div ngbAccordionBody>
+                <ng-template>
+                    <!-- convolute label -->
+                    <div class="awg-convolute-label">
+                        <p>
+                            <a [routerLink]="['../report']" fragment="source{{ selectedConvolute.convoluteId }}">{{
+                                selectedConvolute.convoluteLabel
+                            }}</a>
+                        </p>
+                    </div>
 
-            <!-- viewer for convolute folios -->
-            <awg-edition-folio-viewer
-                [selectedConvolute]="selectedConvolute"
-                [selectedSvgSheet]="selectedSvgSheet"
-                (openModalRequest)="openModal($event)"
-                (selectSvgSheetRequest)="selectSvgSheet($event)">
-            </awg-edition-folio-viewer>
+                    <!-- viewer for convolute folios -->
+                    <awg-edition-folio-viewer
+                        [selectedConvolute]="selectedConvolute"
+                        [selectedSvgSheet]="selectedSvgSheet"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                    </awg-edition-folio-viewer>
 
-            <!-- convolute legend -->
-            <div class="awg-convolute-legend col-12">
-                Legende:&nbsp;
-                <ng-container *ngFor="let legend of folioLegends">
-                    <span class="{{ legend.color }}">
-                        <fa-icon [icon]="faSquare"></fa-icon>
-                        {{ legend.label }}
-                    </span>
-                </ng-container>
+                    <!-- convolute legend -->
+                    <div class="awg-convolute-legend col-12">
+                        Legende:&nbsp;
+                        @for (legend of folioLegends; track legend) {
+                            <span class="{{ legend.color }}">
+                                <fa-icon [icon]="faSquare"></fa-icon>
+                                {{ legend.label }}
+                            </span>
+                        }
+                    </div>
+                </ng-template>
             </div>
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+        </div>
+    </div>
+</div>

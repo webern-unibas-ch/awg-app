@@ -2,10 +2,12 @@ import { DebugElement, NgModule } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+import Spy = jasmine.Spy;
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
+import { click } from '@testing/click-helper';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results.component';
 
 describe('UnsupportedTypeResultsComponent (DONE)', () => {
@@ -14,6 +16,9 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedQueryType: string;
+    let expectedIsFullscreen: boolean;
+
+    let isAccordionItemDisabledSpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -38,6 +43,12 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
         // Test data
         expectedQueryType = 'ask';
+        expectedIsFullscreen = false;
+
+        // Spies on component functions
+        // `.and.callThrough` will track the spy down the nested describes, see
+        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        isAccordionItemDisabledSpy = spyOn(component, 'isAccordionItemDisabled').and.callThrough();
     });
 
     it('... should create', () => {
@@ -49,13 +60,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             expect(component.queryType).toBeUndefined();
         });
 
-        describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.accordion-item) yet', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+        it('... should not have isFullscreen', () => {
+            expect(component.isFullscreen).toBeUndefined();
+        });
 
-                // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
+        describe('VIEW', () => {
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
     });
@@ -64,131 +76,405 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.queryType = expectedQueryType;
+            component.isFullscreen = expectedIsFullscreen;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('... should have `queryType` input', () => {
-            expect(component.queryType).toBeDefined();
-            expect(component.queryType).withContext(`should be ${expectedQueryType}`).toBe(expectedQueryType);
+            expectToBe(component.queryType, expectedQueryType);
+        });
+
+        it('... should have `isFullScreen` input', () => {
+            expectToBe(component.isFullscreen, expectedIsFullscreen);
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with panel (div.accordion-item) header and body', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            describe('not in fullscreen mode', () => {
+                it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
+                    // Div.accordion debug element
+                    const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // Panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 1, 1); // Panel (div.card)
-                // Header
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div#awg-graph-visualizer-unsupported-query-type-result-header.accordion-header',
-                    1,
-                    1
-                ); // Panel (div.card)
-                // Body
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body',
-                    1,
-                    1
-                );
-            });
+                    // Panel (div.accordion-item)
+                    const panelDes = getAndExpectDebugElementByCss(
+                        accordionDes[0],
+                        'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
+                        1,
+                        1
+                    );
+                    // Header (div.accordion-header)
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        panelDes[0],
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        1,
+                        1
+                    );
+                    const panelHeaderEl = panelHeaderDes[0].nativeElement;
 
-            it('... should display panel header button', () => {
-                // Panel header button
-                const btnDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result-header > button',
-                    1,
-                    1
-                );
+                    expect(panelHeaderEl.classList).not.toContain('collapsed');
 
-                const btnEl = btnDes[0].nativeElement;
+                    // Body (div.accordion-collapse)
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        panelDes[0],
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    const panelBodyEl = panelBodyDes[0].nativeElement;
 
-                // Check button content
-                expect(btnEl.textContent).toBeTruthy();
-                expect(btnEl.textContent).withContext('should contain Resultat').toContain('Resultat');
-            });
+                    expectToContain(panelBodyEl.classList, 'show');
+                });
 
-            it('... should contain panel body with two centered paragraphs', () => {
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body > p',
-                    2,
-                    2
-                );
-
-                const pEl0 = pDes[0].nativeElement;
-                const pEl1 = pDes[1].nativeElement;
-
-                expect(pEl0).toHaveClass('text-center');
-                expect(pEl1).toHaveClass('text-center');
-            });
-
-            it('... should display messages in panel body paragraphs', () => {
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body > p',
-                    2,
-                    2
-                );
-
-                const pEl0 = pDes[0].nativeElement;
-                const pEl1 = pDes[1].nativeElement;
-
-                expect(pEl0.textContent).toBeTruthy();
-                expect(pEl0.textContent.trim())
-                    .withContext(
-                        `should contain 'Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet'`
-                    )
-                    .toContain(
-                        `Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet`
+                it('... should display panel header button', () => {
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        1,
+                        1
                     );
 
-                expect(pEl1.textContent).toBeTruthy();
-                expect(pEl1.textContent.trim())
-                    .withContext(`should be 'Please try a CONSTRUCT or SELECT query instead.'`)
-                    .toBe('Please try a CONSTRUCT or SELECT query instead.');
+                    // Panel header button
+                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Check button content
+                    expectToBe(btnEl.textContent, 'Resultat');
+                });
+
+                it('... should toggle panel body on click', () => {
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        1,
+                        1
+                    );
+
+                    // Button debug elements
+                    const btnDes = getAndExpectDebugElementByCss(
+                        panelHeaderDes[0],
+                        'button#awg-graph-visualizer-unsupported-query-type-result-toggle',
+                        1,
+                        1
+                    );
+                    // Button native elements to click on
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Panel body is closed
+                    let panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    let panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).toContain('show');
+
+                    // Click header button
+                    click(btnEl as HTMLElement);
+                    detectChangesOnPush(fixture);
+
+                    // Panel is open
+                    panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).not.toContain('show');
+
+                    // Click header button
+                    click(btnEl as HTMLElement);
+                    detectChangesOnPush(fixture);
+
+                    panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).toContain('show');
+                });
+
+                it('... should contain panel body with two centered paragraphs', () => {
+                    // Body debug elements
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+
+                    // Panel body paragraphs
+                    const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
+                    pDes.forEach((pDe: DebugElement) => {
+                        const pEl = pDe.nativeElement;
+                        expect(pEl).toBeTruthy();
+                        expect(pEl).toHaveClass('text-center');
+                    });
+                });
+
+                it('... should display messages in panel body paragraphs', () => {
+                    // Body debug elements
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+
+                    // Panel body paragraphs
+                    const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
+                    const pEl0 = pDes[0].nativeElement;
+                    const pEl1 = pDes[1].nativeElement;
+
+                    expectToContain(
+                        pEl0.textContent.trim(),
+                        `Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet`
+                    );
+                    expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
+                });
+
+                it('... should display correct queryType in first paragraph if input changes', () => {
+                    // Body debug elements
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+
+                    // Panel body paragraphs
+                    const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
+                    const pEl0 = pDes[0].nativeElement;
+
+                    expectToContain(pEl0.textContent, expectedQueryType.toUpperCase());
+
+                    // DESCRIBE
+                    let newQueryType = 'describe';
+                    component.queryType = newQueryType;
+                    detectChangesOnPush(fixture);
+
+                    expectToContain(pEl0.textContent, newQueryType.toUpperCase());
+
+                    // COUNT
+                    newQueryType = 'count';
+                    component.queryType = newQueryType;
+                    detectChangesOnPush(fixture);
+
+                    expectToContain(pEl0.textContent, newQueryType.toUpperCase());
+                });
             });
 
-            it('... should display correct queryType if input changes', () => {
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-body > p',
-                    2,
-                    2
-                );
-                const pEl0 = pDes[0].nativeElement;
+            describe('in fullscreen mode', () => {
+                beforeEach(() => {
+                    // Set fullscreen flag to true
+                    component.isFullscreen = true;
+                    detectChangesOnPush(fixture);
+                });
 
-                expect(pEl0.textContent).toBeTruthy();
-                expect(pEl0.textContent)
-                    .withContext(`should contain ${expectedQueryType.toUpperCase()}`)
-                    .toContain(expectedQueryType.toUpperCase());
+                it('... should contain one div.accordion with panel (div.accordion-item) header and open body', () => {
+                    // Div.accordion debug element
+                    const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
-                // DESCRIBE
-                let newQueryType = 'describe';
-                component.queryType = newQueryType;
-                detectChangesOnPush(fixture);
+                    // Panel (div.accordion-item)
+                    const panelDes = getAndExpectDebugElementByCss(
+                        accordionDes[0],
+                        'div#awg-graph-visualizer-unsupported-query-type-result.accordion-item',
+                        1,
+                        1
+                    );
+                    // Header (div.accordion-header)
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        panelDes[0],
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        1,
+                        1
+                    );
+                    const panelHeaderEl = panelHeaderDes[0].nativeElement;
 
-                expect(pEl0.textContent).toBeTruthy();
-                expect(pEl0.textContent)
-                    .withContext(`should contain ${newQueryType.toUpperCase()}`)
-                    .toContain(newQueryType.toUpperCase());
+                    expect(panelHeaderEl.classList).not.toContain('collapsed');
 
-                // COUNT
-                newQueryType = 'count';
-                component.queryType = newQueryType;
-                detectChangesOnPush(fixture);
+                    // Body (div.accordion-collapse)
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        panelDes[0],
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    const panelBodyEl = panelBodyDes[0].nativeElement;
 
-                expect(pEl0.textContent)
-                    .withContext(`should contain ${newQueryType.toUpperCase()}`)
-                    .toContain(newQueryType.toUpperCase());
+                    expectToContain(panelBodyEl.classList, 'show');
+                });
+
+                it('... should display panel header button', () => {
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        1,
+                        1
+                    );
+
+                    // Panel header button
+                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.accordion-button', 1, 1);
+
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Check button content
+                    expectToBe(btnEl.textContent, 'Resultat');
+                });
+
+                it('... should not toggle panel body on click', () => {
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-header',
+                        1,
+                        1
+                    );
+
+                    // Button debug elements
+                    const btnDes = getAndExpectDebugElementByCss(
+                        panelHeaderDes[0],
+                        'button#awg-graph-visualizer-unsupported-query-type-result-toggle',
+                        1,
+                        1
+                    );
+                    // Button native elements to click on
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Panel body does not closed
+                    let panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1,
+                        'open'
+                    );
+                    let panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).toContain('show');
+
+                    // Click header button
+                    click(btnEl as HTMLElement);
+                    detectChangesOnPush(fixture);
+
+                    // Panel is open
+                    panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+                    panelBodyEl = panelBodyDes[0].nativeElement;
+
+                    expect(panelBodyEl.classList).toContain('show');
+                });
+
+                it('... should contain panel body with two centered paragraphs', () => {
+                    // Body debug elements
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+
+                    // Panel body paragraphs
+                    const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
+                    pDes.forEach((pDe: DebugElement) => {
+                        const pEl = pDe.nativeElement;
+                        expect(pEl).toBeTruthy();
+                        expect(pEl).toHaveClass('text-center');
+                    });
+                });
+
+                it('... should display messages in panel body paragraphs', () => {
+                    // Body debug elements
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+
+                    // Panel body paragraphs
+                    const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
+                    const pEl0 = pDes[0].nativeElement;
+                    const pEl1 = pDes[1].nativeElement;
+
+                    expectToContain(
+                        pEl0.textContent.trim(),
+                        `Sorry, but the requested SPARQL query type ${expectedQueryType.toUpperCase()} is not supported yet`
+                    );
+                    expectToContain(pEl1.textContent.trim(), 'Please try a CONSTRUCT or SELECT query instead.');
+                });
+
+                it('... should display correct queryType in first paragraph if input changes', () => {
+                    // Body debug elements
+                    const panelBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-unsupported-query-type-result > div.accordion-collapse',
+                        1,
+                        1
+                    );
+
+                    // Panel body paragraphs
+                    const pDes = getAndExpectDebugElementByCss(panelBodyDes[0], 'p', 2, 2);
+
+                    const pEl0 = pDes[0].nativeElement;
+
+                    expectToContain(pEl0.textContent, expectedQueryType.toUpperCase());
+
+                    // DESCRIBE
+                    let newQueryType = 'describe';
+                    component.queryType = newQueryType;
+                    detectChangesOnPush(fixture);
+
+                    expectToContain(pEl0.textContent, newQueryType.toUpperCase());
+
+                    // COUNT
+                    newQueryType = 'count';
+                    component.queryType = newQueryType;
+                    detectChangesOnPush(fixture);
+
+                    expectToContain(pEl0.textContent, newQueryType.toUpperCase());
+                });
+            });
+        });
+
+        describe('#isAccordionItemDisabled()', () => {
+            it('... should have a method `isAccordionItemDisabled`', () => {
+                expect(component.isAccordionItemDisabled).toBeDefined();
+            });
+
+            it('... should be triggered from ngbAccordionItem', () => {
+                expectSpyCall(isAccordionItemDisabledSpy, 2);
+            });
+
+            it('... should return false if isFullscreen is false', () => {
+                expectToBe(component.isAccordionItemDisabled(), false);
+            });
+
+            it('... should return true if isFullscreen is true', () => {
+                // Set fullscreen flag to true
+                component.isFullscreen = true;
+
+                expectToBe(component.isAccordionItemDisabled(), true);
             });
         });
     });

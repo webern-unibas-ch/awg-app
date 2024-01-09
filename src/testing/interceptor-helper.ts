@@ -13,7 +13,7 @@ import { HttpInterceptor } from '@angular/common/http';
  * @returns {HttpInterceptor} An instance of the searched Interceptor.
  */
 export function getInterceptorInstance<T extends HttpInterceptor>(
-    interceptors: HttpInterceptor[],
+    interceptors: readonly HttpInterceptor[],
     type: any
 ): HttpInterceptor {
     let searchedInterceptor: HttpInterceptor = null;

@@ -13,14 +13,14 @@ import {
 
 import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 
-import * as d3_selection from 'd3-selection';
+import * as D3_SELECTION from 'd3-selection';
 
 // Helper functions to create D3 selections
 function createD3TestSvg(doc: Document): D3Selection {
     const container: HTMLElement = doc.createElement('div');
 
     // Test data
-    return d3_selection.select(container).append('svg').attr('id', 'test-svg');
+    return D3_SELECTION.select(container).append('svg').attr('id', 'test-svg');
 }
 
 function createD3TestRootGroup(svg: D3Selection): D3Selection {

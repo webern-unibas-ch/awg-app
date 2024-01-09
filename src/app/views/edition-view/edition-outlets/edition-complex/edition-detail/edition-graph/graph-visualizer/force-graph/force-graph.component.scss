@@ -1,4 +1,4 @@
-@import 'src/assets/themes/scss/shared';
+@import '/src/assets/themes/scss/shared';
 
 #awg-force-graph-container {
     position: relative;
@@ -167,11 +167,15 @@ input[type='range'].awg-force-graph-zoom-slider {
 }
 
 :host ::ng-deep .node-text {
-    font: 15px 'Roboto', sans-serif;
+    font:
+        15px 'Roboto',
+        sans-serif;
     fill: black;
 }
 
 :host ::ng-deep .link-text {
-    font: 13px 'Roboto', sans-serif;
+    font:
+        13px 'Roboto',
+        sans-serif;
     fill: grey;
 }

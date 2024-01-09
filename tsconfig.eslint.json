@@ -1,4 +1,12 @@
 {
     "extends": "./tsconfig.json",
-    "include": ["src/app/**/*.ts", "src/main.ts", "src/polyfills.ts", "src/**/*.d.ts"]
+    "include": [
+        "src/app/**/*.ts",
+        "src/environments/**/*.ts",
+        "src/main.ts",
+        "src/polyfills.ts",
+        "src/test.ts",
+        "src/testing/*",
+        "src/**/*.d.ts"
+    ]
 }

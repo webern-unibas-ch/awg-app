@@ -2,7 +2,7 @@
 <div class="btn-group awg-view-handle-btn-group" role="group">
     <form [formGroup]="viewHandleControlForm">
         <div class="btn-group" role="group" name="viewHandle" aria-label="View handle button group">
-            <ng-container *ngFor="let viewHandle of viewHandles; trackBy: viewHandleTracker">
+            @for (viewHandle of viewHandles; track viewHandleTracker($index, viewHandle)) {
                 <input
                     type="radio"
                     [formControl]="viewHandleControl"
@@ -16,7 +16,7 @@
                     ngbTooltip="{{ viewHandle.type }} view"
                     ><fa-icon [icon]="viewHandle.icon"></fa-icon>
                 </label>
-            </ng-container>
+            }
         </div>
     </form>
 </div>

@@ -76,7 +76,11 @@ export class EditionViewComponent implements OnInit {
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private editionService: EditionService, private route: ActivatedRoute, private router: Router) {}
+    constructor(
+        private editionService: EditionService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) {}
 
     /**
      * Getter variable: editionRouteConstants.

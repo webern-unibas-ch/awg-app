@@ -1,31 +1,42 @@
-<ngb-accordion #textCriticsAcc="ngbAccordion" id="textCriticsAcc" *ngIf="textcriticsData">
-    <ngb-panel *ngFor="let textcritic of textcriticsData.textcritics" [id]="textcritic.id">
-        <ng-template ngbPanelHeader>
-            <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
-                <button ngbPanelToggle class="p-0 btn btn-link text-start">{{ textcritic.label }}</button>
-                <button type="button" class="btn btn-sm btn-outline-info" (click)="selectSvgSheet(textcritic.id)">
-                    Zum edierten Notentext
-                </button>
+@if (textcriticsData) {
+    <div ngbAccordion>
+        @for (textcritic of textcriticsData.textcritics; track textcritic) {
+            <div [ngbAccordionItem]="textcritic.id" [collapsed]="true">
+                <div
+                    ngbAccordionHeader
+                    class="accordion-button awg-accordion-button-custom-header justify-content-between">
+                    <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritic.label }}</button>
+                    <button type="button" class="btn btn-sm btn-outline-info" (click)="selectSvgSheet(textcritic.id)">
+                        Zum edierten Notentext
+                    </button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            @if (utils.isNotEmptyArray(textcritic.description)) {
+                                <div>
+                                    <p class="caps">Skizzenkommentar:</p>
+                                    @for (description of textcritic.description; track description) {
+                                        <p [compile-html]="description" [compile-html-ref]="ref"></p>
+                                    }
+                                </div>
+                            }
+                            @if (utils.isNotEmptyArray(textcritic.comments)) {
+                                <div>
+                                    <p class="caps">Textkritischer Kommentar:</p>
+                                    <awg-edition-tka-table
+                                        [textcriticalComments]="textcritic.comments"
+                                        [isRowTable]="textcritic.rowtable"
+                                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                        (openModalRequest)="openModal($event)"
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)">
+                                    </awg-edition-tka-table>
+                                </div>
+                            }
+                        </ng-template>
+                    </div>
+                </div>
             </div>
-        </ng-template>
-        <ng-template ngbPanelContent>
-            <div *ngIf="utils.isNotEmptyArray(textcritic.description)">
-                <p class="caps">Skizzenkommentar:</p>
-                <p
-                    *ngFor="let description of textcritic.description"
-                    [compile-html]="description"
-                    [compile-html-ref]="ref"></p>
-            </div>
-            <div *ngIf="utils.isNotEmptyArray(textcritic.comments)">
-                <p class="caps">Textkritischer Kommentar:</p>
-                <awg-edition-tka-table
-                    [textcriticalComments]="textcritic.comments"
-                    [isRowTable]="textcritic.rowtable"
-                    (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
-                    (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)">
-                </awg-edition-tka-table>
-            </div>
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+        }
+    </div>
+}

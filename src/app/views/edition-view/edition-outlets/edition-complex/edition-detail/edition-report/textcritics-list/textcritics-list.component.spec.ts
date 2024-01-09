@@ -9,6 +9,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     expectToBe,
+    expectToContain,
     expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
@@ -115,9 +116,9 @@ describe('TextcriticsListComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain no ngb-accordion yet', () => {
-                // Ngb-accordion debug element
-                getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 0, 0);
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
     });
@@ -136,64 +137,71 @@ describe('TextcriticsListComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion with two panels (div.accordion-item)', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain one div.accordion', () => {
+                // NgbAccordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
 
-                // Panel
+            it('... should contain two items in div.accordion', () => {
+                // NgbAccordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+
+                // Div.accordion-item
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 2, 2);
             });
 
-            it('... should contain panel header with collapsed body', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain item header with collapsed body', () => {
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 2, 2);
 
-                // Panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 2, 2);
-
-                // Header
+                // Header (div.accordion-header)
                 getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id}-header.accordion-header`,
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
                 getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
 
-                // Body
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-body`,
-                    0,
-                    0
+                // Body closed (div.accordion-collapse)
+                const itemBodyDes1 = getAndExpectDebugElementByCss(
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    1,
+                    1
                 );
-                getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-body`,
-                    0,
-                    0
+                const itemBodyDes2 = getAndExpectDebugElementByCss(
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    1,
+                    1
                 );
+                const itemBodyEl1 = itemBodyDes1[0].nativeElement;
+                const itemBodyEl2 = itemBodyDes2[0].nativeElement;
+
+                expectToContain(itemBodyEl1.classList, 'collapse');
+                expectToContain(itemBodyEl2.classList, 'collapse');
             });
 
-            it('... should contain div and two buttons in header section (div.accordion-header)', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 2, 2);
+            it('... should display item header buttons', () => {
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 2, 2);
 
-                // Header
+                // Header (div.accordion-header)
                 const header0Des = getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id}-header.accordion-header`,
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
                 const header1Des = getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -234,14 +242,14 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expectToBe(buttonEl11.textContent.trim(), expectedButtonLabelGeneric);
             });
 
-            it('... should toggle first panel body on click on first header', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 2, 2);
+            it('... should toggle first item body on click on first header', () => {
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 2, 2);
 
                 // Header
                 const header0Des = getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id}-header.accordion-header`,
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -250,48 +258,59 @@ describe('TextcriticsListComponent (DONE)', () => {
                 const btnDes = getAndExpectDebugElementByCss(header0Des[0], 'div.accordion-button > button.btn', 2, 2);
                 const btnEl = btnDes[0].nativeElement;
 
-                // Panel body is closed
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-body`,
-                    0,
-                    0,
+                // Item body is closed
+                let itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    1,
+                    1,
                     'collapsed'
                 );
+                let itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'collapse');
 
                 // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-body`,
+                // Item body is open
+                itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
                     1,
                     1,
                     'open'
                 );
+                itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'show');
 
                 // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-body`,
-                    0,
-                    0,
+                // Item body is closed
+                itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[0],
+                    `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-collapse`,
+                    1,
+                    1,
                     'collapsed'
                 );
+                itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'collapse');
             });
 
-            it('... should toggle second panel body on click on second header', () => {
-                // Ngb-accordion panel debug element
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.accordion-item', 2, 2);
+            it('... should toggle second item body on click on second header', () => {
+                // Div.accordion-item
+                const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 2, 2);
 
-                // Header
+                // Header (div.accordion-header)
                 const header1Des = getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -300,38 +319,49 @@ describe('TextcriticsListComponent (DONE)', () => {
                 const btnDes = getAndExpectDebugElementByCss(header1Des[0], 'div.accordion-button > button.btn', 2, 2);
                 const btnEl = btnDes[0].nativeElement;
 
-                // Panel body is closed
-                getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-body`,
-                    0,
-                    0,
+                // Item body is closed
+                let itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    1,
+                    1,
                     'collapsed'
                 );
+                let itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'collapse');
 
                 // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-body`,
+                // Item body is open
+                itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
                     1,
                     1,
                     'open'
                 );
+                itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'show');
 
                 // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-body`,
-                    0,
-                    0,
+                // Item body is closed
+                itemBodyDes = getAndExpectDebugElementByCss(
+                    itemDes[1],
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-collapse`,
+                    1,
+                    1,
                     'collapsed'
                 );
+                itemBodyEl = itemBodyDes[0].nativeElement;
+
+                expectToContain(itemBodyEl.classList, 'collapse');
             });
 
             describe('... with open body', () => {
@@ -339,13 +369,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     // Open bodies
                     const header0Des = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[0].id}-header.accordion-header`,
+                        `div#${expectedTextcriticsData.textcritics[0].id} > div.accordion-header`,
                         1,
                         1
                     );
                     const header1Des = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                         1,
                         1
                     );
@@ -372,11 +402,11 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no panel body with div and paragraphs if description array is empty', () => {
+                it('... should contain no item body with div and paragraphs if description array is empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[0];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${textcritics.id} > div.accordion-body`,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
                         1,
                         1,
                         'open'
@@ -385,11 +415,11 @@ describe('TextcriticsListComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
                 });
 
-                it('... should contain panel body with as many paragraphs in first div as textcritics.description if description array is not empty', () => {
+                it('... should contain item body with as many paragraphs in first div as textcritics.description if description array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${textcritics.id} > div.accordion-body`,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
                         1,
                         1,
                         'open'
@@ -418,11 +448,11 @@ describe('TextcriticsListComponent (DONE)', () => {
                     });
                 });
 
-                it('... should contain panel body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
+                it('... should contain item body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
-                        `div#${textcritics.id} > div.accordion-body`,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
                         1,
                         1,
                         'open'
@@ -464,10 +494,10 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should trigger on event from EditionTkaTableComponent', () => {
-                // Open second panel
+                // Open second item
                 const header1Des = getAndExpectDebugElementByCss(
                     compDe,
-                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -531,10 +561,10 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should trigger on event from EditionTkaTableComponent', () => {
-                // Open second panel
+                // Open second item
                 const header1Des = getAndExpectDebugElementByCss(
                     compDe,
-                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );
@@ -594,10 +624,10 @@ describe('TextcriticsListComponent (DONE)', () => {
             });
 
             it('... should trigger on event from EditionTkaTableComponent', () => {
-                // Open second panel
+                // Open second item
                 const header1Des = getAndExpectDebugElementByCss(
                     compDe,
-                    `div#${expectedTextcriticsData.textcritics[1].id}-header.accordion-header`,
+                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
                     1,
                     1
                 );

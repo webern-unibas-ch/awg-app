@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 
+import { UtilityService } from '@awg-app/core/services';
 import { QueryResult } from '../models';
 
 /**
@@ -51,19 +51,38 @@ export class SelectResultsComponent {
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Public method: isNotEmpty.
+     * Constructor of the SelectResultsComponent.
+     *
+     * It declares a public instance of the UtilityService.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
+     */
+    constructor(public utils: UtilityService) {}
+
+    /**
+     * Public method: isAccordionItemDisabled.
+     *
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
+     *
+     * @returns {boolean} The boolean value of the comparison.
+     */
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen ? true : false;
+    }
+
+    /**
+     * Public method: isQueryResultNotEmpty.
      *
      * It checks if a given queryResult is not empty.
      *
-     * @param {string} queryResult The given queryResult.
+     * @param {QueryResult} queryResult The given queryResult.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isNotEmpty(queryResult: QueryResult): boolean {
-        if (!queryResult.head || !queryResult.body) {
-            return undefined;
-        }
-        return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
+    isQueryResultNotEmpty(queryResult: QueryResult): boolean {
+        const { head, body } = queryResult;
+        return this.utils.isNotEmptyArray(head?.vars) && this.utils.isNotEmptyArray(body?.bindings);
     }
 
     /**
@@ -80,21 +99,5 @@ export class SelectResultsComponent {
             return;
         }
         this.clickedTableRequest.emit(uri);
-    }
-
-    /**
-     * Public method: preventPanelCollapseOnFullscreen.
-     *
-     * It prevents the given panel event from being collapsed in fullscreen mode.
-     *
-     * @returns {void} Prevents the panel collapse.
-     */
-    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
-        if (!$event) {
-            return;
-        }
-        if (this.isFullscreen && $event.nextState === false) {
-            $event.preventDefault();
-        }
     }
 }

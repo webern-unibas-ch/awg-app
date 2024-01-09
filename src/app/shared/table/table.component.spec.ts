@@ -1,5 +1,5 @@
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import Spy = jasmine.Spy;
@@ -14,6 +14,8 @@ import { BUTTON_CLICK_EVENTS, clickAndAwaitChanges } from '@testing/click-helper
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -163,18 +165,12 @@ describe('TableComponent', () => {
         });
 
         it('... should have faSortUp and faSortDown icons', () => {
-            expect(component.faSortUp).toBeDefined();
-            expect(component.faSortUp).withContext(`should be faSortUp`).toBe(faSortUp);
-
-            expect(component.faSortDown).toBeDefined();
-            expect(component.faSortDown).withContext(`should be faSortDown`).toBe(faSortDown);
+            expectToBe(component.faSortUp, faSortUp);
+            expectToBe(component.faSortDown, faSortDown);
         });
 
         it('... should have tableOptions', () => {
-            expect(component.tableOptions).toBeDefined();
-            expect(component.tableOptions)
-                .withContext(`should equal ${expectedTableOptions}`)
-                .toEqual(expectedTableOptions);
+            expectToEqual(component.tableOptions, expectedTableOptions);
         });
 
         it('... should not have called initTable()', () => {
@@ -220,22 +216,15 @@ describe('TableComponent', () => {
         });
 
         it('... should have tableTitle', () => {
-            expect(component.tableTitle).toBeDefined();
-            expect(component.tableTitle).withContext(`should be ${expectedTableTitle}`).toBe(expectedTableTitle);
+            expectToBe(component.tableTitle, expectedTableTitle);
         });
 
         it('... should have headerInputData', () => {
-            expect(component.headerInputData).toBeDefined();
-            expect(component.headerInputData)
-                .withContext(`should equal ${expectedHeaderInputData}`)
-                .toEqual(expectedHeaderInputData);
+            expectToEqual(component.headerInputData, expectedHeaderInputData);
         });
 
         it('... should have rowInputData', () => {
-            expect(component.rowInputData).toBeDefined();
-            expect(component.rowInputData)
-                .withContext(`should equal ${expectedRowInputData}`)
-                .toEqual(expectedRowInputData);
+            expectToEqual(component.rowInputData, expectedRowInputData);
         });
 
         describe('#initTable()', () => {
@@ -251,15 +240,8 @@ describe('TableComponent', () => {
                 it('... with headerInputData and rowInputData', waitForAsync(() => {
                     expect(component.tableData).toBeDefined();
 
-                    expect(component.tableData.header).toBeDefined();
-                    expect(component.tableData.header)
-                        .withContext(`should equal ${expectedHeaderInputData}`)
-                        .toEqual(expectedHeaderInputData);
-
-                    expect(component.tableData.filteredRows).toBeDefined();
-                    expect(component.tableData.filteredRows)
-                        .withContext(`should equal ${expectedRowInputData}`)
-                        .toEqual(expectedRowInputData);
+                    expectToEqual(component.tableData.header, expectedHeaderInputData);
+                    expectToEqual(component.tableData.filteredRows, expectedRowInputData);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
                     expectAsync(lastValueFrom(component.tableData.paginatedRows$))
@@ -282,11 +264,8 @@ describe('TableComponent', () => {
 
                         expect(component.tableData).toBeDefined();
 
-                        expect(component.tableData.header).toBeDefined();
-                        expect(component.tableData.header).withContext(`should equal []`).toEqual([]);
-
-                        expect(component.tableData.filteredRows).toBeDefined();
-                        expect(component.tableData.filteredRows).withContext(`should equal []`).toEqual([]);
+                        expectToEqual(component.tableData.header, []);
+                        expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
                         expectAsync(lastValueFrom(component.tableData.paginatedRows$))
@@ -308,11 +287,8 @@ describe('TableComponent', () => {
 
                         expect(component.tableData).toBeDefined();
 
-                        expect(component.tableData.header).toBeDefined();
-                        expect(component.tableData.header).withContext(`should equal []`).toEqual([]);
-
-                        expect(component.tableData.filteredRows).toBeDefined();
-                        expect(component.tableData.filteredRows).withContext(`should equal []`).toEqual([]);
+                        expectToEqual(component.tableData.header, []);
+                        expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
                         expectAsync(lastValueFrom(component.tableData.paginatedRows$))
@@ -334,11 +310,8 @@ describe('TableComponent', () => {
 
                         expect(component.tableData).toBeDefined();
 
-                        expect(component.tableData.header).toBeDefined();
-                        expect(component.tableData.header).withContext(`should equal []`).toEqual([]);
-
-                        expect(component.tableData.filteredRows).toBeDefined();
-                        expect(component.tableData.filteredRows).withContext(`should equal []`).toEqual([]);
+                        expectToEqual(component.tableData.header, []);
+                        expectToEqual(component.tableData.filteredRows, []);
 
                         expect(component.tableData.paginatedRows$).toBeDefined();
                         expectAsync(lastValueFrom(component.tableData.paginatedRows$))
@@ -354,17 +327,11 @@ describe('TableComponent', () => {
             });
 
             it('... should set paginatorOptions', () => {
-                expect(component.paginatorOptions).toBeDefined();
-                expect(component.paginatorOptions)
-                    .withContext(`should equal ${expectedPaginatorOptions}`)
-                    .toEqual(expectedPaginatorOptions);
+                expectToEqual(component.paginatorOptions, expectedPaginatorOptions);
             });
 
             it('... should set paginatorOptions.collectionSize to tableData.rowInputData.length', () => {
-                expect(component.paginatorOptions.collectionSize).toBeDefined();
-                expect(component.paginatorOptions.collectionSize)
-                    .withContext(`should equal ${expectedPaginatorOptions.collectionSize}`)
-                    .toEqual(expectedPaginatorOptions.collectionSize);
+                expectToEqual(component.paginatorOptions.collectionSize, expectedPaginatorOptions.collectionSize);
             });
 
             it('... should set paginatorOptions.collectionSize to 0 if tableData.rowInputData is not given', () => {
@@ -372,8 +339,7 @@ describe('TableComponent', () => {
                 component.initTable();
                 fixture.detectChanges();
 
-                expect(component.paginatorOptions.collectionSize).toBeDefined();
-                expect(component.paginatorOptions.collectionSize).withContext(`should equal 0`).toEqual(0);
+                expectToEqual(component.paginatorOptions.collectionSize, 0);
             });
 
             it('... should trigger onSort()', () => {
@@ -395,7 +361,7 @@ describe('TableComponent', () => {
             });
 
             it('... should trigger on change of searchFilter in input', async () => {
-                await fixture.whenStable(); // Needed to wait for the ngModelto be initialized, cf. https://github.com/angular/angular/issues/22606#issuecomment-514760743
+                await fixture.whenStable(); // Needed to wait for the ngModel to be initialized, cf. https://github.com/angular/angular/issues/22606#issuecomment-514760743
 
                 const expectedSearchFilter = 'test';
                 const otherSearchFilter = 'other';
@@ -558,10 +524,8 @@ describe('TableComponent', () => {
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
-                    expect(component.tableData.filteredRows.length).withContext(`should be 1`).toBe(1);
-                    expect(component.tableData.filteredRows)
-                        .withContext(`should equal ${[expectedRowInputData.at(0)]}`)
-                        .toEqual([expectedRowInputData.at(0)]);
+                    expectToEqual(component.tableData.filteredRows.length, 1);
+                    expectToEqual(component.tableData.filteredRows, [expectedRowInputData.at(0)]);
                 });
 
                 it('... by non-matching searchFilter (empty array)', async () => {
@@ -570,8 +534,8 @@ describe('TableComponent', () => {
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
-                    expect(component.tableData.filteredRows.length).withContext(`should be 0`).toBe(0);
-                    expect(component.tableData.filteredRows).withContext(`should equal empty array`).toEqual([]);
+                    expectToEqual(component.tableData.filteredRows.length, 0);
+                    expectToEqual(component.tableData.filteredRows, []);
                 });
 
                 it('... if a rowEntry is null or undefined', async () => {
@@ -594,12 +558,8 @@ describe('TableComponent', () => {
                     fixture.detectChanges();
 
                     expect(component.tableData).toBeDefined();
-                    expect(component.tableData.filteredRows.length)
-                        .withContext(`should be ${expectedFilteredRows.length}`)
-                        .toBe(expectedFilteredRows.length);
-                    expect(component.tableData.filteredRows)
-                        .withContext(`should equal ${expectedFilteredRows}`)
-                        .toEqual(expectedFilteredRows);
+                    expectToEqual(component.tableData.filteredRows.length, expectedFilteredRows.length);
+                    expectToEqual(component.tableData.filteredRows, expectedFilteredRows);
                 });
 
                 it('... if table data is empty (empty array)', async () => {
@@ -610,11 +570,9 @@ describe('TableComponent', () => {
 
                     expect(component.tableData).toBeDefined();
 
-                    expect(component.tableData.header).toBeDefined();
-                    expect(component.tableData.header).withContext(`should equal []`).toEqual([]);
+                    expectToEqual(component.tableData.header, []);
 
-                    expect(component.tableData.filteredRows).toBeDefined();
-                    expect(component.tableData.filteredRows).withContext(`should equal []`).toEqual([]);
+                    expectToEqual(component.tableData.filteredRows, []);
 
                     expect(component.tableData.paginatedRows$).toBeDefined();
                     await expectAsync(lastValueFrom(component.tableData.paginatedRows$))
@@ -700,56 +658,50 @@ describe('TableComponent', () => {
             }));
 
             it('... should set tableOptions.selectedKey to the given key', () => {
-                expect(component.tableOptions.selectedKey).toBeDefined();
-                expect(component.tableOptions.selectedKey)
-                    .withContext(`should equal ${expectedHeaderInputData[0]}`)
-                    .toBe(expectedHeaderInputData[0]);
+                expectToBe(component.tableOptions.selectedKey, expectedHeaderInputData[0]);
 
                 component.onSort('key');
 
-                expect(component.tableOptions.selectedKey).toBe('key');
+                expectToBe(component.tableOptions.selectedKey, 'key');
             });
 
             it('... should set tableOptions.sortKey', () => {
-                expect(component.tableOptions.sortKey).toBeDefined();
-                expect(component.tableOptions.sortKey)
-                    .withContext(`should equal ${expectedHeaderInputData[0] + '.label'}`)
-                    .toBe(expectedHeaderInputData[0] + '.label');
+                expectToBe(component.tableOptions.sortKey, expectedHeaderInputData[0] + '.label');
 
                 component.onSort('key');
 
-                expect(component.tableOptions.sortKey).toBe('key.label');
+                expectToBe(component.tableOptions.sortKey, 'key.label');
             });
 
             describe('should set tableOptions.reverse', () => {
                 it('... to false by default', () => {
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
                 });
 
                 it('... to false when called with different keys', () => {
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
 
                     component.onSort('key');
 
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
 
                     component.onSort('key2');
 
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
                 });
 
                 it('... toggling false/true if key equals selected key', () => {
                     component.onSort('key');
 
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
 
                     component.onSort('key');
 
-                    expect(component.tableOptions.reverse).toBe(true);
+                    expectToBe(component.tableOptions.reverse, true);
 
                     component.onSort('key');
 
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
                 });
             });
 
@@ -757,10 +709,7 @@ describe('TableComponent', () => {
                 it('... to faSortDown by default', () => {
                     component.onSort('key');
 
-                    expect(component.tableOptions.sortIcon).toBeDefined();
-                    expect(component.tableOptions.sortIcon)
-                        .withContext(`should equal ${faSortDown}`)
-                        .toEqual(faSortDown);
+                    expectToEqual(component.tableOptions.sortIcon, faSortDown);
                 });
 
                 it('... to faSortUp if tableOptions.reverse is true', () => {
@@ -768,47 +717,38 @@ describe('TableComponent', () => {
                     component.onSort('key');
                     fixture.detectChanges();
 
-                    expect(component.tableOptions.sortIcon).toBeDefined();
-                    expect(component.tableOptions.sortIcon).withContext(`should equal ${faSortUp}`).toEqual(faSortUp);
+                    expectToEqual(component.tableOptions.sortIcon, faSortUp);
                 });
 
                 it('... toggling faSortDown/faSortUp if key equals selected key', () => {
                     component.onSort('key');
 
-                    expect(component.tableOptions.sortIcon).toBeDefined();
-                    expect(component.tableOptions.sortIcon)
-                        .withContext(`should equal ${faSortDown}`)
-                        .toEqual(faSortDown);
+                    expectToEqual(component.tableOptions.sortIcon, faSortDown);
 
                     component.onSort('key');
 
-                    expect(component.tableOptions.sortIcon).toBeDefined();
-                    expect(component.tableOptions.sortIcon).withContext(`should equal ${faSortUp}`).toEqual(faSortUp);
+                    expectToEqual(component.tableOptions.sortIcon, faSortUp);
 
                     component.onSort('key');
 
-                    expect(component.tableOptions.sortIcon).toBeDefined();
-                    expect(component.tableOptions.sortIcon)
-                        .withContext(`should equal ${faSortDown}`)
-                        .toEqual(faSortDown);
+                    expectToEqual(component.tableOptions.sortIcon, faSortDown);
                 });
             });
 
             describe('should set tableOptions.reverse ', () => {
                 it('... to false by default', () => {
-                    expect(component.tableOptions.reverse).toBeDefined();
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
                 });
                 it('... toggling true/false if tableOptions.selectedKey is the same as given key', () => {
                     component.tableOptions.selectedKey = expectedHeaderInputData[0];
 
                     component.onSort(expectedHeaderInputData[0]);
 
-                    expect(component.tableOptions.reverse).toBe(true);
+                    expectToBe(component.tableOptions.reverse, true);
 
                     component.onSort(expectedHeaderInputData[0]);
 
-                    expect(component.tableOptions.reverse).toBe(false);
+                    expectToBe(component.tableOptions.reverse, false);
                 });
             });
 
@@ -816,16 +756,11 @@ describe('TableComponent', () => {
                 component.onSort(undefined);
                 fixture.detectChanges();
 
-                expect(component.tableOptions.selectedKey).toBeDefined();
-                expect(component.tableOptions.selectedKey).toBe(expectedHeaderInputData[0]);
-                expect(component.tableOptions.sortKey).toBeDefined();
-                expect(component.tableOptions.sortKey).toBe(expectedHeaderInputData[0] + '.label');
-                expect(component.tableOptions.sortIcon).toBeDefined();
-                expect(component.tableOptions.sortIcon).toEqual(faSortDown);
-                expect(component.tableOptions.reverse).toBeDefined();
-                expect(component.tableOptions.reverse).toBe(false);
-                expect(component.tableOptions.isCaseInsensitive).toBeDefined();
-                expect(component.tableOptions.isCaseInsensitive).toBe(false);
+                expectToBe(component.tableOptions.selectedKey, expectedHeaderInputData[0]);
+                expectToBe(component.tableOptions.sortKey, expectedHeaderInputData[0] + '.label');
+                expectToEqual(component.tableOptions.sortIcon, faSortDown);
+                expectToBe(component.tableOptions.reverse, false);
+                expectToBe(component.tableOptions.isCaseInsensitive, false);
             });
         });
 
@@ -951,23 +886,13 @@ describe('TableComponent', () => {
                     de => de.injector.get(TablePaginationStubComponent) as TablePaginationStubComponent
                 );
 
-                expect(tablePaginationCmps.length).withContext('should have 2 pagination components').toBe(2);
+                expectToBe(tablePaginationCmps.length, 2);
 
-                expect(tablePaginationCmps[0].collectionSize).toBeTruthy();
-                expect(tablePaginationCmps[0].collectionSize)
-                    .withContext(`should equal ${expectedRowInputData.length}`)
-                    .toEqual(expectedRowInputData.length);
+                expectToEqual(tablePaginationCmps[0].collectionSize, expectedRowInputData.length);
+                expectToEqual(tablePaginationCmps[1].collectionSize, expectedRowInputData.length);
 
-                expect(tablePaginationCmps[1].collectionSize).toBeTruthy();
-                expect(tablePaginationCmps[1].collectionSize)
-                    .withContext(`should equal ${expectedRowInputData.length}`)
-                    .toEqual(expectedRowInputData.length);
-
-                expect(tablePaginationCmps[0].page).toBeTruthy();
-                expect(tablePaginationCmps[0].page).withContext(`should be 1`).toBe(1);
-
-                expect(tablePaginationCmps[1].page).toBeTruthy();
-                expect(tablePaginationCmps[1].page).withContext(`should be 1`).toBe(1);
+                expectToBe(tablePaginationCmps[0].page, 1);
+                expectToBe(tablePaginationCmps[1].page, 1);
             });
 
             it('... should display TwelveToneSpinnerComponent (stubbed) while loading (paginatedRows are not available)', () => {

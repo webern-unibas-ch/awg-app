@@ -182,19 +182,23 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the first paragraph displaying a siglum (bold) without an addendum', () => {
-                    const expectedSiglum =
-                        expectedSourceDescriptionListData.sources[0].siglum +
-                        expectedSourceDescriptionListData.sources[0].siglumAddendum;
+                    const expectedSiglum = expectedSourceDescriptionListData.sources[0].siglum;
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
 
                     const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
-
                     const pEl = pDes[0].nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-siglum');
+                    const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
+                    const siglumDes = spanDes[0];
+                    const siglumEl = siglumDes.nativeElement;
+
+                    expect(pEl).toHaveClass('awg-source-description-siglum-container');
                     expect(pEl).toHaveClass('bold');
                     expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
+
+                    expect(siglumEl).toHaveClass('awg-source-description-siglum');
+                    expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
                 });
 
                 it('... the second paragraph displaying the source type', () => {
@@ -240,27 +244,30 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the first paragraph displaying a siglum (bold) with addendum', () => {
-                    const expectedSiglum =
-                        expectedSourceDescriptionListData.sources[1].siglum +
-                        expectedSourceDescriptionListData.sources[1].siglumAddendum;
+                    const expectedSiglum = expectedSourceDescriptionListData.sources[1].siglum;
+                    const expectedAddendum = expectedSourceDescriptionListData.sources[1].siglumAddendum;
 
                     const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
 
                     const pDes = getAndExpectDebugElementByCss(divDes[1], 'p', 2, 2);
                     const pEl = pDes[0].nativeElement;
 
-                    const addendumDes = getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
-                    const addendumEl = addendumDes[0].nativeElement;
+                    const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
+                    const siglumDes = spanDes[0];
+                    const siglumEl = siglumDes.nativeElement;
 
-                    expect(pEl).toHaveClass('awg-source-description-siglum');
+                    const addendumDes = spanDes[1];
+                    const addendumEl = addendumDes.nativeElement;
+
+                    expect(pEl).toHaveClass('awg-source-description-siglum-container');
                     expect(pEl).toHaveClass('bold');
-                    expectToBe(pEl.textContent.trim(), expectedSiglum.trim());
+                    expectToBe(pEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                    expect(siglumEl).toHaveClass('awg-source-description-siglum');
+                    expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
 
                     expect(addendumEl).toHaveClass('awg-source-description-siglum-addendum');
-                    expectToBe(
-                        addendumEl.textContent.trim(),
-                        expectedSourceDescriptionListData.sources[1].siglumAddendum
-                    );
+                    expectToBe(addendumEl.textContent.trim(), expectedAddendum.trim());
                 });
 
                 it('... the second paragraph displaying the source location', () => {
@@ -733,7 +740,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         // Process HTML expression of expected text content
                         const expectedHtmlTextContent = mockDocument.createElement('a');
                         expectedHtmlTextContent.innerHTML =
-                            '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">2<sup class="awg-source-description-content-item-folio-side">v</sup></span></span><span class="awg-source-description-content-item-folio-description">&nbsp;Test item 4 without item</span>';
+                            '<span>Bl.&nbsp;<span class="awg-source-description-content-item-folio-number">2<sup class="awg-source-description-content-item-folio-side">v</sup></span></span><span class="awg-source-description-content-item-folio-description">&nbsp;&nbsp;Test item 4 without item</span>';
 
                         expectToBe(folioEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                     });

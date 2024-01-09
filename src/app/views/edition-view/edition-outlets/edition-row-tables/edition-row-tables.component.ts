@@ -30,7 +30,10 @@ export class EditionRowTablesComponent implements OnDestroy, OnInit {
      * @param {EditionService} editionService Instance of the EditionService.
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      */
-    constructor(private editionService: EditionService, private editionDataService: EditionDataService) {}
+    constructor(
+        private editionService: EditionService,
+        private editionDataService: EditionDataService
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.

@@ -1,0 +1,13 @@
+.custom-header {
+    &::after {
+        content: none;
+    }
+
+    &.accordion-button {
+        padding: 0.8rem !important;
+
+        > #awg-graph-visualizer-sparql-query-toggle {
+            text-decoration: none;
+        }
+    }
+}
