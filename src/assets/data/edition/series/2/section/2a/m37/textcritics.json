@@ -26,7 +26,7 @@
                     "measure": "4",
                     "system": "18",
                     "position": "1. Note",
-                    "comment": "Oberstimmenschicht: a überschreibt [#]gis."
+                    "comment": "Oberstimmenschicht: a überschreibt {{ref.getGlyph('[#]')}}gis."
                 }
             ]
         },
@@ -39,7 +39,7 @@
             "comments": [
                 {
                     "svgGroupId": "g56588",
-                    "measure": "9",
+                    "measure": "2",
                     "system": "8",
                     "position": "2/4",
                     "comment": "H/f/g überschreibt d/h."
@@ -85,7 +85,7 @@
                     "system": "8",
                     "position": "2/4",
                     "comment": "A/f überschreibt cis/a."
-                },                
+                },
                 {
                     "svgGroupId": "g8097",
                     "measure": "7",
@@ -105,10 +105,10 @@
                     "measure": "12",
                     "system": "10",
                     "position": "1. Note",
-                    "comment": "Viertelnote [b]b<sup>2</sup> überschreibt Halbe Note [b]b<sup>2</sup>."
+                    "comment": "Viertelnote {{ref.getGlyph('[b]')}}b<sup>2</sup> überschreibt Halbe Note {{ref.getGlyph('[b]')}}b<sup>2</sup>."
                 },
                 {
-                    "svgGroupId": "g0298",
+                    "svgGroupId": "g10298",
                     "measure": "12",
                     "system": "10",
                     "position": "2. Note",
@@ -119,7 +119,7 @@
                     "measure": "13",
                     "system": "10",
                     "position": "2/4",
-                    "comment": "[[#]]cis<sup>1</sup>/[#]cis<sup>2</sup> überschreibt e<sup>1</sup>/e<sup>2</sup>."
+                    "comment": "{{ref.getGlyph('[#]')}}cis<sup>1</sup>/{{ref.getGlyph('[#]')}}cis<sup>2</sup> überschreibt e<sup>1</sup>/e<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g11767",
@@ -136,18 +136,18 @@
                     "comment": "e<sup>1</sup> überschreibt g<sup>1</sup>."
                 },
                 {
-                    "svgGroupId": "g30694",
+                    "svgGroupId": "g20694",
                     "measure": "18",
                     "system": "13",
                     "position": "3/4",
-                    "comment": "[a] überschreibt [#]."
+                    "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[#]')}}."
                 },
                 {
                     "svgGroupId": "g21427",
                     "measure": "19",
                     "system": "13",
                     "position": "1. Note",
-                    "comment": "Punktierte Viertelnote [#]gis<sup>1</sup> der Oberstimmenschicht überschreibt Halbe Note [#]gis<sup>1</sup> der Unterstimmenschicht."
+                    "comment": "Punktierte Viertelnote {{ref.getGlyph('[#]')}}gis<sup>1</sup> der Oberstimmenschicht überschreibt Halbe Note {{ref.getGlyph('[#]')}}gis<sup>1</sup> der Unterstimmenschicht."
                 },
                 {
                     "svgGroupId": "g22161",
@@ -174,7 +174,7 @@
                 },
                 {
                     "svgGroupId": "g4643",
-                    "measure": "25",
+                    "measure": "10",
                     "system": "Klav.",
                     "position": "(2/4)",
                     "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in B verschobenen Untersatzes weggelassen.###Grafik###."
@@ -193,7 +193,7 @@
                     "position": "1. Note",
                     "comment": "g korrigiert zu a mit Blick auf harmonischen Kontext."
                 }
-            ]    
+            ]
         }
     ]
 }
