@@ -118,13 +118,13 @@
         "zone.js": "~0.14.2"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "^17.0.7",
+        "@angular-devkit/build-angular": "^17.0.9",
         "@angular-eslint/builder": "^17.1.1",
         "@angular-eslint/eslint-plugin": "^17.1.1",
         "@angular-eslint/eslint-plugin-template": "^17.1.1",
         "@angular-eslint/schematics": "^17.1.1",
         "@angular-eslint/template-parser": "^17.1.1",
-        "@angular/cli": "^17.0.7",
+        "@angular/cli": "^17.0.9",
         "@angular/compiler-cli": "^17.0.8",
         "@commitlint/cli": "^18.4.4",
         "@commitlint/config-angular": "^18.4.4",
@@ -132,8 +132,8 @@
         "@types/d3": "^7.4.3",
         "@types/jasmine": "~5.1.4",
         "@types/node": "^18.19.3",
-        "@typescript-eslint/eslint-plugin": "^6.15.0",
-        "@typescript-eslint/parser": "^6.15.0",
+        "@typescript-eslint/eslint-plugin": "^6.18.1",
+        "@typescript-eslint/parser": "^6.18.1",
         "angular-cli-ghpages": "^1.0.7",
         "conventional-recommended-bump": "^9.0.0",
         "eslint": "^8.56.0",
@@ -141,7 +141,7 @@
         "eslint-plugin-angular": "^4.1.0",
         "eslint-plugin-deprecation": "^2.0.0",
         "eslint-plugin-import": "^2.29.1",
-        "eslint-plugin-jsdoc": "^46.9.1",
+        "eslint-plugin-jsdoc": "^48.0.2",
         "eslint-plugin-prettier": "^5.1.2",
         "gzipper": "^7.2.0",
         "husky": "^8.0.3",
@@ -159,7 +159,7 @@
         "webpack-bundle-analyzer": "^4.10.1"
     },
     "engines": {
-        "node": ">= 18.13.0",
+        "node": ">= 18.19.0",
         "npm": ">= 8.19.3",
         "yarn": "^1.22.0"
     }
