@@ -5,6 +5,12 @@
             "label": "M 37 Sk1",
             "description": [
                 "<strong>M 37 Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "TODO",
+                    "linkTo": "M_37_Sk2"
+                }
             ]
         },
         {
@@ -27,6 +33,12 @@
                     "system": "18",
                     "position": "1. Note",
                     "comment": "Oberstimmenschicht: a überschreibt {{ref.getGlyph('[#]')}}gis."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g17377",
+                    "linkTo": "M_37_Sk1"
                 }
             ]
         },
