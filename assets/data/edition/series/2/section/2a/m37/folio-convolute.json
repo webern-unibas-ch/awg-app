@@ -1,0 +1,152 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "id": "M_37_Sk1",
+                            "sigle": "M 37 Sk1",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_37_Sk2",
+                            "sigle": "M 37 Sk2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "id": "M_37_Sk3a",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 1–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_37_Sk3b",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 7–14",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "id": "M_37_Sk3c",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 15–21",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        }
+    ]
+}
