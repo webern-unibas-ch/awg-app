@@ -30,6 +30,13 @@ export class EditionInfoComponent {
     readonly EDITION_COMPLEX_M34 = EDITION_COMPLEXES.M34;
 
     /**
+     * Readonly variable: EDITION_COMPLEX_M37.
+     *
+     * It keeps the edition complex M 37.
+     */
+    readonly EDITION_COMPLEX_M37 = EDITION_COMPLEXES.M37;
+
+    /**
      * Readonly variable: EDITION_COMPLEX_OP12.
      *
      * It keeps the edition complex op. 12.
