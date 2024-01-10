@@ -7,6 +7,9 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToContain,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -34,6 +37,25 @@ import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-c
 import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
+
+/** Helper function */
+function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
+    const baseLinks = [
+        ['/home'],
+        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route],
+        [EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route],
+    ];
+
+    const editionLinks = editionComplexes.flatMap(complex => [
+        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_INTRO.route],
+        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_SHEETS.route],
+        [complex.baseRoute, EDITION_ROUTE_CONSTANTS.EDITION_REPORT.route],
+    ]);
+
+    const otherLinks = [['/structure'], ['/data'], ['/contact']];
+
+    return [...baseLinks, ...editionLinks, ...otherLinks];
+}
 
 describe('NavbarComponent (DONE)', () => {
     let component: NavbarComponent;
@@ -63,6 +85,8 @@ describe('NavbarComponent (DONE)', () => {
 
     let expectedEditionComplexes: EditionComplex[];
     let expectedSelectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
+    let expectedOrderOfRouterlinks: string[][];
+
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     // global NgbConfigModule
@@ -100,13 +124,16 @@ describe('NavbarComponent (DONE)', () => {
 
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
+
         expectedEditionComplexes = [
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M30,
             EDITION_COMPLEXES.M34,
+            EDITION_COMPLEXES.M37,
         ];
         expectedSelectedEditionComplex = expectedEditionComplexes[0];
+        expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
 
         expectedContactIcon = faEnvelope;
         expectedEditionIcon = faFileAlt;
@@ -140,42 +167,31 @@ describe('NavbarComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should have fontawesome icons', () => {
-            expect(component.faEnvelope).toBeTruthy();
-            expect(component.faEnvelope)
-                .withContext(`should equal ${expectedContactIcon}`)
-                .toEqual(expectedContactIcon);
+            expectToEqual(component.faEnvelope, expectedContactIcon);
 
-            expect(component.faFileAlt).toBeTruthy();
-            expect(component.faFileAlt).withContext(`should equal ${expectedEditionIcon}`).toEqual(expectedEditionIcon);
+            expectToEqual(component.faFileAlt, expectedEditionIcon);
 
-            expect(component.faHome).toBeTruthy();
-            expect(component.faHome).withContext(`should equal ${expectedHomeIcon}`).toEqual(expectedHomeIcon);
+            expectToEqual(component.faHome, expectedHomeIcon);
 
-            expect(component.faNetworkWired).toBeTruthy();
-            expect(component.faNetworkWired)
-                .withContext(`should equal ${expectedStructureIcon}`)
-                .toEqual(expectedStructureIcon);
+            expectToEqual(component.faNetworkWired, expectedStructureIcon);
 
-            expect(component.faSearch).toBeTruthy();
-            expect(component.faSearch).withContext(`should equal ${expectedSearchIcon}`).toEqual(expectedSearchIcon);
+            expectToEqual(component.faSearch, expectedSearchIcon);
         });
 
         it('... should have `isCollapsed = true`', () => {
-            expect(component.isCollapsed).withContext('should be true').toBeTrue();
+            expect(component.isCollapsed).toBeTrue();
         });
 
         it('... should have `DISPLAYED_EDITION_COMPLEXES`', () => {
-            expect(component.DISPLAYED_EDITION_COMPLEXES).toBeTruthy();
-            expect(component.DISPLAYED_EDITION_COMPLEXES)
-                .withContext(`should equal ${expectedEditionComplexes}`)
-                .toEqual(expectedEditionComplexes);
+            expectToEqual(component.DISPLAYED_EDITION_COMPLEXES, expectedEditionComplexes);
+        });
+
+        it('... should have as many `DISPLAYED_EDITION_COMPLEXES` as there are complexes in the array', () => {
+            expectToEqual(component.DISPLAYED_EDITION_COMPLEXES.length, expectedEditionComplexes.length);
         });
 
         it('... should have `editionRouteConstants`', () => {
-            expect(component.editionRouteConstants).toBeDefined();
-            expect(component.editionRouteConstants)
-                .withContext(`should be ${expectedEditionRouteConstants}`)
-                .toBe(expectedEditionRouteConstants);
+            expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
         it('... should not have `pageMetaData`', () => {
@@ -203,11 +219,11 @@ describe('NavbarComponent (DONE)', () => {
                 const navbarBrandEl1 = navbarBrandDes[0].nativeElement;
                 const navbarBrandEl2 = navbarBrandDes[1].nativeElement;
 
-                expect(navbarBrandEl1.classList).withContext('should contain `d-sm-none`').toContain('d-sm-none');
-                expect(navbarBrandEl1.classList).withContext('should contain `d-md-inline`').toContain('d-md-inline');
+                expectToContain(navbarBrandEl1.classList, 'd-sm-none');
+                expectToContain(navbarBrandEl1.classList, 'd-md-inline');
 
-                expect(navbarBrandEl2.classList).withContext('should contain `d-sm-inline`').toContain('d-sm-inline');
-                expect(navbarBrandEl2.classList).withContext('should contain `d-md-none`').toContain('d-md-none');
+                expectToContain(navbarBrandEl2.classList, 'd-sm-inline');
+                expectToContain(navbarBrandEl2.classList, 'd-md-none');
             });
 
             it('... should not render awg project url in navbar-brand link yet', () => {
@@ -215,11 +231,8 @@ describe('NavbarComponent (DONE)', () => {
                 const urlEl1 = urlDes[0].nativeElement;
                 const urlEl2 = urlDes[1].nativeElement;
 
-                expect(urlEl1.href).toBeDefined();
-                expect(urlEl1.href).withContext('should be empty string').toBe('');
-
-                expect(urlEl2.href).toBeDefined();
-                expect(urlEl2.href).withContext('should be empty string').toBe('');
+                expectToBe(urlEl1.href, '');
+                expectToBe(urlEl2.href, '');
             });
 
             it('... should contain 1 toggle button in navbar', () => {
@@ -251,12 +264,10 @@ describe('NavbarComponent (DONE)', () => {
                 const navItemLinkSpanEl1 = navItemLinkSpanDe[0].nativeElement;
                 const navItemLinkSpanEl2 = navItemLinkSpanDe[1].nativeElement;
 
-                expect(navItemLinkSpanEl1.textContent).toBeTruthy();
-                expect(navItemLinkSpanEl1.textContent).withContext('should be `awg-app`').toBe('awg-app');
+                expectToBe(navItemLinkSpanEl1.textContent, 'awg-app');
 
-                expect(navItemLinkSpanEl2.textContent).toBeTruthy();
-                expect(navItemLinkSpanEl2.textContent).withContext('should be `(current)`').toBe('(current)');
-                expect(navItemLinkSpanEl2.classList).withContext('should contain `sr-only`').toContain('sr-only');
+                expectToBe(navItemLinkSpanEl2.textContent, '(current)');
+                expectToContain(navItemLinkSpanEl2.classList, 'sr-only');
 
                 getAndExpectDebugElementByCss(navItemDe[0], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -266,8 +277,7 @@ describe('NavbarComponent (DONE)', () => {
                 const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link > span', 1, 1);
                 const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
 
-                expect(navItemLinkSpanEl.textContent).toBeTruthy();
-                expect(navItemLinkSpanEl.textContent).withContext('should be `Edition`').toBe('Edition');
+                expectToBe(navItemLinkSpanEl.textContent, 'Edition');
 
                 getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -277,8 +287,7 @@ describe('NavbarComponent (DONE)', () => {
                 const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[2], 'a.nav-link > span', 1, 1);
                 const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
 
-                expect(navItemLinkSpanEl.textContent).toBeTruthy();
-                expect(navItemLinkSpanEl.textContent).withContext('should be `Strukturmodell`').toBe('Strukturmodell');
+                expectToBe(navItemLinkSpanEl.textContent, 'Strukturmodell');
 
                 getAndExpectDebugElementByCss(navItemDe[2], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -288,8 +297,7 @@ describe('NavbarComponent (DONE)', () => {
                 const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[3], 'a.nav-link > span', 1, 1);
                 const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
 
-                expect(navItemLinkSpanEl.textContent).toBeTruthy();
-                expect(navItemLinkSpanEl.textContent).withContext('should be `Suche`').toBe('Suche');
+                expectToBe(navItemLinkSpanEl.textContent, 'Suche');
 
                 getAndExpectDebugElementByCss(navItemDe[3], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -299,8 +307,7 @@ describe('NavbarComponent (DONE)', () => {
                 const navItemLinkSpanDe = getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > span', 1, 1);
                 const navItemLinkSpanEl = navItemLinkSpanDe[0].nativeElement;
 
-                expect(navItemLinkSpanEl.textContent).toBeTruthy();
-                expect(navItemLinkSpanEl.textContent).withContext('should be `Kontakt`').toBe('Kontakt');
+                expectToBe(navItemLinkSpanEl.textContent, 'Kontakt');
 
                 getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > fa-icon', 1, 1);
             });
@@ -396,15 +403,8 @@ describe('NavbarComponent (DONE)', () => {
                 const urlEl1 = urlDes[0].nativeElement;
                 const urlEl2 = urlDes[1].nativeElement;
 
-                expect(urlEl1.href).toBeDefined();
-                expect(urlEl1.href)
-                    .withContext(`should be ${expectedPageMetaData.awgProjectUrl}`)
-                    .toBe(expectedPageMetaData.awgProjectUrl);
-
-                expect(urlEl2.href).toBeDefined();
-                expect(urlEl2.href)
-                    .withContext(`should be ${expectedPageMetaData.awgProjectUrl}`)
-                    .toBe(expectedPageMetaData.awgProjectUrl);
+                expectToBe(urlEl1.href, expectedPageMetaData.awgProjectUrl);
+                expectToBe(urlEl2.href, expectedPageMetaData.awgProjectUrl);
             });
 
             it('... should display home icon in first nav-item link ', () => {
@@ -412,8 +412,7 @@ describe('NavbarComponent (DONE)', () => {
                 const faIconDe = getAndExpectDebugElementByCss(navItemDe[0], 'a.nav-link > fa-icon', 1, 1);
                 const faIconIns = faIconDe[0].componentInstance.icon;
 
-                expect(faIconIns).toBeTruthy();
-                expect(faIconIns).withContext(`should equal ${expectedHomeIcon}`).toEqual(expectedHomeIcon);
+                expectToEqual(faIconIns, expectedHomeIcon);
             });
 
             it('... should display edition icon in second nav-item link ', () => {
@@ -421,8 +420,7 @@ describe('NavbarComponent (DONE)', () => {
                 const faIconDe = getAndExpectDebugElementByCss(navItemDe[1], 'a.nav-link > fa-icon', 1, 1);
                 const faIconIns = faIconDe[0].componentInstance.icon;
 
-                expect(faIconIns).toBeTruthy();
-                expect(faIconIns).withContext(`should equal ${expectedEditionIcon}`).toEqual(expectedEditionIcon);
+                expectToEqual(faIconIns, expectedEditionIcon);
             });
 
             it('... should display structure icon in third nav-item link ', () => {
@@ -430,8 +428,7 @@ describe('NavbarComponent (DONE)', () => {
                 const faIconDe = getAndExpectDebugElementByCss(navItemDe[2], 'a.nav-link > fa-icon', 1, 1);
                 const faIconIns = faIconDe[0].componentInstance.icon;
 
-                expect(faIconIns).toBeTruthy();
-                expect(faIconIns).withContext(`should equal ${expectedStructureIcon}`).toEqual(expectedStructureIcon);
+                expectToEqual(faIconIns, expectedStructureIcon);
             });
 
             it('... should display search icon in fourth nav-item link ', () => {
@@ -439,8 +436,7 @@ describe('NavbarComponent (DONE)', () => {
                 const faIconDe = getAndExpectDebugElementByCss(navItemDe[3], 'a.nav-link > fa-icon', 1, 1);
                 const faIconIns = faIconDe[0].componentInstance.icon;
 
-                expect(faIconIns).toBeTruthy();
-                expect(faIconIns).withContext(`should equal ${expectedSearchIcon}`).toEqual(expectedSearchIcon);
+                expectToEqual(faIconIns, expectedSearchIcon);
             });
 
             it('... should display contact icon in fifth nav-item link ', () => {
@@ -448,8 +444,7 @@ describe('NavbarComponent (DONE)', () => {
                 const faIconDe = getAndExpectDebugElementByCss(navItemDe[4], 'a.nav-link > fa-icon', 1, 1);
                 const faIconIns = faIconDe[0].componentInstance.icon;
 
-                expect(faIconIns).toBeTruthy();
-                expect(faIconIns).withContext(`should equal ${expectedContactIcon}`).toEqual(expectedContactIcon);
+                expectToEqual(faIconIns, expectedContactIcon);
             });
 
             describe('... second nav-item link', () => {
@@ -478,8 +473,7 @@ describe('NavbarComponent (DONE)', () => {
                     );
                     const headerEl = headerDe[0].nativeElement;
 
-                    expect(headerEl.textContent).toBeTruthy();
-                    expect(headerEl.textContent).withContext('should be `Allgemein`').toBe('Allgemein');
+                    expectToBe(headerEl.textContent, 'Allgemein');
                 });
 
                 it('... should be followed by 2 dropdown items', () => {
@@ -499,13 +493,8 @@ describe('NavbarComponent (DONE)', () => {
                     const firstItemEl = firstItemDe[0].nativeElement;
                     const secondItemEl = secondItemDe[0].nativeElement;
 
-                    expect(firstItemEl.textContent).toBeTruthy();
-                    expect(firstItemEl.textContent)
-                        .withContext('should be `Editionsübersicht`')
-                        .toBe('Editionsübersicht');
-
-                    expect(secondItemEl.textContent).toBeTruthy();
-                    expect(secondItemEl.textContent).withContext('should be `Reihentabellen`').toBe('Reihentabellen');
+                    expectToBe(firstItemEl.textContent, 'Editionsübersicht');
+                    expectToBe(secondItemEl.textContent, 'Reihentabellen');
                 });
 
                 it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
@@ -530,10 +519,7 @@ describe('NavbarComponent (DONE)', () => {
                     );
                     const headerEl = headerDe[0].nativeElement;
 
-                    expect(headerEl.textContent).toBeTruthy();
-                    expect(headerEl.textContent)
-                        .withContext('should be `Auswahl Skizzenkomplexe`')
-                        .toBe('Auswahl Skizzenkomplexe');
+                    expectToBe(headerEl.textContent, 'Auswahl Skizzenkomplexe');
                 });
 
                 it('... should be followed by as many `div.awg-dropdown-complexes` as edition complexes are available', () => {
@@ -577,10 +563,7 @@ describe('NavbarComponent (DONE)', () => {
                         const strippedHeaderId = headerId.replace(/<em>/g, '').replace(/<\/em>/g, '');
                         const headerLabel = headerSiglum + strippedHeaderId;
 
-                        expect(headerEl.textContent).toBeTruthy();
-                        expect(headerEl.textContent.trim())
-                            .withContext(`should be ${headerLabel}`)
-                            .toBe(headerLabel.trim());
+                        expectToBe(headerEl.textContent.trim(), headerLabel.trim());
                     });
                 });
 
@@ -599,18 +582,9 @@ describe('NavbarComponent (DONE)', () => {
                         const itemsEl2 = itemsDe[1].nativeElement;
                         const itemsEl3 = itemsDe[2].nativeElement;
 
-                        expect(itemsEl1.textContent).toBeTruthy();
-                        expect(itemsEl1.textContent).withContext('should be `Einleitung`').toBe('Einleitung');
-
-                        expect(itemsEl2.textContent).toBeTruthy();
-                        expect(itemsEl2.textContent)
-                            .withContext('should be `Edierte Notentexte`')
-                            .toBe('Edierte Notentexte');
-
-                        expect(itemsEl3.textContent).toBeTruthy();
-                        expect(itemsEl3.textContent)
-                            .withContext('should be `Kritischer Bericht`')
-                            .toBe('Kritischer Bericht');
+                        expectToBe(itemsEl1.textContent, 'Einleitung');
+                        expectToBe(itemsEl2.textContent, 'Edierte Notentexte');
+                        expectToBe(itemsEl3.textContent, 'Kritischer Bericht');
                     });
                 });
             });
@@ -623,9 +597,7 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should get `selectedEditionComplex`', () => {
                 expect(component.selectedEditionComplex).toBeDefined();
-                expect(component.selectedEditionComplex)
-                    .withContext(`should be ${expectedSelectedEditionComplex}`)
-                    .toBe(expectedSelectedEditionComplex);
+                expectToEqual(component.selectedEditionComplex, expectedSelectedEditionComplex);
             });
         });
 
@@ -655,10 +627,7 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should get `pageMetaData`', () => {
-                expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData)
-                    .withContext(`should be ${expectedPageMetaData}`)
-                    .toBe(expectedPageMetaData);
+                expectToEqual(component.pageMetaData, expectedPageMetaData);
             });
 
             it('... should have called coreService', () => {
@@ -667,35 +636,17 @@ describe('NavbarComponent (DONE)', () => {
         });
 
         describe('[routerLink]', () => {
-            let expectedOrderOfRouterlinks: string[][];
-
             beforeEach(() => {
                 // Find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 18, 18);
+                linkDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    RouterLinkStubDirective,
+                    expectedOrderOfRouterlinks.length,
+                    expectedOrderOfRouterlinks.length
+                );
 
                 // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
-
-                expectedOrderOfRouterlinks = [
-                    ['/home'],
-                    [expectedEditionRouteConstants.EDITION.route, expectedEditionRouteConstants.SERIES.route],
-                    [expectedEditionRouteConstants.EDITION.route, expectedEditionRouteConstants.ROWTABLES.route],
-                    [expectedEditionComplexes[0].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
-                    [expectedEditionComplexes[0].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
-                    [expectedEditionComplexes[0].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
-                    [expectedEditionComplexes[1].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
-                    [expectedEditionComplexes[1].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
-                    [expectedEditionComplexes[1].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
-                    [expectedEditionComplexes[2].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
-                    [expectedEditionComplexes[2].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
-                    [expectedEditionComplexes[2].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
-                    [expectedEditionComplexes[3].baseRoute, expectedEditionRouteConstants.EDITION_INTRO.route],
-                    [expectedEditionComplexes[3].baseRoute, expectedEditionRouteConstants.EDITION_SHEETS.route],
-                    [expectedEditionComplexes[3].baseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
-                    ['/structure'],
-                    ['/data'],
-                    ['/contact'],
-                ];
             });
 
             it('... can get correct numer of routerLinks from template', () => {

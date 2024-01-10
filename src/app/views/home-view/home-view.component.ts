@@ -5,6 +5,7 @@ import { MetaPage, MetaSectionTypes } from '@awg-app/core/core-models';
 import { CoreService } from '@awg-app/core/services';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex } from '@awg-views/edition-view/models';
 
 /**
  * The HomeView component.
@@ -43,32 +44,17 @@ export class HomeViewComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Readonly constant: EDITION_COMPLEX_M30.
+     * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
      *
-     * It keeps the edition complex M 30.
+     * It keeps the array of displayed edition complexes.
      */
-    readonly EDITION_COMPLEX_M30 = EDITION_COMPLEXES.M30;
-
-    /**
-     * Readonly constant: EDITION_COMPLEX_M34.
-     *
-     * It keeps the edition complex M 34.
-     */
-    readonly EDITION_COMPLEX_M34 = EDITION_COMPLEXES.M34;
-
-    /**
-     * Readonly variable: EDITION_COMPLEX_OP12.
-     *
-     * It keeps the edition complex Opus 12.
-     */
-    readonly EDITION_COMPLEX_OP12 = EDITION_COMPLEXES.OP12;
-
-    /**
-     * Readonly variable: EDITION_COMPLEX_OP25.
-     *
-     * It keeps the edition complex Opus 25.
-     */
-    readonly EDITION_COMPLEX_OP25 = EDITION_COMPLEXES.OP25;
+    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
+        EDITION_COMPLEXES.OP12,
+        EDITION_COMPLEXES.OP25,
+        EDITION_COMPLEXES.M30,
+        EDITION_COMPLEXES.M34,
+        EDITION_COMPLEXES.M37,
+    ];
 
     /**
      * Constructor of the HomeViewComponent.
