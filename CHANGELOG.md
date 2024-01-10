@@ -2,6 +2,57 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.1...v0.11.2) (2024-01-10)
+
+
+### Features
+
+* **assets:** enable linkBoxes for m37 ([f3beb9e](https://github.com/webern-unibas-ch/awg-app/commit/f3beb9e1bb21bc249bd0fe6798b00feac8e81891))
+* **edition:** add edition complex M 37 ([ed04f02](https://github.com/webern-unibas-ch/awg-app/commit/ed04f022497954f4624ee250c5a2dbec49d3e752))
+* **edition:** add M37 to menus ([1e667d7](https://github.com/webern-unibas-ch/awg-app/commit/1e667d73da1a4b3d16f24e5943d63ac2caf04bdc))
+
+
+### Bug Fixes
+
+* **assets:** add missing data files and placeholders for m37 ([17353cb](https://github.com/webern-unibas-ch/awg-app/commit/17353cb1299b2bf26ecda1aaff55f22bd4586a26))
+* **assets:** fix itemLinks in sourceDescription of m37 ([2c1355c](https://github.com/webern-unibas-ch/awg-app/commit/2c1355c430d46b16584c90c16568e3e1f1e12d94))
+* **assets:** fix textcritics for m37 ([f11b79e](https://github.com/webern-unibas-ch/awg-app/commit/f11b79e5eba00b755af1c14d12ba32221d599fec))
+* **assets:** optimize 2 SVG(s) with SVGO ([7253315](https://github.com/webern-unibas-ch/awg-app/commit/7253315fb3b21c771c1c028229f844289101e579))
+* **assets:** optimize 6 SVG(s) with SVGO ([a0ba894](https://github.com/webern-unibas-ch/awg-app/commit/a0ba89401bc81d2868fbce74ddf162faf934dd46))
+
+
+### Continuous Integration
+
+* **gh-actions:** update ratchet versions ([bc2e4ca](https://github.com/webern-unibas-ch/awg-app/commit/bc2e4ca2fb3644daf81d457a394e18ae61cf7dcf))
+* **gh-actions:** update ratchet versions ([d036f8b](https://github.com/webern-unibas-ch/awg-app/commit/d036f8b3db7165c6fc154037392af2d99d1fd7e9))
+
+
+### Code Refactoring
+
+* **side-info:** use accordion for edition side-info ([77c735f](https://github.com/webern-unibas-ch/awg-app/commit/77c735f8bcf469083aa2e6191cc0ed3bd981dba0))
+
+
+### Build System
+
+* **app:** bump minimal supported node version to 18.19.0 ([806b745](https://github.com/webern-unibas-ch/awg-app/commit/806b7454677a364d944035da469a3c793299bc3a))
+* **deps-dev:** bump @types/node from 18.19.3 to 18.19.6 ([83ef36a](https://github.com/webern-unibas-ch/awg-app/commit/83ef36aeb464392a65555d042cb80f2a4bce66ca))
+* **deps-dev:** bump eslint-plugin-jsdoc from 46.9.1 to 48.0.2 ([ce8747a](https://github.com/webern-unibas-ch/awg-app/commit/ce8747ae924542fd0ba129b84529969096f38444))
+* **deps-dev:** bump eslint-plugin-prettier from 5.0.1 to 5.1.0 ([3b241d5](https://github.com/webern-unibas-ch/awg-app/commit/3b241d57b0af93ce498c47e8fb91aa6cf7ce1b3e))
+* **deps-dev:** bump eslint-plugin-prettier from 5.1.0 to 5.1.1 ([2f0744e](https://github.com/webern-unibas-ch/awg-app/commit/2f0744ea5748b5e2901b18519cd78ccaf18a52c8))
+* **deps-dev:** bump eslint-plugin-prettier from 5.1.1 to 5.1.2 ([e1d23b4](https://github.com/webern-unibas-ch/awg-app/commit/e1d23b476894f836741bebdf3fbec910e55eed02))
+* **deps-dev:** bump eslint-plugin-prettier from 5.1.2 to 5.1.3 ([e8f8747](https://github.com/webern-unibas-ch/awg-app/commit/e8f8747f7a4a36b836ab958caae1d68b6a92ef8d))
+* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([56fb1a2](https://github.com/webern-unibas-ch/awg-app/commit/56fb1a2b8b4d68b92e4dd61152973355de2736f2))
+* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([ffca069](https://github.com/webern-unibas-ch/awg-app/commit/ffca0694cd49c376515324ab531ba2063540bc3b))
+* **deps-dev:** bump the angular-eslint group with 5 updates ([ab38a34](https://github.com/webern-unibas-ch/awg-app/commit/ab38a3479bc8b8dcba7cb59a197b1d92c338d8a9))
+* **deps-dev:** bump the commitlint group with 2 updates ([7f4ef60](https://github.com/webern-unibas-ch/awg-app/commit/7f4ef6057ab3591f57cc2f6f0db877a2090a7a08))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([464f3c0](https://github.com/webern-unibas-ch/awg-app/commit/464f3c0e39d9091be41b8e1c4ccbae2e16b884f6))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([a640dcc](https://github.com/webern-unibas-ch/awg-app/commit/a640dccdd97dee1afdc870276b0da4bd74557592))
+* **deps:** bump @fortawesome/angular-fontawesome from 0.14.0 to 0.14.1 ([420f3cc](https://github.com/webern-unibas-ch/awg-app/commit/420f3cc78858b87bc4c070a0273909d23846ae9a))
+* **deps:** bump ericcornelissen/svgo-action from 4.0.4 to 4.0.6 ([9233f14](https://github.com/webern-unibas-ch/awg-app/commit/9233f14e5ae6521046d73b966810aede22a6ac07))
+* **deps:** bump follow-redirects from 1.15.2 to 1.15.4 ([61f1a20](https://github.com/webern-unibas-ch/awg-app/commit/61f1a2005f78ffe5cd3583f5e8a4f6e3431f35af))
+* **deps:** bump rdfstore from v0.9.18-alpha.12 to v0.9.18-alpha.13 ([3fbd2bb](https://github.com/webern-unibas-ch/awg-app/commit/3fbd2bbf2a94f21b174aba592c8d31889e516cfb))
+* **deps:** bump the angular group with 11 updates ([13c7216](https://github.com/webern-unibas-ch/awg-app/commit/13c7216b33e654dbb75d8c1929ae81ee3e1cd844))
+
 ### [0.11.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.0...v0.11.1) (2023-12-18)
 
 ### ⚠ BREAKING CHANGES
