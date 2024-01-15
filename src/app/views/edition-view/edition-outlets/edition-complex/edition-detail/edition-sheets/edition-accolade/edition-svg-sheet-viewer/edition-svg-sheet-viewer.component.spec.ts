@@ -47,6 +47,8 @@ describe('EditionSvgSheetViewerComponent', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedCompressIcon: IconDefinition;
     let expectedSliderConfig: SliderConfig;
     let expectedSvgSheet: EditionSvgSheet;
@@ -86,6 +88,8 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedCompressIcon = faCompressArrowsAlt;
         expectedSliderConfig = new SliderConfig(1, 0.1, 10, 1 / 100, 1);
 
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
@@ -562,6 +566,7 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
         });
 
+        /* TODO : Check if this test is still needed */
         describe('#selectSvgSheet()', () => {
             it('... should have a method `selectSvgSheet`', () => {
                 expect(component.selectSvgSheet).toBeDefined();
@@ -579,19 +584,37 @@ describe('EditionSvgSheetViewerComponent', () => {
             }); */
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined);
+                component.selectSvgSheet(undefined, undefined);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+
+                component.selectSvgSheet('', '');
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheet.id);
+            it('... should emit id of selected svg sheet within same complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                component.selectSvgSheet(expectedNextSvgSheet.id);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+
+            it('... should emit id of selected svg sheet for another complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
     });

@@ -27,7 +27,7 @@ class EditionSvgSheetNavItemStubComponent {
     selectedSvgSheet: EditionSvgSheet;
 
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
 describe('EditionSvgSheetNavComponent (DONE)', () => {
@@ -35,6 +35,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
     let fixture: ComponentFixture<EditionSvgSheetNavComponent>;
     let compDe: DebugElement;
 
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedSvgSheetWithPartials: EditionSvgSheet;
@@ -56,6 +58,8 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk4;
         expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2;
@@ -243,41 +247,75 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
                     de => de.injector.get(EditionSvgSheetNavItemStubComponent) as EditionSvgSheetNavItemStubComponent
                 );
 
-                sheetNavItemCmp[0].selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
+                let expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                sheetNavItemCmp[0].selectSvgSheetRequest.emit(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
 
-                sheetNavItemCmp[1].selectSvgSheetRequest.emit(expectedSvgSheet.id);
+                expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                sheetNavItemCmp[1].selectSvgSheetRequest.emit(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetSpy, 2, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 2, expectedSheetIds);
 
-                sheetNavItemCmp[2].selectSvgSheetRequest.emit(expectedSvgSheet.id);
+                sheetNavItemCmp[2].selectSvgSheetRequest.emit(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetSpy, 3, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 3, expectedSheetIds);
             });
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined);
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedNextSheetIds);
             });
 
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheet.id);
+            it('... should emit id of selected svg sheet within same complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                component.selectSvgSheet(expectedNextSvgSheet.id);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
 
-            it('... should emit id of selected svg sheet with partial', () => {
-                const expectedId = expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+            it('... should emit id of selected svg sheet with partial within same complex', () => {
+                const expectedSheetId =
+                    expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
 
-                component.selectSvgSheet(expectedId);
+                component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedId);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+            });
+
+            it('... should emit id of selected svg sheet for another complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+
+            it('... should emit id of selected svg sheet with partial for another complex', () => {
+                const expectedSheetId =
+                    expectedSvgSheetWithPartialA.id + expectedSvgSheetWithPartialA.content[0].partial;
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+
+                component.selectSvgSheet(expectedSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
             });
         });
     });

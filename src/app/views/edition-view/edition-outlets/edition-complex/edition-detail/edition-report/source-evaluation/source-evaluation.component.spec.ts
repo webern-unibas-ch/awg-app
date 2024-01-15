@@ -31,6 +31,8 @@ describe('SourceEvaluationComponent (DONE)', () => {
     let mockDocument: Document;
 
     let expectedEditionComplex: EditionComplex;
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedSourceEvaluationListData: SourceEvaluationList;
     let expectedSourceEvaluationListEmptyData: SourceEvaluationList;
     const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
@@ -59,6 +61,8 @@ describe('SourceEvaluationComponent (DONE)', () => {
 
         // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP25;
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
@@ -331,35 +335,41 @@ describe('SourceEvaluationComponent (DONE)', () => {
                 // CLick on third anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 1, [expectedComplexId, expectedSvgSheet.id]);
             }));
 
-            describe('... should not emit anything if ', () => {
-                it('... id is undefined', () => {
-                    component.selectSvgSheet(undefined);
+            it('... should not emit anything if no id is provided', () => {
+                component.selectSvgSheet(undefined, undefined);
 
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0);
-                });
-                it('... id is null', () => {
-                    component.selectSvgSheet(null);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
 
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0);
-                });
-                it('... id is empty string', () => {
-                    component.selectSvgSheet('');
+                component.selectSvgSheet('', '');
 
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0);
-                });
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheet.id);
+            it('... should emit id of selected svg sheet within same complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                component.selectSvgSheet(expectedNextSvgSheet.id);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+
+            it('... should emit id of selected svg sheet for another complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
     });
