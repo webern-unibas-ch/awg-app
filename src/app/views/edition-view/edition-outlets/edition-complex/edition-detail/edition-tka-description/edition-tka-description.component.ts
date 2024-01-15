@@ -1,29 +1,25 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { UtilityService } from '@awg-core/services';
-import { TextcriticsList } from '@awg-views/edition-view/models';
-
 /**
- * The TextcriticsList component.
+ * The EditionTkaDescription component.
  *
- * It contains the list of textcritical comments
- * of the critical report of the edition view of the app
- * with an {@link EditionTkaTableComponent}.
+ * It contains the desription for the textcritical comments
+ * of the edition view of the app.
  */
 @Component({
-    selector: 'awg-textcritics-list',
-    templateUrl: './textcritics-list.component.html',
-    styleUrls: ['./textcritics-list.component.scss'],
+    selector: 'awg-edition-tka-description',
+    templateUrl: './edition-tka-description.component.html',
+    styleUrl: './edition-tka-description.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextcriticsListComponent {
+export class EditionTkaDescriptionComponent {
     /**
-     * Input variable: textcriticsData.
+     * Input variable: textcriticalComments.
      *
-     * It keeps the textcritics data.
+     * It keeps the textcritical comments.
      */
     @Input()
-    textcriticsData: TextcriticsList;
+    textcriticalDescriptions: string[];
 
     /**
      * Output variable: navigateToReportFragment.
@@ -53,17 +49,14 @@ export class TextcriticsListComponent {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: TextcriticsListComponent;
+    ref: EditionTkaDescriptionComponent;
 
     /**
-     * Constructor of the TextcriticsComponent.
+     * Constructor of the EditionTkaDescriptionComponent.
      *
-     * It declares a public instance of the UtilityService and
-     * initializes the self-referring ref variable needed for CompileHtml library.
-     *
-     * @param {UtilityService} utils Instance of the UtilityService.
+     * It initializes the self-referring ref variable needed for CompileHtml library.
      */
-    constructor(public utils: UtilityService) {
+    constructor() {
         this.ref = this;
     }
 
@@ -105,13 +98,14 @@ export class TextcriticsListComponent {
      * It emits the given ids of a selected edition complex
      * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
      * @returns {void} Emits the ids.
      */
-    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
-        if (!sheetIds || !sheetIds?.sheetId) {
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        if (!sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(sheetIds);
+        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
     }
 }

@@ -20,7 +20,10 @@
                 "content": [
                     {
                         "item": "M 286 Sk# / M 287 Sk#",
-                        "itemLinkTo": "SkRT",
+                        "itemLinkTo": {
+                            "complexId": "op19",
+                            "sheetId": "SkRT"
+                        },
                         "itemDescription": "(Reihentabelle op. 19)",
                         "folios": [
                             {

@@ -162,24 +162,23 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: selectSvgSheet.
      *
-     * It navigates to the '/edition/complex/{baseRoute}/sheets/{id}'
+     * It navigates to the '/edition/complex/{complexRoute}/sheets/{sheetsId}'
      * route with the given id.
      *
-     * @param {string} sheetId The given svg sheet id.
-     * @returns {void} Navigates to the edition detail.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
+     * @returns {void} Navigates to the given svg sheet id.
      */
-    selectSvgSheet(sheetId: string): void {
-        if (!sheetId) {
-            sheetId = '';
-        }
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        // Set default id if none is given
+        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+        const sheetRoute = sheetId ? sheetId : '';
+
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetId },
             queryParamsHandling: '',
         };
 
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
-            navigationExtras
-        );
+        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
     }
 }

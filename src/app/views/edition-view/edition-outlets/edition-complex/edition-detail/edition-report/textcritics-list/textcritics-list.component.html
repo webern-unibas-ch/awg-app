@@ -6,7 +6,10 @@
                     ngbAccordionHeader
                     class="accordion-button awg-accordion-button-custom-header justify-content-between">
                     <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritic.label }}</button>
-                    <button type="button" class="btn btn-sm btn-outline-info" (click)="selectSvgSheet(textcritic.id)">
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-info"
+                        (click)="selectSvgSheet({ complexId: '', sheetId: textcritic.id })">
                         Zum edierten Notentext
                     </button>
                 </div>
@@ -16,9 +19,11 @@
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
                                     <p class="caps">Skizzenkommentar:</p>
-                                    @for (description of textcritic.description; track description) {
-                                        <p [compile-html]="description" [compile-html-ref]="ref"></p>
-                                    }
+                                    <awg-edition-tka-description
+                                        [textcriticalDescriptions]="textcritic.description"
+                                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                        (openModalRequest)="openModal($event)"
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>
                                 </div>
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
