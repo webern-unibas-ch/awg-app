@@ -22,7 +22,19 @@ import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/mo
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
-// Mock tka table component
+// Mock components
+@Component({ selector: 'awg-edition-tka-description', template: '' })
+class EditionTkaDescriptionStubComponent {
+    @Input()
+    textcriticalDescriptions: string[];
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
+
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
@@ -69,7 +81,12 @@ describe('TextcriticsListComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
-            declarations: [TextcriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+            declarations: [
+                TextcriticsListComponent,
+                CompileHtmlComponent,
+                EditionTkaDescriptionStubComponent,
+                EditionTkaTableStubComponent,
+            ],
             providers: [UtilityService],
         }).compileComponents();
     }));
@@ -402,7 +419,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no item body with div and paragraphs if description array is empty', () => {
+                it('... should contain no item body with div and paragraphs if description and comment arrays are empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[0];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -415,7 +432,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
                 });
 
-                it('... should contain item body with as many paragraphs in first div as textcritics.description if description array is not empty', () => {
+                it('... should contain item body with div, paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -426,26 +443,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
 
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-
-                    // Number of paragraphs = description array length + 1 (heading)
-                    const pDes = getAndExpectDebugElementByCss(
-                        divDes[0],
-                        'p',
-                        textcritics.description.length + 1,
-                        textcritics.description.length + 1
-                    );
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                     const pEl0 = pDes[0].nativeElement;
 
                     expectToBe(pEl0.textContent, 'Skizzenkommentar:');
 
-                    pDes.forEach((pDe, index) => {
-                        if (index === 0) {
-                            return;
-                        }
-                        const pEl = pDe.nativeElement;
-
-                        expectToBe(pEl.textContent, textcritics.description[index - 1]);
-                    });
+                    // EditionTkaDescriptionStubComponent
+                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
                 });
 
                 it('... should contain item body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
@@ -466,6 +470,23 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // EditionTkaTableStubComponent
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionTkaTableStubComponent, 1, 1);
+                });
+
+                it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
+
+                    expectToEqual(
+                        editionTkaDescriptionCmp.textcriticalDescriptions,
+                        expectedTextcriticsData.textcritics[1].description
+                    );
                 });
 
                 it('... should pass down `comments` and `rowtable` data to EditionTkaTableComponent (stubbed)', () => {

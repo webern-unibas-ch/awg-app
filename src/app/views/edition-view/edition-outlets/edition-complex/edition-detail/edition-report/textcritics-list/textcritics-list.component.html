@@ -16,9 +16,11 @@
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
                                     <p class="caps">Skizzenkommentar:</p>
-                                    @for (description of textcritic.description; track description) {
-                                        <p [compile-html]="description" [compile-html-ref]="ref"></p>
-                                    }
+                                    <awg-edition-tka-description
+                                        [textcriticalDescriptions]="textcritic.description"
+                                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                        (openModalRequest)="openModal($event)"
+                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>
                                 </div>
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {

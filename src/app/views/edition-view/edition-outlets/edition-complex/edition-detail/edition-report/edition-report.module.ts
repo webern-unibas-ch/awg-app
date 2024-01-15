@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
+import { EditionTkaDescriptionModule } from '../edition-tka-description/edition-tka-description.module';
 import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
 
 import { SourceDescriptionComponent } from './source-description';
@@ -20,7 +21,7 @@ import { EditionReportRoutingModule, routedEditionReportComponents } from './edi
  * {@link SourceDescriptionComponent}, and {@link SourceEvaluationComponent}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaTableModule, EditionReportRoutingModule],
+    imports: [SharedModule, EditionTkaTableModule, EditionTkaDescriptionModule, EditionReportRoutingModule],
     declarations: [
         TextcriticsListComponent,
         SourceDescriptionComponent,

@@ -20,6 +20,18 @@ import { EditionSvgSheet, TextcriticalComment, Textcritics } from '@awg-app/view
 import { CompileHtmlComponent } from '@awg-app/shared/compile-html';
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
+// Mock components
+@Component({ selector: 'awg-edition-tka-description', template: '' })
+class EditionTkaDescriptionStubComponent {
+    @Input()
+    textcriticalDescriptions: string[];
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
@@ -62,7 +74,12 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
-            declarations: [EditionSvgSheetFooterComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+            declarations: [
+                EditionSvgSheetFooterComponent,
+                CompileHtmlComponent,
+                EditionTkaDescriptionStubComponent,
+                EditionTkaTableStubComponent,
+            ],
             providers: [UtilityService],
         }).compileComponents();
 
@@ -262,36 +279,32 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(spanEl.textContent.trim()).withContext(`should be '---'`).toBe('---');
             });
 
-            it('... should contain no description paragraphs if showTextcritics = false', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
+            describe('... should contain no EditionTkaDescriptionComponent  if ...', () => {
+                it('... showTextcritics = false', () => {
+                    getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
+                });
+
+                it('... descriptions array is empty', () => {
+                    component.showTextcritics = true;
+                    component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
+                    detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
+                });
             });
 
-            it('... should contain no description paragraphs if descriptions are empty', () => {
-                component.showTextcritics = true;
-                component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
-                detectChangesOnPush(fixture);
-
-                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
-            });
-
-            it('... should contain as many description paragraphs as there are textcritics.description if showTextcritics = true', () => {
+            it('... should contain one EditionTkaDescriptionComponent (stubbed) in evaluation div if showTextcritics = true', () => {
                 component.showTextcritics = true;
                 detectChangesOnPush(fixture);
 
-                const pDes = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-svg-sheet-footer-evaluation-desc',
-                    expectedSelectedTextcritics.description.length,
-                    expectedSelectedTextcritics.description.length
+                    'div.awg-edition-svg-sheet-footer-evaluation',
+                    1,
+                    1
                 );
 
-                pDes.forEach((pDe, index) => {
-                    const pEl = pDe.nativeElement;
-
-                    expect(pEl.textContent)
-                        .withContext(`should be ${expectedSelectedTextcritics.description[index]}`)
-                        .toBe(expectedSelectedTextcritics.description[index]);
-                });
+                getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
             });
 
             it('... should contain no textcritics div if showTka is false', () => {
