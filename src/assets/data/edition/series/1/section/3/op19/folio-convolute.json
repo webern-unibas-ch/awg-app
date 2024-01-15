@@ -13,7 +13,8 @@
                     },
                     "content": [
                         {
-                            "id": "SkRT",
+                            "complexId": "op19",
+                            "sheetId": "SkRT",
                             "sigle": "M 286 Sk# / M 287 Sk# (Reihentabelle op. 19)",
                             "sigleAddendum": "Reihenformen 1–8",
                             "sectionPartition": 1,

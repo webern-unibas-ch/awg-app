@@ -13,7 +13,8 @@
                     },
                     "content": [
                         {
-                            "id": "M_34_Sk1a",
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1a",
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 1–7",
                             "sectionPartition": 1,
@@ -25,7 +26,8 @@
                             ]
                         },
                         {
-                            "id": "M_34_Sk1b",
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1b",
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 8–14",
                             "sectionPartition": 1,
@@ -37,7 +39,8 @@
                             ]
                         },
                         {
-                            "id": "M_34_Sk1c",
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1c",
                             "sigle": "M 34 Sk1",
                             "sigleAddendum": "T. 15–16",
                             "sectionPartition": 2,
@@ -50,7 +53,8 @@
                             ]
                         },
                         {
-                            "id": "M_34_Sk1_1",
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1_1",
                             "sigle": "M 34 Sk1.1",
                             "sigleAddendum": "T. 5–8",
                             "sectionPartition": 2,
