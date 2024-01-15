@@ -44,8 +44,6 @@ describe('EditionSvgSheetViewerComponent', () => {
     let rescaleZoomSpy: Spy;
     let resetZoomSpy: Spy;
     let retranslateZoomSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
 
     let expectedComplexId: string;
     let expectedNextComplexId: string;
@@ -100,9 +98,6 @@ describe('EditionSvgSheetViewerComponent', () => {
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
         onZoomChangeSpy = spyOn(component, 'onZoomChange').and.callThrough();
         resetZoomSpy = spyOn(component, 'resetZoom').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-
         rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callFake(() => {}); // TODO: Check if a more meaningful replacement can be found
         retranslateZoomSpy = spyOn<any>(component, '_retranslateZoom').and.callFake(() => {});
 
@@ -563,58 +558,6 @@ describe('EditionSvgSheetViewerComponent', () => {
                 component.resetZoom();
 
                 expectSpyCall(retranslateZoomSpy, 1);
-            });
-        });
-
-        /* TODO : Check if this test is still needed */
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            /* It('... should trigger on click on linkbox', () => {
-                const sheetNavDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavStubComponent, 1, 1);
-                const sheetNavCmp = sheetNavDes[0].injector.get(
-                    EditionSvgSheetNavStubComponent
-                ) as EditionSvgSheetNavStubComponent;
-
-                sheetNavCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
-
-                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
-            }); */
-
-            it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined, undefined);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-
-                component.selectSvgSheet('', '');
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should emit id of selected svg sheet within same complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
-            });
-
-            it('... should emit id of selected svg sheet for another complex', () => {
-                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
-                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
-
-                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
-                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
     });

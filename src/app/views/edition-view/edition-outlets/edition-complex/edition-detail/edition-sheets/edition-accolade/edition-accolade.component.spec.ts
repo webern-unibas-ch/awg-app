@@ -641,23 +641,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
                 });
 
-                it('... EditionSvgSheetViewerComponent', () => {
-                    const sheetDes = getAndExpectDebugElementByDirective(
-                        compDe,
-                        EditionSvgSheetViewerStubComponent,
-                        1,
-                        1
-                    );
-                    const sheetCmp = sheetDes[0].injector.get(
-                        EditionSvgSheetViewerStubComponent
-                    ) as EditionSvgSheetViewerStubComponent;
-
-                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
-                    sheetCmp.selectSvgSheetRequest.emit(expectedSheetIds);
-
-                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
-                });
-
                 it('... EditionSvgSheetFooterStubComponent', () => {
                     const tableDes = getAndExpectDebugElementByDirective(
                         compDe,

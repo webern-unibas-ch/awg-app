@@ -107,14 +107,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
 
     /**
-     * Output variable: selectSvgSheetRequest.
-     *
-     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
-     */
-    @Output()
-    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
-
-    /**
      * Public variable: faCompressArrowsAlt.
      *
      * It instantiates fontawesome's faCompressArrowsAlt icon.
@@ -349,24 +341,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
 
         this.onZoomChange(this.sliderConfig.initial);
         this._retranslateZoom();
-    }
-
-    /**
-     * TODO: Check if this method is used.
-     * Public method: selectSvgSheet.
-     *
-     * It emits the given ids of a selected edition complex
-     * and svg sheet to the {@link selectSvgSheetRequest}.
-     *
-     * @param {string} complexId The given complex id.
-     * @param {string} sheetId The given sheet id.
-     * @returns {void} Emits the ids.
-     */
-    selectSvgSheet(complexId: string, sheetId: string): void {
-        if (!sheetId) {
-            return;
-        }
-        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
     }
 
     /**
