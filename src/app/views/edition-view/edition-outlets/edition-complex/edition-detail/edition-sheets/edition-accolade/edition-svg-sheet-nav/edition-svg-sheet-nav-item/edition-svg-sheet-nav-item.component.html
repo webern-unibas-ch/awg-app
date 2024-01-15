@@ -9,7 +9,7 @@
         <a
             class="btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start"
             [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
-            (click)="selectSvgSheet(svgSheet.id)">
+            (click)="selectSvgSheet('', svgSheet.id)">
             {{ svgSheet.label }}
         </a>
     }
@@ -33,7 +33,7 @@
                                 active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
                                 'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)
                             }"
-                            (click)="selectSvgSheet(svgSheet.id + svgSheetContent.partial)"
+                            (click)="selectSvgSheet('', svgSheet.id + svgSheetContent.partial)"
                             >{{ svgSheet.label }}
                             <span class="text-muted">[{{ i + 1 }}/{{ svgSheet.content.length }}]</span></a
                         >

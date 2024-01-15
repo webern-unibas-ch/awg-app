@@ -109,10 +109,10 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -352,20 +352,21 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * TODO: Check if this method is used.
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     *
-     * @returns {void} Emits the id.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        if (!sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
     }
 
     /**
@@ -581,7 +582,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: onOverlaySelect.
+     * Private method: _onOverlaySelect.
      *
      * It emits the given svg overlays
      * to the {@link selectOverlaysRequest}.
@@ -595,7 +596,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: onLinkBoxSelect.
+     * Private method: _onLinkBoxSelect.
      *
      * It emits the given link box id
      * to the {@link selectLinkBoxRequest}.

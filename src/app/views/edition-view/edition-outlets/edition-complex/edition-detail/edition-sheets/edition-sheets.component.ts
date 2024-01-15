@@ -215,8 +215,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
         const selectedLinkBox = this.selectedTextcritics.linkBoxes.find(linkBox => linkBox.svgGroupId === linkBoxId);
 
         if (selectedLinkBox) {
-            const linkToSvgSheet = selectedLinkBox.linkTo;
-            this.onSvgSheetSelect(linkToSvgSheet);
+            const linkedSheetIds = selectedLinkBox.linkTo;
+            this.onSvgSheetSelect(linkedSheetIds);
         }
     }
 
@@ -284,34 +284,32 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
             editionTypeSheets
         );
 
-        this.onSvgSheetSelect(nextSheetId);
+        this.onSvgSheetSelect({ complexId: '', sheetId: nextSheetId });
     }
 
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It selects a SVG sheet by its id and
-     * navigates to the edition sheets route
+     * It selects a SVG sheet by its edition complex
+     * and sheet ids and navigates to the edition sheets route
      * with this given id.
      *
-     * @param {string} id The given SVG sheet id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
      * @returns {void} Navigates to the edition sheets.
      */
-    onSvgSheetSelect(sheetId: string): void {
+    onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
         // Set default id if none is given
-        if (!sheetId) {
-            sheetId = this.svgSheetsData.sheets.sketchEditions[0].id;
-        }
+        const complexRoute = sheetIds.complexId
+            ? `/edition/complex/${sheetIds.complexId}`
+            : this.editionComplex.baseRoute;
+        const sheetRoute = sheetIds.sheetId ? sheetIds.sheetId : this.svgSheetsData.sheets.sketchEditions[0].id;
 
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetId },
+            queryParams: { id: sheetRoute },
             queryParamsHandling: 'merge',
         };
 
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
-            navigationExtras
-        );
+        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
     }
 
     /**

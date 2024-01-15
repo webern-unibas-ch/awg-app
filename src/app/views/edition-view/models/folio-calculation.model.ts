@@ -222,9 +222,14 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
+     * The label for the id of the edition complex of the content item (string).
+     */
+    complexId: string;
+
+    /**
      * The label for the id of the content item (string).
      */
-    id: string;
+    sheetId: string;
 
     /**
      * The label for the sigle of the content item (string).
@@ -582,7 +587,8 @@ export class FolioCalculation {
                         calculatedContentItem
                     );
 
-                    calculatedContentItem.id = content.id;
+                    calculatedContentItem.complexId = content.complexId;
+                    calculatedContentItem.sheetId = content.sheetId;
                     calculatedContentItem.sigle = content.sigle;
                     calculatedContentItem.sigleAddendum = content.sigleAddendum;
                     calculatedContentItem.selectable = true;
