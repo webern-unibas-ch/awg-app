@@ -108,7 +108,7 @@ export class EditionComplex {
         section?: EditionRouteConstant,
         type?: EditionRouteConstant
     ) {
-        if (!titleStatement || !titleStatement.catalogueType || !titleStatement.catalogueNumber) {
+        if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             return;
         }
 

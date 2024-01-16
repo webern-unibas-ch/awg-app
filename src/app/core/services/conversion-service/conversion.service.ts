@@ -279,7 +279,7 @@ export class ConversionService extends ApiService {
      * @returns {ResourceDetail} The converted resource detail object.
      */
     convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
-        if (!resourceData || !resourceData[0] || !resourceData[0].access) {
+        if (!resourceData?.[0]?.access) {
             return new ResourceDetail(undefined, undefined);
         }
         if (resourceData[0].access === 'OK') {

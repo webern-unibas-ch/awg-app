@@ -69,11 +69,11 @@ const FORCES = {
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
-     * Input variable:  queryResultTriples.
+     * Input variable: currentQueryResultTriples.
      *
      * It keeps the triples of the query result.
      */
-    @Input() queryResultTriples: Triple[];
+    @Input() currentQueryResultTriples: Triple[];
 
     /**
      * Input variable: height.
@@ -224,7 +224,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     @HostListener('window:resize') onResize() {
         // Guard against resize before view is rendered
-        if (!this._graphContainer || !this.queryResultTriples) {
+        if (!this._graphContainer || !this.currentQueryResultTriples) {
             return;
         }
 
@@ -259,12 +259,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @param {SimpleChanges} changes The changes of the input.
      */
     ngOnChanges(changes: SimpleChanges) {
-        if (
-            changes['queryResultTriples'] &&
-            changes['queryResultTriples'].currentValue &&
-            !changes['queryResultTriples'].isFirstChange()
-        ) {
-            this.queryResultTriples = changes['queryResultTriples'].currentValue;
+        const { queryResultTriples } = changes;
+
+        if (queryResultTriples?.currentValue && !queryResultTriples.isFirstChange()) {
+            this.currentQueryResultTriples = queryResultTriples.currentValue;
             this._redraw();
         }
     }
@@ -351,7 +349,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Redraws the graph.
      */
     private _redraw(): void {
-        if (this.queryResultTriples) {
+        if (this.currentQueryResultTriples) {
             this._cleanSVG();
             this._createSVG();
             this._attachData();
@@ -427,7 +425,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _attachData(): void {
         // Limit result length
-        const triples: Triple[] = this.graphVisualizerService.limitTriples(this.queryResultTriples, this.limit);
+        const triples: Triple[] = this.graphVisualizerService.limitTriples(this.currentQueryResultTriples, this.limit);
 
         // If type of triples is text/turtle (not array)
         // The triples must be parsed to objects instead
@@ -787,7 +785,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns { width: number; height: number } The container dimensions.
      */
     private _getContainerDimensions(container: ElementRef): { width: number; height: number } {
-        if (!container || !container.nativeElement) {
+        if (!container?.nativeElement) {
             return null;
         }
         return { width: container.nativeElement.clientWidth, height: container.nativeElement.clientHeight };

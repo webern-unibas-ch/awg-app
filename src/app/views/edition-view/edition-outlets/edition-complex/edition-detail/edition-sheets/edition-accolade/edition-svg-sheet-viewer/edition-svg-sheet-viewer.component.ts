@@ -661,12 +661,12 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             zoomContext.attr('transform', currentTransform);
 
             // Update view
-            if (this.sliderInput && this.sliderInput.nativeElement) {
+            if (this.sliderInput?.nativeElement) {
                 this.sliderInput.nativeElement.value = roundedTransformValue;
                 this.sliderConfig.value = roundedTransformValue;
             }
             // Needed because d3 listener does not update ngModel
-            if (this.sliderInputLabel && this.sliderInputLabel.nativeElement) {
+            if (this.sliderInputLabel?.nativeElement) {
                 this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
             }
         };

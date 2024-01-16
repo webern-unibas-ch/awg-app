@@ -26,13 +26,13 @@
         </div>
 
         <!-- Limit -->
-        @if (queryResultTriples) {
+        @if (currentQueryResultTriples) {
             <div class="btn-group awg-force-graph-node-limit-container float-end my-auto">
                 <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                    @if (limit < queryResultTriples.length) {
+                    @if (limit < currentQueryResultTriples.length) {
                         <span>{{ limit }} von </span>
                     }
-                    {{ queryResultTriples.length }} Triples
+                    {{ currentQueryResultTriples.length }} Triples
                 </button>
                 <div
                     class="btn-group"
@@ -43,16 +43,16 @@
                     <button
                         class="btn btn-sm btn-info dropdown-toggle-split"
                         ngbDropdownToggle
-                        [disabled]="queryResultTriples.length === 0"></button>
+                        [disabled]="currentQueryResultTriples.length === 0"></button>
                     <div class="dropdown-menu" ngbDropdownMenu>
                         @for (limitValue of limitValues; track limitValue) {
-                            @if (queryResultTriples.length > limitValue) {
+                            @if (currentQueryResultTriples.length > limitValue) {
                                 <button class="dropdown-item" (click)="onLimitValueChange(limitValue)">
                                     <span>{{ limitValue }}</span>
                                 </button>
                             }
                         }
-                        <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">
+                        <button class="dropdown-item" (click)="onLimitValueChange(currentQueryResultTriples.length)">
                             <span>Kein Limit</span>
                         </button>
                     </div>

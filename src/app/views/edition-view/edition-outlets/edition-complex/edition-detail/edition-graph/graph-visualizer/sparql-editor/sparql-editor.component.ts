@@ -222,13 +222,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {boolean} The boolean value of the check result.
      */
     isExampleQueriesEnabled(): boolean {
-        return !!(
-            this.query &&
-            this.query.queryType &&
-            this.query.queryLabel &&
-            this.query.queryString &&
-            this.queryList
-        );
+        return !!(this.query?.queryType && this.query?.queryLabel && this.query?.queryString && this.queryList);
     }
 
     /**

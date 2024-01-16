@@ -39,9 +39,7 @@ export const mockCache: IMockCache = {
         cachedResponses.set(req.urlWithParams, resp.clone());
     },
     get(req: HttpRequest<any>): HttpResponse<any> | null {
-        return cachedResponses && cachedResponses.has(req.urlWithParams)
-            ? cachedResponses.get(req.urlWithParams)
-            : null;
+        return cachedResponses?.has(req.urlWithParams) ? cachedResponses.get(req.urlWithParams) : null;
     },
     clear(): void {
         cachedResponses = new Map<string, HttpResponse<any>>();
