@@ -436,7 +436,7 @@ export class FolioCalculation {
      * @param {number} [itemsOffsetCorrection] The optional given itemsOffset correction.
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, itemsOffsetCorrection?: number) {
-        this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
+        this.itemsOffsetCorrection = itemsOffsetCorrection || 0;
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor = folioSettings.factor;
 
