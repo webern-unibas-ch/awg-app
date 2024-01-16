@@ -301,7 +301,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {boolean} The boolean value of the comparison.
      */
     isAccordionItemCollapsed(): boolean {
-        return this.isFullscreen ? false : true;
+        return !this.isFullscreen;
     }
 
     /**
@@ -313,6 +313,6 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {boolean} The boolean value of the comparison.
      */
     isAccordionItemDisabled(): boolean {
-        return this.isFullscreen ? true : false;
+        return this.isFullscreen;
     }
 }

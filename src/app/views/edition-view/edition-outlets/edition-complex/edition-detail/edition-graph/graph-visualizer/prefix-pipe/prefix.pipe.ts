@@ -53,6 +53,6 @@ export class PrefixPipe implements PipeTransform {
                 );
         }
         // If the value was not transformed, return the original value
-        return transformedValue ? transformedValue : value;
+        return transformedValue || value;
     }
 }
