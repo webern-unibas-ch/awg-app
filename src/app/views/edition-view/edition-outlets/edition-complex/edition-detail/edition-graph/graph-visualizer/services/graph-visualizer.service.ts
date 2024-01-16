@@ -11,8 +11,8 @@ import {
     Namespace,
     NamespaceType,
     PrefixForm,
-    QueryTypeIndex,
     QueryResult,
+    QueryTypeIndex,
     RDFStoreConstructResponse,
     RDFStoreConstructResponseTriple,
     RDFStoreSelectResponse,
@@ -392,16 +392,19 @@ export class GraphVisualizerService {
         let prefixStr;
 
         switch (type) {
-            case NamespaceType.TURTLE:
+            case NamespaceType.TURTLE: {
                 prefixStr = '@prefix'.toLowerCase();
                 break;
-            case NamespaceType.SPARQL:
+            }
+            case NamespaceType.SPARQL: {
                 prefixStr = 'PREFIX'.toLowerCase();
                 break;
-            default:
+            }
+            default: {
                 // This branch should not be reached
                 const exhaustiveCheck: never = type;
                 throw new Error(`The type must be TURTLE or SPARQL, but was: ${exhaustiveCheck}.`);
+            }
         }
 
         // Get index of all occurrences of prefix string

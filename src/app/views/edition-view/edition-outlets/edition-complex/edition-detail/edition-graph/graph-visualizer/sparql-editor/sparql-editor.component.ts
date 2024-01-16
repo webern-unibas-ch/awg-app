@@ -190,27 +190,31 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      */
     switchQueryType(viewType: ViewHandleTypes): void {
         switch (viewType) {
-            case ViewHandleTypes.TABLE:
+            case ViewHandleTypes.TABLE: {
                 if (this.query.queryType === 'construct' && this.query.queryString.includes('CONSTRUCT')) {
                     this.query.queryString = this.query.queryString.replace('CONSTRUCT', 'SELECT *');
                     this.query.queryType = 'select';
                 }
                 break;
-            case ViewHandleTypes.GRAPH:
+            }
+            case ViewHandleTypes.GRAPH: {
                 if (this.query.queryType === 'select' && this.query.queryString.includes('SELECT')) {
                     this.query.queryString = this.query.queryString.replace(/SELECT.*\n/, 'CONSTRUCT\n');
                     this.query.queryType = 'construct';
                 }
                 break;
-            case ViewHandleTypes.GRID:
+            }
+            case ViewHandleTypes.GRID: {
                 // Do nothing
                 break;
-            default:
+            }
+            default: {
                 // This branch should not be reached
                 const exhaustiveCheck: never = viewType;
                 throw new Error(
                     `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
                 );
+            }
         }
     }
 
