@@ -24,7 +24,10 @@
                 "content": [
                     {
                         "item": "M 31 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3c"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -36,14 +39,14 @@
                                         {
                                             "system": "1–2",
                                             "measure": "11–16",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk3c"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5a–6a",
                                             "measure": "17–18",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk3d"
                                         }
                                     ]
                                 ]
@@ -52,7 +55,10 @@
                     },
                     {
                         "item": "M 31 Sk3.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3_1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -73,7 +79,10 @@
                     },
                     {
                         "item": "M 31 Sk3.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3_2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -84,7 +93,7 @@
                                     [
                                         {
                                             "system": "5c–6c",
-                                            "measure": "17–8",
+                                            "measure": "17–18",
                                             "linkTo": ""
                                         }
                                     ]
@@ -94,7 +103,10 @@
                     },
                     {
                         "item": "M 31 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk4"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -106,21 +118,21 @@
                                         {
                                             "system": "8–9",
                                             "measure": "12–15, {16A–18A}",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk4a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11",
                                             "measure": "{19A, 19B}",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk4b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "{16B–18B}, 16C–17C",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk4c"
                                         }
                                     ]
                                 ]
@@ -223,7 +235,10 @@
                     },
                     {
                         "item": "M 31 Sk5",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk5"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -235,21 +250,21 @@
                                         {
                                             "system": "1–2",
                                             "measure": "{20–24}",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk5a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "{25–26, 27A, 27B, 28–29}",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk5b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–8a",
                                             "measure": "{30}",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk5c"
                                         }
                                     ]
                                 ]
@@ -345,7 +360,10 @@
                     },
                     {
                         "item": "M 31 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -357,14 +375,14 @@
                                         {
                                             "system": "10b",
                                             "measure": "1–4",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "11b",
                                             "measure": "5–9",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk1b"
                                         }
                                     ]
                                 ]
@@ -373,7 +391,10 @@
                     },
                     {
                         "item": "M 31 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -394,7 +415,10 @@
                     },
                     {
                         "item": "M 31 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -406,14 +430,14 @@
                                         {
                                             "system": "15–16",
                                             "measure": "1–5",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "17–18",
                                             "measure": "6–10",
-                                            "linkTo": ""
+                                            "linkTo": "M_31_Sk3b"
                                         }
                                     ]
                                 ]
@@ -445,7 +469,10 @@
                 "content": [
                     {
                         "item": "M 31",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m31",
+                            "sheetId": "M_31_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 31)",
                         "folios": [
                             {
@@ -501,7 +528,10 @@
                     },
                     {
                         "item": "M 30",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m30",
+                            "sheetId": "M_30_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 30)",
                         "folios": [
                             {
