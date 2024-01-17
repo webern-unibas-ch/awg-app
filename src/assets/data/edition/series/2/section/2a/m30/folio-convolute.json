@@ -11,7 +11,132 @@
                         "height": 349,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3c",
+                            "sigle": "M 31 Sk3",
+                            "sigleAddendum": "T. 11–16",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3d",
+                            "sigle": "M 31 Sk3",
+                            "sigleAddendum": "T. 17–18",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3_1",
+                            "sigle": "M 31 Sk3.1",
+                            "sigleAddendum": "T. 10+1",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3_2",
+                            "sigle": "M 31 Sk3.2",
+                            "sigleAddendum": "T. 17–18",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 5,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk4a",
+                            "sigle": "M 31 Sk4",
+                            "sigleAddendum": "T. 12–15, {16A–18A}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 8,
+                                    "endSystem": 9
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk4b",
+                            "sigle": "M 31 Sk4",
+                            "sigleAddendum": "T. {19A, 19B}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk4c",
+                            "sigle": "M 31 Sk4",
+                            "sigleAddendum": "T. {16B–18B}, 16C–17C",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m_plus403",
+                            "sheetId": "M*_403_Sk1a",
+                            "sigle": "M* 403 Sk1",
+                            "sigleAddendum": "T. 1–10",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m_plus403",
+                            "sheetId": "M*_403_Sk1b",
+                            "sigle": "M* 403 Sk1",
+                            "sigleAddendum": "T. 11–15",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "1v",
@@ -121,7 +246,109 @@
                         "height": 349,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk5a",
+                            "sigle": "M 31 Sk5",
+                            "sigleAddendum": "T. {20–24}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk5b",
+                            "sigle": "M 31 Sk5",
+                            "sigleAddendum": "T. {25–29}",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk5c",
+                            "sigle": "M 31 Sk5",
+                            "sigleAddendum": "T. {30}",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m_plus403",
+                            "sheetId": "M*_403_Sk2a",
+                            "sigle": "M* 403 Sk2",
+                            "sigleAddendum": "T. 1–8",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 12,
+                                    "endSystem": 15
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m_plus403",
+                            "sheetId": "M*_403_Sk2b",
+                            "sigle": "M* 403 Sk2",
+                            "sigleAddendum": "T. 9–12",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m_plus403",
+                            "sheetId": "M*_403_Sk2c",
+                            "sigle": "M* 403 Sk2",
+                            "sigleAddendum": "T. 13–15",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m_plus403",
+                            "sheetId": "M*_403_Sk2d",
+                            "sigle": "M* 403 Sk2",
+                            "sigleAddendum": "T. x+16 bis x+23",
+                            "selectable": false,
+                            "linkTo": "VOL_2A_EDITION_COMING_SOON",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 16,
+                                    "endSystem": 17
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2v",
@@ -181,6 +408,74 @@
                                     "position": 1,
                                     "startSystem": 10,
                                     "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk1a",
+                            "sigle": "M 31 Sk1",
+                            "sigleAddendum": "T. 1–4",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 10
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk1b",
+                            "sigle": "M 31 Sk1",
+                            "sigleAddendum": "T. 5–9",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 11,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk2",
+                            "sigle": "M 31 Sk2",
+                            "sigleAddendum": "T. x+1 bis x+4",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3a",
+                            "sigle": "M 31 Sk3",
+                            "sigleAddendum": "T. 1–5",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m31",
+                            "sheetId": "M_31_Sk3b",
+                            "sigle": "M 31 Sk3",
+                            "sigleAddendum": "T. 6–10",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 17,
+                                    "endSystem": 18
                                 }
                             ]
                         }
