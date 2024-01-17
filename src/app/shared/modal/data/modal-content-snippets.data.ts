@@ -16,10 +16,10 @@ export const MODAL_CONTENT_SNIPPETS = {
         '<p>Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 in AWG I/5.</p>',
     OP24_SOURCE_NOT_AVAILABLE:
         '<p>Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition des <em>Konzert für neun Instrumente</em> op. 24 in AWG I/1.</p>',
-    OP25_SHEET_COMING_SOON:
-        'Die edierten Notentexte weiterer Skizzen der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheinen in Kürze (02/2022).',
     OP25_SOURCE_NOT_AVAILABLE:
         '<p>Die Beschreibung der Quellen <strong>D</strong> und <strong>E</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.</p>',
+    VOL_2A_EDITION_COMING_SOON:
+        '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="nobullets"><li>Studienkomposition für Klavier M* 402,</li><li>Studienkomposition für Klavier M* 403</li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der Studienkompositionen für Klavier in AWG II/2a.</p>',
     M198: '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>',
     HINT_EDITION_SHEETS:
         '<p>\n' +

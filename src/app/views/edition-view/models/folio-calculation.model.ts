@@ -591,12 +591,8 @@ export class FolioCalculation {
                     calculatedContentItem.sheetId = content.sheetId;
                     calculatedContentItem.sigle = content.sigle;
                     calculatedContentItem.sigleAddendum = content.sigleAddendum;
-                    calculatedContentItem.selectable = true;
-                    calculatedContentItem.linkTo = '';
-                    if (content['selectable'] === false && content['linkTo']) {
-                        calculatedContentItem.selectable = content.selectable;
-                        calculatedContentItem.linkTo = content.linkTo;
-                    }
+                    calculatedContentItem.selectable = content.selectable ?? true;
+                    calculatedContentItem.linkTo = content.linkTo || '';
 
                     calculatedContentItems.push(calculatedContentItem);
                 });
