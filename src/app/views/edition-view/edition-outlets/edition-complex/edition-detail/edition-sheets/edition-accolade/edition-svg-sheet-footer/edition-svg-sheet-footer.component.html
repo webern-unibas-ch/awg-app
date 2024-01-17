@@ -15,12 +15,12 @@
         @if (
             showTextcritics && selectedTextcritics.description && utils.isNotEmptyArray(selectedTextcritics.description)
         ) {
-            @for (description of selectedTextcritics.description; track description) {
-                <p
-                    class="awg-edition-svg-sheet-footer-evaluation-desc"
-                    [compile-html]="description"
-                    [compile-html-ref]="ref"></p>
-            }
+            <awg-edition-tka-description
+                [textcriticalDescriptions]="selectedTextcritics.description"
+                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                (openModalRequest)="openModal($event)"
+                (selectSvgSheetRequest)="selectSvgSheet($event)">
+            </awg-edition-tka-description>
         }
     </div>
     @if (showTkA) {

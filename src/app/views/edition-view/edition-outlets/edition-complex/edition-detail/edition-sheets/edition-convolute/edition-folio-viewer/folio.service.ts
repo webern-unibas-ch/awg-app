@@ -340,7 +340,7 @@ export class FolioService {
             const snapItemGroup: any = snapCanvas.group(snapItemLink);
             snapItemGroup.attr({
                 itemGroupId: itemLabelArray,
-                itemId: contentItem.id,
+                itemId: contentItem.sheetId,
                 class: 'item-group',
             });
 
@@ -357,7 +357,7 @@ export class FolioService {
                     fill: 'grey',
                 });
             } else {
-                snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.id));
+                snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.complexId, contentItem.sheetId));
                 snapItemGroup.attr({
                     stroke: fgColor,
                     fill: fgColor,

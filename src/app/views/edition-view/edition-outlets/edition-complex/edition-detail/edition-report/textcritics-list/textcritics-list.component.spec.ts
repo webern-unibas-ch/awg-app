@@ -22,7 +22,19 @@ import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/mo
 
 import { TextcriticsListComponent } from './textcritics-list.component';
 
-// Mock tka table component
+// Mock components
+@Component({ selector: 'awg-edition-tka-description', template: '' })
+class EditionTkaDescriptionStubComponent {
+    @Input()
+    textcriticalDescriptions: string[];
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
+
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
@@ -34,7 +46,7 @@ class EditionTkaTableStubComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
 describe('TextcriticsListComponent (DONE)', () => {
@@ -44,6 +56,8 @@ describe('TextcriticsListComponent (DONE)', () => {
 
     let utils: UtilityService;
 
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedFragment: string;
     let expectedModalSnippet: string;
     let expectedNextSheetId: string;
@@ -69,7 +83,12 @@ describe('TextcriticsListComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [NgbAccordionWithConfigModule],
-            declarations: [TextcriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+            declarations: [
+                TextcriticsListComponent,
+                CompileHtmlComponent,
+                EditionTkaDescriptionStubComponent,
+                EditionTkaTableStubComponent,
+            ],
             providers: [UtilityService],
         }).compileComponents();
     }));
@@ -82,6 +101,8 @@ describe('TextcriticsListComponent (DONE)', () => {
         utils = TestBed.inject(UtilityService);
 
         // Test data
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedNextSheetId = 'test_item_id_2';
@@ -402,7 +423,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     detectChangesOnPush(fixture);
                 });
 
-                it('... should contain no item body with div and paragraphs if description array is empty', () => {
+                it('... should contain no item body with div and paragraphs if description and comment arrays are empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[0];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -415,7 +436,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
                 });
 
-                it('... should contain item body with as many paragraphs in first div as textcritics.description if description array is not empty', () => {
+                it('... should contain item body with div, paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -426,26 +447,13 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
 
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-
-                    // Number of paragraphs = description array length + 1 (heading)
-                    const pDes = getAndExpectDebugElementByCss(
-                        divDes[0],
-                        'p',
-                        textcritics.description.length + 1,
-                        textcritics.description.length + 1
-                    );
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
                     const pEl0 = pDes[0].nativeElement;
 
                     expectToBe(pEl0.textContent, 'Skizzenkommentar:');
 
-                    pDes.forEach((pDe, index) => {
-                        if (index === 0) {
-                            return;
-                        }
-                        const pEl = pDe.nativeElement;
-
-                        expectToBe(pEl.textContent, textcritics.description[index - 1]);
-                    });
+                    // EditionTkaDescriptionStubComponent
+                    getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
                 });
 
                 it('... should contain item body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
@@ -466,6 +474,23 @@ describe('TextcriticsListComponent (DONE)', () => {
 
                     // EditionTkaTableStubComponent
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionTkaTableStubComponent, 1, 1);
+                });
+
+                it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
+
+                    expectToEqual(
+                        editionTkaDescriptionCmp.textcriticalDescriptions,
+                        expectedTextcriticsData.textcritics[1].description
+                    );
                 });
 
                 it('... should pass down `comments` and `rowtable` data to EditionTkaTableComponent (stubbed)', () => {
@@ -623,64 +648,118 @@ describe('TextcriticsListComponent (DONE)', () => {
                 expect(component.selectSvgSheet).toBeDefined();
             });
 
-            it('... should trigger on event from EditionTkaTableComponent', () => {
-                // Open second item
-                const header1Des = getAndExpectDebugElementByCss(
-                    compDe,
-                    `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
-                    1,
-                    1
-                );
+            describe('... should trigger on event from ...', () => {
+                it('...  EditionTkaDescriptionComponent', () => {
+                    // Open second item
+                    const header1Des = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
 
-                // Header Button
-                const btn1Des = getAndExpectDebugElementByCss(header1Des[0], 'div.accordion-button > button.btn', 2, 2);
-                const btn1El = btn1Des[0].nativeElement;
+                    // Header Button
+                    const btn1Des = getAndExpectDebugElementByCss(
+                        header1Des[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    const btn1El = btn1Des[0].nativeElement;
 
-                // Click header buttons to open body
-                click(btn1El as HTMLElement);
-                detectChangesOnPush(fixture);
+                    // Click header buttons to open body
+                    click(btn1El as HTMLElement);
+                    detectChangesOnPush(fixture);
 
-                const editionTkaTableDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    EditionTkaTableStubComponent,
-                    1,
-                    1
-                );
-                const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
-                    EditionTkaTableStubComponent
-                ) as EditionTkaTableStubComponent;
+                    const editionTkaDescriptionDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaDescriptionStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaDescriptionCmp = editionTkaDescriptionDes[0].injector.get(
+                        EditionTkaDescriptionStubComponent
+                    ) as EditionTkaDescriptionStubComponent;
 
-                editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetId);
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    editionTkaDescriptionCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetId);
+                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                });
+
+                it('... EditionTkaTableComponent', () => {
+                    // Open second item
+                    const header1Des = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${expectedTextcriticsData.textcritics[1].id} > div.accordion-header`,
+                        1,
+                        1
+                    );
+
+                    // Header Button
+                    const btn1Des = getAndExpectDebugElementByCss(
+                        header1Des[0],
+                        'div.accordion-button > button.btn',
+                        2,
+                        2
+                    );
+                    const btn1El = btn1Des[0].nativeElement;
+
+                    // Click header buttons to open body
+                    click(btn1El as HTMLElement);
+                    detectChangesOnPush(fixture);
+
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
+                    const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                    editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
+
+                    expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
+                });
             });
 
-            describe('... should not emit anything if ', () => {
-                it('... id is undefined', () => {
-                    component.selectSvgSheet(undefined);
+            it('... should not emit anything if no id is provided', () => {
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0);
-                });
-                it('... id is null', () => {
-                    component.selectSvgSheet(null);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
 
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0);
-                });
-                it('... id is empty string', () => {
-                    component.selectSvgSheet('');
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
 
-                    expectSpyCall(selectSvgSheetRequestEmitSpy, 0);
-                });
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSheetId);
+            it('... should emit id of selected svg sheet within same complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetId);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                component.selectSvgSheet(expectedNextSheetId);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSheetId };
+                component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetId);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+
+            it('... should emit id of selected svg sheet for another complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSheetId };
+                component.selectSvgSheet(expectedSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSheetId };
+                component.selectSvgSheet(expectedNextSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
     });

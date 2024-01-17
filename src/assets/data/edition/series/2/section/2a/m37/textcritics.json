@@ -8,8 +8,18 @@
             ],
             "linkBoxes": [
                 {
-                    "svgGroupId": "TODO",
-                    "linkTo": "M_37_Sk2"
+                    "svgGroupId": "g1365",
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g8434",
+                    "linkTo": {
+                        "complexId": "m38",
+                        "sheetId": "M_38_Sk2"
+                    }
                 }
             ]
         },
@@ -38,7 +48,17 @@
             "linkBoxes": [
                 {
                     "svgGroupId": "g17377",
-                    "linkTo": "M_37_Sk1"
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g18107",
+                    "linkTo": {
+                        "complexId": "m38",
+                        "sheetId": "M_38_Sk2"
+                    }
                 }
             ]
         },

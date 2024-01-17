@@ -26,7 +26,10 @@
                 "content": [
                     {
                         "item": "M 212 Sk1",
-                        "itemLinkTo": "M_212_Sk1a",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk1a"
+                        },
                         "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212)",
                         "folios": [
                             {
@@ -82,7 +85,10 @@
                     },
                     {
                         "item": "M 212 Sk2",
-                        "itemLinkTo": "M_212_Sk2",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk2"
+                        },
                         "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
                         "folios": [
                             {
@@ -103,7 +109,10 @@
                     },
                     {
                         "item": "M 212 Sk3",
-                        "itemLinkTo": "M_212_Sk3",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk3"
+                        },
                         "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
                         "folios": [
                             {
@@ -124,7 +133,10 @@
                     },
                     {
                         "item": "M 212 Sk5",
-                        "itemLinkTo": "M_212_Sk5",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk5"
+                        },
                         "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
                         "folios": [
                             {
@@ -145,7 +157,10 @@
                     },
                     {
                         "item": "M 212 Sk4",
-                        "itemLinkTo": "M_212_Sk4",
+                        "itemLinkTo": {
+                            "complexId": "op12",
+                            "sheetId": "M_212_Sk4"
+                        },
                         "itemDescription": "(Skizze zu „Der Tag ist vergangen“ M 212: Textfassung 2)",
                         "folios": [
                             {
@@ -166,7 +181,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "",
                         "folios": [
                             {
@@ -204,8 +219,8 @@
                 "content": [
                     {
                         "item": " ",
-                        "itemLinkTo": "",
-                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('M_212_TF1')\">M 212: Textfassung 1</a>→2",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('op12', 'M_212_TF1')\">M 212: Textfassung 1</a>→2",
                         "folios": [
                             {
                                 "folio": "1r",

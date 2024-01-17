@@ -66,6 +66,7 @@ export const EDITION_OUTLINE_DATA: EditionOutlineSeries[] = [
                     opus: [],
                     mnr: [
                         { complex: EDITION_COMPLEXES.M30, disabled: false },
+                        { complex: EDITION_COMPLEXES.M31, disabled: false },
                         { complex: EDITION_COMPLEXES.M34, disabled: false },
                         { complex: EDITION_COMPLEXES.M37, disabled: false },
                     ],

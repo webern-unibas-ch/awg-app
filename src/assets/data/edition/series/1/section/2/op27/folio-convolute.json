@@ -13,7 +13,8 @@
                     },
                     "content": [
                         {
-                            "id": "SkRTa",
+                            "complexId": "op27",
+                            "sheetId": "SkRTa",
                             "sigle": "M 325 Sk# / M 326 Sk1 / M 327 Sk1 (Reihentabelle op. 27)",
                             "sigleAddendum": "Reihenformen 1–16",
                             "sectionPartition": 1,
@@ -45,7 +46,8 @@
                     },
                     "content": [
                         {
-                            "id": "SkRTb",
+                            "complexId": "op27",
+                            "sheetId": "SkRTb",
                             "sigle": "M 325 Sk# / M 326 Sk1 / M 327 Sk1 (Reihentabelle op. 27)",
                             "sigleAddendum": "Reihenformen 17–32",
                             "sectionPartition": 1,
@@ -77,7 +79,8 @@
                     },
                     "content": [
                         {
-                            "id": "SkRTc",
+                            "complexId": "op27",
+                            "sheetId": "SkRTc",
                             "sigle": "M 325 Sk# / M 326 Sk1 / M 327 Sk1 (Reihentabelle op. 27)",
                             "sigleAddendum": "Reihenformen 33–48",
                             "sectionPartition": 1,

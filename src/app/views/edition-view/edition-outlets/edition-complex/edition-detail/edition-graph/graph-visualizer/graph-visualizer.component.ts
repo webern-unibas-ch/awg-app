@@ -227,7 +227,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Shows the error message.
      */
     showErrorMessage(toastMessage: ToastMessage): void {
-        if (!toastMessage || !toastMessage.message) {
+        if (!toastMessage?.message) {
             return;
         }
 

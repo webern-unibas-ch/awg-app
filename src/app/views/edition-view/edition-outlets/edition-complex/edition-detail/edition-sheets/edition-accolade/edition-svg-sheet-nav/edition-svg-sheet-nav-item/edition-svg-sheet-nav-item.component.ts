@@ -42,10 +42,10 @@ export class EditionSvgSheetNavItemComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Constructor of the EditionSvgSheetNavItemComponent.
@@ -83,16 +83,17 @@ export class EditionSvgSheetNavItemComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        if (!sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
     }
 }

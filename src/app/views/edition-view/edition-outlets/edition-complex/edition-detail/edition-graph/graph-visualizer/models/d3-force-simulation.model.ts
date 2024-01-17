@@ -131,7 +131,7 @@ export class D3ForceSimulation {
      * @returns {void} It inits the simulation.
      */
     private _initSimulation(options: D3ForceSimulationOptions): void {
-        if (!options || !options.width || !options.height) {
+        if (!options?.width || !options?.height) {
             throw new Error('Missing options when initializing simulation');
         }
 

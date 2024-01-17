@@ -24,7 +24,10 @@
                 "content": [
                     {
                         "item": "M 305 Sk# / M 308 Sk# / M 309 Sk#",
-                        "itemLinkTo": "SkRT",
+                        "itemLinkTo": {
+                            "complexId": "op22",
+                            "sheetId": "SkRT"
+                        },
                         "itemDescription": "(Reihentabelle op. 22)",
                         "folios": [
                             {
@@ -580,7 +583,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "",
                         "folios": [
                             {
@@ -593,7 +596,7 @@
                     },
                     {
                         "item": "",
-                        "itemLinkTo": "",
+                        "itemLinkTo": {},
                         "itemDescription": "",
                         "folios": [
                             {

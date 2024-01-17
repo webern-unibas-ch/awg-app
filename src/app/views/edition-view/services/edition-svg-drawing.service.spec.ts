@@ -79,7 +79,10 @@ describe('EditionSvgDrawingService (DONE)', () => {
         expectedLinkBoxes = [
             {
                 svgGroupId: 'link-box-1',
-                linkTo: 'Test_Sk_1',
+                linkTo: {
+                    complexId: 'testComplex',
+                    sheetId: 'Test_Sk_1',
+                },
             },
         ];
 

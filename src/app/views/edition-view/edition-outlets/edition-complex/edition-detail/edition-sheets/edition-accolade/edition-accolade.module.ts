@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
+import { EditionTkaDescriptionModule } from '../../edition-tka-description/edition-tka-description.module';
 import { EditionTkaTableModule } from '../../edition-tka-table/edition-tka-table.module';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
@@ -17,7 +18,7 @@ import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer';
  * {@link EditionSvgSheetViewerComponent}, {@link EditionTkaTableModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaTableModule],
+    imports: [SharedModule, EditionTkaDescriptionModule, EditionTkaTableModule],
     declarations: [
         EditionAccoladeComponent,
         EditionSvgSheetFooterComponent,

@@ -321,30 +321,29 @@ export class BibliographyFormatPipe implements PipeTransform {
                     console.warn('Verlag fehlt: "' + out + '" (' + this._bibEntry['Kurztitel'] + ')');
                 }
             }
-        } else {
-            if (pub) {
-                out += pubPlace + ': ';
-                // Publisher == object
-                // Case: "Wien: Böhlau, Lafite, "
-                if (typeof pub === 'object') {
-                    const publ = Object.keys(pub).length;
-                    for (let i = 0; i < publ; i++) {
-                        out += pub[i] + ', ';
-                    }
-                } else {
-                    // Publisher == String
-                    // Case: "Wien: Böhlau,"
-                    out += pub + ', ';
+        } else if (pub) {
+            out += pubPlace + ': ';
+            // Publisher == object
+            // Case: "Wien: Böhlau, Lafite, "
+            if (typeof pub === 'object') {
+                const publ = Object.keys(pub).length;
+                for (let i = 0; i < publ; i++) {
+                    out += pub[i] + ', ';
                 }
             } else {
-                // Place without publisher (e.g. "Hochschulschriften")
-                // Case: "Wien, "
-                if (!this._bibEntry['unpubliziert']) {
-                    console.warn('Verlag fehlt: "' + out + '" (' + this._bibEntry['Kurztitel'] + ')');
-                }
-                out += pubPlace + ', ';
+                // Publisher == String
+                // Case: "Wien: Böhlau,"
+                out += pub + ', ';
             }
+        } else {
+            // Place without publisher (e.g. "Hochschulschriften")
+            // Case: "Wien, "
+            if (!this._bibEntry['unpubliziert']) {
+                console.warn('Verlag fehlt: "' + out + '" (' + this._bibEntry['Kurztitel'] + ')');
+            }
+            out += pubPlace + ', ';
         }
+
         return out;
     }
 
@@ -429,15 +428,11 @@ export class BibliographyFormatPipe implements PipeTransform {
      * @returns {string} The splitted name(s).
      */
     private _splitName(name: string, preDelimiter: string): string {
-        let tmp = [];
-        if (name.match(',')) {
-            tmp = name.split(', ');
-            // Changes positions of first and last name
-            // Look here: http://stackoverflow.com/a/5306832
-            tmp.splice(1, 0, tmp.splice(0, 1)[0]);
-            return preDelimiter + tmp[0] + ' ' + tmp[1];
+        if (name.includes(',')) {
+            const [lastName, firstName] = name.split(', ');
+            return `${preDelimiter}${firstName} ${lastName}`;
         } else {
-            return preDelimiter + name;
+            return `${preDelimiter}${name}`;
         }
     }
 }

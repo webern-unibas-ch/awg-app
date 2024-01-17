@@ -102,7 +102,10 @@
             "linkBoxes": [
                 {
                     "svgGroupId": "g3378",
-                    "linkTo": "M_34_Sk1_1"
+                    "linkTo": {
+                        "complexId": "m34",
+                        "sheetId": "M_34_Sk1_1"
+                    }
                 }
             ]
         },
@@ -110,7 +113,7 @@
             "id": "M_34_Sk1_1",
             "label": "M 34 Sk1.1",
             "description": [
-                "<strong>M 34 Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet('M_34_Sk1')\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
+                "<strong>M 34 Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1')\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
             ],
             "comments": [
                 {
@@ -145,7 +148,10 @@
             "linkBoxes": [
                 {
                     "svgGroupId": "g1228",
-                    "linkTo": "M_34_Sk1c"
+                    "linkTo": {
+                        "complexId": "m34",
+                        "sheetId": "M_34_Sk1c"
+                    }
                 }
             ]
         },
@@ -161,7 +167,7 @@
                     "measure": "7",
                     "system": "Klav. o.",
                     "position": "1. Note",
-                    "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf <a (click)=\"ref.selectSvgSheet('M_34_Sk1')\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet('M_34_Sk1_1')\"><strong>Sk1.1</strong></a> aber sehr unwahrscheinlich."
+                    "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1')\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1_1')\"><strong>Sk1.1</strong></a> aber sehr unwahrscheinlich."
                 }
             ]
         }

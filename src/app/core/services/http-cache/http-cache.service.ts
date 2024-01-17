@@ -55,9 +55,7 @@ export class HttpCacheService implements HttpCache {
      * @returns {HttpResponse<any> | null} A cached response or null.
      */
     get(req: HttpRequest<any>): HttpResponse<any> | null {
-        return this._cachedResponses && this._cachedResponses.has(req.urlWithParams)
-            ? this._cachedResponses.get(req.urlWithParams)
-            : null;
+        return this._cachedResponses?.has(req.urlWithParams) ? this._cachedResponses.get(req.urlWithParams) : null;
     }
 
     /**

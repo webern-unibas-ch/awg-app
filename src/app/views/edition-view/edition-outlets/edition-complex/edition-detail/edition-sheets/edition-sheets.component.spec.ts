@@ -54,7 +54,7 @@ class EditionAccoladeStubComponent {
     @Output()
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-edition-convolute', template: '' })
@@ -66,7 +66,7 @@ class EditionConvoluteStubComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
 describe('EditionSheetsComponent', () => {
