@@ -5,14 +5,14 @@
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 31.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 30 und M* 403.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 31.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 30 sowie Skizzen zu Studienkomposition für Klavier M* 402.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         }
     ]
 }
