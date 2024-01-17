@@ -1,6 +1,22 @@
 {
     "textcritics": [
         {
+            "id": "M_34_TF1",
+            "label": "M 34 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 34 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g5789",
+                    "measure": "7",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1')\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1_1')\"><strong>Sk1.1</strong></a> aber sehr unwahrscheinlich."
+                }
+            ]
+        },
+        {
             "id": "M_34_Sk1",
             "label": "M 34 Sk1",
             "description": [
@@ -152,22 +168,6 @@
                         "complexId": "m34",
                         "sheetId": "M_34_Sk1c"
                     }
-                }
-            ]
-        },
-        {
-            "id": "M_34_TF1",
-            "label": "M 34 einzige Textfassung",
-            "description": [
-                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 34 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>."
-            ],
-            "comments": [
-                {
-                    "svgGroupId": "g5789",
-                    "measure": "7",
-                    "system": "Klav. o.",
-                    "position": "1. Note",
-                    "comment": "Achtelnote g<sup>1</sup> aufgrund des horizontal verschobenen Notenhalses auch als Viertelnote lesbar (vgl. Korrekturschicht 1). Eine Deutung als Viertelnote ist mit Blick auf <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1')\"><strong>Sk1</strong></a> und <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1_1')\"><strong>Sk1.1</strong></a> aber sehr unwahrscheinlich."
                 }
             ]
         }

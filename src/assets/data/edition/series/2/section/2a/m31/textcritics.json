@@ -1,6 +1,69 @@
 {
     "textcritics": [
         {
+            "id": "M_31_TF1",
+            "label": "M 31 einzige Textfassung",
+            "description": ["##Quellenbewertung:##"],
+            "comments": [
+                {
+                    "svgGroupId": "",
+                    "measure": "1",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "5",
+                    "system": "Klav. u.",
+                    "position": "3/16",
+                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "6",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "15",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "16",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "18",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von zwischen 3/8 und 4/8."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "23",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[p]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "",
+                    "measure": "28",
+                    "system": "Klav.",
+                    "position": "8/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 5/8."
+                }
+            ]
+        },
+        {
             "id": "M_31_Sk1",
             "label": "M 31 Sk1",
             "description": [
@@ -14,7 +77,7 @@
                     "position": "(2/4)",
                     "comment": "Zwei Achtelnoten überschreiben Viertelnote."
                 }
-              ] 
+            ]
         },
         {
             "id": "M_31_Sk2",
@@ -241,13 +304,14 @@
                     "position": "5–6/8",
                     "comment": "a–d überschreibt F–D."
                 }
-            ]   
-        }, 
+            ]
+        },
         {
             "id": "M_31_Sk5",
             "label": "M 31 Sk5",
             "description": [
-                "<strong>M 31 Sk5</strong> enthält die Reprise des A-Teils zur Studienkomposition für Klavier M 31. Obwohl sämtliche Takte gestrichen sind, entsprechen sie der späteren Tintenniederschrift.",
+                "<strong>M 31 Sk5</strong> enthält die Reprise des A-Teils zur Studienkomposition für Klavier M 31. Obwohl sämtliche Takte gestrichen sind, entsprechen sie der späteren Tintenniederschrift."
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1068",
