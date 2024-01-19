@@ -4,59 +4,54 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.11.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.2...v0.11.3) (2024-01-19)
 
-
 ### Features
 
-* **assets:** add files for M 31 ([#844](https://github.com/webern-unibas-ch/awg-app/issues/844)) ([1a5347b](https://github.com/webern-unibas-ch/awg-app/commit/1a5347b80d3a7338e988adf4d72ee4a06009dee4))
-* **edition:** add edition complex M 31 ([b66bb54](https://github.com/webern-unibas-ch/awg-app/commit/b66bb54b5aa5c9e806af8ec2d5872c0c6d9e3d6c))
-* **edition:** adjust selectSvgSheet for cross-complex linking ([81a9940](https://github.com/webern-unibas-ch/awg-app/commit/81a99408e9a0462e21f35b4e04a6a5d27a0fbc45))
-
+-   **assets:** add files for M 31 ([#844](https://github.com/webern-unibas-ch/awg-app/issues/844)) ([1a5347b](https://github.com/webern-unibas-ch/awg-app/commit/1a5347b80d3a7338e988adf4d72ee4a06009dee4); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **edition:** add edition complex M 31 ([b66bb54](https://github.com/webern-unibas-ch/awg-app/commit/b66bb54b5aa5c9e806af8ec2d5872c0c6d9e3d6c))
+-   **edition:** adjust selectSvgSheet for cross-complex linking ([81a9940](https://github.com/webern-unibas-ch/awg-app/commit/81a99408e9a0462e21f35b4e04a6a5d27a0fbc45))
 
 ### Bug Fixes
 
-* **app:** avoid conditional expression for default assignment ([ae21c7f](https://github.com/webern-unibas-ch/awg-app/commit/ae21c7f3daa313815e8934b5c929e12812078d9b))
-* **app:** fix unexpected lexical declaration in case blocks ([ff30f8d](https://github.com/webern-unibas-ch/awg-app/commit/ff30f8d8df397c806b317df44a4ea717f4f3316b))
-* **app:** fix unnecessary use of boolean literals ([a2e999e](https://github.com/webern-unibas-ch/awg-app/commit/a2e999ec760a1a801ed82176d6abe21a27ba7c7c))
-* **app:** prefer object chaining for object checks ([e4c3749](https://github.com/webern-unibas-ch/awg-app/commit/e4c37493ab680a9f85f8ce5100ca1bc046dd5964))
-* **assets:** activate Textfassung 1 for m30 and m31 ([9ad3657](https://github.com/webern-unibas-ch/awg-app/commit/9ad36578f780d816d82881e089ae634ca7244f6f))
-* **assets:** add firm signs for m30, m31, m34, and m37 ([47692d0](https://github.com/webern-unibas-ch/awg-app/commit/47692d0aa3c9846a147a7263dc8f8d3bc2bf70cd))
-* **assets:** add linkBoxes for m30 ([2d0cf21](https://github.com/webern-unibas-ch/awg-app/commit/2d0cf21db080846302373dc9f046e14b4fbdb757))
-* **assets:** add missing data files and placeholders for m31 ([dac88d0](https://github.com/webern-unibas-ch/awg-app/commit/dac88d037ce295f505e1c2cb6955e03ffdc087b4))
-* **assets:** adjust data after changes to svg link models ([1ee7268](https://github.com/webern-unibas-ch/awg-app/commit/1ee72685f4f72886e795ad6483e21873bf861c71))
-* **assets:** adjust folio convolute for m34 and m37 ([957feb9](https://github.com/webern-unibas-ch/awg-app/commit/957feb90da833ff5acf2ec072979aae47c4a1ab9))
-* **assets:** fix folio convolute file for m30 ([d5dc23a](https://github.com/webern-unibas-ch/awg-app/commit/d5dc23a0e11388a44976978408707bb495407cb9))
-* **assets:** fix link box for m37 ([7ee69f0](https://github.com/webern-unibas-ch/awg-app/commit/7ee69f0722fa715ca4676699be6ade5dcee5d0a5))
-* **assets:** fix source descriptions for m34 and m37 ([bfd2e83](https://github.com/webern-unibas-ch/awg-app/commit/bfd2e83e120dcb261dd20d5d84f68ff3c47b7623))
-* **assets:** format textcritics files ([0db6905](https://github.com/webern-unibas-ch/awg-app/commit/0db69053d149983115980c59f3b3a8d7d4f6eb2d))
-* **assets:** rename svg file for m 31 ([6b49eae](https://github.com/webern-unibas-ch/awg-app/commit/6b49eaeca64ac6cfd7fa9fe9c6c511ce6aa4e0c0))
-* **assets:** unify naming of sources ([bbb444b](https://github.com/webern-unibas-ch/awg-app/commit/bbb444b220d17cc8814fe91238ad6d06f971b224))
-* **assets:** update files for m30, m31, and m37 ([#1308](https://github.com/webern-unibas-ch/awg-app/issues/1308)) ([e87a7e0](https://github.com/webern-unibas-ch/awg-app/commit/e87a7e06448c7ba2f7e03eae6888678ddc9e92a4))
-* **assets:** update source description for m30 ([a6ab069](https://github.com/webern-unibas-ch/awg-app/commit/a6ab069884e62bd27ec0ce0e177ee8ec5ea00934))
-* **assets:** update source evaluation for Textfassung 1 for m34 and m37 ([3b7b728](https://github.com/webern-unibas-ch/awg-app/commit/3b7b7283bf596242da777ce719d28b753a3af7d9))
-* **edition:** add graph query example for edition complexes ([fe0bce0](https://github.com/webern-unibas-ch/awg-app/commit/fe0bce0ed9dbee92987e313d5d75be0e711af693))
-* **edition:** adjust folio model for non-selectable items ([e8fb6ee](https://github.com/webern-unibas-ch/awg-app/commit/e8fb6eeced313a54c4556ca522100f8c07c31411))
-* **edition:** fix naming and formatting of graph RDF triples ([6dfd59b](https://github.com/webern-unibas-ch/awg-app/commit/6dfd59b29e285612f7671cf222c27ef564ab17ca))
-* **edition:** remove unused method from sheet viewer ([8fe1e8a](https://github.com/webern-unibas-ch/awg-app/commit/8fe1e8a79388b59933b1d9fd2a96ffd9932fb1d1))
-
+-   **app:** avoid conditional expression for default assignment ([ae21c7f](https://github.com/webern-unibas-ch/awg-app/commit/ae21c7f3daa313815e8934b5c929e12812078d9b))
+-   **app:** fix unexpected lexical declaration in case blocks ([ff30f8d](https://github.com/webern-unibas-ch/awg-app/commit/ff30f8d8df397c806b317df44a4ea717f4f3316b))
+-   **app:** fix unnecessary use of boolean literals ([a2e999e](https://github.com/webern-unibas-ch/awg-app/commit/a2e999ec760a1a801ed82176d6abe21a27ba7c7c))
+-   **app:** prefer object chaining for object checks ([e4c3749](https://github.com/webern-unibas-ch/awg-app/commit/e4c37493ab680a9f85f8ce5100ca1bc046dd5964))
+-   **assets:** activate Textfassung 1 for m30 and m31 ([9ad3657](https://github.com/webern-unibas-ch/awg-app/commit/9ad36578f780d816d82881e089ae634ca7244f6f))
+-   **assets:** add firm signs for m30, m31, m34, and m37 ([47692d0](https://github.com/webern-unibas-ch/awg-app/commit/47692d0aa3c9846a147a7263dc8f8d3bc2bf70cd))
+-   **assets:** add linkBoxes for m30 ([2d0cf21](https://github.com/webern-unibas-ch/awg-app/commit/2d0cf21db080846302373dc9f046e14b4fbdb757))
+-   **assets:** add missing data files and placeholders for m31 ([dac88d0](https://github.com/webern-unibas-ch/awg-app/commit/dac88d037ce295f505e1c2cb6955e03ffdc087b4))
+-   **assets:** adjust data after changes to svg link models ([1ee7268](https://github.com/webern-unibas-ch/awg-app/commit/1ee72685f4f72886e795ad6483e21873bf861c71))
+-   **assets:** adjust folio convolute for m34 and m37 ([957feb9](https://github.com/webern-unibas-ch/awg-app/commit/957feb90da833ff5acf2ec072979aae47c4a1ab9))
+-   **assets:** fix folio convolute file for m30 ([d5dc23a](https://github.com/webern-unibas-ch/awg-app/commit/d5dc23a0e11388a44976978408707bb495407cb9))
+-   **assets:** fix link box for m37 ([7ee69f0](https://github.com/webern-unibas-ch/awg-app/commit/7ee69f0722fa715ca4676699be6ade5dcee5d0a5))
+-   **assets:** fix source descriptions for m34 and m37 ([bfd2e83](https://github.com/webern-unibas-ch/awg-app/commit/bfd2e83e120dcb261dd20d5d84f68ff3c47b7623))
+-   **assets:** format textcritics files ([0db6905](https://github.com/webern-unibas-ch/awg-app/commit/0db69053d149983115980c59f3b3a8d7d4f6eb2d))
+-   **assets:** rename svg file for m 31 ([6b49eae](https://github.com/webern-unibas-ch/awg-app/commit/6b49eaeca64ac6cfd7fa9fe9c6c511ce6aa4e0c0))
+-   **assets:** unify naming of sources ([bbb444b](https://github.com/webern-unibas-ch/awg-app/commit/bbb444b220d17cc8814fe91238ad6d06f971b224))
+-   **assets:** update files for m30, m31, and m37 ([#1308](https://github.com/webern-unibas-ch/awg-app/issues/1308)) ([e87a7e0](https://github.com/webern-unibas-ch/awg-app/commit/e87a7e06448c7ba2f7e03eae6888678ddc9e92a4))
+-   **assets:** update source description for m30 ([a6ab069](https://github.com/webern-unibas-ch/awg-app/commit/a6ab069884e62bd27ec0ce0e177ee8ec5ea00934))
+-   **assets:** update source evaluation for Textfassung 1 for m34 and m37 ([3b7b728](https://github.com/webern-unibas-ch/awg-app/commit/3b7b7283bf596242da777ce719d28b753a3af7d9))
+-   **edition:** add graph query example for edition complexes ([fe0bce0](https://github.com/webern-unibas-ch/awg-app/commit/fe0bce0ed9dbee92987e313d5d75be0e711af693))
+-   **edition:** adjust folio model for non-selectable items ([e8fb6ee](https://github.com/webern-unibas-ch/awg-app/commit/e8fb6eeced313a54c4556ca522100f8c07c31411))
+-   **edition:** fix naming and formatting of graph RDF triples ([6dfd59b](https://github.com/webern-unibas-ch/awg-app/commit/6dfd59b29e285612f7671cf222c27ef564ab17ca))
+-   **edition:** remove unused method from sheet viewer ([8fe1e8a](https://github.com/webern-unibas-ch/awg-app/commit/8fe1e8a79388b59933b1d9fd2a96ffd9932fb1d1))
 
 ### Tests
 
-* **edition:** adjust tests after changes to svg link models ([08e687f](https://github.com/webern-unibas-ch/awg-app/commit/08e687f10169bf6848bb9e4ec1c11ac7fba3de3f))
-
+-   **edition:** adjust tests after changes to svg link models ([08e687f](https://github.com/webern-unibas-ch/awg-app/commit/08e687f10169bf6848bb9e4ec1c11ac7fba3de3f))
 
 ### Code Refactoring
 
-* **edition:** move tka description into separate component ([5a2fab9](https://github.com/webern-unibas-ch/awg-app/commit/5a2fab90742da512ec3f945f96bef8c8483615a7))
-* **search:** simplify methods in bibliography format pipe ([eebc87d](https://github.com/webern-unibas-ch/awg-app/commit/eebc87dde827c8e3917f0a29faa7bfbe2de8a444))
-
+-   **edition:** move tka description into separate component ([5a2fab9](https://github.com/webern-unibas-ch/awg-app/commit/5a2fab90742da512ec3f945f96bef8c8483615a7))
+-   **search:** simplify methods in bibliography format pipe ([eebc87d](https://github.com/webern-unibas-ch/awg-app/commit/eebc87dde827c8e3917f0a29faa7bfbe2de8a444))
 
 ### Build System
 
-* **deps-dev:** bump prettier from 3.1.1 to 3.2.2 ([01b85dd](https://github.com/webern-unibas-ch/awg-app/commit/01b85dd64c43ce744e70005b4359ea4e950c240b))
-* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([06c26a9](https://github.com/webern-unibas-ch/awg-app/commit/06c26a92297113138a01b23ae7aecb17379fa295))
-* **deps-dev:** bump the typescript-eslint group with 2 updates ([01f5691](https://github.com/webern-unibas-ch/awg-app/commit/01f569174ee7fd25760e1366aa9f5eb466c1b1c9))
-* **deps:** bump the angular group with 11 updates ([d5c2895](https://github.com/webern-unibas-ch/awg-app/commit/d5c28958b1ce7d76d34b88eb7c64034adc20e6d8))
-* **deps:** bump the angular group with 11 updates ([930dd6f](https://github.com/webern-unibas-ch/awg-app/commit/930dd6fc7f838d1c7fddeac4de0882ccfa12ea67))
+-   **deps-dev:** bump prettier from 3.1.1 to 3.2.2 ([01b85dd](https://github.com/webern-unibas-ch/awg-app/commit/01b85dd64c43ce744e70005b4359ea4e950c240b))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([06c26a9](https://github.com/webern-unibas-ch/awg-app/commit/06c26a92297113138a01b23ae7aecb17379fa295))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([01f5691](https://github.com/webern-unibas-ch/awg-app/commit/01f569174ee7fd25760e1366aa9f5eb466c1b1c9))
+-   **deps:** bump the angular group with 11 updates ([d5c2895](https://github.com/webern-unibas-ch/awg-app/commit/d5c28958b1ce7d76d34b88eb7c64034adc20e6d8))
+-   **deps:** bump the angular group with 11 updates ([930dd6f](https://github.com/webern-unibas-ch/awg-app/commit/930dd6fc7f838d1c7fddeac4de0882ccfa12ea67))
 
 ### [0.11.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.1...v0.11.2) (2024-01-10)
 
