@@ -4,7 +4,7 @@
             "id": "M_34_TF1",
             "label": "M 34 einzige Textfassung",
             "description": [
-                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 34 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>."
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 34 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 34 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
