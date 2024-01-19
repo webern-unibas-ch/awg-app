@@ -75,7 +75,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "7b–8b",
+                                            "system": "6–8b",
                                             "measure": "5–8",
                                             "linkTo": ""
                                         }
@@ -131,7 +131,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "14c, 15b",
+                                            "system": "14c–15b",
                                             "measure": "7",
                                             "linkTo": ""
                                         }
@@ -306,7 +306,7 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "15, 16c",
+                                            "system": "15–16c",
                                             "measure": "1–4",
                                             "linkTo": ""
                                         }
@@ -320,7 +320,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "17c, 18",
+                                            "system": "17c–18",
                                             "measure": "6–8",
                                             "linkTo": ""
                                         }
@@ -404,7 +404,7 @@
                                     ],
                                     [
                                         {
-                                            "system": "9c, 10",
+                                            "system": "9c–10",
                                             "measure": "{9B}",
                                             "linkTo": ""
                                         }
@@ -456,6 +456,30 @@
                         ]
                     },
                     {
+                        "item": "M 37 Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk1"
+                        },
+                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 37)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "18a",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
                         "item": "M 37 Sk2",
                         "itemLinkTo": {
                             "complexId": "m37",
@@ -470,32 +494,8 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "18a",
-                                            "measure": "9–12",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 37 Sk3",
-                        "itemLinkTo": {
-                            "complexId": "m37",
-                            "sheetId": "M_37_Sk3"
-                        },
-                        "itemDescription": "(Skizze zu Studienkomposition für Klavier M 37)",
-                        "folios": [
-                            {
-                                "folio": "2r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
                                             "system": "18b",
-                                            "measure": "9–13",
+                                            "measure": "1, {2A}, 2B, 3–5",
                                             "linkTo": ""
                                         }
                                     ]
@@ -546,10 +546,10 @@
                         ]
                     },
                     {
-                        "item": "M 37 Sk1",
+                        "item": "M 37 Sk3",
                         "itemLinkTo": {
                             "complexId": "m37",
-                            "sheetId": "M_37_Sk1"
+                            "sheetId": "M_37_Sk3"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 37)",
                         "folios": [
