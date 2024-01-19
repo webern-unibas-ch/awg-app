@@ -455,6 +455,22 @@
                     "position": "(1/4)",
                     "comment": "Viertelnote As/es gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk1a"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk1b"
+                    }
+                }
             ]
         }
     ]
