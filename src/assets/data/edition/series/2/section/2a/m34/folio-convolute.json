@@ -84,7 +84,36 @@
                         "height": 349,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk1",
+                            "sigle": "M 37 Sk1",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk2",
+                            "sigle": "M 37 Sk2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "2v",
@@ -93,7 +122,47 @@
                         "height": 349,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk3a",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 1–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk3b",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 7–14",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk3c",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 15–21",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },

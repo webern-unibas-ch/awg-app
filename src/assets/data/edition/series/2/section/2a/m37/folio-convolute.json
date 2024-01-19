@@ -11,7 +11,62 @@
                         "height": 349,
                         "width": 265
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1a",
+                            "sigle": "M 34 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1b",
+                            "sigle": "M 34 Sk1",
+                            "sigleAddendum": "T. 8–14",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1c",
+                            "sigle": "M 34 Sk1",
+                            "sigleAddendum": "T. 15–16",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1_1",
+                            "sigle": "M 34 Sk1.1",
+                            "sigleAddendum": "T. 5–8",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "1v",
