@@ -455,7 +455,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": ["1 Blatt. Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>.",
+                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M30.B[0].route\" [title]=\"ref.FIRM_SIGNS.M30.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M30.B[0].short\" /> <br /> unten links auf Bl. 1<sup>v</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]

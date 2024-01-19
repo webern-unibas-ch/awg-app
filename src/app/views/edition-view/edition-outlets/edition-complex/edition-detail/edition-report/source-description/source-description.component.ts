@@ -61,6 +61,20 @@ export class SourceDescriptionComponent {
         OP27: {
             B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_6_LIN_20],
         },
+        M30: {
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18B],
+        },
+        M31: {
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18B],
+        },
+        M34: {
+            A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+        },
+        M37: {
+            A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+        },
     };
 
     /**
