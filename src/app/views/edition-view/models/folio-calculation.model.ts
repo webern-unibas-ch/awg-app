@@ -222,9 +222,14 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
+     * The label for the id of the edition complex of the content item (string).
+     */
+    complexId: string;
+
+    /**
      * The label for the id of the content item (string).
      */
-    id: string;
+    sheetId: string;
 
     /**
      * The label for the sigle of the content item (string).
@@ -431,7 +436,7 @@ export class FolioCalculation {
      * @param {number} [itemsOffsetCorrection] The optional given itemsOffset correction.
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, itemsOffsetCorrection?: number) {
-        this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
+        this.itemsOffsetCorrection = itemsOffsetCorrection || 0;
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor = folioSettings.factor;
 
@@ -582,15 +587,12 @@ export class FolioCalculation {
                         calculatedContentItem
                     );
 
-                    calculatedContentItem.id = content.id;
+                    calculatedContentItem.complexId = content.complexId;
+                    calculatedContentItem.sheetId = content.sheetId;
                     calculatedContentItem.sigle = content.sigle;
                     calculatedContentItem.sigleAddendum = content.sigleAddendum;
-                    calculatedContentItem.selectable = true;
-                    calculatedContentItem.linkTo = '';
-                    if (content['selectable'] === false && content['linkTo']) {
-                        calculatedContentItem.selectable = content.selectable;
-                        calculatedContentItem.linkTo = content.linkTo;
-                    }
+                    calculatedContentItem.selectable = content.selectable ?? true;
+                    calculatedContentItem.linkTo = content.linkTo || '';
 
                     calculatedContentItems.push(calculatedContentItem);
                 });

@@ -107,14 +107,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
 
     /**
-     * Output variable: selectSvgSheetRequest.
-     *
-     * It keeps an event emitter for the selected id of an svg sheet.
-     */
-    @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
      * Public variable: faCompressArrowsAlt.
      *
      * It instantiates fontawesome's faCompressArrowsAlt icon.
@@ -352,23 +344,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Public method: selectSvgSheet.
-     *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
-     *
-     * @param {string} id The given sheet id.
-     *
-     * @returns {void} Emits the id.
-     */
-    selectSvgSheet(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
      * Private method: _clearSVG.
      *
      * It removes everything from the D3 SVG sheet selections.
@@ -581,7 +556,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: onOverlaySelect.
+     * Private method: _onOverlaySelect.
      *
      * It emits the given svg overlays
      * to the {@link selectOverlaysRequest}.
@@ -595,7 +570,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: onLinkBoxSelect.
+     * Private method: _onLinkBoxSelect.
      *
      * It emits the given link box id
      * to the {@link selectLinkBoxRequest}.
@@ -686,12 +661,12 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             zoomContext.attr('transform', currentTransform);
 
             // Update view
-            if (this.sliderInput && this.sliderInput.nativeElement) {
+            if (this.sliderInput?.nativeElement) {
                 this.sliderInput.nativeElement.value = roundedTransformValue;
                 this.sliderConfig.value = roundedTransformValue;
             }
             // Needed because d3 listener does not update ngModel
-            if (this.sliderInputLabel && this.sliderInputLabel.nativeElement) {
+            if (this.sliderInputLabel?.nativeElement) {
                 this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
             }
         };

@@ -38,10 +38,10 @@ export class SourceDescriptionComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Readonly variable: FIRM_SIGNS.
@@ -60,6 +60,20 @@ export class SourceDescriptionComponent {
         },
         OP27: {
             B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_6_LIN_20],
+        },
+        M30: {
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18B],
+        },
+        M31: {
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18B],
+        },
+        M34: {
+            A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+        },
+        M37: {
+            A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
+            B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
         },
     };
 
@@ -99,16 +113,17 @@ export class SourceDescriptionComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        if (!sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
     }
 }

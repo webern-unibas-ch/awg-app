@@ -77,7 +77,7 @@ export class ConstructResultsComponent {
      * @returns {boolean} The boolean value of the comparison.
      */
     isAccordionItemDisabled(): boolean {
-        return this.isFullscreen ? true : false;
+        return this.isFullscreen;
     }
 
     /**

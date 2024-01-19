@@ -21,7 +21,10 @@
                 "content": [
                     {
                         "item": "M 312 Sk5 / M 313 Sk1 / M 314 Sk1",
-                        "itemLinkTo": "SkRT",
+                        "itemLinkTo": {
+                            "complexId": "op23",
+                            "sheetId": "SkRT"
+                        },
                         "itemDescription": "(Reihentabelle op. 23)",
                         "folios": [
                             {

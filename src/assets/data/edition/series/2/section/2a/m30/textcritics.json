@@ -1,6 +1,57 @@
 {
     "textcritics": [
         {
+            "id": "M_30_TF1",
+            "label": "M 30 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br/> <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br/> Hauptquelle für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g2815",
+                    "measure": "8",
+                    "system": "Klav. u.",
+                    "position": "2/8",
+                    "comment": "Oberstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "g6275",
+                    "measure": "14",
+                    "system": "Klav. o.",
+                    "position": "6/8",
+                    "comment": "Unterstimmenschicht: Hilfslinie unter dem Notenkopf weggelassen (vgl. auch Korrekturen mit Bleistift)."
+                },
+                {
+                    "svgGroupId": "g6279",
+                    "measure": "15",
+                    "system": "Klav. u.",
+                    "position": "4/8",
+                    "comment": "Gemeinsamer Notenkopf für Ober- und Unterstimmenschicht korrigiert zu zwei separate Notenköpfe."
+                },
+                {
+                    "svgGroupId": "g6283",
+                    "measure": "20",
+                    "system": "Klav. u.",
+                    "position": "1–2/8",
+                    "comment": "Oberstimmenschicht: Viertelnoten b/es<sup>1</sup>–a/es<sup>1</sup> korrigiert zu Achtelnoten mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "g6318",
+                    "measure": "22",
+                    "system": "Klav. u.",
+                    "position": "1–3/8",
+                    "comment": "sic."
+                },
+                {
+                    "svgGroupId": "g6321",
+                    "measure": "24",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "sic. <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a>: Kein Schlussstrich vorhanden (vgl. auch <a (click)=\"ref.selectSvgSheet('m30', 'M_30_Sk1k')\"><strong>Sk1</strong></a>)."
+                }
+            ]
+        },
+        {
             "id": "M_30_Sk1",
             "label": "M 30 Sk1",
             "description": [
@@ -405,6 +456,22 @@
                     "system": "8",
                     "position": "(1/4)",
                     "comment": "Viertelnote As/es gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk1a"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk1b"
+                    }
                 }
             ]
         }

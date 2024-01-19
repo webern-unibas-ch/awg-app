@@ -246,7 +246,7 @@ export class TableComponent implements OnInit {
                         if (rowEntry === null || rowEntry === undefined) {
                             return false;
                         }
-                        return rowEntry['label'] && rowEntry['label'].toString().toLowerCase().includes(term);
+                        return rowEntry['label']?.toString().toLowerCase().includes(term);
                     })
                 );
                 return this.tableData.filteredRows;

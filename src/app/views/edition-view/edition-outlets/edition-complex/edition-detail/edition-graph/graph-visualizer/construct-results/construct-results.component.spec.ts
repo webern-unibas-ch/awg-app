@@ -24,7 +24,7 @@ import { ConstructResultsComponent } from './construct-results.component';
 // Mock components
 @Component({ selector: 'awg-force-graph', template: '' })
 class ForceGraphStubComponent {
-    @Input() queryResultTriples: Triple[];
+    @Input() currentQueryResultTriples: Triple[];
     @Input() height: number;
     @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
@@ -502,7 +502,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         ForceGraphStubComponent
                     ) as ForceGraphStubComponent;
 
-                    expectToEqual(forceGraphCmp.queryResultTriples, [expectedQueryResult]);
+                    expectToEqual(forceGraphCmp.currentQueryResultTriples, [expectedQueryResult]);
                     expectToBe(forceGraphCmp.height, expectedHeight);
                 });
             });
@@ -852,7 +852,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                         ForceGraphStubComponent
                     ) as ForceGraphStubComponent;
 
-                    expectToEqual(forceGraphCmp.queryResultTriples, [expectedQueryResult]);
+                    expectToEqual(forceGraphCmp.currentQueryResultTriples, [expectedQueryResult]);
                     expectToBe(forceGraphCmp.height, expectedHeight);
                 });
             });

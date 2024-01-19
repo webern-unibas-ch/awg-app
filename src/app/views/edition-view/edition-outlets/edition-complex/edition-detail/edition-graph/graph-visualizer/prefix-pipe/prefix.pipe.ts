@@ -45,14 +45,15 @@ export class PrefixPipe implements PipeTransform {
                 });
                 break;
             }
-            default:
+            default: {
                 // This branch should not be reached
                 const exhaustiveCheck: never = prefixForm;
                 throw new Error(
                     `The prefixForm must be ${PrefixForm.SHORT} or ${PrefixForm.LONG}, but was: ${exhaustiveCheck}.`
                 );
+            }
         }
         // If the value was not transformed, return the original value
-        return transformedValue ? transformedValue : value;
+        return transformedValue || value;
     }
 }

@@ -44,9 +44,9 @@ describe('EditionSvgSheetViewerComponent', () => {
     let rescaleZoomSpy: Spy;
     let resetZoomSpy: Spy;
     let retranslateZoomSpy: Spy;
-    let selectSvgSheetSpy: Spy;
-    let selectSvgSheetRequestEmitSpy: Spy;
 
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedCompressIcon: IconDefinition;
     let expectedSliderConfig: SliderConfig;
     let expectedSvgSheet: EditionSvgSheet;
@@ -86,6 +86,8 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedCompressIcon = faCompressArrowsAlt;
         expectedSliderConfig = new SliderConfig(1, 0.1, 10, 1 / 100, 1);
 
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
@@ -96,9 +98,6 @@ describe('EditionSvgSheetViewerComponent', () => {
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
         onZoomChangeSpy = spyOn(component, 'onZoomChange').and.callThrough();
         resetZoomSpy = spyOn(component, 'resetZoom').and.callThrough();
-        selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
-        selectSvgSheetRequestEmitSpy = spyOn(component.selectSvgSheetRequest, 'emit').and.callThrough();
-
         rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callFake(() => {}); // TODO: Check if a more meaningful replacement can be found
         retranslateZoomSpy = spyOn<any>(component, '_retranslateZoom').and.callFake(() => {});
 
@@ -559,39 +558,6 @@ describe('EditionSvgSheetViewerComponent', () => {
                 component.resetZoom();
 
                 expectSpyCall(retranslateZoomSpy, 1);
-            });
-        });
-
-        describe('#selectSvgSheet()', () => {
-            it('... should have a method `selectSvgSheet`', () => {
-                expect(component.selectSvgSheet).toBeDefined();
-            });
-
-            /* It('... should trigger on click on linkbox', () => {
-                const sheetNavDes = getAndExpectDebugElementByDirective(compDe, EditionSvgSheetNavStubComponent, 1, 1);
-                const sheetNavCmp = sheetNavDes[0].injector.get(
-                    EditionSvgSheetNavStubComponent
-                ) as EditionSvgSheetNavStubComponent;
-
-                sheetNavCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
-
-                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
-            }); */
-
-            it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
-            });
-
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheet.id);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
-
-                component.selectSvgSheet(expectedNextSvgSheet.id);
-
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
             });
         });
     });

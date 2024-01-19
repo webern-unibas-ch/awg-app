@@ -13,7 +13,8 @@
                     },
                     "content": [
                         {
-                            "id": "SkRTa",
+                            "complexId": "op24",
+                            "sheetId": "SkRTa",
                             "sigle": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
                             "sigleAddendum": "Reihenformen 1–24",
                             "sectionPartition": 1,
@@ -45,7 +46,8 @@
                     },
                     "content": [
                         {
-                            "id": "SkRTb",
+                            "complexId": "op24",
+                            "sheetId": "SkRTb",
                             "sigle": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk# (Reihentabelle op. 24)",
                             "sigleAddendum": "Reihenformen 25–48",
                             "sectionPartition": 1,

@@ -145,12 +145,18 @@
                                             <!-- content.itemDescription -->
                                             @if (content.item || content.itemDescription) {
                                                 <span class="awg-source-description-content-item">
-                                                    @if (content.itemLinkTo) {
-                                                        <a (click)="selectSvgSheet(content.itemLinkTo)"
+                                                    @if (utils.isNotEmptyObject(content.itemLinkTo)) {
+                                                        <a
+                                                            (click)="
+                                                                selectSvgSheet(
+                                                                    content.itemLinkTo.complexId,
+                                                                    content.itemLinkTo.sheetId
+                                                                )
+                                                            "
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
                                                     }
-                                                    @if (!content.itemLinkTo) {
+                                                    @if (!utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <strong>{{ content.item }}</strong>
                                                     }
                                                     @if (content.itemDescription) {
@@ -173,7 +179,13 @@
                                                                 tab: content.item
                                                             }">
                                                             @if (folio.folioLinkTo) {
-                                                                <a (click)="selectSvgSheet(folio.folioLinkTo)"
+                                                                <a
+                                                                    (click)="
+                                                                        selectSvgSheet(
+                                                                            content.itemLinkTo.complexId,
+                                                                            folio.folioLinkTo
+                                                                        )
+                                                                    "
                                                                     ><ng-template
                                                                         *ngTemplateOutlet="
                                                                             folioTemplate;
@@ -281,7 +293,13 @@
                                                                     <span
                                                                         class="awg-source-description-content-item-measure">
                                                                         @if (system.linkTo) {
-                                                                            <a (click)="selectSvgSheet(system.linkTo)"
+                                                                            <a
+                                                                                (click)="
+                                                                                    selectSvgSheet(
+                                                                                        content.itemLinkTo.complexId,
+                                                                                        system.linkTo
+                                                                                    )
+                                                                                "
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         measureTemplate;
@@ -311,7 +329,13 @@
                                                                     <span
                                                                         class="awg-source-description-content-item-row">
                                                                         @if (system.linkTo) {
-                                                                            <a (click)="selectSvgSheet(system.linkTo)"
+                                                                            <a
+                                                                                (click)="
+                                                                                    selectSvgSheet(
+                                                                                        content.itemLinkTo.complexId,
+                                                                                        system.linkTo
+                                                                                    )
+                                                                                "
                                                                                 ><ng-template
                                                                                     *ngTemplateOutlet="
                                                                                         rowTemplate;

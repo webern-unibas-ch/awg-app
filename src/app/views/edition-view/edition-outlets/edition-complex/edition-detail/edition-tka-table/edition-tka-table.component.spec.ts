@@ -40,8 +40,10 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedGlyphs: typeof EDITION_GLYPHS_DATA;
     let expectedIsRowTable: boolean;
     let expectedModalSnippet: string;
-    let expectedNextSvgSheet: EditionSvgSheet;
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedSvgSheet: EditionSvgSheet;
+    let expectedNextSvgSheet: EditionSvgSheet;
     let expectedTextcriticalComments: TextcriticalComment[];
     let expectedTableHeaderStrings: {
         default: { reference: string; label: string }[];
@@ -62,6 +64,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
         mockDocument = TestBed.inject(DOCUMENT);
 
         // Test data
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
         expectedGlyphs = EDITION_GLYPHS_DATA;
         expectedModalSnippet = mockEditionData.mockModalSnippet;
@@ -167,10 +171,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 columnDes.forEach((columnDe, index) => {
                     const columnEl = columnDe.nativeElement;
-                    expect(columnEl.textContent).toBeDefined();
-                    expect(columnEl.textContent.trim())
-                        .withContext(`should be '${expectedTableHeaderStrings.default[index].label}'`)
-                        .toBe(expectedTableHeaderStrings.default[index].label);
+                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings.default[index].label);
                 });
             });
 
@@ -183,10 +184,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 columnDes.forEach((columnDe, index) => {
                     const columnEl = columnDe.nativeElement;
-                    expect(columnEl.textContent).toBeDefined();
-                    expect(columnEl.textContent.trim())
-                        .withContext(`should be '${expectedTableHeaderStrings.rowTable[index].label}'`)
-                        .toBe(expectedTableHeaderStrings.rowTable[index].label);
+                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings.rowTable[index].label);
                 });
             });
 
@@ -286,12 +284,12 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should return the correct hex value for a valid glyph alt value', () => {
-                expect(component.getGlyph('[bb]')).withContext(`should be '\uD834\uDD2B'`).toBe('\uD834\uDD2B'); // DOUBLE_FLAT
-                expect(component.getGlyph('[x]')).withContext(`should be '\uD834\uDD2A'`).toBe('\uD834\uDD2A'); // DOUBLE_SHARP
-                expect(component.getGlyph('[b]')).withContext(`should be '\u266D'`).toBe('\u266D'); // FLAT
-                expect(component.getGlyph('[#]')).withContext(`should be '\u266F'`).toBe('\u266F'); // SHARP
-                expect(component.getGlyph('[a]')).withContext(`should be '\u266E'`).toBe('\u266E'); // NATURAL
-                expect(component.getGlyph('[f]')).withContext(`should be '\uD834\uDD91'`).toBe('\uD834\uDD91'); // FORTE
+                expectToBe(component.getGlyph('[bb]'), '\uD834\uDD2B'); // DOUBLE_FLAT
+                expectToBe(component.getGlyph('[x]'), '\uD834\uDD2A'); // DOUBLE_SHARP
+                expectToBe(component.getGlyph('[b]'), '\u266D'); // FLAT
+                expectToBe(component.getGlyph('[#]'), '\u266F'); // SHARP
+                expectToBe(component.getGlyph('[a]'), '\u266E'); // NATURAL
+                expectToBe(component.getGlyph('[f]'), '\uD834\uDD91'); // FORTE
             });
 
             it('... should return an empty string for an invalid glyph alt value', () => {
@@ -451,23 +449,44 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 // CLick on second anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 1, [expectedComplexId, expectedSvgSheet.id]);
             }));
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined);
+                component.selectSvgSheet(undefined, undefined);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+
+                component.selectSvgSheet('', '');
 
                 expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
             });
 
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheet.id);
+            it('... should emit id of selected svg sheet within same complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                component.selectSvgSheet(expectedNextSvgSheet.id);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, {
+                    complexId: expectedComplexId,
+                    sheetId: expectedNextSvgSheet.id,
+                });
+            });
+
+            it('... should emit id of selected svg sheet for another complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds.complexId, expectedSheetIds.sheetId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds.complexId, expectedNextSheetIds.sheetId);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
     });

@@ -98,9 +98,14 @@ export class FolioFormat {
  */
 export class FolioContent {
     /**
-     * The folio content's id (string).
+     * The folio content's complex id (string).
      */
-    id: string;
+    complexId: string;
+
+    /**
+     * The folio content's sheet id (string).
+     */
+    sheetId: string;
 
     /**
      * The folio content's sigle (string).

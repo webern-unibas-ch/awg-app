@@ -14,5 +14,5 @@ export class EditionSvgLinkBox {
     /**
      * The link to another svg.
      */
-    linkTo: string;
+    linkTo: { complexId: string; sheetId: string };
 }

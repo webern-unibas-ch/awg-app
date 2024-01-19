@@ -9,6 +9,8 @@ import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -20,6 +22,18 @@ import { EditionSvgSheet, TextcriticalComment, Textcritics } from '@awg-app/view
 import { CompileHtmlComponent } from '@awg-app/shared/compile-html';
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer.component';
 
+// Mock components
+@Component({ selector: 'awg-edition-tka-description', template: '' })
+class EditionTkaDescriptionStubComponent {
+    @Input()
+    textcriticalDescriptions: string[];
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
@@ -31,7 +45,7 @@ class EditionTkaTableStubComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
 describe('EditionSvgSheetFooterComponent (DONE)', () => {
@@ -48,6 +62,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     let selectSvgSheetSpy: Spy;
     let selectSvgSheetRequestEmitSpy: Spy;
 
+    let expectedComplexId: string;
+    let expectedNextComplexId: string;
     let expectedFragment: string;
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
@@ -62,7 +78,12 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [FontAwesomeTestingModule],
-            declarations: [EditionSvgSheetFooterComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
+            declarations: [
+                EditionSvgSheetFooterComponent,
+                CompileHtmlComponent,
+                EditionTkaDescriptionStubComponent,
+                EditionTkaTableStubComponent,
+            ],
             providers: [UtilityService],
         }).compileComponents();
 
@@ -73,6 +94,8 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         utils = TestBed.inject(UtilityService);
 
         // Test data
+        expectedComplexId = 'testComplex1';
+        expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
         expectedModalSnippet = mockEditionData.mockModalSnippet;
         expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
@@ -116,15 +139,9 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         });
 
         it('... should have fontawesome icons', () => {
-            expect(component.faChevronRight).toBeTruthy();
-            expect(component.faChevronRight)
-                .withContext(`should equal ${expectedChevronRightIcon}`)
-                .toEqual(expectedChevronRightIcon);
+            expectToEqual(component.faChevronRight, expectedChevronRightIcon);
 
-            expect(component.faChevronUp).toBeTruthy();
-            expect(component.faChevronUp)
-                .withContext(`should equal ${expectedChevronUpIcon}`)
-                .toEqual(expectedChevronUpIcon);
+            expectToEqual(component.faChevronUp, expectedChevronUpIcon);
         });
 
         it('... should have `ref`', () => {
@@ -132,8 +149,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         });
 
         it('... should have `showTextcritics = false`', () => {
-            expect(component.showTextcritics).toBeDefined();
-            expect(component.showTextcritics).toBe(false);
+            expectToBe(component.showTextcritics, false);
         });
 
         describe('VIEW', () => {
@@ -162,22 +178,15 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         });
 
         it('... should have `selectedTextcritics` input', () => {
-            expect(component.selectedTextcritics).toBeDefined();
-            expect(component.selectedTextcritics)
-                .withContext(`should be ${expectedSelectedTextcritics}`)
-                .toBe(expectedSelectedTextcritics);
+            expectToEqual(component.selectedTextcritics, expectedSelectedTextcritics);
         });
 
         it('... should have `selectedTextcriticalComments` input', () => {
-            expect(component.selectedTextcriticalComments).toBeDefined();
-            expect(component.selectedTextcriticalComments)
-                .withContext(`should equal ${expectedSelectedTextcriticalComments}`)
-                .toEqual(expectedSelectedTextcriticalComments);
+            expectToEqual(component.selectedTextcriticalComments, expectedSelectedTextcriticalComments);
         });
 
         it('... should have `showTkA` input', () => {
-            expect(component.showTkA).toBeDefined();
-            expect(component.showTkA).withContext(`should be ${expectedShowTka}`).toBe(expectedShowTka);
+            expectToBe(component.showTkA, expectedShowTka);
         });
 
         describe('VIEW', () => {
@@ -239,8 +248,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.caps', 1, 1);
                 const spanEl = spanDes[0].nativeElement;
 
-                expect(spanEl.textContent).toBeDefined();
-                expect(spanEl.textContent).withContext(`should be 'Skizzenkommentar:'`).toBe('Skizzenkommentar:');
+                expectToBe(spanEl.textContent, 'Skizzenkommentar:');
             });
 
             it('... should contain a second span in p with "---" if selectedTextcritics.description is empty', () => {
@@ -258,40 +266,35 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
                 const spanEl = spanDes[1].nativeElement;
 
-                expect(spanEl.textContent).toBeTruthy();
-                expect(spanEl.textContent.trim()).withContext(`should be '---'`).toBe('---');
+                expectToBe(spanEl.textContent.trim(), `---`);
             });
 
-            it('... should contain no description paragraphs if showTextcritics = false', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
+            describe('... should contain no EditionTkaDescriptionComponent  if ...', () => {
+                it('... showTextcritics = false', () => {
+                    getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
+                });
+
+                it('... descriptions array is empty', () => {
+                    component.showTextcritics = true;
+                    component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
+                    detectChangesOnPush(fixture);
+
+                    getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
+                });
             });
 
-            it('... should contain no description paragraphs if descriptions are empty', () => {
+            it('... should contain one EditionTkaDescriptionComponent (stubbed) in evaluation div if showTextcritics = true', () => {
                 component.showTextcritics = true;
-                component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                 detectChangesOnPush(fixture);
 
-                getAndExpectDebugElementByCss(compDe, 'p.awg-edition-svg-sheet-footer-evaluation-desc', 0, 0);
-            });
-
-            it('... should contain as many description paragraphs as there are textcritics.description if showTextcritics = true', () => {
-                component.showTextcritics = true;
-                detectChangesOnPush(fixture);
-
-                const pDes = getAndExpectDebugElementByCss(
+                const divDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'p.awg-edition-svg-sheet-footer-evaluation-desc',
-                    expectedSelectedTextcritics.description.length,
-                    expectedSelectedTextcritics.description.length
+                    'div.awg-edition-svg-sheet-footer-evaluation',
+                    1,
+                    1
                 );
 
-                pDes.forEach((pDe, index) => {
-                    const pEl = pDe.nativeElement;
-
-                    expect(pEl.textContent)
-                        .withContext(`should be ${expectedSelectedTextcritics.description[index]}`)
-                        .toBe(expectedSelectedTextcritics.description[index]);
-                });
+                getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
             });
 
             it('... should contain no textcritics div if showTka is false', () => {
@@ -321,10 +324,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(pEl.classList).toBeDefined();
                 expect(pEl.classList).toContain('caps');
 
-                expect(pEl.textContent).toBeTruthy();
-                expect(pEl.textContent.trim())
-                    .withContext(`should be 'Textkritischer Kommentar:`)
-                    .toBe(`Textkritischer Kommentar:`);
+                expectToBe(pEl.textContent, `Textkritischer Kommentar:`);
             });
 
             it('... should contain one EditionTkaTableComponent (stubbed) in textcritics div', () => {
@@ -338,24 +338,17 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
             });
 
-            it('... should pass down selectedTextcriticalComments to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalComments` and `isRowTable` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
-                expect(tableCmp.textcriticalComments).toBeTruthy();
-                expect(tableCmp.textcriticalComments)
-                    .withContext(`should equal ${expectedSelectedTextcriticalComments}`)
-                    .toEqual(expectedSelectedTextcriticalComments);
+                expectToEqual(tableCmp.textcriticalComments, expectedSelectedTextcriticalComments);
+                expectToBe(tableCmp.isRowTable, expectedSelectedTextcritics.rowtable);
             });
 
             it('... should pass down isRowTable to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
-
-                expect(tableCmp.isRowTable).toBeTruthy();
-                expect(tableCmp.isRowTable)
-                    .withContext(`should equal ${expectedSelectedTextcritics.rowtable}`)
-                    .toEqual(expectedSelectedTextcritics.rowtable);
             });
         });
 
@@ -460,25 +453,46 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     EditionTkaTableStubComponent
                 ) as EditionTkaTableStubComponent;
 
-                editionTkaTableCmp.selectSvgSheetRequest.emit(expectedNextSvgSheet.id);
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                editionTkaTableCmp.selectSvgSheetRequest.emit(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSheetIds);
             });
 
             it('... should not emit anything if no id is provided', () => {
-                component.selectSvgSheet(undefined);
+                const expectedSheetIds = undefined;
+                component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, undefined);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: undefined, sheetId: undefined };
+                component.selectSvgSheet(expectedNextSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedNextSheetIds);
             });
 
-            it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheet.id);
+            it('... should emit id of selected svg sheet within same complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
 
-                component.selectSvgSheet(expectedNextSvgSheet.id);
+                const expectedNextSheetIds = { complexId: expectedComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
+            });
+
+            it('... should emit id of selected svg sheet for another complex', () => {
+                const expectedSheetIds = { complexId: expectedComplexId, sheetId: expectedSvgSheet.id };
+                component.selectSvgSheet(expectedSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSheetIds);
+
+                const expectedNextSheetIds = { complexId: expectedNextComplexId, sheetId: expectedNextSvgSheet.id };
+                component.selectSvgSheet(expectedNextSheetIds);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSheetIds);
             });
         });
 

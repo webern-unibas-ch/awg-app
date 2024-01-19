@@ -1,15 +1,62 @@
 {
     "textcritics": [
         {
+            "id": "M_37_TF1",
+            "label": "M 37 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g4640",
+                    "measure": "6",
+                    "system": "Klav. u.",
+                    "position": "3/4",
+                    "comment": "Notenhals und nur im Ansatz vorhandenes {{ref.getGlyph('[#]')}} ergänzt."
+                },
+                {
+                    "svgGroupId": "g4643",
+                    "measure": "10",
+                    "system": "Klav.",
+                    "position": "(2/4)",
+                    "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> verschobenen Untersatzes weggelassen.###Grafik###."
+                },
+                {
+                    "svgGroupId": "g4646",
+                    "measure": "19",
+                    "system": "Klav. u.",
+                    "position": "2/4",
+                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "g4649",
+                    "measure": "21",
+                    "system": "Klav. u.",
+                    "position": "1. Note",
+                    "comment": "g korrigiert zu a mit Blick auf harmonischen Kontext."
+                }
+            ]
+        },
+        {
             "id": "M_37_Sk1",
             "label": "M 37 Sk1",
             "description": [
-                "<strong>M 37 Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+                "<strong>Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "linkBoxes": [
                 {
-                    "svgGroupId": "TODO",
-                    "linkTo": "M_37_Sk2"
+                    "svgGroupId": "g1365",
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g8434",
+                    "linkTo": {
+                        "complexId": "m38",
+                        "sheetId": "M_38_Sk2"
+                    }
                 }
             ]
         },
@@ -17,7 +64,7 @@
             "id": "M_37_Sk2",
             "label": "M 37 Sk2",
             "description": [
-                "<strong>M 37 Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <strong>Sk1</strong>. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet('m37', 'M_37_Sk1')\"><strong>Sk1</strong></a>. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "comments": [
                 {
@@ -38,16 +85,24 @@
             "linkBoxes": [
                 {
                     "svgGroupId": "g17377",
-                    "linkTo": "M_37_Sk1"
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g18107",
+                    "linkTo": {
+                        "complexId": "m38",
+                        "sheetId": "M_38_Sk2"
+                    }
                 }
             ]
         },
         {
             "id": "M_37_Sk3",
             "label": "M 37 Sk3",
-            "description": [
-                "<strong>M 37 Sk3</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 37."
-            ],
+            "description": ["<strong>Sk3</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 37."],
             "comments": [
                 {
                     "svgGroupId": "g56588",
@@ -167,43 +222,6 @@
                     "system": "13",
                     "position": "2/4",
                     "comment": "Viertelnote überschreibt Halbe Note."
-                }
-            ]
-        },
-        {
-            "id": "M_37_TF1",
-            "label": "M 37 einzige Textfassung",
-            "description": [
-                "##Quellenbewertung:## Maßgebend für die hier vorgelegte Textedition der Studienkomposition für Klavier M 37 ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). <br /> Hauptquelle ist <strong>B</strong>."
-            ],
-            "comments": [
-                {
-                    "svgGroupId": "g4640",
-                    "measure": "6",
-                    "system": "Klav. u.",
-                    "position": "3/4",
-                    "comment": "Notenhals und nur im Ansatz vorhandenes [#] ergänzt."
-                },
-                {
-                    "svgGroupId": "g4643",
-                    "measure": "10",
-                    "system": "Klav.",
-                    "position": "(2/4)",
-                    "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in B verschobenen Untersatzes weggelassen.###Grafik###."
-                },
-                {
-                    "svgGroupId": "g4646",
-                    "measure": "19",
-                    "system": "Klav. u.",
-                    "position": "2/4",
-                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
-                },
-                {
-                    "svgGroupId": "g4649",
-                    "measure": "21",
-                    "system": "Klav. u.",
-                    "position": "1. Note",
-                    "comment": "g korrigiert zu a mit Blick auf harmonischen Kontext."
                 }
             ]
         }
