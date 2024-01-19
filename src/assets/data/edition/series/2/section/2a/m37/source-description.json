@@ -26,7 +26,7 @@
                         "item": "M 34 Sk1",
                         "itemLinkTo": {
                             "complexId": "m34",
-                            "sheetId": "M_34_Sk1"
+                            "sheetId": "M_34_Sk1a"
                         },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 34)",
                         "folios": [
@@ -39,21 +39,21 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–7",
-                                            "linkTo": ""
+                                            "linkTo": "M_34_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "4–5",
                                             "measure": "8–14",
-                                            "linkTo": ""
+                                            "linkTo": "M_34_Sk1b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–8a",
                                             "measure": "15–16",
-                                            "linkTo": ""
+                                            "linkTo": "M_34_Sk1c"
                                         }
                                     ]
                                 ]
@@ -104,7 +104,7 @@
                                     [
                                         {
                                             "system": "13a–14a",
-                                            "measure": "8(1–/4), {8(3/4)A–9A, 10}, 8(3/4)B–9B",
+                                            "measure": "8(1–2/4), {8(3/4)A–9A, 10}, 8(3/4)B–9B",
                                             "linkTo": ""
                                         }
                                     ]
@@ -562,21 +562,21 @@
                                         {
                                             "system": "7–8",
                                             "measure": "1–6",
-                                            "linkTo": ""
+                                            "linkTo": "M_37_Sk3a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10–11",
                                             "measure": "7–14",
-                                            "linkTo": ""
+                                            "linkTo": "M_37_Sk3b"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13–14",
                                             "measure": "15–21",
-                                            "linkTo": ""
+                                            "linkTo": "M_37_Sk3c"
                                         }
                                     ]
                                 ]
@@ -596,7 +596,7 @@
                 "desc": [
                     "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 3/4) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."
                 ],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format (hoch): 349 × 267 mm, Firmenzeichen [JE] | Protokoll. Schutzmarke | No. 5 | 18 linig. unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
+                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | N<sup>o.</sup> 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]
@@ -746,7 +746,7 @@
                                     [
                                         {
                                             "system": "4–5",
-                                            "measure": "17",
+                                            "measure": "1–7",
                                             "linkTo": ""
                                         }
                                     ],
@@ -806,7 +806,7 @@
                     {
                         "item": "M 39",
                         "itemLinkTo": {},
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 1→)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 39: Textfassung 1→2)",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -889,14 +889,7 @@
                                             "measure": "16–17(1–2/4)",
                                             "linkTo": ""
                                         }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
+                                    ],
                                     [
                                         {
                                             "system": "16b–17b (Bleistift)",
