@@ -338,8 +338,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="402"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:402</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="401"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:401</a></div>
                         </td>
                     </tr>
 
@@ -416,8 +416,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="375"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:375</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="374"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:374</a></div>
                         </td>
                     </tr>
 
@@ -494,8 +494,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="362"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:362</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="361"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:361</a></div>
                         </td>
                     </tr>
 
@@ -808,8 +808,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="389"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:389</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="388"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:388</a></div>
                         </td>
                     </tr>
 
@@ -1307,8 +1307,8 @@ by their keys and requests them to be converted.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="431"
-                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:431</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="430"
+                                    class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:430</a></div>
                         </td>
                     </tr>
 
@@ -1959,30 +1959,29 @@ export class BibliographyFormatPipe implements PipeTransform {
                     console.warn(&#x27;Verlag fehlt: &quot;&#x27; + out + &#x27;&quot; (&#x27; + this._bibEntry[&#x27;Kurztitel&#x27;] + &#x27;)&#x27;);
                 }
             }
-        } else {
-            if (pub) {
-                out +&#x3D; pubPlace + &#x27;: &#x27;;
-                // Publisher &#x3D;&#x3D; object
-                // Case: &quot;Wien: Böhlau, Lafite, &quot;
-                if (typeof pub &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
-                    const publ &#x3D; Object.keys(pub).length;
-                    for (let i &#x3D; 0; i &lt; publ; i++) {
-                        out +&#x3D; pub[i] + &#x27;, &#x27;;
-                    }
-                } else {
-                    // Publisher &#x3D;&#x3D; String
-                    // Case: &quot;Wien: Böhlau,&quot;
-                    out +&#x3D; pub + &#x27;, &#x27;;
+        } else if (pub) {
+            out +&#x3D; pubPlace + &#x27;: &#x27;;
+            // Publisher &#x3D;&#x3D; object
+            // Case: &quot;Wien: Böhlau, Lafite, &quot;
+            if (typeof pub &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+                const publ &#x3D; Object.keys(pub).length;
+                for (let i &#x3D; 0; i &lt; publ; i++) {
+                    out +&#x3D; pub[i] + &#x27;, &#x27;;
                 }
             } else {
-                // Place without publisher (e.g. &quot;Hochschulschriften&quot;)
-                // Case: &quot;Wien, &quot;
-                if (!this._bibEntry[&#x27;unpubliziert&#x27;]) {
-                    console.warn(&#x27;Verlag fehlt: &quot;&#x27; + out + &#x27;&quot; (&#x27; + this._bibEntry[&#x27;Kurztitel&#x27;] + &#x27;)&#x27;);
-                }
-                out +&#x3D; pubPlace + &#x27;, &#x27;;
+                // Publisher &#x3D;&#x3D; String
+                // Case: &quot;Wien: Böhlau,&quot;
+                out +&#x3D; pub + &#x27;, &#x27;;
             }
+        } else {
+            // Place without publisher (e.g. &quot;Hochschulschriften&quot;)
+            // Case: &quot;Wien, &quot;
+            if (!this._bibEntry[&#x27;unpubliziert&#x27;]) {
+                console.warn(&#x27;Verlag fehlt: &quot;&#x27; + out + &#x27;&quot; (&#x27; + this._bibEntry[&#x27;Kurztitel&#x27;] + &#x27;)&#x27;);
+            }
+            out +&#x3D; pubPlace + &#x27;, &#x27;;
         }
+
         return out;
     }
 
@@ -2067,15 +2066,11 @@ export class BibliographyFormatPipe implements PipeTransform {
      * @returns {string} The splitted name(s).
      */
     private _splitName(name: string, preDelimiter: string): string {
-        let tmp &#x3D; [];
-        if (name.match(&#x27;,&#x27;)) {
-            tmp &#x3D; name.split(&#x27;, &#x27;);
-            // Changes positions of first and last name
-            // Look here: http://stackoverflow.com/a/5306832
-            tmp.splice(1, 0, tmp.splice(0, 1)[0]);
-            return preDelimiter + tmp[0] + &#x27; &#x27; + tmp[1];
+        if (name.includes(&#x27;,&#x27;)) {
+            const [lastName, firstName] &#x3D; name.split(&#x27;, &#x27;);
+            return &#x60;${preDelimiter}${firstName} ${lastName}&#x60;;
         } else {
-            return preDelimiter + name;
+            return &#x60;${preDelimiter}${name}&#x60;;
         }
     }
 }

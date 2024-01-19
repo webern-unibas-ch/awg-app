@@ -440,7 +440,7 @@ with the selected modal text snippet.</p>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+                        <i>Type : </i>    <code>EventEmitter&lt;literal type&gt;</code>
 
                     </td>
                 </tr>
@@ -452,7 +452,7 @@ with the selected modal text snippet.</p>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Output variable: selectSvgSheetRequest.</p>
-<p>It keeps an event emitter for the selected id of an svg sheet.</p>
+<p>It keeps an event emitter for the selected ids of an edition complex and svg sheet.</p>
 </div>
                     </td>
                 </tr>
@@ -633,7 +633,7 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectSvgSheet(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>selectSvgSheet(sheetIds: literal type)</code>
                 </td>
             </tr>
 
@@ -649,8 +649,8 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: selectSvgSheet.</p>
-<p>It emits a given id of a selected svg sheet
-to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
+<p>It emits the given ids of a selected edition complex
+and svg sheet to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 </div>
 
                             <div class="io-description">
@@ -667,9 +667,9 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>sheetIds</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                        <code>literal type</code>
                                             </td>
 
                                             <td>
@@ -678,7 +678,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 
 
                                             <td>
-                                                    <p>The given sheet id.</p>
+                                                    <p>The given sheet ids as { complexId: string, sheetId: string }.</p>
 
                                             </td>
                                         </tr>
@@ -690,7 +690,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Emits the id.</p>
+                                <p>Emits the ids.</p>
 
                             </div>
                 </td>
@@ -820,10 +820,10 @@ export class TextcriticsListComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+    selectSvgSheetRequest: EventEmitter&lt;{ complexId: string; sheetId: string }&gt; &#x3D; new EventEmitter();
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -877,17 +877,17 @@ export class TextcriticsListComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds || !sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }
 </code></pre>
@@ -902,7 +902,10 @@ export class TextcriticsListComponent {
                     ngbAccordionHeader
                     class&#x3D;&quot;accordion-button awg-accordion-button-custom-header justify-content-between&quot;&gt;
                     &lt;button ngbAccordionToggle class&#x3D;&quot;btn btn-link text-start p-0&quot;&gt;{{ textcritic.label }}&lt;/button&gt;
-                    &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-sm btn-outline-info&quot; (click)&#x3D;&quot;selectSvgSheet(textcritic.id)&quot;&gt;
+                    &lt;button
+                        type&#x3D;&quot;button&quot;
+                        class&#x3D;&quot;btn btn-sm btn-outline-info&quot;
+                        (click)&#x3D;&quot;selectSvgSheet({ complexId: &#x27;&#x27;, sheetId: textcritic.id })&quot;&gt;
                         Zum edierten Notentext
                     &lt;/button&gt;
                 &lt;/div&gt;
@@ -912,9 +915,11 @@ export class TextcriticsListComponent {
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 &lt;div&gt;
                                     &lt;p class&#x3D;&quot;caps&quot;&gt;Skizzenkommentar:&lt;/p&gt;
-                                    @for (description of textcritic.description; track description) {
-                                        &lt;p [compile-html]&#x3D;&quot;description&quot; [compile-html-ref]&#x3D;&quot;ref&quot;&gt;&lt;/p&gt;
-                                    }
+                                    &lt;awg-edition-tka-description
+                                        [textcriticalDescriptions]&#x3D;&quot;textcritic.description&quot;
+                                        (navigateToReportFragmentRequest)&#x3D;&quot;navigateToReportFragment($event)&quot;
+                                        (openModalRequest)&#x3D;&quot;openModal($event)&quot;
+                                        (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;&gt;&lt;/awg-edition-tka-description&gt;
                                 &lt;/div&gt;
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
@@ -971,8 +976,8 @@ export class TextcriticsListComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>@if (textcriticsData) {    <div ngbAccordion>        @for (textcritic of textcriticsData.textcritics; track textcritic) {            <div [ngbAccordionItem]="textcritic.id" [collapsed]="true">                <div                    ngbAccordionHeader                    class="accordion-button awg-accordion-button-custom-header justify-content-between">                    <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritic.label }}</button>                    <button type="button" class="btn btn-sm btn-outline-info" (click)="selectSvgSheet(textcritic.id)">                        Zum edierten Notentext                    </button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            @if (utils.isNotEmptyArray(textcritic.description)) {                                <div>                                    <p class="caps">Skizzenkommentar:</p>                                    @for (description of textcritic.description; track description) {                                        <p [compile-html]="description" [compile-html-ref]="ref"></p>                                    }                                </div>                            }                            @if (utils.isNotEmptyArray(textcritic.comments)) {                                <div>                                    <p class="caps">Textkritischer Kommentar:</p>                                    <awg-edition-tka-table                                        [textcriticalComments]="textcritic.comments"                                        [isRowTable]="textcritic.rowtable"                                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                                        (openModalRequest)="openModal($event)"                                        (selectSvgSheetRequest)="selectSvgSheet($event)">                                    </awg-edition-tka-table>                                </div>                            }                        </ng-template>                    </div>                </div>            </div>        }    </div>}</div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
+        var COMPONENT_TEMPLATE = '<div>@if (textcriticsData) {    <div ngbAccordion>        @for (textcritic of textcriticsData.textcritics; track textcritic) {            <div [ngbAccordionItem]="textcritic.id" [collapsed]="true">                <div                    ngbAccordionHeader                    class="accordion-button awg-accordion-button-custom-header justify-content-between">                    <button ngbAccordionToggle class="btn btn-link text-start p-0">{{ textcritic.label }}</button>                    <button                        type="button"                        class="btn btn-sm btn-outline-info"                        (click)="selectSvgSheet({ complexId: \'\', sheetId: textcritic.id })">                        Zum edierten Notentext                    </button>                </div>                <div ngbAccordionCollapse>                    <div ngbAccordionBody>                        <ng-template>                            @if (utils.isNotEmptyArray(textcritic.description)) {                                <div>                                    <p class="caps">Skizzenkommentar:</p>                                    <awg-edition-tka-description                                        [textcriticalDescriptions]="textcritic.description"                                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                                        (openModalRequest)="openModal($event)"                                        (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-tka-description>                                </div>                            }                            @if (utils.isNotEmptyArray(textcritic.comments)) {                                <div>                                    <p class="caps">Textkritischer Kommentar:</p>                                    <awg-edition-tka-table                                        [textcriticalComments]="textcritic.comments"                                        [isRowTable]="textcritic.rowtable"                                        (navigateToReportFragmentRequest)="navigateToReportFragment($event)"                                        (openModalRequest)="openModal($event)"                                        (selectSvgSheetRequest)="selectSvgSheet($event)">                                    </awg-edition-tka-table>                                </div>                            }                        </ng-template>                    </div>                </div>            </div>        }    </div>}</div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'TextcriticsListComponent'};
 </script>

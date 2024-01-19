@@ -1,7 +1,7 @@
 {
     "sources": [
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
@@ -19,7 +19,10 @@
                 "content": [
                     {
                         "item": "M 325 Sk# / M 326 Sk1 / M 327 Sk1",
-                        "itemLinkTo": "SkRTa",
+                        "itemLinkTo": {
+                            "complexId": "op27",
+                            "sheetId": "SkRTa"
+                        },
                         "itemDescription": "(Reihentabelle op. 27)",
                         "folios": [
                             {

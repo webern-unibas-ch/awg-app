@@ -554,7 +554,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.11.2&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.11.3&#x27;</code>
                     </td>
                 </tr>
 
@@ -586,7 +586,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;10. Januar 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;19. Januar 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -659,9 +659,7 @@
         cachedResponses.set(req.urlWithParams, resp.clone());
     },
     get(req: HttpRequest&lt;any&gt;): HttpResponse&lt;any&gt; | null {
-        return cachedResponses &amp;&amp; cachedResponses.has(req.urlWithParams)
-            ? cachedResponses.get(req.urlWithParams)
-            : null;
+        return cachedResponses?.has(req.urlWithParams) ? cachedResponses.get(req.urlWithParams) : null;
     },
     clear(): void {
         cachedResponses &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
@@ -1609,6 +1607,33 @@ to store data of the edition assets.</p>
     },
 
     /**
+     * The path to the assets image of a firm sign: JE No. 5, 18 Lines.
+     */
+    FIRM_JE_NO_5_LIN_18B: {
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no5_lin18b.png&#x27;,
+        short: &#x27;[JE] | No. 5 | 18 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 5 | 18 linig.&#x27;,
+    },
+
+    /**
+     * The path to the assets image of a firm sign: JE No. 5, 18 Lines.
+     */
+    FIRM_JE_NO_5_LIN_18C: {
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no5_lin18c.png&#x27;,
+        short: &#x27;[JE] | No. 5 | 18 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 5 | 18 linig.&#x27;,
+    },
+
+    /**
+     * The path to the assets image of a firm sign: JE No. 5, 18 Lines.
+     */
+    FIRM_JE_NO_5_LIN_18D: {
+        route: &#x27;assets/img/edition/firm-signs/firm_je_no5_lin18d.png&#x27;,
+        short: &#x27;[JE] | No. 5 | 18 linig.&#x27;,
+        full: &#x27;J. E. &amp; Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | Protokoll. Schutzmarke | No. 5 | 18 linig.&#x27;,
+    },
+
+    /**
      * The path to the assets image of a firm sign: JE No. 6, 20 Lines.
      */
     FIRM_JE_NO_6_LIN_20: {
@@ -1906,6 +1931,7 @@ to store graph images data.</p>
                     opus: [],
                     mnr: [
                         { complex: EDITION_COMPLEXES.M30, disabled: false },
+                        { complex: EDITION_COMPLEXES.M31, disabled: false },
                         { complex: EDITION_COMPLEXES.M34, disabled: false },
                         { complex: EDITION_COMPLEXES.M37, disabled: false },
                     ],
@@ -2910,7 +2936,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         },
                         content: [
                             {
-                                id: &#x27;M_212_Sk1&#x27;,
+                                complexId: &#x27;op12&#x27;,
+                                sheetId: &#x27;M_212_Sk1&#x27;,
                                 sigle: &#x27;M 212 Sk1&#x27;,
                                 sigleAddendum: &#x27;T. 1–2, [3–6]&#x27;,
                                 selectable: false,
@@ -2966,7 +2993,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;op12&#x27;,
                 content: [
                     &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;source_A\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern.&#x27;,
-                    &#x27;In &lt;a (click)&#x3D;&quot;ref.selectSvgSheet(\&#x27;test-1\&#x27;)&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert&#x27;,
+                    &quot;In &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; neu skizziert&quot;,
                 ],
             },
         ],
@@ -3123,7 +3150,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     content: [
                         {
                             item: &#x27;Test item&#x27;,
-                            itemLinkTo: &#x27;test_item_id_1&#x27;,
+                            itemLinkTo: {
+                                complexId: &#x27;testComplex1&#x27;,
+                                sheetId: &#x27;test_item_id_1&#x27;,
+                            },
                             itemDescription: &#x27;(test description)&#x27;,
                             folios: [
                                 {
@@ -3173,7 +3203,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         },
                         {
                             item: &#x27;Test item 2 without link&#x27;,
-                            itemLinkTo: &#x27;&#x27;,
+                            itemLinkTo: {},
                             itemDescription: &#x27;(test description 2)&#x27;,
                             folios: [
                                 {
@@ -3282,13 +3312,16 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         },
                         {
                             item: &#x27;Test item 3 without description&#x27;,
-                            itemLinkTo: &#x27;test_item_id_2&#x27;,
+                            itemLinkTo: {
+                                complexId: &#x27;testComplex1&#x27;,
+                                sheetId: &#x27;test_item_id_2&#x27;,
+                            },
                             itemDescription: &#x27;&#x27;,
                             folios: [],
                         },
                         {
                             item: &#x27;&#x27;,
-                            itemLinkTo: &#x27;&#x27;,
+                            itemLinkTo: {},
                             itemDescription: &#x27;&#x27;,
                             folios: [
                                 {
@@ -3316,7 +3349,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 id: &#x27;op25&#x27;,
                 content: [
                     &#x27;&lt;small class&#x3D;&quot;text-muted&quot;&gt;[Die Quellenbewertung zum gesamten Editionskomplex &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheint im Zusammenhang der vollständigen Edition von Opus 25 in AWG I/5.]&lt;/small&gt;&#x27;,
-                    &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;source_A\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten u. a. &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; (13. Januar 1915) als Korrekturen einer in &lt;strong&gt;B&lt;/strong&gt; und in &lt;a (click)&#x3D;&quot;ref.selectSvgSheet(\&#x27;test-1\&#x27;)&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; vorformulierten Fassung dar.&#x27;,
+                    &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment(&#x27;source_A&#x27;)\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten u. a. &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; (13. Januar 1915) als Korrekturen einer in &lt;strong&gt;B&lt;/strong&gt; und in &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt; vorformulierten Fassung dar.&quot;,
                 ],
             },
         ],
@@ -3730,7 +3763,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             {
                 id: &#x27;test-2&#x27;,
                 label: &#x27;test2&#x27;,
-                description: [&#x27;test description 1&#x27;, &#x27;test description 2&#x27;],
+                description: [
+                    &#x27;test description 1&#x27;,
+                    &quot;In &lt;strong&gt;Sk2&lt;/strong&gt; werden T. 11–12 aus &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Sk1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment(&#x27;source_B&#x27;)\&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; neu skizziert, weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entspricht.&quot;,
+                ],
                 rowtable: true,
                 comments: [
                     {
@@ -3746,7 +3782,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         system: &#x27;12&#x27;,
                         position: &#x27;2. Note&#x27;,
                         comment:
-                            &#x27;Die Skizzen in &lt;a (click)&#x3D;&quot;ref.navigateToReportFragment(\&#x27;source_A\&#x27;)&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;&quot;ref.selectSvgSheet(\&#x27;test-1\&#x27;)&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&#x27;,
+                            &quot;Die Skizzen in &lt;a (click)&#x3D;\&quot;ref.navigateToReportFragment(&#x27;source_A&#x27;)\&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern. Siehe &lt;a (click)&#x3D;\&quot;ref.openModal(&#x27;OP12_SHEET_COMING_SOON&#x27;)\&quot;&gt;&lt;strong&gt;Test SkXYZ&lt;/strong&gt;&lt;/a&gt; T. [11] und &lt;a (click)&#x3D;\&quot;ref.selectSvgSheet(&#x27;testComplex1&#x27;, &#x27;test-1&#x27;)\&quot;&gt;&lt;strong&gt;Test Sk1&lt;/strong&gt;&lt;/a&gt;.&quot;,
                     },
                     {
                         svgGroupId: &#x27;svg-group-3&#x27;,
@@ -5073,10 +5109,10 @@ from the Salsah API.</p>
         &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;A&lt;/strong&gt; sowie &lt;strong&gt;C–D&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Drei Gesänge aus&lt;/em&gt; Viae Inviae &lt;em&gt;von Hildegard Jone&lt;/em&gt; op. 23 in AWG I/5.&lt;/p&gt;&#x27;,
     OP24_SOURCE_NOT_AVAILABLE:
         &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;A&lt;/strong&gt; sowie &lt;strong&gt;C–D&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition des &lt;em&gt;Konzert für neun Instrumente&lt;/em&gt; op. 24 in AWG I/1.&lt;/p&gt;&#x27;,
-    OP25_SHEET_COMING_SOON:
-        &#x27;Die edierten Notentexte weiterer Skizzen der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheinen in Kürze (02/2022).&#x27;,
     OP25_SOURCE_NOT_AVAILABLE:
         &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;D&lt;/strong&gt; und &lt;strong&gt;E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
+    VOL_2A_EDITION_COMING_SOON:
+        &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;nobullets&quot;&gt;&lt;li&gt;Studienkomposition für Klavier M* 402,&lt;/li&gt;&lt;li&gt;Studienkomposition für Klavier M* 403&lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der Studienkompositionen für Klavier in AWG II/2a.&lt;/p&gt;&#x27;,
     M198: &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;,
     HINT_EDITION_SHEETS:
         &#x27;&lt;p&gt;\n&#x27; +

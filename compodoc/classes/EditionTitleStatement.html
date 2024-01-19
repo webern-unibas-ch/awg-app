@@ -402,7 +402,7 @@ export class EditionComplex {
         section?: EditionRouteConstant,
         type?: EditionRouteConstant
     ) {
-        if (!titleStatement || !titleStatement.catalogueType || !titleStatement.catalogueNumber) {
+        if (!titleStatement?.catalogueType || !titleStatement?.catalogueNumber) {
             return;
         }
 
@@ -411,10 +411,8 @@ export class EditionComplex {
         const spacer &#x3D; &#x27; &#x27;;
 
         // Set dynamic routes
-        this.titleStatement &#x3D; titleStatement ? titleStatement : new EditionTitleStatement();
-        this.responsibilityStatement &#x3D; responsibilityStatement
-            ? responsibilityStatement
-            : new EditionResponsibilityStatement();
+        this.titleStatement &#x3D; titleStatement || new EditionTitleStatement();
+        this.responsibilityStatement &#x3D; responsibilityStatement || new EditionResponsibilityStatement();
 
         this.complexId &#x3D; new EditionRouteConstant();
         if (this.titleStatement.catalogueType &#x3D;&#x3D;&#x3D; EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS) {
@@ -428,16 +426,13 @@ export class EditionComplex {
         this.complexId.short &#x3D; this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
         this.complexId.full &#x3D; this.titleStatement.title + spacer + this.complexId.short;
 
-        this.series &#x3D; series ? series : new EditionRouteConstant(); // EditionConstants.SERIES_1;
-        this.section &#x3D; section ? section : new EditionRouteConstant(); // EditionConstants.SECTION_5;
-        this.type &#x3D; type ? type : new EditionRouteConstant(); // EditionConstants.SKETCH_EDITION;
+        this.series &#x3D; series || new EditionRouteConstant();
+        this.section &#x3D; section || new EditionRouteConstant();
+        this.type &#x3D; type || new EditionRouteConstant();
 
         // Set base route
-        let rootPath &#x3D; EDITION_ROUTE_CONSTANTS.EDITION.route; // &#x27;/edition&#x27;
-        // RootPath +&#x3D; this.series.route;     // &#x27;/series&#x27;
-        // RootPath +&#x3D; this.section.route;    // &#x27;/section&#x27;
-        rootPath +&#x3D; EDITION_ROUTE_CONSTANTS.COMPLEX.route; // &#x27;/complex&#x27;
-        // RootPath +&#x3D; this.type.route;       // &#x27;/sketches&#x27; or // &#x27;/texts&#x27;
+        let rootPath &#x3D; EDITION_ROUTE_CONSTANTS.EDITION.route;
+        rootPath +&#x3D; EDITION_ROUTE_CONSTANTS.COMPLEX.route;
 
         this.baseRoute &#x3D; rootPath + this.complexId.route + delimiter;
     }

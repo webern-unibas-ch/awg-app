@@ -470,8 +470,8 @@ of the current resource.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="143"
-                                    class="link-to-prism">src/app/views/data-view/models/resource-detail-header.model.ts:143</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="149"
+                                    class="link-to-prism">src/app/views/data-view/models/resource-detail-header.model.ts:149</a></div>
                         </td>
                     </tr>
 
@@ -608,7 +608,7 @@ export class ResourceDetailHeader {
             // Extract restype specific title for header
             switch (info.restype_id) {
                 // CHRONOLOGIE
-                case &#x27;28&#x27;:
+                case &#x27;28&#x27;: {
                     // Richtext value has already been converted in detail using plugin &quot;htmlConverter&quot;
                     let htmlstr &#x3D; props[&#x27;webern-onto:event&#x27;].toHtml[0];
 
@@ -617,42 +617,48 @@ export class ResourceDetailHeader {
 
                     this.title &#x3D; htmlstr;
                     break;
+                }
 
                 // KORRESPONDENZ (same as SUPPLEMENT)
-                case &#x27;29&#x27;:
+                case &#x27;29&#x27;: {
                     this.title &#x3D; props[&#x27;dc:title&#x27;].toHtml[0] + &#x27;&lt;br/&gt;&#x27; + props[&#x27;dc:date&#x27;].toHtml[0];
                     break;
+                }
 
                 // SUPPLEMENT
-                case &#x27;125&#x27;:
+                case &#x27;125&#x27;: {
                     this.title &#x3D; props[&#x27;dc:title&#x27;].toHtml[0] + &#x27;&lt;br/&gt;&#x27; + props[&#x27;dc:date&#x27;].toHtml[0];
                     break;
+                }
 
                 // MUSIKSTÜCK (Moldenhauer-Nummer)
-                case &#x27;36&#x27;:
+                case &#x27;36&#x27;: {
                     this.title &#x3D; &#x27;[M &#x27; + props[&#x27;webern-onto:mnr&#x27;].toHtml[0] + &#x27;] &#x27; + props[&#x27;dc:title&#x27;].toHtml[0];
                     break;
-
+                }
                 // WERK
-                case &#x27;43&#x27;:
+                case &#x27;43&#x27;: {
                     this.title &#x3D; props[&#x27;dc:title&#x27;].toHtml[0];
                     break;
-
+                }
                 // PERSON
-                case &#x27;45&#x27;:
+                case &#x27;45&#x27;: {
                     const lname: string &#x3D; props[&#x27;salsah:lastname&#x27;].toHtml[0];
                     const fname: string &#x3D; props[&#x27;salsah:firstname&#x27;].toHtml[0];
                     this.title &#x3D; fname + &#x27; &#x27; + lname;
                     break;
+                }
 
                 // BIBLIOGRAPHIE
-                case &#x27;126&#x27;:
+                case &#x27;126&#x27;: {
                     this.title &#x3D; props[&#x27;webern-onto:bibl_title_short&#x27;].toHtml[0];
                     break;
+                }
 
                 // DEFAULT
-                default:
+                default: {
                     this.title &#x3D; info.restype_description;
+                }
             }
         } else {
             // Header for undefined &amp; restricted object

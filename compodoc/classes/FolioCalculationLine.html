@@ -554,9 +554,14 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
+     * The label for the id of the edition complex of the content item (string).
+     */
+    complexId: string;
+
+    /**
      * The label for the id of the content item (string).
      */
-    id: string;
+    sheetId: string;
 
     /**
      * The label for the sigle of the content item (string).
@@ -763,7 +768,7 @@ export class FolioCalculation {
      * @param {number} [itemsOffsetCorrection] The optional given itemsOffset correction.
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, itemsOffsetCorrection?: number) {
-        this.itemsOffsetCorrection &#x3D; itemsOffsetCorrection ? itemsOffsetCorrection : 0;
+        this.itemsOffsetCorrection &#x3D; itemsOffsetCorrection || 0;
         this.numberOfSystems &#x3D; folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor &#x3D; folioSettings.factor;
 
@@ -914,15 +919,12 @@ export class FolioCalculation {
                         calculatedContentItem
                     );
 
-                    calculatedContentItem.id &#x3D; content.id;
+                    calculatedContentItem.complexId &#x3D; content.complexId;
+                    calculatedContentItem.sheetId &#x3D; content.sheetId;
                     calculatedContentItem.sigle &#x3D; content.sigle;
                     calculatedContentItem.sigleAddendum &#x3D; content.sigleAddendum;
-                    calculatedContentItem.selectable &#x3D; true;
-                    calculatedContentItem.linkTo &#x3D; &#x27;&#x27;;
-                    if (content[&#x27;selectable&#x27;] &#x3D;&#x3D;&#x3D; false &amp;&amp; content[&#x27;linkTo&#x27;]) {
-                        calculatedContentItem.selectable &#x3D; content.selectable;
-                        calculatedContentItem.linkTo &#x3D; content.linkTo;
-                    }
+                    calculatedContentItem.selectable &#x3D; content.selectable ?? true;
+                    calculatedContentItem.linkTo &#x3D; content.linkTo || &#x27;&#x27;;
 
                     calculatedContentItems.push(calculatedContentItem);
                 });

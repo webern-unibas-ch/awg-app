@@ -1494,7 +1494,7 @@ to retrieve all results from the given (SALSAH) API.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { forkJoin as observableForkJoin, Observable, of as observableOf } from &#x27;rxjs&#x27;;
+import { Observable, forkJoin as observableForkJoin, of as observableOf } from &#x27;rxjs&#x27;;
 import { defaultIfEmpty, map } from &#x27;rxjs/operators&#x27;;
 
 import { ApiService, ConversionService } from &#x27;@awg-core/services/&#x27;;
@@ -1679,10 +1679,10 @@ export class DataApiService extends ApiService {
      * @returns {Observable&lt;SearchResponseJson&gt;} The observable with the SearchResponseJson data.
      */
     getSearchData(searchParams: SearchParams): Observable&lt;SearchResponseJson&gt; {
-        if (!searchParams || !searchParams.query) {
-            return observableOf(new SearchResponseJson());
-        }
-        if (typeof searchParams.query &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; !searchParams.query[&#x27;filterByRestype&#x27;]) {
+        if (
+            !searchParams?.query ||
+            (typeof searchParams?.query &#x3D;&#x3D;&#x3D; &#x27;object&#x27; &amp;&amp; !searchParams?.query?.[&#x27;filterByRestype&#x27;])
+        ) {
             return observableOf(new SearchResponseJson());
         }
 

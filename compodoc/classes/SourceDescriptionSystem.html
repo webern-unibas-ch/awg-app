@@ -222,7 +222,7 @@ from a source description json file.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The measure link (optional).</p>
+                    <div class="io-description"><p>The link to a certain measure range of an svg sheet (optional).</p>
 </div>
                 </td>
             </tr>
@@ -414,7 +414,7 @@ export class SourceDescriptionSystem {
     measure?: string;
 
     /**
-     * The measure link (optional).
+     * The link to a certain measure range of an svg sheet (optional).
      */
     linkTo?: string;
 
@@ -469,7 +469,7 @@ export class SourceDescriptionContent {
     /**
      * The content item link (optional).
      */
-    itemLinkTo?: string;
+    itemLinkTo?: { complexId?: string; sheetId?: string };
 
     /**
      * The content item description (optional).

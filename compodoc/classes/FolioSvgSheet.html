@@ -455,9 +455,14 @@ class FolioSvgSystems {
  */
 class FolioSvgContentItem {
     /**
-     * The id for the label of a content item (string).
+     * The id for the label of a content item edition complex (string).
      */
-    id: string;
+    complexId: string;
+
+    /**
+     * The id for the label of a content item sheet (string).
+     */
+    sheetId: string;
 
     /**
      * The sigle for the label of a content item (string).
@@ -513,7 +518,8 @@ class FolioSvgContentItem {
      * @param {FolioCalculationContentItem} calculatedContentItem The given calculated folio content item.
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
-        this.id &#x3D; calculatedContentItem.id;
+        this.complexId &#x3D; calculatedContentItem.complexId;
+        this.sheetId &#x3D; calculatedContentItem.sheetId;
         this.sigle &#x3D; calculatedContentItem.sigle;
         this.sigleAddendum &#x3D; calculatedContentItem.sigleAddendum;
         this.selectable &#x3D; calculatedContentItem.selectable;

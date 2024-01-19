@@ -287,8 +287,8 @@ and handles cached http responses.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="73"
-                                    class="link-to-prism">src/app/core/services/http-cache/http-cache.service.ts:73</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="71"
+                                    class="link-to-prism">src/app/core/services/http-cache/http-cache.service.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -468,9 +468,7 @@ export class HttpCacheService implements HttpCache {
      * @returns {HttpResponse&lt;any&gt; | null} A cached response or null.
      */
     get(req: HttpRequest&lt;any&gt;): HttpResponse&lt;any&gt; | null {
-        return this._cachedResponses &amp;&amp; this._cachedResponses.has(req.urlWithParams)
-            ? this._cachedResponses.get(req.urlWithParams)
-            : null;
+        return this._cachedResponses?.has(req.urlWithParams) ? this._cachedResponses.get(req.urlWithParams) : null;
     }
 
     /**
