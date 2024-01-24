@@ -1,6 +1,71 @@
 {
     "textcritics": [
         {
+            "id": "M_31_TF1",
+            "label": "M 31 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br /><a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g3298",
+                    "measure": "1",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "g3302",
+                    "measure": "5",
+                    "system": "Klav. u.",
+                    "position": "3/16",
+                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "g3306",
+                    "measure": "6",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "g2028",
+                    "measure": "15",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
+                },
+                {
+                    "svgGroupId": "g3042",
+                    "measure": "16",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
+                },
+                {
+                    "svgGroupId": "g3046",
+                    "measure": "18",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von zwischen 3/8 und 4/8."
+                },
+                {
+                    "svgGroupId": "g3050",
+                    "measure": "23",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[p]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "g3054",
+                    "measure": "28",
+                    "system": "Klav.",
+                    "position": "8/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 5/8."
+                }
+            ]
+        },
+        {
             "id": "M_31_Sk1",
             "label": "M 31 Sk1",
             "description": [
@@ -14,7 +79,7 @@
                     "position": "(2/4)",
                     "comment": "Zwei Achtelnoten überschreiben Viertelnote."
                 }
-              ] 
+            ]
         },
         {
             "id": "M_31_Sk2",
@@ -165,7 +230,7 @@
                     "comment": "Sechs Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu drei Achtelnoten, Viertelnote und Achtelnote; Achtelnote e<sup>2</sup> auf 5/8 aufgrund der Änderung getilgt."
                 },
                 {
-                    "svgGroupId": "path1933",
+                    "svgGroupId": "g2",
                     "measure": "{16A–18A}",
                     "system": "8–9",
                     "position": "",
@@ -193,14 +258,14 @@
                     "comment": "Noten gestrichen."
                 },
                 {
-                    "svgGroupId": "polyline110",
+                    "svgGroupId": "g2",
                     "measure": "{19A}",
                     "system": "11",
                     "position": "",
                     "comment": "Noten gestrichen."
                 },
                 {
-                    "svgGroupId": "path 1933",
+                    "svgGroupId": "g3",
                     "measure": "{19B}",
                     "system": "",
                     "position": "",
@@ -241,13 +306,14 @@
                     "position": "5–6/8",
                     "comment": "a–d überschreibt F–D."
                 }
-            ]   
-        }, 
+            ]
+        },
         {
             "id": "M_31_Sk5",
             "label": "M 31 Sk5",
             "description": [
-                "<strong>M 31 Sk5</strong> enthält die Reprise des A-Teils zur Studienkomposition für Klavier M 31. Obwohl sämtliche Takte gestrichen sind, entsprechen sie der späteren Tintenniederschrift.",
+                "<strong>M 31 Sk5</strong> enthält die Reprise des A-Teils zur Studienkomposition für Klavier M 31. Obwohl sämtliche Takte gestrichen sind, entsprechen sie der späteren Tintenniederschrift."
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1068",
