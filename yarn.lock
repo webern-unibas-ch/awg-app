@@ -7118,10 +7118,10 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@^8.0.3:
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-8.0.3.tgz#4936d7212e46d1dea28fef29bb3a108872cd9184"
-  integrity sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==
+husky@^9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-9.0.3.tgz#26bf3f7597fc977589c82c16c680e9320b9fcf5b"
+  integrity sha512-MNRluWx5bvZ2Ft2Z9ni5KZAgNFrQSM4LKvEtTJVKTjGRqliI1CeWv8HWnPXfM+4snOaU04bb7IU2u6TPDb8ROw==
 
 i18next@^23.7.6:
   version "23.7.6"
