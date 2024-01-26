@@ -45,7 +45,7 @@
     "bugs": "",
     "private": true,
     "scripts": {
-        "husky:prepare": "husky install",
+        "husky:prepare": "husky",
         "ng": "ng",
         "start": "ng serve",
         "-- TEST --": "",
