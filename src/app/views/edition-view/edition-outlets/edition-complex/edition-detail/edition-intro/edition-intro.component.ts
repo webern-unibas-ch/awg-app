@@ -175,7 +175,7 @@ export class EditionIntroComponent implements OnInit {
         const sheetRoute = sheetId ? sheetId : '';
 
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetId },
+            queryParams: { id: sheetRoute },
             queryParamsHandling: '',
         };
 
