@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 /**
  * The TablePagination component.
@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
     styleUrls: ['./table-pagination.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TablePaginationComponent implements OnInit {
+export class TablePaginationComponent {
     /**
      * Input variable: collectionSize.
      *
@@ -51,16 +51,6 @@ export class TablePaginationComponent implements OnInit {
      * It keeps a regex for anything else but a number value.
      */
     readonly FILTER_PAG_REGEX = /\D/g;
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {
-        // Intentionally left empty until implemented
-    }
 
     /**
      * Public method: replaceNonNumberInput.
