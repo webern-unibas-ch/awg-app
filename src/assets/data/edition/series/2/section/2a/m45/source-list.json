@@ -1,0 +1,25 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 Textfassung 1–2.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 26.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 Textfassung 1→2.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 Textfassung 2.<br />Enthält auch Tintenniederschrift von Studienkomposition für Streichquartett M 26.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        },
+        {
+            "siglum": "C",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 Textfassung 2 T. 7–18, T. 27–47.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 45 Textfassung 1.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceC"
+        }
+    ]
+}

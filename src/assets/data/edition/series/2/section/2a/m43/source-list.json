@@ -1,0 +1,18 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 43.<br />Enthält auch Tintenniederschrift von Studienkomposition für Streichquartett M 76 Textfassung 2 und M 44.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 43.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 44.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 466.<br />Enthält auch Tintenniederschrift von Studienkomposition „Komm heilʼger Geist, du Tröster mein“ M 84 sowie Skizzen zu Studienkomposition M* 464–467, M* 472–473, M* 480–483.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M* 466.<br />Enthält auch Tintenniederschrift von Studienkomposition M* 464–465 und M* 467 sowie Skizzen zu Studienkomposition M* 455–463, M* 468–469 und „Du bist mein, ich bin dein“ M 9.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        }
+    ]
+}
