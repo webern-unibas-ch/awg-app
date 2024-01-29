@@ -177,7 +177,7 @@
             ]
         },
         {
-            "id": "M_31_Sk3.1",
+            "id": "M_31_Sk3_1",
             "label": "M 31 Sk3.1",
             "description": [
                 "<strong>M 31 Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <strong>Sk3</strong> ein."
@@ -193,7 +193,7 @@
             ]
         },
         {
-            "id": "M_31_Sk3.2",
+            "id": "M_31_Sk3_2",
             "label": "M 31 Sk3.2",
             "description": [
                 "<strong>M 31 Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <strong>M 31 Sk3</strong> von D nach G um eine Quinte nach unten zu transponieren."
@@ -234,7 +234,7 @@
                     "measure": "{16A–18A}",
                     "system": "8–9",
                     "position": "",
-                    "comment": "Takte zusammen mit T. {19B} und T. {16B–18B} durch Einkreisung getilgt."
+                    "comment": "Takte zusammen mit T. {{ '{' }}19B{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
                 },
                 {
                     "svgGroupId": "g1222",
@@ -269,7 +269,7 @@
                     "measure": "{19B}",
                     "system": "",
                     "position": "",
-                    "comment": "Takt zusammen mit T. {16A–18A} und T. {16B–18B} durch Einkreisung getilgt."
+                    "comment": "Takt zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
                 },
                 {
                     "svgGroupId": "g956",
@@ -290,7 +290,7 @@
                     "measure": "{16B–18B}",
                     "system": "13–14",
                     "position": "",
-                    "comment": "Takte zusammen mit T. {16A–18A} und T. {19B} durch Einkreisung getilgt."
+                    "comment": "Takte zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}19B{{ '}' }} durch Einkreisung getilgt."
                 },
                 {
                     "svgGroupId": "g1066",
@@ -327,7 +327,7 @@
                     "measure": "{21}",
                     "system": "2",
                     "position": "1/4",
-                    "comment": "Viertelnote G gestrichen.."
+                    "comment": "Viertelnote G gestrichen."
                 },
                 {
                     "svgGroupId": "g1090",
