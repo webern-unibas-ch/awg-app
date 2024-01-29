@@ -1,0 +1,32 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39 Textfassung 1→2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 34–38 und M* 404.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39 Textfassung 1→2.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39 Textfassung 2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 35 sowie Tintenniederschrift von Studienkomposition für Klavier M 34–38, M 41.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        },
+        {
+            "siglum": "C",
+            "type": "Skizze zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39 Textfassung 2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 40–42 und M* 405–406.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceC"
+        },
+        {
+            "siglum": "D",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 39 Textfassung 2 T. 9–12.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 40 und M 42.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceD"
+        }
+    ]
+}
