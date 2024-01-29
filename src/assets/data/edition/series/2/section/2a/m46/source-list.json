@@ -2,24 +2,27 @@
     "sources": [
         {
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 46 Textfassung 1–2.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 407, Studienkomposition für Streichquartett M 24 und M 27–28 sowie Hochsommernacht M 65.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 46 Textfassung 1.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 46 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         },
         {
             "siglum": "C",
+            "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 46 Textfassung 2.<br />Enthält auch Tintenniederschrift von Studienkomposition für Streichquartett M 28 sowie Skizzen zu Studienkomposition für Streichquartett M 27–28.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceC"
+            "linkTo": "source_C"
         }
     ]
 }

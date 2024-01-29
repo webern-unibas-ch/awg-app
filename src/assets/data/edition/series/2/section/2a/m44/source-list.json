@@ -2,10 +2,11 @@
     "sources": [
         {
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier 44.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 43.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         }
     ]
 }

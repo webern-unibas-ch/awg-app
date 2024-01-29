@@ -2,17 +2,19 @@
     "sources": [
         {
             "siglum": "A",
+            "siglumAddendum": "",
             "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 29.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 22, M* 400–401 und M* 415–416.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceA"
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Skizze zu und Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 29.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 68.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "hasDescription": true,
-            "linkTo": "sourceB"
+            "linkTo": "source_B"
         }
     ]
 }
