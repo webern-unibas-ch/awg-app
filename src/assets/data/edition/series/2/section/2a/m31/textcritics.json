@@ -174,6 +174,22 @@
                     "position": "3–6/8",
                     "comment": "d<sup>2</sup>–c<sup>2</sup>–h<sup>1</sup>–gis<sup>1</sup> überschreibt f<sup>2</sup>–e<sup>2</sup>–d<sup>2</sup>–h<sup>1</sup>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g403",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g399",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_2"
+                    }
+                }
             ]
         },
         {
@@ -190,6 +206,22 @@
                     "position": "1. Note",
                     "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g398",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3d"
+                    }
+                },
+                {
+                    "svgGroupId": "g402",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_2"
+                    }
+                }
             ]
         },
         {
@@ -205,6 +237,22 @@
                     "system": "5",
                     "position": "3/4",
                     "comment": "e<sup>1</sup> überschreibt f<sup>1</sup>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g396",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3d"
+                    }
+                },
+                {
+                    "svgGroupId": "g400",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_1"
+                    }
                 }
             ]
         },
@@ -230,7 +278,7 @@
                     "comment": "Sechs Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu drei Achtelnoten, Viertelnote und Achtelnote; Achtelnote e<sup>2</sup> auf 5/8 aufgrund der Änderung getilgt."
                 },
                 {
-                    "svgGroupId": "path1933",
+                    "svgGroupId": "g1202",
                     "measure": "{16A–18A}",
                     "system": "8–9",
                     "position": "",
@@ -258,14 +306,14 @@
                     "comment": "Noten gestrichen."
                 },
                 {
-                    "svgGroupId": "polyline110",
+                    "svgGroupId": "g2",
                     "measure": "{19A}",
                     "system": "11",
                     "position": "",
                     "comment": "Noten gestrichen."
                 },
                 {
-                    "svgGroupId": "path 1933",
+                    "svgGroupId": "g3",
                     "measure": "{19B}",
                     "system": "",
                     "position": "",
@@ -279,14 +327,14 @@
                     "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
                 },
                 {
-                    "svgGroupId": "polyline130",
+                    "svgGroupId": "g1003",
                     "measure": "{16B–18B}",
                     "system": "13–14",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "path 1933",
+                    "svgGroupId": "g1002",
                     "measure": "{16B–18B}",
                     "system": "13–14",
                     "position": "",
@@ -305,6 +353,43 @@
                     "system": "14",
                     "position": "5–6/8",
                     "comment": "a–d überschreibt F–D."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4a"
+                    }
+                },
+                {
+                    "svgGroupId": "g42",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g43",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g45",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4c"
+                    }
+                },
+                {
+                    "svgGroupId": "g46",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4c"
+                    }
                 }
             ]
         },
