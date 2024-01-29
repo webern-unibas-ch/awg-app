@@ -1,0 +1,25 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113.<br />Enthält auch Skizzen zu Studienkomposition für Streichquartett M 78.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Streichquartett M 78 Textfassung 1.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        },
+        {
+            "siglum": "C",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 113.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 114 Textfassung 3–4.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceC"
+        }
+    ]
+}

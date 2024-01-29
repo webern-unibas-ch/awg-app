@@ -1,0 +1,40 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 1–4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Orchester M 102.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 3–4.<br />Enthält auch Skizzen zu und Tintenniederschrift von Studienkomposition für Klavier M 113.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        },
+        {
+            "siglum": "C",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 1→2→3,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 2 T. 19–39,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 3 T. 19–58.<br />Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 3.<br />Enthält auch Skizzen zu Studienkomposition M* 495 und nicht identifizierte Skizze.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceC"
+        },
+        {
+            "siglum": "D",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 4–6.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceD"
+        },
+        {
+            "siglum": "E",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 4→5→6,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 5→6 T. 92–158,<br /><span class=\"tab\"></span>Studienkomposition für Klavier M 114 Textfassung 6 T. 106–120.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceE"
+        }
+    ]
+
+}
