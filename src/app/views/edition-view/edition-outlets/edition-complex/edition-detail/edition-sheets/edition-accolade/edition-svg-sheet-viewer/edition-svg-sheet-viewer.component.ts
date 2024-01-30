@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -205,12 +206,17 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     /**
      * Constructor of the EditionSvgSheetViewerComponent.
      *
-     * It declares private instances of the {@link EditionSvgDrawingService} and the self-referring variable
+     * It declares private instances of the {@link EditionSvgDrawingService},
+     * Angular's ChangeDetectorRef and the self-referring variable
      * needed for CompileHtml library.
      *
+     * @param {ChangeDetectorRef} cdr Instance of the ChangeDetectorRef.
      * @param {EditionSvgDrawingService} svgDrawingService Instance of the EditionSvgDrawingService.
      */
-    constructor(private svgDrawingService: EditionSvgDrawingService) {
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private svgDrawingService: EditionSvgDrawingService
+    ) {
         this.ref = this;
     }
 
@@ -323,6 +329,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._createSvg().then(() => {
             this.resetZoom();
             this._createSvgOverlays();
+            this.cdr.detectChanges();
         });
     }
 
