@@ -79,6 +79,22 @@
                     "position": "(2/4)",
                     "comment": "Zwei Achtelnoten überschreiben Viertelnote."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g415",
+                    "linkTo": {
+                        "complexId": "m30",
+                        "sheetId": "M_30_Sk1k"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m30",
+                        "sheetId": "M_30_Sk1k"
+                    }
+                }
             ]
         },
         {
