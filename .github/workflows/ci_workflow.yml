@@ -42,7 +42,7 @@ jobs:
                   yarn run test:ci
             - name: Upload code coverage
               if: matrix.node-version == 20.9 # upload coverage report for current node version only
-              uses: codecov/codecov-action@4fe8c5f003fae66aa5ebb77cfd3e7bfbbda0b6b0 # ratchet:codecov/codecov-action@v3.1.5
+              uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # ratchet:codecov/codecov-action@v3.1.6
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
