@@ -45,12 +45,6 @@ describe('EditionInfoComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedEditionComplexM30: EditionComplex;
-    let expectedEditionComplexM34: EditionComplex;
-    let expectedEditionComplexM37: EditionComplex;
-    let expectedEditionComplexOp12: EditionComplex;
-    let expectedEditionComplexOp25: EditionComplex;
-
     let expectedEditionComplexes: EditionComplex[];
     let expectedOrderOfRouterlinks: string[][];
     let expectedOrderOfHeaders: string[];
@@ -86,6 +80,7 @@ describe('EditionInfoComponent (DONE)', () => {
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M30,
+            EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
             EDITION_COMPLEXES.M37,
         ];
@@ -96,6 +91,7 @@ describe('EditionInfoComponent (DONE)', () => {
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionRouteConstants.EDITION_GRAPH.full,
+            expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
