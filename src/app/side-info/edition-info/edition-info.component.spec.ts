@@ -255,19 +255,25 @@ describe('EditionInfoComponent (DONE)', () => {
                 // Item body
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
 
+                // Length of expected paragraphs (first two items)
+                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
+
                 // Paragraphs
-                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
+                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
             });
 
-            it('... should contain item body with 3 paragraphs in third item', () => {
+            it('... should contain item body with 4 paragraphs in third item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
                 // Item body
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-body', 1, 1);
 
+                // Length of expected paragraphs (last items starting from index 2)
+                const expectedLength = expectedEditionComplexes.slice(2).length;
+
                 // Paragraphs
-                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 3, 3);
+                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
             });
 
             it('... should render links in edition info headers', () => {
