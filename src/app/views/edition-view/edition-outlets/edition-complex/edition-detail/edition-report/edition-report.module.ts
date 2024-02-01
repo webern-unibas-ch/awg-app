@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
-import { EditionTkaDescriptionModule } from '../edition-tka-description/edition-tka-description.module';
-import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
+
+import { EditionTkaModule } from '../edition-tka/edition-tka.module';
 
 import { SourceDescriptionComponent } from './source-description';
 import { SourceEvaluationComponent } from './source-evaluation';
@@ -16,12 +16,12 @@ import { EditionReportRoutingModule, routedEditionReportComponents } from './edi
  *
  * It embeds the edition report components and their
  * [routing definition]{@link EditionReportRoutingModule}
- * as well as the {@link SharedModule}, {@link EditionTkaTableModule}
+ * as well as the {@link SharedModule}, {@link EditionTkaModule}
  * and the {@link TextcriticsListComponent}, {@link SourceListComponent},
  * {@link SourceDescriptionComponent}, and {@link SourceEvaluationComponent}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaTableModule, EditionTkaDescriptionModule, EditionReportRoutingModule],
+    imports: [SharedModule, EditionTkaModule, EditionReportRoutingModule],
     declarations: [
         TextcriticsListComponent,
         SourceDescriptionComponent,

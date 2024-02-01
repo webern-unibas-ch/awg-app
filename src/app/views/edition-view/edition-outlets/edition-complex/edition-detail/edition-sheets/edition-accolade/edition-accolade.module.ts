@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { EditionTkaDescriptionModule } from '../../edition-tka-description/edition-tka-description.module';
-import { EditionTkaTableModule } from '../../edition-tka-table/edition-tka-table.module';
+import { EditionTkaModule } from '../../edition-tka/edition-tka.module';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
 import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer';
@@ -15,10 +14,10 @@ import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer';
  *
  * It embeds the edition accolade components as well as the {@link EditionSvgSheetFooterComponent},
  * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetNavItemComponent},
- * {@link EditionSvgSheetViewerComponent}, {@link EditionTkaTableModule} and {@link SharedModule}.
+ * {@link EditionSvgSheetViewerComponent}, {@link EditionTkaModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaDescriptionModule, EditionTkaTableModule],
+    imports: [SharedModule, EditionTkaModule],
     declarations: [
         EditionAccoladeComponent,
         EditionSvgSheetFooterComponent,
