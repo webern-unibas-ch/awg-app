@@ -4,7 +4,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer.component';
 
 /**
- * The edition svg sheet nav module.
+ * The edition svg sheet viewer module.
  *
  * It embeds the {@link EditionSvgSheetViewerComponent}
  * as well as the {@link SharedModule}.
