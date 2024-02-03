@@ -86,7 +86,7 @@ export class EditionSvgDrawingService {
         ['foliation', 'Blattangabe'],
         ['key', 'Tonart'],
         ['measureN', 'Taktzahlen'],
-        ['staffN', 'Systemnummern'],
+        ['staffN', 'Systemnummerierung'],
     ]);
 
     /**

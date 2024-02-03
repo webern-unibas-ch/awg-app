@@ -76,7 +76,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             ['foliation', 'Blattangabe'],
             ['key', 'Tonart'],
             ['measureN', 'Taktzahlen'],
-            ['staffN', 'Systemnummern'],
+            ['staffN', 'Systemnummerierung'],
         ]);
 
         expectedOverlayFillColor = 'orange';
