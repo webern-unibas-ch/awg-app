@@ -12,7 +12,7 @@ export class EditionSvgSheetViewerSettingsComponent {
      *
      * It keeps the classes for the edition svg sheet viewer settings component.
      */
-    @Input() suppliedClasses?: Map<string, boolean>;
+    @Input() suppliedClasses: Map<string, boolean>;
 
     /**
      * Output variable: selectOverlaysRequest.

@@ -517,7 +517,7 @@ export const mockEditionData = {
         label: 'Test Sk1',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
                 image: '',
             },
         ],
@@ -534,12 +534,12 @@ export const mockEditionData = {
         label: 'Test Sk2 with partials',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
                 image: '',
                 partial: 'a',
             },
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
                 image: '',
                 partial: 'b',
             },
@@ -557,7 +557,7 @@ export const mockEditionData = {
         label: 'Test Sk2 with partials',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
                 image: '',
                 partial: 'a',
             },
@@ -575,7 +575,7 @@ export const mockEditionData = {
         label: 'Test Sk2 with partials',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
                 image: '',
                 partial: 'b',
             },
@@ -593,17 +593,17 @@ export const mockEditionData = {
         label: 'Test Sk3 with partials',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
                 image: '',
                 partial: 'a',
             },
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
                 image: '',
                 partial: 'b',
             },
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
                 image: '',
                 partial: 'c',
             },
@@ -621,7 +621,7 @@ export const mockEditionData = {
         label: 'Test Sk3 with partials',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
                 image: '',
                 partial: 'a',
             },
@@ -657,7 +657,7 @@ export const mockEditionData = {
         label: 'Test Sk3 with partials',
         content: [
             {
-                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
                 image: '',
                 partial: 'c',
             },
@@ -767,7 +767,7 @@ export const mockEditionData = {
                     label: 'Test Sk1',
                     content: [
                         {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
                             image: '',
                         },
                     ],
@@ -778,12 +778,12 @@ export const mockEditionData = {
                     label: 'Test Sk2 with partials',
                     content: [
                         {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
                             image: '',
                             partial: 'a',
                         },
                         {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
                             image: '',
                             partial: 'b',
                         },
@@ -795,17 +795,17 @@ export const mockEditionData = {
                     label: 'Test Sk3 with partials',
                     content: [
                         {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von1_220610_path.svg',
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
                             image: '',
                             partial: 'a',
                         },
                         {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
                             image: '',
                             partial: 'b',
                         },
                         {
-                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von1_220610_path.svg',
+                            svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
                             image: '',
                             partial: 'c',
                         },
