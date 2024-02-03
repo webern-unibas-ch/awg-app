@@ -28,6 +28,13 @@
                     <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>
                 </svg>
                 <awg-license class="d-flex mt-3 text-center small"></awg-license>
+                @if (suppliedClasses.size > 0) {
+                    <awg-edition-svg-sheet-viewer-settings
+                        [suppliedClasses]="suppliedClasses"
+                        (toggleSuppliedClassesOpacityRequest)="
+                            onSuppliedClassesOpacityToggle($event)
+                        "></awg-edition-svg-sheet-viewer-settings>
+                }
             </div>
         </div>
         <!-- Next and previous buttons -->

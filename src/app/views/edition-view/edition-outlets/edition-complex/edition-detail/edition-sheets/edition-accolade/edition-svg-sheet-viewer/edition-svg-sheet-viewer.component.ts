@@ -122,6 +122,13 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     sliderConfig = new SliderConfig(1, 0.1, 10, 1 / 100, 1);
 
     /**
+     * Public variable: suppliedClasses.
+     *
+     * It keeps a map of the supplied classes.
+     */
+    suppliedClasses: Map<string, boolean> = new Map();
+
+    /**
      * Public variable: svgSheetFilePath.
      *
      * It keeps the file path of the svg file.
@@ -297,6 +304,25 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Public method: onSuppliedClassesOpacityToggle.
+     *
+     * It toggles the opacity of a given supplied class.
+     *
+     * @param {string} className The given class name.
+     * @param {boolean} isCurrentlyVisible The given visibility of the class.
+     *
+     * @returns {void} Toggles the opacity of the supplied class.
+     */
+    onSuppliedClassesOpacityToggle(input: { className: string; isCurrentlyVisible: boolean }): void {
+        const { className, isCurrentlyVisible } = input;
+        this.svgDrawingService.toggleSuppliedClassOpacity(
+            this.svgSheetRootGroupSelection,
+            className,
+            isCurrentlyVisible
+        );
+    }
+
+    /**
      * Public method: onZoomChange.
      *
      * It sets the slider value to a given scale step.
@@ -406,6 +432,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
 
         this._createOverlays('link-box', this._createLinkBoxOverlay.bind(this));
         this._createOverlays('tkk', this._createTkkOverlay.bind(this));
+        this._getSuppliedClasses();
     }
 
     /**
@@ -536,6 +563,20 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Private method: _getOverlayById.
+     *
+     * It finds an overlay from a list of overlays by a given id.
+     *
+     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @param {string} id The given id.
+     *
+     * @returns {EditionSvgOverlay | undefined } The found overlays or undefined.
+     */
+    private _getOverlayById(overlays: EditionSvgOverlay[], id: string): EditionSvgOverlay | undefined {
+        return overlays.find((overlay: EditionSvgOverlay) => overlay.id === id);
+    }
+
+    /**
      * Private method: _getSelectedOverlays.
      *
      * It filters a given list of overlays by its selection status.
@@ -549,17 +590,14 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _getOverlayById.
+     * Private method: _getSuppliedClasses.
      *
-     * It finds an overlay from a list of overlays by a given id.
+     * It gets the supplied classes from the svg sheet root group selection.
      *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @param {string} id The given id.
-     *
-     * @returns {EditionSvgOverlay | undefined } The found overlays or undefined.
+     * @returns {void} Gets the supplied classes.
      */
-    private _getOverlayById(overlays: EditionSvgOverlay[], id: string): EditionSvgOverlay | undefined {
-        return overlays.find((overlay: EditionSvgOverlay) => overlay.id === id);
+    private _getSuppliedClasses(): void {
+        this.suppliedClasses = this.svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
     }
 
     /**
