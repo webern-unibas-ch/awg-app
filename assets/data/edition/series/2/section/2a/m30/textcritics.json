@@ -460,14 +460,14 @@
             ],
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5",
+                    "svgGroupId": "g2",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M_31_Sk1a"
                     }
                 },
                 {
-                    "svgGroupId": "g6",
+                    "svgGroupId": "g4",
                     "linkTo": {
                         "complexId": "m31",
                         "sheetId": "M_31_Sk1b"
