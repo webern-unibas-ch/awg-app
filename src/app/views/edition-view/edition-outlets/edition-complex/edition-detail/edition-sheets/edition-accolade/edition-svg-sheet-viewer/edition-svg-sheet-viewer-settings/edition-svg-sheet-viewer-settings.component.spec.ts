@@ -191,7 +191,12 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
                     expectedSuppliedClasses.size + 1,
                     expectedSuppliedClasses.size + 1
                 );
-                const formSwitchLabelDe = getAndExpectDebugElementByCss(formSwitchDe[0], 'label.form-check-label', 1, 1);
+                const formSwitchLabelDe = getAndExpectDebugElementByCss(
+                    formSwitchDe[0],
+                    'label.form-check-label',
+                    1,
+                    1
+                );
 
                 const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
 
