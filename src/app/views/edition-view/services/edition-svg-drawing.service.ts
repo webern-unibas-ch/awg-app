@@ -71,6 +71,25 @@ export class EditionSvgDrawingService {
     private _overlayBoxCornerRadius = 2;
 
     /**
+     * Private variable: _suppliedClasses
+     *
+     * It keeps a map of all supplied classes from the SVG sheet root group.
+     */
+    private _suppliedClasses: Map<string, boolean> = new Map();
+
+    /**
+     * Private variable: _suppliedClassesLabelLookup
+     *
+     * It keeps a lookup table for the supplied classes.
+     */
+    private _suppliedClassesLabelLookup: Map<string, string> = new Map([
+        ['foliation', 'Blattangabe'],
+        ['key', 'Tonart'],
+        ['measureN', 'Taktzahlen'],
+        ['staffN', 'Systemnummerierung'],
+    ]);
+
+    /**
      * Public async method: createSvg.
      *
      * It creates an D3 selection representation of an svg file (given by its path)
@@ -249,6 +268,73 @@ export class EditionSvgDrawingService {
         const targetGroupSelection: D3Selection = this.getD3SelectionById(svgRootGroup, id);
         // Get D3 selection of overlay group box
         return targetGroupSelection.select(`rect.${type}-overlay-group-box`);
+    }
+
+    /**
+     * Public method: getSuppliedClasses.
+     *
+     * It gets all supplied classes from the SVG sheet root group.
+     *
+     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     *
+     * @returns {Map<string, boolean>} A map of all supplied classes from the SVG sheet root group.
+     */
+    getSuppliedClasses(svgRootGroup: D3Selection): Map<string, boolean> {
+        if (!svgRootGroup) {
+            return undefined;
+        }
+
+        // (Re-)Initialize the map
+        this._suppliedClasses = new Map();
+
+        const suppliedSelections = this.getGroupsBySelector(svgRootGroup, 'supplied');
+
+        suppliedSelections.each((d, i, nodes) => {
+            const element = D3_SELECTION.select(nodes[i]);
+            const classNames = element.attr('class').split(' ');
+            const nextToSupplied = classNames[classNames.indexOf('supplied') + 1];
+            if (nextToSupplied) {
+                // Look up the class label in the mapping object
+                const classLabel = this._suppliedClassesLabelLookup.get(nextToSupplied) || nextToSupplied;
+
+                // Initialize the visibility state of the class
+                if (!this._suppliedClasses.has(classLabel)) {
+                    this._suppliedClasses.set(classLabel, true);
+                }
+            }
+        });
+
+        return this._suppliedClasses;
+    }
+
+    /**
+     * Public method: toggleSuppliedClassOpacity.
+     *
+     * It toggles the opacity of the supplied class with the given className.
+     *
+     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {string} labelOrClassName The given class label or class name if label is not provided.
+     * @param {boolean} isCurrentlyVisible The given current visibility state of the class.
+     *
+     * @returns {void} Toggles the opacity of the supplied class with the given className.
+     */
+    toggleSuppliedClassOpacity(svgRootGroup: D3Selection, labelOrClassName: string, isCurrentlyVisible: boolean): void {
+        if (!svgRootGroup) {
+            return;
+        }
+
+        // Get the class name from the label lookup table
+        const className =
+            Array.from(this._suppliedClassesLabelLookup.entries()).find(
+                ([_key, value]) => value === labelOrClassName
+            )?.[0] || labelOrClassName;
+
+        // Get D3 selection of supplied elements
+        const selector = className ? `supplied.${className}` : 'supplied';
+        const suppliedSelections = this.getGroupsBySelector(svgRootGroup, selector);
+        const opacity = isCurrentlyVisible ? 0 : 1;
+
+        suppliedSelections.style('opacity', opacity);
     }
 
     /**

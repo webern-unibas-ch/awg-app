@@ -138,7 +138,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 3, 1 / 100, 1);
+    sliderConfig = new SliderConfig(1, 0.1, 3, 0.01, 1);
 
     /**
      * Private variable: _svg.
