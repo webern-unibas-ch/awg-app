@@ -45,12 +45,6 @@ describe('EditionInfoComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedEditionComplexM30: EditionComplex;
-    let expectedEditionComplexM34: EditionComplex;
-    let expectedEditionComplexM37: EditionComplex;
-    let expectedEditionComplexOp12: EditionComplex;
-    let expectedEditionComplexOp25: EditionComplex;
-
     let expectedEditionComplexes: EditionComplex[];
     let expectedOrderOfRouterlinks: string[][];
     let expectedOrderOfHeaders: string[];
@@ -86,6 +80,7 @@ describe('EditionInfoComponent (DONE)', () => {
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M30,
+            EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
             EDITION_COMPLEXES.M37,
         ];
@@ -96,6 +91,7 @@ describe('EditionInfoComponent (DONE)', () => {
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionRouteConstants.EDITION_GRAPH.full,
+            expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
             expectedEditionTypeConstants.SKETCH_EDITION.full,
@@ -259,19 +255,25 @@ describe('EditionInfoComponent (DONE)', () => {
                 // Item body
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[1], 'div.accordion-body', 1, 1);
 
+                // Length of expected paragraphs (first two items)
+                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
+
                 // Paragraphs
-                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
+                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
             });
 
-            it('... should contain item body with 3 paragraphs in third item', () => {
+            it('... should contain item body with 4 paragraphs in third item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
                 // Item body
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[2], 'div.accordion-body', 1, 1);
 
+                // Length of expected paragraphs (last items starting from index 2)
+                const expectedLength = expectedEditionComplexes.slice(2).length;
+
                 // Paragraphs
-                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 3, 3);
+                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', expectedLength, expectedLength);
             });
 
             it('... should render links in edition info headers', () => {

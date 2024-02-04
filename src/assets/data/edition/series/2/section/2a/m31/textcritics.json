@@ -79,6 +79,22 @@
                     "position": "(2/4)",
                     "comment": "Zwei Achtelnoten überschreiben Viertelnote."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g415",
+                    "linkTo": {
+                        "complexId": "m30",
+                        "sheetId": "M_30_Sk1k"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m30",
+                        "sheetId": "M_30_Sk1k"
+                    }
+                }
             ]
         },
         {
@@ -174,10 +190,26 @@
                     "position": "3–6/8",
                     "comment": "d<sup>2</sup>–c<sup>2</sup>–h<sup>1</sup>–gis<sup>1</sup> überschreibt f<sup>2</sup>–e<sup>2</sup>–d<sup>2</sup>–h<sup>1</sup>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g403",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g399",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_2"
+                    }
+                }
             ]
         },
         {
-            "id": "M_31_Sk3.1",
+            "id": "M_31_Sk3_1",
             "label": "M 31 Sk3.1",
             "description": [
                 "<strong>M 31 Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <strong>Sk3</strong> ein."
@@ -190,10 +222,26 @@
                     "position": "1. Note",
                     "comment": "Punktierte Viertelnote überschreibt Halbe Note."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g398",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3d"
+                    }
+                },
+                {
+                    "svgGroupId": "g402",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_2"
+                    }
+                }
             ]
         },
         {
-            "id": "M_31_Sk3.2",
+            "id": "M_31_Sk3_2",
             "label": "M 31 Sk3.2",
             "description": [
                 "<strong>M 31 Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <strong>M 31 Sk3</strong> von D nach G um eine Quinte nach unten zu transponieren."
@@ -205,6 +253,22 @@
                     "system": "5",
                     "position": "3/4",
                     "comment": "e<sup>1</sup> überschreibt f<sup>1</sup>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g396",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3d"
+                    }
+                },
+                {
+                    "svgGroupId": "g400",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_1"
+                    }
                 }
             ]
         },
@@ -230,11 +294,11 @@
                     "comment": "Sechs Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu drei Achtelnoten, Viertelnote und Achtelnote; Achtelnote e<sup>2</sup> auf 5/8 aufgrund der Änderung getilgt."
                 },
                 {
-                    "svgGroupId": "path1933",
+                    "svgGroupId": "g1202",
                     "measure": "{16A–18A}",
                     "system": "8–9",
                     "position": "",
-                    "comment": "Takte zusammen mit T. {19B} und T. {16B–18B} durch Einkreisung getilgt."
+                    "comment": "Takte zusammen mit T. {{ '{' }}19B{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
                 },
                 {
                     "svgGroupId": "g1222",
@@ -258,18 +322,18 @@
                     "comment": "Noten gestrichen."
                 },
                 {
-                    "svgGroupId": "polyline110",
+                    "svgGroupId": "g2",
                     "measure": "{19A}",
                     "system": "11",
                     "position": "",
                     "comment": "Noten gestrichen."
                 },
                 {
-                    "svgGroupId": "path 1933",
+                    "svgGroupId": "g3",
                     "measure": "{19B}",
                     "system": "",
                     "position": "",
-                    "comment": "Takt zusammen mit T. {16A–18A} und T. {16B–18B} durch Einkreisung getilgt."
+                    "comment": "Takt zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
                 },
                 {
                     "svgGroupId": "g956",
@@ -279,18 +343,18 @@
                     "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
                 },
                 {
-                    "svgGroupId": "polyline130",
+                    "svgGroupId": "g1003",
                     "measure": "{16B–18B}",
                     "system": "13–14",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "path 1933",
+                    "svgGroupId": "g1002",
                     "measure": "{16B–18B}",
                     "system": "13–14",
                     "position": "",
-                    "comment": "Takte zusammen mit T. {16A–18A} und T. {19B} durch Einkreisung getilgt."
+                    "comment": "Takte zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}19B{{ '}' }} durch Einkreisung getilgt."
                 },
                 {
                     "svgGroupId": "g1066",
@@ -305,6 +369,43 @@
                     "system": "14",
                     "position": "5–6/8",
                     "comment": "a–d überschreibt F–D."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4a"
+                    }
+                },
+                {
+                    "svgGroupId": "g42",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g43",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g45",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4c"
+                    }
+                },
+                {
+                    "svgGroupId": "g46",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4c"
+                    }
                 }
             ]
         },
@@ -327,7 +428,7 @@
                     "measure": "{21}",
                     "system": "2",
                     "position": "1/4",
-                    "comment": "Viertelnote G gestrichen.."
+                    "comment": "Viertelnote G gestrichen."
                 },
                 {
                     "svgGroupId": "g1090",

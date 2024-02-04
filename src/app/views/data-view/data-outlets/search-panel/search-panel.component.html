@@ -6,7 +6,6 @@
         class="nav-tabs nav-fill"
         [activeId]="selectedSearchTabId"
         (navChange)="onSearchTabChange($event)">
-        <!-- TODO: see https://github.com/ng-bootstrap/ng-bootstrap/issues/1632 -->
         <ng-container [ngbNavItem]="searchTabs?.fulltext.id">
             <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>
             <ng-template ngbNavContent>

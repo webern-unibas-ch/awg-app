@@ -1,31 +1,22 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { EditionTkaDescriptionModule } from '../../edition-tka-description/edition-tka-description.module';
-import { EditionTkaTableModule } from '../../edition-tka-table/edition-tka-table.module';
+import { EditionSvgSheetFooterModule } from './edition-svg-sheet-footer/edition-svg-sheet-footer.module';
+import { EditionSvgSheetNavModule } from './edition-svg-sheet-nav/edition-svg-sheet-nav.module';
+import { EditionSvgSheetViewerModule } from './edition-svg-sheet-viewer/edition-svg-sheet-viewer.module';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
-import { EditionSvgSheetFooterComponent } from './edition-svg-sheet-footer';
-import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
-import { EditionSvgSheetNavItemComponent } from './edition-svg-sheet-nav/edition-svg-sheet-nav-item/edition-svg-sheet-nav-item.component';
-import { EditionSvgSheetViewerComponent } from './edition-svg-sheet-viewer';
 
 /**
  * The EditionAccolade module.
  *
- * It embeds the edition accolade components as well as the {@link EditionSvgSheetFooterComponent},
- * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetNavItemComponent},
- * {@link EditionSvgSheetViewerComponent}, {@link EditionTkaTableModule} and {@link SharedModule}.
+ * It embeds the edition accolade components
+ * as well as the {@link EditionSvgSheetFooterModule},
+ * {@link EditionSvgSheetNavModule}, {@link EditionSvgSheetViewerModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionTkaDescriptionModule, EditionTkaTableModule],
-    declarations: [
-        EditionAccoladeComponent,
-        EditionSvgSheetFooterComponent,
-        EditionSvgSheetNavComponent,
-        EditionSvgSheetNavItemComponent,
-        EditionSvgSheetViewerComponent,
-    ],
+    imports: [SharedModule, EditionSvgSheetFooterModule, EditionSvgSheetNavModule, EditionSvgSheetViewerModule],
+    declarations: [EditionAccoladeComponent],
     exports: [EditionAccoladeComponent],
 })
 export class EditionAccoladeModule {}

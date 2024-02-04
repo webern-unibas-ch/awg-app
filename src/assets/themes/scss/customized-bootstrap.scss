@@ -10,6 +10,14 @@
 
 // 4. Include any default map overrides here
 
+// Custom spacers
+$custom-spacers: (
+    '2r': $spacer * 2,
+);
+
+// Merge the spacer maps
+$spacers: map-merge($spacers, $custom-spacers);
+
 // 5. Include remainder of required parts
 @import 'bootstrap/scss/maps';
 @import 'bootstrap/scss/mixins';

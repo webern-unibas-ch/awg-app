@@ -1,5 +1,6 @@
 import {
     AfterViewInit,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -118,7 +119,14 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 10, 1 / 100, 1);
+    sliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
+
+    /**
+     * Public variable: suppliedClasses.
+     *
+     * It keeps a map of the supplied classes.
+     */
+    suppliedClasses: Map<string, boolean> = new Map();
 
     /**
      * Public variable: svgSheetFilePath.
@@ -205,12 +213,17 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     /**
      * Constructor of the EditionSvgSheetViewerComponent.
      *
-     * It declares private instances of the {@link EditionSvgDrawingService} and the self-referring variable
+     * It declares private instances of the {@link EditionSvgDrawingService},
+     * Angular's ChangeDetectorRef and the self-referring variable
      * needed for CompileHtml library.
      *
+     * @param {ChangeDetectorRef} cdr Instance of the ChangeDetectorRef.
      * @param {EditionSvgDrawingService} svgDrawingService Instance of the EditionSvgDrawingService.
      */
-    constructor(private svgDrawingService: EditionSvgDrawingService) {
+    constructor(
+        private cdr: ChangeDetectorRef,
+        private svgDrawingService: EditionSvgDrawingService
+    ) {
         this.ref = this;
     }
 
@@ -291,6 +304,25 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Public method: onSuppliedClassesOpacityToggle.
+     *
+     * It toggles the opacity of a given supplied class.
+     *
+     * @param {string} className The given class name.
+     * @param {boolean} isCurrentlyVisible The given visibility of the class.
+     *
+     * @returns {void} Toggles the opacity of the supplied class.
+     */
+    onSuppliedClassesOpacityToggle(input: { className: string; isCurrentlyVisible: boolean }): void {
+        const { className, isCurrentlyVisible } = input;
+        this.svgDrawingService.toggleSuppliedClassOpacity(
+            this.svgSheetRootGroupSelection,
+            className,
+            isCurrentlyVisible
+        );
+    }
+
+    /**
      * Public method: onZoomChange.
      *
      * It sets the slider value to a given scale step.
@@ -323,6 +355,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._createSvg().then(() => {
             this.resetZoom();
             this._createSvgOverlays();
+            this.cdr.detectChanges();
         });
     }
 
@@ -340,7 +373,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         }
 
         this.onZoomChange(this.sliderConfig.initial);
-        this._retranslateZoom();
+        this._resetZoomTranslation();
     }
 
     /**
@@ -399,6 +432,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
 
         this._createOverlays('link-box', this._createLinkBoxOverlay.bind(this));
         this._createOverlays('tkk', this._createTkkOverlay.bind(this));
+        this._getSuppliedClasses();
     }
 
     /**
@@ -529,6 +563,20 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Private method: _getOverlayById.
+     *
+     * It finds an overlay from a list of overlays by a given id.
+     *
+     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
+     * @param {string} id The given id.
+     *
+     * @returns {EditionSvgOverlay | undefined } The found overlays or undefined.
+     */
+    private _getOverlayById(overlays: EditionSvgOverlay[], id: string): EditionSvgOverlay | undefined {
+        return overlays.find((overlay: EditionSvgOverlay) => overlay.id === id);
+    }
+
+    /**
      * Private method: _getSelectedOverlays.
      *
      * It filters a given list of overlays by its selection status.
@@ -542,17 +590,30 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _getOverlayById.
+     * Private method: _getSuppliedClasses.
      *
-     * It finds an overlay from a list of overlays by a given id.
+     * It gets the supplied classes from the svg sheet root group selection.
      *
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @param {string} id The given id.
-     *
-     * @returns {EditionSvgOverlay | undefined } The found overlays or undefined.
+     * @returns {void} Gets the supplied classes.
      */
-    private _getOverlayById(overlays: EditionSvgOverlay[], id: string): EditionSvgOverlay | undefined {
-        return overlays.find((overlay: EditionSvgOverlay) => overlay.id === id);
+    private _getSuppliedClasses(): void {
+        this.suppliedClasses = this.svgDrawingService.getSuppliedClasses(this.svgSheetRootGroupSelection);
+    }
+
+    /**
+     * Private method: _onLinkBoxSelect.
+     *
+     * It emits the given link box id
+     * to the {@link selectLinkBoxRequest}.
+     *
+     * @param {string} linkBoxId The given link box id.
+     * @returns {void} Emits the id.
+     */
+    private _onLinkBoxSelect(linkBoxId: string): void {
+        if (!linkBoxId) {
+            return;
+        }
+        this.selectLinkBoxRequest.emit(linkBoxId);
     }
 
     /**
@@ -570,19 +631,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _onLinkBoxSelect.
-     *
-     * It emits the given link box id
-     * to the {@link selectLinkBoxRequest}.
-     *
-     * @param {string} linkBoxId The given link box id.
-     * @returns {void} Emits the id.
-     */
-    private _onLinkBoxSelect(linkBoxId: string): void {
-        this.selectLinkBoxRequest.emit(linkBoxId);
-    }
-
-    /**
      * Private method: _rescaleZoom.
      *
      * It rescales the current zoom with a given slider value.
@@ -597,29 +645,29 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _retranslateZoom.
+     * Private method: _resetZoomTranslation.
      *
-     * It retranlsates the current zoom to the given x and y values.
+     * It resets the current zoom translation to the to the origin of the SVG canvas (0,0).
      *
-     * @returns {void} Sets the zoom for the rescale.
+     * @returns {void} Resets the zoom translation.
      */
-    private _retranslateZoom(): void {
-        if (!this.svgSheetSelection) {
+    private _resetZoomTranslation(): void {
+        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection) {
             return;
         }
         this.svgSheetRootGroupSelection.attr('transform', 'translate(0,0)');
     }
 
     /**
-     * Private method: _roundToNearestScaleStep.
+     * Private method: _roundToScaleStepDecimalPrecision.
      *
-     * It rounds a given value to the nearest value on an input range scale.
+     * It rounds a given value to the same number of decimal places as the step size of an input range scale.
      * Cf. https://stackoverflow.com/a/13635455
      *
      * @param {number} value The given value to round.
      * @returns {number} The rounded value.
      */
-    private _roundToNearestScaleStep(value: number): number {
+    private _roundToScaleStepDecimalPrecision(value: number): number {
         const stepSize = this.sliderConfig.stepSize;
 
         // Count decimals of a given value
@@ -629,8 +677,8 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             if (Math.floor(countValue) === countValue) {
                 return 0;
             }
-            // Convert the number to a string, split at the . and return the last part of the array, or 0 if the last part of the array is undefined (which will occur if there was no decimal point)
-            return countValue.toString().split('.')[1].length || 0;
+            // Convert the number to a string, split at the decimal point and return the length of the last part of the array
+            return countValue.toString().split('.')[1].length;
         };
 
         // Avoid Math.round error
@@ -655,7 +703,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         // Perform the zooming
         const zoomed = (event: any): void => {
             const currentTransform = event.transform;
-            const roundedTransformValue = this._roundToNearestScaleStep(currentTransform.k);
+            const roundedTransformValue = this._roundToScaleStepDecimalPrecision(currentTransform.k);
 
             // Update d3 zoom context
             zoomContext.attr('transform', currentTransform);

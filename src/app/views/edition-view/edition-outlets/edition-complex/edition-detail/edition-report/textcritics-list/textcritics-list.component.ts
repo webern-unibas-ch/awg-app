@@ -109,7 +109,7 @@ export class TextcriticsListComponent {
      * @returns {void} Emits the ids.
      */
     selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
-        if (!sheetIds || !sheetIds?.sheetId) {
+        if (!sheetIds?.sheetId) {
             return;
         }
         this.selectSvgSheetRequest.emit(sheetIds);

@@ -1,0 +1,41 @@
+<div class="card awg-edition-svg-sheet-viewer-settings float-none my-2">
+    <div class="card-header">
+        <span class="mx-2">Editorische Ergänzungen</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <div class="form-check form-switch">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        [checked]="allSuppliedClassesVisible"
+                        value=""
+                        id="all-supplied-classes"
+                        (click)="toggleAllSuppliedClassesOpacity()" />
+                    <label class="form-check-label" for="all-supplied-classes">
+                        Alle {{ allSuppliedClassesVisible ? 'aus' : 'ein' }}blenden
+                    </label>
+                </div>
+            </div>
+            @for (suppliedClass of suppliedClasses | keyvalue; track suppliedClass; let i = $index) {
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            [checked]="suppliedClass.value"
+                            value=""
+                            [id]="suppliedClass.key"
+                            (click)="toggleSingleSuppliedClassOpacity(suppliedClass.key)" />
+                        <label class="form-check-label" [for]="suppliedClass.key">{{ suppliedClass.key }}</label>
+                    </div>
+                </div>
+                <!-- Add a new row after every third item -->
+                @if ((i + 2) % 3 === 0) {
+                    <div class="w-100"></div>
+                }
+            }
+        </div>
+    </div>
+</div>

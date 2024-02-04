@@ -103,6 +103,7 @@ describe('HomeViewComponent (DONE)', () => {
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
             EDITION_COMPLEXES.M30,
+            EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
             EDITION_COMPLEXES.M37,
         ];
@@ -353,34 +354,35 @@ describe('HomeViewComponent (DONE)', () => {
 
             it('... should render title of edition info headers in first div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+
+                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[0],
                     'h3.awg-edition-info-header .awg-edition-info-header-title',
-                    2,
-                    2
+                    expectedLength,
+                    expectedLength
                 );
 
-                const title0El = titleDes[0].nativeElement;
-                const title1El = titleDes[1].nativeElement;
-
-                expectToBe(title0El.innerHTML, expectedEditionComplexes[0].titleStatement.title);
-                expectToBe(title1El.innerHTML, expectedEditionComplexes[1].titleStatement.title);
+                titleDes.forEach((titleDe, index) => {
+                    const titleEl = titleDe.nativeElement;
+                    expectToBe(titleEl.innerHTML, expectedEditionComplexes.slice(0.2)[index].titleStatement.title);
+                });
             });
 
             it('... should render catalogue number of edition info headers in first div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+                const expectedLength = expectedEditionComplexes.slice(0, 2).length;
                 const catalogueDes = getAndExpectDebugElementByCss(
                     divDes[0],
                     '.awg-edition-info-header .awg-edition-info-header-catalogue',
-                    2,
-                    2
+                    expectedLength,
+                    expectedLength
                 );
 
-                const catalogue0El = catalogueDes[0].nativeElement;
-                const catalogue1El = catalogueDes[1].nativeElement;
-
-                expectToBe(catalogue0El.innerHTML, expectedEditionComplexes[0].complexId.short);
-                expectToBe(catalogue1El.innerHTML, expectedEditionComplexes[1].complexId.short);
+                catalogueDes.forEach((catalogueDe, index) => {
+                    const catalogueEl = catalogueDe.nativeElement;
+                    expectToBe(catalogueEl.innerHTML, expectedEditionComplexes.slice(0.2)[index].complexId.short);
+                });
             });
 
             it('... should render edition type links in first div.para', () => {
@@ -412,49 +414,53 @@ describe('HomeViewComponent (DONE)', () => {
 
             it('... should render title of edition info headers in second div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+
+                const expectedLength = expectedEditionComplexes.slice(2).length;
                 const titleDes = getAndExpectDebugElementByCss(
                     divDes[1],
                     'h3.awg-edition-info-header .awg-edition-info-header-title',
-                    3,
-                    3
+                    expectedLength,
+                    expectedLength
                 );
-                const title1El = titleDes[0].nativeElement;
-                const title2El = titleDes[1].nativeElement;
-                const title3El = titleDes[2].nativeElement;
 
-                expectToBe(title1El.innerHTML, expectedEditionComplexes[2].titleStatement.title);
-                expectToBe(title2El.innerHTML, expectedEditionComplexes[3].titleStatement.title);
-                expectToBe(title3El.innerHTML, expectedEditionComplexes[4].titleStatement.title);
+                titleDes.forEach((titleDe, index) => {
+                    const titleEl = titleDe.nativeElement;
+                    expectToBe(titleEl.innerHTML, expectedEditionComplexes.slice(2)[index].titleStatement.title);
+                });
             });
 
             it('... should render catalogue number of edition info headers in second div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+
+                const expectedLength = expectedEditionComplexes.slice(2).length;
                 const catalogueDes = getAndExpectDebugElementByCss(
                     divDes[1],
                     '.awg-edition-info-header .awg-edition-info-header-catalogue',
-                    3,
-                    3
+                    expectedLength,
+                    expectedLength
                 );
-                const catalogue1El = catalogueDes[0].nativeElement;
-                const catalogue2El = catalogueDes[1].nativeElement;
-                const catalogue3El = catalogueDes[2].nativeElement;
 
-                expectToBe(catalogue1El.innerHTML, expectedEditionComplexes[2].complexId.short);
-                expectToBe(catalogue2El.innerHTML, expectedEditionComplexes[3].complexId.short);
-                expectToBe(catalogue3El.innerHTML, expectedEditionComplexes[4].complexId.short);
+                catalogueDes.forEach((catalogueDe, index) => {
+                    const catalogueEl = catalogueDe.nativeElement;
+                    expectToBe(catalogueEl.innerHTML, expectedEditionComplexes.slice(2)[index].complexId.short);
+                });
             });
 
             it('... should render edition type links in second div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
-                const aDes = getAndExpectDebugElementByCss(divDes[1], '.awg-edition-info-header a', 3, 3);
 
-                const a1El = aDes[0].nativeElement;
-                const a2El = aDes[1].nativeElement;
-                const a3El = aDes[2].nativeElement;
+                const expectedLength = expectedEditionComplexes.slice(2).length;
+                const aDes = getAndExpectDebugElementByCss(
+                    divDes[1],
+                    '.awg-edition-info-header a',
+                    expectedLength,
+                    expectedLength
+                );
 
-                expectToBe(a1El.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
-                expectToBe(a2El.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
-                expectToBe(a3El.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
+                aDes.forEach((aDe, index) => {
+                    const aEl = aDe.nativeElement;
+                    expectToBe(aEl.textContent, expectedEditionTypeConstants.SKETCH_EDITION.full);
+                });
             });
 
             describe('... should render links to', () => {

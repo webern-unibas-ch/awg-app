@@ -3,7 +3,7 @@
         <div class="awg-edition-svg-sheet-viewer">
             <div class="awg-edition-svg-icon-bar">
                 <!-- Slider -->
-                <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start m-2">
+                <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start mx-2r my-2">
                     <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
                     <input
                         type="range"
@@ -23,20 +23,27 @@
                     </button>
                 </div>
             </div>
-            <div #svgSheetContainer class="awg-edition-svg-sheet-container">
+            <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
                 <svg #svgSheetElement id="awg-edition-svg-sheet">
                     <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>
                 </svg>
                 <awg-license class="d-flex mt-3 text-center small"></awg-license>
+                @if (suppliedClasses.size > 0) {
+                    <awg-edition-svg-sheet-viewer-settings
+                        [suppliedClasses]="suppliedClasses"
+                        (toggleSuppliedClassesOpacityRequest)="
+                            onSuppliedClassesOpacityToggle($event)
+                        "></awg-edition-svg-sheet-viewer-settings>
+                }
             </div>
-        </div>
-        <!-- Next and previous buttons -->
-        <div class="awg-edition-svg-sheet-viewer-nav">
-            <div class="prev" (click)="browseSvgSheet(-1)">
-                <span>&#10094;</span>
-            </div>
-            <div class="next" (click)="browseSvgSheet(1)">
-                <span>&#10095;</span>
+            <!-- Next and previous buttons -->
+            <div class="awg-edition-svg-sheet-viewer-nav">
+                <div class="prev" (click)="browseSvgSheet(-1)">
+                    <span>&#10094;</span>
+                </div>
+                <div class="next" (click)="browseSvgSheet(1)">
+                    <span>&#10095;</span>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,28 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 75.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_A"
+        },
+        {
+            "siglum": "B",
+            "siglumAddendum": "",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_B"
+        },
+        {
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 116.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "source_C"
+        }
+    ]
+}

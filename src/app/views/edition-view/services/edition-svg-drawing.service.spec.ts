@@ -3,6 +3,13 @@ import { ElementRef } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { expectSpyCall, expectToBe, expectToContain, expectToEqual } from '@testing/expect-helper';
+import {
+    createD3TestLinkBoxGroups,
+    createD3TestRootGroup,
+    createD3TestSuppliedClassesGroups,
+    createD3TestSvg,
+    createD3TestTkkGroups,
+} from '@testing/svg-drawing-helper';
 
 import {
     D3Selection,
@@ -15,36 +22,6 @@ import { EditionSvgDrawingService } from './edition-svg-drawing.service';
 
 import * as D3_SELECTION from 'd3-selection';
 
-// Helper functions to create D3 selections
-function createD3TestSvg(doc: Document): D3Selection {
-    const container: HTMLElement = doc.createElement('div');
-
-    // Test data
-    return D3_SELECTION.select(container).append('svg').attr('id', 'test-svg');
-}
-
-function createD3TestRootGroup(svg: D3Selection): D3Selection {
-    svg.append('g').attr('class', 'svg-root');
-
-    return svg.select('.svg-root');
-}
-
-function createD3TestTkkGroups(svgRootGroup: D3Selection, overlays: EditionSvgOverlay[]): D3Selection {
-    overlays.forEach(overlay => {
-        svgRootGroup.append('g').attr('class', 'tkk').attr('id', overlay.id);
-    });
-
-    return svgRootGroup;
-}
-
-function createD3TestLinkBoxGroups(svgRootGroup: D3Selection, linkBoxes: EditionSvgLinkBox[]): D3Selection {
-    linkBoxes.forEach(linkBox => {
-        svgRootGroup.append('g').attr('class', 'link-box').attr('id', linkBox.svgGroupId);
-    });
-
-    return svgRootGroup;
-}
-
 describe('EditionSvgDrawingService (DONE)', () => {
     let service: EditionSvgDrawingService;
 
@@ -54,6 +31,9 @@ describe('EditionSvgDrawingService (DONE)', () => {
     let expectedSvgRootGroup: D3Selection;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedLinkBoxes: EditionSvgLinkBox[];
+    let expectedSuppliedClassNames: string[];
+    let expectedSuppliedClassMap: Map<string, boolean>;
+    let expectedSuppliedClassesLabelLookup: Map<string, string>;
 
     let expectedOverlayFillColor: string;
     let expectedOverlayHoverFillColor: string;
@@ -86,6 +66,19 @@ describe('EditionSvgDrawingService (DONE)', () => {
             },
         ];
 
+        expectedSuppliedClassNames = ['supplied class-1', 'supplied class-2'];
+        expectedSuppliedClassMap = new Map([
+            [expectedSuppliedClassNames[0].split(' ')[1], true],
+            [expectedSuppliedClassNames[1].split(' ')[1], true],
+        ]);
+
+        expectedSuppliedClassesLabelLookup = new Map([
+            ['foliation', 'Blattangabe'],
+            ['key', 'Tonart'],
+            ['measureN', 'Taktzahlen'],
+            ['staffN', 'Systemnummerierung'],
+        ]);
+
         expectedOverlayFillColor = 'orange';
         expectedOverlayHoverFillColor = 'tomato';
         expectedOverlaySelectionFillColor = 'green';
@@ -99,6 +92,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
         expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
         createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
         createD3TestLinkBoxGroups(expectedSvgRootGroup, expectedLinkBoxes);
+        createD3TestSuppliedClassesGroups(expectedSvgRootGroup, expectedSuppliedClassNames);
     }));
 
     afterEach(function () {
@@ -139,6 +133,15 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
     it('... should have `_overlayBoxCornerRadius = 2` (private)', () => {
         expectToBe(service['_overlayBoxCornerRadius'], expectedOverlayBoxCornerRadius);
+    });
+
+    it('... should have `_suppliedClassesLabelLookup` map', () => {
+        expectToBe(service['_suppliedClassesLabelLookup'].size, 4);
+        expectToEqual(service['_suppliedClassesLabelLookup'], expectedSuppliedClassesLabelLookup);
+    });
+
+    it('... should have empty `_suppliedClasses` map', () => {
+        expectToBe(service['_suppliedClasses'].size, 0);
     });
 
     describe('#createSvg()', () => {
@@ -376,7 +379,15 @@ describe('EditionSvgDrawingService (DONE)', () => {
         });
 
         describe('... should return an empty array if', () => {
-            it('... svgRootGroup is provided, but has no selected overlays', () => {
+            it('... svgRootGroup is provided, but no matching selector found', () => {
+                const d3selections = service.getGroupsBySelector(expectedSvgRootGroup, 'unknown-selector');
+
+                expect(d3selections).toBeDefined();
+                expect(d3selections.nodes()).toBeInstanceOf(Array);
+                expectToBe(d3selections.nodes().length, 0);
+            });
+
+            it('... asked for `tkk`, but has no overlay groups', () => {
                 expectedOverlays = [];
 
                 expectedSvg = createD3TestSvg(mockDocument);
@@ -391,7 +402,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expectToBe(d3selections.nodes().length, 0);
             });
 
-            it('... svgRootGroup is provided, but has no link boxes', () => {
+            it('... asked for `link-box`, but has no link boxes', () => {
                 expectedSvg = createD3TestSvg(mockDocument);
                 expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
                 createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
@@ -402,10 +413,23 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 expect(d3selections.nodes()).toBeInstanceOf(Array);
                 expectToBe(d3selections.nodes().length, 0);
             });
+
+            it('... asked for `supplied`, but has no supplied classes', () => {
+                expectedSvg = createD3TestSvg(mockDocument);
+                expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
+                createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
+                createD3TestLinkBoxGroups(expectedSvgRootGroup, expectedLinkBoxes);
+
+                const d3selections = service.getGroupsBySelector(expectedSvgRootGroup, 'supplied');
+
+                expect(d3selections).toBeDefined();
+                expect(d3selections.nodes()).toBeInstanceOf(Array);
+                expectToBe(d3selections.nodes().length, 0);
+            });
         });
 
-        describe('... should return an array of D3 selections if ', () => {
-            it('... svgRootGroup is provided and has `tkk` groups', () => {
+        describe('... should return an array of D3 selections if svgRootGroup is provided, and matching selector found', () => {
+            it('... asked for `tkk` and has overlay groups', () => {
                 const d3Selections = service.getGroupsBySelector(expectedSvgRootGroup, 'tkk');
 
                 expect(d3Selections).toBeDefined();
@@ -419,7 +443,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
                 });
             });
 
-            it('... svgRootGroup is provided and has `link-box` groups', () => {
+            it('... asked for `link-box` and has link boxes', () => {
                 const d3Selections = service.getGroupsBySelector(expectedSvgRootGroup, 'link-box');
 
                 expect(d3Selections).toBeDefined();
@@ -430,6 +454,19 @@ describe('EditionSvgDrawingService (DONE)', () => {
                     expectToContain(node.classList, 'link-box');
 
                     expectToBe(node.id, expectedLinkBoxes[index].svgGroupId);
+                });
+            });
+
+            it('... asked for `supplied` and has supplied classes', () => {
+                const d3Selections = service.getGroupsBySelector(expectedSvgRootGroup, 'supplied');
+
+                expect(d3Selections).toBeDefined();
+                expect(d3Selections.nodes()).toBeInstanceOf(Array);
+                expectToBe(d3Selections.nodes().length, expectedSuppliedClassNames.length);
+
+                d3Selections.nodes().forEach((node, index) => {
+                    const suppliedClass = Array.from(node.classList).join(' ');
+                    expectToBe(suppliedClass, expectedSuppliedClassNames[index]);
                 });
             });
         });
@@ -518,6 +555,97 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expect(d3selections.nodes()).toBeInstanceOf(Array);
             expectToBe(d3selections.nodes().length, 1);
             expectToContain(d3selections.nodes()[0].classList, `${expectedType}-overlay-group-box`);
+        });
+    });
+
+    describe('#getSuppliedClasses()', () => {
+        it('... should have a method `getSuppliedClasses`', () => {
+            expect(service.getSuppliedClasses).toBeDefined();
+        });
+
+        it('... should return undefined if no svgRootGroup is provided', () => {
+            const suppliedClasses = service.getSuppliedClasses(null);
+
+            expect(suppliedClasses).toBeUndefined();
+        });
+
+        it('... should return an empty Map if svgRootGroup is provided, but has no supplied classes', () => {
+            expectedSvg = createD3TestSvg(mockDocument);
+            expectedSvgRootGroup = createD3TestRootGroup(expectedSvg);
+            createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
+            createD3TestLinkBoxGroups(expectedSvgRootGroup, expectedLinkBoxes);
+
+            const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
+
+            expect(suppliedClasses).toBeDefined();
+            expect(suppliedClasses).toBeInstanceOf(Map);
+            expectToBe(suppliedClasses.size, 0);
+        });
+
+        it('... should return a Map of supplied classes if svgRootGroup is provided and has supplied classes', () => {
+            const suppliedClasses = service.getSuppliedClasses(expectedSvgRootGroup);
+
+            expect(suppliedClasses).toBeDefined();
+            expect(suppliedClasses).toBeInstanceOf(Map);
+            expectToBe(suppliedClasses.size, expectedSuppliedClassNames.length);
+            expectToBe(suppliedClasses.size, expectedSuppliedClassMap.size);
+            expectToEqual(suppliedClasses, expectedSuppliedClassMap);
+        });
+    });
+
+    describe('#toggleSuppliedClassOpacity()', () => {
+        it('... should have a method `toggleSuppliedClassOpacity`', () => {
+            expect(service.toggleSuppliedClassOpacity).toBeDefined();
+        });
+
+        it('... should do nothing if no svgRootGroup is provided', () => {
+            const suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
+            const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
+            const expectedSelection = D3_SELECTION.select(suppliedSelections.nodes()[0]);
+
+            service.toggleSuppliedClassOpacity(null, suppliedClassName, true);
+
+            const opacity = expectedSelection.style('opacity');
+
+            expectToEqual(opacity, '');
+        });
+
+        it('should toggle opacity of a single supplied class', () => {
+            const suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
+            const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
+            const expectedSelection = D3_SELECTION.select(suppliedSelections.nodes()[0]);
+
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, true);
+
+            let opacity = expectedSelection.style('opacity');
+
+            expectToEqual(opacity, '0');
+
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, suppliedClassName, false);
+
+            opacity = expectedSelection.style('opacity');
+
+            expectToEqual(opacity, '1');
+        });
+
+        it('should toggle opacity of all supplied classes if no class name is provided', () => {
+            const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, 'supplied');
+
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', true);
+
+            suppliedSelections.nodes().forEach(node => {
+                const expectedSelection = D3_SELECTION.select(node);
+                const opacity = expectedSelection.style('opacity');
+                expectToEqual(opacity, '0');
+            });
+
+            service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', false);
+
+            suppliedSelections.nodes().forEach(node => {
+                const expectedSelection = D3_SELECTION.select(node);
+                const opacity = expectedSelection.style('opacity');
+                expectToEqual(opacity, '1');
+            });
         });
     });
 

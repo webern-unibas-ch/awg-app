@@ -2,6 +2,75 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.3...v0.11.4) (2024-02-04)
+
+### Features
+
+-   **edition:** add component & service methods for supplied classes ([6ac13d9](https://github.com/webern-unibas-ch/awg-app/commit/6ac13d910730e1e22acc6729e70cb1430106adb6))
+-   **edition:** add M31 to menus ([7884012](https://github.com/webern-unibas-ch/awg-app/commit/7884012d24cf57438942a5a3d8b436800da9fcf6))
+
+### Bug Fixes
+
+-   **app:** remove unused constructors ([403aefa](https://github.com/webern-unibas-ch/awg-app/commit/403aefa33b303513655f7a218cea75de751e1c10))
+-   **assets:** add link boxes for Sk1 in m31 ([eb4a281](https://github.com/webern-unibas-ch/awg-app/commit/eb4a28174c972ffad3cc977867a5c4160950e411))
+-   **assets:** adjust multiple supplied classes (for now) ([a4e795d](https://github.com/webern-unibas-ch/awg-app/commit/a4e795d14e93006c910bfe5c64b328c4510cb4bf))
+-   **assets:** fix link boxes in m31 ([694716f](https://github.com/webern-unibas-ch/awg-app/commit/694716fac5e81b25e2b68fd55ccd0a6df79cc833))
+-   **assets:** fix links to sources from source lists ([1b3b64f](https://github.com/webern-unibas-ch/awg-app/commit/1b3b64fb121860e53c741005f2d1057870643d85))
+-   **assets:** fix typos in textcritics for m31 ([587da39](https://github.com/webern-unibas-ch/awg-app/commit/587da394f13d95ec3126b760ad5b456a9110dce9))
+-   **asssets:** fix svg files for m30 and m31 ([#1325](https://github.com/webern-unibas-ch/awg-app/issues/1325)) ([7d9cb22](https://github.com/webern-unibas-ch/awg-app/commit/7d9cb2254df3d5130cac2b71a1f0e766e50700c5); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **edition:** fix label in supplied classes look up map ([bb072e1](https://github.com/webern-unibas-ch/awg-app/commit/bb072e1e452e333500748204f5164eda7d5e8597))
+-   **edition:** fix object chaining expressions ([cee1a95](https://github.com/webern-unibas-ch/awg-app/commit/cee1a95cf3a608c982602063e671f249a4173509))
+-   **edition:** fix stepSize value in slider config ([984ca26](https://github.com/webern-unibas-ch/awg-app/commit/984ca26d973ca843e5c9bd8a57d93f86484a8873))
+-   **edition:** fix typo in variable name ([3eeea8d](https://github.com/webern-unibas-ch/awg-app/commit/3eeea8d328c309a24db0d60f8319a19c1a81e893))
+-   **edition:** remove unreachable condition from sheet viewer method ([5a3d167](https://github.com/webern-unibas-ch/awg-app/commit/5a3d167c527f48fce8d6a1a2b2eda8dde6995d1e))
+-   **edition:** use ChangeDetectorRef for SheetViewer ([b902da6](https://github.com/webern-unibas-ch/awg-app/commit/b902da65a7aa02807128f9cfd80558e128e98eaa))
+-   **gh-actions:** do not run svg optimization on forks ([a7c7c34](https://github.com/webern-unibas-ch/awg-app/commit/a7c7c34d92b582265a0087245ccc6da044c0e19e))
+-   **search:** remove resolved TODO ([39f4e7f](https://github.com/webern-unibas-ch/awg-app/commit/39f4e7f8820260772d889a0b08d725e0d1b0e00c))
+
+### Build System
+
+-   **app:** update husky command ([c3f41ff](https://github.com/webern-unibas-ch/awg-app/commit/c3f41ff53b77731fb8c17eb7cea0acc2ba567ce1))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.0.2 to 48.0.3 ([9aeec1f](https://github.com/webern-unibas-ch/awg-app/commit/9aeec1f7e17ea8044e57f4b99b37512d5f2221a9))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.0.3 to 48.0.4 ([f676a4b](https://github.com/webern-unibas-ch/awg-app/commit/f676a4b3f094acffbf3753ece9cfdbc4d0f32578))
+-   **deps-dev:** bump husky from 8.0.3 to 9.0.6 ([4403c50](https://github.com/webern-unibas-ch/awg-app/commit/4403c50d598a0f7c104b9a64024d3c23249dd76e))
+-   **deps-dev:** bump husky from 9.0.6 to 9.0.7 ([6a3d97e](https://github.com/webern-unibas-ch/awg-app/commit/6a3d97e5f97aa93dc0993801ffb0a13ef710c505))
+-   **deps-dev:** bump husky from 9.0.7 to 9.0.8 ([1730de7](https://github.com/webern-unibas-ch/awg-app/commit/1730de7f6f712ded600a8ef5e3d029e90439a362))
+-   **deps-dev:** bump husky from 9.0.8 to 9.0.10 ([7b50c71](https://github.com/webern-unibas-ch/awg-app/commit/7b50c719f8d5529213413ad0cf18e8962be9dce9))
+-   **deps-dev:** bump lint-staged from 15.2.0 to 15.2.1 ([706a8b3](https://github.com/webern-unibas-ch/awg-app/commit/706a8b38456b765f7630036cd1104771110ad5eb))
+-   **deps-dev:** bump prettier from 3.2.2 to 3.2.4 ([f3f475b](https://github.com/webern-unibas-ch/awg-app/commit/f3f475b850e65f79eeb70e5a8b80cbaef97b6dfd))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([79a13e0](https://github.com/webern-unibas-ch/awg-app/commit/79a13e0d1d21206664a22addb7b7de2ea268909e))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([732aa43](https://github.com/webern-unibas-ch/awg-app/commit/732aa43e35723e2c6303b15a4eb3de12355da4bf))
+-   **deps-dev:** bump the angular-eslint group with 5 updates ([10c68c3](https://github.com/webern-unibas-ch/awg-app/commit/10c68c3045337a786736b239f6088532d00e1cfb))
+-   **deps-dev:** bump the commitlint group with 2 updates ([8e31dfa](https://github.com/webern-unibas-ch/awg-app/commit/8e31dfa21787b6ca9ef1096171a1e92c11347867))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([f114742](https://github.com/webern-unibas-ch/awg-app/commit/f114742a555a1c611ffae55b9be91d15294bd22a))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([0dcf4ac](https://github.com/webern-unibas-ch/awg-app/commit/0dcf4accc9aa8967662e572964f24c6480879938))
+-   **deps:** bump codecov/codecov-action from 3.1.4 to 3.1.5 ([6dc74ce](https://github.com/webern-unibas-ch/awg-app/commit/6dc74cea2a157c6da14abecdfd9a3c67aa884690))
+-   **deps:** bump codecov/codecov-action from 3.1.5 to 3.1.6 ([d3f6e3b](https://github.com/webern-unibas-ch/awg-app/commit/d3f6e3b36554054c4596bf1b6655db2ae6136d6e))
+-   **deps:** bump codecov/codecov-action from 3.1.6 to 4.0.0 ([a859a5a](https://github.com/webern-unibas-ch/awg-app/commit/a859a5aa66d5fe6bfd9ca32b937836b3cd6c74b4))
+-   **deps:** bump codecov/codecov-action from 4.0.0 to 4.0.1 ([ef5290e](https://github.com/webern-unibas-ch/awg-app/commit/ef5290e60a7cea5a1dc5c749b4404574141f4560))
+-   **deps:** bump the angular group with 11 updates ([7b1f7b0](https://github.com/webern-unibas-ch/awg-app/commit/7b1f7b0b0c4a965ac955926ddb7bcfdeb1cdabd8))
+-   **deps:** bump the angular group with 11 updates ([cca12d9](https://github.com/webern-unibas-ch/awg-app/commit/cca12d99ef0aae2d57def4c027cfb2cc6fe05464))
+
+### Styles
+
+-   **edition:** adjust styles for supplied classes elements ([03a2f87](https://github.com/webern-unibas-ch/awg-app/commit/03a2f87f44c7a389db48827715d924962f059067))
+-   **edition:** fix style for dropdown in force graph ([d3d5a65](https://github.com/webern-unibas-ch/awg-app/commit/d3d5a65941f659ce68d95cd316a427692ab4fce7))
+
+### Code Refactoring
+
+-   **edition:** move sheet footer component into separate module ([a3ca8db](https://github.com/webern-unibas-ch/awg-app/commit/a3ca8db2b8d87a76e41db989c969e9b96522db1a))
+-   **edition:** move sheet nav components into separate module ([0b49486](https://github.com/webern-unibas-ch/awg-app/commit/0b4948646e7d67ef37cd335ee794c86affcf8bb7))
+-   **edition:** move sheet viewer component into separate module ([34cd20a](https://github.com/webern-unibas-ch/awg-app/commit/34cd20a303da66a3062f7d2d87d868a9d7106055))
+-   **edition:** move tka components into separate module ([c3056f8](https://github.com/webern-unibas-ch/awg-app/commit/c3056f849323a800e47010ad86149d65400f3299))
+-   **edition:** use more precise naming in sheet viewer methods ([e3cd18e](https://github.com/webern-unibas-ch/awg-app/commit/e3cd18e495c149e20b8f65cd6cda5a4a9920c79c))
+
+### Tests
+
+-   **app:** fix tests after inclusion of m31 ([e3346d9](https://github.com/webern-unibas-ch/awg-app/commit/e3346d9d465024608269f46f26e6e88d876ebe2a))
+-   **edition:** add more tests for EditionSheetViewer ([3643205](https://github.com/webern-unibas-ch/awg-app/commit/36432056475d44a51008e65bd51da4dbce8b09bf))
+-   **edition:** add tests for supplied classes ([ac59db3](https://github.com/webern-unibas-ch/awg-app/commit/ac59db3a4bcc9c93240f1962ac36bf6a7a7dd7ba))
+-   **edition:** fix scope issue in form-switch test ([2f96526](https://github.com/webern-unibas-ch/awg-app/commit/2f965267dbfaabcbe4a6ffc4f627c617e84f0048))
+
 ### [0.11.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.2...v0.11.3) (2024-01-19)
 
 ### Features
