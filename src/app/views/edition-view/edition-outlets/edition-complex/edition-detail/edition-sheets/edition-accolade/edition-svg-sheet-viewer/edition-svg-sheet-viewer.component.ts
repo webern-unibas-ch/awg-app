@@ -373,7 +373,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         }
 
         this.onZoomChange(this.sliderConfig.initial);
-        this._retranslateZoom();
+        this._resetZoomTranslation();
     }
 
     /**
@@ -601,6 +601,22 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
+     * Private method: _onLinkBoxSelect.
+     *
+     * It emits the given link box id
+     * to the {@link selectLinkBoxRequest}.
+     *
+     * @param {string} linkBoxId The given link box id.
+     * @returns {void} Emits the id.
+     */
+    private _onLinkBoxSelect(linkBoxId: string): void {
+        if (!linkBoxId) {
+            return;
+        }
+        this.selectLinkBoxRequest.emit(linkBoxId);
+    }
+
+    /**
      * Private method: _onOverlaySelect.
      *
      * It emits the given svg overlays
@@ -612,19 +628,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _onOverlaySelect(overlays: EditionSvgOverlay[]): void {
         this.selectOverlaysRequest.emit(overlays);
-    }
-
-    /**
-     * Private method: _onLinkBoxSelect.
-     *
-     * It emits the given link box id
-     * to the {@link selectLinkBoxRequest}.
-     *
-     * @param {string} linkBoxId The given link box id.
-     * @returns {void} Emits the id.
-     */
-    private _onLinkBoxSelect(linkBoxId: string): void {
-        this.selectLinkBoxRequest.emit(linkBoxId);
     }
 
     /**
@@ -642,29 +645,29 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _retranslateZoom.
+     * Private method: _resetZoomTranslation.
      *
-     * It retranlsates the current zoom to the given x and y values.
+     * It resets the current zoom translation to the to the origin of the SVG canvas (0,0).
      *
-     * @returns {void} Sets the zoom for the rescale.
+     * @returns {void} Resets the zoom translation.
      */
-    private _retranslateZoom(): void {
-        if (!this.svgSheetSelection) {
+    private _resetZoomTranslation(): void {
+        if (!this.svgSheetSelection || !this.svgSheetRootGroupSelection) {
             return;
         }
         this.svgSheetRootGroupSelection.attr('transform', 'translate(0,0)');
     }
 
     /**
-     * Private method: _roundToNearestScaleStep.
+     * Private method: _roundToScaleStepDecimalPrecision.
      *
-     * It rounds a given value to the nearest value on an input range scale.
+     * It rounds a given value to the same number of decimal places as the step size of an input range scale.
      * Cf. https://stackoverflow.com/a/13635455
      *
      * @param {number} value The given value to round.
      * @returns {number} The rounded value.
      */
-    private _roundToNearestScaleStep(value: number): number {
+    private _roundToScaleStepDecimalPrecision(value: number): number {
         const stepSize = this.sliderConfig.stepSize;
 
         // Count decimals of a given value
@@ -700,7 +703,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         // Perform the zooming
         const zoomed = (event: any): void => {
             const currentTransform = event.transform;
-            const roundedTransformValue = this._roundToNearestScaleStep(currentTransform.k);
+            const roundedTransformValue = this._roundToScaleStepDecimalPrecision(currentTransform.k);
 
             // Update d3 zoom context
             zoomContext.attr('transform', currentTransform);
