@@ -677,8 +677,8 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             if (Math.floor(countValue) === countValue) {
                 return 0;
             }
-            // Convert the number to a string, split at the . and return the last part of the array, or 0 if the last part of the array is undefined (which will occur if there was no decimal point)
-            return countValue.toString().split('.')[1].length || 0;
+            // Convert the number to a string, split at the decimal point and return the length of the last part of the array
+            return countValue.toString().split('.')[1].length;
         };
 
         // Avoid Math.round error
