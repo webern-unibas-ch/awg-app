@@ -119,7 +119,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It keeps the default values for the zoom slider input.
      */
-    sliderConfig = new SliderConfig(1, 0.1, 10, 1 / 100, 1);
+    sliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
 
     /**
      * Public variable: suppliedClasses.

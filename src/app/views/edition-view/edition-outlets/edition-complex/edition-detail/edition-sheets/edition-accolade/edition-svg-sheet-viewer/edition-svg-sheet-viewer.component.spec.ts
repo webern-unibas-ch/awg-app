@@ -120,7 +120,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
         // Test data
         expectedCompressIcon = faCompressArrowsAlt;
-        expectedSliderConfig = new SliderConfig(1, 0.1, 10, 1 / 100, 1);
+        expectedSliderConfig = new SliderConfig(1, 0.1, 10, 0.01, 1);
 
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
