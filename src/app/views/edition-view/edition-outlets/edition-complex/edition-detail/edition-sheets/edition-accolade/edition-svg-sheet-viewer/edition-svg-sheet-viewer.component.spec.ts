@@ -19,7 +19,9 @@ import {
 import { mockEditionData } from '@testing/mock-data';
 import {
     createD3TestLinkBoxGroups,
+    createD3TestRootGroup,
     createD3TestSuppliedClassesGroups,
+    createD3TestSvg,
     createD3TestTkkGroups,
 } from '@testing/svg-drawing-helper';
 
@@ -60,12 +62,14 @@ describe('EditionSvgSheetViewerComponent', () => {
     let browseSvgSheetSpy: Spy;
     let browseSvgSheetRequestEmitSpy: Spy;
     let createSvgSpy: Spy;
+    let emitSelectLinkBoxRequestSpy: Spy;
+    let emitSelectOverlaysRequestSpy: Spy;
     let getSuppliedClassesSpy: Spy;
     let onSuppliedClassesOpacityToggleSpy: Spy;
     let onZoomChangeSpy: Spy;
     let rescaleZoomSpy: Spy;
     let resetZoomSpy: Spy;
-    let retranslateZoomSpy: Spy;
+    let resetZoomTranslationSpy: Spy;
     let toggleSuppliedClassOpacitySpy: Spy;
 
     let expectedComplexId: string;
@@ -75,8 +79,8 @@ describe('EditionSvgSheetViewerComponent', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
 
-    let expectedSvg: D3Selection;
-    let expectedSvgRootGroup: D3Selection;
+    let expectedSvgSheetSelection: D3Selection;
+    let expectedSvgSheetRootGroupSelection: D3Selection;
     let expectedOverlays: EditionSvgOverlay[];
     let expectedLinkBoxes: EditionSvgLinkBox[];
     let expectedSuppliedClassNames: string[];
@@ -150,11 +154,13 @@ describe('EditionSvgSheetViewerComponent', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         browseSvgSheetSpy = spyOn(component, 'browseSvgSheet').and.callThrough();
         browseSvgSheetRequestEmitSpy = spyOn(component.browseSvgSheetRequest, 'emit').and.callThrough();
+        emitSelectLinkBoxRequestSpy = spyOn(component.selectLinkBoxRequest, 'emit').and.callThrough();
+        emitSelectOverlaysRequestSpy = spyOn(component.selectOverlaysRequest, 'emit').and.callThrough();
         onSuppliedClassesOpacityToggleSpy = spyOn(component, 'onSuppliedClassesOpacityToggle').and.callThrough();
         onZoomChangeSpy = spyOn(component, 'onZoomChange').and.callThrough();
         resetZoomSpy = spyOn(component, 'resetZoom').and.callThrough();
-        rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callFake(() => {}); // TODO: Check if a more meaningful replacement can be found
-        retranslateZoomSpy = spyOn<any>(component, '_retranslateZoom').and.callFake(() => {});
+        rescaleZoomSpy = spyOn<any>(component, '_rescaleZoom').and.callThrough();
+        resetZoomTranslationSpy = spyOn<any>(component, '_resetZoomTranslation').and.callThrough();
 
         // Spies for service methods
         createSvgSpy = spyOn(mockEditionSvgDrawingService, 'createSvg').and.callThrough();
@@ -229,14 +235,15 @@ describe('EditionSvgSheetViewerComponent', () => {
             // Trigger initial data binding
             fixture.detectChanges();
 
-            expectedSvgRootGroup = D3_SELECTION.select(component.svgSheetRootGroupRef.nativeElement);
+            expectedSvgSheetSelection = D3_SELECTION.select(component.svgSheetElementRef.nativeElement);
+            expectedSvgSheetRootGroupSelection = D3_SELECTION.select(component.svgSheetRootGroupRef.nativeElement);
 
-            createD3TestTkkGroups(expectedSvgRootGroup, expectedOverlays);
-            createD3TestLinkBoxGroups(expectedSvgRootGroup, expectedLinkBoxes);
-            createD3TestSuppliedClassesGroups(expectedSvgRootGroup, expectedSuppliedClassNames);
+            createD3TestTkkGroups(expectedSvgSheetRootGroupSelection, expectedOverlays);
+            createD3TestLinkBoxGroups(expectedSvgSheetRootGroupSelection, expectedLinkBoxes);
+            createD3TestSuppliedClassesGroups(expectedSvgSheetRootGroupSelection, expectedSuppliedClassNames);
 
-            component.svgSheetSelection = D3_SELECTION.select(component.svgSheetElementRef.nativeElement);
-            component.svgSheetRootGroupSelection = expectedSvgRootGroup;
+            component.svgSheetSelection = expectedSvgSheetSelection;
+            component.svgSheetRootGroupSelection = expectedSvgSheetRootGroupSelection;
 
             // Simulate the Promise being resolved
             tick();
@@ -687,26 +694,26 @@ describe('EditionSvgSheetViewerComponent', () => {
             describe('... should do nothing if', () => {
                 it('... svgSheetSelection is not set', () => {
                     expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(retranslateZoomSpy, 1);
+                    expectSpyCall(resetZoomTranslationSpy, 1);
 
                     component.svgSheetSelection = undefined;
 
                     component.resetZoom();
 
                     expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(retranslateZoomSpy, 1);
+                    expectSpyCall(resetZoomTranslationSpy, 1);
                 });
 
                 it('... sliderConfig is not set', () => {
                     expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(retranslateZoomSpy, 1);
+                    expectSpyCall(resetZoomTranslationSpy, 1);
 
                     component.sliderConfig = undefined;
 
                     component.resetZoom();
 
                     expectSpyCall(onZoomChangeSpy, 1);
-                    expectSpyCall(retranslateZoomSpy, 1);
+                    expectSpyCall(resetZoomTranslationSpy, 1);
                 });
             });
 
@@ -718,12 +725,71 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expectSpyCall(onZoomChangeSpy, 2, expectedSliderConfig.initial);
             });
 
-            it('... should trigger `_retranslateZoom` function', () => {
-                expectSpyCall(retranslateZoomSpy, 1);
+            it('... should trigger `_resetZoomTranslation` function', () => {
+                expectSpyCall(resetZoomTranslationSpy, 1);
 
                 component.resetZoom();
 
-                expectSpyCall(retranslateZoomSpy, 2);
+                expectSpyCall(resetZoomTranslationSpy, 2);
+            });
+        });
+
+        describe('#_getOverlayById()', () => {
+            it('... should have a method `_getOverlayById`', () => {
+                expect((component as any)._getOverlayById).toBeDefined();
+            });
+
+            describe('... should return undefined', () => {
+                it('... if no overlays are given', () => {
+                    const noOverlays = [];
+
+                    const overlay = (component as any)._getOverlayById(noOverlays, expectedOverlays[0].id);
+
+                    expect(overlay).toBeUndefined();
+                });
+
+                it('... if no overlay with given id is found', () => {
+                    const overlay = (component as any)._getOverlayById(expectedOverlays, 'unkown-id');
+
+                    expect(overlay).toBeUndefined();
+                });
+            });
+
+            it('... should return an overlay with given id', () => {
+                const overlay = (component as any)._getOverlayById(expectedOverlays, expectedOverlays[0].id);
+
+                expectToEqual(overlay, expectedOverlays[0]);
+            });
+        });
+
+        describe('#_getSelectedOverlays()', () => {
+            it('... should have a method `_getSelectedOverlays`', () => {
+                expect((component as any)._getSelectedOverlays).toBeDefined();
+            });
+
+            it('should return an empty array if no overlays are selected', () => {
+                const noSelectedOverlays: EditionSvgOverlay[] = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-1', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-2', false),
+                ];
+
+                const selectedOverlays = (component as any)._getSelectedOverlays(noSelectedOverlays);
+
+                expectToEqual(selectedOverlays, []);
+            });
+
+            it('should return only selected overlays', () => {
+                const selectableOverlays: EditionSvgOverlay[] = [
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-1', true),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-2', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-3', true),
+                ];
+
+                const selectedOverlays = (component as any)._getSelectedOverlays(selectableOverlays);
+
+                expectToBe(selectedOverlays.length, 2);
+                expectToEqual(selectedOverlays[0], selectableOverlays[0]);
+                expectToEqual(selectedOverlays[1], selectableOverlays[2]);
             });
         });
 
@@ -735,13 +801,202 @@ describe('EditionSvgSheetViewerComponent', () => {
             it('... should call `getSuppliedClasses` method from svg drawing service', () => {
                 (component as any)._getSuppliedClasses();
 
-                expectSpyCall(getSuppliedClassesSpy, 2, expectedSvgRootGroup);
+                expectSpyCall(getSuppliedClassesSpy, 2, expectedSvgSheetRootGroupSelection);
             });
 
             it('... should return a map of supplied class names and set `suppliedClasses`', () => {
                 (component as any)._getSuppliedClasses();
 
                 expectToEqual(component.suppliedClasses, expectedSuppliedClassMap);
+            });
+        });
+
+        describe('#_onLinkBoxSelect()', () => {
+            it('... should have a method `_onLinkBoxSelect`', () => {
+                expect((component as any)._onLinkBoxSelect).toBeDefined();
+            });
+
+            xit('... should trigger on click on link box (D3 event)', fakeAsync(() => {
+                const onLinkBoxSelectSpy = spyOn(component as any, '_onLinkBoxSelect').and.callThrough();
+                const linkBoxDe = getAndExpectDebugElementByCss(compDe, 'g.link-box', 1, 1);
+
+                // Select the element using D3
+                const linkBoxSelection = D3_SELECTION.select(linkBoxDe[0].nativeElement);
+
+                // Dispatch the click event
+                linkBoxSelection.dispatch('click');
+
+                tick();
+
+                expectSpyCall(onLinkBoxSelectSpy, 1, expectedComplexId);
+            }));
+
+            it('... should not emit anything if no link box id is provided', () => {
+                const expectedLinkBoxId = '';
+
+                (component as any)._onLinkBoxSelect(expectedLinkBoxId);
+
+                expectSpyCall(emitSelectLinkBoxRequestSpy, 0);
+            });
+
+            it('... should emit a given link box id', () => {
+                const expectedLinkBoxId = expectedLinkBoxes[0].svgGroupId;
+
+                (component as any)._onLinkBoxSelect(expectedLinkBoxId);
+
+                expectSpyCall(emitSelectLinkBoxRequestSpy, 1, expectedLinkBoxId);
+            });
+        });
+
+        describe('#_rescaleZoom()', () => {
+            let scaleToSpy: Spy;
+
+            beforeEach(() => {
+                scaleToSpy = spyOn((component as any)._zoomBehaviour, 'scaleTo');
+            });
+
+            it('... should have a method `_rescaleZoom`', () => {
+                expect((component as any)._rescaleZoom).toBeDefined();
+            });
+
+            it('... should trigger from call to `onZoomChange()`', () => {
+                expectSpyCall(rescaleZoomSpy, 1);
+
+                const newSliderValue = 5;
+
+                component.onZoomChange(newSliderValue);
+
+                expectSpyCall(rescaleZoomSpy, 2);
+            });
+
+            describe('... should do nothing if', () => {
+                it('... `svgSheetSelection` is not set', () => {
+                    component.svgSheetSelection = undefined;
+
+                    (component as any)._rescaleZoom();
+
+                    expectSpyCall(scaleToSpy, 0);
+                });
+
+                it('... `sliderConfig.value` is not set', () => {
+                    component.sliderConfig.value = undefined;
+
+                    (component as any)._rescaleZoom();
+
+                    expectSpyCall(scaleToSpy, 0);
+                });
+            });
+
+            it('should call `_zoomBehaviour.scaleTo` if `svgSheetSelection` and `sliderConfig.value` are given', () => {
+                expect(component.svgSheetSelection).toBeTruthy();
+                expect(component.sliderConfig.value).toBeTruthy();
+
+                (component as any)._rescaleZoom();
+
+                expectSpyCall(scaleToSpy, 1, [expectedSvgSheetSelection, expectedSliderConfig.value]);
+            });
+        });
+
+        describe('#_resetZoomTranslation()', () => {
+            it('... should have a method `_resetZoomTranslation`', () => {
+                expect((component as any)._resetZoomTranslation).toBeDefined();
+            });
+
+            it('... should trigger from call to `resetZoom()`', () => {
+                expectSpyCall(resetZoomTranslationSpy, 1);
+
+                component.resetZoom();
+
+                expectSpyCall(resetZoomTranslationSpy, 2);
+            });
+
+            it('... should do nothing if svgSheetSelection is not set', () => {
+                component.svgSheetSelection = undefined;
+
+                const attrSpy = spyOn(component.svgSheetRootGroupSelection, 'attr').and.callThrough();
+
+                (component as any)._resetZoomTranslation();
+
+                expectSpyCall(attrSpy, 0);
+            });
+
+            it('... should set a transform attribute to the `svgSheetRootGroupSelection`', fakeAsync(() => {
+                const svg = createD3TestSvg(mockDocument);
+                component.svgSheetRootGroupSelection = createD3TestRootGroup(svg);
+
+                const attrSpy = spyOn(component.svgSheetRootGroupSelection, 'attr').and.callThrough();
+
+                (component as any)._resetZoomTranslation();
+
+                // SvgSheetGroup was overwritten
+                expect(component.svgSheetRootGroupSelection).not.toEqual(expectedSvgSheetRootGroupSelection);
+
+                expectSpyCall(attrSpy, 1, 'transform');
+                expectToBe(component.svgSheetRootGroupSelection.attr('transform'), 'translate(0,0)');
+            }));
+        });
+
+        describe('#_roundToScaleStepDecimalPrecision()', () => {
+            it('... should have a method `_roundToScaleStepDecimalPrecision`', () => {
+                expect((component as any)._roundToScaleStepDecimalPrecision).toBeDefined();
+            });
+
+            describe('... should return the nearest scale step', () => {
+                const testCases = [
+                    // Test cases for stepSize 0.01
+                    {
+                        stepSize: 0.01,
+                        values: [
+                            [0, 0],
+                            [0.005, 0.01],
+                            [0.01, 0.01],
+                            [0.014, 0.01],
+                            [0.0149, 0.01],
+                            [0.015, 0.02],
+                            [0.0151, 0.02],
+                            [0.1, 0.1],
+                            [1, 1],
+                        ],
+                    },
+                    // Test cases for stepSize 0.1
+                    {
+                        stepSize: 0.1,
+                        values: [
+                            [0, 0],
+                            [0.05, 0.1],
+                            [0.1, 0.1],
+                            [0.14, 0.1],
+                            [0.149, 0.1],
+                            [0.15, 0.2],
+                            [0.151, 0.2],
+                            [1, 1],
+                        ],
+                    },
+                    // Test cases for stepSize 1
+                    {
+                        stepSize: 1,
+                        values: [
+                            [0, 0],
+                            [0.5, 1],
+                            [1, 1],
+                            [1.4, 1],
+                            [1.49, 1],
+                            [1.5, 2],
+                            [1.51, 2],
+                            [10, 10],
+                        ],
+                    },
+                ];
+
+                for (const { stepSize, values } of testCases) {
+                    for (const [givenValue, expectedNearestStep] of values) {
+                        it(`... for stepSize ${stepSize} and given value ${givenValue} returns ${expectedNearestStep}`, () => {
+                            component.sliderConfig.stepSize = stepSize;
+                            const result = (component as any)._roundToScaleStepDecimalPrecision(givenValue);
+                            expect(result).toBe(expectedNearestStep);
+                        });
+                    }
+                }
             });
         });
     });
