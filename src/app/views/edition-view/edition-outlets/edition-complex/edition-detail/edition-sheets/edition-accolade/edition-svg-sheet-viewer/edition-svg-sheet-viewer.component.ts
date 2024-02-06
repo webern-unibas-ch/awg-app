@@ -512,7 +512,6 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         const dim: DOMRect = group.getBBox();
 
         this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
-        const overlay = this._getOverlayById(this._availableOverlays, id);
 
         // Get D3 selection of overlay group
         const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(
@@ -522,11 +521,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             overlayType
         );
 
-        const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
-            this.svgSheetRootGroupSelection,
-            id,
-            overlayType
-        );
+        const [overlay, overlayGroupRectSelection] = this._getOverlayAndSelection(id, overlayType);
 
         overlayGroupSelection
             .on('mouseover', () => {
@@ -587,6 +582,27 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _getOverlayById(overlays: EditionSvgOverlay[], id: string): EditionSvgOverlay | undefined {
         return overlays.find((overlay: EditionSvgOverlay) => overlay.id === id);
+    }
+
+    /**
+     * Private method: _getOverlayAndSelection.
+     *
+     * It gets the overlay and the D3 selection rectangle for the given id and overlay type.
+     *
+     * @param {string} id The given id.
+     * @param {string} overlayType The given overlay type.
+     *
+     * @returns {[EditionSvgOverlay, D3Selection]} [overlay, overlayGroupRectSelection] The overlay and the D3 selection rect.
+     */
+    private _getOverlayAndSelection(id: string, overlayType: string): [EditionSvgOverlay, D3Selection] {
+        const overlay = this._getOverlayById(this._availableOverlays, id);
+        const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
+            this.svgSheetRootGroupSelection,
+            id,
+            overlayType
+        );
+
+        return [overlay, overlayGroupRectSelection];
     }
 
     /**
