@@ -24,11 +24,11 @@ export class EditionSvgSheetViewerSettingsComponent {
         new EventEmitter();
 
     /**
-     * Public variable: allSuppliedClassesVisible.
+     * Public variable: allClassesVisible.
      *
-     * It keeps a boolean flag whether all supplied classes are visible.
+     * It keeps a boolean flag whether all classes are visible.
      */
-    allSuppliedClassesVisible = true;
+    allClassesVisible = true;
 
     /**
      * Public method: toggleSingleSuppliedClassOpacity.
@@ -41,13 +41,13 @@ export class EditionSvgSheetViewerSettingsComponent {
      */
     toggleSingleSuppliedClassOpacity(className: string): void {
         const isSuppliedClassVisible = this.suppliedClasses.get(className) || false;
-        this.suppliedClasses.set(className, !isSuppliedClassVisible);
         this._onSuppliedClassesOpacityToggle(className, isSuppliedClassVisible);
+        this.suppliedClasses.set(className, !isSuppliedClassVisible);
 
-        // Update allSuppliedClassesVisible flag if all individual classes have the same visibility
+        // Update allClassesVisible flag
         const visibilityOfAllValues = Array.from(this.suppliedClasses.values());
         if (visibilityOfAllValues.every(value => value === visibilityOfAllValues[0])) {
-            this.allSuppliedClassesVisible = visibilityOfAllValues[0];
+            this.allClassesVisible = visibilityOfAllValues[0];
         }
     }
 
@@ -58,13 +58,13 @@ export class EditionSvgSheetViewerSettingsComponent {
      *
      * @returns {void} Toggles the visibility of all supplied classes.
      */
-    toggleAllSuppliedClassesOpacity(): void {
-        this._onSuppliedClassesOpacityToggle(undefined, this.allSuppliedClassesVisible);
-        this.allSuppliedClassesVisible = !this.allSuppliedClassesVisible;
+    toggleAllClassesOpacity(): void {
+        this._onSuppliedClassesOpacityToggle(undefined, this.allClassesVisible);
+        this.allClassesVisible = !this.allClassesVisible;
 
-        // Update visibility of supplied classes if allSuppliedClassesVisible flag changes
+        // Update visibility of supplied classes if allClassesVisible flag changes
         this.suppliedClasses.forEach((_value, key) => {
-            this.suppliedClasses.set(key, this.allSuppliedClassesVisible);
+            this.suppliedClasses.set(key, this.allClassesVisible);
         });
     }
 
