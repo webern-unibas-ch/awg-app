@@ -18,7 +18,7 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
     let emitToggleSuppliedClassesOpacityRequestSpy: Spy;
     let onSuppliedClassesOpacityToggleSpy: Spy;
     let toggleSingleSuppliedClassOpacitySpy: Spy;
-    let toggleAllSuppliedClassesOpacitySpy: Spy;
+    let toggleAllClassesOpacitySpy: Spy;
 
     let expectedClass1: string;
     let expectedClass2: string;
@@ -52,7 +52,7 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
         ).and.callThrough();
         onSuppliedClassesOpacityToggleSpy = spyOn<any>(component, '_onSuppliedClassesOpacityToggle').and.callThrough();
         toggleSingleSuppliedClassOpacitySpy = spyOn(component, 'toggleSingleSuppliedClassOpacity').and.callThrough();
-        toggleAllSuppliedClassesOpacitySpy = spyOn(component, 'toggleAllSuppliedClassesOpacity').and.callThrough();
+        toggleAllClassesOpacitySpy = spyOn(component, 'toggleAllClassesOpacity').and.callThrough();
     });
 
     afterAll(() => {
@@ -68,8 +68,8 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
             expect(component.suppliedClasses).toBeUndefined();
         });
 
-        it('... should have allSuppliedClassesVisible = `true`', () => {
-            expectToBe(component.allSuppliedClassesVisible, true);
+        it('... should have allClassesVisible = `true`', () => {
+            expectToBe(component.allClassesVisible, true);
         });
 
         describe('VIEW', () => {
@@ -183,7 +183,7 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
                 expectToEqual(formSwitchLabelEl.textContent.trim(), 'Alle ausblenden');
             });
 
-            it('... should display `Alle aus/einblenden` depending on status of allSuppliedClassesVisible', async () => {
+            it('... should display `Alle aus/einblenden` depending on status of allClassesVisible', async () => {
                 const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
                 const formSwitchDe = getAndExpectDebugElementByCss(
                     cardBodyDe[0],
@@ -200,18 +200,18 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
 
                 const formSwitchLabelEl = formSwitchLabelDe[0].nativeElement;
 
-                expectToBe(component.allSuppliedClassesVisible, true);
+                expectToBe(component.allClassesVisible, true);
                 expectToEqual(formSwitchLabelEl.textContent.trim(), 'Alle ausblenden');
 
                 // Toggle allSuppliedClassesOpacity
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
                 await detectChangesOnPush(fixture);
 
-                expectToBe(component.allSuppliedClassesVisible, false);
+                expectToBe(component.allClassesVisible, false);
                 expectToEqual(formSwitchLabelEl.textContent.trim(), 'Alle einblenden');
             });
 
-            it('... should trigger `toggleAllSuppliedClassesOpacity`on click on form-switch for all-supplied-classes', fakeAsync(() => {
+            it('... should trigger `toggleAllClassesOpacity`on click on form-switch for all-supplied-classes', fakeAsync(() => {
                 const formSwitchInputDe = getAndExpectDebugElementByCss(
                     compDe,
                     'input.form-check-input#all-supplied-classes',
@@ -222,7 +222,7 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(formSwitchInputDe[0], fixture);
 
-                expectSpyCall(toggleAllSuppliedClassesOpacitySpy, 1);
+                expectSpyCall(toggleAllClassesOpacitySpy, 1);
             }));
 
             it('... should have a form-switch for each supplied class', () => {
@@ -303,14 +303,14 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
                 expectSpyCall(onSuppliedClassesOpacityToggleSpy, 1, [expectedClass1, isSuppliedClassVisible]);
             });
 
-            it('... should not update allSuppliedClassesVisible when not all suppliedClasses have the same visibility', () => {
+            it('... should not update allClassesVisible when not all suppliedClasses have the same visibility', () => {
                 component.suppliedClasses.set(expectedClass1, true);
                 component.suppliedClasses.set(expectedClass2, true);
 
                 // Toggle class 1
                 component.toggleSingleSuppliedClassOpacity(expectedClass1);
 
-                expectToEqual(component.allSuppliedClassesVisible, true);
+                expectToEqual(component.allClassesVisible, true);
 
                 component.suppliedClasses.set(expectedClass1, true);
                 component.suppliedClasses.set(expectedClass2, true);
@@ -318,10 +318,10 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
                 // Toggle class 2
                 component.toggleSingleSuppliedClassOpacity(expectedClass2);
 
-                expectToEqual(component.allSuppliedClassesVisible, true);
+                expectToEqual(component.allClassesVisible, true);
             });
 
-            it('... should update allSuppliedClassesVisible when all suppliedClasses have the same visibility', () => {
+            it('... should update allClassesVisible when all suppliedClasses have the same visibility', () => {
                 component.suppliedClasses.set(expectedClass1, true);
                 component.suppliedClasses.set(expectedClass2, true);
 
@@ -329,39 +329,39 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
                 component.toggleSingleSuppliedClassOpacity(expectedClass1);
                 component.toggleSingleSuppliedClassOpacity(expectedClass2);
 
-                expectToEqual(component.allSuppliedClassesVisible, false);
+                expectToEqual(component.allClassesVisible, false);
 
                 // Toggle classes back
                 component.toggleSingleSuppliedClassOpacity(expectedClass2);
                 component.toggleSingleSuppliedClassOpacity(expectedClass1);
 
-                expectToEqual(component.allSuppliedClassesVisible, true);
+                expectToEqual(component.allClassesVisible, true);
             });
         });
 
-        describe('#toggleAllSuppliedClassesOpacity()', () => {
-            it('... should have a method `toggleAllSuppliedClassesOpacity`', () => {
-                expect(component.toggleAllSuppliedClassesOpacity).toBeDefined();
+        describe('#toggleAllClassesOpacity()', () => {
+            it('... should have a method `toggleAllClassesOpacity`', () => {
+                expect(component.toggleAllClassesOpacity).toBeDefined();
             });
 
-            it('... should toggle the `allSuppliedClassesVisible` flag', () => {
-                component.toggleAllSuppliedClassesOpacity();
+            it('... should toggle the `allClassesVisible` flag', () => {
+                component.toggleAllClassesOpacity();
 
-                expectToEqual(component.allSuppliedClassesVisible, false);
+                expectToEqual(component.allClassesVisible, false);
 
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
 
-                expectToEqual(component.allSuppliedClassesVisible, true);
+                expectToEqual(component.allClassesVisible, true);
             });
 
             it('... should update the visibility of all supplied classes', () => {
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
 
                 component.suppliedClasses.forEach((_value, key) => {
                     expectToEqual(component.suppliedClasses.get(key), false);
                 });
 
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
 
                 component.suppliedClasses.forEach((_value, key) => {
                     expectToEqual(component.suppliedClasses.get(key), true);
@@ -369,11 +369,11 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
             });
 
             it('... should trigger _onSuppliedClassesOpacityToggle() with the correct parameters', () => {
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
 
                 expectSpyCall(onSuppliedClassesOpacityToggleSpy, 1, [undefined, true]);
 
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
 
                 expectSpyCall(onSuppliedClassesOpacityToggleSpy, 2, [undefined, false]);
             });
@@ -396,7 +396,7 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
             });
 
             it('... should emit the supplied className and visibility to the toggle request for all supplied classes', () => {
-                component.toggleAllSuppliedClassesOpacity();
+                component.toggleAllClassesOpacity();
 
                 expectSpyCall(emitToggleSuppliedClassesOpacityRequestSpy, 1, {
                     className: undefined,
