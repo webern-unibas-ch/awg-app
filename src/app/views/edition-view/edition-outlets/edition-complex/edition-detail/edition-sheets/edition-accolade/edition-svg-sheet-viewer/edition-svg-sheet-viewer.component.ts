@@ -309,8 +309,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It toggles the opacity of a given supplied class.
      *
-     * @param {string} className The given class name.
-     * @param {boolean} isCurrentlyVisible The given visibility of the class.
+     * @param {{string, boolean}} input The given input with the class name and its current visibility.
      *
      * @returns {void} Toggles the opacity of the supplied class.
      */
@@ -321,6 +320,31 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             className,
             isCurrentlyVisible
         );
+    }
+
+    /**
+     * Public method: onTkkClassesHighlightToggle.
+     *
+     * It toggles the highlighting of the tkk classes.
+     *
+     * @param {boolean} isCurrentlyHighlighted The current highlighting status.
+     *
+     * @returns {void} Toggles the transparency of the tkk classes.
+     */
+    onTkkClassesHighlightToggle(isCurrentlyHighlighted: boolean): void {
+        const overlayType = 'tkk';
+
+        const overlayGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+            this.svgSheetRootGroupSelection,
+            overlayType
+        );
+        overlayGroups.nodes().forEach(overlayGroup => {
+            const [overlay, overlayGroupRectSelection] = this._getOverlayAndSelection(overlayGroup.id, overlayType);
+            const color = isCurrentlyHighlighted
+                ? EditionSvgOverlayActionTypes.fill
+                : EditionSvgOverlayActionTypes.transparent;
+            this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, color);
+        });
     }
 
     /**

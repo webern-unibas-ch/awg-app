@@ -31,8 +31,9 @@
                 @if (suppliedClasses.size > 0) {
                     <awg-edition-svg-sheet-viewer-settings
                         [suppliedClasses]="suppliedClasses"
-                        (toggleSuppliedClassesOpacityRequest)="
-                            onSuppliedClassesOpacityToggle($event)
+                        (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
+                        (toggleTkkClassesHighlightRequest)="
+                            onTkkClassesHighlightToggle($event)
                         "></awg-edition-svg-sheet-viewer-settings>
                 }
             </div>

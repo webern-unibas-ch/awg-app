@@ -24,11 +24,26 @@ export class EditionSvgSheetViewerSettingsComponent {
         new EventEmitter();
 
     /**
+     * Output variable: toggleTkkClassesHighlightRequest.
+     *
+     * It keeps an event emitter for the tkk classes highlighting.
+     */
+    @Output()
+    toggleTkkClassesHighlightRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
      * Public variable: allClassesVisible.
      *
      * It keeps a boolean flag whether all classes are visible.
      */
     allClassesVisible = true;
+
+    /**
+     * Public variable: tkkHighlightingVisible.
+     *
+     * It keeps a boolean flag whether the tkk highlighting is visible.
+     */
+    tkkHighlightingVisible = true;
 
     /**
      * Public method: toggleSingleSuppliedClassOpacity.
@@ -66,6 +81,30 @@ export class EditionSvgSheetViewerSettingsComponent {
         this.suppliedClasses.forEach((_value, key) => {
             this.suppliedClasses.set(key, this.allClassesVisible);
         });
+
+        // Call toggleTkkClassesHighlight to toggle tkkHighlightingVisible and emit the request
+        this.toggleTkkClassesHighlight(this.allClassesVisible);
+    }
+
+    /**
+     * Public method: toggleTkkClassesHighlight.
+     *
+     * It toggles the visibility of the tkk classes highlighting.
+     *
+     * @param {boolean} [value] The value to set tkkHighlightingVisible to. If not provided, tkkHighlightingVisible is toggled.
+     *
+     * @returns {void} Toggles the visibility of the tkk classes highlighting.
+     */
+    toggleTkkClassesHighlight(value?: boolean): void {
+        if (value !== undefined) {
+            this.tkkHighlightingVisible = value;
+        } else {
+            this.tkkHighlightingVisible = !this.tkkHighlightingVisible;
+        }
+        this.toggleTkkClassesHighlightRequest.emit(this.tkkHighlightingVisible);
+
+        // Update allClassesVisible flag
+        this._updateAllClassesVisibility();
     }
 
     /**
@@ -80,5 +119,22 @@ export class EditionSvgSheetViewerSettingsComponent {
      */
     private _onSuppliedClassesOpacityToggle(className: string, isCurrentlyVisible: boolean): void {
         this.toggleSuppliedClassesOpacityRequest.emit({ className, isCurrentlyVisible });
+    }
+
+    /**
+     * Private method: _updateAllClassesVisibility.
+     *
+     * It updates the visibility of all classes.
+     *
+     * @returns {void} Updates the visibility of all classes.
+     */
+    private _updateAllClassesVisibility(): void {
+        const allValues = [...Array.from(this.suppliedClasses.values()), this.tkkHighlightingVisible];
+        const allValuesTrue = allValues.every(value => value);
+        const allValuesFalse = allValues.every(value => !value);
+
+        if (allValuesTrue || allValuesFalse) {
+            this.allClassesVisible = allValues[0];
+        }
     }
 }
