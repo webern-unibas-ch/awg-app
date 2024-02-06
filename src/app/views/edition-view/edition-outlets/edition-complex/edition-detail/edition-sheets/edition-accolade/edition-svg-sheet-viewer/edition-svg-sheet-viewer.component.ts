@@ -21,6 +21,7 @@ import {
     D3Selection,
     D3ZoomBehaviour,
     EditionSvgOverlay,
+    EditionSvgOverlayActionTypes,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
 } from '@awg-views/edition-view/models';
@@ -529,17 +530,29 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
 
         overlayGroupSelection
             .on('mouseover', () => {
-                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'hover');
+                this.svgDrawingService.updateTkkOverlayColor(
+                    overlay,
+                    overlayGroupRectSelection,
+                    EditionSvgOverlayActionTypes.hover
+                );
                 overlayGroupRectSelection.style('cursor', 'pointer');
             })
             .on('mouseout', () => {
-                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'fill');
+                this.svgDrawingService.updateTkkOverlayColor(
+                    overlay,
+                    overlayGroupRectSelection,
+                    EditionSvgOverlayActionTypes.fill
+                );
             })
             .on('click', () => {
                 if (overlay) {
                     overlay.isSelected = !overlay.isSelected;
                 }
-                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'hover');
+                this.svgDrawingService.updateTkkOverlayColor(
+                    overlay,
+                    overlayGroupRectSelection,
+                    EditionSvgOverlayActionTypes.hover
+                );
                 this._selectedOverlays = this._getSelectedOverlays(this._availableOverlays);
                 this._onOverlaySelect(this._selectedOverlays);
             });

@@ -10,6 +10,17 @@ export enum EditionSvgOverlayTypes {
 }
 
 /**
+ * The EditionSvgOverlayActionTypes enumeration.
+ *
+ * It stores the possible svg overlay action types.
+ */
+export enum EditionSvgOverlayActionTypes {
+    hover = 'hover',
+    fill = 'fill',
+    transparent = 'transparent',
+}
+
+/**
  * The EditionSvgOverlay class.
  *
  * It is used in the context of the edition view

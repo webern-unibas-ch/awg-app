@@ -1,6 +1,6 @@
 import { ElementRef, Injectable } from '@angular/core';
 
-import { D3Selection, EditionSvgOverlay, ViewBox } from '@awg-views/edition-view/models';
+import { D3Selection, EditionSvgOverlay, EditionSvgOverlayActionTypes, ViewBox } from '@awg-views/edition-view/models';
 
 import * as D3_FETCH from 'd3-fetch';
 import * as D3_SELECTION from 'd3-selection';
@@ -20,6 +20,13 @@ export class EditionSvgDrawingService {
      * It keeps the fill color for overlays.
      */
     overlayFillColor = 'orange';
+
+    /**
+     * Public variable: overlayTransparentFillColor.
+     *
+     * It keeps the fill color for transparent overlays.
+     */
+    overlayTransparentFillColor = 'transparent';
 
     /**
      * Public variable: overlayHoverFillColor.
@@ -354,7 +361,7 @@ export class EditionSvgDrawingService {
     updateTkkOverlayColor(
         overlay: EditionSvgOverlay,
         overlayGroupRectSelection: D3Selection,
-        overlayActionType: 'fill' | 'hover'
+        overlayActionType: EditionSvgOverlayActionTypes
     ): void {
         const color = this._getTkkOverlayColor(overlay, overlayActionType);
         this.fillD3SelectionWithColor(overlayGroupRectSelection, color);
@@ -383,16 +390,19 @@ export class EditionSvgDrawingService {
      *
      * @returns {string} The color of the given tkk overlay.
      */
-    private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: 'fill' | 'hover'): string {
-        let color = this.overlayFillColor;
-        if (overlay) {
-            if (overlay.isSelected) {
-                color = this.overlaySelectionFillColor;
-            } else if (overlayActionType === 'hover') {
-                color = this.overlayHoverFillColor;
-            }
+    private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: EditionSvgOverlayActionTypes): string {
+        if (!overlay) {
+            return this.overlayFillColor;
         }
-        return color;
+
+        switch (overlayActionType) {
+            case EditionSvgOverlayActionTypes.hover:
+                return this.overlayHoverFillColor;
+            case EditionSvgOverlayActionTypes.transparent:
+                return this.overlayTransparentFillColor;
+            default:
+                return overlay.isSelected ? this.overlaySelectionFillColor : this.overlayFillColor;
+        }
     }
 
     /**
