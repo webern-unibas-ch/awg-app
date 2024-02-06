@@ -74,9 +74,12 @@ describe('EditionSvgDrawingService (DONE)', () => {
 
         expectedSuppliedClassesLabelLookup = new Map([
             ['foliation', 'Blattangabe'],
-            ['key', 'Tonart'],
+            ['staffN', 'Systemangabe'],
             ['measureN', 'Taktzahlen'],
-            ['staffN', 'Systemnummerierung'],
+            ['clef', 'Schlüssel'],
+            ['key', 'Tonart'],
+            ['accid', 'Akzidenzien'],
+            ['hyphen', 'Silbentrennung'],
         ]);
 
         expectedOverlayFillColor = 'orange';

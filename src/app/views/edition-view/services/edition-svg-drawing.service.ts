@@ -84,9 +84,12 @@ export class EditionSvgDrawingService {
      */
     private _suppliedClassesLabelLookup: Map<string, string> = new Map([
         ['foliation', 'Blattangabe'],
-        ['key', 'Tonart'],
+        ['staffN', 'Systemangabe'],
         ['measureN', 'Taktzahlen'],
-        ['staffN', 'Systemnummerierung'],
+        ['clef', 'Schlüssel'],
+        ['key', 'Tonart'],
+        ['accid', 'Akzidenzien'],
+        ['hyphen', 'Silbentrennung'],
     ]);
 
     /**
