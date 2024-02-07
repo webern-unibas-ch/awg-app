@@ -680,6 +680,9 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Emits the overlays.
      */
     private _onOverlaySelect(overlays: EditionSvgOverlay[]): void {
+        if (!overlays) {
+            return;
+        }
         this.selectOverlaysRequest.emit(overlays);
     }
 
