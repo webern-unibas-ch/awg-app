@@ -369,7 +369,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Renders the SVG sheet.
      */
     renderSheet(): void {
-        this._clearSVG();
+        this._clearSvg();
 
         // Clear overlays
         this._availableOverlays = [];
@@ -402,13 +402,13 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _clearSVG.
+     * Private method: _clearSvg.
      *
      * It removes everything from the D3 SVG sheet selections.
      *
      * @returns {void} Cleans the D3 SVG sheet selections.
      */
-    private _clearSVG(): void {
+    private _clearSvg(): void {
         // Clear svg by removing all child nodes from D3 svg sheet selections
         this.svgSheetRootGroupSelection?.selectAll('*').remove();
         this.svgSheetSelection?.selectAll('*').remove();
