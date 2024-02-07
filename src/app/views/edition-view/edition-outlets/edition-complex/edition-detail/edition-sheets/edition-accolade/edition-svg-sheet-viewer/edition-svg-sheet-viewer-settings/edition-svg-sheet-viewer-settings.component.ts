@@ -91,13 +91,13 @@ export class EditionSvgSheetViewerSettingsComponent {
      *
      * It toggles the visibility of the tkk classes highlighting.
      *
-     * @param {boolean} [value] The value to set tkkHighlightingVisible to. If not provided, tkkHighlightingVisible is toggled.
+     * @param {boolean} [isVisible] The value to set tkkHighlightingVisible to. If not provided, tkkHighlightingVisible is toggled.
      *
      * @returns {void} Toggles the visibility of the tkk classes highlighting.
      */
-    toggleTkkClassesHighlight(value?: boolean): void {
-        if (value !== undefined) {
-            this.tkkHighlightingVisible = value;
+    toggleTkkClassesHighlight(isVisible?: boolean): void {
+        if (isVisible !== undefined) {
+            this.tkkHighlightingVisible = isVisible;
         } else {
             this.tkkHighlightingVisible = !this.tkkHighlightingVisible;
         }
