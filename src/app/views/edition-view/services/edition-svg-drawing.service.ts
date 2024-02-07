@@ -22,18 +22,18 @@ export class EditionSvgDrawingService {
     overlayFillColor = 'orange';
 
     /**
-     * Public variable: overlayTransparentFillColor.
-     *
-     * It keeps the fill color for transparent overlays.
-     */
-    overlayTransparentFillColor = 'transparent';
-
-    /**
      * Public variable: overlayHoverFillColor.
      *
      * It keeps the fill color for hovered overlays.
      */
     overlayHoverFillColor = 'tomato';
+
+    /**
+     * Public variable: overlayTransparentFillColor.
+     *
+     * It keeps the fill color for transparent overlays.
+     */
+    overlayTransparentFillColor = 'transparent';
 
     /**
      * Public variable: overlaySelectionFillColor.
@@ -395,14 +395,17 @@ export class EditionSvgDrawingService {
             return this.overlayFillColor;
         }
 
-        switch (overlayActionType) {
-            case EditionSvgOverlayActionTypes.hover:
-                return this.overlayHoverFillColor;
-            case EditionSvgOverlayActionTypes.transparent:
-                return this.overlayTransparentFillColor;
-            default:
-                return overlay.isSelected ? this.overlaySelectionFillColor : this.overlayFillColor;
+        if (overlayActionType === EditionSvgOverlayActionTypes.transparent) {
+            return this.overlayTransparentFillColor;
         }
+
+        if (overlay.isSelected) {
+            return this.overlaySelectionFillColor;
+        }
+
+        return overlayActionType === EditionSvgOverlayActionTypes.hover
+            ? this.overlayHoverFillColor
+            : this.overlayFillColor;
     }
 
     /**
