@@ -87,6 +87,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
                 B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
             },
+            M35_42: {
+                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
+                C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+            },
             M37: {
                 A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
                 B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
