@@ -86,7 +86,10 @@
                     },
                     {
                         "item": "M 35/42 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
                             {
@@ -98,14 +101,14 @@
                                         {
                                             "system": "10–11",
                                             "measure": "1–7",
-                                            "linkTo": ""
+                                            "linkTo": "M_35_42_Sk1a"
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13a–14a",
                                             "measure": "8(1–2/4), {8(3/4)A–9A, 10}, 8(3/4)B–9B",
-                                            "linkTo": ""
+                                            "linkTo": "M_35_42_Sk1b"
                                         }
                                     ]
                                 ]
@@ -641,7 +644,10 @@
                     },
                     {
                         "item": "M 35/42",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_TF1"
+                        },
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 35/42)",
                         "folios": [
                             {
@@ -669,7 +675,10 @@
                     },
                     {
                         "item": "M 35/42 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk2"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 35/42)",
                         "folios": [
                             {
