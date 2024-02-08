@@ -36,18 +36,20 @@
                     <div class="w-100"></div>
                 }
             }
-            <div class="col-4">
-                <div class="form-check form-switch">
-                    <input
-                        class="form-check-input"
-                        type="checkbox"
-                        [checked]="tkkHighlightingVisible"
-                        value=""
-                        id="tkk"
-                        (click)="toggleTkkClassesHighlight()" />
-                    <label class="form-check-label" for="tkk">Textkritische Kommentare</label>
+            @if (hasAvailableTkaOverlays) {
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            [checked]="tkkHighlightingVisible"
+                            value=""
+                            id="tkk"
+                            (click)="toggleTkkClassesHighlight()" />
+                        <label class="form-check-label" for="tkk">Textkritische Kommentare</label>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>
