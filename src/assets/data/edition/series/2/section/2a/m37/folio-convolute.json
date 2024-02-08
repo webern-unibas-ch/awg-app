@@ -65,6 +65,33 @@
                                     "endSystem": 8
                                 }
                             ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1a",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1b",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 8(1–2/4)–9B",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
                         }
                     ]
                 },
