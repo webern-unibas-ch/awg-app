@@ -265,7 +265,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         it('... should find a comment for a selected item by id', () => {
             expectedTka.forEach(tka => {
-                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.item, tka.svgGroupId, true)];
+                expectedOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, tka.svgGroupId, true)];
                 const expectedResult = [tka];
 
                 const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(
@@ -279,8 +279,8 @@ describe('EditionSheetsService (DONE)', () => {
 
         it('... should find comments for multiple selected items by id', () => {
             expectedOverlays = [
-                new EditionSvgOverlay(EditionSvgOverlayTypes.item, expectedTka.at(0).svgGroupId, true),
-                new EditionSvgOverlay(EditionSvgOverlayTypes.item, expectedTka.at(-1).svgGroupId, true),
+                new EditionSvgOverlay(EditionSvgOverlayTypes.tka, expectedTka.at(0).svgGroupId, true),
+                new EditionSvgOverlay(EditionSvgOverlayTypes.tka, expectedTka.at(-1).svgGroupId, true),
             ];
             const expectedResult = [expectedTka.at(0), expectedTka.at(-1)];
 
@@ -295,7 +295,7 @@ describe('EditionSheetsService (DONE)', () => {
         it('... should find all comments of the given textcritics', () => {
             expectedOverlays = [];
             expectedTka.forEach(tka => {
-                expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, tka.svgGroupId, true));
+                expectedOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, tka.svgGroupId, true));
             });
 
             const filteredComments = editionSheetsService.getTextcriticalCommentsForOverlays(

@@ -147,8 +147,8 @@ describe('EditionSvgSheetViewerComponent', () => {
         expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
 
         expectedOverlays = [
-            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-1', true),
-            new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-2', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
+            new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', true),
         ];
         expectedLinkBoxes = [
             {
@@ -1042,8 +1042,8 @@ describe('EditionSvgSheetViewerComponent', () => {
 
             it('should return an empty array if no overlays are selected', () => {
                 const noSelectedOverlays: EditionSvgOverlay[] = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-1', false),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-2', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', false),
                 ];
 
                 const selectedOverlays = (component as any)._getSelectedOverlays(noSelectedOverlays);
@@ -1053,9 +1053,9 @@ describe('EditionSvgSheetViewerComponent', () => {
 
             it('should return only selected overlays', () => {
                 const selectableOverlays: EditionSvgOverlay[] = [
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-1', true),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-2', false),
-                    new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tkk-3', true),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', false),
+                    new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-3', true),
                 ];
 
                 const selectedOverlays = (component as any)._getSelectedOverlays(selectableOverlays);

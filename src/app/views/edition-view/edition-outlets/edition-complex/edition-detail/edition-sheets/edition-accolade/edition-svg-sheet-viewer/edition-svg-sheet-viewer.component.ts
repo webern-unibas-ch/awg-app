@@ -535,7 +535,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         const id: string = group['id'];
         const dim: DOMRect = group.getBBox();
 
-        this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
+        this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, id, false));
 
         // Get D3 selection of overlay group
         const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(

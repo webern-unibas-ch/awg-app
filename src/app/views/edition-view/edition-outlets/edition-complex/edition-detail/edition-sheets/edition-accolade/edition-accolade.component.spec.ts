@@ -139,7 +139,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
         expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics.at(1);
         expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
 
-        const type = EditionSvgOverlayTypes.item;
+        const type = EditionSvgOverlayTypes.tka;
         const id = 'tka-1';
         const overlay = new EditionSvgOverlay(type, id, true);
         expectedOverlays = [overlay];
@@ -611,7 +611,7 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 expectSpyCall(selectOverlaysRequestEmitSpy, 1, [expectedOverlays]);
 
                 // Trigger other overlays
-                const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.item, 'tka-2')];
+                const otherOverlays = [new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tka-2')];
                 component.selectOverlays(otherOverlays);
 
                 expectSpyCall(selectOverlaysRequestEmitSpy, 2, [otherOverlays]);
