@@ -4,7 +4,7 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\\\"tab\\\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 34, M 36–38, M 39 Textfassung 1→2 und M* 404.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 34, M 36–38, M 39 Textfassung 1→2 und M* 404.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -575,7 +575,7 @@
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Skizzen zu <br /><span class=\\\"tab\\\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 39 Textfassung 2, M 40–41 und M* 405–406.",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 39 Textfassung 2, M 40–41 und M* 405–406.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -652,9 +652,7 @@
                                 "folio": "1r System 12: T. 24–28.",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -667,9 +665,7 @@
                                 "folio": "1r System 16b–18: T. 29–31.",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -711,9 +707,7 @@
                                 "folio": "1v System 9–10c: T. 24–25.",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -726,9 +720,7 @@
                                 "folio": "1v System 10b–11b: T. 22, 22+1.",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -784,9 +776,7 @@
                                 "folio": "2r System 1–2: T. 11–13.",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -842,9 +832,7 @@
                                 "folio": "2v System 1–2: T. 1–4.",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     }
@@ -855,7 +843,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\\\"tab\\\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 34, M 36–38 und M 39 Textfassung 1→2 sowie Skizzen zu Studienkomposition für Klavier M 39 Textfassung 2.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 34, M 36–38 und M 39 Textfassung 1→2 sowie Skizzen zu Studienkomposition für Klavier M 39 Textfassung 2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
@@ -864,9 +852,7 @@
                 "writingMaterial": "Notenpapier, 18 Systeme, Format (hoch): 349 × 267 mm, Firmenzeichen [JE] | Protokoll. Schutzmarke | No. 5 | 18 linig. unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "title": "",
                 "date": "",
@@ -1232,7 +1218,7 @@
             "id": "source_D",
             "siglum": "D",
             "siglumAddendum": "",
-            "type": "Tintenniederschrift von <br /><span class=\\\"tab\\\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 39 Textfassung 2 und M 40.",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier M 35/42.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 39 Textfassung 2 und M 40.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [

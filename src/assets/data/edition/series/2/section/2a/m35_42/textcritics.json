@@ -1,11 +1,53 @@
 {
     "textcritics": [
         {
-            "id": "M_35/42_Sk1",
-            "label": "M 35/42 Sk1",
+            "id": "M_35_42_TF1",
+            "label": "M 35/42 einzige Textfassung",
             "description": [
-                "<strong>M 35/42 Sk1</strong> ist die Verlaufsskizze zu Studienkomposition für Klavier M 34/42."
+                "##Quellenbewertung:## Die Tintenniederschrift in <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a> stellt die Fortsetzung (T. 10f.) der früher entstandenen Niederschrift in <a (click)=\"ref.navigateToReportFragment('source_C')\"><strong>C</strong></a> dar und komplettiert mit dem kontrastierenden B-Teil sowie dem wiederkehrenden A-Teil das in <a (click)=\"ref.navigateToReportFragment('source_C')\"><strong>C</strong></a> vorgestellte Thema zur dreiteiligen ABAʼ-Form. Maßgebend für die hier vorgelegte Textedition ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). Die vermutlich später erfolgte Korrekturschicht 2 (Bleistift), inklusive der partiell mit Tinte verfassten <a (click)=\"ref.selectSvgSheet('m35_42', 'M_35_42_Sk2')\"><strong>Sk2</strong></a> zu M 35/42, wurde nicht berücksichtigt. <br />Für die Textedition der Studienkomposition für Klavier M 35/42 sind <a (click)=\"ref.navigateToReportFragment('source_C')\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a> gleichermaßen Hauptquelle."
             ],
+            "comments": [
+                {
+                    "svgGroupId": "g3402",
+                    "measure": "23 <br />bis 24",
+                    "system": "Klav. o.",
+                    "position": "3/4 <br />1. Note",
+                    "comment": "Ligatur zu T. 14 3/4 ergänzt. <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a>: Seitenwechsel nach T. 14."
+                },
+                {
+                    "svgGroupId": "g3405",
+                    "measure": "25",
+                    "system": "Klav. u.",
+                    "position": "1. Note",
+                    "comment": "Ces<sub>1</sub>/Es korrigiert zu Es<sub>1</sub>/Es mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g3408",
+                    "measure": "25",
+                    "system": "Klav. u.",
+                    "position": "letzte Note",
+                    "comment": "H<sub>2</sub>/D korrigiert zu D<sub>1</sub>/D mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g3411",
+                    "measure": "26",
+                    "system": "Klav. u.",
+                    "position": "1. Note",
+                    "comment": "E<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g7117",
+                    "measure": "26",
+                    "system": "Klav. o.",
+                    "position": "3/4",
+                    "comment": "Staccatopunkt: sic. Staccatopunkt vermutlich für Unterstimme gedacht."
+                }
+            ]
+        },
+        {
+            "id": "M_35_42_Sk1",
+            "label": "M 35/42 Sk1",
+            "description": ["<strong>Sk1</strong> ist die Verlaufsskizze zu Studienkomposition für Klavier M 35/42."],
             "comments": [
                 {
                     "svgGroupId": "g5408",
@@ -26,7 +68,7 @@
                     "measure": "8(1–2/4)",
                     "system": "14",
                     "position": "1/4",
-                    "comment": "[b]es überschreibt [#]dis."
+                    "comment": "{{ref.getGlyph('[b]')}}es überschreibt {{ref.getGlyph('[#]')}}dis."
                 },
                 {
                     "svgGroupId": "g1445",
@@ -47,7 +89,7 @@
                     "measure": "{8(3/4)A}",
                     "system": "14",
                     "position": "3/4",
-                    "comment": "[b]es überschreibt d."
+                    "comment": "{{ref.getGlyph('[b]')}}es überschreibt d."
                 },
                 {
                     "svgGroupId": "g5201",
@@ -82,7 +124,7 @@
                     "measure": "15",
                     "system": "12",
                     "position": "1. Note",
-                    "comment": "Halbe Note [[#]]dis<sup>1</sup> überschreibt Viertelnoten [[#]]dis<sup>1</sup>/[a]f<sup>1</sup>–[#]ais<sup>1</sup>/c<sup>2</sup>."
+                    "comment": "Halbe Note [{{ref.getGlyph('[#]')}}]dis<sup>1</sup> überschreibt Viertelnoten [{{ref.getGlyph('[#]')}}]dis<sup>1</sup>/{{ref.getGlyph('[a]')}}f<sup>1</sup>–{{ref.getGlyph('[#]')}}ais<sup>1</sup>/c<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g37650",
@@ -96,21 +138,21 @@
                     "measure": "{16A}",
                     "system": "15",
                     "position": "1. Note",
-                    "comment": "Achtelpause überschreibt Viertelnote [[#]]dis<sup>1</sup>/[#]fis<sup>1</sup>."
+                    "comment": "Achtelpause überschreibt Viertelnote [{{ref.getGlyph('[#]')}}]dis<sup>1</sup>/{{ref.getGlyph('[#]')}}fis<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1629",
                     "measure": "16",
                     "system": "15",
                     "position": "1. Pause",
-                    "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>[[#]]dis<sup>2</sup>."
+                    "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>[{{ref.getGlyph('[#]')}}]dis<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g37705",
                     "measure": "16B",
                     "system": "15",
                     "position": "1. Note",
-                    "comment": "h<sup>1</sup>/[#]dis<sup>2</sup> überschreibt [b]b/d<sup>1</sup>."
+                    "comment": "h<sup>1</sup>/{{ref.getGlyph('[#]')}}dis<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}b/d<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g2798",
@@ -130,7 +172,7 @@
                     "svgGroupId": "g42457",
                     "measure": "19",
                     "system": "17",
-                    "position": "1. Notw",
+                    "position": "1. Note",
                     "comment": "h<sup>1</sup>/d<sup>2</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
                 },
                 {
@@ -138,7 +180,7 @@
                     "measure": "21",
                     "system": "17",
                     "position": "3/4",
-                    "comment": "[[#]]ais/[#]fis<sup>1</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
+                    "comment": "[{{ref.getGlyph('[#]')}}]ais/{{ref.getGlyph('[#]')}}fis<sup>1</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g42786",
@@ -159,15 +201,15 @@
                     "measure": "22",
                     "system": "17",
                     "position": "3/4",
-                    "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/[b]es<sup>1</sup> sowie e<sup>2</sup>?"
-                },
+                    "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/{{ref.getGlyph('[b]')}}es<sup>1</sup> sowie e<sup>2</sup>?"
+                }
             ]
         },
         {
-            "id": "M_35/42_Sk1_1",
+            "id": "M_35_42_Sk1_1",
             "label": "M 35/42 Sk1.1",
             "description": [
-                "<strong>M 35/42 Sk1.1</strong> modifiziert T. 22 und fügt einen Takt zwischen T. 22 und T. 23 der Verlaufsskizze ein."
+                "<strong>Sk1.1</strong> modifiziert T. 22 und fügt einen Takt zwischen T. 22 und T. 23 der Verlaufsskizze ein."
             ],
             "comments": [
                 {
@@ -187,11 +229,9 @@
             ]
         },
         {
-            "id": "M_35/42_Sk2",
+            "id": "M_35_42_Sk2",
             "label": "M 35/42 Sk2",
-            "description": [
-                "<strong>M 35/42 Sk2</strong> notiert eine alternative Schlussformel für den ersten A-Teil."
-            ],
+            "description": ["<strong>Sk2</strong> notiert eine alternative Schlussformel für den ersten A-Teil."],
             "comments": [
                 {
                     "svgGroupId": "g50343",
@@ -208,50 +248,6 @@
                     "comment": "Viertelnote überschreibt Halbe Note."
                 }
             ]
-        },
-        {
-            "id": "M_35/42_TF",
-            "label": "M 35/42 einzige Textfassung",
-            "description": [
-                "##Quellenbewertung:## Die Tintenniederschrift in <strong>D</strong> stellt die Fortsetzung (T. 10f.) der früher entstandenen Niederschrift in <strong>C</strong> dar und komplettiert mit dem kontrastierenden B-Teil sowie dem wiederkehrenden A-Teil das in <strong>C</strong> vorgestellte Thema zur dreiteiligen ABAʼ-Form. Maßgebend für die hier vorgelegte Textedition ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). Die vermutlich später erfolgte Korrekturschicht 2 (Bleistift), inklusive der partiell mit Tinte verfassten <strong>Sk2</strong> zu M 35/42, wurde nicht berücksichtigt. <br />Für die Textedition der Studienkomposition für Klavier M 35/42 sind <strong>C</strong> und <strong>D</strong> gleichermaßen Hauptquelle."
-            ],
-            "comments": [
-                {
-                    "svgGroupId": "g3402",
-                    "measure": "23 <br />bis 24",
-                    "system": "Klav. o.",
-                    "position": "3/4 <br />1. Note",
-                    "comment": "Ligatur zu T. 14 3/4 ergänzt. <strong>D</strong>: Seitenwechsel nach T. 14."
-                },
-                {
-                    "svgGroupId": "g3405",
-                    "measure": "25",
-                    "system": "Klav. u.",
-                    "position": "1. Note",
-                    "comment": "Ces<sub>1</sub>/Es korrigiert zu Es<sub>1</sub>/Es mit Blick auf harmonischen Kontext."
-                },
-                {
-                    "svgGroupId": "g3408",
-                    "measure": "25",
-                    "system": "Klav. u.",
-                    "position": "letzte Note",
-                    "comment": "H<sub>2</sub>/D korrigiert zu D<sub>1</sub>/D mit Blick auf harmonischen Kontext."
-                },
-                {
-                    "svgGroupId": "g3411",
-                    "measure": "26",
-                    "system": "Klav. u.",
-                    "position": "1. Note",
-                    "comment": "E<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
-                },
-                {
-                    "svgGroupId": "g7117",
-                    "measure": "26",
-                    "system": "Klav. o.",
-                    "position": "3/4",
-                    "comment": "Staccatopunkt: sic. Staccatopunkt vermutlich für Unterstimme gedacht."
-                }
-            ]    
         }
     ]
 }
