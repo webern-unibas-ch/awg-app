@@ -8,11 +8,11 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { EditionSvgSheetViewerSettingsComponent } from './edition-svg-sheet-viewer-settings.component';
+import { EditionSvgSheetViewerSwitchComponent } from './edition-svg-sheet-viewer-switch.component';
 
-describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
-    let component: EditionSvgSheetViewerSettingsComponent;
-    let fixture: ComponentFixture<EditionSvgSheetViewerSettingsComponent>;
+describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
+    let component: EditionSvgSheetViewerSwitchComponent;
+    let fixture: ComponentFixture<EditionSvgSheetViewerSwitchComponent>;
     let compDe: DebugElement;
 
     let emitToggleSuppliedClassesOpacityRequestSpy: Spy;
@@ -32,12 +32,12 @@ describe('EditionSvgSheetViewerSettingsComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule],
-            declarations: [EditionSvgSheetViewerSettingsComponent],
+            declarations: [EditionSvgSheetViewerSwitchComponent],
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgSheetViewerSettingsComponent);
+        fixture = TestBed.createComponent(EditionSvgSheetViewerSwitchComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 

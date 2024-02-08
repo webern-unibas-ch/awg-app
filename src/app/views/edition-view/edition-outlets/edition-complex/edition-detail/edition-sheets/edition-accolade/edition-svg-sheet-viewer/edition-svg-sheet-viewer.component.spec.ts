@@ -43,8 +43,8 @@ import * as D3_SELECTION from 'd3-selection';
 @Component({ selector: 'awg-license', template: '' })
 class LicenseStubComponent {}
 
-@Component({ selector: 'awg-edition-svg-sheet-viewer-settings', template: '' })
-class EditionSvgSheetViewerSettingsStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet-viewer-switch', template: '' })
+class EditionSvgSheetViewerSwitchStubComponent {
     @Input() suppliedClasses?: Map<string, boolean>;
 
     @Output()
@@ -123,7 +123,7 @@ describe('EditionSvgSheetViewerComponent', () => {
             imports: [FontAwesomeTestingModule, FormsModule],
             declarations: [
                 EditionSvgSheetViewerComponent,
-                EditionSvgSheetViewerSettingsStubComponent,
+                EditionSvgSheetViewerSwitchStubComponent,
                 LicenseStubComponent,
             ],
             providers: [{ provide: EditionSvgDrawingService, useValue: mockEditionSvgDrawingService }],
@@ -465,7 +465,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                         getAndExpectDebugElementByDirective(
                             svgSheetContainerDe[0],
-                            EditionSvgSheetViewerSettingsStubComponent,
+                            EditionSvgSheetViewerSwitchStubComponent,
                             1,
                             1
                         );
@@ -484,7 +484,7 @@ describe('EditionSvgSheetViewerComponent', () => {
 
                         getAndExpectDebugElementByDirective(
                             svgSheetContainerDe[0],
-                            EditionSvgSheetViewerSettingsStubComponent,
+                            EditionSvgSheetViewerSwitchStubComponent,
                             0,
                             0
                         );
@@ -493,13 +493,13 @@ describe('EditionSvgSheetViewerComponent', () => {
                     it('... should pass the correct suppliedClasses to the settings component', () => {
                         const settingsDes = getAndExpectDebugElementByDirective(
                             compDe,
-                            EditionSvgSheetViewerSettingsStubComponent,
+                            EditionSvgSheetViewerSwitchStubComponent,
                             1,
                             1
                         );
                         const settingsCmp = settingsDes[0].injector.get(
-                            EditionSvgSheetViewerSettingsStubComponent
-                        ) as EditionSvgSheetViewerSettingsStubComponent;
+                            EditionSvgSheetViewerSwitchStubComponent
+                        ) as EditionSvgSheetViewerSwitchStubComponent;
 
                         expectToEqual(settingsCmp.suppliedClasses, expectedSuppliedClassMap);
                     });
@@ -615,13 +615,13 @@ describe('EditionSvgSheetViewerComponent', () => {
             it('... should trigger on event from EditionSvgSheetViewerSettingsComponent', () => {
                 const settingsDes = getAndExpectDebugElementByDirective(
                     compDe,
-                    EditionSvgSheetViewerSettingsStubComponent,
+                    EditionSvgSheetViewerSwitchStubComponent,
                     1,
                     1
                 );
                 const settingsCmp = settingsDes[0].injector.get(
-                    EditionSvgSheetViewerSettingsStubComponent
-                ) as EditionSvgSheetViewerSettingsStubComponent;
+                    EditionSvgSheetViewerSwitchStubComponent
+                ) as EditionSvgSheetViewerSwitchStubComponent;
 
                 const expectedToggleEvent = { className: 'testClass1', isCurrentlyVisible: true };
 

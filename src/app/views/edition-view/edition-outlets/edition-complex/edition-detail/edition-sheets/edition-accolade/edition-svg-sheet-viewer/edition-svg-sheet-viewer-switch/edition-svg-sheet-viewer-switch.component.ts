@@ -1,16 +1,21 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
+/**
+ * The EditionSvgSheetViewerSwitch component.
+ *
+ * It contains the opacity switch for the edition svg sheet viewer.
+ */
 @Component({
-    selector: 'awg-edition-svg-sheet-viewer-settings',
-    templateUrl: './edition-svg-sheet-viewer-settings.component.html',
-    styleUrl: './edition-svg-sheet-viewer-settings.component.scss',
+    selector: 'awg-edition-svg-sheet-viewer-switch',
+    templateUrl: './edition-svg-sheet-viewer-switch.component.html',
+    styleUrl: './edition-svg-sheet-viewer-switch.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionSvgSheetViewerSettingsComponent {
+export class EditionSvgSheetViewerSwitchComponent {
     /**
      * Input variable: suppliedClasses.
      *
-     * It keeps the classes for the edition svg sheet viewer settings component.
+     * It keeps the supplied classes as a map of class names and their visibility.
      */
     @Input() suppliedClasses: Map<string, boolean>;
 
