@@ -12,7 +12,7 @@
                     "measure": "23 <br />bis 24",
                     "system": "Klav. o.",
                     "position": "3/4 <br />1. Note",
-                    "comment": "Ligatur zu T. 14 3/4 ergänzt. <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a>: Seitenwechsel nach T. 14."
+                    "comment": "Ligatur zu T. 23 3/4 ergänzt. <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a>: Seitenwechsel nach T. 23."
                 },
                 {
                     "svgGroupId": "g3405",
@@ -25,14 +25,14 @@
                     "svgGroupId": "g3408",
                     "measure": "25",
                     "system": "Klav. u.",
-                    "position": "letzte Note",
+                    "position": "3/4",
                     "comment": "H<sub>2</sub>/D korrigiert zu D<sub>1</sub>/D mit Blick auf harmonischen Kontext."
                 },
                 {
                     "svgGroupId": "g3411",
                     "measure": "26",
                     "system": "Klav. u.",
-                    "position": "1. Note",
+                    "position": "1/4",
                     "comment": "E<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
                 },
                 {
@@ -142,10 +142,10 @@
                 },
                 {
                     "svgGroupId": "g1629",
-                    "measure": "16",
+                    "measure": "16B",
                     "system": "15",
                     "position": "1. Pause",
-                    "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>[{{ref.getGlyph('[#]')}}]dis<sup>2</sup>."
+                    "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>/[{{ref.getGlyph('[#]')}}]dis<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g37705",
@@ -166,7 +166,7 @@
                     "measure": "17C",
                     "system": "15",
                     "position": "3/4",
-                    "comment": "g<sup>1</sup>/e<sup>2</sup> überschreibt a<sup>1</sup>/g<sup>2</sup<."
+                    "comment": "g<sup>1</sup>/e<sup>2</sup> überschreibt a<sup>1</sup>/g<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g42457",
@@ -197,7 +197,7 @@
                     "comment": "Notenkopf fis<sup>1</sup> gestrichen."
                 },
                 {
-                    "svgGroupId": "g4207",
+                    "svgGroupId": "g4507",
                     "measure": "22",
                     "system": "17",
                     "position": "3/4",
