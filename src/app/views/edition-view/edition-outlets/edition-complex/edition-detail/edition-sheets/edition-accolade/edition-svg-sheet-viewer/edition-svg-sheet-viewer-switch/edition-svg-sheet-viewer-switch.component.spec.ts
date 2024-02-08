@@ -1,4 +1,4 @@
-import { DebugElement } from '@angular/core';
+import { DebugElement, SimpleChange } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
@@ -183,6 +183,14 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
             expectToEqual(component.suppliedClasses, expectedSuppliedClasses);
         });
 
+        it('... should have allClassesVisible = `true`', () => {
+            expectToBe(component.allClassesVisible, expectedAllClassesVisible);
+        });
+
+        it('... should have tkkHighlightingVisible = `true`', () => {
+            expectToBe(component.tkkHighlightingVisible, expectedTkkHighlightingVisible);
+        });
+
         describe('VIEW', () => {
             it('... should have a div.card-body with as many form-switches as supplied classes (plus one for all classes and one for tkk)', () => {
                 const cardBodyDe = getAndExpectDebugElementByCss(compDe, 'div.card-body', 1, 1);
@@ -365,6 +373,54 @@ describe('EditionSvgSheetViewerSwitchComponent (DONE)', () => {
 
                 expectSpyCall(toggleTkkClassesHighlightSpy, 1);
             }));
+        });
+
+        describe('#ngOnChanges', () => {
+            it('... should have a method ngOnChanges', () => {
+                expect(component.ngOnChanges).toBeDefined();
+            });
+
+            it('... should not reset global boolean flags to `true` on first change of ngOnChanges', () => {
+                component.allClassesVisible = false;
+                component.tkkHighlightingVisible = false;
+
+                component.ngOnChanges({
+                    content: new SimpleChange(expectedSuppliedClasses, expectedSuppliedClasses, true),
+                });
+
+                expectToBe(component.allClassesVisible, false);
+                expectToBe(component.tkkHighlightingVisible, false);
+            });
+
+            it('... should reset global boolean flags to `true` on any other change of ngOnChanges (values don’t change)', () => {
+                component.allClassesVisible = false;
+                component.tkkHighlightingVisible = false;
+
+                // Directly trigger ngOnChanges
+                component.suppliedClasses = new Map([...expectedSuppliedClasses]);
+                component.ngOnChanges({
+                    suppliedClasses: new SimpleChange(expectedSuppliedClasses, [component.suppliedClasses], false),
+                });
+
+                expectToBe(component.allClassesVisible, true);
+                expectToBe(component.tkkHighlightingVisible, true);
+            });
+
+            it('... should reset global boolean flags to `true` on any other change of ngOnChanges (values change)', () => {
+                component.allClassesVisible = false;
+                component.tkkHighlightingVisible = false;
+
+                // Directly trigger ngOnChanges
+                component.suppliedClasses = new Map();
+                component.suppliedClasses.set('another-class1', true);
+                component.suppliedClasses.set('another-class2', true);
+                component.ngOnChanges({
+                    suppliedClasses: new SimpleChange(expectedSuppliedClasses, [component.suppliedClasses], false),
+                });
+
+                expectToBe(component.allClassesVisible, true);
+                expectToBe(component.tkkHighlightingVisible, true);
+            });
         });
 
         describe('#toggleSingleSuppliedClassOpacity()', () => {

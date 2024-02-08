@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    Output,
+    SimpleChanges,
+} from '@angular/core';
 
 /**
  * The EditionSvgSheetViewerSwitch component.
@@ -11,7 +19,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     styleUrl: './edition-svg-sheet-viewer-switch.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionSvgSheetViewerSwitchComponent {
+export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
     /**
      * Input variable: suppliedClasses.
      *
@@ -49,6 +57,18 @@ export class EditionSvgSheetViewerSwitchComponent {
      * It keeps a boolean flag whether the tkk highlighting is visible.
      */
     tkkHighlightingVisible = true;
+
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes of the given input.
+     */
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['suppliedClasses'] && !changes['suppliedClasses'].isFirstChange()) {
+            this.allClassesVisible = true;
+            this.tkkHighlightingVisible = true;
+        }
+    }
 
     /**
      * Public method: toggleSingleSuppliedClassOpacity.
