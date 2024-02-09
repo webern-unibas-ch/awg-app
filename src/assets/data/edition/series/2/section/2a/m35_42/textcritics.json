@@ -54,14 +54,14 @@
                     "measure": "4",
                     "system": "11",
                     "position": "2/4",
-                    "comment": "Notenkopf e<sup>1</sup>."
+                    "comment": "e<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g5399",
                     "measure": "4",
                     "system": "10",
                     "position": "3/4",
-                    "comment": "Notenkopf a<sup>2</sup> gestrichen."
+                    "comment": "a<sup>2</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g5166",
@@ -90,6 +90,13 @@
                     "system": "14",
                     "position": "3/4",
                     "comment": "{{ref.getGlyph('[b]')}}es überschreibt d."
+                },
+                {
+                    "svgGroupId": "g5177",
+                    "measure": "{94}",
+                    "system": "14",
+                    "position": "1/4",
+                    "comment": "D gestrichen."
                 },
                 {
                     "svgGroupId": "g5201",
@@ -155,6 +162,13 @@
                     "comment": "h<sup>1</sup>/{{ref.getGlyph('[#]')}}dis<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}b/d<sup>1</sup>."
                 },
                 {
+                    "svgGroupId": "g37731",
+                    "measure": "{17B}",
+                    "system": "15",
+                    "position": "1/4",
+                    "comment": "Viertelpause überschreibt gestrichene Viertelnote h/g<sup>1</sup>."
+                },
+                {
                     "svgGroupId": "g2798",
                     "measure": "{17B}",
                     "system": "15–16",
@@ -167,6 +181,13 @@
                     "system": "15",
                     "position": "3/4",
                     "comment": "g<sup>1</sup>/e<sup>2</sup> überschreibt a<sup>1</sup>/g<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g37753",
+                    "measure": "18",
+                    "system": "15–16",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen und in Akkolade 12–13 neu gesetzt."
                 },
                 {
                     "svgGroupId": "g42457",
@@ -184,17 +205,17 @@
                 },
                 {
                     "svgGroupId": "g42786",
-                    "measure": "22",
+                    "measure": "{22}",
                     "system": "17–18",
                     "position": "",
                     "comment": "Takt pauschal gestrichen."
                 },
                 {
                     "svgGroupId": "g42497",
-                    "measure": "22",
+                    "measure": "{22}",
                     "system": "17",
                     "position": "2/4",
-                    "comment": "Notenkopf fis<sup>1</sup> gestrichen."
+                    "comment": "fis<sup>1</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g4507",
