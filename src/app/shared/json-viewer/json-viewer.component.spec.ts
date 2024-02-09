@@ -108,12 +108,12 @@ describe('JsonViewerComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `jsonViewerData` and `jsonViewerHeader`', () => {
+        it('... should not have `jsonViewerData` and `jsonViewerHeader`', () => {
             expect(component.jsonViewerData).toBeUndefined();
             expect(component.jsonViewerHeader).toBeUndefined();
         });

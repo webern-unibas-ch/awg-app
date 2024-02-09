@@ -128,11 +128,11 @@ describe('DataApiService (DONE)', () => {
         httpTestingController.verify();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(dataApiService).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const conversionService = TestBed.inject(ConversionService);
         expect(mockConversionService === conversionService)
             .withContext('should be true')
@@ -210,7 +210,11 @@ describe('DataApiService (DONE)', () => {
         }));
     });
 
-    describe('#getSearchData', () => {
+    describe('#getSearchData()', () => {
+        it('... should have a method `getSearchData`', () => {
+            expect(dataApiService.getSearchData).toBeDefined();
+        });
+
         describe('request', () => {
             describe('... should not do anything if', () => {
                 it('... undefined is provided', waitForAsync(() => {
@@ -867,7 +871,11 @@ describe('DataApiService (DONE)', () => {
         });
     });
 
-    describe('#getResourceData', () => {
+    describe('#getResourceData()', () => {
+        it('... should have a method `getResourceData`', () => {
+            expect(dataApiService.getResourceData).toBeDefined();
+        });
+
         describe('request', () => {
             describe('... should not do anything if ', () => {
                 it('... undefined is provided', waitForAsync(() => {
@@ -1212,7 +1220,11 @@ describe('DataApiService (DONE)', () => {
         });
     });
 
-    describe('#getResourceTypes', () => {
+    describe('#getResourceTypes()', () => {
+        it('... should have a method `getResourceTypes`', () => {
+            expect(dataApiService.getResourceTypes).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should perform an HTTP GET request to the API (via ApiService)', waitForAsync(() => {
                 const expectedUrl = apiUrl + expectedRoutes.resourcetypes;
@@ -1326,7 +1338,11 @@ describe('DataApiService (DONE)', () => {
         });
     });
 
-    describe('#getPropertyListsByResourceType', () => {
+    describe('#getPropertyListsByResourceType()', () => {
+        it('... should have a method `getPropertyListsByResourceType`', () => {
+            expect(dataApiService.getPropertyListsByResourceType).toBeDefined();
+        });
+
         describe('request', () => {
             describe('... should not do anything if ', () => {
                 it('undefined is provided', waitForAsync(() => {
@@ -1501,7 +1517,11 @@ describe('DataApiService (DONE)', () => {
         });
     });
 
-    describe('#_getResourceDataResponseFromApi', () => {
+    describe('#_getResourceDataResponseFromApi()', () => {
+        it('... should have a method `_getResourceDataResponseFromApi`', () => {
+            expect((dataApiService as any)._getResourceDataResponseFromApi).toBeDefined();
+        });
+
         describe('request', () => {
             describe('... should not get anything if ', () => {
                 it('response type is undefined', waitForAsync(() => {

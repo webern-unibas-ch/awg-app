@@ -75,7 +75,7 @@ export class ResourceDetailHeader {
             // Extract restype specific title for header
             switch (info.restype_id) {
                 // CHRONOLOGIE
-                case '28':
+                case '28': {
                     // Richtext value has already been converted in detail using plugin "htmlConverter"
                     let htmlstr = props['webern-onto:event'].toHtml[0];
 
@@ -84,42 +84,48 @@ export class ResourceDetailHeader {
 
                     this.title = htmlstr;
                     break;
+                }
 
                 // KORRESPONDENZ (same as SUPPLEMENT)
-                case '29':
+                case '29': {
                     this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
                     break;
+                }
 
                 // SUPPLEMENT
-                case '125':
+                case '125': {
                     this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
                     break;
+                }
 
                 // MUSIKSTÜCK (Moldenhauer-Nummer)
-                case '36':
+                case '36': {
                     this.title = '[M ' + props['webern-onto:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
                     break;
-
+                }
                 // WERK
-                case '43':
+                case '43': {
                     this.title = props['dc:title'].toHtml[0];
                     break;
-
+                }
                 // PERSON
-                case '45':
+                case '45': {
                     const lname: string = props['salsah:lastname'].toHtml[0];
                     const fname: string = props['salsah:firstname'].toHtml[0];
                     this.title = fname + ' ' + lname;
                     break;
+                }
 
                 // BIBLIOGRAPHIE
-                case '126':
+                case '126': {
                     this.title = props['webern-onto:bibl_title_short'].toHtml[0];
                     break;
+                }
 
                 // DEFAULT
-                default:
+                default: {
                     this.title = info.restype_description;
+                }
             }
         } else {
             // Header for undefined & restricted object

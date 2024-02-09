@@ -4,7 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
+import { expectSpyCall, expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { mockEditionData } from '@testing/mock-data';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -45,22 +46,21 @@ describe('SourceListComponent (DONE)', () => {
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have sourceListData', () => {
-            expect(component.sourceListData).withContext('should be undefined').toBeUndefined();
+        it('... should not have sourceListData', () => {
+            expect(component.sourceListData).toBeUndefined();
         });
 
-        it('should have ref', () => {
-            expect(component.ref).toBeTruthy();
-            expect(component.ref).withContext(`should equal ${component}`).toEqual(component);
+        it('... should have `ref`', () => {
+            expectToEqual(component.ref, component);
         });
 
         describe('VIEW', () => {
-            it('... should contain one table with table body, but no rows (tr) yet', () => {
+            it('... should contain one table with table body (no text sources), but no rows (tr) yet', () => {
                 const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
                 getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', 0, 0);
@@ -77,117 +77,332 @@ describe('SourceListComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have sourceListData', () => {
-            expect(component.sourceListData).toBeTruthy();
-            expect(component.sourceListData)
-                .withContext(`should equal ${expectedSourceListData}`)
-                .toEqual(expectedSourceListData);
+        it('... should have sourceListData', () => {
+            expectToEqual(component.sourceListData, expectedSourceListData);
         });
 
         describe('VIEW', () => {
-            it('... should contain three rows (tr) in table body', () => {
-                const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
-
-                getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', 3, 3);
+            it('... should contain one div.card', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
             });
 
-            it('... should contain two columns (one th, one td) per table row (tr)', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
-
-                getAndExpectDebugElementByCss(rowDes[0], 'th', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[0], 'td', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[1], 'th', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[1], 'td', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[2], 'th', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[2], 'td', 1, 1);
+            it('... should contain one div.card-body in div.card', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
             });
 
-            it('... should contain siglum link in header column (th)', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+            describe('... if text sources are not present', () => {
+                it('... should contain one table with table body in div.card-body', () => {
+                    getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 1, 1);
+                });
 
-                // Get th columns
-                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'th', 1, 1);
-                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'th', 1, 1);
-                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'th', 1, 1);
+                it('... should contain as many rows (tr) in first table body as sources in sourceListData', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 1, 1);
 
-                // Get anchors in th column
-                const anchorDes0 = getAndExpectDebugElementByCss(columnDes0[0], 'a', 1, 1);
-                const anchorDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'a', 1, 1);
-                const anchorDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'a', 1, 1);
+                    getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', expectedSourcesLength, expectedSourcesLength);
+                });
 
-                const anchorCmp0 = anchorDes0[0].nativeElement;
-                const anchorCmp1 = anchorDes1[0].nativeElement;
-                const anchorCmp2 = anchorDes2[0].nativeElement;
+                it('... should contain two columns (one th, one td) per table row (tr)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
 
-                expect(anchorCmp0.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorCmp0.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[0].siglum}`)
-                    .toBe(expectedSourceListData.sources[0].siglum);
+                    rowDes.forEach(rowDe => {
+                        getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+                    });
+                });
 
-                expect(anchorCmp1.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorCmp1.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[1].siglum}`)
-                    .toBe(expectedSourceListData.sources[1].siglum);
+                it('... should contain siglum link in header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
 
-                expect(anchorCmp2.textContent).withContext('should be defined').toBeDefined();
-                expect(anchorCmp2.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[2].siglum}`)
-                    .toBe(expectedSourceListData.sources[2].siglum);
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 1, 1);
+
+                        const siglumDes = spanDes[0];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+
+                        expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim());
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                    });
+                });
+
+                it('... should display siglum addendum if present in header column (th)', () => {
+                    expectedSourceListData.sources[0].siglumAddendum = 'a';
+                    expectedSourceListData.sources[1].siglumAddendum = 'b';
+                    expectedSourceListData.sources[2].siglumAddendum = 'H';
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 2, 2);
+
+                        const siglumDes = spanDes[0];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const siglumAddendumDes = spanDes[1];
+                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+                        const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
+
+                        expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+
+                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
+                    });
+                });
+
+                it('... should contain source type and source location in second table column (td)', () => {
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+
+                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 2, 2);
+                        const spanEl0 = spanDes[0].nativeElement;
+                        const spanEl1 = spanDes[1].nativeElement;
+
+                        expectToBe(spanEl0.textContent, expectedSourceListData.sources[index].type);
+                        expectToBe(spanEl1.textContent, expectedSourceListData.sources[index].location);
+                    });
+                });
             });
 
-            it('... should contain source type and source location in second table column (td)', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
+            describe('... if text sources are present', () => {
+                beforeEach(() => {
+                    expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+                });
 
-                // Get td columns
-                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'td', 1, 1);
-                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'td', 1, 1);
-                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'td', 1, 1);
+                it('... should contain two tables with table body in div.card-body', () => {
+                    expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
 
-                // Get spans in td column
-                const spanDes0 = getAndExpectDebugElementByCss(columnDes0[0], 'span', 2, 2);
-                const spanDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'span', 2, 2);
-                const spanDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'span', 2, 2);
+                    getAndExpectDebugElementByCss(compDe, 'div.card-body > table > tbody', 2, 2);
+                });
 
-                const spanCmp00 = spanDes0[0].nativeElement;
-                const spanCmp01 = spanDes0[1].nativeElement;
-                const spanCmp10 = spanDes1[0].nativeElement;
-                const spanCmp11 = spanDes1[1].nativeElement;
-                const spanCmp20 = spanDes2[0].nativeElement;
-                const spanCmp21 = spanDes2[1].nativeElement;
+                it('... should contain a row (tr) with introductory text as a first child in the second table', () => {
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-                expect(spanCmp00.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp00.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[0].type}`)
-                    .toBe(expectedSourceListData.sources[0].type);
+                    const firstTrDes = getAndExpectDebugElementByCss(tableBodyDes[1], 'tr:first-child', 1, 1);
+                    const firstTrEl = firstTrDes[0].nativeElement;
 
-                expect(spanCmp01.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp01.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[0].location}`)
-                    .toBe(expectedSourceListData.sources[0].location);
+                    expectToBe(firstTrEl.textContent, 'Zum vertonten Text:');
+                });
 
-                expect(spanCmp10.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp10.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[1].type}`)
-                    .toBe(expectedSourceListData.sources[1].type);
+                it('... should contain as many additional rows (tr) in second table body as text sources in sourceListData', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-                expect(spanCmp11.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp11.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[1].location}`)
-                    .toBe(expectedSourceListData.sources[1].location);
+                    getAndExpectDebugElementByCss(tableBodyDes[1], 'tr', expectedSourcesLength, expectedSourcesLength);
+                });
 
-                expect(spanCmp20.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp20.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[2].type}`)
-                    .toBe(expectedSourceListData.sources[2].type);
+                it('... should contain two columns (one th, one td) in each additional row (tr)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
 
-                expect(spanCmp21.textContent).withContext('should be defined').toBeDefined();
-                expect(spanCmp21.textContent)
-                    .withContext(`should be ${expectedSourceListData.sources[2].location}`)
-                    .toBe(expectedSourceListData.sources[2].location);
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+                    });
+                });
+
+                it('... should have text siglum id on header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+                        const columnEl = columnDes[0].nativeElement;
+
+                        const expectedId = expectedSourceListData.textSources[index - 1].id;
+
+                        expectToBe(columnEl.id, expectedId);
+                    });
+                });
+
+                it('... should contain text siglum container span in header column (th)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-text-siglum-container',
+                            1,
+                            1
+                        );
+                        const containerEl = containerDes[0].nativeElement;
+
+                        const expectedSiglum =
+                            expectedSourceListData.textSources[index - 1].siglum +
+                            expectedSourceListData.textSources[index - 1].siglumAddendum;
+
+                        expectToBe(containerEl.textContent.trim(), expectedSiglum.trim());
+                    });
+                });
+
+                it('... should display text siglum and siglum addendum if present in header column (th)', () => {
+                    expectedSourceListData.textSources[0].siglumAddendum = 'a';
+                    expectedSourceListData.textSources[1].siglumAddendum = 'H';
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const containerDes = getAndExpectDebugElementByCss(
+                            columnDes[0],
+                            'span.awg-source-list-text-siglum-container',
+                            1,
+                            1
+                        );
+                        const containerEl = containerDes[0].nativeElement;
+                        const spanDes = getAndExpectDebugElementByCss(containerDes[0], 'span', 2, 2);
+
+                        const siglumDes = spanDes[0];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const siglumAddendumDes = spanDes[1];
+                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.textSources[index - 1].siglum;
+                        const expectedAddendum = expectedSourceListData.textSources[index - 1].siglumAddendum;
+
+                        expectToBe(containerEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                        expect(siglumEl).toHaveClass('awg-source-list-text-siglum');
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+
+                        expect(siglumAddendumEl).toHaveClass('awg-source-list-text-siglum-addendum');
+                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
+                    });
+                });
+
+                it('... should contain text source type and text source location in second table column (td)', () => {
+                    const expectedSourcesLength = expectedSourceListData.textSources.length + 1;
+                    const tableBodyDes = getAndExpectDebugElementByCss(compDe, 'table > tbody', 2, 2);
+
+                    const rowDes = getAndExpectDebugElementByCss(
+                        tableBodyDes[1],
+                        'tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        if (index === 0) {
+                            return;
+                        }
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'td', 1, 1);
+
+                        const spanDes = getAndExpectDebugElementByCss(columnDes[0], 'span', 2, 2);
+                        const spanEl0 = spanDes[0].nativeElement;
+                        const spanEl1 = spanDes[1].nativeElement;
+
+                        expectToBe(spanEl0.textContent, expectedSourceListData.textSources[index - 1].type);
+                        expectToBe(spanEl1.textContent, expectedSourceListData.textSources[index - 1].location);
+                    });
+                });
             });
         });
 
-        describe('#openModal', () => {
+        describe('#openModal()', () => {
+            it('... should have a method `openModal`', () => {
+                expect(component.openModal).toBeDefined();
+            });
+
             it('... should trigger on click', fakeAsync(() => {
                 // Get anhors in th column
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);

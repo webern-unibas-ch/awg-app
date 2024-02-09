@@ -1,25 +1,23 @@
-<div *ngIf="svgSheetsData" class="awg-svg-sheet-nav card">
-    <div class="card-body">
-        <awg-edition-svg-sheet-nav-item
-            [navItemLabel]="'Werkeditionen'"
-            [svgSheets]="svgSheetsData.sheets.workEditions"
-            [selectedSvgSheet]="selectedSvgSheet"
-            (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
-
-        <hr />
-
-        <awg-edition-svg-sheet-nav-item
-            [navItemLabel]="'Texteditionen'"
-            [svgSheets]="svgSheetsData.sheets.textEditions"
-            [selectedSvgSheet]="selectedSvgSheet"
-            (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
-
-        <hr />
-
-        <awg-edition-svg-sheet-nav-item
-            [navItemLabel]="'Skizzeneditionen'"
-            [svgSheets]="svgSheetsData.sheets.sketchEditions"
-            [selectedSvgSheet]="selectedSvgSheet"
-            (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+@if (svgSheetsData) {
+    <div class="awg-svg-sheet-nav card">
+        <div class="card-body">
+            <awg-edition-svg-sheet-nav-item
+                [navItemLabel]="'Werkeditionen'"
+                [svgSheets]="svgSheetsData.sheets.workEditions"
+                [selectedSvgSheet]="selectedSvgSheet"
+                (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+            <hr />
+            <awg-edition-svg-sheet-nav-item
+                [navItemLabel]="'Texteditionen'"
+                [svgSheets]="svgSheetsData.sheets.textEditions"
+                [selectedSvgSheet]="selectedSvgSheet"
+                (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+            <hr />
+            <awg-edition-svg-sheet-nav-item
+                [navItemLabel]="'Skizzeneditionen'"
+                [svgSheets]="svgSheetsData.sheets.sketchEditions"
+                [selectedSvgSheet]="selectedSvgSheet"
+                (selectSvgSheetRequest)="selectSvgSheet($event)"></awg-edition-svg-sheet-nav-item>
+        </div>
     </div>
-</div>
+}

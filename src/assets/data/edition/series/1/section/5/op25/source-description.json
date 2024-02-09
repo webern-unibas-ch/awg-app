@@ -1,7 +1,7 @@
 {
     "sources": [
         {
-            "id": "sourceA",
+            "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
             "type": "Skizzen und Reihentabelle zu „Wie bin ich froh!“ M 317 (in Skizzenbuch 3).",
@@ -15,13 +15,16 @@
                 },
                 "title": "<em>„Wie bin ich froh!“</em> auf Bl. 38<sup>v</sup> oben links mit schwarzem Buntstift.",
                 "date": "",
-                "measureNumbers": "Taktzahlen <em>1–2</em>, <em>3–6</em> und <em>9–15</em> in <strong>M 317 Sk4</strong> sowie <em>2–3</em> in <strong>M 317 Sk4.1</strong> mit schwarzem Buntstift; Taktzahlen <em>7–8</em> in <strong>M 317 Sk4</strong> mit Bleistift und nachgezogen mit schwarzem Buntstift.<br /> Taktzahl <em>52</em> (zu <strong>op. 24/1</strong>) auf Bl. 39<sup>r</sup> oben links mit schwarzem Buntstift.",
+                "measureNumbers": "Taktzahlen <em>1–2</em>, <em>3–6</em> und <em>9–15</em> in <a (click)=\"ref.selectSvgSheet('op25', 'M_317_Sk4')\"><strong>M 317 Sk4</strong></a> sowie <em>2–3</em> in <a (click)=\"ref.selectSvgSheet('op25', 'M_317_Sk4_1')\"><strong>M 317 Sk4.1</strong></a> mit schwarzem Buntstift; Taktzahlen <em>7–8</em> in <a (click)=\"ref.selectSvgSheet('op25', 'M_317_Sk4c')\"><strong>M 317 Sk4</strong></a> mit Bleistift und nachgezogen mit schwarzem Buntstift.<br /> Taktzahl <em>52</em> (zu <strong>op. 24/1</strong>) auf Bl. 39<sup>r</sup> oben links mit schwarzem Buntstift.",
                 "instrumentation": "Akkoladenstrich und teilweise Schlüsselvorsatz auf Bl. 38<sup>v</sup> System 1–4 (zu <strong>op. 24/1</strong>).<br />Akkoladenstrich und Schlüsselvorsatz auf Bl. 39<sup>r</sup> System 1–4 (zu <strong>op. 24/1</strong>), eingekreist und gestrichen mit rotem Buntstift.",
-                "annotations": "<em><u>Reihe</u></em> auf Bl. 38<sup>v</sup> System 5 links (zu <strong>M 317 Sk3.1.3</strong>) mit schwarzem Buntstift.",
+                "annotations": "<em><u>Reihe</u></em> auf Bl. 38<sup>v</sup> System 5 links (zu <a (click)=\"ref.selectSvgSheet('op25', 'M_317_Sk3_1_3')\"><strong>M 317 Sk3.1.3</strong></a>) mit schwarzem Buntstift.",
                 "content": [
                     {
                         "item": "M 317 Sk2",
-                        "itemLinkTo": "M_317_Sk2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -32,7 +35,8 @@
                                     [
                                         {
                                             "system": "1a",
-                                            "measure": "Reihenfragment (A) und Zwölftonreihenform G<sub>cis</sub> (B)",
+                                            "systemDescription": "Reihenfragment (A) und Zwölftonreihenform G<sub>cis</sub> (B)",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -42,7 +46,10 @@
                     },
                     {
                         "item": "M 317 Sk1",
-                        "itemLinkTo": "M_317_Sk1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -63,7 +70,10 @@
                     },
                     {
                         "item": "M 317 Sk2.1",
-                        "itemLinkTo": "M_317_Sk2_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -84,7 +94,10 @@
                     },
                     {
                         "item": "M 317 Sk2.1.1",
-                        "itemLinkTo": "M_317_Sk2_1_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -105,7 +118,10 @@
                     },
                     {
                         "item": "M 317 Sk2.1.2",
-                        "itemLinkTo": "M_317_Sk2_1_2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_2"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -126,7 +142,10 @@
                     },
                     {
                         "item": "M 317 Sk2.1.2.1",
-                        "itemLinkTo": "M_317_Sk2_1_2_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_2_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -147,7 +166,10 @@
                     },
                     {
                         "item": "M 317 Sk2.1.3",
-                        "itemLinkTo": "M_317_Sk2_1_3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk2_1_3"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -158,7 +180,8 @@
                                     [
                                         {
                                             "system": "3d–4d",
-                                            "measure": "Tonbuchstaben",
+                                            "systemDescription": "Tonbuchstaben",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -168,7 +191,10 @@
                     },
                     {
                         "item": "M 317 Sk3",
-                        "itemLinkTo": "M_317_Sk3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -189,7 +215,10 @@
                     },
                     {
                         "item": "M 317 Sk3.1",
-                        "itemLinkTo": "M_317_Sk3_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -210,7 +239,10 @@
                     },
                     {
                         "item": "M 317 Sk3.1.1",
-                        "itemLinkTo": "M_317_Sk3_1_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -231,7 +263,10 @@
                     },
                     {
                         "item": "M 317 Sk3.1.2",
-                        "itemLinkTo": "M_317_Sk3_1_2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_2"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -252,7 +287,10 @@
                     },
                     {
                         "item": "M 317 Sk3.1.3",
-                        "itemLinkTo": "M_317_Sk3_1_3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_3"
+                        },
                         "itemDescription": "(Reihentabelle zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -310,7 +348,10 @@
                     },
                     {
                         "item": "M 317 Sk3.1.3.1",
-                        "itemLinkTo": "M_317_Sk3_1_3_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk3_1_3_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -321,7 +362,8 @@
                                     [
                                         {
                                             "system": "6c",
-                                            "measure": "Zwölftonreihenform G<sub>g</sub>",
+                                            "systemDescription": "Zwölftonreihenform G<sub>g</sub>",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -331,7 +373,10 @@
                     },
                     {
                         "item": "M 317 Sk4",
-                        "itemLinkTo": "M_317_Sk4a",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4a"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -380,7 +425,10 @@
                     },
                     {
                         "item": "M 317 Sk4.1",
-                        "itemLinkTo": "M_317_Sk4_1",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_1"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -401,7 +449,10 @@
                     },
                     {
                         "item": "M 317 Sk4.2",
-                        "itemLinkTo": "M_317_Sk4_2",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_2"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -422,7 +473,10 @@
                     },
                     {
                         "item": "M 317 Sk4.3",
-                        "itemLinkTo": "M_317_Sk4_3",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "M_317_Sk4_3"
+                        },
                         "itemDescription": "(Skizze zu „Wie bin ich froh!“ M 317)",
                         "folios": [
                             {
@@ -445,7 +499,7 @@
             }
         },
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
             "type": "Autograph von „Wie bin ich froh!“ M 317: Textfassung 1.",
@@ -459,14 +513,14 @@
                     "main": "schwarze Tinte",
                     "secondary": "Bleistift"
                 },
-                "title": "<em>„Wie bin ich froh!“ | von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
-                "date": "<em>David Josef Bach | zum 60. Geburtstag | 13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
-                "annotations": "<em>Wie bin ich froh! | noch einmal wird mir alles grün | und leuchtet so! | noch überblühn || die Blumen mir die Welt! | noch einmal bin ich ganz ins Werden | hingestellt | und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
+                "title": "<em>„Wie bin ich froh!“</em> | <em>von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
+                "date": "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
+                "annotations": "<em>Wie bin ich froh!</em> | <em>noch einmal wird mir alles grün</em> | <em>und leuchtet so!</em> | <em>noch überblühn</em> || <em>die Blumen mir die Welt!</em> | <em>noch einmal bin ich ganz ins Werden</em> | <em>hingestellt</em> | <em>und bin auf Erden.</em> [System 4–7 Mitte] || <sup>k</sup><em>aus</em><sup>k</sup> <em>„Die Freude“ von Hildegard Jone</em> [System 9 rechts] auf Bl. 1<sup>v</sup>.",
                 "content": [
                     {
-                        "item": "M 317 TF1",
-                        "itemLinkTo": "M_317_TF1",
-                        "itemDescription": "(Autograph von „Wie bin ich froh!“ M 317: Textfassung 1)",
+                        "item": " ",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von „Wie bin ich froh!“ <a (click)=\"ref.selectSvgSheet('op25', 'M_317_TF1')\">M 317: Textfassung 1</a>",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -549,7 +603,7 @@
             }
         },
         {
-            "id": "sourceC",
+            "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
             "type": "Reihentabelle.",
@@ -568,7 +622,10 @@
                 "content": [
                     {
                         "item": "M 317 Sk5 / M321 Sk1 / M 322 Sk1",
-                        "itemLinkTo": "SkRT",
+                        "itemLinkTo": {
+                            "complexId": "op25",
+                            "sheetId": "SkRT"
+                        },
                         "itemDescription": "(Reihentabelle op. 25)",
                         "folios": [
                             {

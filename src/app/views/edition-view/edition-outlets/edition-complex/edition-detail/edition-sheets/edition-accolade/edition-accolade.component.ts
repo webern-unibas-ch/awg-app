@@ -65,6 +65,22 @@ export class EditionAccoladeComponent {
     showTkA: boolean;
 
     /**
+     * Output variable: browseSvgSheetRequest.
+     *
+     * It keeps an event emitter for the next or pevious index of an svg sheet.
+     */
+    @Output()
+    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+
+    /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
      * Output variable: openModalRequest.
      *
      * It keeps an event emitter to open the modal
@@ -92,10 +108,43 @@ export class EditionAccoladeComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+
+    /**
+     * Public method: browseSvgSheet.
+     *
+     * It emits a given direction to the {@link browseSvgSheetRequest}
+     * to browse to the previous or next sheet of the selected svg sheet.
+     *
+     * @param {number} direction A number indicating the direction of navigation. -1 for previous and 1 for next.
+     *
+     * @returns {void} Emits the direction.
+     */
+    browseSvgSheet(direction: number): void {
+        if (!direction) {
+            return;
+        }
+        this.browseSvgSheetRequest.emit(direction);
+    }
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given id of a fragment of the edition report
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {string} id The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(id);
+    }
 
     /**
      * Public method: openModal.
@@ -143,16 +192,16 @@ export class EditionAccoladeComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }

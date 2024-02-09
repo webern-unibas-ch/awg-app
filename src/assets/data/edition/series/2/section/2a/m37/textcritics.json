@@ -1,0 +1,229 @@
+{
+    "textcritics": [
+        {
+            "id": "M_37_TF1",
+            "label": "M 37 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br /> <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 37 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g4640",
+                    "measure": "6",
+                    "system": "Klav. u.",
+                    "position": "3/4",
+                    "comment": "Notenhals und nur im Ansatz vorhandenes {{ref.getGlyph('[#]')}} ergänzt."
+                },
+                {
+                    "svgGroupId": "g4643",
+                    "measure": "10",
+                    "system": "Klav.",
+                    "position": "(2/4)",
+                    "comment": "Gestrichelte Linie zwischen den Systemen zur Verdeutlichung des in <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> verschobenen Untersatzes weggelassen.###Grafik###."
+                },
+                {
+                    "svgGroupId": "g4646",
+                    "measure": "19",
+                    "system": "Klav. u.",
+                    "position": "2/4",
+                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "g4649",
+                    "measure": "21",
+                    "system": "Klav. u.",
+                    "position": "1. Note",
+                    "comment": "g korrigiert zu a mit Blick auf harmonischen Kontext."
+                }
+            ]
+        },
+        {
+            "id": "M_37_Sk1",
+            "label": "M 37 Sk1",
+            "description": [
+                "<strong>Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1365",
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk2"
+                    }
+                },
+                {
+                    "svgGroupId": "g8434",
+                    "linkTo": {
+                        "complexId": "m38",
+                        "sheetId": "M_38_Sk2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_37_Sk2",
+            "label": "M 37 Sk2",
+            "description": [
+                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet('m37', 'M_37_Sk1')\"><strong>Sk1</strong></a>. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g19564",
+                    "measure": "{2A}",
+                    "system": "18",
+                    "position": "1/4",
+                    "comment": "Viertelnote c<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g22497",
+                    "measure": "4",
+                    "system": "18",
+                    "position": "1. Note",
+                    "comment": "Oberstimmenschicht: a überschreibt {{ref.getGlyph('[#]')}}gis."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g17377",
+                    "linkTo": {
+                        "complexId": "m37",
+                        "sheetId": "M_37_Sk1"
+                    }
+                },
+                {
+                    "svgGroupId": "g18107",
+                    "linkTo": {
+                        "complexId": "m38",
+                        "sheetId": "M_38_Sk2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_37_Sk3",
+            "label": "M 37 Sk3",
+            "description": ["<strong>Sk3</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 37."],
+            "comments": [
+                {
+                    "svgGroupId": "g56588",
+                    "measure": "2",
+                    "system": "8",
+                    "position": "2/4",
+                    "comment": "H/f/g überschreibt d/h."
+                },
+                {
+                    "svgGroupId": "g57322",
+                    "measure": "3",
+                    "system": "7",
+                    "position": "1. Note",
+                    "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                },
+                {
+                    "svgGroupId": "g58053",
+                    "measure": "3",
+                    "system": "7",
+                    "position": "2. Note",
+                    "comment": "c<sup>2</sup> überschreibt d<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g58784",
+                    "measure": "3",
+                    "system": "7",
+                    "position": "letzte Note",
+                    "comment": "g<sup>1</sup> überschreibt c<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g59524",
+                    "measure": "4",
+                    "system": "7",
+                    "position": "2/4",
+                    "comment": "Viertelnote überschreibt Halbe Note."
+                },
+                {
+                    "svgGroupId": "g60259",
+                    "measure": "5",
+                    "system": "7",
+                    "position": "2. Note",
+                    "comment": "h<sup>1</sup>/h<sup>2</sup> überschreibt a<sup>1</sup>/a<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g61719",
+                    "measure": "6",
+                    "system": "8",
+                    "position": "2/4",
+                    "comment": "A/f überschreibt cis/a."
+                },
+                {
+                    "svgGroupId": "g8097",
+                    "measure": "7",
+                    "system": "10",
+                    "position": "1. Note",
+                    "comment": "Halbe Note überschreibt Viertelnote; d<sup>2</sup> überschreibt f<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g8829",
+                    "measure": "10",
+                    "system": "10",
+                    "position": "1/4",
+                    "comment": "Viertelpause überschreibt Viertelnote d<sup>1</sup>/h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g9564",
+                    "measure": "12",
+                    "system": "10",
+                    "position": "1. Note",
+                    "comment": "Viertelnote {{ref.getGlyph('[b]')}}b<sup>2</sup> überschreibt Halbe Note {{ref.getGlyph('[b]')}}b<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g10298",
+                    "measure": "12",
+                    "system": "10",
+                    "position": "2. Note",
+                    "comment": "a<sup>1</sup>/a<sup>2</sup> überschreibt e<sup>1</sup>/e<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g11033",
+                    "measure": "13",
+                    "system": "10",
+                    "position": "2/4",
+                    "comment": "{{ref.getGlyph('[#]')}}cis<sup>1</sup>/{{ref.getGlyph('[#]')}}cis<sup>2</sup> überschreibt e<sup>1</sup>/e<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g11767",
+                    "measure": "13",
+                    "system": "11",
+                    "position": "3/4",
+                    "comment": "c/a überschreibt f/d<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g19964",
+                    "measure": "17",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "e<sup>1</sup> überschreibt g<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g20694",
+                    "measure": "18",
+                    "system": "13",
+                    "position": "3/4",
+                    "comment": "{{ref.getGlyph('[a]')}} überschreibt {{ref.getGlyph('[#]')}}."
+                },
+                {
+                    "svgGroupId": "g21427",
+                    "measure": "19",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "Punktierte Viertelnote {{ref.getGlyph('[#]')}}gis<sup>1</sup> der Oberstimmenschicht überschreibt Halbe Note {{ref.getGlyph('[#]')}}gis<sup>1</sup> der Unterstimmenschicht."
+                },
+                {
+                    "svgGroupId": "g22161",
+                    "measure": "20",
+                    "system": "13",
+                    "position": "2/4",
+                    "comment": "Viertelnote überschreibt Halbe Note."
+                }
+            ]
+        }
+    ]
+}

@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
+import { Observable, forkJoin as observableForkJoin, of as observableOf } from 'rxjs';
 import { defaultIfEmpty, map } from 'rxjs/operators';
 
 import { ApiService, ConversionService } from '@awg-core/services/';
@@ -79,7 +79,10 @@ export class DataApiService extends ApiService {
      * @param {HttpClient} http Instance of the HttpClient.
      * @param {ConversionService} conversionService Instance of the ConversionService.
      */
-    constructor(http: HttpClient, private conversionService: ConversionService) {
+    constructor(
+        http: HttpClient,
+        private conversionService: ConversionService
+    ) {
         super(http);
         this.serviceName = 'DataApiService';
     }
@@ -183,10 +186,10 @@ export class DataApiService extends ApiService {
      * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
      */
     getSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
-        if (!searchParams || !searchParams.query) {
-            return observableOf(new SearchResponseJson());
-        }
-        if (typeof searchParams.query === 'object' && !searchParams.query['filterByRestype']) {
+        if (
+            !searchParams?.query ||
+            (typeof searchParams?.query === 'object' && !searchParams?.query?.['filterByRestype'])
+        ) {
             return observableOf(new SearchResponseJson());
         }
 

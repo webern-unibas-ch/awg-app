@@ -1,9 +1,9 @@
 import { ElementRef, Injectable } from '@angular/core';
 
-import { D3Selection, ViewBox } from '@awg-views/edition-view/models';
+import { D3Selection, EditionSvgOverlay, EditionSvgOverlayActionTypes, ViewBox } from '@awg-views/edition-view/models';
 
-import * as d3_fetch from 'd3-fetch';
-import * as d3_selection from 'd3-selection';
+import * as D3_FETCH from 'd3-fetch';
+import * as D3_SELECTION from 'd3-selection';
 
 /**
  * The EditionSvgDrawing service.
@@ -27,6 +27,13 @@ export class EditionSvgDrawingService {
      * It keeps the fill color for hovered overlays.
      */
     overlayHoverFillColor = 'tomato';
+
+    /**
+     * Public variable: overlayTransparentFillColor.
+     *
+     * It keeps the fill color for transparent overlays.
+     */
+    overlayTransparentFillColor = 'transparent';
 
     /**
      * Public variable: overlaySelectionFillColor.
@@ -71,6 +78,28 @@ export class EditionSvgDrawingService {
     private _overlayBoxCornerRadius = 2;
 
     /**
+     * Private variable: _suppliedClasses
+     *
+     * It keeps a map of all supplied classes from the SVG sheet root group.
+     */
+    private _suppliedClasses: Map<string, boolean> = new Map();
+
+    /**
+     * Private variable: _suppliedClassesLabelLookup
+     *
+     * It keeps a lookup table for the supplied classes.
+     */
+    private _suppliedClassesLabelLookup: Map<string, string> = new Map([
+        ['foliation', 'Blattangabe'],
+        ['staffN', 'Systemangabe'],
+        ['measureN', 'Taktzahlen'],
+        ['clef', 'Schlüssel'],
+        ['key', 'Tonart'],
+        ['accid', 'Akzidenzien'],
+        ['hyphen', 'Silbentrennung'],
+    ]);
+
+    /**
      * Public async method: createSvg.
      *
      * It creates an D3 selection representation of an svg file (given by its path)
@@ -103,8 +132,7 @@ export class EditionSvgDrawingService {
         // Get the reference to the svg element in the HTML template and append the svg root element to it
         svgEl.appendChild(svgRootGroupEl);
 
-        const svg = d3_selection
-            .select(svgEl)
+        const svg = D3_SELECTION.select(svgEl)
             .attr('width', vb.svgWidth)
             .attr('height', vb.svgHeight)
             .attr('viewBox', vb.viewBox) // Append viewbox
@@ -253,6 +281,93 @@ export class EditionSvgDrawingService {
     }
 
     /**
+     * Public method: getSuppliedClasses.
+     *
+     * It gets all supplied classes from the SVG sheet root group.
+     *
+     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     *
+     * @returns {Map<string, boolean>} A map of all supplied classes from the SVG sheet root group.
+     */
+    getSuppliedClasses(svgRootGroup: D3Selection): Map<string, boolean> {
+        if (!svgRootGroup) {
+            return undefined;
+        }
+
+        // (Re-)Initialize the map
+        this._suppliedClasses = new Map();
+
+        const suppliedSelections = this.getGroupsBySelector(svgRootGroup, 'supplied');
+
+        suppliedSelections.each((d, i, nodes) => {
+            const element = D3_SELECTION.select(nodes[i]);
+            const classNames = element.attr('class').split(' ');
+            const nextToSupplied = classNames[classNames.indexOf('supplied') + 1];
+            if (nextToSupplied) {
+                // Look up the class label in the mapping object
+                const classLabel = this._suppliedClassesLabelLookup.get(nextToSupplied) || nextToSupplied;
+
+                // Initialize the visibility state of the class
+                if (!this._suppliedClasses.has(classLabel)) {
+                    this._suppliedClasses.set(classLabel, true);
+                }
+            }
+        });
+
+        return this._suppliedClasses;
+    }
+
+    /**
+     * Public method: toggleSuppliedClassOpacity.
+     *
+     * It toggles the opacity of the supplied class with the given className.
+     *
+     * @param {D3Selection} svgRootGroup The given D3 selection of the SVG root group.
+     * @param {string} labelOrClassName The given class label or class name if label is not provided.
+     * @param {boolean} isCurrentlyVisible The given current visibility state of the class.
+     *
+     * @returns {void} Toggles the opacity of the supplied class with the given className.
+     */
+    toggleSuppliedClassOpacity(svgRootGroup: D3Selection, labelOrClassName: string, isCurrentlyVisible: boolean): void {
+        if (!svgRootGroup) {
+            return;
+        }
+
+        // Get the class name from the label lookup table
+        const className =
+            Array.from(this._suppliedClassesLabelLookup.entries()).find(
+                ([_key, value]) => value === labelOrClassName
+            )?.[0] || labelOrClassName;
+
+        // Get D3 selection of supplied elements
+        const selector = className ? `supplied.${className}` : 'supplied';
+        const suppliedSelections = this.getGroupsBySelector(svgRootGroup, selector);
+        const opacity = isCurrentlyVisible ? 0 : 1;
+
+        suppliedSelections.style('opacity', opacity);
+    }
+
+    /**
+     * Public method: updateTkkOverlayColor.
+     *
+     * It updates the color of the given tkk overlay.
+     *
+     * @param {EditionSvgOverlay} overlay The given overlay.
+     * @param {D3Selection} overlayGroupRectSelection The given overlay group rect selection.
+     * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
+     *
+     * @returns {void} Updates the color of the given tkk overlay.
+     */
+    updateTkkOverlayColor(
+        overlay: EditionSvgOverlay,
+        overlayGroupRectSelection: D3Selection,
+        overlayActionType: EditionSvgOverlayActionTypes
+    ): void {
+        const color = this._getTkkOverlayColor(overlay, overlayActionType);
+        this.fillD3SelectionWithColor(overlayGroupRectSelection, color);
+    }
+
+    /**
      * Private method; _fetchSvgFile.
      *
      * It fetches an SVG file from the given path via fetch method from D3 library.
@@ -262,7 +377,35 @@ export class EditionSvgDrawingService {
      * @returns {Promise<Document>} A promise that resolves to the SVG file as Document.
      */
     private _fetchSvgFile(path: string): Promise<Document> {
-        return d3_fetch.svg(path);
+        return D3_FETCH.svg(path);
+    }
+
+    /**
+     * Private method: _getTkkOverlayColor.
+     *
+     * It returns the color of the given tkk overlay.
+     *
+     * @param {EditionSvgOverlay} overlay The given overlay.
+     * @param {string} overlayActionType The type of the overlay action (`fill` or `hover`).
+     *
+     * @returns {string} The color of the given tkk overlay.
+     */
+    private _getTkkOverlayColor(overlay: EditionSvgOverlay, overlayActionType: EditionSvgOverlayActionTypes): string {
+        if (!overlay) {
+            return this.overlayFillColor;
+        }
+
+        if (overlayActionType === EditionSvgOverlayActionTypes.transparent) {
+            return this.overlayTransparentFillColor;
+        }
+
+        if (overlay.isSelected) {
+            return this.overlaySelectionFillColor;
+        }
+
+        return overlayActionType === EditionSvgOverlayActionTypes.hover
+            ? this.overlayHoverFillColor
+            : this.overlayFillColor;
     }
 
     /**
@@ -276,7 +419,7 @@ export class EditionSvgDrawingService {
      */
     private _getViewBox(svgXML: SVGSVGElement): ViewBox {
         // Get the viewBox attributes from the SVG XML DOM tree
-        const svgXMLViewBox: string = d3_selection.select(svgXML).attr('viewBox');
+        const svgXMLViewBox: string = D3_SELECTION.select(svgXML).attr('viewBox');
 
         const viewBoxParts = svgXMLViewBox.split(' ');
 

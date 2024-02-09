@@ -58,12 +58,12 @@ describe('StructureViewComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have title and id', () => {
+        it('... should have title and id', () => {
             expect(component.structureViewTitle).toBeDefined();
             expect(component.structureViewTitle).toBe(expectedTitle);
 
@@ -71,7 +71,11 @@ describe('StructureViewComponent (DONE)', () => {
             expect(component.structureViewId).toBe(expectedId);
         });
 
-        describe('#routeToSidenav', () => {
+        describe('#routeToSidenav()', () => {
+            it('... should have a method `routeToSidenav`', () => {
+                expect(component.routeToSidenav).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.routeToSidenav).not.toHaveBeenCalled();
             });
@@ -103,7 +107,7 @@ describe('StructureViewComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#routeToSideNav', () => {
+        describe('#routeToSideNav()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {

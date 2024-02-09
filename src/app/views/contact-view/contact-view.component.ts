@@ -96,7 +96,10 @@ export class ContactViewComponent implements OnInit {
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private coreService: CoreService, private router: Router) {}
+    constructor(
+        private coreService: CoreService,
+        private router: Router
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.

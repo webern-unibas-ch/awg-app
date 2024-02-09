@@ -13,11 +13,15 @@ describe('UtilityService (DONE)', () => {
         utils = TestBed.inject(UtilityService);
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(utils).toBeTruthy();
     });
 
-    describe('#isNotEmptyArray', () => {
+    describe('#isNotEmptyArray()', () => {
+        it('... should have a method `isNotEmptyArray`', () => {
+            expect(utils.isNotEmptyArray).toBeDefined();
+        });
+
         it('... should return true if a given array is not empty', () => {
             const checkArray = [1];
             expect(utils.isNotEmptyArray(checkArray)).toBeTrue();
@@ -39,7 +43,11 @@ describe('UtilityService (DONE)', () => {
         });
     });
 
-    describe('#isNotEmptyObject', () => {
+    describe('#isNotEmptyObject()', () => {
+        it('... should have a method `isNotEmptyObject`', () => {
+            expect(utils.isNotEmptyObject).toBeDefined();
+        });
+
         it('... should return true if a given object is not empty', () => {
             const checkObj = { a: 1 };
             expect(utils.isNotEmptyObject(checkObj)).toBeTrue();

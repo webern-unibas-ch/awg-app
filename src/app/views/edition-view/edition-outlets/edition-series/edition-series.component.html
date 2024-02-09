@@ -1,26 +1,31 @@
-<div *ngIf="editionOutline" class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col" *ngFor="let series of editionOutline">
-        <div class="card h-100">
-            <div class="card-header">
-                <h5 class="card-title">{{ series.series.full }}</h5>
+@if (editionOutline) {
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @for (series of editionOutline; track series) {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ series.series.full }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            @for (section of series.sections; track section) {
+                                <li class="list-group-item">
+                                    @if (!section.disabled) {
+                                        <a [routerLink]="[series.series.route, 'section', section.section.route]">{{
+                                            section.section.full
+                                        }}</a>
+                                    } @else {
+                                        <span class="text-muted">{{ section.section.full }}</span>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr... </a>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li *ngFor="let section of series.sections" class="list-group-item">
-                        <a
-                            *ngIf="!section.disabled; else disabledSection"
-                            [routerLink]="[series.series.route, 'section', section.section.route]"
-                            >{{ section.section.full }}</a
-                        >
-                        <ng-template #disabledSection>
-                            <span class="text-muted">{{ section.section.full }}</span>
-                        </ng-template>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-footer text-end">
-                <a [routerLink]="[series.series.route]" class="btn btn-outline-info">Mehr... </a>
-            </div>
-        </div>
+        }
     </div>
-</div>
+}

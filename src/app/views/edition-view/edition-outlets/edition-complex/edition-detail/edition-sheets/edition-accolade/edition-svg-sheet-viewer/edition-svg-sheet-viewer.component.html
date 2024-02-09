@@ -1,30 +1,52 @@
-<div id="awg-edition-svg-container" *ngIf="selectedSvgSheet">
-    <div class="awg-edition-svg-icon-bar">
-        <!-- Slider -->
-        <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start m-2">
-            <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
-            <input
-                type="range"
-                #sliderInput
-                class="awg-edition-svg-zoom-slider"
-                id="awg-edition-svg-zoom-slider"
-                name="zoomSlider"
-                aria-label="Zoom slider"
-                aria-describedby="slider-label"
-                [min]="sliderConfig.min"
-                [max]="sliderConfig.max"
-                [step]="sliderConfig.stepSize"
-                [(ngModel)]="sliderConfig.value"
-                (ngModelChange)="onZoomChange($event)" />
-            <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">
-                <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
-            </button>
+@if (selectedSvgSheet) {
+    <div id="awg-edition-svg-container">
+        <div class="awg-edition-svg-sheet-viewer">
+            <div class="awg-edition-svg-icon-bar">
+                <!-- Slider -->
+                <div class="input-group input-group-sm awg-edition-svg-zoom-slider-container float-start mx-2r my-2">
+                    <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
+                    <input
+                        type="range"
+                        #sliderInput
+                        class="awg-edition-svg-zoom-slider"
+                        id="awg-edition-svg-zoom-slider"
+                        name="zoomSlider"
+                        aria-label="Zoom slider"
+                        aria-describedby="slider-label"
+                        [min]="sliderConfig.min"
+                        [max]="sliderConfig.max"
+                        [step]="sliderConfig.stepSize"
+                        [(ngModel)]="sliderConfig.value"
+                        (ngModelChange)="onZoomChange($event)" />
+                    <button class="btn btn-sm btn-outline-info" type="submit" title="Reset zoom" (click)="resetZoom()">
+                        <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
+                    </button>
+                </div>
+            </div>
+            <div #svgSheetContainer class="awg-edition-svg-sheet-container px-2r">
+                <svg #svgSheetElement id="awg-edition-svg-sheet">
+                    <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>
+                </svg>
+                <awg-license class="d-flex mt-3 text-center small"></awg-license>
+                @if (suppliedClasses.size > 0) {
+                    <awg-edition-svg-sheet-viewer-switch
+                        [suppliedClasses]="suppliedClasses"
+                        [hasAvailableTkaOverlays]="hasAvailableTkaOverlays"
+                        (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
+                        (toggleTkkClassesHighlightRequest)="
+                            onTkkClassesHighlightToggle($event)
+                        "></awg-edition-svg-sheet-viewer-switch>
+                }
+            </div>
+            <!-- Next and previous buttons -->
+            <div class="awg-edition-svg-sheet-viewer-nav">
+                <div class="prev" (click)="browseSvgSheet(-1)">
+                    <span>&#10094;</span>
+                </div>
+                <div class="next" (click)="browseSvgSheet(1)">
+                    <span>&#10095;</span>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div #svgSheetContainer class="awg-edition-svg-sheet-container">
-        <svg #svgSheetElement id="awg-edition-svg-sheet">
-            <g #svgSheetRootGroup id="awg-edition-svg-sheet-root-group"></g>
-        </svg>
-    </div>
-</div>
+}

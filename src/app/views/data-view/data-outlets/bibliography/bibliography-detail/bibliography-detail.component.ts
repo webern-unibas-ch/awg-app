@@ -45,7 +45,10 @@ export class BibliographyDetailComponent implements OnInit {
      * @param {BibliographyService} bibliographyService Instance of the BibliographyService.
      * @param {ConversionService} conversionService Instance of the ConversionService.
      */
-    constructor(private bibliographyService: BibliographyService, private conversionService: ConversionService) {}
+    constructor(
+        private bibliographyService: BibliographyService,
+        private conversionService: ConversionService
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.

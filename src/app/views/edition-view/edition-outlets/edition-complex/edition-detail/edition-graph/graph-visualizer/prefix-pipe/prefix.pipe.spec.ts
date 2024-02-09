@@ -7,13 +7,13 @@ describe('PrefixPipe', () => {
         expect(pipe).toBeTruthy();
     });
 
-    describe('transform', () => {
-        it('should have a transform method', () => {
+    describe('#transform()', () => {
+        it('... should have a method `transform`', () => {
             const pipe = new PrefixPipe();
             expect(pipe.transform).toBeDefined();
         });
 
-        it('should transform the short form of a known default RDF prefix into its long form', () => {
+        it('... should transform the short form of a known default RDF prefix into its long form', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'rdf:';
             const longForm = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
@@ -23,7 +23,7 @@ describe('PrefixPipe', () => {
             expect(transformedValue).toBe(longForm);
         });
 
-        it('should transform the long form of a known default RDF prefix into its short form', () => {
+        it('... should transform the long form of a known default RDF prefix into its short form', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'rdf:';
             const longForm = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
@@ -33,7 +33,7 @@ describe('PrefixPipe', () => {
             expect(transformedValue).toBe(shortForm);
         });
 
-        it('should not transform a short value that is not in the list of default RDF prefixes', () => {
+        it('... should not transform a short value that is not in the list of default RDF prefixes', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'bibo';
 
@@ -42,7 +42,7 @@ describe('PrefixPipe', () => {
             expect(transformedValue).toBe(shortForm);
         });
 
-        it('should not transform a long value that is not in the list of default RDF prefixes', () => {
+        it('... should not transform a long value that is not in the list of default RDF prefixes', () => {
             const pipe = new PrefixPipe();
             const longForm = 'http://purl.org/ontology/bibo/';
 
@@ -51,7 +51,7 @@ describe('PrefixPipe', () => {
             expect(transformedValue).toBe(longForm);
         });
 
-        it('should throw an error if the prefixForm is not equal to PrefixForm.SHORT or PrefixForm.LONG', () => {
+        it('... should throw an error if the prefixForm is not equal to PrefixForm.SHORT or PrefixForm.LONG', () => {
             const pipe = new PrefixPipe();
             const shortForm = 'rdf:';
 

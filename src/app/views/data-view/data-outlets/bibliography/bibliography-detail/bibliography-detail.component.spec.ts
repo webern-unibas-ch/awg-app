@@ -53,12 +53,12 @@ describe('BibliographyDetailComponent', () => {
         expectedObjId = '1234';
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have objId input', () => {
+        it('... should not have objId input', () => {
             expect(component.objId).toBeUndefined();
         });
     });
@@ -72,7 +72,7 @@ describe('BibliographyDetailComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have objId input', () => {
+        it('... should have objId input', () => {
             expect(component.objId).toBeTruthy();
             expect(component.objId).withContext(`should be ${expectedObjId}`).toBe(expectedObjId);
         });

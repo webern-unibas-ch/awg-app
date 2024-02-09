@@ -1,0 +1,32 @@
+name: SVG Optimization Workflow
+on:
+    push:
+        # trigger on all branches except for main, release and dependabot-triggered push events
+        branches-ignore: [main, release, dependabot/**]
+        tags-ignore: [v*]
+        paths:
+            - '**.svg'
+
+# The minimum required permissions
+permissions:
+    contents: write
+
+jobs:
+    svgs:
+        name: Optimize SVGs
+        runs-on: ubuntu-latest
+        if: github.repository_owner == 'webern-unibas-ch'
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
+            - name: Optimize SVGs
+              uses: ericcornelissen/svgo-action@f7f55c2a50142a9eeefca82470290ce62ceebad5 # ratchet:ericcornelissen/svgo-action@v4.0.7
+              id: svgo
+              with:
+                  repo-token: ${{secrets.GITHUB_TOKEN}}
+                  svgo-version: 3 # defaults to 2
+            - name: Commit optimizations
+              uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # ratchet:stefanzweifel/git-auto-commit-action@v5.0.0
+              if: ${{steps.svgo.outputs.DID_OPTIMIZE}}
+              with:
+                  commit_message: 'fix(assets): optimize ${{steps.svgo.outputs.OPTIMIZED_COUNT}} SVG(s) with SVGO'

@@ -1,0 +1,478 @@
+{
+    "textcritics": [
+        {
+            "id": "M_31_TF1",
+            "label": "M 31 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br /><a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br /> Hauptquelle für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g3298",
+                    "measure": "1",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "g3302",
+                    "measure": "5",
+                    "system": "Klav. u.",
+                    "position": "3/16",
+                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "g3306",
+                    "measure": "6",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "g2028",
+                    "measure": "15",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
+                },
+                {
+                    "svgGroupId": "g3042",
+                    "measure": "16",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Taktstrich ergänzt (vgl. Korrekturen 2)."
+                },
+                {
+                    "svgGroupId": "g3046",
+                    "measure": "18",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von zwischen 3/8 und 4/8."
+                },
+                {
+                    "svgGroupId": "g3050",
+                    "measure": "23",
+                    "system": "Klav.",
+                    "position": "4/16",
+                    "comment": "{{ref.getGlyph('[p]')}} versetzt von 3/8."
+                },
+                {
+                    "svgGroupId": "g3054",
+                    "measure": "28",
+                    "system": "Klav.",
+                    "position": "8/16",
+                    "comment": "{{ref.getGlyph('[pp]')}} versetzt von 5/8."
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk1",
+            "label": "M 31 Sk1",
+            "description": [
+                "<strong>M 31 Sk1</strong> enthält eine erste rhythmische Skizze zum Hauptthema der Studienkomposition für Klavier M 31."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g964",
+                    "measure": "1",
+                    "system": "10",
+                    "position": "(2/4)",
+                    "comment": "Zwei Achtelnoten überschreiben Viertelnote."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g415",
+                    "linkTo": {
+                        "complexId": "m30",
+                        "sheetId": "M_30_Sk1k"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m30",
+                        "sheetId": "M_30_Sk1k"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk2",
+            "label": "M 31 Sk2",
+            "description": [
+                "<strong>M 31 Sk2</strong> formuliert ein kontrastierendes Thema in E-Dur für den B-Teil, das von der Tintenniederschrift jedoch noch stark abweicht."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g952",
+                    "measure": "x+2",
+                    "system": "10",
+                    "position": "1. Note",
+                    "comment": "Halbe Note überschreibt Viertelnote."
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk3",
+            "label": "M 31 Sk3",
+            "description": [
+                "<strong>M 31 Sk3</strong> beinhaltet eine Verlaufsskizze vom A-Teil und B-Teil der Studienkomposition für Klavier M 31, deren Übergang zur Reprise von der Tintenniederschrift abweicht."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g1140",
+                    "measure": "2",
+                    "system": "16",
+                    "position": "1/4",
+                    "comment": "Im Bassschlüssel zu lesende Viertelnote as/c<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1146",
+                    "measure": "3",
+                    "system": "16",
+                    "position": "1. Note",
+                    "comment": "Viertelnote überschreibt Halbe Note."
+                },
+                {
+                    "svgGroupId": "g1150",
+                    "measure": "3",
+                    "system": "16",
+                    "position": "2/4",
+                    "comment": "g gestrichen."
+                },
+                {
+                    "svgGroupId": "g1169",
+                    "measure": "4",
+                    "system": "15",
+                    "position": "1. Note",
+                    "comment": "[a] überschreibt [b]."
+                },
+                {
+                    "svgGroupId": "g1164",
+                    "measure": "4",
+                    "system": "15",
+                    "position": "letzte Note",
+                    "comment": "g<sup>1</sup>/c<sup>2</sup>/e<sup>2</sup> überschreibt f<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g1090",
+                    "measure": "8",
+                    "system": "17",
+                    "position": "2/8",
+                    "comment": "a<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1166",
+                    "measure": "10",
+                    "system": "18",
+                    "position": "(2–3/4)",
+                    "comment": "Punktierte Viertelnote G/d mit Achtelnote g überschreibt Halbe Note G/d; Augmentationspunkte gestrichen und Achtelnote d auf 5/8 hinzugefügt und mit g auf 6/8 zusammengebalkt."
+                },
+                {
+                    "svgGroupId": "g1131",
+                    "measure": "10",
+                    "system": "17",
+                    "position": "3/4",
+                    "comment": "h<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1155",
+                    "measure": "11",
+                    "system": "2",
+                    "position": "",
+                    "comment": "Violinschlüssel und Noten radiert."
+                },
+                {
+                    "svgGroupId": "g1128",
+                    "measure": "15",
+                    "system": "1",
+                    "position": "3–6/8",
+                    "comment": "d<sup>2</sup>–c<sup>2</sup>–h<sup>1</sup>–gis<sup>1</sup> überschreibt f<sup>2</sup>–e<sup>2</sup>–d<sup>2</sup>–h<sup>1</sup>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g403",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_1"
+                    }
+                },
+                {
+                    "svgGroupId": "g399",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk3_1",
+            "label": "M 31 Sk3.1",
+            "description": [
+                "<strong>M 31 Sk3.1</strong> fügt einen zusätzlichen Takt zwischen T. 10 und T. 11 von <strong>Sk3</strong> ein."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g961",
+                    "measure": "10+1",
+                    "system": "6",
+                    "position": "1. Note",
+                    "comment": "Punktierte Viertelnote überschreibt Halbe Note."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g398",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3d"
+                    }
+                },
+                {
+                    "svgGroupId": "g402",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_2"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk3_2",
+            "label": "M 31 Sk3.2",
+            "description": [
+                "<strong>M 31 Sk3.2</strong> skizziert vermutlich das Vorhaben, den Übergang zur Reprise in <strong>M 31 Sk3</strong> von D nach G um eine Quinte nach unten zu transponieren."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g963",
+                    "measure": "17",
+                    "system": "5",
+                    "position": "3/4",
+                    "comment": "e<sup>1</sup> überschreibt f<sup>1</sup>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g396",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3d"
+                    }
+                },
+                {
+                    "svgGroupId": "g400",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk3_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk4",
+            "label": "M 31 Sk4",
+            "description": [
+                "<strong>M 31 Sk4</strong> setzt erneut beim B-Teil an, um einen – unter erheblichen Korrekturvorgängen – mit der Tintenniederschrift nahezu übereinstimmenden Verlauf des Mittelteils zu formulieren."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g1170",
+                    "measure": "12",
+                    "system": "9",
+                    "position": "4–5/8",
+                    "comment": "H–H überschreibt e–gis."
+                },
+                {
+                    "svgGroupId": "g1203",
+                    "measure": "15",
+                    "system": "8",
+                    "position": "1–6/8",
+                    "comment": "Sechs Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu drei Achtelnoten, Viertelnote und Achtelnote; Achtelnote e<sup>2</sup> auf 5/8 aufgrund der Änderung getilgt."
+                },
+                {
+                    "svgGroupId": "g1202",
+                    "measure": "{16A–18A}",
+                    "system": "8–9",
+                    "position": "",
+                    "comment": "Takte zusammen mit T. {{ '{' }}19B{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
+                },
+                {
+                    "svgGroupId": "g1222",
+                    "measure": "{17A}",
+                    "system": "8",
+                    "position": "2/4",
+                    "comment": "f<sup>3</sup> überschreibt c<sup>3</sup>."
+                },
+                {
+                    "svgGroupId": "g1227",
+                    "measure": "{17A}",
+                    "system": "8",
+                    "position": "2/4–6/8",
+                    "comment": "Drei Achtelnoten durch Streichung der Balkierung aufgelöst und geändert zu Viertelnote und zwei Achtelnoten."
+                },
+                {
+                    "svgGroupId": "g1259",
+                    "measure": "{18A}",
+                    "system": "8",
+                    "position": "",
+                    "comment": "Noten gestrichen."
+                },
+                {
+                    "svgGroupId": "g2",
+                    "measure": "{19A}",
+                    "system": "11",
+                    "position": "",
+                    "comment": "Noten gestrichen."
+                },
+                {
+                    "svgGroupId": "g3",
+                    "measure": "{19B}",
+                    "system": "",
+                    "position": "",
+                    "comment": "Takt zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}16B–18B{{ '}' }} durch Einkreisung getilgt."
+                },
+                {
+                    "svgGroupId": "g956",
+                    "measure": "{19B}",
+                    "system": "11",
+                    "position": "5/8",
+                    "comment": "d<sup>2</sup> überschreibt c<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g1003",
+                    "measure": "{16B–18B}",
+                    "system": "13–14",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1002",
+                    "measure": "{16B–18B}",
+                    "system": "13–14",
+                    "position": "",
+                    "comment": "Takte zusammen mit T. {{ '{' }}16A–18A{{ '}' }} und T. {{ '{' }}19B{{ '}' }} durch Einkreisung getilgt."
+                },
+                {
+                    "svgGroupId": "g1066",
+                    "measure": "16C",
+                    "system": "13",
+                    "position": "4/8",
+                    "comment": "f<sup>1</sup> überschreibt d<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g1079",
+                    "measure": "16C",
+                    "system": "14",
+                    "position": "5–6/8",
+                    "comment": "a–d überschreibt F–D."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4a"
+                    }
+                },
+                {
+                    "svgGroupId": "g42",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g43",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4b"
+                    }
+                },
+                {
+                    "svgGroupId": "g45",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4c"
+                    }
+                },
+                {
+                    "svgGroupId": "g46",
+                    "linkTo": {
+                        "complexId": "m31",
+                        "sheetId": "M_31_Sk4c"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_31_Sk5",
+            "label": "M 31 Sk5",
+            "description": [
+                "<strong>M 31 Sk5</strong> enthält die Reprise des A-Teils zur Studienkomposition für Klavier M 31. Obwohl sämtliche Takte gestrichen sind, entsprechen sie der späteren Tintenniederschrift."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g1068",
+                    "measure": "{20–24}",
+                    "system": "1–2",
+                    "position": "6/8",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1073",
+                    "measure": "{21}",
+                    "system": "2",
+                    "position": "1/4",
+                    "comment": "Viertelnote G gestrichen."
+                },
+                {
+                    "svgGroupId": "g1090",
+                    "measure": "{25–29}",
+                    "system": "4–5",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1081",
+                    "measure": "{25}",
+                    "system": "5",
+                    "position": "1/4",
+                    "comment": "Viertelnote d<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g1086",
+                    "measure": "{27A}",
+                    "system": "4–5",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1094",
+                    "measure": "{27B}",
+                    "system": "5",
+                    "position": "1. Pause",
+                    "comment": "Achtelpause gestrichen."
+                },
+                {
+                    "svgGroupId": "g1115",
+                    "measure": "{28}",
+                    "system": "4",
+                    "position": "1/4",
+                    "comment": "Oberstimmenschicht: Viertelpause überschreibt Achtelpause."
+                },
+                {
+                    "svgGroupId": "g1111",
+                    "measure": "{28}",
+                    "system": "4",
+                    "position": "5–6/8",
+                    "comment": "f<sup>1</sup>/a<sup>1</sup>–d<sup>1</sup>/f<sup>1</sup> überschreibt e<sup>1</sup>/g<sup>1</sup>–c<sup>1</sup>/e<sup>1</sup>."
+                }
+            ]
+        }
+    ]
+}

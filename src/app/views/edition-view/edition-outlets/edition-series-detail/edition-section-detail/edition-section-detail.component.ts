@@ -51,7 +51,11 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
      * @param {EditionService} editionService Instance of the EditionService.
      * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor(private route: ActivatedRoute, private editionService: EditionService, public utils: UtilityService) {
+    constructor(
+        private route: ActivatedRoute,
+        private editionService: EditionService,
+        public utils: UtilityService
+    ) {
         // Intentionally left empty until implemented
     }
 

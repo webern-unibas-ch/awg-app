@@ -44,17 +44,21 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         spyOn(component, 'provideMetaData').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
@@ -132,7 +136,7 @@ describe('SparqlNoResultsComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
             it('... should have been called', () => {
                 expect(component.provideMetaData).toHaveBeenCalled();
             });

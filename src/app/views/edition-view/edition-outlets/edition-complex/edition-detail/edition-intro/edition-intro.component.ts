@@ -131,7 +131,7 @@ export class EditionIntroComponent implements OnInit {
      * @param {string}  fragmentId The given fragment id.
      * @returns {void} Navigates to the edition report.
      */
-    navigateToReportFragment(fragmentId: string) {
+    navigateToReportFragment(fragmentId: string): void {
         if (!fragmentId) {
             fragmentId = '';
         }
@@ -162,24 +162,23 @@ export class EditionIntroComponent implements OnInit {
     /**
      * Public method: selectSvgSheet.
      *
-     * It navigates to the '/edition/complex/{id}/detail'
+     * It navigates to the '/edition/complex/{complexRoute}/sheets/{sheetsId}'
      * route with the given id.
      *
-     * @param {string} id The given svg sheet id.
-     * @returns {void} Navigates to the edition detail.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
+     * @returns {void} Navigates to the given svg sheet id.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
-            id = '';
-        }
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        // Set default id if none is given
+        const complexRoute = complexId ? `/edition/complex/${complexId}/` : this.editionComplex.baseRoute;
+        const sheetRoute = sheetId ?? '';
+
         const navigationExtras: NavigationExtras = {
-            queryParams: { sketch: id },
+            queryParams: { id: sheetRoute },
             queryParamsHandling: '',
         };
 
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_SHEETS.route],
-            navigationExtras
-        );
+        this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
     }
 }

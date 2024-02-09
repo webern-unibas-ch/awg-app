@@ -8,14 +8,14 @@ import { defaultIfEmpty } from 'rxjs/operators';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
-import { EDITION_ASSETS_DATA, EDITION_COMPLEXES, EDITION_ROW_TABLES_DATA } from '@awg-views/edition-view/data';
+import { EDITION_ASSETS_DATA, EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
     EditionComplex,
-    EditionRowTables,
+    EditionRowTablesList,
     EditionSvgSheet,
     EditionSvgSheetList,
     FolioConvolute,
@@ -34,6 +34,7 @@ import {
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 
+import { mockEditionData } from '@testing/mock-data';
 import { EditionDataService } from './edition-data.service';
 
 describe('EditionDataService (DONE)', () => {
@@ -44,7 +45,7 @@ describe('EditionDataService (DONE)', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    let expectedRowTablesData: EditionRowTables[];
+    let expectedRowTablesData: EditionRowTablesList;
 
     const expectedEditionComplex: EditionComplex = EDITION_COMPLEXES.OP12;
     const expectedAssetPathBaseRoute = EDITION_ASSETS_DATA.BASE_ROUTE;
@@ -58,17 +59,18 @@ describe('EditionDataService (DONE)', () => {
         expectedEditionComplex.section.route +
         expectedEditionComplex.complexId.route;
     const expectedAssetPath = expectedAssetPathBaseRoute + expectedComplexRoute;
-    const regexBase = new RegExp(expectedAssetPath);
+    let regexBase = new RegExp(expectedAssetPath);
 
     const files = EDITION_ASSETS_DATA.FILES;
-    const expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
     const expectedFolioConvoluteFilePath = `${expectedAssetPath}/${files.folioConvoluteFile}`;
+    const expectedGraphFilePath = `${expectedAssetPath}/${files.graphFile}`;
+    const expectedIntroFilePath = `${expectedAssetPath}/${files.introFile}`;
+    const expectedRowTablesFilePath = `${expectedAssetPathBaseRoute}/${files.rowTablesFile}`;
     const expectedSheetsFilePath = `${expectedAssetPath}/${files.svgSheetsFile}`;
     const expectedSourceListFilePath = `${expectedAssetPath}/${files.sourceListFile}`;
     const expectedSourceDescriptionFilePath = `${expectedAssetPath}/${files.sourceDescriptionListFile}`;
     const expectedSourceEvaluationFilePath = `${expectedAssetPath}/${files.sourceEvaluationListFile}`;
     const expectedTextcriticsFilePath = `${expectedAssetPath}/${files.textcriticsFile}`;
-    const expectedGraphFilePath = `${expectedAssetPath}/${files.graphFile}`;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -82,7 +84,7 @@ describe('EditionDataService (DONE)', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Test data
-        expectedRowTablesData = EDITION_ROW_TABLES_DATA;
+        expectedRowTablesData = mockEditionData.mockRowTablesData;
 
         // Spies on console logs
         consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
@@ -98,12 +100,12 @@ describe('EditionDataService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(editionDataService).toBeTruthy();
     });
 
-    it('should have empty assetPath', () => {
-        expect((editionDataService as any)._assetPath).toBeFalsy();
+    it('... should have empty assetPath', () => {
+        expectToBe((editionDataService as any)._assetPath, '');
     });
 
     describe('httpTestingController', () => {
@@ -112,8 +114,7 @@ describe('EditionDataService (DONE)', () => {
 
             httpClient.get<Data>('/foo/bar').subscribe({
                 next: data => {
-                    expect(data).toBeTruthy();
-                    expect(data).withContext(`should equal ${testData}`).toEqual(testData);
+                    expectToEqual(data, testData);
                 },
             });
 
@@ -123,14 +124,18 @@ describe('EditionDataService (DONE)', () => {
             });
 
             // Check for GET request
-            expect(call.request.method).withContext(`should be GET`).toBe('GET');
+            expectToBe(call.request.method, 'GET');
 
             // Respond with mocked data
             call.flush(testData);
         }));
     });
 
-    describe('#getEditionSheetsData', () => {
+    describe('#getEditionSheetsData()', () => {
+        it('... should have a method `getEditionSheetsData`', () => {
+            expect(editionDataService.getEditionSheetsData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -143,10 +148,7 @@ describe('EditionDataService (DONE)', () => {
                     },
                 });
 
-                expect((editionDataService as any)._assetPath).toBeTruthy();
-                expect((editionDataService as any)._assetPath)
-                    .withContext(`should be ${expectedAssetPath}`)
-                    .toBe(expectedAssetPath);
+                expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
             }));
 
             it('... should call #getFolioConvoluteData, #getSvgSheetsData, #getTextcriticsListData', waitForAsync(() => {
@@ -194,15 +196,9 @@ describe('EditionDataService (DONE)', () => {
                 });
 
                 expectSpyCall(getJsonDataSpy, 3);
-                expect(getJsonDataSpy.calls.allArgs()[0][0])
-                    .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                    .toBe(expectedFolioConvoluteFilePath);
-                expect(getJsonDataSpy.calls.allArgs()[1][0])
-                    .withContext(`should be ${expectedSheetsFilePath}`)
-                    .toBe(expectedSheetsFilePath);
-                expect(getJsonDataSpy.calls.allArgs()[2][0])
-                    .withContext(`should be ${expectedTextcriticsFilePath}`)
-                    .toBe(expectedTextcriticsFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[0][0], expectedFolioConvoluteFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[1][0], expectedSheetsFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[2][0], expectedTextcriticsFilePath);
             }));
 
             it('... should perform an HTTP GET request to convolute, sheets & textcritics file', waitForAsync(() => {
@@ -227,24 +223,18 @@ describe('EditionDataService (DONE)', () => {
 
                 expectSpyCall(getJsonDataSpy, 3);
 
-                expect(call.length).toBe(3);
-                expect(call[0].request.method).withContext('should be GET').toBe('GET');
-                expect(call[1].request.method).withContext('should be GET').toBe('GET');
-                expect(call[2].request.method).withContext('should be GET').toBe('GET');
+                expectToBe(call.length, 3);
+                expectToBe(call[0].request.method, 'GET');
+                expectToBe(call[1].request.method, 'GET');
+                expectToBe(call[2].request.method, 'GET');
 
-                expect(call[0].request.responseType).withContext('should be json').toBe('json');
-                expect(call[1].request.responseType).withContext('should be json').toBe('json');
-                expect(call[2].request.responseType).withContext('should be json').toBe('json');
+                expectToBe(call[0].request.responseType, 'json');
+                expectToBe(call[1].request.responseType, 'json');
+                expectToBe(call[2].request.responseType, 'json');
 
-                expect(call[0].request.url)
-                    .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                    .toBe(expectedFolioConvoluteFilePath);
-                expect(call[1].request.url)
-                    .withContext(`should be ${expectedSheetsFilePath}`)
-                    .toBe(expectedSheetsFilePath);
-                expect(call[2].request.url)
-                    .withContext(`should be ${expectedTextcriticsFilePath}`)
-                    .toBe(expectedTextcriticsFilePath);
+                expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                expectToBe(call[1].request.url, expectedSheetsFilePath);
+                expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
@@ -296,37 +286,18 @@ describe('EditionDataService (DONE)', () => {
                             const resEsl = res[1] as EditionSvgSheetList;
                             const resTcl = res[2] as TextcriticsList;
 
-                            expect(res).toBeTruthy();
-                            expect(res.length as number)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length as number, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(resFcl)
-                                .withContext(`should equal ${expectedResult[0]}`)
-                                .toEqual(expectedResult[0] as FolioConvoluteList);
-                            expect(resEsl)
-                                .withContext(`should equal ${expectedResult[1]}`)
-                                .toEqual(expectedResult[1] as EditionSvgSheetList);
-                            expect(resTcl)
-                                .withContext(`should equal ${expectedResult[2]}`)
-                                .toEqual(expectedResult[2] as TextcriticsList);
+                            expectToEqual(resFcl, expectedResult[0] as FolioConvoluteList);
+                            expectToEqual(resEsl, expectedResult[1] as EditionSvgSheetList);
+                            expectToEqual(resTcl, expectedResult[2] as TextcriticsList);
 
-                            expect(resFcl.convolutes[0].convoluteId)
-                                .withContext('should be test-convolute-id')
-                                .toBe('test-convolute-id');
-                            expect(resEsl.sheets.workEditions[0].id)
-                                .withContext('should be test-svg-work-sheets-id')
-                                .toBe('test-svg-work-sheets-id');
-                            expect(resEsl.sheets.textEditions[0].id)
-                                .withContext('should be test-svg-text-sheets-id')
-                                .toBe('test-svg-text-sheets-id');
-                            expect(resEsl.sheets.sketchEditions[0].id)
-                                .withContext('should be test-svg-sketch-sheets-id')
-                                .toBe('test-svg-sketch-sheets-id');
-                            expect(resTcl.textcritics[0].id)
-                                .withContext('should be test-textcritics-id')
-                                .toBe('test-textcritics-id');
+                            expectToBe(resFcl.convolutes[0].convoluteId, 'test-convolute-id');
+                            expectToBe(resEsl.sheets.workEditions[0].id, 'test-svg-work-sheets-id');
+                            expectToBe(resEsl.sheets.textEditions[0].id, 'test-svg-text-sheets-id');
+                            expectToBe(resEsl.sheets.sketchEditions[0].id, 'test-svg-sketch-sheets-id');
+                            expectToBe(resTcl.textcritics[0].id, 'test-textcritics-id');
                         },
                         error: () => {
                             fail('should not call error');
@@ -358,21 +329,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: res => {
-                            expect(res).toBeTruthy();
-                            expect(res.length as number)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length as number, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0])
-                                .withContext(`should equal ${expectedResult[0]}`)
-                                .toEqual(expectedResult[0] as FolioConvoluteList);
-                            expect(res[1])
-                                .withContext(`should equal ${expectedResult[1]}`)
-                                .toEqual(expectedResult[1] as EditionSvgSheetList);
-                            expect(res[2])
-                                .withContext(`should equal ${expectedResult[2]}`)
-                                .toEqual(expectedResult[2] as TextcriticsList);
+                            expectToEqual(res[0], expectedResult[0] as FolioConvoluteList);
+                            expectToEqual(res[1], expectedResult[1] as EditionSvgSheetList);
+                            expectToEqual(res[2], expectedResult[2] as TextcriticsList);
                         },
                         error: () => {
                             fail('should not call error');
@@ -392,15 +354,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -413,15 +372,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(
@@ -438,13 +391,16 @@ describe('EditionDataService (DONE)', () => {
                     );
 
                     expectSpyCall(consoleSpy, 3);
-                    expect(consoleSpy.calls.allArgs()[0][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[0][0],
                         `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_FOLIOCONVOLUTELIST`
                     );
-                    expect(consoleSpy.calls.allArgs()[1][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[1][0],
                         `_getJsonData failed: Http failure response for ${call[1].request.url}: 400 ERROR_LOADING_EDITIONSVGSHEETLIST`
                     );
-                    expect(consoleSpy.calls.allArgs()[2][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[2][0],
                         `_getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_TEXTCRITICSLIST`
                     );
 
@@ -458,15 +414,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -479,15 +432,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(
@@ -516,15 +463,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext(`should equal ${expectedResult[0]}`).toEqual(expectedResult[0]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], expectedResult[0]);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -537,15 +481,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
@@ -571,15 +509,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext(`should equal ${expectedResult[1]}`).toEqual(expectedResult[1]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], expectedResult[1]);
+                            expectToEqual(res[2], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -592,15 +527,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(
@@ -626,15 +555,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext(`should equal ${expectedResult[2]}`).toEqual(expectedResult[2]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], expectedResult[2]);
                         },
                         error: () => {
                             fail('should not call error');
@@ -647,15 +573,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(
@@ -681,15 +601,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext(`should equal ${expectedResult[0]}`).toEqual(expectedResult[0]);
-                            expect(res[1]).withContext(`should equal ${expectedResult[1]}`).toEqual(expectedResult[1]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], expectedResult[0]);
+                            expectToEqual(res[1], expectedResult[1]);
+                            expectToEqual(res[2], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -702,15 +619,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
@@ -733,15 +644,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext(`should equal ${expectedResult[0]}`).toEqual(expectedResult[0]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext(`should equal ${expectedResult[2]}`).toEqual(expectedResult[2]);
+                            expectToEqual(res[0], expectedResult[0]);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], expectedResult[2]);
                         },
                         error: () => {
                             fail('should not call error');
@@ -754,15 +662,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
@@ -785,15 +687,12 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionSheetsData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext(`should equal ${expectedResult[1]}`).toEqual(expectedResult[1]);
-                            expect(res[2]).withContext(`should equal ${expectedResult[2]}`).toEqual(expectedResult[2]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], expectedResult[1]);
+                            expectToEqual(res[2], expectedResult[2]);
                         },
                         error: () => {
                             fail('should not call error');
@@ -806,15 +705,9 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedFolioConvoluteFilePath}`)
-                        .toBe(expectedFolioConvoluteFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSheetsFilePath}`)
-                        .toBe(expectedSheetsFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedFolioConvoluteFilePath);
+                    expectToBe(call[1].request.url, expectedSheetsFilePath);
+                    expectToBe(call[2].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(
@@ -834,7 +727,11 @@ describe('EditionDataService (DONE)', () => {
         });
     });
 
-    describe('#getEditionReportData', () => {
+    describe('#getEditionReportData()', () => {
+        it('... should have a method `getEditionReportData`', () => {
+            expect(editionDataService.getEditionReportData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -847,10 +744,7 @@ describe('EditionDataService (DONE)', () => {
                     },
                 });
 
-                expect((editionDataService as any)._assetPath).toBeTruthy();
-                expect((editionDataService as any)._assetPath)
-                    .withContext(`should be ${expectedAssetPath}`)
-                    .toBe(expectedAssetPath);
+                expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
             }));
 
             it('... should call #getSourceListData, #getSourceDescriptionListData, #getSourceEvaluationListData, #getTextcriticsListData', waitForAsync(() => {
@@ -903,18 +797,10 @@ describe('EditionDataService (DONE)', () => {
                 });
 
                 expectSpyCall(getJsonDataSpy, 4);
-                expect(getJsonDataSpy.calls.allArgs()[0][0])
-                    .withContext(`should be ${expectedSourceListFilePath}`)
-                    .toBe(expectedSourceListFilePath);
-                expect(getJsonDataSpy.calls.allArgs()[1][0])
-                    .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                    .toBe(expectedSourceDescriptionFilePath);
-                expect(getJsonDataSpy.calls.allArgs()[2][0])
-                    .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                    .toBe(expectedSourceEvaluationFilePath);
-                expect(getJsonDataSpy.calls.allArgs()[3][0])
-                    .withContext(`should be ${expectedTextcriticsFilePath}`)
-                    .toBe(expectedTextcriticsFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[0][0], expectedSourceListFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[1][0], expectedSourceDescriptionFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[2][0], expectedSourceEvaluationFilePath);
+                expectToBe(getJsonDataSpy.calls.allArgs()[3][0], expectedTextcriticsFilePath);
             }));
 
             it('... should perform an HTTP GET request to sourceList, sourceDescription, sourceEvaluation & textcritics file', waitForAsync(() => {
@@ -939,29 +825,21 @@ describe('EditionDataService (DONE)', () => {
 
                 expectSpyCall(getJsonDataSpy, 4);
 
-                expect(call.length).toBe(4);
-                expect(call[0].request.method).withContext(`should be GET`).toBe('GET');
-                expect(call[1].request.method).withContext(`should be GET`).toBe('GET');
-                expect(call[2].request.method).withContext(`should be GET`).toBe('GET');
-                expect(call[3].request.method).withContext(`should be GET`).toBe('GET');
+                expectToBe(call.length, 4);
+                expectToBe(call[0].request.method, 'GET');
+                expectToBe(call[1].request.method, 'GET');
+                expectToBe(call[2].request.method, 'GET');
+                expectToBe(call[3].request.method, 'GET');
 
-                expect(call[0].request.responseType).withContext(`should be json`).toBe('json');
-                expect(call[1].request.responseType).withContext(`should be json`).toBe('json');
-                expect(call[2].request.responseType).withContext(`should be json`).toBe('json');
-                expect(call[3].request.responseType).withContext(`should be json`).toBe('json');
+                expectToBe(call[0].request.responseType, 'json');
+                expectToBe(call[1].request.responseType, 'json');
+                expectToBe(call[2].request.responseType, 'json');
+                expectToBe(call[3].request.responseType, 'json');
 
-                expect(call[0].request.url)
-                    .withContext(`should be ${expectedSourceListFilePath}`)
-                    .toBe(expectedSourceListFilePath);
-                expect(call[1].request.url)
-                    .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                    .toBe(expectedSourceDescriptionFilePath);
-                expect(call[2].request.url)
-                    .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                    .toBe(expectedSourceEvaluationFilePath);
-                expect(call[3].request.url)
-                    .withContext(`should be ${expectedTextcriticsFilePath}`)
-                    .toBe(expectedTextcriticsFilePath);
+                expectToBe(call[0].request.url, expectedSourceListFilePath);
+                expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
@@ -1019,37 +897,18 @@ describe('EditionDataService (DONE)', () => {
                             const resSel = res[2] as SourceEvaluationList;
                             const resTcl = res[3] as TextcriticsList;
 
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(resSl)
-                                .withContext(`should equal ${expectedResult[0]}`)
-                                .toEqual(expectedResult[0] as SourceList);
-                            expect(resSdl)
-                                .withContext(`should equal ${expectedResult[1]}`)
-                                .toEqual(expectedResult[1] as SourceDescriptionList);
-                            expect(resSel)
-                                .withContext(`should equal ${expectedResult[2]}`)
-                                .toEqual(expectedResult[2] as SourceEvaluationList);
-                            expect(resTcl)
-                                .withContext(`should equal ${expectedResult[3]}`)
-                                .toEqual(expectedResult[3] as TextcriticsList);
+                            expectToEqual(resSl, expectedResult[0] as SourceList);
+                            expectToEqual(resSdl, expectedResult[1] as SourceDescriptionList);
+                            expectToEqual(resSel, expectedResult[2] as SourceEvaluationList);
+                            expectToEqual(resTcl, expectedResult[3] as TextcriticsList);
 
-                            expect(resSl.sources[0].siglum)
-                                .withContext('should be test-sources-id')
-                                .toBe('test-sources-id');
-                            expect(resSdl.sources[0].id)
-                                .withContext('should be test-source-description-id')
-                                .toBe('test-source-description-id');
-                            expect(resSel.sources[0].id)
-                                .withContext('should be test-source-evaluation-id')
-                                .toBe('test-source-evaluation-id');
-                            expect(resTcl.textcritics[0].id)
-                                .withContext('should be test-textcritics-id')
-                                .toBe('test-textcritics-id');
+                            expectToBe(resSl.sources[0].siglum, 'test-sources-id');
+                            expectToBe(resSdl.sources[0].id, 'test-source-description-id');
+                            expectToBe(resSel.sources[0].id, 'test-source-evaluation-id');
+                            expectToBe(resTcl.textcritics[0].id, 'test-textcritics-id');
                         },
                         error: () => {
                             fail('should not call error');
@@ -1091,11 +950,8 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: res => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1116,16 +972,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
-                            expect(res[3]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
+                            expectToEqual(res[3], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1138,18 +991,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
@@ -1168,16 +1013,20 @@ describe('EditionDataService (DONE)', () => {
 
                     // Check for console output
                     expectSpyCall(consoleSpy, 4);
-                    expect(consoleSpy.calls.allArgs()[0][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[0][0],
                         `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_SOURCELIST`
                     );
-                    expect(consoleSpy.calls.allArgs()[1][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[1][0],
                         `_getJsonData failed: Http failure response for ${call[1].request.url}: 400 ERROR_LOADING_SOURCELISTDESCRIPTION`
                     );
-                    expect(consoleSpy.calls.allArgs()[2][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[2][0],
                         `_getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_SOURCELISTEVALUATION`
                     );
-                    expect(consoleSpy.calls.allArgs()[3][0]).toBe(
+                    expectToBe(
+                        consoleSpy.calls.allArgs()[3][0],
                         `_getJsonData failed: Http failure response for ${call[3].request.url}: 400 ERROR_LOADING_TEXTCRITICS`
                     );
 
@@ -1191,16 +1040,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
-                            expect(res[3]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
+                            expectToEqual(res[3], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1213,18 +1059,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
@@ -1254,16 +1092,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext(`should equal ${expectedResult[0]}`).toEqual(expectedResult[0]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
-                            expect(res[3]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], expectedResult[0]);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
+                            expectToEqual(res[3], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1276,18 +1111,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
@@ -1317,16 +1144,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext(`should equal ${expectedResult[1]}`).toEqual(expectedResult[1]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
-                            expect(res[3]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], expectedResult[1]);
+                            expectToEqual(res[2], []);
+                            expectToEqual(res[3], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1339,18 +1163,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
@@ -1377,16 +1193,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext(`should equal ${expectedResult[2]}`).toEqual(expectedResult[2]);
-                            expect(res[3]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], expectedResult[2]);
+                            expectToEqual(res[3], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1399,18 +1212,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
@@ -1437,16 +1242,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
-                            expect(res[3]).withContext(`should equal ${expectedResult[3]}`).toEqual(expectedResult[3]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
+                            expectToEqual(res[3], expectedResult[3]);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1459,18 +1261,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
@@ -1502,16 +1296,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext(`should equal ${expectedResult[0]}`).toEqual(expectedResult[0]);
-                            expect(res[1]).withContext(`should equal ${expectedResult[1]}`).toEqual(expectedResult[1]);
-                            expect(res[2]).withContext(`should equal ${expectedResult[2]}`).toEqual(expectedResult[2]);
-                            expect(res[3]).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res[0], expectedResult[0]);
+                            expectToEqual(res[1], expectedResult[1]);
+                            expectToEqual(res[2], expectedResult[2]);
+                            expectToEqual(res[3], []);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1524,18 +1315,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
@@ -1559,16 +1342,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext(`should equal ${expectedResult[0]}`).toEqual(expectedResult[0]);
-                            expect(res[1]).withContext('should equal empty array').toEqual([]);
-                            expect(res[2]).withContext('should equal empty array').toEqual([]);
-                            expect(res[3]).withContext(`should equal ${expectedResult[3]}`).toEqual(expectedResult[3]);
+                            expectToEqual(res[0], expectedResult[0]);
+                            expectToEqual(res[1], []);
+                            expectToEqual(res[2], []);
+                            expectToEqual(res[3], expectedResult[3]);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1581,18 +1361,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(expectedResult[0]);
@@ -1624,16 +1396,13 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionReportData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res.length)
-                                .withContext(`should be ${expectedResult.length}`)
-                                .toBe(expectedResult.length);
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToBe(res.length, expectedResult.length);
+                            expectToEqual(res, expectedResult);
 
-                            expect(res[0]).withContext('should equal empty array').toEqual([]);
-                            expect(res[1]).withContext(`should equal ${expectedResult[1]}`).toEqual(expectedResult[1]);
-                            expect(res[2]).withContext(`should equal ${expectedResult[2]}`).toEqual(expectedResult[2]);
-                            expect(res[3]).withContext(`should equal ${expectedResult[3]}`).toEqual(expectedResult[3]);
+                            expectToEqual(res[0], []);
+                            expectToEqual(res[1], expectedResult[1]);
+                            expectToEqual(res[2], expectedResult[2]);
+                            expectToEqual(res[3], expectedResult[3]);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1646,18 +1415,10 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedSourceListFilePath}`)
-                        .toBe(expectedSourceListFilePath);
-                    expect(call[1].request.url)
-                        .withContext(`should be ${expectedSourceDescriptionFilePath}`)
-                        .toBe(expectedSourceDescriptionFilePath);
-                    expect(call[2].request.url)
-                        .withContext(`should be ${expectedSourceEvaluationFilePath}`)
-                        .toBe(expectedSourceEvaluationFilePath);
-                    expect(call[3].request.url)
-                        .withContext(`should be ${expectedTextcriticsFilePath}`)
-                        .toBe(expectedTextcriticsFilePath);
+                    expectToBe(call[0].request.url, expectedSourceListFilePath);
+                    expectToBe(call[1].request.url, expectedSourceDescriptionFilePath);
+                    expectToBe(call[2].request.url, expectedSourceEvaluationFilePath);
+                    expectToBe(call[3].request.url, expectedTextcriticsFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' }));
@@ -1675,7 +1436,11 @@ describe('EditionDataService (DONE)', () => {
         });
     });
 
-    describe('#getEditionGraphData', () => {
+    describe('#getEditionGraphData()', () => {
+        it('... should have a method `getEditionGraphData`', () => {
+            expect(editionDataService.getEditionGraphData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -1688,10 +1453,7 @@ describe('EditionDataService (DONE)', () => {
                     },
                 });
 
-                expect((editionDataService as any)._assetPath).toBeTruthy();
-                expect((editionDataService as any)._assetPath)
-                    .withContext(`should be ${expectedAssetPath}`)
-                    .toBe(expectedAssetPath);
+                expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
             }));
 
             it('... should call #getGraphData', waitForAsync(() => {
@@ -1752,12 +1514,10 @@ describe('EditionDataService (DONE)', () => {
 
                 expectSpyCall(getJsonDataSpy, 1, expectedGraphFilePath);
 
-                expect(call.length).withContext(`should be 1`).toBe(1);
-                expect(call[0].request.method).withContext(`should be GET`).toBe('GET');
-                expect(call[0].request.responseType).withContext(`should be json`).toBe('json');
-                expect(call[0].request.url)
-                    .withContext(`should be ${expectedGraphFilePath}`)
-                    .toBe(expectedGraphFilePath);
+                expectToBe(call.length, 1);
+                expectToBe(call[0].request.method, 'GET');
+                expectToBe(call[0].request.responseType, 'json');
+                expectToBe(call[0].request.url, expectedGraphFilePath);
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
@@ -1782,10 +1542,8 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: res => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-
-                            expect(res.graph[0].id).withContext('should be test-graph-id').toBe('test-graph-id');
+                            expectToEqual(res, expectedResult);
+                            expectToBe(res.graph[0].id, 'test-graph-id');
                         },
                         error: () => {
                             fail('should not call error');
@@ -1806,8 +1564,7 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: res => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1825,8 +1582,7 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1839,9 +1595,7 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedGraphFilePath}`)
-                        .toBe(expectedGraphFilePath);
+                    expectToBe(call[0].request.url, expectedGraphFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' }));
@@ -1863,8 +1617,7 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionGraphData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -1877,9 +1630,7 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedGraphFilePath}`)
-                        .toBe(expectedGraphFilePath);
+                    expectToBe(call[0].request.url, expectedGraphFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' }));
@@ -1895,6 +1646,10 @@ describe('EditionDataService (DONE)', () => {
     });
 
     describe('#getEditionIntroData', () => {
+        it('... should have a method `getEditionIntroData`', () => {
+            expect(editionDataService.getEditionIntroData).toBeDefined();
+        });
+
         describe('request', () => {
             it('... should set assetPath', waitForAsync(() => {
                 // Call service function
@@ -1907,10 +1662,7 @@ describe('EditionDataService (DONE)', () => {
                     },
                 });
 
-                expect((editionDataService as any)._assetPath).toBeTruthy();
-                expect((editionDataService as any)._assetPath)
-                    .withContext(`should be ${expectedAssetPath}`)
-                    .toBe(expectedAssetPath);
+                expectToBe((editionDataService as any)._assetPath, expectedAssetPath);
             }));
 
             it('... should call #getIntroData', waitForAsync(() => {
@@ -1949,7 +1701,7 @@ describe('EditionDataService (DONE)', () => {
                 expectSpyCall(getJsonDataSpy, 1, expectedIntroFilePath);
             }));
 
-            it('... should perform an HTTP GET request to graph file', waitForAsync(() => {
+            it('... should perform an HTTP GET request to intro file', waitForAsync(() => {
                 // Set spy on private method
                 const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
@@ -1971,12 +1723,10 @@ describe('EditionDataService (DONE)', () => {
 
                 expectSpyCall(getJsonDataSpy, 1, expectedIntroFilePath);
 
-                expect(call.length).withContext(`should be 1`).toBe(1);
-                expect(call[0].request.method).withContext(`should be GET`).toBe('GET');
-                expect(call[0].request.responseType).withContext(`should be json`).toBe('json');
-                expect(call[0].request.url)
-                    .withContext(`should be ${expectedIntroFilePath}`)
-                    .toBe(expectedIntroFilePath);
+                expectToBe(call.length, 1);
+                expectToBe(call[0].request.method, 'GET');
+                expectToBe(call[0].request.responseType, 'json');
+                expectToBe(call[0].request.url, expectedIntroFilePath);
 
                 // Assert that there are no more pending requests
                 httpTestingController.verify();
@@ -2001,10 +1751,8 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionIntroData(expectedEditionComplex).subscribe({
                         next: res => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
-
-                            expect(res.intro[0].id).withContext('should be test-intro-id').toBe('test-intro-id');
+                            expectToEqual(res, expectedResult);
+                            expectToBe(res.intro[0].id, 'test-intro-id');
                         },
                         error: () => {
                             fail('should not call error');
@@ -2014,7 +1762,7 @@ describe('EditionDataService (DONE)', () => {
                     expectSpyCall(getIntroDataSpy, 1);
                 }));
 
-                it('... should return an empty GraphList Observable per default', waitForAsync(() => {
+                it('... should return an empty IntroList Observable per default', waitForAsync(() => {
                     const expectedResult = new IntroList();
 
                     // Set spy on private method
@@ -2025,8 +1773,7 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionIntroData(expectedEditionComplex).subscribe({
                         next: res => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -2044,8 +1791,7 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionIntroData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext(`should equal ${expectedResult}`).toEqual(expectedResult);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -2058,9 +1804,7 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedIntroFilePath}`)
-                        .toBe(expectedIntroFilePath);
+                    expectToBe(call[0].request.url, expectedIntroFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' }));
@@ -2082,8 +1826,7 @@ describe('EditionDataService (DONE)', () => {
                     // Call service function (success)
                     editionDataService.getEditionIntroData(expectedEditionComplex).subscribe({
                         next: (res: any) => {
-                            expect(res).toBeTruthy();
-                            expect(res).withContext('should equal empty array').toEqual([]);
+                            expectToEqual(res, expectedResult);
                         },
                         error: () => {
                             fail('should not call error');
@@ -2096,9 +1839,7 @@ describe('EditionDataService (DONE)', () => {
                             req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
                     );
 
-                    expect(call[0].request.url)
-                        .withContext(`should be ${expectedIntroFilePath}`)
-                        .toBe(expectedIntroFilePath);
+                    expectToBe(call[0].request.url, expectedIntroFilePath);
 
                     // Resolve request with mocked error
                     call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' }));
@@ -2113,12 +1854,216 @@ describe('EditionDataService (DONE)', () => {
         });
     });
 
-    describe('#getRowTables', () => {
-        it('... should return EDITION_ROW_TABLES_DATA', () => {
-            // Call service function
-            expect(editionDataService.getRowTables())
-                .withContext(`should be ${expectedRowTablesData}`)
-                .toBe(expectedRowTablesData);
+    describe('#getRowTablesData()', () => {
+        it('... should have a method `getRowTablesData`', () => {
+            expect(editionDataService.getEditionRowTablesData).toBeDefined();
+        });
+
+        describe('request', () => {
+            it('... should set assetPath', waitForAsync(() => {
+                // Call service function
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: res => {
+                        expect(res).toBeTruthy();
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                expectToBe((editionDataService as any)._assetPath, expectedAssetPathBaseRoute);
+            }));
+
+            it('... should call #_getRowTablesData', waitForAsync(() => {
+                // Set spy on private method
+                const getRowTablesDataSpy: Spy = spyOn(
+                    editionDataService as any,
+                    '_getRowTablesData'
+                ).and.callThrough();
+
+                // Call service function
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: res => {
+                        expect(res).toBeTruthy();
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                expectSpyCall(getRowTablesDataSpy, 1);
+            }));
+
+            it('... should trigger #getJsonData with correct url', waitForAsync(() => {
+                // Set spy on private method
+                const getRowTablesDataSpy: Spy = spyOn(
+                    editionDataService as any,
+                    '_getRowTablesData'
+                ).and.callThrough();
+                const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
+
+                // Call service function
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: res => {
+                        expect(res).toBeTruthy();
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                expectSpyCall(getRowTablesDataSpy, 1);
+                expectSpyCall(getJsonDataSpy, 1, expectedRowTablesFilePath);
+            }));
+
+            it('... should perform an HTTP GET request to rowTables file', waitForAsync(() => {
+                // Set spy on private method
+                const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
+
+                // Call service function
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: res => {
+                        expectToEqual(res, new EditionRowTablesList());
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                // Expect one request to every file with given settings
+                regexBase = new RegExp(expectedAssetPathBaseRoute);
+                const call = httpTestingController.match(
+                    (req: HttpRequest<any>) =>
+                        req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                );
+
+                expectSpyCall(getJsonDataSpy, 1, expectedRowTablesFilePath);
+
+                expectToBe(call.length, 1);
+                expectToBe(call[0].request.method, 'GET');
+                expectToBe(call[0].request.responseType, 'json');
+                expectToBe(call[0].request.url, expectedRowTablesFilePath);
+
+                // Assert that there are no more pending requests
+                httpTestingController.verify();
+            }));
+        });
+
+        describe('success', () => {
+            it('... should return an Observable(EditionRowTablesList)', waitForAsync(() => {
+                const rt = expectedRowTablesData;
+
+                const expectedResult = rt;
+
+                // Set spy on private method
+                const getRowTablesDataSpy: Spy = spyOn(editionDataService as any, '_getRowTablesData').and.returnValue(
+                    observableOf(expectedResult)
+                );
+
+                // Call service function (success)
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: res => {
+                        expectToEqual(res, expectedResult);
+                        expectToBe(res.rowTables[0].id, 'SkRT');
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                expectSpyCall(getRowTablesDataSpy, 1);
+            }));
+
+            it('... should return an empty EditionRowTablesList Observable per default', waitForAsync(() => {
+                const expectedResult = new EditionRowTablesList();
+
+                // Set spy on private method
+                const getRowTablesDataSpy: Spy = spyOn(editionDataService as any, '_getRowTablesData').and.returnValue(
+                    EMPTY.pipe(defaultIfEmpty(expectedResult))
+                );
+
+                // Call service function (success)
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: res => {
+                        expectToEqual(res, expectedResult);
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                expectSpyCall(getRowTablesDataSpy, 1);
+            }));
+        });
+
+        describe('fail', () => {
+            it('... should log an error for every failed request', waitForAsync(() => {
+                const expectedResult = [];
+
+                // Call service function (success)
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: (res: any) => {
+                        expectToEqual(res, expectedResult);
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                // Expect one request to to every file with given settings
+                regexBase = new RegExp(expectedAssetPathBaseRoute);
+                const call = httpTestingController.match(
+                    (req: HttpRequest<any>) =>
+                        req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                );
+
+                expectToBe(call[0].request.url, expectedRowTablesFilePath);
+
+                // Resolve request with mocked error
+                call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_ROWTABLESLIST' }));
+
+                // Check for console output
+                expectSpyCall(
+                    consoleSpy,
+                    1,
+                    `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_ROWTABLESLIST`
+                );
+
+                // Assert that there are no more pending requests
+                httpTestingController.verify();
+            }));
+
+            it('... should return [] if request failed', waitForAsync(() => {
+                const expectedResult = [];
+
+                // Call service function (success)
+                editionDataService.getEditionRowTablesData().subscribe({
+                    next: (res: any) => {
+                        expectToEqual(res, expectedResult);
+                    },
+                    error: () => {
+                        fail('should not call error');
+                    },
+                });
+
+                // Expect one request to to every file with given settings
+                regexBase = new RegExp(expectedAssetPathBaseRoute);
+                const call = httpTestingController.match(
+                    (req: HttpRequest<any>) =>
+                        req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                );
+
+                expectToBe(call[0].request.url, expectedRowTablesFilePath);
+
+                // Resolve request with mocked error
+                call[0].flush(null, new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_ROWTABLESLIST' }));
+
+                // Check for console output
+                expectSpyCall(consoleSpy, 1);
+
+                // Assert that there are no more pending requests
+                httpTestingController.verify();
+            }));
         });
     });
 });

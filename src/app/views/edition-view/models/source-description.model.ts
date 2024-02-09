@@ -36,12 +36,17 @@ export class SourceDescriptionSystem {
     system?: string;
 
     /**
+     * The system description (optional).
+     */
+    systemDescription?: string;
+
+    /**
      * The measure label (optional).
      */
     measure?: string;
 
     /**
-     * The measure link (optional).
+     * The link to a certain measure range of an svg sheet (optional).
      */
     linkTo?: string;
 
@@ -96,7 +101,7 @@ export class SourceDescriptionContent {
     /**
      * The content item link (optional).
      */
-    itemLinkTo?: string;
+    itemLinkTo?: { complexId?: string; sheetId?: string };
 
     /**
      * The content item description (optional).

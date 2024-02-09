@@ -38,12 +38,12 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
+        it('... should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
             expect(component.pageNotFoundTitle).toBeTruthy();
             expect(component.pageNotFoundTitle)
                 .withContext(`should be ${expectedPageNotFoundTitle}`)
@@ -55,7 +55,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 .toBe(expectedPageNotFoundSubTitle);
         });
 
-        it('should have correct values from getters', () => {
+        it('... should have correct values from getters', () => {
             expect(component.pageNotFoundImgPath).toBeTruthy();
             expect(component.pageNotFoundImgPath)
                 .withContext(`should be ${expectedPageNotFoundImgPath}`)
@@ -189,8 +189,11 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length).withContext('should have 1 routerLink').toBe(1);
+            });
+
+            it('... can get correct linkParams from template', () => {
                 expect(routerLinks[0].linkParams).withContext(`should equal ['/home']`).toEqual(['/home']);
             });
 

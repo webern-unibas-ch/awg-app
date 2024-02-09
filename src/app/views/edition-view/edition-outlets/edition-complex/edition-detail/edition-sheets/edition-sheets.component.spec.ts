@@ -1,40 +1,35 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Component, Input } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';
+import Spy = jasmine.Spy;
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { expectSpyCall, expectToEqual, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
+import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
 import {
+    EditionComplex,
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    Folio,
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
+    Textcritics,
     TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
+import { mockEditionData } from '@testing/mock-data';
+import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 import { EditionSheetsComponent } from './edition-sheets.component';
-
-@Component({ selector: 'awg-edition-convolute', template: '' })
-class EditionConvoluteStubComponent {
-    @Input()
-    folioConvoluteData: FolioConvoluteList;
-    @Input()
-    selectedConvolute: FolioConvolute;
-    @Input()
-    selectedSvgSheet: EditionSvgSheet;
-
-    // TODO: add outputs
-}
 
 @Component({ selector: 'awg-edition-accolade', template: '' })
 class EditionAccoladeStubComponent {
@@ -45,48 +40,92 @@ class EditionAccoladeStubComponent {
     @Input()
     selectedTextcriticalComments: TextcriticalComment[];
     @Input()
-    selectedOverlay: EditionSvgOverlay;
+    selectedTextcritics: Textcritics;
     @Input()
     showTkA: boolean;
+    @Output()
+    browseSvgSheetRequest: EventEmitter<number> = new EventEmitter();
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectLinkBoxRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectOverlaysRequest: EventEmitter<EditionSvgOverlay[]> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
+}
 
-    // TODO: add outputs
+@Component({ selector: 'awg-edition-convolute', template: '' })
+class EditionConvoluteStubComponent {
+    @Input()
+    selectedConvolute: FolioConvolute;
+    @Input()
+    selectedSvgSheet: EditionSvgSheet;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
 describe('EditionSheetsComponent', () => {
     let component: EditionSheetsComponent;
     let fixture: ComponentFixture<EditionSheetsComponent>;
+    let compDe: DebugElement;
 
-    let getEditionSheetsDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
-    let getTextcriticsListSpy;
-    let getEditionComplexSpy;
+    let mockRouter;
+    let mockActivatedRoute: ActivatedRouteStub;
+    let expectedRouteUrl: UrlSegmentStub[] = [];
+    const expectedPath = 'sheets';
+
+    let mockEditionDataService: Partial<EditionDataService>;
+    let mockEditionService: Partial<EditionService>;
+
+    let editionDataServiceGetEditionSheetsDataSpy: Spy;
+    let getEditionSheetsDataSpy: Spy;
+    let getEditionComplexSpy: Spy;
+    let navigationSpy: Spy;
+    let navigateToReportFragmentSpy: Spy;
+
+    let expectedEditionComplex: EditionComplex;
+    let expectedFolioConvoluteData: FolioConvoluteList;
+    let expectedSvgSheetsData: EditionSvgSheetList;
+    let expectedTextcriticsData: TextcriticsList;
+    let expectedEditionComplexBaseRoute: string;
+    let expectedFragment: string;
+    const expectedEditionRouteConstants: typeof EDITION_ROUTE_CONSTANTS = EDITION_ROUTE_CONSTANTS;
 
     beforeEach(waitForAsync(() => {
-        // Create a fake service object with a `getEditionSheetsData()` spy
-        const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionSheetsData']);
-        // Make the spies return a synchronous Observable with the test data
-        getEditionSheetsDataSpy = mockEditionDataService.getEditionSheetsData.and.returnValue(observableOf()); // TODO: provide real test data
-
-        const expectedTextcriticalComments = []; // TODO: provide real test data
-        // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', [
-            'getTextcriticalComments',
-            'getEditionComplex',
-        ]);
-        // Make the spies return a synchronous Observable with the test data
-        getTextcriticsListSpy =
-            mockEditionService.getTextcriticalComments.and.returnValue(expectedTextcriticalComments);
-        getEditionComplexSpy = mockEditionService.getEditionComplex.and.returnValue(
-            observableOf(EDITION_COMPLEXES.OP12)
-        );
-        /*
-        MockEditionService = {
-            // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
-
+        // Mock router with spy object
+        // Router spy object
+        mockRouter = {
+            url: '/test-url',
+            events: observableOf(
+                new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')
+            ),
+            navigate: jasmine.createSpy('navigate'),
         };
-    */
+
+        // Mocked activated route
+        // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
+        expectedRouteUrl = [{ path: expectedPath }];
+
+        mockActivatedRoute = new ActivatedRouteStub();
+        mockActivatedRoute.testUrl = expectedRouteUrl;
+
+        // Mock services
+        mockEditionDataService = {
+            getEditionSheetsData: (
+                editionComplex: EditionComplex
+            ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> => observableOf([]),
+        };
+        mockEditionService = {
+            getEditionComplex: (): Observable<EditionComplex> => observableOf(),
+        };
 
         TestBed.configureTestingModule({
-            imports: [NgbModalModule, RouterTestingModule],
+            imports: [NgbModalModule],
             declarations: [
                 CompileHtmlComponent,
                 EditionSheetsComponent,
@@ -97,6 +136,11 @@ describe('EditionSheetsComponent', () => {
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionService, useValue: mockEditionService },
+                { provide: Router, useValue: mockRouter },
+                {
+                    provide: ActivatedRoute,
+                    useValue: mockActivatedRoute,
+                },
             ],
         }).compileComponents();
     }));
@@ -104,10 +148,153 @@ describe('EditionSheetsComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSheetsComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
+        compDe = fixture.debugElement;
+
+        // Test data
+        expectedEditionComplex = EDITION_COMPLEXES.OP12;
+        expectedEditionComplexBaseRoute = '/edition/complex/op12/';
+        expectedFragment = 'source_A';
+
+        expectedFolioConvoluteData = mockEditionData.mockFolioConvoluteData;
+        expectedSvgSheetsData = mockEditionData.mockSvgSheetList;
+        expectedTextcriticsData = mockEditionData.mockTextcriticsData;
+
+        // Spies on service functions
+        // Spies on service functions
+        editionDataServiceGetEditionSheetsDataSpy = spyOn(
+            mockEditionDataService,
+            'getEditionSheetsData'
+        ).and.callThrough();
+        getEditionComplexSpy = spyOn(mockEditionService, 'getEditionComplex').and.returnValue(
+            observableOf(expectedEditionComplex)
+        );
+        getEditionSheetsDataSpy = spyOn(component, 'getEditionSheetsData').and.callThrough();
+        navigateToReportFragmentSpy = spyOn(component, 'onNavigateToReportFragment').and.callThrough();
+        navigationSpy = mockRouter.navigate as jasmine.Spy;
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    describe('BEFORE initial data binding', () => {
+        it('... should not have `folioConvoluteData`', () => {
+            expect(component.folioConvoluteData).toBeUndefined();
+        });
+
+        it('... should not have `svgSheetsData`', () => {
+            expect(component.svgSheetsData).toBeUndefined();
+        });
+
+        it('... should not have `textcriticsData`', () => {
+            expect(component.textcriticsData).toBeUndefined();
+        });
+
+        it('... should not have `editionComplex`', () => {
+            expect(component.editionComplex).toBeUndefined();
+        });
+
+        it('... should not have `selectedConvolute`', () => {
+            expect(component.selectedConvolute).toBeUndefined();
+        });
+
+        it('... should not have `selectedSvgSheet`', () => {
+            expect(component.selectedSvgSheet).toBeUndefined();
+        });
+
+        it('... should not have `selectedTextcriticalComments`', () => {
+            expect(component.selectedTextcriticalComments).toBeUndefined();
+        });
+
+        it('... should not have `selectedTextcritics`', () => {
+            expect(component.selectedTextcritics).toBeUndefined();
+        });
+
+        it('... should not have `errorMessage`', () => {
+            expect(component.errorMessage).toBeUndefined();
+        });
+
+        it('... should have `showTkA===false`', () => {
+            expect(component.showTkA).toBeFalse();
+        });
+
+        it('... should have `editionRouteConstants`', () => {
+            expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
+        });
+    });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            component.editionComplex = expectedEditionComplex;
+            component.folioConvoluteData = expectedFolioConvoluteData;
+            component.svgSheetsData = expectedSvgSheetsData;
+            component.textcriticsData = expectedTextcriticsData;
+
+            // Trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        describe('#onNavigateToReportFragment()', () => {
+            it('... should have a method `onNavigateToReportFragment`', () => {
+                expect(component.onNavigateToReportFragment).toBeDefined();
+            });
+
+            xit('... should trigger on event from EditionAccoladeComponent', () => {
+                const accoladeDes = getAndExpectDebugElementByDirective(compDe, EditionAccoladeStubComponent, 1, 1);
+                const accoladeCmp = accoladeDes[0].injector.get(
+                    EditionAccoladeStubComponent
+                ) as EditionAccoladeStubComponent;
+
+                accoladeCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            });
+
+            it('... should navigate to fragment if given', () => {
+                component.onNavigateToReportFragment(expectedFragment);
+                fixture.detectChanges();
+
+                const qp = { fragment: expectedFragment };
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                expectSpyCall(navigationSpy, 1, [
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
+
+                const otherFragment = 'otherFragment';
+                qp.fragment = otherFragment;
+                component.onNavigateToReportFragment(otherFragment);
+                fixture.detectChanges();
+
+                expectSpyCall(navigateToReportFragmentSpy, 2, otherFragment);
+                expectSpyCall(navigationSpy, 2, [
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
+            });
+
+            it('... should navigate without fragment if none is given', () => {
+                component.onNavigateToReportFragment(expectedFragment);
+                fixture.detectChanges();
+
+                const qp = { fragment: expectedFragment };
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                expectSpyCall(navigationSpy, 1, [
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
+
+                const noFragment = '';
+                qp.fragment = noFragment;
+                component.onNavigateToReportFragment(noFragment);
+                fixture.detectChanges();
+
+                expectSpyCall(navigateToReportFragmentSpy, 2, '');
+                expectSpyCall(navigationSpy, 2, [
+                    [expectedEditionComplexBaseRoute, expectedEditionRouteConstants.EDITION_REPORT.route],
+                    qp,
+                ]);
+            });
+        });
     });
 });

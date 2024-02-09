@@ -1,23 +1,21 @@
-<ngb-accordion
-    #sparqlAcc="ngbAccordion"
-    [activeIds]="togglePanel()"
-    (panelChange)="preventPanelCollapseOnFullscreen($event)">
-    <ngb-panel id="awg-graph-visualizer-sparql-query">
-        <ng-template ngbPanelHeader>
-            <div class="accordion-button awg-accordion-button-custom-header justify-content-between">
-                <button ngbPanelToggle class="p-0 btn btn-link text-start">SPARQL</button>
-
-                <!-- View Handle -->
+<div ngbAccordion>
+    <div
+        ngbAccordionItem="awg-graph-visualizer-sparql-query"
+        [collapsed]="isAccordionItemCollapsed()"
+        [disabled]="isAccordionItemDisabled()">
+        <div ngbAccordionHeader class="accordion-button custom-header justify-content-between">
+            <button ngbAccordionToggle class="btn btn-link m-0 p-0">SPARQL</button>
+            <!-- View Handle -->
+            @if (!isFullscreen) {
                 <awg-view-handle-button-group
                     [viewHandles]="viewHandles"
                     [selectedViewType]="selectedViewType"
                     (viewChangeRequest)="onViewChange($event)"></awg-view-handle-button-group>
+            }
 
-                <!-- Example Query Handle -->
-                <div
-                    class="p-0 btn-group awg-example-query-btn-group"
-                    *ngIf="isExampleQueriesEnabled()"
-                    style="padding: -3rem">
+            <!-- Example Query Handle -->
+            @if (isExampleQueriesEnabled()) {
+                <div class="p-0 btn-group awg-example-query-btn-group" style="padding: -3rem">
                     <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                         Beispielabfragen
                     </button>
@@ -31,41 +29,45 @@
                         <button class="btn btn-sm btn-info" ngbDropdownToggle></button>
                         <div ngbDropdownMenu>
                             <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
-                            <ng-container *ngFor="let q of queryList">
-                                <ng-container *ngIf="q.queryType === 'construct'">
+                            @for (q of queryList; track q) {
+                                @if (q.queryType === 'construct') {
                                     <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
                                         <span>{{ q.queryLabel }}</span>
                                     </a>
-                                </ng-container>
-                            </ng-container>
+                                }
+                            }
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
-                            <ng-container *ngFor="let q of queryList">
-                                <ng-container *ngIf="q.queryType === 'select'">
+                            @for (q of queryList; track q) {
+                                @if (q.queryType === 'select') {
                                     <a ngbDropdownItem [class.disabled]="q === query" (click)="onQueryListChange(q)">
                                         <span>{{ q.queryLabel }}</span>
                                     </a>
-                                </ng-container>
-                            </ng-container>
+                                }
+                            }
                         </div>
                     </div>
                 </div>
-            </div>
-        </ng-template>
-        <ng-template ngbPanelContent>
-            <!-- CodeMirror editor instance -->
-            <awg-codemirror
-                ngDefaultControl
-                [mode]="cmSparqlMode"
-                [(content)]="query.queryString"
-                (contentChange)="onEditorInputChange($event)"></awg-codemirror>
+            }
+        </div>
+        <div ngbAccordionCollapse [style.height]="isFullscreen ? '50vh' : 'auto'">
+            <div ngbAccordionBody>
+                <ng-template>
+                    <!-- CodeMirror editor instance -->
+                    <awg-codemirror
+                        ngDefaultControl
+                        [mode]="cmSparqlMode"
+                        [(content)]="query.queryString"
+                        (contentChange)="onEditorInputChange($event)"></awg-codemirror>
 
-            <!-- Handle buttons -->
-            <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
-                <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
-                <button class="btn btn-warning" (click)="resetQuery(query)">Reset</button>
-                <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
+                    <!-- Handle buttons -->
+                    <div fxLayout="row" class="mt-2 awg-graph-visualizer-sparql-query-handle-buttons">
+                        <button class="btn btn-outline-info" (click)="performQuery()">Query</button>
+                        <button class="btn btn-warning" (click)="resetQuery(query)">Reset</button>
+                        <button class="btn btn-danger" (click)="onEditorInputChange('')">Clear</button>
+                    </div>
+                </ng-template>
             </div>
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+        </div>
+    </div>
+</div>

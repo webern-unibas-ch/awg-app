@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 /**
  * The EditionType component.
@@ -11,21 +11,4 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: './edition-type.component.html',
     styleUrls: ['./edition-type.component.scss'],
 })
-export class EditionTypeComponent implements OnInit {
-    /**
-     * Constructor of the EditionTypeComponent.
-     */
-    constructor() {
-        // Intentionally left empty until implemented
-    }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {
-        // Intentionally left empty until implemented
-    }
-}
+export class EditionTypeComponent {}

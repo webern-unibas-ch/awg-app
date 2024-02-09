@@ -1,11 +1,11 @@
 import { DebugElement, NgModule } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, waitForAsync } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
-import { expectClosedPanelBody, expectOpenPanelBody } from '@testing/accordion-panel-helper';
+import { expectCollapsedPanel, expectOpenPanel } from '@testing/accordion-panel-helper';
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,8 +27,6 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
     let incomingLink2: ResourceDetailIncomingLink;
     let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
-    const expectedFirstPanelId = 'incoming-linkgroup-0';
-    const expectedSecondPanelId = 'incoming-linkgroup-1';
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -84,18 +82,17 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
         emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `incomingGroups` inputs', () => {
-            expect(component.incomingGroups).withContext('should be undefined').toBeUndefined();
+        it('... should not have `incomingGroups` inputs', () => {
+            expect(component.incomingGroups).toBeUndefined();
         });
 
-        it('should have totalNumber = 0', () => {
-            expect(component.totalNumber).toBeDefined();
-            expect(component.totalNumber).withContext('should be 0').toBe(0);
+        it('... should have totalNumber = 0', () => {
+            expectToBe(component.totalNumber, 0);
         });
 
         describe('VIEW', () => {
@@ -110,16 +107,17 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(headerDes[0], 'span#awg-incoming-size', 0, 0);
             });
 
-            it('... should contain one ngb-accordion without panels (div.accordion-item) yet', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > ngb-accordion', 1, 1);
-
-                // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 0, 0, 'yet');
+            it('... should contain no div.accordion yet', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 0, 0);
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
                 expect(emitSpy).not.toHaveBeenCalled();
@@ -137,18 +135,13 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
         });
 
         it('... should have `incomingGroups` inputs', () => {
-            expect(component.incomingGroups).toBeDefined();
-            expect(component.incomingGroups)
-                .withContext(`should be expectedIncoming: ${expectedIncoming}`)
-                .toBe(expectedIncoming);
+            expectToBe(component.incomingGroups, expectedIncoming);
         });
 
         it('... should have updated totalNumber with number of nested items in `incomingGroups`', fakeAsync(() => {
             expectSpyCall(totalNumberSpy, 1);
 
-            expect(component.totalNumber)
-                .withContext(`should be expectedTotalItems: ${expectedTotalItems}`)
-                .toBe(expectedTotalItems);
+            expectToBe(component.totalNumber, expectedTotalItems);
         }));
 
         it('... should recalculate total number on input changes (second & more)', fakeAsync(() => {
@@ -165,9 +158,7 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
             component.incomingGroups = newExpectedIncomingGroups;
 
             // Output has changed
-            expect(component.totalNumber)
-                .withContext(`should be newExpectedTotalItems: ${newExpectedTotalItems}`)
-                .toBe(newExpectedTotalItems);
+            expectToBe(component.totalNumber, newExpectedTotalItems);
         }));
 
         describe('VIEW', () => {
@@ -182,25 +173,40 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 const sizeEl = sizeDes[0].nativeElement;
 
                 // Check size output
-                expect(sizeEl.textContent).toBeDefined();
-                expect(sizeEl.textContent)
-                    .withContext(`should contain expectedTotalItems: ${component.totalNumber}`)
-                    .toContain(component.totalNumber);
+                expectToBe(sizeEl.textContent, component.totalNumber.toString());
             });
 
-            it('... should contain 2 ngb-panel elements in accordion (div.accordion-item) with header but no body (closed)', () => {
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > ngb-accordion', 1, 1);
+            it('... should contain one div.accordion', () => {
+                // Div.accordion debug element
+                getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
+            });
+
+            it('... should contain one div.accordion with 2 panels (div.accordion-item) with header and closed body', () => {
+                // Div.accordion debug element
+                const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.accordion', 1, 1);
 
                 // Panel debug elements
                 const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.accordion-item', 2, 2);
 
                 // Header debug elements
-                getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-header', 1, 1, 'in first panel');
-                getAndExpectDebugElementByCss(panelDes[1], 'div.accordion-header', 1, 1, 'in second panel');
+                const panelHeaderDes1 = getAndExpectDebugElementByCss(
+                    panelDes[0],
+                    'div.accordion-header',
+                    1,
+                    1,
+                    'in first panel'
+                );
+                const panelHeaderDes2 = getAndExpectDebugElementByCss(
+                    panelDes[1],
+                    'div.accordion-header',
+                    1,
+                    1,
+                    'in second panel'
+                );
 
-                // Body debug elements
-                getAndExpectDebugElementByCss(panelDes[0], 'div.accordion-body', 0, 0, 'in first panel');
-                getAndExpectDebugElementByCss(panelDes[1], 'div.accordion-body', 0, 0, 'in second panel');
+                // Both panels closed first by default
+                expectCollapsedPanel(panelHeaderDes1[0], 'first panel closed');
+                expectCollapsedPanel(panelHeaderDes2[0], 'second panel closed');
             });
 
             it('... should render incoming group length as badges in panel header (div.accordion-header)', () => {
@@ -211,32 +217,19 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     2,
                     2
                 );
-                const badgeDes0 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[0],
-                    'span.badge',
-                    1,
-                    1,
-                    'in first panel'
-                );
-                const badgeDes1 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[1],
-                    'span.badge',
-                    1,
-                    1,
-                    'in second panel'
-                );
 
-                const badge0El = badgeDes0[0].nativeElement;
-                const badge1El = badgeDes1[0].nativeElement;
+                panelHeaderDes.forEach((panelHeaderDe, index) => {
+                    const badgeDes = getAndExpectDebugElementByCss(
+                        panelHeaderDe,
+                        'span.badge',
+                        1,
+                        1,
+                        `in panel ${index}`
+                    );
+                    const badgeEl = badgeDes[0].nativeElement;
 
-                expect(badge0El.textContent).toBeDefined();
-                expect(badge0El.textContent)
-                    .withContext(`should contain ${expectedIncoming[0].links.length}`)
-                    .toContain(expectedIncoming[0].links.length);
-                expect(badge1El.textContent).toBeDefined();
-                expect(badge1El.textContent)
-                    .withContext(`should contain ${expectedIncoming[1].links.length}`)
-                    .toContain(expectedIncoming[1].links.length);
+                    expectToBe(badgeEl.textContent, expectedIncoming[index].links.length.toString());
+                });
             });
 
             it('... should render restype label in panel header (div.accordion-header)', () => {
@@ -247,32 +240,19 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     2,
                     2
                 );
-                const labelDes0 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[0],
-                    'span.awg-linked-obj-title',
-                    1,
-                    1,
-                    'in first panel'
-                );
-                const labelDes1 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[1],
-                    'span.awg-linked-obj-title',
-                    1,
-                    1,
-                    'in second panel'
-                );
 
-                const label0El = labelDes0[0].nativeElement;
-                const label1El = labelDes1[0].nativeElement;
+                panelHeaderDes.forEach((panelHeaderDe, index) => {
+                    const labelDes = getAndExpectDebugElementByCss(
+                        panelHeaderDe,
+                        'span.awg-linked-obj-title',
+                        1,
+                        1,
+                        `in panel ${index}`
+                    );
+                    const labelEl = labelDes[0].nativeElement;
 
-                expect(label0El.textContent).toBeDefined();
-                expect(label0El.textContent)
-                    .withContext(`should contain ${expectedIncoming[0].restypeLabel}`)
-                    .toContain(expectedIncoming[0].restypeLabel);
-                expect(label0El.textContent).toBeDefined();
-                expect(label1El.textContent)
-                    .withContext(`should contain ${expectedIncoming[1].restypeLabel}`)
-                    .toContain(expectedIncoming[1].restypeLabel);
+                    expectToBe(labelEl.textContent, expectedIncoming[index].restypeLabel);
+                });
             });
 
             it('... should open and close panels on click', fakeAsync(() => {
@@ -301,32 +281,32 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 );
 
                 // Both panels closed first by default
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
-                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
+                expectCollapsedPanel(panelHeaderDes[0], 'first panel closed');
+                expectCollapsedPanel(panelHeaderDes[1], 'second panel closed');
 
                 // Click first panel
                 clickAndAwaitChanges(button0Des[0], fixture);
 
-                expectOpenPanelBody(compDe, expectedFirstPanelId, 'first panel open');
-                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
+                expectOpenPanel(panelHeaderDes[0], 'first panel open');
+                expectCollapsedPanel(panelHeaderDes[1], 'second panel closed');
 
                 // Click first panel again
                 clickAndAwaitChanges(button0Des[0], fixture);
 
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
-                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
+                expectCollapsedPanel(panelHeaderDes[0], 'first panel closed');
+                expectCollapsedPanel(panelHeaderDes[1], 'second panel closed');
 
                 // Click second panel
                 clickAndAwaitChanges(button1Des[0], fixture);
 
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
-                expectOpenPanelBody(compDe, expectedSecondPanelId, 'second panel open');
+                expectCollapsedPanel(panelHeaderDes[0], 'first panel closed');
+                expectOpenPanel(panelHeaderDes[1], 'second panel open');
 
                 // Click second panel again
                 clickAndAwaitChanges(button1Des[0], fixture);
 
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'first panel closed');
-                expectClosedPanelBody(compDe, expectedSecondPanelId, 'second panel closed');
+                expectCollapsedPanel(panelHeaderDes[0], 'first panel closed');
+                expectCollapsedPanel(panelHeaderDes[1], 'second panel closed');
             }));
 
             it('... should toggle panels alternately on click', fakeAsync(() => {
@@ -355,20 +335,20 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                 );
 
                 // Both panels closed first by default
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'closed (first panel)');
-                expectClosedPanelBody(compDe, expectedSecondPanelId, 'closed (second panel)');
+                expectCollapsedPanel(panelHeaderDes[0], 'closed (first panel)');
+                expectCollapsedPanel(panelHeaderDes[1], 'closed (second panel)');
 
                 // Click first panel
                 clickAndAwaitChanges(button0Des[0], fixture);
 
-                expectOpenPanelBody(compDe, expectedFirstPanelId, 'opened (first panel)');
-                expectClosedPanelBody(compDe, expectedSecondPanelId, 'closed (second panel)');
+                expectOpenPanel(panelHeaderDes[0], 'opened (first panel)');
+                expectCollapsedPanel(panelHeaderDes[1], 'closed (second panel)');
 
                 // Click second panel
                 clickAndAwaitChanges(button1Des[0], fixture);
 
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'closed (first panel)');
-                expectOpenPanelBody(compDe, expectedSecondPanelId, 'opened (second panel)');
+                expectCollapsedPanel(panelHeaderDes[0], 'closed (first panel)');
+                expectOpenPanel(panelHeaderDes[1], 'opened (second panel)');
             }));
 
             describe('... should render panel content (div.accordion-body)', () => {
@@ -378,52 +358,54 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                     /**
                      * Click button to open first panel and get inner table
                      */
-
-                    // Button debug elements
-                    const buttonDes = getAndExpectDebugElementByCss(
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
-                        'div.accordion-item > div.accordion-header button.accordion-button',
+                        'div.accordion-item > div.accordion-header',
                         2,
                         2
                     );
 
+                    // Button debug elements
+                    const button0Des = getAndExpectDebugElementByCss(
+                        panelHeaderDes[0],
+                        'button.accordion-button',
+                        1,
+                        1,
+                        'in first panel'
+                    );
+                    const button1Des = getAndExpectDebugElementByCss(
+                        panelHeaderDes[1],
+                        'button.accordion-button',
+                        1,
+                        1,
+                        'in second panel'
+                    );
+
                     // First button's native element to click on
-                    const button0El = buttonDes[0].nativeElement;
+                    const button0El = button0Des[0].nativeElement;
 
                     // Open first panel
                     click(button0El as HTMLElement);
                     await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
-                    expectOpenPanelBody(compDe, expectedFirstPanelId, 'should have first panel opened');
+                    expectOpenPanel(panelHeaderDes[0], 'should have first panel opened');
 
                     // List debug elements
                     listDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-linked-obj-list', 1, 1);
                 });
 
                 it('... should render restype icon', () => {
-                    const expectedIcon0 = expectedIncoming[0].links[0].restype.icon;
-                    const expectedIcon1 = expectedIncoming[0].links[1].restype.icon;
-
                     const imgDes = getAndExpectDebugElementByCss(listDes[0], 'a.awg-linked-obj-link > img', 2, 2);
 
-                    const imgEl0 = imgDes[0].nativeElement;
-                    const imgEl1 = imgDes[1].nativeElement;
+                    imgDes.forEach((imgDe, index) => {
+                        const imgEl = imgDe.nativeElement;
 
-                    expect(imgEl0.src).toBeDefined();
-                    expect(imgEl0.src)
-                        .withContext(`should contain expectedIcon0: ${expectedIcon0}`)
-                        .toContain(expectedIcon0);
-
-                    expect(imgEl1.src).toBeDefined();
-                    expect(imgEl1.src)
-                        .withContext(`should contain expectedIcon1: ${expectedIcon1}`)
-                        .toContain(expectedIcon1);
+                        expectToContain(imgEl.src, expectedIncoming[0].links[index].restype.icon);
+                    });
                 });
 
                 it('... should render restpye id', () => {
-                    const expectedId0 = expectedIncoming[0].links[0].id;
-                    const expectedId1 = expectedIncoming[0].links[1].id;
-
                     const idDes = getAndExpectDebugElementByCss(
                         listDes[0],
                         'a.awg-linked-obj-link > span.awg-linked-obj-link-id',
@@ -431,22 +413,14 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         2
                     );
 
-                    const idEl0 = idDes[0].nativeElement;
-                    const idEl1 = idDes[1].nativeElement;
+                    idDes.forEach((idDe, index) => {
+                        const idEl = idDe.nativeElement;
 
-                    expect(idEl0.textContent).toBeDefined();
-                    expect(idEl0.textContent).withContext(`should be expectedId0: ${expectedId0}`).toBe(expectedId0);
-
-                    expect(idEl1.textContent).toBeDefined();
-                    expect(idEl1.textContent)
-                        .withContext(`should contain expectedId1: ${expectedId1}`)
-                        .toContain(expectedId1);
+                        expectToBe(idEl.textContent, expectedIncoming[0].links[index].id);
+                    });
                 });
 
                 it('... should render link value', () => {
-                    const expectedLinkValue0 = expectedIncoming[0].links[0].value;
-                    const expectedLinkValue1 = expectedIncoming[0].links[1].value;
-
                     const linkValueDes = getAndExpectDebugElementByCss(
                         listDes[0],
                         'a.awg-linked-obj-link > span.awg-linked-obj-link-value',
@@ -454,23 +428,16 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
                         2
                     );
 
-                    const linkValueEl0 = linkValueDes[0].nativeElement;
-                    const linkValueEl1 = linkValueDes[1].nativeElement;
+                    linkValueDes.forEach((linkValueDe, index) => {
+                        const linkValueEl = linkValueDe.nativeElement;
 
-                    expect(linkValueEl0.textContent).toBeDefined();
-                    expect(linkValueEl0.textContent)
-                        .withContext(`should contain expectedLinkValue0: ${expectedLinkValue0}`)
-                        .toContain(expectedLinkValue0);
-
-                    expect(linkValueEl1.textContent).toBeDefined();
-                    expect(linkValueEl1.textContent)
-                        .withContext(`should contain expectedLinkValue1: ${expectedLinkValue1}`)
-                        .toContain(expectedLinkValue1);
+                        expectToBe(linkValueEl.textContent, expectedIncoming[0].links[index].value);
+                    });
                 });
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             let listDes: DebugElement[];
             let listItemDes: DebugElement[];
             let anchorDes0: DebugElement[];
@@ -478,19 +445,35 @@ describe('ResourceDetailHtmlContentLinkedObjectsComponent (DONE)', () => {
             let anchorDes2: DebugElement[];
 
             beforeEach(fakeAsync(() => {
-                // Button debug elements
-                const buttonDes = getAndExpectDebugElementByCss(
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div.accordion-item > div.accordion-header button.accordion-button',
+                    'div.accordion-item > div.accordion-header',
                     2,
                     2
                 );
 
-                // Open second panel
-                clickAndAwaitChanges(buttonDes[1], fixture);
+                // Button debug elements
+                const button0Des = getAndExpectDebugElementByCss(
+                    panelHeaderDes[0],
+                    'button.accordion-button',
+                    1,
+                    1,
+                    'in first panel'
+                );
+                const button1Des = getAndExpectDebugElementByCss(
+                    panelHeaderDes[1],
+                    'button.accordion-button',
+                    1,
+                    1,
+                    'in second panel'
+                );
 
-                expectClosedPanelBody(compDe, expectedFirstPanelId, 'should have first panel closed');
-                expectOpenPanelBody(compDe, expectedSecondPanelId, 'should have second panel opened');
+                // Open second panel
+                clickAndAwaitChanges(button1Des[0], fixture);
+
+                expectCollapsedPanel(panelHeaderDes[0], 'should have first panel closed');
+                expectOpenPanel(panelHeaderDes[1], 'should have second panel opened');
 
                 listDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-linked-obj-list', 1, 1);
                 listItemDes = getAndExpectDebugElementByCss(listDes[0], 'li', 3, 3);

@@ -10,9 +10,11 @@
  *
  ************************************************/
 
+import { expectToEqual } from '@testing/expect-helper';
+
 import { OrderByPipe } from './order-by.pipe';
 
-describe('OrderByPipe', () => {
+describe('OrderByPipe (DONE)', () => {
     let pipe: OrderByPipe;
 
     beforeEach(() => {
@@ -23,170 +25,171 @@ describe('OrderByPipe', () => {
         expect(pipe).toBeTruthy();
     });
 
-    it('should return empty array', () => {
-        expect(pipe.transform([], 'anything')).toEqual([]);
+    it('... should return empty array', () => {
+        expectToEqual(pipe.transform([], 'anything'), []);
     });
 
-    it('should work with not defined array as well', () => {
+    it('... should work with not defined array as well', () => {
         let array;
+        expect(pipe.transform(array, 'anything')).toBeUndefined();
         expect(pipe.transform(array, 'anything')).toEqual(array);
     });
 
     describe('without expression', () => {
-        it('should sort simple array', () => {
+        it('... should sort simple array', () => {
             const array = [3, 2, 1];
             const sortedArray = [1, 2, 3];
 
-            expect(pipe.transform(array)).toEqual(sortedArray);
+            expectToEqual(pipe.transform(array), sortedArray);
         });
 
-        it('should sort simple chars array', () => {
+        it('... should sort simple chars array', () => {
             const array = ['b', 'c', 'a'];
             const sortedArray = ['a', 'b', 'c'];
 
-            expect(pipe.transform(array)).toEqual(sortedArray);
+            expectToEqual(pipe.transform(array), sortedArray);
         });
 
-        it('should move `null` to the end', () => {
+        it('... should move `null` to the end', () => {
             const array = [3, null, 1];
             const sortedArray = [1, 3, null];
 
-            expect(pipe.transform(array)).toEqual(sortedArray);
+            expectToEqual(pipe.transform(array), sortedArray);
         });
 
-        it('should move `undefind` to the end', () => {
+        it('... should move `undefind` to the end', () => {
             const array = [3, undefined, 1];
             const sortedArray = [1, 3, undefined];
 
-            expect(pipe.transform(array)).toEqual(sortedArray);
+            expectToEqual(pipe.transform(array), sortedArray);
         });
 
-        it('should keep `NaN` as it is', () => {
+        it('... should keep `NaN` as it is', () => {
             const array = [3, NaN, 1];
             const sortedArray = [1, NaN, 3];
 
-            expect(pipe.transform(array)).toEqual(sortedArray);
+            expectToEqual(pipe.transform(array), sortedArray);
         });
     });
 
     describe('if given expression is not found', () => {
-        it('should not sort simple array', () => {
+        it('... should not sort simple array', () => {
             const array = [3, 2, 1];
             const arraySorted = [3, 2, 1];
 
-            expect(pipe.transform(array, 'anything')).toEqual(arraySorted);
+            expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('should not sort simple chars array', () => {
+        it('... should not sort simple chars array', () => {
             const array = ['c', 'b', 'a'];
             const arraySorted = ['c', 'b', 'a'];
 
-            expect(pipe.transform(array, 'anything')).toEqual(arraySorted);
+            expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('should move empty string to the start', () => {
+        it('... should move empty string to the start', () => {
             const array = ['c', '', 'a'];
             const arraySorted = ['', 'c', 'a'];
 
-            expect(pipe.transform(array, 'anything')).toEqual(arraySorted);
+            expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('should keep `NaN` as it is', () => {
+        it('... should keep `NaN` as it is', () => {
             const array = [3, NaN, 1];
             const sortedArray = [1, NaN, 3];
 
-            expect(pipe.transform(array, 'anything')).toEqual(sortedArray);
+            expectToEqual(pipe.transform(array, 'anything'), sortedArray);
         });
 
-        it('should move `null` to the end', () => {
+        it('... should move `null` to the end', () => {
             const array = [3, null, 1];
             const arraySorted = [3, 1, null];
 
-            expect(pipe.transform(array, 'anything')).toEqual(arraySorted);
+            expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
 
-        it('should move `undefined` to the end', () => {
+        it('... should move `undefined` to the end', () => {
             const array = [3, null, 1];
             const arraySorted = [3, 1, null];
 
-            expect(pipe.transform(array, 'anything')).toEqual(arraySorted);
+            expectToEqual(pipe.transform(array, 'anything'), arraySorted);
         });
     });
 
-    it('should return array with one element as it is', () => {
+    it('... should return array with one element as it is', () => {
         const array = [{ id: 1 }];
-        expect(pipe.transform(array, 'id')).toEqual(array);
+        expectToEqual(pipe.transform(array, 'id'), array);
     });
 
-    it('should return already sorted array as it is', () => {
+    it('... should return already sorted array as it is', () => {
         const alreadySortedArray = [{ id: 1 }, { id: 2 }];
-        expect(pipe.transform(alreadySortedArray, 'id')).toEqual(alreadySortedArray);
+        expectToEqual(pipe.transform(alreadySortedArray, 'id'), alreadySortedArray);
     });
 
-    it('should order by id', () => {
+    it('... should order by id', () => {
         const numbers = [{ id: 3 }, { id: 2 }, { id: 1 }];
         const sortedNumbers = [{ id: 1 }, { id: 2 }, { id: 3 }];
 
-        expect(pipe.transform(numbers, 'id')).toEqual(sortedNumbers);
+        expectToEqual(pipe.transform(numbers, 'id'), sortedNumbers);
     });
 
-    it('should order by a', () => {
+    it('... should order by a', () => {
         const arrayA = [{ a: 2 }, { a: null }, { a: 1 }, { a: 3 }];
         const arrayB = [{ a: 1 }, { a: 2 }, { a: 3 }, { a: null }];
 
-        expect(pipe.transform(arrayA, 'a')).toEqual(arrayB);
+        expectToEqual(pipe.transform(arrayA, 'a'), arrayB);
     });
 
-    it('should sort strings too', () => {
+    it('... should sort strings too', () => {
         const array = [{ string: 'abc' }, { string: 'aaa' }, { string: 'b' }];
         const arraySorted = [{ string: 'aaa' }, { string: 'abc' }, { string: 'b' }];
 
-        expect(pipe.transform(array, 'string')).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'string'), arraySorted);
     });
 
-    it('should sort case-sensitive strings', () => {
+    it('... should sort case-sensitive strings', () => {
         const array = [{ string: 'Abc' }, { string: 'abc' }, { string: 'b' }, { string: 'B' }];
         const arraySorted = [{ string: 'Abc' }, { string: 'B' }, { string: 'abc' }, { string: 'b' }];
 
-        expect(pipe.transform(array, 'string', false, false)).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'string', false, false), arraySorted);
     });
 
-    it('should sort strings with case-sensitivity by default', () => {
+    it('... should sort strings with case-sensitivity by default', () => {
         const array = [{ string: 'Abc' }, { string: 'abc' }, { string: 'b' }, { string: 'B' }];
         const arraySorted = [{ string: 'Abc' }, { string: 'B' }, { string: 'abc' }, { string: 'b' }];
 
-        expect(pipe.transform(array, 'string', false)).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'string', false), arraySorted);
     });
 
-    it('should sort case-insensitive strings too', () => {
+    it('... should sort case-insensitive strings too', () => {
         const array = [{ string: 'Abc' }, { string: 'aaa' }, { string: 'b' }];
         const arraySorted = [{ string: 'aaa' }, { string: 'Abc' }, { string: 'b' }];
 
-        expect(pipe.transform(array, 'string', false, true)).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'string', false, true), arraySorted);
     });
 
-    it('should not revert ordered array if `reverse=false`', () => {
+    it('... should not revert ordered array if `reverse=false`', () => {
         const array = [{ value: 10 }, { value: 1 }, { value: 5 }];
         const arraySorted = [{ value: 1 }, { value: 5 }, { value: 10 }];
 
-        expect(pipe.transform(array, 'value', false)).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'value', false), arraySorted);
     });
 
-    it('should revert ordered array if `reverse=true`', () => {
+    it('... should revert ordered array if `reverse=true`', () => {
         const array = [{ value: 10 }, { value: 1 }, { value: 5 }];
         const arraySortedAndReverse = [{ value: 10 }, { value: 5 }, { value: 1 }];
 
-        expect(pipe.transform(array, 'value', true)).toEqual(arraySortedAndReverse);
+        expectToEqual(pipe.transform(array, 'value', true), arraySortedAndReverse);
     });
 
-    it('should order arrays', () => {
+    it('... should order arrays', () => {
         const array = [{ values: [10, 0] }, { values: [1, 2] }, { values: [0, -1, 1] }];
         const arraySorted = [{ values: [0, -1, 1] }, { values: [1, 2] }, { values: [10, 0] }];
 
-        expect(pipe.transform(array, 'values')).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'values'), arraySorted);
     });
 
-    it('should order nested elements', () => {
+    it('... should order nested elements', () => {
         const object = {
             b: {
                 c: [2, 1, 3],
@@ -204,22 +207,22 @@ describe('OrderByPipe', () => {
             },
         };
 
-        expect(pipe.transform(object, 'b.c')).toEqual(sortedObject);
-        expect(pipe.transform(object, 'b.e[1].f')).toEqual(object);
-        expect(pipe.transform(object, 'b.e[2].f')).toEqual(object);
+        expectToEqual(pipe.transform(object, 'b.c'), sortedObject);
+        expectToEqual(pipe.transform(object, 'b.e[1].f'), object);
+        expectToEqual(pipe.transform(object, 'b.e[2].f'), object);
     });
 
-    it('should not throw error on ordering "undefined" deep element', () => {
+    it('... should not throw error on ordering "undefined" deep element', () => {
         const object = {
             b: {
                 e: [{}, { f: 'g' }],
             },
         };
 
-        expect(pipe.transform(object, 'b.e[2].f')).toEqual(object);
+        expectToEqual(pipe.transform(object, 'b.e[2].f'), object);
     });
 
-    it('should sort deep elements', () => {
+    it('... should sort deep elements', () => {
         const object = {
             lists: {
                 users: [{ id: 3 }, { id: 2 }, { id: 1 }],
@@ -231,10 +234,10 @@ describe('OrderByPipe', () => {
             },
         };
 
-        expect(pipe.transform(object, 'lists.users.id')).toEqual(objectSorted);
+        expectToEqual(pipe.transform(object, 'lists.users.id'), objectSorted);
     });
 
-    it('should sort array by deep prop', () => {
+    it('... should sort array by deep prop', () => {
         const arr = [
             { customer: { name: 'test' } },
             { customer: { name: 'b' } },
@@ -249,7 +252,7 @@ describe('OrderByPipe', () => {
             { customer: { name: 'test' } },
         ];
 
-        expect(pipe.transform(arr, 'customer.name')).toEqual(res);
+        expectToEqual(pipe.transform(arr, 'customer.name'), res);
 
         const array = [
             { customer: { number: 25 } },
@@ -267,10 +270,10 @@ describe('OrderByPipe', () => {
             { customer: { number: 25 } },
         ];
 
-        expect(pipe.transform(array, 'customer.number')).toEqual(result);
+        expectToEqual(pipe.transform(array, 'customer.number'), result);
     });
 
-    it('should sort case-insensitive array by deep prop', () => {
+    it('... should sort case-insensitive array by deep prop', () => {
         const arr = [
             { customer: { name: 'test' } },
             { customer: { name: 'B' } },
@@ -285,10 +288,10 @@ describe('OrderByPipe', () => {
             { customer: { name: 'test' } },
         ];
 
-        expect(pipe.transform(arr, 'customer.name', false, true)).toEqual(res);
+        expectToEqual(pipe.transform(arr, 'customer.name', false, true), res);
     });
 
-    it('should sort array with deep functions', () => {
+    it('... should sort array with deep functions', () => {
         function dupl(n: number): number {
             return n * 2;
         }
@@ -306,10 +309,10 @@ describe('OrderByPipe', () => {
 
         const arraySorted = [{ customer: { fn: dupl1 } }, { customer: { fn: dupl2 } }, { customer: { fn: dupl3 } }];
 
-        expect(pipe.transform(array, 'customer.fn')).toEqual(arraySorted);
+        expectToEqual(pipe.transform(array, 'customer.fn'), arraySorted);
     });
 
-    it('should keep same order', () => {
+    it('... should keep same order', () => {
         const collection = [
             {
                 name: 'John',
@@ -331,51 +334,57 @@ describe('OrderByPipe', () => {
             },
         ];
 
-        expect(pipe.transform(collection, 'score')).toEqual(collection);
+        expectToEqual(pipe.transform(collection, 'score'), collection);
     });
 
-    it('should put `undefined` at the end', () => {
+    it('... should put `undefined` at the end', () => {
         const collection = [{ a: { b: 3 } }, { a: { b: 1 } }, { a: undefined }, { a: { b: 2 } }];
 
         const result = [{ a: { b: 1 } }, { a: { b: 2 } }, { a: { b: 3 } }, { a: undefined }];
 
-        expect(pipe.transform(collection, 'a.b')).toEqual(result);
+        expectToEqual(pipe.transform(collection, 'a.b'), result);
     });
 
     describe('number-like strings', () => {
-        it('should compare two number-like strings', () => {
+        it('... should compare two number-like strings', () => {
             const el1 = '1';
             const el2 = '10';
             const arr = [el2, el1];
             const res = [el1, el2];
 
-            expect(pipe.transform(arr)).toEqual(res);
+            expectToEqual(pipe.transform(arr), res);
         });
 
-        it('should compare two number-like strings with commas', () => {
+        it('... should compare two number-like strings with commas', () => {
             const el1 = '$299,000';
             const el2 = '$1,100,000';
             const arr = [el2, el1];
 
-            expect(pipe.transform(arr)).toEqual(arr);
+            expectToEqual(pipe.transform(arr), arr);
         });
     });
 
     describe('order with comparator', () => {
-        it('should return same order with "0"-comparator', () => {
+        it('... should return same order with "0"-comparator', () => {
             const arr = [3, 2, 1];
 
-            expect(pipe.transform(arr, null, false, true, () => 0)).toEqual(arr);
+            expectToEqual(
+                pipe.transform(arr, null, false, true, () => 0),
+                arr
+            );
         });
 
-        it('should change the order with custom comparator', () => {
+        it('... should change the order with custom comparator', () => {
             const arr = [3, 2, 1];
             const res = [1, 2, 3];
 
-            expect(pipe.transform(arr, null, false, true, (a, b) => (a > b ? 1 : -1))).toEqual(res);
+            expectToEqual(
+                pipe.transform(arr, null, false, true, (a, b) => (a > b ? 1 : -1)),
+                res
+            );
         });
 
-        it('should return change to order with custom comparator', () => {
+        it('... should return change to order with custom comparator', () => {
             const arr = ['$10,0', '$2,0', '$100,0'];
             const res = ['$2,0', '$10,0', '$100,0'];
 
@@ -394,23 +403,26 @@ describe('OrderByPipe', () => {
             const arr = [3, 2, 1];
             const res = [1, 2, 3];
 
-            it('should still work if comparator is null', () => {
-                expect(pipe.transform(arr, null, false, true, null)).toEqual(res);
+            it('... should still work if comparator is null', () => {
+                expectToEqual(pipe.transform(arr, null, false, true, null), res);
             });
 
-            it('should still work if comparator is undefined', () => {
-                expect(pipe.transform(arr, null, false, true, undefined)).toEqual(res);
-                expect(pipe.transform(arr, null, false, true, void 0)).toEqual(res);
+            it('... should still work if comparator is undefined', () => {
+                expectToEqual(pipe.transform(arr, null, false, true, undefined), res);
+                expectToEqual(pipe.transform(arr, null, false, true, void 0), res);
             });
 
-            it('should still work if comparator is not returning anything', () => {
-                expect(pipe.transform(arr, null, false, true, () => {})).toEqual(arr);
+            it('... should still work if comparator is not returning anything', () => {
+                expectToEqual(
+                    pipe.transform(arr, null, false, true, () => {}),
+                    arr
+                );
             });
         });
     });
 
     describe('multi field sort', () => {
-        it('should sort by multiple fields', () => {
+        it('... should sort by multiple fields', () => {
             const array = [
                 { name: 'qwe', age: 1 },
                 { name: 'asd', age: 3 },
@@ -423,10 +435,10 @@ describe('OrderByPipe', () => {
                 { name: 'qwe', age: 1 },
             ];
 
-            expect(pipe.transform(array, ['name', 'age'])).toEqual(result);
+            expectToEqual(pipe.transform(array, ['name', 'age']), result);
         });
 
-        it('should sort by multiple fields with case-insensitivity', () => {
+        it('... should sort by multiple fields with case-insensitivity', () => {
             const array = [
                 { name: 'qwe', age: 1 },
                 { name: 'asd', age: 3 },
@@ -439,10 +451,10 @@ describe('OrderByPipe', () => {
                 { name: 'qwe', age: 1 },
             ];
 
-            expect(pipe.transform(array, ['name', 'age'], false, true)).toEqual(result);
+            expectToEqual(pipe.transform(array, ['name', 'age'], false, true), result);
         });
 
-        it('should sort by multiple fields with case-sensitivity', () => {
+        it('... should sort by multiple fields with case-sensitivity', () => {
             const array = [
                 { name: 'qwe', age: 1 },
                 { name: 'asd', age: 3 },
@@ -455,10 +467,10 @@ describe('OrderByPipe', () => {
                 { name: 'qwe', age: 1 },
             ];
 
-            expect(pipe.transform(array, ['name', 'age'], false, false)).toEqual(result);
+            expectToEqual(pipe.transform(array, ['name', 'age'], false, false), result);
         });
 
-        it('should sort by multiple fields with case-sensitivity by default', () => {
+        it('... should sort by multiple fields with case-sensitivity by default', () => {
             const array = [
                 { name: 'qwe', age: 1 },
                 { name: 'asd', age: 3 },
@@ -471,7 +483,7 @@ describe('OrderByPipe', () => {
                 { name: 'qwe', age: 1 },
             ];
 
-            expect(pipe.transform(array, ['name', 'age'], false, undefined)).toEqual(result);
+            expectToEqual(pipe.transform(array, ['name', 'age'], false, undefined), result);
         });
 
         describe('preserve sorting order', () => {
@@ -483,7 +495,7 @@ describe('OrderByPipe', () => {
                 { group: 2, value: 1 },
             ];
 
-            it('should sort by multiple fields and preserve priority', () => {
+            it('... should sort by multiple fields and preserve priority', () => {
                 const result = [
                     { group: 1, value: 1 },
                     { group: 1, value: 2 },
@@ -492,10 +504,10 @@ describe('OrderByPipe', () => {
                     { group: 3, value: 1 },
                 ];
 
-                expect(pipe.transform(array, ['group', 'value'])).toEqual(result);
+                expectToEqual(pipe.transform(array, ['group', 'value']), result);
             });
 
-            it('should sort by multiple fields and preserve priority (reversed)', () => {
+            it('... should sort by multiple fields and preserve priority (reversed)', () => {
                 const result = [
                     { group: 1, value: 1 },
                     { group: 2, value: 1 },
@@ -504,21 +516,21 @@ describe('OrderByPipe', () => {
                     { group: 2, value: 2 },
                 ];
 
-                expect(pipe.transform(array, ['value', 'group'])).toEqual(result);
+                expectToEqual(pipe.transform(array, ['value', 'group']), result);
             });
         });
 
-        it('should keep the same order if no sort fields are given', () => {
+        it('... should keep the same order if no sort fields are given', () => {
             const array = [
                 { name: 'q', age: 1 },
                 { name: 'a', age: 3 },
                 { name: 'a', age: 2 },
             ];
 
-            expect(pipe.transform(array, [])).toEqual(array);
+            expectToEqual(pipe.transform(array, []), array);
         });
 
-        it('should not modify original array', () => {
+        it('... should not modify original array', () => {
             const array = [
                 { key: 'a', value: 3 },
                 { key: 'a', value: 1 },
@@ -529,47 +541,47 @@ describe('OrderByPipe', () => {
                 { key: 'a', value: 3 },
             ];
 
-            expect(pipe.transform(array, ['key', 'value'])).toEqual(result);
-            expect(array[0]).toEqual({ key: 'a', value: 3 });
-            expect(array[1]).toEqual({ key: 'a', value: 1 });
+            expectToEqual(pipe.transform(array, ['key', 'value']), result);
+            expectToEqual(array[0], { key: 'a', value: 3 });
+            expectToEqual(array[1], { key: 'a', value: 1 });
         });
     });
 
     describe('Booleans', () => {
-        it('should return same simple false array', () => {
+        it('... should return same simple false array', () => {
             const array = [{ value: false }];
-            expect(pipe.transform(array, 'value')).toEqual(array);
+            expectToEqual(pipe.transform(array, 'value'), array);
         });
 
-        it('should return same simple true array', () => {
+        it('... should return same simple true array', () => {
             const array = [{ value: true }];
-            expect(pipe.transform(array, 'value')).toEqual(array);
+            expectToEqual(pipe.transform(array, 'value'), array);
         });
 
-        it('should return sorted booleans as it is', () => {
+        it('... should return sorted booleans as it is', () => {
             const array = [{ value: false }, { value: true }];
-            expect(pipe.transform(array, 'value')).toEqual(array);
+            expectToEqual(pipe.transform(array, 'value'), array);
         });
 
-        it('should sort booleans', () => {
+        it('... should sort booleans', () => {
             const array = [{ value: true }, { value: false }];
             const arraySorted = [{ value: false }, { value: true }];
-            expect(pipe.transform(array, 'value')).toEqual(arraySorted);
+            expectToEqual(pipe.transform(array, 'value'), arraySorted);
         });
     });
 
     describe('Dates', () => {
-        it('should sort different dates', () => {
+        it('... should sort different dates', () => {
             const a = { createdAt: new Date(1980, 11, 1, 0, 0, 0, 0) };
             const b = { createdAt: new Date(1980, 8, 2, 0, 0, 0, 0) };
             const c = { createdAt: new Date(1980, 10, 3, 0, 0, 0, 0) };
             const collection = [a, b, c];
             const result = [b, c, a];
 
-            expect(pipe.transform(collection, 'createdAt')).toEqual(result);
+            expectToEqual(pipe.transform(collection, 'createdAt'), result);
         });
 
-        it('should sort dates', () => {
+        it('... should sort dates', () => {
             const a = { id: 1, info: { date: new Date(1980, 11, 31, 0, 0, 0, 0) } };
             const b = { id: 2, info: { date: new Date(1985, 8, 3, 0, 0, 0, 0) } };
             const c = { id: 3, info: { date: new Date(1978, 10, 12, 0, 0, 0, 0) } };
@@ -577,11 +589,11 @@ describe('OrderByPipe', () => {
 
             const result = [c, a, b];
 
-            expect(pipe.transform(collection, 'info.date')).toEqual(result);
-            expect(pipe.transform(collection, 'info.date', true)).toEqual(result.reverse());
+            expectToEqual(pipe.transform(collection, 'info.date'), result);
+            expectToEqual(pipe.transform(collection, 'info.date', true), result.reverse());
         });
 
-        it('should sort dates also including null as date', () => {
+        it('... should sort dates also including null as date', () => {
             const a = { date: new Date(1980, 11, 31, 0, 0, 0, 0) };
             const b = { date: null };
             const c = { date: new Date(1978, 10, 12, 0, 0, 0, 0) };
@@ -589,12 +601,12 @@ describe('OrderByPipe', () => {
             const collection = [a, b, c];
             const result = [c, a, b];
 
-            expect(pipe.transform(collection, 'date')).toEqual(result);
-            expect(pipe.transform(collection, 'date', true)).toEqual(result.reverse());
+            expectToEqual(pipe.transform(collection, 'date'), result);
+            expectToEqual(pipe.transform(collection, 'date', true), result.reverse());
         });
 
         describe('multisort with dates', () => {
-            it('should sort dates equal dates', () => {
+            it('... should sort dates equal dates', () => {
                 const a = {
                     info: { name: 'Adam', date: new Date(1978, 10, 12, 0, 0, 0, 0) },
                 };
@@ -605,11 +617,11 @@ describe('OrderByPipe', () => {
 
                 const result = [a, b];
 
-                expect(pipe.transform(collection, ['info.date', 'info.name'])).toEqual(result);
-                expect(pipe.transform(collection, ['info.date', 'info.name'], true)).toEqual(result);
+                expectToEqual(pipe.transform(collection, ['info.date', 'info.name']), result);
+                expectToEqual(pipe.transform(collection, ['info.date', 'info.name'], true), result);
             });
 
-            it('should sort dates different dates', () => {
+            it('... should sort dates different dates', () => {
                 const a = {
                     info: { name: 'Adam', date: new Date(1970, 10, 12, 0, 0, 0, 0) },
                 };
@@ -623,8 +635,8 @@ describe('OrderByPipe', () => {
 
                 const result = [c, a, b];
 
-                expect(pipe.transform(collection, ['info.date', 'info.name'])).toEqual(result);
-                expect(pipe.transform(collection, ['info.date', 'info.name'], true)).toEqual([b, a, c]);
+                expectToEqual(pipe.transform(collection, ['info.date', 'info.name']), result);
+                expectToEqual(pipe.transform(collection, ['info.date', 'info.name'], true), [b, a, c]);
             });
         });
     });

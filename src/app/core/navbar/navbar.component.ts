@@ -85,7 +85,10 @@ export class NavbarComponent implements OnInit {
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
         EDITION_COMPLEXES.OP12,
         EDITION_COMPLEXES.OP25,
+        EDITION_COMPLEXES.M30,
+        EDITION_COMPLEXES.M31,
         EDITION_COMPLEXES.M34,
+        EDITION_COMPLEXES.M37,
     ];
 
     /**
@@ -96,7 +99,10 @@ export class NavbarComponent implements OnInit {
      * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular Router.
      */
-    constructor(private coreService: CoreService, private router: Router) {}
+    constructor(
+        private coreService: CoreService,
+        private router: Router
+    ) {}
 
     /**
      * Getter variable: editionRouteConstants.

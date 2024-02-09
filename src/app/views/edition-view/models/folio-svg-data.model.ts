@@ -1,6 +1,7 @@
 import {
     FolioCalculation,
     FolioCalculationContentItem,
+    FolioCalculationContentItemCornerPoints,
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioCalculationSheet,
@@ -99,9 +100,14 @@ class FolioSvgSystems {
  */
 class FolioSvgContentItem {
     /**
-     * The id for the label of a content item (string).
+     * The id for the label of a content item edition complex (string).
      */
-    id: string;
+    complexId: string;
+
+    /**
+     * The id for the label of a content item sheet (string).
+     */
+    sheetId: string;
 
     /**
      * The sigle for the label of a content item (string).
@@ -142,12 +148,12 @@ class FolioSvgContentItem {
     height: number;
 
     /**
-     * The line array of a content item (FolioCalculationLine[]).
+     * The corner points of a content item (FolioCalculationContentItemCornerPoints).
      *
-     * It contains all calculated lines and their positions (in px)
+     * It contains all corner points of a content item (in px)
      * to draw the svg of the content item of a folio.
      */
-    lineArray: FolioCalculationLine[];
+    cornerPoints: FolioCalculationContentItemCornerPoints;
 
     /**
      * Constructor of the FolioSvgContentItem class.
@@ -157,7 +163,8 @@ class FolioSvgContentItem {
      * @param {FolioCalculationContentItem} calculatedContentItem The given calculated folio content item.
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
-        this.id = calculatedContentItem.id;
+        this.complexId = calculatedContentItem.complexId;
+        this.sheetId = calculatedContentItem.sheetId;
         this.sigle = calculatedContentItem.sigle;
         this.sigleAddendum = calculatedContentItem.sigleAddendum;
         this.selectable = calculatedContentItem.selectable;
@@ -166,7 +173,7 @@ class FolioSvgContentItem {
         this.upperLeftCorner = calculatedContentItem.current.cornerPoints.upperLeftCorner;
         this.width = calculatedContentItem.width;
         this.height = calculatedContentItem.height;
-        this.lineArray = calculatedContentItem.lineArray;
+        this.cornerPoints = calculatedContentItem.current.cornerPoints;
     }
 }
 

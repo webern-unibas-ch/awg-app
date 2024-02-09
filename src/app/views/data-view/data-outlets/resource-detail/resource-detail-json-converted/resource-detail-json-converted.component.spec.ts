@@ -44,12 +44,12 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
         expectedData.header = { objID: '', icon: '', type: '', title: 'test', lastmod: '2019' };
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `resourceJsonConvertedData`', () => {
+        it('... should not have `resourceJsonConvertedData`', () => {
             expect(component.resourceJsonConvertedData).toBeUndefined();
         });
 
@@ -86,7 +86,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `resourceJsonConvertedData`', () => {
+        it('... should have `resourceJsonConvertedData`', () => {
             expect(component.resourceJsonConvertedData).toBeDefined();
             expect(component.resourceJsonConvertedData)
                 .withContext(`should equal ${expectedData}`)

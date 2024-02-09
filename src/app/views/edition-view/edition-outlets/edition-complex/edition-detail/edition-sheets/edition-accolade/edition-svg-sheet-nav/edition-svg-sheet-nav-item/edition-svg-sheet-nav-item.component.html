@@ -1,31 +1,45 @@
-<h6 class="card-title">{{ navItemLabel }}: <span *ngIf="!utils.isNotEmptyArray(svgSheets)">---</span></h6>
-<ng-container *ngFor="let svgSheet of svgSheets">
-    <a
-        *ngIf="svgSheet.content.length === 1"
-        class="btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start"
-        [ngClass]="{
-            active: isSelectedSvgSheet(svgSheet.id),
-            'text-muted': !isSelectedSvgSheet(svgSheet.id)
-        }"
-        (click)="selectSvgSheet(svgSheet.id)">
-        {{ svgSheet.label }}
-    </a>
-    <div *ngIf="svgSheet.content.length > 1" class="awg-svg-sheet-nav-link-dropdown" ngbDropdown>
-        <a class="btn text-muted card-text" id="dropDownSheetNav" ngbDropdownToggle>
-            <span>{{ svgSheet.label }}</span>
+<h6 class="card-title">
+    {{ navItemLabel }}:
+    @if (!utils.isNotEmptyArray(svgSheets)) {
+        <span>---</span>
+    }
+</h6>
+@for (svgSheet of svgSheets; track svgSheet) {
+    @if (svgSheet.content.length === 1) {
+        <a
+            class="btn btn-default w-100 awg-svg-sheet-nav-link card-text text-start"
+            [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }"
+            (click)="selectSvgSheet('', svgSheet.id)">
+            {{ svgSheet.label }}
         </a>
-        <div ngbDropdownMenu aria-labelledby="dropdownSheetNav">
-            <div *ngFor="let svgSheetContent of svgSheet.content">
-                <a
-                    class="dropdown-item"
-                    [ngClass]="{
-                        active: isSelectedSvgSheet(svgSheet.id + svgSheetContent.partial),
-                        'text-muted': !isSelectedSvgSheet(svgSheet.id + svgSheetContent.partial)
-                    }"
-                    (click)="selectSvgSheet(svgSheet.id + svgSheetContent.partial)"
-                    >{{ svgSheet.label + svgSheetContent.partial }}</a
+    }
+    @if (svgSheet.content.length > 1) {
+        <div class="awg-svg-sheet-nav-link-dropdown" ngbDropdown>
+            <a
+                class="btn card-text"
+                id="dropDownSheetNav"
+                ngbDropdownToggle
+                [ngClass]="{ active: isSelectedSvgSheet(svgSheet.id), 'text-muted': !isSelectedSvgSheet(svgSheet.id) }">
+                <span
+                    >{{ svgSheet.label }} <span class="badge bg-secondary">{{ svgSheet.content.length }}</span></span
                 >
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownSheetNav">
+                @for (svgSheetContent of svgSheet.content; track svgSheetContent; let i = $index) {
+                    <div>
+                        <a
+                            class="dropdown-item"
+                            [ngClass]="{
+                                active: isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial),
+                                'text-muted': !isSelectedSvgSheet(svgSheet.id, svgSheetContent.partial)
+                            }"
+                            (click)="selectSvgSheet('', svgSheet.id + svgSheetContent.partial)"
+                            >{{ svgSheet.label }}
+                            <span class="text-muted">[{{ i + 1 }}/{{ svgSheet.content.length }}]</span></a
+                        >
+                    </div>
+                }
             </div>
         </div>
-    </div>
-</ng-container>
+    }
+}

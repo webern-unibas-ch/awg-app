@@ -1,8 +1,9 @@
 {
     "sources": [
         {
-            "id": "sourceB",
+            "id": "source_B",
             "siglum": "B",
+            "siglumAddendum": "",
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
@@ -20,7 +21,10 @@
                 "content": [
                     {
                         "item": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk#",
-                        "itemLinkTo": "SkRTa",
+                        "itemLinkTo": {
+                            "complexId": "op24",
+                            "sheetId": "SkRTa"
+                        },
                         "itemDescription": "(Reihentabelle op. 24)",
                         "folios": [
                             {
@@ -571,8 +575,9 @@
             }
         },
         {
-            "id": "notA",
+            "id": "notB",
             "siglum": "",
+            "siglumAddendum": "",
             "type": "",
             "location": "",
             "description": {

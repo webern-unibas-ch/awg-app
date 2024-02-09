@@ -126,37 +126,37 @@ describe('ResourceInfoComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         expect(dataStreamerService === mockDataStreamerService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have goToIndex', () => {
-            expect(component.goToIndex).withContext('should be undefined').toBeUndefined();
+        it('... should not have goToIndex', () => {
+            expect(component.goToIndex).toBeUndefined();
         });
 
-        it('should not have resourceId', () => {
-            expect(component.resourceId).withContext('should be undefined').toBeUndefined();
+        it('... should not have resourceId', () => {
+            expect(component.resourceId).toBeUndefined();
         });
 
-        it('should not have resourceInfoFormGroup', () => {
-            expect(component.resourceInfoFormGroup).withContext('should be undefined').toBeUndefined();
+        it('... should not have resourceInfoFormGroup', () => {
+            expect(component.resourceInfoFormGroup).toBeUndefined();
         });
 
-        it('should not have resultSize', () => {
-            expect(component.resultSize).withContext('should be undefined').toBeUndefined();
+        it('... should not have resultSize', () => {
+            expect(component.resultSize).toBeUndefined();
         });
 
-        it('should have empty resourceInfoData', () => {
+        it('... should have empty resourceInfoData', () => {
             expect(component.resourceInfoData).withContext('should be defined').toBeDefined();
             expect(component.resourceInfoData).withContext('should equal new ResourceInfo').toEqual(new ResourceInfo());
         });
 
-        it('should have fa-icons', () => {
+        it('... should have fa-icons', () => {
             expect(component.faArrowLeft).withContext('should be faArrowLeft').toBe(faArrowLeft);
             expect(component.faChevronLeft).withContext('should be faChevronLeft').toBe(faChevronLeft);
             expect(component.faChevronRight).withContext('should be faChevronRight').toBe(faChevronRight);
@@ -169,37 +169,71 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#getResourceInfoData', () => {
+        describe('#getResourceInfoData()', () => {
+            it('... should have a method `getResourceInfoData`', () => {
+                expect(component.getResourceInfoData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(getResourceInfoDataSpy, 0);
             });
         });
 
-        describe('#_updateResourceInfo', () => {
+        describe('#_updateResourceInfo()', () => {
+            it('... should have a method `_updateResourceInfo`', () => {
+                expect((component as any)._updateResourceInfo).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(updateResourceInfoSpy, 0);
             });
         });
 
-        describe('#_buildForm', () => {
+        describe('#_buildForm()', () => {
+            it('... should have a method `_buildForm`', () => {
+                expect((component as any)._buildForm).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(buildFormSpy, 0);
             });
         });
 
-        describe('#_findIndexPositionInSearchResultsById', () => {
+        describe('#_findIndexPositionInSearchResultsById()', () => {
+            it('... should have a method `_findIndexPositionInSearchResultsById`', () => {
+                expect((component as any)._findIndexPositionInSearchResultsById).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(findIndexPositionInSearchResultsByIdSpy, 0);
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
+            it('... should have a method `navigateToResource`', () => {
+                expect(component.navigateToResource).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToResourceSpy).not.toHaveBeenCalled();
             });
         });
 
-        describe('#navigateToSearchPanel', () => {
+        describe('#navigateToResourceByIndex()', () => {
+            it('... should have a method `navigateToResourceByIndex`', () => {
+                expect(component.navigateToResourceByIndex).toBeDefined();
+            });
+
+            it('... should not have been called', () => {
+                expect(navigateToResourceByIndexSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('#navigateToSearchPanel()', () => {
+            it('... should have a method `navigateToSearchPanel`', () => {
+                expect(component.navigateToSearchPanel).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(navigateToSearchPanelSpy).not.toHaveBeenCalled();
             });
@@ -212,7 +246,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getResourceInfoData', () => {
+        describe('#getResourceInfoData()', () => {
             it('... should have been called', () => {
                 expectSpyCall(getResourceInfoDataSpy, 1);
             });
@@ -253,7 +287,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).withContext('should be undefined').toBeUndefined();
+                expect(mockConsole.get(0)).toBeUndefined();
             });
 
             it('... should throw an error if subscription fails and log to console', () => {
@@ -264,7 +298,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).withContext('should be undefined').toBeUndefined();
+                expect(mockConsole.get(0)).toBeUndefined();
 
                 // Spy on dataStreamerService to return an error
                 dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableThrowError(() => new Error('error')));
@@ -288,7 +322,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#_updateResourceInfo', () => {
+        describe('#_updateResourceInfo()', () => {
             it('... should have called `_findIndexPositionInSearchResultsById` with `resourceId` and searchResponse', () => {
                 const expectedResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
@@ -479,7 +513,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#_buildForm', () => {
+        describe('#_buildForm()', () => {
             describe('... should have been called with', () => {
                 it('... `goToIndex` and `resultSize`', () => {
                     expectedGoToIndex = 3;
@@ -862,7 +896,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#_findIndexPositionInSearchResultsById', () => {
+        describe('#_findIndexPositionInSearchResultsById()', () => {
             it('... should return index position of a given `resourceId` in given search response', () => {
                 const expectedResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
@@ -896,7 +930,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#navigateToResource', () => {
+        describe('#navigateToResource()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -936,7 +970,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             }));
         });
 
-        describe('#navigateToResourceByIndex', () => {
+        describe('#navigateToResourceByIndex()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
@@ -1021,7 +1055,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             }));
         });
 
-        describe('#navigateToSearchPanel', () => {
+        describe('#navigateToSearchPanel()', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {

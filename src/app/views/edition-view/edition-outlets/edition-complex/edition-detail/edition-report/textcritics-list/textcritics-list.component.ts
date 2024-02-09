@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
 import { TextcriticsList } from '@awg-views/edition-view/models';
@@ -14,6 +14,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     selector: 'awg-textcritics-list',
     templateUrl: './textcritics-list.component.html',
     styleUrls: ['./textcritics-list.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextcriticsListComponent {
     /**
@@ -23,6 +24,14 @@ export class TextcriticsListComponent {
      */
     @Input()
     textcriticsData: TextcriticsList;
+
+    /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -36,10 +45,10 @@ export class TextcriticsListComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -56,6 +65,22 @@ export class TextcriticsListComponent {
      */
     constructor(public utils: UtilityService) {
         this.ref = this;
+    }
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given id of a fragment of the edition report
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {string} id The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(id);
     }
 
     /**
@@ -77,16 +102,16 @@ export class TextcriticsListComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }

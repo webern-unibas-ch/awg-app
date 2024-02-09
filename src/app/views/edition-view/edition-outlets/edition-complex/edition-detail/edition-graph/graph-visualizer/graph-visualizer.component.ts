@@ -98,7 +98,10 @@ export class GraphVisualizerComponent implements OnInit {
      * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
      * @param {ToastService} toastService Instance of the ToastService.
      */
-    constructor(private graphVisualizerService: GraphVisualizerService, private toastService: ToastService) {}
+    constructor(
+        private graphVisualizerService: GraphVisualizerService,
+        private toastService: ToastService
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -224,7 +227,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Shows the error message.
      */
     showErrorMessage(toastMessage: ToastMessage): void {
-        if (!toastMessage || !toastMessage.message) {
+        if (!toastMessage?.message) {
             return;
         }
 

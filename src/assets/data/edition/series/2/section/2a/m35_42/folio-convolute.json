@@ -1,0 +1,392 @@
+{
+    "convolutes": [
+        {
+            "convoluteId": "A",
+            "convoluteLabel": "A Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1a",
+                            "sigle": "M 34 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 1,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1b",
+                            "sigle": "M 34 Sk1",
+                            "sigleAddendum": "T. 8–14",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 4,
+                                    "endSystem": 5
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1c",
+                            "sigle": "M 34 Sk1",
+                            "sigleAddendum": "T. 15–16",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m34",
+                            "sheetId": "M_34_Sk1_1",
+                            "sigle": "M 34 Sk1.1",
+                            "sigleAddendum": "T. 5–8",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1a",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 1–7",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1b",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 8(1–2/4)–9B",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk1",
+                            "sigle": "M 37 Sk1",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk2",
+                            "sigle": "M 37 Sk2",
+                            "sigleAddendum": "",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 18,
+                                    "endSystem": 18
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 265
+                    },
+                    "content": [
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk3a",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 1–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 7,
+                                    "endSystem": 8
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk3b",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 7–14",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m37",
+                            "sheetId": "M_37_Sk3c",
+                            "sigle": "M 37 Sk3",
+                            "sigleAddendum": "T. 15–21",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 13,
+                                    "endSystem": 14
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "convoluteId": "B",
+            "convoluteLabel": "B Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1_1",
+                            "sigle": "M 35/42 Sk1.1",
+                            "sigleAddendum": "T. 22, 22+1",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1c",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 10–15",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1d",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. {16A}–18",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1e",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 19–26",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1f",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 27",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 349,
+                        "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "D",
+            "convoluteLabel": "D Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                }
+            ]
+        }
+    ]
+}

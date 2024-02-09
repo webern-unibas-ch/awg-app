@@ -97,26 +97,34 @@ describe('EditionDetailNavComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `editionRouterLinkButtons`', () => {
-            expect(component.editionRouterLinkButtons).withContext('should be undefined').toBeUndefined();
+        it('... should not have `editionRouterLinkButtons`', () => {
+            expect(component.editionRouterLinkButtons).toBeUndefined();
         });
 
-        it('should not have `editionComplex`', () => {
-            expect(component.editionComplex).withContext('should be undefined').toBeUndefined();
+        it('... should not have `editionComplex`', () => {
+            expect(component.editionComplex).toBeUndefined();
         });
 
-        describe('#getEditionComplex', () => {
+        describe('#getEditionComplex()', () => {
+            it('... should have a method `getEditionComplex`', () => {
+                expect(component.getEditionComplex).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(getEditionComplexSpy, 0);
             });
         });
 
-        describe('#setButtons', () => {
+        describe('#setButtons()', () => {
+            it('... should have a method `setButtons`', () => {
+                expect(component.setButtons).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expectSpyCall(setButtonsSpy, 0);
             });
@@ -139,26 +147,26 @@ describe('EditionDetailNavComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#getEditionComplex', () => {
-            it('should have been called', () => {
+        describe('#getEditionComplex()', () => {
+            it('... should have been called', () => {
                 expectSpyCall(getEditionComplexSpy, 1);
             });
         });
 
-        it('should have `editionComplex`', () => {
+        it('... should have `editionComplex`', () => {
             expect(component.editionComplex).withContext('should be defined').toBeDefined();
             expect(component.editionComplex)
                 .withContext(`should equal ${expectedEditionComplex}`)
                 .toEqual(expectedEditionComplex);
         });
 
-        describe('#setButtons', () => {
+        describe('#setButtons()', () => {
             it('... should have been called', () => {
                 expectSpyCall(setButtonsSpy, 1);
             });
 
-            it('should have `editionRouterLinkButtons`', () => {
-                expect(component.editionRouterLinkButtons).withContext('should be defined').toBeDefined();
+            it('... should have `editionRouterLinkButtons`', () => {
+                expect(component.editionRouterLinkButtons).toBeDefined();
                 expect(component.editionRouterLinkButtons)
                     .withContext(`should equal ${expectedEditionRouterLinkButtons}`)
                     .toEqual(expectedEditionRouterLinkButtons);

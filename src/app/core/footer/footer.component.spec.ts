@@ -2,7 +2,13 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectToBe,
+    expectToContain,
+    expectToEqual,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
 import { LOGOSDATA, METADATA } from '@awg-core/core-data';
 import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -83,17 +89,21 @@ describe('FooterComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected service should use provided mockValue', () => {
+    it('... injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBeTrue();
     });
 
     describe('BEFORE initial data binding', () => {
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
+            it('... should have a method `provideMetaData`', () => {
+                expect(component.provideMetaData).toBeDefined();
+            });
+
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
@@ -108,16 +118,20 @@ describe('FooterComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 main top footer and 1 secondary bottom footer', () => {
+            it('... should contain 1 main top footer div and 1 secondary bottom footer div', () => {
                 getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-top', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-bottom', 1, 1);
             });
 
             describe('main top footer', () => {
-                it('... should contain 1 footer declaration component (stubbed)', () => {
-                    const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
+                it('... should contain 3 inner divs', () => {
+                    getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+                });
 
-                    getAndExpectDebugElementByDirective(footerTopDes[0], FooterDeclarationStubComponent, 1, 1);
+                it('... should contain 1 footer declaration component (stubbed) in first inner div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[0], FooterDeclarationStubComponent, 1, 1);
                 });
 
                 it('... should contain 3 footer logo components (stubbed)', () => {
@@ -125,19 +139,44 @@ describe('FooterComponent (DONE)', () => {
 
                     getAndExpectDebugElementByDirective(footerTopDes[0], FooterLogoStubComponent, 3, 3);
                 });
+
+                it('... should contain 1 footer logo component in second inner div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[1], FooterLogoStubComponent, 1, 1);
+                });
+
+                it('... should contain 2 footer logo component in third inner div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[2], FooterLogoStubComponent, 2, 2);
+                });
             });
 
             describe('secondary bottom footer', () => {
-                it('... should contain 1 footer copyright component (stubbed)', () => {
-                    const footerBottomDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom', 1, 1);
-
-                    getAndExpectDebugElementByDirective(footerBottomDes[0], FooterCopyrightStubComponent, 1, 1);
+                it('... should contain 3 inner divs', () => {
+                    getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
                 });
 
-                it('... should contain 1 footer poweredby component (stubbed)', () => {
-                    const footerBottomDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom', 1, 1);
+                it('... should contain 1 footer copyright component (stubbed) in first inner div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
 
-                    getAndExpectDebugElementByDirective(footerBottomDes[0], FooterPoweredbyStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[0], FooterCopyrightStubComponent, 1, 1);
+                });
+
+                it('... should contain 1 footer poweredby component (stubbed) in second inner div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[1], FooterPoweredbyStubComponent, 1, 1);
+                });
+
+                it('... should contain 1 google tranlate div in third inner div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom div', 3, 3);
+                    const gtransDiv = divDes[2];
+                    const gtransEl = gtransDiv.nativeElement;
+
+                    expectToBe(gtransEl.id, 'google_translate_element');
+                    expectToContain(gtransEl.classList, 'gtrans');
                 });
             });
         });
@@ -152,21 +191,17 @@ describe('FooterComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#provideMetaData', () => {
+        describe('#provideMetaData()', () => {
             it('... should have been called', () => {
                 expect(component.provideMetaData).toHaveBeenCalled();
             });
 
             it('... should return metadata', () => {
-                expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData)
-                    .withContext(`should be ${expectedPageMetaData}`)
-                    .toBe(expectedPageMetaData);
+                expectToEqual(component.pageMetaData, expectedPageMetaData);
             });
 
             it('... should return logos', () => {
-                expect(component.logos).toBeDefined();
-                expect(component.logos).withContext(`should be ${expectedLogos}`).toBe(expectedLogos);
+                expectToEqual(component.logos, expectedLogos);
             });
         });
 
@@ -183,10 +218,7 @@ describe('FooterComponent (DONE)', () => {
                         FooterDeclarationStubComponent
                     ) as FooterDeclarationStubComponent;
 
-                    expect(footerDeclarationCmp.pageMetaData).toBeTruthy();
-                    expect(footerDeclarationCmp.pageMetaData)
-                        .withContext('should have pageMetaData')
-                        .toEqual(expectedPageMetaData);
+                    expectToEqual(footerDeclarationCmp.pageMetaData, expectedPageMetaData);
                 });
 
                 it('... should pass down logos to footer logo components', () => {
@@ -195,18 +227,10 @@ describe('FooterComponent (DONE)', () => {
                         de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
                     );
 
-                    expect(footerLogoCmps.length).withContext('should have 3 logo components').toBe(3);
-
-                    expect(footerLogoCmps[0].logo).toBeTruthy();
-                    expect(footerLogoCmps[0].logo).withContext('should have sagw logo').toEqual(expectedLogos['sagw']);
-
-                    expect(footerLogoCmps[1].logo).toBeTruthy();
-                    expect(footerLogoCmps[1].logo)
-                        .withContext('should have unibas logo')
-                        .toEqual(expectedLogos['unibas']);
-
-                    expect(footerLogoCmps[2].logo).toBeTruthy();
-                    expect(footerLogoCmps[2].logo).withContext('should have snf logo').toEqual(expectedLogos['snf']);
+                    expectToBe(footerLogoCmps.length, 3);
+                    expectToEqual(footerLogoCmps[0].logo, expectedLogos['sagw']);
+                    expectToEqual(footerLogoCmps[1].logo, expectedLogos['unibas']);
+                    expectToEqual(footerLogoCmps[2].logo, expectedLogos['snf']);
                 });
             });
 
@@ -222,10 +246,7 @@ describe('FooterComponent (DONE)', () => {
                         FooterCopyrightStubComponent
                     ) as FooterCopyrightStubComponent;
 
-                    expect(footerCopyrightCmp.pageMetaData).toBeTruthy();
-                    expect(footerCopyrightCmp.pageMetaData)
-                        .withContext(`should equal ${expectedPageMetaData}`)
-                        .toEqual(expectedPageMetaData);
+                    expectToEqual(footerCopyrightCmp.pageMetaData, expectedPageMetaData);
                 });
 
                 it('... should pass down logos to footer poweredby component', () => {
@@ -239,10 +260,7 @@ describe('FooterComponent (DONE)', () => {
                         FooterPoweredbyStubComponent
                     ) as FooterPoweredbyStubComponent;
 
-                    expect(footerPoweredbyCmp.logos).toBeTruthy();
-                    expect(footerPoweredbyCmp.logos)
-                        .withContext(`should equal ${expectedLogos}`)
-                        .toEqual(expectedLogos);
+                    expectToEqual(footerPoweredbyCmp.logos, expectedLogos);
                 });
             });
         });

@@ -13,12 +13,17 @@ import { D3ZoomBehaviour } from './d3-zoom-behaviour.model';
 import { EditionComplex, EditionTitleStatement } from './edition-complex.model';
 import { EditionOutlineComplex, EditionOutlineSection, EditionOutlineSeries } from './edition-outline.model';
 import { EditionRouteConstant } from './edition-route-constant.model';
-import { EditionRowTables } from './edition-row-tables.model';
+import { EditionRowTables, EditionRowTablesList } from './edition-row-tables.model';
 import { EditionSvgLinkBox } from './edition-svg-link-box.model';
-import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
+import { EditionSvgOverlay, EditionSvgOverlayActionTypes, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
+import {
+    FolioCalculation,
+    FolioCalculationContentItemCornerPoints,
+    FolioCalculationLine,
+    FolioCalculationPoint,
+} from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
@@ -37,40 +42,43 @@ export {
     D3Selection,
     D3ZoomBehaviour,
     EditionComplex,
-    EditionRouteConstant,
-    EditionRowTables,
     EditionOutlineComplex,
     EditionOutlineSection,
     EditionOutlineSeries,
+    EditionRouteConstant,
+    EditionRowTables,
+    EditionRowTablesList,
     EditionSvgLinkBox,
     EditionSvgOverlay,
+    EditionSvgOverlayActionTypes,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
     EditionSvgSheetList,
     EditionTitleStatement,
-    FolioConvoluteList,
-    FolioConvolute,
     Folio,
-    FolioFormat,
-    FolioContent,
-    FolioSection,
     FolioCalculation,
+    FolioCalculationContentItemCornerPoints,
     FolioCalculationLine,
     FolioCalculationPoint,
+    FolioContent,
+    FolioConvolute,
+    FolioConvoluteList,
+    FolioFormat,
+    FolioSection,
     FolioSettings,
     FolioSvgData,
     Graph,
     GraphList,
-    GraphSparqlQuery,
     GraphRDFData,
+    GraphSparqlQuery,
     Intro,
     IntroList,
     Source,
-    SourceList,
     SourceDescription,
     SourceDescriptionList,
     SourceEvaluation,
     SourceEvaluationList,
+    SourceList,
     TextcriticalComment,
     Textcritics,
     TextcriticsList,

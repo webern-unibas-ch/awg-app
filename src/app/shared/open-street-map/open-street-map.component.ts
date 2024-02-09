@@ -45,6 +45,5 @@ export class OpenStreetMapComponent {
     osmIFrameSettings = {
         width: '100%',
         height: '350',
-        scrolling: 'no',
     };
 }

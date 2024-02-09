@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { QueryResult } from '../models';
 
@@ -14,7 +14,7 @@ import { QueryResult } from '../models';
     styleUrls: ['./sparql-table.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SparqlTableComponent implements OnInit {
+export class SparqlTableComponent {
     /**
      * Input variable: queryResult.
      *
@@ -38,16 +38,6 @@ export class SparqlTableComponent implements OnInit {
      */
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {
-        // Intentionally left empty until implemented
-    }
 
     /**
      * Public method: onTableNodeClick.

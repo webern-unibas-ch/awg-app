@@ -22,68 +22,34 @@ export const mockResourceTypesInVocabularyResponseJson = {
     },
     resourcetypes: [
         {
-            id: '43',
-            label: 'Work [Anton Webern Ontology]',
+            id: '0',
+            label: 'Test Resource Type 0',
             properties: [
                 {
-                    id: '389',
-                    label: 'Opus',
+                    id: '0',
+                    label: 'Test Property 0',
                 },
                 {
                     id: '1',
-                    label: 'Title',
+                    label: 'Test Property 1',
                 },
                 {
-                    id: '856',
-                    label: 'Gemeinsame Normdatei (GND)',
+                    id: '2',
+                    label: 'Test Property 2',
+                },
+            ],
+        },
+        {
+            id: '1',
+            label: 'Test Resource Type 1',
+            properties: [
+                {
+                    id: '3',
+                    label: 'Test Property 3',
                 },
                 {
-                    id: '97',
-                    label: 'Datum der Komposition',
-                },
-                {
-                    id: '94',
-                    label: 'Aufführungen',
-                },
-                {
-                    id: '96',
-                    label: 'Datum der Erstpublikation',
-                },
-                {
-                    id: '224',
-                    label: 'Erstverlag (Richtext)',
-                },
-                {
-                    id: '226',
-                    label: 'Datum weitere Publikation',
-                },
-                {
-                    id: '225',
-                    label: 'weiterer Verlag',
-                },
-                {
-                    id: '196',
-                    label: 'Besetzung',
-                },
-                {
-                    id: '193',
-                    label: 'Quelle (Richtext)',
-                },
-                {
-                    id: '896',
-                    label: 'weitere, für die Edition nicht relevante Quelle',
-                },
-                {
-                    id: '198',
-                    label: 'Textquelle',
-                },
-                {
-                    id: '204',
-                    label: 'hat Satz',
-                },
-                {
-                    id: '199',
-                    label: 'Kommentar (Richtext)',
+                    id: '4',
+                    label: 'Test Property 4',
                 },
             ],
         },

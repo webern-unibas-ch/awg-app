@@ -1,24 +1,65 @@
-@import 'src/assets/themes/scss/shared';
+@import '/src/assets/themes/scss/shared';
 
 #awg-edition-svg-container {
     position: relative;
     width: 100%;
 
-    > .awg-edition-svg-icon-bar {
+    .awg-edition-svg-icon-bar {
         position: relative;
         width: 100%;
     }
-}
 
-.awg-edition-svg-panel-container {
-    position: inherit;
-    height: 100%;
+    .awg-edition-svg-sheet-container {
+        position: inherit;
+        height: 100%;
+        box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+        border: 1px solid $border-grey;
+    }
+
+    /* Next & previous buttons */
+    .awg-edition-svg-sheet-viewer-nav {
+        > .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            width: auto;
+            padding: 8px;
+            user-select: none;
+
+            /* On hover, add a black background color with a little bit see-through */
+            &:hover {
+                background-color: #dddddd;
+            }
+
+            span {
+                position: relative;
+                top: 45%;
+                font-weight: bold;
+                font-size: 18px;
+                transition: 0.6s ease;
+                color: $link-color;
+            }
+        }
+
+        > .prev {
+            border-right: 1px solid #dddddd;
+        }
+
+        /* Position the "next button" to the right */
+        > .next {
+            right: 0;
+            border-left: 1px solid #dddddd;
+        }
+    }
 }
 
 /* slider */
 .input-group.awg-edition-svg-zoom-slider-container {
     flex-wrap: nowrap;
     width: auto;
+    margin-left: 2rem !important;
 
     > :not(:first-child) {
         margin-left: 0px !important;

@@ -14,6 +14,52 @@ import { EditionComplex } from '@awg-views/edition-view/models';
  */
 export class EDITION_COMPLEXES {
     /**
+     * An EditionComplex object for M 30.
+     */
+    static readonly M30: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '30',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '19. Januar 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 31.
+     */
+    static readonly M31: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '31',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '19. Januar 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
      * An EditionComplex object for M 34.
      */
     static readonly M34: EditionComplex = new EditionComplex(
@@ -29,7 +75,53 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '07. Juli 2022',
+            lastModified: '6. Mai 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 35/42.
+     */
+    static readonly M35_42: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '35/42',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '8. Februar 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for M 37.
+     */
+    static readonly M37: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '37',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '19. Januar 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_2,
         EDITION_ROUTE_CONSTANTS.SECTION_2A,
@@ -190,7 +282,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '01. Juni 2022',
+            lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
@@ -213,10 +305,33 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '23. März 2022',
+            lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_3,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for Opus 22.
+     */
+    static readonly OP22: EditionComplex = new EditionComplex(
+        {
+            title: 'Quartett für Geige, Klarinette, Tenorsaxophon und Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+            catalogueNumber: '22',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Mai 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_2,
         EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 
@@ -236,7 +351,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '23. März 2022',
+            lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
@@ -259,7 +374,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '23. März 2022',
+            lastModified: '6. Mai 2023',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_1,
@@ -282,10 +397,33 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '23. Februar 2022',
+            lastModified: '19. Januar 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
+     * An EditionComplex object for Opus 27.
+     */
+    static readonly OP27: EditionComplex = new EditionComplex(
+        {
+            title: 'Variationen für Klavier',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.OPUS,
+            catalogueNumber: '27',
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '6. Mai 2023',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_1,
+        EDITION_ROUTE_CONSTANTS.SECTION_2,
         EDITION_TYPE_CONSTANTS.SKETCH_EDITION
     );
 }

@@ -1,4 +1,4 @@
-import { HttpClient, HttpInterceptor, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpInterceptor, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Data } from '@angular/router';
@@ -7,7 +7,7 @@ import { of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { getInterceptorInstance } from '@testing/interceptor-helper';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -77,7 +77,7 @@ describe('LoadingInterceptor (DONE)', () => {
 
             httpClient.get<Data>('/foo/bar').subscribe({
                 next: data => {
-                    expect(data).toEqual(testData);
+                    expectToEqual(data, testData);
                 },
             });
 
@@ -87,7 +87,7 @@ describe('LoadingInterceptor (DONE)', () => {
             });
 
             // Check for GET request
-            expect(call.request.method).toBe('GET');
+            expectToBe(call.request.method, 'GET');
 
             // Respond with mocked data
             call.flush(testData);
@@ -104,7 +104,7 @@ describe('LoadingInterceptor (DONE)', () => {
             // Subscribe to GET Http Request
             httpClient.get<Data>(expectedUrl).subscribe({
                 next: data => {
-                    expect(data).toEqual(testData);
+                    expectToEqual(data, testData);
                 },
             });
         }));
@@ -165,7 +165,7 @@ describe('LoadingInterceptor (DONE)', () => {
             // Add another request to the stack
             loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
                 next: response => {
-                    expect(response).withContext(`should equal ${expectedHttpResponse}`).toEqual(expectedHttpResponse);
+                    expectToEqual(response, expectedHttpResponse);
                 },
                 error: () => {
                     fail('error should not have been called');
@@ -199,7 +199,7 @@ describe('LoadingInterceptor (DONE)', () => {
             loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe({
                 next: () => fail('should have been failed'),
                 error: err => {
-                    expect(err).toEqual(expectedError);
+                    expectToEqual(err, expectedError);
                 },
                 complete: () => {
                     fail('should have been failed');

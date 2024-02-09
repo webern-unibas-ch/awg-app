@@ -1,14 +1,22 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { faChevronRight, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 import { UtilityService } from '@awg-app/core/services';
 import { TextcriticalComment, Textcritics } from '@awg-app/views/edition-view/models';
 
+/**
+ * The EditionSvgSheetFooter component.
+ *
+ * It contains the footer of the svg sheet navigation section
+ * of the edition view of the app
+ * and lets the user display textcritical comments.
+ */
 @Component({
     selector: 'awg-edition-svg-sheet-footer',
     templateUrl: './edition-svg-sheet-footer.component.html',
     styleUrls: ['./edition-svg-sheet-footer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetFooterComponent {
     /**
@@ -36,6 +44,14 @@ export class EditionSvgSheetFooterComponent {
     showTkA: boolean;
 
     /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
      * Output variable: openModalRequest.
      *
      * It keeps an event emitter to open the modal
@@ -47,10 +63,10 @@ export class EditionSvgSheetFooterComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Public variable: faChevronRight.
@@ -91,6 +107,22 @@ export class EditionSvgSheetFooterComponent {
     }
 
     /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given id of a fragment of the edition report
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {string} id The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(id);
+    }
+
+    /**
      * Public method: openModal.
      *
      * It emits a given id of a modal snippet text
@@ -109,18 +141,17 @@ export class EditionSvgSheetFooterComponent {
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.showTextcritics = false;
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 
     /**

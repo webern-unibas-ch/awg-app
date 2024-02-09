@@ -4,23 +4,18 @@
         "textEditions": [],
         "sketchEditions": [
             {
-                "id": "SkRTa",
-                "label": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk#a",
+                "id": "SkRT",
+                "label": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk#",
                 "content": [
                     {
-                        "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_1von2_path.svg",
-                        "image": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_1von2_path.jpg"
-                    }
-                ],
-                "convolute": "B"
-            },
-            {
-                "id": "SkRTb",
-                "label": "M 316 Sk# / M 318 Sk# / M 319 Sk# / M 320 Sk#b",
-                "content": [
+                        "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle-1von2-final.svg",
+                        "image": "",
+                        "partial": "a"
+                    },
                     {
-                        "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_2von2_path.svg",
-                        "image": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle_20220318_2von2_path.jpg"
+                        "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle-2von2-final.svg",
+                        "image": "",
+                        "partial": "b"
                     }
                 ],
                 "convolute": "B"

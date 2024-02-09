@@ -6,7 +6,6 @@
         class="nav-tabs nav-fill"
         [activeId]="selectedSearchTabId"
         (navChange)="onSearchTabChange($event)">
-        <!-- TODO: see https://github.com/ng-bootstrap/ng-bootstrap/issues/1632 -->
         <ng-container [ngbNavItem]="searchTabs?.fulltext.id">
             <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabs?.fulltext.title }}</a>
             <ng-template ngbNavContent>
@@ -29,24 +28,27 @@
 </div>
 
 <!-- loading spinner -->
-<div *ngIf="isLoading$ | async; else notLoading">
-    <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-</div>
+@if (isLoading$ | async) {
+    <div>
+        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+    </div>
+} @else {
+    @if (errorMessage) {
+        <div class="errorMessage">
+            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
+            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>
+        </div>
+    }
+    @if (searchResponseWithQuery?.query) {
+        <awg-search-result-list
+            [searchParams]="searchParams"
+            [searchUrl]="httpGetUrl"
+            (pageChangeRequest)="onPageChange($event)"
+            (rowNumberChangeRequest)="onRowNumberChange($event)"
+            (viewChangeRequest)="onViewChange($event)">
+        </awg-search-result-list>
+    }
+}
 
 <!-- search results -->
-<ng-template #notLoading>
-    <div class="errorMessage" *ngIf="errorMessage">
-        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
-        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
-        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>
-    </div>
-
-    <awg-search-result-list
-        *ngIf="searchResponseWithQuery?.query"
-        [searchParams]="searchParams"
-        [searchUrl]="httpGetUrl"
-        (pageChangeRequest)="onPageChange($event)"
-        (rowNumberChangeRequest)="onRowNumberChange($event)"
-        (viewChangeRequest)="onViewChange($event)">
-    </awg-search-result-list>
-</ng-template>

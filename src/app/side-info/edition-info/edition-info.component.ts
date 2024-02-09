@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
+import { EditionComplex } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.
@@ -16,25 +17,25 @@ import { EDITION_ROUTE_CONSTANTS, EDITION_TYPE_CONSTANTS } from '@awg-views/edit
 })
 export class EditionInfoComponent {
     /**
-     * Readonly variable: EDITION_COMPLEX_M34.
+     * Public variable: editionInfoHeader.
      *
-     * It keeps the edition complex M 34.
+     * It keeps the header for the edition-info.
      */
-    readonly EDITION_COMPLEX_M34 = EDITION_COMPLEXES.M34;
+    editionInfoHeader = 'Edition';
 
     /**
-     * Readonly variable: EDITION_COMPLEX_OP12.
+     * Readonly variable: DISPLAYED_EDITION_COMPLEXES.
      *
-     * It keeps the edition complex op. 12.
+     * It keeps the array of displayed edition complexes.
      */
-    readonly EDITION_COMPLEX_OP12 = EDITION_COMPLEXES.OP12;
-
-    /**
-     * Readonly variable: EDITION_COMPLEX_OP25.
-     *
-     * It keeps the edition complex op. 25.
-     */
-    readonly EDITION_COMPLEX_OP25 = EDITION_COMPLEXES.OP25;
+    readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
+        EDITION_COMPLEXES.OP12,
+        EDITION_COMPLEXES.OP25,
+        EDITION_COMPLEXES.M30,
+        EDITION_COMPLEXES.M31,
+        EDITION_COMPLEXES.M34,
+        EDITION_COMPLEXES.M37,
+    ];
 
     /**
      * Getter variable: editionRouteConstants.

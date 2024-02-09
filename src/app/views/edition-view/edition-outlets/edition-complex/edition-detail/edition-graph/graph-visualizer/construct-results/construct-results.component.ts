@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 
 import { D3SimulationNode, Triple } from '../models';
@@ -51,6 +50,37 @@ export class ConstructResultsComponent {
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
 
     /**
+     * Public method: isQueryResultNotEmpty.
+     *
+     * It checks if a given queryResult triple is not empty.
+     *
+     * @param {Triple[]} queryResult The given queryResult triples.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isQueryResultNotEmpty(queryResult: Triple[]): boolean {
+        if (queryResult.length === 0) {
+            return false;
+        }
+        return queryResult.every(triple => {
+            const { subject, predicate, object } = triple;
+            return Boolean(subject) && Boolean(predicate) && Boolean(object);
+        });
+    }
+
+    /**
+     * Public method: isAccordionItemDisabled.
+     *
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
+     *
+     * @returns {boolean} The boolean value of the comparison.
+     */
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen;
+    }
+
+    /**
      * Public method: onGraphNodeClick.
      *
      * It emits a trigger to
@@ -65,21 +95,5 @@ export class ConstructResultsComponent {
             return;
         }
         this.clickedNodeRequest.emit(node);
-    }
-
-    /**
-     * Public method: preventPanelCollapseOnFullscreen.
-     *
-     * It prevents the given panel event from being collapsed in fullscreen mode.
-     *
-     * @returns {void} Prevents the panel collapse.
-     */
-    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
-        if (!$event) {
-            return;
-        }
-        if (this.isFullscreen && $event.nextState === false) {
-            $event.preventDefault();
-        }
     }
 }

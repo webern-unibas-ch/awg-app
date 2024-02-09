@@ -6,44 +6,45 @@
 <!-- header -->
 <div class="para">
     <h6 class="awg-breadcrumb">
-        {{ editionRouteConstants.EDITION.short }} / {{ EDITION_COMPLEX_OP12.series.full }} /
-        {{ EDITION_COMPLEX_OP12.section.full }}
+        {{ editionRouteConstants.EDITION.short }} / {{ editionRouteConstants.SERIES_1.full }} /
+        {{ editionRouteConstants.SECTION_5.full }}
     </h6>
 
-    <h3 class="awg-edition-info-header">
-        <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP12.titleStatement.title"></span
-        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP12.complexId.short }}</span> (<a
-            [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-            >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-        >)
-    </h3>
-
-    <h3 class="awg-edition-info-header">
-        <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_OP25.titleStatement.title"></span
-        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_OP25.complexId.short }}</span> (<a
-            [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-            >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-        >
-        &
-        <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
-            editionRouteConstants.EDITION_GRAPH.short
-        }}</a
-        >)
-    </h3>
+    @for (editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 0 : 2; track editionComplex) {
+        <h3 class="awg-edition-info-header">
+            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.titleStatement.title"></span
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionComplex.complexId.short }}</span> (<a
+                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
+                >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
+            >
+            @if (editionComplex === DISPLAYED_EDITION_COMPLEXES[1]) {
+                <span>&nbsp;&&nbsp;</span>
+                <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_GRAPH.route]">{{
+                    editionRouteConstants.EDITION_GRAPH.short
+                }}</a>
+            }
+            <span>)</span>
+        </h3>
+    }
 </div>
 <div class="para">
     <h6 class="awg-breadcrumb">
-        {{ editionRouteConstants.EDITION.short }} / {{ EDITION_COMPLEX_M34.series.full }} /
-        {{ EDITION_COMPLEX_M34.section.full }}
+        {{ editionRouteConstants.EDITION.short }} / {{ editionRouteConstants.SERIES_2.full }} /
+        {{ editionRouteConstants.SECTION_2A.full }}
     </h6>
 
-    <h3 class="awg-edition-info-header">
-        <span class="awg-edition-info-header-title" [innerHTML]="EDITION_COMPLEX_M34.titleStatement.title"></span
-        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_COMPLEX_M34.complexId.short }}</span> (<a
-            [routerLink]="[EDITION_COMPLEX_M34.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
-            >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
-        >)
-    </h3>
+    @for (
+        editionComplex of DISPLAYED_EDITION_COMPLEXES | slice: 2 : DISPLAYED_EDITION_COMPLEXES.length;
+        track editionComplex
+    ) {
+        <h3 class="awg-edition-info-header">
+            <span class="awg-edition-info-header-title" [innerHTML]="editionComplex.titleStatement.title"></span
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionComplex.complexId.short }}</span> (<a
+                [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
+                >{{ editionTypeConstants.SKETCH_EDITION.full }}</a
+            >)
+        </h3>
+    }
 </div>
 
 <!-- description -->
@@ -76,9 +77,17 @@
     </p>
     <p>
         Über den Menüpunkt <em>Edition</em> sind ausgewählte Skizzeneditionen zu
-        <a [routerLink]="[EDITION_COMPLEX_OP12.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">op. 12</a>,
-        <a [routerLink]="[EDITION_COMPLEX_OP25.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">op. 25</a> und
-        <a [routerLink]="[EDITION_COMPLEX_M34.baseRoute, editionRouteConstants.EDITION_SHEETS.route]">M 34</a> sowie die
+        @for (editionComplex of DISPLAYED_EDITION_COMPLEXES; track editionComplex; let i = $index; let n = $count) {
+            <a [routerLink]="[editionComplex.baseRoute, editionRouteConstants.EDITION_SHEETS.route]"
+                >{{ editionComplex.complexId.short }}
+            </a>
+            @if (i < n - 2) {
+                <span>, </span>
+            } @else if (i === n - 2) {
+                <span> und </span>
+            }
+        }
+        sowie die
         <a [routerLink]="[editionRouteConstants.EDITION.route, editionRouteConstants.ROWTABLES.route]"
             >Reihentabellen</a
         >

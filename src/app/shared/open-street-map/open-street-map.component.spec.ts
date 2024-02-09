@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
 
@@ -20,7 +20,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let expectedOsmEmbedUrl: SafeResourceUrl;
     let expectedOsmLinkUrl: string;
     let expectedOsmLinkLabel: string;
-    let expectedOsmIFrameSettings: { width; height; scrolling };
+    let expectedOsmIFrameSettings: { width; height };
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -41,7 +41,6 @@ describe('OpenStreetMapComponent (DONE)', () => {
         expectedOsmIFrameSettings = {
             width: '100%',
             height: '350',
-            scrolling: 'no',
         };
 
         // Unsafe link values for open streets map
@@ -56,34 +55,45 @@ describe('OpenStreetMapComponent (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `osmEmbedUrl` input', () => {
+        it('... should not have `osmEmbedUrl` input', () => {
             expect(component.osmEmbedUrl).toBeUndefined();
         });
 
-        it('should not have `osmLinkUrl` input', () => {
+        it('... should not have `osmLinkUrl` input', () => {
             expect(component.osmLinkUrl).toBeUndefined();
         });
 
-        it('should have `osmLinkLabel`', () => {
-            expect(component.osmLinkLabel).toBeDefined();
-            expect(component.osmLinkLabel).withContext(`should be ${expectedOsmLinkLabel}`).toBe(expectedOsmLinkLabel);
+        it('... should have `osmLinkLabel`', () => {
+            expectToBe(component.osmLinkLabel, expectedOsmLinkLabel);
         });
 
-        it('should have `osmIFrameSettings`', () => {
-            expect(component.osmIFrameSettings).toBeDefined();
-            expect(component.osmIFrameSettings)
-                .withContext(`should equal ${expectedOsmIFrameSettings}`)
-                .toEqual(expectedOsmIFrameSettings);
+        it('... should have `osmIFrameSettings`', () => {
+            expectToEqual(component.osmIFrameSettings, expectedOsmIFrameSettings);
         });
 
         describe('VIEW', () => {
             it('... should contain one iframe', () => {
                 getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
+            });
+
+            it('... should have title attribute of iframe', () => {
+                const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
+                const mapEl = mapDes[0].nativeElement;
+
+                expectToBe(mapEl.title, 'Open Street Map View');
+            });
+
+            it('... should not pass other attributes to iframe yet', () => {
+                const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
+                const mapEl = mapDes[0].nativeElement;
+
+                expectToBe(mapEl.width, '');
+                expectToBe(mapEl.height, '');
             });
 
             it('... should contain one div with link', () => {
@@ -98,7 +108,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 expect(mapEl.src).toBeFalsy();
             });
 
-            it('... should not render the link to OSM homepage yet', () => {
+            it('... should not have the link to OSM homepage yet', () => {
                 const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
                 const linkEl = linkDes[0].nativeElement;
 
@@ -120,27 +130,39 @@ describe('OpenStreetMapComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render the osm map', () => {
+            it('... should pass correct attributes to iframe', () => {
+                const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
+                const mapEl = mapDes[0].nativeElement;
+
+                expectToBe(mapEl.width, expectedOsmIFrameSettings.width);
+                expectToBe(mapEl.height, expectedOsmIFrameSettings.height);
+            });
+
+            it('... should render the osm map in iframe', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
                 const mapEl = mapDes[0].nativeElement;
 
                 // Sanitize the bypassed value
                 const sanitizedEmbedUrl = domSanitizer.sanitize(SecurityContext.RESOURCE_URL, expectedOsmEmbedUrl);
+
                 // Check for the src attribute to contain the sanitized SafeResourceUrl
-                expect(mapEl.src).toBeDefined();
-                expect(mapEl.src).withContext(`should be ${sanitizedEmbedUrl}`).toBe(sanitizedEmbedUrl);
-                expect(mapEl.src).withContext(`should be ${expectedUnsafeOsmEmbedUrl}`).toBe(expectedUnsafeOsmEmbedUrl);
+                expectToBe(mapEl.src, sanitizedEmbedUrl);
             });
 
-            it('... should render the link to OSM homepage', () => {
+            it('... should have the link to OSM homepage in div', () => {
                 const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
                 const linkEl = linkDes[0].nativeElement;
 
-                // Sanitize the bypassed value
-                const sanitizedLinkUrl = expectedOsmLinkUrl;
                 // Check for the href attribute to contain the link url
-                expect(linkEl.href).toBeDefined();
-                expect(linkEl.href).withContext(`should be ${expectedOsmLinkUrl}`).toBe(expectedOsmLinkUrl);
+                expectToBe(linkEl.href, expectedOsmLinkUrl);
+            });
+
+            it('... should display the link label in div anchor', () => {
+                const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
+                const linkEl = linkDes[0].nativeElement;
+
+                // Check for the inner text to contain the link label
+                expectToBe(linkEl.innerText, expectedOsmLinkLabel);
             });
         });
     });

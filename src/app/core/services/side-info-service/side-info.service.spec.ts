@@ -27,28 +27,32 @@ describe('SideInfoService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', () => {
+    it('... should create', () => {
         expect(sideInfoService).toBeTruthy();
     });
 
-    it('should have searchInfoDataSubject', () => {
+    it('... should have searchInfoDataSubject', () => {
         expect((sideInfoService as any)._searchInfoDataSubject).toBeTruthy();
     });
 
-    it('should have searchInfoDataStream$', () => {
+    it('... should have searchInfoDataStream$', () => {
         expect((sideInfoService as any)._searchInfoDataStream$).toBeTruthy();
     });
 
-    it('should have searchInfoTitleSubject', () => {
+    it('... should have searchInfoTitleSubject', () => {
         expect((sideInfoService as any)._searchInfoTitleSubject).toBeTruthy();
     });
 
-    it('should have searchInfoTitleStream$', () => {
+    it('... should have searchInfoTitleStream$', () => {
         expect((sideInfoService as any)._searchInfoTitleStream$).toBeTruthy();
     });
 
     describe('SearchInfoData', () => {
-        describe('#getSearchInfoData', () => {
+        describe('#getSearchInfoData()', () => {
+            it('... should have a method `getSearchInfoData`', () => {
+                expect(sideInfoService.getSearchInfoData).toBeDefined();
+            });
+
             it('... should return default empty search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
@@ -76,7 +80,11 @@ describe('SideInfoService (DONE)', () => {
             }));
         });
 
-        describe('#updateSearchInfoData', () => {
+        describe('#updateSearchInfoData()', () => {
+            it('... should have a method `updateSearchInfoData`', () => {
+                expect(sideInfoService.updateSearchInfoData).toBeDefined();
+            });
+
             it('... should emit updated search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
@@ -97,7 +105,11 @@ describe('SideInfoService (DONE)', () => {
             }));
         });
 
-        describe('#clearSearchInfoData', () => {
+        describe('#clearSearchInfoData()', () => {
+            it('... should have a method `clearSearchInfoData`', () => {
+                expect(sideInfoService.clearSearchInfoData).toBeDefined();
+            });
+
             it('... should update search info data with empty SearchInfo', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
@@ -134,7 +146,11 @@ describe('SideInfoService (DONE)', () => {
     });
 
     describe('SearchInfoTitle', () => {
-        describe('#getSearchInfoTitle', () => {
+        describe('#getSearchInfoTitle()', () => {
+            it('... should have a method `getSearchInfoTitle`', () => {
+                expect(sideInfoService.getSearchInfoTitle).toBeDefined();
+            });
+
             it('... should return default empty search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
@@ -157,7 +173,11 @@ describe('SideInfoService (DONE)', () => {
             }));
         });
 
-        describe('#updateSearchInfoTitle', () => {
+        describe('#updateSearchInfoTitle()', () => {
+            it('... should have a method `updateSearchInfoTitle`', () => {
+                expect(sideInfoService.updateSearchInfoTitle).toBeDefined();
+            });
+
             it('... should emit updated search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
@@ -175,7 +195,11 @@ describe('SideInfoService (DONE)', () => {
             }));
         });
 
-        describe('#clearSearchInfoTitle', () => {
+        describe('#clearSearchInfoTitle()', () => {
+            it('... should have a method `clearSearchInfoTitle`', () => {
+                expect(sideInfoService.clearSearchInfoTitle).toBeDefined();
+            });
+
             it('... should update search info title with empty string', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {

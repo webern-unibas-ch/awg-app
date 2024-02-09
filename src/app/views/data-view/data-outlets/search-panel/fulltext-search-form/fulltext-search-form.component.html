@@ -1,11 +1,11 @@
-<form [formGroup]="searchForm" class="p-3 border">
+<form [formGroup]="fulltextSearchForm" class="p-3 border">
     <div class="input-group mt-3 mb-3">
         <div class="input-group-text" id="search-icon" style="max-height: 3.63rem">
             <fa-icon [icon]="faSearch"></fa-icon>
         </div>
         <div class="form-floating awg-form-floating-group flex-grow-1">
             <input
-                title="{{ searchFormStrings.label }}"
+                title="{{ fulltextSearchFormStrings.label }}"
                 type="search"
                 id="awg-fulltext-search-searchValue"
                 class="form-control"
@@ -13,16 +13,22 @@
                     'is-invalid': isFulltextSearchInputInvalid()
                 }"
                 formControlName="searchvalControl"
-                [attr.aria-label]="searchFormStrings.label"
+                [attr.aria-label]="fulltextSearchFormStrings.label"
                 aria-describedby="search-icon"
-                placeholder="{{ searchFormStrings.placeholder }}"
+                placeholder="{{ fulltextSearchFormStrings.placeholder }}"
                 required />
-            <label for="awg-fulltext-search-searchValue" class="text-muted">{{ searchFormStrings.placeholder }}</label>
-            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="invalid-feedback">
-                <p *ngIf="isFulltextSearchInputInvalid()">
-                    {{ searchFormStrings.errorMessage }}
-                </p>
-            </div>
+            <label for="awg-fulltext-search-searchValue" class="text-muted">{{
+                fulltextSearchFormStrings.placeholder
+            }}</label>
+            @if (searchvalControl.invalid && !searchvalControl.pristine) {
+                <div class="invalid-feedback">
+                    @if (isFulltextSearchInputInvalid()) {
+                        <p>
+                            {{ fulltextSearchFormStrings.errorMessage }}
+                        </p>
+                    }
+                </div>
+            }
         </div>
     </div>
 </form>

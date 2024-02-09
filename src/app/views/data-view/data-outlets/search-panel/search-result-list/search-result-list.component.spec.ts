@@ -100,19 +100,19 @@ describe('SearchResultListComponent', () => {
         );
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
-    it('injected conversion service should use provided mockValue', () => {
+    it('... injected conversion service should use provided mockValue', () => {
         expect(conversionService === mockConversionService).toBeTrue();
     });
 
-    it('injected datastreamer service should use provided mockValue', () => {
+    it('... injected datastreamer service should use provided mockValue', () => {
         expect(dataStreamerService === mockDataStreamerService).toBeTrue();
     });
 
-    it('injected sideinfo service should use provided mockValue', () => {
+    it('... injected sideinfo service should use provided mockValue', () => {
         expect(sideInfoService === mockSideInfoService).toBeTrue();
     });
 });

@@ -7,12 +7,10 @@ import {
     OnInit,
     Output,
     SimpleChanges,
-    ViewChild,
 } from '@angular/core';
 
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
 import { faDiagramProject, faTable } from '@fortawesome/free-solid-svg-icons';
-import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { CmMode } from '@awg-shared/codemirror/codemirror.component';
 import { ToastMessage } from '@awg-shared/toast/toast.service';
@@ -32,13 +30,6 @@ import { GraphSparqlQuery } from '@awg-views/edition-view/models';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlEditorComponent implements OnInit, OnChanges {
-    /**
-     * ViewChild variable: sparqlAcc.
-     *
-     * It keeps the reference to the NgbAccordion.
-     */
-    @ViewChild('sparqlAcc') sparqlAcc: NgbAccordion;
-
     /**
      * Input variable: queryList.
      *
@@ -164,12 +155,12 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {void} Sets the selected view type.
      */
     setViewType(): void {
-        if (this.query.queryType && this.query.queryType === 'construct') {
-            this.selectedViewType = ViewHandleTypes.GRAPH;
-        }
-        if (this.query.queryType && this.query.queryType === 'select') {
-            this.selectedViewType = ViewHandleTypes.TABLE;
-        }
+        const viewTypeMap = {
+            construct: ViewHandleTypes.GRAPH,
+            select: ViewHandleTypes.TABLE,
+        };
+
+        this.selectedViewType = viewTypeMap[this.query?.queryType] || ViewHandleTypes.GRAPH;
     }
 
     /**
@@ -199,27 +190,31 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      */
     switchQueryType(viewType: ViewHandleTypes): void {
         switch (viewType) {
-            case ViewHandleTypes.TABLE:
+            case ViewHandleTypes.TABLE: {
                 if (this.query.queryType === 'construct' && this.query.queryString.includes('CONSTRUCT')) {
                     this.query.queryString = this.query.queryString.replace('CONSTRUCT', 'SELECT *');
                     this.query.queryType = 'select';
                 }
                 break;
-            case ViewHandleTypes.GRAPH:
+            }
+            case ViewHandleTypes.GRAPH: {
                 if (this.query.queryType === 'select' && this.query.queryString.includes('SELECT')) {
                     this.query.queryString = this.query.queryString.replace(/SELECT.*\n/, 'CONSTRUCT\n');
                     this.query.queryType = 'construct';
                 }
                 break;
-            case ViewHandleTypes.GRID:
+            }
+            case ViewHandleTypes.GRID: {
                 // Do nothing
                 break;
-            default:
+            }
+            default: {
                 // This branch should not be reached
                 const exhaustiveCheck: never = viewType;
                 throw new Error(
                     `The view must be ${ViewHandleTypes.GRAPH} or ${ViewHandleTypes.TABLE}, but was: ${exhaustiveCheck}.`
                 );
+            }
         }
     }
 
@@ -231,13 +226,7 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
      * @returns {boolean} The boolean value of the check result.
      */
     isExampleQueriesEnabled(): boolean {
-        return !!(
-            this.query &&
-            this.query.queryType &&
-            this.query.queryLabel &&
-            this.query.queryString &&
-            this.queryList
-        );
+        return !!(this.query?.queryType && this.query?.queryLabel && this.query?.queryString && this.queryList);
     }
 
     /**
@@ -308,30 +297,26 @@ export class SparqlEditorComponent implements OnInit, OnChanges {
     }
 
     /**
-     * Public method: preventPanelCollapseOnFullscreen.
+     * Public method: isAccordionItemCollapsed.
      *
-     * It prevents the given panel event from being collapsed in fullscreen mode.
+     * It returns a boolean flag if the accordion item should be collapsed.
+     * It returns false if fullscreenMode is set, otherwise true.
      *
-     * @returns {void} Prevents the panel collapse.
+     * @returns {boolean} The boolean value of the comparison.
      */
-    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
-        if (!$event) {
-            return;
-        }
-        if (this.isFullscreen && $event.nextState === false) {
-            $event.preventDefault();
-        }
+    isAccordionItemCollapsed(): boolean {
+        return !this.isFullscreen;
     }
 
     /**
-     * Public method: togglePanel.
+     * Public method: isAccordionItemDisabled.
      *
-     * It returns the id of the panel to be toggled if fullscreen mode is set,
-     * otherwise empty string.
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
      *
-     * @returns {string} The id of the panel to be toggled.
+     * @returns {boolean} The boolean value of the comparison.
      */
-    togglePanel(): string {
-        return this.isFullscreen ? 'awg-graph-visualizer-sparql-query' : '';
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen;
     }
 }

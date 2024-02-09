@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { turtle } from '@codemirror/legacy-modes/mode/turtle';
 
@@ -19,13 +18,6 @@ import { ToastMessage } from '@awg-shared/toast/toast.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TriplesEditorComponent {
-    /**
-     * ViewChild variable: triplesAcc.
-     *
-     * It keeps the reference to the NgbAccordion.
-     */
-    @ViewChild('triplesAcc') triplesAcc: NgbAccordion;
-
     /**
      * Input variable: triples.
      *
@@ -124,27 +116,26 @@ export class TriplesEditorComponent {
     }
 
     /**
-     * Public method: preventPanelCollapseOnFullscreen.
+     * Public method: isAccordionItemCollapsed.
      *
-     * It prevents the given panel event from being collapsed in fullscreen mode.
+     * It returns a boolean flag if the accordion item should be collapsed.
+     * It returns false if fullscreenMode is set, otherwise true.
      *
-     * @returns {void} Prevents the panel collapse.
+     * @returns {boolean} The boolean value of the comparison.
      */
-    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
-        if (this.isFullscreen && $event.nextState === false) {
-            $event.preventDefault();
-        }
+    isAccordionItemCollapsed(): boolean {
+        return !this.isFullscreen;
     }
 
     /**
-     * Public method: togglePanel.
+     * Public method: isAccordionItemDisabled.
      *
-     * It returns the id of the panel to be toggled if fullscreen mode is set,
-     * otherwise empty string.
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
      *
-     * @returns {string} The id of the panel to be toggled.
+     * @returns {boolean} The boolean value of the comparison.
      */
-    togglePanel(): string {
-        return this.isFullscreen ? 'awg-graph-visualizer-triples' : '';
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen;
     }
 }

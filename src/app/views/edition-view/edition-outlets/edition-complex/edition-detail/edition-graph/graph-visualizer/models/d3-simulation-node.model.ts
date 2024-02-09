@@ -1,4 +1,4 @@
-import * as d3_force from 'd3-force';
+import * as D3_FORCE from 'd3-force';
 
 /**
  * The D3SimulationNodeType enumeration.
@@ -16,7 +16,7 @@ export enum D3SimulationNodeType {
  * It is used in the context of the graph visualizer
  * to store the data of a d3 simulation node.
  */
-export class D3SimulationNode implements d3_force.SimulationNodeDatum {
+export class D3SimulationNode implements D3_FORCE.SimulationNodeDatum {
     /**
      * The id of the simulation node.
      */

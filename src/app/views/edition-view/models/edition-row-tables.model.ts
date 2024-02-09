@@ -21,17 +21,25 @@ export class EditionRowTables {
     full: string;
 
     /**
-     * The convolute in which the row table is located.
+     * The id of the sketch which contains the row table.
      */
-    convolute: string;
-
-    /**
-     * The sketch which contains the row table.
-     */
-    sketch: string;
+    id: string;
 
     /**
      * A boolean flag if the row table is diabled
      */
     disabled: boolean;
+}
+
+/**
+ * The EditionRowTablesList class.
+ *
+ * It is used in the context of the edition view
+ * to store a list of row tables.
+ */
+export class EditionRowTablesList {
+    /**
+     * The array of row tables from a row tables list.
+     */
+    rowTables: EditionRowTables[];
 }

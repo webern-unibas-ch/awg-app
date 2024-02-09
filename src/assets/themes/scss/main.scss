@@ -183,6 +183,14 @@ footer {
     width: 24px;
     margin: 0;
 }
+.awg-footer-bottom .gtrans {
+    bottom: 0;
+    right: 0;
+    background-color: #dbdad9;
+    border-radius: 5px;
+    text-align: center;
+    padding: 3px 3px 3px 3px;
+}
 
 /****** CARDS ******/
 .card-header {
@@ -311,10 +319,6 @@ footer {
 }
 
 /****** SVG ******/
-.awg-edition-svg-sheet-container {
-    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
-    border: 1px solid $border-grey;
-}
 .edition-svg-item {
     fill: orange;
     opacity: 0.2;

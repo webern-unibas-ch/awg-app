@@ -1,13 +1,33 @@
-// Configuration
-@import './shared';
-@import 'bootstrap/scss/maps';
-@import 'bootstrap/scss/utilities';
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import 'bootstrap/scss/functions';
 
-// Layout & components
+// 2. Include any default variable overrides here
+@import './shared';
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+
+// 4. Include any default map overrides here
+
+// Custom spacers
+$custom-spacers: (
+    '2r': $spacer * 2,
+);
+
+// Merge the spacer maps
+$spacers: map-merge($spacers, $custom-spacers);
+
+// 5. Include remainder of required parts
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/root';
+
+// 6. Optionally include any other parts as needed
+@import 'bootstrap/scss/utilities';
 @import 'bootstrap/scss/reboot';
 @import 'bootstrap/scss/type';
-// commented out because not used: @import "bootstrap/scss/images";
+// not used: @import "bootstrap/scss/images";
 @import 'bootstrap/scss/containers';
 @import 'bootstrap/scss/grid';
 @import 'bootstrap/scss/tables';
@@ -20,19 +40,19 @@
 @import 'bootstrap/scss/navbar';
 @import 'bootstrap/scss/card';
 @import 'bootstrap/scss/accordion';
-// commented out because not used: @import "bootstrap/scss/breadcrumb";
+// not used: @import "bootstrap/scss/breadcrumb";
 @import 'bootstrap/scss/pagination';
 @import 'bootstrap/scss/badge';
 @import 'bootstrap/scss/alert';
 @import 'bootstrap/scss/progress';
-// commented out because not used: @import "bootstrap/scss/list-group";
+// not used: @import "bootstrap/scss/list-group";
 @import 'bootstrap/scss/close';
 @import 'bootstrap/scss/toasts';
 @import 'bootstrap/scss/modal';
 @import 'bootstrap/scss/tooltip';
-// commented out because not used: @import "bootstrap/scss/popover";
-// commented out because not used: @import "bootstrap/scss/carousel";
-// commented out because not used: @import "bootstrap/scss/spinners";
+// not used: @import "bootstrap/scss/popover";
+// not used: @import "bootstrap/scss/carousel";
+// not used: @import "bootstrap/scss/spinners";
 
 // Helpers
 @import 'bootstrap/scss/helpers';

@@ -20,4 +20,24 @@ export class UnsupportedTypeResultsComponent {
      */
     @Input()
     queryType: string;
+
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is set.
+     */
+    @Input()
+    isFullscreen: boolean;
+
+    /**
+     * Public method: isAccordionItemDisabled.
+     *
+     * It returns a boolean flag if the accordion item should be disabled.
+     * It returns true if fullscreenMode is set, otherwise false.
+     *
+     * @returns {boolean} The boolean value of the comparison.
+     */
+    isAccordionItemDisabled(): boolean {
+        return this.isFullscreen;
+    }
 }

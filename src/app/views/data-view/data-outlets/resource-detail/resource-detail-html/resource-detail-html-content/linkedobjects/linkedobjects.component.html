@@ -15,41 +15,47 @@
 <!-- resourceDetailData content: linked objects -->
 <div class="awg-linked-obj">
     <h5>
-        <!-- TODO: link to linked objects overview
-        <a (click)="navigateToSearchResults()">
-        -->
-        Verknüpfte Objekte (<span id="awg-incoming-size" *ngIf="incomingGroups">{{ totalNumber }}</span
-        >)
-        <!--
-        </a>
-        -->
+        Verknüpfte Objekte (
+        @if (incomingGroups) {
+            <span id="awg-incoming-size">{{ totalNumber }}</span>
+        }
+        )
     </h5>
 
-    <ngb-accordion [closeOthers]="true">
-        <ngb-panel
-            id="incoming-linkgroup-{{ i }}"
-            class="awg-linked-obj-incoming-linkgroup"
-            *ngFor="let restypeGroup of incomingGroups; let i = index">
-            <ng-template ngbPanelTitle>
-                <span class="awg-linked-obj-title-group single-line">
-                    <span class="badge badge-info me-2">{{ restypeGroup?.links?.length }}</span>
-                    <span class="awg-linked-obj-title">{{ restypeGroup?.restypeLabel }}</span>
-                </span>
-            </ng-template>
-            <ng-template ngbPanelContent>
-                <ul class="awg-linked-obj-list nobullets mb-0">
-                    <li *ngFor="let link of restypeGroup.links; last as isLast">
-                        <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
-                            <img [src]="link?.restype?.icon" alt="icon" />
-                            &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span
-                            >]&nbsp;
-                            <span class="awg-linked-obj-link-value">{{ link?.value }}</span>
-                        </a>
-                        <hr *ngIf="!isLast" />
-                    </li>
-                </ul>
-            </ng-template>
-        </ngb-panel>
-    </ngb-accordion>
+    <div ngbAccordion [closeOthers]="true">
+        @for (restypeGroup of incomingGroups; track restypeGroup; let i = $index) {
+            <div ngbAccordionItem="awg-linked-obj-incoming-{{ i }}" class="awg-linked-obj-incoming-linkgroup">
+                <div ngbAccordionHeader>
+                    <button ngbAccordionButton>
+                        <span class="awg-linked-obj-title-group single-line">
+                            <span class="badge bg-info me-2">{{ restypeGroup?.links?.length }}</span>
+                            <span class="awg-linked-obj-title">{{ restypeGroup?.restypeLabel }}</span>
+                        </span>
+                    </button>
+                </div>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            <ul class="awg-linked-obj-list nobullets mb-0">
+                                @for (link of restypeGroup.links; track link; let isLast = $last) {
+                                    <li>
+                                        <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
+                                            <img [src]="link?.restype?.icon" alt="icon" />
+                                            &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span
+                                            >]&nbsp;
+                                            <span class="awg-linked-obj-link-value">{{ link?.value }}</span>
+                                        </a>
+                                        @if (!isLast) {
+                                            <hr />
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- end DIV linkedObj -->
 </div>
-<!-- end DIV linkedObj -->

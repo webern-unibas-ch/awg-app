@@ -41,12 +41,12 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
         expectedData.status = 1;
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have `resourceJsonRawData`', () => {
+        it('... should not have `resourceJsonRawData`', () => {
             expect(component.resourceJsonRawData).toBeUndefined();
         });
 
@@ -83,7 +83,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have `resourceJsonRawData`', () => {
+        it('... should have `resourceJsonRawData`', () => {
             expect(component.resourceJsonRawData).toBeDefined();
             expect(component.resourceJsonRawData).withContext(`should equal ${expectedData}`).toEqual(expectedData);
         });

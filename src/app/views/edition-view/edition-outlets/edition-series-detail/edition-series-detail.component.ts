@@ -31,7 +31,10 @@ export class EditionSeriesDetailComponent implements OnInit {
      * @param {ActivatedRoute} route Instance of the ActivatedRoute.
      * @param {EditionService} editionService Instance of the EditionService.
      */
-    constructor(private route: ActivatedRoute, private editionService: EditionService) {
+    constructor(
+        private route: ActivatedRoute,
+        private editionService: EditionService
+    ) {
         // Intentionally left empty until implemented
     }
 

@@ -2,6 +2,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { UtilityService } from '@awg-app/core/services';
 import { EditionSvgSheet } from '@awg-app/views/edition-view/models';
 
+/**
+ * The EditionSvgSheetNavItem component.
+ *
+ * It contains an item of the svg sheet navigation section
+ * of the edition view of the app
+ * and lets the user select an SVG sheet of a specific edition type.
+ */
 @Component({
     selector: 'awg-edition-svg-sheet-nav-item',
     templateUrl: './edition-svg-sheet-nav-item.component.html',
@@ -35,10 +42,10 @@ export class EditionSvgSheetNavItemComponent {
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Constructor of the EditionSvgSheetNavItemComponent.
@@ -52,34 +59,41 @@ export class EditionSvgSheetNavItemComponent {
     /**
      * Public method: isSelectedSvgSheet.
      *
-     * It compares a given id with the id
+     * It compares a given id (optionally with a partial) with the id
      * of the latest selected svg sheet.
      *
      * @param {string} id The given sheet id.
+     * @param {string} [partial] The optional given partial id.
+     *
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isSelectedSvgSheet(id: string): boolean {
+    isSelectedSvgSheet(id: string, partial?: string): boolean {
+        let givenId = id;
         let selectedId = this.selectedSvgSheet.id;
+
         // Compare partial id if needed
-        if (this.selectedSvgSheet.content && this.selectedSvgSheet.content[0].partial) {
-            selectedId = selectedId + this.selectedSvgSheet.content[0].partial;
+        if (partial && this.selectedSvgSheet.content?.[0]?.partial) {
+            givenId += partial;
+            selectedId += this.selectedSvgSheet.content[0].partial;
         }
-        return id === selectedId;
+
+        return givenId === selectedId;
     }
 
     /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {string} complexId The given complex id.
+     * @param {string} sheetId The given sheet id.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(complexId: string, sheetId: string): void {
+        if (!sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
     }
 }

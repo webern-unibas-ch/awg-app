@@ -4,19 +4,13 @@ import { Observable, ReplaySubject } from 'rxjs';
 
 import { EDITION_OUTLINE_DATA } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
-import {
-    EditionComplex,
-    EditionOutlineSection,
-    EditionOutlineSeries,
-    EditionSvgOverlay,
-    TextcriticalComment,
-} from '@awg-views/edition-view/models';
+import { EditionComplex, EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
 
 /**
  * The Edition service.
  *
  * It handles the provision of the current edition complex and
- * of the textcritical comments for a selected overlay item.
+ * other parts of the edition outline.
  *
  * Provided in: `root`.
  * @used in the {@link EditionSheetsComponent}.
@@ -69,25 +63,6 @@ export class EditionService {
      * Private readonly selected edition series stream as observable (`ReplaySubject`).
      */
     private readonly _selectedEditionSectionStream$ = this._selectedEditionSectionSubject.asObservable();
-
-    /**
-     * Public method: getTextcriticalCommentsForOverlays.
-     *
-     * It provides the textcritical comments for the selected svg overlays.
-     *
-     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
-     * @param {EditionSvgOverlay[]} overlays The given svg overlays.
-     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
-     */
-    getTextcriticalCommentsForOverlays(
-        textcriticalComments: TextcriticalComment[],
-        overlays: EditionSvgOverlay[]
-    ): TextcriticalComment[] {
-        if (!textcriticalComments || !overlays) {
-            return [];
-        }
-        return textcriticalComments.filter(comment => overlays.some(overlay => comment.svgGroupId === overlay.id));
-    }
 
     /**
      * Public method: getEditionComplex.

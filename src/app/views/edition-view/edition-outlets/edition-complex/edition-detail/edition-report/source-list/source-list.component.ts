@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { UtilityService } from '@awg-app/core/services';
 
 import { SourceList } from '@awg-views/edition-view/models';
 
@@ -41,9 +42,12 @@ export class SourceListComponent {
     /**
      * Constructor of the SourceListComponent.
      *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
+     * It initializes the self-referring ref variable needed for CompileHtml library,
+     * and declares a public {@link UtilityService} instance.
+     *
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    constructor() {
+    constructor(public utils: UtilityService) {
         this.ref = this;
     }
 

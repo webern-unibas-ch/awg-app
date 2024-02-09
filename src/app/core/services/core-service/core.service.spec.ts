@@ -29,18 +29,26 @@ describe('CoreService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('should inject', () => {
+    it('... should inject', () => {
         expect(coreService).toBeTruthy();
     });
 
-    describe('#getMetaData', () => {
+    describe('#getMetaData()', () => {
+        it('... should have a method `getMetaData`', () => {
+            expect(coreService.getMetaData).toBeDefined();
+        });
+
         it('... should return METADATA', () => {
             // Call service function
             expect(coreService.getMetaData()).withContext(`should be ${expectedMetaData}`).toBe(expectedMetaData);
         });
     });
 
-    describe('#getMetaDataSection', () => {
+    describe('#getMetaDataSection()', () => {
+        it('... should have a method `getMetaDataSection`', () => {
+            expect(coreService.getMetaDataSection).toBeDefined();
+        });
+
         it('... should return page METADATA if parameter is given', () => {
             const metaSection = MetaSectionTypes.page;
 
@@ -69,7 +77,11 @@ describe('CoreService (DONE)', () => {
         });
     });
 
-    describe('#getLogos', () => {
+    describe('#getLogos()', () => {
+        it('... should have a method `getLogos`', () => {
+            expect(coreService.getLogos).toBeDefined();
+        });
+
         it('... should return LOGOS', () => {
             // Call service function
             expect(coreService.getLogos()).withContext(`should be ${expectedLogosData}`).toBe(expectedLogosData);

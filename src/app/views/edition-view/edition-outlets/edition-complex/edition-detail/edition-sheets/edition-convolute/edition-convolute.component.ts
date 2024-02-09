@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { faSquare } from '@fortawesome/free-solid-svg-icons';
 
-import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvolute } from '@awg-views/edition-view/models';
 
 /**
  * The IFolioLegend interface.
@@ -37,14 +37,6 @@ interface IFolioLegend {
 })
 export class EditionConvoluteComponent {
     /**
-     * Input variable: folios.
-     *
-     * It keeps the folios of the edition detail.
-     */
-    @Input()
-    folioConvoluteData: FolioConvoluteList;
-
-    /**
      * Public variable: selectedConvolute.
      *
      * It keeps the selected convolute.
@@ -70,20 +62,12 @@ export class EditionConvoluteComponent {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Output variable: selectConvoluteRequest.
-     *
-     * It keeps an event emitter for the selected convolute.
-     */
-    @Output()
-    selectConvoluteRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected id of an svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
      */
     @Output()
-    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 
     /**
      * Public variable: faSquare.
@@ -129,34 +113,18 @@ export class EditionConvoluteComponent {
     }
 
     /**
-     * Public method: selectConvolute.
-     *
-     * It sets a given id to the
-     * to the selectedConvolute.
-     *
-     * @param {string} id The given id.
-     * @returns {void} Sets the selectedConvolute variable.
-     */
-    selectConvolute(id: string): void {
-        if (!id) {
-            return;
-        }
-        this.selectConvoluteRequest.emit(id);
-    }
-
-    /**
      * Public method: selectSvgSheet.
      *
-     * It emits a given id of a selected svg sheet
-     * to the {@link selectSvgSheetRequest}.
+     * It emits the given ids of a selected edition complex
+     * and svg sheet to the {@link selectSvgSheetRequest}.
      *
-     * @param {string} id The given sheet id.
-     * @returns {void} Emits the id.
+     * @param {object} sheetIds The given sheet ids as { complexId: string, sheetId: string }.
+     * @returns {void} Emits the ids.
      */
-    selectSvgSheet(id: string): void {
-        if (!id) {
+    selectSvgSheet(sheetIds: { complexId: string; sheetId: string }): void {
+        if (!sheetIds?.sheetId) {
             return;
         }
-        this.selectSvgSheetRequest.emit(id);
+        this.selectSvgSheetRequest.emit(sheetIds);
     }
 }
