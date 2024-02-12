@@ -217,6 +217,43 @@
                     "position": "3/4",
                     "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/{{ref.getGlyph('[b]')}}es<sup>1</sup> sowie e<sup>2</sup>?"
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g8",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g9",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1_1"
+                    }
+                }
             ]
         },
         {
@@ -239,6 +276,22 @@
                     "system": "10",
                     "position": "4/8",
                     "comment": "Balkierung überschreibt Achtelfähnchen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5-9",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g44389",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1f"
+                    }
                 }
             ]
         },

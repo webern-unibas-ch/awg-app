@@ -369,7 +369,7 @@
   <path id="path408" d="M474.217 269.426c5.695 5.01 23.233 5.01 28.928 0l-.15-.17c-5.545 3.814-23.083 3.814-28.627 0z" style="fill:#000;stroke:none;stroke-width:.75000203"/>
   <path id="path412" d="M702.222 277.854c4.782 3.416 19.133 3.416 23.916 0l-.132-.185c-4.651 2.235-19.002 2.235-23.652 0z" style="fill:#000;stroke:none;stroke-width:.75000203"/>
   <path id="path414" d="M596.76 289.014c11.39 4.556 25.511-.454 31.662-10.933-6.596 9.187-20.719 14.197-31.661 10.933" style="fill:#000;stroke:none;stroke-width:.75000203"/>
-  <g id="g7" class="link-box">
+  <g id="g6" class="link-box">
     <path id="rect402" d="M850.916 178.77H961.16v125.278H850.916Z" style="fill:#fff;stroke-width:.750002"/>
     <path id="rect404" d="M850.915 178.77h110.244v125.277H850.916Z" style="fill:none;stroke:#777;stroke-width:.683;stroke-opacity:.866667"/>
     <g id="text1" aria-label="Sk1 T. 18" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;line-height:1.25;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;letter-spacing:0;word-spacing:0;fill:#777;fill-opacity:.866667" transform="translate(37.795 29.83)">
@@ -450,7 +450,7 @@
   </g>
   <path id="polyline132-7" d="M155.484 169.825s-7.014 1.364-10.825 3.584c-2.534 1.477-2.439 3.903-2.336 4.48 2.394 13.375 2.013 31.08 2.5 48.665 1.472 53.052 1.136 114.632 1.136 114.632l17.728 5.99" style="fill:none;stroke:#000;stroke-width:.533526;stroke-dasharray:none;marker-start:url(#marker11551)"/>
   <path id="polyline6286-4" d="M296.896 174.745c-4.764 1.094-143.652.535-143.85 1.213-2.455 8.359-1.355 28.653-.915 49.916.67 32.36 1.132 73.468 1.132 102.975l10.94 4.239" style="fill:none;stroke:#000;stroke-width:.50087798;stroke-dasharray:none;marker-start:url(#marker11551)"/>
-  <g id="g4" class="link-box">
+  <g id="g7" class="link-box">
     <path id="rect604-9-8-9" d="M171.669 324.076h149.166v41.02H171.669Z" style="font-style:italic;font-size:10.6667px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Italic&quot;;fill:none;stroke:#777;stroke-width:.703702;stroke-dasharray:none;stroke-opacity:1"/>
     <text id="text858-3-1-7" x="183.691" y="350.983" font-size="12.8" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;fill:#777;fill-opacity:1;stroke-width:.71811;stroke-dasharray:none">Sk1 T. 19–26</text>
   </g>
