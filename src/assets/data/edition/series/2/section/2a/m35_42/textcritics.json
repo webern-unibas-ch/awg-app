@@ -54,7 +54,7 @@
                     "measure": "4",
                     "system": "11",
                     "position": "2/4",
-                    "comment": "e<sup>1</sup>."
+                    "comment": "e<sup>1</sup> radiert."
                 },
                 {
                     "svgGroupId": "g5399",
@@ -69,13 +69,6 @@
                     "system": "14",
                     "position": "1/4",
                     "comment": "{{ref.getGlyph('[b]')}}es überschreibt {{ref.getGlyph('[#]')}}dis."
-                },
-                {
-                    "svgGroupId": "g1445",
-                    "measure": "4",
-                    "system": "2",
-                    "position": "3/4",
-                    "comment": "Viertelnote f/c<sup>1</sup> gestrichen und ersetzt durch f/a."
                 },
                 {
                     "svgGroupId": "g5183",
@@ -93,7 +86,7 @@
                 },
                 {
                     "svgGroupId": "g5177",
-                    "measure": "{94}",
+                    "measure": "{9A}",
                     "system": "14",
                     "position": "1/4",
                     "comment": "D gestrichen."
@@ -187,7 +180,7 @@
                     "measure": "18",
                     "system": "15–16",
                     "position": "",
-                    "comment": "Takt pauschal gestrichen und in Akkolade 12–13 neu gesetzt."
+                    "comment": "Takt pauschal gestrichen und in System 12–13 neu gesetzt."
                 },
                 {
                     "svgGroupId": "g42457",
@@ -219,7 +212,7 @@
                 },
                 {
                     "svgGroupId": "g4507",
-                    "measure": "22",
+                    "measure": "{22}",
                     "system": "17",
                     "position": "3/4",
                     "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/{{ref.getGlyph('[b]')}}es<sup>1</sup> sowie e<sup>2</sup>?"
