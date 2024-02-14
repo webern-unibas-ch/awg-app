@@ -280,7 +280,7 @@
             ],
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5-9",
+                    "svgGroupId": "g559",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M_35_42_Sk1e"
@@ -313,6 +313,15 @@
                     "system": "11",
                     "position": "2/4",
                     "comment": "Viertelnote überschreibt Halbe Note."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g9985",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_TF1a"
+                    }
                 }
             ]
         }
