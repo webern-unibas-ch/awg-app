@@ -128,7 +128,8 @@ export class EditionComplex {
         } else if (this.titleStatement.catalogueType === EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS) {
             this.complexId.route = EDITION_CATALOGUE_TYPE_CONSTANTS.MNR_PLUS.route;
         }
-        this.complexId.route += this.titleStatement.catalogueNumber;
+        // For routes, replace slashes in catalogue number with underscores
+        this.complexId.route += this.titleStatement.catalogueNumber.replace(/\//g, '_');
         this.complexId.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
         this.complexId.full = this.titleStatement.title + spacer + this.complexId.short;
 

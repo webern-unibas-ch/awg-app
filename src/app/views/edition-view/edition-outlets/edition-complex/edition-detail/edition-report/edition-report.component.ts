@@ -179,10 +179,10 @@ export class EditionReportComponent implements OnInit {
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
         // Set default id if none is given
-        const complexRoute = sheetIds.complexId
-            ? `/edition/complex/${sheetIds.complexId}/`
+        const complexRoute = sheetIds?.complexId
+            ? `/edition/complex/${sheetIds?.complexId}/`
             : this.editionComplex.baseRoute;
-        const sheetRoute = sheetIds.sheetId ? sheetIds.sheetId : '';
+        const sheetRoute = sheetIds?.sheetId ?? '';
 
         const navigationExtras: NavigationExtras = {
             queryParams: { id: sheetRoute },

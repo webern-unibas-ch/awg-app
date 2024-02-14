@@ -1,0 +1,329 @@
+{
+    "textcritics": [
+        {
+            "id": "M_35_42_TF1",
+            "label": "M 35/42 einzige Textfassung",
+            "description": [
+                "##Quellenbewertung:## Die Tintenniederschrift in <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a> stellt die Fortsetzung (T. 10f.) der früher entstandenen Niederschrift in <a (click)=\"ref.navigateToReportFragment('source_C')\"><strong>C</strong></a> dar und komplettiert mit dem kontrastierenden B-Teil sowie dem wiederkehrenden A-Teil das in <a (click)=\"ref.navigateToReportFragment('source_C')\"><strong>C</strong></a> vorgestellte Thema zur dreiteiligen ABAʼ-Form. Maßgebend für die hier vorgelegte Textedition ist die autographe Niederschrift mit Tinte inklusive Korrekturschicht 1 (Tinte). Die vermutlich später erfolgte Korrekturschicht 2 (Bleistift), inklusive der partiell mit Tinte verfassten <a (click)=\"ref.selectSvgSheet('m35_42', 'M_35_42_Sk2')\"><strong>Sk2</strong></a> zu M 35/42, wurde nicht berücksichtigt. <br />Für die Textedition der Studienkomposition für Klavier M 35/42 sind <a (click)=\"ref.navigateToReportFragment('source_C')\"><strong>C</strong></a> und <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a> gleichermaßen Hauptquelle."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g3402",
+                    "measure": "23 <br />bis 24",
+                    "system": "Klav. o.",
+                    "position": "3/4 <br />1. Note",
+                    "comment": "Ligatur zu T. 23 3/4 ergänzt. <a (click)=\"ref.navigateToReportFragment('source_D')\"><strong>D</strong></a>: Seitenwechsel nach T. 23."
+                },
+                {
+                    "svgGroupId": "g3405",
+                    "measure": "25",
+                    "system": "Klav. u.",
+                    "position": "1. Note",
+                    "comment": "Ces<sub>1</sub>/Es korrigiert zu Es<sub>1</sub>/Es mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g3408",
+                    "measure": "25",
+                    "system": "Klav. u.",
+                    "position": "3/4",
+                    "comment": "H<sub>2</sub>/D korrigiert zu D<sub>1</sub>/D mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g3411",
+                    "measure": "26",
+                    "system": "Klav. u.",
+                    "position": "1/4",
+                    "comment": "E<sub>1</sub>/G korrigiert zu G<sub>1</sub>/G mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g7117",
+                    "measure": "26",
+                    "system": "Klav. o.",
+                    "position": "3/4",
+                    "comment": "Staccatopunkt: sic. Staccatopunkt vermutlich für Unterstimme gedacht."
+                }
+            ]
+        },
+        {
+            "id": "M_35_42_Sk1",
+            "label": "M 35/42 Sk1",
+            "description": ["<strong>Sk1</strong> ist die Verlaufsskizze zu Studienkomposition für Klavier M 35/42."],
+            "comments": [
+                {
+                    "svgGroupId": "g5408",
+                    "measure": "4",
+                    "system": "11",
+                    "position": "2/4",
+                    "comment": "e<sup>1</sup> radiert."
+                },
+                {
+                    "svgGroupId": "g5399",
+                    "measure": "4",
+                    "system": "10",
+                    "position": "3/4",
+                    "comment": "a<sup>2</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g5166",
+                    "measure": "8(1–2/4)",
+                    "system": "14",
+                    "position": "1/4",
+                    "comment": "{{ref.getGlyph('[b]')}}es überschreibt {{ref.getGlyph('[#]')}}dis."
+                },
+                {
+                    "svgGroupId": "g5183",
+                    "measure": "{8(3/4)A–10}",
+                    "system": "13–14",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g5172",
+                    "measure": "{8(3/4)A}",
+                    "system": "14",
+                    "position": "3/4",
+                    "comment": "{{ref.getGlyph('[b]')}}es überschreibt d."
+                },
+                {
+                    "svgGroupId": "g5177",
+                    "measure": "{9A}",
+                    "system": "14",
+                    "position": "1/4",
+                    "comment": "D gestrichen."
+                },
+                {
+                    "svgGroupId": "g5201",
+                    "measure": "{10}",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "Halbe Note h/g<sup>1</sup> überscheibt Viertelnote h/d<sup>1</sup>/h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g5190",
+                    "measure": "9B",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "Halbe Note g<sup>1</sup>/h<sup>1</sup> überschreibt Viertelnote h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g35163",
+                    "measure": "11",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "Halbe Note a/c<sup>1</sup> überschreibt Viertelnoten a–H."
+                },
+                {
+                    "svgGroupId": "g35181",
+                    "measure": "14",
+                    "system": "13",
+                    "position": "1/4",
+                    "comment": "Viertelnote überschreibt Halbe Note."
+                },
+                {
+                    "svgGroupId": "g35206",
+                    "measure": "15",
+                    "system": "12",
+                    "position": "1. Note",
+                    "comment": "Halbe Note [{{ref.getGlyph('[#]')}}]dis<sup>1</sup> überschreibt Viertelnoten [{{ref.getGlyph('[#]')}}]dis<sup>1</sup>/{{ref.getGlyph('[a]')}}f<sup>1</sup>–{{ref.getGlyph('[#]')}}ais<sup>1</sup>/c<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g37650",
+                    "measure": "{16A–17A}",
+                    "system": "15–16",
+                    "position": "",
+                    "comment": "Takte pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g1508",
+                    "measure": "{16A}",
+                    "system": "15",
+                    "position": "1. Note",
+                    "comment": "Achtelpause überschreibt Viertelnote [{{ref.getGlyph('[#]')}}]dis<sup>1</sup>/{{ref.getGlyph('[#]')}}fis<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g1629",
+                    "measure": "16B",
+                    "system": "15",
+                    "position": "1. Pause",
+                    "comment": "Achtelpause überschreibt Achtelnote h<sup>1</sup>/[{{ref.getGlyph('[#]')}}]dis<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g37705",
+                    "measure": "16B",
+                    "system": "15",
+                    "position": "1. Note",
+                    "comment": "h<sup>1</sup>/{{ref.getGlyph('[#]')}}dis<sup>2</sup> überschreibt {{ref.getGlyph('[b]')}}b/d<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g37731",
+                    "measure": "{17B}",
+                    "system": "15",
+                    "position": "1/4",
+                    "comment": "Viertelpause überschreibt gestrichene Viertelnote h/g<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g2798",
+                    "measure": "{17B}",
+                    "system": "15–16",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g38561",
+                    "measure": "17C",
+                    "system": "15",
+                    "position": "3/4",
+                    "comment": "g<sup>1</sup>/e<sup>2</sup> überschreibt a<sup>1</sup>/g<sup>2</sup>."
+                },
+                {
+                    "svgGroupId": "g37753",
+                    "measure": "18",
+                    "system": "15–16",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen und in System 12–13 neu gesetzt."
+                },
+                {
+                    "svgGroupId": "g42457",
+                    "measure": "19",
+                    "system": "17",
+                    "position": "1. Note",
+                    "comment": "h<sup>1</sup>/d<sup>2</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g42480",
+                    "measure": "21",
+                    "system": "17",
+                    "position": "3/4",
+                    "comment": "[{{ref.getGlyph('[#]')}}]ais/{{ref.getGlyph('[#]')}}fis<sup>1</sup> überschreibt g<sup>1</sup>/h<sup>1</sup>."
+                },
+                {
+                    "svgGroupId": "g42786",
+                    "measure": "{22}",
+                    "system": "17–18",
+                    "position": "",
+                    "comment": "Takt pauschal gestrichen."
+                },
+                {
+                    "svgGroupId": "g42497",
+                    "measure": "{22}",
+                    "system": "17",
+                    "position": "2/4",
+                    "comment": "fis<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g4507",
+                    "measure": "{22}",
+                    "system": "17",
+                    "position": "3/4",
+                    "comment": "Entzifferung nicht eindeutig. g<sup>1</sup>/h<sup>1</sup> überschreibt c<sup>1</sup>/{{ref.getGlyph('[b]')}}es<sup>1</sup> sowie e<sup>2</sup>?"
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1c"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1d"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g8",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1f"
+                    }
+                },
+                {
+                    "svgGroupId": "g9",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1_1"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_35_42_Sk1_1",
+            "label": "M 35/42 Sk1.1",
+            "description": [
+                "<strong>Sk1.1</strong> modifiziert T. 22 und fügt einen Takt zwischen T. 22 und T. 23 der Verlaufsskizze ein."
+            ],
+            "comments": [
+                {
+                    "svgGroupId": "g44424",
+                    "measure": "22",
+                    "system": "10",
+                    "position": "1/4",
+                    "comment": "Viertelnote fis<sup>1</sup> gestrichen."
+                },
+                {
+                    "svgGroupId": "g6997",
+                    "measure": "22",
+                    "system": "10",
+                    "position": "4/8",
+                    "comment": "Balkierung überschreibt Achtelfähnchen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g559",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1e"
+                    }
+                },
+                {
+                    "svgGroupId": "g44389",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_Sk1f"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "M_35_42_Sk2",
+            "label": "M 35/42 Sk2",
+            "description": ["<strong>Sk2</strong> notiert eine alternative Schlussformel für den ersten A-Teil."],
+            "comments": [
+                {
+                    "svgGroupId": "g50343",
+                    "measure": "9",
+                    "system": "10",
+                    "position": "1. Note",
+                    "comment": "Augmentationspunkte gestrichen."
+                },
+                {
+                    "svgGroupId": "g50355",
+                    "measure": "9",
+                    "system": "11",
+                    "position": "2/4",
+                    "comment": "Viertelnote überschreibt Halbe Note."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g9985",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_TF1a"
+                    }
+                }
+            ]
+        }
+    ]
+}

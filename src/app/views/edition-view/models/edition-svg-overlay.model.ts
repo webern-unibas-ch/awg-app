@@ -6,7 +6,18 @@
 export enum EditionSvgOverlayTypes {
     measure = 'Takt',
     system = 'System',
-    item = 'Anmerkung',
+    tka = 'Anmerkung',
+}
+
+/**
+ * The EditionSvgOverlayActionTypes enumeration.
+ *
+ * It stores the possible svg overlay action types.
+ */
+export enum EditionSvgOverlayActionTypes {
+    hover = 'hover',
+    fill = 'fill',
+    transparent = 'transparent',
 }
 
 /**

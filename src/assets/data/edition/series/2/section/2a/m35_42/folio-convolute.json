@@ -195,7 +195,118 @@
         },
         {
             "convoluteId": "B",
-            "convoluteLabel": "B Tintenniederschrift (CH-Bps)",
+            "convoluteLabel": "B Skizzen (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": [
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1_1",
+                            "sigle": "M 35/42 Sk1.1",
+                            "sigleAddendum": "T. 22, 22+1",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1c",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 10–15",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 12,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1d",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. {16A}–18",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1e",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 19–26",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "startSystem": 17,
+                                    "endSystem": 18
+                                }
+                            ]
+                        },
+                        {
+                            "complexId": "m35_42",
+                            "sheetId": "M_35_42_Sk1f",
+                            "sigle": "M 35/42 Sk1",
+                            "sigleAddendum": "T. 27",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 10,
+                                    "endSystem": 11
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 348,
+                        "width": 266
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "C",
+            "convoluteLabel": "C Tintenniederschrift (CH-Bps)",
             "folios": [
                 {
                     "folioId": "1r",
@@ -230,6 +341,48 @@
                     "format": {
                         "height": 349,
                         "width": 267
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "D",
+            "convoluteLabel": "D Tintenniederschrift (CH-Bps)",
+            "folios": [
+                {
+                    "folioId": "1r",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "1v",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2r",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "2v",
+                    "systems": "18",
+                    "format": {
+                        "height": 347,
+                        "width": 265
                     },
                     "content": []
                 }

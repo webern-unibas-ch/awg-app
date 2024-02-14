@@ -9,12 +9,12 @@
                     <input
                         class="form-check-input"
                         type="checkbox"
-                        [checked]="allSuppliedClassesVisible"
+                        [checked]="allClassesVisible"
                         value=""
                         id="all-supplied-classes"
-                        (click)="toggleAllSuppliedClassesOpacity()" />
+                        (click)="toggleAllClassesOpacity()" />
                     <label class="form-check-label" for="all-supplied-classes">
-                        Alle {{ allSuppliedClassesVisible ? 'aus' : 'ein' }}blenden
+                        Alle {{ allClassesVisible ? 'aus' : 'ein' }}blenden
                     </label>
                 </div>
             </div>
@@ -35,6 +35,20 @@
                 @if ((i + 2) % 3 === 0) {
                     <div class="w-100"></div>
                 }
+            }
+            @if (hasAvailableTkaOverlays) {
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            [checked]="tkkHighlightingVisible"
+                            value=""
+                            id="tkk"
+                            (click)="toggleTkkClassesHighlight()" />
+                        <label class="form-check-label" for="tkk">Textkritische Kommentare</label>
+                    </div>
+                </div>
             }
         </div>
     </div>

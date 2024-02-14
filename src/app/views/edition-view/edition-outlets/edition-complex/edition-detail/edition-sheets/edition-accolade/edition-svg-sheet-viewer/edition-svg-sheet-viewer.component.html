@@ -29,11 +29,13 @@
                 </svg>
                 <awg-license class="d-flex mt-3 text-center small"></awg-license>
                 @if (suppliedClasses.size > 0) {
-                    <awg-edition-svg-sheet-viewer-settings
+                    <awg-edition-svg-sheet-viewer-switch
                         [suppliedClasses]="suppliedClasses"
-                        (toggleSuppliedClassesOpacityRequest)="
-                            onSuppliedClassesOpacityToggle($event)
-                        "></awg-edition-svg-sheet-viewer-settings>
+                        [hasAvailableTkaOverlays]="hasAvailableTkaOverlays"
+                        (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
+                        (toggleTkkClassesHighlightRequest)="
+                            onTkkClassesHighlightToggle($event)
+                        "></awg-edition-svg-sheet-viewer-switch>
                 }
             </div>
             <!-- Next and previous buttons -->

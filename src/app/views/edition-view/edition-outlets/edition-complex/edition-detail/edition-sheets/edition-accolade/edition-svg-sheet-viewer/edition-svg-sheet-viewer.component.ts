@@ -21,6 +21,7 @@ import {
     D3Selection,
     D3ZoomBehaviour,
     EditionSvgOverlay,
+    EditionSvgOverlayActionTypes,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
 } from '@awg-views/edition-view/models';
@@ -115,6 +116,13 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     faCompressArrowsAlt = faCompressArrowsAlt;
 
     /**
+     * Public variable: hasAvailableTkaOverlays.
+     *
+     * It keeps a boolean flag whether there are available tka overlays.
+     */
+    hasAvailableTkaOverlays = false;
+
+    /**
      * Public variable: sliderConfig.
      *
      * It keeps the default values for the zoom slider input.
@@ -159,14 +167,14 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It keeps a list with id and selection status of the available elements overlays.
      */
-    private _availableOverlays: EditionSvgOverlay[] = [];
+    private _availableTkaOverlays: EditionSvgOverlay[] = [];
 
     /**
      * Private variable: selectedElementsWithComments.
      *
      * It keeps a list of the ids of the selected elements with textcritical comments.
      */
-    private _selectedOverlays: EditionSvgOverlay[] = [];
+    private _selectedTkaOverlays: EditionSvgOverlay[] = [];
 
     /**
      * Private variable: _divWidth.
@@ -308,8 +316,7 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      *
      * It toggles the opacity of a given supplied class.
      *
-     * @param {string} className The given class name.
-     * @param {boolean} isCurrentlyVisible The given visibility of the class.
+     * @param {{string, boolean}} input The given input with the class name and its current visibility.
      *
      * @returns {void} Toggles the opacity of the supplied class.
      */
@@ -320,6 +327,31 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             className,
             isCurrentlyVisible
         );
+    }
+
+    /**
+     * Public method: onTkkClassesHighlightToggle.
+     *
+     * It toggles the highlighting of the tkk classes.
+     *
+     * @param {boolean} isCurrentlyHighlighted The current highlighting status.
+     *
+     * @returns {void} Toggles the transparency of the tkk classes.
+     */
+    onTkkClassesHighlightToggle(isCurrentlyHighlighted: boolean): void {
+        const overlayType = 'tkk';
+
+        const overlayGroups: D3Selection = this.svgDrawingService.getGroupsBySelector(
+            this.svgSheetRootGroupSelection,
+            overlayType
+        );
+        overlayGroups.nodes().forEach(overlayGroup => {
+            const [overlay, overlayGroupRectSelection] = this._getOverlayAndSelection(overlayGroup.id, overlayType);
+            const color = isCurrentlyHighlighted
+                ? EditionSvgOverlayActionTypes.fill
+                : EditionSvgOverlayActionTypes.transparent;
+            this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, color);
+        });
     }
 
     /**
@@ -344,11 +376,11 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Renders the SVG sheet.
      */
     renderSheet(): void {
-        this._clearSVG();
+        this._clearSvg();
 
         // Clear overlays
-        this._availableOverlays = [];
-        this._selectedOverlays = [];
+        this._availableTkaOverlays = [];
+        this._selectedTkaOverlays = [];
 
         this.svgSheetFilePath = this.selectedSvgSheet?.content[0].svg;
 
@@ -377,13 +409,13 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _clearSVG.
+     * Private method: _clearSvg.
      *
      * It removes everything from the D3 SVG sheet selections.
      *
      * @returns {void} Cleans the D3 SVG sheet selections.
      */
-    private _clearSVG(): void {
+    private _clearSvg(): void {
         // Clear svg by removing all child nodes from D3 svg sheet selections
         this.svgSheetRootGroupSelection?.selectAll('*').remove();
         this.svgSheetSelection?.selectAll('*').remove();
@@ -431,7 +463,8 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         }
 
         this._createOverlays('link-box', this._createLinkBoxOverlay.bind(this));
-        this._createOverlays('tkk', this._createTkkOverlay.bind(this));
+        this._createOverlays('tkk', this._createTkaOverlay.bind(this));
+        this.hasAvailableTkaOverlays = !!this._availableTkaOverlays && this._availableTkaOverlays.length > 0;
         this._getSuppliedClasses();
     }
 
@@ -497,21 +530,20 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
     }
 
     /**
-     * Private method: _createTkkOverlay.
+     * Private method: _createTkaOverlay.
      *
-     * It creates the D3 SVG overlay for the given tkk group.
+     * It creates the D3 SVG overlay for the given tka group.
      *
-     * @param {SVGGElement} group The given tkk group.
+     * @param {SVGGElement} group The given tka group.
      * @param {string} overlayType The type of the overlay to create.
      *
-     * @returns {void} Creates the D3 SVG tkk overlay.
+     * @returns {void} Creates the D3 SVG tka overlay.
      */
-    private _createTkkOverlay(group: SVGGElement, overlayType: string): void {
+    private _createTkaOverlay(group: SVGGElement, overlayType: string): void {
         const id: string = group['id'];
         const dim: DOMRect = group.getBBox();
 
-        this._availableOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.item, id, false));
-        const overlay = this._getOverlayById(this._availableOverlays, id);
+        this._availableTkaOverlays.push(new EditionSvgOverlay(EditionSvgOverlayTypes.tka, id, false));
 
         // Get D3 selection of overlay group
         const overlayGroupSelection = this.svgDrawingService.createOverlayGroup(
@@ -521,27 +553,35 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
             overlayType
         );
 
-        const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
-            this.svgSheetRootGroupSelection,
-            id,
-            overlayType
-        );
+        const [overlay, overlayGroupRectSelection] = this._getOverlayAndSelection(id, overlayType);
 
         overlayGroupSelection
             .on('mouseover', () => {
-                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'hover');
+                this.svgDrawingService.updateTkkOverlayColor(
+                    overlay,
+                    overlayGroupRectSelection,
+                    EditionSvgOverlayActionTypes.hover
+                );
                 overlayGroupRectSelection.style('cursor', 'pointer');
             })
             .on('mouseout', () => {
-                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'fill');
+                this.svgDrawingService.updateTkkOverlayColor(
+                    overlay,
+                    overlayGroupRectSelection,
+                    EditionSvgOverlayActionTypes.fill
+                );
             })
             .on('click', () => {
                 if (overlay) {
                     overlay.isSelected = !overlay.isSelected;
                 }
-                this.svgDrawingService.updateTkkOverlayColor(overlay, overlayGroupRectSelection, 'hover');
-                this._selectedOverlays = this._getSelectedOverlays(this._availableOverlays);
-                this._onOverlaySelect(this._selectedOverlays);
+                this.svgDrawingService.updateTkkOverlayColor(
+                    overlay,
+                    overlayGroupRectSelection,
+                    EditionSvgOverlayActionTypes.hover
+                );
+                this._selectedTkaOverlays = this._getSelectedOverlays(this._availableTkaOverlays);
+                this._onOverlaySelect(this._selectedTkaOverlays);
             });
     }
 
@@ -574,6 +614,27 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      */
     private _getOverlayById(overlays: EditionSvgOverlay[], id: string): EditionSvgOverlay | undefined {
         return overlays.find((overlay: EditionSvgOverlay) => overlay.id === id);
+    }
+
+    /**
+     * Private method: _getOverlayAndSelection.
+     *
+     * It gets the overlay and the D3 selection rectangle for the given id and overlay type.
+     *
+     * @param {string} id The given id.
+     * @param {string} overlayType The given overlay type.
+     *
+     * @returns {[EditionSvgOverlay, D3Selection]} [overlay, overlayGroupRectSelection] The overlay and the D3 selection rect.
+     */
+    private _getOverlayAndSelection(id: string, overlayType: string): [EditionSvgOverlay, D3Selection] {
+        const overlay = this._getOverlayById(this._availableTkaOverlays, id);
+        const overlayGroupRectSelection = this.svgDrawingService.getOverlayGroupRectSelection(
+            this.svgSheetRootGroupSelection,
+            id,
+            overlayType
+        );
+
+        return [overlay, overlayGroupRectSelection];
     }
 
     /**
@@ -627,6 +688,9 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * @returns {void} Emits the overlays.
      */
     private _onOverlaySelect(overlays: EditionSvgOverlay[]): void {
+        if (!overlays) {
+            return;
+        }
         this.selectOverlaysRequest.emit(overlays);
     }
 
