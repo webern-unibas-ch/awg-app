@@ -94,6 +94,7 @@ export class EditionSvgDrawingService {
         ['staffN', 'Systemangabe'],
         ['measureN', 'Taktzahlen'],
         ['clef', 'Schlüssel'],
+        ['clef_key', 'Schlüssel mit Tonart'],
         ['key', 'Tonart'],
         ['accid', 'Akzidenzien'],
         ['hyphen', 'Silbentrennung'],
