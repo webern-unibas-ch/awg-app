@@ -131,6 +131,7 @@ describe('NavbarComponent (DONE)', () => {
             EDITION_COMPLEXES.M30,
             EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
+            EDITION_COMPLEXES.M35_42,
             EDITION_COMPLEXES.M37,
         ];
         expectedSelectedEditionComplex = expectedEditionComplexes[0];
