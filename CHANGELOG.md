@@ -2,6 +2,82 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.4...v0.11.5) (2024-02-14)
+
+
+### Features
+
+* **assets:** add files for m35_42 ([d77c706](https://github.com/webern-unibas-ch/awg-app/commit/d77c70646b157c8e58bc6c3c84758a32113eac11))
+* **edition:** add edition complex M 35/42 ([8f7847a](https://github.com/webern-unibas-ch/awg-app/commit/8f7847a67fc331fd18a31cc7961348c42a3cfee6))
+* **edition:** add M35/42 to menus ([b043495](https://github.com/webern-unibas-ch/awg-app/commit/b043495c1e37b902cddb5469717cfc0ad1dccf99))
+* **edition:** add switch to toggle tkk highlighting ([7852b46](https://github.com/webern-unibas-ch/awg-app/commit/7852b463401ef06c689b68b1e98c985914f9ebbb))
+
+
+### Bug Fixes
+
+* **assets:** add firm signs for m35/42 ([c56e335](https://github.com/webern-unibas-ch/awg-app/commit/c56e335cc7fb047d12524bdaf1f7716e940f7362))
+* **assets:** add link boxes for m35/42 ([32849c2](https://github.com/webern-unibas-ch/awg-app/commit/32849c241ca7164612f60275f86eaea3fbf8c574))
+* **assets:** add missing data files and placeholders for m35/42 ([e39413b](https://github.com/webern-unibas-ch/awg-app/commit/e39413b1b11b97e5679279750b2e845a5ef56b41))
+* **assets:** adjust folio convolute for m35/42 ([0481b8b](https://github.com/webern-unibas-ch/awg-app/commit/0481b8becee65d5082c03573e94ec20a1016fae7))
+* **assets:** fix file names and folders for m35/42 ([d8bb0e0](https://github.com/webern-unibas-ch/awg-app/commit/d8bb0e07dd3bf38bfe0b54ad6b6da318507401e4))
+* **assets:** fix link boxes for m35/42 Sk1.1 and Sk2 ([167e174](https://github.com/webern-unibas-ch/awg-app/commit/167e17427b495ee859d745161d9fb48d7555aff7))
+* **assets:** fix source descriptions for m35/42 ([f5dd5a6](https://github.com/webern-unibas-ch/awg-app/commit/f5dd5a67631977bcfe708a6fc3b73f899058bdaa))
+* **assets:** fix svg file for m35/42 Sk1.1 ([a807baf](https://github.com/webern-unibas-ch/awg-app/commit/a807baf1cf610c79f4393a4a2dd85bbea07e0b9f))
+* **assets:** fix textcritics for m35/42 ([9466c2d](https://github.com/webern-unibas-ch/awg-app/commit/9466c2d4f10cc41af1405150ae416c455f709a2c))
+* **assets:** fix textcritics for m35/42 ([3042a3a](https://github.com/webern-unibas-ch/awg-app/commit/3042a3a3b2a3ea5f99f76fbfb87f16e961b25cd0))
+* **assets:** mute unused link-boxes for now ([bfde47e](https://github.com/webern-unibas-ch/awg-app/commit/bfde47ebd7344e48978b534c4bb78d97a6c1f3ba))
+* **assets:** optimize svgs with SVGO ([4265dd2](https://github.com/webern-unibas-ch/awg-app/commit/4265dd246c4527db07aac6d50fc33b93878fe791))
+* **assets:** optimize svgs with SVGO ([03e6200](https://github.com/webern-unibas-ch/awg-app/commit/03e62003bc8d5ba2faca953414be4cc55ecb0ac7))
+* **assets:** optimize svgs with SVGO ([259ce83](https://github.com/webern-unibas-ch/awg-app/commit/259ce83ebd1e1105ca77acaac6473a75e419961d))
+* **assets:** optimize svgs with SVGO ([dde69ed](https://github.com/webern-unibas-ch/awg-app/commit/dde69edae2503ae36110cd8daab8354d6514ec20))
+* **assets:** update files for m35_42 ([e053eeb](https://github.com/webern-unibas-ch/awg-app/commit/e053eebedf649ad2b1cda047e9d9bf730c5d84bf))
+* **assets:** update svg file for m35/42 Sk1.1 ([d021f04](https://github.com/webern-unibas-ch/awg-app/commit/d021f0497badea3c1ef728bc8e16c0847240ba20))
+* **assets:** update svg files for m35/42 ([731fb49](https://github.com/webern-unibas-ch/awg-app/commit/731fb49797190eeb6461110851dbee698dd982a0))
+* **edition:** add clef_key to supplied classes map ([af7f116](https://github.com/webern-unibas-ch/awg-app/commit/af7f116fb75e6f651a0bd31079b72c6610566372))
+* **edition:** adjust supplied classes lookup ([a299192](https://github.com/webern-unibas-ch/awg-app/commit/a299192e746553e2ca86da90ee08428cb0967f2a))
+* **edition:** avoid use of conditional expression for default assignment ([9d2c6e4](https://github.com/webern-unibas-ch/awg-app/commit/9d2c6e4bc424ea73daf5e1a885f99dbf66db41af))
+* **edition:** fix updating of tkk colors in drawing service ([8e84ef9](https://github.com/webern-unibas-ch/awg-app/commit/8e84ef96ebf704b6e70a2d4d2de3c4f9691d0a10))
+* **edition:** remove tka switch if no tka overlays are given ([92b8428](https://github.com/webern-unibas-ch/awg-app/commit/92b84284a19113312d76cf838bfac20afc4be350))
+* **edition:** reset all classes switch on change of svg ([79decdf](https://github.com/webern-unibas-ch/awg-app/commit/79decdf13d2d758c4a2bcf33d88c905185c504da))
+* **edition:** update last modification date for edition complexes ([d0e3b88](https://github.com/webern-unibas-ch/awg-app/commit/d0e3b88388ae82e4d573c0f1f2dd40f94a1f898b))
+
+
+### Code Refactoring
+
+* **edition:** add enum for EditionSvgOverlayActionTypes ([6af1c10](https://github.com/webern-unibas-ch/awg-app/commit/6af1c10c526b16fa6ffdd496cbb1b9be3917b1f4))
+* **edition:** move overlay selection into separate method ([ddbf73a](https://github.com/webern-unibas-ch/awg-app/commit/ddbf73a4aba778d73610f96f644023b04043250c))
+* **edition:** rename allClassesVisible flag ([5395991](https://github.com/webern-unibas-ch/awg-app/commit/539599128755b2a0a30b730111d5d69a3768dd51))
+* **edition:** rename clearSvg method ([d9ee607](https://github.com/webern-unibas-ch/awg-app/commit/d9ee6078609dea1b541d80d01b7148d9d9460dc8))
+* **edition:** rename EditionSvgSheetViewerSwitch component ([6a7b944](https://github.com/webern-unibas-ch/awg-app/commit/6a7b944092792c9ffb32b2933ab27c42f436f83e))
+* **edition:** rename SvgOverlayType.item -> tka ([95fbfeb](https://github.com/webern-unibas-ch/awg-app/commit/95fbfeb87409bf0b83ec15b5cb442ef7bc6eaf6d))
+
+
+### Tests
+
+* **edition:** add helper function for expected order of headers ([e45e0cd](https://github.com/webern-unibas-ch/awg-app/commit/e45e0cd09a66dbf99d56cce036c4115564a0b9ec))
+* **edition:** add tests for new sheet viewer methods ([ab8b281](https://github.com/webern-unibas-ch/awg-app/commit/ab8b28171ba9ec84de1dd1a2e2a80a7f5c3d12f0))
+* **edition:** fix errors after changes ([f891deb](https://github.com/webern-unibas-ch/awg-app/commit/f891deb3b50639aae47cdf437aed434f9d829600))
+* **edition:** fix tests for firm signs ([341c2dc](https://github.com/webern-unibas-ch/awg-app/commit/341c2dce0c0d072cd989d82548f0240d6e809d38))
+* **edition:** fix tests for sheet viewer settings ([31071cf](https://github.com/webern-unibas-ch/awg-app/commit/31071cf64dac9b55b3dc2c77aa26d7cd90fdf6e8))
+
+
+### Build System
+
+* **deps-dev:** bump @types/node from 18.19.6 to 18.19.14 ([7eb1cb3](https://github.com/webern-unibas-ch/awg-app/commit/7eb1cb3d52e267b97b13b99fc2b1fd93fde7d637))
+* **deps-dev:** bump eslint-plugin-jsdoc from 48.0.4 to 48.0.6 ([9ccbb2a](https://github.com/webern-unibas-ch/awg-app/commit/9ccbb2aaa1ee5a619f39a74e80b88bf0bb3e7532))
+* **deps-dev:** bump eslint-plugin-jsdoc from 48.0.6 to 48.1.0 ([4c0b683](https://github.com/webern-unibas-ch/awg-app/commit/4c0b683249080dd16b4f8e2fcffe92ee8aa13d39))
+* **deps-dev:** bump husky from 9.0.10 to 9.0.11 ([6bfe5a3](https://github.com/webern-unibas-ch/awg-app/commit/6bfe5a3abf4299b55e4cc1e3d657f720d6789f48))
+* **deps-dev:** bump jasmine-core from 5.1.1 to 5.1.2 ([855a9f6](https://github.com/webern-unibas-ch/awg-app/commit/855a9f6b1421e6291e91da850ac9e606182cf1af))
+* **deps-dev:** bump lint-staged from 15.2.1 to 15.2.2 ([96f5af4](https://github.com/webern-unibas-ch/awg-app/commit/96f5af4ae27cdc5ed15fea3f86a70b30b71870f2))
+* **deps-dev:** bump prettier from 3.2.4 to 3.2.5 ([a1faf3a](https://github.com/webern-unibas-ch/awg-app/commit/a1faf3adc095d562fe17fb39c93d05ae104d79b8))
+* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([319f0a3](https://github.com/webern-unibas-ch/awg-app/commit/319f0a33b18fc336fecd559d8dcc9d516a6b5e63))
+* **deps-dev:** bump the commitlint group with 2 updates ([cc2bc77](https://github.com/webern-unibas-ch/awg-app/commit/cc2bc77ee2adb22bb882c18539f7154fba9075e1))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([32e3941](https://github.com/webern-unibas-ch/awg-app/commit/32e3941adffe95b6b82d0da512c0033d009fe9f9))
+* **deps-dev:** bump the typescript-eslint group with 2 updates ([e82eb9b](https://github.com/webern-unibas-ch/awg-app/commit/e82eb9bd39394ceefc11f4b28c15481be389d8e3))
+* **deps:** bump actions/setup-node from 4.0.1 to 4.0.2 ([d415dee](https://github.com/webern-unibas-ch/awg-app/commit/d415deeab884bab99a6a317420c58b6b883f7cde))
+* **deps:** bump ericcornelissen/svgo-action from 4.0.6 to 4.0.7 ([b25740a](https://github.com/webern-unibas-ch/awg-app/commit/b25740a290331512b7bdb9c4731d61269e806a93))
+* **deps:** bump the angular group with 11 updates ([6467077](https://github.com/webern-unibas-ch/awg-app/commit/646707739c57ad6a09cc3af69f4514fa8263291a))
+
 ### [0.11.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.3...v0.11.4) (2024-02-04)
 
 ### Features
