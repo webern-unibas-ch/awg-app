@@ -452,18 +452,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionSvgSheetViewerModule.html" data-type="entity-link" >EditionSvgSheetViewerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#components-links-module-EditionSvgSheetViewerModule-c1e86dca6b25016bd32c1ceae3bf9c159a9b2f40f4360cf126cbf65383bf6f97d7e450ecb995af570ae0b1ea08fec31e40bde81b865d74c5068e5ec2c28d855a"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetViewerModule-c1e86dca6b25016bd32c1ceae3bf9c159a9b2f40f4360cf126cbf65383bf6f97d7e450ecb995af570ae0b1ea08fec31e40bde81b865d74c5068e5ec2c28d855a"' }>
+                                            'data-bs-target="#components-links-module-EditionSvgSheetViewerModule-7f75f5b96aefb37d5d75af50f569f74937ceffa96c707dd58f7651fed80d67ff20eae5f57ce1d62ac768f9e86c2d0bf1f7a92d022f633e1ab5f89b69b50e661e"' : 'data-bs-target="#xs-components-links-module-EditionSvgSheetViewerModule-7f75f5b96aefb37d5d75af50f569f74937ceffa96c707dd58f7651fed80d67ff20eae5f57ce1d62ac768f9e86c2d0bf1f7a92d022f633e1ab5f89b69b50e661e"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetViewerModule-c1e86dca6b25016bd32c1ceae3bf9c159a9b2f40f4360cf126cbf65383bf6f97d7e450ecb995af570ae0b1ea08fec31e40bde81b865d74c5068e5ec2c28d855a"' :
-                                            'id="xs-components-links-module-EditionSvgSheetViewerModule-c1e86dca6b25016bd32c1ceae3bf9c159a9b2f40f4360cf126cbf65383bf6f97d7e450ecb995af570ae0b1ea08fec31e40bde81b865d74c5068e5ec2c28d855a"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionSvgSheetViewerModule-7f75f5b96aefb37d5d75af50f569f74937ceffa96c707dd58f7651fed80d67ff20eae5f57ce1d62ac768f9e86c2d0bf1f7a92d022f633e1ab5f89b69b50e661e"' :
+                                            'id="xs-components-links-module-EditionSvgSheetViewerModule-7f75f5b96aefb37d5d75af50f569f74937ceffa96c707dd58f7651fed80d67ff20eae5f57ce1d62ac768f9e86c2d0bf1f7a92d022f633e1ab5f89b69b50e661e"' }>
                                             <li class="link">
                                                 <a href="components/EditionSvgSheetViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSvgSheetViewerSettingsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerSettingsComponent</a>
+                                                <a href="components/EditionSvgSheetViewerSwitchComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetViewerSwitchComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -850,7 +850,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionJumbotronComponent.html" data-type="entity-link" >EditionJumbotronComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionSvgSheetViewerSettingsComponent.html" data-type="entity-link" >EditionSvgSheetViewerSettingsComponent</a>
+                                <a href="components/EditionSvgSheetViewerSwitchComponent.html" data-type="entity-link" >EditionSvgSheetViewerSwitchComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/ExtendedSearchFormComponent.html" data-type="entity-link" >ExtendedSearchFormComponent</a>

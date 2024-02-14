@@ -28,13 +28,13 @@
 <title>cluster_EditionConvoluteModule_declarations</title>
 <polygon fill="none" stroke="black" points="358,-78 358,-130 554,-130 554,-78 358,-78"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_EditionConvoluteModule_exports</title>
-<polygon fill="none" stroke="black" points="141,-208 141,-260 341,-260 341,-208 141,-208"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_EditionConvoluteModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 350,-130 350,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_EditionConvoluteModule_exports</title>
+<polygon fill="none" stroke="black" points="141,-208 141,-260 341,-260 341,-208 141,-208"/>
 </g>
 <!-- EditionConvoluteComponent -->
 <g id="node1" class="node">
