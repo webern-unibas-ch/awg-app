@@ -22,7 +22,7 @@ import { EditionComplex } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
 
-/** Helper function */
+/** Helper functions */
 function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
     const rowTablesLink = [[EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route]];
 
@@ -35,6 +35,19 @@ function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]):
     });
 
     return [...rowTablesLink, ...editionLinks];
+}
+
+function generateExpectedOrderOfHeaders(editionComplexes: EditionComplex[]): string[] {
+    const rowTablesHeader = EDITION_ROUTE_CONSTANTS.ROWTABLES.full;
+
+    const editionHeaders = editionComplexes.flatMap(complex => {
+        if (complex === EDITION_COMPLEXES.OP25) {
+            return [EDITION_TYPE_CONSTANTS.SKETCH_EDITION.full, EDITION_ROUTE_CONSTANTS.EDITION_GRAPH.full];
+        }
+        return [EDITION_TYPE_CONSTANTS.SKETCH_EDITION.full];
+    });
+
+    return [rowTablesHeader, ...editionHeaders];
 }
 
 describe('EditionInfoComponent (DONE)', () => {
@@ -86,17 +99,7 @@ describe('EditionInfoComponent (DONE)', () => {
             EDITION_COMPLEXES.M37,
         ];
         expectedOrderOfRouterlinks = generateExpectedOrderOfRouterlinks(expectedEditionComplexes);
-
-        expectedOrderOfHeaders = [
-            expectedEditionRouteConstants.ROWTABLES.full,
-            expectedEditionTypeConstants.SKETCH_EDITION.full,
-            expectedEditionTypeConstants.SKETCH_EDITION.full,
-            expectedEditionRouteConstants.EDITION_GRAPH.full,
-            expectedEditionTypeConstants.SKETCH_EDITION.full,
-            expectedEditionTypeConstants.SKETCH_EDITION.full,
-            expectedEditionTypeConstants.SKETCH_EDITION.full,
-            expectedEditionTypeConstants.SKETCH_EDITION.full,
-        ];
+        expectedOrderOfHeaders = generateExpectedOrderOfHeaders(expectedEditionComplexes);
     });
 
     afterAll(() => {
