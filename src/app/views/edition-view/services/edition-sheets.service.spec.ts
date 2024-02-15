@@ -407,7 +407,6 @@ describe('EditionSheetsService (DONE)', () => {
             expectToEqual(convolute, expectedResult);
         });
 
-        // Should return the correct convolute object
         it('... should return the correct convolute object', () => {
             expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
             const expectedResultA = expectedFolioConvolutes[0];
