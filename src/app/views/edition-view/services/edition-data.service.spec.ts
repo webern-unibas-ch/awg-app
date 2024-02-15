@@ -84,7 +84,7 @@ describe('EditionDataService (DONE)', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Test data
-        expectedRowTablesData = mockEditionData.mockRowTablesData;
+        expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
 
         // Spies on console logs
         consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);

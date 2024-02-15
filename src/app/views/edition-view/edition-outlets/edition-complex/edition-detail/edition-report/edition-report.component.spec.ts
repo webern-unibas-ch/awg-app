@@ -179,14 +179,14 @@ describe('EditionReportComponent', () => {
         expectedEditionComplexBaseRoute = '/edition/complex/op12/';
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
-        expectedSourceListData = mockEditionData.mockSourceListData;
-        expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;
-        expectedSourceEvaluationListData = mockEditionData.mockSourceEvaluationListData;
-        expectedTextcriticsData = mockEditionData.mockTextcriticsData;
+        expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
+        expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
+        expectedSourceEvaluationListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceEvaluationListData));
+        expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
 
         expectedEditionReportData = [
             expectedSourceListData,

@@ -106,11 +106,11 @@ describe('IntroComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
-        expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedEditionIntroData = mockEditionData.mockIntroData;
-        expectedEditionIntroEmptyData = mockEditionData.mockIntroEmptyData;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedEditionIntroData = JSON.parse(JSON.stringify(mockEditionData.mockIntroData));
+        expectedEditionIntroEmptyData = JSON.parse(JSON.stringify(mockEditionData.mockIntroEmptyData));
+        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
         // Spies on functions
         editionDataServiceGetEditionIntroDataSpy = spyOn(editionDataService, 'getEditionIntroData').and.returnValue(

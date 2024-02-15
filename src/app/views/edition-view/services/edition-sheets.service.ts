@@ -140,8 +140,12 @@ export class EditionSheetsService {
             return undefined;
         }
 
+        console.log('convolutes', convolutes);
+        console.log('sheets', sheets);
+        console.log('selectedSheet', selectedSheet);
+
         const editionType = this.getCurrentEditionType(selectedSheet, sheets);
-        const convoluteId = editionType === 'sketchEditions' ? selectedSheet.convolute : '';
+        const convoluteId = editionType === 'sketchEditions' ? '' : ''; // SelectedSheet.convolute;
 
         return this._findConvoluteById(convolutes, convoluteId);
     }

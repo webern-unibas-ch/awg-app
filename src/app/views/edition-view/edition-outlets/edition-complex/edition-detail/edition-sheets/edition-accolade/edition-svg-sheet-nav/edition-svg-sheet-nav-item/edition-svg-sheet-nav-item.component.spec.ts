@@ -59,7 +59,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
         expectedNextSvgSheet = expectedSvgSheets.at(3);
         expectedSvgSheetWithPartials = expectedSvgSheets.at(1);
 
-        expectedSvgSheetWithPartialA = mockEditionData.mockSvgSheet_Sk2a;
+        expectedSvgSheetWithPartialA = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -294,7 +294,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             });
 
             it('... should have `active` class on dropdown header anchor when svg sheet with partials is selected', () => {
-                component.selectedSvgSheet = mockEditionData.mockSvgSheet_Sk2a;
+                component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
                 detectChangesOnPush(fixture);
 
                 let anchorDes = getAndExpectDebugElementByCss(
@@ -312,7 +312,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
                 expectToContain(anchorEl1.classList, 'text-muted');
                 expect(anchorEl1.classList).withContext(`should not contain 'active'`).not.toContain('active');
 
-                component.selectedSvgSheet = mockEditionData.mockSvgSheet_Sk3b;
+                component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3b));
                 detectChangesOnPush(fixture);
 
                 anchorDes = getAndExpectDebugElementByCss(
@@ -350,7 +350,7 @@ describe('EditionSvgSheetNavItemComponent (DONE)', () => {
             });
 
             it('... should have `active` class on dropdown anchor with selected svg sheet and `text-muted` on others (partials)', () => {
-                component.selectedSvgSheet = mockEditionData.mockSvgSheet_Sk2a;
+                component.selectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
                 detectChangesOnPush(fixture);
 
                 const anchorDes = getAndExpectDebugElementByCss(

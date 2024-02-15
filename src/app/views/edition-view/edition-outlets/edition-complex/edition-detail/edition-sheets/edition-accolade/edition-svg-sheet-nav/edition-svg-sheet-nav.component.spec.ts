@@ -60,10 +60,10 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         // Test data
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk4;
-        expectedSvgSheetWithPartials = mockEditionData.mockSvgSheet_Sk2;
-        expectedSvgSheetWithPartialA = mockEditionData.mockSvgSheet_Sk2a;
+        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
+        expectedSvgSheetWithPartials = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
+        expectedSvgSheetWithPartialA = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
         expectedSvgSheetsData = {
             sheets: {
                 workEditions: [],

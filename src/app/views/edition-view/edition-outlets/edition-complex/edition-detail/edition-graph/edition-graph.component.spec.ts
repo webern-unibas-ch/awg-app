@@ -111,7 +111,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
 
-        expectedEditionGraphDataEmpty = mockEditionData.mockGraphEmptyData;
+        expectedEditionGraphDataEmpty = JSON.parse(JSON.stringify(mockEditionData.mockGraphEmptyData));
 
         expectedEditionGraphDataOp25 = new GraphList();
         expectedEditionGraphDataOp25.graph = [];

@@ -35,7 +35,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         // Test data
         expectedFolioConvolutes = mockEditionData.mockFolioConvoluteData.convolutes;
-        expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedSheets = mockEditionData.mockSvgSheetList.sheets;
         expectedTextcriticsArray = mockEditionData.mockTextcriticsData.textcritics;
         expectedTka = expectedTextcriticsArray.at(1).comments;
@@ -80,7 +80,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... if no textcritics are found for the given sheet', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk3;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3));
                 const expectedResult = new Textcritics();
 
                 const textcritics = editionSheetsService.findTextcritics(
@@ -93,7 +93,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should find the textcritics for the given sheet', () => {
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
             const expectedResult = expectedTextcriticsArray.at(1);
 
             const textcritics = editionSheetsService.findTextcritics(expectedTextcriticsArray, expectedSelectedSheet);
@@ -108,7 +108,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return undefined if the given sheet is not found in any section of the given sheet list', () => {
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk6;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk6));
 
             const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
 
@@ -117,7 +117,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct edition type for a given sheet found in', () => {
             it('... the sketchEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
                 const expectedResult = 'sketchEditions';
 
                 const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
@@ -126,7 +126,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('...  the textEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_TF1;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_TF1));
                 const expectedResult = 'textEditions';
 
                 const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
@@ -135,7 +135,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the workEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_WE1;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
                 const expectedResult = 'workEditions';
 
                 const editionType = editionSheetsService.getCurrentEditionType(expectedSelectedSheet, expectedSheets);
@@ -370,7 +370,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the selected sheet is in the workEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_WE1;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
 
                 const convolute = editionSheetsService.selectConvolute(
                     expectedFolioConvolutes,
@@ -382,7 +382,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the selected sheet is in the textEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_TF1;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_TF1));
 
                 const convolute = editionSheetsService.selectConvolute(
                     expectedFolioConvolutes,
@@ -395,7 +395,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return a convolute object if the selected sheet is in the sketchEditions section of the given sheet list', () => {
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
             const expectedResult = expectedFolioConvolutes[0];
 
             const convolute = editionSheetsService.selectConvolute(
@@ -409,7 +409,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         // Should return the correct convolute object
         it('... should return the correct convolute object', () => {
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
             const expectedResultA = expectedFolioConvolutes[0];
 
             const convoluteA = editionSheetsService.selectConvolute(
@@ -420,7 +420,7 @@ describe('EditionSheetsService (DONE)', () => {
 
             expectToEqual(convoluteA, expectedResultA);
 
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk3;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3));
             const expectedResultB = expectedFolioConvolutes[1];
 
             const convoluteB = editionSheetsService.selectConvolute(
@@ -474,7 +474,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return the correct sheet if', () => {
             it('...  the given id is in the workEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_WE1;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_WE1));
 
                 const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, expectedSelectedSheet.id);
 
@@ -482,7 +482,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('...  the given id is in the textEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_TF1;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_TF1));
 
                 const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, expectedSelectedSheet.id);
 
@@ -490,7 +490,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('...  the given id is in the sketchEditions section of the given sheet list', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
                 const sheet = editionSheetsService.selectSvgSheetById(expectedSheets, expectedSelectedSheet.id);
 
@@ -536,10 +536,10 @@ describe('EditionSheetsService (DONE)', () => {
             it('... when direction is +1', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 1;
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2a;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
                 const expectedPartial = 'a';
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk2b;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
 
                 const direction = 1;
@@ -558,10 +558,10 @@ describe('EditionSheetsService (DONE)', () => {
             it('... when direction is -1', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 1;
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2b;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
                 const expectedPartial = 'b';
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk2a;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = -1;
 
@@ -582,9 +582,9 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 1;
                 const expectedPartial = 'b';
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2b;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk3a;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3a));
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = 1;
 
@@ -603,9 +603,9 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 2;
                 const expectedPartial = 'a';
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk3a;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3a));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk2b;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2b));
                 const expectedNextSheetId = expectedNextSheet.id + expectedNextSheet.content[0].partial;
                 const direction = -1;
 
@@ -626,9 +626,9 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 2;
                 const expectedPartial = 'c';
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk3c;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3c));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk4;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
                 const expectedNextSheetId = expectedNextSheet.id;
                 const direction = 1;
 
@@ -647,9 +647,9 @@ describe('EditionSheetsService (DONE)', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 1;
                 const expectedPartial = 'a';
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2a;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk1;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
                 const expectedNextSheetId = expectedNextSheet.id;
                 const direction = -1;
 
@@ -675,9 +675,9 @@ describe('EditionSheetsService (DONE)', () => {
             it('... when direction is +1', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 3;
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk4;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk5;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
                 const direction = 1;
 
                 const nextSheetId = (editionSheetsService as any)._findNextSheetIdForNonPartialSheet(
@@ -693,9 +693,9 @@ describe('EditionSheetsService (DONE)', () => {
             it('... when direction is -1', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
                 const expectedCurrentSheetIndex = 4;
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk5;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
                 const expectedCurrentSheetId = expectedSelectedSheet.id;
-                const expectedNextSheet = mockEditionData.mockSvgSheet_Sk4;
+                const expectedNextSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk4));
                 const direction = -1;
 
                 const nextSheetId = (editionSheetsService as any)._findNextSheetIdForNonPartialSheet(
@@ -762,7 +762,7 @@ describe('EditionSheetsService (DONE)', () => {
 
             it('... the given id with partial is not in the given sheet list', () => {
                 const expectedSheetArray = expectedSheets['sketchEditions'];
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
                 const index = (editionSheetsService as any)._findSvgSheetIndexById(
                     expectedSheetArray,
@@ -775,7 +775,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         it('... should return the index of an svg sheet identified by its id within a given array of sheets', () => {
             const expectedSheetArray = expectedSheets['sketchEditions'];
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk1;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
 
             const index0 = (editionSheetsService as any)._findSvgSheetIndexById(
                 expectedSheetArray,
@@ -784,7 +784,7 @@ describe('EditionSheetsService (DONE)', () => {
 
             expectToBe(index0, 0);
 
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk5;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk5));
 
             const index4 = (editionSheetsService as any)._findSvgSheetIndexById(
                 expectedSheetArray,
@@ -796,7 +796,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         it('... should find the index of an svg sheet with partials identified by its id within a given array of sheets', () => {
             const expectedSheetArray = expectedSheets['sketchEditions'];
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2a;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2a));
 
             const index1 = (editionSheetsService as any)._findSvgSheetIndexById(
                 expectedSheetArray,
@@ -805,7 +805,7 @@ describe('EditionSheetsService (DONE)', () => {
 
             expectToBe(index1, 1);
 
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk3c;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk3c));
 
             const index2 = (editionSheetsService as any)._findSvgSheetIndexById(
                 expectedSheetArray,
@@ -823,7 +823,7 @@ describe('EditionSheetsService (DONE)', () => {
 
         describe('... should return -1 if', () => {
             it('... the given sheet does not contain any partials', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
                 const expectedId = expectedSelectedSheet.id;
 
                 const index = (editionSheetsService as any)._findSvgSheetPartialIndexById(
@@ -835,7 +835,7 @@ describe('EditionSheetsService (DONE)', () => {
             });
 
             it('... the partial id is not found in the content of the given sheet', () => {
-                expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+                expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
                 const expectedId = expectedSelectedSheet.id + 'nonExistingPartialId';
 
                 const index = (editionSheetsService as any)._findSvgSheetPartialIndexById(
@@ -848,7 +848,7 @@ describe('EditionSheetsService (DONE)', () => {
         });
 
         it('... should return the correct index of a given id with partial found in the content of the given sheet', () => {
-            expectedSelectedSheet = mockEditionData.mockSvgSheet_Sk2;
+            expectedSelectedSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
             const expectedIdA = expectedSelectedSheet.id + 'a';
 
             const indexA = (editionSheetsService as any)._findSvgSheetPartialIndexById(

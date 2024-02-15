@@ -104,10 +104,10 @@ describe('TextcriticsListComponent (DONE)', () => {
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
-        expectedModalSnippet = mockEditionData.mockModalSnippet;
+        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedNextSheetId = 'test_item_id_2';
         expectedSheetId = 'test_item_id_1';
-        expectedTextcriticsData = mockEditionData.mockTextcriticsData;
+        expectedTextcriticsData = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData));
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
