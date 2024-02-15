@@ -460,7 +460,11 @@ describe('EditionSvgSheetViewerComponent', () => {
                 });
 
                 describe('EditionSvgSheetViewerSwitchComponent', () => {
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkaOverlays are available', () => {
+                        component.suppliedClasses = expectedSuppliedClassMap;
+                        component.hasAvailableTkaOverlays = false;
+                        fixture.detectChanges();
+
                         const svgSheetContainerDe = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
@@ -476,8 +480,29 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
                     });
 
-                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses are not available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkaOverlays, but no suppliedClasses are available', () => {
                         component.suppliedClasses = new Map();
+                        component.hasAvailableTkaOverlays = true;
+                        fixture.detectChanges();
+
+                        const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-svg-sheet-container',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(
+                            svgSheetContainerDe[0],
+                            EditionSvgSheetViewerSwitchStubComponent,
+                            1,
+                            1
+                        );
+                    });
+
+                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkaOverlays are available', () => {
+                        component.suppliedClasses = new Map();
+                        component.hasAvailableTkaOverlays = false;
                         fixture.detectChanges();
 
                         const svgSheetContainerDe = getAndExpectDebugElementByCss(
