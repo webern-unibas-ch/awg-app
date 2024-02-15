@@ -9,15 +9,16 @@
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Textfassung1-1von2-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "C"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Textfassung1-2von2-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "D"
                     }
-                ],
-                "convolute": "C"
+                ]
             }
         ],
         "sketchEditions": [
@@ -28,35 +29,40 @@
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1-1von6-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1-2von6-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1-3von6-final.svg",
                         "image": "",
-                        "partial": "c"
+                        "partial": "c",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1-4von6-final.svg",
                         "image": "",
-                        "partial": "d"
+                        "partial": "d",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1-5von6-final.svg",
                         "image": "",
-                        "partial": "e"
+                        "partial": "e",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1-6von6-final.svg",
                         "image": "",
-                        "partial": "f"
+                        "partial": "f",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": "A"
+                ]
             },
             {
                 "id": "M_35_42_Sk1_1",
@@ -64,10 +70,11 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk1_1-1von1-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": "B"
+                ]
             },
             {
                 "id": "M_35_42_Sk2",
@@ -75,10 +82,11 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m35_42/M35_42_Sk2-1von1-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "",
+                        "convolute": "C"
                     }
-                ],
-                "convolute": "C"
+                ]
             }
         ]
     }
