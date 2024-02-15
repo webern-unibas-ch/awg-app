@@ -247,6 +247,11 @@ export class FolioCalculationContentItem {
     selectable: boolean;
 
     /**
+     * The boolean flag if the content item is reversed.
+     */
+    reversed: boolean;
+
+    /**
      * The link to a convolute description in the critical report.
      */
     linkTo: string;
@@ -592,6 +597,7 @@ export class FolioCalculation {
                     calculatedContentItem.sigle = content.sigle;
                     calculatedContentItem.sigleAddendum = content.sigleAddendum;
                     calculatedContentItem.selectable = content.selectable ?? true;
+                    calculatedContentItem.reversed = content.reversed ?? false;
                     calculatedContentItem.linkTo = content.linkTo || '';
 
                     calculatedContentItems.push(calculatedContentItem);
