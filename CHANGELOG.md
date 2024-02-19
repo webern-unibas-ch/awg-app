@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.6](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.5...v0.11.6) (2024-02-19)
+
+
+### Features
+
+* **edition:** add option to display reversed folio items ([08df6b4](https://github.com/webern-unibas-ch/awg-app/commit/08df6b4bee336f666cd46a0fa4f05dde17ff9ebc))
+
+
+### Bug Fixes
+
+* **assets:** add convolute ids for text versions ([612be8b](https://github.com/webern-unibas-ch/awg-app/commit/612be8b3e375c88ffceaa799e1e152c1b4a6d79e))
+* **assets:** move convolutes to sheet contents ([2dd0b77](https://github.com/webern-unibas-ch/awg-app/commit/2dd0b7751c8b9b2d6f6f3696da7b73c848428cf7))
+* **assets:** unify description of writing material in op25 ([1fcbdcf](https://github.com/webern-unibas-ch/awg-app/commit/1fcbdcf76827baf66f0b4367b2eb85084fa8f468))
+* **edition:** fix overlapping of svgs on reload ([b9b0cf6](https://github.com/webern-unibas-ch/awg-app/commit/b9b0cf6aa90e72f0d8830f5fcb32e88c28054e54))
+* **edition:** fix reload of svgs again ([cf857c8](https://github.com/webern-unibas-ch/awg-app/commit/cf857c8484012ace28be5bc97e462413d33a3c8d))
+* **edition:** move convolute to sheet content model ([946ad3e](https://github.com/webern-unibas-ch/awg-app/commit/946ad3e952809721ff2b171ea3bf2cc1453b3fbf))
+* **edition:** update condition for displaying sheet viewer switch ([46d1426](https://github.com/webern-unibas-ch/awg-app/commit/46d1426a2963dbbd7055f541363806c65dbc488d))
+
+
+### Tests
+
+* **edition:** create deep instead of shallow copy of mock objects ([bb30323](https://github.com/webern-unibas-ch/awg-app/commit/bb30323385dd0420edf28618431edefad6f511fc))
+
+
+### Build System
+
+* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([b7aec87](https://github.com/webern-unibas-ch/awg-app/commit/b7aec87fd87e3d7f5446f43336b085cc6837d515))
+* **deps:** bump ericcornelissen/svgo-action from 4.0.7 to 4.0.8 ([20d5ba4](https://github.com/webern-unibas-ch/awg-app/commit/20d5ba44ab70f0364f9d587adee6e03d3fcb0bdf))
+* **deps:** bump the angular group with 11 updates ([02be766](https://github.com/webern-unibas-ch/awg-app/commit/02be766b40306e134226c0aa808d5e4cb1da208b))
+* **deps:** bump undici from 5.27.2 to 5.28.3 ([b1ba896](https://github.com/webern-unibas-ch/awg-app/commit/b1ba8964b72a09f7e87c86fffdecf391edba25af))
+
+
+### Code Refactoring
+
+* **assets:** restructure firm sign folder ([98356bc](https://github.com/webern-unibas-ch/awg-app/commit/98356bc575c95b5617c112db7909b5215638e86b))
+
 ### [0.11.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.4...v0.11.5) (2024-02-14)
 
 ### Features
