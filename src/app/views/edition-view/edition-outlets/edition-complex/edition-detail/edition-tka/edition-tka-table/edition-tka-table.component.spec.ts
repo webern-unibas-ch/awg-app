@@ -68,9 +68,9 @@ describe('EditionTkaTableComponent (DONE)', () => {
         expectedNextComplexId = 'testComplex2';
         expectedFragment = 'source_A';
         expectedGlyphs = EDITION_GLYPHS_DATA;
-        expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
         expectedTextcriticalComments = mockEditionData.mockTextcriticsData.textcritics.at(1).comments;
 
         expectedIsRowTable = false;

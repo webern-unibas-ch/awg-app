@@ -10,20 +10,22 @@
                     {
                         "svg": "assets/img/edition/series/1/section/2/op27/op27_B_Reihentabelle-1von3-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/1/section/2/op27/op27_B_Reihentabelle-2von3-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/1/section/2/op27/op27_B_Reihentabelle-3von3-final.svg",
                         "image": "",
-                        "partial": "c"
+                        "partial": "c",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": "B"
+                ]
             }
         ]
     }

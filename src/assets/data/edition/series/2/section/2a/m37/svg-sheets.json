@@ -8,10 +8,11 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Textfassung1-1von1-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": ""
+                ]
             }
         ],
         "sketchEditions": [
@@ -21,10 +22,11 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk1-1von1-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
                     }
-                ],
-                "convolute": "A"
+                ]
             },
             {
                 "id": "M_37_Sk2",
@@ -32,10 +34,11 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk2-1von1-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "",
+                        "convolute": "A"
                     }
-                ],
-                "convolute": "A"
+                ]
             },
             {
                 "id": "M_37_Sk3",
@@ -44,20 +47,22 @@
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk3-1von3-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk3-2von3-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m37/M37_Sk3-3von3-final.svg",
                         "image": "",
-                        "partial": "c"
+                        "partial": "c",
+                        "convolute": "A"
                     }
-                ],
-                "convolute": "A"
+                ]
             }
         ]
     }

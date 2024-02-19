@@ -9,15 +9,16 @@
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Textfassung1-1von2-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Textfassung1-2von2-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": ""
+                ]
             }
         ],
         "sketchEditions": [
@@ -28,60 +29,70 @@
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-1von11-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-2von11-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-3von11-final.svg",
                         "image": "",
-                        "partial": "c"
+                        "partial": "c",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-4von11-final.svg",
                         "image": "",
-                        "partial": "d"
+                        "partial": "d",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-5von11-final.svg",
                         "image": "",
-                        "partial": "e"
+                        "partial": "e",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-6von11-final.svg",
                         "image": "",
-                        "partial": "f"
+                        "partial": "f",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-7von11-final.svg",
                         "image": "",
-                        "partial": "g"
+                        "partial": "g",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-8von11-final.svg",
                         "image": "",
-                        "partial": "h"
+                        "partial": "h",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-9von11-final.svg",
                         "image": "",
-                        "partial": "i"
+                        "partial": "i",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-10von11-final.svg",
                         "image": "",
-                        "partial": "j"
+                        "partial": "j",
+                        "convolute": "A"
                     },
                     {
                         "svg": "assets/img/edition/series/2/section/2a/m30/M30_Sk1-11von11-final.svg",
                         "image": "",
-                        "partial": "k"
+                        "partial": "k",
+                        "convolute": "A"
                     }
-                ],
-                "convolute": "A"
+                ]
             }
         ]
     }

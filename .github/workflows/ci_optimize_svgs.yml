@@ -20,7 +20,7 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
             - name: Optimize SVGs
-              uses: ericcornelissen/svgo-action@f7f55c2a50142a9eeefca82470290ce62ceebad5 # ratchet:ericcornelissen/svgo-action@v4.0.7
+              uses: ericcornelissen/svgo-action@b8b3198fffbb1210e81aa68cde2ca4e4568d5386 # ratchet:ericcornelissen/svgo-action@v4.0.8
               id: svgo
               with:
                   repo-token: ${{secrets.GITHUB_TOKEN}}

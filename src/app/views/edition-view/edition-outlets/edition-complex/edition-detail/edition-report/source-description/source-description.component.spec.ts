@@ -62,8 +62,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
-        expectedModalSnippet = mockEditionData.mockModalSnippet;
-        expectedSourceDescriptionListData = mockEditionData.mockSourceDescriptionListData;
+        expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
+        expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
         expectedFirmSigns = {
             OP12: {
                 A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28],
@@ -78,22 +78,22 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_6_LIN_20],
             },
             M30: {
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18B],
+                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_B],
             },
             M31: {
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18B],
+                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_B],
             },
             M34: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
+                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
             },
             M35_42: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
-                C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
+                C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
             },
             M37: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18C],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18D],
+                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
+                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
             },
         };
 

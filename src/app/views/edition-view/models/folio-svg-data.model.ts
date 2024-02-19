@@ -125,6 +125,11 @@ class FolioSvgContentItem {
     selectable: boolean;
 
     /**
+     * The optional boolean flag if the content item is reversed.
+     */
+    reversed: boolean;
+
+    /**
      * The optional link to a convolute description in the critical report.
      */
     linkTo: string;
@@ -168,6 +173,7 @@ class FolioSvgContentItem {
         this.sigle = calculatedContentItem.sigle;
         this.sigleAddendum = calculatedContentItem.sigleAddendum;
         this.selectable = calculatedContentItem.selectable;
+        this.reversed = calculatedContentItem.reversed;
         this.linkTo = calculatedContentItem.linkTo;
 
         this.upperLeftCorner = calculatedContentItem.current.cornerPoints.upperLeftCorner;

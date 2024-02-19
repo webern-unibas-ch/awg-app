@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output, SimpleChange } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import Spy = jasmine.Spy;
@@ -144,8 +144,8 @@ describe('EditionSvgSheetViewerComponent', () => {
 
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
-        expectedSvgSheet = mockEditionData.mockSvgSheet_Sk1;
-        expectedNextSvgSheet = mockEditionData.mockSvgSheet_Sk2;
+        expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
+        expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
 
         expectedTkaOverlays = [
             new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
@@ -263,7 +263,7 @@ describe('EditionSvgSheetViewerComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(fakeAsync(() => {
             // Simulate the parent setting the input properties
-            component.selectedSvgSheet = expectedSvgSheet;
+            component.selectedSvgSheet = JSON.parse(JSON.stringify(expectedSvgSheet));
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -460,7 +460,11 @@ describe('EditionSvgSheetViewerComponent', () => {
                 });
 
                 describe('EditionSvgSheetViewerSwitchComponent', () => {
-                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses are available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses, but no tkaOverlays are available', () => {
+                        component.suppliedClasses = expectedSuppliedClassMap;
+                        component.hasAvailableTkaOverlays = false;
+                        fixture.detectChanges();
+
                         const svgSheetContainerDe = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-edition-svg-sheet-container',
@@ -476,8 +480,29 @@ describe('EditionSvgSheetViewerComponent', () => {
                         );
                     });
 
-                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if suppliedClasses are not available', () => {
+                    it('... should contain 1 awg-edition-svg-sheet-viewer-switch component (stubbed) if tkaOverlays, but no suppliedClasses are available', () => {
                         component.suppliedClasses = new Map();
+                        component.hasAvailableTkaOverlays = true;
+                        fixture.detectChanges();
+
+                        const svgSheetContainerDe = getAndExpectDebugElementByCss(
+                            compDe,
+                            'div.awg-edition-svg-sheet-container',
+                            1,
+                            1
+                        );
+
+                        getAndExpectDebugElementByDirective(
+                            svgSheetContainerDe[0],
+                            EditionSvgSheetViewerSwitchStubComponent,
+                            1,
+                            1
+                        );
+                    });
+
+                    it('... should contain no awg-edition-svg-sheet-viewer-switch component (stubbed) if neither suppliedClasses nor tkaOverlays are available', () => {
+                        component.suppliedClasses = new Map();
+                        component.hasAvailableTkaOverlays = false;
                         fixture.detectChanges();
 
                         const svgSheetContainerDe = getAndExpectDebugElementByCss(
@@ -841,13 +866,15 @@ describe('EditionSvgSheetViewerComponent', () => {
             });
 
             describe('... it should be triggered by', () => {
-                it('... ngOnChanges only when `_isRendered` is true ', fakeAsync(() => {
+                it('... ngOnChanges only when `_isRendered` is true and selectedSvgSheet changes', fakeAsync(() => {
                     expectSpyCall(renderSheetSpy, 1);
 
                     (component as any)._isRendered = true;
 
                     // Directly trigger ngOnChanges
-                    component.ngOnChanges();
+                    component.ngOnChanges({
+                        selectedSvgSheet: new SimpleChange(expectedSvgSheet, expectedNextSvgSheet, false),
+                    });
 
                     tick();
 
@@ -856,7 +883,20 @@ describe('EditionSvgSheetViewerComponent', () => {
                     (component as any)._isRendered = false;
 
                     // Directly trigger ngOnChanges
-                    component.ngOnChanges();
+                    component.ngOnChanges({
+                        selectedSvgSheet: new SimpleChange(expectedSvgSheet, expectedNextSvgSheet, false),
+                    });
+
+                    tick();
+
+                    expectSpyCall(renderSheetSpy, 2);
+
+                    (component as any)._isRendered = true;
+
+                    // Directly trigger ngOnChanges
+                    component.ngOnChanges({
+                        otherChange: new SimpleChange(expectedSvgSheet, expectedNextSvgSheet, false),
+                    });
 
                     tick();
 
@@ -905,13 +945,29 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expectToBe(component.svgSheetFilePath, expectedSvgSheet.content[0].svg);
             }));
 
-            it('... should call `_createSvg` method', fakeAsync(() => {
+            it('... should not call `_createSvgOverlays` method if `svgSheetFilePath` is not set', fakeAsync(() => {
                 expectSpyCall(createSvgSpy, 1);
+
+                component.selectedSvgSheet.content[0].svg = '';
 
                 component.renderSheet();
 
                 tick();
 
+                expectToBe(component.svgSheetFilePath, '');
+                expectSpyCall(createSvgSpy, 1);
+            }));
+
+            it('... should call `_createSvg` method if `svgSheetFilePath` is set', fakeAsync(() => {
+                expectSpyCall(createSvgSpy, 1);
+
+                component.selectedSvgSheet = JSON.parse(JSON.stringify(expectedSvgSheet));
+
+                component.renderSheet();
+
+                tick();
+
+                expectToBe(component.svgSheetFilePath, expectedSvgSheet.content[0].svg);
                 expectSpyCall(createSvgSpy, 2);
             }));
         });

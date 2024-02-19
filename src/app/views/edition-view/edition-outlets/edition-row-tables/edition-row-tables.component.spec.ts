@@ -71,7 +71,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
         mockEditionDataService = TestBed.inject(EditionDataService);
 
         // Test data
-        expectedRowTablesData = mockEditionData.mockRowTablesData;
+        expectedRowTablesData = JSON.parse(JSON.stringify(mockEditionData.mockRowTablesData));
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
