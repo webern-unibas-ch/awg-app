@@ -265,7 +265,19 @@ and the <a href="../components/EditionAccoladeComponent.html">EditionAccoladeCom
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getIdFromQueryParams" >_getIdFromQueryParams</a>
+                                <a href="#_assignData" >_assignData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_fetchEditionComplexData" >_fetchEditionComplexData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getDefaultSheetId" >_getDefaultSheetId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handleQueryParams" >_handleQueryParams</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -473,35 +485,34 @@ ActivatedRoute and Router.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_getIdFromQueryParams"></a>
+                    <a name="_assignData"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_getIdFromQueryParams</b></span>
-                        <a href="#_getIdFromQueryParams"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_assignData</b></span>
+                        <a href="#_assignData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getIdFromQueryParams(queryParams?: ParamMap)</code>
+                    <code>_assignData(data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList])</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="340"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:340</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:320</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _getIdFromQueryParams.</p>
-<p>It checks the route params for an id of the selected sheet
-and returns it.</p>
+                        <div class="io-description"><p>Private method: _assignData.</p>
+<p>It assigns the fetched data to the corresponding variables.</p>
 </div>
 
                             <div class="io-description">
@@ -518,18 +529,18 @@ and returns it.</p>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>queryParams</td>
+                                                <td>data</td>
                                             <td>
-                                                        <code>ParamMap</code>
+                                                        <code>[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]</code>
                                             </td>
 
                                             <td>
-                                                    Yes
+                                                    No
                                             </td>
 
 
                                             <td>
-                                                    <p>The query paramMap of the activated route.</p>
+                                                    <p>The fetched data.</p>
 
                                             </td>
                                         </tr>
@@ -537,11 +548,11 @@ and returns it.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
                             <div class="io-description">
-                                <p>The id of the selected sheet.</p>
+                                <p>Assigns the fetched data to the corresponding variables.</p>
 
                             </div>
                 </td>
@@ -552,34 +563,35 @@ and returns it.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_selectSvgSheet"></a>
+                    <a name="_fetchEditionComplexData"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
-                        <span ><b>_selectSvgSheet</b></span>
-                        <a href="#_selectSvgSheet"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_fetchEditionComplexData</b></span>
+                        <a href="#_fetchEditionComplexData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_selectSvgSheet(queryParams: ParamMap)</code>
+                    <code>_fetchEditionComplexData(queryParams: ParamMap)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="355"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:355</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="335"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:335</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _selectSvgSheet.</p>
-<p>It selects an SVG sheet by the given query params.</p>
+                        <div class="io-description"><p>Private method: _fetchEditionComplexData.</p>
+<p>It fetches the current edition complex and all necessary edition data
+from the EditionDataService, assigns the data and handles the query params.</p>
 </div>
 
                             <div class="io-description">
@@ -607,9 +619,206 @@ and returns it.</p>
 
 
                                             <td>
-                                                    <p>The given query params.</p>
+                                                    <p>The given query paramMap of the activated route.</p>
 
                                             </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/EditionComplex.html" target="_self" >Observable&lt;EditionComplex | &gt;</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The edition complex data and all necessary edition data.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getDefaultSheetId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_getDefaultSheetId</b></span>
+                        <a href="#_getDefaultSheetId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getDefaultSheetId()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="357"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:357</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _getDefaultSheetId.</p>
+<p>It returns the id of the first sheet of the svgSheetsData as default.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The default sheet id.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_handleQueryParams"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_handleQueryParams</b></span>
+                        <a href="#_handleQueryParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_handleQueryParams(queryParams: ParamMap)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _handleQueryParams.</p>
+<p>It handles the query params and selects the corresponding SVG sheet.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>queryParams</td>
+                                            <td>
+                                                        <code>ParamMap</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given query paramMap of the activated route.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Handles the query params and selects the corresponding SVG sheet.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_selectSvgSheet"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_selectSvgSheet</b></span>
+                        <a href="#_selectSvgSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_selectSvgSheet(sheetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="399"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:399</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _selectSvgSheet.</p>
+<p>It selects an SVG sheet by the given query params.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>sheetId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -646,8 +855,8 @@ and returns it.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="173"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:173</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:171</a></div>
                         </td>
                     </tr>
 
@@ -655,9 +864,7 @@ and returns it.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Public method: getEditionSheetsData.</p>
-<p>It subscribes to the current edition complex
-of the edition service and gets all necessary edition data
-from the EditionDataService and the queryParams.</p>
+<p>It subscribes to the combined observables of the route paramMap and queryParamMap and then fetches the edition complex data and all necessary edition data.</p>
 </div>
 
                         <div class="io-description">
@@ -692,8 +899,8 @@ from the EditionDataService and the queryParams.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="321"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:321</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="304"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:304</a></div>
                         </td>
                     </tr>
 
@@ -774,8 +981,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="271"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:271</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:255</a></div>
                         </td>
                     </tr>
 
@@ -853,8 +1060,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="210"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:210</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:194</a></div>
                         </td>
                     </tr>
 
@@ -929,8 +1136,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="231"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:231</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:215</a></div>
                         </td>
                     </tr>
 
@@ -1005,8 +1212,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="252"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:252</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="236"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:236</a></div>
                         </td>
                     </tr>
 
@@ -1081,8 +1288,8 @@ based on the given direction and calls it with onSvgSheetSelect.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="300"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:300</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.component.ts:284</a></div>
                         </td>
                     </tr>
 
@@ -1605,8 +1812,8 @@ with this given id.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from &#x27;@angular/router&#x27;;
 
-import { Subject } from &#x27;rxjs&#x27;;
-import { switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
+import { Observable, Subject, combineLatest } from &#x27;rxjs&#x27;;
+import { switchMap, takeUntil, tap } from &#x27;rxjs/operators&#x27;;
 
 import { UtilityService } from &#x27;@awg-core/services&#x27;;
 import { ModalComponent } from &#x27;@awg-shared/modal/modal.component&#x27;;
@@ -1761,43 +1968,27 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {
+    ngOnInit(): void {
         this.getEditionSheetsData();
     }
 
     /**
      * Public method: getEditionSheetsData.
      *
-     * It subscribes to the current edition complex
-     * of the edition service and gets all necessary edition data
-     * from the EditionDataService and the queryParams.
+     * It subscribes to the combined observables of the route paramMap and queryParamMap and then fetches the edition complex data and all necessary edition data.
      *
      * @returns {void} Gets the current edition complex and all necessary edition data.
      */
     getEditionSheetsData(): void {
-        this.route.paramMap
+        combineLatest([this.route.paramMap, this.route.queryParamMap])
             .pipe(
-                switchMap(() &#x3D;&gt; this.editionService.getEditionComplex()),
-                switchMap((complex: EditionComplex) &#x3D;&gt; {
-                    // Set current editionComplex
-                    this.editionComplex &#x3D; complex;
-                    // Return EditionSheetsData from editionDataService
-                    return this.editionDataService.getEditionSheetsData(this.editionComplex);
-                }),
-                switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) &#x3D;&gt; {
-                    this.folioConvoluteData &#x3D; data[0];
-                    this.svgSheetsData &#x3D; data[1];
-                    this.textcriticsData &#x3D; data[2];
-
-                    return this.route.queryParamMap;
-                }),
+                switchMap(([_params, queryParams]) &#x3D;&gt; this._fetchEditionComplexData(queryParams)),
                 takeUntil(this._destroyed$)
             )
             .subscribe({
-                next: (queryParams: ParamMap) &#x3D;&gt; {
-                    this._selectSvgSheet(queryParams);
-                },
+                next: () &#x3D;&gt; {},
                 error: err &#x3D;&gt; {
+                    console.error(err);
                     this.errorMessage &#x3D; err;
                 },
             });
@@ -1902,14 +2093,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        // Set default id if none is given
+        // Set default complex route if none is given
         const complexRoute &#x3D; sheetIds.complexId
-            ? &#x60;/edition/complex/${sheetIds.complexId}&#x60;
+            ? &#x60;/edition/complex/${sheetIds.complexId}/&#x60;
             : this.editionComplex.baseRoute;
-        const sheetRoute &#x3D; sheetIds.sheetId ? sheetIds.sheetId : this.svgSheetsData.sheets.sketchEditions[0].id;
 
         const navigationExtras: NavigationExtras &#x3D; {
-            queryParams: { id: sheetRoute },
+            queryParams: { id: sheetIds.sheetId },
             queryParamsHandling: &#x27;merge&#x27;,
         };
 
@@ -1931,20 +2121,81 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _getIdFromQueryParams.
+     * Private method: _assignData.
      *
-     * It checks the route params for an id of the selected sheet
-     * and returns it.
+     * It assigns the fetched data to the corresponding variables.
      *
-     * @default first entry of this.svgSheetsData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected sheet.
+     * @param {[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]} data The fetched data.
+     * @returns {void} Assigns the fetched data to the corresponding variables.
      */
-    private _getIdFromQueryParams(queryParams?: ParamMap): string {
-        // If there is no id in query params
-        // Take first entry of filtered svg sheets data as default
-        return queryParams.get(&#x27;id&#x27;) ? queryParams.get(&#x27;id&#x27;) : this.svgSheetsData.sheets.sketchEditions[0].id;
+    private _assignData(data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]): void {
+        this.folioConvoluteData &#x3D; data[0];
+        this.svgSheetsData &#x3D; data[1];
+        this.textcriticsData &#x3D; data[2];
+    }
+
+    /**
+     * Private method: _fetchEditionComplexData.
+     *
+     * It fetches the current edition complex and all necessary edition data
+     * from the EditionDataService, assigns the data and handles the query params.
+     *
+     * @param {ParamMap} queryParams The given query paramMap of the activated route.
+     * @returns {Observable&lt;EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]&gt;} The edition complex data and all necessary edition data.
+     */
+    private _fetchEditionComplexData(
+        queryParams: ParamMap
+    ): Observable&lt;EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]&gt; {
+        return this.editionService.getEditionComplex().pipe(
+            // Set editionComplex
+            tap((complex: EditionComplex) &#x3D;&gt; (this.editionComplex &#x3D; complex)),
+            // Get editionSheetsData
+            switchMap((complex: EditionComplex) &#x3D;&gt; this.editionDataService.getEditionSheetsData(complex)),
+            // Assign data
+            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) &#x3D;&gt; this._assignData(data)),
+            // Handle queryParams
+            tap(() &#x3D;&gt; this._handleQueryParams(queryParams))
+        );
+    }
+
+    /**
+     * Private method: _getDefaultSheetId.
+     *
+     * It returns the id of the first sheet of the svgSheetsData as default.
+     *
+     * @returns {string} The default sheet id.
+     */
+    private _getDefaultSheetId(): string {
+        const defaultSheet &#x3D; this.svgSheetsData?.sheets?.sketchEditions?.[0];
+        let defaultSheetId &#x3D; defaultSheet?.id;
+
+        if (defaultSheet?.content?.length &gt; 1) {
+            const defaultSheetContent &#x3D; defaultSheet.content[0];
+            defaultSheetId +&#x3D; defaultSheetContent?.partial;
+        }
+
+        return defaultSheetId || &#x27;&#x27;;
+    }
+
+    /**
+     * Private method: _handleQueryParams.
+     *
+     * It handles the query params and selects the corresponding SVG sheet.
+     *
+     * @param {ParamMap} queryParams The given query paramMap of the activated route.
+     * @returns {void} Handles the query params and selects the corresponding SVG sheet.
+     */
+    private _handleQueryParams(queryParams: ParamMap): void {
+        const idFromQueryParams &#x3D; queryParams?.get(&#x27;id&#x27;);
+
+        if (!idFromQueryParams) {
+            this.onSvgSheetSelect({
+                complexId: &#x27;&#x27;,
+                sheetId: this._getDefaultSheetId(),
+            });
+        } else if (this.svgSheetsData) {
+            this._selectSvgSheet(idFromQueryParams);
+        }
     }
 
     /**
@@ -1956,8 +2207,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      *
      * @returns {void} Selects the SVG sheet.
      */
-    private _selectSvgSheet(queryParams: ParamMap): void {
-        const sheetId: string &#x3D; this._getIdFromQueryParams(queryParams);
+    private _selectSvgSheet(sheetId: string): void {
+        if (!sheetId) {
+            return;
+        }
         this.selectedSvgSheet &#x3D; this.editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
         this.selectedConvolute &#x3D; this.editionSheetsService.selectConvolute(
             this.folioConvoluteData.convolutes,

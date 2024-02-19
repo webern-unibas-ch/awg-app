@@ -1356,7 +1356,7 @@ otherwise tries to get the next sheed id for non-partial sheets.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../classes/FolioConvolute.html" target="_self" >FolioConvolute</a></code>
+                            <b>Returns : </b>    <code>FolioConvolute | undefined</code>
 
                         </div>
                             <div class="io-description">
@@ -1601,13 +1601,13 @@ export class EditionSheetsService {
         convolutes: FolioConvolute[],
         sheets: EditionSvgSheetList[&#x27;sheets&#x27;],
         selectedSheet: EditionSvgSheet
-    ): FolioConvolute {
+    ): FolioConvolute | undefined {
         if (!convolutes || !sheets || !selectedSheet) {
             return undefined;
         }
 
         const editionType &#x3D; this.getCurrentEditionType(selectedSheet, sheets);
-        const convoluteId &#x3D; editionType &#x3D;&#x3D;&#x3D; &#x27;sketchEditions&#x27; ? selectedSheet.convolute : &#x27;&#x27;;
+        const convoluteId &#x3D; editionType &#x3D;&#x3D;&#x3D; &#x27;sketchEditions&#x27; ? selectedSheet.content[0].convolute : &#x27;&#x27;;
 
         return this._findConvoluteById(convolutes, convoluteId);
     }

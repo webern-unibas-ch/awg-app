@@ -161,10 +161,6 @@ in a svg sheet json file.</p>
                                 <a href="#content" >content</a>
                             </li>
                             <li>
-                                    <span class="modifier">Optional</span>
-                                <a href="#convolute" >convolute</a>
-                            </li>
-                            <li>
                                 <a href="#id" >id</a>
                             </li>
                             <li>
@@ -208,46 +204,13 @@ in a svg sheet json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:46</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>The content of the sheet.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="convolute"></a>
-                    <span class="name">
-                            <span class="modifier">Optional</span>
-                        <span ><b>convolute</b></span>
-                        <a href="#convolute"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
                                 <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:51</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The associated convolute of the sheet.</p>
+                    <div class="io-description"><p>The content of the sheet.</p>
 </div>
                 </td>
             </tr>
@@ -273,7 +236,7 @@ in a svg sheet json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:36</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -305,7 +268,7 @@ in a svg sheet json file.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:46</a></div>
                         </td>
                     </tr>
 
@@ -345,6 +308,11 @@ in a svg sheet json file.</p>
      * Optional: The sheet&#x27;s content partial id as an extra to the sheet id (string).
      */
     partial?: string;
+
+    /**
+     * The associated convolute of the sheet.
+     */
+    convolute?: string;
 }
 
 /**
@@ -369,11 +337,6 @@ export class EditionSvgSheet {
      * The content of the sheet.
      */
     content: EditionSvgSheetContent[];
-
-    /**
-     * The associated convolute of the sheet.
-     */
-    convolute?: string;
 }
 
 /**

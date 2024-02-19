@@ -1270,30 +1270,47 @@ export class FolioService {
 
             // Item label
             // Init
-            const centeredXPosition &#x3D; contentItem.upperLeftCorner.x + contentItem.width / 2;
-            const centeredYPosition &#x3D; contentItem.upperLeftCorner.y + contentItem.height / 2;
-            const itemLabelArray: string[] &#x3D; contentItem.sigleAddendum
-                ? [contentItem.sigle, &#x27; &#x27; + contentItem.sigleAddendum]
-                : [contentItem.sigle];
+            const halfWidth &#x3D; contentItem.width / 2;
+            const halfHeight &#x3D; contentItem.height / 2;
+            const yOffset &#x3D; 5;
 
-            const snapItemLabel: any &#x3D; snapCanvas.text(0, 0, itemLabelArray);
+            let centeredXPosition &#x3D; contentItem.upperLeftCorner.x + halfWidth;
+            let centeredYPosition &#x3D; contentItem.upperLeftCorner.y + halfHeight - yOffset;
+
+            if (contentItem.reversed) {
+                centeredXPosition &#x3D; contentItem.cornerPoints.lowerRightCorner.x - halfWidth;
+                centeredYPosition &#x3D; contentItem.cornerPoints.lowerRightCorner.y - halfHeight + yOffset;
+            }
+
+            const itemLabelArray: string[] &#x3D; [
+                contentItem.sigle,
+                contentItem.sigleAddendum ? &#x60; ${contentItem.sigleAddendum}&#x60; : &#x27;&#x27;,
+            ];
+
+            const snapItemLabel: any &#x3D; snapCanvas.text(centeredXPosition, centeredYPosition, itemLabelArray);
             snapItemLabel.attr({
                 class: &#x27;item-label&#x27;,
                 style: &#x27;font: 12px Source Sans Pro, source-sans-pro, sans-serif&#x27;,
                 dominantBaseline: &#x27;middle&#x27;,
+                textAnchor: &#x27;middle&#x27;,
             });
+
+            // Rotate the text 180 degrees around its center
+            if (contentItem.reversed) {
+                snapItemLabel.transform(&#x60;r180,${centeredXPosition},${centeredYPosition}&#x60;);
+            }
+
             // Attributes for tspan elements of itemLabel array
-            const textAnchor &#x3D; &#x27;middle&#x27;;
             snapItemLabel.select(&#x27;tspan:first-of-type&#x27;).attr({
                 x: centeredXPosition,
                 y: centeredYPosition,
-                textAnchor,
+                textAnchor: &#x27;middle&#x27;,
             });
             if (itemLabelArray.length &gt; 1) {
                 snapItemLabel.select(&#x27;tspan:last-of-type&#x27;).attr({
                     x: centeredXPosition,
                     y: centeredYPosition,
-                    textAnchor,
+                    textAnchor: &#x27;middle&#x27;,
                     dy: &#x27;1.2em&#x27;,
                 });
             }
