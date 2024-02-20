@@ -599,7 +599,7 @@
                 "desc": [
                     "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 7/8) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8). Kleiner Riss am rechten Rand von Bl. 2."
                 ],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
+                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 348 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M35_42.B[0].route\" [title]=\"ref.FIRM_SIGNS.M35_42.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M35_42.B[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
@@ -1325,7 +1325,7 @@
                 "desc": [
                     "1 Blatt: Das Blatt ist Bestandteil (Bl. 5) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8). Rissspuren am linken Rand: von Bogen abgetrennt."
                 ],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen ##[JE]## | <em>Protokoll. Schutzmarke | N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>r</sup>.",
+                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M35_42.A[0].route\" [title]=\"ref.FIRM_SIGNS.M35_42.A[0].full\" [alt]=\"ref.FIRM_SIGNS.M35_42.A[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": []
