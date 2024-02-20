@@ -221,22 +221,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(dspEl.href).not.toBeTruthy();
                 });
 
-                it('... SALSAH', () => {
-                    const salsahDes = getAndExpectDebugElementByCss(compDe, 'a#salsah-link', 1, 1);
-                    const salsahEl = salsahDes[0].nativeElement;
-
-                    expect(salsahEl).toBeDefined();
-                    expect(salsahEl.href).not.toBeTruthy();
-                });
-
-                it('... DHLAB', () => {
-                    const dhlabDes = getAndExpectDebugElementByCss(compDe, 'a#dhlab-link', 1, 1);
-                    const dhlabEl = dhlabDes[0].nativeElement;
-
-                    expect(dhlabEl).toBeDefined();
-                    expect(dhlabEl.href).not.toBeTruthy();
-                });
-
                 it('... DaSCH', () => {
                     const daschDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-link', 1, 1);
                     const daschEl = daschDes[0].nativeElement;
@@ -474,24 +458,6 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(dspEl).toBeDefined();
                     expectToBe(dspEl.href, expectedPageMetaData.daschUrl + dspRoute);
                     expectToBe(dspEl.textContent, 'DaSCH Service Platform (DSP)');
-                });
-
-                it('... SALSAH', () => {
-                    const salsahDes = getAndExpectDebugElementByCss(compDe, 'a#salsah-link', 1, 1);
-                    const salsahEl = salsahDes[0].nativeElement;
-
-                    expect(salsahEl).toBeDefined();
-                    expectToBe(salsahEl.href, expectedPageMetaData.salsahUrl);
-                    expectToBe(salsahEl.textContent, 'SALSAH');
-                });
-
-                it('... DHLAB', () => {
-                    const dhlabDes = getAndExpectDebugElementByCss(compDe, 'a#dhlab-link', 1, 1);
-                    const dhlabEl = dhlabDes[0].nativeElement;
-
-                    expect(dhlabEl).toBeDefined();
-                    expectToBe(dhlabEl.href, expectedPageMetaData.dhlabUrl);
-                    expectToBe(dhlabEl.textContent, 'Digital Humanities Lab');
                 });
 
                 it('... DaSCH', () => {
