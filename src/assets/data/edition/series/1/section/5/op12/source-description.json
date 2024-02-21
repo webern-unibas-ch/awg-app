@@ -18,7 +18,7 @@
                 "desc": [
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
                 ],
-                "writingMaterial": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.A[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
+                "writingMaterialString": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.A[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
@@ -205,7 +205,7 @@
                 "desc": [
                     "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecke auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecke auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links.",
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["rote Tinte [Teile des Titels und vertonter Text]", "Bleistift"]

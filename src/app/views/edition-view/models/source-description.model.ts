@@ -128,6 +128,11 @@ export class SourceDescriptionDesc {
     desc?: string[];
 
     /**
+     * The string representation of a writing material used for a source (optional).
+     */
+    writingMaterialString?: string;
+
+    /**
      * The writing material used for a source (optional).
      */
     writingMaterial?: string;

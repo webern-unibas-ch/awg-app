@@ -39,11 +39,11 @@
                                 }
                             }
                             <!-- writingMaterial -->
-                            @if (sourceDescription.description.writingMaterial) {
+                            @if (sourceDescription.description.writingMaterialString) {
                                 <p class="awg-source-description-writing-material">
                                     <span class="caps">Beschreibstoff:&nbsp;</span>
                                     <span
-                                        [compile-html]="sourceDescription.description.writingMaterial"
+                                        [compile-html]="sourceDescription.description.writingMaterialString"
                                         [compile-html-ref]="ref"></span>
                                 </p>
                             }
