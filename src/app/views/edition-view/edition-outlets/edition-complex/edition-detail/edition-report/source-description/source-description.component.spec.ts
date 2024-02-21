@@ -329,7 +329,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const expectedHtmlTextContent = mockDocument.createElement('p');
                     expectedHtmlTextContent.innerHTML =
                         '<span class="caps">Beschreibstoff:&nbsp;</span><span>' +
-                        expectedSourceDescriptionListData.sources[1].description.writingMaterial +
+                        expectedSourceDescriptionListData.sources[1].description.writingMaterialString +
                         '</span>';
 
                     expect(pEl).toHaveClass('awg-source-description-writing-material');
