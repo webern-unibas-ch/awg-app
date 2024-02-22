@@ -70,40 +70,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
         expectedNextSheetId = 'test_item_id_2';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
-        expectedFirmSigns = {
-            OP12: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_9_LIN_28],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12_B],
-            },
-            OP25: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_15_LIN_16],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_2_LIN_12],
-                C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_3_LIN_14],
-            },
-            OP27: {
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_6_LIN_20],
-            },
-            M30: {
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_B],
-            },
-            M31: {
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_B],
-            },
-            M34: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
-            },
-            M35_42: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
-                C: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
-                D: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
-            },
-            M37: {
-                A: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_C],
-                B: [EDITION_FIRM_SIGNS_DATA.FIRM_JE_NO_5_LIN_18_D],
-            },
-        };
+        expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
