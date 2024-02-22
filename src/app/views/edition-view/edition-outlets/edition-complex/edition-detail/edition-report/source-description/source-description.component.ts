@@ -162,9 +162,9 @@ export class SourceDescriptionComponent {
         ) {
             return '';
         }
-        const foliosFormatted = location.folios.map((folio: string) => folio.endsWith('v') || folio.endsWith('r')
-                ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>`
-                : folio);
+        const foliosFormatted = location.folios.map((folio: string) =>
+            folio.endsWith('v') || folio.endsWith('r') ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>` : folio
+        );
 
         const foliosString =
             foliosFormatted.length > 1
