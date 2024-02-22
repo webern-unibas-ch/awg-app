@@ -511,7 +511,7 @@
                 "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 340 × 270 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> und 2<sup>r</sup> unten links (Bl. 1–2).",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": "Bleistift"
+                    "secondary": ["Bleistift"]
                 },
                 "title": "<em>„Wie bin ich froh!“</em> | <em>von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
                 "date": "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",

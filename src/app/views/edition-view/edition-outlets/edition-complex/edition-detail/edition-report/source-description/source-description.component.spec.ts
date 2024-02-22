@@ -17,7 +17,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
-import { SourceDescriptionList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionComponent } from './source-description.component';
 
@@ -350,8 +350,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectedHtmlTextContent.innerHTML =
                         '<span class="caps">Schreibstoff:&nbsp;</span><span>' +
                         instruments.main +
-                        ';&nbsp;' +
-                        instruments.secondary.join(',&nbsp;') +
+                        '; ' +
+                        instruments.secondary.join(', ') +
                         '.</span>';
 
                     expect(pEl).toHaveClass('awg-source-description-writing-instruments');
@@ -1107,6 +1107,68 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
         });
 
+        describe('#getWritingInstruments()', () => {
+            it('... should have a method `getWritingInstruments`', () => {
+                expect(component.getWritingInstruments).toBeDefined();
+            });
+
+            describe('... should return only main writing instrument when', () => {
+                it('... secondary is undefined', () => {
+                    const writingInstruments: SourceDescriptionWritingInstruments = {
+                        main: 'main instrument',
+                        secondary: undefined,
+                    };
+
+                    const result = component.getWritingInstruments(writingInstruments);
+
+                    expectToBe(result, 'main instrument.');
+                });
+
+                it('... secondary is an empty array', () => {
+                    const writingInstruments: SourceDescriptionWritingInstruments = {
+                        main: 'main instrument',
+                        secondary: [],
+                    };
+
+                    const result = component.getWritingInstruments(writingInstruments);
+
+                    expectToBe(result, 'main instrument.');
+                });
+            });
+
+            it('... should return main and a single secondary writing instrument if provided', () => {
+                const writingInstruments: SourceDescriptionWritingInstruments = {
+                    main: 'main instrument',
+                    secondary: ['secondary1'],
+                };
+
+                const result = component.getWritingInstruments(writingInstruments);
+
+                expectToBe(result, 'main instrument; secondary1.');
+            });
+
+            it('... should return main and mulitple secondary writing instruments if provided', () => {
+                const writingInstruments: SourceDescriptionWritingInstruments = {
+                    main: 'main instrument',
+                    secondary: ['secondary1', 'secondary2', 'secondary3'],
+                };
+
+                const result = component.getWritingInstruments(writingInstruments);
+
+                expectToBe(result, 'main instrument; secondary1, secondary2, secondary3.');
+            });
+
+            it('... should handle case when main is undefined', () => {
+                const writingInstruments: SourceDescriptionWritingInstruments = {
+                    main: undefined,
+                    secondary: ['secondary1', 'secondary2'],
+                };
+
+                const result = component.getWritingInstruments(writingInstruments);
+
+                expectToBe(result, 'undefined; secondary1, secondary2.');
+            });
+        });
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();

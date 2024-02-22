@@ -231,7 +231,7 @@ export const mockEditionData = {
                         'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
                     writingInstruments: {
                         main: 'Bleistift',
-                        secondary: ['roter Buntstrift', 'blaue Tinte', 'Kopierstift'],
+                        secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
                     },
                     title: 'test title',
                     date: 'test date',

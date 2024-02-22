@@ -52,33 +52,9 @@
                                 @if (sourceDescription.description.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="caps">Schreibstoff:&nbsp;</span>
-                                        <span
-                                            [compile-html]="sourceDescription.description.writingInstruments.main"
-                                            [compile-html-ref]="ref"></span>
-                                        @if (
-                                            utils.isNotEmptyArray(
-                                                sourceDescription.description.writingInstruments.secondary
-                                            )
-                                        ) {
-                                            <span>;&nbsp;</span>
-                                            @for (
-                                                secondary of sourceDescription?.description?.writingInstruments
-                                                    ?.secondary;
-                                                track secondary;
-                                                let last = $last
-                                            ) {
-                                                <span>
-                                                    <span [compile-html]="secondary" [compile-html-ref]="ref"></span>
-                                                    @if (!last) {
-                                                        <span>,&nbsp;</span>
-                                                    } @else {
-                                                        <span>.</span>
-                                                    }
-                                                </span>
-                                            }
-                                        } @else {
-                                            <span>.</span>
-                                        }
+                                        <span>{{
+                                            getWritingInstruments(sourceDescription.description.writingInstruments)
+                                        }}</span>
                                     </p>
                                 }
                             }

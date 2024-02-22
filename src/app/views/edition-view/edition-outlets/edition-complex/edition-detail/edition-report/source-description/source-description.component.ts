@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { UtilityService } from '@awg-core/services';
 import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
-import { SourceDescriptionList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
@@ -100,6 +100,23 @@ export class SourceDescriptionComponent {
         this.ref = this;
     }
 
+    /**
+     * Public method: getWritingInstruments.
+     *
+     * It retrieves the string representation of the writing instruments
+     * provided in the source description.
+     *
+     * @param {SourceDescriptionWritingInstruments} writingInstruments The given writing instruments data.
+     * @returns {string} The retrieved writing instruments string.
+     */
+    getWritingInstruments(writingInstruments: SourceDescriptionWritingInstruments): string {
+        const secondaryInstruments = writingInstruments.secondary?.join(', ');
+        const instrumentsString = secondaryInstruments
+            ? `${writingInstruments.main}; ${secondaryInstruments}`
+            : writingInstruments.main;
+
+        return `${instrumentsString}.`;
+    }
     /**
      * Public method: openModal.
      *
