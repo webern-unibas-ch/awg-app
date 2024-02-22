@@ -11,6 +11,39 @@
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Abriss an der oberen rechten Ecke. Zwei Risse am rechten Rand. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> unten links oder rechts. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
                 ],
                 "writingMaterialString": "Notenpapier, 12 Systeme (unten beschnitten), Format (quer): 163 × 255 mm, kein Firmenzeichen.",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "163"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "255"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift", "Kopierstift"]

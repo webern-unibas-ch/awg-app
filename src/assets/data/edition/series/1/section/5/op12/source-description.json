@@ -19,6 +19,70 @@
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
                 ],
                 "writingMaterialString": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.A[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 14,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "ca.",
+                                "value": "160–180"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_9_LIN_28",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 16,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "175"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
@@ -206,6 +270,39 @@
                     "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecke auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecke auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
                 "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links.",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "346"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "266"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_B",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["rote Tinte [Teile des Titels und vertonter Text]", "Bleistift"]

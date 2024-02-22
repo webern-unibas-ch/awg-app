@@ -115,6 +115,174 @@ export class SourceDescriptionContent {
 }
 
 /**
+ * The SourceDescriptionWritingMaterialDimension class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the dimensions of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialDimension {
+    /**
+     * The uncertainty of the dimension of the writing material (optional).
+     */
+    uncertainty?: string;
+
+    /**
+     * The value of the dimension of the writing material (optional).
+     */
+    value?: string;
+}
+
+/**
+ * The SourceDescriptionWritingMaterialFormat class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the format of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialFormat {
+    /**
+     * The orientation of the writing material (optional).
+     */
+    orientation?: string;
+
+    /**
+     * The height dimensions of the writing material (optional).
+     */
+    height?: SourceDescriptionWritingMaterialDimension;
+
+    /**
+     * The width dimensions of the writing material (optional).
+     */
+    width?: SourceDescriptionWritingMaterialDimension;
+}
+
+/**
+ * The SourceDescriptionWritingMaterialFirmSignLocation class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the location of the firm sign of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialFirmSignLocation {
+    /**
+     * An additional info to the firm sign location on the writing material (optional).
+     */
+    info?: string;
+
+    /**
+     * The folios on which the firm sign is placed on the writing material (optional).
+     */
+    folios?: string[];
+
+    /**
+     * The position of the firm sign on the writing material (optional).
+     */
+    position?: string;
+}
+
+/**
+ * The SourceDescriptionWritingMaterialFirmSign class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the firm sign of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialFirmSign {
+    /**
+     * The variant of the firm sign used on the writing material (optional).
+     */
+    variant?: string;
+
+    /**
+     * An alternative string for the firm sign used on the writing material (optional).
+     */
+    alt?: string;
+
+    /**
+     * The location of the firm sign on the writing material (optional).
+     */
+    location?: SourceDescriptionWritingMaterialFirmSignLocation[];
+}
+
+/**
+ * The SourceDescriptionWritingMaterialSystems class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the systems of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialSystems {
+    /**
+     * The number of systems available (optional).
+     */
+    number?: number;
+
+    /**
+     * Another info to the number of systems available (optional).
+     */
+    info?: string;
+
+    /**
+     * An addendum to the systems available (optional).
+     */
+    addendum?: string;
+}
+
+/**
+ * The SourceDescriptionWritingMaterial class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterial {
+    /**
+     * The paper type of the writing material (optional).
+     */
+    paperType?: string;
+
+    /**
+     * The systems of the writing material (optional).
+     */
+    systems?: SourceDescriptionWritingMaterialSystems;
+
+    /**
+     * The format of the writing material (optional).
+     */
+    format?: SourceDescriptionWritingMaterialFormat;
+
+    /**
+     * The firm sign of the writing material (optional).
+     */
+    firmSign?: SourceDescriptionWritingMaterialFirmSign;
+
+    /**
+     * The folio addendum of the writing material (optional).
+     */
+    folioAddendum?: string;
+}
+
+/**
+ * The SourceDescriptionWritingInstruments class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the writing instruments of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingInstruments {
+    /**
+     * The main writing instrument used in a source (optional).
+     */
+    main?: string;
+
+    /**
+     * The secondary writing instruments used in a source (optional).
+     */
+    secondary?: string[];
+}
+
+/**
  * The SourceDescriptionDesc class.
  *
  * It is used in the context of the edition view
@@ -135,15 +303,12 @@ export class SourceDescriptionDesc {
     /**
      * The writing material used for a source (optional).
      */
-    writingMaterial?: string;
+    writingMaterial?: SourceDescriptionWritingMaterial[];
 
     /**
      * The writing instruments used in a source (optional).
      */
-    writingInstruments?: {
-        main?: string;
-        secondary?: string[];
-    };
+    writingInstruments?: SourceDescriptionWritingInstruments;
 
     /**
      * A title as it appears in a source (optional).

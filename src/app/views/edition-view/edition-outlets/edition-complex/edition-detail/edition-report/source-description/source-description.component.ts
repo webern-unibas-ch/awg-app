@@ -2,7 +2,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { UtilityService } from '@awg-core/services';
 import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
-import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models';
+import {
+    SourceDescriptionList,
+    SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterialDimension,
+    SourceDescriptionWritingMaterialFirmSignLocation,
+    SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialSystems,
+} from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
@@ -117,6 +124,99 @@ export class SourceDescriptionComponent {
 
         return `${instrumentsString}.`;
     }
+
+    /**
+     * Public method: getWritingMaterialFirmSign.
+     *
+     * It retrieves a firm sign for a given variant
+     * from the {@link EDITION_FIRM_SIGNS_DATA}.
+     *
+     * @param {string} variant The given variant.
+     * @returns {object} The retrieved firm sign.
+     */
+    getWritingMaterialFirmSign(variant: string): {
+        readonly route: string;
+        readonly full: string;
+        readonly short: string;
+    } {
+        return variant && EDITION_FIRM_SIGNS_DATA[variant]
+            ? EDITION_FIRM_SIGNS_DATA[variant]
+            : { route: '', full: 'Not a known firm sign.', short: 'unknown' };
+    }
+
+    /**
+     * Public method: getWritingMaterialFirmSignLocation.
+     *
+     * It retrieves the string representation of the location
+     * of the firm sign of the writing material
+     * provided in the source description.
+     *
+     * @param {SourceDescriptionWritingMaterialFirmSignLocation} location The given location data.
+     * @returns {string} The retrieved location string.
+     */
+    getWritingMaterialFirmSignLocation(location: SourceDescriptionWritingMaterialFirmSignLocation): string {
+        if (
+            !this.utils.isNotEmptyObject(location) ||
+            !this.utils.isNotEmptyArray(location.folios) ||
+            !location.position
+        ) {
+            return '';
+        }
+        const foliosFormatted = location.folios.map((folio: string) => folio.endsWith('v') || folio.endsWith('r')
+                ? `${folio.slice(0, -1)}<sup>${folio.slice(-1)}</sup>`
+                : folio);
+
+        const foliosString =
+            foliosFormatted.length > 1
+                ? `${foliosFormatted.slice(0, -1).join(', ')} und ${foliosFormatted.slice(-1)}`
+                : foliosFormatted[0];
+
+        const info = location.info ? `${location.info} ` : '';
+
+        return `${info}auf Bl. ${foliosString} ${location.position}`;
+    }
+
+    /**
+     * Public method: getWritingMaterialFormat.
+     *
+     * It retrieves the string representation of the format
+     * of the writing material provided in the source description.
+     *
+     * @param {SourceDescriptionWritingMaterialFormat} format The given format data.
+     * @returns {string} The retrieved format string.
+     */
+    getWritingMaterialFormat(format: SourceDescriptionWritingMaterialFormat): string {
+        const { orientation, height, width } = format;
+
+        const getDimension = (dimension: SourceDescriptionWritingMaterialDimension) => {
+            if (!this.utils.isNotEmptyObject(dimension)) {
+                return '';
+            }
+            return dimension.uncertainty ? `${dimension.uncertainty} ${dimension.value}` : dimension.value;
+        };
+
+        return `Format: ${orientation} ${getDimension(height)} × ${getDimension(width)} mm`;
+    }
+
+    /**
+     * Public method: getWritingMaterialSystems.
+     *
+     * It retrieves the systems of the writing material
+     * provided in the source description.
+     *
+     * @param {SourceDescriptionWritingMaterialSystems} systems The given systems data.
+     * @returns {string} The retrieved systems string.
+     */
+    getWritingMaterialSystems(systems: SourceDescriptionWritingMaterialSystems): string {
+        const systemsOutput = [
+            `${systems.number} ${systems.number === 1 ? 'System' : 'Systeme'}`,
+            systems.info && ` (${systems.info})`,
+            systems.addendum && `, ${systems.addendum}`,
+        ];
+
+        return systemsOutput.filter(Boolean).join('');
+    }
+
     /**
      * Public method: openModal.
      *

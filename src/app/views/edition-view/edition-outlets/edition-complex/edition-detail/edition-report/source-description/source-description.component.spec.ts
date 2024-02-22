@@ -17,7 +17,13 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { UtilityService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
-import { SourceDescriptionList, SourceDescriptionWritingInstruments } from '@awg-views/edition-view/models';
+import {
+    SourceDescriptionList,
+    SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterialFirmSignLocation,
+    SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialSystems,
+} from '@awg-views/edition-view/models';
 
 import { SourceDescriptionComponent } from './source-description.component';
 
@@ -1169,6 +1175,274 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 expectToBe(result, 'undefined; secondary1, secondary2.');
             });
         });
+
+        describe('#getWritingMaterialFirmSign()', () => {
+            it('... should have a method `getWritingMaterialFirmSign`', () => {
+                expect(component.getWritingMaterialFirmSign).toBeDefined();
+            });
+
+            it('... should return the correct firm sign when variant is provided and exists in firm sign data', () => {
+                const variant = 'FIRM_JE_NO_2_LIN_12';
+
+                const result = component.getWritingMaterialFirmSign(variant);
+
+                expectToEqual(result, EDITION_FIRM_SIGNS_DATA[variant]);
+            });
+
+            it('... should return unknown firm sign when variant is provided but does not exist in firm sign data', () => {
+                const variant = 'nonexistent';
+
+                const result = component.getWritingMaterialFirmSign(variant);
+
+                expectToEqual(result, { route: '', full: 'Not a known firm sign.', short: 'unknown' });
+            });
+
+            it('... should return unknown firm sign when variant is not provided', () => {
+                let variant = null;
+
+                const result1 = component.getWritingMaterialFirmSign(variant);
+
+                expect(result1).toEqual({ route: '', full: 'Not a known firm sign.', short: 'unknown' });
+
+                variant = undefined;
+
+                const result2 = component.getWritingMaterialFirmSign(variant);
+
+                expect(result2).toEqual({ route: '', full: 'Not a known firm sign.', short: 'unknown' });
+            });
+        });
+
+        describe('#getWritingMaterialFirmSignLocation()', () => {
+            it('... should have a method `getWritingMaterialFirmSignLocation`', () => {
+                expect(component.getWritingMaterialFirmSignLocation).toBeDefined();
+            });
+
+            describe('... should return empty string', () => {
+                it('... if location is undefined', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = undefined;
+
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+
+                    expectToBe(result, '');
+                });
+
+                it('... if location is an empty object', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {};
+
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+
+                    expectToBe(result, '');
+                });
+
+                it('... if position is undefined', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: ['1'],
+                        position: undefined,
+                    };
+
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+
+                    expectToBe(result, '');
+                });
+
+                it('... if folios are undefined', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: undefined,
+                        position: 'bottom',
+                    };
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    expectToBe(result, '');
+                });
+
+                it('... if folios array is empty', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: [],
+                        position: 'top',
+                    };
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    expectToBe(result, '');
+                });
+            });
+
+            describe('... should return correct location string', () => {
+                it('... for a single folio', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: ['1'],
+                        position: 'top',
+                    };
+
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+
+                    expectToBe(result, 'auf Bl. 1 top');
+                });
+
+                it('... for two folios', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: ['1', '2'],
+                        position: 'bottom',
+                    };
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    expectToBe(result, 'auf Bl. 1 und 2 bottom');
+                });
+
+                it('... for multiple folios', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: ['1', '2', '3'],
+                        position: 'bottom',
+                    };
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    expectToBe(result, 'auf Bl. 1, 2 und 3 bottom');
+                });
+
+                it('... for folios with r or v at the end', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: '',
+                        folios: ['1r', '2v', '3'],
+                        position: 'middle',
+                    };
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+
+                    expectToBe(result, 'auf Bl. 1<sup>r</sup>, 2<sup>v</sup> und 3 middle');
+                });
+
+                it('... for folios with additional info', () => {
+                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                        info: 'auf dem Kopf stehend',
+                        folios: ['1', '2', '3'],
+                        position: 'middle',
+                    };
+
+                    const result = component.getWritingMaterialFirmSignLocation(location);
+
+                    expectToBe(result, 'auf dem Kopf stehend auf Bl. 1, 2 und 3 middle');
+                });
+            });
+        });
+
+        describe('#getWritingMaterialFormat()', () => {
+            it('... should have a method `getWritingMaterialFormat`', () => {
+                expect(component.getWritingMaterialFormat).toBeDefined();
+            });
+
+            it('... should return format string without uncertainty', () => {
+                const format: SourceDescriptionWritingMaterialFormat = {
+                    orientation: 'hoch',
+                    height: { value: '170', uncertainty: '' },
+                    width: { value: '270', uncertainty: '' },
+                };
+
+                const result = component.getWritingMaterialFormat(format);
+
+                expectToBe(result, 'Format: hoch 170 × 270 mm');
+            });
+
+            it('... should return format string with uncertainty', () => {
+                const format: SourceDescriptionWritingMaterialFormat = {
+                    orientation: 'hoch',
+                    height: { value: '170', uncertainty: 'ca.' },
+                    width: { value: '270–275', uncertainty: 'ca.' },
+                };
+
+                const result = component.getWritingMaterialFormat(format);
+
+                expectToBe(result, 'Format: hoch ca. 170 × ca. 270–275 mm');
+            });
+
+            it('... should return format string with orientation `quer`', () => {
+                const format: SourceDescriptionWritingMaterialFormat = {
+                    orientation: 'quer',
+                    height: { value: '170', uncertainty: '' },
+                    width: { value: '270', uncertainty: '' },
+                };
+
+                const result = component.getWritingMaterialFormat(format);
+
+                expectToBe(result, 'Format: quer 170 × 270 mm');
+            });
+
+            it('... should handle missing values gracefully', () => {
+                const format: SourceDescriptionWritingMaterialFormat = {
+                    orientation: 'hoch',
+                    height: { value: '170', uncertainty: '' },
+                    width: {},
+                };
+
+                const result = component.getWritingMaterialFormat(format);
+
+                expectToBe(result, 'Format: hoch 170 ×  mm');
+            });
+        });
+
+        describe('#getWritingMaterialSystems()', () => {
+            it('... should have a method `getWritingMaterialSystems`', () => {
+                expect(component.getWritingMaterialSystems).toBeDefined();
+            });
+
+            it('... should return correct systems string when info and addendum are undefined and system number is 1', () => {
+                const systems: SourceDescriptionWritingMaterialSystems = {
+                    number: 1,
+                    info: undefined,
+                    addendum: undefined,
+                };
+
+                const result = component.getWritingMaterialSystems(systems);
+
+                expectToBe(result, '1 System');
+            });
+
+            it('... should return correct systems string when info and addendum are undefined and system number is bigger 1', () => {
+                const systems: SourceDescriptionWritingMaterialSystems = {
+                    number: 2,
+                    info: undefined,
+                    addendum: undefined,
+                };
+
+                const result = component.getWritingMaterialSystems(systems);
+
+                expectToBe(result, '2 Systeme');
+            });
+
+            it('... should return correct systems string when info is given and addendum is undefined', () => {
+                const systems: SourceDescriptionWritingMaterialSystems = {
+                    number: 2,
+                    info: 'info',
+                    addendum: undefined,
+                };
+
+                const result = component.getWritingMaterialSystems(systems);
+
+                expectToBe(result, '2 Systeme (info)');
+            });
+
+            it('... should return correct systems string when info is undefined and addendum is given', () => {
+                const systems: SourceDescriptionWritingMaterialSystems = {
+                    number: 3,
+                    info: undefined,
+                    addendum: 'addendum',
+                };
+
+                const result = component.getWritingMaterialSystems(systems);
+
+                expectToBe(result, '3 Systeme, addendum');
+            });
+
+            it('... should return correct systems string when info and addendum are given', () => {
+                const systems: SourceDescriptionWritingMaterialSystems = {
+                    number: 4,
+                    info: 'info',
+                    addendum: 'addendum',
+                };
+                const result = component.getWritingMaterialSystems(systems);
+                expectToBe(result, '4 Systeme (info), addendum');
+            });
+        });
+
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
