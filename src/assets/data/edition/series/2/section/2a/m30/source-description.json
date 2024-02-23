@@ -10,7 +10,40 @@
                 "desc": [
                     "2 Blätter (Bl. 1–2). Schnittspuren am rechten Rand von Bl. 1: von Bogen abgeschnitten. Riss unten Mitte sowie Ecke oben links abgetrennt auf Bl. 1. Rissspuren am rechten Rand von Bl. 2: von Bogen abgetrennt. Kleiner Risse am linken Rand von Bl. 2."
                 ],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup>–2<sup>v</sup>.",
+                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: [J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em> unten links auf Bl. 1<sup>v</sup> und 2<sup>v</sup>.",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "[J.E. &amp; Co.] | <em>N<sup>o</sup>. 5 | 18 linig.</em>",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1v", "2v"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
@@ -454,8 +487,41 @@
             "type": "Tintenniederschrift.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc": ["1 Blatt. Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M30.B[0].route\" [title]=\"ref.FIRM_SIGNS.M30.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M30.B[0].short\" /> <br /> unten links auf Bl. 1<sup>v</sup>.",
+                "desc": ["1 Blatt (Bl. 1). Schnittspuren am rechten Rand: von Bogen abgeschnitten."],
+                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M30.B[0].route\" [title]=\"ref.FIRM_SIGNS.M30.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M30.B[0].short\" /> <br /> unten links auf Bl. 1<sup>v</sup>.",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "347"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_B",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1v"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]

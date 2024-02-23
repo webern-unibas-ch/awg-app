@@ -7,11 +7,43 @@
             "type": "Reihentabelle.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
-                "desc:": [
-                    "1 Bogen (Bl. 1/2). Unterer Rand beschnitten. Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift unten rechts oder links. Bl. 1<sup>v</sup>–2<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet.",
-                    "<span class=\"caps\">Beschreibstoff</span>: Notenpapier, 4 Systeme (unten beschnitten), Format (quer): 74 × 270 mm, kein Firmenzeichen (Bl. 1/2)."
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Unterer Rand beschnitten. Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift unten rechts oder links. Bl. 1<sup>v</sup>–2<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet."
                 ],
-                "writingMaterial": "",
+                "writingMaterialString": "Notenpapier, 4 Systeme (unten beschnitten), Format (quer): 74 × 270 mm, kein Firmenzeichen (Bl. 1/2).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 4,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "74"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [""],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["roter Buntstift"]

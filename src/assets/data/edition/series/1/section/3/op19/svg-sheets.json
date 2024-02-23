@@ -9,10 +9,11 @@
                 "content": [
                     {
                         "svg": "assets/img/edition/series/1/section/3/op19/op19_B_Reihentabelle-1von1-final.svg",
-                        "image": ""
+                        "image": "",
+                        "partial": "",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": "B"
+                ]
             }
         ]
     }

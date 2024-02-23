@@ -265,30 +265,47 @@ export class FolioService {
 
             // Item label
             // Init
-            const centeredXPosition = contentItem.upperLeftCorner.x + contentItem.width / 2;
-            const centeredYPosition = contentItem.upperLeftCorner.y + contentItem.height / 2;
-            const itemLabelArray: string[] = contentItem.sigleAddendum
-                ? [contentItem.sigle, ' ' + contentItem.sigleAddendum]
-                : [contentItem.sigle];
+            const halfWidth = contentItem.width / 2;
+            const halfHeight = contentItem.height / 2;
+            const yOffset = 5;
 
-            const snapItemLabel: any = snapCanvas.text(0, 0, itemLabelArray);
+            let centeredXPosition = contentItem.upperLeftCorner.x + halfWidth;
+            let centeredYPosition = contentItem.upperLeftCorner.y + halfHeight - yOffset;
+
+            if (contentItem.reversed) {
+                centeredXPosition = contentItem.cornerPoints.lowerRightCorner.x - halfWidth;
+                centeredYPosition = contentItem.cornerPoints.lowerRightCorner.y - halfHeight + yOffset;
+            }
+
+            const itemLabelArray: string[] = [
+                contentItem.sigle,
+                contentItem.sigleAddendum ? ` ${contentItem.sigleAddendum}` : '',
+            ];
+
+            const snapItemLabel: any = snapCanvas.text(centeredXPosition, centeredYPosition, itemLabelArray);
             snapItemLabel.attr({
                 class: 'item-label',
                 style: 'font: 12px Source Sans Pro, source-sans-pro, sans-serif',
                 dominantBaseline: 'middle',
+                textAnchor: 'middle',
             });
+
+            // Rotate the text 180 degrees around its center
+            if (contentItem.reversed) {
+                snapItemLabel.transform(`r180,${centeredXPosition},${centeredYPosition}`);
+            }
+
             // Attributes for tspan elements of itemLabel array
-            const textAnchor = 'middle';
             snapItemLabel.select('tspan:first-of-type').attr({
                 x: centeredXPosition,
                 y: centeredYPosition,
-                textAnchor,
+                textAnchor: 'middle',
             });
             if (itemLabelArray.length > 1) {
                 snapItemLabel.select('tspan:last-of-type').attr({
                     x: centeredXPosition,
                     y: centeredYPosition,
-                    textAnchor,
+                    textAnchor: 'middle',
                     dy: '1.2em',
                 });
             }

@@ -8,7 +8,40 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": ["2 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 38<sup>v</sup>–39<sup>r</sup>."],
-                "writingMaterial": "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.A[0].short\" /> <br /> auf Bl. 39<sup>r</sup> unten links (Bl. 38–39).",
+                "writingMaterialString": "Notenpapier, 16 Systeme, Format: quer 270 × 335 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.A[0].short\" /> <br /> auf Bl. 39<sup>r</sup> unten links (Bl. 38–39).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 16,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "270"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "335"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_15_LIN_16",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["39r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "38–39"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["grüner Buntstift", "roter Buntstift", "schwarzer Buntstift"]
@@ -508,10 +541,43 @@
                 "desc": [
                     "4 Blätter (Bl. 1–4): 2 ineinander gelegte Bögen (Bl. 1/4, 2/3), archivalische Paginierung von <em>[1]</em> bis <em>[8]</em> auf Bl. 1<sup>r</sup>–4<sup>v</sup> innere Seitenecken unten mit Bleistift, mit Ausnahme der archivalischen Paginierung unbeschriftet: Bl. 3<sup>v</sup>–4<sup>v</sup>. Archivalischer Eintrag <em>[op. 25 no. 1]</em> auf Bl. 1<sup>r</sup> unten halbrechts mit Bleistift."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme, Format (hoch): 340 × 270 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> und 2<sup>r</sup> unten links (Bl. 1–2).",
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 340 × 270 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> und 2<sup>r</sup> unten links (Bl. 1–2).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": "Bleistift"
+                    "secondary": ["Bleistift"]
                 },
                 "title": "<em>„Wie bin ich froh!“</em> | <em>von Hildegard Jone</em> [Mitte] | <em>Anton Webern</em> [halbrechts] auf Bl. 2<sup>r</sup> System 1–2.",
                 "date": "<em>David Josef Bach</em> | <em>zum 60. Geburtstag</em> | <em>13. VIII. 1934</em> [System 6–7 Mitte] | <em>von seinem Anton Webern</em> [System 11 rechts] auf Bl. 1<sup>r</sup>; <em>1934</em> vertikal aufsteigend auf Bl. 3<sup>r</sup> System 3–4 nach T. 12.",
@@ -612,7 +678,40 @@
                 "desc": [
                     "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt und beschnitten. Löcher von Reißzwecken oben Mitte und rechts sowie System 7 Mitte. Archivalische Paginierung <em>[1]</em> bis <em>[2]</em> mit Bleistift unten rechts oder links. Verso-Seite bis auf die archivalische Paginierung unbeschriftet."
                 ],
-                "writingMaterial": "Notenpapier, 7 Systeme (oben beschnitten), Format (quer): 169 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.C[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.C[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.C[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1).",
+                "writingMaterialString": "Notenpapier, 7 Systeme (oben beschnitten), Format: quer 169 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP25.C[0].route\" [title]=\"ref.FIRM_SIGNS.OP25.C[0].full\" [alt]=\"ref.FIRM_SIGNS.OP25.C[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 7,
+                            "info": "oben beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "169"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_3_LIN_14",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": ["blauer Buntstift", "grüner Buntstift", "roter Buntstift"]

@@ -135,13 +135,13 @@ export class EditionSheetsService {
         convolutes: FolioConvolute[],
         sheets: EditionSvgSheetList['sheets'],
         selectedSheet: EditionSvgSheet
-    ): FolioConvolute {
+    ): FolioConvolute | undefined {
         if (!convolutes || !sheets || !selectedSheet) {
             return undefined;
         }
 
         const editionType = this.getCurrentEditionType(selectedSheet, sheets);
-        const convoluteId = editionType === 'sketchEditions' ? selectedSheet.convolute : '';
+        const convoluteId = editionType === 'sketchEditions' ? selectedSheet.content[0].convolute : '';
 
         return this._findConvoluteById(convolutes, convoluteId);
     }

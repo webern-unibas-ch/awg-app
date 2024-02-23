@@ -41,7 +41,7 @@
             "id": "M_37_Sk1",
             "label": "M 37 Sk1",
             "description": [
-                "<strong>Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+                "<strong>Sk1</strong> skizziert möglicherweise eine erste melodische Linie für M 37. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "linkBoxes": [
                 {
@@ -64,7 +64,7 @@
             "id": "M_37_Sk2",
             "label": "M 37 Sk2",
             "description": [
-                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet('m37', 'M_37_Sk1')\"><strong>Sk1</strong></a>. Die Zugehörigkeit zu der Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
+                "<strong>Sk2</strong> skizziert möglicherweise eine Variante zu der ersten melodischen Linie aus <a (click)=\"ref.selectSvgSheet('m37', 'M_37_Sk1')\"><strong>Sk1</strong></a>. Die Zugehörigkeit zur Studienkomposition für Klavier M 37 ist allerdings nicht eindeutig."
             ],
             "comments": [
                 {
@@ -102,7 +102,7 @@
         {
             "id": "M_37_Sk3",
             "label": "M 37 Sk3",
-            "description": ["<strong>Sk3</strong> ist die Verlaufsskizze zu der Studienkomposition für Klavier M 37."],
+            "description": ["<strong>Sk3</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 37."],
             "comments": [
                 {
                     "svgGroupId": "g56588",

@@ -20,6 +20,11 @@ export class EditionSvgSheetContent {
      * Optional: The sheet's content partial id as an extra to the sheet id (string).
      */
     partial?: string;
+
+    /**
+     * The associated convolute of the sheet.
+     */
+    convolute?: string;
 }
 
 /**
@@ -44,11 +49,6 @@ export class EditionSvgSheet {
      * The content of the sheet.
      */
     content: EditionSvgSheetContent[];
-
-    /**
-     * The associated convolute of the sheet.
-     */
-    convolute?: string;
 }
 
 /**

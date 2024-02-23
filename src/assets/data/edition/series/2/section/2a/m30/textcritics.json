@@ -4,7 +4,7 @@
             "id": "M_30_TF1",
             "label": "M 30 einzige Textfassung",
             "description": [
-                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br/> <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br/> Hauptquelle für die Textedition der Studienkomposition für Klavier M 31 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
+                "##Quellenbewertung:## Für die Textedition der Studienkomposition für Klavier M 30 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> relevante Quelle. <a (click)=\"ref.navigateToReportFragment('source_A')\"><strong>A</strong></a> enthält Skizzen. <br/> <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> weist zwei unterscheidbare Korrekturschichten auf: Korrekturen 1 mit Tinte sowie die später entstandenen Korrekturen 2 mit Bleistift. Der Zustand vor Korrekturen 1 ist nicht immer zu entziffern. <br/> Hauptquelle für die Textedition der Studienkomposition für Klavier M 30 ist <a (click)=\"ref.navigateToReportFragment('source_B')\"><strong>B</strong></a> nach Korrekturen 1."
             ],
             "comments": [
                 {
@@ -55,7 +55,7 @@
             "id": "M_30_Sk1",
             "label": "M 30 Sk1",
             "description": [
-                "<strong>Sk1</strong> ist die Verlaufsskizze zu Studienkomposition für Klavier M 30, die allerdings zahlreiche Überarbeitungen in Form von Streichungen und Ersetzungen aufweist."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 30, die allerdings zahlreiche Überarbeitungen in Form von Streichungen und Ersetzungen aufweist."
             ],
             "comments": [
                 {

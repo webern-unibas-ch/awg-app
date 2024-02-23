@@ -9,7 +9,102 @@
                 "desc": [
                     "3 Blätter (Bl. 1–3). Rissspuren am rechten (Bl. 1) bzw. linken Rand (Bl. 2, 3): von Bögen abgetrennt und beschnitten. Kunststoffklebestreifen am linken (recto) Rand von Bl. 1, 2 und 3. Löcher von Reißzwecken oder Nadeln an den linken und rechten Rändern aller Blätter (außer Bl. 1 links). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> mit Bleistift auf Bl. 1<sup>r</sup>–3<sup>v</sup> unten rechts oder links. Verso-Seiten bis auf die archivalische Paginierung unbeschriftet."
                 ],
-                "writingMaterial": "Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 141 × 268 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 143 × 268 mm, kein Firmenzeichen (Bl. 2);<br />Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 146–149 × 270 mm, Firmenzeichen:<br /> <img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP27.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP27.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP27.B[0].short\" /> <br />auf dem Kopf stehend auf Bl. 3<sup>v</sup> oben rechts (Bl. 3).",
+                "writingMaterialString": "Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 141 × 268 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 143 × 268 mm, kein Firmenzeichen (Bl. 2);<br />Notenpapier, 8 Systeme (unten beschnitten), Format (quer): 146–149 × 270 mm, Firmenzeichen:<br /> <img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP27.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP27.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP27.B[0].short\" /> <br />auf dem Kopf stehend auf Bl. 3<sup>v</sup> oben rechts (Bl. 3).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 8,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "141"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "268"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 8,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "143"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "268"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "2"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 8,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "146–149"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_6_LIN_20",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "auf dem Kopf stehend",
+                                    "folios": ["3v"],
+                                    "position": "oben rechts"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "3"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "blauer Buntstift", "grüner Buntstift", "roter Buntstift"]

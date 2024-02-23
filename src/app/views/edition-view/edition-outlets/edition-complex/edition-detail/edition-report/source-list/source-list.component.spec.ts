@@ -37,7 +37,7 @@ describe('SourceListComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedSourceListData = mockEditionData.mockSourceListData;
+        expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -212,13 +212,13 @@ describe('SourceListComponent (DONE)', () => {
 
             describe('... if text sources are present', () => {
                 beforeEach(() => {
-                    expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
+                    expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
                     component.sourceListData = expectedSourceListData;
                     detectChangesOnPush(fixture);
                 });
 
                 it('... should contain two tables with table body in div.card-body', () => {
-                    expectedSourceListData = mockEditionData.mockSourceListDataWithTexts;
+                    expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListDataWithTexts));
                     component.sourceListData = expectedSourceListData;
                     detectChangesOnPush(fixture);
 

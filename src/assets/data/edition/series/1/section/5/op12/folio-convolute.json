@@ -68,6 +68,7 @@
                             "sheetId": "M_212_Sk4",
                             "sigle": "M 212 Sk4",
                             "sigleAddendum": "T. 10–11",
+                            "reversed": true,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -82,6 +83,7 @@
                             "sheetId": "M_212_Sk5",
                             "sigle": "M 212 Sk5",
                             "sigleAddendum": "T. 10–11",
+                            "reversed": true,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -96,6 +98,7 @@
                             "sheetId": "M_212_Sk3",
                             "sigle": "M 212 Sk3",
                             "sigleAddendum": "T. 10–11",
+                            "reversed": true,
                             "sectionPartition": 2,
                             "sections": [
                                 {
@@ -110,6 +113,7 @@
                             "sheetId": "M_212_Sk2",
                             "sigle": "M 212 Sk2",
                             "sigleAddendum": "T. 10–12",
+                            "reversed": true,
                             "sectionPartition": 2,
                             "sections": [
                                 {
