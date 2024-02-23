@@ -73,7 +73,7 @@ export class EditionComplexComponent implements OnDestroy, OnInit {
      */
     getEditionComplexFromRoute(): void {
         this.route.paramMap.subscribe(params => {
-            const id: string = params.get('complexId') ? params.get('complexId') : '';
+            const id: string = params.get('complexId') || '';
             this.editionService.updateEditionComplex(EDITION_COMPLEXES[id.toUpperCase()]);
             this.selectedEditionComplex$ = this.editionService.getEditionComplex().pipe(delay(0));
         });

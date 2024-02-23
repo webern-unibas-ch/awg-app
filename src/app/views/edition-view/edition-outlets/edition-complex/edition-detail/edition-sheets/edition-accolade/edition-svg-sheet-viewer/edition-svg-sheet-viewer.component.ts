@@ -9,6 +9,7 @@ import {
     OnChanges,
     OnDestroy,
     Output,
+    SimpleChanges,
     ViewChild,
 } from '@angular/core';
 
@@ -257,9 +258,11 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
      * Angular life cycle hook: ngOnChanges.
      *
      * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
      */
-    ngOnChanges() {
-        if (this._isRendered) {
+    ngOnChanges(changes: SimpleChanges) {
+        if (changes['selectedSvgSheet'] && this._isRendered) {
             this.renderSheet();
         }
     }
@@ -382,7 +385,11 @@ export class EditionSvgSheetViewerComponent implements OnChanges, OnDestroy, Aft
         this._availableTkaOverlays = [];
         this._selectedTkaOverlays = [];
 
-        this.svgSheetFilePath = this.selectedSvgSheet?.content[0].svg;
+        this.svgSheetFilePath = this.selectedSvgSheet?.content?.[0].svg;
+
+        if (!this.svgSheetFilePath) {
+            return;
+        }
 
         this._createSvg().then(() => {
             this.resetZoom();

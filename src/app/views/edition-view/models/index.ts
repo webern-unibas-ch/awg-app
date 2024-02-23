@@ -31,7 +31,15 @@ import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, F
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
 import { Intro, IntroList } from './intro.model';
 
-import { SourceDescription, SourceDescriptionList } from './source-description.model';
+import {
+    SourceDescription,
+    SourceDescriptionList,
+    SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterialDimension,
+    SourceDescriptionWritingMaterialFirmSignLocation,
+    SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialSystems,
+} from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
 import { Source, SourceList } from './source-list.model';
 
@@ -76,6 +84,11 @@ export {
     Source,
     SourceDescription,
     SourceDescriptionList,
+    SourceDescriptionWritingInstruments,
+    SourceDescriptionWritingMaterialDimension,
+    SourceDescriptionWritingMaterialFirmSignLocation,
+    SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialSystems,
     SourceEvaluation,
     SourceEvaluationList,
     SourceList,

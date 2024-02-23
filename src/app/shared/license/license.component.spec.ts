@@ -32,7 +32,7 @@ describe('LicenseComponent', () => {
         expectedLicenseImageText = 'Creative Commons Attribution-ShareAlike BY-SA 4.0 International License';
     });
 
-    it('should create', () => {
+    it('... should create', () => {
         expect(component).toBeTruthy();
     });
 

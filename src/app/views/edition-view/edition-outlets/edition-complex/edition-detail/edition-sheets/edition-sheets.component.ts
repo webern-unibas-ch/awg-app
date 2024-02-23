@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { Subject } from 'rxjs';
-import { switchMap, takeUntil } from 'rxjs/operators';
+import { Observable, Subject, combineLatest } from 'rxjs';
+import { switchMap, takeUntil, tap } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -157,43 +157,27 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {
+    ngOnInit(): void {
         this.getEditionSheetsData();
     }
 
     /**
      * Public method: getEditionSheetsData.
      *
-     * It subscribes to the current edition complex
-     * of the edition service and gets all necessary edition data
-     * from the EditionDataService and the queryParams.
+     * It subscribes to the combined observables of the route paramMap and queryParamMap and then fetches the edition complex data and all necessary edition data.
      *
      * @returns {void} Gets the current edition complex and all necessary edition data.
      */
     getEditionSheetsData(): void {
-        this.route.paramMap
+        combineLatest([this.route.paramMap, this.route.queryParamMap])
             .pipe(
-                switchMap(() => this.editionService.getEditionComplex()),
-                switchMap((complex: EditionComplex) => {
-                    // Set current editionComplex
-                    this.editionComplex = complex;
-                    // Return EditionSheetsData from editionDataService
-                    return this.editionDataService.getEditionSheetsData(this.editionComplex);
-                }),
-                switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
-                    this.folioConvoluteData = data[0];
-                    this.svgSheetsData = data[1];
-                    this.textcriticsData = data[2];
-
-                    return this.route.queryParamMap;
-                }),
+                switchMap(([_params, queryParams]) => this._fetchEditionComplexData(queryParams)),
                 takeUntil(this._destroyed$)
             )
             .subscribe({
-                next: (queryParams: ParamMap) => {
-                    this._selectSvgSheet(queryParams);
-                },
+                next: () => {},
                 error: err => {
+                    console.error(err);
                     this.errorMessage = err;
                 },
             });
@@ -298,14 +282,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the edition sheets.
      */
     onSvgSheetSelect(sheetIds: { complexId: string; sheetId: string }): void {
-        // Set default id if none is given
+        // Set default complex route if none is given
         const complexRoute = sheetIds.complexId
-            ? `/edition/complex/${sheetIds.complexId}`
+            ? `/edition/complex/${sheetIds.complexId}/`
             : this.editionComplex.baseRoute;
-        const sheetRoute = sheetIds.sheetId ? sheetIds.sheetId : this.svgSheetsData.sheets.sketchEditions[0].id;
 
         const navigationExtras: NavigationExtras = {
-            queryParams: { id: sheetRoute },
+            queryParams: { id: sheetIds.sheetId },
             queryParamsHandling: 'merge',
         };
 
@@ -327,20 +310,81 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Private method: _getIdFromQueryParams.
+     * Private method: _assignData.
      *
-     * It checks the route params for an id of the selected sheet
-     * and returns it.
+     * It assigns the fetched data to the corresponding variables.
      *
-     * @default first entry of this.svgSheetsData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected sheet.
+     * @param {[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]} data The fetched data.
+     * @returns {void} Assigns the fetched data to the corresponding variables.
      */
-    private _getIdFromQueryParams(queryParams?: ParamMap): string {
-        // If there is no id in query params
-        // Take first entry of filtered svg sheets data as default
-        return queryParams.get('id') ? queryParams.get('id') : this.svgSheetsData.sheets.sketchEditions[0].id;
+    private _assignData(data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]): void {
+        this.folioConvoluteData = data[0];
+        this.svgSheetsData = data[1];
+        this.textcriticsData = data[2];
+    }
+
+    /**
+     * Private method: _fetchEditionComplexData.
+     *
+     * It fetches the current edition complex and all necessary edition data
+     * from the EditionDataService, assigns the data and handles the query params.
+     *
+     * @param {ParamMap} queryParams The given query paramMap of the activated route.
+     * @returns {Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>} The edition complex data and all necessary edition data.
+     */
+    private _fetchEditionComplexData(
+        queryParams: ParamMap
+    ): Observable<EditionComplex | [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
+        return this.editionService.getEditionComplex().pipe(
+            // Set editionComplex
+            tap((complex: EditionComplex) => (this.editionComplex = complex)),
+            // Get editionSheetsData
+            switchMap((complex: EditionComplex) => this.editionDataService.getEditionSheetsData(complex)),
+            // Assign data
+            tap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => this._assignData(data)),
+            // Handle queryParams
+            tap(() => this._handleQueryParams(queryParams))
+        );
+    }
+
+    /**
+     * Private method: _getDefaultSheetId.
+     *
+     * It returns the id of the first sheet of the svgSheetsData as default.
+     *
+     * @returns {string} The default sheet id.
+     */
+    private _getDefaultSheetId(): string {
+        const defaultSheet = this.svgSheetsData?.sheets?.sketchEditions?.[0];
+        let defaultSheetId = defaultSheet?.id;
+
+        if (defaultSheet?.content?.length > 1) {
+            const defaultSheetContent = defaultSheet.content[0];
+            defaultSheetId += defaultSheetContent?.partial;
+        }
+
+        return defaultSheetId || '';
+    }
+
+    /**
+     * Private method: _handleQueryParams.
+     *
+     * It handles the query params and selects the corresponding SVG sheet.
+     *
+     * @param {ParamMap} queryParams The given query paramMap of the activated route.
+     * @returns {void} Handles the query params and selects the corresponding SVG sheet.
+     */
+    private _handleQueryParams(queryParams: ParamMap): void {
+        const idFromQueryParams = queryParams?.get('id');
+
+        if (!idFromQueryParams) {
+            this.onSvgSheetSelect({
+                complexId: '',
+                sheetId: this._getDefaultSheetId(),
+            });
+        } else if (this.svgSheetsData) {
+            this._selectSvgSheet(idFromQueryParams);
+        }
     }
 
     /**
@@ -352,8 +396,10 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      *
      * @returns {void} Selects the SVG sheet.
      */
-    private _selectSvgSheet(queryParams: ParamMap): void {
-        const sheetId: string = this._getIdFromQueryParams(queryParams);
+    private _selectSvgSheet(sheetId: string): void {
+        if (!sheetId) {
+            return;
+        }
         this.selectedSvgSheet = this.editionSheetsService.selectSvgSheetById(this.svgSheetsData.sheets, sheetId);
         this.selectedConvolute = this.editionSheetsService.selectConvolute(
             this.folioConvoluteData.convolutes,

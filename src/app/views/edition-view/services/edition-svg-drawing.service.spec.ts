@@ -79,6 +79,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             ['staffN', 'Systemangabe'],
             ['measureN', 'Taktzahlen'],
             ['clef', 'Schlüssel'],
+            ['clef_key', 'Schlüssel mit Tonart'],
             ['key', 'Tonart'],
             ['accid', 'Akzidenzien'],
             ['hyphen', 'Silbentrennung'],
@@ -620,7 +621,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expectToEqual(opacity, '');
         });
 
-        it('should toggle opacity of a single supplied class', () => {
+        it('... should toggle opacity of a single supplied class', () => {
             const suppliedClassName = expectedSuppliedClassNames[0].split(' ')[1];
             const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, suppliedClassName);
             const expectedSelection = D3_SELECTION.select(suppliedSelections.nodes()[0]);
@@ -638,7 +639,7 @@ describe('EditionSvgDrawingService (DONE)', () => {
             expectToEqual(opacity, '1');
         });
 
-        it('should toggle opacity of all supplied classes if no class name is provided', () => {
+        it('... should toggle opacity of all supplied classes if no class name is provided', () => {
             const suppliedSelections = service.getGroupsBySelector(expectedSvgRootGroup, 'supplied');
 
             service.toggleSuppliedClassOpacity(expectedSvgRootGroup, '', true);

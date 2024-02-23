@@ -47,7 +47,7 @@
         {
             "id": "M_35_42_Sk1",
             "label": "M 35/42 Sk1",
-            "description": ["<strong>Sk1</strong> ist die Verlaufsskizze zu Studienkomposition für Klavier M 35/42."],
+            "description": ["<strong>Sk1</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 35/42."],
             "comments": [
                 {
                     "svgGroupId": "g5408",
@@ -280,7 +280,7 @@
             ],
             "linkBoxes": [
                 {
-                    "svgGroupId": "g5-9",
+                    "svgGroupId": "g559",
                     "linkTo": {
                         "complexId": "m35_42",
                         "sheetId": "M_35_42_Sk1e"
@@ -313,6 +313,15 @@
                     "system": "11",
                     "position": "2/4",
                     "comment": "Viertelnote überschreibt Halbe Note."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g9985",
+                    "linkTo": {
+                        "complexId": "m35_42",
+                        "sheetId": "M_35_42_TF1a"
+                    }
                 }
             ]
         }

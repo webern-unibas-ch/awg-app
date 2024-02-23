@@ -10,7 +10,40 @@
                 "desc": [
                     "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 1/2) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8)."
                 ],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M34.A[0].route\" [title]=\"ref.FIRM_SIGNS.M34.A[0].full\" [alt]=\"ref.FIRM_SIGNS.M34.A[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
+                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 349 × 265 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M34.A[0].route\" [title]=\"ref.FIRM_SIGNS.M34.A[0].full\" [alt]=\"ref.FIRM_SIGNS.M34.A[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>.",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "265"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_C",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "Bleistift",
                     "secondary": []
@@ -599,7 +632,40 @@
                 "desc": [
                     "1 Bogen (Bl. 1/2): Der Bogen ist Bestandteil (Bl. 3/4) eines größeren Konvoluts aus 2 Bögen (Bl. 1/2, 3/4), 2 Blättern (Bl. 5–6) und 1 Bogen (Bl. 7/8). Stockfleck und rötliche Verfärbung mittig am oberen Rand des Bogens."
                 ],
-                "writingMaterial": "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M34.B[0].route\" [title]=\"ref.FIRM_SIGNS.M34.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M34.B[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup>–2<sup>r</sup>.",
+                "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 349 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.M34.B[0].route\" [title]=\"ref.FIRM_SIGNS.M34.B[0].full\" [alt]=\"ref.FIRM_SIGNS.M34.B[0].short\" /><br /> unten links auf Bl. 1<sup>r</sup> und 2<sup>r</sup>.",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 18,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "349"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_5_LIN_18_D",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r", "2r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1/2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift"]

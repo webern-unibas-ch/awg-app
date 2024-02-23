@@ -227,11 +227,11 @@ export const mockEditionData = {
                     desc: [
                         '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')" ><strong>Textfassung 2</strong></a>',
                     ],
-                    writingMaterial:
-                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
+                    writingMaterialString:
+                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route" [title]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full" [alt]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
                     writingInstruments: {
                         main: 'Bleistift',
-                        secondary: ['roter Buntstrift', 'blaue Tinte', 'Kopierstift'],
+                        secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
                     },
                     title: 'test title',
                     date: 'test date',
@@ -474,14 +474,15 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
                 image: '',
                 partial: 'a',
+                convolute: '',
             },
             {
                 svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
                 image: '',
                 partial: 'b',
+                convolute: '',
             },
         ],
-        convolute: '',
     },
 
     /**
@@ -497,14 +498,15 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
                 image: '',
                 partial: 'a',
+                convolute: 'B',
             },
             {
                 svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
                 image: '',
                 partial: 'b',
+                convolute: 'B',
             },
         ],
-        convolute: '',
     },
 
     /**
@@ -519,9 +521,10 @@ export const mockEditionData = {
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
                 image: '',
+                partial: '',
+                convolute: 'A',
             },
         ],
-        convolute: 'A',
     },
 
     /**
@@ -537,14 +540,15 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
                 image: '',
                 partial: 'a',
+                convolute: 'A',
             },
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
                 image: '',
                 partial: 'b',
+                convolute: 'A',
             },
         ],
-        convolute: 'A',
     },
 
     /**
@@ -560,9 +564,9 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
                 image: '',
                 partial: 'a',
+                convolute: 'A',
             },
         ],
-        convolute: 'A',
     },
 
     /**
@@ -578,9 +582,9 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
                 image: '',
                 partial: 'b',
+                convolute: 'A',
             },
         ],
-        convolute: 'A',
     },
 
     /**
@@ -596,19 +600,21 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
                 image: '',
                 partial: 'a',
+                convolute: 'B',
             },
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
                 image: '',
                 partial: 'b',
+                convolute: 'B',
             },
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
                 image: '',
                 partial: 'c',
+                convolute: 'B',
             },
         ],
-        convolute: 'B',
     },
 
     /**
@@ -624,9 +630,9 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
                 image: '',
                 partial: 'a',
+                convolute: 'B',
             },
         ],
-        convolute: 'B',
     },
 
     /**
@@ -642,9 +648,9 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
                 image: '',
                 partial: 'b',
+                convolute: 'B',
             },
         ],
-        convolute: 'B',
     },
 
     /**
@@ -660,9 +666,9 @@ export const mockEditionData = {
                 svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
                 image: '',
                 partial: 'c',
+                convolute: 'B',
             },
         ],
-        convolute: 'B',
     },
 
     /**
@@ -677,9 +683,10 @@ export const mockEditionData = {
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
                 image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                partial: '',
+                convolute: 'B',
             },
         ],
-        convolute: 'B',
     },
 
     /**
@@ -694,9 +701,10 @@ export const mockEditionData = {
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
                 image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+                partial: '',
+                convolute: 'C',
             },
         ],
-        convolute: 'C',
     },
 
     /**
@@ -711,9 +719,10 @@ export const mockEditionData = {
             {
                 svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
                 image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+                partial: '',
+                convolute: 'D',
             },
         ],
-        convolute: 'D',
     },
 
     /**
@@ -732,14 +741,15 @@ export const mockEditionData = {
                             svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_1von2_path.svg',
                             image: '',
                             partial: 'a',
+                            convolute: '',
                         },
                         {
                             svg: 'assets/img/edition/series/1/section/5/op25/M317_TextfassungWE_2von2_path.svg',
                             image: '',
                             partial: 'b',
+                            convolute: '',
                         },
                     ],
-                    convolute: '',
                 },
             ],
             textEditions: [
@@ -751,14 +761,15 @@ export const mockEditionData = {
                             svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_1von2_path.svg',
                             image: '',
                             partial: 'a',
+                            convolute: 'B',
                         },
                         {
                             svg: 'assets/img/edition/series/1/section/5/op25/M317_Textfassung1_2von2_path.svg',
                             image: '',
                             partial: 'b',
+                            convolute: 'B',
                         },
                     ],
-                    convolute: '',
                 },
             ],
             sketchEditions: [
@@ -769,9 +780,10 @@ export const mockEditionData = {
                         {
                             svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk1_1von1_220610_path.svg',
                             image: '',
+                            partial: '',
+                            convolute: 'A',
                         },
                     ],
-                    convolute: 'A',
                 },
                 {
                     id: 'test-2',
@@ -781,14 +793,15 @@ export const mockEditionData = {
                             svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_1von2_220610_path.svg',
                             image: '',
                             partial: 'a',
+                            convolute: 'A',
                         },
                         {
                             svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk2_2von2_220610_path.svg',
                             image: '',
                             partial: 'b',
+                            convolute: 'A',
                         },
                     ],
-                    convolute: 'A',
                 },
                 {
                     id: 'test-3',
@@ -798,19 +811,21 @@ export const mockEditionData = {
                             svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_1von3_220610_path.svg',
                             image: '',
                             partial: 'a',
+                            convolute: 'B',
                         },
                         {
                             svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_2von3_220610_path.svg',
                             image: '',
                             partial: 'b',
+                            convolute: 'B',
                         },
                         {
                             svg: 'assets/img/edition/series/1/section/5/op12/M212_Sk3_3von3_220610_path.svg',
                             image: '',
                             partial: 'c',
+                            convolute: 'B',
                         },
                     ],
-                    convolute: 'B',
                 },
                 {
                     id: 'test-4',
@@ -819,9 +834,10 @@ export const mockEditionData = {
                         {
                             svg: 'assets/img/edition/series/1/section/5/op12/SkI_3n_small_cut_opt.svg',
                             image: 'assets/img/edition/series/1/section/5/op12/SkI_3_small.jpg',
+                            partial: '',
+                            convolute: 'B',
                         },
                     ],
-                    convolute: 'B',
                 },
                 {
                     id: 'test-5',
@@ -830,9 +846,10 @@ export const mockEditionData = {
                         {
                             svg: 'assets/img/edition/series/1/section/5/op12/SkI_5n_small_cut_opt.svg',
                             image: 'assets/img/edition/series/1/section/5/op12/SkI_5_small.jpg',
+                            partial: '',
+                            convolute: 'C',
                         },
                     ],
-                    convolute: 'C',
                 },
             ],
         },

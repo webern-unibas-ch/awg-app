@@ -10,15 +10,16 @@
                     {
                         "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle-1von2-final.svg",
                         "image": "",
-                        "partial": "a"
+                        "partial": "a",
+                        "convolute": "B"
                     },
                     {
                         "svg": "assets/img/edition/series/1/section/1/op24/op24_B_Reihentabelle-2von2-final.svg",
                         "image": "",
-                        "partial": "b"
+                        "partial": "b",
+                        "convolute": "B"
                     }
-                ],
-                "convolute": "B"
+                ]
             }
         ]
     }
