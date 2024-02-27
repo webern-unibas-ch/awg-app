@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import {
+    D3Selection,
     EditionSvgSheet,
     Folio,
     FolioConvolute,
@@ -19,12 +20,7 @@ import {
 } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
-/**
- * Declared variable: Snap.
- *
- * It provides access to the embedded SnapSvg library (see snapsvg.io).
- */
-declare let Snap: any;
+import * as D3_SELECTION from 'd3-selection';
 
 /**
  * The EditionFolioViewer component.
@@ -51,7 +47,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     /**
      * Public variable: selectedSvgSheet.
      *
-     * It keeps the selected svg sheet.
+     * It keeps the selected SVG sheet.
      */
     @Input()
     selectedSvgSheet: EditionSvgSheet;
@@ -68,7 +64,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     /**
      * Output variable: selectSvgSheetRequest.
      *
-     * It keeps an event emitter for the selected ids of an edition complex and svg sheet.
+     * It keeps an event emitter for the selected ids of an edition complex and SVG sheet.
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
@@ -76,17 +72,17 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     /**
      * Public variable: canvasArray.
      *
-     * It keeps the array with a Snap canvas per folio.
+     * It keeps the array with a SVG canvas per folio.
      */
     canvasArray = [];
 
     /**
-     * Public variable: folioSvgData.
+     * Public variable: folioSvgDataArray.
      *
-     * It keeps the array with the svg data
-     * needed to draw the Snap canvas of the folios.
+     * It keeps the array with the SVG data
+     * needed to draw the SVG canvas of the folios.
      */
-    folioSvgData: FolioSvgData[] = [];
+    folioSvgDataArray: FolioSvgData[] = [];
 
     /**
      * Public variable: vbArray.
@@ -174,7 +170,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * after the view was checked.
      */
     ngAfterViewChecked() {
-        // Start to create svg canvas only after view, inputs and calculation are available
+        // Start to create SVG canvas only after view, inputs and calculation are available
         this.createSVGCanvas();
     }
 
@@ -182,7 +178,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * Public method: isSelectedSvgSheet.
      *
      * It compares a given id with the id
-     * of the latest selected svg sheet.
+     * of the latest selected SVG sheet.
      *
      * @param {string} id The given sheet id.
      * @returns {boolean} The boolean value of the comparison result.
@@ -198,14 +194,14 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     /**
      * Public method: prepareFolioSvgOutput.
      *
-     * It prepares the viewbox and svg data for all folios
-     * to render the folio svg object (SnapCanvas).
+     * It prepares the viewbox and SVG data for all folios
+     * to render the folio SVG canvas.
      *
      * @returns {void} Sets the vbArray and folioSvgData.
      */
     prepareFolioSvgOutput(): void {
-        // Reset folioSvgData
-        this.folioSvgData = [];
+        // Reset folioSvgDataArray
+        this.folioSvgDataArray = [];
 
         // Loop over folios of selected convolute
         this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
@@ -227,16 +223,16 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
 
             this.vbArray[folioIndex] = new ViewBox(vbWidth, vbHeight);
 
-            // Populate folioSvgData with calculated svg data
-            this.folioSvgData[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
+            // Populate folioSvgData with calculated SVG data
+            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
         });
     }
 
     /**
      * Public method: createSVGCanvas.
      *
-     * It provides the folio viewbox and svg data
-     * to the SnapCanvas.
+     * It provides the folio viewbox and folioSVG data
+     * to the SVG canvas.
      *
      * @returns {void} Creates the SVG canvas.
      */
@@ -244,22 +240,26 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         // Empty canvasArray
         this.canvasArray = [];
 
-        /* Apply data from folioSvgData to render the svg image with snapsvg */
-        this.folioSvgData.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
+        // Apply data from folioSvgData to render the SVG image with d3.js
+        this.folioSvgDataArray.forEach((folioSvgData: FolioSvgData, folioIndex: number) => {
             // Init canvas
-            const snapId: string = '#folio-' + this.selectedSvgSheet.id + '-' + folioSvg.sheet.folioId;
-            const snapCanvas: any = Snap(snapId);
-            if (!snapCanvas) {
+            const svgId: string = '#folio-' + this.selectedSvgSheet.id + '-' + folioSvgData.sheet.folioId;
+
+            const svgCanvas: D3Selection = D3_SELECTION.select(svgId);
+            if (svgCanvas.empty()) {
                 return;
             }
 
-            // Svg viewBox
-            this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
+            // Clear the SVG elements before redrawing
+            svgCanvas.selectAll('*').remove();
 
-            // Svg content
-            this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
+            // SVG viewBox
+            this.folioService.addViewBoxToSvgCanvas(svgCanvas, this.vbArray[folioIndex]);
 
-            this.canvasArray.push(snapCanvas);
+            // SVG content
+            this.folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.bgColor, this.fgColor, this.ref);
+
+            this.canvasArray.push(svgCanvas);
         });
 
         // Toggle active classes after view was checked
@@ -281,10 +281,11 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         }
         this.canvasArray.forEach(canvas => {
             // Find all item groups
-            canvas.selectAll('.item-group').forEach(itemGroup => {
+            canvas.selectAll('.item-group').each((_d, i, groups) => {
                 // Toggle active class if itemId corresponds to selectedSvgSheetId
-                const itemId = itemGroup.node.attributes.itemId.value;
-                itemGroup.toggleClass('active', this.isSelectedSvgSheet(itemId));
+                const itemGroup = D3_SELECTION.select(groups[i]);
+                const itemId = itemGroup.attr('itemId');
+                itemGroup.classed('active', this.isSelectedSvgSheet(itemId));
             });
         });
     }
@@ -306,7 +307,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * Public method: selectSvgSheet.
      *
      * It emits the given ids of a selected edition complex
-     * and svg sheet to the {@link selectSvgSheetRequest}.
+     * and SVG sheet to the {@link selectSvgSheetRequest}.
      *
      * @param {string} complexId The given complex id.
      * @param {string} sheetId The given sheet id.

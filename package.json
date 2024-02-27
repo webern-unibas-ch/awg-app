@@ -112,7 +112,6 @@
         "ngx-json-viewer": "^3.2.1",
         "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.14",
         "rxjs": "~7.8.1",
-        "snapsvg": "^0.5.1",
         "stream": "^0.0.2",
         "tslib": "^2.6.2",
         "zone.js": "~0.14.2"
