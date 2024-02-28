@@ -1,11 +1,11 @@
-<!-- embedded svg: EditionSvgSheet Overview -->
+<!-- embedded svg: Edition Folio Viewer -->
 @if (folioSvgDataArray) {
     <div class="container-fluid svgGrid">
         <div class="row svgRow">
             @for (folioSvgData of folioSvgDataArray; track folioSvgData) {
                 <div class="col-sm-6 col-lg-{{ 12 / folioSvgDataArray?.length }} svgCol">
-                    <span class="text-muted">[{{ folioSvgData.sheet.folioId }}]</span>
-                    <svg id="folio-{{ selectedSvgSheet.id }}-{{ folioSvgData.sheet.folioId }}"></svg>
+                    <span class="text-muted">[{{ folioSvgData.sheet?.folioId }}]</span>
+                    <svg id="folio-{{ selectedSvgSheet?.id }}-{{ folioSvgData.sheet?.folioId }}"></svg>
                 </div>
             }
         </div>

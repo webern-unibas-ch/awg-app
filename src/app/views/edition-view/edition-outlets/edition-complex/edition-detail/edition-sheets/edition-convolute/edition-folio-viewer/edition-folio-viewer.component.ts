@@ -74,7 +74,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      *
      * It keeps the array with a SVG canvas per folio.
      */
-    canvasArray = [];
+    canvasArray: D3Selection[] = [];
 
     /**
      * Public variable: folioSvgDataArray.
@@ -85,12 +85,12 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     folioSvgDataArray: FolioSvgData[] = [];
 
     /**
-     * Public variable: vbArray.
+     * Public variable: viewBoxArray.
      *
      * It keeps the array with the
      * viewbox data for the folios.
      */
-    vbArray: ViewBox[] = [];
+    viewBoxArray: ViewBox[] = [];
 
     /**
      * Public variable: bgColor.
@@ -139,20 +139,6 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     }
 
     /**
-     * Getter for folio format settings.
-     */
-    get folioSettings() {
-        return this._folioSettings;
-    }
-
-    /**
-     * Setter for folio format settings.
-     */
-    set folioSettings(settings: FolioSettings) {
-        this._folioSettings = settings;
-    }
-
-    /**
      * Angular life cycle hook: ngOnChanges.
      *
      * It checks for changes of the given input.
@@ -175,60 +161,6 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     }
 
     /**
-     * Public method: isSelectedSvgSheet.
-     *
-     * It compares a given id with the id
-     * of the latest selected SVG sheet.
-     *
-     * @param {string} id The given sheet id.
-     * @returns {boolean} The boolean value of the comparison result.
-     */
-    isSelectedSvgSheet(id: string): boolean {
-        let partial = '';
-        if (this.selectedSvgSheet.content[0].partial) {
-            partial = this.selectedSvgSheet.content[0].partial;
-        }
-        return id === this.selectedSvgSheet.id + partial;
-    }
-
-    /**
-     * Public method: prepareFolioSvgOutput.
-     *
-     * It prepares the viewbox and SVG data for all folios
-     * to render the folio SVG canvas.
-     *
-     * @returns {void} Sets the vbArray and folioSvgData.
-     */
-    prepareFolioSvgOutput(): void {
-        // Reset folioSvgDataArray
-        this.folioSvgDataArray = [];
-
-        // Loop over folios of selected convolute
-        this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
-            // Update folio settings
-            this.folioSettings = {
-                factor: this.folioSettings.factor,
-                formatX: +folio.format.width,
-                formatY: +folio.format.height,
-                initialOffsetX: this.folioSettings.initialOffsetX,
-                initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.selectedConvolute.folios.length,
-            };
-
-            // Prepare viewbox settings by calculating the width and height for the viewBox string
-            const vbWidth =
-                (this.folioSettings.formatX + 2 * this.folioSettings.initialOffsetX) * this.folioSettings.factor;
-            const vbHeight =
-                (this.folioSettings.formatY + 2 * this.folioSettings.initialOffsetY) * this.folioSettings.factor;
-
-            this.vbArray[folioIndex] = new ViewBox(vbWidth, vbHeight);
-
-            // Populate folioSvgData with calculated SVG data
-            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
-        });
-    }
-
-    /**
      * Public method: createSVGCanvas.
      *
      * It provides the folio viewbox and folioSVG data
@@ -240,12 +172,18 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         // Empty canvasArray
         this.canvasArray = [];
 
-        // Apply data from folioSvgData to render the SVG image with d3.js
+        // Check if data arrays have the same length
+        if (this.viewBoxArray.length !== this.folioSvgDataArray.length) {
+            return;
+        }
+
+        // Apply data to render the SVG image with d3.js
         this.folioSvgDataArray.forEach((folioSvgData: FolioSvgData, folioIndex: number) => {
             // Init canvas
-            const svgId: string = '#folio-' + this.selectedSvgSheet.id + '-' + folioSvgData.sheet.folioId;
+            const svgId = `#folio-${this.selectedSvgSheet.id}-${folioSvgData.sheet.folioId}`;
 
-            const svgCanvas: D3Selection = D3_SELECTION.select(svgId);
+            const svgCanvas: D3Selection = this._d3Select(svgId);
+
             if (svgCanvas.empty()) {
                 return;
             }
@@ -254,7 +192,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             svgCanvas.selectAll('*').remove();
 
             // SVG viewBox
-            this.folioService.addViewBoxToSvgCanvas(svgCanvas, this.vbArray[folioIndex]);
+            this.folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
 
             // SVG content
             this.folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.bgColor, this.fgColor, this.ref);
@@ -262,32 +200,22 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             this.canvasArray.push(svgCanvas);
         });
 
-        // Toggle active classes after view was checked
+        // Toggle active class
         this.toggleActiveClass();
     }
 
     /**
-     * Public method: toggleActiveClass.
+     * Public method: isSelectedSvgSheet.
      *
-     * It toggles css class 'active' on a selected sheet
-     * (canvas item-group).
+     * It compares a given id with the id
+     * of the latest selected SVG sheet.
      *
-     * @returns {void} Toggles the css class.
+     * @param {string} id The given sheet id.
+     * @returns {boolean} The boolean value of the comparison result.
      */
-    toggleActiveClass(): void {
-        // Iterate over canvas Array
-        if (!this.canvasArray) {
-            return;
-        }
-        this.canvasArray.forEach(canvas => {
-            // Find all item groups
-            canvas.selectAll('.item-group').each((_d, i, groups) => {
-                // Toggle active class if itemId corresponds to selectedSvgSheetId
-                const itemGroup = D3_SELECTION.select(groups[i]);
-                const itemId = itemGroup.attr('itemId');
-                itemGroup.classed('active', this.isSelectedSvgSheet(itemId));
-            });
-        });
+    isSelectedSvgSheet(id: string): boolean {
+        const partial = this.selectedSvgSheet?.content[0]?.partial || '';
+        return id === `${this.selectedSvgSheet?.id}${partial}`;
     }
 
     /**
@@ -300,7 +228,49 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
+    }
+
+    /**
+     * Public method: prepareFolioSvgOutput.
+     *
+     * It prepares the viewbox and SVG data for all folios
+     * to render the folio SVG canvas.
+     *
+     * @returns {void} Sets the vbArray and folioSvgData.
+     */
+    prepareFolioSvgOutput(): void {
+        // Reset folioSvgDataArray and viewBoxArray
+        this.folioSvgDataArray = [];
+        this.viewBoxArray = [];
+
+        // If selectedConvolute or folios are undefined, return early
+        if (!this.selectedConvolute?.folios) {
+            return;
+        }
+
+        // Loop over folios of selected convolute
+        this.folioSvgDataArray = this.selectedConvolute.folios.map((folio: Folio) => {
+            // Create folio settings for each folio
+            const folioSettings = {
+                ...this._folioSettings,
+                formatX: +folio.format.width,
+                formatY: +folio.format.height,
+                numberOfFolios: this.selectedConvolute.folios.length,
+            };
+
+            // Prepare viewbox settings by calculating the width and height for the viewBox string
+            const viewBoxWidth = this._calculateViewBoxDimension(folioSettings, 'X');
+            const viewBoxHeight = this._calculateViewBoxDimension(folioSettings, 'Y');
+
+            this.viewBoxArray.push(new ViewBox(viewBoxWidth, viewBoxHeight));
+
+            // Populate folioSvgData with calculated SVG data
+            return this.folioService.getFolioSvgData(folioSettings, folio);
+        });
     }
 
     /**
@@ -318,5 +288,56 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             return;
         }
         this.selectSvgSheetRequest.emit({ complexId: complexId, sheetId: sheetId });
+    }
+
+    /**
+     * Public method: toggleActiveClass.
+     *
+     * It toggles css class 'active' on a selected sheet
+     * (canvas item-group).
+     *
+     * @returns {void} Toggles the css class.
+     */
+    toggleActiveClass(): void {
+        if (!this.canvasArray) {
+            return;
+        }
+
+        this.canvasArray.forEach(canvas => {
+            canvas.selectAll('.item-group').classed('active', (d, i, nodes) => {
+                const itemId = D3_SELECTION.select(nodes[i]).attr('itemId');
+                return this.isSelectedSvgSheet(itemId);
+            });
+        });
+    }
+
+    /**
+     * Private method: _calculateViewBoxDimension.
+     *
+     * It calculates the width and height for the viewBox string
+     * based on the given folio settings.
+     *
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {string} dimension The given dimension.
+     *
+     * @returns {number} The calculated dimension.
+     */
+    private _calculateViewBoxDimension(folioSettings: FolioSettings, dimension: string): number {
+        const format = `format${dimension}`;
+        const offset = `initialOffset${dimension}`;
+        return (folioSettings[format] + 2 * folioSettings[offset]) * folioSettings.factor;
+    }
+
+    /**
+     * Private method: _d3Select.
+     *
+     * It returns the D3 selection of a given selector.
+     *
+     * @param {string} selector The given selector.
+     *
+     * @returns {D3Selection} The D3 selection of the selector.
+     */
+    private _d3Select(selector: string) {
+        return D3_SELECTION.select(selector);
     }
 }
