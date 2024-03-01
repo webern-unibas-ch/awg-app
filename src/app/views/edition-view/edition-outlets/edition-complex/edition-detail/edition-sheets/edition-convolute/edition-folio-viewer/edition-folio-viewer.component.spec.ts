@@ -164,14 +164,6 @@ describe('EditionFolioViewerComponent (DONE)', () => {
             expectToBe(component.viewBoxArray.length, 0);
         });
 
-        it('... should have `bgColor`', () => {
-            expectToBe(component.bgColor, '#a3a3a3');
-        });
-
-        it('... should have `fgColor`', () => {
-            expectToBe(component.fgColor, 'orange');
-        });
-
         it('... should have `_folioSettings` object', () => {
             expectToEqual((component as any)._folioSettings, expectedFolioSettings);
         });

@@ -30,12 +30,33 @@ export class FolioService {
     ref: any;
 
     /**
-     * Private variable: _itemsOffsetCorrection.
+     * Private variable: _bgColor.
+     *
+     * It keeps the background color for the folio.
+     */
+    private _bgColor = '#a3a3a3';
+
+    /**
+     * Private variable: _disabledColor.
+     *
+     * It keeps the disabled color for the folios.
+     */
+    private _disabledColor = 'grey';
+
+    /**
+     * Private variable: _fgColor.
+     *
+     * It keeps the foreground color for the folios.
+     */
+    private _fgColor = 'orange';
+
+    /**
+     * Private variable: _itemOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
      * border collision between rendered SVG items.
      */
-    private _itemsOffsetCorrection = 4;
+    private _itemOffsetCorrection = 4;
 
     /**
      * Public method: getFolioSvgData.
@@ -49,7 +70,7 @@ export class FolioService {
      */
     getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
         // Calculate values for SVG
-        const calculation = new FolioCalculation(folioSettings, folio, this._itemsOffsetCorrection);
+        const calculation = new FolioCalculation(folioSettings, folio, this._itemOffsetCorrection);
 
         // Get SVG data from calculation
         return new FolioSvgData(calculation);
@@ -88,13 +109,7 @@ export class FolioService {
      * @param {*} ref The given reference to the calling component.
      * @returns {void} Adds the folio to the SVG canvas selection.
      */
-    addFolioToSvgCanvas(
-        svgCanvas: D3Selection,
-        folioSvgData: FolioSvgData,
-        bgColor: string,
-        fgColor: string,
-        ref: any
-    ): void {
+    addFolioToSvgCanvas(svgCanvas: D3Selection, folioSvgData: FolioSvgData, ref: any): void {
         /**
          * Self-referring variable needed for CompileHtml library.
          */

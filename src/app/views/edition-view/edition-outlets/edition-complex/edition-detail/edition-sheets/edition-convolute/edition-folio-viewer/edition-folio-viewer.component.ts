@@ -93,20 +93,6 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
     viewBoxArray: ViewBox[] = [];
 
     /**
-     * Public variable: bgColor.
-     *
-     * It keeps the background color for the folio.
-     */
-    bgColor = '#a3a3a3';
-
-    /**
-     * Public variable: fgColor.
-     *
-     * It keeps the foreground color for the folio.
-     */
-    fgColor = 'orange';
-
-    /**
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionFolioViewerComponent;
@@ -195,7 +181,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
             this.folioService.addViewBoxToSvgCanvas(svgCanvas, this.viewBoxArray[folioIndex]);
 
             // SVG content
-            this.folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.bgColor, this.fgColor, this.ref);
+            this.folioService.addFolioToSvgCanvas(svgCanvas, folioSvgData, this.ref);
 
             this.canvasArray.push(svgCanvas);
         });
