@@ -32,7 +32,7 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk1',
                                 sigle: 'M 212 Sk1',
                                 sigleAddendum: 'T. 1–2, [3–6]',
-                                selectable: false,
+                                selectable: true,
                                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
                                 sectionPartition: 1,
                                 sections: [
