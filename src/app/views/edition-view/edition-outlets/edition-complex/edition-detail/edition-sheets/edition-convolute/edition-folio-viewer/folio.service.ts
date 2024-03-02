@@ -5,7 +5,9 @@ import {
     Folio,
     FolioCalculation,
     FolioCalculationLine,
+    FolioCalculationPoint,
     FolioSettings,
+    FolioSvgContentItem,
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
@@ -51,12 +53,61 @@ export class FolioService {
     private _fgColor = 'orange';
 
     /**
+     * Private variable: _itemFillColor.
+     *
+     * It keeps the fill color for the items.
+     */
+    private _itemFillColor = '#eeeeee';
+
+    /**
+     * Private variable: _itemFontStyle.
+     *
+     * It keeps the font style for the items.
+     */
+    private _itemFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
+
+    /**
      * Private variable: _itemOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
      * border collision between rendered SVG items.
      */
     private _itemOffsetCorrection = 4;
+
+    /**
+     * Private variable: _itemRotationAngle.
+     *
+     * It keeps the rotation angle for the reversed items.
+     */
+    private _itemReversedRotationAngle = 180;
+
+    /**
+     * Private variable: _itemStrokeWidth.
+     *
+     * It keeps the stroke width for the items.
+     */
+    private _itemStrokeWidth = 2;
+
+    /**
+     * Private variable: _sheetFillColor.
+     *
+     * It keeps the fill color for the sheets.
+     */
+    private _sheetFillColor = 'white';
+
+    /**
+     * Private variable: _sheetStrokeWidth.
+     *
+     * It keeps the stroke width for the sheets.
+     */
+    private _sheetStrokeWidth = 1;
+
+    /**
+     * Private variable: _systemsLineStrokeWidth.
+     *
+     * It keeps the stroke width for the systems.
+     */
+    private _systemsLineStrokeWidth = 0.7;
 
     /**
      * Public method: getFolioSvgData.
@@ -110,146 +161,64 @@ export class FolioService {
      * @returns {void} Adds the folio to the SVG canvas selection.
      */
     addFolioToSvgCanvas(svgCanvas: D3Selection, folioSvgData: FolioSvgData, ref: any): void {
-        /**
-         * Self-referring variable needed for CompileHtml library.
-         */
+        // Self-referring variable needed for CompileHtml library.
         this.ref = ref;
 
-        /**
-         * The SVG canvas sheet group selection.
-         */
-        const svgSheetGroup = svgCanvas.append('g');
+        // Create the SVG canvas sheet group selection.
+        const svgSheetGroup = this._appendCanvasSheetGroup(svgCanvas, folioSvgData);
 
-        /**
-         * Draw sheet.
-         */
-        this._addFolioSheetToSvgCanvas(svgCanvas, svgSheetGroup, folioSvgData, bgColor);
+        // Draw sheet.
+        this._addFolioSheetToSvgCanvas(svgSheetGroup, folioSvgData);
 
-        /**
-         * Draw systems.
-         */
-        this._addFolioSystemsToSvgCanvas(svgCanvas, svgSheetGroup, folioSvgData, bgColor);
+        // Draw systems.
+        this._addFolioSystemsToSvgCanvas(svgSheetGroup, folioSvgData);
 
-        /**
-         * Draw items.
-         */
-        this._addFolioItemsToSvgCanvas(svgCanvas, svgSheetGroup, folioSvgData, fgColor);
+        // Draw items.
+        this._addFolioItemsToSvgCanvas(svgSheetGroup, folioSvgData);
     }
 
     /**
      * Private method: _addFolioSheetToSvgCanvas.
      *
      * It adds the folio's sheet from the calculated
-     * folio SVG data to the folio SVG canvas.
+     * folio SVG data to the SVG sheet group.
      *
-     * @param {D3Selection} svgCanvas The given SVG canvas selection.
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
-     * @param {string} bgColor The given background color.
      * @returns {void} Adds the sheet to the SVG canvas selection.
      */
-    private _addFolioSheetToSvgCanvas(
-        svgCanvas: D3Selection,
-        svgSheetGroup: D3Selection,
-        folioSvgData: FolioSvgData,
-        bgColor: string
-    ): void {
-        // Init
-        const folioId = folioSvgData.sheet.folioId;
-        const x1 = folioSvgData.sheet.upperLeftCorner.x;
-        const y1 = folioSvgData.sheet.upperLeftCorner.y;
-        const x2 = folioSvgData.sheet.lowerRightCorner.x;
-        const y2 = folioSvgData.sheet.lowerRightCorner.y;
+    private _addFolioSheetToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+        const { sheet } = folioSvgData;
+        const { upperLeftCorner, lowerRightCorner, folioId } = sheet;
 
-        // SVG sheet id
-        svgSheetGroup.attr('sheetGroupId', folioId).attr('class', 'sheet-group');
-
-        // SVG sheet rectangle
-        const svgSheetRect = svgCanvas
-            .append('rect')
-            .attr('x', x1)
-            .attr('y', y1)
-            .attr('width', x2 - x1)
-            .attr('height', y2 - y1)
-            .attr('fill', 'white')
-            .attr('stroke', bgColor)
-            .attr('stroke-width', 1);
-
-        // SVG sheet title
-        svgSheetGroup.append('title').text('Bl. ' + folioId);
-
-        // Add the SVG sheet rectangle to the SVG sheet group
-        svgSheetGroup.node().appendChild(svgSheetRect.node());
+        this._appendSheetGroupTitle(svgSheetGroup, folioId);
+        this._appendSheetGroupRectangle(svgSheetGroup, upperLeftCorner, lowerRightCorner);
     }
 
     /**
      * Private method: _addFolioSystemsToSvgCanvas.
      *
      * It adds the folio's systems from the calculated
-     * folio SVG data to the folio SVG canvas.
+     * folio SVG data to the SVG sheet group.
      *
-     * @param {D3Selection} svgCanvas The given SVG canvas selection.
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
      * @param {string} bgColor The given background color.
      * @returns {void} Adds the systems to the SVG canvas selection.
      */
-    private _addFolioSystemsToSvgCanvas(
-        svgCanvas: D3Selection,
-        svgSheetGroup: D3Selection,
-        folioSvgData: FolioSvgData,
-        bgColor: string
-    ): void {
+    private _addFolioSystemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         folioSvgData.systems.lineArrays.forEach((lineArray: FolioCalculationLine[], systemIndex: number) => {
-            // Notational system
-            const svgSystemLineGroup = svgCanvas
-                .append('g')
-                .attr('systemLineGroupId', systemIndex + 1)
-                .attr('class', 'system-line-group');
-
-            // SVG system lines
-            lineArray.forEach(line => {
-                // Init
-                const x1 = line.startPoint.x;
-                const y1 = line.startPoint.y;
-                const x2 = line.endPoint.x;
-                const y2 = line.endPoint.y;
-
-                const systemLine = svgCanvas
-                    .append('line')
-                    .attr('x1', x1)
-                    .attr('y1', y1)
-                    .attr('x2', x2)
-                    .attr('y2', y2)
-                    .attr('class', 'system-line')
-                    .attr('stroke', bgColor)
-                    .attr('stroke-width', 0.7);
-
-                svgSystemLineGroup.node().appendChild(systemLine.node());
+            const svgSystemsGroup = this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
+                systemsGroupId: systemIndex + 1,
+                class: 'systems-group',
+            });
+            const svgSystemLineGroup = this._appendSvgElementWithAttrs(svgSystemsGroup, 'g', {
+                systemLineGroupId: systemIndex + 1,
+                class: 'system-line-group',
             });
 
-            // SVG system label
-            const x = folioSvgData.systems.lineLabelArray[systemIndex].x;
-            const y = folioSvgData.systems.lineLabelArray[systemIndex].y;
-            const systemLabel = systemIndex + 1;
-
-            const svgSystemLabel = svgCanvas
-                .append('text')
-                .attr('x', x)
-                .attr('y', y)
-                .text(systemLabel)
-                .attr('class', 'system-label')
-                .attr('dominant-baseline', 'hanging')
-                .attr('fill', bgColor);
-
-            // SVG systems group
-            const svgSystemsGroup = svgCanvas.append('g');
-            svgSystemsGroup.node().appendChild(svgSystemLineGroup.node());
-            svgSystemsGroup.node().appendChild(svgSystemLabel.node());
-            svgSystemsGroup.attr('systemsGroupId', systemIndex + 1).attr('class', 'systems-group');
-
-            // Add the SVG systems group to the SVG sheet group
-            svgSheetGroup.node().appendChild(svgSystemsGroup.node());
+            this._appendSystemsGroupLabel(svgSystemsGroup, folioSvgData, systemIndex);
+            this._appendSystemsGroupLines(svgSystemLineGroup, lineArray);
         });
     }
 
@@ -265,96 +234,333 @@ export class FolioService {
      * @param {string} fgColor The given foreground color.
      * @returns {void} Adds the items to the SVG canvas selection.
      */
-    private _addFolioItemsToSvgCanvas(
-        svgCanvas: D3Selection,
-        svgSheetGroup: D3Selection,
-        folioSvgData: FolioSvgData,
-        fgColor: string
-    ): void {
-        folioSvgData.contentItemsArray.forEach(contentItem => {
+    private _addFolioItemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+        folioSvgData?.contentItemsArray?.forEach((contentItem: FolioSvgContentItem) => {
             if (!contentItem) {
                 return;
             }
 
-            // Init
-            const halfWidth = contentItem.width / 2;
-            const halfHeight = contentItem.height / 2;
-            const yOffset = 5;
+            // Draw item group.
+            const svgItemGroup = this._appendItemGroup(svgSheetGroup, contentItem);
 
-            let centeredXPosition = contentItem.upperLeftCorner.x + halfWidth;
-            let centeredYPosition = contentItem.upperLeftCorner.y + halfHeight - yOffset;
+            // Draw item link.
+            const svgItemLink = this._appendItemLink(svgItemGroup);
 
-            if (contentItem.reversed) {
-                centeredXPosition = contentItem.cornerPoints.lowerRightCorner.x - halfWidth;
-                centeredYPosition = contentItem.cornerPoints.lowerRightCorner.y - halfHeight + yOffset;
-            }
+            // Draw item polygon.
+            this._appendItemLinkPolygon(svgItemLink, contentItem.polygonCornerPoints);
 
-            const itemLabelArray: string[] = [
-                contentItem.sigle,
-                contentItem.sigleAddendum ? ` ${contentItem.sigleAddendum}` : '',
-            ];
-
-            const polygoneCornerPointArray = [
-                contentItem.cornerPoints.upperLeftCorner.x,
-                contentItem.cornerPoints.upperLeftCorner.y,
-                contentItem.cornerPoints.upperRightCorner.x,
-                contentItem.cornerPoints.upperRightCorner.y,
-                contentItem.cornerPoints.lowerRightCorner.x,
-                contentItem.cornerPoints.lowerRightCorner.y,
-                contentItem.cornerPoints.lowerLeftCorner.x,
-                contentItem.cornerPoints.lowerLeftCorner.y,
-                contentItem.cornerPoints.upperLeftCorner.x,
-                contentItem.cornerPoints.upperLeftCorner.y,
-            ];
-
-            // SVG item group
-            const svgItemGroup = svgCanvas
-                .append('g')
-                .attr('itemGroupId', itemLabelArray.join(' '))
-                .attr('itemId', contentItem.sheetId)
-                .attr('class', 'item-group');
-
-            // SVG item link
-            const svgItemLink = svgItemGroup.append('a').attr('class', 'item-link');
-
-            // SVG item shape
-            const svgItemShape = svgItemLink
-                .append('polygon')
-                .attr('points', polygoneCornerPointArray.join(' '))
-                .attr('class', 'item-shape')
-                .attr('stroke-width', 2)
-                .attr('fill', '#eeeeee');
-
-            // Item label
-            const svgItemLabel = svgItemLink
-                .append('text')
-                .attr('x', centeredXPosition)
-                .attr('y', centeredYPosition)
-                .attr('class', 'item-label')
-                .attr('style', 'font: 12px Source Sans Pro, source-sans-pro, sans-serif')
-                .attr('dominant-baseline', 'middle')
-                .attr('text-anchor', 'middle')
-                .text(itemLabelArray.join(' '));
-
-            // Rotate the text 180 degrees around its center
-            if (contentItem.reversed) {
-                svgItemLabel.attr('transform', `rotate(180, ${centeredXPosition}, ${centeredYPosition})`);
-            }
-
-            // Apply title when hovering item
-            svgItemGroup.append('title').text(itemLabelArray.join(' '));
-
-            // Add click event handler
-            if (contentItem.selectable === false) {
-                svgItemGroup.attr('stroke', 'grey').attr('fill', 'grey');
-                svgItemGroup.on('click', () => this.ref.openModal(contentItem.linkTo));
-            } else {
-                svgItemGroup.attr('stroke', fgColor).attr('fill', fgColor);
-                svgItemGroup.on('click', () => this.ref.selectSvgSheet(contentItem.complexId, contentItem.sheetId));
-            }
-
-            // Add the SVG item group to the SVG sheet group
-            svgSheetGroup.node().appendChild(svgItemGroup.node());
+            // Draw item link label.
+            this._appendItemLinkLabel(svgItemLink, contentItem);
         });
     }
+
+    /**
+     * Private method: _appendCanvasSheetGroup.
+     *
+     * It appends a sheet group to the SVG canvas.
+     *
+     * @param {D3Selection} svgCanvas The given SVG canvas selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @returns {D3Selection} Appends a sheet group to the SVG canvas selection.
+     */
+    private _appendCanvasSheetGroup(svgCanvas: D3Selection, folioSvgData: FolioSvgData): D3Selection {
+        return this._appendSvgElementWithAttrs(svgCanvas, 'g', {
+            sheetGroupId: folioSvgData.sheet.folioId,
+            class: 'sheet-group',
+        });
+    }
+
+    /**
+     * Private method: _appendItemGroup.
+     *
+     * It appends an item group to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgContentItem} contentItem The given calculated folio data.
+     * @returns {D3Selection} Appends an item group to the sheet group selection.
+     */
+    private _appendItemGroup(svgSheetGroup: D3Selection, contentItem: FolioSvgContentItem): D3Selection {
+        // Draw item group element.
+        const itemGroup = this._appendItemGroupElement(svgSheetGroup, contentItem);
+
+        // Apply title when hovering item
+        this._appendItemGroupTitle(itemGroup, contentItem);
+
+        // Add click event handler
+        itemGroup.on('click', () =>
+            contentItem.selectable
+                ? this.ref.selectSvgSheet(contentItem.complexId, contentItem.sheetId)
+                : this.ref.openModal(contentItem.linkTo)
+        );
+
+        return itemGroup;
+    }
+
+    /**
+     * Private method: _appendItemGroupElement.
+     *
+     * It appends an item group element to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgContentItem} contentItem The given calculated folio data.
+     * @returns {D3Selection} Appends an item group element to the sheet group selection.
+     */
+    private _appendItemGroupElement(svgSheetGroup: D3Selection, contentItem: FolioSvgContentItem): D3Selection {
+        return this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
+            itemGroupId: contentItem.itemLabel,
+            itemId: contentItem.sheetId,
+            class: 'item-group',
+            stroke: contentItem.selectable ? this._fgColor : this._disabledColor,
+            fill: contentItem.selectable ? this._fgColor : this._disabledColor,
+        });
+    }
+
+    /**
+     * Private method: _appendItemGroupTitle.
+     *
+     * It appends a title to the item group.
+     *
+     * @param {D3Selection} itemGroup The given SVG item group selection.
+     * @param {FolioSvgContentItem} contentItem The given calculated folio data.
+     * @returns {D3Selection} Appends a title to the item group selection.
+     */
+    private _appendItemGroupTitle(itemGroup: D3Selection, contentItem: FolioSvgContentItem): D3Selection {
+        return this._appendSvgElementWithAttrs(itemGroup, 'title', {}).text(contentItem.itemLabel);
+    }
+
+    /**
+     * Private method: _appendItemLink.
+     *
+     * It appends a link to the item group.
+     *
+     * @param {D3Selection} svgItemGroup The given SVG item group selection.
+     * @returns {D3Selection} Appends a link to the item group selection.
+     */
+    private _appendItemLink(svgItemGroup: D3Selection): D3Selection {
+        return this._appendSvgElementWithAttrs(svgItemGroup, 'a', { class: 'item-link' });
+    }
+
+    /**
+     * Private method: _appendItemLinkLabel.
+     *
+     * It appends a label to the item link.
+     *
+     * @param {D3Selection} svgItemLink The given SVG item link selection.
+     * @param {FolioSvgContentItem} contentItem The given calculated folio data.
+     * @returns {D3Selection} Appends a label to the item link selection.
+     */
+    private _appendItemLinkLabel(svgItemLink: any, contentItem: FolioSvgContentItem): D3Selection {
+        const label = this._appendItemLinkLabelTextElement(
+            svgItemLink,
+            contentItem.centeredXPosition,
+            contentItem.centeredYPosition
+        );
+
+        this._appendItemLinkLabelTspanElements(label, contentItem);
+
+        // Rotate the label 180 degrees around its center when reversed
+        if (contentItem.reversed) {
+            label.attr(
+                'transform',
+                `rotate(${this._itemReversedRotationAngle}, ${contentItem.centeredXPosition}, ${contentItem.centeredYPosition})`
+            );
+        }
+
+        return label;
+    }
+
+    /**
+     * Private method: _appendItemLinkLabelTextElement.
+     *
+     * It appends a text element to the item link label.
+     *
+     * @param {D3Selection} svgItemLink The given SVG item link selection.
+     * @param {number} centeredXPosition The given centered x position.
+     * @param {number} centeredYPosition The given centered y position.
+     * @returns {D3Selection} Appends a text element to the item link selection.
+     */
+    private _appendItemLinkLabelTextElement(
+        svgItemLink: D3Selection,
+        centeredXPosition: number,
+        centeredYPosition: number
+    ): D3Selection {
+        const attributes = {
+            class: 'item-label',
+            x: centeredXPosition,
+            y: centeredYPosition,
+            style: this._itemFontStyle,
+        };
+        attributes['dominant-baseline'] = 'middle';
+        attributes['text-anchor'] = 'middle';
+
+        return this._appendSvgElementWithAttrs(svgItemLink, 'text', attributes);
+    }
+
+    /**
+     * Private method: _appendItemLinkLabelTspanElements.
+     *
+     * It appends tspan elements to the item link label.
+     *
+     * @param {D3Selection} labelSelection The given label selection.
+     * @param {FolioSvgContentItem} contentItem The given calculated folio data.
+     * @returns {void} Appends tspan elements to the label selection.
+     */
+    private _appendItemLinkLabelTspanElements(labelSelection: D3Selection, contentItem: FolioSvgContentItem): void {
+        contentItem.itemLabelArray.forEach((label, index) => {
+            if (label !== '') {
+                const attributes: any = {};
+                if (index > 0) {
+                    attributes.x = contentItem.centeredXPosition;
+                    attributes.y = contentItem.centeredYPosition;
+                    attributes.dy = '1.2em';
+                    attributes['text-anchor'] = 'middle';
+                }
+
+                this._appendSvgElementWithAttrs(labelSelection, 'tspan', attributes).text(label);
+            }
+        });
+    }
+
+    /**
+     * Private method: _appendItemLinkPolygon.
+     *
+     * It appends a polygon shape to the item link.
+     *
+     * @param {D3Selection} svgItemLink The given SVG item link selection.
+     * @param {string} polygonCornerPoints The given polygon corner points.
+     * @returns {D3Selection} Appends a polygon shape to the item link selection.
+     */
+    private _appendItemLinkPolygon(svgItemLink: D3Selection, polygonCornerPoints: string): D3Selection {
+        const attributes = {
+            class: 'item-shape',
+            points: polygonCornerPoints,
+            fill: this._itemFillColor,
+        };
+        attributes['stroke-width'] = this._itemStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgItemLink, 'polygon', attributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupRectangle.
+     *
+     * It appends a rectangle to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioCalculationPoint} upperLeftCorner The given upper left corner point.
+     * @param {FolioCalculationPoint} lowerRightCorner The given lower right corner point.
+     * @param {string} bgColor The given background color.
+     * @returns {D3Selection} Appends a rectangle to the sheet group selection.
+     */
+    private _appendSheetGroupRectangle(
+        svgSheetGroup: D3Selection,
+        upperLeftCorner: FolioCalculationPoint,
+        lowerRightCorner: FolioCalculationPoint
+    ): D3Selection {
+        const { x: x1, y: y1 } = upperLeftCorner;
+        const { x: x2, y: y2 } = lowerRightCorner;
+        const attributes = {
+            x: x1,
+            y: y1,
+            width: x2 - x1,
+            height: y2 - y1,
+            fill: this._sheetFillColor,
+            stroke: this._bgColor,
+        };
+        attributes['stroke-width'] = this._sheetStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgSheetGroup, 'rect', attributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTitle.
+     *
+     * It appends a title to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {string} folioId The given folio id.
+     * @returns {void} Appends a title to the sheet group selection.
+     */
+    private _appendSheetGroupTitle(svgSheetGroup: D3Selection, folioId: string): void {
+        this._appendSvgElementWithAttrs(svgSheetGroup, 'title', {}).text(`Bl. ${folioId}`);
+    }
+
+    /**
+     * Private method: _appendSystemsGroupLabel.
+     *
+     * It appends a label to the systems group.
+     *
+     * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @param {number} systemIndex The given system index.
+     * @param {string} bgColor The given background color.
+     * @returns {void} Appends a label to the systems group selection.
+     */
+    private _appendSystemsGroupLabel(
+        svgSystemsGroup: D3Selection,
+        folioSvgData: FolioSvgData,
+        systemIndex: number
+    ): void {
+        const { x, y } = folioSvgData.systems.lineLabelArray[systemIndex];
+        const systemLabel = systemIndex + 1;
+        const attributes = {
+            class: 'system-label',
+            x: x,
+            y: y,
+            fill: this._bgColor,
+        };
+        attributes['dominant-baseline'] = 'hanging';
+
+        this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(systemLabel);
+    }
+
+    /**
+     * Private method: _appendSystemsGroupLines.
+     *
+     * It appends system lines to the systems group.
+     *
+     * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
+     * @param {FolioCalculationLine[]} lineArray The given line array.
+     * @param {string} bgColor The given background color.
+     * @returns {void} Appends system lines to the systems group selection.
+     */
+    private _appendSystemsGroupLines(svgSystemsGroup: D3Selection, lineArray: FolioCalculationLine[]): void {
+        lineArray.forEach(line => {
+            const { x: x1, y: y1 } = line.startPoint;
+            const { x: x2, y: y2 } = line.endPoint;
+            const attributes = {
+                class: 'system-line',
+                x1: x1,
+                y1: y1,
+                x2: x2,
+                y2: y2,
+                stroke: this._bgColor,
+            };
+            attributes['stroke-width'] = this._systemsLineStrokeWidth;
+
+            this._appendSvgElementWithAttrs(svgSystemsGroup, 'line', attributes);
+        });
+    }
+
+    /**
+     * Private method: _appendSvgElementWithAttrs.
+     *
+     * It appends an SVG element with attributes to a parent element.
+     *
+     * @param {D3Selection} parent The given parent selection.
+     * @param {string} type The given type of SVG element.
+     * @param {Record<string, any>} attributes The given attributes.
+     * @returns {D3Selection} The appended SVG element with attributes.
+     */
+    private _appendSvgElementWithAttrs = (
+        parent: D3Selection,
+        type: string,
+        attributes: Record<string, any>
+    ): D3Selection => {
+        const selection = parent.append(type);
+        Object.keys(attributes).forEach(key => {
+            selection.attr(key, attributes[key]);
+        });
+        return selection;
+    };
 }

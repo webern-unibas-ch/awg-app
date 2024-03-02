@@ -177,6 +177,16 @@ export class FolioCalculationContentItem {
     height: number;
 
     /**
+     * The centered X position of the content item (number).
+     */
+    centeredXPosition: number;
+
+    /**
+     * The centered y position of the content item (number).
+     */
+    centeredYPosition: number;
+
+    /**
      * The system range of the content item (number).
      */
     systemRange: number;
@@ -222,6 +232,11 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
+     * The corner points of the content item polygon (string).
+     */
+    polygonCornerPoints: string;
+
+    /**
      * The label for the id of the edition complex of the content item (string).
      */
     complexId: string;
@@ -230,6 +245,16 @@ export class FolioCalculationContentItem {
      * The label for the id of the content item (string).
      */
     sheetId: string;
+
+    /**
+     * The array of label strings for the content item (string[]).
+     */
+    itemLabelArray: string[];
+
+    /**
+     * The label for the content item (string).
+     */
+    itemLabel: string;
 
     /**
      * The label for the sigle of the content item (string).
@@ -549,7 +574,7 @@ export class FolioCalculation {
      * @param {FolioContent[]} contents The given folio contents.
      * @returns {FolioCalculationContentItem[]} The array of the calculated content items.
      */
-    private _calculateContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
+    private _calculateContentArray(contents: FolioContent[] = []): FolioCalculationContentItem[] {
         // Init
         const calculatedContentItems: FolioCalculationContentItem[] = [];
 
@@ -580,7 +605,7 @@ export class FolioCalculation {
                     return;
                 }
                 // Iterate over sections
-                content.sections.forEach((section: FolioSection, sectionIndex: number) => {
+                content.sections.forEach((section: FolioSection, _sectionIndex: number) => {
                     // Set section cache
                     this._setContentItemSectionCache(calculatedContentItem, section);
 
@@ -591,14 +616,54 @@ export class FolioCalculation {
                     calculatedContentItem.current.cornerPoints = new FolioCalculationContentItemCornerPoints(
                         calculatedContentItem
                     );
+                    calculatedContentItem.polygonCornerPoints = [
+                        calculatedContentItem.current.cornerPoints.upperLeftCorner.x,
+                        calculatedContentItem.current.cornerPoints.upperLeftCorner.y,
+                        calculatedContentItem.current.cornerPoints.upperRightCorner.x,
+                        calculatedContentItem.current.cornerPoints.upperRightCorner.y,
+                        calculatedContentItem.current.cornerPoints.lowerRightCorner.x,
+                        calculatedContentItem.current.cornerPoints.lowerRightCorner.y,
+                        calculatedContentItem.current.cornerPoints.lowerLeftCorner.x,
+                        calculatedContentItem.current.cornerPoints.lowerLeftCorner.y,
+                        calculatedContentItem.current.cornerPoints.upperLeftCorner.x,
+                        calculatedContentItem.current.cornerPoints.upperLeftCorner.y,
+                    ].join(' ');
 
                     calculatedContentItem.complexId = content.complexId;
                     calculatedContentItem.sheetId = content.sheetId;
-                    calculatedContentItem.sigle = content.sigle;
-                    calculatedContentItem.sigleAddendum = content.sigleAddendum;
                     calculatedContentItem.selectable = content.selectable ?? true;
                     calculatedContentItem.reversed = content.reversed ?? false;
                     calculatedContentItem.linkTo = content.linkTo || '';
+
+                    calculatedContentItem.sigle = content.sigle;
+                    calculatedContentItem.sigleAddendum = content.sigleAddendum;
+                    calculatedContentItem.itemLabelArray = [
+                        calculatedContentItem.sigle,
+                        calculatedContentItem.sigleAddendum ? ` ${calculatedContentItem.sigleAddendum}` : '',
+                    ];
+                    calculatedContentItem.itemLabel = calculatedContentItem.itemLabelArray.join(' ');
+                    const itemLabelOffset =
+                        calculatedContentItem.itemLabelArray.length > 1 &&
+                        calculatedContentItem.itemLabelArray[1] !== ''
+                            ? 5
+                            : 0;
+
+                    const halfWidth = calculatedContentItem.width / 2;
+                    const halfHeight = calculatedContentItem.height / 2;
+
+                    calculatedContentItem.centeredXPosition =
+                        calculatedContentItem.current.cornerPoints.upperLeftCorner.x + halfWidth;
+                    calculatedContentItem.centeredYPosition =
+                        calculatedContentItem.current.cornerPoints.upperLeftCorner.y + halfHeight - itemLabelOffset;
+
+                    if (calculatedContentItem.reversed) {
+                        calculatedContentItem.centeredXPosition =
+                            calculatedContentItem.current.cornerPoints.lowerRightCorner.x - halfWidth;
+                        calculatedContentItem.centeredYPosition =
+                            calculatedContentItem.current.cornerPoints.lowerRightCorner.y -
+                            halfHeight +
+                            itemLabelOffset;
+                    }
 
                     calculatedContentItems.push(calculatedContentItem);
                 });

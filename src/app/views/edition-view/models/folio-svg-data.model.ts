@@ -1,7 +1,6 @@
 import {
     FolioCalculation,
     FolioCalculationContentItem,
-    FolioCalculationContentItemCornerPoints,
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioCalculationSheet,
@@ -98,7 +97,7 @@ class FolioSvgSystems {
  *
  * Not exposed, only called internally from {@link FolioSvgData}.
  */
-class FolioSvgContentItem {
+export class FolioSvgContentItem {
     /**
      * The id for the label of a content item edition complex (string).
      */
@@ -135,30 +134,29 @@ class FolioSvgContentItem {
     linkTo: string;
 
     /**
-     * The upper left corner of a content item (FolioCalculationPoint).
-     *
-     * It contains the calculated upper left corner point (in px)
-     * to draw the svg of a content item of a folio.
+     * The array of labels of a content item (string[]).
      */
-    upperLeftCorner: FolioCalculationPoint;
+    itemLabelArray: string[];
 
     /**
-     * The width of a content item (number).
+     * The label of a content item (string).
      */
-    width: number;
+    itemLabel: string;
 
     /**
-     * The height of a content item (number).
+     * The corner points of a content item polygon (string).
      */
-    height: number;
+    polygonCornerPoints: string;
 
     /**
-     * The corner points of a content item (FolioCalculationContentItemCornerPoints).
-     *
-     * It contains all corner points of a content item (in px)
-     * to draw the svg of the content item of a folio.
+     * The centered X position of a content item (number).
      */
-    cornerPoints: FolioCalculationContentItemCornerPoints;
+    centeredXPosition: number;
+
+    /**
+     * The centered y position of a content item (number).
+     */
+    centeredYPosition: number;
 
     /**
      * Constructor of the FolioSvgContentItem class.
@@ -170,16 +168,15 @@ class FolioSvgContentItem {
     constructor(calculatedContentItem: FolioCalculationContentItem) {
         this.complexId = calculatedContentItem.complexId;
         this.sheetId = calculatedContentItem.sheetId;
-        this.sigle = calculatedContentItem.sigle;
-        this.sigleAddendum = calculatedContentItem.sigleAddendum;
         this.selectable = calculatedContentItem.selectable;
         this.reversed = calculatedContentItem.reversed;
         this.linkTo = calculatedContentItem.linkTo;
 
-        this.upperLeftCorner = calculatedContentItem.current.cornerPoints.upperLeftCorner;
-        this.width = calculatedContentItem.width;
-        this.height = calculatedContentItem.height;
-        this.cornerPoints = calculatedContentItem.current.cornerPoints;
+        this.polygonCornerPoints = calculatedContentItem.polygonCornerPoints;
+        this.itemLabelArray = calculatedContentItem.itemLabelArray;
+        this.itemLabel = calculatedContentItem.itemLabel;
+        this.centeredXPosition = calculatedContentItem.centeredXPosition;
+        this.centeredYPosition = calculatedContentItem.centeredYPosition;
     }
 }
 
