@@ -20,7 +20,7 @@ import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model'
 
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
-import { FolioSvgContentItem, FolioSvgData } from './folio-svg-data.model';
+import { FolioSvgContentSegment, FolioSvgData } from './folio-svg-data.model';
 import { Folio, FolioContent, FolioConvolute, FolioConvoluteList, FolioFormat, FolioSection } from './folio.model';
 
 import { Graph, GraphList, GraphRDFData, GraphSparqlQuery } from './graph.model';
@@ -68,7 +68,7 @@ export {
     FolioFormat,
     FolioSection,
     FolioSettings,
-    FolioSvgContentItem,
+    FolioSvgContentSegment,
     FolioSvgData,
     Graph,
     GraphList,

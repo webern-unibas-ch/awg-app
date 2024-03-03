@@ -14,7 +14,7 @@ import {
     FolioCalculationPoint,
     FolioConvolute,
     FolioSettings,
-    FolioSvgContentItem,
+    FolioSvgContentSegment,
     FolioSvgData,
     ViewBox,
 } from '@awg-app/views/edition-view/models';
@@ -27,16 +27,16 @@ describe('FolioService', () => {
 
     let addFolioSheetToSvgCanvasSpy: Spy;
     let addFolioSystemsToSvgCanvasSpy: Spy;
-    let addFolioItemsToSvgCanvasSpy: Spy;
+    let addFolioContentSegmentsToSvgCanvasSpy: Spy;
     let appendCanvasSheetGroupSpy: Spy;
-    let appendItemGroupSpy: Spy;
-    let appendItemGroupElementSpy: Spy;
-    let appendItemGroupTitleSpy: Spy;
-    let appendItemLinkSpy: Spy;
-    let appendItemLinkLabelSpy: Spy;
-    let appendItemLinkLabelTextElementSpy: Spy;
-    let appendItemLinkLabelTspanElementsSpy: Spy;
-    let appendItemLinkPolygonSpy: Spy;
+    let appendContentSegmentGroupSpy: Spy;
+    let appendContentSegmentGroupElementSpy: Spy;
+    let appendContentSegmentGroupTitleSpy: Spy;
+    let appendContentSegmentLinkSpy: Spy;
+    let appendContentSegmentLinkLabelSpy: Spy;
+    let appendContentSegmentLinkLabelTextElementSpy: Spy;
+    let appendContentSegmentLinkLabelTspanElementsSpy: Spy;
+    let appendContentSegmentLinkPolygonSpy: Spy;
     let appendSheetGroupTitleSpy: Spy;
     let appendSheetGroupRectangleSpy: Spy;
     let appendSystemsGroupLabelSpy: Spy;
@@ -51,15 +51,15 @@ describe('FolioService', () => {
     let expectedLowerRightCorner: FolioCalculationPoint;
 
     let expectedBgColor: string;
+    let expectedContentSegmentFillColor: string;
     let expectedDisabledColor: string;
     let expectedFgColor: string;
-    let expectedItemFillColor: string;
     let expectedSheetFillColor: string;
 
-    let expectedItemFontStyle: string;
-    let expectedItemOffsetCorrection: number;
-    let expectedItemReversedRotationAngle: number;
-    let expectedItemStrokeWidth: number;
+    let expectedContentSegmentFontStyle: string;
+    let expectedContentSegmentOffsetCorrection: number;
+    let expectedContentSegmentReversedRotationAngle: number;
+    let expectedContentSegmentStrokeWidth: number;
     let expectedSheetStrokeWidth: number;
     let expectedSystemsLineStrokeWidth: number;
 
@@ -88,14 +88,14 @@ describe('FolioService', () => {
         expectedBgColor = '#a3a3a3';
         expectedDisabledColor = 'grey';
         expectedFgColor = 'orange';
-        expectedItemFillColor = '#eeeeee';
+        expectedContentSegmentFillColor = '#eeeeee';
         expectedSheetFillColor = 'white';
 
-        expectedItemOffsetCorrection = 4;
-        expectedItemFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
-        expectedItemReversedRotationAngle = 180;
+        expectedContentSegmentOffsetCorrection = 4;
+        expectedContentSegmentFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
+        expectedContentSegmentReversedRotationAngle = 180;
 
-        expectedItemStrokeWidth = 2;
+        expectedContentSegmentStrokeWidth = 2;
         expectedSheetStrokeWidth = 1;
         expectedSystemsLineStrokeWidth = 0.7;
 
@@ -103,7 +103,11 @@ describe('FolioService', () => {
         expectedLowerRightCorner = new FolioCalculationPoint(30, 40);
 
         expectedFolioSvgData = new FolioSvgData(
-            new FolioCalculation(expectedFolioSettings, expectedConvolutes[0].folios[0], expectedItemOffsetCorrection)
+            new FolioCalculation(
+                expectedFolioSettings,
+                expectedConvolutes[0].folios[0],
+                expectedContentSegmentOffsetCorrection
+            )
         );
 
         // Spies on service functions
@@ -111,22 +115,37 @@ describe('FolioService', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         addFolioSheetToSvgCanvasSpy = spyOn(folioService as any, '_addFolioSheetToSvgCanvas').and.callThrough();
         addFolioSystemsToSvgCanvasSpy = spyOn(folioService as any, '_addFolioSystemsToSvgCanvas').and.callThrough();
-        addFolioItemsToSvgCanvasSpy = spyOn(folioService as any, '_addFolioItemsToSvgCanvas').and.callThrough();
+        addFolioContentSegmentsToSvgCanvasSpy = spyOn(
+            folioService as any,
+            '_addFolioContentSegmentsToSvgCanvas'
+        ).and.callThrough();
         appendCanvasSheetGroupSpy = spyOn(folioService as any, '_appendCanvasSheetGroup').and.callThrough();
-        appendItemGroupSpy = spyOn(folioService as any, '_appendItemGroup').and.callThrough();
-        appendItemGroupElementSpy = spyOn(folioService as any, '_appendItemGroupElement').and.callThrough();
-        appendItemGroupTitleSpy = spyOn(folioService as any, '_appendItemGroupTitle').and.callThrough();
-        appendItemLinkSpy = spyOn(folioService as any, '_appendItemLink').and.callThrough();
-        appendItemLinkLabelSpy = spyOn(folioService as any, '_appendItemLinkLabel').and.callThrough();
-        appendItemLinkLabelTextElementSpy = spyOn(
+        appendContentSegmentGroupSpy = spyOn(folioService as any, '_appendContentSegmentGroup').and.callThrough();
+        appendContentSegmentGroupElementSpy = spyOn(
             folioService as any,
-            '_appendItemLinkLabelTextElement'
+            '_appendContentSegmentGroupElement'
         ).and.callThrough();
-        appendItemLinkLabelTspanElementsSpy = spyOn(
+        appendContentSegmentGroupTitleSpy = spyOn(
             folioService as any,
-            '_appendItemLinkLabelTspanElements'
+            '_appendContentSegmentGroupTitle'
         ).and.callThrough();
-        appendItemLinkPolygonSpy = spyOn(folioService as any, '_appendItemLinkPolygon').and.callThrough();
+        appendContentSegmentLinkSpy = spyOn(folioService as any, '_appendContentSegmentLink').and.callThrough();
+        appendContentSegmentLinkLabelSpy = spyOn(
+            folioService as any,
+            '_appendContentSegmentLinkLabel'
+        ).and.callThrough();
+        appendContentSegmentLinkLabelTextElementSpy = spyOn(
+            folioService as any,
+            '_appendContentSegmentLinkLabelTextElement'
+        ).and.callThrough();
+        appendContentSegmentLinkLabelTspanElementsSpy = spyOn(
+            folioService as any,
+            '_appendContentSegmentLinkLabelTspanElements'
+        ).and.callThrough();
+        appendContentSegmentLinkPolygonSpy = spyOn(
+            folioService as any,
+            '_appendContentSegmentLinkPolygon'
+        ).and.callThrough();
         appendSheetGroupTitleSpy = spyOn(folioService as any, '_appendSheetGroupTitle').and.callThrough();
         appendSheetGroupRectangleSpy = spyOn(folioService as any, '_appendSheetGroupRectangle').and.callThrough();
         appendSystemsGroupLabelSpy = spyOn(folioService as any, '_appendSystemsGroupLabel').and.callThrough();
@@ -156,7 +175,7 @@ describe('FolioService', () => {
         });
 
         it('... should have `_itemFillColor`', () => {
-            expectToBe((folioService as any)._itemFillColor, expectedItemFillColor);
+            expectToBe((folioService as any)._itemFillColor, expectedContentSegmentFillColor);
         });
 
         it('... should have `_sheetFillColor`', () => {
@@ -164,19 +183,19 @@ describe('FolioService', () => {
         });
 
         it('... should have `_itemFontStyle`', () => {
-            expectToBe((folioService as any)._itemFontStyle, expectedItemFontStyle);
+            expectToBe((folioService as any)._itemFontStyle, expectedContentSegmentFontStyle);
         });
 
         it('... should have `_itemOffsetCorrection`', () => {
-            expectToBe((folioService as any)._itemOffsetCorrection, expectedItemOffsetCorrection);
+            expectToBe((folioService as any)._itemOffsetCorrection, expectedContentSegmentOffsetCorrection);
         });
 
         it('... should have `_itemReversedRotationAngle`', () => {
-            expectToBe((folioService as any)._itemReversedRotationAngle, expectedItemReversedRotationAngle);
+            expectToBe((folioService as any)._itemReversedRotationAngle, expectedContentSegmentReversedRotationAngle);
         });
 
         it('... should have `_itemStrokeWidth`', () => {
-            expectToBe((folioService as any)._itemStrokeWidth, expectedItemStrokeWidth);
+            expectToBe((folioService as any)._itemStrokeWidth, expectedContentSegmentStrokeWidth);
         });
 
         it('... should have `_sheetStrokeWidth`', () => {
@@ -342,8 +361,8 @@ describe('FolioService', () => {
                 expectSpyCall(addFolioSystemsToSvgCanvasSpy, 1, [svgSheetGroup, expectedFolioSvgData]);
             });
 
-            it('... should trigger `_addFolioItemsToSvgCanvas` method with correct parameters', () => {
-                expectSpyCall(addFolioItemsToSvgCanvasSpy, 1, [svgSheetGroup, expectedFolioSvgData]);
+            it('... should trigger `_addFolioContentSegmentsToSvgCanvas` method with correct parameters', () => {
+                expectSpyCall(addFolioContentSegmentsToSvgCanvasSpy, 1, [svgSheetGroup, expectedFolioSvgData]);
             });
         });
     });
@@ -531,9 +550,9 @@ describe('FolioService', () => {
         });
     });
 
-    describe('#_addFolioItemsToSvgCanvas', () => {
-        it('... should have a method `_addFolioItemsToSvgCanvas`', () => {
-            expect((folioService as any)._addFolioItemsToSvgCanvas).toBeDefined();
+    describe('#_addFolioContentSegmentsToSvgCanvas', () => {
+        it('... should have a method `_addFolioContentSegmentsToSvgCanvas`', () => {
+            expect((folioService as any)._addFolioContentSegmentsToSvgCanvas).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -542,7 +561,7 @@ describe('FolioService', () => {
             beforeEach(() => {
                 svgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._addFolioItemsToSvgCanvas(svgSheetGroup, expectedFolioSvgData);
+                (folioService as any)._addFolioContentSegmentsToSvgCanvas(svgSheetGroup, expectedFolioSvgData);
             });
 
             afterEach(() => {
@@ -550,40 +569,43 @@ describe('FolioService', () => {
             });
 
             it('... should not do anything if there are no content items', () => {
-                const expectedCount = expectedFolioSvgData.contentItemsArray.length;
+                const expectedCount = expectedFolioSvgData.contentSegments.length;
 
                 const folioSvgDataWithEmptyContent: FolioSvgData = {
                     ...expectedFolioSvgData,
-                    contentItemsArray: [null],
+                    contentSegments: [null],
                 };
                 const emptySvgSheetGroup = D3_SELECTION.create('g');
 
-                (folioService as any)._addFolioItemsToSvgCanvas(emptySvgSheetGroup, folioSvgDataWithEmptyContent);
+                (folioService as any)._addFolioContentSegmentsToSvgCanvas(
+                    emptySvgSheetGroup,
+                    folioSvgDataWithEmptyContent
+                );
 
                 expectToBe(emptySvgSheetGroup.selectAll('g.item-group').size(), 0);
-                expectSpyCall(appendItemGroupSpy, expectedCount);
-                expectSpyCall(appendItemLinkSpy, expectedCount);
-                expectSpyCall(appendItemLinkLabelSpy, expectedCount);
-                expectSpyCall(appendItemLinkPolygonSpy, expectedCount);
+                expectSpyCall(appendContentSegmentGroupSpy, expectedCount);
+                expectSpyCall(appendContentSegmentLinkSpy, expectedCount);
+                expectSpyCall(appendContentSegmentLinkLabelSpy, expectedCount);
+                expectSpyCall(appendContentSegmentLinkPolygonSpy, expectedCount);
             });
 
-            it('... should trigger `_appendItemGroup` for each item', () => {
-                expectSpyCall(appendItemGroupSpy, expectedFolioSvgData.contentItemsArray.length);
+            it('... should trigger `_appendContentSegmentGroup` for each item', () => {
+                expectSpyCall(appendContentSegmentGroupSpy, expectedFolioSvgData.contentSegments.length);
             });
 
             it('... should append one item group to the SVG sheet group for each item', () => {
                 const itemGroups = svgSheetGroup.selectAll('g.item-group');
-                expectToBe(itemGroups.size(), expectedFolioSvgData.contentItemsArray.length);
+                expectToBe(itemGroups.size(), expectedFolioSvgData.contentSegments.length);
             });
 
-            it('... should trigger `_appendItemLink` for each item group', () => {
-                expectSpyCall(appendItemLinkSpy, expectedFolioSvgData.contentItemsArray.length);
+            it('... should trigger `_appendContentSegmentLink` for each item group', () => {
+                expectSpyCall(appendContentSegmentLinkSpy, expectedFolioSvgData.contentSegments.length);
 
                 const itemGroups = svgSheetGroup.selectAll('g.item-group').nodes();
 
-                expectedFolioSvgData.contentItemsArray.forEach((_contentItem, i) => {
+                expectedFolioSvgData.contentSegments.forEach((_contentContentSegment, i) => {
                     const itemGroup = D3_SELECTION.select(itemGroups[i]);
-                    const callArgs = appendItemLinkSpy.calls.argsFor(i);
+                    const callArgs = appendContentSegmentLinkSpy.calls.argsFor(i);
 
                     expectToEqual(callArgs, [itemGroup]);
                 });
@@ -601,17 +623,17 @@ describe('FolioService', () => {
                 });
             });
 
-            it('... should trigger `_appendItemLinkPolygon` for each item link', () => {
-                expectSpyCall(appendItemLinkPolygonSpy, expectedFolioSvgData.contentItemsArray.length);
+            it('... should trigger `_appendContentSegmentLinkPolygon` for each item link', () => {
+                expectSpyCall(appendContentSegmentLinkPolygonSpy, expectedFolioSvgData.contentSegments.length);
 
                 const itemGroups = svgSheetGroup.selectAll('g.item-group').nodes();
 
-                expectedFolioSvgData.contentItemsArray.forEach((_contentItem, i) => {
+                expectedFolioSvgData.contentSegments.forEach((_contentSegment, i) => {
                     const itemGroup = D3_SELECTION.select(itemGroups[i]);
                     const itemLink = itemGroup.select('a');
-                    const callArgs = appendItemLinkPolygonSpy.calls.argsFor(i);
+                    const callArgs = appendContentSegmentLinkPolygonSpy.calls.argsFor(i);
 
-                    expectToEqual(callArgs, [itemLink, expectedFolioSvgData.contentItemsArray[i].polygonCornerPoints]);
+                    expectToEqual(callArgs, [itemLink, expectedFolioSvgData.contentSegments[i].polygonCornerPoints]);
                 });
             });
 
@@ -628,17 +650,17 @@ describe('FolioService', () => {
                 });
             });
 
-            it('... should trigger `_appendItemLinkLabel` for each item link', () => {
-                expectSpyCall(appendItemLinkLabelSpy, expectedFolioSvgData.contentItemsArray.length);
+            it('... should trigger `_appendContentSegmentLinkLabel` for each item link', () => {
+                expectSpyCall(appendContentSegmentLinkLabelSpy, expectedFolioSvgData.contentSegments.length);
 
                 const itemGroups = svgSheetGroup.selectAll('g.item-group').nodes();
 
-                expectedFolioSvgData.contentItemsArray.forEach((_contentItem, i) => {
+                expectedFolioSvgData.contentSegments.forEach((_contentSegment, i) => {
                     const itemGroup = D3_SELECTION.select(itemGroups[i]);
                     const itemLink = itemGroup.select('a');
-                    const callArgs = appendItemLinkLabelSpy.calls.argsFor(i);
+                    const callArgs = appendContentSegmentLinkLabelSpy.calls.argsFor(i);
 
-                    expectToEqual(callArgs, [itemLink, expectedFolioSvgData.contentItemsArray[i]]);
+                    expectToEqual(callArgs, [itemLink, expectedFolioSvgData.contentSegments[i]]);
                 });
             });
 
@@ -654,7 +676,7 @@ describe('FolioService', () => {
                     expectToBe(itemLink.selectAll('text').size(), 1);
 
                     const tspans = textElement.selectAll('tspan');
-                    const expectedLabels = expectedFolioSvgData.contentItemsArray[i].itemLabelArray;
+                    const expectedLabels = expectedFolioSvgData.contentSegments[i].segmentLabelArray;
 
                     expect(tspans).toBeDefined();
                     expectToBe(tspans.size(), expectedLabels.length);
@@ -724,79 +746,85 @@ describe('FolioService', () => {
         });
     });
 
-    describe('#_appendItemGroup', () => {
-        it('... should have a method `_appendItemGroup`', () => {
-            expect((folioService as any)._appendItemGroup).toBeDefined();
+    describe('#_appendContentSegmentGroup', () => {
+        it('... should have a method `_appendContentSegmentGroup`', () => {
+            expect((folioService as any)._appendContentSegmentGroup).toBeDefined();
         });
 
         describe('... when called', () => {
             let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 svgSheetGroup = D3_SELECTION.create('g');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendItemGroup(svgSheetGroup, expectedContentItem);
+                (folioService as any)._appendContentSegmentGroup(svgSheetGroup, expectedContentSegment);
             });
 
             afterEach(() => {
                 svgSheetGroup.remove();
             });
 
-            it('... should trigger `_appendItemGroupElement` with correct arguments', () => {
-                expectSpyCall(appendItemGroupElementSpy, 1, [svgSheetGroup, expectedContentItem]);
+            it('... should trigger `_appendContentSegmentGroupElement` with correct arguments', () => {
+                expectSpyCall(appendContentSegmentGroupElementSpy, 1, [svgSheetGroup, expectedContentSegment]);
             });
 
-            it('... should trigger `_appendItemGroupTitle` with correct arguments', () => {
+            it('... should trigger `_appendContentSegmentGroupTitle` with correct arguments', () => {
                 const itemGroup = svgSheetGroup.select('g.item-group');
 
-                expectSpyCall(appendItemGroupTitleSpy, 1, [itemGroup, expectedContentItem]);
+                expectSpyCall(appendContentSegmentGroupTitleSpy, 1, [itemGroup, expectedContentSegment]);
             });
 
             it('... should trigger the referenced `selectSvgSheet` method when the item is selectable and clicked', () => {
                 const itemGroup = svgSheetGroup.select('g.item-group');
-                expectedContentItem.selectable = true;
+                expectedContentSegment.selectable = true;
 
                 folioService.ref = refMock;
 
                 // Dispatch a click event manually
                 (itemGroup.node() as Element).dispatchEvent(new Event('click'));
 
-                expectSpyCall(refMock.selectSvgSheet, 1, [expectedContentItem.complexId, expectedContentItem.sheetId]);
+                expectSpyCall(refMock.selectSvgSheet, 1, [
+                    expectedContentSegment.complexId,
+                    expectedContentSegment.sheetId,
+                ]);
             });
 
             it('... should trigger the referenced `openModal` method when the item is not selectable and clicked', () => {
                 const itemGroup = svgSheetGroup.select('g.item-group');
-                expectedContentItem.selectable = false;
+                expectedContentSegment.selectable = false;
 
                 folioService.ref = refMock;
 
                 // Dispatch a click event manually
                 (itemGroup.node() as Element).dispatchEvent(new Event('click'));
 
-                expectSpyCall(refMock.openModal, 1, expectedContentItem.linkTo);
+                expectSpyCall(refMock.openModal, 1, expectedContentSegment.linkTo);
             });
         });
     });
 
-    describe('#_appendItemGroupElement', () => {
-        it('... should have a method `_appendItemGroupElement`', () => {
-            expect((folioService as any)._appendItemGroupElement).toBeDefined();
+    describe('#_appendContentSegmentGroupElement', () => {
+        it('... should have a method `_appendContentSegmentGroupElement`', () => {
+            expect((folioService as any)._appendContentSegmentGroupElement).toBeDefined();
         });
 
         describe('... when called', () => {
             let svgSheetGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
             let itemGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 svgSheetGroup = D3_SELECTION.create('g');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                itemGroup = (folioService as any)._appendItemGroupElement(svgSheetGroup, expectedContentItem);
+                itemGroup = (folioService as any)._appendContentSegmentGroupElement(
+                    svgSheetGroup,
+                    expectedContentSegment
+                );
             });
 
             afterEach(() => {
@@ -808,8 +836,8 @@ describe('FolioService', () => {
                     svgSheetGroup,
                     'g',
                     {
-                        itemGroupId: expectedContentItem.itemLabel,
-                        itemId: expectedContentItem.sheetId,
+                        itemGroupId: expectedContentSegment.segmentLabel,
+                        itemId: expectedContentSegment.sheetId,
                         class: 'item-group',
                         stroke: expectedFgColor,
                         fill: expectedFgColor,
@@ -823,11 +851,11 @@ describe('FolioService', () => {
             });
 
             it('... should set the `itemGroupId` attribute of the group element', () => {
-                expectToBe(itemGroup.attr('itemGroupId'), expectedContentItem.itemLabel);
+                expectToBe(itemGroup.attr('itemGroupId'), expectedContentSegment.segmentLabel);
             });
 
             it('... should set the `itemId` attribute of the group element', () => {
-                expectToBe(itemGroup.attr('itemId'), expectedContentItem.sheetId);
+                expectToBe(itemGroup.attr('itemId'), expectedContentSegment.sheetId);
             });
 
             it('... should set the `class` attribute of the group element', () => {
@@ -839,9 +867,12 @@ describe('FolioService', () => {
             });
 
             it('... should set the correct `stroke` attribute of the group element (if not selectable)', () => {
-                expectedContentItem.selectable = false;
+                expectedContentSegment.selectable = false;
 
-                itemGroup = (folioService as any)._appendItemGroupElement(svgSheetGroup, expectedContentItem);
+                itemGroup = (folioService as any)._appendContentSegmentGroupElement(
+                    svgSheetGroup,
+                    expectedContentSegment
+                );
 
                 expectToBe(itemGroup.attr('stroke'), expectedDisabledColor);
             });
@@ -851,9 +882,12 @@ describe('FolioService', () => {
             });
 
             it('... should set the correct `fill` attribute of the group element (if not selectable)', () => {
-                expectedContentItem.selectable = false;
+                expectedContentSegment.selectable = false;
 
-                itemGroup = (folioService as any)._appendItemGroupElement(svgSheetGroup, expectedContentItem);
+                itemGroup = (folioService as any)._appendContentSegmentGroupElement(
+                    svgSheetGroup,
+                    expectedContentSegment
+                );
 
                 expectToBe(itemGroup.attr('fill'), expectedDisabledColor);
             });
@@ -870,23 +904,23 @@ describe('FolioService', () => {
         });
     });
 
-    describe('#_appendItemGroupTitle', () => {
-        it('... should have a method `_appendItemGroupTitle`', () => {
-            expect((folioService as any)._appendItemGroupTitle).toBeDefined();
+    describe('#_appendContentSegmentGroupTitle', () => {
+        it('... should have a method `_appendContentSegmentGroupTitle`', () => {
+            expect((folioService as any)._appendContentSegmentGroupTitle).toBeDefined();
         });
 
         describe('... when called', () => {
             let itemGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const svg = D3_SELECTION.create('svg');
                 itemGroup = svg.append('g');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendItemGroupTitle(itemGroup, expectedContentItem);
+                (folioService as any)._appendContentSegmentGroupTitle(itemGroup, expectedContentSegment);
             });
 
             afterEach(() => {
@@ -907,7 +941,7 @@ describe('FolioService', () => {
             it('... should set the text content of the title element', () => {
                 const titleElement = itemGroup.select('title');
 
-                expectToBe(titleElement.text(), expectedContentItem.itemLabel);
+                expectToBe(titleElement.text(), expectedContentSegment.segmentLabel);
             });
 
             it('... should not have any attributes', () => {
@@ -922,9 +956,9 @@ describe('FolioService', () => {
         });
     });
 
-    describe('#_appendItemLink', () => {
-        it('... should have a method `_appendItemLink`', () => {
-            expect((folioService as any)._appendItemLink).toBeDefined();
+    describe('#_appendContentSegmentLink', () => {
+        it('... should have a method `_appendContentSegmentLink`', () => {
+            expect((folioService as any)._appendContentSegmentLink).toBeDefined();
         });
 
         describe('... when called', () => {
@@ -935,7 +969,7 @@ describe('FolioService', () => {
                 const svg = D3_SELECTION.create('svg');
                 itemGroup = svg.append('g');
 
-                (folioService as any)._appendItemLink(itemGroup);
+                (folioService as any)._appendContentSegmentLink(itemGroup);
             });
 
             afterEach(() => {
@@ -971,79 +1005,82 @@ describe('FolioService', () => {
         });
     });
 
-    describe('#_appendItemLinkLabel', () => {
-        it('... should have a method `_appendItemLinkLabel`', () => {
-            expect((folioService as any)._appendItemLinkLabel).toBeDefined();
+    describe('#_appendContentSegmentLinkLabel', () => {
+        it('... should have a method `_appendContentSegmentLinkLabel`', () => {
+            expect((folioService as any)._appendContentSegmentLinkLabel).toBeDefined();
         });
 
         describe('... when called', () => {
             let itemLink: D3_SELECTION.Selection<SVGAElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const itemGroup = D3_SELECTION.create('g');
                 itemLink = itemGroup.append('svg:a');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendItemLinkLabel(itemLink, expectedContentItem);
+                (folioService as any)._appendContentSegmentLinkLabel(itemLink, expectedContentSegment);
             });
 
             afterEach(() => {
                 D3_SELECTION.select('g').remove();
             });
 
-            it('... should trigger `_appendItemLinkLabelTextElement` with correct arguments', () => {
-                expectSpyCall(appendItemLinkLabelTextElementSpy, 1, [
+            it('... should trigger `_appendContentSegmentLinkLabelTextElement` with correct arguments', () => {
+                expectSpyCall(appendContentSegmentLinkLabelTextElementSpy, 1, [
                     itemLink,
-                    expectedContentItem.centeredXPosition,
-                    expectedContentItem.centeredYPosition,
+                    expectedContentSegment.centeredXPosition,
+                    expectedContentSegment.centeredYPosition,
                 ]);
             });
 
-            it('... should trigger `_appendItemLinkLabelTspanElements` with correct arguments', () => {
+            it('... should trigger `_appendContentSegmentLinkLabelTspanElements` with correct arguments', () => {
                 const itemLinkLabel = itemLink.select('text');
 
-                expectSpyCall(appendItemLinkLabelTspanElementsSpy, 1, [itemLinkLabel, expectedContentItem]);
+                expectSpyCall(appendContentSegmentLinkLabelTspanElementsSpy, 1, [
+                    itemLinkLabel,
+                    expectedContentSegment,
+                ]);
             });
 
             it('... should rotate the label if reversed is true', () => {
                 const itemLinkReversed = D3_SELECTION.create('svg:a');
-                expectedContentItem.reversed = true;
+                expectedContentSegment.reversed = true;
 
-                (folioService as any)._appendItemLinkLabel(itemLinkReversed, expectedContentItem);
+                (folioService as any)._appendContentSegmentLinkLabel(itemLinkReversed, expectedContentSegment);
 
                 const itemLinkLabel = itemLinkReversed.select('text');
 
                 expectToBe(
                     itemLinkLabel.attr('transform'),
-                    `rotate(${expectedItemReversedRotationAngle}, ${expectedContentItem.centeredXPosition}, ${expectedContentItem.centeredYPosition})`
+                    `rotate(${expectedContentSegmentReversedRotationAngle}, ${expectedContentSegment.centeredXPosition}, ${expectedContentSegment.centeredYPosition})`
                 );
             });
         });
     });
 
-    describe('#_appendItemLinkLabelTextElement', () => {
-        it('... should have a method `_appendItemLinkLabelTextElement`', () => {
-            expect((folioService as any)._appendItemLinkLabelTextElement).toBeDefined();
+    describe('#_appendContentSegmentLinkLabelTextElement', () => {
+        it('... should have a method `_appendContentSegmentLinkLabelTextElement`', () => {
+            expect((folioService as any)._appendContentSegmentLinkLabelTextElement).toBeDefined();
         });
 
         describe('... when called', () => {
             let itemLink: D3_SELECTION.Selection<SVGAElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const itemGroup = D3_SELECTION.create('g');
                 itemLink = itemGroup.append('svg:a');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendItemLinkLabelTextElement(
+                (folioService as any)._appendContentSegmentLinkLabelTextElement(
                     itemLink,
-                    expectedContentItem.centeredXPosition,
-                    expectedContentItem.centeredYPosition
+                    expectedContentSegment.centeredXPosition,
+                    expectedContentSegment.centeredYPosition
                 );
             });
 
@@ -1054,9 +1091,9 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
                     class: 'item-label',
-                    x: expectedContentItem.centeredXPosition,
-                    y: expectedContentItem.centeredYPosition,
-                    style: expectedItemFontStyle,
+                    x: expectedContentSegment.centeredXPosition,
+                    y: expectedContentSegment.centeredYPosition,
+                    style: expectedContentSegmentFontStyle,
                 };
                 attributes['dominant-baseline'] = 'middle';
                 attributes['text-anchor'] = 'middle';
@@ -1080,19 +1117,19 @@ describe('FolioService', () => {
             it('... should set the `x` attribute of the text element', () => {
                 const textElement = itemLink.select('text');
 
-                expectToBe(textElement.attr('x'), String(expectedContentItem.centeredXPosition));
+                expectToBe(textElement.attr('x'), String(expectedContentSegment.centeredXPosition));
             });
 
             it('... should set the `y` attribute of the text element', () => {
                 const textElement = itemLink.select('text');
 
-                expectToBe(textElement.attr('y'), String(expectedContentItem.centeredYPosition));
+                expectToBe(textElement.attr('y'), String(expectedContentSegment.centeredYPosition));
             });
 
             it('... should set the `style` attribute of the text element', () => {
                 const textElement = itemLink.select('text');
 
-                expectToBe(textElement.attr('style'), expectedItemFontStyle);
+                expectToBe(textElement.attr('style'), expectedContentSegmentFontStyle);
             });
 
             it('... should set the `dominant-baseline` attribute of the text element', () => {
@@ -1121,42 +1158,45 @@ describe('FolioService', () => {
         });
     });
 
-    describe('#_appendItemLinkLabelTspanElements', () => {
-        it('... should have a method `_appendItemLinkLabelTspanElements`', () => {
-            expect((folioService as any)._appendItemLinkLabelTspanElements).toBeDefined();
+    describe('#_appendContentSegmentLinkLabelTspanElements', () => {
+        it('... should have a method `_appendContentSegmentLinkLabelTspanElements`', () => {
+            expect((folioService as any)._appendContentSegmentLinkLabelTspanElements).toBeDefined();
         });
 
         describe('... when called', () => {
             let labelSelection: D3_SELECTION.Selection<SVGTextElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const itemGroup = D3_SELECTION.create('g');
                 labelSelection = itemGroup.append('text');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendItemLinkLabelTspanElements(labelSelection, expectedContentItem);
+                (folioService as any)._appendContentSegmentLinkLabelTspanElements(
+                    labelSelection,
+                    expectedContentSegment
+                );
             });
 
             afterEach(() => {
                 D3_SELECTION.select('g').remove();
             });
 
-            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments for each item in the itemLabelArray', () => {
-                const labelArrayLength = expectedContentItem.itemLabelArray.length;
+            it('... should trigger `_appendSvgElementWithAttrs` with correct arguments for each item in the labelArray', () => {
+                const labelArrayLength = expectedContentSegment.segmentLabelArray.length;
                 const commonArgs = [labelSelection, 'tspan'];
                 const additionalAttributes = {
-                    x: expectedContentItem.centeredXPosition,
-                    y: expectedContentItem.centeredYPosition,
+                    x: expectedContentSegment.centeredXPosition,
+                    y: expectedContentSegment.centeredYPosition,
                     dy: '1.2em',
                 };
                 additionalAttributes['text-anchor'] = 'middle';
 
                 expectToBe(appendSvgElementWithAttrsSpy.calls.count(), labelArrayLength);
 
-                expectedContentItem.itemLabelArray.forEach((_label, i) => {
+                expectedContentSegment.segmentLabelArray.forEach((_label, i) => {
                     const callArgs = appendSvgElementWithAttrsSpy.calls.argsFor(i);
                     const expectedArgs = [...commonArgs, i === 0 ? {} : additionalAttributes];
 
@@ -1165,8 +1205,8 @@ describe('FolioService', () => {
                 });
             });
 
-            it('... should append a tspan element for each item in the itemLabelArray', () => {
-                const labelArrayLength = expectedContentItem.itemLabelArray.length;
+            it('... should append a tspan element for each item in the labelArray', () => {
+                const labelArrayLength = expectedContentSegment.segmentLabelArray.length;
 
                 expectToBe(labelSelection.selectAll('tspan').size(), labelArrayLength);
             });
@@ -1174,7 +1214,7 @@ describe('FolioService', () => {
             it('... should append correct text content for each tspan element of an item', () => {
                 const tspanElements = labelSelection.selectAll('tspan').nodes();
 
-                expectedContentItem.itemLabelArray.forEach((label, i) => {
+                expectedContentSegment.segmentLabelArray.forEach((label, i) => {
                     const tspanElement = D3_SELECTION.select(tspanElements[i]);
 
                     expectToBe(tspanElement.text(), label);
@@ -1184,13 +1224,19 @@ describe('FolioService', () => {
             it('... should set the `x` attribute of the second tspan element', () => {
                 const tspanElement = labelSelection.selectAll('tspan').nodes()[1];
 
-                expectToBe(D3_SELECTION.select(tspanElement).attr('x'), String(expectedContentItem.centeredXPosition));
+                expectToBe(
+                    D3_SELECTION.select(tspanElement).attr('x'),
+                    String(expectedContentSegment.centeredXPosition)
+                );
             });
 
             it('... should set the `y` attribute of the second tspan element', () => {
                 const tspanElement = labelSelection.selectAll('tspan').nodes()[1];
 
-                expectToBe(D3_SELECTION.select(tspanElement).attr('y'), String(expectedContentItem.centeredYPosition));
+                expectToBe(
+                    D3_SELECTION.select(tspanElement).attr('y'),
+                    String(expectedContentSegment.centeredYPosition)
+                );
             });
 
             it('... should set the `dy` attribute of the second tspan element', () => {
@@ -1221,43 +1267,52 @@ describe('FolioService', () => {
                 expectToEqual(actualAttributes, expectedAttributes);
             });
 
-            it('... should not append a second tspan element if the itemLabelArray has only one item', () => {
+            it('... should not append a second tspan element if the labelArray has only one item', () => {
                 const itemLinkLabel = D3_SELECTION.create('text');
-                expectedContentItem.itemLabelArray = ['test'];
+                expectedContentSegment.segmentLabelArray = ['test'];
 
-                (folioService as any)._appendItemLinkLabelTspanElements(itemLinkLabel, expectedContentItem);
+                (folioService as any)._appendContentSegmentLinkLabelTspanElements(
+                    itemLinkLabel,
+                    expectedContentSegment
+                );
 
                 expectToBe(itemLinkLabel.selectAll('tspan').size(), 1);
             });
 
-            it('... should not append a tspan element if the itemLabelArray is empty', () => {
+            it('... should not append a tspan element if the labelArray is empty', () => {
                 const itemLinkLabel = D3_SELECTION.create('text');
-                expectedContentItem.itemLabelArray = [];
+                expectedContentSegment.segmentLabelArray = [];
 
-                (folioService as any)._appendItemLinkLabelTspanElements(itemLinkLabel, expectedContentItem);
+                (folioService as any)._appendContentSegmentLinkLabelTspanElements(
+                    itemLinkLabel,
+                    expectedContentSegment
+                );
 
                 expectToBe(itemLinkLabel.selectAll('tspan').size(), 0);
             });
         });
     });
 
-    describe('#_appendItemLinkPolygon', () => {
-        it('... should have a method `_appendItemLinkPolygon`', () => {
-            expect((folioService as any)._appendItemLinkPolygon).toBeDefined();
+    describe('#_appendContentSegmentLinkPolygon', () => {
+        it('... should have a method `_appendContentSegmentLinkPolygon`', () => {
+            expect((folioService as any)._appendContentSegmentLinkPolygon).toBeDefined();
         });
 
         describe('... when called', () => {
             let itemLink: D3_SELECTION.Selection<SVGAElement, unknown, null, undefined>;
-            let expectedContentItem: FolioSvgContentItem;
+            let expectedContentSegment: FolioSvgContentSegment;
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const itemGroup = D3_SELECTION.create('g');
                 itemLink = itemGroup.append('svg:a');
 
-                expectedContentItem = expectedFolioSvgData.contentItemsArray[0];
+                expectedContentSegment = expectedFolioSvgData.contentSegments[0];
 
-                (folioService as any)._appendItemLinkPolygon(itemLink, expectedContentItem.polygonCornerPoints);
+                (folioService as any)._appendContentSegmentLinkPolygon(
+                    itemLink,
+                    expectedContentSegment.polygonCornerPoints
+                );
             });
 
             afterEach(() => {
@@ -1267,10 +1322,10 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
                     class: 'item-shape',
-                    points: expectedContentItem.polygonCornerPoints,
-                    fill: expectedItemFillColor,
+                    points: expectedContentSegment.polygonCornerPoints,
+                    fill: expectedContentSegmentFillColor,
                 };
-                attributes['stroke-width'] = expectedItemStrokeWidth;
+                attributes['stroke-width'] = expectedContentSegmentStrokeWidth;
 
                 expectSpyCall(appendSvgElementWithAttrsSpy, 1, [itemLink, 'polygon', attributes]);
             });
@@ -1291,19 +1346,19 @@ describe('FolioService', () => {
             it('... should set the `points` attribute of the polygon element', () => {
                 const polygonElement = itemLink.select('polygon');
 
-                expectToBe(polygonElement.attr('points'), expectedContentItem.polygonCornerPoints);
+                expectToBe(polygonElement.attr('points'), expectedContentSegment.polygonCornerPoints);
             });
 
             it('... should set the `fill` attribute of the polygon element', () => {
                 const polygonElement = itemLink.select('polygon');
 
-                expectToBe(polygonElement.attr('fill'), expectedItemFillColor);
+                expectToBe(polygonElement.attr('fill'), expectedContentSegmentFillColor);
             });
 
             it('... should set the `stroke-width` attribute of the polygon element', () => {
                 const polygonElement = itemLink.select('polygon');
 
-                expectToBe(polygonElement.attr('stroke-width'), String(expectedItemStrokeWidth));
+                expectToBe(polygonElement.attr('stroke-width'), String(expectedContentSegmentStrokeWidth));
             });
 
             it('... should only have specified attributes', () => {

@@ -117,13 +117,13 @@ export class FolioCalculationContentItemCornerPoints {
      * It initializes the class with four points
      * for upper and lower left and upper and lower right corners.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
+     * @param {FolioCalculationContentSegment} calculatedContentItem The given calculated content item.
      */
-    constructor(calculatedContentItem: FolioCalculationContentItem) {
-        this.upperLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.startY);
-        this.upperRightCorner = new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.startY);
-        this.lowerRightCorner = new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.endY);
-        this.lowerLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.endY);
+    constructor({ startX, startY, endX, endY }: FolioCalculationContentSegment) {
+        this.upperLeftCorner = new FolioCalculationPoint(startX, startY);
+        this.upperRightCorner = new FolioCalculationPoint(endX, startY);
+        this.lowerRightCorner = new FolioCalculationPoint(endX, endY);
+        this.lowerLeftCorner = new FolioCalculationPoint(startX, endY);
     }
 }
 
@@ -155,7 +155,7 @@ class FolioCalculationContentItemCache {
  *
  * Exposed to be used throughout {@link EditionSheetsModule}.
  */
-export class FolioCalculationContentItem {
+export class FolioCalculationContentSegment {
     /**
      * The correction value for the offset of the content item (number).
      */
