@@ -207,7 +207,7 @@ export class FolioService {
      * @returns {void} Adds the systems to the SVG canvas selection.
      */
     private _addFolioSystemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        folioSvgData.systems.lineArrays.forEach((lineArray: FolioCalculationLine[], systemIndex: number) => {
+        folioSvgData.systems.systemsArrays.forEach((systemArray: FolioCalculationLine[], systemIndex: number) => {
             const svgSystemsGroup = this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
                 systemsGroupId: systemIndex + 1,
                 class: 'systems-group',
@@ -218,7 +218,7 @@ export class FolioService {
             });
 
             this._appendSystemsGroupLabel(svgSystemsGroup, folioSvgData, systemIndex);
-            this._appendSystemsGroupLines(svgSystemLineGroup, lineArray);
+            this._appendSystemsGroupLines(svgSystemLineGroup, systemArray);
         });
     }
 
@@ -501,7 +501,7 @@ export class FolioService {
         folioSvgData: FolioSvgData,
         systemIndex: number
     ): void {
-        const { x, y } = folioSvgData.systems.lineLabelArray[systemIndex];
+        const { x, y } = folioSvgData.systems.systemsLabelArray[systemIndex];
         const systemLabel = systemIndex + 1;
         const attributes = {
             class: 'system-label',
@@ -520,12 +520,11 @@ export class FolioService {
      * It appends system lines to the systems group.
      *
      * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
-     * @param {FolioCalculationLine[]} lineArray The given line array.
-     * @param {string} bgColor The given background color.
+     * @param {FolioCalculationLine[]} systemArray The given line array.
      * @returns {void} Appends system lines to the systems group selection.
      */
-    private _appendSystemsGroupLines(svgSystemsGroup: D3Selection, lineArray: FolioCalculationLine[]): void {
-        lineArray.forEach(line => {
+    private _appendSystemsGroupLines(svgSystemsGroup: D3Selection, systemArray: FolioCalculationLine[]): void {
+        systemArray.forEach(line => {
             const { x: x1, y: y1 } = line.startPoint;
             const { x: x2, y: y2 } = line.endPoint;
             const attributes = {

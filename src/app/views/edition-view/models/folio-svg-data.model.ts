@@ -66,7 +66,7 @@ class FolioSvgSystems {
      * It contains all calculated labels and their positions (in px)
      * to draw the svg of the systems of a folio.
      */
-    lineLabelArray: FolioCalculationPoint[];
+    systemsLabelArray: FolioCalculationPoint[];
 
     /**
      * The array of line arrays of a folio (FolioCalculationLine[][]).
@@ -74,7 +74,7 @@ class FolioSvgSystems {
      * It contains all calculated lines and their positions (in px)
      * to draw the svg of the systems of a folio.
      */
-    lineArrays: FolioCalculationLine[][];
+    systemsArrays: FolioCalculationLine[][];
 
     /**
      * Constructor of the FolioSvgSystems class.
@@ -84,8 +84,8 @@ class FolioSvgSystems {
      * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
      */
     constructor(calculatedSystems: FolioCalculationSystems) {
-        this.lineLabelArray = calculatedSystems.lineLabelArray;
-        this.lineArrays = calculatedSystems.lineArrays;
+        this.systemsLabelArray = calculatedSystems.systemsLabelArray;
+        this.systemsArrays = calculatedSystems.systemsArrays;
     }
 }
 

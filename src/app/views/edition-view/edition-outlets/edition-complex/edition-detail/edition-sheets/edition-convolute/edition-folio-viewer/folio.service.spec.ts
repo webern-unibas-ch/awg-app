@@ -423,14 +423,14 @@ describe('FolioService', () => {
             });
 
             it('... should append a systems group and a system line group to the SVG sheet group for each system', () => {
-                const systemCount = expectedFolioSvgData.systems.lineArrays.length;
+                const systemCount = expectedFolioSvgData.systems.systemsArrays.length;
 
                 expectToBe(svgSheetGroup.selectAll('.systems-group').size(), systemCount);
                 expectToBe(svgSheetGroup.selectAll('.system-line-group').size(), systemCount);
             });
 
             it('... should trigger `_appendSystemsGroupLabel` for each system', () => {
-                const systemIndex = expectedFolioSvgData.systems.lineLabelArray.length - 1;
+                const systemIndex = expectedFolioSvgData.systems.systemsLabelArray.length - 1;
 
                 const systemsGroup = svgSheetGroup
                     .append('g')
@@ -450,7 +450,7 @@ describe('FolioService', () => {
             });
 
             it('... should trigger `_appendSystemsGroupLines` for each system', () => {
-                const systemIndex = expectedFolioSvgData.systems.lineLabelArray.length - 1;
+                const systemIndex = expectedFolioSvgData.systems.systemsLabelArray.length - 1;
 
                 svgSheetGroup
                     .append('g')
@@ -460,7 +460,7 @@ describe('FolioService', () => {
                 expectToBe(appendSystemsGroupLinesSpy.calls.count(), systemIndex + 1);
                 expectSpyCall(appendSystemsGroupLinesSpy, systemIndex + 1, [
                     svgSheetGroup.select(`[systemLineGroupId="${systemIndex + 1}"]`),
-                    expectedFolioSvgData.systems.lineArrays.at(-1),
+                    expectedFolioSvgData.systems.systemsArrays.at(-1),
                 ]);
             });
 
@@ -482,7 +482,7 @@ describe('FolioService', () => {
                 systemsGroups.forEach((group, i) => {
                     const systemsGroup = D3_SELECTION.select(group);
                     const textElement = systemsGroup.select('text');
-                    const expectedLabel = expectedFolioSvgData.systems.lineLabelArray[i];
+                    const expectedLabel = expectedFolioSvgData.systems.systemsLabelArray[i];
 
                     expectToBe(textElement.attr('class'), 'system-label');
                     expectToBe(textElement.attr('x'), String(expectedLabel.x));
@@ -493,7 +493,7 @@ describe('FolioService', () => {
                 });
             });
 
-            it('... should append as many line elements as items in lineArray to each system line group', () => {
+            it('... should append as many line elements as items in systemArray to each system line group', () => {
                 const systemLineGroups = svgSheetGroup.selectAll('.system-line-group').nodes();
 
                 systemLineGroups.forEach((group, i) => {
@@ -501,7 +501,7 @@ describe('FolioService', () => {
 
                     expectToBe(
                         systemLineGroup.selectAll('line').size(),
-                        expectedFolioSvgData.systems.lineArrays[i].length
+                        expectedFolioSvgData.systems.systemsArrays[i].length
                     );
                 });
             });
@@ -515,7 +515,7 @@ describe('FolioService', () => {
 
                     lineElements.forEach((lineNode, j) => {
                         const lineElement = D3_SELECTION.select(lineNode);
-                        const expectedLine = expectedFolioSvgData.systems.lineArrays[i][j];
+                        const expectedLine = expectedFolioSvgData.systems.systemsArrays[i][j];
 
                         expectToBe(lineElement.attr('class'), 'system-line');
                         expectToBe(lineElement.attr('x1'), String(expectedLine.startPoint.x));
@@ -1476,8 +1476,8 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
                     class: 'system-label',
-                    x: expectedFolioSvgData.systems.lineLabelArray[systemIndex].x,
-                    y: expectedFolioSvgData.systems.lineLabelArray[systemIndex].y,
+                    x: expectedFolioSvgData.systems.systemsLabelArray[systemIndex].x,
+                    y: expectedFolioSvgData.systems.systemsLabelArray[systemIndex].y,
                     fill: expectedBgColor,
                 };
                 attributes['dominant-baseline'] = 'hanging';
@@ -1505,14 +1505,14 @@ describe('FolioService', () => {
 
             it('... should set the `x` attribute of the text element', () => {
                 const textElement = systemsGroup.select('text');
-                const { x } = expectedFolioSvgData.systems.lineLabelArray[systemIndex];
+                const { x } = expectedFolioSvgData.systems.systemsLabelArray[systemIndex];
 
                 expectToBe(textElement.attr('x'), String(x));
             });
 
             it('... should set the `y` attribute of the text element', () => {
                 const textElement = systemsGroup.select('text');
-                const { y } = expectedFolioSvgData.systems.lineLabelArray[systemIndex];
+                const { y } = expectedFolioSvgData.systems.systemsLabelArray[systemIndex];
 
                 expectToBe(textElement.attr('y'), String(y));
             });
@@ -1550,16 +1550,16 @@ describe('FolioService', () => {
 
         describe('... when called', () => {
             let systemsGroup: D3_SELECTION.Selection<SVGGElement, unknown, null, undefined>;
-            let lineArray: FolioCalculationLine[];
+            let systemArray: FolioCalculationLine[];
 
             beforeEach(() => {
                 // Create a new SVG group for testing
                 const svg = D3_SELECTION.create('svg');
                 systemsGroup = svg.append('g');
 
-                lineArray = expectedFolioSvgData.systems.lineArrays[0];
+                systemArray = expectedFolioSvgData.systems.systemsArrays[0];
 
-                (folioService as any)._appendSystemsGroupLines(systemsGroup, lineArray);
+                (folioService as any)._appendSystemsGroupLines(systemsGroup, systemArray);
             });
 
             afterEach(() => {
@@ -1569,23 +1569,23 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` for each line with correct arguments', () => {
                 const attributes = {
                     class: 'system-line',
-                    x1: lineArray.at(-1).startPoint.x,
-                    y1: lineArray.at(-1).startPoint.y,
-                    x2: lineArray.at(-1).endPoint.x,
-                    y2: lineArray.at(-1).endPoint.y,
+                    x1: systemArray.at(-1).startPoint.x,
+                    y1: systemArray.at(-1).startPoint.y,
+                    x2: systemArray.at(-1).endPoint.x,
+                    y2: systemArray.at(-1).endPoint.y,
                     stroke: expectedBgColor,
                 };
                 attributes['stroke-width'] = expectedSystemsLineStrokeWidth;
 
-                expectSpyCall(appendSvgElementWithAttrsSpy, lineArray.length, [systemsGroup, 'line', attributes]);
+                expectSpyCall(appendSvgElementWithAttrsSpy, systemArray.length, [systemsGroup, 'line', attributes]);
             });
 
             it('... should append a line element to the SVG group for each line in the array', () => {
-                expectToBe(systemsGroup.selectAll('line').size(), lineArray.length);
+                expectToBe(systemsGroup.selectAll('line').size(), systemArray.length);
             });
 
             it('... should set the `class` attribute for each line element', () => {
-                lineArray.forEach((_line, index) => {
+                systemArray.forEach((_line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(D3_SELECTION.select(lineElement).attr('class'), 'system-line');
@@ -1593,7 +1593,7 @@ describe('FolioService', () => {
             });
 
             it('... should set the `x1` attribute for each line element', () => {
-                lineArray.forEach((line, index) => {
+                systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(D3_SELECTION.select(lineElement).attr('x1'), String(line.startPoint.x));
@@ -1601,7 +1601,7 @@ describe('FolioService', () => {
             });
 
             it('... should set the `y1` attribute for each line element', () => {
-                lineArray.forEach((line, index) => {
+                systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(D3_SELECTION.select(lineElement).attr('y1'), String(line.startPoint.y));
@@ -1609,7 +1609,7 @@ describe('FolioService', () => {
             });
 
             it('... should set the `x2` attribute for each line element', () => {
-                lineArray.forEach((line, index) => {
+                systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(D3_SELECTION.select(lineElement).attr('x2'), String(line.endPoint.x));
@@ -1617,7 +1617,7 @@ describe('FolioService', () => {
             });
 
             it('... should set the `y2` attribute for each line element', () => {
-                lineArray.forEach((line, index) => {
+                systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(D3_SELECTION.select(lineElement).attr('y2'), String(line.endPoint.y));
@@ -1625,7 +1625,7 @@ describe('FolioService', () => {
             });
 
             it('... should set the `stroke` attribute for each line element', () => {
-                lineArray.forEach((_line, index) => {
+                systemArray.forEach((_line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(D3_SELECTION.select(lineElement).attr('stroke'), expectedBgColor);
@@ -1633,7 +1633,7 @@ describe('FolioService', () => {
             });
 
             it('... should set the `stroke-width` attribute for each line element', () => {
-                lineArray.forEach((_line, index) => {
+                systemArray.forEach((_line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
                     expectToBe(
@@ -1644,7 +1644,7 @@ describe('FolioService', () => {
             });
 
             it('... should only have specified attributes', () => {
-                lineArray.forEach((_line, index) => {
+                systemArray.forEach((_line, index) => {
                     const lineElement = systemsGroup.select('line');
 
                     const expectedAttributes = ['class', 'x1', 'y1', 'x2', 'y2', 'stroke', 'stroke-width'].map(attr =>

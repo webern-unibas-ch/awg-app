@@ -406,12 +406,12 @@ export class FolioCalculationSystems {
     /**
      * The optional line label array of the systems (FolioCalculationPoint[]).
      */
-    lineLabelArray?: FolioCalculationPoint[];
+    systemsLabelArray?: FolioCalculationPoint[];
 
     /**
      * The optional array of line arrays of the systems (FolioCalculationLine[][]).
      */
-    lineArrays?: FolioCalculationLine[][];
+    systemsArrays?: FolioCalculationLine[][];
 }
 
 /**
@@ -537,7 +537,7 @@ export class FolioCalculation {
         calculatedSystems.yArray = this._getSystemYArray(calculatedSystems.upperMargin, calculatedSystems.startY);
 
         // System lines
-        calculatedSystems.lineArrays = calculatedSystems.yArray.map(lineArray =>
+        calculatedSystems.systemsArrays = calculatedSystems.yArray.map(lineArray =>
             lineArray.map(
                 line =>
                     new FolioCalculationLine(
@@ -555,7 +555,7 @@ export class FolioCalculation {
 
         // Reduce start values with lineLabelOffsetCorrection to get start positions of numbers
         // LineArray[0] = first line of a system
-        calculatedSystems.lineLabelArray = calculatedSystems.yArray.map(
+        calculatedSystems.systemsLabelArray = calculatedSystems.yArray.map(
             lineArray =>
                 new FolioCalculationPoint(
                     calculatedSystems.labelStartX,
