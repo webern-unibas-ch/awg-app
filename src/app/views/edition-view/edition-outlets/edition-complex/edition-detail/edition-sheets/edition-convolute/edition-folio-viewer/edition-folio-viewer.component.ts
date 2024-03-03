@@ -280,7 +280,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      * Public method: toggleActiveClass.
      *
      * It toggles css class 'active' on a selected sheet
-     * (canvas item-group).
+     * (canvas content-segment-group).
      *
      * @returns {void} Toggles the css class.
      */
@@ -290,9 +290,9 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
         }
 
         this.canvasArray.forEach(canvas => {
-            canvas.selectAll('.item-group').classed('active', (d, i, nodes) => {
-                const itemId = D3_SELECTION.select(nodes[i]).attr('itemId');
-                return this.isSelectedSvgSheet(itemId);
+            canvas.selectAll('.content-segment-group').classed('active', (d, i, nodes) => {
+                const contentSegmentId = D3_SELECTION.select(nodes[i]).attr('contentSegmentId');
+                return this.isSelectedSvgSheet(contentSegmentId);
             });
         });
     }

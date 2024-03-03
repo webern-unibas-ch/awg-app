@@ -53,40 +53,40 @@ export class FolioService {
     private _fgColor = 'orange';
 
     /**
-     * Private variable: _itemFillColor.
+     * Private variable: _contentSegmentFillColor.
      *
-     * It keeps the fill color for the items.
+     * It keeps the fill color for the content segments.
      */
-    private _itemFillColor = '#eeeeee';
+    private _contentSegmentFillColor = '#eeeeee';
 
     /**
-     * Private variable: _itemFontStyle.
+     * Private variable: _contentSegmentFontStyle.
      *
-     * It keeps the font style for the items.
+     * It keeps the font style for the content segments.
      */
-    private _itemFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
+    private _contentSegmentFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
 
     /**
-     * Private variable: _itemOffsetCorrection.
+     * Private variable: _contentSegmentOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
-     * border collision between rendered SVG items.
+     * border collision between rendered SVG content segments.
      */
-    private _itemOffsetCorrection = 4;
+    private _contentSegmentOffsetCorrection = 4;
 
     /**
-     * Private variable: _itemRotationAngle.
+     * Private variable: _contentSegmentRotationAngle.
      *
-     * It keeps the rotation angle for the reversed items.
+     * It keeps the rotation angle for the reversed content segments.
      */
-    private _itemReversedRotationAngle = 180;
+    private _contentSegmentReversedRotationAngle = 180;
 
     /**
-     * Private variable: _itemStrokeWidth.
+     * Private variable: _contentSegmentStrokeWidth.
      *
-     * It keeps the stroke width for the items.
+     * It keeps the stroke width for the content segments.
      */
-    private _itemStrokeWidth = 2;
+    private _contentSegmentStrokeWidth = 2;
 
     /**
      * Private variable: _sheetFillColor.
@@ -121,7 +121,7 @@ export class FolioService {
      */
     getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
         // Calculate values for SVG
-        const calculation = new FolioCalculation(folioSettings, folio, this._itemOffsetCorrection);
+        const calculation = new FolioCalculation(folioSettings, folio, this._contentSegmentOffsetCorrection);
 
         // Get SVG data from calculation
         return new FolioSvgData(calculation);
@@ -151,7 +151,7 @@ export class FolioService {
      * Public method: addFolioToSvgCanvas.
      *
      * It coordinates the drawing of the calculated folio SVG data
-     * for a folio's sheet, systems and items to the folio SVG canvas.
+     * for a folio's sheet, systems and content segments to the folio SVG canvas.
      *
      * @param {D3Selection} svgCanvas The given SVG canvas selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
@@ -171,7 +171,7 @@ export class FolioService {
         // Draw systems.
         this._addFolioSystemsToSvgCanvas(svgSheetGroup, folioSvgData);
 
-        // Draw items.
+        // Draw content segments.
         this._addFolioContentSegmentsToSvgCanvas(svgSheetGroup, folioSvgData);
     }
 
@@ -222,12 +222,12 @@ export class FolioService {
     /**
      * Private method: _addFolioContentSegmentsToSvgCanvas.
      *
-     * It adds the folio's items from the calculated
+     * It adds the folio's content segments from the calculated
      * folio SVG data to the folio SVG canvas.
      *
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
-     * @returns {void} Adds the items to the SVG canvas selection.
+     * @returns {void} Adds the content segments to the SVG canvas selection.
      */
     private _addFolioContentSegmentsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
         folioSvgData?.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
@@ -235,16 +235,16 @@ export class FolioService {
                 return;
             }
 
-            // Draw item group.
+            // Draw content segment group.
             const svgContentSegmentGroup = this._appendContentSegmentGroup(svgSheetGroup, contentSegment);
 
-            // Draw item link.
+            // Draw content segment link.
             const svgContentSegmentLink = this._appendContentSegmentLink(svgContentSegmentGroup);
 
-            // Draw item polygon.
+            // Draw content segment polygon.
             this._appendContentSegmentLinkPolygon(svgContentSegmentLink, contentSegment.polygonCornerPoints);
 
-            // Draw item link label.
+            // Draw content segment link label.
             this._appendContentSegmentLinkLabel(svgContentSegmentLink, contentSegment);
         });
     }
@@ -268,49 +268,49 @@ export class FolioService {
     /**
      * Private method: _appendContentSegmentGroup.
      *
-     * It appends an item group to the sheet group.
+     * It appends an content segment group to the sheet group.
      *
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioSvgContentSegment} contentSegment The given content segment.
-     * @returns {D3Selection} Appends an item group to the sheet group selection.
+     * @returns {D3Selection} Appends an content segment group to the sheet group selection.
      */
     private _appendContentSegmentGroup(
         svgSheetGroup: D3Selection,
         contentSegment: FolioSvgContentSegment
     ): D3Selection {
-        // Draw item group element.
-        const itemGroup = this._appendContentSegmentGroupElement(svgSheetGroup, contentSegment);
+        // Draw content segment group element.
+        const contentSegmentGroup = this._appendContentSegmentGroupElement(svgSheetGroup, contentSegment);
 
-        // Apply title when hovering item
-        this._appendContentSegmentGroupTitle(itemGroup, contentSegment);
+        // Apply title when hovering content segment.
+        this._appendContentSegmentGroupTitle(contentSegmentGroup, contentSegment);
 
         // Add click event handler
-        itemGroup.on('click', () =>
+        contentSegmentGroup.on('click', () =>
             contentSegment.selectable
                 ? this.ref.selectSvgSheet(contentSegment.complexId, contentSegment.sheetId)
                 : this.ref.openModal(contentSegment.linkTo)
         );
 
-        return itemGroup;
+        return contentSegmentGroup;
     }
 
     /**
      * Private method: _appendContentSegmentGroupElement.
      *
-     * It appends an item group element to the sheet group.
+     * It appends an content segment group element to the sheet group.
      *
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioSvgContentSegment} contentSegment The given content segment.
-     * @returns {D3Selection} Appends an item group element to the sheet group selection.
+     * @returns {D3Selection} Appends an content segment group element to the sheet group selection.
      */
     private _appendContentSegmentGroupElement(
         svgSheetGroup: D3Selection,
         contentSegment: FolioSvgContentSegment
     ): D3Selection {
         return this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
-            itemGroupId: contentSegment.segmentLabel,
-            itemId: contentSegment.sheetId,
-            class: 'item-group',
+            contentSegmentGroupId: contentSegment.segmentLabel,
+            contentSegmentId: contentSegment.sheetId,
+            class: 'content-segment-group',
             stroke: contentSegment.selectable ? this._fgColor : this._disabledColor,
             fill: contentSegment.selectable ? this._fgColor : this._disabledColor,
         });
@@ -319,39 +319,39 @@ export class FolioService {
     /**
      * Private method: _appendContentSegmentGroupTitle.
      *
-     * It appends a title to the item group.
+     * It appends a title to the content segment group.
      *
-     * @param {D3Selection} itemGroup The given SVG item group selection.
+     * @param {D3Selection} contentSegmentGroup The given SVG content segment group selection.
      * @param {FolioSvgContentSegment} contentSegment The given content segment.
-     * @returns {D3Selection} Appends a title to the item group selection.
+     * @returns {D3Selection} Appends a title to the content segment group selection.
      */
     private _appendContentSegmentGroupTitle(
-        itemGroup: D3Selection,
+        contentSegmentGroup: D3Selection,
         contentSegment: FolioSvgContentSegment
     ): D3Selection {
-        return this._appendSvgElementWithAttrs(itemGroup, 'title', {}).text(contentSegment.segmentLabel);
+        return this._appendSvgElementWithAttrs(contentSegmentGroup, 'title', {}).text(contentSegment.segmentLabel);
     }
 
     /**
      * Private method: _appendContentSegmentLink.
      *
-     * It appends a link to the item group.
+     * It appends a link to the content segment group.
      *
-     * @param {D3Selection} svgContentSegmentGroup The given SVG item group selection.
-     * @returns {D3Selection} Appends a link to the item group selection.
+     * @param {D3Selection} svgContentSegmentGroup The given SVG content segment group selection.
+     * @returns {D3Selection} Appends a link to the content segment group selection.
      */
     private _appendContentSegmentLink(svgContentSegmentGroup: D3Selection): D3Selection {
-        return this._appendSvgElementWithAttrs(svgContentSegmentGroup, 'a', { class: 'item-link' });
+        return this._appendSvgElementWithAttrs(svgContentSegmentGroup, 'a', { class: 'content-segment-link' });
     }
 
     /**
      * Private method: _appendContentSegmentLinkLabel.
      *
-     * It appends a label to the item link.
+     * It appends a label to the content segment link.
      *
-     * @param {D3Selection} svgContentSegmentLink The given SVG item link selection.
+     * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
      * @param {FolioSvgContentSegment} contentSegment The given content segment.
-     * @returns {D3Selection} Appends a label to the item link selection.
+     * @returns {D3Selection} Appends a label to the content segment link selection.
      */
     private _appendContentSegmentLinkLabel(
         svgContentSegmentLink: any,
@@ -369,7 +369,7 @@ export class FolioService {
         if (contentSegment.reversed) {
             label.attr(
                 'transform',
-                `rotate(${this._itemReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
+                `rotate(${this._contentSegmentReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
             );
         }
 
@@ -379,12 +379,12 @@ export class FolioService {
     /**
      * Private method: _appendContentSegmentLinkLabelTextElement.
      *
-     * It appends a text element to the item link label.
+     * It appends a text element to the content segment link label.
      *
-     * @param {D3Selection} svgContentSegmentLink The given SVG item link selection.
+     * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
      * @param {number} centeredXPosition The given centered x position.
      * @param {number} centeredYPosition The given centered y position.
-     * @returns {D3Selection} Appends a text element to the item link selection.
+     * @returns {D3Selection} Appends a text element to the content segment link selection.
      */
     private _appendContentSegmentLinkLabelTextElement(
         svgContentSegmentLink: D3Selection,
@@ -392,10 +392,10 @@ export class FolioService {
         centeredYPosition: number
     ): D3Selection {
         const attributes = {
-            class: 'item-label',
+            class: 'content-segment-label',
             x: centeredXPosition,
             y: centeredYPosition,
-            style: this._itemFontStyle,
+            style: this._contentSegmentFontStyle,
         };
         attributes['dominant-baseline'] = 'middle';
         attributes['text-anchor'] = 'middle';
@@ -406,7 +406,7 @@ export class FolioService {
     /**
      * Private method: _appendContentSegmentLinkLabelTspanElements.
      *
-     * It appends tspan elements to the item link label.
+     * It appends tspan elements to the content segment link label.
      *
      * @param {D3Selection} labelSelection The given label selection.
      * @param {FolioSvgContentSegment} contentSegment The given content segment.
@@ -434,22 +434,22 @@ export class FolioService {
     /**
      * Private method: _appendContentSegmentLinkPolygon.
      *
-     * It appends a polygon shape to the item link.
+     * It appends a polygon shape to the content segment link.
      *
-     * @param {D3Selection} svgContentSegmentLink The given SVG item link selection.
+     * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
      * @param {string} polygonCornerPoints The given polygon corner points.
-     * @returns {D3Selection} Appends a polygon shape to the item link selection.
+     * @returns {D3Selection} Appends a polygon shape to the content segment link selection.
      */
     private _appendContentSegmentLinkPolygon(
         svgContentSegmentLink: D3Selection,
         polygonCornerPoints: string
     ): D3Selection {
         const attributes = {
-            class: 'item-shape',
+            class: 'content-segment-shape',
             points: polygonCornerPoints,
-            fill: this._itemFillColor,
+            fill: this._contentSegmentFillColor,
         };
-        attributes['stroke-width'] = this._itemStrokeWidth;
+        attributes['stroke-width'] = this._contentSegmentStrokeWidth;
 
         return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'polygon', attributes);
     }

@@ -205,7 +205,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(gridDe[0], 'div.svgRow', 1, 1);
             });
 
-            it('... should contain as many div.svgCol in div.svgRow as items in folioSvgDataArray', async () => {
+            it('... should contain as many div.svgCol in div.svgRow as content segments in folioSvgDataArray', async () => {
                 const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
                 expect(component.folioSvgDataArray.length).toBeGreaterThan(0);
@@ -237,7 +237,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain as many muted span elements in div.svgCol as items in folioSvgDataArray', () => {
+            it('... should contain as many muted span elements in div.svgCol as content segments in folioSvgDataArray', () => {
                 const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
                 const colDe = getAndExpectDebugElementByCss(
                     rowDe[0],
@@ -270,7 +270,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 });
             });
 
-            it('... should contain as many svg elements in div.svgCol as items in folioSvgDataArray', () => {
+            it('... should contain as many svg elements in div.svgCol as content segments in folioSvgDataArray', () => {
                 const rowDe = getAndExpectDebugElementByCss(compDe, 'div.svgGrid div.svgRow', 1, 1);
 
                 const colDe = getAndExpectDebugElementByCss(
@@ -619,7 +619,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
 
                 // Find content item spans
-                const contentItemDes = getAndExpectDebugElementByCss(
+                const contentSegmentDes = getAndExpectDebugElementByCss(
                     divDes[0],
                     'span.awg-source-description-content-item',
                     3,
@@ -627,7 +627,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 );
 
                 // Find anchors in second paragraph
-                const anchorDes = getAndExpectDebugElementByCss(contentItemDes[0], 'a', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(contentSegmentDes[0], 'a', 1, 1);
 
                 // CLick on anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[0], fixture);
@@ -681,12 +681,18 @@ describe('EditionFolioViewerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Create mocked SVG element with D3
-                const itemId = expectedSvgSheet.id;
-                const anotherItemId = 'another-id';
+                const contentSegmentId = expectedSvgSheet.id;
+                const anotherContentSegmentId = 'another-id';
 
                 svgSelection = createD3TestSvg(mockDocument);
-                svgGroupSelection1 = svgSelection.append('g').attr('class', 'item-group').attr('itemId', itemId);
-                svgGroupSelection2 = svgSelection.append('g').attr('class', 'item-group').attr('itemId', anotherItemId);
+                svgGroupSelection1 = svgSelection
+                    .append('g')
+                    .attr('class', 'content-segment-group')
+                    .attr('contentSegmentId', contentSegmentId);
+                svgGroupSelection2 = svgSelection
+                    .append('g')
+                    .attr('class', 'content-segment-group')
+                    .attr('contentSegmentId', anotherContentSegmentId);
             });
 
             afterEach(() => {
@@ -705,7 +711,7 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 expectSpyCall(isSelectedSvgSheetSpy, 0);
             });
 
-            it('should check if each item group is active', () => {
+            it('should check if each content segment group is active', () => {
                 component.canvasArray = [svgSelection];
 
                 component.toggleActiveClass();
@@ -713,17 +719,17 @@ describe('EditionFolioViewerComponent (DONE)', () => {
                 expectSpyCall(isSelectedSvgSheetSpy, 2);
             });
 
-            it('should toggle the active class for each item group based on whether it is active', () => {
+            it('should toggle the active class for each content segment group based on whether it is active', () => {
                 component.canvasArray = [svgSelection];
 
-                isSelectedSvgSheetSpy.and.callFake(itemId => itemId === expectedSvgSheet.id);
+                isSelectedSvgSheetSpy.and.callFake(contentSegmentId => contentSegmentId === expectedSvgSheet.id);
 
                 component.toggleActiveClass();
 
                 expect(svgGroupSelection1.classed('active')).toBe(true);
                 expect(svgGroupSelection2.classed('active')).toBe(false);
 
-                isSelectedSvgSheetSpy.and.callFake(itemId => itemId === 'another-id');
+                isSelectedSvgSheetSpy.and.callFake(contentSegmentId => contentSegmentId === 'another-id');
 
                 component.toggleActiveClass();
 
