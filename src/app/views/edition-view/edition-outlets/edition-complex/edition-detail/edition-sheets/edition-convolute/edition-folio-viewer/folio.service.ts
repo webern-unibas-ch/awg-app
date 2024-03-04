@@ -204,7 +204,7 @@ export class FolioService {
      * @returns {void} Adds the systems to the SVG canvas selection.
      */
     private _addFolioSystemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
-        folioSvgData.systems.systemsArrays.forEach((systemArray: FolioCalculationLine[], systemIndex: number) => {
+        folioSvgData.systems.systemsLines.forEach((systemArray: FolioCalculationLine[], systemIndex: number) => {
             const svgSystemsGroup = this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
                 systemsGroupId: systemIndex + 1,
                 class: 'systems-group',
@@ -509,7 +509,7 @@ export class FolioService {
         folioSvgData: FolioSvgData,
         systemIndex: number
     ): void {
-        const { x, y } = folioSvgData.systems.systemsLabelArray[systemIndex];
+        const { x, y } = folioSvgData.systems.systemsLabelPositions[systemIndex];
         const systemLabel = systemIndex + 1;
         const attributes = {
             class: 'system-label',

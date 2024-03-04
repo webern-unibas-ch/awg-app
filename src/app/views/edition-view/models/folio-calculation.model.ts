@@ -50,20 +50,6 @@ export class FolioCalculationPoint {
         this.x = x;
         this.y = y;
     }
-
-    /**
-     * Public method: add.
-     *
-     * It adds x and y values (in px) to an existing point.
-     *
-     * @param {number} addX Add to x value.
-     * @param {number} addY Add to y value.
-     */
-    public add(addX: number, addY: number): FolioCalculationPoint {
-        this.x += addX;
-        this.y += addY;
-        return this;
-    }
 }
 
 /**
@@ -100,6 +86,86 @@ export class FolioCalculationLine {
 }
 
 /**
+ * The FolioCalculationContentSegmentCenteredPositions class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the centered positions of a content segment on the folio canvas.
+ *
+ * Not exposed, only called internally from {@link FolioCalculation}.
+ */
+class FolioCalculationContentSegmentCenteredPositions {
+    /**
+     * The centered X position of the content segment (number).
+     */
+    public readonly CENTERED_X_POSITION: number;
+
+    /**
+     * The centered Y position of the content segment (number).
+     */
+    public readonly CENTERED_Y_POSITION: number;
+
+    /**
+     * Constructor of the FolioCalculationContentSegmentCenteredPositions class.
+     *
+     * It initializes the class with values
+     * from the segment vertices, the segment label offset and the reversed flag.
+     *
+     * @param {FolioCalculationContentSegmentVertices} segmentVertices The given segment vertices.
+     * @param {number} segmentLabelOffset The given segment label offset.
+     * @param {boolean} reversed The given reversed flag.
+     */
+    constructor(
+        segmentVertices: FolioCalculationContentSegmentVertices,
+        segmentLabelOffset: number,
+        reversed: boolean
+    ) {
+        const { UPPER_LEFT_VERTEX, LOWER_RIGHT_VERTEX } = segmentVertices;
+
+        this.CENTERED_X_POSITION = (UPPER_LEFT_VERTEX.x + LOWER_RIGHT_VERTEX.x) / 2;
+        const offsetCorrection = reversed ? -segmentLabelOffset : segmentLabelOffset;
+        this.CENTERED_Y_POSITION = (UPPER_LEFT_VERTEX.y + LOWER_RIGHT_VERTEX.y) / 2 - offsetCorrection;
+    }
+}
+
+/**
+ * The FolioCalculationContentSegmentCenteredPositions class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the centered positions of the content segments on the folio canvas.
+ */
+class FolioCalculationContentSegmentLabel {
+    /**
+     * The label for the content segment (string).
+     */
+    public readonly SEGMENT_LABEL: string;
+
+    /**
+     * The array of label strings for the content segment (string[]).
+     */
+    public readonly SEGMENT_LABEL_ARRAY: string[];
+
+    /**
+     * The label offset for the content segment (number).
+     */
+    public readonly SEGMENT_LABEL_OFFSET: number;
+
+    /**
+     * Constructor of the FolioCalculationContentSegmentLabelAndOffset class.
+     *
+     * It initializes the class with values
+     * from the sigle and sigle addendum of the content segment.
+     *
+     * @param {string} sigle The given sigle of the content segment.
+     * @param {string | null} sigleAddendum The given sigle addendum of the content segment.
+     */
+    constructor(sigle: string, sigleAddendum: string | null) {
+        this.SEGMENT_LABEL_ARRAY = [sigle, sigleAddendum ? ` ${sigleAddendum}` : ''];
+        this.SEGMENT_LABEL = this.SEGMENT_LABEL_ARRAY.join(' ');
+        this.SEGMENT_LABEL_OFFSET = sigleAddendum ? 5 : 0;
+    }
+}
+
+/**
  * The FolioCalculationContentSegmentVertices class.
  *
  * It is used in the context of the edition folio convolutes
@@ -129,64 +195,111 @@ export class FolioCalculationContentSegmentVertices {
     public readonly LOWER_LEFT_VERTEX: FolioCalculationPoint;
 
     /**
+     * The vertices of a content segment as a string (string).
+     */
+    public readonly VERTICES_AS_STRING: string;
+
+    /**
      * Constructor of the FolioCalculationContentSegmentVertices class.
      *
      * It initializes the class with four points
      * for upper and lower left and upper and lower right vertices.
      *
-     * @param {FolioCalculationContentSegment} calculatedContentSegment The given calculated content segment.
+     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioCalculationSystems} systems The given calculated systems.
+     * @param {number} sectionPartition The given section partition.
+     * @param {number} segmentOffsetCorrection The given segment offset correction.
      */
-    constructor({ startX, startY, endX, endY }: FolioCalculationContentSegment) {
+    constructor(
+        section: FolioSection,
+        private systems: FolioCalculationSystems,
+        private sectionPartition: number,
+        private segmentOffsetCorrection: number
+    ) {
+        const { startX, startY, endX, endY } = this._calculateVertices(section);
+
         this.UPPER_LEFT_VERTEX = new FolioCalculationPoint(startX, startY);
         this.UPPER_RIGHT_VERTEX = new FolioCalculationPoint(endX, startY);
         this.LOWER_RIGHT_VERTEX = new FolioCalculationPoint(endX, endY);
         this.LOWER_LEFT_VERTEX = new FolioCalculationPoint(startX, endY);
+        this.VERTICES_AS_STRING = this._getSegmentVerticesAsString();
     }
 
     /**
-     * Public method: getSegmentVertices.
+     * Private method: _calculateVertices.
+     *
+     * It calculates the vertices of a content segment.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @returns {FolioCalculationPoint} The calculated vertices of a content segment.
+     */
+    private _calculateVertices(section: FolioSection): { startX: number; startY: number; endX: number; endY: number } {
+        const startX = this._calculateX(section, true);
+        const endX = this._calculateX(section, false);
+        const startY = this._calculateY(section, true);
+        const endY = this._calculateY(section, false);
+
+        return { startX, startY, endX, endY };
+    }
+
+    /**
+     * Private method: _calculateX.
+     *
+     * It calculates the x value of the content segment vertices.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @param {boolean} isStart The given flag if the x value is for the start.
+     * @returns {number} The calculated the content segment vertices.
+     */
+    private _calculateX(section: FolioSection, isStart: boolean): number {
+        const width = round(this.systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this.sectionPartition, 2);
+
+        const systemIndex = section.position && section.position <= this.sectionPartition ? section.position - 1 : 0;
+        const baseX = this.systems.SYSTEMS_DIMENSIONS.START_X;
+        const offset = this.segmentOffsetCorrection / 2;
+
+        const xValue = baseX + systemIndex * width + offset;
+        const correction = isStart ? 0 : width - this.segmentOffsetCorrection;
+
+        return round(xValue + correction, 2);
+    }
+
+    /**
+     * Private method: _calculateY.
+     *
+     * It calculates the y value of the content segment vertices.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @param {boolean} isStart The given flag if the y value is for the start.
+     * @returns {number} The calculated y value of the content segment vertices.
+     */
+    private _calculateY(section: FolioSection, isStart: boolean): number {
+        const systemIndex = isStart ? section.startSystem - 1 : section.endSystem - 1;
+        const systemLines = this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
+
+        const yValue = isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
+        const correction = this.segmentOffsetCorrection * (isStart ? -1 : 1);
+
+        return round(yValue + correction, 2);
+    }
+
+    /**
+     * Private method: getSegmentVerticesAsString.
      *
      * It returns the vertices of a content segment as a string.
      *
      * @returns {string} The vertices of a content segment as a string.
      */
-    public getSegmentVerticesAsString(): string {
-        return [
-            this.UPPER_LEFT_VERTEX.x,
-            this.UPPER_LEFT_VERTEX.y,
-            this.UPPER_RIGHT_VERTEX.x,
-            this.UPPER_RIGHT_VERTEX.y,
-            this.LOWER_RIGHT_VERTEX.x,
-            this.LOWER_RIGHT_VERTEX.y,
-            this.LOWER_LEFT_VERTEX.x,
-            this.LOWER_LEFT_VERTEX.y,
-            this.UPPER_LEFT_VERTEX.x,
-            this.UPPER_LEFT_VERTEX.y,
-        ].join(' ');
-    }
-}
+    private _getSegmentVerticesAsString(): string {
+        const vertices = [
+            this.UPPER_LEFT_VERTEX,
+            this.UPPER_RIGHT_VERTEX,
+            this.LOWER_RIGHT_VERTEX,
+            this.LOWER_LEFT_VERTEX,
+            this.UPPER_LEFT_VERTEX,
+        ];
 
-/**
- * The FolioCalculationContentSegmentCache class.
- *
- * It is used in the context of the edition folio convolutes
- * to calculate the values of a content segment cache on the folio canvas.
- *
- * Not exposed, only called internally from {@link FolioCalculation}.
- */
-class FolioCalculationContentSegmentCache {
-    /**
-     * The section of a content segment (FolioSection).
-     */
-    section: FolioSection;
-
-    /**
-     * The vertices of a content segment (FolioCalculationContentSegmentCornerPoints).
-     */
-    vertices: FolioCalculationContentSegmentVertices;
-
-    constructor() {
-        this.section = new FolioSection();
+        return vertices.map(vertex => `${vertex.x} ${vertex.y}`).join(' ');
     }
 }
 
@@ -200,26 +313,6 @@ class FolioCalculationContentSegmentCache {
  */
 export class FolioCalculationContentSegment {
     /**
-     * The correction value for the offset of the content segment (number).
-     */
-    offsetCorrection: number;
-
-    /**
-     * The width including offset of the content segment (number).
-     */
-    widthWithOffset: number;
-
-    /**
-     * The width of the content segment (number).
-     */
-    width: number;
-
-    /**
-     * The height of the content segment (number).
-     */
-    height: number;
-
-    /**
      * The centered X position of the content segment (number).
      */
     centeredXPosition: number;
@@ -230,64 +323,29 @@ export class FolioCalculationContentSegment {
     centeredYPosition: number;
 
     /**
-     * The system range of the content segment (number).
-     */
-    systemRange: number;
-
-    /**
-     * The start position (x-value) of the index of the content segment (number).
-     */
-    startXIndex: number;
-
-    /**
-     * The start position (y-value) of the index of the content segment (number).
-     */
-    startYIndex: number;
-
-    /**
-     * The start position (x-value) of the content segment (number).
-     */
-    startX: number;
-
-    /**
-     * The end position (x-value) of the content segment (number).
-     */
-    endX: number;
-
-    /**
-     * The start position (y-value) of the content segment (number).
-     */
-    startY: number;
-
-    /**
-     * The end position (y-value) of the content segment (number).
-     */
-    endY: number;
-
-    /**
-     * The current content segment (FolioCalculationContentSegmentCache).
-     */
-    current: FolioCalculationContentSegmentCache;
-
-    /**
-     * The previous content segment (FolioCalculationContentSegmentCache).
-     */
-    previous: FolioCalculationContentSegmentCache;
-
-    /**
-     * The vertices of the content segment polygon (string).
-     */
-    segmentVertices: string;
-
-    /**
      * The label for the id of the edition complex of the content segment (string).
      */
     complexId: string;
 
     /**
-     * The label for the id of the content segment (string).
+     * The link to a convolute description in the critical report.
      */
-    sheetId: string;
+    linkTo: string;
+
+    /**
+     * The boolean flag if the content segment is reversed.
+     */
+    reversed: boolean;
+
+    /**
+     * The section of a content segment (FolioSection).
+     */
+    section: FolioSection;
+
+    /**
+     * The section partition of the content segment (number).
+     */
+    sectionPartition: number;
 
     /**
      * The array of label strings for the content segment (string[]).
@@ -300,6 +358,16 @@ export class FolioCalculationContentSegment {
     segmentLabel: string;
 
     /**
+     * The boolean flag if the content segment can be selected.
+     */
+    selectable: boolean;
+
+    /**
+     * The label for the id of the content segment (string).
+     */
+    sheetId: string;
+
+    /**
      * The label for the sigle of the content segment (string).
      */
     sigle: string;
@@ -310,28 +378,98 @@ export class FolioCalculationContentSegment {
     sigleAddendum: string;
 
     /**
-     * The boolean flag if the content segment can be selected.
+     * The vertices of a content segment (FolioCalculationContentSegmentVertices).
      */
-    selectable: boolean;
+    vertices: FolioCalculationContentSegmentVertices;
 
     /**
-     * The boolean flag if the content segment is reversed.
+     * Constructor of the FolioCalculationContentSegment class.
+     *
+     * It initializes the class with values from the content segment,
+     * the calculated systems and the segment offset correction.
+     *
+     * @param {FolioContent} content The given content segment.
+     * @param {FolioCalculationSystems} systems The given calculated systems.
+     * @param {number} segmentOffsetCorrection The given segment offset correction.
      */
-    reversed: boolean;
+    constructor(
+        content: FolioContent,
+        private systems: FolioCalculationSystems,
+        private segmentOffsetCorrection: number
+    ) {
+        this.sectionPartition = content.sectionPartition ?? 1;
+
+        this._getContentSections(content);
+    }
 
     /**
-     * The link to a convolute description in the critical report.
+     * Private method: _getContentSections.
+     *
+     * It gets the sections of a given folio content.
+     *
+     * @param {FolioContent} content The given folio content.
+     * @returns {void} Gets the sections of a given folio content.
      */
-    linkTo: string;
+    private _getContentSections(content: FolioContent): void {
+        if (!content.sections) {
+            console.error('No sections array in content', content);
+            return;
+        }
+        if (content.sections.length > this.sectionPartition) {
+            console.error('Sections array is bigger than sectionPartition');
+            return;
+        }
+        if (this.systems.NUMBER_OF_SYSTEMS === 0) {
+            console.error('No systems in folio');
+            return;
+        }
+        content.sections.forEach((section: FolioSection, _sectionIndex: number) => {
+            this._setProperties(content, section);
+        });
+    }
 
     /**
-     * The section partition of the content segment (number).
+     * Private method: setProperties.
+     *
+     * It sets the properties of a content segment.
+     *
+     * @param {FolioContent} content The given folio content.
+     * @param {FolioSection} section The given section of the folio content.
+     * @returns {void} Sets the properties of a content segment.
      */
-    sectionPartition: number;
+    private _setProperties(content: FolioContent, section: FolioSection): void {
+        const { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum } = content;
 
-    constructor() {
-        this.previous = new FolioCalculationContentSegmentCache();
-        this.current = new FolioCalculationContentSegmentCache();
+        this.section = section;
+
+        const label = new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
+
+        this.vertices = new FolioCalculationContentSegmentVertices(
+            section,
+            this.systems,
+            this.sectionPartition,
+            this.segmentOffsetCorrection
+        );
+
+        const centeredPositions = new FolioCalculationContentSegmentCenteredPositions(
+            this.vertices,
+            label.SEGMENT_LABEL_OFFSET,
+            reversed
+        );
+
+        Object.assign(this, {
+            complexId,
+            sheetId,
+            sigle,
+            sigleAddendum,
+            selectable: selectable,
+            reversed: reversed,
+            linkTo: linkTo,
+            segmentLabelArray: label.SEGMENT_LABEL_ARRAY,
+            segmentLabel: label.SEGMENT_LABEL,
+            centeredXPosition: centeredPositions.CENTERED_X_POSITION,
+            centeredYPosition: centeredPositions.CENTERED_Y_POSITION,
+        });
     }
 }
 
@@ -400,14 +538,14 @@ export class FolioCalculationSheet {
  */
 class FolioCalculationSystemsMargins {
     /**
-     * The left margin factor of the systems (number).
+     * The horizontal margin factor of the systems (number).
      */
-    private static readonly LEFT_MARGIN_FACTOR = 1 / 6;
+    private static readonly HORIZONTAL_MARGIN_FACTOR = 1 / 6;
 
     /**
-     * The right margin factor of the systems (number).
+     * The vertical margin factor of the systems (number).
      */
-    private static readonly RIGHT_MARGIN_FACTOR = FolioCalculationSystemsMargins.LEFT_MARGIN_FACTOR / 2;
+    private static readonly VERTICAL_MARGIN_FACTOR = 0.05;
 
     /**
      * The horizontal margins of the systems (number).
@@ -420,6 +558,11 @@ class FolioCalculationSystemsMargins {
     public readonly LEFT_MARGIN: number;
 
     /**
+     * The lower margin of the systems (number).
+     */
+    public readonly LOWER_MARGIN: number;
+
+    /**
      * The right margin of the systems (number).
      */
     public readonly RIGHT_MARGIN: number;
@@ -430,30 +573,36 @@ class FolioCalculationSystemsMargins {
     public readonly UPPER_MARGIN: number;
 
     /**
+     * The vertical margins of the systems (number).
+     */
+    public readonly VERTICAL_MARGINS: number;
+
+    /**
      * Constructor of the FolioCalculationSystemsMargins class.
      *
      * It initializes the class with values
      * from the sheet and the number of systems.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
-     * @param {number} numberOfSystems The given number of systems.
      */
-    constructor(
-        private sheet: FolioCalculationSheet,
-        private numberOfSystems: number
-    ) {
-        const UPPER_MARGIN_FACTOR = 1 / (this.numberOfSystems + 2);
+    constructor(private sheet: FolioCalculationSheet) {
+        this.UPPER_MARGIN = this._calculateSheetMargin(
+            this.sheet.SHEET_HEIGHT,
+            FolioCalculationSystemsMargins.VERTICAL_MARGIN_FACTOR
+        );
+        this.LOWER_MARGIN = this.UPPER_MARGIN;
 
-        this.UPPER_MARGIN = this._calculateSheetMargin(this.sheet.SHEET_HEIGHT, UPPER_MARGIN_FACTOR);
         this.LEFT_MARGIN = this._calculateSheetMargin(
             this.sheet.SHEET_WIDTH,
-            FolioCalculationSystemsMargins.LEFT_MARGIN_FACTOR
+            FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR
         );
         this.RIGHT_MARGIN = this._calculateSheetMargin(
             this.sheet.SHEET_WIDTH,
-            FolioCalculationSystemsMargins.RIGHT_MARGIN_FACTOR
+            FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR / 2
         );
+
         this.HORIZONTAL_MARGINS = this.LEFT_MARGIN + this.RIGHT_MARGIN;
+        this.VERTICAL_MARGINS = this.UPPER_MARGIN + this.LOWER_MARGIN;
     }
 
     /**
@@ -483,6 +632,11 @@ class FolioCalculationSystemsDimensions {
     public readonly END_X: number;
 
     /**
+     * The end position (y-value) of the systems (number).
+     */
+    public readonly END_Y: number;
+
+    /**
      * The start position (x-value) of the systems (number).
      */
     public readonly START_X: number;
@@ -498,6 +652,11 @@ class FolioCalculationSystemsDimensions {
     public readonly SYSTEMS_WIDTH: number;
 
     /**
+     * The height of the systems (number).
+     */
+    public readonly SYSTEMS_HEIGHT: number;
+
+    /**
      * Constructor of the FolioCalculationSystemsDimensions class.
      *
      * It initializes the class with values
@@ -510,13 +669,17 @@ class FolioCalculationSystemsDimensions {
         private sheet: FolioCalculationSheet,
         private systemsMargins: FolioCalculationSystemsMargins
     ) {
-        const { SHEET_WIDTH: WIDTH, UPPER_LEFT_CORNER } = this.sheet;
-        const { HORIZONTAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } = this.systemsMargins;
+        const { SHEET_WIDTH, SHEET_HEIGHT, UPPER_LEFT_CORNER } = this.sheet;
+        const { HORIZONTAL_MARGINS, VERTICAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } = this.systemsMargins;
 
-        this.SYSTEMS_WIDTH = WIDTH - HORIZONTAL_MARGINS;
+        this.SYSTEMS_WIDTH = SHEET_WIDTH - HORIZONTAL_MARGINS;
+        this.SYSTEMS_HEIGHT = SHEET_HEIGHT - VERTICAL_MARGINS;
+
         this.START_X = UPPER_LEFT_CORNER.x + LEFT_MARGIN;
-        this.END_X = this.START_X + this.SYSTEMS_WIDTH;
         this.START_Y = UPPER_LEFT_CORNER.y + UPPER_MARGIN;
+
+        this.END_X = this.START_X + this.SYSTEMS_WIDTH;
+        this.END_Y = this.START_Y + this.SYSTEMS_HEIGHT;
     }
 }
 
@@ -568,8 +731,11 @@ class FolioCalculationSystemsLines {
      * @returns {FolioCalculationLine} The calculated line of a system.
      */
     private _calculateSystemLine = (line: number): FolioCalculationLine => {
-        const { START_X: startX, END_X: endX } = this.systemsDimensions;
-        return new FolioCalculationLine(new FolioCalculationPoint(startX, line), new FolioCalculationPoint(endX, line));
+        const { START_X, END_X } = this.systemsDimensions;
+        return new FolioCalculationLine(
+            new FolioCalculationPoint(START_X, line),
+            new FolioCalculationPoint(END_X, line)
+        );
     };
 }
 
@@ -638,86 +804,6 @@ class FolioCalculationSystemsLabels {
 }
 
 /**
- * The FolioCalculationSystemsYArray class.
- *
- * It is used in the context of the edition folio convolutes
- * to calculate the y-values of the systems on the folio canvas.
- */
-class FolioCalculationSystemsYArray {
-    /**
-     * The array of y-value arrays for the systems (number).
-     */
-    public readonly Y_ARRAY: number[][];
-
-    /**
-     * Constructor of the FolioCalculationSystemsYArray class.
-     *
-     * It initializes the class with values
-     * from the number of systems, the start position of the systems, the line space factor, the zoom factor and the offset.
-     *
-     * @param {number} numberOfSystems The given number of systems.
-     * @param {number} systemStartY The given start position of the systems.
-     * @param {number} lineSpaceFactor The given line space factor.
-     * @param {number} zoomFactor The given zoom factor.
-     * @param {number} offset The given offset.
-     */
-    constructor(
-        private numberOfSystems: number,
-        private systemStartY: number,
-        private lineSpaceFactor: number,
-        private zoomFactor: number,
-        private offset: number
-    ) {
-        this.Y_ARRAY = this._calculateSystemYArray();
-    }
-
-    /**
-     * Private method: _calculateSystemYArray.
-     *
-     * It calculates the array of start positions of the systems of a folio.
-     *
-     * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
-     */
-    private _calculateSystemYArray(): number[][] {
-        return Array.from({ length: this.numberOfSystems }, (_, i) => {
-            const yStartValue = this._getContentSegmentStart(i);
-            return this._calculateSystemLineArray(yStartValue);
-        });
-    }
-
-    /**
-     * Private method: _calculateSystemLineArray.
-     *
-     * It calculates the start position of the lines per system of a folio.
-     *
-     * @param {number} y The Y start value of the first line of a system.
-     * @returns {number[]} The start position array (Y values) of a system.
-     */
-    private _calculateSystemLineArray(y: number): number[] {
-        if (!y) {
-            return undefined;
-        }
-
-        // Generate an array with 5 elements, each one being the start value for a line
-        return Array.from({ length: 5 }, (_, i) => y + this.lineSpaceFactor * i * this.zoomFactor);
-    }
-
-    /**
-     * Private method: _getContentSegmentStart.
-     *
-     * It calculates the start position of a content segment of a folio.
-     *
-     * @param {number} index The given index position (offset * index -->
-     * (X: start at segment 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)).
-     * @returns {number} The start position for a calculatedContentSegment.
-     */
-    private _getContentSegmentStart(index: number): number {
-        const segmentValue = this.systemStartY + this.offset * index;
-        return round(parseFloat(segmentValue.toString()), 2);
-    }
-}
-
-/**
  * The FolioCalculationSystems class.
  *
  * It is used in the context of the edition folio convolutes
@@ -732,14 +818,19 @@ export class FolioCalculationSystems {
     public lineSpaceFactor = 1.5;
 
     /**
-     * The line label array of the systems (FolioCalculationPoint[]).
+     * The number of systems (number).
      */
-    public readonly SYSTEMS_LABEL_ARRAY: FolioCalculationPoint[];
+    public readonly NUMBER_OF_SYSTEMS: number;
 
     /**
-     * The array of line arrays of the systems (FolioCalculationLine[][]).
+     * The labels of the systems (FolioCalculationSystemsLabels).
      */
-    public readonly SYSTEMS_ARRAYS: FolioCalculationLine[][];
+    public readonly SYSTEMS_LABELS: FolioCalculationSystemsLabels;
+
+    /**
+     * The lines of the systems (FolioCalculationSystemsLines).
+     */
+    public readonly SYSTEMS_LINES: FolioCalculationSystemsLines;
 
     /**
      * The calculated margins of the systems (FolioCalculationSystemsMarginCalculator).
@@ -752,96 +843,64 @@ export class FolioCalculationSystems {
     public readonly SYSTEMS_DIMENSIONS: FolioCalculationSystemsDimensions;
 
     /**
-     * The array of y-value arrays for the systems (number).
+     * The zoom factor (number).
      */
-    private readonly Y_ARRAY: number[][];
+    public readonly ZOOM_FACTOR: number;
 
     /**
      * Constructor of the FolioCalculationSheet class.
      *
-     * It initializes the class with values from folio settings, the folio id and zoom factor.
+     * It initializes the class with values
+     * from the calculated folio sheet, the systems string and the zoom factor.
      *
      * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
-     * @param {number} numberOfSystems The given number of systems.
-     * @param {number} zoomFactor The given zoom factor.
+     * @param {string} systems The given systems string.
+     * @param {number} factor The given zoom factor.
      */
-    constructor(
-        private sheet: FolioCalculationSheet,
-        private numberOfSystems: number,
-        private zoomFactor: number
-    ) {
-        this.SYSTEMS_MARGINS = this._calculateSystemsMargins();
-        this.SYSTEMS_DIMENSIONS = this._calculateSystemsDimensions();
+    constructor(sheet: FolioCalculationSheet, systems: string, factor: number) {
+        this.NUMBER_OF_SYSTEMS = systems ? parseInt(systems, 10) : 0;
+        this.ZOOM_FACTOR = factor;
 
-        this.Y_ARRAY = this._calculateSystemsYArray().Y_ARRAY;
-        this.SYSTEMS_ARRAYS = this._calculateSystemsLines().SYSTEMS_ARRAYS;
-        this.SYSTEMS_LABEL_ARRAY = this._calculateSystemsLabels().SYSTEMS_LABELS_ARRAY;
+        this.SYSTEMS_MARGINS = new FolioCalculationSystemsMargins(sheet);
+        this.SYSTEMS_DIMENSIONS = new FolioCalculationSystemsDimensions(sheet, this.SYSTEMS_MARGINS);
+
+        const Y_ARRAY = this._calculateSystemYArray();
+        this.SYSTEMS_LINES = new FolioCalculationSystemsLines(Y_ARRAY, this.SYSTEMS_DIMENSIONS);
+        this.SYSTEMS_LABELS = new FolioCalculationSystemsLabels(
+            Y_ARRAY,
+            this.SYSTEMS_MARGINS,
+            this.SYSTEMS_DIMENSIONS,
+            this.ZOOM_FACTOR
+        );
     }
 
     /**
-     * Private method: _calculateSystemsMargins.
-     *
-     * It calculates the margins of the systems of a folio.
-     *
-     * @returns {FolioCalculationSystemsMargins} The calculated margins of the systems.
-     */
-    private _calculateSystemsMargins(): FolioCalculationSystemsMargins {
-        return new FolioCalculationSystemsMargins(this.sheet, this.numberOfSystems);
-    }
-
-    /**
-     * Private method: _calculateSystemsDimensions.
-     *
-     * It calculates the dimensions of the systems of a folio.
-     *
-     * @returns {FolioCalculationSystemsDimensions} The calculated dimensions of the systems.
-     */
-    private _calculateSystemsDimensions(): FolioCalculationSystemsDimensions {
-        return new FolioCalculationSystemsDimensions(this.sheet, this.SYSTEMS_MARGINS);
-    }
-
-    /**
-     * Private method: _calculateSystemsYArray.
+     * Private method: _calculateSystemYArray.
      *
      * It calculates the array of start positions of the systems of a folio.
      *
-     * @returns {FolioCalculationSystemsYArray} The calculated array of start positions for the systems.
+     * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
      */
-    private _calculateSystemsYArray(): FolioCalculationSystemsYArray {
-        return new FolioCalculationSystemsYArray(
-            this.numberOfSystems,
-            this.SYSTEMS_DIMENSIONS.START_Y,
-            this.lineSpaceFactor,
-            this.zoomFactor,
-            this.SYSTEMS_MARGINS.UPPER_MARGIN
-        );
+    private _calculateSystemYArray(): number[][] {
+        const spacePerSystem = this.SYSTEMS_DIMENSIONS.SYSTEMS_HEIGHT / this.NUMBER_OF_SYSTEMS;
+        const array = Array.from({ length: this.NUMBER_OF_SYSTEMS }, (_, i) => {
+            const yStartValue = round(this.SYSTEMS_DIMENSIONS.START_Y + i * spacePerSystem, 2);
+            return this._calculateSystemLineArray(yStartValue);
+        });
+        return array;
     }
 
     /**
-     * Private method: _calculateSystemsLines.
+     * Private method: _calculateSystemLineArray.
      *
-     * It calculates the lines of the systems of a folio.
+     * It calculates the start position of the 5 lines per system of a folio.
      *
-     * @returns {FolioCalculationSystemsLines} The calculated lines of the systems.
+     * @param {number} y The Y start value of the first line of a system.
+     * @returns {number[]} The start position array (Y values) of a system.
      */
-    private _calculateSystemsLines(): FolioCalculationSystemsLines {
-        return new FolioCalculationSystemsLines(this.Y_ARRAY, this.SYSTEMS_DIMENSIONS);
-    }
-
-    /**
-     * Private method: _calculateSystemsLabels.
-     *
-     * It calculates the labels of the systems of a folio.
-     *
-     * @returns {FolioCalculationSystemsLabels} The calculated labels of the systems.
-     */
-    private _calculateSystemsLabels(): FolioCalculationSystemsLabels {
-        return new FolioCalculationSystemsLabels(
-            this.Y_ARRAY,
-            this.SYSTEMS_MARGINS,
-            this.SYSTEMS_DIMENSIONS,
-            this.zoomFactor
-        );
+    private _calculateSystemLineArray(y: number): number[] {
+        const NUMBER_OF_LINES = 5;
+        return Array.from({ length: NUMBER_OF_LINES }, (_, i) => y + i * this.lineSpaceFactor * this.ZOOM_FACTOR);
     }
 }
 
@@ -855,32 +914,22 @@ export class FolioCalculationSystems {
  */
 export class FolioCalculation {
     /**
-     * The number of systems (number).
-     */
-    public readonly NUMBER_OF_SYSTEMS: number;
-
-    /**
-     * The zoom factor (number).
-     */
-    public readonly ZOOM_FACTOR: number;
-
-    /**
      * The calculated values for the sheet
      * of a folio (FolioCalculationSheet).
      */
-    public sheet: FolioCalculationSheet;
+    public readonly SHEET: FolioCalculationSheet;
 
     /**
      * The calculated values for the systems
      * of a folio (FolioCalculationSystems).
      */
-    public systems: FolioCalculationSystems;
+    public readonly SYSTEMS: FolioCalculationSystems;
 
     /**
      * The calculated values for content segments
      * of a folio (FolioCalculationContentSegment[]).
      */
-    public contentSegments: FolioCalculationContentSegment[];
+    public readonly CONTENT_SEGMENTS: FolioCalculationContentSegment[];
 
     /**
      * Constructor of the FolioCalculation class.
@@ -891,254 +940,12 @@ export class FolioCalculation {
      * @param {Folio} folioData The given folio data.
      * @param {number} [segmentOffsetCorrection] The optional given segment offset correction.
      */
-    constructor(
-        folioSettings: FolioSettings,
-        folioData: Folio,
-        private segmentOffsetCorrection: number = 0
-    ) {
-        this.NUMBER_OF_SYSTEMS = folioData.systems ? parseInt(folioData.systems, 10) : 0;
-        this.ZOOM_FACTOR = folioSettings.factor;
-
-        this.sheet = new FolioCalculationSheet(folioSettings, folioData.folioId);
-        this.systems = new FolioCalculationSystems(this.sheet, this.NUMBER_OF_SYSTEMS, this.ZOOM_FACTOR);
-
-        this.contentSegments = this._calculateContentSegments(folioData.content);
-    }
-
-    private _calculateContentSegments(contents: FolioContent[] = []): FolioCalculationContentSegment[] {
-        return contents.map((content: FolioContent) => this._calculateContentSegment(content));
-    }
-
-    private _calculateContentSegment(content: FolioContent): FolioCalculationContentSegment {
-        const calculatedContentSegment = new FolioCalculationContentSegment();
-        this._setOffsetCorrection(calculatedContentSegment);
-        this._setSectionPartition(calculatedContentSegment, content);
-        this._handleSections(calculatedContentSegment, content);
-
-        return calculatedContentSegment;
-    }
-
-    private _setOffsetCorrection(calculatedContentSegment: FolioCalculationContentSegment): void {
-        calculatedContentSegment.offsetCorrection = this.segmentOffsetCorrection;
-    }
-
-    private _setSectionPartition(
-        calculatedContentSegment: FolioCalculationContentSegment,
-        content: FolioContent
-    ): void {
-        calculatedContentSegment.sectionPartition = content.sectionPartition ?? 1;
-    }
-
-    private _handleSections(calculatedContentSegment: FolioCalculationContentSegment, content: FolioContent): void {
-        if (!content.sections) {
-            console.error('No sections array in content', content);
-            return;
-        }
-        if (content.sections.length > calculatedContentSegment.sectionPartition) {
-            console.error('Sections array is bigger than sectionPartition');
-            return;
-        }
-        content.sections.forEach((section: FolioSection, _sectionIndex: number) => {
-            this._handleSection(calculatedContentSegment, section, content);
-        });
-    }
-
-    private _handleSection(
-        calculatedContentSegment: FolioCalculationContentSegment,
-        section: FolioSection,
-        content: FolioContent
-    ): void {
-        this._setContentSegmentSectionCache(calculatedContentSegment, section);
-        this._setContentSegmentMainValues(calculatedContentSegment, section, content);
-        this._setVertices(calculatedContentSegment);
-        this._setOtherProperties(calculatedContentSegment, content);
-    }
-
-    private _setVertices(calculatedContentSegment: FolioCalculationContentSegment): void {
-        calculatedContentSegment.current.vertices = new FolioCalculationContentSegmentVertices(
-            calculatedContentSegment
+    constructor(folioSettings: FolioSettings, folioData: Folio, segmentOffsetCorrection: number = 0) {
+        this.SHEET = new FolioCalculationSheet(folioSettings, folioData.folioId);
+        this.SYSTEMS = new FolioCalculationSystems(this.SHEET, folioData.systems, folioSettings.factor);
+        this.CONTENT_SEGMENTS = folioData.content.map(
+            (content: FolioContent) =>
+                new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection)
         );
-        calculatedContentSegment.segmentVertices =
-            calculatedContentSegment.current.vertices.getSegmentVerticesAsString();
-    }
-
-    private _setOtherProperties(
-        calculatedContentSegment: FolioCalculationContentSegment,
-        { complexId, sheetId, selectable = true, reversed = false, linkTo = '', sigle, sigleAddendum }: FolioContent
-    ): void {
-        const { segmentLabel, segmentLabelArray, segmentLabelOffset } = this._getSegmentLabelAndOffset(
-            sigle,
-            sigleAddendum
-        );
-
-        const { centeredXPosition, centeredYPosition } = this._calculateCenteredPositions(
-            calculatedContentSegment,
-            segmentLabelOffset,
-            reversed
-        );
-
-        Object.assign(calculatedContentSegment, {
-            complexId,
-            sheetId,
-            sigle,
-            sigleAddendum,
-            selectable: selectable,
-            reversed: reversed,
-            linkTo: linkTo,
-            segmentLabelArray,
-            segmentLabel,
-            centeredXPosition,
-            centeredYPosition,
-        });
-    }
-
-    private _calculateCenteredPositions(
-        calculatedContentSegment: FolioCalculationContentSegment,
-        segmentLabelOffset: number,
-        reversed: boolean
-    ): { centeredXPosition: number; centeredYPosition: number } {
-        const { UPPER_LEFT_VERTEX: upperLeftCorner, LOWER_RIGHT_VERTEX: lowerRightCorner } =
-            calculatedContentSegment.current.vertices;
-
-        const centeredXPosition = (upperLeftCorner.x + lowerRightCorner.x) / 2;
-        const offsetCorrection = reversed ? -segmentLabelOffset : segmentLabelOffset;
-        const centeredYPosition = (upperLeftCorner.y + lowerRightCorner.y) / 2 - offsetCorrection;
-
-        return { centeredXPosition, centeredYPosition };
-    }
-
-    private _getSegmentLabelAndOffset(
-        sigle: string,
-        sigleAddendum: string | null
-    ): { segmentLabel: string; segmentLabelArray: string[]; segmentLabelOffset: number } {
-        const segmentLabelArray = [sigle, sigleAddendum ? ` ${sigleAddendum}` : ''];
-        const segmentLabel = segmentLabelArray.join(' ');
-        const segmentLabelOffset = sigleAddendum ? 5 : 0;
-
-        return { segmentLabel, segmentLabelArray, segmentLabelOffset };
-    }
-
-    /**
-     * Private helper method for _calculateContentArray: _setContentSegmentMainValues.
-     *
-     * It calculates the main values for the content segments of a folio.
-     *
-     * @param {FolioCalculationContentSegment} calculatedContentSegment The given calculated content segment.
-     * @param {FolioSection} section The given section.
-     * @param {FolioContent} content The given folio content.
-     * @returns {void} Calculates and sets the main values of the calculatedContentSegment.
-     */
-    private _setContentSegmentMainValues(
-        calculatedContentSegment: FolioCalculationContentSegment,
-        section: FolioSection,
-        content: FolioContent
-    ): void {
-        if (!calculatedContentSegment) {
-            return;
-        }
-
-        // SegmentsWidth
-        calculatedContentSegment.widthWithOffset = round(
-            this.systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / calculatedContentSegment.sectionPartition,
-            2
-        );
-        calculatedContentSegment.width =
-            calculatedContentSegment.widthWithOffset - calculatedContentSegment.offsetCorrection; // OffsetCorrection to avoid horizontal collision between segments
-
-        // SegmentsHeight
-        calculatedContentSegment.systemRange = section.endSystem - section.startSystem + 1;
-        calculatedContentSegment.height = round(
-            this.systems.SYSTEMS_MARGINS.UPPER_MARGIN * calculatedContentSegment.systemRange -
-                calculatedContentSegment.offsetCorrection,
-            2
-        ); // OffsetCorrection to avoid vertical collision between segments
-
-        // Find segment start indices
-        calculatedContentSegment.startYIndex = section.startSystem - 1;
-        calculatedContentSegment.startXIndex = 0;
-        // Check if position exists ...
-        if (section.position) {
-            const position: number = section.position;
-            if (position > calculatedContentSegment.sectionPartition) {
-                // ... and is bigger than number of sections
-                // Index remains 0
-                console.error(
-                    'Assuming position 1 because current position is bigger than number of sections for segment ',
-                    content
-                );
-            } else if (calculatedContentSegment.sectionPartition > 1) {
-                // ... or is smaller or equal to number of sections which is bigger 1
-                // Than index is position - 1 (positions go from 1, 2, 3 to n)
-                calculatedContentSegment.startXIndex = position - 1;
-            }
-        }
-        // For other cases index remains 0 (default)
-
-        // SegmentsStartX
-        // WidthWithOffset * startXIndex
-        // Add half the offsetCorrection to systemStartX to center segments
-        calculatedContentSegment.startX = this._getContentSegmentStart(
-            calculatedContentSegment.widthWithOffset,
-            calculatedContentSegment.startXIndex,
-            this.systems.SYSTEMS_DIMENSIONS.START_X,
-            calculatedContentSegment.offsetCorrection / 2
-        );
-        calculatedContentSegment.endX = round(calculatedContentSegment.startX + calculatedContentSegment.width, 2);
-
-        // SegmentsStartY
-        // Subtract half the offsetCorrection from systemStartY to center segments
-        calculatedContentSegment.startY = this._getContentSegmentStart(
-            this.systems.SYSTEMS_MARGINS.UPPER_MARGIN,
-            calculatedContentSegment.startYIndex,
-            this.systems.SYSTEMS_DIMENSIONS.START_Y,
-            -calculatedContentSegment.offsetCorrection / 2
-        );
-        calculatedContentSegment.endY = round(calculatedContentSegment.startY + calculatedContentSegment.height, 2);
-    }
-
-    /**
-     * Private method: _setContentSegmentSectionCache.
-     *
-     * It caches the current and previous section of a calculated content segment.
-     *
-     * @param {FolioCalculationContentSegment} calculatedContentSegment The given calculated content segment.
-     * @param {FolioSection} section The given section.
-     * @returns {void} Caches the current and previous section of the calculatedContentSegment.
-     */
-    private _setContentSegmentSectionCache(
-        calculatedContentSegment: FolioCalculationContentSegment,
-        section: FolioSection
-    ): void {
-        if (!calculatedContentSegment) {
-            return;
-        }
-
-        if (calculatedContentSegment.current['section']) {
-            calculatedContentSegment.previous.section = calculatedContentSegment.current.section;
-            calculatedContentSegment.previous.vertices = calculatedContentSegment.current.vertices;
-        }
-        calculatedContentSegment.current.section = section;
-    }
-
-    /**
-     * Private helper method for _calculateContentArray: _getContentSegmentStart.
-     *
-     * It calculates the start position of a content segment of a folio.
-     *
-     * @param {number} offset The given offset.
-     * @param {number} index The given index position (offset * index -->
-     * (X: start at segment 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)).
-     * @param {number} systemStart The given horizontal(X) or vertical (Y) systemsMargins.
-     * @param {number} [offsetCorrection] The optional given offset correction value (mostly needed to center segments).
-     * @returns {number} The start position for a calculatedContentSegment.
-     */
-    private _getContentSegmentStart(
-        offset: number,
-        index: number,
-        systemStart: number,
-        offsetCorrection: number = 0
-    ): number {
-        const segmentValue = systemStart + offset * index + offsetCorrection;
-        return round(parseFloat(segmentValue.toString()), 2);
     }
 }

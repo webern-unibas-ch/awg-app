@@ -61,20 +61,20 @@ class FolioSvgSheet {
  */
 class FolioSvgSystems {
     /**
-     * The line label array of a folio (FolioCalculationPoint[]).
+     * The systems label positions of a folio (FolioCalculationPoint[]).
      *
      * It contains all calculated labels and their positions (in px)
      * to draw the svg of the systems of a folio.
      */
-    systemsLabelArray: FolioCalculationPoint[];
+    systemsLabelPositions: FolioCalculationPoint[];
 
     /**
-     * The array of line arrays of a folio (FolioCalculationLine[][]).
+     * The system lines of a folio (FolioCalculationLine[][]).
      *
      * It contains all calculated lines and their positions (in px)
      * to draw the svg of the systems of a folio.
      */
-    systemsArrays: FolioCalculationLine[][];
+    systemsLines: FolioCalculationLine[][];
 
     /**
      * Constructor of the FolioSvgSystems class.
@@ -84,8 +84,8 @@ class FolioSvgSystems {
      * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
      */
     constructor(calculatedSystems: FolioCalculationSystems) {
-        this.systemsLabelArray = calculatedSystems.SYSTEMS_LABEL_ARRAY;
-        this.systemsArrays = calculatedSystems.SYSTEMS_ARRAYS;
+        this.systemsLabelPositions = calculatedSystems.SYSTEMS_LABELS.SYSTEMS_LABELS_ARRAY;
+        this.systemsLines = calculatedSystems.SYSTEMS_LINES.SYSTEMS_ARRAYS;
     }
 }
 
@@ -161,7 +161,7 @@ export class FolioSvgContentSegment {
         this.linkTo = calculatedContentSegment.linkTo;
         this.selectable = calculatedContentSegment.selectable;
         this.reversed = calculatedContentSegment.reversed;
-        this.segmentVertices = calculatedContentSegment.segmentVertices;
+        this.segmentVertices = calculatedContentSegment.vertices?.VERTICES_AS_STRING;
         this.segmentLabelArray = calculatedContentSegment.segmentLabelArray;
         this.segmentLabel = calculatedContentSegment.segmentLabel;
         this.centeredXPosition = calculatedContentSegment.centeredXPosition;
@@ -210,11 +210,8 @@ export class FolioSvgData {
      * @param {FolioCalculation} calculation The given folio calculation.
      */
     constructor(calculation: FolioCalculation) {
-        this.sheet = new FolioSvgSheet(calculation.sheet);
-        this.systems = new FolioSvgSystems(calculation.systems);
-        this.contentSegments = [];
-        this.contentSegments = calculation.contentSegments.map(
-            calculatedContentSegment => new FolioSvgContentSegment(calculatedContentSegment)
-        );
+        this.sheet = new FolioSvgSheet(calculation.SHEET);
+        this.systems = new FolioSvgSystems(calculation.SYSTEMS);
+        this.contentSegments = calculation.CONTENT_SEGMENTS.map(segment => new FolioSvgContentSegment(segment));
     }
 }
