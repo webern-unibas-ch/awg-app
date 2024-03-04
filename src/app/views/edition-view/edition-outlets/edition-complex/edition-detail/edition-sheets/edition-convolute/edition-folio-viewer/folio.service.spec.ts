@@ -540,10 +540,10 @@ describe('FolioService', () => {
                         const expectedLine = expectedFolioSvgData.systems.systemsArrays[i][j];
 
                         expectToBe(lineElement.attr('class'), 'system-line');
-                        expectToBe(lineElement.attr('x1'), String(expectedLine.startPoint.x));
-                        expectToBe(lineElement.attr('y1'), String(expectedLine.startPoint.y));
-                        expectToBe(lineElement.attr('x2'), String(expectedLine.endPoint.x));
-                        expectToBe(lineElement.attr('y2'), String(expectedLine.endPoint.y));
+                        expectToBe(lineElement.attr('x1'), String(expectedLine.START_POINT.x));
+                        expectToBe(lineElement.attr('y1'), String(expectedLine.START_POINT.y));
+                        expectToBe(lineElement.attr('x2'), String(expectedLine.END_POINT.x));
+                        expectToBe(lineElement.attr('y2'), String(expectedLine.END_POINT.y));
                         expectToBe(lineElement.attr('stroke'), expectedBgColor);
                         expectToBe(lineElement.attr('stroke-width'), String(expectedSystemsLineStrokeWidth));
                         expectToBe((lineElement.node() as Element).attributes.length, 7);
@@ -638,7 +638,7 @@ describe('FolioService', () => {
 
                     expectToEqual(callArgs, [
                         contentSegmentLink,
-                        expectedFolioSvgData.contentSegments[i].polygonCornerPoints,
+                        expectedFolioSvgData.contentSegments[i].segmentVertices,
                     ]);
                 });
             });
@@ -1326,7 +1326,7 @@ describe('FolioService', () => {
 
                 (folioService as any)._appendContentSegmentLinkPolygon(
                     contentSegmentLink,
-                    expectedContentSegment.polygonCornerPoints
+                    expectedContentSegment.segmentVertices
                 );
             });
 
@@ -1337,7 +1337,7 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
                     class: 'content-segment-shape',
-                    points: expectedContentSegment.polygonCornerPoints,
+                    points: expectedContentSegment.segmentVertices,
                     fill: expectedContentSegmentFillColor,
                 };
                 attributes['stroke-width'] = expectedContentSegmentStrokeWidth;
@@ -1361,7 +1361,7 @@ describe('FolioService', () => {
             it('... should set the `points` attribute of the polygon element', () => {
                 const polygonElement = contentSegmentLink.select('polygon');
 
-                expectToBe(polygonElement.attr('points'), expectedContentSegment.polygonCornerPoints);
+                expectToBe(polygonElement.attr('points'), expectedContentSegment.segmentVertices);
             });
 
             it('... should set the `fill` attribute of the polygon element', () => {
@@ -1639,10 +1639,10 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` for each line with correct arguments', () => {
                 const attributes = {
                     class: 'system-line',
-                    x1: systemArray.at(-1).startPoint.x,
-                    y1: systemArray.at(-1).startPoint.y,
-                    x2: systemArray.at(-1).endPoint.x,
-                    y2: systemArray.at(-1).endPoint.y,
+                    x1: systemArray.at(-1).START_POINT.x,
+                    y1: systemArray.at(-1).START_POINT.y,
+                    x2: systemArray.at(-1).END_POINT.x,
+                    y2: systemArray.at(-1).END_POINT.y,
                     stroke: expectedBgColor,
                 };
                 attributes['stroke-width'] = expectedSystemsLineStrokeWidth;
@@ -1666,7 +1666,7 @@ describe('FolioService', () => {
                 systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
-                    expectToBe(D3_SELECTION.select(lineElement).attr('x1'), String(line.startPoint.x));
+                    expectToBe(D3_SELECTION.select(lineElement).attr('x1'), String(line.START_POINT.x));
                 });
             });
 
@@ -1674,7 +1674,7 @@ describe('FolioService', () => {
                 systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
-                    expectToBe(D3_SELECTION.select(lineElement).attr('y1'), String(line.startPoint.y));
+                    expectToBe(D3_SELECTION.select(lineElement).attr('y1'), String(line.START_POINT.y));
                 });
             });
 
@@ -1682,7 +1682,7 @@ describe('FolioService', () => {
                 systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
-                    expectToBe(D3_SELECTION.select(lineElement).attr('x2'), String(line.endPoint.x));
+                    expectToBe(D3_SELECTION.select(lineElement).attr('x2'), String(line.END_POINT.x));
                 });
             });
 
@@ -1690,7 +1690,7 @@ describe('FolioService', () => {
                 systemArray.forEach((line, index) => {
                     const lineElement = systemsGroup.selectAll('line').nodes()[index];
 
-                    expectToBe(D3_SELECTION.select(lineElement).attr('y2'), String(line.endPoint.y));
+                    expectToBe(D3_SELECTION.select(lineElement).attr('y2'), String(line.END_POINT.y));
                 });
             });
 

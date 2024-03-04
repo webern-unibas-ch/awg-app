@@ -323,7 +323,7 @@ export class EditionFolioViewerComponent implements OnChanges, AfterViewChecked 
      *
      * @returns {D3Selection} The D3 selection of the selector.
      */
-    private _d3Select(selector: string) {
+    private _d3Select(selector: string): D3Selection {
         return D3_SELECTION.select(selector);
     }
 }

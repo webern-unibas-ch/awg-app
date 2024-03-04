@@ -242,7 +242,7 @@ export class FolioService {
             const svgContentSegmentLink = this._appendContentSegmentLink(svgContentSegmentGroup);
 
             // Draw content segment polygon.
-            this._appendContentSegmentLinkPolygon(svgContentSegmentLink, contentSegment.polygonCornerPoints);
+            this._appendContentSegmentLinkPolygon(svgContentSegmentLink, contentSegment.segmentVertices);
 
             // Draw content segment link label.
             this._appendContentSegmentLinkLabel(svgContentSegmentLink, contentSegment);
@@ -437,16 +437,13 @@ export class FolioService {
      * It appends a polygon shape to the content segment link.
      *
      * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
-     * @param {string} polygonCornerPoints The given polygon corner points.
+     * @param {string} segmentVertices The given segment vertices.
      * @returns {D3Selection} Appends a polygon shape to the content segment link selection.
      */
-    private _appendContentSegmentLinkPolygon(
-        svgContentSegmentLink: D3Selection,
-        polygonCornerPoints: string
-    ): D3Selection {
+    private _appendContentSegmentLinkPolygon(svgContentSegmentLink: D3Selection, segmentVertices: string): D3Selection {
         const attributes = {
             class: 'content-segment-shape',
-            points: polygonCornerPoints,
+            points: segmentVertices,
             fill: this._contentSegmentFillColor,
         };
         attributes['stroke-width'] = this._contentSegmentStrokeWidth;
@@ -462,7 +459,6 @@ export class FolioService {
      * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
      * @param {FolioCalculationPoint} upperLeftCorner The given upper left corner point.
      * @param {FolioCalculationPoint} lowerRightCorner The given lower right corner point.
-     * @param {string} bgColor The given background color.
      * @returns {D3Selection} Appends a rectangle to the sheet group selection.
      */
     private _appendSheetGroupRectangle(
@@ -506,7 +502,6 @@ export class FolioService {
      * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
      * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
      * @param {number} systemIndex The given system index.
-     * @param {string} bgColor The given background color.
      * @returns {void} Appends a label to the systems group selection.
      */
     private _appendSystemsGroupLabel(
@@ -538,8 +533,8 @@ export class FolioService {
      */
     private _appendSystemsGroupLines(svgSystemsGroup: D3Selection, systemArray: FolioCalculationLine[]): void {
         systemArray.forEach(line => {
-            const { x: x1, y: y1 } = line.startPoint;
-            const { x: x2, y: y2 } = line.endPoint;
+            const { x: x1, y: y1 } = line.START_POINT;
+            const { x: x2, y: y2 } = line.END_POINT;
             const attributes = {
                 class: 'system-line',
                 x1: x1,

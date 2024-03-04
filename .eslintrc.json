@@ -72,6 +72,12 @@
                         "trailingUnderscore": "allow"
                     },
                     {
+                        "selector": ["classProperty"],
+                        "modifiers": ["private", "readonly"],
+                        "format": ["camelCase", "UPPER_CASE"],
+                        "leadingUnderscore": "allow"
+                    },
+                    {
                         "selector": ["classProperty", "classMethod"],
                         "modifiers": ["private"],
                         "format": ["camelCase"],

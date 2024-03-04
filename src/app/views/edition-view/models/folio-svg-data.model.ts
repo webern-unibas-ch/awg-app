@@ -45,9 +45,9 @@ class FolioSvgSheet {
      * @param {FolioCalculationSheet} calculatedSheet The given calculated folio sheet.
      */
     constructor(calculatedSheet: FolioCalculationSheet) {
-        this.folioId = calculatedSheet.folioId;
-        this.upperLeftCorner = calculatedSheet.upperLeftCorner;
-        this.lowerRightCorner = calculatedSheet.lowerRightCorner;
+        this.folioId = calculatedSheet.FOLIO_ID;
+        this.upperLeftCorner = calculatedSheet.UPPER_LEFT_CORNER;
+        this.lowerRightCorner = calculatedSheet.LOWER_RIGHT_CORNER;
     }
 }
 
@@ -84,8 +84,8 @@ class FolioSvgSystems {
      * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
      */
     constructor(calculatedSystems: FolioCalculationSystems) {
-        this.systemsLabelArray = calculatedSystems.systemsLabelArray;
-        this.systemsArrays = calculatedSystems.systemsArrays;
+        this.systemsLabelArray = calculatedSystems.SYSTEMS_LABEL_ARRAY;
+        this.systemsArrays = calculatedSystems.SYSTEMS_ARRAYS;
     }
 }
 
@@ -134,9 +134,9 @@ export class FolioSvgContentSegment {
     segmentLabel: string;
 
     /**
-     * The corner points of a content segment polygon (string).
+     * The vertices of a content segment polygon (string).
      */
-    polygonCornerPoints: string;
+    segmentVertices: string;
 
     /**
      * The centered X position of a content segment (number).
@@ -161,9 +161,9 @@ export class FolioSvgContentSegment {
         this.linkTo = calculatedContentSegment.linkTo;
         this.selectable = calculatedContentSegment.selectable;
         this.reversed = calculatedContentSegment.reversed;
-        this.polygonCornerPoints = calculatedContentSegment.polygonCornerPoints;
-        this.segmentLabelArray = calculatedContentSegment.itemLabelArray;
-        this.segmentLabel = calculatedContentSegment.itemLabel;
+        this.segmentVertices = calculatedContentSegment.segmentVertices;
+        this.segmentLabelArray = calculatedContentSegment.segmentLabelArray;
+        this.segmentLabel = calculatedContentSegment.segmentLabel;
         this.centeredXPosition = calculatedContentSegment.centeredXPosition;
         this.centeredYPosition = calculatedContentSegment.centeredYPosition;
     }
