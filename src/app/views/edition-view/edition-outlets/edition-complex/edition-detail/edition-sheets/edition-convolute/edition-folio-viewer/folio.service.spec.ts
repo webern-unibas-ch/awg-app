@@ -19,9 +19,10 @@ import {
     ViewBox,
 } from '@awg-app/views/edition-view/models';
 
+import { mockConsole } from '@testing/mock-helper';
 import { FolioService } from './folio.service';
 
-describe('FolioService', () => {
+describe('FolioService (DONE)', () => {
     let folioService: FolioService;
     let refMock: any;
 
@@ -42,10 +43,12 @@ describe('FolioService', () => {
     let appendSystemsGroupLabelSpy: Spy;
     let appendSystemsGroupLinesSpy: Spy;
     let appendSvgElementWithAttrsSpy: Spy;
+    let consoleSpy: Spy;
 
     let expectedConvolutes: FolioConvolute[];
     let expectedFolioSettings: FolioSettings;
     let expectedFolioSvgData: FolioSvgData;
+    let expectedReversedFolio: Folio;
 
     let expectedUpperLeftCorner: FolioCalculationPoint;
     let expectedLowerRightCorner: FolioCalculationPoint;
@@ -58,7 +61,7 @@ describe('FolioService', () => {
 
     let expectedContentSegmentFontStyle: string;
     let expectedContentSegmentOffsetCorrection: number;
-    let expectedContentSegmentReversedRotationAngle: number;
+    let expectedReversedRotationAngle: number;
     let expectedContentSegmentStrokeWidth: number;
     let expectedSheetStrokeWidth: number;
     let expectedSystemsLineStrokeWidth: number;
@@ -77,6 +80,7 @@ describe('FolioService', () => {
 
         // Test data
         expectedConvolutes = JSON.parse(JSON.stringify(mockEditionData.mockFolioConvoluteData.convolutes));
+        expectedReversedFolio = JSON.parse(JSON.stringify(mockEditionData.mockReversedFolio));
         expectedFolioSettings = {
             factor: 1.5,
             formatX: 175,
@@ -93,7 +97,7 @@ describe('FolioService', () => {
 
         expectedContentSegmentOffsetCorrection = 4;
         expectedContentSegmentFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
-        expectedContentSegmentReversedRotationAngle = 180;
+        expectedReversedRotationAngle = 180;
 
         expectedContentSegmentStrokeWidth = 2;
         expectedSheetStrokeWidth = 1;
@@ -151,6 +155,16 @@ describe('FolioService', () => {
         appendSystemsGroupLabelSpy = spyOn(folioService as any, '_appendSystemsGroupLabel').and.callThrough();
         appendSystemsGroupLinesSpy = spyOn(folioService as any, '_appendSystemsGroupLines').and.callThrough();
         appendSvgElementWithAttrsSpy = spyOn(folioService as any, '_appendSvgElementWithAttrs').and.callThrough();
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+    });
+
+    afterEach(() => {
+        // Clear mock stores after each test
+        mockConsole.clear();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     afterAll(() => {
@@ -159,6 +173,18 @@ describe('FolioService', () => {
 
     it('... should inject', () => {
         expect(folioService).toBeTruthy();
+    });
+
+    describe('mock test objects (self-test)', () => {
+        it('... should use mock console', () => {
+            console.error('Test');
+
+            expect(mockConsole.get(0)).toBe('Test');
+        });
+
+        it('... should clear mock console after each run', () => {
+            expect(mockConsole.get(0)).toBeUndefined();
+        });
     });
 
     describe('default values', () => {
@@ -191,10 +217,7 @@ describe('FolioService', () => {
         });
 
         it('... should have `_contentSegmentReversedRotationAngle`', () => {
-            expectToBe(
-                (folioService as any)._contentSegmentReversedRotationAngle,
-                expectedContentSegmentReversedRotationAngle
-            );
+            expectToBe((folioService as any)._contentSegmentReversedRotationAngle, expectedReversedRotationAngle);
         });
 
         it('... should have `_contentSegmentStrokeWidth`', () => {
@@ -227,8 +250,8 @@ describe('FolioService', () => {
 
         it('... should return an instance of FolioSvgData object', () => {
             // Create mock FolioSettings and Folio objects
-            const folioSettings: FolioSettings = new FolioSettings();
-            const folio: Folio = new Folio();
+            const folioSettings: FolioSettings = expectedFolioSettings;
+            const folio: Folio = expectedConvolutes[0].folios[0];
 
             // Call the method with the mock objects
             const result = folioService.getFolioSvgData(folioSettings, folio);
@@ -424,6 +447,34 @@ describe('FolioService', () => {
             expectToBe(rectElement.attr('stroke-width'), String(expectedSheetStrokeWidth));
             expectToBe((rectElement.node() as Element).attributes.length, 7);
         });
+
+        describe('... should set sheet vertex to NaN if', () => {
+            it('... sheet width is NaN in folioCalculation model', () => {
+                const altSvgSheetGroup = D3_SELECTION.create('g');
+
+                expectedFolioSettings.formatX = NaN;
+                const altFolioSvgData = new FolioSvgData(
+                    new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                );
+
+                (folioService as any)._addFolioSheetToSvgCanvas(altSvgSheetGroup, altFolioSvgData);
+
+                expectToEqual(altFolioSvgData.sheet.lowerRightCorner.x, NaN);
+            });
+
+            it('... sheet height is NaN in folioCalculation model', () => {
+                const altSvgSheetGroup = D3_SELECTION.create('g');
+
+                expectedFolioSettings.formatY = NaN;
+                const altFolioSvgData = new FolioSvgData(
+                    new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                );
+
+                (folioService as any)._addFolioSheetToSvgCanvas(altSvgSheetGroup, altFolioSvgData);
+
+                expectToEqual(altFolioSvgData.sheet.lowerRightCorner.y, NaN);
+            });
+        });
     });
 
     describe('#_addFolioSystemsToSvgCanvas', () => {
@@ -444,15 +495,34 @@ describe('FolioService', () => {
                 svgSheetGroup.remove();
             });
 
+            describe('... should not append anything and log an error if', () => {
+                it('... number of systems is not given in folioCalculation model', () => {
+                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+
+                    expectedReversedFolio.systems = '';
+                    const emptyFolioSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                    );
+
+                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+
+                    expectToBe(emptySvgSheetGroup.selectAll('.systems-group').size(), 0);
+                    expectToBe(emptySvgSheetGroup.selectAll('.system-line-group').size(), 0);
+
+                    expectSpyCall(consoleSpy, 1);
+                    expectToBe(mockConsole.get(0), 'No systems in folio');
+                });
+            });
+
             it('... should append a systems group and a system line group to the SVG sheet group for each system', () => {
-                const systemCount = expectedFolioSvgData.systems.systemsArrays.length;
+                const systemCount = expectedFolioSvgData.systems.systemsLines.length;
 
                 expectToBe(svgSheetGroup.selectAll('.systems-group').size(), systemCount);
                 expectToBe(svgSheetGroup.selectAll('.system-line-group').size(), systemCount);
             });
 
             it('... should trigger `_appendSystemsGroupLabel` for each system', () => {
-                const systemIndex = expectedFolioSvgData.systems.systemsLabelArray.length - 1;
+                const systemIndex = expectedFolioSvgData.systems.systemsLabelPositions.length - 1;
 
                 const systemsGroup = svgSheetGroup
                     .append('g')
@@ -472,7 +542,7 @@ describe('FolioService', () => {
             });
 
             it('... should trigger `_appendSystemsGroupLines` for each system', () => {
-                const systemIndex = expectedFolioSvgData.systems.systemsLabelArray.length - 1;
+                const systemIndex = expectedFolioSvgData.systems.systemsLabelPositions.length - 1;
 
                 svgSheetGroup
                     .append('g')
@@ -482,7 +552,7 @@ describe('FolioService', () => {
                 expectToBe(appendSystemsGroupLinesSpy.calls.count(), systemIndex + 1);
                 expectSpyCall(appendSystemsGroupLinesSpy, systemIndex + 1, [
                     svgSheetGroup.select(`[systemLineGroupId="${systemIndex + 1}"]`),
-                    expectedFolioSvgData.systems.systemsArrays.at(-1),
+                    expectedFolioSvgData.systems.systemsLines.at(-1),
                 ]);
             });
 
@@ -504,7 +574,7 @@ describe('FolioService', () => {
                 systemsGroups.forEach((group, i) => {
                     const systemsGroup = D3_SELECTION.select(group);
                     const textElement = systemsGroup.select('text');
-                    const expectedLabel = expectedFolioSvgData.systems.systemsLabelArray[i];
+                    const expectedLabel = expectedFolioSvgData.systems.systemsLabelPositions[i];
 
                     expectToBe(textElement.attr('class'), 'system-label');
                     expectToBe(textElement.attr('x'), String(expectedLabel.x));
@@ -515,7 +585,7 @@ describe('FolioService', () => {
                 });
             });
 
-            it('... should append as many line elements as content segments in systemArray to each system line group', () => {
+            it('... should append as many line elements as lines in systemsLines to each system line group', () => {
                 const systemLineGroups = svgSheetGroup.selectAll('.system-line-group').nodes();
 
                 systemLineGroups.forEach((group, i) => {
@@ -523,7 +593,7 @@ describe('FolioService', () => {
 
                     expectToBe(
                         systemLineGroup.selectAll('line').size(),
-                        expectedFolioSvgData.systems.systemsArrays[i].length
+                        expectedFolioSvgData.systems.systemsLines[i].length
                     );
                 });
             });
@@ -537,7 +607,7 @@ describe('FolioService', () => {
 
                     lineElements.forEach((lineNode, j) => {
                         const lineElement = D3_SELECTION.select(lineNode);
-                        const expectedLine = expectedFolioSvgData.systems.systemsArrays[i][j];
+                        const expectedLine = expectedFolioSvgData.systems.systemsLines[i][j];
 
                         expectToBe(lineElement.attr('class'), 'system-line');
                         expectToBe(lineElement.attr('x1'), String(expectedLine.START_POINT.x));
@@ -571,25 +641,57 @@ describe('FolioService', () => {
                 svgSheetGroup.remove();
             });
 
-            it('... should not do anything if there are no content content segments', () => {
-                const expectedCount = expectedFolioSvgData.contentSegments.length;
+            describe('... should not append anything and log an error if', () => {
+                it('... content.sections are not given in folioCalculation model', () => {
+                    const emptySvgSheetGroup = D3_SELECTION.create('g');
 
-                const folioSvgDataWithEmptyContent: FolioSvgData = {
-                    ...expectedFolioSvgData,
-                    contentSegments: [null],
-                };
-                const emptySvgSheetGroup = D3_SELECTION.create('g');
+                    expectedReversedFolio.content[0].sections = undefined;
+                    const emptyFolioSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                    );
 
-                (folioService as any)._addFolioContentSegmentsToSvgCanvas(
-                    emptySvgSheetGroup,
-                    folioSvgDataWithEmptyContent
-                );
+                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
 
-                expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
-                expectSpyCall(appendContentSegmentGroupSpy, expectedCount);
-                expectSpyCall(appendContentSegmentLinkSpy, expectedCount);
-                expectSpyCall(appendContentSegmentLinkLabelSpy, expectedCount);
-                expectSpyCall(appendContentSegmentLinkPolygonSpy, expectedCount);
+                    expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
+
+                    expectSpyCall(consoleSpy, 1);
+                    expectToBe(mockConsole.get(0), 'No sections array in content');
+                });
+
+                it('... content.sections length is greater than sectionPartition in folioCalculation model', () => {
+                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+
+                    const sections = expectedReversedFolio.content[0].sections;
+                    const partitionIndex = expectedReversedFolio.content[0].sectionPartition - 1;
+                    sections.push(sections[partitionIndex]);
+
+                    const emptyFolioSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                    );
+
+                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+
+                    expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
+
+                    expectSpyCall(consoleSpy, 1);
+                    expectToBe(mockConsole.get(0), 'Sections array is bigger than sectionPartition');
+                });
+
+                it('... number of systems is not given in folioCalculation model', () => {
+                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+
+                    expectedReversedFolio.systems = '';
+                    const emptyFolioSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                    );
+
+                    (folioService as any)._addFolioSystemsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+
+                    expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
+
+                    expectSpyCall(consoleSpy, 1);
+                    expectToBe(mockConsole.get(0), 'No systems in folio');
+                });
             });
 
             it('... should trigger `_appendContentSegmentGroup` for each content segment', () => {
@@ -643,7 +745,7 @@ describe('FolioService', () => {
                 });
             });
 
-            it('... should append a polygon element to each content segment link', () => {
+            it('... should append one polygon element to each content segment link', () => {
                 const contentSegmentGroups = svgSheetGroup.selectAll('g.content-segment-group').nodes();
 
                 contentSegmentGroups.forEach((contentSegmentGroup, i) => {
@@ -1059,18 +1161,26 @@ describe('FolioService', () => {
 
             it('... should rotate the label if reversed is true', () => {
                 const contentSegmentLinkReversed = D3_SELECTION.create('svg:a');
-                expectedContentSegment.reversed = true;
+
+                const folioSvgData = new FolioSvgData(
+                    new FolioCalculation(
+                        expectedFolioSettings,
+                        expectedReversedFolio,
+                        expectedContentSegmentOffsetCorrection
+                    )
+                );
+                const reversedContentSegment = folioSvgData.contentSegments[0];
 
                 (folioService as any)._appendContentSegmentLinkLabel(
                     contentSegmentLinkReversed,
-                    expectedContentSegment
+                    reversedContentSegment
                 );
 
                 const contentSegmentLinkLabel = contentSegmentLinkReversed.select('text');
 
                 expectToBe(
                     contentSegmentLinkLabel.attr('transform'),
-                    `rotate(${expectedContentSegmentReversedRotationAngle}, ${expectedContentSegment.centeredXPosition}, ${expectedContentSegment.centeredYPosition})`
+                    `rotate(${expectedReversedRotationAngle}, ${reversedContentSegment.centeredXPosition}, ${reversedContentSegment.centeredYPosition})`
                 );
             });
         });
@@ -1352,6 +1462,45 @@ describe('FolioService', () => {
                 expectToBe(contentSegmentLink.selectAll('polygon').size(), 1);
             });
 
+            it('... should append one polygon element to the SVG content segment link even if content.sectionPartition is not given in folioCalculation model', () => {
+                const altSegmentLink = D3_SELECTION.create('svg:a');
+
+                expectedReversedFolio.content[0].sectionPartition = undefined;
+                const altFolioSvgData = new FolioSvgData(
+                    new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                );
+
+                (folioService as any)._appendContentSegmentLinkPolygon(
+                    altSegmentLink,
+                    altFolioSvgData.contentSegments[0].segmentVertices
+                );
+
+                const polygonElement = altSegmentLink.select('polygon');
+
+                expect(polygonElement).toBeDefined();
+                expectToBe(altSegmentLink.selectAll('polygon').size(), 1);
+            });
+
+            it('... should append one polygon element to the SVG content segment link even if section.position is not given or less than sectionPartition in folioCalculation model', () => {
+                const altSegmentLink = D3_SELECTION.create('svg:a');
+
+                expectedReversedFolio.content[0].sectionPartition = 1;
+                expectedReversedFolio.content[0].sections[0].position = undefined;
+                const altFolioSvgData = new FolioSvgData(
+                    new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                );
+
+                (folioService as any)._appendContentSegmentLinkPolygon(
+                    altSegmentLink,
+                    altFolioSvgData.contentSegments[0].segmentVertices
+                );
+
+                const polygonElement = altSegmentLink.select('polygon');
+
+                expect(polygonElement).toBeDefined();
+                expectToBe(altSegmentLink.selectAll('polygon').size(), 1);
+            });
+
             it('... should set the `class` attribute of the polygon element', () => {
                 const polygonElement = contentSegmentLink.select('polygon');
 
@@ -1546,8 +1695,8 @@ describe('FolioService', () => {
             it('... should trigger `_appendSvgElementWithAttrs` with correct arguments', () => {
                 const attributes = {
                     class: 'system-label',
-                    x: expectedFolioSvgData.systems.systemsLabelArray[systemIndex].x,
-                    y: expectedFolioSvgData.systems.systemsLabelArray[systemIndex].y,
+                    x: expectedFolioSvgData.systems.systemsLabelPositions[systemIndex].x,
+                    y: expectedFolioSvgData.systems.systemsLabelPositions[systemIndex].y,
                     fill: expectedBgColor,
                 };
                 attributes['dominant-baseline'] = 'hanging';
@@ -1575,14 +1724,14 @@ describe('FolioService', () => {
 
             it('... should set the `x` attribute of the text element', () => {
                 const textElement = systemsGroup.select('text');
-                const { x } = expectedFolioSvgData.systems.systemsLabelArray[systemIndex];
+                const { x } = expectedFolioSvgData.systems.systemsLabelPositions[systemIndex];
 
                 expectToBe(textElement.attr('x'), String(x));
             });
 
             it('... should set the `y` attribute of the text element', () => {
                 const textElement = systemsGroup.select('text');
-                const { y } = expectedFolioSvgData.systems.systemsLabelArray[systemIndex];
+                const { y } = expectedFolioSvgData.systems.systemsLabelPositions[systemIndex];
 
                 expectToBe(textElement.attr('y'), String(y));
             });
@@ -1627,7 +1776,7 @@ describe('FolioService', () => {
                 const svg = D3_SELECTION.create('svg');
                 systemsGroup = svg.append('g');
 
-                systemArray = expectedFolioSvgData.systems.systemsArrays[0];
+                systemArray = expectedFolioSvgData.systems.systemsLines[0];
 
                 (folioService as any)._appendSystemsGroupLines(systemsGroup, systemArray);
             });

@@ -37,6 +37,7 @@ export const mockEditionData = {
                                 sectionPartition: 1,
                                 sections: [
                                     {
+                                        position: 1,
                                         startSystem: 2,
                                         endSystem: 4,
                                     },
@@ -51,6 +52,39 @@ export const mockEditionData = {
                 convoluteLabel: 'Test convolute B',
                 folios: [],
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockReversedFolio.
+     *
+     * It provides a mocked reversed folio object.
+     */
+    mockReversedFolio: {
+        folioId: '1',
+        systems: '12',
+        format: {
+            height: 180,
+            width: 267,
+        },
+        content: [
+            {
+                complexId: 'op12',
+                sheetId: 'M_212_Sk1_1',
+                sigle: 'M 212 Sk1.1',
+                sigleAddendum: '',
+                selectable: undefined,
+                reversed: true,
+                linkTo: undefined,
+                sectionPartition: 1,
+                sections: [
+                    {
+                        position: 1,
+                        startSystem: 2,
+                        endSystem: 4,
+                    },
+                ],
             },
         ],
     },
