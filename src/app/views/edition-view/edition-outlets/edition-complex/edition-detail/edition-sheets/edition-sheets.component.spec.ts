@@ -152,6 +152,8 @@ describe('EditionSheetsComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockActivatedRoute.testQueryParamMap = { id: '' };
+
         // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
         expectedComplexId = 'op12';
@@ -244,6 +246,17 @@ describe('EditionSheetsComponent', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should change urls', () => {
+            expectToEqual(mockActivatedRoute.snapshot.url[0].path, expectedPath);
+
+            const changedPath = 'other';
+            const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
+
+            mockActivatedRoute.testUrl = changedRouteUrl;
+
+            expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
         });
 
         describe('#onNavigateToReportFragment()', () => {
