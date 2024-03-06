@@ -347,7 +347,7 @@ describe('FolioService (DONE)', () => {
                 ];
                 const actualAttributes = Array.from((svgCanvas.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((svgCanvas.node() as Element).attributes.length, 7);
+                expectToBe((svgCanvas.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -854,7 +854,10 @@ describe('FolioService (DONE)', () => {
                     (svgCanvas.select('g.sheet-group').node() as Element).attributes
                 ).map(attr => attr.name);
 
-                expectToBe((svgCanvas.select('g.sheet-group').node() as Element).attributes.length, 2);
+                expectToBe(
+                    (svgCanvas.select('g.sheet-group').node() as Element).attributes.length,
+                    expectedAttributes.length
+                );
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1014,7 +1017,7 @@ describe('FolioService (DONE)', () => {
                     attr => attr.name
                 );
 
-                expectToBe((contentSegmentGroup.node() as Element).attributes.length, 5);
+                expectToBe((contentSegmentGroup.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1066,7 +1069,7 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = [];
                 const actualAttributes = Array.from((titleElement.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((titleElement.node() as Element).attributes.length, 0);
+                expectToBe((titleElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1119,7 +1122,7 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = ['class'].map(attr => attr.toLowerCase());
                 const actualAttributes = Array.from((linkElement.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((linkElement.node() as Element).attributes.length, 1);
+                expectToBe((linkElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1406,7 +1409,7 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = ['x', 'y', 'dy', 'text-anchor'].map(attr => attr.toLowerCase());
                 const actualAttributes = Array.from((tspanElement as Element).attributes).map(attr => attr.name);
 
-                expectToBe((tspanElement as Element).attributes.length, 4);
+                expectToBe((tspanElement as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
 
@@ -1551,7 +1554,7 @@ describe('FolioService (DONE)', () => {
                     attr => attr.name
                 );
 
-                expectToBe((polygonElement.node() as Element).attributes.length, 4);
+                expectToBe((polygonElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1635,7 +1638,7 @@ describe('FolioService (DONE)', () => {
                 );
                 const actualAttributes = Array.from((rectElement.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((rectElement.node() as Element).attributes.length, 7);
+                expectToBe((rectElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
@@ -1676,7 +1679,7 @@ describe('FolioService (DONE)', () => {
                 const expectedAttributes = [].map(attr => attr.toLowerCase());
                 const actualAttributes = Array.from((titleElement.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((titleElement.node() as Element).attributes.length, 0);
+                expectToBe((titleElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
 
@@ -1774,7 +1777,7 @@ describe('FolioService (DONE)', () => {
                 );
                 const actualAttributes = Array.from((textElement.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((textElement.node() as Element).attributes.length, 5);
+                expectToBe((textElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
