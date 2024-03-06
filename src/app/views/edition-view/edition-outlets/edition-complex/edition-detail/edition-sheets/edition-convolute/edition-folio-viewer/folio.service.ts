@@ -60,11 +60,18 @@ export class FolioService {
     private _contentSegmentFillColor = '#eeeeee';
 
     /**
-     * Private variable: _contentSegmentFontStyle.
+     * Private variable: _contentSegmentFontFamily.
      *
-     * It keeps the font style for the content segments.
+     * It keeps the font family for the content segments.
      */
-    private _contentSegmentFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
+    private _contentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
+
+    /**
+     * Private variable: _contentSegmentFontSize.
+     *
+     * It keeps the font size for the content segments.
+     */
+    private _contentSegmentFontSize = '11px';
 
     /**
      * Private variable: _contentSegmentOffsetCorrection.
@@ -395,12 +402,15 @@ export class FolioService {
             class: 'content-segment-label',
             x: centeredXPosition,
             y: centeredYPosition,
-            style: this._contentSegmentFontStyle,
         };
+        attributes['font-family'] = this._contentSegmentFontFamily;
         attributes['dominant-baseline'] = 'middle';
         attributes['text-anchor'] = 'middle';
 
-        return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'text', attributes);
+        return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'text', attributes).style(
+            'font-size',
+            this._contentSegmentFontSize
+        );
     }
 
     /**

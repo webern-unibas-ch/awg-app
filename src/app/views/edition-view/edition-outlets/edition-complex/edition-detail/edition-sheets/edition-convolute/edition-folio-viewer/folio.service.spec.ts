@@ -59,7 +59,8 @@ describe('FolioService (DONE)', () => {
     let expectedFgColor: string;
     let expectedSheetFillColor: string;
 
-    let expectedContentSegmentFontStyle: string;
+    let expectedContentSegmentFontFamily: string;
+    let expectedContentSegmentFontSize: string;
     let expectedContentSegmentOffsetCorrection: number;
     let expectedReversedRotationAngle: number;
     let expectedContentSegmentStrokeWidth: number;
@@ -96,7 +97,8 @@ describe('FolioService (DONE)', () => {
         expectedSheetFillColor = 'white';
 
         expectedContentSegmentOffsetCorrection = 4;
-        expectedContentSegmentFontStyle = '11px Source Sans Pro, source-sans-pro, sans-serif';
+        expectedContentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
+        expectedContentSegmentFontSize = '11px';
         expectedReversedRotationAngle = 180;
 
         expectedContentSegmentStrokeWidth = 2;
@@ -208,8 +210,12 @@ describe('FolioService (DONE)', () => {
             expectToBe((folioService as any)._sheetFillColor, expectedSheetFillColor);
         });
 
-        it('... should have `_contentSegmentFontStyle`', () => {
-            expectToBe((folioService as any)._contentSegmentFontStyle, expectedContentSegmentFontStyle);
+        it('... should have `_contentSegmentFontFamily`', () => {
+            expectToBe((folioService as any)._contentSegmentFontFamily, expectedContentSegmentFontFamily);
+        });
+
+        it('... should have `_contentSegmentFontSize`', () => {
+            expectToBe((folioService as any)._contentSegmentFontSize, expectedContentSegmentFontSize);
         });
 
         it('... should have `_contentSegmentOffsetCorrection`', () => {
@@ -1218,8 +1224,8 @@ describe('FolioService (DONE)', () => {
                     class: 'content-segment-label',
                     x: expectedContentSegment.centeredXPosition,
                     y: expectedContentSegment.centeredYPosition,
-                    style: expectedContentSegmentFontStyle,
                 };
+                attributes['font-family'] = expectedContentSegmentFontFamily;
                 attributes['dominant-baseline'] = 'middle';
                 attributes['text-anchor'] = 'middle';
 
@@ -1251,10 +1257,10 @@ describe('FolioService (DONE)', () => {
                 expectToBe(textElement.attr('y'), String(expectedContentSegment.centeredYPosition));
             });
 
-            it('... should set the `style` attribute of the text element', () => {
+            it('... should set the `font-family` attribute of the text element', () => {
                 const textElement = contentSegmentLink.select('text');
 
-                expectToBe(textElement.attr('style'), expectedContentSegmentFontStyle);
+                expectToBe(textElement.attr('font-family'), expectedContentSegmentFontFamily);
             });
 
             it('... should set the `dominant-baseline` attribute of the text element', () => {
@@ -1269,15 +1275,27 @@ describe('FolioService (DONE)', () => {
                 expectToBe(textElement.attr('text-anchor'), 'middle');
             });
 
+            it('... should set the `font-size` style of the text element', () => {
+                const textElement = contentSegmentLink.select('text');
+
+                expectToBe(textElement.style('font-size'), expectedContentSegmentFontSize);
+            });
+
             it('... should only have specified attributes', () => {
                 const textElement = contentSegmentLink.select('text');
 
-                const expectedAttributes = ['class', 'x', 'y', 'style', 'dominant-baseline', 'text-anchor'].map(attr =>
-                    attr.toLowerCase()
-                );
+                const expectedAttributes = [
+                    'class',
+                    'x',
+                    'y',
+                    'font-family',
+                    'dominant-baseline',
+                    'text-anchor',
+                    'style',
+                ].map(attr => attr.toLowerCase());
                 const actualAttributes = Array.from((textElement.node() as Element).attributes).map(attr => attr.name);
 
-                expectToBe((textElement.node() as Element).attributes.length, 6);
+                expectToBe((textElement.node() as Element).attributes.length, expectedAttributes.length);
                 expectToEqual(actualAttributes, expectedAttributes);
             });
         });
