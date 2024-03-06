@@ -652,16 +652,12 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can get correct numer of routerLinks from template', () => {
-                expect(routerLinks.length)
-                    .withContext(`should have ${expectedOrderOfRouterlinks.length} routerLinks`)
-                    .toBe(expectedOrderOfRouterlinks.length);
+                expectToBe(routerLinks.length, expectedOrderOfRouterlinks.length);
             });
 
             it('... can get correct linkParams from template', () => {
                 routerLinks.forEach((routerLink, index) => {
-                    expect(routerLink.linkParams)
-                        .withContext(`should equal ${expectedOrderOfRouterlinks[index]}`)
-                        .toEqual(expectedOrderOfRouterlinks[index]);
+                    expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
                 });
             });
 
@@ -675,9 +671,7 @@ describe('NavbarComponent (DONE)', () => {
                     click(linkDe);
                     fixture.detectChanges();
 
-                    expect(routerLink.navigatedTo)
-                        .withContext(`should equal ${expectedRouterLink}`)
-                        .toEqual(expectedRouterLink);
+                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
                 });
             });
         });

@@ -5,6 +5,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { of as observableOf } from 'rxjs';
 
+import { expectToEqual } from '@testing/expect-helper';
 import { ActivatedRouteStub, UrlSegmentStub } from '@testing/router-stubs';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
@@ -115,17 +116,13 @@ describe('SearchPanelComponent', () => {
     });
 
     it('... should change urls', () => {
-        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
-        expect(mockActivatedRoute.snapshot.url[0].path)
-            .withContext(`should equal ${expectedPath}`)
-            .toEqual(expectedPath);
+        expectToEqual(mockActivatedRoute.snapshot.url[0].path, expectedPath);
 
         const changedPath = 'other';
         const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
 
         mockActivatedRoute.testUrl = changedRouteUrl;
 
-        expect(mockActivatedRoute.snapshot.url[0].path).toBeTruthy();
-        expect(mockActivatedRoute.snapshot.url[0].path).withContext(`should equal ${changedPath}`).toEqual(changedPath);
+        expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
     });
 });

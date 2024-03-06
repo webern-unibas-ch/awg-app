@@ -1,6 +1,7 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SideInfoService } from './side-info.service';
@@ -56,10 +57,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should return default empty search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
-                        expect(searchInfo).toBeTruthy();
-                        expect(searchInfo)
-                            .withContext(`should equal ${expectedSearchInfoData}`)
-                            .toEqual(expectedSearchInfoData);
+                        expectToEqual(searchInfo, expectedSearchInfoData);
                     },
                 });
             }));
@@ -67,10 +65,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should return updated search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
-                        expect(searchInfo).toBeTruthy();
-                        expect(searchInfo)
-                            .withContext(`should equal ${expectedSearchInfoData}`)
-                            .toEqual(expectedSearchInfoData);
+                        expectToEqual(searchInfo, expectedSearchInfoData);
                     },
                 });
 
@@ -88,10 +83,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should emit updated search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
-                        expect(searchInfo).toBeTruthy();
-                        expect(searchInfo)
-                            .withContext(`should equal ${expectedSearchInfoData}`)
-                            .toEqual(expectedSearchInfoData);
+                        expectToEqual(searchInfo, expectedSearchInfoData);
                     },
                 });
 
@@ -113,10 +105,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should update search info data with empty SearchInfo', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
-                        expect(searchInfo).toBeTruthy();
-                        expect(searchInfo)
-                            .withContext(`should equal ${expectedSearchInfoData}`)
-                            .toEqual(expectedSearchInfoData);
+                        expectToEqual(searchInfo, expectedSearchInfoData);
                     },
                 });
 
@@ -127,10 +116,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should overwrite existing search info data', waitForAsync(() => {
                 sideInfoService.getSearchInfoData().subscribe({
                     next: (searchInfo: SearchInfo) => {
-                        expect(searchInfo).toBeTruthy();
-                        expect(searchInfo)
-                            .withContext(`should equal ${expectedSearchInfoData}`)
-                            .toEqual(expectedSearchInfoData);
+                        expectToEqual(searchInfo, expectedSearchInfoData);
                     },
                 });
 
@@ -155,7 +141,7 @@ describe('SideInfoService (DONE)', () => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
                         expect(title).not.toBeTruthy();
-                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        expectToBe(title, expectedSearchInfoTitle);
                     },
                 });
             }));
@@ -163,7 +149,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should return updated search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
-                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        expectToBe(title, expectedSearchInfoTitle);
                     },
                 });
 
@@ -181,7 +167,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should emit updated search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
-                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        expectToBe(title, expectedSearchInfoTitle);
                     },
                 });
 
@@ -213,7 +199,7 @@ describe('SideInfoService (DONE)', () => {
             it('... should overwrite existing search info title', waitForAsync(() => {
                 sideInfoService.getSearchInfoTitle().subscribe({
                     next: (title: string) => {
-                        expect(title).withContext(`should be ${expectedSearchInfoTitle}`).toBe(expectedSearchInfoTitle);
+                        expectToBe(title, expectedSearchInfoTitle);
                     },
                 });
 

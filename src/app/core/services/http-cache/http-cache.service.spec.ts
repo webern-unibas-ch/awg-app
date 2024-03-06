@@ -1,6 +1,8 @@
 import { HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
+
 import { AppConfig } from '@awg-app/app.config';
 
 import { HttpCacheService } from './http-cache.service';
@@ -38,9 +40,7 @@ describe('HttpCacheService (DONE)', () => {
 
     it('... should have empty _cachedResponses before any call is made', () => {
         expect((httpCacheService as any)._cachedResponses).toBeTruthy();
-        expect((httpCacheService as any)._cachedResponses.size)
-            .withContext('should be 0')
-            .toBe(0);
+        expectToBe((httpCacheService as any)._cachedResponses.size, 0);
     });
 
     describe('#put()', () => {
@@ -55,8 +55,7 @@ describe('HttpCacheService (DONE)', () => {
                 expectedRequest.urlWithParams
             );
 
-            expect(expectedCachedResponse).toBeTruthy();
-            expect(expectedCachedResponse).withContext(`should be ${expectedResponse}`).toEqual(expectedResponse);
+            expectToEqual(expectedCachedResponse, expectedResponse);
         });
     });
 
@@ -81,12 +80,10 @@ describe('HttpCacheService (DONE)', () => {
             const expectedCachedResponse = (httpCacheService as any)._cachedResponses.get(
                 expectedRequest.urlWithParams
             );
-            expect(expectedCachedResponse).toBeTruthy();
-            expect(expectedCachedResponse).withContext(`should be ${expectedResponse}`).toEqual(expectedResponse);
+            expectToEqual(expectedCachedResponse, expectedResponse);
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
-            expect(expectedGetCache).toBeTruthy();
-            expect(expectedGetCache).withContext(`should equal ${expectedResponse}`).toEqual(expectedResponse);
+            expectToEqual(expectedGetCache, expectedResponse);
         });
     });
 });
