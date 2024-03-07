@@ -1,0 +1,1450 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >FolioCalculationSystemsLines</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/models/folio-calculation.model.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The FolioCalculationSystemsLines class.</p>
+<p>It is used in the context of the edition folio convolutes
+to calculate the lines of the systems on the folio canvas.</p>
+
+            </p>
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_calculateSystemLine" >_calculateSystemLine</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#SYSTEMS_ARRAYS" >SYSTEMS_ARRAYS</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_calculateSystemsArrays" >_calculateSystemsArrays</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(yArray: number[][], systemsDimensions: <a href="../classes/FolioCalculationSystemsDimensions.html" target="_self">FolioCalculationSystemsDimensions</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="696" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:696</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the FolioCalculationSystemsLines class.</p>
+<p>It initializes the class with values
+from the yArray and the calculated dimensions.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>yArray</td>
+                                                  
+                                                        <td>
+                                                                    <code>number[][]</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The given y-value array for the systems.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>systemsDimensions</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/FolioCalculationSystemsDimensions.html" target="_self" >FolioCalculationSystemsDimensions</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The given calculated systems dimensions.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_calculateSystemLine"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_calculateSystemLine</b></span>
+                        <a href="#_calculateSystemLine"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="733" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:733</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private arrow function: _calculateSystemLine.</p>
+<p>It calculates a single line of a system of a folio.</p>
+</div>
+                </td>
+            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>line</td>
+                                                    <td>
+                                                            <code><p>The given line number.</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SYSTEMS_ARRAYS"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>SYSTEMS_ARRAYS</b></span>
+                        <a href="#SYSTEMS_ARRAYS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FolioCalculationLine[][]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="696" class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:696</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The array of line arrays of the systems (FolioCalculationLine[][]).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_calculateSystemsArrays"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_calculateSystemsArrays</b></span>
+                        <a href="#_calculateSystemsArrays"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_calculateSystemsArrays()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="721"
+                                    class="link-to-prism">src/app/views/edition-view/models/folio-calculation.model.ts:721</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: calculateSystemsArrays.</p>
+<p>It calculates the systems arrays.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>[][]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated systems arrays.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FolioSettings } from &#x27;./folio-settings.model&#x27;;
+import { Folio, FolioContent, FolioSection } from &#x27;./folio.model&#x27;;
+
+/**
+ * Utility function: round.
+ *
+ * It rounds a given number to a given number of decimal places.
+ * JS in-built round-method is sometimes not correct,
+ * see: {@link http://www.jacklmoore.com/notes/rounding-in-javascript/}.
+ *
+ * @param {number} value The given input value to be rounded.
+ * @param {number} decimals The number of decimal places to round to.
+ * @returns {number} The rounded number.
+ */
+function round(value: number, decimals: number): number {
+    if (Number.isNaN(value)) {
+        return undefined;
+    }
+    return Number(Math.round(Number(value + &#x27;e&#x27; + decimals)) + &#x27;e-&#x27; + decimals);
+}
+
+/**
+ * The FolioCalculationPoint class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a point on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculationPoint {
+    /**
+     * The x value (in px) of a point.
+     */
+    public x: number;
+
+    /**
+     * The y value (in px) of a point.
+     */
+    public y: number;
+
+    /**
+     * Constructor of the FolioCalculationPoint class.
+     *
+     * It initializes the class with values for x and y (in px).
+     *
+     * @param {number} x The given x value (in px).
+     * @param {number} y The given y value (in px).
+     */
+    constructor(x: number, y: number) {
+        this.x &#x3D; x;
+        this.y &#x3D; y;
+    }
+}
+
+/**
+ * The FolioCalculationLine class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a line on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculationLine {
+    /**
+     * The starting point of a line (FolioCalculationPoint).
+     */
+    public readonly START_POINT: FolioCalculationPoint;
+
+    /**
+     * The ending point of a line (FolioCalculationPoint).
+     */
+    public readonly END_POINT: FolioCalculationPoint;
+
+    /**
+     * Constructor of the FolioCalculationLine class.
+     *
+     * It initializes the class with two points for start and end.
+     *
+     * @param {FolioCalculationPoint} startPoint The given starting point.
+     * @param {FolioCalculationPoint} endPoint The given ending point.
+     */
+    constructor(startPoint: FolioCalculationPoint, endPoint: FolioCalculationPoint) {
+        this.START_POINT &#x3D; startPoint;
+        this.END_POINT &#x3D; endPoint;
+    }
+}
+
+/**
+ * The FolioCalculationContentSegmentCenteredPositions class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the centered positions of a content segment on the folio canvas.
+ *
+ * Not exposed, only called internally from {@link FolioCalculation}.
+ */
+class FolioCalculationContentSegmentCenteredPositions {
+    /**
+     * The centered X position of the content segment (number).
+     */
+    public readonly CENTERED_X_POSITION: number;
+
+    /**
+     * The centered Y position of the content segment (number).
+     */
+    public readonly CENTERED_Y_POSITION: number;
+
+    /**
+     * Constructor of the FolioCalculationContentSegmentCenteredPositions class.
+     *
+     * It initializes the class with values
+     * from the segment vertices, the segment label offset and the reversed flag.
+     *
+     * @param {FolioCalculationContentSegmentVertices} segmentVertices The given segment vertices.
+     * @param {number} segmentLabelOffset The given segment label offset.
+     * @param {boolean} reversed The given reversed flag.
+     */
+    constructor(
+        segmentVertices: FolioCalculationContentSegmentVertices,
+        segmentLabelOffset: number,
+        reversed: boolean
+    ) {
+        const { UPPER_LEFT_VERTEX, LOWER_RIGHT_VERTEX } &#x3D; segmentVertices;
+
+        this.CENTERED_X_POSITION &#x3D; (UPPER_LEFT_VERTEX.x + LOWER_RIGHT_VERTEX.x) / 2;
+        const offsetCorrection &#x3D; reversed ? -segmentLabelOffset : segmentLabelOffset;
+        this.CENTERED_Y_POSITION &#x3D; (UPPER_LEFT_VERTEX.y + LOWER_RIGHT_VERTEX.y) / 2 - offsetCorrection;
+    }
+}
+
+/**
+ * The FolioCalculationContentSegmentCenteredPositions class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the centered positions of the content segments on the folio canvas.
+ */
+class FolioCalculationContentSegmentLabel {
+    /**
+     * The label for the content segment (string).
+     */
+    public readonly SEGMENT_LABEL: string;
+
+    /**
+     * The array of label strings for the content segment (string[]).
+     */
+    public readonly SEGMENT_LABEL_ARRAY: string[];
+
+    /**
+     * The label offset for the content segment (number).
+     */
+    public readonly SEGMENT_LABEL_OFFSET: number;
+
+    /**
+     * Constructor of the FolioCalculationContentSegmentLabelAndOffset class.
+     *
+     * It initializes the class with values
+     * from the sigle and sigle addendum of the content segment.
+     *
+     * @param {string} sigle The given sigle of the content segment.
+     * @param {string | null} sigleAddendum The given sigle addendum of the content segment.
+     */
+    constructor(sigle: string, sigleAddendum: string | null) {
+        this.SEGMENT_LABEL_ARRAY &#x3D; [sigle, sigleAddendum ? &#x60; ${sigleAddendum}&#x60; : &#x27;&#x27;];
+        this.SEGMENT_LABEL &#x3D; this.SEGMENT_LABEL_ARRAY.join(&#x27; &#x27;);
+        this.SEGMENT_LABEL_OFFSET &#x3D; sigleAddendum ? 5 : 0;
+    }
+}
+
+/**
+ * The FolioCalculationContentSegmentVertices class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a content segment&#x27;s vertices on the folio canvas.
+ *
+ * Not exposed, only called internally from {@link FolioCalculation}.
+ */
+export class FolioCalculationContentSegmentVertices {
+    /**
+     * The upper left vertex of a content segment (FolioCalculationPoint).
+     */
+    public readonly UPPER_LEFT_VERTEX: FolioCalculationPoint;
+
+    /**
+     * The upper right vertex of a content segment (FolioCalculationPoint).
+     */
+    public readonly UPPER_RIGHT_VERTEX: FolioCalculationPoint;
+
+    /**
+     * The lower right vertex of a content segment (FolioCalculationPoint).
+     */
+    public readonly LOWER_RIGHT_VERTEX: FolioCalculationPoint;
+
+    /**
+     * The lower left vertex of a content segment (FolioCalculationPoint).
+     */
+    public readonly LOWER_LEFT_VERTEX: FolioCalculationPoint;
+
+    /**
+     * The vertices of a content segment as a string (string).
+     */
+    public readonly VERTICES_AS_STRING: string;
+
+    /**
+     * Constructor of the FolioCalculationContentSegmentVertices class.
+     *
+     * It initializes the class with four points
+     * for upper and lower left and upper and lower right vertices.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @param {FolioCalculationSystems} systems The given calculated systems.
+     * @param {number} sectionPartition The given section partition.
+     * @param {number} segmentOffsetCorrection The given segment offset correction.
+     */
+    constructor(
+        section: FolioSection,
+        private systems: FolioCalculationSystems,
+        private sectionPartition: number,
+        private segmentOffsetCorrection: number
+    ) {
+        const { startX, startY, endX, endY } &#x3D; this._calculateVertices(section);
+
+        this.UPPER_LEFT_VERTEX &#x3D; new FolioCalculationPoint(startX, startY);
+        this.UPPER_RIGHT_VERTEX &#x3D; new FolioCalculationPoint(endX, startY);
+        this.LOWER_RIGHT_VERTEX &#x3D; new FolioCalculationPoint(endX, endY);
+        this.LOWER_LEFT_VERTEX &#x3D; new FolioCalculationPoint(startX, endY);
+        this.VERTICES_AS_STRING &#x3D; this._getSegmentVerticesAsString();
+    }
+
+    /**
+     * Private method: _calculateVertices.
+     *
+     * It calculates the vertices of a content segment.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @returns {FolioCalculationPoint} The calculated vertices of a content segment.
+     */
+    private _calculateVertices(section: FolioSection): { startX: number; startY: number; endX: number; endY: number } {
+        const startX &#x3D; this._calculateX(section, true);
+        const endX &#x3D; this._calculateX(section, false);
+        const startY &#x3D; this._calculateY(section, true);
+        const endY &#x3D; this._calculateY(section, false);
+
+        return { startX, startY, endX, endY };
+    }
+
+    /**
+     * Private method: _calculateX.
+     *
+     * It calculates the x value of the content segment vertices.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @param {boolean} isStart The given flag if the x value is for the start.
+     * @returns {number} The calculated the content segment vertices.
+     */
+    private _calculateX(section: FolioSection, isStart: boolean): number {
+        const width &#x3D; round(this.systems.SYSTEMS_DIMENSIONS.SYSTEMS_WIDTH / this.sectionPartition, 2);
+
+        const systemIndex &#x3D; section.position &amp;&amp; section.position &lt;&#x3D; this.sectionPartition ? section.position - 1 : 0;
+        const baseX &#x3D; this.systems.SYSTEMS_DIMENSIONS.START_X;
+        const offset &#x3D; this.segmentOffsetCorrection / 2;
+
+        const xValue &#x3D; baseX + systemIndex * width + offset;
+        const correction &#x3D; isStart ? 0 : width - this.segmentOffsetCorrection;
+
+        return round(xValue + correction, 2);
+    }
+
+    /**
+     * Private method: _calculateY.
+     *
+     * It calculates the y value of the content segment vertices.
+     *
+     * @param {FolioSection} section The given section of the folio content.
+     * @param {boolean} isStart The given flag if the y value is for the start.
+     * @returns {number} The calculated y value of the content segment vertices.
+     */
+    private _calculateY(section: FolioSection, isStart: boolean): number {
+        const systemIndex &#x3D; isStart ? section.startSystem - 1 : section.endSystem - 1;
+        const systemLines &#x3D; this.systems.SYSTEMS_LINES.SYSTEMS_ARRAYS[systemIndex];
+
+        const yValue &#x3D; isStart ? systemLines.at(0).START_POINT.y : systemLines.at(-1).END_POINT.y;
+        const correction &#x3D; this.segmentOffsetCorrection * (isStart ? -1 : 1);
+
+        return round(yValue + correction, 2);
+    }
+
+    /**
+     * Private method: getSegmentVerticesAsString.
+     *
+     * It returns the vertices of a content segment as a string.
+     *
+     * @returns {string} The vertices of a content segment as a string.
+     */
+    private _getSegmentVerticesAsString(): string {
+        const vertices &#x3D; [
+            this.UPPER_LEFT_VERTEX,
+            this.UPPER_RIGHT_VERTEX,
+            this.LOWER_RIGHT_VERTEX,
+            this.LOWER_LEFT_VERTEX,
+            this.UPPER_LEFT_VERTEX,
+        ];
+
+        return vertices.map(vertex &#x3D;&gt; &#x60;${vertex.x} ${vertex.y}&#x60;).join(&#x27; &#x27;);
+    }
+}
+
+/**
+ * The FolioCalculationContentSegment class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a content segment on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculationContentSegment {
+    /**
+     * The centered X position of the content segment (number).
+     */
+    centeredXPosition: number;
+
+    /**
+     * The centered y position of the content segment (number).
+     */
+    centeredYPosition: number;
+
+    /**
+     * The label for the id of the edition complex of the content segment (string).
+     */
+    complexId: string;
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo: string;
+
+    /**
+     * The boolean flag if the content segment is reversed.
+     */
+    reversed: boolean;
+
+    /**
+     * The section of a content segment (FolioSection).
+     */
+    section: FolioSection;
+
+    /**
+     * The section partition of the content segment (number).
+     */
+    sectionPartition: number;
+
+    /**
+     * The array of label strings for the content segment (string[]).
+     */
+    segmentLabelArray: string[];
+
+    /**
+     * The label for the content segment (string).
+     */
+    segmentLabel: string;
+
+    /**
+     * The boolean flag if the content segment can be selected.
+     */
+    selectable: boolean;
+
+    /**
+     * The label for the id of the content segment (string).
+     */
+    sheetId: string;
+
+    /**
+     * The label for the sigle of the content segment (string).
+     */
+    sigle: string;
+
+    /**
+     * The label for the sigle addendum of the content segment (string).
+     */
+    sigleAddendum: string;
+
+    /**
+     * The vertices of a content segment (FolioCalculationContentSegmentVertices).
+     */
+    vertices: FolioCalculationContentSegmentVertices;
+
+    /**
+     * Constructor of the FolioCalculationContentSegment class.
+     *
+     * It initializes the class with values from the content segment,
+     * the calculated systems and the segment offset correction.
+     *
+     * @param {FolioContent} content The given content segment.
+     * @param {FolioCalculationSystems} systems The given calculated systems.
+     * @param {number} segmentOffsetCorrection The given segment offset correction.
+     */
+    constructor(
+        content: FolioContent,
+        private systems: FolioCalculationSystems,
+        private segmentOffsetCorrection: number
+    ) {
+        this.sectionPartition &#x3D; content.sectionPartition ?? 1;
+
+        this._getContentSections(content);
+    }
+
+    /**
+     * Private method: _getContentSections.
+     *
+     * It gets the sections of a given folio content.
+     *
+     * @param {FolioContent} content The given folio content.
+     * @returns {void} Gets the sections of a given folio content.
+     */
+    private _getContentSections(content: FolioContent): void {
+        if (!content.sections) {
+            console.error(&#x27;No sections array in content&#x27;, content);
+            return;
+        }
+        if (content.sections.length &gt; this.sectionPartition) {
+            console.error(&#x27;Sections array is bigger than sectionPartition&#x27;);
+            return;
+        }
+        if (this.systems.NUMBER_OF_SYSTEMS &#x3D;&#x3D;&#x3D; 0) {
+            console.error(&#x27;No systems in folio&#x27;);
+            return;
+        }
+        content.sections.forEach((section: FolioSection, _sectionIndex: number) &#x3D;&gt; {
+            this._setProperties(content, section);
+        });
+    }
+
+    /**
+     * Private method: setProperties.
+     *
+     * It sets the properties of a content segment.
+     *
+     * @param {FolioContent} content The given folio content.
+     * @param {FolioSection} section The given section of the folio content.
+     * @returns {void} Sets the properties of a content segment.
+     */
+    private _setProperties(content: FolioContent, section: FolioSection): void {
+        const { complexId, sheetId, selectable &#x3D; true, reversed &#x3D; false, linkTo &#x3D; &#x27;&#x27;, sigle, sigleAddendum } &#x3D; content;
+
+        this.section &#x3D; section;
+
+        const label &#x3D; new FolioCalculationContentSegmentLabel(sigle, sigleAddendum);
+
+        this.vertices &#x3D; new FolioCalculationContentSegmentVertices(
+            section,
+            this.systems,
+            this.sectionPartition,
+            this.segmentOffsetCorrection
+        );
+
+        const centeredPositions &#x3D; new FolioCalculationContentSegmentCenteredPositions(
+            this.vertices,
+            label.SEGMENT_LABEL_OFFSET,
+            reversed
+        );
+
+        Object.assign(this, {
+            complexId,
+            sheetId,
+            sigle,
+            sigleAddendum,
+            selectable: selectable,
+            reversed: reversed,
+            linkTo: linkTo,
+            segmentLabelArray: label.SEGMENT_LABEL_ARRAY,
+            segmentLabel: label.SEGMENT_LABEL,
+            centeredXPosition: centeredPositions.CENTERED_X_POSITION,
+            centeredYPosition: centeredPositions.CENTERED_Y_POSITION,
+        });
+    }
+}
+
+/**
+ * The FolioCalculationSheet class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a sheet on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculationSheet {
+    /**
+     * The offset of the sheet (FolioCalculationPoint).
+     */
+    public readonly OFFSET: FolioCalculationPoint;
+
+    /**
+     * The width of the sheet (number).
+     */
+    public readonly SHEET_WIDTH: number;
+
+    /**
+     * The height of the sheet (number).
+     */
+    public readonly SHEET_HEIGHT: number;
+
+    /**
+     * The optional folio id of the sheet (string).
+     */
+    public readonly FOLIO_ID?: string;
+
+    /**
+     * The optional upper left corner point of the sheet (FolioCalculationPoint).
+     */
+    public readonly UPPER_LEFT_CORNER?: FolioCalculationPoint;
+
+    /**
+     * The optional lower right corner point of the sheet (FolioCalculationPoint).
+     */
+    public readonly LOWER_RIGHT_CORNER?: FolioCalculationPoint;
+
+    /**
+     * Constructor of the FolioCalculationSheet class.
+     *
+     * It initializes the class with values from folio settings, the folio id and zoom factor.
+     *
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {string} folioId The given folio id.
+     */
+    constructor({ initialOffsetX, initialOffsetY, formatX, formatY, factor }: FolioSettings, folioId: string) {
+        this.FOLIO_ID &#x3D; folioId;
+        this.SHEET_WIDTH &#x3D; formatX * factor;
+        this.SHEET_HEIGHT &#x3D; formatY * factor;
+        this.OFFSET &#x3D; new FolioCalculationPoint(initialOffsetX, initialOffsetY);
+        this.UPPER_LEFT_CORNER &#x3D; this.OFFSET;
+        this.LOWER_RIGHT_CORNER &#x3D; new FolioCalculationPoint(this.SHEET_WIDTH, this.SHEET_HEIGHT);
+    }
+}
+
+/**
+ * The FolioCalculationSystemsMargins class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the margins of the systems on the folio canvas.
+ */
+class FolioCalculationSystemsMargins {
+    /**
+     * The horizontal margin factor of the systems (number).
+     */
+    private static readonly HORIZONTAL_MARGIN_FACTOR &#x3D; 1 / 6;
+
+    /**
+     * The vertical margin factor of the systems (number).
+     */
+    private static readonly VERTICAL_MARGIN_FACTOR &#x3D; 0.05;
+
+    /**
+     * The horizontal margins of the systems (number).
+     */
+    public readonly HORIZONTAL_MARGINS: number;
+
+    /**
+     * The left margin of the systems (number).
+     */
+    public readonly LEFT_MARGIN: number;
+
+    /**
+     * The lower margin of the systems (number).
+     */
+    public readonly LOWER_MARGIN: number;
+
+    /**
+     * The right margin of the systems (number).
+     */
+    public readonly RIGHT_MARGIN: number;
+
+    /**
+     * The upper margin of the systems (number).
+     */
+    public readonly UPPER_MARGIN: number;
+
+    /**
+     * The vertical margins of the systems (number).
+     */
+    public readonly VERTICAL_MARGINS: number;
+
+    /**
+     * Constructor of the FolioCalculationSystemsMargins class.
+     *
+     * It initializes the class with values
+     * from the sheet and the number of systems.
+     *
+     * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
+     */
+    constructor(private sheet: FolioCalculationSheet) {
+        this.UPPER_MARGIN &#x3D; this._calculateSheetMargin(
+            this.sheet.SHEET_HEIGHT,
+            FolioCalculationSystemsMargins.VERTICAL_MARGIN_FACTOR
+        );
+        this.LOWER_MARGIN &#x3D; this.UPPER_MARGIN;
+
+        this.LEFT_MARGIN &#x3D; this._calculateSheetMargin(
+            this.sheet.SHEET_WIDTH,
+            FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR
+        );
+        this.RIGHT_MARGIN &#x3D; this._calculateSheetMargin(
+            this.sheet.SHEET_WIDTH,
+            FolioCalculationSystemsMargins.HORIZONTAL_MARGIN_FACTOR / 2
+        );
+
+        this.HORIZONTAL_MARGINS &#x3D; this.LEFT_MARGIN + this.RIGHT_MARGIN;
+        this.VERTICAL_MARGINS &#x3D; this.UPPER_MARGIN + this.LOWER_MARGIN;
+    }
+
+    /**
+     * Private method: _calculateSheetWidthMargin.
+     *
+     * It calculates the width margin of the systems of a folio.
+     *
+     * @param {number} dimension The given dimension for the margin calculation.
+     * @param {number} factor The given factor for the margin calculation.
+     * @returns {number} The calculated width margin of the systems.
+     */
+    private _calculateSheetMargin(dimension: number, factor: number): number {
+        return round(dimension * factor, 2);
+    }
+}
+
+/**
+ * The FolioCalculationSystemsDimensions class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the dimensions of the systems on the folio canvas.
+ */
+class FolioCalculationSystemsDimensions {
+    /**
+     * The end position (x-value) of the systems (number).
+     */
+    public readonly END_X: number;
+
+    /**
+     * The end position (y-value) of the systems (number).
+     */
+    public readonly END_Y: number;
+
+    /**
+     * The start position (x-value) of the systems (number).
+     */
+    public readonly START_X: number;
+
+    /**
+     * The start position (y-value) of the systems (number).
+     */
+    public readonly START_Y: number;
+
+    /**
+     * The width of the systems (number).
+     */
+    public readonly SYSTEMS_WIDTH: number;
+
+    /**
+     * The height of the systems (number).
+     */
+    public readonly SYSTEMS_HEIGHT: number;
+
+    /**
+     * Constructor of the FolioCalculationSystemsDimensions class.
+     *
+     * It initializes the class with values
+     * from the sheet and the calculated margins.
+     *
+     * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
+     * @param {FolioCalculationSystemsMargins} systemsMargins The given calculated systems margins.
+     */
+    constructor(
+        private sheet: FolioCalculationSheet,
+        private systemsMargins: FolioCalculationSystemsMargins
+    ) {
+        const { SHEET_WIDTH, SHEET_HEIGHT, UPPER_LEFT_CORNER } &#x3D; this.sheet;
+        const { HORIZONTAL_MARGINS, VERTICAL_MARGINS, LEFT_MARGIN, UPPER_MARGIN } &#x3D; this.systemsMargins;
+
+        this.SYSTEMS_WIDTH &#x3D; SHEET_WIDTH - HORIZONTAL_MARGINS;
+        this.SYSTEMS_HEIGHT &#x3D; SHEET_HEIGHT - VERTICAL_MARGINS;
+
+        this.START_X &#x3D; UPPER_LEFT_CORNER.x + LEFT_MARGIN;
+        this.START_Y &#x3D; UPPER_LEFT_CORNER.y + UPPER_MARGIN;
+
+        this.END_X &#x3D; this.START_X + this.SYSTEMS_WIDTH;
+        this.END_Y &#x3D; this.START_Y + this.SYSTEMS_HEIGHT;
+    }
+}
+
+/**
+ * The FolioCalculationSystemsLines class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the lines of the systems on the folio canvas.
+ */
+class FolioCalculationSystemsLines {
+    /**
+     * The array of line arrays of the systems (FolioCalculationLine[][]).
+     */
+    public readonly SYSTEMS_ARRAYS: FolioCalculationLine[][];
+
+    /**
+     * Constructor of the FolioCalculationSystemsLines class.
+     *
+     * It initializes the class with values
+     * from the yArray and the calculated dimensions.
+     *
+     * @param {number[][]} yArray The given y-value array for the systems.
+     * @param {FolioCalculationSystemsDimensions} systemsDimensions The given calculated systems dimensions.
+     */
+    constructor(
+        private yArray: number[][],
+        private systemsDimensions: FolioCalculationSystemsDimensions
+    ) {
+        this.SYSTEMS_ARRAYS &#x3D; this._calculateSystemsArrays();
+    }
+
+    /**
+     * Private method: calculateSystemsArrays.
+     *
+     * It calculates the systems arrays.
+     *
+     * @returns {FolioCalculationLine[][]} The calculated systems arrays.
+     */
+    private _calculateSystemsArrays(): FolioCalculationLine[][] {
+        return this.yArray.map(lineArray &#x3D;&gt; lineArray.map(this._calculateSystemLine));
+    }
+
+    /**
+     * Private arrow function: _calculateSystemLine.
+     *
+     * It calculates a single line of a system of a folio.
+     *
+     * @param {number} line The given line number.
+     * @returns {FolioCalculationLine} The calculated line of a system.
+     */
+    private _calculateSystemLine &#x3D; (line: number): FolioCalculationLine &#x3D;&gt; {
+        const { START_X, END_X } &#x3D; this.systemsDimensions;
+        return new FolioCalculationLine(
+            new FolioCalculationPoint(START_X, line),
+            new FolioCalculationPoint(END_X, line)
+        );
+    };
+}
+
+/**
+ * The FolioCalculationSystemsLabels class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the labels of the systems on the folio canvas.
+ */
+class FolioCalculationSystemsLabels {
+    /**
+     * The label x start factor (number).
+     */
+    private static readonly LABEL_START_X_OFFSET_FACTOR &#x3D; 0.6;
+
+    /**
+     * The label y offset correction factor (number).
+     */
+    private static readonly LABEL_START_Y_OFFSET_FACTOR &#x3D; 3;
+
+    /**
+     * The line label array of the systems (FolioCalculationPoint[]).
+     */
+    public readonly SYSTEMS_LABELS_ARRAY: FolioCalculationPoint[];
+
+    /**
+     * Constructor of the FolioCalculationSystemsLabels class.
+     *
+     * It initializes the class with values
+     * from the yArray, the calculated margins and dimensions and the zoom factor.
+     *
+     * @param {number[][]} yArray The given y-value array for the systems.
+     * @param {FolioCalculationSystemsMargins} systemsMargins The given calculated systems margins.
+     * @param {FolioCalculationSystemsDimensions} systemsDimensions The given calculated systems dimensions.
+     * @param {number} zoomFactor The given zoom factor.
+     */
+    constructor(
+        private yArray: number[][],
+        private systemsMargins: FolioCalculationSystemsMargins,
+        private systemsDimensions: FolioCalculationSystemsDimensions,
+        private zoomFactor: number
+    ) {
+        this.SYSTEMS_LABELS_ARRAY &#x3D; this._calculateSystemsLabelArray();
+    }
+
+    /**
+     * Private method: _calculateSystemsLabelArray.
+     *
+     * It calculates the label array of the systems.
+     *
+     * @returns {FolioCalculationPoint[]} The calculated label array of the systems.
+     */
+    private _calculateSystemsLabelArray(): FolioCalculationPoint[] {
+        const labelStartX &#x3D; round(
+            this.systemsDimensions.START_X -
+                this.systemsMargins.LEFT_MARGIN * FolioCalculationSystemsLabels.LABEL_START_X_OFFSET_FACTOR,
+            2
+        );
+        const labelStartYOffset &#x3D; round(FolioCalculationSystemsLabels.LABEL_START_Y_OFFSET_FACTOR / this.zoomFactor, 2);
+
+        return this.yArray.map(lineArray &#x3D;&gt; {
+            const labelStartY &#x3D; lineArray[0] - labelStartYOffset;
+            return new FolioCalculationPoint(labelStartX, labelStartY);
+        });
+    }
+}
+
+/**
+ * The FolioCalculationSystems class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of the systems on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculationSystems {
+    /**
+     * The line space factor of the systems (number).
+     */
+    public lineSpaceFactor &#x3D; 1.5;
+
+    /**
+     * The number of systems (number).
+     */
+    public readonly NUMBER_OF_SYSTEMS: number;
+
+    /**
+     * The labels of the systems (FolioCalculationSystemsLabels).
+     */
+    public readonly SYSTEMS_LABELS: FolioCalculationSystemsLabels;
+
+    /**
+     * The lines of the systems (FolioCalculationSystemsLines).
+     */
+    public readonly SYSTEMS_LINES: FolioCalculationSystemsLines;
+
+    /**
+     * The calculated margins of the systems (FolioCalculationSystemsMarginCalculator).
+     */
+    public readonly SYSTEMS_MARGINS: FolioCalculationSystemsMargins;
+
+    /**
+     * The calculated dimensions of the systems (FolioCalculationSystemsDimensions).
+     */
+    public readonly SYSTEMS_DIMENSIONS: FolioCalculationSystemsDimensions;
+
+    /**
+     * The zoom factor (number).
+     */
+    public readonly ZOOM_FACTOR: number;
+
+    /**
+     * Constructor of the FolioCalculationSheet class.
+     *
+     * It initializes the class with values
+     * from the calculated folio sheet, the systems string and the zoom factor.
+     *
+     * @param {FolioCalculationSheet} sheet The given calculated folio sheet.
+     * @param {string} systems The given systems string.
+     * @param {number} factor The given zoom factor.
+     */
+    constructor(sheet: FolioCalculationSheet, systems: string, factor: number) {
+        this.NUMBER_OF_SYSTEMS &#x3D; systems ? parseInt(systems, 10) : 0;
+        this.ZOOM_FACTOR &#x3D; factor;
+
+        this.SYSTEMS_MARGINS &#x3D; new FolioCalculationSystemsMargins(sheet);
+        this.SYSTEMS_DIMENSIONS &#x3D; new FolioCalculationSystemsDimensions(sheet, this.SYSTEMS_MARGINS);
+
+        const Y_ARRAY &#x3D; this._calculateSystemYArray();
+        this.SYSTEMS_LINES &#x3D; new FolioCalculationSystemsLines(Y_ARRAY, this.SYSTEMS_DIMENSIONS);
+        this.SYSTEMS_LABELS &#x3D; new FolioCalculationSystemsLabels(
+            Y_ARRAY,
+            this.SYSTEMS_MARGINS,
+            this.SYSTEMS_DIMENSIONS,
+            this.ZOOM_FACTOR
+        );
+    }
+
+    /**
+     * Private method: _calculateSystemYArray.
+     *
+     * It calculates the array of start positions of the systems of a folio.
+     *
+     * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
+     */
+    private _calculateSystemYArray(): number[][] {
+        const spacePerSystem &#x3D; this.SYSTEMS_DIMENSIONS.SYSTEMS_HEIGHT / this.NUMBER_OF_SYSTEMS;
+        const array &#x3D; Array.from({ length: this.NUMBER_OF_SYSTEMS }, (_, i) &#x3D;&gt; {
+            const yStartValue &#x3D; round(this.SYSTEMS_DIMENSIONS.START_Y + i * spacePerSystem, 2);
+            return this._calculateSystemLineArray(yStartValue);
+        });
+        return array;
+    }
+
+    /**
+     * Private method: _calculateSystemLineArray.
+     *
+     * It calculates the start position of the 5 lines per system of a folio.
+     *
+     * @param {number} y The Y start value of the first line of a system.
+     * @returns {number[]} The start position array (Y values) of a system.
+     */
+    private _calculateSystemLineArray(y: number): number[] {
+        const NUMBER_OF_LINES &#x3D; 5;
+        return Array.from({ length: NUMBER_OF_LINES }, (_, i) &#x3D;&gt; y + i * this.lineSpaceFactor * this.ZOOM_FACTOR);
+    }
+}
+
+/**
+ * The FolioCalculation class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate all the values needed for the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioCalculation {
+    /**
+     * The calculated values for the sheet
+     * of a folio (FolioCalculationSheet).
+     */
+    public readonly SHEET: FolioCalculationSheet;
+
+    /**
+     * The calculated values for the systems
+     * of a folio (FolioCalculationSystems).
+     */
+    public readonly SYSTEMS: FolioCalculationSystems;
+
+    /**
+     * The calculated values for content segments
+     * of a folio (FolioCalculationContentSegment[]).
+     */
+    public readonly CONTENT_SEGMENTS: FolioCalculationContentSegment[];
+
+    /**
+     * Constructor of the FolioCalculation class.
+     *
+     * It initializes the class with values from folio settings, folio data and segment offset correction.
+     *
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {Folio} folioData The given folio data.
+     * @param {number} [segmentOffsetCorrection] The optional given segment offset correction.
+     */
+    constructor(folioSettings: FolioSettings, folioData: Folio, segmentOffsetCorrection: number &#x3D; 0) {
+        this.SHEET &#x3D; new FolioCalculationSheet(folioSettings, folioData.folioId);
+        this.SYSTEMS &#x3D; new FolioCalculationSystems(this.SHEET, folioData.systems, folioSettings.factor);
+        this.CONTENT_SEGMENTS &#x3D; folioData.content.map(
+            (content: FolioContent) &#x3D;&gt;
+                new FolioCalculationContentSegment(content, this.SYSTEMS, segmentOffsetCorrection)
+        );
+    }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'FolioCalculationSystemsLines.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

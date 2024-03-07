@@ -20,7 +20,7 @@
             "id": "M_34_Sk1",
             "label": "M 34 Sk1",
             "description": [
-                "<strong>M 34 Sk1</strong> ist die Verlaufsskizze zu M 34, die jedoch ab T. 7–15 maßgeblich von der späteren achttaktigen Tintenniederschrift abweicht, indem sie stattdessen eine sechzehntaktige Periode formuliert."
+                "<strong>Sk1</strong> ist die Verlaufsskizze zur Studienkomposition für Klavier M 34, die jedoch ab T. 7–15 maßgeblich von der späteren achttaktigen Tintenniederschrift abweicht, indem sie stattdessen eine sechzehntaktige Periode formuliert."
             ],
             "comments": [
                 {
@@ -129,7 +129,7 @@
             "id": "M_34_Sk1_1",
             "label": "M 34 Sk1.1",
             "description": [
-                "<strong>M 34 Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1')\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
+                "<strong>Sk1.1</strong> entwirft auf der Basis von <a (click)=\"ref.selectSvgSheet('m34', 'M_34_Sk1')\"><strong>M 34 Sk1</strong></a> eine alternative Fortsetzung ab T. 5, die zu einer Verkürzung auf eine achttaktige Periode analog der späteren Tintenniederschrift führt."
             ],
             "comments": [
                 {

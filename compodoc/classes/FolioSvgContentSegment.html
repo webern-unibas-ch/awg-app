@@ -1,0 +1,884 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >FolioSvgContentSegment</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/models/folio-svg-data.model.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The FolioSvgContentSegment class.</p>
+<p>It is used in the context of the edition folio convolutes
+to store the svg data for the content segment of a folio.</p>
+<p>Exposed to be used throughout <a href="../modules/EditionSheetsModule.html">EditionSheetsModule</a>.</p>
+
+            </p>
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#centeredXPosition" >centeredXPosition</a>
+                            </li>
+                            <li>
+                                <a href="#centeredYPosition" >centeredYPosition</a>
+                            </li>
+                            <li>
+                                <a href="#complexId" >complexId</a>
+                            </li>
+                            <li>
+                                <a href="#linkTo" >linkTo</a>
+                            </li>
+                            <li>
+                                <a href="#reversed" >reversed</a>
+                            </li>
+                            <li>
+                                <a href="#segmentLabel" >segmentLabel</a>
+                            </li>
+                            <li>
+                                <a href="#segmentLabelArray" >segmentLabelArray</a>
+                            </li>
+                            <li>
+                                <a href="#segmentVertices" >segmentVertices</a>
+                            </li>
+                            <li>
+                                <a href="#selectable" >selectable</a>
+                            </li>
+                            <li>
+                                <a href="#sheetId" >sheetId</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(calculatedContentSegment: <a href="../classes/FolioCalculationContentSegment.html" target="_self">FolioCalculationContentSegment</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:149</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the FolioSvgContentSegment class.</p>
+<p>It initializes the class with values from the folio content segment calculation.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>calculatedContentSegment</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/FolioCalculationContentSegment.html" target="_self" >FolioCalculationContentSegment</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>The given calculated folio content segment.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="centeredXPosition"></a>
+                    <span class="name">
+                        <span ><b>centeredXPosition</b></span>
+                        <a href="#centeredXPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:144</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The centered X position of a content segment (number).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="centeredYPosition"></a>
+                    <span class="name">
+                        <span ><b>centeredYPosition</b></span>
+                        <a href="#centeredYPosition"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:149</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The centered y position of a content segment (number).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="complexId"></a>
+                    <span class="name">
+                        <span ><b>complexId</b></span>
+                        <a href="#complexId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:104</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The id for the label of a content segment edition complex (string).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="linkTo"></a>
+                    <span class="name">
+                        <span ><b>linkTo</b></span>
+                        <a href="#linkTo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="114" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:114</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The optional link to a convolute description in the critical report.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reversed"></a>
+                    <span class="name">
+                        <span ><b>reversed</b></span>
+                        <a href="#reversed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:124</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The optional boolean flag if the content segment is reversed.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="segmentLabel"></a>
+                    <span class="name">
+                        <span ><b>segmentLabel</b></span>
+                        <a href="#segmentLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:134</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The label of a content segment (string).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="segmentLabelArray"></a>
+                    <span class="name">
+                        <span ><b>segmentLabelArray</b></span>
+                        <a href="#segmentLabelArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:129</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The array of labels of a content segment (string[]).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="segmentVertices"></a>
+                    <span class="name">
+                        <span ><b>segmentVertices</b></span>
+                        <a href="#segmentVertices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:139</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The vertices of a content segment polygon (string).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectable"></a>
+                    <span class="name">
+                        <span ><b>selectable</b></span>
+                        <a href="#selectable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:119</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The optional boolean flag if the content segment can be selected.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetId"></a>
+                    <span class="name">
+                        <span ><b>sheetId</b></span>
+                        <a href="#sheetId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:109</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The id for the label of a content segment sheet (string).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    FolioCalculation,
+    FolioCalculationContentSegment,
+    FolioCalculationLine,
+    FolioCalculationPoint,
+    FolioCalculationSheet,
+    FolioCalculationSystems,
+} from &#x27;./folio-calculation.model&#x27;;
+
+/**
+ * The FolioSvgSheet class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store and expose the svg data for the sheet of a folio.
+ *
+ * Not exposed, only called internally from {@link FolioSvgData}.
+ */
+class FolioSvgSheet {
+    /**
+     * The folio&#x27;s id (string).
+     */
+    folioId: string;
+
+    /**
+     * The upper left corner of a folio (FolioCalculationPoint).
+     *
+     * It contains the calculated upper left point (in px)
+     * to draw the svg of the sheet of a folio.
+     */
+    upperLeftCorner: FolioCalculationPoint;
+
+    /**
+     * The lower right corner (in px) of a folio (FolioCalculationPoint).
+     *
+     * It contains the calculated lower right point (in px)
+     * to draw the svg of the sheet of a folio.
+     */
+    lowerRightCorner: FolioCalculationPoint;
+
+    /**
+     * Constructor of the FolioSvgSheet class.
+     *
+     * It initializes the class with values from the folio sheet calculation.
+     *
+     * @param {FolioCalculationSheet} calculatedSheet The given calculated folio sheet.
+     */
+    constructor(calculatedSheet: FolioCalculationSheet) {
+        this.folioId &#x3D; calculatedSheet.FOLIO_ID;
+        this.upperLeftCorner &#x3D; calculatedSheet.UPPER_LEFT_CORNER;
+        this.lowerRightCorner &#x3D; calculatedSheet.LOWER_RIGHT_CORNER;
+    }
+}
+
+/**
+ * The FolioSvgSystems class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for the systems of a folio.
+ *
+ * Not exposed, only called internally from {@link FolioSvgData}.
+ */
+class FolioSvgSystems {
+    /**
+     * The systems label positions of a folio (FolioCalculationPoint[]).
+     *
+     * It contains all calculated labels and their positions (in px)
+     * to draw the svg of the systems of a folio.
+     */
+    systemsLabelPositions: FolioCalculationPoint[];
+
+    /**
+     * The system lines of a folio (FolioCalculationLine[][]).
+     *
+     * It contains all calculated lines and their positions (in px)
+     * to draw the svg of the systems of a folio.
+     */
+    systemsLines: FolioCalculationLine[][];
+
+    /**
+     * Constructor of the FolioSvgSystems class.
+     *
+     * It initializes the class with values from the folio system calculation.
+     *
+     * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
+     */
+    constructor(calculatedSystems: FolioCalculationSystems) {
+        this.systemsLabelPositions &#x3D; calculatedSystems.SYSTEMS_LABELS.SYSTEMS_LABELS_ARRAY;
+        this.systemsLines &#x3D; calculatedSystems.SYSTEMS_LINES.SYSTEMS_ARRAYS;
+    }
+}
+
+/**
+ * The FolioSvgContentSegment class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the svg data for the content segment of a folio.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioSvgContentSegment {
+    /**
+     * The id for the label of a content segment edition complex (string).
+     */
+    complexId: string;
+
+    /**
+     * The id for the label of a content segment sheet (string).
+     */
+    sheetId: string;
+
+    /**
+     * The optional link to a convolute description in the critical report.
+     */
+    linkTo: string;
+
+    /**
+     * The optional boolean flag if the content segment can be selected.
+     */
+    selectable: boolean;
+
+    /**
+     * The optional boolean flag if the content segment is reversed.
+     */
+    reversed: boolean;
+
+    /**
+     * The array of labels of a content segment (string[]).
+     */
+    segmentLabelArray: string[];
+
+    /**
+     * The label of a content segment (string).
+     */
+    segmentLabel: string;
+
+    /**
+     * The vertices of a content segment polygon (string).
+     */
+    segmentVertices: string;
+
+    /**
+     * The centered X position of a content segment (number).
+     */
+    centeredXPosition: number;
+
+    /**
+     * The centered y position of a content segment (number).
+     */
+    centeredYPosition: number;
+
+    /**
+     * Constructor of the FolioSvgContentSegment class.
+     *
+     * It initializes the class with values from the folio content segment calculation.
+     *
+     * @param {FolioCalculationContentSegment} calculatedContentSegment The given calculated folio content segment.
+     */
+    constructor(calculatedContentSegment: FolioCalculationContentSegment) {
+        this.complexId &#x3D; calculatedContentSegment.complexId;
+        this.sheetId &#x3D; calculatedContentSegment.sheetId;
+        this.linkTo &#x3D; calculatedContentSegment.linkTo;
+        this.selectable &#x3D; calculatedContentSegment.selectable;
+        this.reversed &#x3D; calculatedContentSegment.reversed;
+        this.segmentVertices &#x3D; calculatedContentSegment.vertices?.VERTICES_AS_STRING;
+        this.segmentLabelArray &#x3D; calculatedContentSegment.segmentLabelArray;
+        this.segmentLabel &#x3D; calculatedContentSegment.segmentLabel;
+        this.centeredXPosition &#x3D; calculatedContentSegment.centeredXPosition;
+        this.centeredYPosition &#x3D; calculatedContentSegment.centeredYPosition;
+    }
+}
+
+/**
+ * The FolioSvgData class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store and expose the svg data for a folio.
+ *
+ * Exposed to be used throughout {@link EditionSheetsModule}.
+ */
+export class FolioSvgData {
+    /**
+     * The sheet of a folio (FolioSvgSheet).
+     *
+     * It contains all calculated values and their positions (in px)
+     * to draw the svg of the sheet of a folio.
+     */
+    sheet: FolioSvgSheet;
+
+    /**
+     * The systems of a folio (FolioSvgSystems).
+     *
+     * It contains all calculated values and their positions (in px)
+     * to draw the svg of the systems of a folio.
+     */
+    systems: FolioSvgSystems;
+
+    /**
+     * The content segments of a folio (FolioSvgContentSegments).
+     *
+     * It contains all calculated values and their positions (in px)
+     * to draw the svg of the content segments of a folio.
+     */
+    contentSegments: FolioSvgContentSegment[];
+
+    /**
+     * Constructor of the FolioSvgData class.
+     *
+     * It initializes the class with values from the folio calculation.
+     *
+     * @param {FolioCalculation} calculation The given folio calculation.
+     */
+    constructor(calculation: FolioCalculation) {
+        this.sheet &#x3D; new FolioSvgSheet(calculation.SHEET);
+        this.systems &#x3D; new FolioSvgSystems(calculation.SYSTEMS);
+        this.contentSegments &#x3D; calculation.CONTENT_SEGMENTS.map(segment &#x3D;&gt; new FolioSvgContentSegment(segment));
+    }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'FolioSvgContentSegment.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

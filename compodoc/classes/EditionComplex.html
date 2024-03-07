@@ -671,7 +671,7 @@ export class EditionComplex {
         const spacer &#x3D; &#x27; &#x27;;
 
         // Set dynamic routes
-        this.titleStatement &#x3D; titleStatement || new EditionTitleStatement();
+        this.titleStatement &#x3D; titleStatement;
         this.responsibilityStatement &#x3D; responsibilityStatement || new EditionResponsibilityStatement();
 
         this.complexId &#x3D; new EditionRouteConstant();
@@ -692,9 +692,7 @@ export class EditionComplex {
         this.type &#x3D; type || new EditionRouteConstant();
 
         // Set base route
-        let rootPath &#x3D; EDITION_ROUTE_CONSTANTS.EDITION.route;
-        rootPath +&#x3D; EDITION_ROUTE_CONSTANTS.COMPLEX.route;
-
+        const rootPath &#x3D; EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.COMPLEX.route;
         this.baseRoute &#x3D; rootPath + this.complexId.route + delimiter;
     }
 }

@@ -348,12 +348,6 @@
                             <a href="#sessionStore" title="src/testing/mock-helper/mock-storage.ts" ><b>sessionStore</b>&nbsp;&nbsp;&nbsp;(src/.../mock-storage.ts)</a>
                         </li>
                         <li>
-                            <a href="#Snap" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/edition-folio-viewer.component.ts" ><b>Snap</b>&nbsp;&nbsp;&nbsp;(src/.../edition-folio-viewer.component.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#Snap" title="src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts" ><b>Snap</b>&nbsp;&nbsp;&nbsp;(src/.../folio.service.ts)</a>
-                        </li>
-                        <li>
                             <a href="#VALTYPE_COLOR" title="src/app/views/data-view/data/value-type.data.ts" ><b>VALTYPE_COLOR</b>&nbsp;&nbsp;&nbsp;(src/.../value-type.data.ts)</a>
                         </li>
                         <li>
@@ -554,7 +548,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.11.6&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.11.7&#x27;</code>
                     </td>
                 </tr>
 
@@ -586,7 +580,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;19. Februar 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;07. März 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -1576,6 +1570,12 @@ to store data of the edition assets.</p>
                     </span>
                 </td>
             </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>miscellaneous</code>
+
+                    </td>
+                </tr>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
@@ -2941,11 +2941,12 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                                 sheetId: &#x27;M_212_Sk1&#x27;,
                                 sigle: &#x27;M 212 Sk1&#x27;,
                                 sigleAddendum: &#x27;T. 1–2, [3–6]&#x27;,
-                                selectable: false,
+                                selectable: true,
                                 linkTo: &#x27;OP12_SOURCE_NOT_AVAILABLE&#x27;,
                                 sectionPartition: 1,
                                 sections: [
                                     {
+                                        position: 1,
                                         startSystem: 2,
                                         endSystem: 4,
                                     },
@@ -2960,6 +2961,39 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 convoluteLabel: &#x27;Test convolute B&#x27;,
                 folios: [],
                 linkTo: &#x27;OP12_SOURCE_NOT_AVAILABLE&#x27;,
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockReversedFolio.
+     *
+     * It provides a mocked reversed folio object.
+     */
+    mockReversedFolio: {
+        folioId: &#x27;1&#x27;,
+        systems: &#x27;12&#x27;,
+        format: {
+            height: 180,
+            width: 267,
+        },
+        content: [
+            {
+                complexId: &#x27;op12&#x27;,
+                sheetId: &#x27;M_212_Sk1_1&#x27;,
+                sigle: &#x27;M 212 Sk1.1&#x27;,
+                sigleAddendum: &#x27;&#x27;,
+                selectable: undefined,
+                reversed: true,
+                linkTo: undefined,
+                sectionPartition: 1,
+                sections: [
+                    {
+                        position: 1,
+                        startSystem: 2,
+                        endSystem: 4,
+                    },
+                ],
             },
         ],
     },
@@ -3136,11 +3170,11 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     desc: [
                         &#x27;2 Blätter (Bl. 1–2). Archivalische Paginierung &lt;em&gt;[1]&lt;/em&gt; bis &lt;em&gt;[4]&lt;/em&gt; unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2&lt;sup&gt;v&lt;/sup&gt; mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf &lt;a (click)&#x3D;&quot;ref.openModal(\&#x27;OP12_SHEET_COMING_SOON\&#x27;)&quot; &gt;&lt;strong&gt;Textfassung 2&lt;/strong&gt;&lt;/a&gt;&#x27;,
                     ],
-                    writingMaterial:
-                        &#x27;Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:&lt;br /&gt;&lt;img class&#x3D;&quot;img-thumbnail&quot; [src]&#x3D;&quot;ref.FIRM_SIGNS.OP12.A[0].route&quot; [title]&#x3D;&quot;ref.FIRM_SIGNS.OP12.A[0].full&quot; [alt]&#x3D;&quot;ref.FIRM_SIGNS.OP12.A[0].short&quot; /&gt;&lt;br /&gt;auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1); &lt;br /&gt;Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).&#x27;,
+                    writingMaterialString:
+                        &#x27;Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:&lt;br /&gt;&lt;img class&#x3D;&quot;img-thumbnail&quot; [src]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route&quot; [title]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full&quot; [alt]&#x3D;&quot;ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short&quot; /&gt;&lt;br /&gt;auf Bl. 1&lt;sup&gt;r&lt;/sup&gt; unten links (Bl. 1); &lt;br /&gt;Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).&#x27;,
                     writingInstruments: {
                         main: &#x27;Bleistift&#x27;,
-                        secondary: [&#x27;roter Buntstrift&#x27;, &#x27;blaue Tinte&#x27;, &#x27;Kopierstift&#x27;],
+                        secondary: [&#x27;roter Buntstift&#x27;, &#x27;blaue Tinte&#x27;, &#x27;Kopierstift&#x27;],
                     },
                     title: &#x27;test title&#x27;,
                     date: &#x27;test date&#x27;,
@@ -5682,68 +5716,6 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
                 <td class="col-md-4">
                     <div class="io-description"><p>Routed components of the <a href="../modules/StructureViewModule.html">StructureViewModule</a>:
 <a href="../components/StructureViewComponent.html">StructureViewComponent</a>.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/edition-folio-viewer.component.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="Snap"></a>
-                    <span class="name">
-                        <span ><b>Snap</b></span>
-                        <a href="#Snap"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Declared variable: Snap.</p>
-<p>It provides access to the embedded SnapSvg library (see snapsvg.io).</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-sheets/edition-convolute/edition-folio-viewer/folio.service.ts</h3>
-    <section data-compodoc="block-properties">
-    <h3></h3>    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="Snap"></a>
-                    <span class="name">
-                        <span ><b>Snap</b></span>
-                        <a href="#Snap"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </td>
-                </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Declared variable: Snap.</p>
-<p>It provides access to the embedded SnapSvg library (see <a href="snapsvg.io">snapsvg.io</a>).</p>
 </div>
                 </td>
             </tr>

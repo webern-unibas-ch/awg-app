@@ -338,11 +338,11 @@ svg a.active rect {
     fill: OliveDrab;
     opacity: 0.2;
 }
-.item-group.active,
-.item-group.active > .item-link > .item-shape {
+.content-segment-group.active,
+.content-segment-group.active > .content-segment-link > .content-segment-shape {
     stroke: OliveDrab;
 }
-.item-group.active > .item-link > .item-label {
+.content-segment-group.active > .content-segment-link > .content-segment-label {
     fill: OliveDrab;
 }
 

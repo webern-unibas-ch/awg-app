@@ -1028,13 +1028,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioCalculation.html" data-type="entity-link" >FolioCalculation</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationContentItem.html" data-type="entity-link" >FolioCalculationContentItem</a>
+                                <a href="classes/FolioCalculationContentSegment.html" data-type="entity-link" >FolioCalculationContentSegment</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationContentItemCache.html" data-type="entity-link" >FolioCalculationContentItemCache</a>
+                                <a href="classes/FolioCalculationContentSegmentCenteredPositions.html" data-type="entity-link" >FolioCalculationContentSegmentCenteredPositions</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationContentItemCornerPoints.html" data-type="entity-link" >FolioCalculationContentItemCornerPoints</a>
+                                <a href="classes/FolioCalculationContentSegmentLabel.html" data-type="entity-link" >FolioCalculationContentSegmentLabel</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FolioCalculationContentSegmentVertices.html" data-type="entity-link" >FolioCalculationContentSegmentVertices</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FolioCalculationLine.html" data-type="entity-link" >FolioCalculationLine</a>
@@ -1047,6 +1050,18 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/FolioCalculationSystems.html" data-type="entity-link" >FolioCalculationSystems</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FolioCalculationSystemsDimensions.html" data-type="entity-link" >FolioCalculationSystemsDimensions</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FolioCalculationSystemsLabels.html" data-type="entity-link" >FolioCalculationSystemsLabels</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FolioCalculationSystemsLines.html" data-type="entity-link" >FolioCalculationSystemsLines</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/FolioCalculationSystemsMargins.html" data-type="entity-link" >FolioCalculationSystemsMargins</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FolioContent.html" data-type="entity-link" >FolioContent</a>
@@ -1067,7 +1082,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/FolioSettings.html" data-type="entity-link" >FolioSettings</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSvgContentItem.html" data-type="entity-link" >FolioSvgContentItem</a>
+                                <a href="classes/FolioSvgContentSegment.html" data-type="entity-link" >FolioSvgContentSegment</a>
                             </li>
                             <li class="link">
                                 <a href="classes/FolioSvgData.html" data-type="entity-link" >FolioSvgData</a>
@@ -1323,6 +1338,27 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/SourceDescriptionSystemRow.html" data-type="entity-link" >SourceDescriptionSystemRow</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingInstruments.html" data-type="entity-link" >SourceDescriptionWritingInstruments</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterial.html" data-type="entity-link" >SourceDescriptionWritingMaterial</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterialDimension.html" data-type="entity-link" >SourceDescriptionWritingMaterialDimension</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterialFirmSign.html" data-type="entity-link" >SourceDescriptionWritingMaterialFirmSign</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterialFirmSignLocation.html" data-type="entity-link" >SourceDescriptionWritingMaterialFirmSignLocation</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterialFormat.html" data-type="entity-link" >SourceDescriptionWritingMaterialFormat</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/SourceDescriptionWritingMaterialSystems.html" data-type="entity-link" >SourceDescriptionWritingMaterialSystems</a>
                             </li>
                             <li class="link">
                                 <a href="classes/SourceEvaluation.html" data-type="entity-link" >SourceEvaluation</a>
@@ -1622,6 +1658,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         <ul class="links collapse " ${ isNormalMode ? 'id="miscellaneous-links"' : 'id="xs-miscellaneous-links"' }>
                             <li class="link">
                                 <a href="miscellaneous/enumerations.html" data-type="entity-link">Enums</a>
+                            </li>
+                            <li class="link">
+                                <a href="miscellaneous/functions.html" data-type="entity-link">Functions</a>
                             </li>
                             <li class="link">
                                 <a href="miscellaneous/typealiases.html" data-type="entity-link">Type aliases</a>
