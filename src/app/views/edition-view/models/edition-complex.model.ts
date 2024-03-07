@@ -117,7 +117,7 @@ export class EditionComplex {
         const spacer = ' ';
 
         // Set dynamic routes
-        this.titleStatement = titleStatement || new EditionTitleStatement();
+        this.titleStatement = titleStatement;
         this.responsibilityStatement = responsibilityStatement || new EditionResponsibilityStatement();
 
         this.complexId = new EditionRouteConstant();
@@ -138,9 +138,7 @@ export class EditionComplex {
         this.type = type || new EditionRouteConstant();
 
         // Set base route
-        let rootPath = EDITION_ROUTE_CONSTANTS.EDITION.route;
-        rootPath += EDITION_ROUTE_CONSTANTS.COMPLEX.route;
-
+        const rootPath = EDITION_ROUTE_CONSTANTS.EDITION.route + EDITION_ROUTE_CONSTANTS.COMPLEX.route;
         this.baseRoute = rootPath + this.complexId.route + delimiter;
     }
 }
