@@ -647,8 +647,34 @@ describe('FolioService (DONE)', () => {
                 svgSheetGroup.remove();
             });
 
-            describe('... should not append anything and log an error if', () => {
-                it('... content.sections are not given in folioCalculation model', () => {
+            describe('... should not append anything if', () => {
+                it('... contentSegments array is empty', () => {
+                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+
+                    const emptyFolioSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                    );
+                    emptyFolioSvgData.contentSegments = [];
+
+                    (folioService as any)._addFolioContentSegmentsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+
+                    expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
+                });
+
+                it('... contentSegments array contains null or undefined', () => {
+                    const emptySvgSheetGroup = D3_SELECTION.create('g');
+
+                    const emptyFolioSvgData = new FolioSvgData(
+                        new FolioCalculation(expectedFolioSettings, expectedReversedFolio, 0)
+                    );
+                    emptyFolioSvgData.contentSegments = [null, undefined];
+
+                    (folioService as any)._addFolioContentSegmentsToSvgCanvas(emptySvgSheetGroup, emptyFolioSvgData);
+
+                    expectToBe(emptySvgSheetGroup.selectAll('g.content-segment-group').size(), 0);
+                });
+
+                it('... content.sections are not given in folioCalculation model (with log error)', () => {
                     const emptySvgSheetGroup = D3_SELECTION.create('g');
 
                     expectedReversedFolio.content[0].sections = undefined;
@@ -664,7 +690,7 @@ describe('FolioService (DONE)', () => {
                     expectToBe(mockConsole.get(0), 'No sections array in content');
                 });
 
-                it('... content.sections length is greater than sectionPartition in folioCalculation model', () => {
+                it('... content.sections length is greater than sectionPartition in folioCalculation model (with log error)', () => {
                     const emptySvgSheetGroup = D3_SELECTION.create('g');
 
                     const sections = expectedReversedFolio.content[0].sections;
@@ -683,7 +709,7 @@ describe('FolioService (DONE)', () => {
                     expectToBe(mockConsole.get(0), 'Sections array is bigger than sectionPartition');
                 });
 
-                it('... number of systems is not given in folioCalculation model', () => {
+                it('... number of systems is not given in folioCalculation model (with log error)', () => {
                     const emptySvgSheetGroup = D3_SELECTION.create('g');
 
                     expectedReversedFolio.systems = '';
