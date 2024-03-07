@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectToEqual } from '@testing/expect-helper';
 
 import { LOGOSDATA, METADATA } from '@awg-core/core-data';
 import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
@@ -40,7 +41,7 @@ describe('CoreService (DONE)', () => {
 
         it('... should return METADATA', () => {
             // Call service function
-            expect(coreService.getMetaData()).withContext(`should be ${expectedMetaData}`).toBe(expectedMetaData);
+            expectToEqual(coreService.getMetaData(), expectedMetaData);
         });
     });
 
@@ -50,30 +51,27 @@ describe('CoreService (DONE)', () => {
         });
 
         it('... should return page METADATA if parameter is given', () => {
-            const metaSection = MetaSectionTypes.page;
+            const pageMetaSection = MetaSectionTypes.page;
 
-            // Call service function
-            expect(coreService.getMetaDataSection(metaSection))
-                .withContext(`should be ${expectedMetaData[metaSection]}`)
-                .toBe(expectedMetaData[metaSection]);
+            const actualMetaData = coreService.getMetaDataSection(pageMetaSection);
+
+            expectToEqual(actualMetaData, expectedMetaData[pageMetaSection]);
         });
 
         it('... should return structure METADATA if parameter is given', () => {
-            const metaSection = MetaSectionTypes.structure;
+            const structureMetaSection = MetaSectionTypes.structure;
 
-            // Call service function
-            expect(coreService.getMetaDataSection(metaSection))
-                .withContext(`should be ${expectedMetaData[metaSection]}`)
-                .toBe(expectedMetaData[metaSection]);
+            const actualMetaData = coreService.getMetaDataSection(structureMetaSection);
+
+            expectToEqual(actualMetaData, expectedMetaData[structureMetaSection]);
         });
 
         it('... should return contact METADATA if parameter is given', () => {
-            const metaSection = MetaSectionTypes.contact;
+            const contactMetaSection = MetaSectionTypes.contact;
 
-            // Call service function
-            expect(coreService.getMetaDataSection(metaSection))
-                .withContext(`should be ${expectedMetaData[metaSection]}`)
-                .toBe(expectedMetaData[metaSection]);
+            const actualMetaData = coreService.getMetaDataSection(contactMetaSection);
+
+            expectToEqual(actualMetaData, expectedMetaData[contactMetaSection]);
         });
     });
 
@@ -83,8 +81,9 @@ describe('CoreService (DONE)', () => {
         });
 
         it('... should return LOGOS', () => {
-            // Call service function
-            expect(coreService.getLogos()).withContext(`should be ${expectedLogosData}`).toBe(expectedLogosData);
+            const actualLogosData = coreService.getLogos();
+
+            expectToEqual(actualLogosData, expectedLogosData);
         });
     });
 });

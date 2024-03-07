@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
 import { AnalyticsService } from './analytics.service';
@@ -79,7 +79,7 @@ describe('AnalyticsService (DONE)', () => {
         it('... should use mock console', () => {
             console.info('Test');
 
-            expect(mockConsole.get(0)).toBe('Test');
+            expectToBe(mockConsole.get(0), 'Test');
         });
 
         it('... should clear mock console after each run', () => {
@@ -89,9 +89,7 @@ describe('AnalyticsService (DONE)', () => {
         it('... should use mock analytics', () => {
             (window as any).gtag('test', 'analytics', {});
 
-            expect(mockAnalytics.getGtag(0))
-                .withContext(`should equal '[test', 'analytics', {}]`)
-                .toEqual(['test', 'analytics', {}]);
+            expectToEqual(mockAnalytics.getGtag(0), ['test', 'analytics', {}]);
         });
 
         it('... should clear mock analytics store after each run', () => {
@@ -134,7 +132,7 @@ describe('AnalyticsService (DONE)', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, false);
 
             expectSpyCall(consoleSpy, 1, expectedLogMessage);
-            expect(mockConsole.get(0)).withContext(`should be ${expectedLogMessage}`).toBe(expectedLogMessage);
+            expectToBe(mockConsole.get(0), expectedLogMessage);
         });
 
         it('... should not log a replacement message in production mode', () => {
@@ -235,9 +233,7 @@ describe('AnalyticsService (DONE)', () => {
             analyticsService.trackPageView(expectedPage);
 
             expectSpyCall(gtagSpy, 1, expectedAnalyticsEvent);
-            expect(mockAnalytics.getGtag(0))
-                .withContext(`should be ${expectedAnalyticsEvent}`)
-                .toEqual(expectedAnalyticsEvent);
+            expectToEqual(mockAnalytics.getGtag(0), expectedAnalyticsEvent);
         });
 
         it('... should track page changes', () => {
@@ -262,26 +258,14 @@ describe('AnalyticsService (DONE)', () => {
 
             expectSpyCall(gtagSpy, 2, otherAnalyticsEvent);
             expect(gtagSpy.calls.any()).toBeTruthy();
-            expect(gtagSpy.calls.count()).withContext(`should be 2`).toBe(2);
-            expect(gtagSpy.calls.first().args)
-                .withContext(`should equal ${expectedAnalyticsEvent}`)
-                .toEqual(expectedAnalyticsEvent);
-            expect(gtagSpy.calls.allArgs()[0])
-                .withContext(`should equal ${expectedAnalyticsEvent}`)
-                .toEqual(expectedAnalyticsEvent);
-            expect(gtagSpy.calls.allArgs()[1])
-                .withContext(`should equal ${otherAnalyticsEvent}`)
-                .toEqual(otherAnalyticsEvent);
-            expect(gtagSpy.calls.mostRecent().args)
-                .withContext(`should equal ${otherAnalyticsEvent}`)
-                .toEqual(otherAnalyticsEvent);
+            expectToBe(gtagSpy.calls.count(), 2);
+            expectToEqual(gtagSpy.calls.first().args, expectedAnalyticsEvent);
+            expectToEqual(gtagSpy.calls.allArgs()[0], expectedAnalyticsEvent);
+            expectToEqual(gtagSpy.calls.allArgs()[1], otherAnalyticsEvent);
+            expectToEqual(gtagSpy.calls.mostRecent().args, otherAnalyticsEvent);
 
-            expect(mockAnalytics.getGtag(0))
-                .withContext(`should equal ${expectedAnalyticsEvent}`)
-                .toEqual(expectedAnalyticsEvent);
-            expect(mockAnalytics.getGtag(1))
-                .withContext(`should equal ${otherAnalyticsEvent}`)
-                .toEqual(otherAnalyticsEvent);
+            expectToEqual(mockAnalytics.getGtag(0), expectedAnalyticsEvent);
+            expectToEqual(mockAnalytics.getGtag(1), otherAnalyticsEvent);
         });
     });
 });

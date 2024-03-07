@@ -1,6 +1,7 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockSearchResponseJson } from '@testing/mock-data';
 
 import { SearchResponseJson } from '@awg-shared/api-objects';
@@ -33,10 +34,7 @@ describe('DataStreamerService (DONE)', () => {
     });
 
     it('... should have bufferSize = 1', () => {
-        expect((dataStreamerService as any)._bufferSize).toBeTruthy();
-        expect((dataStreamerService as any)._bufferSize)
-            .withContext('should be 1')
-            .toBe(1);
+        expectToBe((dataStreamerService as any)._bufferSize, 1);
     });
 
     it('... should have searchResponseWithQuerySubject', () => {
@@ -64,9 +62,7 @@ describe('DataStreamerService (DONE)', () => {
             it('... should return given searchResponse', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery)
-                            .withContext(`should equal ${expectedSearchResponse}`)
-                            .toEqual(expectedSearchResponse);
+                        expectToEqual(searchResponseWithQuery, expectedSearchResponse);
                     },
                 });
 
@@ -77,9 +73,7 @@ describe('DataStreamerService (DONE)', () => {
             it('... should return updated searchResponse', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery)
-                            .withContext(`should equal ${expectedSearchResponse}`)
-                            .toEqual(expectedSearchResponse);
+                        expectToEqual(searchResponseWithQuery, expectedSearchResponse);
                     },
                 });
 
@@ -100,9 +94,7 @@ describe('DataStreamerService (DONE)', () => {
             it('... should emit updated searchResponse', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery)
-                            .withContext(`should equal ${expectedSearchResponse}`)
-                            .toEqual(expectedSearchResponse);
+                        expectToEqual(searchResponseWithQuery, expectedSearchResponse);
                     },
                 });
 
@@ -123,9 +115,7 @@ describe('DataStreamerService (DONE)', () => {
             it('... should update search results with empty SearchResponseWithQuery', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery)
-                            .withContext('should be empty SearchResponseWithQuery object')
-                            .toEqual(expectedSearchResponse);
+                        expectToEqual(searchResponseWithQuery, expectedSearchResponse);
                     },
                 });
 
@@ -137,9 +127,7 @@ describe('DataStreamerService (DONE)', () => {
             it('... should overwrite existing search results', waitForAsync(() => {
                 dataStreamerService.getSearchResponseWithQuery().subscribe({
                     next: (searchResponseWithQuery: SearchResponseWithQuery) => {
-                        expect(searchResponseWithQuery)
-                            .withContext(`should equal ${expectedSearchResponse}`)
-                            .toEqual(expectedSearchResponse);
+                        expectToEqual(searchResponseWithQuery, expectedSearchResponse);
                     },
                 });
 
@@ -165,8 +153,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 dataStreamerService.getResourceId().subscribe({
                     next: (id: string) => {
-                        expect(id).toBeTruthy();
-                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        expectToBe(id, expectedResourceId);
                     },
                 });
 
@@ -180,8 +167,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 dataStreamerService.getResourceId().subscribe({
                     next: (id: string) => {
-                        expect(id).toBeTruthy();
-                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        expectToBe(id, expectedResourceId);
                     },
                 });
 
@@ -205,8 +191,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 dataStreamerService.getResourceId().subscribe({
                     next: (id: string) => {
-                        expect(id).toBeTruthy();
-                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        expectToBe(id, expectedResourceId);
                     },
                 });
 
@@ -230,8 +215,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 dataStreamerService.getResourceId().subscribe({
                     next: (id: string) => {
-                        expect(id).not.toBeTruthy();
-                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        expectToBe(id, expectedResourceId);
                     },
                 });
 
@@ -244,7 +228,7 @@ describe('DataStreamerService (DONE)', () => {
 
                 dataStreamerService.getResourceId().subscribe({
                     next: (id: string) => {
-                        expect(id).withContext(`should be ${expectedResourceId}`).toBe(expectedResourceId);
+                        expectToBe(id, expectedResourceId);
                     },
                 });
 

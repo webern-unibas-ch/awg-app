@@ -1,6 +1,7 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectToBe } from '@testing/expect-helper';
 
 import { LoadingService } from './loading.service';
 
@@ -52,7 +53,7 @@ describe('LoadingService (DONE)', () => {
         it('... should return updated value', waitForAsync(() => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
-                    expect(isLoading).withContext(`should be ${loadingStatus}`).toBe(loadingStatus);
+                    expectToBe(isLoading, loadingStatus);
                 },
             });
 
@@ -70,7 +71,7 @@ describe('LoadingService (DONE)', () => {
         it('... should emit updated loading status', waitForAsync(() => {
             loadingService.getLoadingStatus().subscribe({
                 next: (isLoading: boolean) => {
-                    expect(isLoading).withContext(`should be ${loadingStatus}`).toBe(loadingStatus);
+                    expectToBe(isLoading, loadingStatus);
                 },
             });
 

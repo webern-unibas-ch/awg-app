@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectToBe, getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { ViewContainerComponent } from './view-container.component';
@@ -57,7 +57,7 @@ describe('ViewContainerComponent (DONE)', () => {
                 // Secondary outlet should be named 'side'
                 expect(routletDes[1].attributes).toBeDefined();
                 expect(routletDes[1].attributes['name']).toBeDefined();
-                expect(routletDes[1].attributes['name']).withContext('should have name `side`').toBe('side');
+                expectToBe(routletDes[1].attributes['name'], 'side');
             });
         });
     });

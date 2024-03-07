@@ -158,9 +158,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 classList = component.getLogoClass(component.logo.id);
 
                 expect(classList).toBeTruthy();
-                expect(classList)
-                    .withContext(`should not contain ${cssClassFloatRight}`)
-                    .not.toContain(cssClassFloatRight);
+                expect(classList).not.toContain(cssClassFloatRight);
 
                 // Not main footer logo
                 // Trigger changes in data binding
@@ -263,9 +261,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture); // Fixture.detectChanges with onPush strategy
 
                 expect(imageDes[0].classes[cssClassFloatRight]).not.toBeTruthy();
-                expect(imageEl.classList)
-                    .withContext(`should not contain ${cssClassFloatRight}`)
-                    .not.toContain(cssClassFloatRight);
+                expect(imageEl.classList).not.toContain(cssClassFloatRight);
 
                 // Not main footer logo
                 // Trigger changes in data binding
@@ -273,9 +269,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture); // Fixture.detectChanges with onPush
 
                 expect(imageDes[0].classes[cssClassFloatRight]).not.toBeTruthy();
-                expect(imageEl.classList)
-                    .withContext(`should not contain ${cssClassFloatRight}`)
-                    .not.toContain(cssClassFloatRight);
+                expect(imageEl.classList).not.toContain(cssClassFloatRight);
             });
 
             it('... should have CSS class `my-2` applied only to main footer logos', async () => {
@@ -303,9 +297,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture); // Fixture.detectChanges with onPush
 
                 expect(imageDes[0].classes[cssClassMarginY2]).not.toBeTruthy();
-                expect(imageEl.classList)
-                    .withContext(`should not contain ${cssClassMarginY2}`)
-                    .not.toContain(cssClassMarginY2);
+                expect(imageEl.classList).not.toContain(cssClassMarginY2);
             });
 
             it('... should have [ngClass] resolve to correct classes', async () => {

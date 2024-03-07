@@ -50,6 +50,13 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     editionComplex: EditionComplex;
 
     /**
+     * Public variable: errorMessage.
+     *
+     * It keeps an errorMessage for the service calls.
+     */
+    errorMessage: string = undefined;
+
+    /**
      * Public variable: folioConvoluteData.
      *
      * It keeps the folio convolute Data of the edition sheets.
@@ -85,6 +92,20 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     selectedTextcritics: Textcritics;
 
     /**
+     * Public variable: showTka.
+     *
+     * If the textcritics shall be displayed.
+     */
+    showTkA = false;
+
+    /**
+     * Public variable: snapshotQueryParamsId.
+     *
+     * It keeps the snapshot of the queryParams id.
+     */
+    snapshotQueryParamsId: string;
+
+    /**
      * Public variable: svgSheetsData.
      *
      * It keeps the SVG sheets data of the edition sheets.
@@ -99,25 +120,18 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
     textcriticsData: TextcriticsList;
 
     /**
-     * Public variable: errorMessage.
-     *
-     * It keeps an errorMessage for the service calls.
-     */
-    errorMessage: string = undefined;
-
-    /**
-     * Public variable: showTka.
-     *
-     * If the textcritics shall be displayed.
-     */
-    showTkA = false;
-
-    /**
      * Private variable: _destroyed$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
     private _destroyed$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Private variable: _isFirstPageLoad.
+     *
+     * It keeps the information if the page is loaded for the first time.
+     */
+    private _isFirstPageLoad = true;
 
     /**
      * Constructor of the EditionSheetsComponent.
@@ -169,6 +183,8 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition complex and all necessary edition data.
      */
     getEditionSheetsData(): void {
+        this.snapshotQueryParamsId = this.route.snapshot.queryParamMap.get('id');
+
         combineLatest([this.route.paramMap, this.route.queryParamMap])
             .pipe(
                 switchMap(([_params, queryParams]) => this._fetchEditionComplexData(queryParams)),
@@ -356,14 +372,9 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      */
     private _getDefaultSheetId(): string {
         const defaultSheet = this.svgSheetsData?.sheets?.sketchEditions?.[0];
-        let defaultSheetId = defaultSheet?.id;
+        const defaultSheetContentPartial = defaultSheet?.content?.length > 1 ? defaultSheet.content[0]?.partial : '';
 
-        if (defaultSheet?.content?.length > 1) {
-            const defaultSheetContent = defaultSheet.content[0];
-            defaultSheetId += defaultSheetContent?.partial;
-        }
-
-        return defaultSheetId || '';
+        return (defaultSheet?.id || '') + defaultSheetContentPartial;
     }
 
     /**
@@ -375,16 +386,23 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
      * @returns {void} Handles the query params and selects the corresponding SVG sheet.
      */
     private _handleQueryParams(queryParams: ParamMap): void {
-        const idFromQueryParams = queryParams?.get('id');
+        let sheetIdFromQueryParams = queryParams?.get('id');
 
-        if (!idFromQueryParams) {
+        if (sheetIdFromQueryParams && this.svgSheetsData) {
+            this._selectSvgSheet(sheetIdFromQueryParams);
+        } else {
+            sheetIdFromQueryParams =
+                this._isFirstPageLoad && this.snapshotQueryParamsId
+                    ? this.snapshotQueryParamsId
+                    : this._getDefaultSheetId();
+
             this.onSvgSheetSelect({
                 complexId: '',
-                sheetId: this._getDefaultSheetId(),
+                sheetId: sheetIdFromQueryParams,
             });
-        } else if (this.svgSheetsData) {
-            this._selectSvgSheet(idFromQueryParams);
         }
+
+        this._isFirstPageLoad = false;
     }
 
     /**
@@ -413,6 +431,7 @@ export class EditionSheetsComponent implements OnInit, OnDestroy {
 
         // Clear overlay selections and textcritical comments
         this.onOverlaySelect([]);
+
         if (
             this.utils.isNotEmptyObject(this.selectedTextcritics) &&
             this.utils.isNotEmptyArray(this.selectedTextcritics.comments)

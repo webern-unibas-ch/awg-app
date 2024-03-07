@@ -1,7 +1,6 @@
 import {
     FolioCalculation,
-    FolioCalculationContentItem,
-    FolioCalculationContentItemCornerPoints,
+    FolioCalculationContentSegment,
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioCalculationSheet,
@@ -46,9 +45,9 @@ class FolioSvgSheet {
      * @param {FolioCalculationSheet} calculatedSheet The given calculated folio sheet.
      */
     constructor(calculatedSheet: FolioCalculationSheet) {
-        this.folioId = calculatedSheet.folioId;
-        this.upperLeftCorner = calculatedSheet.upperLeftCorner;
-        this.lowerRightCorner = calculatedSheet.lowerRightCorner;
+        this.folioId = calculatedSheet.FOLIO_ID;
+        this.upperLeftCorner = calculatedSheet.UPPER_LEFT_CORNER;
+        this.lowerRightCorner = calculatedSheet.LOWER_RIGHT_CORNER;
     }
 }
 
@@ -62,20 +61,20 @@ class FolioSvgSheet {
  */
 class FolioSvgSystems {
     /**
-     * The line label array of a folio (FolioCalculationPoint[]).
+     * The systems label positions of a folio (FolioCalculationPoint[]).
      *
      * It contains all calculated labels and their positions (in px)
      * to draw the svg of the systems of a folio.
      */
-    lineLabelArray: FolioCalculationPoint[];
+    systemsLabelPositions: FolioCalculationPoint[];
 
     /**
-     * The array of line arrays of a folio (FolioCalculationLine[][]).
+     * The system lines of a folio (FolioCalculationLine[][]).
      *
      * It contains all calculated lines and their positions (in px)
      * to draw the svg of the systems of a folio.
      */
-    lineArrays: FolioCalculationLine[][];
+    systemsLines: FolioCalculationLine[][];
 
     /**
      * Constructor of the FolioSvgSystems class.
@@ -85,49 +84,29 @@ class FolioSvgSystems {
      * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
      */
     constructor(calculatedSystems: FolioCalculationSystems) {
-        this.lineLabelArray = calculatedSystems.lineLabelArray;
-        this.lineArrays = calculatedSystems.lineArrays;
+        this.systemsLabelPositions = calculatedSystems.SYSTEMS_LABELS.SYSTEMS_LABELS_ARRAY;
+        this.systemsLines = calculatedSystems.SYSTEMS_LINES.SYSTEMS_ARRAYS;
     }
 }
 
 /**
- * The FolioSvgContentItem class.
+ * The FolioSvgContentSegment class.
  *
  * It is used in the context of the edition folio convolutes
- * to store the svg data for the content item of a folio.
+ * to store the svg data for the content segment of a folio.
  *
- * Not exposed, only called internally from {@link FolioSvgData}.
+ * Exposed to be used throughout {@link EditionSheetsModule}.
  */
-class FolioSvgContentItem {
+export class FolioSvgContentSegment {
     /**
-     * The id for the label of a content item edition complex (string).
+     * The id for the label of a content segment edition complex (string).
      */
     complexId: string;
 
     /**
-     * The id for the label of a content item sheet (string).
+     * The id for the label of a content segment sheet (string).
      */
     sheetId: string;
-
-    /**
-     * The sigle for the label of a content item (string).
-     */
-    sigle: string;
-
-    /**
-     * The sigle addendum for the label of a content item (string).
-     */
-    sigleAddendum: string;
-
-    /**
-     * The optional boolean flag if the content item can be selected..
-     */
-    selectable: boolean;
-
-    /**
-     * The optional boolean flag if the content item is reversed.
-     */
-    reversed: boolean;
 
     /**
      * The optional link to a convolute description in the critical report.
@@ -135,51 +114,58 @@ class FolioSvgContentItem {
     linkTo: string;
 
     /**
-     * The upper left corner of a content item (FolioCalculationPoint).
-     *
-     * It contains the calculated upper left corner point (in px)
-     * to draw the svg of a content item of a folio.
+     * The optional boolean flag if the content segment can be selected.
      */
-    upperLeftCorner: FolioCalculationPoint;
+    selectable: boolean;
 
     /**
-     * The width of a content item (number).
+     * The optional boolean flag if the content segment is reversed.
      */
-    width: number;
+    reversed: boolean;
 
     /**
-     * The height of a content item (number).
+     * The array of labels of a content segment (string[]).
      */
-    height: number;
+    segmentLabelArray: string[];
 
     /**
-     * The corner points of a content item (FolioCalculationContentItemCornerPoints).
-     *
-     * It contains all corner points of a content item (in px)
-     * to draw the svg of the content item of a folio.
+     * The label of a content segment (string).
      */
-    cornerPoints: FolioCalculationContentItemCornerPoints;
+    segmentLabel: string;
 
     /**
-     * Constructor of the FolioSvgContentItem class.
-     *
-     * It initializes the class with values from the folio content item calculation.
-     *
-     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated folio content item.
+     * The vertices of a content segment polygon (string).
      */
-    constructor(calculatedContentItem: FolioCalculationContentItem) {
-        this.complexId = calculatedContentItem.complexId;
-        this.sheetId = calculatedContentItem.sheetId;
-        this.sigle = calculatedContentItem.sigle;
-        this.sigleAddendum = calculatedContentItem.sigleAddendum;
-        this.selectable = calculatedContentItem.selectable;
-        this.reversed = calculatedContentItem.reversed;
-        this.linkTo = calculatedContentItem.linkTo;
+    segmentVertices: string;
 
-        this.upperLeftCorner = calculatedContentItem.current.cornerPoints.upperLeftCorner;
-        this.width = calculatedContentItem.width;
-        this.height = calculatedContentItem.height;
-        this.cornerPoints = calculatedContentItem.current.cornerPoints;
+    /**
+     * The centered X position of a content segment (number).
+     */
+    centeredXPosition: number;
+
+    /**
+     * The centered y position of a content segment (number).
+     */
+    centeredYPosition: number;
+
+    /**
+     * Constructor of the FolioSvgContentSegment class.
+     *
+     * It initializes the class with values from the folio content segment calculation.
+     *
+     * @param {FolioCalculationContentSegment} calculatedContentSegment The given calculated folio content segment.
+     */
+    constructor(calculatedContentSegment: FolioCalculationContentSegment) {
+        this.complexId = calculatedContentSegment.complexId;
+        this.sheetId = calculatedContentSegment.sheetId;
+        this.linkTo = calculatedContentSegment.linkTo;
+        this.selectable = calculatedContentSegment.selectable;
+        this.reversed = calculatedContentSegment.reversed;
+        this.segmentVertices = calculatedContentSegment.vertices?.VERTICES_AS_STRING;
+        this.segmentLabelArray = calculatedContentSegment.segmentLabelArray;
+        this.segmentLabel = calculatedContentSegment.segmentLabel;
+        this.centeredXPosition = calculatedContentSegment.centeredXPosition;
+        this.centeredYPosition = calculatedContentSegment.centeredYPosition;
     }
 }
 
@@ -209,26 +195,23 @@ export class FolioSvgData {
     systems: FolioSvgSystems;
 
     /**
-     * The content items array of a folio (FolioSvgContentItems).
+     * The content segments of a folio (FolioSvgContentSegments).
      *
      * It contains all calculated values and their positions (in px)
-     * to draw the svg of the content items of a folio.
+     * to draw the svg of the content segments of a folio.
      */
-    contentItemsArray: FolioSvgContentItem[];
+    contentSegments: FolioSvgContentSegment[];
 
     /**
      * Constructor of the FolioSvgData class.
      *
      * It initializes the class with values from the folio calculation.
      *
-     * @param {FolioCalculation[]} calculation The given folio calculation.
+     * @param {FolioCalculation} calculation The given folio calculation.
      */
     constructor(calculation: FolioCalculation) {
-        this.sheet = new FolioSvgSheet(calculation.sheet);
-        this.systems = new FolioSvgSystems(calculation.systems);
-        this.contentItemsArray = [];
-        calculation.contentItemsArray.forEach((calculatedContentItem: FolioCalculationContentItem) => {
-            this.contentItemsArray.push(new FolioSvgContentItem(calculatedContentItem));
-        });
+        this.sheet = new FolioSvgSheet(calculation.SHEET);
+        this.systems = new FolioSvgSystems(calculation.SYSTEMS);
+        this.contentSegments = calculation.CONTENT_SEGMENTS.map(segment => new FolioSvgContentSegment(segment));
     }
 }

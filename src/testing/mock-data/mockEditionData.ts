@@ -32,11 +32,12 @@ export const mockEditionData = {
                                 sheetId: 'M_212_Sk1',
                                 sigle: 'M 212 Sk1',
                                 sigleAddendum: 'T. 1–2, [3–6]',
-                                selectable: false,
+                                selectable: true,
                                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
                                 sectionPartition: 1,
                                 sections: [
                                     {
+                                        position: 1,
                                         startSystem: 2,
                                         endSystem: 4,
                                     },
@@ -51,6 +52,39 @@ export const mockEditionData = {
                 convoluteLabel: 'Test convolute B',
                 folios: [],
                 linkTo: 'OP12_SOURCE_NOT_AVAILABLE',
+            },
+        ],
+    },
+
+    /**
+     * Test helper data constant: mockReversedFolio.
+     *
+     * It provides a mocked reversed folio object.
+     */
+    mockReversedFolio: {
+        folioId: '1',
+        systems: '12',
+        format: {
+            height: 180,
+            width: 267,
+        },
+        content: [
+            {
+                complexId: 'op12',
+                sheetId: 'M_212_Sk1_1',
+                sigle: 'M 212 Sk1.1',
+                sigleAddendum: '',
+                selectable: undefined,
+                reversed: true,
+                linkTo: undefined,
+                sectionPartition: 1,
+                sections: [
+                    {
+                        position: 1,
+                        startSystem: 2,
+                        endSystem: 4,
+                    },
+                ],
             },
         ],
     },
@@ -227,11 +261,11 @@ export const mockEditionData = {
                     desc: [
                         '2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert. Zeichen ergänzt mit Blick auf <a (click)="ref.openModal(\'OP12_SHEET_COMING_SOON\')" ><strong>Textfassung 2</strong></a>',
                     ],
-                    writingMaterial:
-                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.OP12.A[0].route" [title]="ref.FIRM_SIGNS.OP12.A[0].full" [alt]="ref.FIRM_SIGNS.OP12.A[0].short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
+                    writingMaterialString:
+                        'Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen:<br /><img class="img-thumbnail" [src]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.route" [title]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.full" [alt]="ref.FIRM_SIGNS.FIRM_JE_NO_2_LIN_12.short" /><br />auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).',
                     writingInstruments: {
                         main: 'Bleistift',
-                        secondary: ['roter Buntstrift', 'blaue Tinte', 'Kopierstift'],
+                        secondary: ['roter Buntstift', 'blaue Tinte', 'Kopierstift'],
                     },
                     title: 'test title',
                     date: 'test date',

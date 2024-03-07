@@ -1,0 +1,46 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier / Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 411–412 sowie Tintenniederschrift von Studienkomposition für Streichquartett M* 408.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier / Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 32 Textfassung 3 und M* 413–414 sowie Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 2.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceB"
+        },
+        {
+            "siglum": "C",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier / Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M* 408.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceC"
+        },
+        {
+            "siglum": "D",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier / Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 29 und M* 400–401, M* 415–416.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceD"
+        },
+        {
+            "siglum": "E",
+            "type": "Skizzen zu <br /><span class=\"tab\"></span>Studienkomposition für Klavier / Streichquartett M 22.<br />Enthält auch Skizzen zu Studienkomposition für Klavier M 23 Textfassung 2, M 24 und M* 417–422, M* 433–451.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceE"
+        },
+        {
+            "siglum": "F",
+            "type": "Tintenniederschrift von <br /><span class=\"tab\"></span>Studienkomposition für Klavier / Streichquartett M 22.<br />Enthält auch Tintenniederschrift von Studienkomposition für Klavier M 23 Textfassung 1 und M* 409–410, M* 412–416, M* 420–422 sowie Skizzen zu Studienkomposition für Klavier M 23 Textfassung 2 und Studienkomposition M* 423–432.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "hasDescription": true,
+            "linkTo": "sourceF"
+        }
+    ]
+}

@@ -152,6 +152,8 @@ describe('EditionSheetsComponent', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 
+        mockActivatedRoute.testQueryParamMap = { id: '' };
+
         // Test data
         expectedEditionComplex = EDITION_COMPLEXES.OP12;
         expectedComplexId = 'op12';
@@ -182,20 +184,16 @@ describe('EditionSheetsComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `folioConvoluteData`', () => {
-            expect(component.folioConvoluteData).toBeUndefined();
-        });
-
-        it('... should not have `svgSheetsData`', () => {
-            expect(component.svgSheetsData).toBeUndefined();
-        });
-
-        it('... should not have `textcriticsData`', () => {
-            expect(component.textcriticsData).toBeUndefined();
-        });
-
         it('... should not have `editionComplex`', () => {
             expect(component.editionComplex).toBeUndefined();
+        });
+
+        it('... should not have `errorMessage`', () => {
+            expect(component.errorMessage).toBeUndefined();
+        });
+
+        it('... should not have `folioConvoluteData`', () => {
+            expect(component.folioConvoluteData).toBeUndefined();
         });
 
         it('... should not have `selectedConvolute`', () => {
@@ -214,15 +212,27 @@ describe('EditionSheetsComponent', () => {
             expect(component.selectedTextcritics).toBeUndefined();
         });
 
-        it('... should not have `errorMessage`', () => {
-            expect(component.errorMessage).toBeUndefined();
-        });
-
         it('... should have `showTkA===false`', () => {
             expect(component.showTkA).toBeFalse();
         });
 
-        it('... should have `editionRouteConstants`', () => {
+        it('... should not have `snapshotQueryParamsId`', () => {
+            expect(component.snapshotQueryParamsId).toBeUndefined();
+        });
+
+        it('... should not have `svgSheetsData`', () => {
+            expect(component.svgSheetsData).toBeUndefined();
+        });
+
+        it('... should not have `textcriticsData`', () => {
+            expect(component.textcriticsData).toBeUndefined();
+        });
+
+        it('... should have `_isFirstPageLoad===true`', () => {
+            expect((component as any)._isFirstPageLoad).toBeTrue();
+        });
+
+        it('... should have `editionRouteConstants` getter', () => {
             expectToEqual(component.editionRouteConstants, expectedEditionRouteConstants);
         });
     });
@@ -236,6 +246,17 @@ describe('EditionSheetsComponent', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should change urls', () => {
+            expectToEqual(mockActivatedRoute.snapshot.url[0].path, expectedPath);
+
+            const changedPath = 'other';
+            const changedRouteUrl: UrlSegmentStub[] = [{ path: changedPath }];
+
+            mockActivatedRoute.testUrl = changedRouteUrl;
+
+            expectToEqual(mockActivatedRoute.snapshot.url[0].path, changedPath);
         });
 
         describe('#onNavigateToReportFragment()', () => {

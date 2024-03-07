@@ -39,12 +39,85 @@
                                 }
                             }
                             <!-- writingMaterial -->
-                            @if (sourceDescription.description.writingMaterial) {
+                            @if (
+                                sourceDescription.description.writingMaterialString &&
+                                !sourceDescription.description.writingMaterial
+                            ) {
                                 <p class="awg-source-description-writing-material">
                                     <span class="caps">Beschreibstoff:&nbsp;</span>
                                     <span
-                                        [compile-html]="sourceDescription.description.writingMaterial"
+                                        [compile-html]="sourceDescription.description.writingMaterialString"
                                         [compile-html-ref]="ref"></span>
+                                </p>
+                            }
+                            @if (sourceDescription.description.writingMaterial) {
+                                <p class="awg-source-description-writing-material">
+                                    <span class="caps">Beschreibstoff:&nbsp;</span>
+
+                                    @for (
+                                        writingMaterial of sourceDescription?.description?.writingMaterial;
+                                        track writingMaterial;
+                                        let lastWritingMaterial = $last
+                                    ) {
+                                        @if (writingMaterial.paperType) {
+                                            <span class="awg-source-description-writing-material-paper-type">{{
+                                                writingMaterial.paperType
+                                            }}</span
+                                            >,
+                                        }
+                                        @if (utils.isNotEmptyObject(writingMaterial.systems)) {
+                                            <span class="awg-source-description-writing-material-systems">
+                                                {{ getWritingMaterialSystems(writingMaterial.systems) }},
+                                            </span>
+                                        }
+                                        @if (utils.isNotEmptyObject(writingMaterial.format)) {
+                                            <span class="awg-source-description-writing-material-format">
+                                                {{ getWritingMaterialFormat(writingMaterial.format) }}</span
+                                            >,
+                                        }
+                                        @if (
+                                            utils.isNotEmptyObject(writingMaterial.firmSign) &&
+                                            (writingMaterial.firmSign?.variant || writingMaterial.firmSign?.alt)
+                                        ) {
+                                            <span class="awg-source-description-writing-material-firm-sign"
+                                                ><span>Firmenzeichen: </span>
+                                                @if (writingMaterial.firmSign.variant) {
+                                                    <br /><img
+                                                        class="img-thumbnail"
+                                                        [src]="
+                                                            getWritingMaterialFirmSign(writingMaterial.firmSign.variant)
+                                                                ?.route
+                                                        "
+                                                        [title]="
+                                                            getWritingMaterialFirmSign(writingMaterial.firmSign.variant)
+                                                                ?.full
+                                                        "
+                                                        [alt]="
+                                                            getWritingMaterialFirmSign(writingMaterial.firmSign.variant)
+                                                                ?.short
+                                                        " /><br />
+                                                } @else {
+                                                    <span
+                                                        [compile-html]="writingMaterial.firmSign.alt"
+                                                        [compile-html-ref]="ref"></span
+                                                    >&nbsp;
+                                                }
+                                            </span>
+                                            @for (location of writingMaterial.firmSign.location; track location) {
+                                                <span [innerHTML]="getWritingMaterialFirmSignLocation(location)"></span>
+                                            }
+                                        } @else {
+                                            <span>kein Firmenzeichen</span>
+                                        }
+                                        @if (writingMaterial.folioAddendum) {
+                                            <span>&nbsp;(Bl. {{ writingMaterial.folioAddendum }})</span>
+                                        }
+                                        @if (!lastWritingMaterial) {
+                                            <span>;</span><br />
+                                        } @else {
+                                            <span>.</span>
+                                        }
+                                    }
                                 </p>
                             }
                             <!-- writingInstruments -->
@@ -52,33 +125,9 @@
                                 @if (sourceDescription.description.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="caps">Schreibstoff:&nbsp;</span>
-                                        <span
-                                            [compile-html]="sourceDescription.description.writingInstruments.main"
-                                            [compile-html-ref]="ref"></span>
-                                        @if (
-                                            utils.isNotEmptyArray(
-                                                sourceDescription.description.writingInstruments.secondary
-                                            )
-                                        ) {
-                                            <span>;&nbsp;</span>
-                                            @for (
-                                                secondary of sourceDescription?.description?.writingInstruments
-                                                    ?.secondary;
-                                                track secondary;
-                                                let last = $last
-                                            ) {
-                                                <span>
-                                                    <span [compile-html]="secondary" [compile-html-ref]="ref"></span>
-                                                    @if (!last) {
-                                                        <span>,&nbsp;</span>
-                                                    } @else {
-                                                        <span>.</span>
-                                                    }
-                                                </span>
-                                            }
-                                        } @else {
-                                            <span>.</span>
-                                        }
+                                        <span>{{
+                                            getWritingInstruments(sourceDescription.description.writingInstruments)
+                                        }}</span>
                                     </p>
                                 }
                             }

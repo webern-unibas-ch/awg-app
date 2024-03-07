@@ -1132,7 +1132,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expect((component as any)._getSelectedOverlays).toBeDefined();
             });
 
-            it('should return an empty array if no overlays are selected', () => {
+            it('... should return an empty array if no overlays are selected', () => {
                 const noSelectedOverlays: EditionSvgOverlay[] = [
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', false),
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', false),
@@ -1143,7 +1143,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                 expectToEqual(selectedOverlays, []);
             });
 
-            it('should return only selected overlays', () => {
+            it('... should return only selected overlays', () => {
                 const selectableOverlays: EditionSvgOverlay[] = [
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-1', true),
                     new EditionSvgOverlay(EditionSvgOverlayTypes.tka, 'tkk-2', false),
@@ -1274,7 +1274,7 @@ describe('EditionSvgSheetViewerComponent', () => {
                 });
             });
 
-            it('should call `_zoomBehaviour.scaleTo` if `svgSheetSelection` and `sliderConfig.value` are given', () => {
+            it('... should call `_zoomBehaviour.scaleTo` if `svgSheetSelection` and `sliderConfig.value` are given', () => {
                 expect(component.svgSheetSelection).toBeTruthy();
                 expect(component.sliderConfig.value).toBeTruthy();
 

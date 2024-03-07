@@ -1,26 +1,22 @@
 import { Injectable } from '@angular/core';
 
 import {
+    D3Selection,
     Folio,
     FolioCalculation,
     FolioCalculationLine,
+    FolioCalculationPoint,
     FolioSettings,
+    FolioSvgContentSegment,
     FolioSvgData,
     ViewBox,
 } from '@awg-views/edition-view/models';
 
 /**
- * Declared variable: Snap.
- *
- * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
- */
-declare let Snap: any;
-
-/**
  * The Folio service.
  *
- * It handles the calculations needed for edition folio svg's
- * and prepares the Snap svg canvas object.
+ * It handles the calculations needed for edition folio SVG's
+ * and prepares the SVG canvas.
  *
  * Provided in: `root`.
  */
@@ -36,353 +32,552 @@ export class FolioService {
     ref: any;
 
     /**
-     * Private variable: _itemsOffsetCorrection.
+     * Private variable: _bgColor.
+     *
+     * It keeps the background color for the folio.
+     */
+    private _bgColor = '#a3a3a3';
+
+    /**
+     * Private variable: _disabledColor.
+     *
+     * It keeps the disabled color for the folios.
+     */
+    private _disabledColor = 'grey';
+
+    /**
+     * Private variable: _fgColor.
+     *
+     * It keeps the foreground color for the folios.
+     */
+    private _fgColor = 'orange';
+
+    /**
+     * Private variable: _contentSegmentFillColor.
+     *
+     * It keeps the fill color for the content segments.
+     */
+    private _contentSegmentFillColor = '#eeeeee';
+
+    /**
+     * Private variable: _contentSegmentFontFamily.
+     *
+     * It keeps the font family for the content segments.
+     */
+    private _contentSegmentFontFamily = 'Source Sans Pro, source-sans-pro, sans-serif';
+
+    /**
+     * Private variable: _contentSegmentFontSize.
+     *
+     * It keeps the font size for the content segments.
+     */
+    private _contentSegmentFontSize = '11px';
+
+    /**
+     * Private variable: _contentSegmentOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
-     * border collision between rendered svg items.
+     * border collision between rendered SVG content segments.
      */
-    private _itemsOffsetCorrection = 4;
+    private _contentSegmentOffsetCorrection = 4;
+
+    /**
+     * Private variable: _contentSegmentRotationAngle.
+     *
+     * It keeps the rotation angle for the reversed content segments.
+     */
+    private _contentSegmentReversedRotationAngle = 180;
+
+    /**
+     * Private variable: _contentSegmentStrokeWidth.
+     *
+     * It keeps the stroke width for the content segments.
+     */
+    private _contentSegmentStrokeWidth = 2;
+
+    /**
+     * Private variable: _sheetFillColor.
+     *
+     * It keeps the fill color for the sheets.
+     */
+    private _sheetFillColor = 'white';
+
+    /**
+     * Private variable: _sheetStrokeWidth.
+     *
+     * It keeps the stroke width for the sheets.
+     */
+    private _sheetStrokeWidth = 1;
+
+    /**
+     * Private variable: _systemsLineStrokeWidth.
+     *
+     * It keeps the stroke width for the systems.
+     */
+    private _systemsLineStrokeWidth = 0.7;
 
     /**
      * Public method: getFolioSvgData.
      *
-     * It calculates and provides the folio svg data
-     * to render the folio svg object (SnapCanvas).
+     * It calculates and provides the folio SVG data
+     * to render the folio SVG.
      *
      * @param {FolioSettings} folioSettings The given folio format settings.
      * @param {Folio} folio The given folio.
-     * @returns {FolioSvgData} The calculated folio data.
+     * @returns {FolioSvgData} The calculated folio SVG data.
      */
     getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
-        // Calculate values for svg
-        const calculation = new FolioCalculation(folioSettings, folio, this._itemsOffsetCorrection);
+        // Calculate values for SVG
+        const calculation = new FolioCalculation(folioSettings, folio, this._contentSegmentOffsetCorrection);
 
-        // Get svg data from calculation
+        // Get SVG data from calculation
         return new FolioSvgData(calculation);
     }
 
     /**
-     * Public method: addViewBoxToSnapSvgCanvas.
+     * Public method: addViewBoxToSvgCanvas.
      *
-     * It adds the svg viewbox attributes to a Snap canvas svg object.
+     * It adds the SVG viewbox attributes to the SVG canvas.
      *
-     * @param {*} snapCanvas The given Snap canvas svg object.
+     * @param {D3Selection} svgCanvas The given SVG canvas selection.
      * @param {ViewBox} vb The given ViewBox object.
-     * @returns {void} Adds the svg viewbox attributes to the Snap canvas svg object.
+     * @returns {void} Adds the SVG viewbox attributes to the SVG canvas selection.
      */
-    addViewBoxToSnapSvgCanvas(snapCanvas: any, vb: ViewBox): void {
-        snapCanvas.attr({
-            viewBox: vb.viewBox,
-            width: vb.svgWidth,
-            height: vb.svgHeight,
-            version: '1.1',
-            xmlns: 'https://www.w3.org/2000/svg',
-            xlink: 'https://www.w3.org/1999/xlink',
-            preserveAspectRatio: 'xMinYMin meet',
-        });
+    addViewBoxToSvgCanvas(svgCanvas: D3Selection, vb: ViewBox): void {
+        svgCanvas
+            .attr('viewBox', vb.viewBox)
+            .attr('width', vb.svgWidth)
+            .attr('height', vb.svgHeight)
+            .attr('version', '1.1')
+            .attr('xmlns', 'https://www.w3.org/2000/svg')
+            .attr('xlink', 'https://www.w3.org/1999/xlink')
+            .attr('preserveAspectRatio', 'xMinYMin meet');
     }
 
     /**
-     * Public method: addFolioToSnapSvgCanvas.
+     * Public method: addFolioToSvgCanvas.
      *
-     * It coordinates the drawing of the calculated folio svg data
-     * for a folio's sheet, systems and items to the folio svg object
-     * (SnapCanvas).
+     * It coordinates the drawing of the calculated folio SVG data
+     * for a folio's sheet, systems and content segments to the folio SVG canvas.
      *
-     * @param {*} snapCanvas The given Snap canvas svg object.
-     * @param {FolioSvgData} folioSvg The given calculated folio data.
-     * @param {string} bgColor The given background color.
-     * @param {string} fgColor The given foreground color.
+     * @param {D3Selection} svgCanvas The given SVG canvas selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
      * @param {*} ref The given reference to the calling component.
-     * @returns {void} Adds the folio to the Snap canvas svg object.
+     * @returns {void} Adds the folio to the SVG canvas selection.
      */
-    addFolioToSnapSvgCanvas(snapCanvas: any, folioSvg: FolioSvgData, bgColor: string, fgColor: string, ref: any): void {
-        /**
-         * Self-referring variable needed for CompileHtml library.
-         */
+    addFolioToSvgCanvas(svgCanvas: D3Selection, folioSvgData: FolioSvgData, ref: any): void {
+        // Self-referring variable needed for CompileHtml library.
         this.ref = ref;
 
-        /**
-         * The Snap canvas sheet group object.
-         */
-        const snapSheetGroup: any = snapCanvas.group();
+        // Create the SVG canvas sheet group selection.
+        const svgSheetGroup = this._appendCanvasSheetGroup(svgCanvas, folioSvgData);
 
-        /**
-         * Draw sheet.
-         */
-        this._addFolioSheetToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
+        // Draw sheet.
+        this._addFolioSheetToSvgCanvas(svgSheetGroup, folioSvgData);
 
-        /**
-         * Draw systems.
-         */
-        this._addFolioSystemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
+        // Draw systems.
+        this._addFolioSystemsToSvgCanvas(svgSheetGroup, folioSvgData);
 
-        /**
-         * Draw items.
-         */
-        this._addFolioItemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, fgColor);
+        // Draw content segments.
+        this._addFolioContentSegmentsToSvgCanvas(svgSheetGroup, folioSvgData);
     }
 
     /**
-     * Private method: _addFolioSheetToSnapSvgCanvas.
+     * Private method: _addFolioSheetToSvgCanvas.
      *
      * It adds the folio's sheet from the calculated
-     * folio svg data to the folio svg object (SnapCanvas).
+     * folio SVG data to the SVG sheet group.
      *
-     * @param {*} snapCanvas The given Snap canvas svg object.
-     * @param {*} snapSheetGroup The given Snap canvas sheet group object.
-     * @param {FolioSvgData} folioSvg The given calculated folio data.
-     * @param {string} bgColor The given background color.
-     * @returns {void} Adds the sheet to the Snap canvas svg object.
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @returns {void} Adds the sheet to the SVG canvas selection.
      */
-    private _addFolioSheetToSnapSvgCanvas(
-        snapCanvas: any,
-        snapSheetGroup: any,
-        folioSvg: FolioSvgData,
-        bgColor: string
-    ): void {
-        // Init
-        const folioId = folioSvg.sheet.folioId;
-        const x1 = folioSvg.sheet.upperLeftCorner.x;
-        const y1 = folioSvg.sheet.upperLeftCorner.y;
-        const x2 = folioSvg.sheet.lowerRightCorner.x;
-        const y2 = folioSvg.sheet.lowerRightCorner.y;
+    private _addFolioSheetToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+        const { sheet } = folioSvgData;
+        const { upperLeftCorner, lowerRightCorner, folioId } = sheet;
 
-        // Sheet id
-        snapSheetGroup.attr({
-            sheetGroupId: folioId,
-            class: 'sheet-group',
-        });
-
-        // Sheet rectangle
-        const snapSheetRect: any = snapCanvas.rect(x1, y1, x2, y2);
-        snapSheetRect.attr({
-            fill: 'white',
-            stroke: bgColor,
-            strokeWidth: 1,
-        });
-
-        // Sheet title
-        const snapSheetGroupTitle: string = Snap.parse('<title>Bl. ' + folioId + '</title>');
-
-        // Add the sheet group title to the sheet group
-        snapSheetGroup.append(snapSheetGroupTitle);
-
-        // Add the sheet rectangle to the sheet group
-        snapSheetGroup.add(snapSheetRect);
+        this._appendSheetGroupTitle(svgSheetGroup, folioId);
+        this._appendSheetGroupRectangle(svgSheetGroup, upperLeftCorner, lowerRightCorner);
     }
 
     /**
-     * Private method: _addFolioSystemsToSnapSvgCanvas.
+     * Private method: _addFolioSystemsToSvgCanvas.
      *
      * It adds the folio's systems from the calculated
-     * folio svg data to the folio svg object (SnapCanvas).
+     * folio SVG data to the SVG sheet group.
      *
-     * @param {*} snapCanvas The given Snap canvas svg object.
-     * @param {*} snapSheetGroup The given Snap canvas sheet group object.
-     * @param {FolioSvgData} folioSvg The given calculated folio data.
-     * @param {string} bgColor The given background color.
-     * @returns {void} Adds the systems to the Snap canvas svg object.
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @returns {void} Adds the systems to the SVG canvas selection.
      */
-    private _addFolioSystemsToSnapSvgCanvas(
-        snapCanvas: any,
-        snapSheetGroup: any,
-        folioSvg: FolioSvgData,
-        bgColor: string
-    ): void {
-        folioSvg.systems.lineArrays.forEach((lineArray: FolioCalculationLine[], systemIndex: number) => {
-            // Notational system
-            const snapSystemLineGroup: any = snapCanvas.group();
-            snapSystemLineGroup.attr({
+    private _addFolioSystemsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+        folioSvgData.systems.systemsLines.forEach((systemArray: FolioCalculationLine[], systemIndex: number) => {
+            const svgSystemsGroup = this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
+                systemsGroupId: systemIndex + 1,
+                class: 'systems-group',
+            });
+            const svgSystemLineGroup = this._appendSvgElementWithAttrs(svgSystemsGroup, 'g', {
                 systemLineGroupId: systemIndex + 1,
                 class: 'system-line-group',
             });
 
-            // System lines
-            lineArray.forEach(line => {
-                // Init
-                const x1 = line.startPoint.x;
-                const y1 = line.startPoint.y;
-                const x2 = line.endPoint.x;
-                const y2 = line.endPoint.y;
-
-                const systemLine: any = snapCanvas.line(x1, y1, x2, y2);
-                systemLine.attr({
-                    class: 'system-line',
-                    stroke: bgColor,
-                    strokeWidth: 0.7,
-                });
-                snapSystemLineGroup.add(systemLine);
-            });
-
-            // System label
-            // Init
-            const x = folioSvg.systems.lineLabelArray[systemIndex].x;
-            const y = folioSvg.systems.lineLabelArray[systemIndex].y;
-            const systemLabel = systemIndex + 1;
-
-            const snapSystemLabel: any = snapCanvas.text(x, y, systemLabel);
-            snapSystemLabel.attr({
-                class: 'system-label',
-                dominantBaseline: 'hanging',
-                fill: bgColor,
-            });
-
-            // Systems group
-            const snapSystemsGroup: any = snapCanvas.group(snapSystemLineGroup, snapSystemLabel);
-            snapSystemsGroup.attr({
-                systemsGroupId: systemIndex + 1,
-                class: 'systems-group',
-            });
-
-            // Add the systems group to the sheet group
-            snapSheetGroup.add(snapSystemsGroup);
+            this._appendSystemsGroupLabel(svgSystemsGroup, folioSvgData, systemIndex);
+            this._appendSystemsGroupLines(svgSystemLineGroup, systemArray);
         });
     }
 
     /**
-     * Private method: _addFolioItemsToSnapSvgCanvas.
+     * Private method: _addFolioContentSegmentsToSvgCanvas.
      *
-     * It adds the folio's items from the calculated
-     * folio svg data to the folio svg object (SnapCanvas).
+     * It adds the folio's content segments from the calculated
+     * folio SVG data to the folio SVG canvas.
      *
-     * @param {*} snapCanvas The given Snap canvas svg object.
-     * @param {*} snapSheetGroup The given Snap canvas sheet group object.
-     * @param {FolioSvgData} folioSvg The given calculated folio data.
-     * @param {string} fgColor The given foreground color.
-     * @returns {void} Adds the items to the Snap canvas svg object.
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @returns {void} Adds the content segments to the SVG canvas selection.
      */
-    private _addFolioItemsToSnapSvgCanvas(
-        snapCanvas: any,
-        snapSheetGroup: any,
-        folioSvg: FolioSvgData,
-        fgColor: string
-    ): void {
-        folioSvg.contentItemsArray.forEach(contentItem => {
-            if (!contentItem) {
+    private _addFolioContentSegmentsToSvgCanvas(svgSheetGroup: D3Selection, folioSvgData: FolioSvgData): void {
+        folioSvgData?.contentSegments?.forEach((contentSegment: FolioSvgContentSegment) => {
+            if (!contentSegment) {
                 return;
             }
 
-            // Item label
-            // Init
-            const halfWidth = contentItem.width / 2;
-            const halfHeight = contentItem.height / 2;
-            const yOffset = 5;
+            // Draw content segment group.
+            const svgContentSegmentGroup = this._appendContentSegmentGroup(svgSheetGroup, contentSegment);
 
-            let centeredXPosition = contentItem.upperLeftCorner.x + halfWidth;
-            let centeredYPosition = contentItem.upperLeftCorner.y + halfHeight - yOffset;
+            // Draw content segment link.
+            const svgContentSegmentLink = this._appendContentSegmentLink(svgContentSegmentGroup);
 
-            if (contentItem.reversed) {
-                centeredXPosition = contentItem.cornerPoints.lowerRightCorner.x - halfWidth;
-                centeredYPosition = contentItem.cornerPoints.lowerRightCorner.y - halfHeight + yOffset;
-            }
+            // Draw content segment polygon.
+            this._appendContentSegmentLinkPolygon(svgContentSegmentLink, contentSegment.segmentVertices);
 
-            const itemLabelArray: string[] = [
-                contentItem.sigle,
-                contentItem.sigleAddendum ? ` ${contentItem.sigleAddendum}` : '',
-            ];
-
-            const snapItemLabel: any = snapCanvas.text(centeredXPosition, centeredYPosition, itemLabelArray);
-            snapItemLabel.attr({
-                class: 'item-label',
-                style: 'font: 12px Source Sans Pro, source-sans-pro, sans-serif',
-                dominantBaseline: 'middle',
-                textAnchor: 'middle',
-            });
-
-            // Rotate the text 180 degrees around its center
-            if (contentItem.reversed) {
-                snapItemLabel.transform(`r180,${centeredXPosition},${centeredYPosition}`);
-            }
-
-            // Attributes for tspan elements of itemLabel array
-            snapItemLabel.select('tspan:first-of-type').attr({
-                x: centeredXPosition,
-                y: centeredYPosition,
-                textAnchor: 'middle',
-            });
-            if (itemLabelArray.length > 1) {
-                snapItemLabel.select('tspan:last-of-type').attr({
-                    x: centeredXPosition,
-                    y: centeredYPosition,
-                    textAnchor: 'middle',
-                    dy: '1.2em',
-                });
-            }
-
-            // Item shape
-            const snapItemShape = snapCanvas.group();
-
-            const polygoneCornerPointArray = [];
-            polygoneCornerPointArray.push(
-                contentItem.cornerPoints.upperLeftCorner.x,
-                contentItem.cornerPoints.upperLeftCorner.y
-            );
-            polygoneCornerPointArray.push(
-                contentItem.cornerPoints.upperRightCorner.x,
-                contentItem.cornerPoints.upperRightCorner.y
-            );
-            polygoneCornerPointArray.push(
-                contentItem.cornerPoints.lowerRightCorner.x,
-                contentItem.cornerPoints.lowerRightCorner.y
-            );
-            polygoneCornerPointArray.push(
-                contentItem.cornerPoints.lowerLeftCorner.x,
-                contentItem.cornerPoints.lowerLeftCorner.y
-            );
-            polygoneCornerPointArray.push(
-                contentItem.cornerPoints.upperLeftCorner.x,
-                contentItem.cornerPoints.upperLeftCorner.y
-            );
-            const polygone = snapCanvas.polyline(polygoneCornerPointArray);
-
-            snapItemShape.add(polygone);
-            snapItemShape.attr({
-                class: 'item-shape',
-                strokeWidth: 2,
-                fill: '#eeeeee',
-            });
-
-            // Item link
-            const snapItemLink: any = snapCanvas.el('a');
-            snapItemLink.attr({
-                class: 'item-link',
-            });
-
-            // Add shape and label to item link
-            snapItemLink.add(snapItemShape);
-            snapItemLink.add(snapItemLabel);
-
-            // Item group
-            const snapItemGroup: any = snapCanvas.group(snapItemLink);
-            snapItemGroup.attr({
-                itemGroupId: itemLabelArray,
-                itemId: contentItem.sheetId,
-                class: 'item-group',
-            });
-
-            // Apply title when hovering item
-            const snapItemGroupTitle: string = Snap.parse('<title>' + itemLabelArray + '</title>');
-            snapItemGroup.append(snapItemGroupTitle);
-
-            // Add click event handler
-            // Exclude and mute non-selectable sketches for now
-            if (contentItem.selectable === false) {
-                snapItemGroup.click(() => this.ref.openModal(contentItem.linkTo));
-                snapItemGroup.attr({
-                    stroke: 'grey',
-                    fill: 'grey',
-                });
-            } else {
-                snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.complexId, contentItem.sheetId));
-                snapItemGroup.attr({
-                    stroke: fgColor,
-                    fill: fgColor,
-                });
-            }
-
-            // Add the item group to the sheet group
-            snapSheetGroup.add(snapItemGroup);
+            // Draw content segment link label.
+            this._appendContentSegmentLinkLabel(svgContentSegmentLink, contentSegment);
         });
     }
+
+    /**
+     * Private method: _appendCanvasSheetGroup.
+     *
+     * It appends a sheet group to the SVG canvas.
+     *
+     * @param {D3Selection} svgCanvas The given SVG canvas selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @returns {D3Selection} Appends a sheet group to the SVG canvas selection.
+     */
+    private _appendCanvasSheetGroup(svgCanvas: D3Selection, folioSvgData: FolioSvgData): D3Selection {
+        return this._appendSvgElementWithAttrs(svgCanvas, 'g', {
+            sheetGroupId: folioSvgData.sheet.folioId,
+            class: 'sheet-group',
+        });
+    }
+
+    /**
+     * Private method: _appendContentSegmentGroup.
+     *
+     * It appends an content segment group to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @returns {D3Selection} Appends an content segment group to the sheet group selection.
+     */
+    private _appendContentSegmentGroup(
+        svgSheetGroup: D3Selection,
+        contentSegment: FolioSvgContentSegment
+    ): D3Selection {
+        // Draw content segment group element.
+        const contentSegmentGroup = this._appendContentSegmentGroupElement(svgSheetGroup, contentSegment);
+
+        // Apply title when hovering content segment.
+        this._appendContentSegmentGroupTitle(contentSegmentGroup, contentSegment);
+
+        // Add click event handler
+        contentSegmentGroup.on('click', () =>
+            contentSegment.selectable
+                ? this.ref.selectSvgSheet(contentSegment.complexId, contentSegment.sheetId)
+                : this.ref.openModal(contentSegment.linkTo)
+        );
+
+        return contentSegmentGroup;
+    }
+
+    /**
+     * Private method: _appendContentSegmentGroupElement.
+     *
+     * It appends an content segment group element to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @returns {D3Selection} Appends an content segment group element to the sheet group selection.
+     */
+    private _appendContentSegmentGroupElement(
+        svgSheetGroup: D3Selection,
+        contentSegment: FolioSvgContentSegment
+    ): D3Selection {
+        return this._appendSvgElementWithAttrs(svgSheetGroup, 'g', {
+            contentSegmentGroupId: contentSegment.segmentLabel,
+            contentSegmentId: contentSegment.sheetId,
+            class: 'content-segment-group',
+            stroke: contentSegment.selectable ? this._fgColor : this._disabledColor,
+            fill: contentSegment.selectable ? this._fgColor : this._disabledColor,
+        });
+    }
+
+    /**
+     * Private method: _appendContentSegmentGroupTitle.
+     *
+     * It appends a title to the content segment group.
+     *
+     * @param {D3Selection} contentSegmentGroup The given SVG content segment group selection.
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @returns {D3Selection} Appends a title to the content segment group selection.
+     */
+    private _appendContentSegmentGroupTitle(
+        contentSegmentGroup: D3Selection,
+        contentSegment: FolioSvgContentSegment
+    ): D3Selection {
+        return this._appendSvgElementWithAttrs(contentSegmentGroup, 'title', {}).text(contentSegment.segmentLabel);
+    }
+
+    /**
+     * Private method: _appendContentSegmentLink.
+     *
+     * It appends a link to the content segment group.
+     *
+     * @param {D3Selection} svgContentSegmentGroup The given SVG content segment group selection.
+     * @returns {D3Selection} Appends a link to the content segment group selection.
+     */
+    private _appendContentSegmentLink(svgContentSegmentGroup: D3Selection): D3Selection {
+        return this._appendSvgElementWithAttrs(svgContentSegmentGroup, 'a', { class: 'content-segment-link' });
+    }
+
+    /**
+     * Private method: _appendContentSegmentLinkLabel.
+     *
+     * It appends a label to the content segment link.
+     *
+     * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @returns {D3Selection} Appends a label to the content segment link selection.
+     */
+    private _appendContentSegmentLinkLabel(
+        svgContentSegmentLink: any,
+        contentSegment: FolioSvgContentSegment
+    ): D3Selection {
+        const label = this._appendContentSegmentLinkLabelTextElement(
+            svgContentSegmentLink,
+            contentSegment.centeredXPosition,
+            contentSegment.centeredYPosition
+        );
+
+        this._appendContentSegmentLinkLabelTspanElements(label, contentSegment);
+
+        // Rotate the label 180 degrees around its center when reversed
+        if (contentSegment.reversed) {
+            label.attr(
+                'transform',
+                `rotate(${this._contentSegmentReversedRotationAngle}, ${contentSegment.centeredXPosition}, ${contentSegment.centeredYPosition})`
+            );
+        }
+
+        return label;
+    }
+
+    /**
+     * Private method: _appendContentSegmentLinkLabelTextElement.
+     *
+     * It appends a text element to the content segment link label.
+     *
+     * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
+     * @param {number} centeredXPosition The given centered x position.
+     * @param {number} centeredYPosition The given centered y position.
+     * @returns {D3Selection} Appends a text element to the content segment link selection.
+     */
+    private _appendContentSegmentLinkLabelTextElement(
+        svgContentSegmentLink: D3Selection,
+        centeredXPosition: number,
+        centeredYPosition: number
+    ): D3Selection {
+        const attributes = {
+            class: 'content-segment-label',
+            x: centeredXPosition,
+            y: centeredYPosition,
+        };
+        attributes['font-family'] = this._contentSegmentFontFamily;
+        attributes['dominant-baseline'] = 'middle';
+        attributes['text-anchor'] = 'middle';
+
+        return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'text', attributes).style(
+            'font-size',
+            this._contentSegmentFontSize
+        );
+    }
+
+    /**
+     * Private method: _appendContentSegmentLinkLabelTspanElements.
+     *
+     * It appends tspan elements to the content segment link label.
+     *
+     * @param {D3Selection} labelSelection The given label selection.
+     * @param {FolioSvgContentSegment} contentSegment The given content segment.
+     * @returns {void} Appends tspan elements to the label selection.
+     */
+    private _appendContentSegmentLinkLabelTspanElements(
+        labelSelection: D3Selection,
+        contentSegment: FolioSvgContentSegment
+    ): void {
+        contentSegment.segmentLabelArray.forEach((label, index) => {
+            if (label !== '') {
+                const attributes: any = {};
+                if (index > 0) {
+                    attributes.x = contentSegment.centeredXPosition;
+                    attributes.y = contentSegment.centeredYPosition;
+                    attributes.dy = '1.2em';
+                    attributes['text-anchor'] = 'middle';
+                }
+
+                this._appendSvgElementWithAttrs(labelSelection, 'tspan', attributes).text(label);
+            }
+        });
+    }
+
+    /**
+     * Private method: _appendContentSegmentLinkPolygon.
+     *
+     * It appends a polygon shape to the content segment link.
+     *
+     * @param {D3Selection} svgContentSegmentLink The given SVG content segment link selection.
+     * @param {string} segmentVertices The given segment vertices.
+     * @returns {D3Selection} Appends a polygon shape to the content segment link selection.
+     */
+    private _appendContentSegmentLinkPolygon(svgContentSegmentLink: D3Selection, segmentVertices: string): D3Selection {
+        const attributes = {
+            class: 'content-segment-shape',
+            points: segmentVertices,
+            fill: this._contentSegmentFillColor,
+        };
+        attributes['stroke-width'] = this._contentSegmentStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgContentSegmentLink, 'polygon', attributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupRectangle.
+     *
+     * It appends a rectangle to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {FolioCalculationPoint} upperLeftCorner The given upper left corner point.
+     * @param {FolioCalculationPoint} lowerRightCorner The given lower right corner point.
+     * @returns {D3Selection} Appends a rectangle to the sheet group selection.
+     */
+    private _appendSheetGroupRectangle(
+        svgSheetGroup: D3Selection,
+        upperLeftCorner: FolioCalculationPoint,
+        lowerRightCorner: FolioCalculationPoint
+    ): D3Selection {
+        const { x: x1, y: y1 } = upperLeftCorner;
+        const { x: x2, y: y2 } = lowerRightCorner;
+        const attributes = {
+            x: x1,
+            y: y1,
+            width: x2 - x1,
+            height: y2 - y1,
+            fill: this._sheetFillColor,
+            stroke: this._bgColor,
+        };
+        attributes['stroke-width'] = this._sheetStrokeWidth;
+
+        return this._appendSvgElementWithAttrs(svgSheetGroup, 'rect', attributes);
+    }
+
+    /**
+     * Private method: _appendSheetGroupTitle.
+     *
+     * It appends a title to the sheet group.
+     *
+     * @param {D3Selection} svgSheetGroup The given SVG sheet group selection.
+     * @param {string} folioId The given folio id.
+     * @returns {void} Appends a title to the sheet group selection.
+     */
+    private _appendSheetGroupTitle(svgSheetGroup: D3Selection, folioId: string): void {
+        this._appendSvgElementWithAttrs(svgSheetGroup, 'title', {}).text(`Bl. ${folioId}`);
+    }
+
+    /**
+     * Private method: _appendSystemsGroupLabel.
+     *
+     * It appends a label to the systems group.
+     *
+     * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
+     * @param {FolioSvgData} folioSvgData The given calculated folio SVG data.
+     * @param {number} systemIndex The given system index.
+     * @returns {void} Appends a label to the systems group selection.
+     */
+    private _appendSystemsGroupLabel(
+        svgSystemsGroup: D3Selection,
+        folioSvgData: FolioSvgData,
+        systemIndex: number
+    ): void {
+        const { x, y } = folioSvgData.systems.systemsLabelPositions[systemIndex];
+        const systemLabel = systemIndex + 1;
+        const attributes = {
+            class: 'system-label',
+            x: x,
+            y: y,
+            fill: this._bgColor,
+        };
+        attributes['dominant-baseline'] = 'hanging';
+
+        this._appendSvgElementWithAttrs(svgSystemsGroup, 'text', attributes).text(systemLabel);
+    }
+
+    /**
+     * Private method: _appendSystemsGroupLines.
+     *
+     * It appends system lines to the systems group.
+     *
+     * @param {D3Selection} svgSystemsGroup The given SVG systems group selection.
+     * @param {FolioCalculationLine[]} systemArray The given line array.
+     * @returns {void} Appends system lines to the systems group selection.
+     */
+    private _appendSystemsGroupLines(svgSystemsGroup: D3Selection, systemArray: FolioCalculationLine[]): void {
+        systemArray.forEach(line => {
+            const { x: x1, y: y1 } = line.START_POINT;
+            const { x: x2, y: y2 } = line.END_POINT;
+            const attributes = {
+                class: 'system-line',
+                x1: x1,
+                y1: y1,
+                x2: x2,
+                y2: y2,
+                stroke: this._bgColor,
+            };
+            attributes['stroke-width'] = this._systemsLineStrokeWidth;
+
+            this._appendSvgElementWithAttrs(svgSystemsGroup, 'line', attributes);
+        });
+    }
+
+    /**
+     * Private method: _appendSvgElementWithAttrs.
+     *
+     * It appends an SVG element with attributes to a parent element.
+     *
+     * @param {D3Selection} parent The given parent selection.
+     * @param {string} type The given type of SVG element.
+     * @param {Record<string, any>} attributes The given attributes.
+     * @returns {D3Selection} The appended SVG element with attributes.
+     */
+    private _appendSvgElementWithAttrs = (
+        parent: D3Selection,
+        type: string,
+        attributes: Record<string, any>
+    ): D3Selection => {
+        const selection = parent.append(type);
+        Object.keys(attributes).forEach(key => {
+            selection.attr(key, attributes[key]);
+        });
+        return selection;
+    };
 }

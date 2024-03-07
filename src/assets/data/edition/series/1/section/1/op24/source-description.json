@@ -10,7 +10,71 @@
                 "desc": [
                     "2 Blätter (Bl. 1–2). Rissspuren am linken Rand (Bl. 1, 2): von Bögen abgetrennt und beschnitten. Risse an den Rändern von Bl. 2. Kunststoffklebestreifen am linken Rand von Bl. 1<sup>r</sup> und 2<sup>v</sup>. Löcher von Reißzwecken oder Nadeln an Bl. 1 rechts und Bl. 2 links. Knickecken an beiden Blättern oben rechts. Horizontale Knickfalte an Bl. 2 unten (System 13). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> mit Bleistift auf Bl. 1–2 unten rechts oder links. Verso-Seiten bis auf die archivalische Paginierung unbeschriftet."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme (unten beschnitten), Format (quer): 198 × 267 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 13 Systeme (unten beschnitten), Format (quer): 209 × 267 mm, kein Firmenzeichen (Bl. 2).",
+                "writingMaterialString": "Notenpapier, 12 Systeme (unten beschnitten), Format (quer): 198 × 267 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 13 Systeme (unten beschnitten), Format (quer): 209 × 267 mm, kein Firmenzeichen (Bl. 2).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 12,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "198"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 13,
+                            "info": "unten beschnitten",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "209"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "267"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "2"
+                    }
+                ],
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": ["Bleistift", "grüner Buntstift", "blauer Buntstift", "roter Buntstift"]
