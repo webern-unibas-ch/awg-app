@@ -2,41 +2,114 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.11.6](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.5...v0.11.6) (2024-02-19)
-
+### [0.11.7](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.6...v0.11.7) (2024-03-07)
 
 ### Features
 
-* **edition:** add option to display reversed folio items ([08df6b4](https://github.com/webern-unibas-ch/awg-app/commit/08df6b4bee336f666cd46a0fa4f05dde17ff9ebc))
-
+-   **assets:** add files for M 22 ([d968bea](https://github.com/webern-unibas-ch/awg-app/commit/d968bea5b9d18355586ab12f4836c7aa6ddbe719); thanks to [@chael-mi](https://github.com/chael-mi))
+-   **edition:** datafy writing material of source description ([7aa0937](https://github.com/webern-unibas-ch/awg-app/commit/7aa0937cd22570b8989e3d7285c77ca31d09a393))
 
 ### Bug Fixes
 
-* **assets:** add convolute ids for text versions ([612be8b](https://github.com/webern-unibas-ch/awg-app/commit/612be8b3e375c88ffceaa799e1e152c1b4a6d79e))
-* **assets:** move convolutes to sheet contents ([2dd0b77](https://github.com/webern-unibas-ch/awg-app/commit/2dd0b7751c8b9b2d6f6f3696da7b73c848428cf7))
-* **assets:** unify description of writing material in op25 ([1fcbdcf](https://github.com/webern-unibas-ch/awg-app/commit/1fcbdcf76827baf66f0b4367b2eb85084fa8f468))
-* **edition:** fix overlapping of svgs on reload ([b9b0cf6](https://github.com/webern-unibas-ch/awg-app/commit/b9b0cf6aa90e72f0d8830f5fcb32e88c28054e54))
-* **edition:** fix reload of svgs again ([cf857c8](https://github.com/webern-unibas-ch/awg-app/commit/cf857c8484012ace28be5bc97e462413d33a3c8d))
-* **edition:** move convolute to sheet content model ([946ad3e](https://github.com/webern-unibas-ch/awg-app/commit/946ad3e952809721ff2b171ea3bf2cc1453b3fbf))
-* **edition:** update condition for displaying sheet viewer switch ([46d1426](https://github.com/webern-unibas-ch/awg-app/commit/46d1426a2963dbbd7055f541363806c65dbc488d))
-
-
-### Tests
-
-* **edition:** create deep instead of shallow copy of mock objects ([bb30323](https://github.com/webern-unibas-ch/awg-app/commit/bb30323385dd0420edf28618431edefad6f511fc))
-
-
-### Build System
-
-* **deps-dev:** bump the angular-cli-devkit group with 2 updates ([b7aec87](https://github.com/webern-unibas-ch/awg-app/commit/b7aec87fd87e3d7f5446f43336b085cc6837d515))
-* **deps:** bump ericcornelissen/svgo-action from 4.0.7 to 4.0.8 ([20d5ba4](https://github.com/webern-unibas-ch/awg-app/commit/20d5ba44ab70f0364f9d587adee6e03d3fcb0bdf))
-* **deps:** bump the angular group with 11 updates ([02be766](https://github.com/webern-unibas-ch/awg-app/commit/02be766b40306e134226c0aa808d5e4cb1da208b))
-* **deps:** bump undici from 5.27.2 to 5.28.3 ([b1ba896](https://github.com/webern-unibas-ch/awg-app/commit/b1ba8964b72a09f7e87c86fffdecf391edba25af))
-
+-   **assets:** add firm signs for source B and D of m35/42 ([860609d](https://github.com/webern-unibas-ch/awg-app/commit/860609d5a211b12c30309629917e6d78afe3dbdd))
+-   **assets:** fix convolute sigle for m34 Sk1.1 ([26b4f27](https://github.com/webern-unibas-ch/awg-app/commit/26b4f27621eec95222d6340b24b3644cc8907f49))
+-   **assets:** fix folio info for firm signs in vol. II/2a ([df59bab](https://github.com/webern-unibas-ch/awg-app/commit/df59bab38903e33a046714f4344e82e8ba9f52d1))
+-   **assets:** fix supplied class names ([c028516](https://github.com/webern-unibas-ch/awg-app/commit/c028516f6a3b64a987bab54874d7622e62a9c6cc))
+-   **assets:** fix typo in Verlaufsskizze ([e2b37dd](https://github.com/webern-unibas-ch/awg-app/commit/e2b37ddfb4d532e83f286d78e8135256cfe6218b))
+-   **assets:** optimize svgs with SVGO ([90bd051](https://github.com/webern-unibas-ch/awg-app/commit/90bd051aa9ecfbd4a38419741e07943ab85f210a))
+-   **assets:** optimize svgs with SVGO ([5f3cffd](https://github.com/webern-unibas-ch/awg-app/commit/5f3cffd8d4eaceb45d0333c5e834a737150a1584))
+-   **assets:** optimize svgs with SVGO ([5a99451](https://github.com/webern-unibas-ch/awg-app/commit/5a994515610d5618e4625e35e0765cd018951bb9))
+-   **assets:** unify wording in sketch commentary ([7891b65](https://github.com/webern-unibas-ch/awg-app/commit/7891b65b834b75e9917385d36610620f56cfc3ad))
+-   **assets:** update svg file for m35/42 Sk2 ([019f29d](https://github.com/webern-unibas-ch/awg-app/commit/019f29d6fdd47196671b11b215501665f30c2847))
+-   **assets:** update svg files for m37 Sk1 & Sk2 ([7ce8314](https://github.com/webern-unibas-ch/awg-app/commit/7ce83147879609278d0874aa154b6f12fef65753))
+-   **edition:** improve queryParams handling when loading SheetViewer ([3f333f0](https://github.com/webern-unibas-ch/awg-app/commit/3f333f054ebf135ea256ff6616959b52e632dc03))
+-   **edition:** lint source description file ([37e49bd](https://github.com/webern-unibas-ch/awg-app/commit/37e49bdb0fba6153544dfca1b7f4917b75fd06aa))
+-   **edition:** move folio viewer colors to folio service ([7385b98](https://github.com/webern-unibas-ch/awg-app/commit/7385b9855e11f4ceb2b04eb36c85874472d9f145))
+-   **edition:** remove redundant mapping of firm signs ([8542df5](https://github.com/webern-unibas-ch/awg-app/commit/8542df51193e0b78956fe2dcc0263b40e0969c14))
+-   **edition:** set fontFamily and fontSize correctly in FolioService ([2391f8a](https://github.com/webern-unibas-ch/awg-app/commit/2391f8a4f5e42f219171a643896903a79a99f23b))
+-   **home:** fix wording on landing page ([8a6eb71](https://github.com/webern-unibas-ch/awg-app/commit/8a6eb719465e73c3e1d05da48ecc1ac1fe2fbdde))
 
 ### Code Refactoring
 
-* **assets:** restructure firm sign folder ([98356bc](https://github.com/webern-unibas-ch/awg-app/commit/98356bc575c95b5617c112db7909b5215638e86b))
+-   **edition:** atomize FolioService for better readability ([74fc383](https://github.com/webern-unibas-ch/awg-app/commit/74fc38323b729b3afd67e39d5a677ab91a262c5f))
+-   **edition:** move from Snap.js to D3.js for FolioViewer ([f301a79](https://github.com/webern-unibas-ch/awg-app/commit/f301a79133a11b70af65181b95399d9c85df8245))
+-   **edition:** refactor FolioCalculationModel (finish) ([99e8350](https://github.com/webern-unibas-ch/awg-app/commit/99e8350edb2734eb7f1187f9bdf38b9601da17c3))
+-   **edition:** refactor FolioCalculationModel (ongoing) ([c8b0222](https://github.com/webern-unibas-ch/awg-app/commit/c8b02224febbb3038e20851220e812760762c1c6))
+-   **edition:** rename contentItem -> contentSegment ([aeab45c](https://github.com/webern-unibas-ch/awg-app/commit/aeab45c1817d74f0584329cc6940229bef3522b2))
+-   **edition:** rename contentItem -> contentSegment (continued) ([0547141](https://github.com/webern-unibas-ch/awg-app/commit/0547141e0662f7814e1685df9803701a092304dc))
+-   **edition:** rename systemArray ([b01689b](https://github.com/webern-unibas-ch/awg-app/commit/b01689bb696d0863c6679da0c0786e7c7ac7d5c2))
+-   **edition:** rename writingMaterialString ([7735209](https://github.com/webern-unibas-ch/awg-app/commit/7735209d0346c85550e5aceb3232e799e1eb6040))
+-   **edition:** use helper method for writing instruments ([1167e40](https://github.com/webern-unibas-ch/awg-app/commit/1167e4004c946c9e2e86c3812a5c225095459844))
+
+### Tests
+
+-   **app:** adjust test syntax ([4b3bdab](https://github.com/webern-unibas-ch/awg-app/commit/4b3bdab8c13c7f833e9d60d95f92e08998cdb2f4))
+-   **edition:** add more tests for FolioService ([3cd082f](https://github.com/webern-unibas-ch/awg-app/commit/3cd082f149e5da69cc950fb0ef489546db51587a))
+-   **edition:** add tests for FolioService ([c2f0f60](https://github.com/webern-unibas-ch/awg-app/commit/c2f0f60c4624c57c1f102cb04f229714259314b7))
+-   **edition:** add tests for FolioViewer Component ([9ef9ca0](https://github.com/webern-unibas-ch/awg-app/commit/9ef9ca0556a7dbbd0dd6eff3ea367b75a65bca52))
+-   **edition:** adjust check for attributes lengths in FolioService ([7aad995](https://github.com/webern-unibas-ch/awg-app/commit/7aad9956d37a249f2d8fb0d328b80e87c3af060a))
+-   **edition:** fix tests for edition sheets ([2f3a597](https://github.com/webern-unibas-ch/awg-app/commit/2f3a597b564c1efa65465acb2ae27ad7cb79494d))
+-   **edition:** fix tests for EditionComplexComponent ([80ac3a2](https://github.com/webern-unibas-ch/awg-app/commit/80ac3a2185a4bd3e720a4df97213fa8361acdc6f))
+-   **edition:** fix tests for writing material ([cf8c698](https://github.com/webern-unibas-ch/awg-app/commit/cf8c69891ba61df6e043a55c4887a7fa4ab699ae))
+-   **edition:** fix tests in FolioService ([cc4b95b](https://github.com/webern-unibas-ch/awg-app/commit/cc4b95bbfb18be72920237a4fb6c77f5ffdfc405))
+-   **edition:** unify syntax for test descriptions ([6c1376f](https://github.com/webern-unibas-ch/awg-app/commit/6c1376f34c9b327638e2c5c019bde6c1028c44c4))
+
+### Build System
+
+-   **deps-dev:** bump @types/node from 18.19.14 to 18.19.18 ([051a648](https://github.com/webern-unibas-ch/awg-app/commit/051a648b2d7f8ebcc5e72391677bba5b4c2387b3))
+-   **deps-dev:** bump @types/node from 18.19.18 to 18.19.22 ([81ce5c8](https://github.com/webern-unibas-ch/awg-app/commit/81ce5c8bba85b6a593a2ff284716c52e9ec914ce))
+-   **deps-dev:** bump eslint from 8.56.0 to 8.57.0 ([74b5bb4](https://github.com/webern-unibas-ch/awg-app/commit/74b5bb47352a5d45aad7e0acdbea44135fbfcf0e))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.1.0 to 48.2.0 ([71e1c6b](https://github.com/webern-unibas-ch/awg-app/commit/71e1c6b72f0eb1696bb36f25ccf1409a374fa4b0))
+-   **deps-dev:** bump eslint-plugin-jsdoc from 48.2.0 to 48.2.1 ([e600384](https://github.com/webern-unibas-ch/awg-app/commit/e60038453297fa6a43f13c210df2bd891bd67018))
+-   **deps-dev:** bump karma from 6.4.2 to 6.4.3 ([eea00e8](https://github.com/webern-unibas-ch/awg-app/commit/eea00e8f8d68460599c3c2833bb8652d4f82d15c))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([6a65040](https://github.com/webern-unibas-ch/awg-app/commit/6a65040f011de2ef6915c84a33c85a12298f00e4))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([1e33b73](https://github.com/webern-unibas-ch/awg-app/commit/1e33b739daffbd2f1740dabd707d26a7198186cd))
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([2a22c3a](https://github.com/webern-unibas-ch/awg-app/commit/2a22c3a1036f0ff6ee50b752cf7b54ac9813d56d))
+-   **deps-dev:** bump the commitlint group with 2 updates ([cf29606](https://github.com/webern-unibas-ch/awg-app/commit/cf29606945626ef38faaf7e3278a5861562358bd))
+-   **deps-dev:** bump the commitlint group with 2 updates ([46cb940](https://github.com/webern-unibas-ch/awg-app/commit/46cb94085f7d7d2a60f4236305f3a2dc346960ca))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([7ba70b0](https://github.com/webern-unibas-ch/awg-app/commit/7ba70b0e112813bd6bdf36663776d9dbb4f4ea97))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([15ee52e](https://github.com/webern-unibas-ch/awg-app/commit/15ee52e247db4fee9a782372790964b197008be0))
+-   **deps-dev:** bump the typescript-eslint group with 2 updates ([af142e6](https://github.com/webern-unibas-ch/awg-app/commit/af142e6b925f32ef94f0bf799e1a61e6b31f8284))
+-   **deps:** bump bootstrap from 5.3.2 to 5.3.3 ([2aad2a3](https://github.com/webern-unibas-ch/awg-app/commit/2aad2a3a0a42153318eca2b4726c3e70428d0224))
+-   **deps:** bump codecov/codecov-action from 4.0.1 to 4.0.2 ([fa3a172](https://github.com/webern-unibas-ch/awg-app/commit/fa3a17261e31e0ad06e31ba48271e4959aa6ebdf))
+-   **deps:** bump codecov/codecov-action from 4.0.2 to 4.1.0 ([40e903c](https://github.com/webern-unibas-ch/awg-app/commit/40e903ced5a9e3d99f83be612dcdbc740e467927))
+-   **deps:** bump es5-ext from 0.10.62 to 0.10.63 ([c61dd6f](https://github.com/webern-unibas-ch/awg-app/commit/c61dd6f38cf5d6156cdb61e693516b9ec2467ed8))
+-   **deps:** bump ip from 2.0.0 to 2.0.1 ([071fd28](https://github.com/webern-unibas-ch/awg-app/commit/071fd2822e78411473fb5c6c28c3d88aec299a55))
+-   **deps:** bump rdfstore from v0.9.18-alpha.13 to v0.9.18-alpha.14 ([4690ab4](https://github.com/webern-unibas-ch/awg-app/commit/4690ab4667cc6579c995bc8d541b4c1ab38029fd))
+-   **deps:** bump the angular group with 11 updates ([0102d9a](https://github.com/webern-unibas-ch/awg-app/commit/0102d9a26cd78b8e9f19880a9cfc781c07bf5a8d))
+-   **deps:** bump the angular group with 11 updates ([c97e3dc](https://github.com/webern-unibas-ch/awg-app/commit/c97e3dc4a8654609b8b917e73afd799a53fdab03))
+-   **deps:** bump the angular group with 11 updates ([493df86](https://github.com/webern-unibas-ch/awg-app/commit/493df86a981151d816392f1fe12edbb296ee9f52))
+
+### [0.11.6](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.5...v0.11.6) (2024-02-19)
+
+### Features
+
+-   **edition:** add option to display reversed folio items ([08df6b4](https://github.com/webern-unibas-ch/awg-app/commit/08df6b4bee336f666cd46a0fa4f05dde17ff9ebc))
+
+### Bug Fixes
+
+-   **assets:** add convolute ids for text versions ([612be8b](https://github.com/webern-unibas-ch/awg-app/commit/612be8b3e375c88ffceaa799e1e152c1b4a6d79e))
+-   **assets:** move convolutes to sheet contents ([2dd0b77](https://github.com/webern-unibas-ch/awg-app/commit/2dd0b7751c8b9b2d6f6f3696da7b73c848428cf7))
+-   **assets:** unify description of writing material in op25 ([1fcbdcf](https://github.com/webern-unibas-ch/awg-app/commit/1fcbdcf76827baf66f0b4367b2eb85084fa8f468))
+-   **edition:** fix overlapping of svgs on reload ([b9b0cf6](https://github.com/webern-unibas-ch/awg-app/commit/b9b0cf6aa90e72f0d8830f5fcb32e88c28054e54))
+-   **edition:** fix reload of svgs again ([cf857c8](https://github.com/webern-unibas-ch/awg-app/commit/cf857c8484012ace28be5bc97e462413d33a3c8d))
+-   **edition:** move convolute to sheet content model ([946ad3e](https://github.com/webern-unibas-ch/awg-app/commit/946ad3e952809721ff2b171ea3bf2cc1453b3fbf))
+-   **edition:** update condition for displaying sheet viewer switch ([46d1426](https://github.com/webern-unibas-ch/awg-app/commit/46d1426a2963dbbd7055f541363806c65dbc488d))
+
+### Tests
+
+-   **edition:** create deep instead of shallow copy of mock objects ([bb30323](https://github.com/webern-unibas-ch/awg-app/commit/bb30323385dd0420edf28618431edefad6f511fc))
+
+### Build System
+
+-   **deps-dev:** bump the angular-cli-devkit group with 2 updates ([b7aec87](https://github.com/webern-unibas-ch/awg-app/commit/b7aec87fd87e3d7f5446f43336b085cc6837d515))
+-   **deps:** bump ericcornelissen/svgo-action from 4.0.7 to 4.0.8 ([20d5ba4](https://github.com/webern-unibas-ch/awg-app/commit/20d5ba44ab70f0364f9d587adee6e03d3fcb0bdf))
+-   **deps:** bump the angular group with 11 updates ([02be766](https://github.com/webern-unibas-ch/awg-app/commit/02be766b40306e134226c0aa808d5e4cb1da208b))
+-   **deps:** bump undici from 5.27.2 to 5.28.3 ([b1ba896](https://github.com/webern-unibas-ch/awg-app/commit/b1ba8964b72a09f7e87c86fffdecf391edba25af))
+
+### Code Refactoring
+
+-   **assets:** restructure firm sign folder ([98356bc](https://github.com/webern-unibas-ch/awg-app/commit/98356bc575c95b5617c112db7909b5215638e86b))
 
 ### [0.11.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.11.4...v0.11.5) (2024-02-14)
 
