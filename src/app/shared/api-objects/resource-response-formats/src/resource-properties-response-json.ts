@@ -12,8 +12,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
 import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-components';
+import { JsonObject, JsonProperty } from 'json2typescript';
 import { PropJson } from './prop-json';
 
 /**
@@ -29,7 +29,6 @@ export class ResourcePropertiesResponseJson extends BasicResponseJson {
      *
      * @param properties: object
      * @type [index: string]: prop
-     * TODO
      */
     @JsonProperty('properties', [PropJson])
     public properties: IndexedPropJson[] = undefined;
