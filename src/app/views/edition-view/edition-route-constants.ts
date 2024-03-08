@@ -172,7 +172,7 @@ export class EDITION_ROUTE_CONSTANTS {
     static readonly SECTION_2A: EditionRouteConstant = {
         route: '2a',
         short: '2a',
-        full: 'Abteilung 2a (Klaviermusik)',
+        full: 'Abteilung 2a (Kammer- und Klaviermusik: Klaviermusik)',
     };
 
     /**
@@ -181,7 +181,7 @@ export class EDITION_ROUTE_CONSTANTS {
     static readonly SECTION_2B: EditionRouteConstant = {
         route: '2a',
         short: '2a',
-        full: 'Abteilung 2b (Kammermusik)',
+        full: 'Abteilung 2b (Kammer- und Klaviermusik: Kammermusik)',
     };
 
     /**
