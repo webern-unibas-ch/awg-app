@@ -109,7 +109,7 @@ export class EDITION_ROUTE_CONSTANTS {
     static readonly SERIES: EditionRouteConstant = {
         route: 'series',
         short: 'Serien',
-        full: 'Serienübersicht',
+        full: 'Editionsübersicht',
     };
 
     /**

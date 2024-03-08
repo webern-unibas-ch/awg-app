@@ -495,8 +495,8 @@ describe('NavbarComponent (DONE)', () => {
                     const firstItemEl = firstItemDe[0].nativeElement;
                     const secondItemEl = secondItemDe[0].nativeElement;
 
-                    expectToBe(firstItemEl.textContent, 'Editionsübersicht');
-                    expectToBe(secondItemEl.textContent, 'Reihentabellen');
+                    expectToBe(firstItemEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
+                    expectToBe(secondItemEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
                 });
 
                 it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
