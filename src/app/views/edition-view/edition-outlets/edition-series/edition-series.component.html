@@ -3,9 +3,9 @@
         @for (series of editionOutline; track series) {
             <div class="col">
                 <div class="card h-100">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ series.series.full }}</h5>
-                    </div>
+                    <h5 class="card-header">
+                        {{ series.series.full }}
+                    </h5>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             @for (section of series.sections; track section) {
