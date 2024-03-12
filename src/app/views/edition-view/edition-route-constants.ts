@@ -179,8 +179,8 @@ export class EDITION_ROUTE_CONSTANTS {
      * The route constant for section 2b.
      */
     static readonly SECTION_2B: EditionRouteConstant = {
-        route: '2a',
-        short: '2a',
+        route: '2b',
+        short: '2b',
         full: 'Abteilung 2b (Kammer- und Klaviermusik: Kammermusik)',
     };
 
