@@ -233,7 +233,7 @@ describe('EditionRowTablesComponent (DONE)', () => {
                     const anchorDe = getAndExpectDebugElementByCss(divDe, 'div.card-footer a.btn-outline-info', 1, 1);
                     const anchorEl = anchorDe[0].nativeElement;
 
-                    const expectedText = 'Mehr...';
+                    const expectedText = 'Mehr ...';
 
                     expectToBe(anchorEl.textContent.trim(), expectedText);
                 });

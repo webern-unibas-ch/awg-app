@@ -332,7 +332,7 @@ describe('EditionComplexCardComponent (DONE)', () => {
                     const linkDe = getAndExpectDebugElementByCss(p, 'a', 1, 1);
                     const linkEl = linkDe[0].nativeElement;
 
-                    const expectedLinkText = 'Mehr...';
+                    const expectedLinkText = 'Mehr ...';
 
                     expect(linkEl.textContent).toBeTruthy();
                     expect(linkEl.textContent.trim())
