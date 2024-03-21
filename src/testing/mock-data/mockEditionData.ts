@@ -119,7 +119,10 @@ export const mockEditionData = {
                 id: 'op12',
                 content: [
                     'Die Skizzen in <a (click)="ref.navigateToReportFragment(\'source_A\')"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern.',
-                    "In <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert",
+                    "In <a (click)=\"ref.selectSvgSheet('testComplex1', 'test-1')\"><strong>Test Sk1</strong></a> werden T. [11]–[12] aus <a (click)=\"ref.openModal('OP12_SHEET_COMING_SOON')\"><strong>Test Sk1</strong></a> neu skizziert.<sup id='footnote-80-backlink' class='footnote-link'><a (click)=\"ref.navigateToIntroFragment('footnote-80')\">80</a></sup>",
+                ],
+                footnotes: [
+                    "<span id='footnote-80' class='footnote'><a class='footnote-backlink' (click)=\"ref.navigateToIntroFragment('footnote-80-backlink')\">80</a> | Webern an Schönberg, 21. Januar 1915 (US-Wc [zitiert nach Digitalisat in A-Was: ID 18240]).</span>",
                 ],
             },
         ],

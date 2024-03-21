@@ -7,8 +7,8 @@
     @if (editionIntroData$ | async; as editionIntroData) {
         <div class="awg-intro-view p-5 border rounded-3">
             @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
-                @for (intro of editionIntroData.intro[0].content; track intro) {
-                    <p class="awg-intro-entry" [compile-html]="intro" [compile-html-ref]="this"></p>
+                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {
+                    <p class="awg-intro-paragraph" [compile-html]="introParagraph" [compile-html-ref]="this"></p>
                 }
             } @else {
                 <p class="awg-intro-empty">
@@ -21,6 +21,15 @@
                         }}.]
                     </small>
                 </p>
+            }
+            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
+                <hr />
+                <h5>Anmerkungen</h5>
+                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {
+                    <small
+                        ><p class="awg-intro-footnote" [compile-html]="footnote" [compile-html-ref]="this"></p
+                    ></small>
+                }
             }
         </div>
     } @else {
