@@ -493,7 +493,7 @@
                         ]
                     },
                     {
-                        "item": "Autograph von Die geheimnisvolle Flöte („An einem Abend“) M 217: einzige Textfassung",
+                        "item": "Autograph von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung",
                         "itemLinkTo": "Autograph_von_Die_geheimnisvolle_Flöte_(„An_einem_Abend“)_M_217:_einzige_Textfassung",
                         "itemDescription": "(<strong>C<sup>b</sup></strong>)",
                         "folios": [
@@ -725,7 +725,7 @@
                         ]
                     },
                     {
-                        "item": "Autograph von Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 1",
+                        "item": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1",
                         "itemLinkTo": "Autograph_von_Gleich_und_Gleich_(„Ein_Blumenglöckchen“)_M_216:_Textfassung_1",
                         "itemDescription": "(<strong>C<sup>d</sup></strong>)",
                         "folios": [
@@ -779,6 +779,96 @@
                                     [
                                         {
                                             "system": "9–11",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
+            "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
+            "description": {
+                "desc": [
+                    "1 Bogen oder 1 Blatt, darauf zwei beschriebene Seiten (S. [1]–[2])."
+                ],
+                "writingMaterial": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## auf S. [1] unten links.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "evt. weitere?"
+                    ]
+                },
+                "title": "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12 </em>[rechts] auf S. [1] oben.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1",
+                        "itemLinkTo": "Autograph_von_Gleich_und_Gleich_(„Ein_Blumenglöckchen“)_M_216:_Textfassung_1",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "##S. [1]##",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "12–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "##S. [2]##",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "15–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
                                             "measure": "18–21",
                                             "linkTo": ""
                                         }
