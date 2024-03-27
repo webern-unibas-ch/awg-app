@@ -885,10 +885,10 @@
             "siglum": "E",
             "siglumAddendum": "",
             "type": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2. In: Musikblätter des Anbruch IV (Mai 1922).",
-            "location": "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm. Paginierung: 1 recto oben rechts.",
+            "location": "",
             "description": {
                 "desc": [
-                    "Titel: „Der Tag ist vergangen…“ [Mitte] | Anton Webern | (aus Op. 12). [rechts] oben."
+                    "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm. Paginierung: 1 recto oben rechts."
                 ],
                 "writingMaterial": "",
                 "writingInstruments": {
@@ -1316,6 +1316,402 @@
                                         {
                                             "system": "",
                                             "measure": "gestrichene Titelseite",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_G",
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Druck. Wien: Universal Edition, 1925.",
+            "location": "",
+            "description": {
+                "desc": [
+                    "12 Seiten (S 1–12) in Umschlag."
+                ],
+                "writingMaterial": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>VIER LIEDER | für Gesang und Klavier | von | ANTON WEBERN | Op. 12</em> auf S. 1;<br /><em>Der Tag ist vergangen ##Kapitälchen!!## | (Volkslied)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 1</em> [rechts] auf S. 2 oben (Kopftitel);<br /><em>Die geheimnsivolle Flöte ##Kapitälchen!!## | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, Op.12 Nr. 2</em> [rechts] auf S. 4 oben (Kopftitel);<br /><em>Schien mir’s, als ich sah die Sonne ##Kapitälchen!!## | (aus August Strindbergs „Gespenstersonate“)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 3</em> [rechts] auf S. 6 oben (Kopftitel);<br /><em>Gleich und Gleich ##Kapitälchen!!## | (Goethe)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 4</em> [rechts] auf S. 8 oben (Kopftitel).",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "Druck von Vier Lieder op. 12",
+                        "itemLinkTo": "Druck_von_Vier_Lieder_op__12",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 1",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "Titelseite",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "I „Der Tag ist vergangen“ M 212: Textfassung 3",
+                        "itemLinkTo": "I_„Der_Tag_ist_vergangen“_M_212:_Textfassung_3",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 2",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "S. 3",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "12–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "15–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "18–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "II Die geheimnisvolle Flöte („An einem Abend“) M 217: einzige Textfassung",
+                        "itemLinkTo": "II_Die_geheimnisvolle_Flöte_(„An_einem_Abend“)_M_217:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 4",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "S. 5",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "22–24",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "25–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "III „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung:",
+                        "itemLinkTo": "III_„Schien_mir’s,_als_ich_sah_die_Sonne“_M_213:_einzige_Textfassung:",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 6",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "11–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "17–22",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "S. 7",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "23–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "27–30",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "31–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "36–41",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "IV Gleich und Gleich („Ein Blumenglöckchen“) M 216: Textfassung 2",
+                        "itemLinkTo": "IV_Gleich_und_Gleich_(„Ein_Blumenglöckchen“)_M_216:_Textfassung_2",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 8",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "S. 9",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "11–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "14–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "17–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "19–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 10",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "unbedruckt",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 11",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "Werkverzeichnis Anton Webern",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "S. 12",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "unbedruckt",
                                             "linkTo": ""
                                         }
                                     ]
