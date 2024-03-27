@@ -881,6 +881,73 @@
             }
         },
         {
+            "id": "source_E",
+            "siglum": "E",
+            "siglumAddendum": "",
+            "type": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2. In: Musikblätter des Anbruch IV (Mai 1922).",
+            "location": "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm. Paginierung: 1 recto oben rechts.",
+            "description": {
+                "desc": [
+                    "Titel: „Der Tag ist vergangen…“ [Mitte] | Anton Webern | (aus Op. 12). [rechts] oben."
+                ],
+                "writingMaterial": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>„Der Tag ist vergangen…“</em> [Mitte] | <em>Anton Webern | (aus Op. 12).</em> [rechts] oben.",
+                "date": "",
+                "pagination": "<em>1</em> recto oben rechts.",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2",
+                        "itemLinkTo": "Druck_von_„Der_Tag_ist_vergangen“_M_212:_Textfassung_2",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "6–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "12–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "17–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "notA",
             "siglum": "",
             "siglumAddendum": "",
