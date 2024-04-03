@@ -333,7 +333,7 @@
   <g id="text408" aria-label="œ" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">
     <path id="path1027" d="M543.273 197.435q.219-.59.656-1.093.46-.503 1.05-.875.59-.393 1.268-.59.678-.219 1.378-.219.7 0 1.224.24.525.22.831.613.306.372.372.897.088.502-.131 1.093-.219.59-.678 1.093-.46.525-1.05.897-.59.393-1.29.59-.678.219-1.355.219-.7 0-1.225-.24-.503-.22-.83-.613-.307-.394-.373-.918-.065-.503.153-1.094"/>
   </g>
-  <g id="g1254" transform="translate(34.016 29.78)">
+  <g id="g1254" class="tkk" transform="translate(34.016 29.78)">
     <path id="polyline134" d="m346.621 110.687 15.717-10.762" style="fill:none;stroke:#000;stroke-width:.362251" transform="translate(0 15.267)scale(1.33333)"/>
     <path id="line410" d="M474.425 155.789V141.21" style="fill:none;stroke:#000;stroke-width:.483"/>
     <g id="text412" aria-label="˙" style="font-size:21.8666px;font-family:Maestro;stroke-width:.750002">

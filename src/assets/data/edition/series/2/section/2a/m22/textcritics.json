@@ -1108,7 +1108,7 @@
         {
             "id": "M_22_Sk24",
             "label": "M 22 Sk24",
-            "description": ["<strong>M 22 Sk25</strong> entwirft die gültige Version von Var. XIV von M 22."],
+            "description": ["<strong>M 22 Sk24</strong> entwirft die gültige Version von Var. XIV von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1163",
@@ -1158,7 +1158,7 @@
             "id": "M_22_Sk25",
             "label": "M 22 Sk25",
             "description": [
-                "<strong>M 22 Sk25</strong> entwirft eine verworfene Variation zwischen Var. XVI und Var. XVII von M 22. ."
+                "<strong>M 22 Sk25</strong> entwirft eine verworfene Variation zwischen Var. XVI und Var. XVII von M 22."
             ],
             "comments": [
                 {
@@ -1283,10 +1283,10 @@
             ]
         },
         {
-            "id": "M_22_Sk27.1",
+            "id": "M_22_Sk27_1",
             "label": "M 22 Sk27.1",
             "description": [
-                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <strong>M 22 Sk27</strong> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
+                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk27')\"><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
             ],
             "comments": [
                 {
@@ -1327,7 +1327,7 @@
                 {
                     "svgGroupId": "g1024",
                     "measure": "7",
-                    "system": "4",
+                    "system": "3",
                     "position": "4/8",
                     "comment": "d<sup>1</sup> gestrichen."
                 }
@@ -1346,7 +1346,7 @@
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "1425",
+                    "svgGroupId": "g1425",
                     "measure": "{2A}",
                     "system": "14",
                     "position": "1. Note",
@@ -1364,7 +1364,7 @@
                     "measure": "1B",
                     "system": "14",
                     "position": "2. Note",
-                    "comment": "e<sup>2</sup> überschreibt a<sup>2</sup>"
+                    "comment": "e<sup>2</sup> überschreibt a<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g1350",
@@ -1432,7 +1432,7 @@
             ]
         },
         {
-            "id": "M_22_Sk28.1",
+            "id": "M_22_Sk28_1",
             "label": "M 22 Sk28.1",
             "description": [
                 "<strong>M 22 Sk28.1</strong> formuliert einen harmonisch und motivisch leicht abgewandelten Schluss zu Var. XIX von M22."
@@ -1488,7 +1488,7 @@
                     "comment": "Zwei Viertelnoten c<sup>2</sup>–c<sup>2</sup> radiert."
                 },
                 {
-                    "svgGroupId": "g4",
+                    "svgGroupId": "g7",
                     "measure": "4",
                     "system": "1–2",
                     "position": "zwischen 4/8 und 5/8",
@@ -1509,7 +1509,7 @@
                     "comment": "Oberstimmenschicht: Viertelnote überschreibt punktierte Halbe Note."
                 },
                 {
-                    "svgGroupId": "g1315",
+                    "svgGroupId": "g4",
                     "measure": "5",
                     "system": "2",
                     "position": "(2/8–5/8)",
@@ -1520,7 +1520,7 @@
                     "measure": "5",
                     "system": "1",
                     "position": "3/4",
-                    "comment": "c<sup>2</sup>/c<sup>3</sup> gestrichen und ersetzt durch h<sup>1</sup>/h<sup>2</sup>2 am Ende des Takts."
+                    "comment": "c<sup>2</sup>/c<sup>3</sup> gestrichen und ersetzt durch h<sup>1</sup>/h<sup>2</sup> am Ende des Takts."
                 },
                 {
                     "svgGroupId": "g1292",
@@ -1691,10 +1691,10 @@
             ]
         },
         {
-            "id": "M_22_Sk32.1",
+            "id": "M_22_Sk32_1",
             "label": "M 22 Sk32.1",
             "description": [
-                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <strong>M 22 Sk32</strong> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
+                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32')\"><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
             ],
             "comments": [
                 {
@@ -1712,7 +1712,7 @@
                     "comment": "Takt pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "g1130",
+                    "svgGroupId": "g1103",
                     "measure": "{7A}",
                     "system": "13",
                     "position": "2/8",
@@ -1735,10 +1735,10 @@
             ]
         },
         {
-            "id": "M_22_Sk32.1.1",
+            "id": "M_22_Sk32_1_1",
             "label": "M 22 Sk32.1.1",
             "description": [
-                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <strong>M 22 Sk32.1</strong> den melodischen Übergang in T. 7 zum Schlussakkord neu."
+                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32_1')\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
             ]
         },
         {
@@ -1786,7 +1786,7 @@
                     "measure": "5",
                     "system": "14",
                     "position": "2. Note",
-                    "comment": "Mittelstimmenschicht:Halbe Note überschreibt Viertelnote."
+                    "comment": "Mittelstimmenschicht: Halbe Note überschreibt Viertelnote."
                 },
                 {
                     "svgGroupId": "g1271",
@@ -1797,9 +1797,9 @@
                 },
                 {
                     "svgGroupId": "g1244",
-                    "measure": "5–6",
+                    "measure": "5 <br /> bis 6",
                     "system": "14",
-                    "position": "letzte Note bis 1. Note",
+                    "position": "letzte Note <br /> 1. Note",
                     "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt g<sup>1</sup> in T. 6; Ligatur zu g<sup>1</sup> in T. gestrichen."
                 },
                 {

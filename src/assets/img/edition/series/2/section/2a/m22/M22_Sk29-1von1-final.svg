@@ -76,7 +76,9 @@
   <path id="line118" d="M167.266 296.932h790.955" style="fill:none;stroke:#000;stroke-width:.453"/>
   <path id="path120" d="M164.703 214.932c-10.977 17.513 4.698 33.308-5.552 41h.427c12.38-10.258-2.955-23.487 5.116-40.564z" style="fill:#000;stroke:none;stroke-width:.750002"/>
   <path id="path122" d="M164.703 296.932c-10.977-17.514 4.698-33.308-5.552-41h.427c12.38 10.258-2.955 23.486 5.116 40.564z" style="fill:#000;stroke:none;stroke-width:.750002"/>
-  <path id="polyline130" d="M365.957 237.211v-29.149" style="fill:none;stroke:#777;stroke-width:.140946" transform="translate(-654.227 -456.067)scale(3.214)"/>
+  <g id="g7" class="tkk">
+    <path id="polyline130" d="M365.957 237.211v-29.149" style="fill:none;stroke:#777;stroke-width:.140946" transform="translate(-654.227 -456.067)scale(3.214)"/>
+  </g>
   <g id="g6" class="tkk">
     <path id="polyline138" d="m654.078 219.594 25.465-16.817" style="fill:none;stroke:#000;stroke-width:.293067" transform="matrix(2.10472 0 0 1.13519 -470.552 33.563)"/>
   </g>
@@ -474,7 +476,7 @@
   <g id="text530" aria-label="œ" style="font-size:20.4999px;font-family:Maestro;stroke-width:.750002">
     <path id="path1066" d="M676.689 225.203q.205-.553.615-1.025.43-.471.984-.82.553-.369 1.189-.553.635-.205 1.291-.205.656 0 1.148.225.492.205.78.574.286.349.348.84.082.472-.123 1.026-.205.553-.636 1.025-.43.492-.984.84-.553.369-1.21.554-.635.205-1.27.205-.656 0-1.148-.226-.472-.205-.78-.574-.286-.369-.348-.861-.061-.471.144-1.025"/>
   </g>
-  <g id="g1307" transform="translate(34.016 29.63)">
+  <g id="g1307" class="tkk" transform="translate(34.016 29.63)">
     <path id="line474" d="M552.895 194.698v-31.604" style="fill:none;stroke:#000;stroke-width:.453"/>
     <path id="line476" d="M545.25 180.177h9.18" style="fill:none;stroke:#000;stroke-width:.636"/>
     <g id="text478" aria-label="œ" style="font-size:20.4999px;font-family:Maestro;stroke-width:.750002">
