@@ -39,6 +39,23 @@
             "location": "A-Wue, UEQ 493.",
             "hasDescription": false,
             "linkTo": "OP25_SOURCE_NOT_AVAILABLE"
+        },
+        {
+            "siglum": "[E]",
+            "siglumAddendum": "F1–2",
+            "type": "Fotokopien von <a (click)=\"ref.openModal('OP25_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a>",
+            "location": "Verschollen.",
+            "hasDescription": false,
+            "linkTo": "OP25_SOURCE_NOT_AVAILABLE"
+        }
+    ],
+    "textSources": [
+        {
+            "id": "text_Jone_DF",
+            "siglum": "Jone_DF",
+            "siglumAddendum": "",
+            "type": "Hildegard Jone, <em>Die Freude</em>, in: <em>Die Schildgenossen</em> 13/1 (September/Oktober 1933), S. 16–26, hier S. 16 („Wie bin ich froh!“), 18 („Sterne, Ihr silbernen Bienen der Nacht“) und 24 („Des Herzens Pupurvogel“). Webern bezieht sich in der Korrespondenz mit Hildegard Jone auf diese Ausgabe (z. B. Webern an Jone, 21. September 1933 [A-Wn, HS 431/1–112]; siehe Einleitung).",
+            "location": "Ein Exemplar Weberns ist nicht überliefert."
         }
     ]
 }
