@@ -299,6 +299,15 @@
                     "position": "5/8",
                     "comment": "f überschreibt e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk22c"
+                    }
+                }
             ]
         },
         {
@@ -355,12 +364,31 @@
                     "position": "2–4/8",
                     "comment": "gis<sup>1</sup>–a<sup>1</sup>–e<sup>2</sup> überschreibt e<sup>2</sup>–c<sup>2</sup>–d<sup>2</sup>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g853",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk22b"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk7",
             "label": "M 22 Sk7",
-            "description": ["<strong>M 22 Sk7</strong> entwirft die unvollständig gebliebene Var. I von M 22."]
+            "description": ["<strong>M 22 Sk7</strong> entwirft die unvollständig gebliebene Var. I von M 22."],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk22a"
+                    }
+                }
+            ]
         },
         {
             "id": "M_22_Sk8",
@@ -375,6 +403,15 @@
                     "system": "12",
                     "position": "1. Note",
                     "comment": "Halbe Note der Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g351",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk9a"
+                    }
                 }
             ]
         },
@@ -467,6 +504,22 @@
                     "position": "2/4",
                     "comment": "Viertelnote überschreibt Halbe Note."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g640",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk8"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk10"
+                    }
+                }
             ]
         },
         {
@@ -482,6 +535,15 @@
                     "system": "",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk9b"
+                    }
                 }
             ]
         },
@@ -700,6 +762,23 @@
             "label": "M 22 Sk14",
             "description": [
                 "<strong>M 22 Sk14</strong> entwirft den Beginn einer verworfenen Variation zwischen Var. XI und Var. XII von M 22."
+            ],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23a"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23d"
+                    }
+                }
             ]
         },
         {
@@ -727,6 +806,15 @@
                     "system": "5",
                     "position": "3/4",
                     "comment": "Viertelpause überschreibt Viertelnote e<sup>1</sup>/cis<sup>2</sup>."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23b"
+                    }
                 }
             ]
         },
@@ -823,6 +911,15 @@
                     "position": "1.–2. Note",
                     "comment": "E–e/e überschreibt Gis<sub>1</sub>/Gis–Gis/gis. "
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk18b"
+                    }
+                }
             ]
         },
         {
@@ -851,6 +948,15 @@
                     "position": "2.–3. Note",
                     "comment": "a–f<sup>1</sup> überschreibt d<sup>2</sup>–a<sup>1</sup>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk17"
+                    }
+                }
             ]
         },
         {
@@ -858,6 +964,16 @@
             "label": "M 22 Sk19",
             "description": [
                 "<strong>M 22 Sk19</strong> entwirft eine verworfene Variation zwischen Var. XIII und Var. XIV von M 22."
+            ],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21a"
+                    }
+                }
             ]
         },
         {
@@ -892,6 +1008,22 @@
                     "system": "17",
                     "position": "6/8",
                     "comment": "e überschreibt fis."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21c"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21b"
+                    }
                 }
             ]
         },
@@ -977,6 +1109,36 @@
                     "position": "1/4",
                     "comment": "Viertelpause überschreibt Achtelpause."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk19"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk20"
+                    }
+                },
+                {
+                    "svgGroupId": "g8",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21b"
+                    }
+                },
+                {
+                    "svgGroupId": "g9",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21c"
+                    }
+                }
             ]
         },
         {
@@ -1039,6 +1201,29 @@
                     "system": "17",
                     "position": "1. Note",
                     "comment": "cis gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk5"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk6"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk7"
+                    }
                 }
             ]
         },
@@ -1103,6 +1288,50 @@
                     "position": "2/8",
                     "comment": "f überschreibt e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk14"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk15"
+                    }
+                },
+                {
+                    "svgGroupId": "g10",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23a"
+                    }
+                },
+                {
+                    "svgGroupId": "g11",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23b"
+                    }
+                },
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23c"
+                    }
+                },
+                {
+                    "svgGroupId": "g13",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23d"
+                    }
+                }
             ]
         },
         {
@@ -1151,6 +1380,15 @@
                     "system": "1",
                     "position": "2. Note",
                     "comment": "Halbe Note E/gis/h/e<sup>1</sup> gestrichen und ersetzt durch Tonbuchstaben über dem System: g[sic. lies: gis]/d/e."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk27_1a"
+                    }
                 }
             ]
         },
@@ -1202,6 +1440,22 @@
                     "system": "6–7",
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk27_1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk26a"
+                    }
                 }
             ]
         },
@@ -1259,6 +1513,22 @@
                     "position": "6–7/8",
                     "comment": "e–f überschreibt d–e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk25b"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk27"
+                    }
+                }
             ]
         },
         {
@@ -1279,6 +1549,15 @@
                     "system": "10",
                     "position": "1. Note",
                     "comment": "cis<sup>2</sup> gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk26b"
+                    }
                 }
             ]
         },
@@ -1330,6 +1609,22 @@
                     "system": "3",
                     "position": "4/8",
                     "comment": "d<sup>1</sup> gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk24"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk25a"
+                    }
                 }
             ]
         },
@@ -1452,6 +1747,15 @@
                     "position": "2.–3. Note",
                     "comment": "c<sup>1</sup>–a überschreibt a–e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk31b"
+                    }
+                }
             ]
         },
         {
@@ -1562,7 +1866,8 @@
         {
             "id": "M_22_Sk30",
             "label": "M 22 Sk30",
-            "description": ["<strong>M 22 Sk30</strong> skizziert die ersten Noten zu Var. XXI von M 22."]
+            "description": ["<strong>M 22 Sk30</strong> skizziert die ersten Noten zu Var. XXI von M 22."],
+            "comments": []
         },
         {
             "id": "M_22_Sk31",
@@ -1617,6 +1922,15 @@
                     "system": "3–4",
                     "position": "zwischen 4/8 und 12/16",
                     "comment": "Schlussstrich gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk28_1"
+                    }
                 }
             ]
         },
@@ -1732,6 +2046,15 @@
                     "position": "",
                     "comment": "Noten gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk32_1_1"
+                    }
+                }
             ]
         },
         {
@@ -1739,6 +2062,16 @@
             "label": "M 22 Sk32.1.1",
             "description": [
                 "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32_1')\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
+            ],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk32_1"
+                    }
+                }
             ]
         },
         {
