@@ -102,6 +102,7 @@ describe('HomeViewComponent (DONE)', () => {
         expectedEditionComplexes = [
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
+            EDITION_COMPLEXES.M22,
             EDITION_COMPLEXES.M30,
             EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
