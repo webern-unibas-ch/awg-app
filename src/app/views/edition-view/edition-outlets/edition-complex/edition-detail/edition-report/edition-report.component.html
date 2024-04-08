@@ -16,6 +16,7 @@
                             @if (editionReportData[0]) {
                                 <awg-source-list
                                     [sourceListData]="editionReportData[0]"
+                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                                     (openModalRequest)="onModalOpen($event)">
                                 </awg-source-list>
                             }
