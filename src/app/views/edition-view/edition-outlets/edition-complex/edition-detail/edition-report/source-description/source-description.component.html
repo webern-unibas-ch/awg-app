@@ -109,6 +109,23 @@
                                         } @else {
                                             <span>kein Firmenzeichen</span>
                                         }
+                                        @if (
+                                            utils.isNotEmptyObject(writingMaterial.watermark) &&
+                                            writingMaterial.watermark?.variant
+                                        ) {
+                                            <span class="awg-source-description-writing-material-watermark"
+                                                ><span>, Wasserzeichen: </span>
+                                                @if (writingMaterial.watermark.variant) {
+                                                    <span
+                                                        ><em>{{ writingMaterial.watermark.variant }}</em></span
+                                                    >&nbsp;
+                                                }
+                                            </span>
+                                            @for (location of writingMaterial.watermark.location; track location) {
+                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
+                                            }
+                                            <span>&nbsp;lesbar</span>
+                                        }
                                         @if (writingMaterial.folioAddendum) {
                                             <span>&nbsp;(Bl. {{ writingMaterial.folioAddendum }})</span>
                                         }

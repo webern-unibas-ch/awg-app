@@ -230,6 +230,30 @@ export class SourceDescriptionWritingMaterialSystems {
 }
 
 /**
+ * The SourceDescriptionWritingMaterialWatermark class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the watermark of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialWatermark {
+    /**
+     * The variant of the watermark (optional).
+     */
+    variant?: string;
+
+    /**
+     * An alternative string for the watermark used on the writing material (optional).
+     */
+    alt?: string;
+
+    /**
+     * The location of the watermark on the writing material (optional).
+     */
+    location?: SourceDescriptionWritingMaterialItemLocation[];
+}
+
+/**
  * The SourceDescriptionWritingMaterial class.
  *
  * It is used in the context of the edition view
@@ -256,6 +280,11 @@ export class SourceDescriptionWritingMaterial {
      * The firm sign of the writing material (optional).
      */
     firmSign?: SourceDescriptionWritingMaterialFirmSign;
+
+    /**
+     * The watermark of the writing material (optional).
+     */
+    watermark?: SourceDescriptionWritingMaterialWatermark;
 
     /**
      * The folio addendum of the writing material (optional).

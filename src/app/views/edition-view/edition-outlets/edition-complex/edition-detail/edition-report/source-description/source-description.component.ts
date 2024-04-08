@@ -135,8 +135,9 @@ export class SourceDescriptionComponent {
                 : foliosFormatted[0];
 
         const info = location.info ? `${location.info} ` : '';
+        const position = location.position ? ` ${location.position}` : '';
 
-        return `${info}auf Bl. ${foliosString} ${location.position}`;
+        return `${info}auf Bl. ${foliosString}${position}`;
     }
 
     /**
