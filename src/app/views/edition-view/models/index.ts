@@ -31,8 +31,8 @@ import {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFirmSignLocation,
     SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialItemLocation,
     SourceDescriptionWritingMaterialSystems,
 } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
@@ -81,8 +81,8 @@ export {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFirmSignLocation,
     SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialItemLocation,
     SourceDescriptionWritingMaterialSystems,
     SourceEvaluation,
     SourceEvaluationList,

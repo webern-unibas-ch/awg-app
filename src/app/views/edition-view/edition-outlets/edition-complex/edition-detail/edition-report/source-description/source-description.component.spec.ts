@@ -1181,14 +1181,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
         describe('#getWritingMaterialFirmSignLocation()', () => {
             it('... should have a method `getWritingMaterialFirmSignLocation`', () => {
-                expect(component.getWritingMaterialFirmSignLocation).toBeDefined();
+                expect(component.getWritingMaterialItemLocation).toBeDefined();
             });
 
             describe('... should return empty string', () => {
                 it('... if location is undefined', () => {
                     const location: SourceDescriptionWritingMaterialFirmSignLocation = undefined;
 
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, '');
                 });
@@ -1196,7 +1196,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 it('... if location is an empty object', () => {
                     const location: SourceDescriptionWritingMaterialFirmSignLocation = {};
 
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, '');
                 });
@@ -1208,7 +1208,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         position: undefined,
                     };
 
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, '');
                 });
@@ -1219,7 +1219,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         folios: undefined,
                         position: 'bottom',
                     };
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, '');
                 });
 
@@ -1229,7 +1229,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         folios: [],
                         position: 'top',
                     };
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, '');
                 });
             });
@@ -1242,7 +1242,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         position: 'top',
                     };
 
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, 'auf Bl. 1 top');
                 });
@@ -1253,7 +1253,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         folios: ['1', '2'],
                         position: 'bottom',
                     };
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, 'auf Bl. 1 und 2 bottom');
                 });
 
@@ -1263,7 +1263,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         folios: ['1', '2', '3'],
                         position: 'bottom',
                     };
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, 'auf Bl. 1, 2 und 3 bottom');
                 });
 
@@ -1273,7 +1273,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         folios: ['1r', '2v', '3'],
                         position: 'middle',
                     };
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, 'auf Bl. 1<sup>r</sup>, 2<sup>v</sup> und 3 middle');
                 });
@@ -1285,7 +1285,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         position: 'middle',
                     };
 
-                    const result = component.getWritingMaterialFirmSignLocation(location);
+                    const result = component.getWritingMaterialItemLocation(location);
 
                     expectToBe(result, 'auf dem Kopf stehend auf Bl. 1, 2 und 3 middle');
                 });

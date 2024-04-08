@@ -104,7 +104,7 @@
                                                 }
                                             </span>
                                             @for (location of writingMaterial.firmSign.location; track location) {
-                                                <span [innerHTML]="getWritingMaterialFirmSignLocation(location)"></span>
+                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                         } @else {
                                             <span>kein Firmenzeichen</span>
