@@ -1201,23 +1201,11 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     expectToBe(result, '');
                 });
 
-                it('... if position is undefined', () => {
-                    const location: SourceDescriptionWritingMaterialItemLocation = {
-                        info: '',
-                        folios: ['1'],
-                        position: undefined,
-                    };
-
-                    const result = component.getWritingMaterialItemLocation(location);
-
-                    expectToBe(result, '');
-                });
-
                 it('... if folios are undefined', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: undefined,
-                        position: 'bottom',
+                        position: 'unten links',
                     };
                     const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, '');
@@ -1227,7 +1215,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: [],
-                        position: 'top',
+                        position: 'oben links',
                     };
                     const result = component.getWritingMaterialItemLocation(location);
                     expectToBe(result, '');
@@ -1235,59 +1223,71 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             describe('... should return correct location string', () => {
-                it('... for a single folio', () => {
+                it('... for a single folio without position', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1'],
-                        position: 'top',
+                        position: '',
                     };
 
                     const result = component.getWritingMaterialItemLocation(location);
 
-                    expectToBe(result, 'auf Bl. 1 top');
+                    expectToBe(result, 'auf Bl. 1');
+                });
+
+                it('... for a single folio with position', () => {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
+                        info: '',
+                        folios: ['1'],
+                        position: 'oben links',
+                    };
+
+                    const result = component.getWritingMaterialItemLocation(location);
+
+                    expectToBe(result, 'auf Bl. 1 oben links');
                 });
 
                 it('... for two folios', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1', '2'],
-                        position: 'bottom',
+                        position: 'unten links',
                     };
                     const result = component.getWritingMaterialItemLocation(location);
-                    expectToBe(result, 'auf Bl. 1 und 2 bottom');
+                    expectToBe(result, 'auf Bl. 1 und 2 unten links');
                 });
 
                 it('... for multiple folios', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1', '2', '3'],
-                        position: 'bottom',
+                        position: 'unten links',
                     };
                     const result = component.getWritingMaterialItemLocation(location);
-                    expectToBe(result, 'auf Bl. 1, 2 und 3 bottom');
+                    expectToBe(result, 'auf Bl. 1, 2 und 3 unten links');
                 });
 
                 it('... for folios with r or v at the end', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1r', '2v', '3'],
-                        position: 'middle',
+                        position: 'mittig',
                     };
                     const result = component.getWritingMaterialItemLocation(location);
 
-                    expectToBe(result, 'auf Bl. 1<sup>r</sup>, 2<sup>v</sup> und 3 middle');
+                    expectToBe(result, 'auf Bl. 1<sup>r</sup>, 2<sup>v</sup> und 3 mittig');
                 });
 
                 it('... for folios with additional info', () => {
                     const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: 'auf dem Kopf stehend',
                         folios: ['1', '2', '3'],
-                        position: 'middle',
+                        position: 'mittig',
                     };
 
                     const result = component.getWritingMaterialItemLocation(location);
 
-                    expectToBe(result, 'auf dem Kopf stehend auf Bl. 1, 2 und 3 middle');
+                    expectToBe(result, 'auf dem Kopf stehend auf Bl. 1, 2 und 3 mittig');
                 });
             });
         });
