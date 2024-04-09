@@ -6,8 +6,8 @@ import {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
     SourceDescriptionWritingMaterialDimension,
-    SourceDescriptionWritingMaterialFirmSignLocation,
     SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialItemLocation,
     SourceDescriptionWritingMaterialSystems,
 } from '@awg-views/edition-view/models';
 
@@ -112,21 +112,17 @@ export class SourceDescriptionComponent {
     }
 
     /**
-     * Public method: getWritingMaterialFirmSignLocation.
+     * Public method: getWritingMaterialItemLocation.
      *
      * It retrieves the string representation of the location
-     * of the firm sign of the writing material
+     * of an item of the writing material (firm Sign or watermark)
      * provided in the source description.
      *
-     * @param {SourceDescriptionWritingMaterialFirmSignLocation} location The given location data.
+     * @param {SourceDescriptionWritingMaterialItemLocation} location The given location data.
      * @returns {string} The retrieved location string.
      */
-    getWritingMaterialFirmSignLocation(location: SourceDescriptionWritingMaterialFirmSignLocation): string {
-        if (
-            !this.utils.isNotEmptyObject(location) ||
-            !this.utils.isNotEmptyArray(location.folios) ||
-            !location.position
-        ) {
+    getWritingMaterialItemLocation(location: SourceDescriptionWritingMaterialItemLocation): string {
+        if (!this.utils.isNotEmptyObject(location) || !this.utils.isNotEmptyArray(location.folios)) {
             return '';
         }
         const foliosFormatted = location.folios.map((folio: string) =>
@@ -139,8 +135,9 @@ export class SourceDescriptionComponent {
                 : foliosFormatted[0];
 
         const info = location.info ? `${location.info} ` : '';
+        const position = location.position ? ` ${location.position}` : '';
 
-        return `${info}auf Bl. ${foliosString} ${location.position}`;
+        return `${info}auf Bl. ${foliosString}${position}`;
     }
 
     /**

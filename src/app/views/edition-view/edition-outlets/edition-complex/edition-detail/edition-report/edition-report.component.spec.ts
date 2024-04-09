@@ -45,6 +45,8 @@ class SourceListStubComponent {
     @Input()
     sourceListData: SourceList;
     @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 }
 
@@ -571,6 +573,26 @@ describe('EditionReportComponent', () => {
             });
 
             describe('... should trigger on event from', () => {
+                describe('... SourceListComponent if', () => {
+                    it('... fragment id is undefined', () => {
+                        const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                        const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+
+                        listCmp.navigateToReportFragmentRequest.emit(undefined);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                        const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+
+                        listCmp.navigateToReportFragmentRequest.emit(expectedSvgSheet.id);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedSvgSheet.id);
+                    });
+                });
+
                 describe('... SourceEvaluationComponent if', () => {
                     it('... fragment id is undefined', () => {
                         const evaluationDes = getAndExpectDebugElementByDirective(

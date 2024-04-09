@@ -103,9 +103,8 @@
     </g>
   </g>
   <path id="path174" d="M669.256 215.913c3.039 4.1 13.164 4.1 16.202 0l-.48-.072c-2.558 2.806-12.683 2.806-15.241 0z" style="fill:#000;stroke:none;stroke-width:.750002"/>
-  <g id="g7" class="link-box">
-    <path id="rect170" d="M739.442 170.763h253.517v125.505H739.442Z" style="fill:#fff;stroke-width:.750002"/>
-    <path id="rect172" d="M739.442 170.763h253.517v125.505H739.442Z" style="fill:none;stroke:#777;stroke-width:.683"/>
+  <g id="g7" class="link-box-todo">
+    <path id="rect172" d="M739.442 174.18h253.517v116.166H739.442Z" style="fill:#fff;stroke:#777;stroke-width:.683"/>
     <g id="text176" aria-label="M 23 Sk2" style="font-weight:700;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:.750002" transform="translate(-3.32 4.052)">
       <path id="path470" d="M825.16 237.093v-15.27h4.614l2.77 10.416 2.74-10.416h4.625v15.27h-2.865v-12.02l-3.03 12.02h-2.97l-3.02-12.02v12.02z" style="fill:#777;fill-opacity:.866667"/>
       <path id="path472" d="M858.136 234.374v2.719h-10.26q.167-1.542 1-2.917.834-1.385 3.292-3.666 1.979-1.844 2.427-2.5.604-.906.604-1.791 0-.98-.531-1.5-.521-.531-1.448-.531-.917 0-1.458.552-.542.552-.625 1.833l-2.917-.292q.26-2.416 1.636-3.468 1.375-1.052 3.437-1.052 2.26 0 3.552 1.218 1.291 1.219 1.291 3.031 0 1.032-.375 1.969-.364.927-1.166 1.948-.531.677-1.917 1.947-1.385 1.271-1.76 1.688-.365.416-.594.812z" style="fill:#777;fill-opacity:.866667"/>
@@ -116,8 +115,7 @@
     </g>
   </g>
   <g id="g6" class="link-box">
-    <path id="rect136" d="M171.366 174.18h418.655v116.166H171.366Z" style="fill:#fff;stroke-width:.750002"/>
-    <path id="rect138" d="M171.366 174.18h418.655v116.166H171.366Z" style="fill:none;stroke:#777;stroke-width:.683"/>
+    <path id="rect138" d="M171.366 174.18h418.655v116.166H171.366Z" style="fill:#fff;stroke:#777;stroke-width:.683"/>
     <g id="text178" aria-label="M 22 Sk32.1" style="font-weight:700;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;fill-opacity:.866667;stroke-width:.750002" transform="translate(-8.57 2.8)">
       <path id="path448" d="M331.274 237.093v-15.27h4.614l2.77 10.416 2.74-10.416h4.625v15.27h-2.865v-12.02l-3.03 12.02h-2.97l-3.02-12.02v12.02z" style="fill:#777;fill-opacity:.866667"/>
       <path id="path450" d="M364.25 234.374v2.719h-10.26q.167-1.542 1-2.917.834-1.385 3.292-3.666 1.98-1.844 2.427-2.5.604-.906.604-1.791 0-.98-.531-1.5-.52-.531-1.448-.531-.916 0-1.458.552-.542.552-.625 1.833l-2.916-.292q.26-2.416 1.635-3.468t3.437-1.052q2.26 0 3.552 1.218 1.291 1.219 1.291 3.031 0 1.032-.375 1.969-.364.927-1.166 1.948-.531.677-1.917 1.947-1.385 1.271-1.76 1.688-.364.416-.594.812z" style="fill:#777;fill-opacity:.866667"/>

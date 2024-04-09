@@ -8,7 +8,7 @@
                     <tr>
                         <th scope="row">
                             @if (source.hasDescription === true) {
-                                <a [routerLink]="['./']" fragment="{{ source.linkTo }}"
+                                <a (click)="navigateToReportFragment(source.linkTo)"
                                     ><span class="awg-source-list-siglum">{{ source.siglum }}</span>
                                     @if (source.siglumAddendum) {
                                         <span class="awg-source-list-siglum-addendum">

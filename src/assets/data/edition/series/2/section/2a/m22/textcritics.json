@@ -3,9 +3,7 @@
         {
             "id": "M_22_Sk1",
             "label": "M 22 Sk1",
-            "description": [
-                "<strong>M 22 Sk1</strong> entwirft das Thema der Variationen von M 22."
-            ],
+            "description": ["<strong>M 22 Sk1</strong> entwirft das Thema der Variationen von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g339",
@@ -35,14 +33,12 @@
                     "position": "3/4",
                     "comment": "e<sup>2</sup> gestrichen."
                 }
-              ] 
+            ]
         },
         {
-            "id": "M_31_Sk2",
-            "label": "M 31 Sk2",
-            "description": [
-                "<strong>M 22 Sk2</strong> entwirft Var. I von M 22."
-            ],
+            "id": "M_22_Sk2",
+            "label": "M 22 Sk2",
+            "description": ["<strong>M 22 Sk2</strong> entwirft Var. I von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g410",
@@ -77,9 +73,7 @@
         {
             "id": "M_22_Sk3",
             "label": "M 22 Sk3",
-            "description": [
-                "<strong>M 22 Sk3</strong> entwirft Var. II von M 22."
-            ],
+            "description": ["<strong>M 22 Sk3</strong> entwirft Var. II von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g496",
@@ -205,9 +199,7 @@
         {
             "id": "M_22_Sk4",
             "label": "M 22 Sk4",
-            "description": [
-                "<strong>M 22 Sk4</strong> entwirft Var. III von M 22."
-            ],
+            "description": ["<strong>M 22 Sk4</strong> entwirft Var. III von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1460",
@@ -298,9 +290,7 @@
         {
             "id": "M_22_Sk5",
             "label": "M 22 Sk5",
-            "description": [
-                "<strong>M 22 Sk5</strong> entwirft die unvollständig gebliebene Var. IV von M 22."
-            ],
+            "description": ["<strong>M 22 Sk5</strong> entwirft die unvollständig gebliebene Var. IV von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1104",
@@ -309,14 +299,21 @@
                     "position": "5/8",
                     "comment": "f überschreibt e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk22c"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk6",
             "label": "M 22 Sk6",
-            "description": [
-                "<strong>M 22 Sk6</strong> entwirft Var. V von M 22."
-            ],
+            "description": ["<strong>M 22 Sk6</strong> entwirft Var. V von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1201",
@@ -367,13 +364,30 @@
                     "position": "2–4/8",
                     "comment": "gis<sup>1</sup>–a<sup>1</sup>–e<sup>2</sup> überschreibt e<sup>2</sup>–c<sup>2</sup>–d<sup>2</sup>."
                 }
-            ]   
-        }, 
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g853",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk22b"
+                    }
+                }
+            ]
+        },
         {
             "id": "M_22_Sk7",
             "label": "M 22 Sk7",
-            "description": [
-                "<strong>M 22 Sk7</strong> entwirft die unvollständig gebliebene Var. I von M 22."
+            "description": ["<strong>M 22 Sk7</strong> entwirft die unvollständig gebliebene Var. I von M 22."],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g1",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk22a"
+                    }
+                }
             ]
         },
         {
@@ -381,7 +395,7 @@
             "label": "M 22 Sk8",
             "description": [
                 "<strong>M 22 Sk8</strong> entwirft den Beginn einer verworfenen Variation zwischen Var. VI und Var. VII von M 22."
-            ],    
+            ],
             "comments": [
                 {
                     "svgGroupId": "g917",
@@ -390,14 +404,21 @@
                     "position": "1. Note",
                     "comment": "Halbe Note der Unterstimmenschicht überschreibt mit Oberstimmenschicht zusammengehalste Viertelnote."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g351",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk9a"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk9",
             "label": "M 22 Sk9",
-            "description": [
-                "<strong>M 22 Sk9</strong> entwirft Var. VII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk9</strong> entwirft Var. VII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1345",
@@ -483,6 +504,22 @@
                     "position": "2/4",
                     "comment": "Viertelnote überschreibt Halbe Note."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g640",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk8"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk10"
+                    }
+                }
             ]
         },
         {
@@ -490,7 +527,7 @@
             "label": "M 22 Sk10",
             "description": [
                 "<strong>M 22 Sk10</strong> entwirft den Beginn einer verworfenen Variante von Var. IX von M 22."
-            ],    
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1066",
@@ -499,14 +536,21 @@
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk9b"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk11",
             "label": "M 22 Sk11",
-            "description": [
-                "<strong>M 22 Sk11</strong> entwirft Var. IX von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk11</strong> entwirft Var. IX von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1309",
@@ -590,9 +634,7 @@
         {
             "id": "M_22_Sk12",
             "label": "M 22 Sk12",
-            "description": [
-                "<strong>M 22 Sk12</strong> entwirft Var. X von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk12</strong> entwirft Var. X von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1619",
@@ -636,7 +678,7 @@
                     "position": "4. Note",
                     "comment": "G/g überschreibt Fis/fis."
                 },
-                                {
+                {
                     "svgGroupId": "g1547",
                     "measure": "4",
                     "system": "2",
@@ -657,14 +699,14 @@
                     "position": "4/8",
                     "comment": "h<sup>1</sup> überschreibt h<sup>2</sup>."
                 },
-                                {
+                {
                     "svgGroupId": "g1631",
                     "measure": "6",
                     "system": "3",
                     "position": "(1/4)",
                     "comment": "Achtelnote a<sup>1</sup> und Sechzehntelnote a<sup>1</sup> bzw. a<sup>2</sup> gestrichen."
                 },
-                                {
+                {
                     "svgGroupId": "g1530",
                     "measure": "6",
                     "system": "2",
@@ -678,7 +720,7 @@
                     "position": "(2/4)",
                     "comment": "Viertelnote f<sup>2</sup> gestrichen."
                 },
-                                {
+                {
                     "svgGroupId": "g1514",
                     "measure": "7",
                     "system": "2",
@@ -697,9 +739,7 @@
         {
             "id": "M_22_Sk13",
             "label": "M 22 Sk13",
-            "description": [
-                "<strong>M 22 Sk13</strong> entwirft die unvollständig gebliebene Var. XI von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk13</strong> entwirft die unvollständig gebliebene Var. XI von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1038",
@@ -722,14 +762,29 @@
             "label": "M 22 Sk14",
             "description": [
                 "<strong>M 22 Sk14</strong> entwirft den Beginn einer verworfenen Variation zwischen Var. XI und Var. XII von M 22."
+            ],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23a"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23d"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk15",
             "label": "M 22 Sk15",
-            "description": [
-                "<strong>M 22 Sk15</strong> entwirft Var. XII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk15</strong> entwirft Var. XII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1158",
@@ -752,6 +807,15 @@
                     "position": "3/4",
                     "comment": "Viertelpause überschreibt Viertelnote e<sup>1</sup>/cis<sup>2</sup>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23b"
+                    }
+                }
             ]
         },
         {
@@ -759,7 +823,7 @@
             "label": "M 22 Sk16",
             "description": [
                 "<strong>M 22 Sk16</strong> entwirft einen ersten figurativen Verlauf für Var. VIII von M 22."
-            ],    
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1082",
@@ -796,7 +860,7 @@
             "label": "M 22 Sk17",
             "description": [
                 "<strong>M 22 Sk17</strong> entwirft eine erste, verworfene Version von Var. XIII von M 22."
-            ],    
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1245",
@@ -846,15 +910,22 @@
                     "system": "14",
                     "position": "1.–2. Note",
                     "comment": "E–e/e überschreibt Gis<sub>1</sub>/Gis–Gis/gis. "
-                }                
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk18b"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk18",
             "label": "M 22 Sk18",
-            "description": [
-                "<strong>M 22 Sk18</strong> entwirft die gültige Version von Var. XIII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk18</strong> entwirft die gültige Version von Var. XIII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1143",
@@ -877,6 +948,15 @@
                     "position": "2.–3. Note",
                     "comment": "a–f<sup>1</sup> überschreibt d<sup>2</sup>–a<sup>1</sup>."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk17"
+                    }
+                }
             ]
         },
         {
@@ -884,14 +964,22 @@
             "label": "M 22 Sk19",
             "description": [
                 "<strong>M 22 Sk19</strong> entwirft eine verworfene Variation zwischen Var. XIII und Var. XIV von M 22."
+            ],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g4",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21a"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk20",
             "label": "M 22 Sk20",
-            "description": [
-                "<strong>M 22 Sk20</strong> entwirft Var. XIV von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk20</strong> entwirft Var. XIV von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1079",
@@ -921,14 +1009,28 @@
                     "position": "6/8",
                     "comment": "e überschreibt fis."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21c"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21b"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk21",
             "label": "M 22 Sk21",
-            "description": [
-                "<strong>M 22 Sk21</strong> entwirft Var. XV von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk21</strong> entwirft Var. XV von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1052",
@@ -1007,14 +1109,42 @@
                     "position": "1/4",
                     "comment": "Viertelpause überschreibt Achtelpause."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk19"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk20"
+                    }
+                },
+                {
+                    "svgGroupId": "g8",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21b"
+                    }
+                },
+                {
+                    "svgGroupId": "g9",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk21c"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk22",
             "label": "M 22 Sk22",
-            "description": [
-                "<strong>M 22 Sk22</strong> entwirft die vollständige Version von Var. VIII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk22</strong> entwirft die vollständige Version von Var. VIII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1169",
@@ -1072,14 +1202,35 @@
                     "position": "1. Note",
                     "comment": "cis gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk5"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk6"
+                    }
+                },
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk7"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk23",
             "label": "M 22 Sk23",
-            "description": [
-                "<strong>M 22 Sk23</strong> entwirft eine erste Version von Var. XVI von M 22."
-            ],
+            "description": ["<strong>M 22 Sk23</strong> entwirft eine erste Version von Var. XVI von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1028",
@@ -1137,14 +1288,56 @@
                     "position": "2/8",
                     "comment": "f überschreibt e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk14"
+                    }
+                },
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk15"
+                    }
+                },
+                {
+                    "svgGroupId": "g10",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23a"
+                    }
+                },
+                {
+                    "svgGroupId": "g11",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23b"
+                    }
+                },
+                {
+                    "svgGroupId": "g12",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23c"
+                    }
+                },
+                {
+                    "svgGroupId": "g13",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk23d"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk24",
             "label": "M 22 Sk24",
-            "description": [
-                "<strong>M 22 Sk25</strong> entwirft die gültige Version von Var. XIV von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk24</strong> entwirft die gültige Version von Var. XIV von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1163",
@@ -1188,14 +1381,23 @@
                     "position": "2. Note",
                     "comment": "Halbe Note E/gis/h/e<sup>1</sup> gestrichen und ersetzt durch Tonbuchstaben über dem System: g[sic. lies: gis]/d/e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk27_1a"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk25",
             "label": "M 22 Sk25",
             "description": [
-                "<strong>M 22 Sk25</strong> entwirft eine verworfene Variation zwischen Var. XVI und Var. XVII von M 22. ."
-            ],    
+                "<strong>M 22 Sk25</strong> entwirft eine verworfene Variation zwischen Var. XVI und Var. XVII von M 22."
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1175",
@@ -1239,14 +1441,28 @@
                     "position": "",
                     "comment": "Takte pauschal gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk27_1b"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk26a"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk26",
             "label": "M 22 Sk26",
-            "description": [
-                "<strong>M 22 Sk26</strong> entwirft Var. XVII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk26</strong> entwirft Var. XVII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1316",
@@ -1297,14 +1513,28 @@
                     "position": "6–7/8",
                     "comment": "e–f überschreibt d–e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk25b"
+                    }
+                },
+                {
+                    "svgGroupId": "g3",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk27"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk27",
             "label": "M 22 Sk27",
-            "description": [
-                "<strong>M 22 Sk27</strong> entwirft die T. 1–6 von Var. XVIII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk27</strong> entwirft die T. 1–6 von Var. XVIII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1194",
@@ -1320,14 +1550,23 @@
                     "position": "1. Note",
                     "comment": "cis<sup>2</sup> gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g7",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk26b"
+                    }
+                }
             ]
         },
         {
-            "id": "M_22_Sk27.1",
+            "id": "M_22_Sk27_1",
             "label": "M 22 Sk27.1",
             "description": [
-                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <strong>M 22 Sk27</strong> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
-            ],    
+                "<strong>M 22 Sk27.1</strong> überarbeitet die T. 5–6 aus <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk27')\"><strong>M 22 Sk27</strong></a> und fügt die T. 7–8 zu Var. XVIII von M 22 hinzu."
+            ],
             "comments": [
                 {
                     "svgGroupId": "g980",
@@ -1367,18 +1606,32 @@
                 {
                     "svgGroupId": "g1024",
                     "measure": "7",
-                    "system": "4",
+                    "system": "3",
                     "position": "4/8",
                     "comment": "d<sup>1</sup> gestrichen."
+                }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g2",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk24"
+                    }
+                },
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk25a"
+                    }
                 }
             ]
         },
         {
             "id": "M_22_Sk28",
             "label": "M 22 Sk28",
-            "description": [
-                "<strong>M 22 Sk28</strong> entwirft Var. XIX von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk28</strong> entwirft Var. XIX von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1573",
@@ -1388,7 +1641,7 @@
                     "comment": "Takte pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "1425",
+                    "svgGroupId": "g1425",
                     "measure": "{2A}",
                     "system": "14",
                     "position": "1. Note",
@@ -1406,7 +1659,7 @@
                     "measure": "1B",
                     "system": "14",
                     "position": "2. Note",
-                    "comment": "e<sup>2</sup> überschreibt a<sup>2</sup>"
+                    "comment": "e<sup>2</sup> überschreibt a<sup>2</sup>."
                 },
                 {
                     "svgGroupId": "g1350",
@@ -1474,7 +1727,7 @@
             ]
         },
         {
-            "id": "M_22_Sk28.1",
+            "id": "M_22_Sk28_1",
             "label": "M 22 Sk28.1",
             "description": [
                 "<strong>M 22 Sk28.1</strong> formuliert einen harmonisch und motivisch leicht abgewandelten Schluss zu Var. XIX von M22."
@@ -1494,14 +1747,21 @@
                     "position": "2.–3. Note",
                     "comment": "c<sup>1</sup>–a überschreibt a–e."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g5",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk31b"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk29",
             "label": "M 22 Sk29",
-            "description": [
-                "<strong>M 22 Sk29</strong> entwirft Var. XX von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk29</strong> entwirft Var. XX von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1259",
@@ -1532,7 +1792,7 @@
                     "comment": "Zwei Viertelnoten c<sup>2</sup>–c<sup>2</sup> radiert."
                 },
                 {
-                    "svgGroupId": "g4",
+                    "svgGroupId": "g7",
                     "measure": "4",
                     "system": "1–2",
                     "position": "zwischen 4/8 und 5/8",
@@ -1553,7 +1813,7 @@
                     "comment": "Oberstimmenschicht: Viertelnote überschreibt punktierte Halbe Note."
                 },
                 {
-                    "svgGroupId": "g1315",
+                    "svgGroupId": "g4",
                     "measure": "5",
                     "system": "2",
                     "position": "(2/8–5/8)",
@@ -1564,7 +1824,7 @@
                     "measure": "5",
                     "system": "1",
                     "position": "3/4",
-                    "comment": "c<sup>2</sup>/c<sup>3</sup> gestrichen und ersetzt durch h<sup>1</sup>/h<sup>2</sup>2 am Ende des Takts."
+                    "comment": "c<sup>2</sup>/c<sup>3</sup> gestrichen und ersetzt durch h<sup>1</sup>/h<sup>2</sup> am Ende des Takts."
                 },
                 {
                     "svgGroupId": "g1292",
@@ -1606,16 +1866,13 @@
         {
             "id": "M_22_Sk30",
             "label": "M 22 Sk30",
-            "description": [
-                "<strong>M 22 Sk30</strong> skizziert die ersten Noten zu Var. XXI von M 22."
-            ]
+            "description": ["<strong>M 22 Sk30</strong> skizziert die ersten Noten zu Var. XXI von M 22."],
+            "comments": []
         },
         {
             "id": "M_22_Sk31",
             "label": "M 22 Sk31",
-            "description": [
-                "<strong>M 22 Sk31</strong> entwirft Var. XXI von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk31</strong> entwirft Var. XXI von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1308",
@@ -1666,14 +1923,21 @@
                     "position": "zwischen 4/8 und 12/16",
                     "comment": "Schlussstrich gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk28_1"
+                    }
+                }
             ]
         },
         {
             "id": "M_22_Sk32",
             "label": "M 22 Sk32",
-            "description": [
-                "<strong>M 22 Sk32</strong> entwirft Var. XXII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk32</strong> entwirft Var. XXII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1226",
@@ -1741,11 +2005,11 @@
             ]
         },
         {
-            "id": "M_22_Sk32.1",
+            "id": "M_22_Sk32_1",
             "label": "M 22 Sk32.1",
             "description": [
-                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <strong>M 22 Sk32</strong> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
-            ],    
+                "<strong>M 22 Sk32.1</strong> schließt an T. 5 von <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32')\"><strong>M 22 Sk32</strong></a> an und entwirft einen alternativen Schluss zu Var. XXII von M 22."
+            ],
             "comments": [
                 {
                     "svgGroupId": "g1097",
@@ -1762,7 +2026,7 @@
                     "comment": "Takt pauschal gestrichen."
                 },
                 {
-                    "svgGroupId": "g1130",
+                    "svgGroupId": "g1103",
                     "measure": "{7A}",
                     "system": "13",
                     "position": "2/8",
@@ -1782,21 +2046,38 @@
                     "position": "",
                     "comment": "Noten gestrichen."
                 }
+            ],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk32_1_1"
+                    }
+                }
             ]
         },
         {
-            "id": "M_22_Sk32.1.1",
+            "id": "M_22_Sk32_1_1",
             "label": "M 22 Sk32.1.1",
             "description": [
-                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <strong>M 22 Sk32.1</strong> den melodischen Übergang in T. 7 zum Schlussakkord neu."
-            ] 
+                "<strong>M 22 Sk32.1.1</strong> formuliert im Anschluss an <a (click)=\"ref.selectSvgSheet('m22', 'M_22_Sk32_1')\"><strong>M 22 Sk32.1</strong></a> den melodischen Übergang in T. 7 zum Schlussakkord neu."
+            ],
+            "comments": [],
+            "linkBoxes": [
+                {
+                    "svgGroupId": "g6",
+                    "linkTo": {
+                        "complexId": "m22",
+                        "sheetId": "M_22_Sk32_1"
+                    }
+                }
+            ]
         },
         {
             "id": "M_22_Sk33",
             "label": "M 22 Sk33",
-            "description": [
-                "<strong>M 22 Sk33</strong> entwirft Var. XXIII von M 22."
-            ],    
+            "description": ["<strong>M 22 Sk33</strong> entwirft Var. XXIII von M 22."],
             "comments": [
                 {
                     "svgGroupId": "g1237",
@@ -1838,7 +2119,7 @@
                     "measure": "5",
                     "system": "14",
                     "position": "2. Note",
-                    "comment": "Mittelstimmenschicht:Halbe Note überschreibt Viertelnote."
+                    "comment": "Mittelstimmenschicht: Halbe Note überschreibt Viertelnote."
                 },
                 {
                     "svgGroupId": "g1271",
@@ -1849,9 +2130,9 @@
                 },
                 {
                     "svgGroupId": "g1244",
-                    "measure": "5–6",
+                    "measure": "5 <br /> bis 6",
                     "system": "14",
-                    "position": "letzte Note bis 1. Note",
+                    "position": "letzte Note <br /> 1. Note",
                     "comment": "Unterstimmenschicht: f<sup>1</sup> überschreibt g<sup>1</sup> in T. 6; Ligatur zu g<sup>1</sup> in T. gestrichen."
                 },
                 {
