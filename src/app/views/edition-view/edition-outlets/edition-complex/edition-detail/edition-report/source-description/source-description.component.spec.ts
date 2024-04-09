@@ -20,8 +20,8 @@ import { EDITION_FIRM_SIGNS_DATA } from '@awg-views/edition-view/data';
 import {
     SourceDescriptionList,
     SourceDescriptionWritingInstruments,
-    SourceDescriptionWritingMaterialFirmSignLocation,
     SourceDescriptionWritingMaterialFormat,
+    SourceDescriptionWritingMaterialItemLocation,
     SourceDescriptionWritingMaterialSystems,
 } from '@awg-views/edition-view/models';
 
@@ -1179,14 +1179,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
         });
 
-        describe('#getWritingMaterialFirmSignLocation()', () => {
-            it('... should have a method `getWritingMaterialFirmSignLocation`', () => {
+        describe('#getWritingMaterialItemLocation()', () => {
+            it('... should have a method `getWritingMaterialItemLocation`', () => {
                 expect(component.getWritingMaterialItemLocation).toBeDefined();
             });
 
             describe('... should return empty string', () => {
                 it('... if location is undefined', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = undefined;
+                    const location: SourceDescriptionWritingMaterialItemLocation = undefined;
 
                     const result = component.getWritingMaterialItemLocation(location);
 
@@ -1194,7 +1194,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... if location is an empty object', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {};
+                    const location: SourceDescriptionWritingMaterialItemLocation = {};
 
                     const result = component.getWritingMaterialItemLocation(location);
 
@@ -1202,7 +1202,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... if position is undefined', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1'],
                         position: undefined,
@@ -1214,7 +1214,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... if folios are undefined', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: undefined,
                         position: 'bottom',
@@ -1224,7 +1224,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... if folios array is empty', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: [],
                         position: 'top',
@@ -1236,7 +1236,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
             describe('... should return correct location string', () => {
                 it('... for a single folio', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1'],
                         position: 'top',
@@ -1248,7 +1248,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... for two folios', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1', '2'],
                         position: 'bottom',
@@ -1258,7 +1258,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... for multiple folios', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1', '2', '3'],
                         position: 'bottom',
@@ -1268,7 +1268,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... for folios with r or v at the end', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: '',
                         folios: ['1r', '2v', '3'],
                         position: 'middle',
@@ -1279,7 +1279,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... for folios with additional info', () => {
-                    const location: SourceDescriptionWritingMaterialFirmSignLocation = {
+                    const location: SourceDescriptionWritingMaterialItemLocation = {
                         info: 'auf dem Kopf stehend',
                         folios: ['1', '2', '3'],
                         position: 'middle',
