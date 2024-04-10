@@ -288,8 +288,12 @@
                                                         </span>
                                                     }
                                                     <ng-template #folioTemplate let-folio>
-                                                        <span
-                                                            ><span>Bl.&nbsp;</span>
+                                                        <span>
+                                                            @if (folio.isPage) {
+                                                                <span>S.&nbsp;</span>
+                                                            } @else {
+                                                                <span>Bl.&nbsp;</span>
+                                                            }
                                                             @if (
                                                                 folio.folio.endsWith('v') || folio.folio.endsWith('r')
                                                             ) {
@@ -325,6 +329,15 @@
                                                                     <span
                                                                         class="awg-source-description-content-item-system"
                                                                         [ngClass]="{
+                                                                            tab: system.row && !firstSystem,
+                                                                            singletab:
+                                                                                (system.row &&
+                                                                                    !firstSystemGroup &&
+                                                                                    firstSystem &&
+                                                                                    folio.folio.length === 1) ||
+                                                                                (system.measure &&
+                                                                                    !firstSystemGroup &&
+                                                                                    folio.folio.length === 1),
                                                                             tab: system.row && !firstSystem,
                                                                             doubletab:
                                                                                 (system.row &&

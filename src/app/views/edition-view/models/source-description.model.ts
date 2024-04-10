@@ -70,6 +70,11 @@ export class SourceDescriptionFolio {
     folio?: string;
 
     /**
+     * The flag if the folios are considered as pages (optional).
+     */
+    isPage?: boolean;
+
+    /**
      * The folio link (optional).
      */
     folioLinkTo?: string;
