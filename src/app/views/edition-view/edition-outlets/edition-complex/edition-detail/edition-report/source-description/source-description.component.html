@@ -148,9 +148,11 @@
                                 @if (sourceDescription.description.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="caps">Schreibstoff:&nbsp;</span>
-                                        <span>{{
-                                            getWritingInstruments(sourceDescription.description.writingInstruments)
-                                        }}</span>
+                                        <span
+                                            [compile-html]="
+                                                getWritingInstruments(sourceDescription.description.writingInstruments)
+                                            "
+                                            [compile-html-ref]="ref"></span>
                                     </p>
                                 }
                             }
