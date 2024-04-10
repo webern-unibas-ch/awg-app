@@ -219,7 +219,7 @@
                                             <!-- content.itemDescription -->
                                             @if (content.item || content.itemDescription) {
                                                 <span class="awg-source-description-content-item">
-                                                    @if (utils.isNotEmptyObject(content.itemLinkTo)) {
+                                                    @if (content.item && utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <a
                                                             (click)="
                                                                 selectSvgSheet(
@@ -230,12 +230,15 @@
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
                                                     }
-                                                    @if (!utils.isNotEmptyObject(content.itemLinkTo)) {
+                                                    @if (content.item && !utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <strong>{{ content.item }}</strong>
+                                                    }
+                                                    @if (content.item && content.itemDescription) {
+                                                        <span>&nbsp;</span>
                                                     }
                                                     @if (content.itemDescription) {
                                                         <span class="awg-source-description-content-item-description"
-                                                            >&nbsp;<span
+                                                            ><span
                                                                 [compile-html]="content.itemDescription"
                                                                 [compile-html-ref]="ref"></span
                                                         ></span>
@@ -250,7 +253,7 @@
                                                         <span
                                                             class="awg-source-description-content-item-folio"
                                                             [ngClass]="{
-                                                                tab: content.item
+                                                                tab: content.item || content.itemDescription
                                                             }">
                                                             @if (folio.folioLinkTo) {
                                                                 <a
