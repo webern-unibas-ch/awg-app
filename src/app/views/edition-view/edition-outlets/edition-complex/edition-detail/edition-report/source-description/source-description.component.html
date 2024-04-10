@@ -31,12 +31,18 @@
                         <div class="awg-source-description-body">
                             <!-- description -->
                             @if (utils.isNotEmptyArray(sourceDescription.description.desc)) {
-                                @for (description of sourceDescription.description.desc; track description) {
-                                    <p
-                                        class="awg-source-description-desc"
-                                        [compile-html]="description"
-                                        [compile-html-ref]="ref"></p>
-                                }
+                                <p class="awg-source-description-desc">
+                                    @for (
+                                        description of sourceDescription.description.desc;
+                                        track description;
+                                        let lastDesc = $last
+                                    ) {
+                                        <span [compile-html]="description" [compile-html-ref]="ref"></span>
+                                        @if (!lastDesc) {
+                                            <br />
+                                        }
+                                    }
+                                </p>
                             }
                             <!-- writingMaterial -->
                             @if (
