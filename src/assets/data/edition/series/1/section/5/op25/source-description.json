@@ -828,6 +828,932 @@
             }
         },
         {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Skizzen zu „Sterne, Ihr silbernen Bienen“ M 321 und „Des Herzens Purpurvogel“ M 322 (in Skizzenbuch 4).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "12 Seiten in Skizzenbuch 4: Bl. 2<sup>r</sup> (S. 2), Bl. 5<sup>v</sup>–10<sup>r</sup> (S. 9–18) und Bl. 11<sup>r</sup> (S. 20)."
+                ],
+                "writingMaterial": "Notenpapier, quer 270 × 337 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] <em>Protokoll. Schutzmarke</em> | <em>No. 15 </em>auf auf Bl. 2, 5 und 11 recto unten links.",
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": [
+                        "blauer Buntstift",
+                        "grüner Buntstift",
+                        "roter Buntstift",
+                        "blaue Tinte"
+                    ]
+                },
+                "title": "<em>III. Satz op. 24</em> auf Bl. 2<sup>r</sup> System 9–10 links mit rotem Buntstift;<br /><em>„Sterne, Ihr silbernen Bienen - - -“</em> auf Bl. 5<sup>v</sup> oben links mit grünem Buntstift;<br /><em>„Des Herzens Purpurvogel“</em> auf Bl. 8<sup>v</sup> oben links mit rotem Buntstift.",
+                "date": "<em>22. VIII. 34</em> auf Bl. 2<sup>r</sup> oben links;<br /><em>19. IX. 34</em> auf Bl. 6<sup>r</sup> oben links;<br /><em>8. X. 34</em> auf Bl. 7<sup>v</sup> System 12–13 (zu <strong>M 321 Sk8</strong> T. 21B–26B);<br /><em>M. am 30. IX. nach Zürich abgereist.</em> auf Bl. 7<sup>v</sup> System 16 rechts;<br /><em>24. X</em>[.] <em>34</em> auf Bl. 8<sup>v</sup> System 4–5 halbrechts (zu <strong>M 322 Sk3</strong> T. {1A}, {1B}, {1C‒2A}, 1D‒2B);<br /><em>15. IX</em>[.] <em>34</em> auf Bl. 11<sup>r</sup> System 9–10 (nach SkII/10##?## T. 21);<br /><em>34 M. am</em> <em>9. XII.</em> <em>aus</em> <em>Z.</em> <em>zurückgekommen. | M. am</em> <em>10. I. 35</em> <em>operiert worden | Ma</em> [Unterführungszeichen für „am“] <em>21. I. </em>[Unterführungszeichen für „35“] [xx] auf Bl. 11<sup>r</sup> System 10–11 rechts.",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 320 Sk1",
+                        "itemLinkTo": "M_320_Sk1",
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "0–0",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 320 Sk1.2",
+                        "itemLinkTo": "M_320_Sk1_2",
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3b",
+                                            "measure": "0–0",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 320 Sk1.1",
+                        "itemLinkTo": "M_320_Sk1_1",
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "0–0",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk1",
+                        "itemLinkTo": "M_321_Sk1",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8",
+                                            "measure": "{1A}, 1B, {2A}, 2B–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 320 Sk2",
+                        "itemLinkTo": "M_320_Sk2",
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "0–0",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk4",
+                        "itemLinkTo": "M_321_Sk4",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–2",
+                                            "measure": "1–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk5",
+                        "itemLinkTo": "M_321_Sk5",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "{1A–1D}, 1E–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6",
+                        "itemLinkTo": "M_321_Sk6",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "{1A}, {1B‒2A}, 1C‒2B, {3A}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12b–16a",
+                                            "measure": "{3B–4A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12d–16b",
+                                            "measure": "{5A}–6A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–8a",
+                                            "measure": "{5B‒6B}, {5C‒6C}, 5D‒6D",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.3",
+                        "itemLinkTo": "M_321_Sk6_3",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–16b",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.4",
+                        "itemLinkTo": "M_321_Sk6_4",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "15a–16a",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk2",
+                        "itemLinkTo": "M_321_Sk2",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1",
+                                            "measure": "1x–5x",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2",
+                                            "measure": "1y–4y",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk3",
+                        "itemLinkTo": "M_321_Sk3",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–8",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–14a",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.1",
+                        "itemLinkTo": "M_321_Sk6_1",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12c–15b",
+                                            "measure": "3‒6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk6.2",
+                        "itemLinkTo": "M_321_Sk6_2",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14e–16c",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk8",
+                        "itemLinkTo": "M_321_Sk8",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–7b",
+                                            "measure": "1–3, {4A–6A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a–13b",
+                                            "measure": "4B–7, 8A–9A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14b–15b",
+                                            "measure": "8C, {8B}, {9B}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14–16",
+                                            "measure": "{10A}, {9C, 10B, 11A}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "9D, 10C, 11B–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–13b",
+                                            "measure": "14–15, {16A–17A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12a–16",
+                                            "measure": "16B–18A, {19A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7b–10b",
+                                            "measure": "18B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11b–15b",
+                                            "measure": "19B–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–7a",
+                                            "measure": "21A–26A",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk9",
+                        "itemLinkTo": "M_321_Sk9",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12a–14a",
+                                            "measure": "1–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk7.1",
+                        "itemLinkTo": "M_321_Sk7_1",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8b",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk7",
+                        "itemLinkTo": "M_321_Sk7",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "1–4B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk8.2",
+                        "itemLinkTo": "M_321_Sk8_2",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8a",
+                                            "measure": "24",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 321 Sk8.1",
+                        "itemLinkTo": "M_321_Sk8_1",
+                        "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
+                        "folios": [
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5b–8b",
+                                            "measure": "{24A}–25",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk1",
+                        "itemLinkTo": "M_322_Sk1",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a–2a",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk2",
+                        "itemLinkTo": "M_322_Sk2",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1b–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk3",
+                        "itemLinkTo": "M_322_Sk3",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "{1A}, {1B}, {1C‒2A}, 1D‒2B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–16",
+                                            "measure": "{3A‒4A}, {5A}, 3B‒5B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5a",
+                                            "measure": "6‒11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.3",
+                        "itemLinkTo": "M_322_Sk4_3",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–3b",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.2",
+                        "itemLinkTo": "M_322_Sk4_2",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4b–5b",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.1",
+                        "itemLinkTo": "M_322_Sk4_1",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5c–6b",
+                                            "measure": "6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4",
+                        "itemLinkTo": "M_322_Sk4",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a–10",
+                                            "measure": "1‒4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–16",
+                                            "measure": "5‒8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "10r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–6a",
+                                            "measure": "9–11A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6b–11",
+                                            "measure": "11B, 10B‒12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–16",
+                                            "measure": "13B‒16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–5b",
+                                            "measure": "13C, 14B, {15B}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–12a",
+                                            "measure": "17A–20A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–16",
+                                            "measure": "{21A}. 21B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "11r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–6",
+                                            "measure": "17B‒20B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "21C",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.5",
+                        "itemLinkTo": "M_322_Sk4_5",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2a–5a",
+                                            "measure": "11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.6",
+                        "itemLinkTo": "M_322_Sk4_6",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2c–5c",
+                                            "measure": "18",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.4",
+                        "itemLinkTo": "M_322_Sk4_4",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "10r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2b–5b",
+                                            "measure": "{8A}, 8B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 322 Sk4.7",
+                        "itemLinkTo": "M_322_Sk4_7",
+                        "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
+                        "folios": [
+                            {
+                                "folio": "11r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11–15",
+                                            "measure": "19‒20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "source_E",
             "siglum": "E",
             "siglumAddendum": "",
