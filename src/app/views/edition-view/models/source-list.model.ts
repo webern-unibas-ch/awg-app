@@ -17,6 +17,11 @@ export class Source {
     siglumAddendum?: string;
 
     /**
+     * The flag if a source is missing (optional).
+     */
+    missing?: boolean;
+
+    /**
      * The type description of a source.
      */
     type: string;
