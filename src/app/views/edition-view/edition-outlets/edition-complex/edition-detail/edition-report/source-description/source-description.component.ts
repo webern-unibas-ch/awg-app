@@ -34,6 +34,14 @@ export class SourceDescriptionComponent {
     sourceDescriptionListData: SourceDescriptionList;
 
     /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
      * Output variable: openModalRequest.
      *
      * It keeps an event emitter to open the modal
@@ -179,6 +187,22 @@ export class SourceDescriptionComponent {
         ];
 
         return systemsOutput.filter(Boolean).join('');
+    }
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given id of a fragment of the edition report
+     * to the {@link navigateToReportFragmentRequest}.
+     *
+     * @param {string} id The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(id: string): void {
+        if (!id) {
+            return;
+        }
+        this.navigateToReportFragmentRequest.emit(id);
     }
 
     /**
