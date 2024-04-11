@@ -155,7 +155,7 @@
         "source-map-explorer": "^2.5.3",
         "standard-version": "^9.5.0",
         "typescript": "~5.2.2",
-        "webpack-bundle-analyzer": "^4.10.1"
+        "webpack-bundle-analyzer": "^4.10.2"
     },
     "engines": {
         "node": ">= 18.19.0",
