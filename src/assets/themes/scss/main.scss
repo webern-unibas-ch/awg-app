@@ -387,6 +387,10 @@ span.facet-badge {
     @extend %inlineblock;
     margin-left: 25px;
 }
+.singletab {
+    @extend %inlineblock;
+    margin-left: 50px;
+}
 .doubletab {
     @extend %inlineblock;
     margin-left: 60px;

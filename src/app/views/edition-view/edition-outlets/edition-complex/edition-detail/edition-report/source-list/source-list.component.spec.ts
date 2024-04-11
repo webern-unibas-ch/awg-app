@@ -1,6 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -20,9 +21,12 @@ describe('SourceListComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedSourceListData: SourceList;
+    let expectedFragment: string;
 
-    let openModalSpy: Spy;
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalRequestEmitSpy: Spy;
+    let openModalSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -38,10 +42,16 @@ describe('SourceListComponent (DONE)', () => {
 
         // Test data
         expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
+        expectedFragment = 'source_A';
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
     });
@@ -395,6 +405,52 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(spanEl1.textContent, expectedSourceListData.textSources[index - 1].location);
                     });
                 });
+            });
+        });
+
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                // Get anhors in description
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);
+
+                // Everything but first anchor uses modal
+                // Click on first anchor
+                clickAndAwaitChanges(anchorDes[0], fixture);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            }));
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
             });
         });
 

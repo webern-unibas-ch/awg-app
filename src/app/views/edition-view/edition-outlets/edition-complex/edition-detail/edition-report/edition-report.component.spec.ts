@@ -45,6 +45,8 @@ class SourceListStubComponent {
     @Input()
     sourceListData: SourceList;
     @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 }
 
@@ -52,6 +54,8 @@ class SourceListStubComponent {
 class SourceDescriptionStubComponent {
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -571,6 +575,60 @@ describe('EditionReportComponent', () => {
             });
 
             describe('... should trigger on event from', () => {
+                describe('... SourceListComponent if', () => {
+                    it('... fragment id is undefined', () => {
+                        const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                        const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+
+                        listCmp.navigateToReportFragmentRequest.emit(undefined);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const listDes = getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
+                        const listCmp = listDes[0].injector.get(SourceListStubComponent) as SourceListStubComponent;
+
+                        listCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                    });
+                });
+
+                describe('... SourceDescriptionComponent if', () => {
+                    it('... fragment id is undefined', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const descriptionCmp = descriptionDes[0].injector.get(
+                            SourceDescriptionStubComponent
+                        ) as SourceDescriptionStubComponent;
+
+                        descriptionCmp.navigateToReportFragmentRequest.emit(undefined);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, undefined);
+                    });
+
+                    it('... fragment id is given', () => {
+                        const descriptionDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            SourceDescriptionStubComponent,
+                            1,
+                            1
+                        );
+                        const descriptionCmp = descriptionDes[0].injector.get(
+                            SourceDescriptionStubComponent
+                        ) as SourceDescriptionStubComponent;
+
+                        descriptionCmp.navigateToReportFragmentRequest.emit(expectedFragment);
+
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+                    });
+                });
+
                 describe('... SourceEvaluationComponent if', () => {
                     it('... fragment id is undefined', () => {
                         const evaluationDes = getAndExpectDebugElementByDirective(
@@ -599,9 +657,9 @@ describe('EditionReportComponent', () => {
                             SourceEvaluationStubComponent
                         ) as SourceEvaluationStubComponent;
 
-                        evaluationCmp.navigateToReportFragmentRequest.emit(expectedSvgSheet.id);
+                        evaluationCmp.navigateToReportFragmentRequest.emit(expectedFragment);
 
-                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedSvgSheet.id);
+                        expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
                     });
                 });
             });

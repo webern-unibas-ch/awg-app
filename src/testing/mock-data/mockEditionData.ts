@@ -328,6 +328,29 @@ export const mockEditionData = {
                                         ],
                                     ],
                                 },
+                                {
+                                    folio: '2',
+                                    isPage: true,
+                                    folioLinkTo: 'test_folio_id_2',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '1–2',
+                                                measure: '1–3',
+                                                linkTo: 'test_id_2_1',
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                system: '3–4',
+                                                systemDescription: '(test system description)',
+                                                measure: '4–6',
+                                                linkTo: 'test_id_2_2',
+                                            },
+                                        ],
+                                    ],
+                                },
                             ],
                         },
                         {
@@ -437,6 +460,57 @@ export const mockEditionData = {
                                         ],
                                     ],
                                 },
+                                {
+                                    folio: '2',
+                                    folioLinkTo: '',
+                                    folioDescription: '',
+                                    systemGroups: [
+                                        [
+                                            {
+                                                system: '1a',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'G',
+                                                    rowBase: 'g',
+                                                    rowNumber: '1',
+                                                },
+                                            },
+                                            {
+                                                system: '1b',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'K',
+                                                    rowBase: 'gis',
+                                                    rowNumber: '2',
+                                                },
+                                            },
+                                        ],
+                                        [
+                                            {
+                                                system: '2a',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'U',
+                                                    rowBase: 'g',
+                                                    rowNumber: '3',
+                                                },
+                                            },
+                                            {
+                                                system: '2b',
+                                                measure: '',
+                                                linkTo: '',
+                                                row: {
+                                                    rowType: 'KU',
+                                                    rowBase: 'fis',
+                                                    rowNumber: '4',
+                                                },
+                                            },
+                                        ],
+                                    ],
+                                },
                             ],
                         },
                         {
@@ -462,6 +536,16 @@ export const mockEditionData = {
                             ],
                         },
                     ],
+                },
+            },
+            {
+                id: 'source_BH',
+                siglum: 'B',
+                siglumAddendum: 'H',
+                type: 'Handexemplar von <strong>G</strong>.',
+                location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
+                description: {
+                    desc: ['Siehe <a (click)="ref.navigateToReportFragment(\'source_G\')"><strong>G</strong></a>.'],
                 },
             },
         ],

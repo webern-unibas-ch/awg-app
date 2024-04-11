@@ -533,7 +533,7 @@
     </g>
   </g>
   <path id="rect522" d="M797.635 175.28h174.477v127.556H797.635z" style="fill:#fff;stroke-width:1.33333"/>
-  <g id="g3" class="link-box">
+  <g id="g3" class="link-box-todo">
     <path id="rect524" d="M797.635 175.28h174.477v127.556H797.635z" style="fill:none;stroke:#777;stroke-width:.910664"/>
     <g id="text526" aria-label="M* 412 Sk1 T. 9–11" style="font-weight:700;font-size:21.3317px;font-family:Arial;-inkscape-font-specification:&quot;Arial, Bold&quot;;fill:#777;stroke-width:1.33333" transform="translate(0 -40)">
       <path id="path607" d="M834.371 271.332v-15.27h4.615l2.77 10.416 2.74-10.416h4.624v15.27h-2.864v-12.02l-3.031 12.02h-2.969l-3.02-12.02v12.02z"/>

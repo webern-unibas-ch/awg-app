@@ -18,7 +18,7 @@
                 "desc": [
                     "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert."
                 ],
-                "writingMaterialString": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.A[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.A[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.A[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
+                "writingMaterialString": "Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: ##JE_9_28## auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).",
                 "writingMaterial": [
                     {
                         "paperType": "Notenpapier",
@@ -260,16 +260,691 @@
             }
         },
         {
+            "id": "source_Ab",
+            "siglum": "A",
+            "siglumAddendum": "b",
+            "type": "Skizzen zu <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "2 Blätter (Bl. 1–2). Archivalische Paginierung <em>[1]</em> bis <em>[4]</em> unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert (vermutlich zwei Hälften eines ursprünglichen Blattes)."
+                ],
+                "writingMaterialString": "Notenpapier, 11 Systeme, Format: quer ca. 170 × 264 mm, Firmenzeichen: ##JE_7_22## auf Bl. 1<sup>r</sup> unten links, Wasserzeichen: <em>T</em> auf dem Kopf stehend auf Bl. 2 unten lesbar (Bl. 1–2).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 11,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "ca.",
+                                "value": "170"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "264"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_7_LIN_22",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["1r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "T",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "auf dem Kopf stehend",
+                                    "folios": ["2"],
+                                    "position": "unten"
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–2"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 217 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–9b",
+                                            "measure": "16–19, {20A–21A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9a/c–11",
+                                            "measure": "{22A–23A}, 20B–22B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "23B–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7a–10a",
+                                            "measure": "27",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 217 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>Die geheimnisvolle Flöte</em> [„An einem Abend“] M 217)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–8b",
+                                            "measure": "11–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_Ac",
+            "siglum": "A",
+            "siglumAddendum": "c",
+            "type": "Skizzen zu „Schien mir’s, als ich sah die Sonne“ M 213.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "3 Blätter (Bl. 1–3). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> unten links bzw. rechts (Bl. 3<sup>v</sup>) mit Bleistift. Bl. 3<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken Rand: Blätter von Bogen abgetrennt; Risspuren am oberen Rand von Bl. 1–2 (vermutlich zwei Hälften eines ursprünglichen Blattes); Riss (ca. 80 mm) am linken Rand (System 6) von Bl. 3; Flecken auf Bl. 3<sup>v</sup>."
+                ],
+                "writingMaterialString": "Notenpapier, 16 Systeme, Format: quer ca. 170 × 270 mm, kein Firmenzeichen (Bl. 1–2);<br />Notenpapier, 22 Systeme, Format: hoch 340 × 264 mm, Firmenzeichen: ##JE_7_22## auf Bl. 3<sup>r</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 16,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "ca.",
+                                "value": "170"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "270"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1–2"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 22,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "",
+                                "value": "340"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "264"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_7_LIN_22",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["3r"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "J. E. & Co. | W I E N",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "vertikal absteigend",
+                                    "folios": ["3v"],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "3"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 213 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–6",
+                                            "measure": "1–3, {4A}, 4B–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "{7A}, 7B–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–16",
+                                            "measure": "14–17, {18A–20}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "18B–21, {22A}, 22B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–13b",
+                                            "measure": "23–28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12a–15a",
+                                            "measure": "29–32",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk2",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "18–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk3",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14b",
+                                            "measure": "24–26",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk4",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b/7b",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk5",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "12c",
+                                            "measure": "33–36",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk6",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "{29A–31A}, 29B–31B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk7",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "32–39",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a–15a",
+                                            "measure": "40, 41",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 213 Sk8",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b–16",
+                                            "measure": "38–39",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_Ad",
+            "siglum": "A",
+            "siglumAddendum": "d",
+            "type": "Skizzen zu <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "3 Blätter (Bl. 1–3). Archivalische Paginierung <em>[1]</em> bis <em>[6]</em> unten links bzw. rechts (Bl. 1<sup>v</sup>, 3<sup>v</sup>) mit Bleistift. Verso-Seiten mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken bzw. rechten (Bl. 2) sowie am oberen Rand: Blätter von Bogen abgetrennt und im Format verändert (Bl. 2 und 3: vermutlich zwei Hälften eines ursprünglichen Blattes)."
+                ],
+                "writingMaterialString": "Notenpapier, 9 Systeme, Format: hoch ca. 173 × 264 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 6 Systeme, Format: quer ca. 172–176 × 264 mm, Firmenzeichen: ##JE_2_12_C## auf Bl. 2<sup>v</sup> unten links, Wasserzeichen: <em>J. E. &amp; Co. | W I E N</em> vertikal absteigend auf Bl. 3<sup>v</sup> lesbar (Bl. 3).",
+                "writingMaterial": [
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 9,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "hoch",
+                            "height": {
+                                "uncertainty": "ca.",
+                                "value": "173"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "264"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": [],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "1"
+                    },
+                    {
+                        "paperType": "Notenpapier",
+                        "systems": {
+                            "number": 6,
+                            "info": "",
+                            "addendum": ""
+                        },
+                        "format": {
+                            "orientation": "quer",
+                            "height": {
+                                "uncertainty": "ca.",
+                                "value": "172–176"
+                            },
+                            "width": {
+                                "uncertainty": "",
+                                "value": "264"
+                            }
+                        },
+                        "firmSign": {
+                            "variant": "FIRM_JE_NO_2_LIN_12_C",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "",
+                                    "folios": ["2v"],
+                                    "position": "unten links"
+                                }
+                            ]
+                        },
+                        "watermark": {
+                            "variant": "J. E. & Co. | W I E N",
+                            "alt": "",
+                            "location": [
+                                {
+                                    "info": "vertikal absteigend",
+                                    "folios": ["3v"],
+                                    "position": ""
+                                }
+                            ]
+                        },
+                        "folioAddendum": "3"
+                    }
+                ],
+                "writingInstruments": {
+                    "main": "Bleistift",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "M 213 Sk1",
+                        "itemLinkTo": {},
+                        "itemDescription": "(Skizze zu Gleich und Gleich [„Ein Blumenglöckchen“] M 216)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "11–12, {13–14}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "{15}, 13–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "16–19",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "20–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "source_B",
             "siglum": "B",
             "siglumAddendum": "",
-            "type": "Autograph von „Der Tag ist vergangen“ M 212: Textfassung 1→2",
+            "type": "Autograph von „Der Tag ist vergangen“ M 212: Textfassung 1→2.",
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
                     "1 Blatt (Bl. 1). Archivalische Paginierung von <em>[1]</em> bis <em>[2]</em> unten links (recto) bzw. links (verso). Rissspuren am linken Rand: von Bogen abgetrennt. Knickecken und Flecke auf Bl. 1<sup>r</sup> oben rechts; blaue Tintenflecke auf Bl. 1<sup>r</sup> unten rechts; Flecke auf Bl. 1<sup>v</sup>; blaue Tintenflecke auf Bl. 1<sup>v</sup> unten rechts und am rechten Rand."
                 ],
-                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: <br /><img class=\"img-thumbnail\" [src]=\"ref.FIRM_SIGNS.OP12.B[0].route\" [title]=\"ref.FIRM_SIGNS.OP12.B[0].full\" [alt]=\"ref.FIRM_SIGNS.OP12.B[0].short\" /> <br /> auf Bl. 1<sup>r</sup> unten links.",
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: ##JE_2_12_B## auf Bl. 1<sup>r</sup> unten links.",
                 "writingMaterial": [
                     {
                         "paperType": "Notenpapier",
@@ -307,7 +982,7 @@
                     "main": "schwarze Tinte",
                     "secondary": ["rote Tinte [Teile des Titels und vertonter Text]", "Bleistift"]
                 },
-                "title": "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte. <br /><em>„Der Tag ist vergangen.....“ </em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben.",
+                "title": "<em>op1[3</em>→<em>]2</em> [nach oben offen eingekreist] auf Bl. 1<sup>r</sup> oben links mit Bleistift, Korrektur und Einkreisung mit Tinte;<br /><em>„Der Tag ist vergangen.....“</em> [Mitte, rote Tinte] <em>1915</em> | <em>Anton von Webern</em> [rechts, schwarze Tinte] auf Bl. 1<sup>r</sup> oben.",
                 "date": "",
                 "pagination": "",
                 "measureNumbers": "",
@@ -315,7 +990,7 @@
                 "annotations": "",
                 "content": [
                     {
-                        "item": " ",
+                        "item": "",
                         "itemLinkTo": {},
                         "itemDescription": "Autograph von „Der Tag ist vergangen“ <a (click)=\"ref.selectSvgSheet('op12', 'M_212_TF1')\">M 212: Textfassung 1</a>→2",
                         "folios": [
@@ -381,15 +1056,1319 @@
             }
         },
         {
-            "id": "notA",
-            "siglum": "",
+            "id": "source_C",
+            "siglum": "C",
             "siglumAddendum": "",
-            "type": "",
-            "location": "",
+            "type": "Autographe von „Der Tag ist vergangen“ M 212: Textfassung 2 / <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: Textfassung 1 / „Schien mir’s, als ich sah die Sonne“ M 213: Textfassung 1 / <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1→2.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "<small class=\"text-muted\">[Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>C</strong> bis <strong>G<sup>H</sup></strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Vier Lieder</em> op. 12 in AWG I/5.]</small>"
+                    "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 2 aufeinander gelegte Bögen (Bl. 2/3, 4/5) 1 Bogen (Bl. 6/8) mit 1 eingelegten Blatt (Bl. 7), 1 Bogen (Bl. 9/10). Archivalische Paginierung <em>[1]</em> bis <em>[12]</em> (Bl. 1–6), <em>[12a]</em> bis <em>[12b]</em> (Bl. 7), <em>[13]</em> bis <em>[18]</em> (Bl. 8–10) unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 1<sup>v</sup>, 3<sup>r</sup>, 3<sup>v</sup>, 5<sup>v</sup>, 10<sup>r</sup>, 10<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet.",
+                    "Risse und Knickfalten auf Bl. 1<sup>r</sup>, Rissspuren auf Bl. 1<sup>r</sup> links: von Bogen abgetrennt; Knickfalte auf dem ganzen Bogen Bl. 2/3; Knickfalten auf Bl. 2<sup>r</sup> unten rechts, Durchschläge, Bleistift und Fingerabdrücke auf Bl. 2<sup>r</sup>; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 2<sup>v</sup>, spiegelverkehrtes M. A. 35 auf Bl. 2<sup>v</sup> unten Mitte; Knickfalten und Risse auf Bl. 3<sup>r</sup> rechts; Durchschläge, verwischter Bleistift und Fingerabdrücke auf Bl. 3<sup>v</sup>; Fleck auf Bl. 4<sup>r</sup> oben lnks, Fingerabdrücke auf Bl. 4<sup>r</sup> unten; Fleck auf Bl. 5<sup>r</sup> oben lnks Fleck auf Bl. 5<sup>v</sup> oben rechts; Fingerabdrücke auf Bl. 6<sup>r</sup> unten rechts."
+                ],
+                "writingMaterialString": "Notenpapier, 22 Systeme, Format: hoch 340 × 263 mm, Firmenzeichen: ##JE_7_22## recto unten links, Wasserzeichen: <em>T</em> oben recto lesbar (Bl. 1);<br />Notenpapier, 12 Systeme, Format: hoch 345 × 265 mm, Firmenzeichen: ##JE_2_12## recto unten links (Bl. 2–6, 8–10);<br />Notenpapier, 7 Systeme, Format: quer 170 × 270 mm, kein Firmenzeichen (Bl. 7).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "roter Buntstift",
+                        "Kopierstift",
+                        "blaue Tinte",
+                        "rote Tinte [Teile der Titel und vertonter Text von <em>„Der Tag ist vergangen“</em> und <em>„Schien mir’s als ich sah die Sonne“</em>]"
+                    ]
+                },
+                "title": "<em>4 Klavier-Lieder</em> | [xx <em>10</em> →] <em>op. 12 | (191</em>[<em>7</em>→]<em>5 u 1917)</em> auf Bl. 1<sup>r</sup> oben rechts mit Bleistift, [xx <em>10</em>] mit rotem Buntstift;<br /><em>„Der Tag ist vergangen....“</em> [rote Tinte; Kurrentschrift] | <em>Anton <s>von</s> Webern <s>op</s></em> | <em>(aus op. 12)</em> [schwarze Tinte] auf Bl. 2<sup>r</sup> oben Mitte und rechts, <em><s>von</s></em> und <em><s>op</s></em> gestrichen mit blauer Tinte;<br /><em>Die geheimnisvolle Flöte</em> | <em>Li-Tai-Po</em> | <em>Anton von Webern</em> auf Bl. 4<sup>r</sup> oben rechts;<br /><em>„Schien mirs</em> [sic] <em>als ich sah die Sonne…“</em> | <em>Strindberg</em> [Kurrentschrift] | <em>Anton von Webern</em> auf Bl. 6<sup>r</sup> oben Mitte und rechts mit roter Tinte;<br /><em>Gleich und Gleich | Goethe</em> [Kurrentschrift] auf Bl. 9<sup>r</sup> oben rechts.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "<em><s>Der Tag ist vergangen  bei U. E.</s></em> [Kurrentschrift] auf Bl. 1<sup>r</sup> System 7 rechts mit Bleistift;<br /><em>Notenbeilage zu</em>  [Abstand]  <em>M. A. 35</em> auf Bl. 2<sup>r</sup> unten links und Mitte mit Bleistift.",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von „Der Tag ist vergangen“ M 212: Textfassung 2 (<strong>C<sup>a</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "11–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "22–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung (<strong>C<sup>b</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "14–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "17–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "21–23",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "24–27",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9a–11a",
+                                            "measure": "28–29",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung (<strong>C<sup>c</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3a",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "6–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "10–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "15–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "19–[23]",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "[24–25]",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "[26–29]",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "[30–32]",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "[33–37]",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "[38–39]",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Korrekturskizzen zu <em>„Schien mir’s, als ich sah die Sonne“</em> M 213: einzige Textfassung (siehe Korrekturverzeichnis)",
+                        "folios": [
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "[22–25]",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "[23–26]",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "[27–28]",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1→2 (<strong>C<sup>d</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "8–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "12–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "15–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
                 ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
+            "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
+            "description": {
+                "desc": ["1 Bogen oder 1 Blatt, darauf zwei beschriebene Seiten (##S. [1]–[2]##)."],
+                "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## auf ##S. [1]## unten links.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["evt. weitere?"]
+                },
+                "title": "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] auf ##S. [1]## oben.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1",
+                        "folios": [
+                            {
+                                "folio": "##S. [1]##",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "12–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "##S. [2]##",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "15–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_E",
+            "siglum": "E",
+            "siglumAddendum": "",
+            "type": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2.",
+            "location": "In: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
+            "description": {
+                "desc": [
+                    "1 Blatt, Verso-Seite nicht bedruckt. Format: hoch 246 × 177 mm. Paginierung: 1 recto oben rechts."
+                ],
+                "writingMaterialString": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>„Der Tag ist vergangen…“</em> [Mitte] | <em>Anton Webern | (aus Op. 12).</em> [rechts] oben.",
+                "date": "",
+                "pagination": "<em>1</em> recto oben rechts.",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Druck von „Der Tag ist vergangen“ M 212: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "6–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "12–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "17–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_EH",
+            "siglum": "E",
+            "siglumAddendum": "H",
+            "type": "Handexemplar von <strong>E</strong> mit Korrekturen Weberns („Der Tag ist vergangen“ M 212: Fassung [2→] 3).",
+            "location": "CH-Bps, Sammlung Anton Webern, Basel, P IV 29.",
+            "description": {
+                "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_E')\"><strong>E</strong></a>."]
+            }
+        },
+        {
+            "id": "source_F",
+            "siglum": "F",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Vier Lieder</em> op. 12.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "description": {
+                "desc": [
+                    "10 Blätter (Bl. 1–10): 1 Bogen (Bl. 1/10) schließt 4 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7, 8/9) ein. Bl. 3<sup>r</sup>–3<sup>v</sup>, 5<sup>v</sup>, 9<sup>r</sup>–9<sup>v</sup> bis auf die Paginierung unbeschriftet, Bl. 1<sup>v</sup>, 10<sup>v</sup> unbeschriftet."
+                ],
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 340 × 268 mm, Firmenzeichen: ##??## auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": ["Bleistift", "roter Buntstift", "violetter Stempelabdruck"]
+                },
+                "title": "<em>Vier Lieder</em> [unterstrichen mit Bleistift] | <em>für</em> [Pfeil zu nächsten Zeile mit Bleistift] | <em>Gesang und Klavier | von | Anton Webern | op. 12</em> auf Bl. 1<sup>r</sup> System 3–7 Mitte;<br /><em>„Der Tag ist vergangen...“ | (Volkslied)</em> [Mitte] [Abstand] [<s>xxx</s>] | <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 1</em> [rechts] auf Bl. 2<sup>r</sup> System 1, [<s>xxx</s>] rasiert;<br /><em>Die geheimnisvolle Flöte | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, op</em>[.] <em>12 N<sup><u>o</u></sup> 2</em> auf Bl. 4<sup>r</sup> [rechts] oben bis System 1, <em>Li-Tai-Po</em> und <em>Anton Webern, op</em>[.] <em>12 N<sup><u>o</u></sup> 2</em> auf Rasur;<br /><em>Schien mirs, als ich sah die Sonne<s>!</s> | (aus August Strindbergs „Gespenstersonate“)</em> | [<s>xxx</s>] [Mitte] <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 3</em> [rechts] auf Bl. 6<sup>r</sup> oben bis System 1, <em><s>!</s></em> gestrichen mit Bleistift, [<s>xxx</s>] rasiert;<br /><em>Gleich und Gleich | (Goethe)</em> [Mitte] <em>Anton Webern, op. 12 N<sup><u>o</u></sup> 4</em> [rechts] auf Bl. 8<sup>r</sup> oben; <em><s>Anton Webern | Vier Lieder |</s></em> [<del style=\"text-decoration-style: double;\">xxx</del>] <em><s>| für | Gesang und Klavier | op. 12</s></em> auf Bl. 10<sup>r</sup> System 3–7 Mitte mit schwarzer Tinte, [<del style=\"text-decoration-style: double;\">xxx</del>] rasiert, alles gestrichen mit Bleistift.",
+                "date": "",
+                "pagination": "<em>1</em> bis <em>4</em> auf Bl. 2<sup>r</sup>–3<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 4<sup>r</sup>–5<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 6<sup>r</sup>–7<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 8<sup>r</sup>–9<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.).",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "<em><u>zum Satz</u></em> [dreifach unterstrichen] [links] [Pfeil nach rechts] <em>Schrift des Umschlages u. Tittelblattes</em> [sic] | <em>(gleichlautend) wie bei meinen | „geistlichen Lieder“ op. 15 U. E. No. 7629</em> auf Bl. 1<sup>r</sup> oben mit Bleistift;<br /><em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>2/4 ̅2̅5̅  </em> [Bleistift] | <em>Zum Stich!</em> [Stempel] | <span style=\"border-bottom: 1px solid black;display: inline;\"><em>U. E. 8<sup>o</sup></em></span> | <em>Stichregeln!!</em> | [Paraphe] [Bleistift] auf Bl. 1<sup>r</sup> System 3–5 rechts (nicht identifizierte Hs.);<br /><em>Aufführungsrechte vorbehalten.</em> [Abstand]<em> Droits d’exécution réserves.</em> [Stempel (schwacher Abdruck)] | <em><u>Universal-Edition</u> | Wien</em> [Bleistift] <em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> [Stempel, &lt;<em>25</em>&gt; mit Bleistift] <em>New York</em> | <em>U. E. Nr</em>[.] <em>8257</em> [Bleistift] auf Bl. 1<sup>r</sup> System 10–12 Mitte (nicht identifizierte Hs.);<br /><em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup>, 8<sup>r</sup> unten rechts mit violettem Stempelabdruck;<br /><em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links mit Stempelabdruck;<br /><em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (nicht identifizierte Hs.);<br /><em>Universal Edition Nr. 8257</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br /><em>U. E.</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br /><em>U. E. 8257</em> auf Bl. 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br />Dispositionsziffern in Nr. I (<em>„Der Tag ist vergangen“</em>) nach T. 3 (<em>1</em>), 7 (<em>2</em>), 11 (<em>3</em>), 14 (<em>1</em>), 17 (<em>2</em>), 23 (<em>3</em>) mit Bleistift (nicht identifizierte Hs.).",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von <em>Vier Lieder</em> op. 12",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "I „Der Tag ist vergangen“ M 212: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "5–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "18–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "22–24",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "25–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "III „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "5–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "9–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "13–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "17–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "22–25",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "26–28",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "29–32",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "33–36",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "37–41",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "8r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "5–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "9–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "16–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "19–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "10r",
+                                "folioLinkTo": "",
+                                "folioDescription": "gestrichene Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_G",
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Vier Lieder</em> op. 12.",
+            "location": "Wien: Universal Edition, 1925.",
+            "description": {
+                "desc": ["12 Seiten (S. 1–12) in Umschlag."],
+                "writingMaterialString": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>VIER LIEDER | für Gesang und Klavier | von | ANTON WEBERN | Op. 12</em> auf S. 1;<br /><em><span class=\"caps\">Der Tag ist vergangen</span> | (Volkslied)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 1</em> [rechts] auf S. 2 oben (Kopftitel);<br /><em><span class=\"caps\">Die geheimnsivolle Flöte</span> | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, Op.12 Nr. 2</em> [rechts] auf S. 4 oben (Kopftitel);<br /><em><span class=\"caps\">Schien mir’s, als ich sah die Sonne</span> | (aus August Strindbergs „Gespenstersonate“)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 3</em> [rechts] auf S. 6 oben (Kopftitel);<br /><em><span class=\"caps\">Gleich und Gleich</span> | (Goethe)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 4</em> [rechts] auf S. 8 oben (Kopftitel).",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Druck von <em>Vier Lieder</em> op. 12",
+                        "folios": [
+                            {
+                                "folio": "1",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "I „Der Tag ist vergangen“ M 212: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "2",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "12–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "15–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "18–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "II <em>Die geheimnisvolle Flöte</em> („An einem Abend“) M 217: einzige Textfassung",
+                        "folios": [
+                            {
+                                "folio": "4",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "10–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "14–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "18–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "22–24",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "25–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "III „Schien mir’s, als ich sah die Sonne“ M 213: einzige Textfassung:",
+                        "folios": [
+                            {
+                                "folio": "6",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "6–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "11–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "17–22",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "23–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "27–30",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "31–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "36–41",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "IV <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "8",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "11–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "14–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "17–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "19–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "10",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "unbedruckt.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "11",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "Werkverzeichnis Anton Webern.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "12",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "unbedruckt.",
+                                "systemGroups": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_GH",
+            "siglum": "G",
+            "siglumAddendum": "H",
+            "type": "Handexemplar von <strong>G</strong>.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
+            "description": {
+                "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>."],
+                "annotations": "<em>Januar, 1925</em> auf S. [1] untere Hälfte links mit Bleistift;<br /><em>2 1/2 bis 3</em> nach Nr. I mit Bleistift;<br/><em>3’</em> nach Nr. II mit Bleistift;<br /><em>2 1/2</em> nach Nr. III mit Bleistift;<br /><em>2’</em> [eingerahmt] <em><s>3’</s></em> nach Nr. II mit Bleistift, <em><s>3’</s></em> gestrichen. "
             }
         }
     ]

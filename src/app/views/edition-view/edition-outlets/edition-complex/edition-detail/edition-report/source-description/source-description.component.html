@@ -31,12 +31,18 @@
                         <div class="awg-source-description-body">
                             <!-- description -->
                             @if (utils.isNotEmptyArray(sourceDescription.description.desc)) {
-                                @for (description of sourceDescription.description.desc; track description) {
-                                    <p
-                                        class="awg-source-description-desc"
-                                        [compile-html]="description"
-                                        [compile-html-ref]="ref"></p>
-                                }
+                                <p class="awg-source-description-desc">
+                                    @for (
+                                        description of sourceDescription.description.desc;
+                                        track description;
+                                        let lastDesc = $last
+                                    ) {
+                                        <span [compile-html]="description" [compile-html-ref]="ref"></span>
+                                        @if (!lastDesc) {
+                                            <br />
+                                        }
+                                    }
+                                </p>
                             }
                             <!-- writingMaterial -->
                             @if (
@@ -104,10 +110,27 @@
                                                 }
                                             </span>
                                             @for (location of writingMaterial.firmSign.location; track location) {
-                                                <span [innerHTML]="getWritingMaterialFirmSignLocation(location)"></span>
+                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
                                             }
                                         } @else {
                                             <span>kein Firmenzeichen</span>
+                                        }
+                                        @if (
+                                            utils.isNotEmptyObject(writingMaterial.watermark) &&
+                                            writingMaterial.watermark?.variant
+                                        ) {
+                                            <span class="awg-source-description-writing-material-watermark"
+                                                ><span>, Wasserzeichen: </span>
+                                                @if (writingMaterial.watermark.variant) {
+                                                    <span
+                                                        ><em>{{ writingMaterial.watermark.variant }}</em></span
+                                                    >&nbsp;
+                                                }
+                                            </span>
+                                            @for (location of writingMaterial.watermark.location; track location) {
+                                                <span [innerHTML]="getWritingMaterialItemLocation(location)"></span>
+                                            }
+                                            <span>&nbsp;lesbar</span>
                                         }
                                         @if (writingMaterial.folioAddendum) {
                                             <span>&nbsp;(Bl. {{ writingMaterial.folioAddendum }})</span>
@@ -125,9 +148,11 @@
                                 @if (sourceDescription.description.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
                                         <span class="caps">Schreibstoff:&nbsp;</span>
-                                        <span>{{
-                                            getWritingInstruments(sourceDescription.description.writingInstruments)
-                                        }}</span>
+                                        <span
+                                            [compile-html]="
+                                                getWritingInstruments(sourceDescription.description.writingInstruments)
+                                            "
+                                            [compile-html-ref]="ref"></span>
                                     </p>
                                 }
                             }
@@ -194,7 +219,7 @@
                                             <!-- content.itemDescription -->
                                             @if (content.item || content.itemDescription) {
                                                 <span class="awg-source-description-content-item">
-                                                    @if (utils.isNotEmptyObject(content.itemLinkTo)) {
+                                                    @if (content.item && utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <a
                                                             (click)="
                                                                 selectSvgSheet(
@@ -205,12 +230,15 @@
                                                             ><strong>{{ content.item }}</strong></a
                                                         >
                                                     }
-                                                    @if (!utils.isNotEmptyObject(content.itemLinkTo)) {
+                                                    @if (content.item && !utils.isNotEmptyObject(content.itemLinkTo)) {
                                                         <strong>{{ content.item }}</strong>
+                                                    }
+                                                    @if (content.item && content.itemDescription) {
+                                                        <span>&nbsp;</span>
                                                     }
                                                     @if (content.itemDescription) {
                                                         <span class="awg-source-description-content-item-description"
-                                                            >&nbsp;<span
+                                                            ><span
                                                                 [compile-html]="content.itemDescription"
                                                                 [compile-html-ref]="ref"></span
                                                         ></span>
@@ -225,7 +253,7 @@
                                                         <span
                                                             class="awg-source-description-content-item-folio"
                                                             [ngClass]="{
-                                                                tab: content.item
+                                                                tab: content.item || content.itemDescription
                                                             }">
                                                             @if (folio.folioLinkTo) {
                                                                 <a
@@ -260,8 +288,12 @@
                                                         </span>
                                                     }
                                                     <ng-template #folioTemplate let-folio>
-                                                        <span
-                                                            ><span>Bl.&nbsp;</span>
+                                                        <span>
+                                                            @if (folio.isPage) {
+                                                                <span>S.&nbsp;</span>
+                                                            } @else {
+                                                                <span>Bl.&nbsp;</span>
+                                                            }
                                                             @if (
                                                                 folio.folio.endsWith('v') || folio.folio.endsWith('r')
                                                             ) {
@@ -297,6 +329,15 @@
                                                                     <span
                                                                         class="awg-source-description-content-item-system"
                                                                         [ngClass]="{
+                                                                            tab: system.row && !firstSystem,
+                                                                            singletab:
+                                                                                (system.row &&
+                                                                                    !firstSystemGroup &&
+                                                                                    firstSystem &&
+                                                                                    folio.folio.length === 1) ||
+                                                                                (system.measure &&
+                                                                                    !firstSystemGroup &&
+                                                                                    folio.folio.length === 1),
                                                                             tab: system.row && !firstSystem,
                                                                             doubletab:
                                                                                 (system.row &&
