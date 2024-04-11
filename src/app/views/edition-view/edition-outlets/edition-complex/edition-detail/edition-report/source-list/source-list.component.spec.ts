@@ -23,10 +23,10 @@ describe('SourceListComponent (DONE)', () => {
     let expectedSourceListData: SourceList;
     let expectedFragment: string;
 
-    let openModalSpy: Spy;
-    let openModalRequestEmitSpy: Spy;
     let navigateToReportFragmentSpy: Spy;
     let navigateToReportFragmentRequestEmitSpy: Spy;
+    let openModalRequestEmitSpy: Spy;
+    let openModalSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -414,7 +414,7 @@ describe('SourceListComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                // Get anhors in th column
+                // Get anhors in description
                 const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);
 
                 // Everything but first anchor uses modal

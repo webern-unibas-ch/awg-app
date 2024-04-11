@@ -538,6 +538,16 @@ export const mockEditionData = {
                     ],
                 },
             },
+            {
+                id: 'source_BH',
+                siglum: 'B',
+                siglumAddendum: 'H',
+                type: 'Handexemplar von <strong>G</strong>.',
+                location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
+                description: {
+                    desc: ['Siehe <a (click)="ref.navigateToReportFragment(\'source_G\')"><strong>G</strong></a>.'],
+                },
+            },
         ],
     },
 

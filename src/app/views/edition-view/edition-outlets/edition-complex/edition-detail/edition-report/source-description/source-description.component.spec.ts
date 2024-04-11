@@ -42,7 +42,10 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let expectedSheetId: string;
     let expectedNextSheetId: string;
     let expectedModalSnippet: string;
+    let expectedFragment: string;
 
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
     let selectSvgSheetSpy: Spy;
@@ -64,17 +67,23 @@ describe('SourceDescriptionComponent (DONE)', () => {
         utils = TestBed.inject(UtilityService);
 
         // Test data
+        expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
         expectedComplexId = 'testComplex1';
         expectedNextComplexId = 'testComplex2';
         expectedSheetId = 'test_item_id_1';
         expectedNextSheetId = 'test_item_id_2';
+        expectedFragment = 'source_G';
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
-        expectedSourceDescriptionListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceDescriptionListData));
         expectedFirmSigns = EDITION_FIRM_SIGNS_DATA;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
         selectSvgSheetSpy = spyOn(component, 'selectSvgSheet').and.callThrough();
@@ -133,57 +142,67 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             it('... should have `card` class on each description div', () => {
-                const divDes = getAndExpectDebugElementByCss(
+                const sourceDescDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-source-description-list > div.awg-source-description',
                     expectedSourceDescriptionListData.sources.length,
                     expectedSourceDescriptionListData.sources.length
                 );
 
-                divDes.forEach(divDe => {
+                sourceDescDes.forEach(divDe => {
                     const divEl = divDe.nativeElement;
                     expectToContain(divEl.classList, 'card');
                 });
             });
 
-            it('... should have 1 div. card-body in each description div', () => {
-                const divDes = getAndExpectDebugElementByCss(
+            it('... should have 1 div.card-body in each description div', () => {
+                const sourceDescDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-source-description-list > div.awg-source-description',
                     expectedSourceDescriptionListData.sources.length,
                     expectedSourceDescriptionListData.sources.length
                 );
 
-                divDes.forEach(divDe => {
+                sourceDescDes.forEach(divDe => {
                     getAndExpectDebugElementByCss(divDe, 'div.card-body', 1, 1);
                 });
             });
 
             describe('... first description div', () => {
                 it('... should contain a description-head div, but no description-body in div.card-body', () => {
-                    const divDes = getAndExpectDebugElementByCss(
+                    const cardBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description > div.card-body',
-                        2,
-                        2
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
                     );
 
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-source-description-head', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[0], 'div.awg-source-description-body', 0, 0);
+                    getAndExpectDebugElementByCss(cardBodyDes[0], 'div.awg-source-description-head', 1, 1);
+                    getAndExpectDebugElementByCss(cardBodyDes[0], 'div.awg-source-description-body', 0, 0);
                 });
 
                 it('... should contain 3 paragraphs in first description-head div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+                    getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
                 });
 
                 it('... the first paragraph displaying a siglum (bold) without an addendum', () => {
                     const expectedSiglum = expectedSourceDescriptionListData.sources[0].siglum;
 
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
                     const pEl = pDes[0].nativeElement;
 
                     const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 1, 1);
@@ -199,9 +218,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the second paragraph displaying the source type', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
 
                     const pEl = pDes[1].nativeElement;
 
@@ -210,9 +234,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the third paragraph displaying the source location', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 3, 3);
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[0], 'p', 3, 3);
 
                     const pEl = pDes[2].nativeElement;
 
@@ -223,30 +252,40 @@ describe('SourceDescriptionComponent (DONE)', () => {
 
             describe('... second description div', () => {
                 it('... should contain a description-head div, and a description-body in div.card-body', () => {
-                    const divDes = getAndExpectDebugElementByCss(
+                    const cardBodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.awg-source-description-list > div.awg-source-description > div.card-body',
-                        2,
-                        2
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
                     );
 
-                    getAndExpectDebugElementByCss(divDes[1], 'div.awg-source-description-head', 1, 1);
-                    getAndExpectDebugElementByCss(divDes[1], 'div.awg-source-description-body', 1, 1);
+                    getAndExpectDebugElementByCss(cardBodyDes[1], 'div.awg-source-description-head', 1, 1);
+                    getAndExpectDebugElementByCss(cardBodyDes[1], 'div.awg-source-description-body', 1, 1);
                 });
 
                 it('... should contain 2 paragraphs in second description-head div', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    getAndExpectDebugElementByCss(divDes[1], 'p', 2, 2);
+                    getAndExpectDebugElementByCss(descHeadDes[1], 'p', 2, 2);
                 });
 
                 it('... the first paragraph displaying a siglum (bold) with addendum', () => {
                     const expectedSiglum = expectedSourceDescriptionListData.sources[1].siglum;
                     const expectedAddendum = expectedSourceDescriptionListData.sources[1].siglumAddendum;
 
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[1], 'p', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[1], 'p', 2, 2);
                     const pEl = pDes[0].nativeElement;
 
                     const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
@@ -268,9 +307,14 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the second paragraph displaying the source location', () => {
-                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-head', 2, 2);
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
 
-                    const pDes = getAndExpectDebugElementByCss(divDes[1], 'p', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[1], 'p', 2, 2);
                     const pEl = pDes[1].nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-location');
@@ -278,11 +322,21 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... should contain up to 9 paragraphs in description-body div', () => {
-                    getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    // First description has no content, so only 2 divs
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                    // Get first description body div with content
+                    getAndExpectDebugElementByCss(descBodyDes[0], 'div.awg-source-description-body > p', 9, 9);
                 });
 
                 it('... the first possible paragraph displaying the description', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[0].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -295,7 +349,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the second possible paragraph displaying the writingMaterial', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[1].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -313,7 +373,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the third possible paragraph displaying the writingInstruments', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[2].nativeElement;
 
                     const instruments = expectedSourceDescriptionListData.sources[1].description.writingInstruments;
@@ -335,7 +401,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the fourth possible paragraph displaying the title', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[3].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -348,7 +420,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the fifth possible paragraph displaying the date', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[4].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -361,7 +439,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the sixth possible paragraph displaying the pagination', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[5].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -374,7 +458,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the seventh possible paragraph displaying the measure numbers', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[6].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -387,7 +477,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the eighth possible paragraph displaying the instrumentation', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[7].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -401,7 +497,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 });
 
                 it('... the ninth possible paragraph displaying the annotations', () => {
-                    const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body > p', 9, 9);
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[0],
+                        'div.awg-source-description-body > p',
+                        9,
+                        9
+                    );
                     const pEl = pDes[8].nativeElement;
 
                     // Process HTML expression of expected text content
@@ -943,8 +1045,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         const systemEl4 = systemDes[4].nativeElement;
                         const systemEl5 = systemDes[5].nativeElement;
 
-                        console.log(systemDes);
-
                         // Bl. 1r
                         expect(systemEl0).not.toHaveClass('singletab');
                         expect(systemEl1).not.toHaveClass('singletab');
@@ -1238,6 +1338,125 @@ describe('SourceDescriptionComponent (DONE)', () => {
                         expect(systemEl6).toHaveClass('doubletab_two');
                         expect(systemEl7).not.toHaveClass('doubletab_two');
                     });
+                });
+            });
+
+            describe('... third description div', () => {
+                it('... should contain a description-head div, and a description-body in div.card-body', () => {
+                    const cardBodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-list > div.awg-source-description > div.card-body',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
+
+                    getAndExpectDebugElementByCss(cardBodyDes[2], 'div.awg-source-description-head', 1, 1);
+                    getAndExpectDebugElementByCss(cardBodyDes[2], 'div.awg-source-description-body', 1, 1);
+                });
+
+                it('... should contain 3 paragraphs in second description-head div', () => {
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
+
+                    getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
+                });
+
+                it('... the first paragraph displaying a siglum (bold) with addendum', () => {
+                    const expectedSiglum = expectedSourceDescriptionListData.sources[2].siglum;
+                    const expectedAddendum = expectedSourceDescriptionListData.sources[2].siglumAddendum;
+
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
+
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
+                    const pEl = pDes[0].nativeElement;
+
+                    const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
+                    const siglumDes = spanDes[0];
+                    const siglumEl = siglumDes.nativeElement;
+
+                    const addendumDes = spanDes[1];
+                    const addendumEl = addendumDes.nativeElement;
+
+                    expect(pEl).toHaveClass('awg-source-description-siglum-container');
+                    expect(pEl).toHaveClass('bold');
+                    expectToBe(pEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                    expect(siglumEl).toHaveClass('awg-source-description-siglum');
+                    expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+
+                    expect(addendumEl).toHaveClass('awg-source-description-siglum-addendum');
+                    expectToBe(addendumEl.textContent.trim(), expectedAddendum.trim());
+                });
+
+                it('... the second paragraph displaying the source type', () => {
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
+
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
+                    const pEl = pDes[1].nativeElement;
+
+                    // Process HTML expression of expected text content
+                    const expectedHtmlTextContent = mockDocument.createElement('p');
+                    expectedHtmlTextContent.innerHTML = expectedSourceDescriptionListData.sources[2].type;
+
+                    expect(pEl).toHaveClass('awg-source-description-type');
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
+                });
+
+                it('... the third paragraph displaying the source location', () => {
+                    const descHeadDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.awg-source-description-head',
+                        expectedSourceDescriptionListData.sources.length,
+                        expectedSourceDescriptionListData.sources.length
+                    );
+
+                    const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
+
+                    const pEl = pDes[2].nativeElement;
+
+                    expect(pEl).toHaveClass('awg-source-description-location');
+                    expectToBe(pEl.textContent.trim(), expectedSourceDescriptionListData.sources[2].location.trim());
+                });
+
+                it('... should contain one paragraph in description-body div', () => {
+                    // First description has no content, so only 2 divs
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+
+                    // Get second description body div with content
+                    getAndExpectDebugElementByCss(descBodyDes[1], 'div.awg-source-description-body > p', 1, 1);
+                });
+
+                it('... the first paragraph displaying the description', () => {
+                    const descBodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
+                    const pDes = getAndExpectDebugElementByCss(
+                        descBodyDes[1],
+                        'div.awg-source-description-body > p',
+                        1,
+                        1
+                    );
+                    const pEl = pDes[0].nativeElement;
+
+                    // Process HTML expression of expected text content
+                    const expectedHtmlTextContent = mockDocument.createElement('p');
+                    expectedHtmlTextContent.innerHTML =
+                        expectedSourceDescriptionListData.sources[2].description.desc[0];
+
+                    expect(pEl).toHaveClass('awg-source-description-desc');
+                    expectToBe(pEl.textContent.trim(), expectedHtmlTextContent.textContent.trim());
                 });
             });
         });
@@ -1572,13 +1791,61 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
         });
 
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                // Get description section
+                const descDes = getAndExpectDebugElementByCss(compDe, 'p.awg-source-description-desc', 2, 2);
+
+                const anchorDes = getAndExpectDebugElementByCss(descDes[1], 'a', 1, 1);
+
+                // Everything but first anchor uses modal
+                // Click on first anchor
+                clickAndAwaitChanges(anchorDes[0], fixture);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            }));
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
+            });
+        });
+
         describe('#openModal()', () => {
             it('... should have a method `openModal`', () => {
                 expect(component.openModal).toBeDefined();
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
                 // Find description paragraphs
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.awg-source-description-desc', 1, 1);
 
@@ -1623,7 +1890,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             it('... should trigger on click', fakeAsync(() => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 1, 1);
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.awg-source-description-body', 2, 2);
 
                 // Find content item spans
                 const contentItemDes = getAndExpectDebugElementByCss(
