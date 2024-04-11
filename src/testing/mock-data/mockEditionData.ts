@@ -189,6 +189,7 @@ export const mockEditionData = {
             {
                 siglum: 'C',
                 siglumAddendum: '',
+                missing: true,
                 type: 'Test type 3',
                 location: 'Test location 3.',
                 hasDescription: false,
@@ -542,6 +543,7 @@ export const mockEditionData = {
                 id: 'source_BH',
                 siglum: 'B',
                 siglumAddendum: 'H',
+                missing: true,
                 type: 'Handexemplar von <strong>G</strong>.',
                 location: 'US-Wc, Moldenhauer Archives, Box-Folder: 59/10.',
                 description: {
