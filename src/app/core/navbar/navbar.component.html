@@ -1,14 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-light awg-main-navbar ps-4 pe-2">
     <!-- Brand -->
-    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->
-    <a
-        class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline me-0 my-auto"
-        href="{{ pageMetaData?.awgProjectUrl }}">
-        <span class="webernlogo">
-            ANTON WEBERN <br />
-            <span>GESAMTAUSGABE</span>
-        </span>
-    </a>
+    <!-- length of 3 cols (4 on md), do not display on xs and sm devices, no right margin, auto vertical align -->
+    <div class="navbar-brand-container col-3 col-md-4 col-xl-3 d-inline d-sm-none d-md-inline me-0 my-auto">
+        <a class="navbar-brand" [href]="logos?.['awg'].href">
+            <img [src]="logos?.['awg'].src" [alt]="logos?.['awg'].alt" height="auto" />
+        </a>
+    </div>
 
     <!-- Toggle button -->
     <button
@@ -96,15 +93,12 @@
             </li>
         </ul>
         <!-- END left navbar -->
-        <!-- brand to display on center on sm devices, auto vertical align -->
-        <a
-            class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none me-0 my-auto"
-            href="{{ pageMetaData?.awgProjectUrl }}">
-            <span class="webernlogo">
-                ANTON WEBERN <br />
-                <span>GESAMTAUSGABE</span>
-            </span>
-        </a>
+        <!-- brand to display on center on sm devices, auto align -->
+        <div class="navbar-brand-container col-3 d-none d-sm-inline d-md-none ms-5 me-auto my-auto">
+            <a class="navbar-brand" [href]="logos?.['awg'].href">
+                <img [src]="logos?.['awg'].src" height="auto" [alt]="logos?.['awg'].alt" />
+            </a>
+        </div>
 
         <!-- right nav links, auto vertical align -->
         <ul class="navbar-nav my-auto">
