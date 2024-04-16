@@ -8,7 +8,7 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "17 Seiten in Skizzenbuch 3: Bl. 26v–31r (S. 51–60), Bl. 32r (S. 62) und Bl. 33v–36r (S. 65–70)."
+                    "17 Seiten in <strong>Skizzenbuch 3</strong>: Bl. 26<sup>v</sup>–31<sup>r</sup> (S. <em>51</em>–<em>60</em>), Bl. 32<sup>r</sup> (S. <em>62</em>) und Bl. 33<sup>v</sup>–36<sup>r</sup> (S. <em>65</em>–<em>70</em>)."
                 ],
                 "writingMaterial": "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36).",
                 "writingInstruments": {
@@ -20,7 +20,7 @@
                     ]
                 },
                 "title": "<em>Texte von H. J.</em> auf Bl. 26<sup>v</sup> oben Mitte;<br /><em>„Das dunkle Herz“</em> auf Bl. 34<sup>r</sup> oben links.",
-                "date": "<em>31. V. 33</em> [unten eingerahmt] auf Bl. 26<sup>v</sup> System 12–13 Mitte;<br /><em>1. IV. 33</em> auf Bl. 27<sup>r</sup> oben links;<br />[x]<em>. IV. 33.</em> auf Bl. 27<sup>r</sup> System 9 links;<br /><em>Maria Enzersdorf | 14. VII. 33</em> auf Bl. 28<sup>v</sup> System 3 (nach ##Sk## T. ##);<br /><em>26. VII. 33</em> auf Bl. 29<sup>v</sup> oben links;<br /><em>18. VIII. 33</em> auf Bl. 32 System 6–7 (nach##Sk## T. 30);<br /><em>3. I. 1934</em> auf Bl. 34<sup>r</sup> oben links;<br /><em>5. I. 34</em> auf Bl. 34<sup>r</sup> System 7 T. 1;<br /><em>15. III. 34</em> auf Bl. 35<sup>v</sup> System 14–15 rechts (nach ##Sk## T. ##).",
+                "date": "<em>31. V. 33</em> [unten eingerahmt] auf Bl. 26<sup>v</sup> System 12–13 Mitte;<br /><em>1. IV. 33</em> auf Bl. 27<sup>r</sup> oben links;<br />[x]<em>. IV. 33.</em> auf Bl. 27<sup>r</sup> System 9 links;<br /><em>Maria Enzersdorf | 14. VII. 33</em> auf Bl. 28<sup>v</sup> System 3 (nach <strong>M 312 Sk4</strong> T. 30);<br /><em>26. VII. 33</em> auf Bl. 29<sup>v</sup> oben links;<br /><em>18. VIII. 33</em> auf Bl. 32<sup>r</sup> System 6–7 (nach <strong>M 313 Sk4</strong> T. 30C);<br /><em>3. I. 1934</em> auf Bl. 34<sup>r</sup> oben links;<br /><em>5. I. 34</em> auf Bl. 34<sup>r</sup> System 7 T. 1;<br /><em>15. III. 34</em> auf Bl. 35<sup>v</sup> System 14–15 rechts (nach <strong>M 314 Sk3</strong> T. 50).",
                 "pagination": "",
                 "measureNumbers": "",
                 "instrumentation": "",
@@ -171,13 +171,6 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "1–5a",
-                                            "measure": "28#B‒30",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
                                             "system": "6–14b",
                                             "measure": "24B‒25B, {26B‒27B}",
                                             "linkTo": ""
@@ -193,7 +186,14 @@
                                     [
                                         {
                                             "system": "12a–16a",
-                                            "measure": "27C‒28#A",
+                                            "measure": "27C‒28A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "1–5a",
+                                            "measure": "28B‒30",
                                             "linkTo": ""
                                         }
                                     ]
@@ -214,7 +214,7 @@
                                     [
                                         {
                                             "system": "1a–3b",
-                                            "measure": "##3–5",
+                                            "measure": "1–6",
                                             "linkTo": ""
                                         }
                                     ]
@@ -225,7 +225,7 @@
                     {
                         "item": "M 312 Sk1.1",
                         "itemLinkTo": "M_312_Sk1_1",
-                        "itemDescription": "(Skizze zu Zwölftonreihe)",
+                        "itemDescription": "(Skizze zu „Herr Jesus mein“ M 312)",
                         "folios": [
                             {
                                 "folio": "27r",
@@ -235,8 +235,13 @@
                                     [
                                         {
                                             "system": "1b",
-                                            "measure": "##0–0",
-                                            "linkTo": ""
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "Zwöftonreihenform G",
+                                                "rowBase": "g",
+                                                "rowNumber": ""
+                                            }
                                         }
                                     ]
                                 ]
@@ -246,7 +251,7 @@
                     {
                         "item": "M 312 Sk2",
                         "itemLinkTo": "M_312_Sk2",
-                        "itemDescription": "(Reihentabelle)",
+                        "itemDescription": "(Reihentabelle zu „Herr Jesus mein“ M 312)",
                         "folios": [
                             {
                                 "folio": "27r",
@@ -255,9 +260,112 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "4b–8b",
-                                            "measure": "##4–6",
-                                            "linkTo": ""
+                                            "system": "4b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "f",
+                                                "rowNumber": "9"
+                                            }
+                                        },
+                                        {
+                                            "system": "4c",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "gis",
+                                                "rowNumber": "10"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "gis",
+                                                "rowNumber": "1"
+                                            }
+                                        },
+                                        {
+                                            "system": "5c",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "h",
+                                                "rowNumber": "2"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "gis",
+                                                "rowNumber": "3"
+                                            }
+                                        },
+                                        {
+                                            "system": "6c",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "f",
+                                                "rowNumber": "4"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "G",
+                                                "rowBase": "d",
+                                                "rowNumber": "5"
+                                            }
+                                        },
+                                        {
+                                            "system": "7c",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "K",
+                                                "rowBase": "f",
+                                                "rowNumber": "6"
+                                            }
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8b",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "U",
+                                                "rowBase": "d",
+                                                "rowNumber": "7"
+                                            }
+                                        },
+                                        {
+                                            "system": "8c",
+                                            "measure": "",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "KU",
+                                                "rowBase": "h",
+                                                "rowNumber": "8"
+                                            }
                                         }
                                     ]
                                 ]
@@ -277,7 +385,7 @@
                                     [
                                         {
                                             "system": "9–16a",
-                                            "measure": "##0–0",
+                                            "measure": "{1A–2A}, {1B}. {1C}, 2B",
                                             "linkTo": ""
                                         }
                                     ]
@@ -298,7 +406,7 @@
                                     [
                                         {
                                             "system": "13b–14b",
-                                            "measure": "##0–0",
+                                            "measure": "13b–14b",
                                             "linkTo": ""
                                         }
                                     ]
@@ -319,7 +427,7 @@
                                     [
                                         {
                                             "system": "13c–14c",
-                                            "measure": "##0–0",
+                                            "measure": "1–2",
                                             "linkTo": ""
                                         }
                                     ]
@@ -340,7 +448,7 @@
                                     [
                                         {
                                             "system": "15b–16b",
-                                            "measure": "##0–0",
+                                            "measure": "1–2",
                                             "linkTo": ""
                                         }
                                     ]
@@ -360,8 +468,8 @@
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "15b",
-                                            "measure": "##0–0",
+                                            "system": "15c",
+                                            "measure": "22",
                                             "linkTo": ""
                                         }
                                     ]
@@ -382,7 +490,7 @@
                                     [
                                         {
                                             "system": "16a",
-                                            "measure": "##0–0",
+                                            "measure": "20–21",
                                             "linkTo": ""
                                         }
                                     ]
@@ -403,7 +511,7 @@
                                     [
                                         {
                                             "system": "16c",
-                                            "measure": "##0–0",
+                                            "measure": "21",
                                             "linkTo": ""
                                         }
                                     ]
@@ -424,7 +532,7 @@
                                     [
                                         {
                                             "system": "16e",
-                                            "measure": "##0–0",
+                                            "measure": "22",
                                             "linkTo": ""
                                         }
                                     ]
@@ -445,7 +553,7 @@
                                     [
                                         {
                                             "system": "10a–14a",
-                                            "measure": "##0–0",
+                                            "measure": "12 1–3/16, {12 4–6/16A}, {12 4–6/16B}, {13}",
                                             "linkTo": ""
                                         }
                                     ]
@@ -466,7 +574,7 @@
                                     [
                                         {
                                             "system": "11b–16b",
-                                            "measure": "##0–0",
+                                            "measure": "13",
                                             "linkTo": ""
                                         }
                                     ]
@@ -487,7 +595,7 @@
                                     [
                                         {
                                             "system": "12c–16c",
-                                            "measure": "##0–0",
+                                            "measure": "15",
                                             "linkTo": ""
                                         }
                                     ]
@@ -508,7 +616,7 @@
                                     [
                                         {
                                             "system": "15a–16a",
-                                            "measure": "##0–0",
+                                            "measure": "14",
                                             "linkTo": ""
                                         }
                                     ]
@@ -529,7 +637,7 @@
                                     [
                                         {
                                             "system": "2b–5b",
-                                            "measure": "##0–0",
+                                            "measure": "27",
                                             "linkTo": ""
                                         }
                                     ]
@@ -571,7 +679,7 @@
                                     [
                                         {
                                             "system": "3–7",
-                                            "measure": "{1A}–3",
+                                            "measure": "{1A–2A}, {1B–3A}, 2C–3B",
                                             "linkTo": ""
                                         }
                                     ],
@@ -599,7 +707,7 @@
                                     [
                                         {
                                             "system": "9b–11b",
-                                            "measure": "#8–9",
+                                            "measure": "8–9",
                                             "linkTo": ""
                                         }
                                     ]
@@ -662,7 +770,7 @@
                                     [
                                         {
                                             "system": "5b–7c",
-                                            "measure": "#0–0",
+                                            "measure": "9",
                                             "linkTo": ""
                                         }
                                     ]
@@ -671,8 +779,8 @@
                         ]
                     },
                     {
-                        "item": "M 313 Sk3.#1",
-                        "itemLinkTo": "M_313_Sk3_#1",
+                        "item": "M 313 Sk3.1",
+                        "itemLinkTo": "M_313_Sk3_1",
                         "itemDescription": "(Skizze zu „Es stürzt aus Höhen Frische“ M 313)",
                         "folios": [
                             {
@@ -683,7 +791,7 @@
                                     [
                                         {
                                             "system": "6b–9c",
-                                            "measure": "#0–0",
+                                            "measure": "4–5",
                                             "linkTo": ""
                                         }
                                     ]
@@ -692,8 +800,8 @@
                         ]
                     },
                     {
-                        "item": "M 313 Sk3.#2",
-                        "itemLinkTo": "M_313_Sk3_#2",
+                        "item": "M 313 Sk3.2",
+                        "itemLinkTo": "M_313_Sk3_2",
                         "itemDescription": "(Skizze zu „Es stürzt aus Höhen Frische“ M 313)",
                         "folios": [
                             {
@@ -704,7 +812,7 @@
                                     [
                                         {
                                             "system": "8b–11b",
-                                            "measure": "#0–0",
+                                            "measure": "4",
                                             "linkTo": ""
                                         }
                                     ]
@@ -725,7 +833,7 @@
                                     [
                                         {
                                             "system": "8d–10c",
-                                            "measure": "#0–0",
+                                            "measure": "9–10",
                                             "linkTo": ""
                                         }
                                     ]
@@ -802,14 +910,35 @@
                                     [
                                         {
                                             "system": "13a",
-                                            "measure": "25A‒31",
+                                            "measure": "25A‒31A",
                                             "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13b–16b",
-                                            "measure": "23#‒24#",
+                                            "measure": "23B‒24B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "32r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "25B‒31B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–9a",
+                                            "measure": "30C",
                                             "linkTo": ""
                                         }
                                     ]
@@ -830,7 +959,413 @@
                                     [
                                         {
                                             "system": "4b–5b",
-                                            "measure": "#0–0",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 313 Sk4.5",
+                        "itemLinkTo": "M_313_Sk4_5",
+                        "itemDescription": "(Skizze zu „Es stürzt aus Höhen Frische“ M 313)",
+                        "folios": [
+                            {
+                                "folio": "32r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6b–8b",
+                                            "measure": "30",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 316 Sk##",
+                        "itemLinkTo": "M_316_Sk##",
+                        "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/1 M 316)",
+                        "folios": [
+                            {
+                                "folio": "32r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9–13",
+                                            "measure": "29–33",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3.2",
+                        "itemLinkTo": "M_314_Sk3_2",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "33v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "16–10c",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk1",
+                        "itemLinkTo": "M_314_Sk1",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "34r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1a",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk2",
+                        "itemLinkTo": "M_314_Sk2",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "34r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1b–5",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3",
+                        "itemLinkTo": "M_314_Sk3",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "34r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "{1A, 1B, 1C‒2A, 1D}, 1, {2B}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–16a",
+                                            "measure": "2C–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "33v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–6b",
+                                            "measure": "{7A‒11A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–11",
+                                            "measure": "7B–11B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12–15",
+                                            "measure": "{12A, 12B, 13A‒15A, 12C}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "35r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5",
+                                            "measure": "{12D, 13B‒15B, 16A‒17A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "{18A–22A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "{23A‒24A}, {13C‒15C}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–16b",
+                                            "measure": "{13D‒15D}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14a–16a",
+                                            "measure": "{16B‒17B}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "34v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–6b",
+                                            "measure": "12E‒15E, 16C",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6a–12b",
+                                            "measure": "17C, 18B–21B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11a–14a",
+                                            "measure": "22B‒24B, {25B‒27B}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "36r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–8b",
+                                            "measure": "25‒29, {30A‒31A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5a–8a",
+                                            "measure": "{32A‒36A}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6b–8b",
+                                            "measure": "30B",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–14b",
+                                            "measure": "31B‒37B",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "35v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–5a",
+                                            "measure": "{38A‒39A}, 40A‒41A, 42‒44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5b–8",
+                                            "measure": "41B, {38B‒39B}, 38C‒39C, {40B‒41C}",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–15",
+                                            "measure": "45‒50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3.1",
+                        "itemLinkTo": "M_314_Sk3_1",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "34r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14b–16b",
+                                            "measure": "5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3.3",
+                        "itemLinkTo": "M_314_Sk3_3",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "34v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14b–16",
+                                            "measure": "18–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3.5",
+                        "itemLinkTo": "M_314_Sk3_5",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "35v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "7b–8b",
+                                            "measure": "43",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3.6",
+                        "itemLinkTo": "M_314_Sk3_6",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "35v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11b–13b",
+                                            "measure": "50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M 314 Sk3.4",
+                        "itemLinkTo": "M_314_Sk3_4",
+                        "itemDescription": "(Skizze zu „Das dunkle Herz“ M 314)",
+                        "folios": [
+                            {
+                                "folio": "36r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "13b–15",
+                                            "measure": "38‒45",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16",
+                                            "measure": "46‒49",
                                             "linkTo": ""
                                         }
                                     ]
