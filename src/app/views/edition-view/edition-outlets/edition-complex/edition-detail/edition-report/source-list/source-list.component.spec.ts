@@ -128,6 +128,11 @@ describe('SourceListComponent (DONE)', () => {
                 });
 
                 it('... should contain siglum link in header column (th)', () => {
+                    expectedSourceListData.sources[2].missing = false;
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -159,6 +164,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.sources[0].siglumAddendum = 'a';
                     expectedSourceListData.sources[1].siglumAddendum = 'b';
                     expectedSourceListData.sources[2].siglumAddendum = 'H';
+                    expectedSourceListData.sources[2].missing = false;
 
                     component.sourceListData = expectedSourceListData;
                     detectChangesOnPush(fixture);
@@ -189,6 +195,93 @@ describe('SourceListComponent (DONE)', () => {
                         const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
 
                         expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+
+                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
+                    });
+                });
+
+                it('... should display missing sources in brackets in header column (th)', () => {
+                    expectedSourceListData.sources[0].missing = true;
+                    expectedSourceListData.sources[1].missing = true;
+                    expectedSourceListData.sources[2].missing = true;
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 3, 3);
+
+                        // First span is opening bracket
+                        // Last span is closing bracket
+                        const siglumDes = spanDes[1];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+
+                        expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}]`);
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                    });
+                });
+
+                it('... should display missing sources with addendum in brackets in header column (th)', () => {
+                    expectedSourceListData.sources[0].siglumAddendum = 'a';
+                    expectedSourceListData.sources[1].siglumAddendum = 'H';
+                    expectedSourceListData.sources[2].siglumAddendum = 'F1-2';
+
+                    expectedSourceListData.sources[0].missing = true;
+                    expectedSourceListData.sources[1].missing = true;
+                    expectedSourceListData.sources[2].missing = true;
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 4, 4);
+
+                        // First span is opening bracket
+                        // Last span is closing bracket
+                        const siglumDes = spanDes[1];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const siglumAddendumDes = spanDes[2];
+                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+                        const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
+
+                        expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
                         expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
                         expect(siglumEl).toHaveClass('awg-source-list-siglum');

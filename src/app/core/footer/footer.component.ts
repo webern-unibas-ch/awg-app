@@ -19,18 +19,18 @@ import { CoreService } from '@awg-core/services';
 })
 export class FooterComponent implements OnInit {
     /**
-     * Public variable: pageMetaData.
-     *
-     * It keeps the page metadata for the footer.
-     */
-    pageMetaData: MetaPage;
-
-    /**
      * Public variable: logos.
      *
      * It keeps the logos for the footer.
      */
     logos: Logos;
+
+    /**
+     * Public variable: pageMetaData.
+     *
+     * It keeps the page metadata for the footer.
+     */
+    pageMetaData: MetaPage;
 
     /**
      * Constructor of the FooterComponent.

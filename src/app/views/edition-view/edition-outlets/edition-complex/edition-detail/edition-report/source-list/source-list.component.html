@@ -8,21 +8,33 @@
                     <tr>
                         <th scope="row">
                             @if (source.hasDescription === true) {
-                                <a (click)="navigateToReportFragment(source.linkTo)"
-                                    ><span class="awg-source-list-siglum">{{ source.siglum }}</span>
+                                <a (click)="navigateToReportFragment(source.linkTo)">
+                                    @if (source.missing) {
+                                        <span>[</span>
+                                    }
+                                    <span class="awg-source-list-siglum">{{ source.siglum }}</span>
                                     @if (source.siglumAddendum) {
                                         <span class="awg-source-list-siglum-addendum">
                                             <sup>{{ source.siglumAddendum }}</sup>
                                         </span>
                                     }
+                                    @if (source.missing) {
+                                        <span>]</span>
+                                    }
                                 </a>
                             } @else {
-                                <a (click)="openModal(source.linkTo)"
-                                    ><span class="awg-source-list-siglum">{{ source.siglum }}</span>
+                                <a (click)="openModal(source.linkTo)">
+                                    @if (source.missing) {
+                                        <span>[</span>
+                                    }
+                                    <span class="awg-source-list-siglum">{{ source.siglum }}</span>
                                     @if (source.siglumAddendum) {
                                         <span class="awg-source-list-siglum-addendum">
                                             <sup>{{ source.siglumAddendum }}</sup>
                                         </span>
+                                    }
+                                    @if (source.missing) {
+                                        <span>]</span>
                                     }
                                 </a>
                             }

@@ -14,6 +14,12 @@ export const LOGOSDATA: Logos = {
         alt: 'Logo Angular',
         href: 'https://angular.io',
     },
+    awg: {
+        id: 'awglogo',
+        src: 'assets/img/logos/awg.png',
+        alt: 'Logo AWG',
+        href: 'https://www.anton-webern.ch/',
+    },
     bootstrap: {
         id: 'bootstraplogo',
         src: 'assets/img/logos/ng-bootstrap.svg',
