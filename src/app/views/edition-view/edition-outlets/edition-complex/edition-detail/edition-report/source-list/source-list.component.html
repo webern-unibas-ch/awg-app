@@ -1,12 +1,10 @@
 <div class="card">
     <div class="card-body">
-        <table
-            aria-label="Table for list of sources"
-            class="table table-hover borderless awg-source-description-sources">
+        <table aria-label="Table for list of sources" class="table table-hover borderless awg-source-list-sources">
             <tbody>
                 @for (source of sourceListData.sources; track source; let sourceIndex = $index) {
                     <tr>
-                        <th scope="row">
+                        <th scope="row" id="{{ source.siglum }}{{ source.siglumAddendum }}">
                             @if (source.hasDescription === true) {
                                 <a (click)="navigateToReportFragment(source.linkTo)">
                                     @if (source.missing) {
@@ -50,7 +48,7 @@
         @if (utils.isNotEmptyArray(sourceListData.textSources)) {
             <table
                 aria-label="Table for list of text sources"
-                class="table table-hover borderless awg-source-description-text-sources">
+                class="table table-hover borderless awg-source-list-text-sources">
                 <tbody>
                     <tr>
                         <td colspan="2">Zum vertonten Text:</td>
