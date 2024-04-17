@@ -1,0 +1,28 @@
+.awg-router-link-btn-group {
+    font-family: 'Droid Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    border-top: 1px solid #000;
+
+    div {
+        float: left;
+        cursor: pointer;
+        margin-right: 45px;
+        padding-top: 5px;
+        border-top: 2px solid #f9f9f6;
+
+        &:hover {
+            color: #666;
+        }
+    }
+
+    .active {
+        border-top: 2px solid #000;
+    }
+
+    .disabled {
+        cursor: not-allowed;
+        color: #666;
+        opacity: 0.5;
+    }
+}
