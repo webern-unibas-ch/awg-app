@@ -5,8 +5,8 @@
             "siglumAddendum": "",
             "type": "Skizzen (in Skizzenbuch 3).",
             "location": "CH-Bps, Sammlung Anton Webern.",
-            "hasDescription": false,
-            "linkTo": "OP23_SOURCE_NOT_AVAILABLE"
+            "hasDescription": true,
+            "linkTo": "source_A"
         },
         {
             "siglum": "B",

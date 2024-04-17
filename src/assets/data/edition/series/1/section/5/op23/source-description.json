@@ -13,11 +13,7 @@
                 "writingMaterial": "Notenpapier, quer 270 × 335 mm, 16 Systeme, Firmenzeichen <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>No. 15 | 16 linig.</em> recto auf Bl. 26–36 unten links (Bl. 26–36).",
                 "writingInstruments": {
                     "main": "Bleistift",
-                    "secondary": [
-                        "grüner Buntstift",
-                        "roter Buntstift",
-                        "blaue Tinte"
-                    ]
+                    "secondary": ["grüner Buntstift", "roter Buntstift", "blaue Tinte"]
                 },
                 "title": "<em>Texte von H. J.</em> auf Bl. 26<sup>v</sup> oben Mitte;<br /><em>„Das dunkle Herz“</em> auf Bl. 34<sup>r</sup> oben links.",
                 "date": "<em>31. V. 33</em> [unten eingerahmt] auf Bl. 26<sup>v</sup> System 12–13 Mitte;<br /><em>1. IV. 33</em> auf Bl. 27<sup>r</sup> oben links;<br />[x]<em>. IV. 33.</em> auf Bl. 27<sup>r</sup> System 9 links;<br /><em>Maria Enzersdorf | 14. VII. 33</em> auf Bl. 28<sup>v</sup> System 3 (nach <strong>M 312 Sk4</strong> T. 30);<br /><em>26. VII. 33</em> auf Bl. 29<sup>v</sup> oben links;<br /><em>18. VIII. 33</em> auf Bl. 32<sup>r</sup> System 6–7 (nach <strong>M 313 Sk4</strong> T. 30C);<br /><em>3. I. 1934</em> auf Bl. 34<sup>r</sup> oben links;<br /><em>5. I. 34</em> auf Bl. 34<sup>r</sup> System 7 T. 1;<br /><em>15. III. 34</em> auf Bl. 35<sup>v</sup> System 14–15 rechts (nach <strong>M 314 Sk3</strong> T. 50).",
@@ -1543,7 +1539,7 @@
             "location": "",
             "description": {
                 "desc": [
-                    "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>A</strong> sowie <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 in AWG I/5.]</small>"
+                    "<small class=\"text-muted\">[Die Beschreibung der Quellen <strong>C–D</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23 in AWG I/5.]</small>"
                 ]
             }
         }
