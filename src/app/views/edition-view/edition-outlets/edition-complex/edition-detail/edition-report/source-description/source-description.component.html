@@ -6,11 +6,17 @@
                     <div class="awg-source-description-head">
                         @if (sourceDescription.siglum) {
                             <p class="awg-source-description-siglum-container bold">
+                                @if (sourceDescription.missing) {
+                                    <span>[</span>
+                                }
                                 <span class="awg-source-description-siglum">{{ sourceDescription.siglum }}</span>
                                 @if (sourceDescription.siglumAddendum) {
                                     <span class="awg-source-description-siglum-addendum"
                                         ><sup>{{ sourceDescription.siglumAddendum }}</sup></span
                                     >
+                                }
+                                @if (sourceDescription.missing) {
+                                    <span>]</span>
                                 }
                             </p>
                         }

@@ -1365,7 +1365,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
                 });
 
-                it('... the first paragraph displaying a siglum (bold) with addendum', () => {
+                it('... the first paragraph displaying a siglum (bold) with addendum and brackets (missing)', () => {
                     const expectedSiglum = expectedSourceDescriptionListData.sources[2].siglum;
                     const expectedAddendum = expectedSourceDescriptionListData.sources[2].siglumAddendum;
 
@@ -1379,16 +1379,19 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     const pDes = getAndExpectDebugElementByCss(descHeadDes[2], 'p', 3, 3);
                     const pEl = pDes[0].nativeElement;
 
-                    const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 2, 2);
-                    const siglumDes = spanDes[0];
+                    const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span', 4, 4);
+
+                    // First span is opening bracket
+                    // Last span is closing bracket
+                    const siglumDes = spanDes[1];
                     const siglumEl = siglumDes.nativeElement;
 
-                    const addendumDes = spanDes[1];
+                    const addendumDes = spanDes[2];
                     const addendumEl = addendumDes.nativeElement;
 
                     expect(pEl).toHaveClass('awg-source-description-siglum-container');
                     expect(pEl).toHaveClass('bold');
-                    expectToBe(pEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+                    expectToBe(pEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
                     expect(siglumEl).toHaveClass('awg-source-description-siglum');
                     expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
