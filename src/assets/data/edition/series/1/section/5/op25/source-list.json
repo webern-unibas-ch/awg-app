@@ -41,9 +41,10 @@
             "linkTo": "source_E"
         },
         {
-            "siglum": "[E]",
+            "siglum": "E",
             "siglumAddendum": "F1–2",
-            "type": "Fotokopien von <a (click)=\"ref.openModal('OP25_SOURCE_NOT_AVAILABLE')\"><strong>E</strong></a>",
+            "missing": true,
+            "type": "Fotokopien von <a (click)=\"ref.navigateToReportFragment('source_E')\"><strong>E</strong></a>.",
             "location": "Verschollen.",
             "hasDescription": false,
             "linkTo": "OP25_SOURCE_NOT_AVAILABLE"
