@@ -70,7 +70,8 @@
                                             "system": "1a",
                                             "systemDescription": "Reihenfragment (A) und Zwölftonreihenform G<sub>cis</sub> (B)",
                                             "measure": "",
-                                            "linkTo": ""
+                                            "linkTo": "",
+                                            "row": {}
                                         }
                                     ]
                                 ]
@@ -397,7 +398,8 @@
                                             "system": "6c",
                                             "systemDescription": "Zwölftonreihenform G<sub>g</sub>",
                                             "measure": "",
-                                            "linkTo": ""
+                                            "linkTo": "",
+                                            "row": {}
                                         }
                                     ]
                                 ]
@@ -1149,7 +1151,7 @@
                                     [
                                         {
                                             "system": "9–14a",
-                                            "measure": "",
+                                            "measure": "8–14",
                                             "linkTo": ""
                                         }
                                     ]

@@ -231,13 +231,10 @@
                                     [
                                         {
                                             "system": "1b",
+                                            "systemDescription": "Zwölftonreihenform G<sub>g</sub>",
                                             "measure": "",
                                             "linkTo": "",
-                                            "row": {
-                                                "rowType": "Zwöftonreihenform G",
-                                                "rowBase": "g",
-                                                "rowNumber": ""
-                                            }
+                                            "row": {}
                                         }
                                     ]
                                 ]
