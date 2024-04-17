@@ -851,7 +851,7 @@
                 "content": [
                     {
                         "item": "M 320 Sk1",
-                        "itemLinkTo": "M_320_Sk1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
                         "folios": [
                             {
@@ -872,7 +872,7 @@
                     },
                     {
                         "item": "M 320 Sk1.2",
-                        "itemLinkTo": "M_320_Sk1_2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
                         "folios": [
                             {
@@ -893,7 +893,7 @@
                     },
                     {
                         "item": "M 320 Sk1.1",
-                        "itemLinkTo": "M_320_Sk1_1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
                         "folios": [
                             {
@@ -914,7 +914,7 @@
                     },
                     {
                         "item": "M 321 Sk1",
-                        "itemLinkTo": "M_321_Sk1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -935,7 +935,7 @@
                     },
                     {
                         "item": "M 320 Sk2",
-                        "itemLinkTo": "M_320_Sk2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Konzert für neun Instrumente op. 24/3)",
                         "folios": [
                             {
@@ -956,7 +956,7 @@
                     },
                     {
                         "item": "M 321 Sk4",
-                        "itemLinkTo": "M_321_Sk4",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -977,7 +977,7 @@
                     },
                     {
                         "item": "M 321 Sk5",
-                        "itemLinkTo": "M_321_Sk5",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -998,7 +998,7 @@
                     },
                     {
                         "item": "M 321 Sk6",
-                        "itemLinkTo": "M_321_Sk6",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1054,7 +1054,7 @@
                     },
                     {
                         "item": "M 321 Sk6.3",
-                        "itemLinkTo": "M_321_Sk6_3",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1075,7 +1075,7 @@
                     },
                     {
                         "item": "M 321 Sk6.4",
-                        "itemLinkTo": "M_321_Sk6_4",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1096,7 +1096,7 @@
                     },
                     {
                         "item": "M 321 Sk2",
-                        "itemLinkTo": "M_321_Sk2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1131,7 +1131,7 @@
                     },
                     {
                         "item": "M 321 Sk3",
-                        "itemLinkTo": "M_321_Sk3",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1159,7 +1159,7 @@
                     },
                     {
                         "item": "M 321 Sk6.1",
-                        "itemLinkTo": "M_321_Sk6_1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1180,7 +1180,7 @@
                     },
                     {
                         "item": "M 321 Sk6.2",
-                        "itemLinkTo": "M_321_Sk6_2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1201,7 +1201,7 @@
                     },
                     {
                         "item": "M 321 Sk8",
-                        "itemLinkTo": "M_321_Sk8",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1306,7 +1306,7 @@
                     },
                     {
                         "item": "M 321 Sk9",
-                        "itemLinkTo": "M_321_Sk9",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1327,7 +1327,7 @@
                     },
                     {
                         "item": "M 321 Sk7.1",
-                        "itemLinkTo": "M_321_Sk7_1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1348,7 +1348,7 @@
                     },
                     {
                         "item": "M 321 Sk7",
-                        "itemLinkTo": "M_321_Sk7",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1369,7 +1369,7 @@
                     },
                     {
                         "item": "M 321 Sk8.2",
-                        "itemLinkTo": "M_321_Sk8_2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1390,7 +1390,7 @@
                     },
                     {
                         "item": "M 321 Sk8.1",
-                        "itemLinkTo": "M_321_Sk8_1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Sterne, Ihr silbernen Bienen“ M 321)",
                         "folios": [
                             {
@@ -1411,7 +1411,7 @@
                     },
                     {
                         "item": "M 322 Sk1",
-                        "itemLinkTo": "M_322_Sk1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1432,7 +1432,7 @@
                     },
                     {
                         "item": "M 322 Sk2",
-                        "itemLinkTo": "M_322_Sk2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1453,7 +1453,7 @@
                     },
                     {
                         "item": "M 322 Sk3",
-                        "itemLinkTo": "M_322_Sk3",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1495,7 +1495,7 @@
                     },
                     {
                         "item": "M 322 Sk4.3",
-                        "itemLinkTo": "M_322_Sk4_3",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1516,7 +1516,7 @@
                     },
                     {
                         "item": "M 322 Sk4.2",
-                        "itemLinkTo": "M_322_Sk4_2",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1537,7 +1537,7 @@
                     },
                     {
                         "item": "M 322 Sk4.1",
-                        "itemLinkTo": "M_322_Sk4_1",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1558,7 +1558,7 @@
                     },
                     {
                         "item": "M 322 Sk4",
-                        "itemLinkTo": "M_322_Sk4",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1663,7 +1663,7 @@
                     },
                     {
                         "item": "M 322 Sk4.5",
-                        "itemLinkTo": "M_322_Sk4_5",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1684,7 +1684,7 @@
                     },
                     {
                         "item": "M 322 Sk4.6",
-                        "itemLinkTo": "M_322_Sk4_6",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1705,7 +1705,7 @@
                     },
                     {
                         "item": "M 322 Sk4.4",
-                        "itemLinkTo": "M_322_Sk4_4",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1726,7 +1726,7 @@
                     },
                     {
                         "item": "M 322 Sk4.7",
-                        "itemLinkTo": "M_322_Sk4_7",
+                        "itemLinkTo": {},
                         "itemDescription": "(Skizze zu „Des Herzens Purpurvogel“ M 322)",
                         "folios": [
                             {
@@ -1771,9 +1771,9 @@
                 "annotations": "",
                 "content": [
                     {
-                        "item": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25",
-                        "itemLinkTo": "Autograph_von_Drei_Lieder_nach_Gedichten_von_Hildegard_Jone_op__25",
-                        "itemDescription": "",
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Autograph von <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -1792,9 +1792,9 @@
                         ]
                     },
                     {
-                        "item": "I „Wie bin ich froh!“ M 317: Textfassung 1→2",
-                        "itemLinkTo": "I_„Wie_bin_ich_froh!“_M_317:_Textfassung_1→2",
-                        "itemDescription": "",
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "I „Wie bin ich froh!“ M 317: Textfassung 1→2",
                         "folios": [
                             {
                                 "folio": "2r",
@@ -1869,9 +1869,9 @@
                         ]
                     },
                     {
-                        "item": "II „Des Herzens Purpurvogel“ M 322: einzige Textfassung",
-                        "itemLinkTo": "II_„Des_Herzens_Purpurvogel“_M_322:_einzige_Textfassung",
-                        "itemDescription": "",
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "II „Des Herzens Purpurvogel“ M 322: einzige Textfassung",
                         "folios": [
                             {
                                 "folio": "4r",
@@ -1995,9 +1995,9 @@
                         ]
                     },
                     {
-                        "item": "III „Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung",
-                        "itemLinkTo": "III_„Sterne,_Ihr_silbernen_Bienen“_M_321:_einzige_Textfassung",
-                        "itemDescription": "",
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "III „Sterne, Ihr silbernen Bienen“ M 321: einzige Textfassung",
                         "folios": [
                             {
                                 "folio": "7r",
