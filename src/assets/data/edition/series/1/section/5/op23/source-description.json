@@ -1532,7 +1532,7 @@
             "id": "source_C",
             "siglum": "C",
             "siglumAddendum": "",
-            "type": "",
+            "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
             "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
             "description": {
                 "desc": [
@@ -1555,9 +1555,9 @@
                 "annotations": "<em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1–10 recto unten rechts mit violettem Stempelabdruck;<br /><em>10255</em> auf Bl. 1<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br />Dispositionsziffern in I nach T. 3, 6, 8, 10, 12, 14, 16, 18, 20, 23, 26, 29, 30 (<em><s>1</s></em> radiert), 32, 34 (<em><s>2</s></em> radiert), 35, 38, 41, 42 (<em><s>1</s></em> radiert), 44, 46 (<em><s>2</s></em> radiert), 47, 50;<br />in II nach T. 4 (<em><s>1</s></em> radiert), 5, 7 (<em><s>2</s></em> radiert), 9, 11 (<em>1</em>), 12, 13 (<em><s>2</s></em> radiert), 16, 19 (<em>4</em>), 20, 21 (<em>1</em>), 22, 23 (<em><s>2</s></em> radiert), 25, 26 (<em>3</em>), 30;",
                 "content": [
                     {
-                        "item": "Autograph von Drei Gesänge aus Viae Inviae von Hildegard Jone op. 23",
+                        "item": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
                         "itemLinkTo": "Autograph_von_Drei_Gesänge_aus_Viae_Inviae_von_Hildegard_Jone_op_ 23",
-                        "itemDescription": "(<strong>G<sup>a</sup></strong>)",
+                        "itemDescription": "",
                         "folios": [
                             {
                                 "folio": "1r",
