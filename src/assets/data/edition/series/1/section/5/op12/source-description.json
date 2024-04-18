@@ -1993,7 +1993,7 @@
             "type": "Druck von <em>Vier Lieder</em> op. 12.",
             "location": "Wien: Universal Edition, 1925.",
             "description": {
-                "desc": ["12 Seiten (S. 1–12) in Umschlag."],
+                "desc": ["9 Seiten (S. [1]–9) in Umschlag (S. [a–d]). Innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. S. [d]: Verlagsanzeige mit Werkverzeichnis Weberns."],
                 "writingMaterialString": "",
                 "writingInstruments": {
                     "main": "",
@@ -2001,10 +2001,10 @@
                 },
                 "title": "<em>VIER LIEDER | für Gesang und Klavier | von | ANTON WEBERN | Op. 12</em> auf S. 1;<br /><em><span class=\"caps\">Der Tag ist vergangen</span> | (Volkslied)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 1</em> [rechts] auf S. 2 oben (Kopftitel);<br /><em><span class=\"caps\">Die geheimnsivolle Flöte</span> | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, Op.12 Nr. 2</em> [rechts] auf S. 4 oben (Kopftitel);<br /><em><span class=\"caps\">Schien mir’s, als ich sah die Sonne</span> | (aus August Strindbergs „Gespenstersonate“)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 3</em> [rechts] auf S. 6 oben (Kopftitel);<br /><em><span class=\"caps\">Gleich und Gleich</span> | (Goethe)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 4</em> [rechts] auf S. 8 oben (Kopftitel).",
                 "date": "",
-                "pagination": "",
+                "pagination": "<em>2</em>> bis <em>9>/em> auf S. 2–9. Außenecken oben",
                 "measureNumbers": "",
                 "instrumentation": "",
-                "annotations": "",
+                "annotations": "<em>Aufführungsrecht vorbehalten. – Droits d'exécution réservés | UNIVERSAL-EDITION | WIEN   Copyright 1925 by Universal-Edition   NEW YORK</em> auf S. [1] unten;<br /><em>Aufführungsrecht vorbehalten. | Droits d'exécution réservés. auf S. 2 oben links;<br /><em>Copyright 1925 by Universal-Edition.</em> [links] | <em>Universal-Edition Nr 8257</em> [Mitte] auf S. 2 unten;<br /><em>U. E. 8257</em> auf S. 3–12 unten Mitte.;<br /><em>Stich u. Druck der Waldheim-Eberle A. G.</em> auf S. 9",
                 "content": [
                     {
                         "item": "",
@@ -2012,7 +2012,7 @@
                         "itemDescription": "Druck von <em>Vier Lieder</em> op. 12",
                         "folios": [
                             {
-                                "folio": "1",
+                                "folio": "[1]",
                                 "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
@@ -2312,48 +2312,6 @@
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "",
-                        "itemLinkTo": {},
-                        "itemDescription": "",
-                        "folios": [
-                            {
-                                "folio": "10",
-                                "isPage": true,
-                                "folioLinkTo": "",
-                                "folioDescription": "unbedruckt.",
-                                "systemGroups": []
-                            }
-                        ]
-                    },
-                    {
-                        "item": "",
-                        "itemLinkTo": {},
-                        "itemDescription": "",
-                        "folios": [
-                            {
-                                "folio": "11",
-                                "isPage": true,
-                                "folioLinkTo": "",
-                                "folioDescription": "Werkverzeichnis Anton Webern.",
-                                "systemGroups": []
-                            }
-                        ]
-                    },
-                    {
-                        "item": "",
-                        "itemLinkTo": {},
-                        "itemDescription": "",
-                        "folios": [
-                            {
-                                "folio": "12",
-                                "isPage": true,
-                                "folioLinkTo": "",
-                                "folioDescription": "unbedruckt.",
-                                "systemGroups": []
                             }
                         ]
                     }
