@@ -1550,7 +1550,7 @@
                 "title": "<em>Anton Webern | </em><sup>?</sup><em><s>Drei</s></em><sup>?</sup><em> Drei Gesänge | op. 23 | aus | Viae inviae | von | Hildegard Jone</em> auf Bl. 1<sup>r</sup> System 3–10 Mitte, <sup>?</sup><em><s>Drei</s></em><sup>?</sup> rasiert;<br /><em>I.</em> [Mitte] | <em>Anton Webern, op. 23</em> [rechts] auf Bl. 2<sup>r</sup> oben bis System 1;<br /><em>II.</em> auf Bl. 6<sup>r</sup> oben Mitte;<br /><em>III.</em> auf Bl. 8<sup>r</sup> oben Mitte.",
                 "date": "",
                 "pagination": "<em>- 1-</em> bis <em>- 7 -</em>, <em>- 8 -</em> bis <em>- 12 -</em>, <em>- <s>13</s> - -</em> bis <em>- <s>14</s> - -</em>, <em>- 15 -</em> bis <em>- 16 -</em> auf Bl. 2<sup>r</sup>–5<sup>r</sup>, 6<sup>r</sup>–10<sup>r</sup> mit schwarzer Tinte.",
-                "measureNumbers": "",
+                "measureNumbers": "<em>1</em> bis <em>50</em> über jedem Takt in I;<br /><em>1</em> bis <em>30</em> über jedem Takt in II;<br /><em>1</em> bis <em>28</em> zu jedem Takt in III.",
                 "instrumentation": "",
                 "annotations": "<em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1–10 recto unten rechts mit violettem Stempelabdruck;<br /><em>10255</em> auf Bl. 1<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br />Dispositionsziffern in I nach T. 3, 6, 8, 10, 12, 14, 16, 18, 20, 23, 26, 29, 30 (<em><s>1</s></em> radiert), 32, 34 (<em><s>2</s></em> radiert), 35, 38, 41, 42 (<em><s>1</s></em> radiert), 44, 46 (<em><s>2</s></em> radiert), 47, 50;<br />in II nach T. 4 (<em><s>1</s></em> radiert), 5, 7 (<em><s>2</s></em> radiert), 9, 11 (<em>1</em>), 12, 13 (<em><s>2</s></em> radiert), 16, 19 (<em>4</em>), 20, 21 (<em>1</em>), 22, 23 (<em><s>2</s></em> radiert), 25, 26 (<em>3</em>), 30;",
                 "content": [
@@ -2078,23 +2078,24 @@
                 "date": "<em>Nr. 123 IV. 1936</em> auf der hinteren Umschlagseite (S. [d]) unter Verlagsanzeige <em>WERKE VON ANTON WEBERN</em> links.",
                 "pagination": "<em>2</em> bis <em>12</em> auf S. 2 bis 12 Außenecken oben.",
                 "measureNumbers": "<em>1</em> bis <em>50</em> über jedem Takt in I;<br /><em>1</em> bis <em>30</em> über jedem Takt in II;<br /><em>1</em> bis <em>28</em> zu jedem Takt in III.",
-                "instrumentation": "",
+                "instrumentation": "<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3.",
                 "annotations": "<em>UNIVERSAL-EDITION | No. 10.255</em> auf der vorderen Umschlagseite unten;<br /><em>Aufführungsrecht vorbehalten | UNIVERSAL-EDITION | WIEN | Copyright 1936 by Universal-Edition A. G. | Printed in Austria</em> auf S. [1] unten;<br /><em>Copyright 1936 by Universal-Edition</em> [links] <em>Universal-Edition Nr. 10255</em> [Mitte] <em>Aufführungsrecht vorbehalten</em> | <em>Droits d’exécution réservés</em> [rechts] auf S. 2 unten;<br /><em>U. E. 10255</em> auf S. 3–12 unten Mitte;<br /><em>Druck der Waldheim-Eberle A. G.</em> auf S. 12 unten rechts.",
                 "content": [
                     {
-                        "item": "Druck von Drei Gesänge aus Viae Inviae von Hildegard Jone op. 23: xy",
-                        "itemLinkTo": "Druck_von_Drei_Gesänge_aus_Viae_Inviae_von_Hildegard_Jone_op_ 23:_xy",
-                        "itemDescription": "(<strong>G<sup>a</sup></strong>)",
+                        "item": "Druck von Drei Gesänge aus Viae Inviae von Hildegard Jone op. 23",
+                        "itemLinkTo": "Druck_von_Drei_Gesänge_aus_Viae_Inviae_von_Hildegard_Jone_op_ 23",
+                        "itemDescription": "",
                         "folios": [
                             {
-                                "folio": "1",
+                                "folio": "[1]",
+                                "isPage": true,
                                 "folioLinkTo": "",
-                                "folioDescription": "",
+                                "folioDescription": "Titekseite",
                                 "systemGroups": [
                                     [
                                         {
-                                            "system": "0–0",
-                                            "measure": "Titelseite",
+                                            "system": "",
+                                            "measure": "",
                                             "linkTo": ""
                                         }
                                     ]
@@ -2103,12 +2104,13 @@
                         ]
                     },
                     {
-                        "item": "I „Das dunkle Herz“ M 314: einzige Textfassung: xy",
-                        "itemLinkTo": "I_„Das_dunkle_Herz“_M 314:_einzige_Textfassung:_xy",
-                        "itemDescription": "(<strong>G<sup>a</sup></strong>)",
+                        "item": "I „Das dunkle Herz“ M 314: einzige Textfassung",
+                        "itemLinkTo": "I_„Das_dunkle_Herz“_M 314:_einzige_Textfassung",
+                        "itemDescription": "",
                         "folios": [
                             {
                                 "folio": "2",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2137,6 +2139,7 @@
                             },
                             {
                                 "folio": "3",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2172,6 +2175,7 @@
                             },
                             {
                                 "folio": "4",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2207,6 +2211,7 @@
                             },
                             {
                                 "folio": "5",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2242,6 +2247,7 @@
                             },
                             {
                                 "folio": "6",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2278,12 +2284,13 @@
                         ]
                     },
                     {
-                        "item": "II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung: xy",
-                        "itemLinkTo": "II_„Es_stürzt_aus_Höhen_Frische“_M 313:_einzige_Textfassung:_xy",
-                        "itemDescription": "(<strong>G<sup>a</sup></strong>)",
+                        "item": "II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung",
+                        "itemLinkTo": "II_„Es_stürzt_aus_Höhen_Frische“_M 313:_einzige_Textfassung",
+                        "itemDescription": "",
                         "folios": [
                             {
                                 "folio": "7",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2319,6 +2326,7 @@
                             },
                             {
                                 "folio": "8",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2355,12 +2363,13 @@
                         ]
                     },
                     {
-                        "item": "III „Herr Jesus mein“ M 312: einzige Textfassung: xy",
-                        "itemLinkTo": "III_„Herr_Jesus_mein“_M 312:_einzige_Textfassung:_xy",
-                        "itemDescription": "(<strong>G<sup>a</sup></strong>)",
+                        "item": "III „Herr Jesus mein“ M 312: einzige Textfassung",
+                        "itemLinkTo": "III_„Herr_Jesus_mein“_M 312:_einzige_Textfassung",
+                        "itemDescription": "",
                         "folios": [
                             {
                                 "folio": "9",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2396,6 +2405,7 @@
                             },
                             {
                                 "folio": "10",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2424,6 +2434,7 @@
                             },
                             {
                                 "folio": "11",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -2452,6 +2463,7 @@
                             },
                             {
                                 "folio": "12",
+                                "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
