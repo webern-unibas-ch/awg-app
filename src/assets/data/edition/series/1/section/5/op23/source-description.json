@@ -2091,15 +2091,7 @@
                                 "isPage": true,
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "",
-                                            "measure": "",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
+                                "systemGroups": []
                             }
                         ]
                     },
