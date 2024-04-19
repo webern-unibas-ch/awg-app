@@ -1529,6 +1529,980 @@
             }
         },
         {
+            "id": "source_C",
+            "siglum": "C",
+            "siglumAddendum": "",
+            "type": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.G389 / 115908.",
+            "description": {
+                "desc": [
+                    "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 3 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7), 3 Blätter (Bl. 8–10). Bl. 5<sup>v</sup>, 10<sup>v</sup> unbeschriftet. Rissspuren am linken Rand von Bl. 1, 8–10: von Bögen abgetrennt. (Vermutlich bildeten Bl. 1 und 10 sowie Bl. 8 und 9 gemeinsame Bögen.) Risse am Falz unten bei Bl. 2/3, 4/5, 6/7."
+                ],
+                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 336 × 267 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "blauer und roter Buntstift",
+                        "violetter Stempelabdruck"
+                    ]
+                },
+                "title": "<em>Anton Webern |</em> <sup>?</sup><em><s>Drei</s></em><sup>?</sup> <em>Drei Gesänge | op. 23 | aus | Viae inviae | von | Hildegard Jone</em> auf Bl. 1<sup>r</sup> System 3–10 Mitte, <sup>?</sup><em><s>Drei</s></em><sup>?</sup> rasiert;<br /><em>I.</em> [Mitte] | <em>Anton Webern, op. 23</em> [rechts] auf Bl. 2<sup>r</sup> oben bis System 1;<br /><em>II.</em> auf Bl. 6<sup>r</sup> oben Mitte;<br /><em>III.</em> auf Bl. 8<sup>r</sup> oben Mitte.",
+                "date": "",
+                "pagination": "<em>- 1-</em> bis <em>- 7 -</em>, <em>- 8 -</em> bis <em>- 12 -</em>, <em>- <s>13</s> - -</em> bis <em>- <s>14</s> - -</em>, <em>- 15 -</em> bis <em>- 16 -</em> auf Bl. 2<sup>r</sup>–5<sup>r</sup>, 6<sup>r</sup>–10<sup>r</sup> mit schwarzer Tinte.",
+                "measureNumbers": "<em>1</em> bis <em>50</em> über jedem Takt in I;<br /><em>1</em> bis <em>30</em> über jedem Takt in II;<br /><em>1</em> bis <em>28</em> zu jedem Takt in III.",
+                "instrumentation": "",
+                "annotations": "<em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1–10 recto unten rechts mit violettem Stempelabdruck;<br /><em>10255</em> auf Bl. 1<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br />Dispositionsziffern in I nach T. 3, 6, 8, 10, 12, 14, 16, 18, 20, 23, 26, 29, 30 (<em><s>1</s></em> radiert), 32, 34 (<em><s>2</s></em> radiert), 35, 38, 41, 42 (<em><s>1</s></em> radiert), 44, 46 (<em><s>2</s></em> radiert), 47, 50;<br />in II nach T. 4 (<em><s>1</s></em> radiert), 5, 7 (<em><s>2</s></em> radiert), 9, 11 (<em>1</em>), 12, 13 (<em><s>2</s></em> radiert), 16, 19 (<em>4</em>), 20, 21 (<em>1</em>), 22, 23 (<em><s>2</s></em> radiert), 25, 26 (<em>3</em>), 30;",
+                "content": [
+                    {
+                        "item": "Autograph von <em>Drei Gesänge aus</em> Viae Inviae <em>von Hildegard Jone</em> op. 23",
+                        "itemLinkTo": "Autograph_von_Drei_Gesänge_aus_Viae_Inviae_von_Hildegard_Jone_op_ 23",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "Titelseite",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "Widmung",
+                                            "linkTo": "",
+                                            "row": {
+                                                "rowType": "",
+                                                "rowBase": "",
+                                                "rowNumber": ""
+                                            }
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "I „Das dunkle Herz“ M 314: einzige Textfassung",
+                        "itemLinkTo": "I_„Das_dunkle_Herz“_M 314:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "4–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "6–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "12–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "16–17",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "18–19",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "20–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "22–23",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "24–26",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "27–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "30–32",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "33–35",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "36–38",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "39–41",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "42–44",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "45–47",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "48–50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung",
+                        "itemLinkTo": "II_„Es_stürzt_aus_Höhen_Frische“_M 313:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "10–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "12–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "14–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "17–19",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "20–21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "22–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "24–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "27–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "30",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "III „Herr Jesus mein“ M 312: einzige Textfassung",
+                        "itemLinkTo": "III_„Herr_Jesus_mein“_M 312:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "8r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "11–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "13–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "15–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "17–18",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "9v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "19–20",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "21",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "22–23",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "10r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "24–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "26–27",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Drei Gesänge aus </em>Viae Inviae<em> von Hildegard Jone</em> op. 23.",
+            "location": "Wien: Universal Edition, 1936.",
+            "description": {
+                "desc": [
+                    "12 Seiten (S. [1]–12): 3 klammergeheftete Bögen in Umschlag (S. [a–d]), Format: hoch 309 × 230 mm. Innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt."
+                ],
+                "writingMaterial": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>ANTON WEBERN·| DREI GESÄNGE | OP. 23 | AUS | VIAE INVIAE | VON | HILDEGARD JONE</em> auf der vorderen Umschlagseite (S. [a]) sowie auf S. [1];<br /><em>DER DICHTERIN ZUGEEIGNET | DREI GESÄNGE | AUS „VIAE INVIAE“ VON HILDEGARD JONE | I</em> [Mitte] | <em>Anton Webern, Op. 23</em> [rechts] auf S. 2 oben;<br /><em>II</em> auf S. 7 oben Mitte;<br /><em>III</em> auf S. 9 oben Mitte.",
+                "date": "<em>Nr. 123 IV. 1936</em> auf der hinteren Umschlagseite (S. [d]) unter Verlagsanzeige <em>WERKE VON ANTON WEBERN</em> links.",
+                "pagination": "<em>2</em> bis <em>12</em> auf S. 2 bis 12 Außenecken oben.",
+                "measureNumbers": "<em>1</em> bis <em>50</em> über jedem Takt in I;<br /><em>1</em> bis <em>30</em> über jedem Takt in II;<br /><em>1</em> bis <em>28</em> zu jedem Takt in III.",
+                "instrumentation": "<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3.",
+                "annotations": "<em>UNIVERSAL-EDITION | No. 10.255</em> auf der vorderen Umschlagseite unten;<br /><em>Aufführungsrecht vorbehalten | UNIVERSAL-EDITION | WIEN | Copyright 1936 by Universal-Edition A. G. | Printed in Austria</em> auf S. [1] unten;<br /><em>Copyright 1936 by Universal-Edition</em> [links] <em>Universal-Edition Nr. 10255</em> [Mitte] <em>Aufführungsrecht vorbehalten</em> | <em>Droits d’exécution réservés</em> [rechts] auf S. 2 unten;<br /><em>U. E. 10255</em> auf S. 3–12 unten Mitte;<br /><em>Druck der Waldheim-Eberle A. G.</em> auf S. 12 unten rechts.",
+                "content": [
+                    {
+                        "item": "Druck von Drei Gesänge aus Viae Inviae von Hildegard Jone op. 23",
+                        "itemLinkTo": "Druck_von_Drei_Gesänge_aus_Viae_Inviae_von_Hildegard_Jone_op_ 23",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "[1]",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "I „Das dunkle Herz“ M 314: einzige Textfassung",
+                        "itemLinkTo": "I_„Das_dunkle_Herz“_M 314:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "2",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "11–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "13–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "15–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "17–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "19–20",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "21–23",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "24–26",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "27–29",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "30–32",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "33–35",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "36–38",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "39–41",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "42–44",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "45–47",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "48–50",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "II „Es stürzt aus Höhen Frische“ M 313: einzige Textfassung",
+                        "itemLinkTo": "II_„Es_stürzt_aus_Höhen_Frische“_M 313:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "7",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "6–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "13–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "8",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "17–20",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "21–22",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "23–25",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "26–30",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "III „Herr Jesus mein“ M 312: einzige Textfassung",
+                        "itemLinkTo": "III_„Herr_Jesus_mein“_M 312:_einzige_Textfassung",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "9",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "10",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "11–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "13–14",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "11",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "15–16",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "17–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "19–20",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "12",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "21–22",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "23–24",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "25–26",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "27–28",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "notB",
             "siglum": "",
             "siglumAddendum": "",
