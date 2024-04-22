@@ -1568,21 +1568,8 @@
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "",
-                                            "measure": "Widmung",
-                                            "linkTo": "",
-                                            "row": {
-                                                "rowType": "",
-                                                "rowBase": "",
-                                                "rowNumber": ""
-                                            }
-                                        }
-                                    ]
-                                ]
+                                "folioDescription": "Widmung.",
+                                "systemGroups": []
                             }
                         ]
                     },
