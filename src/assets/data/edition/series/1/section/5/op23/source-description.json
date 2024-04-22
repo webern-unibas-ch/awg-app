@@ -1562,16 +1562,8 @@
                             {
                                 "folio": "1r",
                                 "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "",
-                                            "measure": "Titelseite",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
                             },
                             {
                                 "folio": "1v",
