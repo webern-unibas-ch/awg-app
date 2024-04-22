@@ -1574,9 +1574,9 @@
                         ]
                     },
                     {
-                        "item": "I „Das dunkle Herz“ M 314: einzige Textfassung",
-                        "itemLinkTo": "I_„Das_dunkle_Herz“_M 314:_einzige_Textfassung",
-                        "itemDescription": "",
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "I „Das dunkle Herz“ M 314: einzige Textfassung",
                         "folios": [
                             {
                                 "folio": "2r",
