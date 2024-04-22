@@ -2061,9 +2061,9 @@
                 "annotations": "<em>UNIVERSAL-EDITION | No. 10.255</em> auf der vorderen Umschlagseite unten;<br /><em>Aufführungsrecht vorbehalten | UNIVERSAL-EDITION | WIEN | Copyright 1936 by Universal-Edition A. G. | Printed in Austria</em> auf S. [1] unten;<br /><em>Copyright 1936 by Universal-Edition</em> [links] <em>Universal-Edition Nr. 10255</em> [Mitte] <em>Aufführungsrecht vorbehalten</em> | <em>Droits d’exécution réservés</em> [rechts] auf S. 2 unten;<br /><em>U. E. 10255</em> auf S. 3–12 unten Mitte;<br /><em>Druck der Waldheim-Eberle A. G.</em> auf S. 12 unten rechts.",
                 "content": [
                     {
-                        "item": "Druck von Drei Gesänge aus Viae Inviae von Hildegard Jone op. 23",
-                        "itemLinkTo": "Druck_von_Drei_Gesänge_aus_Viae_Inviae_von_Hildegard_Jone_op_ 23",
-                        "itemDescription": "",
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Druck von Drei Gesänge aus Viae Inviae von Hildegard Jone op. 23",
                         "folios": [
                             {
                                 "folio": "[1]",
