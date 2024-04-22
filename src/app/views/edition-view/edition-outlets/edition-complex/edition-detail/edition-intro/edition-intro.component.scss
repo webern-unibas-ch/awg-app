@@ -1,0 +1,30 @@
+p.awg-intro-paragraph {
+    margin: 0;
+    text-indent: 25px;
+
+    &::ng-deep {
+        .heading {
+            display: block;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .heading,
+        .small,
+        .no-indent {
+            text-indent: 0;
+        }
+        .small:not(.spacebreak),
+        .no-indent {
+            margin-left: -25px;
+        }
+        .spacebreak {
+            display: block;
+            margin-bottom: 25px;
+
+            &.no-indent {
+                margin-left: 0;
+            }
+        }
+    }
+}
