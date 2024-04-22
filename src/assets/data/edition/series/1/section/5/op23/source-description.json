@@ -1538,14 +1538,10 @@
                 "desc": [
                     "10 Blätter (Bl. 1–10): 1 Blatt (Bl. 1), 3 aufeinander gelegte Bögen (Bl. 2/3, 4/5, 6/7), 3 Blätter (Bl. 8–10). Bl. 5<sup>v</sup>, 10<sup>v</sup> unbeschriftet. Rissspuren am linken Rand von Bl. 1, 8–10: von Bögen abgetrennt. (Vermutlich bildeten Bl. 1 und 10 sowie Bl. 8 und 9 gemeinsame Bögen.) Risse am Falz unten bei Bl. 2/3, 4/5, 6/7."
                 ],
-                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 336 × 267 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10).",
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 336 × 267 mm, Firmenzeichen: <em>J. E. &amp; Co.</em> [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> auf Bl. 2<sup>r</sup>, 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup>, 10<sup>r</sup> unten links (Bl. 1–10).",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift",
-                        "blauer und roter Buntstift",
-                        "violetter Stempelabdruck"
-                    ]
+                    "secondary": ["Bleistift", "blauer und roter Buntstift", "violetter Stempelabdruck"]
                 },
                 "title": "<em>Anton Webern |</em> <sup>?</sup><em><s>Drei</s></em><sup>?</sup> <em>Drei Gesänge | op. 23 | aus | Viae inviae | von | Hildegard Jone</em> auf Bl. 1<sup>r</sup> System 3–10 Mitte, <sup>?</sup><em><s>Drei</s></em><sup>?</sup> rasiert;<br /><em>I.</em> [Mitte] | <em>Anton Webern, op. 23</em> [rechts] auf Bl. 2<sup>r</sup> oben bis System 1;<br /><em>II.</em> auf Bl. 6<sup>r</sup> oben Mitte;<br /><em>III.</em> auf Bl. 8<sup>r</sup> oben Mitte.",
                 "date": "",
@@ -2048,7 +2044,7 @@
                 "desc": [
                     "12 Seiten (S. [1]–12): 3 klammergeheftete Bögen in Umschlag (S. [a–d]), Format: hoch 309 × 230 mm. Innere Seiten des Umschlags (S. [b] und [c]) nicht bedruckt. S. [d]: Verlagsanzeige mit Werkverzeichnis Weberns."
                 ],
-                "writingMaterial": "",
+                "writingMaterialString": "",
                 "writingInstruments": {
                     "main": "",
                     "secondary": []
