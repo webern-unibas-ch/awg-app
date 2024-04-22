@@ -26,7 +26,7 @@ jobs:
                 node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
         steps:
             - name: Checkout repository
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
+              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
               with:
                   fetch-depth: 0 # Get all history and branches
             - name: Set up node ${{ matrix.node-version}}
@@ -70,7 +70,7 @@ jobs:
                 node-version: [20.9]
         steps:
             - name: Checkout repository
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
+              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
