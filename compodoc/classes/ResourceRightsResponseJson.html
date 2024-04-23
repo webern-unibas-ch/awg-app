@@ -241,7 +241,7 @@
                                             <tr>
                                                     <td>rights</td>
                                                     <td>
-                                                            <code><p>: number TODO: change to KnoraRights??</p>
+                                                            <code><p>: number</p>
 </code>
                                                     </td>
                                             </tr>
@@ -264,8 +264,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
 
 /**
  * Represents the Knora API V1 response to a resource rights request
@@ -277,7 +277,7 @@ import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-co
 export class ResourceRightsResponseJson extends BasicResponseJson {
     /**
      * The current user&#x27;s permissions on the resource
-     * @param rights: number TODO: change to KnoraRights??
+     * @param rights: number
      */
     @JsonProperty(&#x27;rights&#x27;, Number)
     public rights: number &#x3D; undefined;

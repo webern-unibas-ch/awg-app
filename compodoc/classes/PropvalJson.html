@@ -675,14 +675,13 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/propval-json.ts:74</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/propval-json.ts:73</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Typed representation of the value
-TODO: check if it is possible to use a ValueJson class instead of undefine ??</p>
+                    <div class="io-description"><p>Typed representation of the value</p>
 </div>
                 </td>
             </tr>
@@ -702,8 +701,7 @@ TODO: check if it is possible to use a ValueJson class instead of undefine ??</p
                                             <tr>
                                                     <td>value</td>
                                                     <td>
-                                                            <code><p>: KnoraValue
-TODO: check if it is possible to use a ValueJson class instead of undefine ??</p>
+                                                            <code><p>: KnoraValue</p>
 </code>
                                                     </td>
                                             </tr>
@@ -726,8 +724,8 @@ TODO: check if it is possible to use a ValueJson class instead of undefine ??</p
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Any, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import { KnoraIRI, KnoraValue } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { KnoraIRI, KnoraValue } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+import { Any, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
 
 /**
  * Represents a property value (no parallel arrays)
@@ -780,7 +778,6 @@ export class PropvalJson {
     /**
      * Typed representation of the value
      * @param value: KnoraValue
-     * TODO: check if it is possible to use a ValueJson class instead of undefine ??
      */
     @JsonProperty(&#x27;value&#x27;, Any)
     public value: KnoraValue &#x3D; undefined;

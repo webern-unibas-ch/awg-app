@@ -24,21 +24,21 @@
 <title>cluster_GraphVisualizerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 2146,-268 2146,-70 8,-70"/>
 </g>
-<g id="clust16" class="cluster">
-<title>cluster_GraphVisualizerModule_providers</title>
-<polygon fill="none" stroke="black" points="1914,-78 1914,-130 2138,-130 2138,-78 1914,-78"/>
-</g>
-<g id="clust14" class="cluster">
-<title>cluster_GraphVisualizerModule_exports</title>
-<polygon fill="none" stroke="black" points="1022,-208 1022,-260 1216,-260 1216,-208 1022,-208"/>
-</g>
 <g id="clust13" class="cluster">
 <title>cluster_GraphVisualizerModule_imports</title>
-<polygon fill="none" stroke="black" points="1792,-78 1792,-130 1906,-130 1906,-78 1792,-78"/>
+<polygon fill="none" stroke="black" points="2024,-78 2024,-130 2138,-130 2138,-78 2024,-78"/>
+</g>
+<g id="clust16" class="cluster">
+<title>cluster_GraphVisualizerModule_providers</title>
+<polygon fill="none" stroke="black" points="1792,-78 1792,-130 2016,-130 2016,-78 1792,-78"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_GraphVisualizerModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 1784,-130 1784,-78 16,-78"/>
+</g>
+<g id="clust14" class="cluster">
+<title>cluster_GraphVisualizerModule_exports</title>
+<polygon fill="none" stroke="black" points="1022,-208 1022,-260 1216,-260 1216,-208 1022,-208"/>
 </g>
 <!-- ConstructResultsComponent -->
 <g id="node1" class="node">
@@ -181,26 +181,26 @@
 <!-- SharedModule -->
 <g id="node12" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1898.42,-122 1895.42,-126 1874.42,-126 1871.42,-122 1799.58,-122 1799.58,-86 1898.42,-86 1898.42,-122"/>
-<text text-anchor="middle" x="1849" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="2130.42,-122 2127.42,-126 2106.42,-126 2103.42,-122 2031.58,-122 2031.58,-86 2130.42,-86 2130.42,-122"/>
+<text text-anchor="middle" x="2081" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;GraphVisualizerModule -->
 <g id="edge11" class="edge">
 <title>SharedModule&#45;&gt;GraphVisualizerModule</title>
-<path fill="none" stroke="black" d="M1849,-122.28C1849,-143.32 1849,-175 1849,-175 1849,-175 1205.06,-175 1205.06,-175"/>
-<polygon fill="black" stroke="black" points="1205.06,-171.5 1195.06,-175 1205.06,-178.5 1205.06,-171.5"/>
+<path fill="none" stroke="black" d="M2081,-122.25C2081,-145.02 2081,-181 2081,-181 2081,-181 1205.29,-181 1205.29,-181"/>
+<polygon fill="black" stroke="black" points="1205.29,-177.5 1195.29,-181 1205.29,-184.5 1205.29,-177.5"/>
 </g>
 <!-- GraphVisualizerService -->
 <g id="node14" class="node">
 <title>GraphVisualizerService</title>
-<ellipse fill="#fdb462" stroke="black" cx="2026" cy="-104" rx="103.61" ry="18"/>
-<text text-anchor="middle" x="2026" y="-99.8" font-family="Times,serif" font-size="14.00">GraphVisualizerService</text>
+<ellipse fill="#fdb462" stroke="black" cx="1904" cy="-104" rx="103.61" ry="18"/>
+<text text-anchor="middle" x="1904" y="-99.8" font-family="Times,serif" font-size="14.00">GraphVisualizerService</text>
 </g>
 <!-- GraphVisualizerService&#45;&gt;GraphVisualizerModule -->
 <g id="edge13" class="edge">
 <title>GraphVisualizerService&#45;&gt;GraphVisualizerModule</title>
-<path fill="none" stroke="black" d="M2026,-122.25C2026,-145.02 2026,-181 2026,-181 2026,-181 1205.16,-181 1205.16,-181"/>
-<polygon fill="black" stroke="black" points="1205.16,-177.5 1195.16,-181 1205.16,-184.5 1205.16,-177.5"/>
+<path fill="none" stroke="black" d="M1904,-122.28C1904,-143.32 1904,-175 1904,-175 1904,-175 1205.34,-175 1205.34,-175"/>
+<polygon fill="black" stroke="black" points="1205.34,-171.5 1195.34,-175 1205.34,-178.5 1205.34,-171.5"/>
 </g>
 </g>
 </svg>

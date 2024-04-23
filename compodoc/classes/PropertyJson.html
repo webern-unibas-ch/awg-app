@@ -1038,14 +1038,13 @@ for the given resource class
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:196</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="194" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:194</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The property&#39;s html serialization.
-TODO</p>
+                    <div class="io-description"><p>The property&#39;s html serialization.</p>
 </div>
                 </td>
             </tr>
@@ -1065,8 +1064,7 @@ TODO</p>
                                             <tr>
                                                     <td>toHtml</td>
                                                     <td>
-                                                            <code><p>: Array<string> OPTIONAL
-TODO</p>
+                                                            <code><p>: Array<string> OPTIONAL</p>
 </code>
                                                     </td>
                                             </tr>
@@ -1478,14 +1476,13 @@ of each resource referred to.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:181</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:180</a></div>
                         </td>
                     </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>The property&#39;s values
-TODO</p>
+                    <div class="io-description"><p>The property&#39;s values</p>
 </div>
                 </td>
             </tr>
@@ -1505,8 +1502,7 @@ TODO</p>
                                             <tr>
                                                     <td>values</td>
                                                     <td>
-                                                            <code><p>: Array<KnoraValues> OPTIONAL
-TODO</p>
+                                                            <code><p>: Array<KnoraValues> OPTIONAL</p>
 </code>
                                                     </td>
                                             </tr>
@@ -1552,7 +1548,7 @@ TODO</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:188</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="187" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:187</a></div>
                         </td>
                     </tr>
 
@@ -1618,8 +1614,8 @@ TODO</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="205"
-                                    class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:205</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="203"
+                                    class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/property-json.ts:203</a></div>
                         </td>
                     </tr>
 
@@ -1652,13 +1648,13 @@ TODO</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Any, JsonConvert, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
     KnoraIRI,
     KnoraRights,
     LocationItemJson,
     StringOrNumber,
 } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+import { Any, JsonConvert, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
 
 /**
  * Represents a property value
@@ -1813,7 +1809,6 @@ export class PropertyJson {
     /**
      * The property&#x27;s values
      * @param values: Array&lt;KnoraValues&gt; OPTIONAL
-     * TODO
      */
     @JsonProperty(&#x27;values&#x27;, Any, true)
     public values: any &#x3D; undefined;
@@ -1828,7 +1823,6 @@ export class PropertyJson {
     /**
      * The property&#x27;s html serialization.
      * @param toHtml: Array&lt;string&gt; OPTIONAL
-     * TODO
      */
     @JsonProperty(&#x27;toHtml&#x27;, [String], true)
     public toHtml: string[] &#x3D; undefined;

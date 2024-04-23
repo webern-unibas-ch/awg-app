@@ -416,13 +416,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Any, JsonConvert, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
     KnoraIRI,
     KnoraRights,
     LocationItemJson,
     StringOrNumber,
 } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+import { Any, JsonConvert, JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
 
 /**
  * Represents a property value
@@ -577,7 +577,6 @@ export class PropertyJson {
     /**
      * The property&#x27;s values
      * @param values: Array&lt;KnoraValues&gt; OPTIONAL
-     * TODO
      */
     @JsonProperty(&#x27;values&#x27;, Any, true)
     public values: any &#x3D; undefined;
@@ -592,7 +591,6 @@ export class PropertyJson {
     /**
      * The property&#x27;s html serialization.
      * @param toHtml: Array&lt;string&gt; OPTIONAL
-     * TODO
      */
     @JsonProperty(&#x27;toHtml&#x27;, [String], true)
     public toHtml: string[] &#x3D; undefined;

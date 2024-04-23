@@ -420,8 +420,8 @@ and a public instance of the UtilityService.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-series-detail/edition-section-detail/edition-section-detail.component.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -636,7 +636,7 @@ when initializing the component.</p>
 import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 
 import { Subject } from &#x27;rxjs&#x27;;
-import { takeUntil } from &#x27;rxjs/operators&#x27;;
+import { filter, takeUntil } from &#x27;rxjs/operators&#x27;;
 
 import { UtilityService } from &#x27;@awg-core/services&#x27;;
 import { EditionOutlineSection, EditionOutlineSeries } from &#x27;@awg-views/edition-view/models&#x27;;
@@ -715,14 +715,15 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
 
         this.editionService
             .getSelectedEditionSeries()
-            .pipe(takeUntil(this._destroyed$))
+            .pipe(
+                takeUntil(this._destroyed$),
+                filter(series &#x3D;&gt; !!series)
+            )
             .subscribe(series &#x3D;&gt; {
-                if (series) {
-                    this.selectedSeries &#x3D; series;
-                    const seriesId &#x3D; series.series.route;
-                    this.selectedSection &#x3D; this.editionService.getEditionSectionById(seriesId, sectionId);
-                    this.editionService.updateSelectedEditionSection(this.selectedSection);
-                }
+                this.selectedSeries &#x3D; series;
+                const seriesId &#x3D; series.series.route;
+                this.selectedSection &#x3D; this.editionService.getEditionSectionById(seriesId, sectionId);
+                this.editionService.updateSelectedEditionSection(this.selectedSection);
             });
     }
 

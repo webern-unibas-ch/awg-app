@@ -138,7 +138,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
-import { PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x27;;
+import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
 import { HomeViewComponent } from &#x27;@awg-views/home-view/home-view.component&#x27;;
 
@@ -193,6 +193,16 @@ const APP_ROUTES: Routes &#x3D; [
 ];
 
 /**
+ * Options for the app routes.
+ */
+const APP_ROUTER_OPTIONS: ExtraOptions &#x3D; {
+    anchorScrolling: &#x27;enabled&#x27;,
+    onSameUrlNavigation: &#x27;reload&#x27;,
+    scrollPositionRestoration: &#x27;enabled&#x27;,
+    preloadingStrategy: PreloadAllModules,
+};
+
+/**
  * Routed components of the {@link AppModule}:
  * {@link HomeViewComponent}.
  */
@@ -204,14 +214,7 @@ export const routedAppComponents &#x3D; [HomeViewComponent];
  * It activates the APP_ROUTES, esp. lazy-loaded View Modules.
  */
 @NgModule({
-    imports: [
-        RouterModule.forRoot(APP_ROUTES, {
-            anchorScrolling: &#x27;enabled&#x27;,
-            onSameUrlNavigation: &#x27;reload&#x27;,
-            scrollPositionRestoration: &#x27;enabled&#x27;,
-            preloadingStrategy: PreloadAllModules,
-        }),
-    ],
+    imports: [RouterModule.forRoot(APP_ROUTES, APP_ROUTER_OPTIONS)],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

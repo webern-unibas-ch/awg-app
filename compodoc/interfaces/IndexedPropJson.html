@@ -157,7 +157,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/resource-properties-response-json.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/resource-properties-response-json.ts:40</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -168,8 +168,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
-import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-components&#x27;;
+import { JsonObject, JsonProperty } from &#x27;json2typescript&#x27;;
 import { PropJson } from &#x27;./prop-json&#x27;;
 
 /**
@@ -185,7 +185,6 @@ export class ResourcePropertiesResponseJson extends BasicResponseJson {
      *
      * @param properties: object
      * @type [index: string]: prop
-     * TODO
      */
     @JsonProperty(&#x27;properties&#x27;, [PropJson])
     public properties: IndexedPropJson[] &#x3D; undefined;

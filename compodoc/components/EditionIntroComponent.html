@@ -246,7 +246,14 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_navigateToFragment" >_navigateToFragment</a>
+                            </li>
+                            <li>
                                 <a href="#getEditionIntroData" >getEditionIntroData</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToIntroFragment" >navigateToIntroFragment</a>
                             </li>
                             <li>
                                 <a href="#navigateToReportFragment" >navigateToReportFragment</a>
@@ -405,6 +412,100 @@ and the Angular Router; as well as a public instance of the UtilityService.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_navigateToFragment"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_navigateToFragment</b></span>
+                        <a href="#_navigateToFragment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_navigateToFragment(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fragmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _navigateToFragment.</p>
+<p>It navigates to a given route with the given fragmentId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given route.</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>fragmentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given fragment id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the given route with the fragment id.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getEditionIntroData"></a>
                     <span class="name">
                         <span ><b>getEditionIntroData</b></span>
@@ -451,6 +552,82 @@ from the EditionDataService.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="navigateToIntroFragment"></a>
+                    <span class="name">
+                        <span ><b>navigateToIntroFragment</b></span>
+                        <a href="#navigateToIntroFragment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToIntroFragment(fragmentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public method: navigateToIntroFragment.</p>
+<p>It navigates to the &#39;/intro/&#39; route with the given fragmentId.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fragmentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given fragment id.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>Navigates to the edition intro fragment.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="navigateToReportFragment"></a>
                     <span class="name">
                         <span ><b>navigateToReportFragment</b></span>
@@ -467,8 +644,8 @@ from the EditionDataService.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -516,7 +693,7 @@ from the EditionDataService.</p>
 
                         </div>
                             <div class="io-description">
-                                <p>Navigates to the edition report.</p>
+                                <p>Navigates to the edition report fragment.</p>
 
                             </div>
                 </td>
@@ -584,8 +761,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="155"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:155</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="158"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:158</a></div>
                         </td>
                     </tr>
 
@@ -660,8 +837,8 @@ when initializing the component.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="172"
-                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:172</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.component.ts:175</a></div>
                         </td>
                     </tr>
 
@@ -1117,24 +1294,27 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
+     * Public method: navigateToIntroFragment.
+     *
+     * It navigates to the &#x27;/intro/&#x27; route with the given fragmentId.
+     *
+     * @param {string} fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition intro fragment.
+     */
+    navigateToIntroFragment(fragmentId: string): void {
+        this._navigateToFragment(this.editionRouteConstants.EDITION_INTRO.route, fragmentId);
+    }
+
+    /**
      * Public method: navigateToReportFragment.
      *
      * It navigates to the &#x27;/report/&#x27; route with the given fragmentId.
      *
      * @param {string}  fragmentId The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @returns {void} Navigates to the edition report fragment.
      */
     navigateToReportFragment(fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId &#x3D; &#x27;&#x27;;
-        }
-        const navigationExtras: NavigationExtras &#x3D; {
-            fragment: fragmentId,
-        };
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
-            navigationExtras
-        );
+        this._navigateToFragment(this.editionRouteConstants.EDITION_REPORT.route, fragmentId);
     }
 
     /**
@@ -1174,6 +1354,25 @@ export class EditionIntroComponent implements OnInit {
 
         this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
     }
+
+    /**
+     * Private method: _navigateToFragment.
+     *
+     * It navigates to a given route with the given fragmentId.
+     *
+     * @param {string} route The given route.
+     * @param {string} fragmentId The given fragment id.
+     * @returns {void} Navigates to the given route with the fragment id.
+     */
+    private _navigateToFragment(route: string, fragmentId: string): void {
+        if (!fragmentId) {
+            fragmentId &#x3D; &#x27;&#x27;;
+        }
+        const navigationExtras: NavigationExtras &#x3D; {
+            fragment: fragmentId,
+        };
+        this.router.navigate([this.editionComplex.baseRoute, route], navigationExtras);
+    }
 }
 </code></pre>
     </div>
@@ -1188,8 +1387,8 @@ export class EditionIntroComponent implements OnInit {
     @if (editionIntroData$ | async; as editionIntroData) {
         &lt;div class&#x3D;&quot;awg-intro-view p-5 border rounded-3&quot;&gt;
             @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {
-                @for (intro of editionIntroData.intro[0].content; track intro) {
-                    &lt;p class&#x3D;&quot;awg-intro-entry&quot; [compile-html]&#x3D;&quot;intro&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/p&gt;
+                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {
+                    &lt;p class&#x3D;&quot;awg-intro-paragraph&quot; [compile-html]&#x3D;&quot;introParagraph&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/p&gt;
                 }
             } @else {
                 &lt;p class&#x3D;&quot;awg-intro-empty&quot;&gt;
@@ -1202,6 +1401,15 @@ export class EditionIntroComponent implements OnInit {
                         }}.]
                     &lt;/small&gt;
                 &lt;/p&gt;
+            }
+            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {
+                &lt;hr /&gt;
+                &lt;h5&gt;Anmerkungen&lt;/h5&gt;
+                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {
+                    &lt;small
+                        &gt;&lt;p class&#x3D;&quot;awg-intro-footnote&quot; [compile-html]&#x3D;&quot;footnote&quot; [compile-html-ref]&#x3D;&quot;this&quot;&gt;&lt;/p
+                    &gt;&lt;/small&gt;
+                }
             }
         &lt;/div&gt;
     } @else {
@@ -1224,7 +1432,37 @@ export class EditionIntroComponent implements OnInit {
                 <p class="comment">
                     <code>./edition-intro.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">p.awg-intro-paragraph {
+    margin: 0;
+    text-indent: 25px;
+
+    &amp;::ng-deep {
+        .heading {
+            display: block;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .heading,
+        .small,
+        .no-indent {
+            text-indent: 0;
+        }
+        .small:not(.spacebreak),
+        .no-indent {
+            margin-left: -25px;
+        }
+        .spacebreak {
+            display: block;
+            margin-bottom: 25px;
+
+            &amp;.no-indent {
+                margin-left: 0;
+            }
+        }
+    }
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">
@@ -1252,7 +1490,7 @@ export class EditionIntroComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-intro-view p-5 border rounded-3">            @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {                @for (intro of editionIntroData.intro[0].content; track intro) {                    <p class="awg-intro-entry" [compile-html]="intro" [compile-html-ref]="this"></p>                }            } @else {                <p class="awg-intro-empty">                    <small class="text-muted"                        >[Die Einleitung zum Editionskomplex                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der                        vollständigen Edition von {{ editionComplex.complexId.short }} in                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                            editionComplex.section.short                        }}.]                    </small>                </p>            }        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <div class="errorMessage">                <div class="col-12 text-center">                    <div class="alert alert-danger">                        {{ errorObject }}                    </div>                </div>            </div>        }    }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    @if (editionIntroData$ | async; as editionIntroData) {        <div class="awg-intro-view p-5 border rounded-3">            @if (utils.isNotEmptyArray(editionIntroData.intro[0].content)) {                @for (introParagraph of editionIntroData.intro[0].content; track introParagraph) {                    <p class="awg-intro-paragraph" [compile-html]="introParagraph" [compile-html-ref]="this"></p>                }            } @else {                <p class="awg-intro-empty">                    <small class="text-muted"                        >[Die Einleitung zum Editionskomplex                        <span [innerHTML]="editionComplex.complexId.full"></span> erscheint im Zusammenhang der                        vollständigen Edition von {{ editionComplex.complexId.short }} in                        {{ editionRouteConstants.EDITION.short }} {{ editionComplex.series.short }}/{{                            editionComplex.section.short                        }}.]                    </small>                </p>            }            @if (utils.isNotEmptyArray(editionIntroData.intro[0].footnotes)) {                <hr />                <h5>Anmerkungen</h5>                @for (footnote of editionIntroData.intro[0].footnotes; track footnote) {                    <small                        ><p class="awg-intro-footnote" [compile-html]="footnote" [compile-html-ref]="this"></p                    ></small>                }            }        </div>    } @else {        <!-- error message -->        @if (errorObject) {            <div class="errorMessage">                <div class="col-12 text-center">                    <div class="alert alert-danger">                        {{ errorObject }}                    </div>                </div>            </div>        }    }</div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CodeMirrorComponent', 'selector': 'awg-codemirror'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionComplexCardComponent', 'selector': 'awg-edition-complex-card'},{'name': 'EditionComplexComponent', 'selector': 'awg-edition-complex'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNavComponent', 'selector': 'awg-edition-detail-nav'},{'name': 'EditionFolioViewerComponent', 'selector': 'awg-edition-folio-viewer'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionJumbotronComponent', 'selector': 'awg-edition-jumbotron'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionRowTablesComponent', 'selector': 'awg-edition-row-tables'},{'name': 'EditionSectionDetailComponent', 'selector': 'awg-edition-section-detail'},{'name': 'EditionSectionsComponent', 'selector': 'awg-edition-sections'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSeriesDetailComponent', 'selector': 'awg-edition-series-detail'},{'name': 'EditionSheetsComponent', 'selector': 'awg-edition-sheets'},{'name': 'EditionSvgSheetFooterComponent', 'selector': 'awg-edition-svg-sheet-footer'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionSvgSheetNavItemComponent', 'selector': 'awg-edition-svg-sheet-nav-item'},{'name': 'EditionSvgSheetViewerComponent', 'selector': 'awg-edition-svg-sheet-viewer'},{'name': 'EditionSvgSheetViewerSwitchComponent', 'selector': 'awg-edition-svg-sheet-viewer-switch'},{'name': 'EditionTkaDescriptionComponent', 'selector': 'awg-edition-tka-description'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'ExtendedSearchFormComponent', 'selector': 'awg-extended-search-form'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'FulltextSearchFormComponent', 'selector': 'awg-fulltext-search-form'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'LicenseComponent', 'selector': 'awg-license'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TableComponent', 'selector': 'awg-table'},{'name': 'TablePaginationComponent', 'selector': 'awg-table-pagination'},{'name': 'TextcriticsListComponent', 'selector': 'awg-textcritics-list'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'},{'name': 'ViewHandleButtonGroupComponent', 'selector': 'awg-view-handle-button-group'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionIntroComponent'};
