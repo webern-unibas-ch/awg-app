@@ -110,7 +110,7 @@
         "json2typescript": "^1.5.1",
         "n3": "^1.17.3",
         "ngx-json-viewer": "^3.2.1",
-        "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.14",
+        "rdfstore": "musicenfanthen/rdfstore-js#v0.9.18-alpha.15",
         "rxjs": "~7.8.1",
         "stream": "^0.0.2",
         "tslib": "^2.6.2",
