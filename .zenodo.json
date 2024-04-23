@@ -11,6 +11,16 @@
             "name": "Thomas Ahrend",
             "type": "ProjectMember",
             "affiliation": "@webern-unibas-ch"
+        },
+        {
+            "name": "Michael Matter",
+            "type": "ProjectMember",
+            "affiliation": "@webern-unibas-ch"
+        },
+        {
+            "name": "Barbara Schingnitz",
+            "type": "ProjectMember",
+            "affiliation": "@webern-unibas-ch"
         }
     ],
     "license": "MIT",
