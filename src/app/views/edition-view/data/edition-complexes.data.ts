@@ -14,6 +14,29 @@ import { EditionComplex } from '@awg-views/edition-view/models';
  */
 export class EDITION_COMPLEXES {
     /**
+     * An EditionComplex object for M 22.
+     */
+    static readonly M22: EditionComplex = new EditionComplex(
+        {
+            title: 'Studienkomposition für Klavier / Streichquartett',
+            catalogueType: EDITION_CATALOGUE_TYPE_CONSTANTS.MNR,
+            catalogueNumber: '22',
+        },
+        {
+            editors: [
+                {
+                    name: 'Michael Matter',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
+            ],
+            lastModified: '21. März 2024',
+        },
+        EDITION_ROUTE_CONSTANTS.SERIES_2,
+        EDITION_ROUTE_CONSTANTS.SECTION_2A,
+        EDITION_TYPE_CONSTANTS.SKETCH_EDITION
+    );
+
+    /**
      * An EditionComplex object for M 30.
      */
     static readonly M30: EditionComplex = new EditionComplex(
@@ -282,7 +305,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '6. Mai 2023',
+            lastModified: '9. April 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
@@ -351,7 +374,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '6. Mai 2023',
+            lastModified: '17. April 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,
@@ -397,7 +420,7 @@ export class EDITION_COMPLEXES {
                     homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
                 },
             ],
-            lastModified: '19. Januar 2024',
+            lastModified: '17. April 2024',
         },
         EDITION_ROUTE_CONSTANTS.SERIES_1,
         EDITION_ROUTE_CONSTANTS.SECTION_5,

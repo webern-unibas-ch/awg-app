@@ -45,17 +45,6 @@ export class EditionSeriesComponent implements OnInit {
     }
 
     /**
-     * Public method: getEditionOutline.
-     *
-     * It gets the outline with array of series from the EditionService.
-     *
-     * @returns {void} Gets the edition outline.
-     */
-    getEditionOutline(): void {
-        this.editionOutline = this.editionService.getEditionOutline();
-    }
-
-    /**
      * Public method: clearSelectedSeries.
      *
      * It clears the selected series from the EditionService.
@@ -65,5 +54,16 @@ export class EditionSeriesComponent implements OnInit {
     clearSelections(): void {
         this.editionService.clearSelectedEditionSeries();
         this.editionService.clearSelectedEditionSection();
+    }
+
+    /**
+     * Public method: getEditionOutline.
+     *
+     * It gets the outline with array of series from the EditionService.
+     *
+     * @returns {void} Gets the edition outline.
+     */
+    getEditionOutline(): void {
+        this.editionOutline = this.editionService.getEditionOutline();
     }
 }

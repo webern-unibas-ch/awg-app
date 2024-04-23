@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
 import { EDITION_ROUTE_CONSTANTS } from '@awg-views/edition-view/edition-route-constants';
@@ -59,16 +59,16 @@ export class NavbarComponent implements OnInit {
     /**
      * Public variable: isCollapsed.
      *
-     * If the header menu is collapsed or not.
+     * It keeps the boolean value if the header menu is collapsed or not.
      */
     isCollapsed = true;
 
     /**
-     * Public variable: pageMetaData.
+     * Public variable: logos.
      *
-     * It keeps the page metadata for the header.
+     * It keeps the logos for the footer.
      */
-    pageMetaData: MetaPage;
+    logos: Logos;
 
     /**
      * Public variable: selectedEditionComplex.
@@ -85,6 +85,7 @@ export class NavbarComponent implements OnInit {
     readonly DISPLAYED_EDITION_COMPLEXES: EditionComplex[] = [
         EDITION_COMPLEXES.OP12,
         EDITION_COMPLEXES.OP25,
+        EDITION_COMPLEXES.M22,
         EDITION_COMPLEXES.M30,
         EDITION_COMPLEXES.M31,
         EDITION_COMPLEXES.M34,
@@ -160,10 +161,10 @@ export class NavbarComponent implements OnInit {
      * It calls the CoreService to provide
      * the metadata for the header.
      *
-     * @returns {void} Sets the pageMetaData variable.
+     * @returns {void} Sets the logos variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.logos = this.coreService.getLogos();
     }
 
     /**

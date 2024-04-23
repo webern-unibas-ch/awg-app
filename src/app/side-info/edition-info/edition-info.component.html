@@ -6,12 +6,22 @@
         <div ngbAccordion>
             <div ngbAccordionItem [collapsed]="false">
                 <div ngbAccordionHeader>
-                    <button ngbAccordionButton>Reihentabellen</button>
+                    <button ngbAccordionButton>Allgemein</button>
                 </div>
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template
                             ><p>
+                                <a
+                                    class="awg-edition-info-header-link"
+                                    [routerLink]="[
+                                        editionRouteConstants.EDITION.route,
+                                        editionRouteConstants.SERIES.route
+                                    ]"
+                                    >{{ editionRouteConstants.SERIES.full }}</a
+                                >
+                            </p>
+                            <p>
                                 <a
                                     class="awg-edition-info-header-link"
                                     [routerLink]="[

@@ -124,24 +124,27 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
+     * Public method: navigateToIntroFragment.
+     *
+     * It navigates to the '/intro/' route with the given fragmentId.
+     *
+     * @param {string} fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition intro fragment.
+     */
+    navigateToIntroFragment(fragmentId: string): void {
+        this._navigateToFragment(this.editionRouteConstants.EDITION_INTRO.route, fragmentId);
+    }
+
+    /**
      * Public method: navigateToReportFragment.
      *
      * It navigates to the '/report/' route with the given fragmentId.
      *
      * @param {string}  fragmentId The given fragment id.
-     * @returns {void} Navigates to the edition report.
+     * @returns {void} Navigates to the edition report fragment.
      */
     navigateToReportFragment(fragmentId: string): void {
-        if (!fragmentId) {
-            fragmentId = '';
-        }
-        const navigationExtras: NavigationExtras = {
-            fragment: fragmentId,
-        };
-        this.router.navigate(
-            [this.editionComplex.baseRoute, this.editionRouteConstants.EDITION_REPORT.route],
-            navigationExtras
-        );
+        this._navigateToFragment(this.editionRouteConstants.EDITION_REPORT.route, fragmentId);
     }
 
     /**
@@ -180,5 +183,24 @@ export class EditionIntroComponent implements OnInit {
         };
 
         this.router.navigate([complexRoute, this.editionRouteConstants.EDITION_SHEETS.route], navigationExtras);
+    }
+
+    /**
+     * Private method: _navigateToFragment.
+     *
+     * It navigates to a given route with the given fragmentId.
+     *
+     * @param {string} route The given route.
+     * @param {string} fragmentId The given fragment id.
+     * @returns {void} Navigates to the given route with the fragment id.
+     */
+    private _navigateToFragment(route: string, fragmentId: string): void {
+        if (!fragmentId) {
+            fragmentId = '';
+        }
+        const navigationExtras: NavigationExtras = {
+            fragment: fragmentId,
+        };
+        this.router.navigate([this.editionComplex.baseRoute, route], navigationExtras);
     }
 }

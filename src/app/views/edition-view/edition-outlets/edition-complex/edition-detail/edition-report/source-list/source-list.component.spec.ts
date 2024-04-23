@@ -1,6 +1,7 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -20,9 +21,12 @@ describe('SourceListComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedSourceListData: SourceList;
+    let expectedFragment: string;
 
-    let openModalSpy: Spy;
+    let navigateToReportFragmentSpy: Spy;
+    let navigateToReportFragmentRequestEmitSpy: Spy;
     let openModalRequestEmitSpy: Spy;
+    let openModalSpy: Spy;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -38,10 +42,16 @@ describe('SourceListComponent (DONE)', () => {
 
         // Test data
         expectedSourceListData = JSON.parse(JSON.stringify(mockEditionData.mockSourceListData));
+        expectedFragment = 'source_A';
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        navigateToReportFragmentSpy = spyOn(component, 'navigateToReportFragment').and.callThrough();
+        navigateToReportFragmentRequestEmitSpy = spyOn(
+            component.navigateToReportFragmentRequest,
+            'emit'
+        ).and.callThrough();
         openModalSpy = spyOn(component, 'openModal').and.callThrough();
         openModalRequestEmitSpy = spyOn(component.openModalRequest, 'emit').and.callThrough();
     });
@@ -118,6 +128,11 @@ describe('SourceListComponent (DONE)', () => {
                 });
 
                 it('... should contain siglum link in header column (th)', () => {
+                    expectedSourceListData.sources[2].missing = false;
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
                     const expectedSourcesLength = expectedSourceListData.sources.length;
                     const rowDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -149,6 +164,7 @@ describe('SourceListComponent (DONE)', () => {
                     expectedSourceListData.sources[0].siglumAddendum = 'a';
                     expectedSourceListData.sources[1].siglumAddendum = 'b';
                     expectedSourceListData.sources[2].siglumAddendum = 'H';
+                    expectedSourceListData.sources[2].missing = false;
 
                     component.sourceListData = expectedSourceListData;
                     detectChangesOnPush(fixture);
@@ -179,6 +195,93 @@ describe('SourceListComponent (DONE)', () => {
                         const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
 
                         expectToBe(anchorEl.textContent.trim(), expectedSiglum.trim() + expectedAddendum.trim());
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+
+                        expectToBe(siglumAddendumEl.textContent.trim(), expectedAddendum.trim());
+                        expect(siglumAddendumEl).toHaveClass('awg-source-list-siglum-addendum');
+                    });
+                });
+
+                it('... should display missing sources in brackets in header column (th)', () => {
+                    expectedSourceListData.sources[0].missing = true;
+                    expectedSourceListData.sources[1].missing = true;
+                    expectedSourceListData.sources[2].missing = true;
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 3, 3);
+
+                        // First span is opening bracket
+                        // Last span is closing bracket
+                        const siglumDes = spanDes[1];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+
+                        expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}]`);
+
+                        expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
+                        expect(siglumEl).toHaveClass('awg-source-list-siglum');
+                    });
+                });
+
+                it('... should display missing sources with addendum in brackets in header column (th)', () => {
+                    expectedSourceListData.sources[0].siglumAddendum = 'a';
+                    expectedSourceListData.sources[1].siglumAddendum = 'H';
+                    expectedSourceListData.sources[2].siglumAddendum = 'F1-2';
+
+                    expectedSourceListData.sources[0].missing = true;
+                    expectedSourceListData.sources[1].missing = true;
+                    expectedSourceListData.sources[2].missing = true;
+
+                    component.sourceListData = expectedSourceListData;
+                    detectChangesOnPush(fixture);
+
+                    const expectedSourcesLength = expectedSourceListData.sources.length;
+                    const rowDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'table > tbody > tr',
+                        expectedSourcesLength,
+                        expectedSourcesLength
+                    );
+
+                    rowDes.forEach((rowDe, index) => {
+                        const columnDes = getAndExpectDebugElementByCss(rowDe, 'th', 1, 1);
+
+                        const anchorDes = getAndExpectDebugElementByCss(columnDes[0], 'a', 1, 1);
+                        const anchorEl = anchorDes[0].nativeElement;
+
+                        const spanDes = getAndExpectDebugElementByCss(anchorDes[0], 'span', 4, 4);
+
+                        // First span is opening bracket
+                        // Last span is closing bracket
+                        const siglumDes = spanDes[1];
+                        const siglumEl = siglumDes.nativeElement;
+
+                        const siglumAddendumDes = spanDes[2];
+                        const siglumAddendumEl = siglumAddendumDes.nativeElement;
+
+                        const expectedSiglum = expectedSourceListData.sources[index].siglum;
+                        const expectedAddendum = expectedSourceListData.sources[index].siglumAddendum;
+
+                        expectToBe(anchorEl.textContent.trim(), `[${expectedSiglum}${expectedAddendum}]`);
 
                         expectToBe(siglumEl.textContent.trim(), expectedSiglum.trim());
                         expect(siglumEl).toHaveClass('awg-source-list-siglum');
@@ -395,6 +498,52 @@ describe('SourceListComponent (DONE)', () => {
                         expectToBe(spanEl1.textContent, expectedSourceListData.textSources[index - 1].location);
                     });
                 });
+            });
+        });
+
+        describe('#navigateToReportFragment()', () => {
+            it('... should have a method `navigateToReportFragment`', () => {
+                expect(component.navigateToReportFragment).toBeDefined();
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                // Get anhors in description
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);
+
+                // Everything but first anchor uses modal
+                // Click on first anchor
+                clickAndAwaitChanges(anchorDes[0], fixture);
+
+                expectSpyCall(navigateToReportFragmentSpy, 1, expectedFragment);
+            }));
+
+            describe('... should not emit anything if', () => {
+                it('... id is undefined', () => {
+                    component.navigateToReportFragment(undefined);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is null', () => {
+                    component.navigateToReportFragment(null);
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+                it('... id is empty string', () => {
+                    component.navigateToReportFragment('');
+
+                    expectSpyCall(navigateToReportFragmentRequestEmitSpy, 0);
+                });
+            });
+
+            it('... should emit id of selected report fragment', () => {
+                component.navigateToReportFragment(expectedFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 1, expectedFragment);
+
+                const otherFragment = 'source_B';
+                component.navigateToReportFragment(otherFragment);
+
+                expectSpyCall(navigateToReportFragmentRequestEmitSpy, 2, otherFragment);
             });
         });
 

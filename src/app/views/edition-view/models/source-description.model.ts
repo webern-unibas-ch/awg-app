@@ -70,6 +70,11 @@ export class SourceDescriptionFolio {
     folio?: string;
 
     /**
+     * The flag if the folios are considered as pages (optional).
+     */
+    isPage?: boolean;
+
+    /**
      * The folio link (optional).
      */
     folioLinkTo?: string;
@@ -158,30 +163,6 @@ export class SourceDescriptionWritingMaterialFormat {
 }
 
 /**
- * The SourceDescriptionWritingMaterialFirmSignLocation class.
- *
- * It is used in the context of the edition view
- * to store the data for the location of the firm sign of the writing material of a source description
- * from a source description json file.
- */
-export class SourceDescriptionWritingMaterialFirmSignLocation {
-    /**
-     * An additional info to the firm sign location on the writing material (optional).
-     */
-    info?: string;
-
-    /**
-     * The folios on which the firm sign is placed on the writing material (optional).
-     */
-    folios?: string[];
-
-    /**
-     * The position of the firm sign on the writing material (optional).
-     */
-    position?: string;
-}
-
-/**
  * The SourceDescriptionWritingMaterialFirmSign class.
  *
  * It is used in the context of the edition view
@@ -202,7 +183,31 @@ export class SourceDescriptionWritingMaterialFirmSign {
     /**
      * The location of the firm sign on the writing material (optional).
      */
-    location?: SourceDescriptionWritingMaterialFirmSignLocation[];
+    location?: SourceDescriptionWritingMaterialItemLocation[];
+}
+
+/**
+ * The SourceDescriptionWritingMaterialItemLocation class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the location of an item oof the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialItemLocation {
+    /**
+     * An additional info to the item location on the writing material (optional).
+     */
+    info?: string;
+
+    /**
+     * The folios on which the item is placed on the writing material (optional).
+     */
+    folios?: string[];
+
+    /**
+     * The position of the item on the writing material (optional).
+     */
+    position?: string;
 }
 
 /**
@@ -227,6 +232,30 @@ export class SourceDescriptionWritingMaterialSystems {
      * An addendum to the systems available (optional).
      */
     addendum?: string;
+}
+
+/**
+ * The SourceDescriptionWritingMaterialWatermark class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for the watermark of the writing material of a source description
+ * from a source description json file.
+ */
+export class SourceDescriptionWritingMaterialWatermark {
+    /**
+     * The variant of the watermark (optional).
+     */
+    variant?: string;
+
+    /**
+     * An alternative string for the watermark used on the writing material (optional).
+     */
+    alt?: string;
+
+    /**
+     * The location of the watermark on the writing material (optional).
+     */
+    location?: SourceDescriptionWritingMaterialItemLocation[];
 }
 
 /**
@@ -256,6 +285,11 @@ export class SourceDescriptionWritingMaterial {
      * The firm sign of the writing material (optional).
      */
     firmSign?: SourceDescriptionWritingMaterialFirmSign;
+
+    /**
+     * The watermark of the writing material (optional).
+     */
+    watermark?: SourceDescriptionWritingMaterialWatermark;
 
     /**
      * The folio addendum of the writing material (optional).
@@ -368,6 +402,11 @@ export class SourceDescription {
      * The addendum to a siglum of a sourceDescription (optional).
      */
     siglumAddendum?: string;
+
+    /**
+     * The flag if a source is missing (optional).
+     */
+    missing?: boolean;
 
     /**
      * The type description of a source.

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 import { UtilityService } from '@awg-core/services';
 import { EditionOutlineSection, EditionOutlineSeries } from '@awg-views/edition-view/models';
@@ -81,14 +81,15 @@ export class EditionSectionDetailComponent implements OnInit, OnDestroy {
 
         this.editionService
             .getSelectedEditionSeries()
-            .pipe(takeUntil(this._destroyed$))
+            .pipe(
+                takeUntil(this._destroyed$),
+                filter(series => !!series)
+            )
             .subscribe(series => {
-                if (series) {
-                    this.selectedSeries = series;
-                    const seriesId = series.series.route;
-                    this.selectedSection = this.editionService.getEditionSectionById(seriesId, sectionId);
-                    this.editionService.updateSelectedEditionSection(this.selectedSection);
-                }
+                this.selectedSeries = series;
+                const seriesId = series.series.route;
+                this.selectedSection = this.editionService.getEditionSectionById(seriesId, sectionId);
+                this.editionService.updateSelectedEditionSection(this.selectedSection);
             });
     }
 

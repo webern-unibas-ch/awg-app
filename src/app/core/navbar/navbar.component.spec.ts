@@ -28,8 +28,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { METADATA } from '@awg-core/core-data';
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { LOGOSDATA } from '@awg-core/core-data';
+import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { EDITION_COMPLEXES } from '@awg-views/edition-view/data';
@@ -75,7 +75,7 @@ describe('NavbarComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
     let mockRouter: Partial<Router>;
 
-    let expectedPageMetaData: MetaPage;
+    let expectedLogos: Logos;
 
     let expectedContactIcon: IconDefinition;
     let expectedEditionIcon: IconDefinition;
@@ -101,7 +101,7 @@ describe('NavbarComponent (DONE)', () => {
     beforeEach(waitForAsync(() => {
         // Stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: sectionType => METADATA[sectionType],
+            getLogos: () => expectedLogos,
         };
 
         // Router spy object
@@ -123,11 +123,12 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedLogos = LOGOSDATA;
 
         expectedEditionComplexes = [
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
+            EDITION_COMPLEXES.M22,
             EDITION_COMPLEXES.M30,
             EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
@@ -146,7 +147,7 @@ describe('NavbarComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        coreServiceSpy = spyOn(mockCoreService, 'getMetaDataSection').and.callThrough();
+        coreServiceSpy = spyOn(mockCoreService, 'getLogos').and.callThrough();
         getEditionComplexSpy = spyOn(component, 'getEditionComplex').and.callThrough();
         isActiveRouteSpy = spyOn(component, 'isActiveRoute').and.callThrough();
         routerSpy = mockRouter.isActive as jasmine.Spy;
@@ -196,8 +197,8 @@ describe('NavbarComponent (DONE)', () => {
             expectToBe(component.editionRouteConstants, expectedEditionRouteConstants);
         });
 
-        it('... should not have `pageMetaData`', () => {
-            expect(component.pageMetaData).toBeUndefined();
+        it('... should not have `logos`', () => {
+            expect(component.logos).toBeUndefined();
         });
 
         it('... should not have `selectedEditionComplex`', () => {
@@ -209,14 +210,14 @@ describe('NavbarComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
             });
 
-            it('... should contain 2 navbar-brand links in navbar', () => {
+            it('... should contain 2 navbar-brand-container with links in navbar', () => {
                 const navbarDe = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                getAndExpectDebugElementByCss(navbarDe[0], 'a.navbar-brand', 2, 2);
+                getAndExpectDebugElementByCss(navbarDe[0], '.navbar-brand-container > a.navbar-brand', 2, 2);
             });
 
-            it('... should display first navbar-brand link on not sm devices, and second navbar-brand link on sm devices', () => {
+            it('... should display first navbar-brand link not on sm devices, and second navbar-brand link only on sm devices', () => {
                 const navbarDe = getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
-                const navbarBrandDes = getAndExpectDebugElementByCss(navbarDe[0], 'a.navbar-brand', 2, 2);
+                const navbarBrandDes = getAndExpectDebugElementByCss(navbarDe[0], '.navbar-brand-container', 2, 2);
 
                 const navbarBrandEl1 = navbarBrandDes[0].nativeElement;
                 const navbarBrandEl2 = navbarBrandDes[1].nativeElement;
@@ -348,8 +349,8 @@ describe('NavbarComponent (DONE)', () => {
                 expectSpyCall(provideMetaDataSpy, 0);
             });
 
-            it('... should not have `pageMetaData`', () => {
-                expect(component.pageMetaData).toBeUndefined();
+            it('... should not have `logos`', () => {
+                expect(component.logos).toBeUndefined();
             });
         });
 
@@ -405,8 +406,8 @@ describe('NavbarComponent (DONE)', () => {
                 const urlEl1 = urlDes[0].nativeElement;
                 const urlEl2 = urlDes[1].nativeElement;
 
-                expectToBe(urlEl1.href, expectedPageMetaData.awgProjectUrl);
-                expectToBe(urlEl2.href, expectedPageMetaData.awgProjectUrl);
+                expectToBe(urlEl1.href, expectedLogos['awg'].href);
+                expectToBe(urlEl2.href, expectedLogos['awg'].href);
             });
 
             it('... should display home icon in first nav-item link ', () => {
@@ -495,8 +496,8 @@ describe('NavbarComponent (DONE)', () => {
                     const firstItemEl = firstItemDe[0].nativeElement;
                     const secondItemEl = secondItemDe[0].nativeElement;
 
-                    expectToBe(firstItemEl.textContent, 'Editionsübersicht');
-                    expectToBe(secondItemEl.textContent, 'Reihentabellen');
+                    expectToBe(firstItemEl.textContent, EDITION_ROUTE_CONSTANTS.SERIES.full);
+                    expectToBe(secondItemEl.textContent, EDITION_ROUTE_CONSTANTS.ROWTABLES.full);
                 });
 
                 it('... should have another dropdown header `Auswahl Skizzenkomplexe` surrounded by dividers', () => {
@@ -628,8 +629,8 @@ describe('NavbarComponent (DONE)', () => {
                 expectSpyCall(provideMetaDataSpy, 1);
             });
 
-            it('... should get `pageMetaData`', () => {
-                expectToEqual(component.pageMetaData, expectedPageMetaData);
+            it('... should get `logos`', () => {
+                expectToEqual(component.logos, expectedLogos);
             });
 
             it('... should have called coreService', () => {

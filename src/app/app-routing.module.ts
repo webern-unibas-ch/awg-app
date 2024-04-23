@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
 
@@ -54,6 +54,16 @@ const APP_ROUTES: Routes = [
 ];
 
 /**
+ * Options for the app routes.
+ */
+const APP_ROUTER_OPTIONS: ExtraOptions = {
+    anchorScrolling: 'enabled',
+    onSameUrlNavigation: 'reload',
+    scrollPositionRestoration: 'enabled',
+    preloadingStrategy: PreloadAllModules,
+};
+
+/**
  * Routed components of the {@link AppModule}:
  * {@link HomeViewComponent}.
  */
@@ -65,14 +75,7 @@ export const routedAppComponents = [HomeViewComponent];
  * It activates the APP_ROUTES, esp. lazy-loaded View Modules.
  */
 @NgModule({
-    imports: [
-        RouterModule.forRoot(APP_ROUTES, {
-            anchorScrolling: 'enabled',
-            onSameUrlNavigation: 'reload',
-            scrollPositionRestoration: 'enabled',
-            preloadingStrategy: PreloadAllModules,
-        }),
-    ],
+    imports: [RouterModule.forRoot(APP_ROUTES, APP_ROUTER_OPTIONS)],
     exports: [RouterModule],
 })
 export class AppRoutingModule {}

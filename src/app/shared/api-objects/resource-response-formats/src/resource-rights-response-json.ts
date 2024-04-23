@@ -12,8 +12,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
 import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-components';
+import { JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  * Represents the Knora API V1 response to a resource rights request
@@ -25,7 +25,7 @@ import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-compone
 export class ResourceRightsResponseJson extends BasicResponseJson {
     /**
      * The current user's permissions on the resource
-     * @param rights: number TODO: change to KnoraRights??
+     * @param rights: number
      */
     @JsonProperty('rights', Number)
     public rights: number = undefined;

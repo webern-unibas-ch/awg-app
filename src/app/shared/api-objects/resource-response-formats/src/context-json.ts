@@ -14,8 +14,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, LocationItemJson } from '@awg-shared/api-objects/basic-message-components';
+import { JsonObject, JsonProperty } from 'json2typescript';
 import { ResinfoJson } from './resinfo-json';
 
 /**
@@ -36,7 +36,6 @@ export class ContextJson {
      *      0 for none,
      *      1 for is partOf (e.g. a page of a book),
      *      2 for isCompound (e.g. a book that has pages)
-     * TODO: aliasing type as KnoraContextCode ??
      * @param context: number
      */
     @JsonProperty('context', Number)

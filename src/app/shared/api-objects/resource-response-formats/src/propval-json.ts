@@ -14,8 +14,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { Any, JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, KnoraValue } from '@awg-shared/api-objects/basic-message-components';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  * Represents a property value (no parallel arrays)
@@ -68,7 +68,6 @@ export class PropvalJson {
     /**
      * Typed representation of the value
      * @param value: KnoraValue
-     * TODO: check if it is possible to use a ValueJson class instead of undefine ??
      */
     @JsonProperty('value', Any)
     public value: KnoraValue = undefined;

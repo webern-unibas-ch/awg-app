@@ -16,6 +16,7 @@
                             @if (editionReportData[0]) {
                                 <awg-source-list
                                     [sourceListData]="editionReportData[0]"
+                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                                     (openModalRequest)="onModalOpen($event)">
                                 </awg-source-list>
                             }
@@ -34,6 +35,7 @@
                             @if (editionReportData[1]) {
                                 <awg-source-description
                                     [sourceDescriptionListData]="editionReportData[1]"
+                                    (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
                                     (openModalRequest)="onModalOpen($event)"
                                     (selectSvgSheetRequest)="onSvgSheetSelect($event)">
                                 </awg-source-description>

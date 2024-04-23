@@ -26,7 +26,7 @@ jobs:
                 node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
         steps:
             - name: Checkout repository
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
+              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
               with:
                   fetch-depth: 0 # Get all history and branches
             - name: Set up node ${{ matrix.node-version}}
@@ -42,7 +42,9 @@ jobs:
                   yarn run test:ci
             - name: Upload code coverage
               if: matrix.node-version == 20.9 # upload coverage report for current node version only
-              uses: codecov/codecov-action@54bcd8715eee62d40e33596ef5e8f0f48dbbccab # ratchet:codecov/codecov-action@v4.1.0
+              uses: codecov/codecov-action@84508663e988701840491b86de86b666e8a86bed # ratchet:codecov/codecov-action@v4.3.0
+              env:
+                  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
@@ -68,7 +70,7 @@ jobs:
                 node-version: [20.9]
         steps:
             - name: Checkout repository
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
+              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
@@ -103,7 +105,7 @@ jobs:
             - name: Create Release
               id: create_release
               if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-              uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # ratchet:softprops/action-gh-release@v0.1.15
+              uses: softprops/action-gh-release@9d7c94cfd0a1f3ed45544c887983e9fa900f0564 # ratchet:softprops/action-gh-release@v2.0.4
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}

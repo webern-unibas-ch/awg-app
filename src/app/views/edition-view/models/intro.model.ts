@@ -15,6 +15,11 @@ export class Intro {
      * The content array of an intro.
      */
     content: string[];
+
+    /**
+     * The footnotes array of an intro.
+     */
+    footnotes: string[];
 }
 
 /**

@@ -14,8 +14,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, LocationItemJson } from '@awg-shared/api-objects/basic-message-components';
+import { JsonObject, JsonProperty } from 'json2typescript';
 import { RegionJson } from './region-json';
 
 /**
@@ -90,7 +90,6 @@ export class ResinfoJson {
     /**
      * Regions if there are any
      * @param regions: Array<region>
-     * TODO: IndexedRegionJson [index:string]: RegionJson
      */
     @JsonProperty('regions', [RegionJson], true)
     public regions: RegionJson[] = undefined;
@@ -133,9 +132,6 @@ export class ResinfoJson {
     /**
      * Label of the resource's class
      * @param restype_label: string
-     * TODO: refactor restye_label & restype_name as RestypeJson??
-     * TODO: compare ResdataJson
-     * TODO: compare also resTypeItem in KnoraAPI
      */
     @JsonProperty('restype_label', String)
     public restype_label: string = undefined;
@@ -143,8 +139,6 @@ export class ResinfoJson {
     /**
      * The Knora IRI identifying the resource's class
      * @param restype_name: KnoraIRI
-     * TODO: ISSUE QUESTION: what's the difference between restype_id and restype_name??
-     * TODO: see restye_label above
      */
     @JsonProperty('restype_name', String)
     public restype_name: KnoraIRI = undefined;
@@ -152,8 +146,6 @@ export class ResinfoJson {
     /**
      * Points to the parent resource in case the resource depends on it
      * @param value_of: string | number
-     * TODO: expected type: string | number
-     * check: https://www.typescriptlang.org/docs/handbook/advanced-types.html
      */
     @JsonProperty('value_of', Number)
     public value_of: number = undefined;

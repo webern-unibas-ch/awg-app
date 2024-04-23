@@ -14,20 +14,6 @@ a {
     &:not(.awg-logo-link):hover {
         border-bottom: 1px solid $link-color;
     }
-    &.navbar-brand {
-        span {
-            &.webernlogo {
-                color: rgba(0, 0, 0, 0.6);
-            }
-        }
-        &:hover {
-            span {
-                &.webernlogo {
-                    color: rgba(0, 0, 0, 1);
-                }
-            }
-        }
-    }
 }
 a,
 a:link:not(.nav-link),
@@ -116,20 +102,31 @@ awg-navbar > .awg-main-navbar {
     border-radius: 0;
     background-color: transparent;
 }
+@media screen and (min-width: 768px) {
+    .navbar-brand-container > .navbar-brand > img {
+        max-width: 90%;
+    }
+    /* helper class to set order to minus 1 */
+    .order-md-minus-1 {
+        order: -1;
+    }
+}
 @media screen and (max-width: 767px) {
+    .navbar-brand-container > .navbar-brand > img {
+        max-width: 200%;
+    }
     .navbar > .container-fluid > .row {
         flex-wrap: nowrap;
+    }
+}
+@media screen and (max-width: 575px) {
+    .navbar-brand-container > .navbar-brand > img {
+        max-width: 250%;
     }
 }
 .nav-link > fa-icon {
     margin-left: 5px;
     margin-right: 5px;
-}
-/* helper class to set order to minus 1 */
-@media screen and (min-width: 768px) {
-    .order-md-minus-1 {
-        order: -1;
-    }
 }
 
 /* view container */
@@ -193,9 +190,6 @@ footer {
 }
 
 /****** CARDS ******/
-.card-header {
-    padding: 0.25rem 0.25rem; /* default: .75rem 1.25 rem */
-}
 .card-header .btn-link {
     color: $link-color !important;
     box-shadow: none;
@@ -389,6 +383,10 @@ span.facet-badge {
 .tab {
     @extend %inlineblock;
     margin-left: 25px;
+}
+.singletab {
+    @extend %inlineblock;
+    margin-left: 50px;
 }
 .doubletab {
     @extend %inlineblock;

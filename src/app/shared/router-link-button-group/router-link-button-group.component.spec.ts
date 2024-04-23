@@ -8,6 +8,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
+    expectToBe,
+    expectToEqual,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
@@ -102,11 +104,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one button group', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.btn-group', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-router-link-btn-group', 1, 1);
             });
 
             it('... should contain no buttons yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'button.btn', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-router-link-btn', 0, 0);
             });
         });
     });
@@ -122,22 +124,18 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         });
 
         it('... should have `buttonArray` input', () => {
-            expect(component.routerLinkButtons).toBeDefined();
-            expect(component.routerLinkButtons)
-                .withContext(`should equal ${expectedRouterLinkButtons}`)
-                .toEqual(expectedRouterLinkButtons);
+            expectToEqual(component.routerLinkButtons, expectedRouterLinkButtons);
         });
 
         it('... should have `queryParamsHandling` input', () => {
-            expect(component.queryParamsHandling).toBeTruthy();
-            expect(component.queryParamsHandling).withContext(`should be 'preserve'`).toBe(expectedQueryParamsHandling);
+            expectToBe(component.queryParamsHandling, expectedQueryParamsHandling);
         });
 
         describe('VIEW', () => {
             it('... should contain as many buttons as given routerLinkButtons', () => {
                 getAndExpectDebugElementByCss(
                     compDe,
-                    'button.btn',
+                    'div.awg-router-link-btn',
                     expectedRouterLinkButtons.length,
                     expectedRouterLinkButtons.length
                 );
@@ -146,7 +144,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             it('... should disable buttons if necessary', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'button.btn',
+                    'div.awg-router-link-btn',
                     expectedRouterLinkButtons.length,
                     expectedRouterLinkButtons.length
                 );
@@ -155,11 +153,9 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     const btnEl = btnDe.nativeElement;
 
                     if (expectedRouterLinkButtons[index].disabled) {
-                        expect(btnEl.disabled).toBeDefined();
-                        expect(btnEl.disabled).withContext('should be disabled').toBe(true);
+                        expect(btnEl).toHaveClass('disabled');
                     } else {
-                        expect(btnEl.disabled).toBeDefined();
-                        expect(btnEl.disabled).withContext('should not be disabled').toBe(false);
+                        expect(btnEl).not.toHaveClass('disabled');
                     }
                 });
             });
@@ -167,17 +163,14 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             it('... should render button labels', () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'button.btn',
+                    'div.awg-router-link-btn',
                     expectedRouterLinkButtons.length,
                     expectedRouterLinkButtons.length
                 );
                 btnDes.forEach((btnDe, index) => {
                     const btnEl = btnDe.nativeElement;
 
-                    expect(btnEl.textContent).toBeTruthy();
-                    expect(btnEl.textContent.trim())
-                        .withContext(`should be ${expectedRouterLinkButtons[index].label}`)
-                        .toBe(expectedRouterLinkButtons[index].label.trim());
+                    expectToBe(btnEl.textContent.trim(), expectedRouterLinkButtons[index].label.toUpperCase());
                 });
             });
         });
@@ -197,16 +190,12 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             });
 
             it('... can get correct number of routerLinks from template', () => {
-                expect(routerLinks.length)
-                    .withContext(`should have ${expectedRouterLinkButtons.length} routerLinks`)
-                    .toBe(expectedRouterLinkButtons.length);
+                expectToBe(routerLinks.length, expectedRouterLinkButtons.length);
             });
 
             it('... can get correct linkParams from routerLinks', () => {
-                routerLinks.forEach((routerLink, index) => {
-                    expect(routerLink.linkParams)
-                        .withContext(`should be ${expectedOrderOfRouterlinks[index]}`)
-                        .toEqual(expectedOrderOfRouterlinks[index]);
+                routerLinks.forEach((routerLink: { linkParams: any }, index: number) => {
+                    expectToEqual(routerLink.linkParams, expectedOrderOfRouterlinks[index]);
                 });
             });
 
@@ -219,9 +208,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 click(fulltextLinkDe);
                 fixture.detectChanges();
 
-                expect(fulltextLink.navigatedTo)
-                    .withContext(`should equal ['/data/search', 'fulltext']`)
-                    .toEqual(['/data/search', 'fulltext']);
+                expectToEqual(fulltextLink.navigatedTo, ['/data/search', 'fulltext']);
             });
 
             it('... can click all links in template', () => {
@@ -234,64 +221,81 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                     click(linkDe);
                     fixture.detectChanges();
 
-                    expect(routerLink.navigatedTo)
-                        .withContext(`should equal ${expectedRouterLink}`)
-                        .toEqual(expectedRouterLink);
+                    expectToEqual(routerLink.navigatedTo, expectedRouterLink);
                 });
             });
         });
 
         describe('#selectButton()', () => {
-            it('... should trigger on click if enabled', fakeAsync(() => {
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
+            describe('... should do nothing if...', () => {
+                it('... routerLinkButton is null', () => {
+                    const nullButton: RouterLinkButton = null;
+
+                    component.selectButton(nullButton);
+
+                    expectSpyCall(selectButtonSpy, 1, nullButton);
+                    expectSpyCall(emitSpy, 0);
+                });
+
+                it('... routerLinkButton is undefined', () => {
+                    const undefinedButton: RouterLinkButton = undefined;
+
+                    component.selectButton(undefinedButton);
+
+                    expectSpyCall(selectButtonSpy, 1, undefinedButton);
+                    expectSpyCall(emitSpy, 0);
+                });
+
+                it('... routerLinkButton is disabled', () => {
+                    const disabledButton: RouterLinkButton = new RouterLinkButton(
+                        '/data/search',
+                        'fulltext',
+                        'Volltext-Suche',
+                        true
+                    );
+
+                    component.selectButton(disabledButton);
+
+                    expectSpyCall(selectButtonSpy, 1, disabledButton);
+                    expectSpyCall(emitSpy, 0);
+                });
+            });
+
+            it('... should trigger on click if enabled or disabled', fakeAsync(() => {
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'div.awg-router-link-btn', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
-                expect(btnDes[0].nativeElement.disabled).toBeFalse();
+                expect(btnDes[0].nativeElement).not.toHaveClass('disabled');
                 expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
-            }));
-
-            it('... should not trigger on click if disabled', fakeAsync(() => {
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
-                expect(btnDes[1].nativeElement.disabled).toBeTrue();
-                expectSpyCall(selectButtonSpy, 0);
+                expect(btnDes[1].nativeElement).toHaveClass('disabled');
+                expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
-                expect(btnDes[2].nativeElement.disabled).toBeTrue();
-                expectSpyCall(selectButtonSpy, 0);
+                expect(btnDes[2].nativeElement).toHaveClass('disabled');
+                expectSpyCall(selectButtonSpy, 3, expectedRouterLinkButtons[2]);
             }));
 
-            it('... should emit selected button on click if enabled', fakeAsync(() => {
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
+            it('... should emit if routerLinkButton is enabled', () => {
+                const enabledButton: RouterLinkButton = new RouterLinkButton(
+                    '/data/search',
+                    'fulltext',
+                    'Volltext-Suche',
+                    false
+                );
 
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[0], fixture);
+                component.selectButton(enabledButton);
 
-                expect(btnDes[0].nativeElement.disabled).toBeFalse();
-                expectSpyCall(emitSpy, 1, expectedRouterLinkButtons[0]);
-            }));
-
-            it('... should not emit selected button on click if disabled', fakeAsync(() => {
-                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[1], fixture);
-
-                expect(btnDes[1].nativeElement.disabled).toBeTrue();
-                expectSpyCall(emitSpy, 0);
-
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[2], fixture);
-
-                expect(btnDes[2].nativeElement.disabled).toBeTrue();
-                expectSpyCall(emitSpy, 0);
-            }));
+                expectSpyCall(selectButtonSpy, 1, enabledButton);
+                expectSpyCall(emitSpy, 1, enabledButton);
+            });
         });
     });
 });

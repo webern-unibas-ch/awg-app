@@ -14,8 +14,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { Any, JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-components';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  * Represents information about a resource.
@@ -40,8 +40,6 @@ export class ResdataJson {
     /**
      * Label of the resource's class
      * @param restype_label: string
-     * TODO: refactor restye_label & restype_name as RestypeJson??
-     * TODO: compare ResdataJson
      */
     @JsonProperty('restype_label', String)
     public restype_label: string = undefined;
@@ -49,7 +47,6 @@ export class ResdataJson {
     /**
      * IRI of the resource's class
      * @param restype_name: KnoraIRI
-     * TODO: see restye_label above
      */
     @JsonProperty('restype_name', String)
     public restype_name: KnoraIRI = undefined;

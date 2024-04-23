@@ -18,7 +18,7 @@ jobs:
         if: github.repository_owner == 'webern-unibas-ch'
         steps:
             - name: Checkout repository
-              uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # ratchet:actions/checkout@v4.1.1
+              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
             - name: Optimize SVGs
               uses: ericcornelissen/svgo-action@b8b3198fffbb1210e81aa68cde2ca4e4568d5386 # ratchet:ericcornelissen/svgo-action@v4.0.8
               id: svgo
@@ -26,7 +26,7 @@ jobs:
                   repo-token: ${{secrets.GITHUB_TOKEN}}
                   svgo-version: 3 # defaults to 2
             - name: Commit optimizations
-              uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # ratchet:stefanzweifel/git-auto-commit-action@v5.0.0
+              uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # ratchet:stefanzweifel/git-auto-commit-action@v5.0.1
               if: ${{steps.svgo.outputs.DID_OPTIMIZE}}
               with:
                   commit_message: 'fix(assets): optimize ${{steps.svgo.outputs.OPTIMIZED_COUNT}} SVG(s) with SVGO'

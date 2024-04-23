@@ -47,7 +47,6 @@ export class LocationItemJson {
     /**
      * X dimension of an image representation
      * @param nx: number | string
-     * TODO: compare thumb_max-json
      */
     @JsonProperty('nx', Any)
     public nx: StringOrNumber = undefined;

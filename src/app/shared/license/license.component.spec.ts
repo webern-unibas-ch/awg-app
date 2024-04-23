@@ -38,17 +38,25 @@ describe('LicenseComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         describe('VIEW', () => {
-            it('... should contain one p.awg-license', () => {
-                getAndExpectDebugElementByCss(compDe, 'p.awg-license', 1, 1);
+            it('... should contain one div.awg-license', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-license', 1, 1);
+            });
+
+            it('... should contain one paragraph in div.awg-license', () => {
+                getAndExpectDebugElementByCss(compDe, 'p', 1, 1);
+            });
+
+            it('... should have small and text-center class on paragraph', () => {
+                getAndExpectDebugElementByCss(compDe, 'p.small.text-center', 1, 1);
             });
 
             it('... should contain two links to the license', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-license', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
             });
 
             it('... should contain CC BY-SA 4.0 license links', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-license', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
 
                 aDes.forEach(aDe => {
@@ -59,7 +67,7 @@ describe('LicenseComponent', () => {
             });
 
             it('... should contain license image in first link', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-license', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
 
                 const imgDes = getAndExpectDebugElementByCss(aDes[0], 'img', 1, 1);
@@ -70,7 +78,7 @@ describe('LicenseComponent', () => {
             });
 
             it('... should contain license text in second link', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'p.awg-license', 1, 1);
+                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-license p', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(pDes[0], 'a[rel="license"]', 2, 2);
                 const aEl = aDes[1].nativeElement as HTMLAnchorElement;
 

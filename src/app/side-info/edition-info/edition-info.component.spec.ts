@@ -24,6 +24,7 @@ import { EditionInfoComponent } from './edition-info.component';
 
 /** Helper functions */
 function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]): string[][] {
+    const editionOverviewLink = [[EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.SERIES.route]];
     const rowTablesLink = [[EDITION_ROUTE_CONSTANTS.EDITION.route, EDITION_ROUTE_CONSTANTS.ROWTABLES.route]];
 
     const editionLinks = editionComplexes.flatMap(complex => {
@@ -34,10 +35,11 @@ function generateExpectedOrderOfRouterlinks(editionComplexes: EditionComplex[]):
         return routes;
     });
 
-    return [...rowTablesLink, ...editionLinks];
+    return [...editionOverviewLink, ...rowTablesLink, ...editionLinks];
 }
 
 function generateExpectedOrderOfHeaders(editionComplexes: EditionComplex[]): string[] {
+    const editionOverviewHeader = EDITION_ROUTE_CONSTANTS.SERIES.full;
     const rowTablesHeader = EDITION_ROUTE_CONSTANTS.ROWTABLES.full;
 
     const editionHeaders = editionComplexes.flatMap(complex => {
@@ -47,7 +49,7 @@ function generateExpectedOrderOfHeaders(editionComplexes: EditionComplex[]): str
         return [EDITION_TYPE_CONSTANTS.SKETCH_EDITION.full];
     });
 
-    return [rowTablesHeader, ...editionHeaders];
+    return [editionOverviewHeader, rowTablesHeader, ...editionHeaders];
 }
 
 describe('EditionInfoComponent (DONE)', () => {
@@ -92,6 +94,7 @@ describe('EditionInfoComponent (DONE)', () => {
         expectedEditionComplexes = [
             EDITION_COMPLEXES.OP12,
             EDITION_COMPLEXES.OP25,
+            EDITION_COMPLEXES.M22,
             EDITION_COMPLEXES.M30,
             EDITION_COMPLEXES.M31,
             EDITION_COMPLEXES.M34,
@@ -188,7 +191,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 const itemHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-header', 3, 3);
 
                 const expectedHeaders = [
-                    expectedEditionRouteConstants.ROWTABLES.short,
+                    'Allgemein',
                     `${expectedEditionRouteConstants.EDITION.short} ${expectedEditionRouteConstants.SERIES_1.short}/${expectedEditionRouteConstants.SECTION_5.short}`,
                     `${expectedEditionRouteConstants.EDITION.short} ${expectedEditionRouteConstants.SERIES_2.short}/${expectedEditionRouteConstants.SECTION_2A.short}`,
                 ];
@@ -241,7 +244,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 expectToContain(itemBodyEl.classList, 'show');
             });
 
-            it('... should contain item body with 1 paragraph', () => {
+            it('... should contain item body with 2 paragraphs in first item', () => {
                 // Div.accordion-item
                 const itemDes = getAndExpectDebugElementByCss(compDe, 'div.accordion-item', 3, 3);
 
@@ -249,7 +252,7 @@ describe('EditionInfoComponent (DONE)', () => {
                 const itemBodyDes = getAndExpectDebugElementByCss(itemDes[0], 'div.accordion-body', 1, 1);
 
                 // Paragraph
-                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 1, 1);
+                getAndExpectDebugElementByCss(itemBodyDes[0], 'p', 2, 2);
             });
 
             it('... should contain item body with 2 paragraphs in second item', () => {

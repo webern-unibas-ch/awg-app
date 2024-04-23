@@ -14,13 +14,13 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { Any, JsonConvert, JsonObject, JsonProperty } from 'json2typescript';
 import {
     KnoraIRI,
     KnoraRights,
     LocationItemJson,
     StringOrNumber,
 } from '@awg-shared/api-objects/basic-message-components';
+import { Any, JsonConvert, JsonObject, JsonProperty } from 'json2typescript';
 
 /**
  * Represents a property value
@@ -175,7 +175,6 @@ export class PropertyJson {
     /**
      * The property's values
      * @param values: Array<KnoraValues> OPTIONAL
-     * TODO
      */
     @JsonProperty('values', Any, true)
     public values: any = undefined;
@@ -190,7 +189,6 @@ export class PropertyJson {
     /**
      * The property's html serialization.
      * @param toHtml: Array<string> OPTIONAL
-     * TODO
      */
     @JsonProperty('toHtml', [String], true)
     public toHtml: string[] = undefined;
