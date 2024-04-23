@@ -1,0 +1,150 @@
+{
+    "sources": [
+        {
+            "id": "source_A",
+            "siglum": "A",
+            "siglumAddendum": "",
+            "type": "Autographe von „Dies ist ein Lied“ M 133: Textfassung 1→2 (<strong>A<sup>a</sup></strong>) / „Im Windesweben“ M 134: Textfassung 1→2 (<strong>A<sup>b</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "3 Blätter (Bl. 1–3): 1 Bogen (Bl. 1/2), 1 Blatt (Bl. 3). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[6]</em> unten links (recto) oder rechts (verso). Bl. 1<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet."
+                ],
+                "writingMaterial": "",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift"
+                    ]
+                },
+                "title": "<em>3 </em>[?] <em>Lieder</em> auf Bl. 1<sup>r</sup> System 3–4 mit Bleistift.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "<em>Webern</em> auf Bl. 1<sup>r</sup> oben rechts (Hs. Webern?).",
+                "content": [
+                    {
+                        "item": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 1→2",
+                        "itemLinkTo": "",
+                        "itemDescription": "(<strong>A<sup>a</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–13b",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13a–16",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "Autograph von „Im Windesweben“ M 134: Textfassung 1→2",
+                        "itemLinkTo": "",
+                        "itemDescription": "(<strong>A<sup>b</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–7",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "3–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–19",
+                                            "measure": "6–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–5",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–17",
+                                            "measure": "10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
