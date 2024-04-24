@@ -1564,7 +1564,7 @@
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
-                                "folioDescription": "Widmung (siehe Eintragungen).",
+                                "folioDescription": "Widmung: siehe Eintragungen.",
                                 "systemGroups": []
                             }
                         ]
@@ -2051,7 +2051,7 @@
                 },
                 "title": "<em>ANTON WEBERN | DREI GESÄNGE | OP. 23 | AUS | VIAE INVIAE | VON | HILDEGARD JONE</em> auf der vorderen Umschlagseite (S. [a]) sowie auf S. [1];<br /><em>DER DICHTERIN ZUGEEIGNET | DREI GESÄNGE | AUS „VIAE INVIAE“ VON HILDEGARD JONE | I</em> [Mitte] | <em>Anton Webern, Op. 23</em> [rechts] auf S. 2 oben;<br /><em>II</em> auf S. 7 oben Mitte;<br /><em>III</em> auf S. 9 oben Mitte.",
                 "date": "<em>Nr. 123 IV. 1936</em> auf der hinteren Umschlagseite (S. [d]) unter Verlagsanzeige <em>WERKE VON ANTON WEBERN</em> links.",
-                "pagination": "<em>2</em> bis <em>12</em> auf S. 2 bis 12 Außenecken oben.",
+                "pagination": "<em>2</em> bis <em>12</em> auf S. 2–12 Außenecken oben.",
                 "measureNumbers": "Taktzahlen zu jedem Takt in I (<em>1</em> bis <em>50</em>), in II (<em>1</em> bis <em>30</em>) und in III (<em>1</em> bis <em>28</em>).",
                 "instrumentation": "<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3.",
                 "annotations": "<em>UNIVERSAL-EDITION | No. 10.255</em> auf der vorderen Umschlagseite unten;<br /><em>Aufführungsrecht vorbehalten | UNIVERSAL-EDITION | WIEN | Copyright 1936 by Universal-Edition A. G. | Printed in Austria</em> auf S. [1] unten;<br /><em>Copyright 1936 by Universal-Edition</em> [links] <em>Universal-Edition Nr. 10255</em> [Mitte] <em>Aufführungsrecht vorbehalten</em> | <em>Droits d’exécution réservés</em> [rechts] auf S. 2 unten;<br /><em>U. E. 10255</em> auf S. 3–12 unten Mitte;<br /><em>Druck der Waldheim-Eberle A. G.</em> auf S. 12 unten rechts.",

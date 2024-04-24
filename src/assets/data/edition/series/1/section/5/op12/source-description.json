@@ -1081,7 +1081,7 @@
                 "date": "",
                 "pagination": "",
                 "measureNumbers": "",
-                "instrumentation": "",
+                "instrumentation": "<em>Gesang | Klavier</em> auf Bl. 2<sup>r</sup> System 1 | 2–3;<br /><em>Singst. | Klavier</em> auf Bl. 6<sup>r</sup> System 1 | 2–3.",
                 "annotations": "<em><s>Der Tag ist vergangen  bei U. E.</s></em> [Kurrentschrift] auf Bl. 1<sup>r</sup> System 7 rechts mit Bleistift;<br /><em>Notenbeilage zu</em>  [Abstand]  <em>M. A. 35</em> auf Bl. 2<sup>r</sup> unten links und Mitte mit Bleistift.",
                 "content": [
                     {
@@ -1471,17 +1471,17 @@
             "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
             "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
             "description": {
-                "desc": ["1 Bogen oder 1 Blatt, darauf zwei beschriebene Seiten (##S. [1]–[2]##)."],
-                "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## auf ##S. [1]## unten links.",
+                "desc": ["1 Blatt (Bl. 1). [Beschreibung am Original konnte bislang nicht erfolgen.]"],
+                "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["evt. weitere?"]
+                    "secondary": ["evt. weitere"]
                 },
-                "title": "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] auf ##S. [1]## oben.",
+                "title": "<em>Gleich und Gleich | Goethe</em> [Mitte] | <em>Anton Webern, op. 12</em> [rechts] recto oben.",
                 "date": "",
                 "pagination": "",
                 "measureNumbers": "",
-                "instrumentation": "",
+                "instrumentation": "<em>Gesang | Klavier</em> auf Bl. 1<sup>r</sup> System 1 | 2–3.",
                 "annotations": "",
                 "content": [
                     {
@@ -1490,7 +1490,7 @@
                         "itemDescription": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1",
                         "folios": [
                             {
-                                "folio": "##S. [1]##",
+                                "folio": "1r",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -1525,7 +1525,7 @@
                                 ]
                             },
                             {
-                                "folio": "##S. [2]##",
+                                "folio": "1v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
@@ -1565,7 +1565,7 @@
                     "main": "",
                     "secondary": []
                 },
-                "title": "<em>„Der Tag ist vergangen…“</em> [Mitte] | <em>Anton Webern | (aus Op. 12).</em> [rechts] oben.",
+                "title": "<em>„Der Tag ist vergangen…“</em> [Mitte] | <em>Anton Webern | (aus Op. 12).</em> [rechts] recto oben.",
                 "date": "",
                 "pagination": "<em>1</em> recto oben rechts.",
                 "measureNumbers": "",
@@ -1646,7 +1646,7 @@
                 "date": "",
                 "pagination": "<em>1</em> bis <em>4</em> auf Bl. 2<sup>r</sup>–3<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 4<sup>r</sup>–5<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 6<sup>r</sup>–7<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.);<br /><em>1</em> bis <em>4</em> auf Bl. 8<sup>r</sup>–9<sup>v</sup> Außenseiten oben mit Bleistift (nicht identifizierte Hs.).",
                 "measureNumbers": "",
-                "instrumentation": "",
+                "instrumentation": "<em>Gesang | Klavier</em> auf Bl. 2<sup>r</sup> System 1 | 2–3.",
                 "annotations": "<em><u>zum Satz</u></em> [dreifach unterstrichen] [links] [Pfeil nach rechts] <em>Schrift des Umschlages u. Tittelblattes</em> [sic] | <em>(gleichlautend) wie bei meinen | „geistlichen Lieder“ op. 15 U. E. No. 7629</em> auf Bl. 1<sup>r</sup> oben mit Bleistift;<br /><em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>2/4 ̅2̅5̅  </em> [Bleistift] | <em>Zum Stich!</em> [Stempel] | <span style=\"border-bottom: 1px solid black;display: inline;\"><em>U. E. 8<sup>o</sup></em></span> | <em>Stichregeln!!</em> | [Paraphe] [Bleistift] auf Bl. 1<sup>r</sup> System 3–5 rechts (nicht identifizierte Hs.);<br /><em>Aufführungsrechte vorbehalten.</em> [Abstand]<em> Droits d’exécution réserves.</em> [Stempel (schwacher Abdruck)] | <em><u>Universal-Edition</u> | Wien</em> [Bleistift] <em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> [Stempel, &lt;<em>25</em>&gt; mit Bleistift] <em>New York</em> | <em>U. E. Nr</em>[.] <em>8257</em> [Bleistift] auf Bl. 1<sup>r</sup> System 10–12 Mitte (nicht identifizierte Hs.);<br /><em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup>, 8<sup>r</sup> unten rechts mit violettem Stempelabdruck;<br /><em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links mit Stempelabdruck;<br /><em>Copyright 19</em>&lt;<em>25</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (nicht identifizierte Hs.);<br /><em>Universal Edition Nr. 8257</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br /><em>U. E.</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br /><em>U. E. 8257</em> auf Bl. 4<sup>r</sup>, 6<sup>r</sup>, 8<sup>r</sup> unten Mitte mit Bleistift (nicht identifizierte Hs.);<br />Dispositionsziffern in Nr. I (<em>„Der Tag ist vergangen“</em>) nach T. 3 (<em>1</em>), 7 (<em>2</em>), 11 (<em>3</em>), 14 (<em>1</em>), 17 (<em>2</em>), 23 (<em>3</em>) mit Bleistift (nicht identifizierte Hs.).",
                 "content": [
                     {
@@ -2005,7 +2005,7 @@
                 "date": "",
                 "pagination": "<em>2</em> bis <em>9</em> auf S. 2–9 Außenecken oben.",
                 "measureNumbers": "",
-                "instrumentation": "",
+                "instrumentation": "<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3",
                 "annotations": "<em>Aufführungsrecht vorbehalten. – Droits d'exécution réservés | UNIVERSAL-EDITION | WIEN   Copyright 1925 by Universal-Edition   NEW YORK</em> auf S. [1] unten;<br /><em>Aufführungsrecht vorbehalten. | Droits d'exécution réservés.</em> auf S. 2 oben links;<br /><em>Copyright 1925 by Universal-Edition.</em> [links] | <em>Universal-Edition Nr 8257</em> [Mitte] auf S. 2 unten;<br /><em>U. E. 8257</em> auf S. 3–9 unten Mitte;<br /><em>Stich u. Druck der Waldheim-Eberle A. G.</em> auf S. 9.",
                 "content": [
                     {
