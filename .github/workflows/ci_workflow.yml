@@ -114,9 +114,9 @@ jobs:
             - name: Validate build artifacts
               run: |
                   ls -R
-            - name: Deploy to GH Pages
+            - name: Deploy to staging GH Pages
               env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_TOKEN: ${{ secrets.DEV_DEPLOY_KEY }}
               run: |
                   yarn run deploy-dev:ci
 
