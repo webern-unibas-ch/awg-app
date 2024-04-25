@@ -109,16 +109,6 @@ jobs:
               run: |
                   cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/
 
-            - name: Validate build artifacts
-              run: |
-                  ls -R
-
-            - name: Check git status before commit
-              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
-              run: |
-                  git config --get remote.origin.url
-                  git status
-
             - name: Configure git
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
@@ -137,15 +127,17 @@ jobs:
                   git add .
                   git commit -m "Staging awg-app (${{ steps.vars.outputs.sha_describe }}) on gh-pages"
 
-            - name: Check git status after commit
-              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
-              run: |
-                  git config --get remote.origin.url
-                  git status
-
             - name: Push changes to gh-pages (dry-run mode)
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: git push -v --dry-run origin HEAD:$DEV_GH_PAGES_BRANCH
+
+            - name: Push changes to gh-pages
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
+              run: git push -v origin HEAD:$DEV_GH_PAGES_BRANCH
+
+            - name: Congratulations
+              if: ${{ success() }}
+              run: echo "🎉 New develop build deployed 🎊"
 
     deploy:
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
