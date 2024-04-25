@@ -54,7 +54,12 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            - name: Test build for GH Pages
+            - name: Test build from develop for GH Pages
+              if: github.ref != 'refs/heads/main'
+              run: |
+                  yarn run build:dev
+            - name: Test build from main for GH Pages
+              if: github.ref == 'refs/heads/main'
               run: |
                   yarn run build:gh
             - name: Upload build artifacts
