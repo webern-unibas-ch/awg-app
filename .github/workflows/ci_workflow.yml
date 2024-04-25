@@ -105,7 +105,7 @@ jobs:
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
             - name: Copy artifacts to gh-pages
               run: |
-                  cp -r ${{ env.DIST_DIR }} ${{ env.DEV_GH_PAGES_DIR}}/
+                  cp -r ${{ env.DIST_DIR }}/. ${{ env.DEV_GH_PAGES_DIR}}/
             - name: Validate build artifacts
               run: |
                   ls -R
