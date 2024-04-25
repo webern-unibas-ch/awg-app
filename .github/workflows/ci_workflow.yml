@@ -88,57 +88,57 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
-                with:
-                # repository to check out
-                   repository: ${{ env.DEV_REPO }}
-                   # Deploy key as secret for accessing <owner>/<DEV_REPO>;
-                   # cf. explanation in https://github.com/rism-digital/verovio/pull/1751
-                   ssh-key: ${{ secrets.DEV_DEPLOY_KEY }}
-                   # ref (branch, tag or SHA) to check out
-                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
-                   # relative path under $GITHUB_WORKSPACE to place the repository
-                   path: ${{ env.DEV_GH_PAGES_DIR }}
-            
+              with:
+                  # repository to check out
+                  repository: ${{ env.DEV_REPO }}
+                  # Deploy key as secret for accessing <owner>/<DEV_REPO>;
+                  # cf. explanation in https://github.com/rism-digital/verovio/pull/1751
+                  ssh-key: ${{ secrets.DEV_DEPLOY_KEY }}
+                  # ref (branch, tag or SHA) to check out
+                  ref: ${{ env.DEV_GH_PAGES_BRANCH }}
+                  # relative path under $GITHUB_WORKSPACE to place the repository
+                  path: ${{ env.DEV_GH_PAGES_DIR }}
+
             - name: Download build artifacts
               uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # ratchet:actions/upload-artifact@v4.1.7
               with:
-                name: dist
-                path: ${{ github.workspace }}/${{ env.DIST_DIR }}
-            
-            - name: Validate build artifacts
-              run: |
-                ls -R
+                  name: dist
+                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}
 
             - name: Copy artifacts to gh-pages
               run: |
-                cp -r ${{ env.DIST_DIR }}/awg-app/. $GH_PAGES_DIR/
-            
+                  cp -r ${{ env.DIST_DIR }}/awg-app/. $GH_PAGES_DIR/
+
+            - name: Validate build artifacts
+              run: |
+                  ls -R
+
             - name: Check git status before commit
               working-directory: ${{ env.GH_PAGES_DIR }}
               run: |
-                git config --get remote.origin.url
-                git status
-          
+                  git config --get remote.origin.url
+                  git status
+
             - name: Configure git
               working-directory: ${{ env.GH_PAGES_DIR }}
               run: |
-                echo "Configuring git"
-                git config user.name "github-actions"
-                git config user.email "github-actions@users.noreply.github.com"
-        
+                  echo "Configuring git"
+                  git config user.name "github-actions"
+                  git config user.email "github-actions@users.noreply.github.com"
+
             - name: Commit files
               working-directory: ${{ env.GH_PAGES_DIR }}
               run: |
-                echo "Running git commit"
-                git add .
-                git commit -m "Staging awg-app (${{ github.sha }}) on gh-pages"
-            
+                  echo "Running git commit"
+                  git add .
+                  git commit -m "Staging awg-app (${{ github.sha }}) on gh-pages"
+
             - name: Check git status after commit
               working-directory: ${{ env.GH_PAGES_DIR }}
               run: |
-                git config --get remote.origin.url
-                git status
-        
+                  git config --get remote.origin.url
+                  git status
+
             - name: Push changes to gh-pages (dry-run mode)
               working-directory: ${{ env.GH_PAGES_DIR }}
               run: git push -v --dry-run origin HEAD:$GH_PAGES_BRANCH
