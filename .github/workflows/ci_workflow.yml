@@ -109,11 +109,11 @@ jobs:
             - name: Validate build artifacts
               run: |
                   ls -R
-            # - name: Deploy to GH Pages
-            #  env:
-            #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            #  run: |
-            #      yarn run deploy:ci
+            - name: Deploy to GH Pages
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  yarn run deploy-dev:ci --dry-run
 
     deploy:
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
