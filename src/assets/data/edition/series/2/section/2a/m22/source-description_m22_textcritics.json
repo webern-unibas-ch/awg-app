@@ -1,0 +1,138 @@
+{
+    "textcritics": [
+        {
+            "id": "",
+            "label": "",
+            "description": [],
+            "comments": [
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. X.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g1",
+                    "measure": "8",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Schlussstrich ergänzt. <strong>F</strong>: Einfacher Taktstrich."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XI",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g2",
+                    "measure": "1",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "Gemeinsamer Notenkopf für Ober- und Unterstimmenschicht korrigiert zu zwei separate Notenköpfe."
+                },
+                {
+                    "svgGroupId": "g3",
+                    "measure": "2",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "Gemeinsamer Notenkopf für Ober- und Unterstimmenschicht korrigiert zu zwei separate Notenköpfe."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XIII.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g3369",
+                    "measure": "6",
+                    "system": "Klav. o.",
+                    "position": "4/8",
+                    "comment": "Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XVII.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g1",
+                    "measure": "3",
+                    "system": "Klav. o.",
+                    "position": "1. Note",
+                    "comment": "Oberstimmenschicht: Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XIX.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g1",
+                    "measure": "1",
+                    "system": "Klav. u.",
+                    "position": "1. Note",
+                    "comment": "G korrigiert zu A mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "g2",
+                    "measure": "8",
+                    "system": "Klav.",
+                    "position": "Taktende",
+                    "comment": "Schlussstrich ergänzt. <strong>F</strong>: Einfacher Taktstrich."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XX.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g4163",
+                    "measure": "3",
+                    "system": "Klav. u.",
+                    "position": "3/4",
+                    "comment": "G<sub>1</sub> korrigiert zu H<sub>1</sub> mit Blick auf harmonischen Kontext."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XXI.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g3957",
+                    "measure": "5",
+                    "system": "2. Gg.",
+                    "position": "letzte Note",
+                    "comment": "Viertelnote korrigiert zu Achtelnote mit Blick auf metrischen Kontext."
+                },
+                {
+                    "svgGroupId": "TODO",
+                    "measure": "Var. XXII.",
+                    "system": "",
+                    "position": "",
+                    "comment": ""
+                },
+                {
+                    "svgGroupId": "g2199",
+                    "measure": "8",
+                    "system": "Vlc.",
+                    "position": "1. Note",
+                    "comment": "Augmentationspunkt weggelassen mit Blick auf metrischen Kontext."
+                }
+            ],
+            "linkBoxes": []
+        }
+    ]
+}
