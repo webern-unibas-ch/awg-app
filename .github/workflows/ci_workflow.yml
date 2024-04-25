@@ -16,6 +16,12 @@ env:
     # general settings
     MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
 
+    # dev settings
+    DEV_REPO: webern-unibas-ch/awg-app-dev
+    DEV_GH_PAGES_BRANCH: gh-pages
+    DEV_GH_PAGES_DIR: gh-pages-dir
+    DIST_DIR: dist
+
 jobs:
     test:
         name: Run tests (Node v${{ matrix.node-version }}, ${{ matrix.os }})
@@ -26,7 +32,7 @@ jobs:
                 node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
         steps:
             - name: Checkout repository
-              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
               with:
                   fetch-depth: 0 # Get all history and branches
             - name: Set up node ${{ matrix.node-version}}
@@ -54,9 +60,66 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            - name: Test build for GH Pages
+            - name: Test build from develop for GH Pages
+              if: github.ref != 'refs/heads/main'
+              run: |
+                  yarn run build:dev
+            - name: Test build from main for GH Pages
+              if: github.ref == 'refs/heads/main'
               run: |
                   yarn run build:gh
+            - name: Upload build artifacts
+              if: matrix.node-version == 20.9 # upload build artifacts for current node version only
+              uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
+              with:
+                  name: dist
+                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}/awg-app
+
+    deploy_dev:
+        name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
+        runs-on: ${{ matrix.os }}
+        needs: test
+        # run only on develop
+        if: github.ref == 'refs/heads/develop'
+        strategy:
+            matrix:
+                os: [ubuntu-latest]
+                node-version: [20.9]
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
+              with:
+                  # repository to check out
+                  repository: ${{ env.DEV_REPO }}
+                  # Deploy key as secret for accessing <owner>/<DEV_REPO>;
+                  # cf. explanation in https://github.com/rism-digital/verovio/pull/1751
+                  # ssh-key: ${{ secrets.DEV_GH_ACTIONS_DEPLOY_KEY }}
+                  # ref (branch, tag or SHA) to check out
+                  ref: ${{ env.DEV_GH_PAGES_BRANCH }}
+                  # relative path under $GITHUB_WORKSPACE to place the repository
+                  path: ${{ env.DEV_GH_PAGES_DIR }}
+            - name: Set up node ${{ matrix.node-version}}
+              uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'yarn'
+            - name: Download build artifacts
+              uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # ratchet:actions/upload-artifact@v4.1.7
+              with:
+                  name: dist
+                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}
+            - name: Copy artifacts to gh-pages
+              run: |
+                  cp -r ${{ env.DIST_DIR }} ${{ env.DEV_GH_PAGES_DIR}}/
+            - name: Validate build artifacts
+              run: |
+                  ls -R
+            # - name: Deploy to GH Pages
+            #  env:
+            #      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            #  run: |
+            #      yarn run deploy:ci
+
     deploy:
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
@@ -70,7 +133,7 @@ jobs:
                 node-version: [20.9]
         steps:
             - name: Checkout repository
-              uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # ratchet:actions/checkout@v4.1.3
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
@@ -87,6 +150,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   yarn run deploy:ci
+
     release:
         name: Create Release from tag
         runs-on: ${{ matrix.os }}
