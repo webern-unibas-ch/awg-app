@@ -234,7 +234,7 @@
             "siglum": "C",
             "siglumAddendum": "",
             "type": "Autograph von „Dies ist ein Lied“ M 133: Textfassung 2→3.",
-            "location": "Wien, Österreichische Nationalbibliothek, Mus.Hs.38735.MusA/Webern/4.",
+            "location": "A-Wn, Mus.Hs.38735.MusA/Webern/4.",
             "description": {
                 "desc": [
                     "1 Bogen (Bl. 1–2) in Einband mit eingeklebter Seite (S. [a]) auf der vorderen Innenseite des Einbands. Archivalische Foliierung <em>1</em>, <em>1’</em>, <em>2</em>, <em>2’</em> auf Bl. 1<sup>r</sup>–2<sup>v</sup> unten rechts (recto) oder links (verso). [Beschreibung am Original konnte bislang nicht erfolgen.]"
@@ -319,6 +319,319 @@
                                         {
                                             "system": "7–10",
                                             "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_D",
+            "siglum": "D",
+            "siglumAddendum": "",
+            "type": "Fragment von „Im Morgentaun“ M 136: Textfassung 1.",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[2]</em> unten rechts (recto) oder links (verso). Bl. 1<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Rechteckige Ausschneidungen am linken (System 17–18) und unteren (System 21 bis unten, System 19 bis unten) Rand. Rissspuren am rechten Rand: von Bogen abgetrennt."
+                ],
+                "writingMaterial": "Notenpapier, 22 Systeme, Format: hoch ## × ## mm, Firmenzeichen: [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1v unten links.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Fragment von „Im Morgentaun“ M 136 Fassung 1.",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_H",
+            "siglum": "H",
+            "siglumAddendum": "",
+            "type": "Autograph von „An Bachesranft“ M 135: Textfassung 2.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[b].",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Rissspuren am linken Rand: von Bogen abgetrennt. Horizontale (System 8–9) und vertikale (Mitte) Knickfalte. Kleinere Risse am oberen und unteren Rand."
+                ],
+                "writingMaterial": "Notenpapier, 16 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 4 | 16 linig.</em> recto unten links (Bl. 1).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "grüner und roter Buntstift"
+                    ]
+                },
+                "title": "<em>Op 3 No 3</em> auf Bl. 1<sup>r</sup> oben links mit Bleistift (archivalische Hs.).",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von „An Bachesranft“ M 135: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–14",
+                                            "measure": "7–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "11–14",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_I",
+            "siglum": "I",
+            "siglumAddendum": "",
+            "type": "Autograph von „Im Morgentaun“ M 136: Textfassung 2.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[c].",
+            "description": {
+                "desc": [
+                    "1 Bogen (Bl. 1/2). Bl. 2v bis auf eine archivalische Eintragung oben links mit Bleistift (<em>Op 3 # 4 | p</em>) unbeschriftet. Abrisse an den Außenecken unten."
+                ],
+                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 347 × 270 mm, kein Firmenzeichen.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "grüner und roter Buntstift",
+                        "rote Tinte"
+                    ]
+                },
+                "title": "<em>VI. </em>[Mitte] <em>Stefan George VII. Ring </em>[rechts]<em> | Anton von Webern op 2</em>[→<em>3</em>]<em> N<sup>o</sup> 6</em> [rechts] auf Bl. 1<sup>r</sup> System 1–2 mit roter Tinte, Überschreibung von <em>2</em> zu <em>3</em> mit Bleistift, <em>N<sup>o</sup> 6</em> ergänzt mit schwarzer Tinte.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von Autograph von „Im Morgentaun“ M 136: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "1",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "2–3",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "4–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–10",
+                                            "measure": "6–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_J",
+            "siglum": "J",
+            "siglumAddendum": "",
+            "type": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 4.",
+            "location": "US-Wc, Moldenhauer Archives, Box-Folder 58/9[d].",
+            "description": {
+                "desc": [
+                    "1 Blatt (Bl. 1). Archivalische Eintragung recto oben rechts mit Bleistift (<em>Op 3 No 5</em>). Rissspuren am linken Rand: von Bogen abgetrennt."
+                ],
+                "writingMaterial": "Notenpapier, 12 Systeme, Format: hoch 347 × 266 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig.</em> recto unten links.",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "roter Buntstift"
+                    ]
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 4",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "13–16",
                                             "linkTo": ""
                                         }
                                     ]
