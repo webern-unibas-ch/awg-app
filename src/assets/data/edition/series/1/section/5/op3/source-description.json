@@ -641,6 +641,282 @@
                     }
                 ]
             }
+        },
+        {
+            "id": "source_L",
+            "siglum": "L",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Fünf Lieder aus </em>Der siebente Ring<em> von Stefan George</em> op. 3.",
+            "location": "Wien: Verein für musikalische Privataufführungen, 1919.",
+            "description": {
+                "desc": [
+                    "8 Seiten (S. [1]–[8]): 2 fadengeheftete Bögen, Format: hoch 335 × 261 mm. S. [8] nicht bedruckt."
+                ],
+                "writingMaterial": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>ANTON WEBERN | FÜNF LIEDER | AUS „DER SIEBENTE RING“ | VON | STEFAN GEORGE | FÜR EINE SINGSTIMME UND KLAVIER | OP. 3</em> auf S. [1] oben;<br /><em>I.</em> auf S. 2 oben Mitte (Kopftitel);<br /><em>II.</em> auf S. 3 oben Mitte (Kopftitel);<br /><em>III.</em> auf S. 5 oben Mitte (Kopftitel);<br /><em>IV.</em> auf S. 6 oben Mitte (Kopftitel);<br /><em>V.</em> auf S. 7 oben Mitte (Kopftitel).",
+                "date": "",
+                "pagination": "<em>2</em> bis <em>7</em> auf S. 2–7 Außenecken oben.",
+                "measureNumbers": "",
+                "instrumentation": "<em>Gesang. | Klavier.</em> auf S. 2, 3, 5, 6, 7 System 1 | 2–3.",
+                "annotations": "<em>PREIS K 3.60</em> auf S. [1] Mitte rechts;<br /><em>AUFFÜHRUNGSRECHT VORBEHALTEN | SELBSTVERLAG | EIGENTUM DES «VEREIN</em>[S] <em>FÜR MUSIKALISCHE PRIVATAUFFÜHRUNGEN» | WIEN</em> auf S. [1] unten;<br /><em>Stich u. Druck der Waldheim=Eberle A.G.</em> auf S. 7 unten rechts.",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Druck der <em>Fünf Lieder aus </em>Der siebente Ring<em> von Stefan George</em> op. 3",
+                        "folios": [
+                            {
+                                "folio": "[1]:",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "I „Dies ist ein Lied“ M 133: Textfassung 4",
+                        "folios": [
+                            {
+                                "folio": "2",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "9–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "II „Im Windesweben“ M 134: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "3",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "2–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "4–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "6–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "III „An Bachesranft“ M 135: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "5",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "11–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "IV „Im Morgentaun“ M 136: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "6",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "2–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "5–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "8–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "V „Kahl reckt der Baum“ M 137: Textfassung 5",
+                        "folios": [
+                            {
+                                "folio": "7",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "8–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "12–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
         }
     ]
 }
