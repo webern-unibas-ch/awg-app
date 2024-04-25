@@ -58,6 +58,7 @@ jobs:
               run: |
                   yarn run build:gh
             - name: Upload build artifacts
+              if: matrix.node-version == 20.9 # upload build artifacts for current node version only
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
               with:
                   name: dist
