@@ -81,7 +81,7 @@
         "pre-release": "standard-version -a",
         "update-appversion": "sh ./version.sh",
         "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\"",
-        "deploy-dev:ci": "ng deploy --no-build --message=\"Release $npm_package_name (develop) on gh-pages\" --cname=edition-dev.anton-webern.ch --repo=https://github.com/webern-unibas-ch/awg-app-dev.git --dry-run"
+        "deploy-dev:ci": "ng deploy --no-build --message=\"Release $npm_package_name (develop) on gh-pages\" --cname=edition-dev.anton-webern.ch --repo=https://github.com/webern-unibas-ch/awg-app-dev.git"
     },
     "dependencies": {
         "@angular/animations": "^17.3.5",
