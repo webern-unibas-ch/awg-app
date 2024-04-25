@@ -153,15 +153,6 @@
                         "repo": "https://github.com/webern-unibas-ch/awg-app.git",
                         "cname": "edition.anton-webern.ch"
                     }
-                },
-                "devdeploy": {
-                    "builder": "angular-cli-ghpages:deploy",
-                    "options": {
-                        "name": "github-actions",
-                        "email": "github-actions@users.noreply.github.com",
-                        "repo": "https://github.com/webern-unibas-ch/awg-app-dev.git",
-                        "cname": "edition-dev.anton-webern.ch"
-                    }
                 }
             }
         }
