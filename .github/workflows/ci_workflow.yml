@@ -16,6 +16,12 @@ env:
     # general settings
     MAIN_REPO_OWNER: webern-unibas-ch # Main repo owner (default: webern-unibas-ch; should not be changed)
 
+    # dev settings
+    DEV_REPO: webern-unibas-ch/awg-app-dev
+    DEV_GH_PAGES_BRANCH: gh-pages
+    DEV_GH_PAGES_DIR: gh-pages-dir
+    DIST_DIR: dist
+
 jobs:
     test:
         name: Run tests (Node v${{ matrix.node-version }}, ${{ matrix.os }})
@@ -67,7 +73,7 @@ jobs:
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
               with:
                   name: dist
-                  path: ${{ github.workspace }}/dist
+                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}/awg-app
 
     deploy_dev:
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
@@ -82,6 +88,16 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
+              with:
+                  # repository to check out
+                  repository: ${{ env.DEV_REPO }}
+                  # Deploy key as secret for accessing <owner>/<DEV_REPO>;
+                  # cf. explanation in https://github.com/rism-digital/verovio/pull/1751
+                  # ssh-key: ${{ secrets.DEV_GH_ACTIONS_DEPLOY_KEY }}
+                  # ref (branch, tag or SHA) to check out
+                  ref: ${{ env.DEV_GH_PAGES_BRANCH }}
+                  # relative path under $GITHUB_WORKSPACE to place the repository
+                  path: ${{ env.DEV_GH_PAGES_DIR }}
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
@@ -91,7 +107,10 @@ jobs:
               uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # ratchet:actions/upload-artifact@v4.1.7
               with:
                   name: dist
-                  path: ${{ github.workspace }}/dist
+                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}
+            - name: Copy artifacts to gh-pages
+              run: |
+                  cp -r ${{ env.DIST_DIR }} ${{ env.DEV_GH_PAGES_DIR}}/
             - name: Validate build artifacts
               run: |
                   ls -R
