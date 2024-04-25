@@ -106,11 +106,9 @@ jobs:
             - name: yarn install dependencies
               run: |
                   yarn install
-            - name: Download build artifacts
-              uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # ratchet:actions/upload-artifact@v4.1.7
-              with:
-                  name: dist
-                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}
+            - name: Build app for GH Pages
+              run: |
+                  yarn run build:dev
             # - name: Copy artifacts to gh-pages
             #   run: |
             #       cp -r ${{ env.DIST_DIR }}/. ${{ env.DEV_GH_PAGES_DIR}}/

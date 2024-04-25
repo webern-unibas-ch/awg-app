@@ -154,7 +154,7 @@
                         "cname": "edition.anton-webern.ch"
                     }
                 },
-                "deploy-dev": {
+                "devdeploy": {
                     "builder": "angular-cli-ghpages:deploy",
                     "options": {
                         "name": "github-actions",
