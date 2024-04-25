@@ -107,40 +107,40 @@ jobs:
 
             - name: Copy artifacts to gh-pages
               run: |
-                  cp -r ${{ env.DIST_DIR }}/awg-app/. $GH_PAGES_DIR/
+                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/
 
             - name: Validate build artifacts
               run: |
                   ls -R
 
             - name: Check git status before commit
-              working-directory: ${{ env.GH_PAGES_DIR }}
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   git config --get remote.origin.url
                   git status
 
             - name: Configure git
-              working-directory: ${{ env.GH_PAGES_DIR }}
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   echo "Configuring git"
                   git config user.name "github-actions"
                   git config user.email "github-actions@users.noreply.github.com"
 
             - name: Commit files
-              working-directory: ${{ env.GH_PAGES_DIR }}
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   echo "Running git commit"
                   git add .
                   git commit -m "Staging awg-app (${{ github.sha }}) on gh-pages"
 
             - name: Check git status after commit
-              working-directory: ${{ env.GH_PAGES_DIR }}
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   git config --get remote.origin.url
                   git status
 
             - name: Push changes to gh-pages (dry-run mode)
-              working-directory: ${{ env.GH_PAGES_DIR }}
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: git push -v --dry-run origin HEAD:$GH_PAGES_BRANCH
 
     deploy:
