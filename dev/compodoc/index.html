@@ -1,0 +1,216 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/Readthedocs.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>AWG App</h1>
+<p><img src="https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg" alt="GitHub package.json version" class="img-responsive">
+<a href="https://github.com/angular/angular"><img src="https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=blue&label=angular&logo=angular" alt="GitHub package.json dependency version (prod)" class="img-responsive"></a>
+<img src="https://img.shields.io/badge/node.js-%3E=v18.19.0-blue" alt="Node.js version" class="img-responsive">
+<img src="https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app" alt="GitHub commit activity" class="img-responsive">
+<img src="https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg" alt="CI Workflow" class="img-responsive">
+<a href="https://codecov.io/gh/webern-unibas-ch/awg-app"><img src="https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg" alt="codecov" class="img-responsive"></a>
+<a href="https://edition.anton-webern.ch/compodoc/index.html"><img src="https://edition.anton-webern.ch/compodoc/images/coverage-badge-documentation.svg" alt="compodoc" class="img-responsive"></a>
+<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="code style: prettier" class="img-responsive"></a>
+<a href="CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant" class="img-responsive"></a>
+<a href="https://doi.org/10.5281/zenodo.4717678"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg" alt="DOI" class="img-responsive"></a></p>
+<p>A prototype web application for the online edition of the <a href="https://www.anton-webern.ch">Anton Webern Gesamtausgabe</a>, located at the Department of Musicology of the University of Basel. It is written in <a href="https://angular.io/">Angular</a> and runs on <a href="https://edition.anton-webern.ch">edition.anton-webern.ch</a>.</p>
+<h2>Contributors ✨</h2>
+<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://dhlab.unibas.ch/#/team/muennich"><img src="https://avatars.githubusercontent.com/u/21059419?v=4?s=100" width="100px;" alt="Stefan Münnich"/><br /><sub><b>Stefan Münnich</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Tests">⚠️</a> <a href="#ideas-musicEnfanthen" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Documentation">📖</a> <a href="#projectManagement-musicEnfanthen" title="Project Management">📆</a> <a href="#maintenance-musicEnfanthen" title="Maintenance">🚧</a> <a href="#infra-musicEnfanthen" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-musicEnfanthen" title="Design">🎨</a> <a href="#content-musicEnfanthen" title="Content">🖋</a> <a href="https://github.com/webern-unibas-ch/awg-app/issues?q=author%3AmusicEnfanthen" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/masthom"><img src="https://avatars.githubusercontent.com/u/53256309?v=4?s=100" width="100px;" alt="Thomas"/><br /><sub><b>Thomas</b></sub></a><br /><a href="#projectManagement-masthom" title="Project Management">📆</a> <a href="#ideas-masthom" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=masthom" title="Documentation">📖</a> <a href="#content-masthom" title="Content">🖋</a> <a href="#data-masthom" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/chael-mi"><img src="https://avatars.githubusercontent.com/u/108875866?v=4?s=100" width="100px;" alt="chael-mi"/><br /><sub><b>chael-mi</b></sub></a><br /><a href="#ideas-chael-mi" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=chael-mi" title="Documentation">📖</a> <a href="#content-chael-mi" title="Content">🖋</a> <a href="#data-chael-mi" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/vanBithoven"><img src="https://avatars.githubusercontent.com/u/86300228?v=4?s=100" width="100px;" alt="vanBithoven"/><br /><sub><b>vanBithoven</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Tests">⚠️</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AMWilke"><img src="https://avatars.githubusercontent.com/u/101800133?v=4?s=100" width="100px;" alt="AMWilke"/><br /><sub><b>AMWilke</b></sub></a><br /><a href="#data-AMWilke" title="Data">🔣</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
+<h2>Contributing</h2>
+<p>Please read our <a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> and <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> to see how you may contribute to this project.</p>
+<h2>License</h2>
+<p>The software code of this project is released under <a href="https://opensource.org/licenses/MIT">MIT</a> license, see <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">LICENSE.md</a>.</p>
+<p>The contents of the webpage are released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)</a>, see <a href="http://edition.anton-webern.ch/contact#awg-disclaimer">Disclaimer</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
