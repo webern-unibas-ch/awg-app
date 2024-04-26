@@ -39,6 +39,8 @@ class FooterLogoStubComponent {
 class FooterPoweredbyStubComponent {
     @Input()
     logos: Logos;
+    @Input()
+    pageMetaData: MetaPage;
 }
 
 describe('FooterComponent (DONE)', () => {
@@ -247,6 +249,20 @@ describe('FooterComponent (DONE)', () => {
                     ) as FooterCopyrightStubComponent;
 
                     expectToEqual(footerCopyrightCmp.pageMetaData, expectedPageMetaData);
+                });
+
+                it('... should pass down pageMetaData to footer poweredby component', () => {
+                    const footerPoweredbyDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        FooterPoweredbyStubComponent,
+                        1,
+                        1
+                    );
+                    const footerPoweredbyCmp = footerPoweredbyDes[0].injector.get(
+                        FooterPoweredbyStubComponent
+                    ) as FooterPoweredbyStubComponent;
+
+                    expectToEqual(footerPoweredbyCmp.pageMetaData, expectedPageMetaData);
                 });
 
                 it('... should pass down logos to footer poweredby component', () => {
