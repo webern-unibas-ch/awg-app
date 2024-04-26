@@ -73,8 +73,11 @@ jobs:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
             - name: Test build from develop for GH Pages
-              if: github.ref != 'refs/heads/main'
+              if: github.ref == 'refs/heads/devlop'
               run: |
+                  echo "Updating dev-version"
+                  commit-and-tag-version --release-as {{ env.sha }} --skip.changelog --skip.commit --skip.tag
+                  echo "Building dev-version"
                   yarn run build:dev
 
             - name: Test build from main for GH Pages
