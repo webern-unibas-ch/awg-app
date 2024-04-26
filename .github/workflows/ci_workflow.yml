@@ -88,6 +88,7 @@ jobs:
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
+                  retention-days: 1
 
     deploy_dev:
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
