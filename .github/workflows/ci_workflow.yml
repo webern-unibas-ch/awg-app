@@ -76,7 +76,7 @@ jobs:
               if: github.ref == 'refs/heads/develop'
               run: |
                   echo "Updating dev-version"
-                  commit-and-tag-version --release-as {{ env.sha }} --skip.changelog --skip.commit --skip.tag
+                  yarn run pre-release --release-as {{ env.sha }} --skip.changelog --skip.commit --skip.tag
                   echo "Building dev-version"
                   yarn run build:dev
 
