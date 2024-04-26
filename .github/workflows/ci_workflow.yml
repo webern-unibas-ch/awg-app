@@ -30,22 +30,32 @@ jobs:
             matrix:
                 os: [ubuntu-latest]
                 node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
+        outputs:
+            sha: ${{ steps.get-sha.outputs.SHA }}
         steps:
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
               with:
                   fetch-depth: 0 # Get all history and branches
+
+            - name: Get git sha
+              id: get-sha
+              run: echo "SHA=$(git describe)" >> $GITHUB_OUTPUT
+
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
+
             - name: yarn install dependencies
               run: |
                   yarn install
+
             - name: Run CI tests with coverage
               run: |
                   yarn run test:ci
+
             - name: Upload code coverage
               if: matrix.node-version == 20.9 # upload coverage report for current node version only
               uses: codecov/codecov-action@84508663e988701840491b86de86b666e8a86bed # ratchet:codecov/codecov-action@v4.3.0
@@ -54,20 +64,24 @@ jobs:
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.9 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
               uses: SonarSource/sonarcloud-github-action@49e6cd3b187936a73b8280d59ffd9da69df63ec9 # ratchet:SonarSource/sonarcloud-github-action@v2.1.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
             - name: Test build from develop for GH Pages
               if: github.ref != 'refs/heads/main'
               run: |
                   yarn run build:dev
+
             - name: Test build from main for GH Pages
               if: github.ref == 'refs/heads/main'
               run: |
                   yarn run build:gh
+
             - name: Upload build artifacts
               if: matrix.node-version == 20.9 # upload build artifacts for current node version only
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
@@ -81,6 +95,8 @@ jobs:
         needs: test
         # run only on develop
         if: github.ref == 'refs/heads/develop'
+        env:
+            SHA: ${{ needs.test.outputs.sha }}
         strategy:
             matrix:
                 os: [ubuntu-latest]
@@ -116,16 +132,12 @@ jobs:
                   git config user.name "github-actions"
                   git config user.email "github-actions@users.noreply.github.com"
 
-            - name: Get git sha
-              id: vars
-              run: echo "sha_describe=$(git describe)" >> $GITHUB_OUTPUT
-
             - name: Commit files
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
                   echo "Running git commit"
                   git add .
-                  git commit -m "Staging awg-app (${{ steps.vars.outputs.sha_describe }}) on gh-pages"
+                  git commit -m "Staging awg-app (${{ env.SHA }}) on gh-pages"
 
             - name: Push changes to gh-pages (dry-run mode)
               working-directory: ${{ env.DEV_GH_PAGES_DIR }}
