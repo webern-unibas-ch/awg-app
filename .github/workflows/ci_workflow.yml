@@ -42,6 +42,10 @@ jobs:
               id: get-sha
               run: echo "SHA=$(git describe)" >> $GITHUB_OUTPUT
 
+            - name: Verify git sha
+              run: |
+                  echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
+
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
@@ -76,7 +80,7 @@ jobs:
               if: github.ref == 'refs/heads/develop'
               run: |
                   echo "Updating dev-version"
-                  yarn run pre-release --release-as {{ env.sha }} --skip.changelog --skip.commit --skip.tag
+                  yarn run pre-release --release-as ${{ steps.get-sha.outputs.SHA }} --skip.changelog --skip.commit --skip.tag
                   echo "Building dev-version"
                   yarn run build:dev
 
