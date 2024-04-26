@@ -3,4 +3,9 @@
     <br class="d-md-none" />
     with <awg-footer-logo [logo]="logos?.['angular']" class="icon"></awg-footer-logo> and
     <awg-footer-logo [logo]="logos?.['bootstrap']" class="icon"></awg-footer-logo>
+    <span>
+        |
+        <a id="dev-preview-link" href="{{ pageMetaData?.awgAppDevUrl }}"
+            ><fa-icon [title]="'Preview for develop'" [icon]="faScrewdriverWrench"></fa-icon></a
+    ></span>
 </div>

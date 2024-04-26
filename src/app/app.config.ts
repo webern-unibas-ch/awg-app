@@ -65,6 +65,16 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the url of the dev version of the AWG edition website (awg-app-dev).
+     * ({@link https://webern-unibas-ch.github.io/awg-app-dev/})
+     *
+     * @returns {string}
+     */
+    public static get AWG_APP_DEV_URL(): string {
+        return 'https://webern-unibas-ch.github.io/awg-app-dev/';
+    }
+
+    /**
      * Getter for the URL of the compodoc documentation
      * of the AWG edition website (awg-app).
      * ({@link compodoc/index.html}).

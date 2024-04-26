@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { Logos } from '@awg-core/core-models';
+import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+
+import { Logos, MetaPage } from '@awg-core/core-models';
 
 /**
  * The FooterPoweredBy component.
@@ -21,4 +23,19 @@ export class FooterPoweredbyComponent {
      */
     @Input()
     logos: Logos;
+
+    /**
+     * Input variable: pageMetaData.
+     *
+     * It keeps the page metadata for the component.
+     */
+    @Input()
+    pageMetaData: MetaPage;
+
+    /**
+     * Public variable: faScrewdriverWrench.
+     *
+     *  It instantiates fontawesome's faScrewdriverWrench icon.
+     */
+    faScrewdriverWrench = faScrewdriverWrench;
 }
