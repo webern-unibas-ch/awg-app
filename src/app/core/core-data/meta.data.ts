@@ -10,7 +10,7 @@ const METAPAGE: MetaPage = {
     yearStart: 2015,
     yearCurrent: new Date().getFullYear(),
     awgAppUrl: AppConfig.AWG_APP_URL,
-    awgAppDevUrl: AppConfig.AWG_APP_DEV_URL,
+    awgAppDevUrl: AppConfig.AWG_APP_URL + '/dev/',
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
     awgProjectName: AppConfig.AWG_PROJECT_NAME,
     compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
