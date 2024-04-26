@@ -70,7 +70,7 @@
         "build:prod": "ng build",
         "build:watch": "ng build --watch --configuration development",
         "build:gh": "yarn build:prod --base-href $npm_package_homepage && yarn compress:dist && yarn doc:build",
-        "build:dev": "yarn build:prod --base-href https://edition-dev.anton-webern.ch && yarn compress:dist && yarn doc:build",
+        "build:dev": "yarn build:prod --base-href https://webern-unibas-ch.github.io/awg-app-dev/ && yarn compress:dist && yarn doc:build",
         "compress:dist": "gzipper compress ./dist/awg-app/ --gzip --brotli",
         "-- ANALYZE --": "",
         "pre_wpanalyzer": "yarn build:prod --stats-json",
@@ -80,8 +80,7 @@
         "-- DEPLOY --": "",
         "pre-release": "standard-version -a",
         "update-appversion": "sh ./version.sh",
-        "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\"",
-        "deploy-dev:ci": "ng deploy --no-build --message=\"Release $npm_package_name (develop) on gh-pages\" --cname=edition-dev.anton-webern.ch --repo=https://github.com/webern-unibas-ch/awg-app-dev.git"
+        "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\""
     },
     "dependencies": {
         "@angular/animations": "^17.3.5",
