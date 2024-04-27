@@ -23,6 +23,10 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
+        with:
+          ref: develop
+          token: ${{ secrets.REPO_TOKEN }}
+        
       - name: Update diagram
         uses: githubocto/repo-visualizer@a999615bdab757559bf94bda1fe6eef232765f85 # ratchet:githubocto/repo-visualizer@v0.9.1
         with:
