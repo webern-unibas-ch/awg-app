@@ -33,6 +33,11 @@ jobs:
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                egress-policy: audit
+
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
               with:
@@ -110,6 +115,11 @@ jobs:
                 os: [ubuntu-latest]
                 node-version: [20.9]
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                egress-policy: audit
+
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
               with:
@@ -166,6 +176,11 @@ jobs:
                 os: [ubuntu-latest]
                 node-version: [20.9]
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                egress-policy: audit
+
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
             - name: Set up node ${{ matrix.node-version}}
@@ -197,6 +212,11 @@ jobs:
                 os: [ubuntu-latest]
                 node-version: [20.9]
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                egress-policy: audit
+
             - name: Get tag version
               id: get_version
               run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
