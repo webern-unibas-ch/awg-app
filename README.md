@@ -7,6 +7,7 @@
 ![CI Workflow](https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg)
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg)](https://codecov.io/gh/webern-unibas-ch/awg-app)
 [![compodoc](https://edition.anton-webern.ch/compodoc/images/coverage-badge-documentation.svg)](https://edition.anton-webern.ch/compodoc/index.html)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/webern-unibas-ch/awg-app/badge)](https://scorecard.dev/viewer/?uri=github.com/webern-unibas-ch/awg-app)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg)](https://doi.org/10.5281/zenodo.4717678)
