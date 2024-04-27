@@ -2,9 +2,6 @@ name: Visualize repo with diagram
 
 on:
   workflow_dispatch: {}
-  push:
-    branches:
-      #- develop
 
 permissions:
   contents: read
