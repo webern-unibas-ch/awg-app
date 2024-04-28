@@ -5,7 +5,7 @@
 ![Node.js version](https://img.shields.io/badge/node.js-%3E=v18.19.0-blue)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app)
 ![CI Workflow](https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg)
-[![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg)](https://codecov.io/gh/webern-unibas-ch/awg-app)
+[![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6)](https://codecov.io/gh/webern-unibas-ch/awg-app)
 [![compodoc](https://edition.anton-webern.ch/compodoc/images/coverage-badge-documentation.svg)](https://edition.anton-webern.ch/compodoc/index.html)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/webern-unibas-ch/awg-app/badge)](https://scorecard.dev/viewer/?uri=github.com/webern-unibas-ch/awg-app)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
