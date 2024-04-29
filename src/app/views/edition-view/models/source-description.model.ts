@@ -1,3 +1,5 @@
+import { Textcritics } from './textcritics.model';
+
 /**
  * The SourceDescriptionSystemRow class.
  *
@@ -378,6 +380,11 @@ export class SourceDescriptionDesc {
      * The content of a source (optional).
      */
     content?: SourceDescriptionContent[];
+
+    /**
+     * The corrections lists of a source (optional).
+     */
+    corrections?: Textcritics[];
 }
 
 /**

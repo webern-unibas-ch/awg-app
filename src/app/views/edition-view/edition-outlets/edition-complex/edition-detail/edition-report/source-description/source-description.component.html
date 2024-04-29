@@ -481,6 +481,33 @@
                                     }
                                 </div>
                             }
+
+                            <!-- corrections -->
+                            @if (utils.isNotEmptyArray(sourceDescription.description.corrections)) {
+                                <div class="awg-source-description-corrections">
+                                    @for (correction of sourceDescription.description.corrections; track correction) {
+                                        <details class="half-para awg-source-description-correction-details">
+                                            <summary
+                                                class="half-para awg-source-description-correction-summary"
+                                                [compile-html]="correction.label"
+                                                [compile-html-ref]="ref"></summary>
+                                            @for (description of correction.description; track description) {
+                                                <p
+                                                    class="awg-source-description-correction-desc"
+                                                    [compile-html]="description"
+                                                    [compile-html-ref]="ref"></p>
+                                            }
+                                            <awg-edition-tka-table
+                                                [textcriticalComments]="correction.comments"
+                                                [isRowTable]="correction.rowtable"
+                                                (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                                                (openModalRequest)="openModal($event)"
+                                                (selectSvgSheetRequest)="selectSvgSheet('', correction.id)">
+                                            </awg-edition-tka-table>
+                                        </details>
+                                    }
+                                </div>
+                            }
                         </div>
                     }
                 </div>
