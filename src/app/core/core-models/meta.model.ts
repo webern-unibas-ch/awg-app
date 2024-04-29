@@ -49,6 +49,11 @@ export class MetaPage {
     awgAppUrl: string;
 
     /**
+     * The url to the dev version of the AWG edition homepage (awg-app-dev).
+     */
+    awgAppDevUrl: string;
+
+    /**
      * The name of the AWG.
      */
     awgProjectName: string;

@@ -11,6 +11,9 @@ on:
         branches: [develop]
         types: [opened, synchronize, reopened]
 
+permissions:
+    contents: read
+
 # globals
 env:
     # general settings
@@ -26,26 +29,48 @@ jobs:
     test:
         name: Run tests (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
+
         strategy:
             matrix:
                 os: [ubuntu-latest]
                 node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
+
+        outputs:
+            sha: ${{ steps.get-sha.outputs.SHA }}
+
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                  egress-policy: audit
+
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
               with:
                   fetch-depth: 0 # Get all history and branches
+
+            - name: Get git sha
+              id: get-sha
+              run: echo "SHA=$(git describe)" >> $GITHUB_OUTPUT
+
+            - name: Verify git sha
+              run: |
+                  echo "SHA: ${{ steps.get-sha.outputs.SHA }}"
+
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # ratchet:actions/setup-node@v4.0.2
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
+
             - name: yarn install dependencies
               run: |
                   yarn install
+
             - name: Run CI tests with coverage
               run: |
                   yarn run test:ci
+
             - name: Upload code coverage
               if: matrix.node-version == 20.9 # upload coverage report for current node version only
               uses: codecov/codecov-action@84508663e988701840491b86de86b666e8a86bed # ratchet:codecov/codecov-action@v4.3.0
@@ -54,79 +79,126 @@ jobs:
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.9 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
               uses: SonarSource/sonarcloud-github-action@49e6cd3b187936a73b8280d59ffd9da69df63ec9 # ratchet:SonarSource/sonarcloud-github-action@v2.1.1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
             - name: Test build from develop for GH Pages
-              if: github.ref != 'refs/heads/main'
+              if: github.ref == 'refs/heads/develop'
               run: |
+                  echo "Updating dev-version"
+                  yarn run pre-release --release-as ${{ steps.get-sha.outputs.SHA }} --skip.changelog --skip.commit --skip.tag
+                  echo "Building dev-version"
                   yarn run build:dev
+
             - name: Test build from main for GH Pages
               if: github.ref == 'refs/heads/main'
               run: |
                   yarn run build:gh
+
             - name: Upload build artifacts
               if: matrix.node-version == 20.9 # upload build artifacts for current node version only
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
               with:
                   name: dist
-                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}/awg-app
+                  path: ${{ github.workspace }}/${{ env.DIST_DIR }}
+                  retention-days: 1
 
     deploy_dev:
+        # run only on develop
+        if: github.ref == 'refs/heads/develop'
+
         name: Deploy app from develop (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
         needs: test
-        # run only on develop
-        if: github.ref == 'refs/heads/develop'
+
+        permissions:
+            contents: write
+
+        env:
+            SHA: ${{ needs.test.outputs.sha }}
+
         strategy:
             matrix:
                 os: [ubuntu-latest]
                 node-version: [20.9]
+
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                  egress-policy: audit
+
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
               with:
-                  # repository to check out
-                  repository: ${{ env.DEV_REPO }}
-                  # Deploy key as secret for accessing <owner>/<DEV_REPO>;
-                  # cf. explanation in https://github.com/rism-digital/verovio/pull/1751
-                  # ssh-key: ${{ secrets.DEV_GH_ACTIONS_DEPLOY_KEY }}
                   # ref (branch, tag or SHA) to check out
                   ref: ${{ env.DEV_GH_PAGES_BRANCH }}
                   # relative path under $GITHUB_WORKSPACE to place the repository
                   path: ${{ env.DEV_GH_PAGES_DIR }}
+
             - name: Download build artifacts
               uses: actions/download-artifact@65a9edc5881444af0b9093a5e628f2fe47ea3b2e # ratchet:actions/upload-artifact@v4.1.7
               with:
                   name: dist
                   path: ${{ github.workspace }}/${{ env.DIST_DIR }}
+
             - name: Copy artifacts to gh-pages
               run: |
-                  cp -r ${{ env.DIST_DIR }}/. ${{ env.DEV_GH_PAGES_DIR}}/
-            - name: Validate build artifacts
+                  cp -r ${{ env.DIST_DIR }}/awg-app/. ${{ env.DEV_GH_PAGES_DIR }}/dev/
+
+            - name: Configure git
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
-                  ls -R
-            - name: Deploy to GH Pages
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  echo "Configuring git"
+                  git config user.name "github-actions"
+                  git config user.email "github-actions@users.noreply.github.com"
+
+            - name: Commit files
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
               run: |
-                  yarn run deploy-dev:ci --dry-run
+                  echo "Running git commit"
+                  git add .
+                  git commit -m "Staging dev (${{ env.SHA }}) on gh-pages"
+
+            - name: Push changes to gh-pages (dry-run mode)
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
+              run: git push -v --dry-run origin HEAD:$DEV_GH_PAGES_BRANCH
+
+            - name: Push changes to gh-pages
+              working-directory: ${{ env.DEV_GH_PAGES_DIR }}
+              run: git push -v origin HEAD:$DEV_GH_PAGES_BRANCH
+
+            - name: Congratulations
+              if: ${{ success() }}
+              run: echo "🎉 New develop build deployed 🎊"
 
     deploy:
+        # run only on main
+        if: github.ref == 'refs/heads/main'
+
         name: Deploy app from main (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
         needs: test
-        # run only on main
 
-        if: github.ref == 'refs/heads/main'
+        permissions:
+            contents: write
+
         strategy:
             matrix:
                 os: [ubuntu-latest]
                 node-version: [20.9]
+
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                  egress-policy: audit
+
             - name: Checkout repository
               uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
             - name: Set up node ${{ matrix.node-version}}
@@ -147,17 +219,26 @@ jobs:
                   yarn run deploy:ci
 
     release:
+        # run only on tags
+        if: startsWith(github.ref, 'refs/tags/')
+
         name: Create Release from tag
         runs-on: ${{ matrix.os }}
         needs: test
-        # run only on tags
 
-        if: startsWith(github.ref, 'refs/tags/')
+        permissions:
+            contents: write
+
         strategy:
             matrix:
                 os: [ubuntu-latest]
                 node-version: [20.9]
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                  egress-policy: audit
+
             - name: Get tag version
               id: get_version
               run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
