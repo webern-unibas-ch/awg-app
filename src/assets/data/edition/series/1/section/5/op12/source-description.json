@@ -2002,7 +2002,7 @@
                     "secondary": []
                 },
                 "title": "<em>VIER LIEDER | für Gesang und Klavier | von | ANTON WEBERN | Op. 12</em> auf der vorderen Umschlagseite (S. [a]) sowie auf S. [1];<br /><em><span class=\"caps\">Der Tag ist vergangen</span> | (Volkslied)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 1</em> [rechts] auf S. 2 oben (Kopftitel);<br /><em><span class=\"caps\">Die geheimnsivolle Flöte</span> | Li-Tai-Po | (aus Hans Bethges „Chinesischer Flöte“)</em> [Mitte] | <em>Anton Webern, Op.12 Nr. 2</em> [rechts] auf S. 4 oben (Kopftitel);<br /><em><span class=\"caps\">Schien mir’s, als ich sah die Sonne</span> | (aus August Strindbergs „Gespenstersonate“)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 3</em> [rechts] auf S. 6 oben (Kopftitel);<br /><em><span class=\"caps\">Gleich und Gleich</span> | (Goethe)</em> [Mitte] | <em>Anton Webern, Op. 12 Nr. 4</em> [rechts] auf S. 8 oben (Kopftitel).",
-                "date": "<em>Nr. 34 IX. 1924</em> auf der hinteren Umschlagseite (S. [d]) unter Verlagsanzeige links.",
+                "date": "",
                 "pagination": "<em>2</em> bis <em>9</em> auf S. 2–9 Außenecken oben.",
                 "measureNumbers": "",
                 "instrumentation": "<em>Gesang | Klavier</em> auf S. 2 System 1 | 2–3",
@@ -2328,7 +2328,7 @@
             "location": "US-Wc, Moldenhauer Archives, Box-Folder: 59/10.",
             "description": {
                 "desc": ["Siehe <a (click)=\"ref.navigateToReportFragment('source_G')\"><strong>G</strong></a>."],
-                "annotations": "<em>Januar, 1925</em> auf S. [1] untere Hälfte links mit Bleistift;<br /><em>2 1/2 bis 3</em> nach I mit Bleistift;<br/><em>3’</em> nach II mit Bleistift;<br /><em>2 1/2</em> nach III mit Bleistift;<br /><em>2’</em> [eingerahmt] <em><s>3’</s></em> nach IV mit Bleistift, <em><s>3’</s></em> gestrichen. "
+                "annotations": "<em>So<span style=\"text-decoration:overline;\">m</span>er, 1925</em> auf S. [1] untere Hälfte links mit Bleistift;<br /><em>2 1/2 bis 3</em> nach I mit Bleistift;<br/><em>3’</em> nach II mit Bleistift;<br /><em>2 1/2</em> nach III mit Bleistift;<br /><em>2’</em> [eingerahmt] <em><s>3’</s></em> nach IV mit Bleistift, <em><s>3’</s></em> gestrichen. "
             }
         }
     ]
