@@ -1471,7 +1471,7 @@
             "type": "Autograph von <em>Gleich und Gleich</em> („Ein Blumenglöckchen“) M 216: Textfassung 1.",
             "location": "GB-Lbl, British Library, O. W. Neighbour Collection.",
             "description": {
-                "desc": ["1 Blatt (Bl. 1). [Beschreibung am Original konnte bislang nicht erfolgen.]"],
+                "desc": ["1 Blatt (Bl. 1). <span class='text-danger'>[Beschreibung am Original konnte bislang nicht erfolgen.]</span>"],
                 "writingMaterialString": "Notenpapier, 12 Systeme mit vier (1 + 2 Systeme ) vorgedruckten Akkoladen, Format: hoch ### × ### mm, Firmenzeichen: ##JE_12## recto unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
