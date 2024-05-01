@@ -1,6 +1,10 @@
 import { Component, DebugElement, Input } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
+import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectToBe,
@@ -9,8 +13,8 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
-import { LOGOSDATA } from '@awg-core/core-data';
-import { Logo, Logos } from '@awg-core/core-models';
+import { LOGOSDATA, METADATA } from '@awg-core/core-data';
+import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
@@ -26,9 +30,12 @@ describe('FooterPoweredbyComponent (DONE)', () => {
     let compDe: DebugElement;
 
     let expectedLogos: Logos;
+    let expectedPageMetaData: MetaPage;
+    let expectedScrewdriverWrenchIcon: IconDefinition;
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule],
             declarations: [FooterPoweredbyComponent, FooterLogoStubComponent],
         }).compileComponents();
     }));
@@ -40,6 +47,8 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
         // Test data
         expectedLogos = LOGOSDATA;
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedScrewdriverWrenchIcon = faScrewdriverWrench;
     });
 
     afterAll(() => {
@@ -55,6 +64,14 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             expect(component.logos).toBeUndefined();
         });
 
+        it('... should not have pageMetaData', () => {
+            expect(component.pageMetaData).toBeUndefined();
+        });
+
+        it('... should have fontawesome icon', () => {
+            expectToEqual(component.faScrewdriverWrench, expectedScrewdriverWrenchIcon);
+        });
+
         describe('VIEW', () => {
             it('... should contain 1 div.awg-powered-by', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
@@ -63,6 +80,20 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             it('... should contain 3 footer logo components (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 3, 3);
             });
+
+            it('... should contain 1 anchor #dev-preview-link with faIcon', () => {
+                getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
+
+                getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
+            });
+
+            it('... should not render link to devPreview yet', () => {
+                const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
+                const devEl = devDes[0].nativeElement;
+
+                expect(devEl).toBeDefined();
+                expectToBe(devEl.href, '');
+            });
         });
     });
 
@@ -70,6 +101,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.logos = expectedLogos;
+            component.pageMetaData = expectedPageMetaData;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -77,6 +109,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
         it('... should have logos', () => {
             expectToEqual(component.logos, expectedLogos);
+        });
+
+        it('... should have pageMetaData', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
         });
 
         describe('VIEW', () => {
@@ -90,6 +126,21 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 expectToEqual(footerLogoCmps[0].logo, expectedLogos['github']);
                 expectToEqual(footerLogoCmps[1].logo, expectedLogos['angular']);
                 expectToEqual(footerLogoCmps[2].logo, expectedLogos['bootstrap']);
+            });
+
+            it('... should display screwdriverWrench icon in devPreview link ', () => {
+                const faIconDe = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link > fa-icon', 1, 1);
+                const faIconIns = faIconDe[0].componentInstance.icon;
+
+                expectToEqual(faIconIns, expectedScrewdriverWrenchIcon);
+            });
+
+            it('... should render link to devPreview', () => {
+                const devDes = getAndExpectDebugElementByCss(compDe, 'a#dev-preview-link', 1, 1);
+                const devEl = devDes[0].nativeElement;
+
+                expect(devEl).toBeDefined();
+                expectToBe(devEl.href, expectedPageMetaData.awgAppDevUrl);
             });
         });
     });

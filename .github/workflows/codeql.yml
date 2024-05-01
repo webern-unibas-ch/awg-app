@@ -8,6 +8,9 @@ on:
     pull_request:
         branches: [develop]
 
+permissions:
+  contents: read
+
 jobs:
     analyze:
         name: Analyze
@@ -22,19 +25,24 @@ jobs:
                 language: ['javascript']
 
         steps:
+            - name: Harden Runner
+              uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+              with:
+                egress-policy: audit
+
             - name: Checkout repository
-              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # ratchet:actions/checkout@v4.1.4
+              uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
               with:
                   fetch-depth: 2
             # Initializes the CodeQL tools for scanning.
             - name: Initialize CodeQL
-              uses: github/codeql-action/init@cdcdbb579706841c47f7063dda365e292e5cad7a # ratchet:github/codeql-action/init@v2.13.4
+              uses: github/codeql-action/init@d39d31e687223d841ef683f52467bd88e9b21c14 # v3.25.3
               with:
                   languages: ${{ matrix.language }}
             # If this step fails, then you should remove it and run the build manually (see below)
             - name: Autobuild
-              uses: github/codeql-action/autobuild@cdcdbb579706841c47f7063dda365e292e5cad7a # ratchet:github/codeql-action/autobuild@v2.13.4
+              uses: github/codeql-action/autobuild@d39d31e687223d841ef683f52467bd88e9b21c14 # v3.25.3
             - name: Perform CodeQL Analysis
-              uses: github/codeql-action/analyze@cdcdbb579706841c47f7063dda365e292e5cad7a # ratchet:github/codeql-action/analyze@v2.13.4
+              uses: github/codeql-action/analyze@d39d31e687223d841ef683f52467bd88e9b21c14 # v3.25.3
               with:
                   category: '/language:${{matrix.language}}'
