@@ -17,6 +17,9 @@ A prototype web application for the online edition of the [Anton Webern Gesamtau
 
 **Project Status**: This project is actively maintained.
 
+<img width="943" alt="app" src="https://github.com/musicEnfanthen/awg-app/assets/21059419/0673d981-558a-4519-8232-e570efa2985e">
+
+
 ## Table of Contents
 
 -   [Description](#description)
