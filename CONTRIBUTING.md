@@ -8,9 +8,13 @@ Please note that this project is released with a [Code of Conduct](CODE_OF_CONDU
 ## Table of Contents
 
 -   [Contribution process](#contribution-process)
+    -   [Code Formatting](#code-formatting)
+    -   [Testing](#testing)
     -   [Branching / Git flow](#branching--git-flow)
     -   [Commit Message Schema](#commit-message-schema)
+    -   [Pull Requests](#pull-requests)
     -   [Release Versioning Convention](#release-versioning-convention)
+    -   [Issue Reporting](#issue-reporting)
 -   [Angular quick start guide](#quick-start-guide)
     -   [Prerequisites](#prerequisites)
     -   [Development server](#development-server)
@@ -22,6 +26,32 @@ Please note that this project is released with a [Code of Conduct](CODE_OF_CONDU
 -   [Code of Conduct](#code-of-conduct)
 
 ## Contribution process
+
+### Code Formatting
+
+This project is set up to use Prettier for code formatting. This should be automatically enabled upon installation.
+
+Prettier helps enforce a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.
+
+In addition to the automatic formatting, you can manually check and fix formatting issues using the following commands:
+
+-   `yarn format-files:check`: This command checks the code for formatting issues.
+
+-   `yarn format-files:fix`: This command fixes any formatting issues that it can.
+
+### Testing
+
+This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.
+
+We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.
+
+To assist with this, the following commands are provided:
+
+-   `yarn test`: Launches the test runner.
+
+-   `yarn test:cov`: Runs the tests and generates a coverage report.
+
+-   `yarn test:cov:serve`: Runs the tests, generates a coverage report, and serves the coverage report at [http://localhost:9875](http://localhost:9875).
 
 ### Branching / Git flow
 
@@ -35,15 +65,11 @@ This project uses the [Gitflow Workflow](https://www.atlassian.com/git/tutorials
 
 To initialize the GitFlow workflow execute `git flow init` inside your local copy of the repository.
 
-To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the [Commit Message Schema](#commit-message-schema) described below.
-
-For more information about pull requests go check out the GitHub Help [About pull requests](https://help.github.com/en/articles/about-pull-requests).
-
 ### Commit Message Schema
 
 This project follows the [Conventional Commits Specification](https://conventionalcommits.org) using [commitlint](https://conventional-changelog.github.io/commitlint/#/) based on the [Angular configuration](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular) (further explanation can be found in the [Angular commit-message-guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines)).
 
-Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version) (see "Release Versioning Convention" section below).
+Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md) and automate versions by means of [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) (see "Release Versioning Convention" section below).
 
 When writing commit messages, we stick to this schema:
 
@@ -72,33 +98,33 @@ Types:
 
 Scopes (specific to this project, not part of the Angular convention):
 
-- related to app structure
-  - `app`
-  - `assets`
-  - `contact`
-  - `core`
-  - `edition`
-  - `home`
-  - `page-not-found`
-  - `search`
-  - `shared`
-  - `side-info`
-  - `structure`
-  - `views`
+-   related to app structure
 
+    -   `app`
+    -   `assets`
+    -   `contact`
+    -   `core`
+    -   `edition`
+    -   `home`
+    -   `page-not-found`
+    -   `search`
+    -   `shared`
+    -   `side-info`
+    -   `structure`
+    -   `views`
 
-- related to build process and tests
-  - `deps`
-  - `deps-dev`
-  - `gh-actions`
-  - `testing`
+-   related to build process and tests
 
+    -   `deps`
+    -   `deps-dev`
+    -   `gh-actions`
+    -   `testing`
 
-- related to documentation
-  - `CHANGELOG`
-  - `CONTRIBUTING`
-  - `LICENSE`
-  - `README`
+-   related to documentation
+    -   `CHANGELOG`
+    -   `CONTRIBUTING`
+    -   `LICENSE`
+    -   `README`
 
 #### Examples:
 
@@ -113,9 +139,21 @@ feat(edition): add route for resource creation
 docs(README): add new contributors for data
 ```
 
+### Pull Requests
+
+To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the [Commit Message Schema](#commit-message-schema) described below.
+
+For more information about pull requests go check out the GitHub Help [About pull requests](https://help.github.com/en/articles/about-pull-requests).
+
 ### Release Versioning Convention
 
-We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version).
+We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md) and automate versions by means of [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version). See also [README#releases](README.md#releases).
+
+### Issue Reporting
+
+If you encounter a bug or any issue with the application, please report it by creating a new issue in the GitHub repository. When creating an issue, try to provide as much information as possible to help us understand and reproduce the problem.
+
+For security concerns, please do not create a public issue. Instead, send an email directly to <info-awg[at]unibas.ch>, following our [Security Policy](SECURITY.md). We take all security issues seriously and will respond as quickly as possible to resolve the matter.
 
 ## Angular quick start guide
 
