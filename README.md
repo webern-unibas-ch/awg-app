@@ -40,7 +40,7 @@ This repository houses the source code for the web application that powers the o
 
 ## Prerequisites
 
-There are only a few prerequisites to take care of. We use [Yarn](https://classic.yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
+To run the code base yourself, there are only a few prerequisites to take care of. We use [Yarn](https://classic.yarnpkg.com/) for dependency managing, so, before you begin, ensure you have met the following requirements:
 
 -   You have installed the latest version of Node.js. You can check this by running `node -v` in your terminal. If Node.js is not installed, you can download it from [here](https://nodejs.org/).
 -   You have installed Yarn. You can check this by running `yarn -v` in your terminal. If Yarn is not installed, you can download it from [here](https://classic.yarnpkg.com/).
