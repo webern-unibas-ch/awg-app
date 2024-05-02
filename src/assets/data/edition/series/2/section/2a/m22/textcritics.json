@@ -1079,7 +1079,7 @@
                     "measure": "2",
                     "system": "18",
                     "position": "1–2/8",
-                    "comment": "E–g überschreibt [#]Gis–h."
+                    "comment": "E–[[#]]gis überschreibt [#]Gis–h."
                 },
                 {
                     "svgGroupId": "g1115",
@@ -1280,6 +1280,13 @@
                     "system": "6",
                     "position": "2–3/4",
                     "comment": "F/f–E/e überschreibt E/e–D/d."
+                },   
+                {
+                    "svgGroupId": "g970",
+                    "measure": "7",
+                    "system": "4",
+                    "position": "1. Note",
+                    "comment": "Viertelnote H/h gestrichen."
                 },
                 {
                     "svgGroupId": "g9",
@@ -1289,18 +1296,18 @@
                     "comment": "A radiert."
                 },
                 {
-                    "svgGroupId": "g970",
-                    "measure": "7",
-                    "system": "4",
-                    "position": "1/4",
-                    "comment": "Viertelnote H/h gestrichen."
-                },
-                {
                     "svgGroupId": "g978",
                     "measure": "7",
                     "system": "4",
-                    "position": "2/8",
+                    "position": "3/8",
                     "comment": "f überschreibt e."
+                },
+                {
+                    "svgGroupId": "g4",
+                    "measure": "7",
+                    "system": "4",
+                    "position": "3–4/8",
+                    "comment": "sic: Zwei Achtelnoten statt zwei Viertelnoten."
                 }
             ],
             "linkBoxes": [
