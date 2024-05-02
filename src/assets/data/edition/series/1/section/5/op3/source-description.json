@@ -337,9 +337,9 @@
             "location": "CH-Bps, Sammlung Anton Webern.",
             "description": {
                 "desc": [
-                    "1 Blatt (Bl. 1). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[2]</em> unten rechts (recto) oder links (verso). Bl. 1<sup>v</sup> (bis auf die archivalische Paginierung) unbeschriftet. Rechteckige Ausschneidungen am linken (System 17–18) und unteren (System 21 bis unten, System 19 bis unten) Rand. Rissspuren am rechten Rand: von Bogen abgetrennt."
+                    "1 Blatt (Bl. 1). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[2]</em> unten rechts (recto) oder links (verso). Bl. 1<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet. Rechteckige Ausschneidungen am linken (System 17–18) und unteren (System 21 bis unten, System 19 bis unten) Rand. Rissspuren am rechten Rand: von Bogen abgetrennt."
                 ],
-                "writingMaterial": "Notenpapier, 22 Systeme, Format: hoch ## × ## mm, Firmenzeichen: [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1v unten links.",
+                "writingMaterial": "Notenpapier, 22 Systeme, Format: hoch 340 × 265 mm, Firmenzeichen: ##FIRM_JE_NO7_LIN22## [JE] | <em>No. 7 | 22 linig.</em> auf Bl. 1<sup>v</sup> unten links.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
                     "secondary": []
@@ -352,9 +352,9 @@
                 "annotations": "",
                 "content": [
                     {
-                        "item": "",
+                        "item": "M 136 Sk1",
                         "itemLinkTo": "",
-                        "itemDescription": "Fragment von „Im Morgentaun“ M 136 Fassung 1.",
+                        "itemDescription": "(Fragment von „Im Morgentaun“ M 136: Textfassung 1)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -365,6 +365,235 @@
                                         {
                                             "system": "5–8",
                                             "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "source_F",
+            "siglum": "F",
+            "siglumAddendum": "",
+            "type": "Abschriften fremder Hand von „Dies ist ein Lied“ M 133: Textfassung 2→3→4 (<strong>F<sup>a</sup></strong>) / „Im Windesweben“ M 134: Textfassung 2 (<strong>F<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: Textfassung 1 (<strong>F<sup>c</sup></strong>).",
+            "location": "CH-Bps, Sammlung Anton Webern.",
+            "description": {
+                "desc": [
+                    "6 Blätter (Bl. 1–6): 3 Bögen (Bl. 1/2, 3/4, 5/6). Archivalisch mit Bleistift paginiert von <em>[1]</em> bis <em>[12]</em> unten (Bl. 1<sup>r</sup>: Mitte) links (recto) oder rechts (verso). Bl. 2<sup>v</sup>, 4<sup>v</sup> und 6<sup>v</sup> bis auf die archivalische Paginierung unbeschriftet. Bl. 1/2 unten und rechts stark fleckig, einzelne Löcher auf Bl. 1 System 7 und 9 rechts. Ebenfalls Flecken auf Bl. 5/6 oben und rechts. Knickecken und kleinere Risse; Löcher (durch vormalige Fadenheftung?) am Falz von Bl. 1/2."
+                ],
+                "writingMaterialString": "Notenpapier, 12 Systeme, Format: hoch 345 × 265 mm, Firmenzeichen: ##FIRM_JE_NO2_LIN12_b##[JE] | <em>No. 2 | 12 linig.</em> recto unten links (Bl. 1/2, 3/4);<br />Notenpapier, 12 Systeme, Format: hoch 346 × 266 mm, Firmenzeichen: ##FIRM_JE_NO2_LIN12_d##[JE] | <em>No. 2 | 12 linig</em> recto unten links (Bl. 5/6).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "grüner Buntstift",
+                        "roter Buntstift"
+                    ]
+                },
+                "title": "<em>Webern | IV</em> auf Bl. 1<sup>r</sup> System 3–5 rechts mit rotem Buntstift (Hs. ?);<br /><em>als</em> [Abstand] <em>op</em>[.] [<em>2</em>→] <em>3</em> [Abstand] <em>veröffentlicht 19</em>[<em>20</em>→]19 auf Bl. 1<sup>r</sup> System 5–6 mit Bleistift, <em>op</em>[.] <em>2</em> mit rotem Buntstift und eingekreist mit Bleistift;<br /><em>IV.</em> [Mitte] <em>Stefan George | VII. Ring</em> [rechts] auf Bl. 1<sup>v</sup> oben mit rotem Buntstift (Kopftitel);<br /><em>III</em> auf Bl. 3<sup>r</sup> System 1 Mitte mit Bleistift;<br /><em>„Im Windesweben“</em> auf Bl. 3<sup>r</sup> System 3 rechts mit grünem Buntstift;<br /><em>IV.</em> [Mitte] <em>„Kahl reckt der Baum - - -“</em> [rechts] auf Bl. 5<sup>r</sup> System 1–2 mit Bleistift.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Abschrift fremder Hand von „Dies ist ein Lied“ M 133: Textfassung 2→3→4 (<strong>F<sup>a</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "1r:",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "8–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Abschrift fremder Hand von „Im Windesweben“ M 134: Textfassung 2 (<strong>F<sup>b</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "3r:",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            },
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Abschrift fremder Hand von „Kahl reckt der Baum“ M 137: Textfassung 1 (<strong>F<sup>c</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "5r:",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            },
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–8",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "16–17",
                                             "linkTo": ""
                                         }
                                     ]
