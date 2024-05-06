@@ -26,7 +26,7 @@ A prototype web application for the online edition of the [Anton Webern Gesamtau
 -   [Prerequisites](#prerequisites)
 -   [Getting Started](#getting-started)
 -   [Usage](#usage)
--   [Buil](#building)
+-   [Building](#building)
 -   [Releases](#releases)
 -   [Testing](#testing)
 -   [Contributing](#contributing)
