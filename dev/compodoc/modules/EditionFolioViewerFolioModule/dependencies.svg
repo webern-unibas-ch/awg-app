@@ -28,13 +28,13 @@
 <title>cluster_EditionFolioViewerFolioModule_declarations</title>
 <polygon fill="none" stroke="black" points="204,-78 204,-130 414,-130 414,-78 204,-78"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_EditionFolioViewerFolioModule_imports</title>
-<polygon fill="none" stroke="black" points="82,-78 82,-130 196,-130 196,-78 82,-78"/>
-</g>
 <g id="clust5" class="cluster">
 <title>cluster_EditionFolioViewerFolioModule_exports</title>
 <polygon fill="none" stroke="black" points="142,-208 142,-260 354,-260 354,-208 142,-208"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_EditionFolioViewerFolioModule_imports</title>
+<polygon fill="none" stroke="black" points="82,-78 82,-130 196,-130 196,-78 82,-78"/>
 </g>
 <!-- EditionFolioViewerComponent -->
 <g id="node1" class="node">
