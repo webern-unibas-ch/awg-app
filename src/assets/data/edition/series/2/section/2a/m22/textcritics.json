@@ -1057,7 +1057,7 @@
                     "svgGroupId": "g5",
                     "measure": "{1A}",
                     "system": "17–18",
-                    "position": "(1/4)",
+                    "position": "",
                     "comment": "Takt pauschal gestrichen."
                 },
                 {
@@ -1972,7 +1972,7 @@
                     "measure": "4",
                     "system": "11",
                     "position": "1–2/8",
-                    "comment": "Balkierung überschreibt Achtelfähnchen zu 1/8."
+                    "comment": "Unterstimmenschicht: Balkierung überschreibt Achtelfähnchen zu 1/8."
                 },
                 {
                     "svgGroupId": "g1234",
@@ -1986,7 +1986,7 @@
                     "measure": "5",
                     "system": "11",
                     "position": "1. Note",
-                    "comment": "Unterstimmenschicht: Viertelnote überschreibt Halbe Note."
+                    "comment": "Viertelnote überschreibt Halbe Note."
                 },
                 {
                     "svgGroupId": "g1279",
