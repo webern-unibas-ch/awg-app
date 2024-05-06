@@ -407,6 +407,19 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
+                        "itemDescription": "",
+                        "folios": [
+                            {
+                                "folio": "1r:",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
                         "itemDescription": "Autograph von „Dies ist ein Lied“ M 133 Textfassung 4 (<strong>E<sup>a</sup></strong>)",
                         "folios": [
                             {
@@ -985,6 +998,244 @@
             }
         },
         {
+            "id": "source_G",
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Autographe von „Im Windesweben“ M 134: Textfassung 3 (<strong>G<sup>a</sup></strong>) / „Im Morgentaun“ M 136: Textfassung 1→2 (<strong>G<sup>b</sup></strong>) / „Kahl reckt der Baum“ M 137: Textfassung 2→3 (<strong>G<sup>c</sup></strong>). Enthält auch Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "description": {
+                "desc": [
+                    "7 Blätter (Bl. 1–7) in festem rotem Ledereinband mit einem roten Schmutzblatt (Bl. [a]) und drei weißen Schmutzblättern (Bl. [b–d]) vorne sowie drei weißen Schmutzblättern (Bl. [e–g]) und einem roten Schmutzblatt (Bl. [h]) hinten. Alle Blätter sind mit Papierklebestreifen am Falz in die Bindung eingeheftet. Bl. 2/3, 4/5 und 6/7 bildeten vermutlich vor der Bindung gemeinsame Bögen. Schmutzblätter bis auf die Paraphe <em>RoLehman</em> auf Bl. [c] oben mit blauer Tinte (Hs. Lehman) und die archivalische Eintragung <em>II = OP. 3 # II | III = OP. 3 # V | VI = OP. 3 # IV | VII = OP. IV # 1</em> auf Bl. [c] Mitte bis unten mit schwarzer Tinte (archivalische Hs.) unbeschriftet, Bl. 3<sup>r</sup>–3<sup>v</sup> unbeschriftet. Papierklebestreifen am linken Rand von Bl. 4<sup>v</sup>. Einband: 345 × 292 mm, Bunddicke ca. 8 mm."
+                ],
+                "writingMaterialString": "Notenpapier, 12 Systeme (vier vorgedruckte Akkoladen [1 + 2 Systeme]), Format: hoch 342 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 12 </em>auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup> unten links (Bl. 1–3);<br />Notenpapier, 12 Systeme, Format: hoch 345 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig. </em>auf Bl. 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup> unten links (Bl. 4–7).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "roter Buntstift",
+                        "rote Tinte"
+                    ]
+                },
+                "title": "<em>II.</em> [Mitte] <em>Stefan George | VII. Ring | A. v</em>[.]<em>Webern op</em>[.]<em> 2</em> [rechts] auf Bl. 1<sup>r</sup> oben mit roter Tinte;<br /><em>6</em> auf Bl. 2<sup>r</sup> oben links mit rotem Buntstift;<br /><em>III</em> auf Bl. 2<sup>r</sup> oben Mitte mit rotem Buntstift;<br /><em>Anton von Webern | aus den „Liedern“ des VII. Ringes | St. George</em> auf Bl. 2<sup>r</sup> oben rechts;<br /><em>VI.</em> auf Bl. 4<sup>r</sup> oben mit Bleistift;<br /><em>Anton von Webern | Aus den „Liedern“ des „VII. Ringes“ | von Stefan George</em> auf Bl. 4<sup>r</sup> oben bis System 2 rechts.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "<em>Webern</em> auf Bl. 4<sup>r</sup> System 1 links mit roter Tinte.",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von „Im Windesweben“ M 134: Textfassung 3 (<strong>G<sup>a</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "1v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 2→3(<strong>G<sup>c</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "13–16",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: Textfassung 1→2 (<strong>G<sup>b</sup></strong>)",
+                        "folios": [
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "1",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8–11",
+                                            "measure": "2",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "4–5",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–9",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–5",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138 aus <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4",
+                        "folios": [
+                            {
+                                "folio": "6–7:",
+                                "folioLinkTo": "",
+                                "folioDescription": "siehe die Quellenbeschreibung zu <strong>A</strong> von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+                                "systemGroups": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "source_H",
             "siglum": "H",
             "siglumAddendum": "",
@@ -1525,6 +1776,31 @@
                         ]
                     }
                 ]
+            }
+        },
+        {
+            "id": "source_M",
+            "siglum": "M",
+            "siglumAddendum": "",
+            "type": "Druck von <em>Fünf Lieder aus </em>Der siebente Ring<em> von Stefan George</em> op. 3.",
+            "location": "Universal Edition, 1923.",
+            "description": {
+                "desc": [
+                    "[Ein Exemplar dieser Ausgabe konnte bislang nicht aufgefunden werden. Hier aufgeführt gemäß Anton Webern, <em>Briefwechsel mit der Universal-Edition</em>, hg. von Julia Bungardt, Wien: Lafite, 2020 (Webern-Studien 5), S. 336 f. („Erstausgaben der Werke Anton Weberns in der Universal-Edition zu dessen Lebzeiten“]"
+                ],
+                "writingMaterial": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "",
+                "content": [
+                    ]
             }
         }
     ]
