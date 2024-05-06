@@ -10,6 +10,13 @@
         }
     ],
     "textSources": [
+        {
+            "id": "text_George_DsR",
+            "siglum": "George_DsR",
+            "siglumAddendum": "",
+            "type": "Stefan George, <em>Der siebente Ring</em>, Berlin: Blätter für die Kunst, 1907, S. 157–161 (<em>Dies ist ein lied</em>, <em>Im windes-weben</em>, <em>An baches ranft</em>, <em>Im morgen-taun</em>, <em>Kahl reckt der baum</em>).",
+            "location": "Weberns Exemplar befindet sich in CH-Bps, PSS AW B 1041."
+        }
         
     ]
 }
