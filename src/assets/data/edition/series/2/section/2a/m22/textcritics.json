@@ -297,7 +297,7 @@
                     "measure": "8",
                     "system": "19",
                     "position": "(2/4)",
-                    "comment": "Sechzehntelnoten [#]gis–e–a–gis überschreiben Achtelnoten gis–E."
+                    "comment": "Sechzehntelnoten {{ref.getGlyph('[#]')}}gis–e–a–gis überschreiben Achtelnoten gis–E."
                 }
             ]
         },
@@ -446,7 +446,7 @@
                     "measure": "{2A}",
                     "system": "10",
                     "position": "4/8",
-                    "comment": "[#] zu a<sup>1</sup> gestrichen."
+                    "comment": "{{ref.getGlyph('[#]')}} zu a<sup>1</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g1305",
@@ -488,14 +488,14 @@
                     "measure": "6",
                     "system": "7",
                     "position": "3. Note",
-                    "comment": "[#] zu g<sup>2</sup> gestrichen."
+                    "comment": "{{ref.getGlyph('[#]')}} zu g<sup>2</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g1178",
                     "measure": "6",
                     "system": "7",
                     "position": "4. Note",
-                    "comment": "[#] zu f<sup>2</sup> gestrichen."
+                    "comment": "{{ref.getGlyph('[#]')}} zu f<sup>2</sup> gestrichen."
                 },
                 {
                     "svgGroupId": "g1191",
@@ -923,7 +923,7 @@
                     "measure": "5",
                     "system": "14",
                     "position": "1.–2. Note",
-                    "comment": "E–E/e überschreibt [#]Gis<sub>1</sub>/[#]Gis–Gis/[[#]]gis. "
+                    "comment": "E–E/e überschreibt {{ref.getGlyph('[#]')}}Gis<sub>1</sub>/{{ref.getGlyph('[#]')}}Gis–Gis/[{{ref.getGlyph('[#]')}}]gis. "
                 }
             ],
             "linkBoxes": [
@@ -1079,7 +1079,7 @@
                     "measure": "2",
                     "system": "18",
                     "position": "1–2/8",
-                    "comment": "E–[[#]]gis überschreibt [#]Gis–h."
+                    "comment": "E–[{{ref.getGlyph('[#]')}}]gis überschreibt {{ref.getGlyph('[#]')}}Gis–h."
                 },
                 {
                     "svgGroupId": "g1115",
@@ -1280,7 +1280,7 @@
                     "system": "6",
                     "position": "2–3/4",
                     "comment": "F/f–E/e überschreibt E/e–D/d."
-                },   
+                },
                 {
                     "svgGroupId": "g970",
                     "measure": "7",
@@ -2161,7 +2161,7 @@
                     "measure": "6",
                     "system": "14",
                     "position": "3/4",
-                    "comment": "Mittelstimmenschicht: f<sup>2</sup> überschreibt [a]h<sup>1</sup>."
+                    "comment": "Mittelstimmenschicht: f<sup>2</sup> überschreibt {{ref.getGlyph('[a]')}}h<sup>1</sup>."
                 },
                 {
                     "svgGroupId": "g1290",

@@ -13,9 +13,7 @@
                 "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen abgerissen.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "title": "",
                 "date": "",
@@ -26,7 +24,7 @@
                 "content": [
                     {
                         "item": "M* 408",
-                        "itemLinkTo": "Mstar_408",
+                        "itemLinkTo": {},
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 408)",
                         "folios": [
                             {
@@ -68,7 +66,10 @@
                     },
                     {
                         "item": "M 22 Sk1",
-                        "itemLinkTo": "M_22_Sk1",
+                        "itemLinkTo": {
+                            "complexId": "m22",
+                            "sheetId": "M_22_Sk1"
+                        },
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Thema)",
                         "folios": [
                             {
@@ -467,9 +468,7 @@
                 "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "title": "",
                 "date": "",
@@ -2046,9 +2045,7 @@
                                 "folio": "1v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [
-                                    []
-                                ]
+                                "systemGroups": [[]]
                             }
                         ]
                     },
@@ -3164,9 +3161,7 @@
                 "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>–3<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": [
-                        "Bleistift"
-                    ]
+                    "secondary": ["Bleistift"]
                 },
                 "title": "",
                 "date": "",
