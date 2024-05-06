@@ -470,6 +470,55 @@
                                 "folioLinkTo": "",
                                 "folioDescription": "Titelseite.",
                                 "systemGroups": []
+                            },
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "4–7",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–13",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16–19",
+                                            "measure": "5–6",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "3–6",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–12",
+                                            "measure": "9–10",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
                             }
                         ]
                     },
@@ -546,7 +595,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "(<strong>E<sup>d</sup></strong>)",
+                        "itemDescription": "Autograph von „Im Morgentaun“ M 136: Textfassung 1 (<strong>E<sup>d</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "7r",
@@ -616,7 +665,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "(<strong>E<sup>e</sup></strong>)",
+                        "itemDescription": "Autograph von „Kahl reckt der Baum“ M 137: Textfassung 1→2 (<strong>E<sup>e</sup></strong>)",
                         "folios": [
                             {
                                 "folio": "9r",
@@ -693,7 +742,7 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
-                        "itemDescription": "(siehe Einleitung)]",
+                        "itemDescription": "[<em>Sieben Lieder nach Gedichten von Stefan George op. 2</em> (siehe Einleitung)]",
                         "folios": [
                             {
                                 "folio": "11r:",
