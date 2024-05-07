@@ -4,10 +4,162 @@
             "id": "source_A",
             "siglum": "A",
             "siglumAddendum": "",
-            "type": "",
-            "location": "",
+            "type": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1→2. Enthält auch Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
             "description": {
-                }
+                "desc": [
+                    "7 Blätter (Bl. 1–7) in festem rotem Ledereinband mit einem roten Schmutzblatt (Bl. [a]) und drei weißen Schmutzblättern (Bl. [b–d]) vorne sowie drei weißen Schmutzblättern (Bl. [e–g]) und einem roten Schmutzblatt (Bl. [h]) hinten. Alle Blätter sind mit Papierklebestreifen am Falz in die Bindung eingeheftet. Bl. 2/3, 4/5 und 6/7 bildeten vermutlich vor der Bindung gemeinsame Bögen. Schmutzblätter bis auf die Paraphe <em>RoLehman</em> auf Bl. [c] oben mit blauer Tinte (Hs. Lehman) und die archivalische Eintragung <em>II = OP. 3 # II | III = OP. 3 # V | VI = OP. 3 # IV | VII = OP. IV # 1</em> auf Bl. [c] Mitte bis unten mit schwarzer Tinte (archivalische Hs.) unbeschriftet, Bl. 3<sup>r</sup>–3<sup>v</sup> unbeschriftet. Papierklebestreifen am linken Rand von Bl. 4<sup>v</sup>. Einband: 345 × 292 mm, Bunddicke ca. 8 mm."
+                ],
+                "writingMaterialString": "Notenpapier, 12 Systeme (vier vorgedruckte Akkoladen [1 + 2 Systeme]), Format: hoch 342 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 12 </em>auf Bl. 1<sup>r</sup>, 2<sup>r</sup>, 3<sup>r</sup> unten links (Bl. 1–3);<br />Notenpapier, 12 Systeme, Format: hoch 345 × ca. 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No. 2 | 12 linig. </em>auf Bl. 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup>, 7<sup>r</sup> unten links (Bl. 4–7).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "roter Buntstift",
+                        "rote Tinte"
+                    ]
+                },
+                "title": "[Bl. 6–7:] <em><s>I</s></em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte, gestrichen mit roter Tinte;<br /><em>VII</em> auf Bl. 6<sup>r</sup> oben Mitte mit roter Tinte;<br /><em><s>I</s></em> auf Bl. 6<sup>r</sup> oben halbrechts mit schwarzer Tinte, gestrichen mit roter Tinte;<br /><em><s>„Der siebente Ring“</s> | Anton von Webern | <s>Eingang aus Traumdunkel | von Stefan George</s></em> auf Bl. 6<sup>r</sup> oben bis System 1 rechts, Streichung mit schwarzer Tinte;<br /><em>Eingang | (Der siebente Ring)</em> auf Bl. 6<sup>r</sup> System 1 Mitte.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "",
+                "annotations": "[Bl. 6–7:] <em>Webern</em> auf Bl. 6<sup>r</sup> oben links mit rotem Buntstift.",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autographe von „Im Windesweben“ M 134, „Im Morgentaun“ M 136 und „Kahl reckt der Baum“ M 137 aus <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3",
+                        "folios": [
+                            {
+                                "folio": "1–5:",
+                                "folioLinkTo": "",
+                                "folioDescription": "siehe die Quellenbeschreibung zu <strong>G</strong> von <em>Fünf Lieder aus</em> Der siebente Ring <em>von Stefan George</em> op. 3.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Autograph von <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 1→2",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–4",
+                                            "measure": "1–2(1–4/4)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "6–8",
+                                            "measure": "2(5–7/4)–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "4–5(1–4/4)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "5(5–7/4)–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "7v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "5–7",
+                                            "measure": "13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "9–11",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
         },
         {
             "id": "source_B",
@@ -28,7 +180,7 @@
                         "roter Buntstift"
                     ]
                 },
-                "title": "<em>Op. 4 Nr.</em> [<em>x</em>] auf Bl. 1<sup>r</sup> oben rechts (Hs.?), radiert;<br />[<em>VI.</em>→] <em>V.</em> auf Bl. 1<sup>r</sup> oben Mitte mit rotem Buntstift, korrigiert mit schwarzer Tinte;<br /><em>8)</em> auf Bl. 1<sup>r</sup> System 1–2 mit schwarzer Tinte (Hs.?);<br /><em>op. 4 N<sup>o</sup> 2</em> auf Bl. 1<sup>r</sup> System 6 Mitte;<br /><em>op. 3 N<sup>o</sup> </em>[<em>5</em>→] <em>2</em> auf Bl. 1<sup>r</sup> System 6 halbrechts mit Bleistift;<br />[<em>IV</em>→] <em>V.</em> auf Bl. 2<sup>r</sup> System 1–2 Mitte;<br /><em>Noch zwingt mich Treue</em> auf Bl. 2<sup>r</sup> System 5–6 halbrechts mit rotem Buntstift;<br /><em>V</em> auf Bl. 2<sup>v</sup> oben Mitte mit Bleistift;<br /><em>Anton von Webern </em>[rechts] |<em> Stefan George</em> [Mitte] <em>aus „Waller im Schnee“ | („Das Jahr der Seele“)</em> [rechts] auf Bl. 2<sup>v</sup> oben bis System 2;<br /><em>op</em>[.]<em> 3 | N<sup>o</sup> 5</em> auf Bl. 2<sup>v</sup> oben rechts mit Bleistift;<br /><em>Ja, heil und dank dir</em> auf Bl. 5<sup>r</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>III.</em> auf Bl. 5<sup>r</sup> oben Mitte mit grünem Buntstift;<br /><em>Ja, heil und dank dir Op</em>[.]<em> 4, No</em>[.]<em> 3</em> auf Bl. 5<sup>v</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>aus „Nach der Lese“ | (Jahr der Seele) von Stefan George</em> auf Bl. 5<sup>v</sup> oben bis System 1–2 rechts;<br /><em>IV</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (Hs.?);<br /><em>„So ich traurig bon Op. 4, No. 4</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>Aus „Sänge eines fahrenden Spielmanns“ | („Buch der Sagen und Sänge“) | von Stefan George</em> auf Bl. 9<sup>r</sup> System 1–3 rechts.",
+                "title": "<em><s>Op. 4 Nr.</s></em> [<em><s>x</s></em>] auf Bl. 1<sup>r</sup> oben rechts (Hs.?), radiert;<br />[<em>VI.</em>→] <em>V.</em> auf Bl. 1<sup>r</sup> oben Mitte mit rotem Buntstift, korrigiert mit schwarzer Tinte;<br /><em><s>8)</s></em> auf Bl. 1<sup>r</sup> System 1–2 mit schwarzer Tinte (Hs.?);<br /><em>op. 4 N<sup>o</sup> 2</em> auf Bl. 1<sup>r</sup> System 6 Mitte;<br /><em>op. 3 N<sup>o</sup> </em>[<em>5</em>→] <em>2</em> auf Bl. 1<sup>r</sup> System 6 halbrechts mit Bleistift;<br />[<em>IV</em>→] <em>V.</em> auf Bl. 2<sup>r</sup> System 1–2 Mitte;<br /><em>Noch zwingt mich Treue</em> auf Bl. 2<sup>r</sup> System 5–6 halbrechts mit rotem Buntstift;<br /><em>V</em> auf Bl. 2<sup>v</sup> oben Mitte mit Bleistift;<br /><em>Anton von Webern </em>[rechts] |<em> Stefan George</em> [Mitte] <em>aus „Waller im Schnee“ | („Das Jahr der Seele“)</em> [rechts] auf Bl. 2<sup>v</sup> oben bis System 2;<br /><em>op</em>[.]<em> 3 | N<sup>o</sup> 5</em> auf Bl. 2<sup>v</sup> oben rechts mit Bleistift;<br /><em>Ja, heil und dank dir</em> auf Bl. 5<sup>r</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>III.</em> auf Bl. 5<sup>r</sup> oben Mitte mit grünem Buntstift;<br /><em>Ja, heil und dank dir Op</em>[.]<em> 4, No</em>[.]<em> 3</em> auf Bl. 5<sup>v</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>aus „Nach der Lese“ | (Jahr der Seele) von Stefan George</em> auf Bl. 5<sup>v</sup> oben bis System 1–2 rechts;<br /><em>IV</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (Hs.?);<br /><em>„So ich traurig bon Op. 4, No. 4</em> auf Bl. 9<sup>r</sup> oben links mit Bleistift (archivalische Hs.);<br /><em>Aus „Sänge eines fahrenden Spielmanns“ | („Buch der Sagen und Sänge“) | von Stefan George</em> auf Bl. 9<sup>r</sup> System 1–3 rechts.",
                 "date": "",
                 "pagination": "<em>1</em> bis <em>5</em> auf Bl. 2<sup>v</sup>–4<sup>v</sup> Außenecken oben mit rotem Buntstift.",
                 "measureNumbers": "",
