@@ -18,7 +18,7 @@
                         <ng-template>
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
-                                    <p class="caps">Skizzenkommentar:</p>
+                                    <p class="smallcaps">Skizzenkommentar:</p>
                                     <awg-edition-tka-description
                                         [textcriticalDescriptions]="textcritic.description"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -28,7 +28,7 @@
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
                                 <div>
-                                    <p class="caps">Textkritischer Kommentar:</p>
+                                    <p class="smallcaps">Textkritischer Kommentar:</p>
                                     <awg-edition-tka-table
                                         [textcriticalComments]="textcritic.comments"
                                         [isRowTable]="textcritic.rowtable"

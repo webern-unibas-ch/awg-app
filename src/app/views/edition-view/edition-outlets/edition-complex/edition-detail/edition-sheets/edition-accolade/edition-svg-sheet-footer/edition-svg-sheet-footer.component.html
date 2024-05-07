@@ -7,7 +7,7 @@
                     &nbsp;
                 </span>
             }
-            <span class="caps">Skizzenkommentar:</span>
+            <span class="smallcaps">Skizzenkommentar:</span>
             @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>&nbsp;---</span>
             }
@@ -25,7 +25,7 @@
     </div>
     @if (showTkA) {
         <div class="awg-edition-svg-sheet-footer-textcritics">
-            <p class="caps">Textkritischer Kommentar:</p>
+            <p class="smallcaps">Textkritischer Kommentar:</p>
             <awg-edition-tka-table
                 [textcriticalComments]="selectedTextcriticalComments"
                 [isRowTable]="selectedTextcritics.rowtable"
