@@ -24,6 +24,10 @@
 <title>cluster_EditionConvoluteModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 562,-268 562,-70 8,-70"/>
 </g>
+<g id="clust5" class="cluster">
+<title>cluster_EditionConvoluteModule_exports</title>
+<polygon fill="none" stroke="black" points="177,-208 177,-260 377,-260 377,-208 177,-208"/>
+</g>
 <g id="clust4" class="cluster">
 <title>cluster_EditionConvoluteModule_imports</title>
 <polygon fill="none" stroke="black" points="220,-78 220,-130 554,-130 554,-78 220,-78"/>
@@ -31,10 +35,6 @@
 <g id="clust2" class="cluster">
 <title>cluster_EditionConvoluteModule_declarations</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 212,-130 212,-78 16,-78"/>
-</g>
-<g id="clust5" class="cluster">
-<title>cluster_EditionConvoluteModule_exports</title>
-<polygon fill="none" stroke="black" points="177,-208 177,-260 377,-260 377,-208 177,-208"/>
 </g>
 <!-- EditionConvoluteComponent -->
 <g id="node1" class="node">
