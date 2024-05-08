@@ -69,10 +69,7 @@
                         </thead>
                         <tbody>
                             <!-- show searchResultDetail by clicking on single entry -->
-                            @for (
-                                subject of searchResponseWithQuery?.data?.subjects;
-                                track trackById($index, subject)
-                            ) {
+                            @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
                                 <tr
                                     class="d-flex"
                                     (click)="navigateToResource(subject?.obj_id)"
