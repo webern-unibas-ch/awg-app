@@ -345,7 +345,7 @@
   <g id="g1108" class="tkk">
     <g id="g7" class="supplied accid">
       <g id="g1082" transform="translate(666.886 223.375)">
-        <text id="text60" x="40.816" y="33.868" fill="#000" font-family="Maestro" font-size="21.867" style="fill:#777;fill-opacity:1;stroke-width:1.33333">#</text>
+        <path id="text60" d="M42.39 32.512v3.258l2.144-.7v-3.258zm-.634-2.056v-3.564h.635v3.346l2.143-.7v-3.192h.634v2.995l.852-.284v2.274l-.852.284v3.237l.852-.263v2.252l-.852.285v3.564h-.634v-3.367l-2.143.7v3.236h-.635V38.24l-.94.306v-2.274l.94-.306v-3.258l-.94.306v-2.252z" aria-label="#" style="font-size:21.8666px;font-family:Maestro;fill:#777;stroke-width:1.33333"/>
         <path id="path1577" d="M46.075 27.144h1.274v13.264h-1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
         <path id="path1579" d="M40.735 40.408H39.46V27.144h1.274" style="fill:none;stroke:#777;stroke-width:.553;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
       </g>
