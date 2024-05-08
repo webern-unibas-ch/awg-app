@@ -914,10 +914,7 @@ export class ConversionService extends ApiService {
         if (!str) {
             return undefined;
         }
-        str = str
-            .replace(/<\/p><p>/g, '<br />')
-            .replace(/<p>|<\/p>/g, '')
-            .replace(str, '«$&»');
+        str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '');
         return str;
     }
 
