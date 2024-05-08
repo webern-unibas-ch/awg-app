@@ -56,7 +56,7 @@
                                 !sourceDescription.description.writingMaterial
                             ) {
                                 <p class="awg-source-description-writing-material">
-                                    <span class="caps">Beschreibstoff:&nbsp;</span>
+                                    <span class="smallcaps">Beschreibstoff:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.writingMaterialString"
                                         [compile-html-ref]="ref"></span>
@@ -64,7 +64,7 @@
                             }
                             @if (sourceDescription.description.writingMaterial) {
                                 <p class="awg-source-description-writing-material">
-                                    <span class="caps">Beschreibstoff:&nbsp;</span>
+                                    <span class="smallcaps">Beschreibstoff:&nbsp;</span>
 
                                     @for (
                                         writingMaterial of sourceDescription?.description?.writingMaterial;
@@ -153,7 +153,7 @@
                             @if (utils.isNotEmptyObject(sourceDescription.description.writingInstruments)) {
                                 @if (sourceDescription.description.writingInstruments.main) {
                                     <p class="awg-source-description-writing-instruments">
-                                        <span class="caps">Schreibstoff:&nbsp;</span>
+                                        <span class="smallcaps">Schreibstoff:&nbsp;</span>
                                         <span
                                             [compile-html]="
                                                 getWritingInstruments(sourceDescription.description.writingInstruments)
@@ -165,7 +165,7 @@
                             <!-- title -->
                             @if (sourceDescription.description.title) {
                                 <p class="awg-source-description-title">
-                                    <span class="caps">Titel:&nbsp;</span>
+                                    <span class="smallcaps">Titel:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.title"
                                         [compile-html-ref]="ref"></span>
@@ -174,7 +174,7 @@
                             <!-- date -->
                             @if (sourceDescription.description.date) {
                                 <p class="awg-source-description-date">
-                                    <span class="caps">Datierung:&nbsp;</span>
+                                    <span class="smallcaps">Datierung:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.date"
                                         [compile-html-ref]="ref"></span>
@@ -183,7 +183,7 @@
                             <!-- pagination -->
                             @if (sourceDescription.description.pagination) {
                                 <p class="awg-source-description-pagination">
-                                    <span class="caps">Paginierung:&nbsp;</span>
+                                    <span class="smallcaps">Paginierung:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.pagination"
                                         [compile-html-ref]="ref"></span>
@@ -192,7 +192,7 @@
                             <!-- measureNumbers -->
                             @if (sourceDescription.description.measureNumbers) {
                                 <p class="awg-source-description-measure-numbers">
-                                    <span class="caps">Taktzahlen:&nbsp;</span>
+                                    <span class="smallcaps">Taktzahlen:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.measureNumbers"
                                         [compile-html-ref]="ref"></span>
@@ -201,7 +201,7 @@
                             <!-- instrumentation -->
                             @if (sourceDescription.description.instrumentation) {
                                 <p class="awg-source-description-instrumentation">
-                                    <span class="caps">Instrumentenvorsatz:&nbsp;</span>
+                                    <span class="smallcaps">Instrumentenvorsatz:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.instrumentation"
                                         [compile-html-ref]="ref"></span>
@@ -210,7 +210,7 @@
                             <!-- annotations -->
                             @if (sourceDescription.description.annotations) {
                                 <p class="awg-source-description-annotations">
-                                    <span class="caps">Eintragungen:&nbsp;</span>
+                                    <span class="smallcaps">Eintragungen:&nbsp;</span>
                                     <span
                                         [compile-html]="sourceDescription.description.annotations"
                                         [compile-html-ref]="ref"></span>
@@ -219,7 +219,7 @@
                             <!-- content -->
                             @if (utils.isNotEmptyArray(sourceDescription.description.content)) {
                                 <div class="awg-source-description-content">
-                                    <p class="no-para"><span class="caps">Inhalt:</span></p>
+                                    <p class="no-para"><span class="smallcaps">Inhalt:</span></p>
                                     @for (content of sourceDescription.description.content; track content) {
                                         <p class="half-para">
                                             <!-- content.itemDescription -->

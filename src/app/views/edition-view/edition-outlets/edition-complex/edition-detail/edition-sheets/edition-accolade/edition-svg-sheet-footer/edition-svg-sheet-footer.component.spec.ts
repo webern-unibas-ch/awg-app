@@ -236,7 +236,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(iconDes[0].children[0].classes['fa-chevron-up']).toBeTrue();
             });
 
-            it('... should contain a span.caps in p with heading for Skizzenkommentar', () => {
+            it('... should contain a span.smallcaps in p with heading for Skizzenkommentar', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-edition-svg-sheet-footer-evaluation',
@@ -245,7 +245,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 );
 
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.caps', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl = spanDes[0].nativeElement;
 
                 expectToBe(spanEl.textContent, 'Skizzenkommentar:');
@@ -311,7 +311,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-svg-sheet-footer-textcritics', 1, 1);
             });
 
-            it('... should contain one p.caps header in textcritics div', () => {
+            it('... should contain one p.smallcaps header in textcritics div', () => {
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-edition-svg-sheet-footer-textcritics',
@@ -322,7 +322,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const pEl = pDes[0].nativeElement;
 
                 expect(pEl.classList).toBeDefined();
-                expect(pEl.classList).toContain('caps');
+                expect(pEl.classList).toContain('smallcaps');
 
                 expectToBe(pEl.textContent, `Textkritischer Kommentar:`);
             });
