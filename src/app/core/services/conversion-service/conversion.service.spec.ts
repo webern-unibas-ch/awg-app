@@ -8,6 +8,7 @@ import { mockSearchResponseJson } from '@testing/mock-data';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 
 import { AppModule } from '@awg-app/app.module';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService } from './conversion.service';
 
@@ -79,6 +80,123 @@ describe('ConversionService', () => {
             const result = ConversionService.replaceParagraphTags(str);
 
             expect(result).toBeUndefined();
+        });
+    });
+
+    describe('#prepareFullTextSearchResultText', () => {
+        it('... should have a method `prepareFullTextSearchResultText`', () => {
+            expect(conversionService.prepareFullTextSearchResultText).toBeDefined();
+        });
+
+        describe('... should return an error message if', () => {
+            it('... subjects are undefined', () => {
+                const searchUrl = 'http://example.com';
+                const emptySearchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                emptySearchResponseWithQuery.data.subjects = undefined;
+                const expected = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
+
+                const result = conversionService.prepareFullTextSearchResultText(
+                    emptySearchResponseWithQuery,
+                    searchUrl
+                );
+
+                expectToBe(result, expected);
+            });
+
+            it('... subjects are null', () => {
+                const searchUrl = 'http://example.com';
+                const emptySearchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                emptySearchResponseWithQuery.data.subjects = null;
+                const expected = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
+
+                const result = conversionService.prepareFullTextSearchResultText(
+                    emptySearchResponseWithQuery,
+                    searchUrl
+                );
+
+                expectToBe(result, expected);
+            });
+        });
+
+        it('... should return a string', () => {
+            const searchUrl = 'http://example.com';
+            const searchResponseWithQuery = new SearchResponseWithQuery(
+                JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                'Test'
+            );
+
+            const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+            expect(typeof result).toEqual('string');
+        });
+
+        describe('... should return correct text', () => {
+            it('... for multiple results', () => {
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+
+            it('... for multiple results with duplicates filtered out', () => {
+                conversionService.filteredOut = 2;
+
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (Duplikate entfernt)`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+
+            it('... for a single result', () => {
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                searchResponseWithQuery.data.subjects = [mockSearchResponseJson.subjects[0]];
+                searchResponseWithQuery.data.nhits = '1';
+                const expected = `1 / 1 Ergebnis`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+
+            it('... for no results (default value for nhits = 0)', () => {
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                searchResponseWithQuery.data.subjects = [];
+                searchResponseWithQuery.data.nhits = undefined;
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `0 / 0 Ergebnisse`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
         });
     });
 

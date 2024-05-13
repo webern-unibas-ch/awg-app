@@ -148,37 +148,6 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Public method: prepareFullTextSearchResultText.
-     *
-     * It prepares the fulltext search result text
-     * to be displayed in the search info.
-     *
-     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
-     * @param {string} searchUrl The given url of a search request.
-     *
-     * @returns {string} The text to be displayed.
-     */
-    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
-        let resText: string;
-
-        const searchResults = { ...searchResponseWithQuery.data };
-
-        if (searchResults.subjects) {
-            const currentLength = searchResults.subjects.length;
-            const totalLength = searchResults.nhits;
-            const resString: string = length === 1 ? 'Ergbnis' : 'Ergebnisse';
-            resText = `${currentLength} / ${totalLength} ${resString}`;
-            if (this.filteredOut > 0) {
-                resText += ' (Duplikate enfternt)';
-            }
-        } else {
-            resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
-        }
-
-        return resText;
-    }
-
-    /**
      * Public method: convertObjectProperties.
      *
      * It converts object properties of a resource request
@@ -293,6 +262,33 @@ export class ConversionService extends ApiService {
             return this._prepareAccessibleResource(resourceData, resourceId);
         } else {
             return this._prepareRestrictedResource(resourceData, resourceId);
+        }
+    }
+
+    /**
+     * Public method: prepareFullTextSearchResultText.
+     *
+     * It prepares the fulltext search result text
+     * to be displayed in the search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
+     * @param {string} searchUrl The given url of a search request.
+     *
+     * @returns {string} The text to be displayed.
+     */
+    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
+        const { subjects, nhits: totalLength = 0 } = { ...searchResponseWithQuery?.data };
+
+        if (subjects) {
+            const currentLength = subjects.length;
+            const resString: string = currentLength === 1 ? 'Ergebnis' : 'Ergebnisse';
+            let resText = `${currentLength} / ${totalLength} ${resString}`;
+            if (this.filteredOut > 0) {
+                resText += ' (Duplikate entfernt)';
+            }
+            return resText;
+        } else {
+            return `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
         }
     }
 
