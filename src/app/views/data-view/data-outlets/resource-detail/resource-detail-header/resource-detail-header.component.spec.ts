@@ -76,14 +76,13 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.row > div.col-lg-4', 1, 1);
             });
 
-            it('... should contain one h2.resource-title with div.title and div.subtitle', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > h2.resource-title', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.title', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.subtitle', 1, 1);
+            it('... should contain one div.resource-title with h2.title', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > div.resource-title', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.resource-title > h2.title', 1, 1);
             });
 
-            it('... should contain span in div.title with compile html component with no inner html yet', () => {
-                const titleDe = getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.title', 1, 1);
+            it('... should contain span in h2.title with compile html component with no inner html yet', () => {
+                const titleDe = getAndExpectDebugElementByCss(compDe, 'div.resource-title > h2.title', 1, 1);
 
                 // Find DebugElements with an attached CompileHtmlComponent
                 const htmlDes = getAndExpectDebugElementByDirective(titleDe[0], CompileHtmlComponent, 1, 1);
