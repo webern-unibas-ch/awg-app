@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, expectToBe, expectToEqual } from '@testing/expect-helper';
 import { mockConsole, mockLocalStorage, mockSessionStorage, mockWindow } from '@testing/mock-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-
 import { StorageType } from '@awg-core/services/storage-service';
+
 import { GndEvent, GndEventType, GndService } from './gnd.service';
-import Spy = jasmine.Spy;
 
 describe('GndService (DONE)', () => {
     let gndService: GndService;

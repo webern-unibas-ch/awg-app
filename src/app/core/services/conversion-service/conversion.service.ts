@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
-import { ApiService } from '@awg-core/services/api-service';
-
 import { GeoNames } from '@awg-core/core-models';
+import { ApiService } from '@awg-core/services/api-service';
 import { UtilityService } from '@awg-core/services/utility-service';
 import {
     ContextJson,
@@ -102,7 +101,7 @@ export class ConversionService extends ApiService {
         if (!str) {
             return undefined;
         }
-        const replacedStr = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '');
+        const replacedStr = str.replace(/<\/p><p>/g, '<br class="mb-2" />').replace(/<p>|<\/p>/g, '');
         return replacedStr;
     }
 
@@ -137,13 +136,7 @@ export class ConversionService extends ApiService {
                 // Check if there is standoff, otherwise leave res.value[0] alone
                 // Because when retrieved from cache the standoff is already converted
                 if (utf8str && textattr) {
-                    htmlstr = this._convertStandoffToHTML(utf8str, textattr);
-
-                    // Replace salsah links
-                    htmlstr = this._replaceSalsahLink(htmlstr);
-
-                    // Strip & replace <p>-tags for displaying
-                    htmlstr = ConversionService.replaceParagraphTags(htmlstr);
+                    htmlstr = this._convertRichtextValue(utf8str, textattr);
 
                     subject.value[0] = htmlstr;
                 }
@@ -237,11 +230,7 @@ export class ConversionService extends ApiService {
                                 let htmlstr = '';
 
                                 // Convert linear salsah standoff to html (using plugin "htmlConverter")
-                                htmlstr = this._convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
-
-                                // Replace salsah links & <p>-tags
-                                htmlstr = this._replaceSalsahLink(htmlstr);
-                                htmlstr = htmlstr.replace('<p>', '').replace('</p>', '');
+                                htmlstr = this._convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
 
                                 // Trim string
                                 propValue[i] = htmlstr.trim();
@@ -697,10 +686,13 @@ export class ConversionService extends ApiService {
      */
     private _convertRichtextValue(str: string, attr: string): string {
         // Convert salsah standoff to html (using plugin "htmlConverter")
-        const rtValue: string = this._convertStandoffToHTML(str, attr);
+        const htmlValue: string = this._convertStandoffToHTML(str, attr);
 
         // Replace salsah links
-        return this._replaceSalsahLink(rtValue);
+        const replacedLinks = this._replaceSalsahLink(htmlValue);
+
+        // Strip & replace <p>-tags for displaying
+        return ConversionService.replaceParagraphTags(replacedLinks);
     }
 
     /**
@@ -762,20 +754,18 @@ export class ConversionService extends ApiService {
      * to html using plugin 'htmlConverter'.
      *
      * @param {string} str The given utf8 string of a rich text property.
-     * @param {string} attr The given standoff attributes of a richtext property.
+     * @param {string} jsonAttrs The given standoff (JSON) attributes of a richtext property.
      *
      * @returns {string} The converted standoff.
-     *
-     * @todo check if it is possible to unify with hlist conversion?
      */
-    private _convertStandoffToHTML(str: string, attr: string): string {
+    private _convertStandoffToHTML(str: string, jsonAttrs: string): string {
         if (!str) {
             return undefined;
         }
-        if (!attr) {
+        if (!jsonAttrs) {
             return str;
         }
-        return htmlConverter(JSON.parse(attr), str);
+        return htmlConverter(JSON.parse(jsonAttrs), str);
     }
 
     /**
@@ -889,31 +879,24 @@ export class ConversionService extends ApiService {
         }
 
         // Regexp for Salsah links
-        // Including subgroup for object id: /[1-9]\d{0,9}/ (any up-to 10-digit integer greater 0)
+        // Including subgroup for object id: /[1-9]\d{0,12}/ (any up-to 13-digit integer greater 0)
         const regLink =
-            /<a\s+(?:[^>]*?\s+)?href=(["'])((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?salsah\.org\/api\/resources\/([1-9]\d{0,9}))\1 class=(["'])salsah-link\5>(.*?)<\/a>/i;
+            /<a\s+(?:[^>]*?\s+)?href=(["'])((?:https?:\/\/(?:www\.)?)?salsah\.org\/api\/resources\/([1-9]\d{0,12}))\1 class=(["'])salsah-link\4>(.*?)<\/a>/i;
 
         let regArr: RegExpExecArray;
 
         // Check for salsah links in str
-        while (regLink.exec(str)) {
-            // I.e.: as long as regLink is detected in str do...
-            regArr = regLink.exec(str);
-
+        while ((regArr = regLink.exec(str))) {
             // Resource id is in 4th array entry
-            const resId = regArr[4];
+            const resId = regArr[3];
             // Link text is stored in last array entry
-            const resTextContent = regArr[regArr.length - 1];
+            const resTextContent = regArr.at(-1);
 
             // Replace href attribute with click-directive
-            const replaceValue =
-                '<a (click)="ref.navigateToResource(\'' +
-                resId +
-                '\'); $event.stopPropagation()">' +
-                resTextContent +
-                '</a>';
+            const replaceValue = `<a (click)="ref.navigateToResource(\'${resId}\'); $event.stopPropagation()">${resTextContent}</a>`;
+
             str = str.replace(regArr[0], replaceValue);
-        } // END while
+        }
 
         return str;
     }
