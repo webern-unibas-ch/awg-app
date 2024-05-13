@@ -89,6 +89,24 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Public static method: replaceParagraphTags.
+     *
+     * It removes paragraph tags in richtext values
+     * and replaces line breaks instead for multiple lines.
+     *
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
+    public static replaceParagraphTags(str: string): string {
+        if (!str) {
+            return undefined;
+        }
+        const replacedStr = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '');
+        return replacedStr;
+    }
+
+    /**
      * Public method: convertFullTextSearchResults.
      *
      * It converts the results of a full text search
@@ -125,7 +143,7 @@ export class ConversionService extends ApiService {
                     htmlstr = this._replaceSalsahLink(htmlstr);
 
                     // Strip & replace <p>-tags for displaying
-                    htmlstr = this._replaceParagraphTags(htmlstr);
+                    htmlstr = ConversionService.replaceParagraphTags(htmlstr);
 
                     subject.value[0] = htmlstr;
                 }
@@ -897,24 +915,6 @@ export class ConversionService extends ApiService {
             str = str.replace(regArr[0], replaceValue);
         } // END while
 
-        return str;
-    }
-
-    /**
-     * Private method: _replaceParagraphTags.
-     *
-     * It removes paragraph tags in richtext values
-     * and replaces line breaks instead for multiple lines.
-     *
-     * @param {string} str The given richtext value.
-     *
-     * @returns {string} The adjusted richtext value.
-     */
-    private _replaceParagraphTags(str: string): string {
-        if (!str) {
-            return undefined;
-        }
-        str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '');
         return str;
     }
 

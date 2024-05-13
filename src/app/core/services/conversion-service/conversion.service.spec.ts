@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { mockSearchResponseJson } from '@testing/mock-data';
@@ -16,7 +15,7 @@ describe('ConversionService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [AppModule, RouterTestingModule],
+            imports: [AppModule],
             providers: [ConversionService],
         });
         conversionService = TestBed.inject(ConversionService);
@@ -36,5 +35,24 @@ describe('ConversionService', () => {
         conversionService.convertFullTextSearchResults(mockSearchResponseJson);
 
         expect(conversionService.filteredOut).toBeDefined();
+    });
+
+    describe('#replaceParagraphTags', () => {
+        it('... should have a static method `replaceParagraphTags`', () => {
+            expect(ConversionService.replaceParagraphTags).toBeDefined();
+        });
+
+        it('... should replace paragraph tags correctly', () => {
+            const str = '<p>Hello</p><p>World</p>';
+            const expected = 'Hello<br />World';
+            const result = ConversionService.replaceParagraphTags(str);
+            expect(result).toEqual(expected);
+        });
+
+        it('... should return undefined if input is falsy', () => {
+            const str = undefined;
+            const result = ConversionService.replaceParagraphTags(str);
+            expect(result).toBeUndefined();
+        });
     });
 });
