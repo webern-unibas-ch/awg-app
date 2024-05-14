@@ -284,7 +284,8 @@ export class ConversionService extends ApiService {
             const resString: string = currentLength === 1 ? 'Ergebnis' : 'Ergebnisse';
             let resText = `${currentLength} / ${totalLength} ${resString}`;
             if (this.filteredOut > 0) {
-                resText += ' (Duplikate entfernt)';
+                const duplicateString = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
+                resText += ` (${this.filteredOut} ${duplicateString} entfernt)`;
             }
             return resText;
         } else {

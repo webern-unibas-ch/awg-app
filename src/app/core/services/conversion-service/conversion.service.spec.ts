@@ -137,30 +137,16 @@ describe('ConversionService', () => {
         });
 
         describe('... should return correct text', () => {
-            it('... for multiple results', () => {
+            it('... for no results (default value for nhits = 0)', () => {
                 const searchUrl = 'http://example.com';
                 const searchResponseWithQuery = new SearchResponseWithQuery(
                     JSON.parse(JSON.stringify(mockSearchResponseJson)),
                     'Test'
                 );
+                searchResponseWithQuery.data.subjects = [];
+                searchResponseWithQuery.data.nhits = undefined;
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse`;
-
-                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
-
-                expectToBe(result, expected);
-            });
-
-            it('... for multiple results with duplicates filtered out', () => {
-                conversionService.filteredOut = 2;
-
-                const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
-                const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (Duplikate entfernt)`;
+                const expected = `0 / 0 Ergebnisse`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
@@ -182,16 +168,46 @@ describe('ConversionService', () => {
                 expectToBe(result, expected);
             });
 
-            it('... for no results (default value for nhits = 0)', () => {
+            it('... for multiple results', () => {
                 const searchUrl = 'http://example.com';
                 const searchResponseWithQuery = new SearchResponseWithQuery(
                     JSON.parse(JSON.stringify(mockSearchResponseJson)),
                     'Test'
                 );
-                searchResponseWithQuery.data.subjects = [];
-                searchResponseWithQuery.data.nhits = undefined;
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `0 / 0 Ergebnisse`;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+
+            it('... for multiple results with single duplicate filtered out', () => {
+                conversionService.filteredOut = 1;
+
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (1 Duplikat entfernt)`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+
+            it('... for multiple results with multiple duplicates filtered out', () => {
+                conversionService.filteredOut = 2;
+
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (2 Duplikate entfernt)`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
