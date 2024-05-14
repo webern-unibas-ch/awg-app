@@ -620,6 +620,80 @@ describe('ConversionService', () => {
         });
     });
 
+    describe('#_distinctSubjects', () => {
+        it('... should have a method `_distinctSubjects`', () => {
+            expect((conversionService as any)._distinctSubjects).toBeDefined();
+        });
+
+        it('... should return undefined when subjects are undefined', () => {
+            const subjects = undefined;
+
+            const result = (conversionService as any)._distinctSubjects(subjects);
+
+            expect(result).toBeUndefined();
+        });
+
+        it('... should return unchanged array when input has no duplicates', () => {
+            const subjectsWithoutDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            const result = (conversionService as any)._distinctSubjects(subjectsWithoutDuplicate);
+
+            expectToEqual(result, subjectsWithoutDuplicate);
+        });
+
+        it('... should return distinct array when input has duplicates', () => {
+            const subjectsWithDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+                { obj_id: '1', obj_label: 'Label 1' },
+            ];
+
+            const expected = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            const result = (conversionService as any)._distinctSubjects(subjectsWithDuplicate);
+
+            expectToEqual(result, expected);
+        });
+
+        it('... should set filteredOut to correct value when input has duplicates', () => {
+            const subjectsWithSingleDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+                { obj_id: '1', obj_label: 'Label 1' },
+            ];
+
+            (conversionService as any)._distinctSubjects(subjectsWithSingleDuplicate);
+
+            expectToBe(conversionService.filteredOut, 1);
+
+            const subjectsWithMultipleDuplicates = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            (conversionService as any)._distinctSubjects(subjectsWithMultipleDuplicates);
+
+            expectToBe(conversionService.filteredOut, 2);
+
+            const subjectsWithoutDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            (conversionService as any)._distinctSubjects(subjectsWithoutDuplicate);
+
+            expectToBe(conversionService.filteredOut, 0);
+        });
+    });
+
     describe('#_replaceSalsahLink', () => {
         it('... should have a method `_replaceSalsahLink`', () => {
             expect((conversionService as any)._replaceSalsahLink).toBeDefined();

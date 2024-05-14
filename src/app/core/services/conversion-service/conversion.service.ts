@@ -766,6 +766,33 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Private method: _distinctSubjects.
+     *
+     * It removes duplicates from an array of subjects (SubjectItemJson[]).
+     * It uses the `reduce` method to create an object with unique `obj_id` keys,
+     * then converts this object back to an array.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
+    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+        if (!subjects) {
+            return undefined;
+        }
+
+        const distinctObj = subjects.reduce((acc, subject) => {
+            acc[subject.obj_id] = subject;
+            return acc;
+        }, {});
+        const distinctArr = Object.values(distinctObj) as SubjectItemJson[];
+
+        this.filteredOut = subjects.length - distinctArr.length;
+
+        return distinctArr;
+    }
+
+    /**
      * Private method: _getAdditionalInfoFromApi.
      *
      * It makes additional calls to the given (SALSAH) API
@@ -896,37 +923,6 @@ export class ConversionService extends ApiService {
         }
 
         return str;
-    }
-
-    /**
-     * Private method: _distinctSubjects.
-     *
-     * It removes duplicates from an array (SubjectItemJson[]).
-     * It checks for every array position (reduce) if the obj_id
-     * of the entry at the current position (y) is already
-     * in the array (findIndex). If that is not the case it
-     * pushes y into x which is initialized as empty array [].
-     *
-     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
-     *
-     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
-     *
-     * @returns {SubjectItemJson[]} The distinct subjects.
-     */
-    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
-        if (!subjects) {
-            return undefined;
-        }
-        this.filteredOut = 0;
-        const distinctObj = {};
-        let distinctArr = [];
-
-        subjects.forEach((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
-        distinctArr = Object.values(distinctObj);
-
-        this.filteredOut = subjects.length - distinctArr.length;
-
-        return distinctArr;
     }
 
     /**
