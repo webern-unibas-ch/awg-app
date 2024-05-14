@@ -60,30 +60,29 @@
             <!-- table with searchResults -->
             @if (!isGridView()) {
                 <div class="table-responsive">
-                    <table aria-label="Table with search results" class="table table-sm awg-search-result-table">
+                    <table
+                        aria-label="Table with search results"
+                        class="table table-hover table-sm awg-search-result-table">
                         <thead>
                             <tr class="d-flex">
-                                <th scope="col" class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>
-                                <th scope="col" class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>
+                                <th scope="col" class="col-6 col-sm-3 col-md-4 col-lg-3 col-xl-2">Typ</th>
+                                <th scope="col" class="col-6 col-sm-9 col-md-8 col-lg-9 col-xl-10">Ressource</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!-- show searchResultDetail by clicking on single entry -->
-                            @for (
-                                subject of searchResponseWithQuery?.data?.subjects;
-                                track trackById($index, subject)
-                            ) {
+                            @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
                                 <tr
                                     class="d-flex"
                                     (click)="navigateToResource(subject?.obj_id)"
                                     [class.active]="isActiveResource(subject?.obj_id)">
-                                    <td class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">
-                                        <span class="badge">
+                                    <td class="col-6 col-sm-3 col-md-4 col-lg-3 col-xl-2">
+                                        <span class="badge text-bg-light">
                                             <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
                                             <small>&nbsp;{{ subject?.iconlabel }}</small>
                                         </span>
                                     </td>
-                                    <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">
+                                    <td class="col-6 col-sm-9 col-md-8 col-lg-9 col-xl-10">
                                         <span
                                             ><em>{{ subject!.valuelabel[0] }}:&nbsp;</em></span
                                         ><span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
