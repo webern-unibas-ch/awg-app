@@ -1,3 +1,4 @@
+import { ConversionService } from '@awg-core/services';
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 /**
@@ -80,7 +81,7 @@ export class ResourceDetailHeader {
                     let htmlstr = props['webern-onto:event'].toHtml[0];
 
                     // Strip & replace <p>-tags for displaying title
-                    htmlstr = ResourceDetailHeader._replaceParagraphTags(htmlstr);
+                    htmlstr = ConversionService.replaceParagraphTags(htmlstr);
 
                     this.title = htmlstr;
                     break;
@@ -138,19 +139,5 @@ export class ResourceDetailHeader {
             this.type = 'restricted';
             this.title = 'Kein Zugriff auf dieses Objekt möglich';
         }
-    }
-
-    /**
-     * Private static method: _replaceParagraphTags.
-     *
-     * It replaces paragraph tags with break lines
-     * in a resource's rich text area (here: title).
-     */
-    private static _replaceParagraphTags(str: string): string {
-        if (!str) {
-            return undefined;
-        }
-        str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '');
-        return str;
     }
 }

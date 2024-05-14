@@ -84,8 +84,8 @@
                                     </td>
                                     <td class="col-6 col-sm-9 col-md-8 col-lg-9 col-xl-10">
                                         <span
-                                            ><em>{{ subject!.valuelabel[0] }}:&nbsp;</em></span
-                                        ><span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
+                                            ><em>{{ subject?.valuelabel[0] }}:&nbsp;</em></span
+                                        ><span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
                                     </td>
                                 </tr>
                             }
@@ -96,7 +96,7 @@
             <!-- grid with searchResults -->
             @if (isGridView()) {
                 <div class="row row-cols-1 row-cols-sm-3 row-cols-xl-5 g-4 mb-4">
-                    @for (subject of searchResponseWithQuery?.data?.subjects; track trackById($index, subject)) {
+                    @for (subject of searchResponseWithQuery?.data?.subjects; track subject.obj_id) {
                         <div class="col">
                             <div class="card h-100">
                                 <div class="card-header">
@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
+                                        <span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
                                     </h5>
                                 </div>
                                 <div class="card-footer text-end">
