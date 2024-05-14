@@ -216,6 +216,90 @@ describe('ConversionService', () => {
         });
     });
 
+    describe('#_cleanSubjectValueLabels', () => {
+        it('... should have a method `_cleanSubjectValueLabels`', () => {
+            expect((conversionService as any)._cleanSubjectValueLabels).toBeDefined();
+        });
+
+        it('... should clean valuelabel and obj_id', () => {
+            const subject = {
+                valuelabel: ['Test (Richtext)'],
+                obj_id: '123_-_local',
+            };
+
+            const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+            expectToBe(result.valuelabel[0], 'Test');
+            expectToBe(result.obj_id, '123');
+        });
+
+        it('... should not modify other properties', () => {
+            const subject = {
+                valuelabel: ['Test (Richtext)'],
+                obj_id: '123_-_local',
+                otherProp: 'otherValue',
+            };
+
+            const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+            expectToBe(result.valuelabel[0], 'Test');
+            expectToBe(result.obj_id, '123');
+            expectToBe(result.otherProp, 'otherValue');
+        });
+    });
+
+    describe('#_cleanSubjectValues', () => {
+        it('... should have a method `_cleanSubjectValues`', () => {
+            expect((conversionService as any)._cleanSubjectValues).toBeDefined();
+        });
+
+        it('... should clean up richtext values for valuetype_id==14', () => {
+            const str = `A test string.`;
+            const jsonAttrs = {
+                italic: [{ start: 2, end: 6 }],
+                p: [{ start: 0, end: 14 }],
+            };
+            const subject = {
+                valuetype_id: ['14'],
+                value: [{ utf8str: str, textattr: JSON.stringify(jsonAttrs) }],
+            };
+            const expected = `A <em>test</em> string.`;
+
+            const result = (conversionService as any)._cleanSubjectValues(subject);
+
+            expectToBe(result.value[0], expected);
+        });
+
+        it('... should not clean up for other valuetype_ids', () => {
+            const str = `A test string.`;
+            const jsonAttrs = {
+                italic: [{ start: 2, end: 6 }],
+                p: [{ start: 0, end: 14 }],
+            };
+            const subject = {
+                valuetype_id: ['15'],
+                value: [{ utf8str: str, textattr: JSON.stringify(jsonAttrs) }],
+            };
+
+            const result = (conversionService as any)._cleanSubjectValues(subject);
+
+            expectToEqual(result, subject);
+            expectToEqual(result.value[0], subject.value[0]);
+        });
+
+        it('... should not clean up when no value is given', () => {
+            const subject = {
+                valuetype_id: ['14'],
+                value: [],
+            };
+
+            const result = (conversionService as any)._cleanSubjectValues(subject);
+
+            expectToEqual(result, subject);
+            expect(result.value[0]).toBeUndefined();
+        });
+    });
+
     describe('#_convertRichtextValue', () => {
         it('... should have a method `_convertRichtextValue`', () => {
             expect((conversionService as any)._convertRichtextValue).toBeDefined();

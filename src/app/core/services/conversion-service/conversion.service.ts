@@ -120,28 +120,14 @@ export class ConversionService extends ApiService {
             return searchResults;
         }
 
-        // TODO: refactor with reduce??
-        searchResults.subjects.forEach(subject => {
-            // Clean value labels
-            subject.valuelabel[0] = subject.valuelabel[0].replace(' (Richtext)', '');
-            subject.obj_id = subject.obj_id.replace('_-_local', '');
+        searchResults.subjects = searchResults.subjects.reduce((acc, subject) => {
+            subject = this._cleanSubjectValueLabels(subject);
+            subject = this._cleanSubjectValues(subject);
 
-            // =>Chronologie: salsah standoff needs to be converted before displaying
-            // Valuetype_id 14 = valuelabel 'Ereignis'
-            if (subject.valuetype_id[0] === '14' && subject.value[0]) {
-                let htmlstr = '';
-                const utf8str: string = subject.value[0].utf8str;
-                const textattr: string = subject.value[0].textattr;
+            acc.push(subject);
+            return acc;
+        }, []);
 
-                // Check if there is standoff, otherwise leave res.value[0] alone
-                // Because when retrieved from cache the standoff is already converted
-                if (utf8str && textattr) {
-                    htmlstr = this._convertRichtextValue(utf8str, textattr);
-
-                    subject.value[0] = htmlstr;
-                }
-            }
-        });
         // Remove duplicates from response
         searchResults.subjects = this._distinctSubjects(searchResults.subjects);
         return searchResults;
@@ -239,7 +225,7 @@ export class ConversionService extends ApiService {
         }); // END forEach PROPS
 
         return convObj;
-    } // END convertObjectProperties (func)
+    }
 
     /**
      * Public method: convertResourceData.
@@ -533,6 +519,53 @@ export class ConversionService extends ApiService {
             // console.log('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
         }
         return prop;
+    }
+
+    /**
+     * Private method: _cleanSubjectValueLabels.
+     *
+     * It cleans the value labels of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
+        let { valuelabel, obj_id } = subject;
+
+        if (valuelabel?.[0]) {
+            valuelabel[0] = valuelabel[0].replace(' (Richtext)', '');
+        }
+        if (obj_id) {
+            obj_id = obj_id.replace('_-_local', '');
+        }
+        return { ...subject, valuelabel, obj_id };
+    }
+
+    /**
+     * Private method: _cleanSubjectValues.
+     *
+     * It cleans the values of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
+        let tmpSubject = { ...subject };
+        const { valuetype_id, value } = tmpSubject;
+        const firstValue = value?.[0];
+
+        if (valuetype_id?.[0] === '14' && firstValue) {
+            const { utf8str, textattr } = firstValue;
+            if (utf8str && textattr) {
+                const htmlstr = this._convertRichtextValue(utf8str, textattr);
+                tmpSubject.value[0] = htmlstr;
+            }
+        }
+        return tmpSubject;
     }
 
     /**
