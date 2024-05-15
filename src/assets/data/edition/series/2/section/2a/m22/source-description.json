@@ -1743,7 +1743,7 @@
                                     [
                                         {
                                             "system": "7–8",
-                                            "measure": "11–12, Liedtext",
+                                            "measure": "11–12, nach T. 12 Liedtext",
                                             "linkTo": ""
                                         }
                                     ]
@@ -2153,7 +2153,15 @@
                                 "folio": "1v",
                                 "folioLinkTo": "",
                                 "folioDescription": "",
-                                "systemGroups": [[]]
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "6a",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
                             }
                         ]
                     },
@@ -3106,7 +3114,22 @@
                         "item": "M* 450 Sk2",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
-                        "folios": []
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "9b–10b",
+                                            "measure": "1–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
                     },
                     {
                         "item": "M 24 Sk16",
@@ -3133,13 +3156,43 @@
                         "item": "M* 450 Sk2.2",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
-                        "folios": []
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "11b",
+                                            "measure": "{x+1 bis x+3}",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
                     },
                     {
                         "item": "M* 451 Sk1",
                         "itemLinkTo": {},
                         "itemDescription": "(Skizze zu Studienkomposition M* 451)",
-                        "folios": []
+                        "folios": [
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "14a–15a",
+                                            "measure": "1, 2A, {3A–4A}, 2B–4B, 5–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
                     },
                     {
                         "item": "M* 451 Sk3",
@@ -3155,6 +3208,13 @@
                                         {
                                             "system": "14b–15b",
                                             "measure": "1–4, 5A",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "12b–13b",
+                                            "measure": "5B, 6–12",
                                             "linkTo": ""
                                         }
                                     ]
