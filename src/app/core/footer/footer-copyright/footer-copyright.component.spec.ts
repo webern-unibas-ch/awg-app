@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectToBe, expectToContain, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import { expectToBe, expectToContain, expectToEqual, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { METADATA } from '@awg-core/core-data';
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -72,6 +72,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have pageMetaData', () => {
+            expectToEqual(component.pageMetaData, expectedPageMetaData);
         });
 
         describe('VIEW', () => {

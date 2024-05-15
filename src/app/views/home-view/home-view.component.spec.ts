@@ -219,7 +219,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const dspEl = dspDes[0].nativeElement;
 
                     expect(dspEl).toBeDefined();
-                    expect(dspEl.href).not.toBeTruthy();
+                    expectToBe(dspEl.href, '');
                 });
 
                 it('... DaSCH', () => {
@@ -227,17 +227,15 @@ describe('HomeViewComponent (DONE)', () => {
                     const daschEl = daschDes[0].nativeElement;
 
                     expect(daschEl).toBeDefined();
-                    expect(daschEl.href).not.toBeTruthy();
+                    expectToBe(daschEl.href, '');
                 });
 
                 it('... DaSCH mission', () => {
                     const daschMissionDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-mission-link', 1, 1);
                     const daschMissionEl = daschMissionDes[0].nativeElement;
 
-                    const missionRoute = 'visionandmission';
-
                     expect(daschMissionEl).toBeDefined();
-                    expect(daschMissionEl.href).not.toBeTruthy();
+                    expectToBe(daschMissionEl.href, '');
                 });
 
                 it('... GitHub', () => {
@@ -245,7 +243,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const githubEl = githubDes[0].nativeElement;
 
                     expect(githubEl).toBeDefined();
-                    expect(githubEl.href).not.toBeTruthy();
+                    expectToBe(githubEl.href, '');
                 });
 
                 it('... Compodoc', () => {
@@ -253,7 +251,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const compodocEl = compodocDes[0].nativeElement;
 
                     expect(compodocEl).toBeDefined();
-                    expect(compodocEl.href).not.toBeTruthy();
+                    expectToBe(compodocEl.href, '');
                 });
             });
         });
@@ -474,7 +472,7 @@ describe('HomeViewComponent (DONE)', () => {
                     const daschMissionDes = getAndExpectDebugElementByCss(compDe, 'a#dasch-mission-link', 1, 1);
                     const daschMissionEl = daschMissionDes[0].nativeElement;
 
-                    const missionRoute = 'visionandmission';
+                    const missionRoute = 'mission';
 
                     expect(daschMissionEl).toBeDefined();
                     expectToBe(daschMissionEl.href, expectedPageMetaData.daschUrl + missionRoute);

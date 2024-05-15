@@ -125,6 +125,16 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the URL of the DSP API endpoint
+     * ({@link http://api.dasch.swiss/v2/}).
+     *
+     * @returns {string}
+     */
+    public static get DSP_API_URL(): string {
+        return 'https://api.dasch.swiss/v2/';
+    }
+
+    /**
      * Getter for the URL of the INSERI Instance
      * ({@link https://apps.inseri.swiss}).
      *
@@ -149,7 +159,7 @@ export class AppConfig {
      *
      * @returns {string}
      */
-    public static get OSM_LINK_URL() {
+    public static get OSM_LINK_URL(): string {
         const osmLinkRoot = 'https://www.openstreetmap.org/';
         const osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
         return osmLinkRoot + osmLinkId;

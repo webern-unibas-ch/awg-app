@@ -361,7 +361,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
                     expectedHtmlTextContent.innerHTML =
-                        '<span class="caps">Beschreibstoff:&nbsp;</span><span>' +
+                        '<span class="smallcaps">Beschreibstoff:&nbsp;</span><span>' +
                         expectedSourceDescriptionListData.sources[1].description.writingMaterialString +
                         '</span>';
 
@@ -387,7 +387,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     // Process HTML expression of expected text content
                     const expectedHtmlTextContent = mockDocument.createElement('p');
                     expectedHtmlTextContent.innerHTML =
-                        '<span class="caps">Schreibstoff:&nbsp;</span><span>' +
+                        '<span class="smallcaps">Schreibstoff:&nbsp;</span><span>' +
                         instruments.main +
                         '; ' +
                         instruments.secondary.join(', ') +
