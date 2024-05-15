@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -195,6 +186,9 @@
                                 </li>
                                 <li>
                                     <a href="#DHLAB_URL" >DHLAB_URL</a>
+                                </li>
+                                <li>
+                                    <a href="#DSP_API_URL" >DSP_API_URL</a>
                                 </li>
                                 <li>
                                     <a href="#INSERI_URL" >INSERI_URL</a>
@@ -664,6 +658,42 @@ of the AWG edition website (awg-app).
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="DSP_API_URL"></a>
+                        <span class="name"><b>DSP_API_URL</b><a href="#DSP_API_URL"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>DSP_API_URL()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/app.config.ts:133</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the URL of the DSP API endpoint
+(<a href="http://api.dasch.swiss/v2/">http://api.dasch.swiss/v2/</a>).</p>
+</div>
+
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="INSERI_URL"></a>
                         <span class="name"><b>INSERI_URL</b><a href="#INSERI_URL"><span class="icon ion-ios-link"></span></a></span>
                     </td>
@@ -676,7 +706,7 @@ of the AWG edition website (awg-app).
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/app.config.ts:133</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/app.config.ts:143</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -712,7 +742,7 @@ of the AWG edition website (awg-app).
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/app.config.ts:143</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="153" class="link-to-prism">src/app/app.config.ts:153</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -748,7 +778,7 @@ of the AWG edition website (awg-app).
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/app/app.config.ts:152</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/app/app.config.ts:162</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -757,6 +787,10 @@ of the AWG edition website (awg-app).
 </div>
 
                                 <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                                 </div>
                         </td>
                     </tr>
@@ -779,7 +813,7 @@ of the AWG edition website (awg-app).
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/app.config.ts:164</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="174" class="link-to-prism">src/app/app.config.ts:174</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -815,7 +849,7 @@ of the AWG edition website (awg-app).
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/app/app.config.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/app.config.ts:183</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -966,6 +1000,16 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the URL of the DSP API endpoint
+     * ({@link http://api.dasch.swiss/v2/}).
+     *
+     * @returns {string}
+     */
+    public static get DSP_API_URL(): string {
+        return &#x27;https://api.dasch.swiss/v2/&#x27;;
+    }
+
+    /**
      * Getter for the URL of the INSERI Instance
      * ({@link https://apps.inseri.swiss}).
      *
@@ -990,7 +1034,7 @@ export class AppConfig {
      *
      * @returns {string}
      */
-    public static get OSM_LINK_URL() {
+    public static get OSM_LINK_URL(): string {
         const osmLinkRoot &#x3D; &#x27;https://www.openstreetmap.org/&#x27;;
         const osmLinkId &#x3D; &#x27;?mlat&#x3D;47.55897&amp;amp;mlon&#x3D;7.58451#map&#x3D;19/47.55897/7.58451&#x27;;
         return osmLinkRoot + osmLinkId;
@@ -1061,6 +1105,19 @@ export class AppConfig {
             var COMPODOC_CURRENT_PAGE_URL = 'AppConfig.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

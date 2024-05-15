@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -125,13 +116,13 @@
 <title>cluster_CodeMirrorModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="156,-70 156,-268 340,-268 340,-70 156,-70"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_CodeMirrorModule_exports</title>
-<polygon fill="none" stroke="black" points="164,-208 164,-260 332,-260 332,-208 164,-208"/>
-</g>
 <g id="clust2" class="cluster">
 <title>cluster_CodeMirrorModule_declarations</title>
 <polygon fill="none" stroke="black" points="166,-78 166,-130 330,-130 330,-78 166,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_CodeMirrorModule_exports</title>
+<polygon fill="none" stroke="black" points="164,-208 164,-260 332,-260 332,-208 164,-208"/>
 </g>
 <!-- CodeMirrorComponent -->
 <g id="node1" class="node">
@@ -320,6 +311,19 @@ export class CodeMirrorModule {}
             var COMPODOC_CURRENT_PAGE_URL = 'CodeMirrorModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

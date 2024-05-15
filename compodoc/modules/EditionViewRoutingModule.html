@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -204,29 +195,29 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                             {
                                 path: &#x27;intro&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module&#x27;\
+                                    &quot;import(\n\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-intro/edition-intro.module&#x27;\n\
                                     ).then(m &#x3D;&gt; m.EditionIntroModule)&quot;,
                             },
                             {
                                 path: &#x27;sheets&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module&#x27;\
+                                    &quot;import(\n\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-sheets/edition-sheets.module&#x27;\n\
                                     ).then(m &#x3D;&gt; m.EditionSheetsModule)&quot;,
                             },
                             {
                                 path: &#x27;report&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module&#x27;\
+                                    &quot;import(\n\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-report/edition-report.module&#x27;\n\
                                     ).then(m &#x3D;&gt; m.EditionReportModule)&quot;,
                             },
                             {
                                 path: &#x27;graph&#x27;,
                                 loadChildren: () &#x3D;&gt;
-                                    &quot;import(\
-                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module&#x27;\
+                                    &quot;import(\n\
+                                        &#x27;./edition-outlets/edition-complex/edition-detail/edition-graph/edition-graph.module&#x27;\n\
                                     ).then(m &#x3D;&gt; m.EditionGraphModule)&quot;,
                             },
                             /* 
@@ -263,8 +254,8 @@ const EDITION_VIEW_ROUTES: Routes &#x3D; [
                 // Overview of row tables.
                 path: &#x27;row-tables&#x27;,
                 loadChildren: () &#x3D;&gt;
-                    &quot;import(&#x27;./edition-outlets/edition-row-tables/edition-row-tables.module&#x27;).then(\
-                        m &#x3D;&gt; m.EditionRowTablesModule\
+                    &quot;import(&#x27;./edition-outlets/edition-row-tables/edition-row-tables.module&#x27;).then(\n\
+                        m &#x3D;&gt; m.EditionRowTablesModule\n\
                     )&quot;,
             },
         ],
@@ -347,6 +338,19 @@ export class EditionViewRoutingModule {}
             var COMPODOC_CURRENT_PAGE_URL = 'EditionViewRoutingModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

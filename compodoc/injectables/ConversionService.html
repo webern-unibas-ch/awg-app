@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -194,6 +185,12 @@ displayed via HTML.</p>
                                 <a href="#_adjustBiblioLink" >_adjustBiblioLink</a>
                             </li>
                             <li>
+                                <a href="#_cleanSubjectValueLabels" >_cleanSubjectValueLabels</a>
+                            </li>
+                            <li>
+                                <a href="#_cleanSubjectValues" >_cleanSubjectValues</a>
+                            </li>
+                            <li>
                                     <span class="modifier">Private</span>
                                 <a href="#_convertDateValue" >_convertDateValue</a>
                             </li>
@@ -263,10 +260,6 @@ displayed via HTML.</p>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_replaceParagraphTags" >_replaceParagraphTags</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#_replaceSalsahLink" >_replaceSalsahLink</a>
                             </li>
                             <li>
@@ -280,6 +273,10 @@ displayed via HTML.</p>
                             </li>
                             <li>
                                 <a href="#prepareFullTextSearchResultText" >prepareFullTextSearchResultText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#replaceParagraphTags" >replaceParagraphTags</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -315,7 +312,7 @@ displayed via HTML.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:71</a></div>
                             </td>
                         </tr>
 
@@ -406,8 +403,8 @@ and a private <a href="../injectables/UtilityService.html">UtilityService</a> in
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="486"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:486</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="476"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:476</a></div>
                         </td>
                     </tr>
 
@@ -493,8 +490,8 @@ of an accessible resource to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="823"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:823</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="888"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:888</a></div>
                         </td>
                     </tr>
 
@@ -555,6 +552,160 @@ to be displayed via HTML.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_cleanSubjectValueLabels"></a>
+                    <span class="name">
+                        <span ><b>_cleanSubjectValueLabels</b></span>
+                        <a href="#_cleanSubjectValueLabels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_cleanSubjectValueLabels(subject: <a href="../classes/SubjectItemJson.html" target="_self">SubjectItemJson</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="534"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:534</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _cleanSubjectValueLabels.</p>
+<p>It cleans the value labels of a subject (SubjectItemJson)
+to be displayed via HTML.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subject</td>
+                                            <td>
+                                                            <code><a href="../classes/SubjectItemJson.html" target="_self" >SubjectItemJson</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given subject.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/SubjectItemJson.html" target="_self" >SubjectItemJson</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The cleaned subject.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_cleanSubjectValues"></a>
+                    <span class="name">
+                        <span ><b>_cleanSubjectValues</b></span>
+                        <a href="#_cleanSubjectValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>_cleanSubjectValues(subject: <a href="../classes/SubjectItemJson.html" target="_self">SubjectItemJson</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="556"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:556</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Private method: _cleanSubjectValues.</p>
+<p>It cleans the values of a subject (SubjectItemJson)
+to be displayed via HTML.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subject</td>
+                                            <td>
+                                                            <code><a href="../classes/SubjectItemJson.html" target="_self" >SubjectItemJson</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given subject.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../classes/SubjectItemJson.html" target="_self" >SubjectItemJson</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The cleaned subject.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="_convertDateValue"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -573,8 +724,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="547"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:547</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="584"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:584</a></div>
                         </td>
                     </tr>
 
@@ -654,8 +805,8 @@ to Gregorian Calendar.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="563"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:563</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="600"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:600</a></div>
                         </td>
                     </tr>
 
@@ -733,8 +884,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="467"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:467</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="457"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:457</a></div>
                         </td>
                     </tr>
 
@@ -813,8 +964,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="612"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:612</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="649"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:649</a></div>
                         </td>
                     </tr>
 
@@ -908,8 +1059,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="657"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:657</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="694"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:694</a></div>
                         </td>
                     </tr>
 
@@ -1003,8 +1154,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="680"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:680</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="717"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:717</a></div>
                         </td>
                     </tr>
 
@@ -1098,8 +1249,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="701"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:701</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="741"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:741</a></div>
                         </td>
                     </tr>
 
@@ -1188,15 +1339,15 @@ to be displayed via HTML.</p>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_convertStandoffToHTML(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_convertStandoffToHTML(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, jsonAttrs: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="753"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:753</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="791"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:791</a></div>
                         </td>
                     </tr>
 
@@ -1239,7 +1390,7 @@ to html using plugin &#39;htmlConverter&#39;.</p>
                                             </td>
                                         </tr>
                                         <tr>
-                                                <td>attr</td>
+                                                <td>jsonAttrs</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -1250,7 +1401,7 @@ to html using plugin &#39;htmlConverter&#39;.</p>
 
 
                                             <td>
-                                                    <p>The given standoff attributes of a richtext property.</p>
+                                                    <p>The given standoff (JSON) attributes of a richtext property.</p>
 
                                             </td>
                                         </tr>
@@ -1291,8 +1442,8 @@ to html using plugin &#39;htmlConverter&#39;.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="939"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:939</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="812"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:812</a></div>
                         </td>
                     </tr>
 
@@ -1300,12 +1451,9 @@ to html using plugin &#39;htmlConverter&#39;.</p>
             <tr>
                 <td class="col-md-4">
                         <div class="io-description"><p>Private method: _distinctSubjects.</p>
-<p>It removes duplicates from an array (SubjectItemJson[]).
-It checks for every array position (reduce) if the obj_id
-of the entry at the current position (y) is already
-in the array (findIndex). If that is not the case it
-pushes y into x which is initialized as empty array [].</p>
-<p>See also <a href="https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855">https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855</a>.</p>
+<p>It removes duplicates from an array of subjects (SubjectItemJson[]).
+It uses the <code>reduce</code> method to create an object with unique <code>obj_id</code> keys,
+then converts this object back to an array.</p>
 </div>
 
                             <div class="io-description">
@@ -1374,8 +1522,8 @@ pushes y into x which is initialized as empty array [].</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="775"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:775</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="840"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:840</a></div>
                         </td>
                     </tr>
 
@@ -1470,8 +1618,8 @@ hlists, selections or image values.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="804"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:804</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="869"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:869</a></div>
                         </td>
                     </tr>
 
@@ -1549,8 +1697,8 @@ of a selections or hlists value.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="965"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:965</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="971"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:971</a></div>
                         </td>
                     </tr>
 
@@ -1628,8 +1776,8 @@ by their resource type.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="321"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:321</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:311</a></div>
                         </td>
                     </tr>
 
@@ -1723,8 +1871,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="350"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:350</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="340"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:340</a></div>
                         </td>
                     </tr>
 
@@ -1802,8 +1950,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="413"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:413</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="403"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:403</a></div>
                         </td>
                     </tr>
 
@@ -1881,8 +2029,8 @@ of an accessible resource to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="439"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:439</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="429"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:429</a></div>
                         </td>
                     </tr>
 
@@ -1960,8 +2108,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="303"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:303</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="293"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:293</a></div>
                         </td>
                     </tr>
 
@@ -2037,85 +2185,6 @@ to be displayed via HTML.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_replaceParagraphTags"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>_replaceParagraphTags</b></span>
-                        <a href="#_replaceParagraphTags"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_replaceParagraphTags(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="913"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:913</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-description"><p>Private method: _replaceParagraphTags.</p>
-<p>It removes paragraph tags in richtext values
-and replaces line breaks instead for multiple lines.</p>
-</div>
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                                <td>Description</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>str</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                            <td>
-                                                    <p>The given richtext value.</p>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                <p>The adjusted richtext value.</p>
-
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="_replaceSalsahLink"></a>
                     <span class="name">
                             <span class="modifier">Private</span>
@@ -2134,8 +2203,8 @@ and replaces line breaks instead for multiple lines.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="868"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:868</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="933"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:933</a></div>
                         </td>
                     </tr>
 
@@ -2211,8 +2280,8 @@ and replaces them with Angular click-directives.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="101"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:101</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:118</a></div>
                         </td>
                     </tr>
 
@@ -2288,8 +2357,8 @@ to be displayed via HTML.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="180"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:180</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="146"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:146</a></div>
                         </td>
                     </tr>
 
@@ -2365,8 +2434,8 @@ to be displayed in the bibliography detail view.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="281"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:281</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="243"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:243</a></div>
                         </td>
                     </tr>
 
@@ -2460,8 +2529,8 @@ resource detail creation methods.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="150"
-                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:150</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:265</a></div>
                         </td>
                     </tr>
 
@@ -2527,6 +2596,85 @@ to be displayed in the search info.</p>
                         </div>
                             <div class="io-description">
                                 <p>The text to be displayed.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceParagraphTags"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>replaceParagraphTags</b></span>
+                        <a href="#replaceParagraphTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>replaceParagraphTags(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Public static method: replaceParagraphTags.</p>
+<p>It removes paragraph tags in richtext values
+and replaces line breaks instead for multiple lines.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>str</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The given richtext value.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The adjusted richtext value.</p>
 
                             </div>
                 </td>
@@ -2856,7 +3004,7 @@ to be displayed in the search info.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:72</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:71</a></div>
                         </td>
                     </tr>
 
@@ -2897,7 +3045,7 @@ to be displayed in the search info.</p>
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:85</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:84</a></code>
 </div>
                         </td>
                     </tr>
@@ -3013,9 +3161,8 @@ import { Observable } from &#x27;rxjs&#x27;;
 
 import { NgxGalleryImage } from &#x27;@kolkov/ngx-gallery&#x27;;
 
-import { ApiService } from &#x27;@awg-core/services/api-service&#x27;;
-
 import { GeoNames } from &#x27;@awg-core/core-models&#x27;;
+import { ApiService } from &#x27;@awg-core/services/api-service&#x27;;
 import { UtilityService } from &#x27;@awg-core/services/utility-service&#x27;;
 import {
     ContextJson,
@@ -3097,6 +3244,24 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Public static method: replaceParagraphTags.
+     *
+     * It removes paragraph tags in richtext values
+     * and replaces line breaks instead for multiple lines.
+     *
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
+    public static replaceParagraphTags(str: string): string {
+        if (!str) {
+            return undefined;
+        }
+        const replacedStr &#x3D; str.replace(/&lt;\/p&gt;&lt;p&gt;/g, &#x27;&lt;br class&#x3D;&quot;mb-2&quot; /&gt;&#x27;).replace(/&lt;p&gt;|&lt;\/p&gt;/g, &#x27;&#x27;);
+        return replacedStr;
+    }
+
+    /**
      * Public method: convertFullTextSearchResults.
      *
      * It converts the results of a full text search
@@ -3111,68 +3276,17 @@ export class ConversionService extends ApiService {
             return searchResults;
         }
 
-        // TODO: refactor with reduce??
-        searchResults.subjects.forEach(subject &#x3D;&gt; {
-            // Clean value labels
-            subject.valuelabel[0] &#x3D; subject.valuelabel[0].replace(&#x27; (Richtext)&#x27;, &#x27;&#x27;);
-            subject.obj_id &#x3D; subject.obj_id.replace(&#x27;_-_local&#x27;, &#x27;&#x27;);
+        searchResults.subjects &#x3D; searchResults.subjects.reduce((acc, subject) &#x3D;&gt; {
+            subject &#x3D; this._cleanSubjectValueLabels(subject);
+            subject &#x3D; this._cleanSubjectValues(subject);
 
-            // &#x3D;&gt;Chronologie: salsah standoff needs to be converted before displaying
-            // Valuetype_id 14 &#x3D; valuelabel &#x27;Ereignis&#x27;
-            if (subject.valuetype_id[0] &#x3D;&#x3D;&#x3D; &#x27;14&#x27; &amp;&amp; subject.value[0]) {
-                let htmlstr &#x3D; &#x27;&#x27;;
-                const utf8str: string &#x3D; subject.value[0].utf8str;
-                const textattr: string &#x3D; subject.value[0].textattr;
+            acc.push(subject);
+            return acc;
+        }, []);
 
-                // Check if there is standoff, otherwise leave res.value[0] alone
-                // Because when retrieved from cache the standoff is already converted
-                if (utf8str &amp;&amp; textattr) {
-                    htmlstr &#x3D; this._convertStandoffToHTML(utf8str, textattr);
-
-                    // Replace salsah links
-                    htmlstr &#x3D; this._replaceSalsahLink(htmlstr);
-
-                    // Strip &amp; replace &lt;p&gt;-tags for displaying
-                    htmlstr &#x3D; this._replaceParagraphTags(htmlstr);
-
-                    subject.value[0] &#x3D; htmlstr;
-                }
-            }
-        });
         // Remove duplicates from response
         searchResults.subjects &#x3D; this._distinctSubjects(searchResults.subjects);
         return searchResults;
-    }
-
-    /**
-     * Public method: prepareFullTextSearchResultText.
-     *
-     * It prepares the fulltext search result text
-     * to be displayed in the search info.
-     *
-     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
-     * @param {string} searchUrl The given url of a search request.
-     *
-     * @returns {string} The text to be displayed.
-     */
-    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
-        let resText: string;
-
-        const searchResults &#x3D; { ...searchResponseWithQuery.data };
-
-        if (searchResults.subjects) {
-            const currentLength &#x3D; searchResults.subjects.length;
-            const totalLength &#x3D; searchResults.nhits;
-            const resString: string &#x3D; length &#x3D;&#x3D;&#x3D; 1 ? &#x27;Ergbnis&#x27; : &#x27;Ergebnisse&#x27;;
-            resText &#x3D; &#x60;${currentLength} / ${totalLength} ${resString}&#x60;;
-            if (this.filteredOut &gt; 0) {
-                resText +&#x3D; &#x27; (Duplikate enfternt)&#x27;;
-            }
-        } else {
-            resText &#x3D; &#x60;Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.&#x60;;
-        }
-
-        return resText;
     }
 
     /**
@@ -3227,11 +3341,7 @@ export class ConversionService extends ApiService {
                                 let htmlstr &#x3D; &#x27;&#x27;;
 
                                 // Convert linear salsah standoff to html (using plugin &quot;htmlConverter&quot;)
-                                htmlstr &#x3D; this._convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
-
-                                // Replace salsah links &amp; &lt;p&gt;-tags
-                                htmlstr &#x3D; this._replaceSalsahLink(htmlstr);
-                                htmlstr &#x3D; htmlstr.replace(&#x27;&lt;p&gt;&#x27;, &#x27;&#x27;).replace(&#x27;&lt;/p&gt;&#x27;, &#x27;&#x27;);
+                                htmlstr &#x3D; this._convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
 
                                 // Trim string
                                 propValue[i] &#x3D; htmlstr.trim();
@@ -3271,7 +3381,7 @@ export class ConversionService extends ApiService {
         }); // END forEach PROPS
 
         return convObj;
-    } // END convertObjectProperties (func)
+    }
 
     /**
      * Public method: convertResourceData.
@@ -3294,6 +3404,34 @@ export class ConversionService extends ApiService {
             return this._prepareAccessibleResource(resourceData, resourceId);
         } else {
             return this._prepareRestrictedResource(resourceData, resourceId);
+        }
+    }
+
+    /**
+     * Public method: prepareFullTextSearchResultText.
+     *
+     * It prepares the fulltext search result text
+     * to be displayed in the search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
+     * @param {string} searchUrl The given url of a search request.
+     *
+     * @returns {string} The text to be displayed.
+     */
+    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
+        const { subjects, nhits: totalLength &#x3D; 0 } &#x3D; { ...searchResponseWithQuery?.data };
+
+        if (subjects) {
+            const currentLength &#x3D; subjects.length;
+            const resString: string &#x3D; currentLength &#x3D;&#x3D;&#x3D; 1 ? &#x27;Ergebnis&#x27; : &#x27;Ergebnisse&#x27;;
+            let resText &#x3D; &#x60;${currentLength} / ${totalLength} ${resString}&#x60;;
+            if (this.filteredOut &gt; 0) {
+                const duplicateString &#x3D; this.filteredOut &#x3D;&#x3D;&#x3D; 1 ? &#x27;Duplikat&#x27; : &#x27;Duplikate&#x27;;
+                resText +&#x3D; &#x60; (${this.filteredOut} ${duplicateString} entfernt)&#x60;;
+            }
+            return resText;
+        } else {
+            return &#x60;Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.&#x60;;
         }
     }
 
@@ -3540,6 +3678,53 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Private method: _cleanSubjectValueLabels.
+     *
+     * It cleans the value labels of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
+        let { valuelabel, obj_id } &#x3D; subject;
+
+        if (valuelabel?.[0]) {
+            valuelabel[0] &#x3D; valuelabel[0].replace(&#x27; (Richtext)&#x27;, &#x27;&#x27;);
+        }
+        if (obj_id) {
+            obj_id &#x3D; obj_id.replace(&#x27;_-_local&#x27;, &#x27;&#x27;);
+        }
+        return { ...subject, valuelabel, obj_id };
+    }
+
+    /**
+     * Private method: _cleanSubjectValues.
+     *
+     * It cleans the values of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
+        let tmpSubject &#x3D; { ...subject };
+        const { valuetype_id, value } &#x3D; tmpSubject;
+        const firstValue &#x3D; value?.[0];
+
+        if (valuetype_id?.[0] &#x3D;&#x3D;&#x3D; &#x27;14&#x27; &amp;&amp; firstValue) {
+            const { utf8str, textattr } &#x3D; firstValue;
+            if (utf8str &amp;&amp; textattr) {
+                const htmlstr &#x3D; this._convertRichtextValue(utf8str, textattr);
+                tmpSubject.value[0] &#x3D; htmlstr;
+            }
+        }
+        return tmpSubject;
+    }
+
+    /**
      * Private method: _convertDateValue.
      *
      * It converts date values of an accessible resource
@@ -3687,10 +3872,13 @@ export class ConversionService extends ApiService {
      */
     private _convertRichtextValue(str: string, attr: string): string {
         // Convert salsah standoff to html (using plugin &quot;htmlConverter&quot;)
-        const rtValue: string &#x3D; this._convertStandoffToHTML(str, attr);
+        const htmlValue: string &#x3D; this._convertStandoffToHTML(str, attr);
 
         // Replace salsah links
-        return this._replaceSalsahLink(rtValue);
+        const replacedLinks &#x3D; this._replaceSalsahLink(htmlValue);
+
+        // Strip &amp; replace &lt;p&gt;-tags for displaying
+        return ConversionService.replaceParagraphTags(replacedLinks);
     }
 
     /**
@@ -3752,20 +3940,45 @@ export class ConversionService extends ApiService {
      * to html using plugin &#x27;htmlConverter&#x27;.
      *
      * @param {string} str The given utf8 string of a rich text property.
-     * @param {string} attr The given standoff attributes of a richtext property.
+     * @param {string} jsonAttrs The given standoff (JSON) attributes of a richtext property.
      *
      * @returns {string} The converted standoff.
-     *
-     * @todo check if it is possible to unify with hlist conversion?
      */
-    private _convertStandoffToHTML(str: string, attr: string): string {
+    private _convertStandoffToHTML(str: string, jsonAttrs: string): string {
         if (!str) {
             return undefined;
         }
-        if (!attr) {
+        if (!jsonAttrs) {
             return str;
         }
-        return htmlConverter(JSON.parse(attr), str);
+        return htmlConverter(JSON.parse(jsonAttrs), str);
+    }
+
+    /**
+     * Private method: _distinctSubjects.
+     *
+     * It removes duplicates from an array of subjects (SubjectItemJson[]).
+     * It uses the &#x60;reduce&#x60; method to create an object with unique &#x60;obj_id&#x60; keys,
+     * then converts this object back to an array.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
+    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+        if (!subjects) {
+            return undefined;
+        }
+
+        const distinctObj &#x3D; subjects.reduce((acc, subject) &#x3D;&gt; {
+            acc[subject.obj_id] &#x3D; subject;
+            return acc;
+        }, {});
+        const distinctArr &#x3D; Object.values(distinctObj) as SubjectItemJson[];
+
+        this.filteredOut &#x3D; subjects.length - distinctArr.length;
+
+        return distinctArr;
     }
 
     /**
@@ -3879,85 +4092,26 @@ export class ConversionService extends ApiService {
         }
 
         // Regexp for Salsah links
-        // Including subgroup for object id: /[1-9]\d{0,9}/ (any up-to 10-digit integer greater 0)
+        // Including subgroup for object id: /[1-9]\d{0,12}/ (any up-to 13-digit integer greater 0)
         const regLink &#x3D;
-            /&lt;a\s+(?:[^&gt;]*?\s+)?href&#x3D;([&quot;&#x27;])((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?salsah\.org\/api\/resources\/([1-9]\d{0,9}))\1 class&#x3D;([&quot;&#x27;])salsah-link\5&gt;(.*?)&lt;\/a&gt;/i;
+            /&lt;a\s+(?:[^&gt;]*?\s+)?href&#x3D;([&quot;&#x27;])((?:https?:\/\/(?:www\.)?)?salsah\.org\/api\/resources\/([1-9]\d{0,12}))\1 class&#x3D;([&quot;&#x27;])salsah-link\4&gt;(.*?)&lt;\/a&gt;/i;
 
         let regArr: RegExpExecArray;
 
         // Check for salsah links in str
-        while (regLink.exec(str)) {
-            // I.e.: as long as regLink is detected in str do...
-            regArr &#x3D; regLink.exec(str);
-
+        while ((regArr &#x3D; regLink.exec(str))) {
             // Resource id is in 4th array entry
-            const resId &#x3D; regArr[4];
+            const resId &#x3D; regArr[3];
             // Link text is stored in last array entry
-            const resTextContent &#x3D; regArr[regArr.length - 1];
+            const resTextContent &#x3D; regArr.at(-1);
 
             // Replace href attribute with click-directive
-            const replaceValue &#x3D;
-                &#x27;&lt;a (click)&#x3D;&quot;ref.navigateToResource(\&#x27;&#x27; +
-                resId +
-                &#x27;\&#x27;); $event.stopPropagation()&quot;&gt;&#x27; +
-                resTextContent +
-                &#x27;&lt;/a&gt;&#x27;;
+            const replaceValue &#x3D; &#x60;&lt;a (click)&#x3D;&quot;ref.navigateToResource(\&#x27;${resId}\&#x27;); $event.stopPropagation()&quot;&gt;${resTextContent}&lt;/a&gt;&#x60;;
+
             str &#x3D; str.replace(regArr[0], replaceValue);
-        } // END while
+        }
 
         return str;
-    }
-
-    /**
-     * Private method: _replaceParagraphTags.
-     *
-     * It removes paragraph tags in richtext values
-     * and replaces line breaks instead for multiple lines.
-     *
-     * @param {string} str The given richtext value.
-     *
-     * @returns {string} The adjusted richtext value.
-     */
-    private _replaceParagraphTags(str: string): string {
-        if (!str) {
-            return undefined;
-        }
-        str &#x3D; str
-            .replace(/&lt;\/p&gt;&lt;p&gt;/g, &#x27;&lt;br /&gt;&#x27;)
-            .replace(/&lt;p&gt;|&lt;\/p&gt;/g, &#x27;&#x27;)
-            .replace(str, &#x27;«$&amp;»&#x27;);
-        return str;
-    }
-
-    /**
-     * Private method: _distinctSubjects.
-     *
-     * It removes duplicates from an array (SubjectItemJson[]).
-     * It checks for every array position (reduce) if the obj_id
-     * of the entry at the current position (y) is already
-     * in the array (findIndex). If that is not the case it
-     * pushes y into x which is initialized as empty array [].
-     *
-     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
-     *
-     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
-     *
-     * @returns {SubjectItemJson[]} The distinct subjects.
-     */
-    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
-        if (!subjects) {
-            return undefined;
-        }
-        this.filteredOut &#x3D; 0;
-        const distinctObj &#x3D; {};
-        let distinctArr &#x3D; [];
-
-        subjects.forEach((subject: SubjectItemJson) &#x3D;&gt; (distinctObj[subject.obj_id] &#x3D; subject));
-        distinctArr &#x3D; Object.values(distinctObj);
-
-        this.filteredOut &#x3D; subjects.length - distinctArr.length;
-
-        return distinctArr;
     }
 
     /**
@@ -4031,6 +4185,19 @@ export class ConversionService extends ApiService {
             var COMPODOC_CURRENT_PAGE_URL = 'ConversionService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

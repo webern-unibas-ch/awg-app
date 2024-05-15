@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -129,13 +120,13 @@
 <title>cluster_EditionAccoladeModule_declarations</title>
 <polygon fill="none" stroke="black" points="755,-78 755,-130 947,-130 947,-78 755,-78"/>
 </g>
-<g id="clust5" class="cluster">
-<title>cluster_EditionAccoladeModule_exports</title>
-<polygon fill="none" stroke="black" points="345,-208 345,-260 539,-260 539,-208 345,-208"/>
-</g>
 <g id="clust4" class="cluster">
 <title>cluster_EditionAccoladeModule_imports</title>
 <polygon fill="none" stroke="black" points="16,-78 16,-130 747,-130 747,-78 16,-78"/>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_EditionAccoladeModule_exports</title>
+<polygon fill="none" stroke="black" points="345,-208 345,-260 539,-260 539,-208 345,-208"/>
 </g>
 <!-- EditionAccoladeComponent -->
 <g id="node1" class="node">
@@ -387,6 +378,19 @@ export class EditionAccoladeModule {}
             var COMPODOC_CURRENT_PAGE_URL = 'EditionAccoladeModule.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

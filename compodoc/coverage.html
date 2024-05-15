@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -339,7 +330,7 @@
             <td>MetaPage</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(13/13)</span>
+                <span class="coverage-count">(14/14)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -411,7 +402,7 @@
             <td>FooterPoweredbyComponent</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(2/2)</span>
+                <span class="coverage-count">(4/4)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -555,7 +546,7 @@
             <td>ConversionService</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(34/34)</span>
+                <span class="coverage-count">(36/36)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -2127,7 +2118,7 @@
             <td>SearchResultListComponent</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(33/33)</span>
+                <span class="coverage-count">(32/32)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -2571,7 +2562,7 @@
             <td>ResourceDetailHeader</td>
             <td align="right" data-sort="100">
                 <span class="coverage-percent">100 %</span>
-                <span class="coverage-count">(8/8)</span>
+                <span class="coverage-count">(7/7)</span>
             </td>
         </tr>
         <tr class="very-good">
@@ -5156,6 +5147,19 @@
             var COMPODOC_CURRENT_PAGE_URL = 'coverage.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>

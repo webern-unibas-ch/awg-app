@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -200,7 +191,7 @@ to store the metadata about the structure overview.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/core/core-models/meta.model.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/core/core-models/meta.model.ts:112</a></div>
                         </td>
                     </tr>
 
@@ -232,7 +223,7 @@ to store the metadata about the structure overview.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/core/core-models/meta.model.ts:112</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/core/core-models/meta.model.ts:117</a></div>
                         </td>
                     </tr>
 
@@ -301,6 +292,11 @@ export class MetaPage {
      * The url to the AWG edition homepage (awg-app).
      */
     awgAppUrl: string;
+
+    /**
+     * The url to the dev version of the AWG edition homepage (awg-app-dev).
+     */
+    awgAppDevUrl: string;
 
     /**
      * The name of the AWG.
@@ -506,6 +502,19 @@ export class Meta {
             var COMPODOC_CURRENT_PAGE_URL = 'MetaStructure.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

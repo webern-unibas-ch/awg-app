@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -97,9 +88,13 @@ email, or any other method with the owners of this repository before making a ch
 <h2>Table of Contents</h2>
 <ul>
 <li><a href="#contribution-process">Contribution process</a><ul>
+<li><a href="#code-formatting">Code Formatting</a></li>
+<li><a href="#testing">Testing</a></li>
 <li><a href="#branching--git-flow">Branching / Git flow</a></li>
 <li><a href="#commit-message-schema">Commit Message Schema</a></li>
+<li><a href="#pull-requests">Pull Requests</a></li>
 <li><a href="#release-versioning-convention">Release Versioning Convention</a></li>
+<li><a href="#issue-reporting">Issue Reporting</a></li>
 </ul>
 </li>
 <li><a href="#quick-start-guide">Angular quick start guide</a><ul>
@@ -115,6 +110,28 @@ email, or any other method with the owners of this repository before making a ch
 <li><a href="#code-of-conduct">Code of Conduct</a></li>
 </ul>
 <h2>Contribution process</h2>
+<h3>Code Formatting</h3>
+<p>This project is set up to use Prettier for code formatting. This should be automatically enabled upon installation.</p>
+<p>Prettier helps enforce a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account, wrapping code when necessary.</p>
+<p>In addition to the automatic formatting, you can manually check and fix formatting issues using the following commands:</p>
+<ul>
+<li><p><code>yarn format-files:check</code>: This command checks the code for formatting issues.</p>
+</li>
+<li><p><code>yarn format-files:fix</code>: This command fixes any formatting issues that it can.</p>
+</li>
+</ul>
+<h3>Testing</h3>
+<p>This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.</p>
+<p>We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.</p>
+<p>To assist with this, the following commands are provided:</p>
+<ul>
+<li><p><code>yarn test</code>: Launches the test runner.</p>
+</li>
+<li><p><code>yarn test:cov</code>: Runs the tests and generates a coverage report.</p>
+</li>
+<li><p><code>yarn test:cov:serve</code>: Runs the tests, generates a coverage report, and serves the coverage report at <a href="http://localhost:9875">http://localhost:9875</a>.</p>
+</li>
+</ul>
 <h3>Branching / Git flow</h3>
 <p>This project uses the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> which defines a strict branching model designed around the project releases. Therefore the following branch structure is used</p>
 <ul>
@@ -125,11 +142,9 @@ email, or any other method with the owners of this repository before making a ch
 <li><code>hotfix/xxx</code> (used to quickly patch production releases; forked from and merged directly into <code>main</code>)</li>
 </ul>
 <p>To initialize the GitFlow workflow execute <code>git flow init</code> inside your local copy of the repository.</p>
-<p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
-<p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
 <h3>Commit Message Schema</h3>
 <p>This project follows the <a href="https://conventionalcommits.org">Conventional Commits Specification</a> using <a href="https://conventional-changelog.github.io/commitlint/#/">commitlint</a> based on the <a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular">Angular configuration</a> (further explanation can be found in the <a href="https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines">Angular commit-message-guidelines</a>).</p>
-<p>Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> (see &quot;Release Versioning Convention&quot; section below).</p>
+<p>Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/absolute-version/commit-and-tag-version">commit-and-tag-version</a> (see &quot;Release Versioning Convention&quot; section below).</p>
 <p>When writing commit messages, we stick to this schema:</p>
 <b>Example :</b><div><pre class="line-numbers"><code class="language-none">[mandatory:] type(scope): subject
 [optional:] &lt;BLANK LINE&gt;
@@ -188,8 +203,14 @@ email, or any other method with the owners of this repository before making a ch
 <b>Example :</b><div><pre class="line-numbers"><code class="language-none">feat(edition): add route for resource creation
 
 - add path for multipart request
-- adapt handling of resources responder</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">docs(README): add new contributors for data</code></pre></div><h3>Release Versioning Convention</h3>
-<p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a>.</p>
+- adapt handling of resources responder</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-none">docs(README): add new contributors for data</code></pre></div><h3>Pull Requests</h3>
+<p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
+<p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
+<h3>Release Versioning Convention</h3>
+<p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/absolute-version/commit-and-tag-version">commit-and-tag-version</a>. See also <a href="README.md#releases">README#releases</a>.</p>
+<h3>Issue Reporting</h3>
+<p>If you encounter a bug or any issue with the application, please report it by creating a new issue in the GitHub repository. When creating an issue, try to provide as much information as possible to help us understand and reproduce the problem.</p>
+<p>For security concerns, please do not create a public issue. Instead, send an email directly to &lt;info-awg[at]unibas.ch&gt;, following our <a href="SECURITY.md">Security Policy</a>. We take all security issues seriously and will respond as quickly as possible to resolve the matter.</p>
 <h2>Angular quick start guide</h2>
 <p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 8.0.3. Check there for necessary prerequisites (which comprise <code>Node</code> and <code>npm</code>or <code>yarn</code>).</p>
 <h3>Development server</h3>
@@ -256,6 +277,19 @@ email, or any other method with the owners of this repository before making a ch
             var COMPODOC_CURRENT_PAGE_URL = 'contributing.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>

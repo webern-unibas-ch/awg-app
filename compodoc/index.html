@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -96,12 +87,92 @@
 <img src="https://img.shields.io/badge/node.js-%3E=v18.19.0-blue" alt="Node.js version" class="img-responsive">
 <img src="https://img.shields.io/github/commit-activity/m/webern-unibas-ch/awg-app" alt="GitHub commit activity" class="img-responsive">
 <img src="https://github.com/webern-unibas-ch/awg-app/actions/workflows/ci_workflow.yml/badge.svg" alt="CI Workflow" class="img-responsive">
-<a href="https://codecov.io/gh/webern-unibas-ch/awg-app"><img src="https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg" alt="codecov" class="img-responsive"></a>
+<a href="https://codecov.io/gh/webern-unibas-ch/awg-app"><img src="https://codecov.io/gh/webern-unibas-ch/awg-app/graph/badge.svg?token=IO5EgI81R6" alt="codecov" class="img-responsive"></a>
 <a href="https://edition.anton-webern.ch/compodoc/index.html"><img src="https://edition.anton-webern.ch/compodoc/images/coverage-badge-documentation.svg" alt="compodoc" class="img-responsive"></a>
+<a href="https://scorecard.dev/viewer/?uri=github.com/webern-unibas-ch/awg-app"><img src="https://api.scorecard.dev/projects/github.com/webern-unibas-ch/awg-app/badge" alt="OpenSSF Scorecard" class="img-responsive"></a>
+<a href="https://www.bestpractices.dev/projects/8862"><img src="https://www.bestpractices.dev/projects/8862/badge" alt="OpenSSF Best Practices" class="img-responsive"></a>
 <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="code style: prettier" class="img-responsive"></a>
 <a href="CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-ff69b4.svg" alt="Contributor Covenant" class="img-responsive"></a>
 <a href="https://doi.org/10.5281/zenodo.4717678"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg" alt="DOI" class="img-responsive"></a></p>
-<p>A prototype web application for the online edition of the <a href="https://www.anton-webern.ch">Anton Webern Gesamtausgabe</a>, located at the Department of Musicology of the University of Basel. It is written in <a href="https://angular.io/">Angular</a> and runs on <a href="https://edition.anton-webern.ch">edition.anton-webern.ch</a>.</p>
+<p>A prototype web application for the online edition of the <a href="https://www.anton-webern.ch">Anton Webern Gesamtausgabe</a> (AWG), located at the Department of Musicology of the University of Basel. It is written in <a href="https://angular.io/">Angular</a> and runs on <a href="https://edition.anton-webern.ch">edition.anton-webern.ch</a>.</p>
+<p><strong>Project Status</strong>: This project is actively maintained.</p>
+<img width="943" alt="app" src="https://github.com/musicEnfanthen/awg-app/assets/21059419/0673d981-558a-4519-8232-e570efa2985e">
+
+
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#building">Building</a></li>
+<li><a href="#releases">Releases</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#contributors-%E2%9C%A8">Contributors ✨</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#contact-and-issue-reporting">Contact and Issue Reporting</a></li>
+</ul>
+<h2>Description</h2>
+<p>This repository houses the source code for the web application that powers the online edition of the Anton Webern Gesamtausgabe (AWG). Our goal is to provide a comprehensive, accessible, and interactive platform for exploring the works of Anton Webern.</p>
+<h2>Prerequisites</h2>
+<p>To run the code base yourself, there are only a few prerequisites to take care of. We use <a href="https://classic.yarnpkg.com/">Yarn</a> for dependency managing, so, before you begin, ensure you have met the following requirements:</p>
+<ul>
+<li>You have installed the latest version of Node.js. You can check this by running <code>node -v</code> in your terminal. If Node.js is not installed, you can download it from <a href="https://nodejs.org/">here</a>.</li>
+<li>You have installed Yarn. You can check this by running <code>yarn -v</code> in your terminal. If Yarn is not installed, you can download it from <a href="https://classic.yarnpkg.com/">here</a>.</li>
+</ul>
+<h2>Getting Started</h2>
+<p>To get started with this project, follow these steps:</p>
+<ol>
+<li>Make sure you meet the prerequisites.</li>
+<li>Clone the repository: <code>git clone [repository_url]</code></li>
+<li>Navigate into the project directory: <code>cd [project_directory]</code></li>
+<li>Install the dependencies: <code>yarn install</code></li>
+</ol>
+<h2>Usage</h2>
+<p>In the project directory, you can run the following command to serve the app in development mode:</p>
+<ul>
+<li><code>yarn start</code>: Serves the app in the development mode. Open <a href="http://localhost:4200">http://localhost:4200</a> to view it in the browser.</li>
+</ul>
+<p>During the development process, you&#39;ll also find the following commands useful for maintaining code quality and understanding the codebase:</p>
+<ul>
+<li><p><code>yarn lint</code>: Scans for linting errors using ESLint.</p>
+</li>
+<li><p><code>yarn lint:fix</code>: Lints the project and automatically fixes any fixable issues.</p>
+</li>
+<li><p><code>yarn doc:serve</code>: Generates documentation for the project using Compodoc and serves it at a local server. Open the URL provided in the terminal to view it in your web browser.</p>
+</li>
+</ul>
+<h2>Building</h2>
+<p>To build the app, use the following commands:</p>
+<ul>
+<li><p><code>yarn build:prod</code>: Builds the app for production to the <code>dist</code> folder.</p>
+</li>
+<li><p><code>yarn build:gh</code>: Same as <code>yarn build:prod</code>, but additionally prepares the build for deployment on GitHub Pages (includes base-href setting).</p>
+</li>
+</ul>
+<h2>Releases</h2>
+<p>Releases for this project are automatically managed via Continuous Integration (CI). The following commands are involved in the release process:</p>
+<ul>
+<li><p><code>yarn pre-release</code>: Updates the app version and creates a changelog from the commit history.</p>
+</li>
+<li><p><code>yarn deploy:ci</code>: Runs <code>angular-cli-ghpages</code> to deploy the app on GitHub Pages. To be used only from CI.</p>
+</li>
+</ul>
+<h2>Testing</h2>
+<p>This project uses a dynamic testing approach with Jasmine and Karma for unit tests in Angular. Code coverage is measured with CodeCov.</p>
+<p>We encourage contributors to uphold these standards. As such, new contributions are expected to include tests whenever applicable.</p>
+<p>To assist with this, the following commands are provided:</p>
+<ul>
+<li><p><code>yarn test</code>: Launches the test runner.</p>
+</li>
+<li><p><code>yarn test:cov</code>: Runs the tests and generates a coverage report.</p>
+</li>
+<li><p><code>yarn test:cov:serve</code>: Runs the tests, generates a coverage report, and serves the coverage report at <a href="http://localhost:9875">http://localhost:9875</a>.</p>
+</li>
+</ul>
+<h2>Contributing</h2>
+<p>We welcome contributions! Please see our <a href="CONTRIBUTING.md">Contributing Guide</a> and <a href="CODE_OF_CONDUCT.md">Code of Conduct</a> for more details how you may contribute to this project.</p>
 <h2>Contributors ✨</h2>
 <p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -125,11 +196,13 @@
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
-<h2>Contributing</h2>
-<p>Please read our <a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> and <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> to see how you may contribute to this project.</p>
 <h2>License</h2>
 <p>The software code of this project is released under <a href="https://opensource.org/licenses/MIT">MIT</a> license, see <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">LICENSE.md</a>.</p>
 <p>The contents of the webpage are released under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)</a>, see <a href="http://edition.anton-webern.ch/contact#awg-disclaimer">Disclaimer</a>.</p>
+<h2>Contact and Issue Reporting</h2>
+<p>If you encounter a bug or any issue with the application, please report it by creating a new issue in the GitHub repository. When creating an issue, try to provide as much information as possible to help us understand and reproduce the problem.</p>
+<p>For security concerns, please do not create a public issue. Instead, send an email directly to &lt;info-awg[at]unibas.ch&gt;, following our <a href="SECURITY.md">Security Policy</a>. We take all security issues seriously and will respond as quickly as possible to resolve the matter.</p>
+<p>For any other queries or if you wish to reach out directly, please contact us at &lt;info-awg[at]unibas.ch&gt;.</p>
 
 
 
@@ -180,6 +253,19 @@
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>

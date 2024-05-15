@@ -61,15 +61,6 @@
                     darkModeState = darkModeStateLocal === 'true';
                }
                toggleDarkMode(darkModeState);
-
-               if ($darkModeToggles.length > 0) {
-                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
-                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
-                              darkModeState = !darkModeState;
-                              toggleDarkMode(darkModeState);
-                         });
-                    }
-               }
           </script>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
@@ -624,7 +615,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.12.0&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.12.1&#x27;</code>
                     </td>
                 </tr>
 
@@ -656,7 +647,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;23. April 2024&#x27;</code>
+                        <i>Default value : </i><code>&#x27;15. Mai 2024&#x27;</code>
                     </td>
                 </tr>
 
@@ -2699,6 +2690,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     yearStart: 2015,
     yearCurrent: new Date().getFullYear(),
     awgAppUrl: AppConfig.AWG_APP_URL,
+    awgAppDevUrl: AppConfig.AWG_APP_URL + &#x27;/dev/&#x27;,
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
     awgProjectName: AppConfig.AWG_PROJECT_NAME,
     compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
@@ -6488,6 +6480,19 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
             var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
