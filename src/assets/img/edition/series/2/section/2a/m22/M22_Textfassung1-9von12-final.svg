@@ -434,11 +434,9 @@
   </g>
   <path id="path702" d="M142.49 211.491h8.222" style="fill:none;stroke:#000;stroke-width:.77999997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:1.17,1.17;stroke-opacity:1"/>
   <path id="path704" d="M150.712 211.491v5.82" style="fill:none;stroke:#000;stroke-width:.77999997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:1.17,1.17;stroke-opacity:1"/>
-  <g id="g1" class="tkk">
-    <g id="g4155" class="tkk">
-      <g id="g708" style="fill:#000;fill-opacity:1" transform="translate(38.931 .288)">
-        <use xlink:href="#glyph4-1" id="use706" width="100%" height="100%" x="79.56" y="272.757"/>
-      </g>
+  <g id="g6" class="tkk">
+    <g id="g708" style="fill:#000;fill-opacity:1" transform="translate(38.931 .288)">
+      <use xlink:href="#glyph4-1" id="use706" width="100%" height="100%" x="79.56" y="272.757"/>
     </g>
   </g>
   <path id="path710" d="M245.931 211.07v32.398" style="fill:none;stroke:#000;stroke-width:.66000003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
@@ -1088,11 +1086,9 @@
   <g id="g1660" style="fill:#000;fill-opacity:1" transform="translate(38.931 .288)">
     <use xlink:href="#glyph0-4" id="use1658" width="100%" height="100%" x="531.361" y="467.579"/>
   </g>
-  <g id="g2">
-    <g id="g4159" class="tkk">
-      <g id="g1664" style="fill:#000;fill-opacity:1" transform="translate(38.931 .288)">
-        <use xlink:href="#glyph4-1" id="use1662" width="100%" height="100%" x="562.021" y="363.058"/>
-      </g>
+  <g id="g7" class="tkk">
+    <g id="g1664" style="fill:#000;fill-opacity:1" transform="translate(38.931 .288)">
+      <use xlink:href="#glyph4-1" id="use1662" width="100%" height="100%" x="562.021" y="363.058"/>
     </g>
   </g>
   <path id="path1666" d="M66.83 532.245v75.301" style="fill:none;stroke:#000;stroke-width:.89999998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
@@ -1361,7 +1357,7 @@
   <path id="path2070" d="M353.873 548.628v-10.14" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path2072" d="M352.31 538.487h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
   <path id="path2074" d="M352.31 548.628h1.563" style="fill:none;stroke:#000;stroke-width:.58499998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-opacity:1"/>
-  <g id="g4163" class="tkk">
+  <g id="g8" class="tkk">
     <g id="g2078" style="fill:#000;fill-opacity:1" transform="translate(38.931 .288)">
       <use xlink:href="#glyph4-1" id="use2076" width="100%" height="100%" x="399.781" y="583.019"/>
     </g>
