@@ -1495,8 +1495,8 @@
                         ]
                     },
                     {
-                        "item": "M* 401 22 Sk1.1",
-                        "itemLinkTo": "Mstar_401_22_Sk1_1",
+                        "item": "M* 401 Sk1.1",
+                        "itemLinkTo": "Mstar_401_Sk1_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
                         "folios": [
                             {
@@ -1651,7 +1651,7 @@
                                     [
                                         {
                                             "system": "7–8",
-                                            "measure": "11–12, nach T. 12 Liedtext",
+                                            "measure": "11–12, Liedtext",
                                             "linkTo": ""
                                         }
                                     ]
@@ -3269,7 +3269,7 @@
                     {
                         "item": "M 22",
                         "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Thema)",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22)",
                         "folios": [
                             {
                                 "folio": "1r",
@@ -3279,52 +3279,10 @@
                                     [
                                         {
                                             "system": "14–15",
-                                            "measure": "1–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M* 412",
-                        "itemLinkTo": "Mstar_412",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "17–18",
-                                            "measure": "1–11",
+                                            "measure": "1–8 (Thema)",
                                             "linkTo": ""
                                         }
                                     ],
-                                    [
-                                        {
-                                            "system": "20–21",
-                                            "measure": "20–21",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. I–II)",
-                        "folios": [
-                            {
-                                "folio": "1r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
                                     [
                                         {
                                             "system": "23–24",
@@ -3335,7 +3293,7 @@
                                     [
                                         {
                                             "system": "25–26",
-                                            "measure": "7–8",
+                                            "measure": "7–8 (Var. I)",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3347,14 +3305,7 @@
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. III–X)",
-                        "folios": [
+                            },
                             {
                                 "folio": "1v",
                                 "folioLinkTo": "",
@@ -3405,7 +3356,7 @@
                                     [
                                         {
                                             "system": "14–15",
-                                            "measure": "8",
+                                            "measure": "8 (Var. VII)",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3419,7 +3370,7 @@
                                     [
                                         {
                                             "system": "19–20",
-                                            "measure": "7–8",
+                                            "measure": "7–8 (Var. VIII)",
                                             "linkTo": ""
                                         }
                                     ],
@@ -3440,19 +3391,12 @@
                                     [
                                         {
                                             "system": "27–28",
-                                            "measure": "7–8",
+                                            "measure": "7–8 (Var. X)",
                                             "linkTo": ""
                                         }
                                     ]
                                 ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XI–XII)",
-                        "folios": [
+                            },
                             {
                                 "folio": "2r",
                                 "folioLinkTo": "",
@@ -3469,6 +3413,153 @@
                                         {
                                             "system": "4–5",
                                             "measure": "1–3 (Var. XII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "13–14",
+                                            "measure": "1–7 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16a–17a",
+                                            "measure": "8 (Var. XIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "16b–17b",
+                                            "measure": "1–4 (Var. XIV)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "19–20",
+                                            "measure": "1–8 (Var. XV)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–23",
+                                            "measure": "1–8 (Var. XVI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "25–26",
+                                            "measure": "1–6 (Var. XVII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "27–28",
+                                            "measure": "7–8 (Var. XVII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "2–3",
+                                            "measure": "1–8 (Var. XVIII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "1–8 (Var. XIX)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "8b–9b",
+                                            "measure": "7B–8B (Var. XIX)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "14–15",
+                                            "measure": "1–8 (Var. XX)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "17–20",
+                                            "measure": "1–6 (Var. XXI)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "22–25",
+                                            "measure": "7–8 (Var. XXI)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–4",
+                                            "measure": "1–8 (Var. XXII)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "11–12",
+                                            "measure": "1–8 (Var. XXIII)",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "M* 412",
+                        "itemLinkTo": "Mstar_412",
+                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
+                        "folios": [
+                            {
+                                "folio": "1r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "17–18",
+                                            "measure": "1–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "20–21",
+                                            "measure": "20–21",
                                             "linkTo": ""
                                         }
                                     ]
@@ -3519,83 +3610,6 @@
                         ]
                     },
                     {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XIII–XVII)",
-                        "folios": [
-                            {
-                                "folio": "2r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "13–14",
-                                            "measure": "1–7 (Var. XIII)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "16a–17a",
-                                            "measure": "8",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "16b–17b",
-                                            "measure": "1–4 (Var. XIV)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "19–20",
-                                            "measure": "1–8 (Var. XV)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "22–23",
-                                            "measure": "1–8 (Var. XVI)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "25–26",
-                                            "measure": "1–6 (Var. XVII)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "27–28",
-                                            "measure": "7–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            },
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "2–3",
-                                            "measure": "1–8 (Var. XVIII)",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
                         "item": "M* 415",
                         "itemLinkTo": "Mstar_415",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 415)",
@@ -3638,76 +3652,6 @@
                         ]
                     },
                     {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XIX–XXI)",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11–12",
-                                            "measure": "1–8 (Var. XIX)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "8b–9b",
-                                            "measure": "7B–8B",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "14–15",
-                                            "measure": "1–8 (Var. XX)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "17–20",
-                                            "measure": "1–6 (Var. XXI)",
-                                            "linkTo": ""
-                                        }
-                                    ],
-                                    [
-                                        {
-                                            "system": "22–25",
-                                            "measure": "7–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XXII)",
-                        "folios": [
-                            {
-                                "folio": "3r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "1–4",
-                                            "measure": "1–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
                         "item": "M 23",
                         "itemLinkTo": "M_23",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 23: Thema)",
@@ -3728,27 +3672,6 @@
                                         {
                                             "system": "8–9",
                                             "measure": "11–12",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "M 22",
-                        "itemLinkTo": "M_22",
-                        "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22: Var. XXIII)",
-                        "folios": [
-                            {
-                                "folio": "3r",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11–12",
-                                            "measure": "1–8",
                                             "linkTo": ""
                                         }
                                     ]
