@@ -120,28 +120,14 @@ export class ConversionService extends ApiService {
             return searchResults;
         }
 
-        // TODO: refactor with reduce??
-        searchResults.subjects.forEach(subject => {
-            // Clean value labels
-            subject.valuelabel[0] = subject.valuelabel[0].replace(' (Richtext)', '');
-            subject.obj_id = subject.obj_id.replace('_-_local', '');
+        searchResults.subjects = searchResults.subjects.reduce((acc, subject) => {
+            subject = this._cleanSubjectValueLabels(subject);
+            subject = this._cleanSubjectValues(subject);
 
-            // =>Chronologie: salsah standoff needs to be converted before displaying
-            // Valuetype_id 14 = valuelabel 'Ereignis'
-            if (subject.valuetype_id[0] === '14' && subject.value[0]) {
-                let htmlstr = '';
-                const utf8str: string = subject.value[0].utf8str;
-                const textattr: string = subject.value[0].textattr;
+            acc.push(subject);
+            return acc;
+        }, []);
 
-                // Check if there is standoff, otherwise leave res.value[0] alone
-                // Because when retrieved from cache the standoff is already converted
-                if (utf8str && textattr) {
-                    htmlstr = this._convertRichtextValue(utf8str, textattr);
-
-                    subject.value[0] = htmlstr;
-                }
-            }
-        });
         // Remove duplicates from response
         searchResults.subjects = this._distinctSubjects(searchResults.subjects);
         return searchResults;
@@ -239,7 +225,7 @@ export class ConversionService extends ApiService {
         }); // END forEach PROPS
 
         return convObj;
-    } // END convertObjectProperties (func)
+    }
 
     /**
      * Public method: convertResourceData.
@@ -284,7 +270,8 @@ export class ConversionService extends ApiService {
             const resString: string = currentLength === 1 ? 'Ergebnis' : 'Ergebnisse';
             let resText = `${currentLength} / ${totalLength} ${resString}`;
             if (this.filteredOut > 0) {
-                resText += ' (Duplikate entfernt)';
+                const duplicateString = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
+                resText += ` (${this.filteredOut} ${duplicateString} entfernt)`;
             }
             return resText;
         } else {
@@ -535,6 +522,53 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Private method: _cleanSubjectValueLabels.
+     *
+     * It cleans the value labels of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
+        let { valuelabel, obj_id } = subject;
+
+        if (valuelabel?.[0]) {
+            valuelabel[0] = valuelabel[0].replace(' (Richtext)', '');
+        }
+        if (obj_id) {
+            obj_id = obj_id.replace('_-_local', '');
+        }
+        return { ...subject, valuelabel, obj_id };
+    }
+
+    /**
+     * Private method: _cleanSubjectValues.
+     *
+     * It cleans the values of a subject (SubjectItemJson)
+     * to be displayed via HTML.
+     *
+     * @param {SubjectItemJson} subject The given subject.
+     *
+     * @returns {SubjectItemJson} The cleaned subject.
+     */
+    _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
+        let tmpSubject = { ...subject };
+        const { valuetype_id, value } = tmpSubject;
+        const firstValue = value?.[0];
+
+        if (valuetype_id?.[0] === '14' && firstValue) {
+            const { utf8str, textattr } = firstValue;
+            if (utf8str && textattr) {
+                const htmlstr = this._convertRichtextValue(utf8str, textattr);
+                tmpSubject.value[0] = htmlstr;
+            }
+        }
+        return tmpSubject;
+    }
+
+    /**
      * Private method: _convertDateValue.
      *
      * It converts date values of an accessible resource
@@ -765,6 +799,33 @@ export class ConversionService extends ApiService {
     }
 
     /**
+     * Private method: _distinctSubjects.
+     *
+     * It removes duplicates from an array of subjects (SubjectItemJson[]).
+     * It uses the `reduce` method to create an object with unique `obj_id` keys,
+     * then converts this object back to an array.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
+    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+        if (!subjects) {
+            return undefined;
+        }
+
+        const distinctObj = subjects.reduce((acc, subject) => {
+            acc[subject.obj_id] = subject;
+            return acc;
+        }, {});
+        const distinctArr = Object.values(distinctObj) as SubjectItemJson[];
+
+        this.filteredOut = subjects.length - distinctArr.length;
+
+        return distinctArr;
+    }
+
+    /**
      * Private method: _getAdditionalInfoFromApi.
      *
      * It makes additional calls to the given (SALSAH) API
@@ -895,37 +956,6 @@ export class ConversionService extends ApiService {
         }
 
         return str;
-    }
-
-    /**
-     * Private method: _distinctSubjects.
-     *
-     * It removes duplicates from an array (SubjectItemJson[]).
-     * It checks for every array position (reduce) if the obj_id
-     * of the entry at the current position (y) is already
-     * in the array (findIndex). If that is not the case it
-     * pushes y into x which is initialized as empty array [].
-     *
-     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
-     *
-     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
-     *
-     * @returns {SubjectItemJson[]} The distinct subjects.
-     */
-    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
-        if (!subjects) {
-            return undefined;
-        }
-        this.filteredOut = 0;
-        const distinctObj = {};
-        let distinctArr = [];
-
-        subjects.forEach((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
-        distinctArr = Object.values(distinctObj);
-
-        this.filteredOut = subjects.length - distinctArr.length;
-
-        return distinctArr;
     }
 
     /**
