@@ -116,7 +116,7 @@ export class EditionSvgSheetFooterComponent {
      * @returns {boolean} The result of the check.
      */
     isTextcriticsForSketch(selectedTextcritics: Textcritics): boolean {
-        return selectedTextcritics?.id?.includes('_Sk') || false;
+        return selectedTextcritics?.id?.includes('_Sk') || selectedTextcritics?.id?.includes('SkRT') || false;
     }
 
     /**

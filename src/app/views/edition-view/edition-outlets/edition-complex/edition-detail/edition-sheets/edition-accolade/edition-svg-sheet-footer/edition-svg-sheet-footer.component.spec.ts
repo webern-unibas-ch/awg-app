@@ -465,6 +465,15 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
 
                 expect(result).toBeTrue();
             });
+
+            it('... should return true if selectedTextcritics id includes `SkRT`', () => {
+                const textcritics = expectedSelectedTextcritics;
+                textcritics.id = 'SkRT';
+
+                const result = component.isTextcriticsForSketch(textcritics);
+
+                expect(result).toBeTrue();
+            });
         });
 
         describe('#navigateToReportFragment()', () => {
