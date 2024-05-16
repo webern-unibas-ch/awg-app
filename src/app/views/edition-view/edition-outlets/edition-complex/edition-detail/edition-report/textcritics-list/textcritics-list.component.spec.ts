@@ -436,7 +436,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
                 });
 
-                it('... should contain item body with div, paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
+                it('... should contain item body with div, and small caps paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -447,13 +447,52 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
 
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                    const pEl0 = pDes[0].nativeElement;
-
-                    expectToBe(pEl0.textContent, 'Skizzenkommentar:');
+                    getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
                     // EditionTkaDescriptionStubComponent
                     getAndExpectDebugElementByDirective(divDes[0], EditionTkaDescriptionStubComponent, 1, 1);
+                });
+
+                it('... should display evaluationString `Quellenbewertung:` in paragraph if no sketch id is given', () => {
+                    component.textcriticsData.textcritics[1].id = 'test-2';
+                    const textcritics = component.textcriticsData.textcritics[1];
+
+                    detectChangesOnPush(fixture);
+
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                        1,
+                        1,
+                        'open'
+                    );
+
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                    const pEl = pDes[0].nativeElement;
+
+                    expectToBe(pEl.textContent, 'Quellenbewertung:');
+                });
+
+                it('... should display evaluationString `Skizzenkommentar:` in paragraph if sketch id is given', () => {
+                    component.textcriticsData.textcritics[1].id = 'test-2_Sk2';
+                    const textcritics = component.textcriticsData.textcritics[1];
+
+                    detectChangesOnPush(fixture);
+
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                        1,
+                        1,
+                        'open'
+                    );
+
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                    const pEl = pDes[0].nativeElement;
+
+                    expectToBe(pEl.textContent, 'Skizzenkommentar:');
                 });
 
                 it('... should contain item body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
@@ -510,6 +549,37 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
                     expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
                 });
+            });
+        });
+
+        describe('#getEvaluationString()', () => {
+            it('... should have a method `getEvaluationString`', () => {
+                expect(component.getEvaluationString).toBeDefined();
+            });
+
+            it('... should return `Quellenbewertung:` when given textcritics is undefined', () => {
+                const result = component.getEvaluationString(undefined);
+                const expected = 'Quellenbewertung:';
+
+                expectToBe(result, expected);
+            });
+
+            it('... should return `Quellenbewertung:` when selectedTextcritics id does not include `_Sk`', () => {
+                expectedTextcriticsData.textcritics[0].id = 'test-1';
+
+                const result = component.getEvaluationString(expectedTextcriticsData.textcritics[0]);
+                const expected = 'Quellenbewertung:';
+
+                expectToBe(result, expected);
+            });
+
+            it('... should return `Skizzenkommentar:` when selectedTextcritics id includes `_Sk`', () => {
+                expectedTextcriticsData.textcritics[0].id = 'test-1_Sk1';
+
+                const result = component.getEvaluationString(expectedTextcriticsData.textcritics[0]);
+                const expected = 'Skizzenkommentar:';
+
+                expectToBe(result, expected);
             });
         });
 

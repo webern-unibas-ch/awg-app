@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
-import { TextcriticsList } from '@awg-views/edition-view/models';
+import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
  * The TextcriticsList component.
@@ -65,6 +65,18 @@ export class TextcriticsListComponent {
      */
     constructor(public utils: UtilityService) {
         this.ref = this;
+    }
+
+    /**
+     * Public method: evaluationString.
+     *
+     * It returns the evaluation string for the textcritics
+     * depending on wether the selected textcritics id refers to a sketch or not.
+     *
+     * @returns {string} The evaluation string.
+     */
+    getEvaluationString(selectedTextcritics: Textcritics): string {
+        return `${selectedTextcritics?.id.includes('_Sk') ? 'Skizzenkommentar' : 'Quellenbewertung'}:`;
     }
 
     /**

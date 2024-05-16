@@ -107,6 +107,18 @@ export class EditionSvgSheetFooterComponent {
     }
 
     /**
+     * Public method: evaluationString.
+     *
+     * It returns the evaluation string for the textcritics
+     * depending on wether the selected textcritics id refers to a sketch or not.
+     *
+     * @returns {string} The evaluation string.
+     */
+    getEvaluationString(selectedTextcritics: Textcritics): string {
+        return `${selectedTextcritics?.id.includes('_Sk') ? 'Skizzenkommentar' : 'Quellenbewertung'}:`;
+    }
+
+    /**
      * Public method: navigateToReportFragment.
      *
      * It emits a given id of a fragment of the edition report

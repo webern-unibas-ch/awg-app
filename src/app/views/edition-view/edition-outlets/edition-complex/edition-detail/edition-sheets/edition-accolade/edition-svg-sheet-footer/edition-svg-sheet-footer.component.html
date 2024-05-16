@@ -7,7 +7,7 @@
                     &nbsp;
                 </span>
             }
-            <span class="smallcaps">Skizzenkommentar:</span>
+            <span class="smallcaps">{{ getEvaluationString(selectedTextcritics) }}</span>
             @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>&nbsp;---</span>
             }
