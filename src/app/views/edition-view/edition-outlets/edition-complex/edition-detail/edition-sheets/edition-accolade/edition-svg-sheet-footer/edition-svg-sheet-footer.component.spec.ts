@@ -353,13 +353,43 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1,
                     1
                 );
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+            });
+
+            it('... should display commentString `Textkritische Anmerkungen:` if no sketch id is given', () => {
+                component.selectedTextcritics.id = 'test-1';
+
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-footer-textcritics',
+                    1,
+                    1
+                );
+
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl.classList).toBeDefined();
-                expect(pEl.classList).toContain('smallcaps');
+                expectToBe(pEl.textContent, 'Textkritische Anmerkungen:');
+            });
 
-                expectToBe(pEl.textContent, `Textkritischer Kommentar:`);
+            it('... should display commentString `Textkritischer Kommentar:` if sketch id is given', () => {
+                component.selectedTextcritics.id = 'test-1_Sk1';
+
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-footer-textcritics',
+                    1,
+                    1
+                );
+
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                const pEl = pDes[0].nativeElement;
+
+                expectToBe(pEl.textContent, 'Textkritischer Kommentar:');
             });
 
             it('... should contain one EditionTkaTableComponent (stubbed) in textcritics div', () => {
@@ -384,6 +414,39 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             it('... should pass down isRowTable to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+            });
+        });
+
+        describe('#getCommentString()', () => {
+            it('... should have a method `getCommentString`', () => {
+                expect(component.getCommentString).toBeDefined();
+            });
+
+            it('... should return `Textkritische Anmerkungen:` when selectedTextcritics is undefined', () => {
+                const result = component.getCommentString(undefined);
+                const expected = 'Textkritische Anmerkungen:';
+
+                expectToBe(result, expected);
+            });
+
+            it('... should return `Textkritische Anmerkungen:` when selectedTextcritics id does not include `_Sk`', () => {
+                const textcritics = expectedSelectedTextcritics;
+                textcritics.id = 'test-1';
+
+                const result = component.getCommentString(expectedSelectedTextcritics);
+                const expected = 'Textkritische Anmerkungen:';
+
+                expectToBe(result, expected);
+            });
+
+            it('... should return `Textkritischer Kommentar:` when selectedTextcritics id includes `_Sk`', () => {
+                const textcritics = expectedSelectedTextcritics;
+                textcritics.id = 'test-1_Sk1';
+
+                const result = component.getCommentString(expectedSelectedTextcritics);
+                const expected = 'Textkritischer Kommentar:';
+
+                expectToBe(result, expected);
             });
         });
 

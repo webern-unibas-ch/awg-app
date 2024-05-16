@@ -28,7 +28,7 @@
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
                                 <div>
-                                    <p class="smallcaps">Textkritischer Kommentar:</p>
+                                    <p class="smallcaps">{{ getCommentString(textcritic) }}</p>
                                     <awg-edition-tka-table
                                         [textcriticalComments]="textcritic.comments"
                                         [isRowTable]="textcritic.rowtable"

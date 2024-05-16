@@ -107,6 +107,18 @@ export class EditionSvgSheetFooterComponent {
     }
 
     /**
+     * Public method: getCommentString.
+     *
+     * It returns the comment string for the textcritics
+     * depending on wether the selected textcritics id refers to a sketch or not.
+     *
+     * @returns {string} The comment string.
+     */
+    getCommentString(selectedTextcritics: Textcritics): string {
+        return `${selectedTextcritics?.id.includes('_Sk') ? 'Textkritischer Kommentar' : 'Textkritische Anmerkungen'}:`;
+    }
+
+    /**
      * Public method: evaluationString.
      *
      * It returns the evaluation string for the textcritics

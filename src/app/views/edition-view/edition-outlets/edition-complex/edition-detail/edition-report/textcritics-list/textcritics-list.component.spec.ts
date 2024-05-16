@@ -49,7 +49,7 @@ class EditionTkaTableStubComponent {
     selectSvgSheetRequest: EventEmitter<{ complexId: string; sheetId: string }> = new EventEmitter();
 }
 
-describe('TextcriticsListComponent (DONE)', () => {
+fdescribe('TextcriticsListComponent (DONE)', () => {
     let component: TextcriticsListComponent;
     let fixture: ComponentFixture<TextcriticsListComponent>;
     let compDe: DebugElement;
@@ -436,8 +436,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                     getAndExpectDebugElementByCss(bodyDes[0], 'div', 0, 0);
                 });
 
-                it('... should contain item body with div, and small caps paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
+                it('... should contain item body with div, small caps paragraph and EditionTkaDescriptionComponent if description array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
+
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
@@ -445,7 +446,6 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         'open'
                     );
-
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:first-child', 1, 1);
                     getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
@@ -495,8 +495,9 @@ describe('TextcriticsListComponent (DONE)', () => {
                     expectToBe(pEl.textContent, 'Skizzenkommentar:');
                 });
 
-                it('... should contain item body with div, paragraph and EditionTkaTableComponent if comments array is not empty', () => {
+                it('... should contain item body with div, small caps paragraph and EditionTkaTableComponent if comments array is not empty', () => {
                     const textcritics = expectedTextcriticsData.textcritics[1];
+
                     const bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
@@ -504,15 +505,51 @@ describe('TextcriticsListComponent (DONE)', () => {
                         1,
                         'open'
                     );
-
                     const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
-                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
-                    const pEl0 = pDes[0].nativeElement;
-
-                    expectToBe(pEl0.textContent, 'Textkritischer Kommentar:');
+                    getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
 
                     // EditionTkaTableStubComponent
                     getAndExpectDebugElementByDirective(bodyDes[0], EditionTkaTableStubComponent, 1, 1);
+                });
+
+                it('... should display commentString `Textkritische Anmerkungen:` in paragraph if no sketch id is given', () => {
+                    component.textcriticsData.textcritics[1].id = 'test-2';
+                    const textcritics = component.textcriticsData.textcritics[1];
+
+                    detectChangesOnPush(fixture);
+
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                        1,
+                        1,
+                        'open'
+                    );
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                    const pEl = pDes[0].nativeElement;
+
+                    expectToBe(pEl.textContent, 'Textkritische Anmerkungen:');
+                });
+
+                it('... should display commentString `Textkritischer Kommentar:` in paragraph if sketch id is given', () => {
+                    component.textcriticsData.textcritics[1].id = 'test-2_Sk2';
+                    const textcritics = component.textcriticsData.textcritics[1];
+
+                    detectChangesOnPush(fixture);
+
+                    const bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        `div#${textcritics.id} > div.accordion-collapse > div.accordion-body`,
+                        1,
+                        1,
+                        'open'
+                    );
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div:not(:first-child)', 1, 1);
+                    const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                    const pEl = pDes[0].nativeElement;
+
+                    expectToBe(pEl.textContent, 'Textkritischer Kommentar:');
                 });
 
                 it('... should pass down `description` data to EditionTkaDescriptionComponent (stubbed)', () => {
@@ -549,6 +586,37 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
                     expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
                 });
+            });
+        });
+
+        describe('#getCommentString()', () => {
+            it('... should have a method `getCommentString`', () => {
+                expect(component.getCommentString).toBeDefined();
+            });
+
+            it('... should return `Textkritische Anmerkungen:` when given textcritics is undefined', () => {
+                const result = component.getCommentString(undefined);
+                const expected = 'Textkritische Anmerkungen:';
+
+                expectToBe(result, expected);
+            });
+
+            it('... should return `Textkritische Anmerkungen:` when selectedTextcritics id does not include `_Sk`', () => {
+                expectedTextcriticsData.textcritics[0].id = 'test-1';
+
+                const result = component.getCommentString(expectedTextcriticsData.textcritics[0]);
+                const expected = 'Textkritische Anmerkungen:';
+
+                expectToBe(result, expected);
+            });
+
+            it('... should return `Textkritischer Kommentar:` when selectedTextcritics id includes `_Sk`', () => {
+                expectedTextcriticsData.textcritics[0].id = 'test-1_Sk1';
+
+                const result = component.getCommentString(expectedTextcriticsData.textcritics[0]);
+                const expected = 'Textkritischer Kommentar:';
+
+                expectToBe(result, expected);
             });
         });
 

@@ -25,7 +25,7 @@
     </div>
     @if (showTkA) {
         <div class="awg-edition-svg-sheet-footer-textcritics">
-            <p class="smallcaps">Textkritischer Kommentar:</p>
+            <p class="smallcaps">{{ getCommentString(selectedTextcritics) }}</p>
             <awg-edition-tka-table
                 [textcriticalComments]="selectedTextcriticalComments"
                 [isRowTable]="selectedTextcritics.rowtable"
