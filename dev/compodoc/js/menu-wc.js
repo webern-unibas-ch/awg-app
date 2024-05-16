@@ -1403,6 +1403,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/TimelineDate.html" data-type="entity-link" >TimelineDate</a>
                             </li>
                             <li class="link">
+                                <a href="classes/TkaTableHeaderColumn.html" data-type="entity-link" >TkaTableHeaderColumn</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Toast.html" data-type="entity-link" >Toast</a>
                             </li>
                             <li class="link">
