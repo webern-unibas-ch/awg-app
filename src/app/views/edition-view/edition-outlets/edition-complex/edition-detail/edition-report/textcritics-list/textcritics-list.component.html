@@ -18,7 +18,13 @@
                         <ng-template>
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
-                                    <p class="smallcaps">Skizzenkommentar:</p>
+                                    <p class="smallcaps">
+                                        {{
+                                            isTextcriticsForSketch(textcritic)
+                                                ? 'Skizzenkommentar'
+                                                : 'Quellenbewertung'
+                                        }}:
+                                    </p>
                                     <awg-edition-tka-description
                                         [textcriticalDescriptions]="textcritic.description"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -28,10 +34,17 @@
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
                                 <div>
-                                    <p class="smallcaps">Textkritischer Kommentar:</p>
+                                    <p class="smallcaps">
+                                        {{
+                                            isTextcriticsForSketch(textcritic)
+                                                ? 'Textkritischer Kommentar'
+                                                : 'Textkritische Anmerkungen'
+                                        }}:
+                                    </p>
                                     <awg-edition-tka-table
                                         [textcriticalComments]="textcritic.comments"
                                         [isRowTable]="textcritic.rowtable"
+                                        [isTextcriticsForSketch]="isTextcriticsForSketch(textcritic)"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                                         (openModalRequest)="openModal($event)"
                                         (selectSvgSheetRequest)="selectSvgSheet($event)">

@@ -16,7 +16,7 @@ import { mockEditionData } from '@testing/mock-data';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { EDITION_GLYPHS_DATA } from '@awg-views/edition-view/data';
-import { EditionSvgSheet, TextcriticalComment } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalComment, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 
@@ -45,10 +45,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
     let expectedTextcriticalComments: TextcriticalComment[];
-    let expectedTableHeaderStrings: {
-        default: { reference: string; label: string }[];
-        rowTable: { reference: string; label: string }[];
-    };
+    let expectedTableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] };
 
     beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
@@ -79,13 +76,19 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 { reference: 'measure', label: 'Takt' },
                 { reference: 'system', label: 'System' },
                 { reference: 'location', label: 'Ort im Takt' },
-                { reference: 'comment', label: 'Kommentar' },
+                { reference: 'comment', label: 'Anmerkung' },
+            ],
+            corrections: [
+                { reference: 'measure', label: 'Takt' },
+                { reference: 'system', label: 'System' },
+                { reference: 'location', label: 'Ort im Takt' },
+                { reference: 'comment', label: 'Korrektur' },
             ],
             rowTable: [
                 { reference: 'measure', label: 'Folio' },
                 { reference: 'system', label: 'System' },
                 { reference: 'location', label: 'Reihe/Reihenton' },
-                { reference: 'comment', label: 'Kommentar' },
+                { reference: 'comment', label: 'Anmerkung' },
             ],
         };
 
@@ -165,16 +168,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
             });
 
-            it('... should display default table header if `isRowTable` flag is not given', () => {
-                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
-                const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
-
-                columnDes.forEach((columnDe, index) => {
-                    const columnEl = columnDe.nativeElement;
-                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings.default[index].label);
-                });
-            });
-
             it('... should display rowTable table header if `isRowTable` flag is given', () => {
                 component.isRowTable = true;
                 detectChangesOnPush(fixture);
@@ -184,7 +177,46 @@ describe('EditionTkaTableComponent (DONE)', () => {
 
                 columnDes.forEach((columnDe, index) => {
                     const columnEl = columnDe.nativeElement;
-                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings.rowTable[index].label);
+                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['rowTable'][index].label);
+                });
+            });
+
+            it('... should display corrections table header if `isCorrections` flag is given', () => {
+                component.isCorrections = true;
+                detectChangesOnPush(fixture);
+
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
+
+                columnDes.forEach((columnDe, index) => {
+                    const columnEl = columnDe.nativeElement;
+                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['corrections'][index].label);
+                });
+            });
+
+            it('... should display default table header if `isRowTable` or `isCorrections` flags are not given', () => {
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
+
+                columnDes.forEach((columnDe, index) => {
+                    const columnEl = columnDe.nativeElement;
+                    expectToBe(columnEl.textContent.trim(), expectedTableHeaderStrings['default'][index].label);
+                });
+            });
+
+            it('... should display default table header with adjusted comment colum if `isTextcriticsForSketch` flag is true', () => {
+                component.isTextcriticsForSketch = true;
+                detectChangesOnPush(fixture);
+
+                const expected = expectedTableHeaderStrings['default'];
+                expected[3].label = 'Kommentar';
+
+                const tableHeadDes = getAndExpectDebugElementByCss(compDe, 'table > thead > tr', 1, 1);
+                const columnDes = getAndExpectDebugElementByCss(tableHeadDes[0], 'th', 4, 4);
+
+                columnDes.forEach((columnDe, index) => {
+                    const columnEl = columnDe.nativeElement;
+                    expectToBe(columnEl.textContent.trim(), expected[index].label);
                 });
             });
 
@@ -311,24 +343,79 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(getTableHeaderStringsSpy, 2);
-            });
 
-            it('... should return default table header if `isRowTable` flag is not given', () => {
-                component.isRowTable = false;
+                component.isTextcriticsForSketch = true;
                 detectChangesOnPush(fixture);
 
-                const tableHeaders = component.getTableHeaderStrings();
-
-                expectToEqual(tableHeaders, expectedTableHeaderStrings.default);
+                expectSpyCall(getTableHeaderStringsSpy, 3);
             });
 
-            it('... should return rowTable table header if `isRowTable` flag is given', () => {
+            it('... should return rowTable header if `isRowTable` flag is given', () => {
                 component.isRowTable = true;
+                component.isTextcriticsForSketch = false;
                 detectChangesOnPush(fixture);
 
                 const tableHeaders = component.getTableHeaderStrings();
 
-                expectToEqual(tableHeaders, expectedTableHeaderStrings.rowTable);
+                expectToEqual(tableHeaders, expectedTableHeaderStrings['rowTable']);
+            });
+
+            it('... should return rowTable header with adjusted comment colum if `isTextcriticsForSketch` flag is true', () => {
+                component.isRowTable = true;
+                component.isTextcriticsForSketch = true;
+                detectChangesOnPush(fixture);
+
+                const expected = expectedTableHeaderStrings['rowTable'];
+                expected[3].label = 'Kommentar';
+
+                const tableHeaders = component.getTableHeaderStrings();
+
+                expectToEqual(tableHeaders, expected);
+            });
+
+            it('... should return corrections table header if `isCorrections` flag is given', () => {
+                component.isCorrections = true;
+                component.isTextcriticsForSketch = false;
+                detectChangesOnPush(fixture);
+
+                const tableHeaders = component.getTableHeaderStrings();
+
+                expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
+            });
+
+            it('... should not change corrections table header if `isTextcriticsForSketch` flag is true', () => {
+                component.isCorrections = true;
+                component.isTextcriticsForSketch = true;
+                detectChangesOnPush(fixture);
+
+                const tableHeaders = component.getTableHeaderStrings();
+
+                expectToEqual(tableHeaders, expectedTableHeaderStrings['corrections']);
+            });
+
+            it('... should return default table header if `isRowTable` flag or `isCorrections` are not given', () => {
+                component.isRowTable = false;
+                component.isCorrections = false;
+                component.isTextcriticsForSketch = false;
+                detectChangesOnPush(fixture);
+
+                const tableHeaders = component.getTableHeaderStrings();
+
+                expectToEqual(tableHeaders, expectedTableHeaderStrings['default']);
+            });
+
+            it('... should return default table header with adjusted comment colum if `isTextcriticsForSketch` flag is true', () => {
+                component.isRowTable = false;
+                component.isCorrections = false;
+                component.isTextcriticsForSketch = true;
+                detectChangesOnPush(fixture);
+
+                const expected = expectedTableHeaderStrings['default'];
+                expected[3].label = 'Kommentar';
+
+                const tableHeaders = component.getTableHeaderStrings();
+
+                expectToEqual(tableHeaders, expected);
             });
         });
 

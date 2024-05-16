@@ -39,7 +39,11 @@ class EditionTkaTableStubComponent {
     @Input()
     textcriticalComments: TextcriticalComment[];
     @Input()
-    isRowTable: boolean;
+    isCorrections = false;
+    @Input()
+    isRowTable = false;
+    @Input()
+    isTextcriticsForSketch = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -100,7 +104,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
         expectedModalSnippet = JSON.parse(JSON.stringify(mockEditionData.mockModalSnippet));
         expectedSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk1));
         expectedNextSvgSheet = JSON.parse(JSON.stringify(mockEditionData.mockSvgSheet_Sk2));
-        expectedSelectedTextcritics = mockEditionData.mockTextcriticsData.textcritics.at(1);
+        expectedSelectedTextcritics = JSON.parse(JSON.stringify(mockEditionData.mockTextcriticsData.textcritics.at(1)));
         expectedSelectedTextcriticalComments = expectedSelectedTextcritics.comments;
         expectedShowTka = true;
 
@@ -236,7 +240,23 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 expect(iconDes[0].children[0].classes['fa-chevron-up']).toBeTrue();
             });
 
-            it('... should contain a span.smallcaps in p with heading for Skizzenkommentar', () => {
+            it('... should contain a span.smallcaps in p with heading for evaluationString', () => {
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-footer-evaluation',
+                    1,
+                    1
+                );
+
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
+            });
+
+            it('... should display `Quellenbewertung:` in paragraph if no sketch id is given', () => {
+                component.selectedTextcritics.id = 'test-1';
+
+                detectChangesOnPush(fixture);
+
                 const divDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-edition-svg-sheet-footer-evaluation',
@@ -248,10 +268,29 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl = spanDes[0].nativeElement;
 
-                expectToBe(spanEl.textContent, 'Skizzenkommentar:');
+                expectToBe(spanEl.textContent.trim(), 'Quellenbewertung:');
             });
 
-            it('... should contain a second span in p with "---" if selectedTextcritics.description is empty', () => {
+            it('... should display `Skizzenkommentar:` in paragraph if sketch id is given', () => {
+                component.selectedTextcritics.id = 'test-1_Sk1';
+
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-footer-evaluation',
+                    1,
+                    1
+                );
+
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
+                const spanEl = spanDes[0].nativeElement;
+
+                expectToBe(spanEl.textContent.trim(), 'Skizzenkommentar:');
+            });
+
+            it('... should contain a second span in p with `---` if selectedTextcritics.description is empty', () => {
                 component.selectedTextcritics = mockEditionData.mockTextcriticsData.textcritics[0];
                 detectChangesOnPush(fixture);
 
@@ -318,13 +357,43 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                     1,
                     1
                 );
-                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+            });
+
+            it('... should display `Textkritische Anmerkungen:` in paragraph if no sketch id is given', () => {
+                component.selectedTextcritics.id = 'test-1';
+
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-footer-textcritics',
+                    1,
+                    1
+                );
+
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expect(pEl.classList).toBeDefined();
-                expect(pEl.classList).toContain('smallcaps');
+                expectToBe(pEl.textContent.trim(), 'Textkritische Anmerkungen:');
+            });
 
-                expectToBe(pEl.textContent, `Textkritischer Kommentar:`);
+            it('... should display `Textkritischer Kommentar:` in paragraph if sketch id is given', () => {
+                component.selectedTextcritics.id = 'test-1_Sk1';
+
+                detectChangesOnPush(fixture);
+
+                const divDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.awg-edition-svg-sheet-footer-textcritics',
+                    1,
+                    1
+                );
+
+                const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
+                const pEl = pDes[0].nativeElement;
+
+                expectToBe(pEl.textContent.trim(), 'Textkritischer Kommentar:');
             });
 
             it('... should contain one EditionTkaTableComponent (stubbed) in textcritics div', () => {
@@ -338,17 +407,72 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
             });
 
-            it('... should pass down `selectedTextcriticalComments` and `isRowTable` to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalComments` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
                 expectToEqual(tableCmp.textcriticalComments, expectedSelectedTextcriticalComments);
+            });
+
+            it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+
                 expectToBe(tableCmp.isRowTable, expectedSelectedTextcritics.rowtable);
             });
 
-            it('... should pass down isRowTable to the EditionTkaTableComponent', () => {
+            it('... should pass down `isTextcriticsForSketch` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+
+                expectToBe(tableCmp.isTextcriticsForSketch, false);
+            });
+        });
+
+        describe('#isTextcriticsForSketch()', () => {
+            it('... should have a method `isTextcriticsForSketch`', () => {
+                expect(component.isTextcriticsForSketch).toBeDefined();
+            });
+
+            describe('... should return false if', () => {
+                it('... selectedTextcritics is undefined', () => {
+                    const result = component.isTextcriticsForSketch(undefined);
+
+                    expect(result).toBeFalse();
+                });
+
+                it('... selectedTextcritics is null', () => {
+                    const result = component.isTextcriticsForSketch(null);
+
+                    expect(result).toBeFalse();
+                });
+
+                it('... selectedTextcritics id does not include `_Sk`', () => {
+                    const textcritics = expectedSelectedTextcritics;
+                    textcritics.id = 'test-1';
+
+                    const result = component.isTextcriticsForSketch(textcritics);
+
+                    expect(result).toBeFalse();
+                });
+            });
+
+            it('... should return true if selectedTextcritics id includes `_Sk`', () => {
+                const textcritics = expectedSelectedTextcritics;
+                textcritics.id = 'test-1_Sk1';
+
+                const result = component.isTextcriticsForSketch(textcritics);
+
+                expect(result).toBeTrue();
+            });
+
+            it('... should return true if selectedTextcritics id includes `SkRT`', () => {
+                const textcritics = expectedSelectedTextcritics;
+                textcritics.id = 'SkRT';
+
+                const result = component.isTextcriticsForSketch(textcritics);
+
+                expect(result).toBeTrue();
             });
         });
 
