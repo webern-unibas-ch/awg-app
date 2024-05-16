@@ -39,6 +39,7 @@ import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.mode
 import { Source, SourceList } from './source-list.model';
 
 import { TextcriticalComment, Textcritics, TextcriticsList } from './textcritics.model';
+import { TkaTableHeaderColumn } from './tka-table-header.model';
 import { ViewBox } from './view-box.model';
 
 export {
@@ -90,5 +91,6 @@ export {
     TextcriticalComment,
     Textcritics,
     TextcriticsList,
+    TkaTableHeaderColumn,
     ViewBox,
 };
