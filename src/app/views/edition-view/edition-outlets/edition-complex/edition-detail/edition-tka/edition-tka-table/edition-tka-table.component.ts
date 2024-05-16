@@ -153,7 +153,8 @@ export class EditionTkaTableComponent {
             selectedTableHeader = defaultTable;
         }
 
-        if (this.isTextcriticsForSketch) {
+        // Adjust comment label for sketches, but not corrections
+        if (this.isTextcriticsForSketch && !this.isCorrections) {
             selectedTableHeader = selectedTableHeader.map(item =>
                 item.reference === 'comment' ? { ...item, label: 'Kommentar' } : item
             );
