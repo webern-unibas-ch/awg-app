@@ -608,6 +608,27 @@
                     {
                         "item": "",
                         "itemLinkTo": "",
+                        "itemDescription": "nicht identifizierte Skizze (violetter Buntstift)",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "8–9",
+                                            "measure": "",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
                         "itemDescription": "Autograph von „Im Morgentaun“ M 136: Textfassung 1 (<strong>E<sup>d</sup></strong>)",
                         "folios": [
                             {
