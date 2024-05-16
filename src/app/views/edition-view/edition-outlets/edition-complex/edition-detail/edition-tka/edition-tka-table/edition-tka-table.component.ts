@@ -27,10 +27,18 @@ export class EditionTkaTableComponent {
     /**
      * Input variable: isRowTable.
      *
-     * It keeps a boolean flag to indicate if the textcritics describe a row table.
+     * It keeps a boolean flag to indicate if the table content is a row table.
      */
     @Input()
     isRowTable = false;
+
+    /**
+     * Input variable: isTextcriticsForSketch.
+     *
+     * It keeps a boolean flag to indicate if the textcritics are related to a sketch.
+     */
+    @Input()
+    isTextcriticsForSketch = false;
 
     /**
      * Output variable: navigateToReportFragment.

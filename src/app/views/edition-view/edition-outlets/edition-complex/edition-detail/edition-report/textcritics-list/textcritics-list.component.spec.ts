@@ -40,7 +40,11 @@ class EditionTkaTableStubComponent {
     @Input()
     textcriticalComments: TextcriticalComment[];
     @Input()
+    isCorrections = false;
+    @Input()
     isRowTable = false;
+    @Input()
+    isTextcriticsForSketch = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -569,7 +573,7 @@ describe('TextcriticsListComponent (DONE)', () => {
                     );
                 });
 
-                it('... should pass down `comments` and `rowtable` data to EditionTkaTableComponent (stubbed)', () => {
+                it('... should pass down `comments` to EditionTkaTableComponent (stubbed)', () => {
                     const editionTkaTableDes = getAndExpectDebugElementByDirective(
                         compDe,
                         EditionTkaTableStubComponent,
@@ -584,7 +588,34 @@ describe('TextcriticsListComponent (DONE)', () => {
                         editionTkaTableCmp.textcriticalComments,
                         expectedTextcriticsData.textcritics[1].comments
                     );
+                });
+
+                it('... should pass down `isRowTable` to EditionTkaTableComponent (stubbed)', () => {
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
                     expectToEqual(editionTkaTableCmp.isRowTable, expectedTextcriticsData.textcritics[1].rowtable);
+                });
+
+                it('... should pass down `isTextcriticsForSketch` to EditionTkaTableComponent (stubbed)', () => {
+                    const editionTkaTableDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        EditionTkaTableStubComponent,
+                        1,
+                        1
+                    );
+                    const editionTkaTableCmp = editionTkaTableDes[0].injector.get(
+                        EditionTkaTableStubComponent
+                    ) as EditionTkaTableStubComponent;
+
+                    expectToEqual(editionTkaTableCmp.isTextcriticsForSketch, false);
                 });
             });
         });

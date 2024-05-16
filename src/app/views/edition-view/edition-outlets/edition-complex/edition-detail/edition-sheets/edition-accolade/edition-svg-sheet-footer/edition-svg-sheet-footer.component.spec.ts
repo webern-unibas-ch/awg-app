@@ -39,7 +39,11 @@ class EditionTkaTableStubComponent {
     @Input()
     textcriticalComments: TextcriticalComment[];
     @Input()
-    isRowTable: boolean;
+    isCorrections = false;
+    @Input()
+    isRowTable = false;
+    @Input()
+    isTextcriticsForSketch = false;
     @Output()
     navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -403,17 +407,25 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(divDes[0], EditionTkaTableStubComponent, 1, 1);
             });
 
-            it('... should pass down `selectedTextcriticalComments` and `isRowTable` to the EditionTkaTableComponent', () => {
+            it('... should pass down `selectedTextcriticalComments` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
 
                 expectToEqual(tableCmp.textcriticalComments, expectedSelectedTextcriticalComments);
+            });
+
+            it('... should pass down `isRowTable` to the EditionTkaTableComponent', () => {
+                const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
+                const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+
                 expectToBe(tableCmp.isRowTable, expectedSelectedTextcritics.rowtable);
             });
 
-            it('... should pass down isRowTable to the EditionTkaTableComponent', () => {
+            it('... should pass down `isTextcriticsForSketch` to the EditionTkaTableComponent', () => {
                 const tableDes = getAndExpectDebugElementByDirective(compDe, EditionTkaTableStubComponent, 1, 1);
                 const tableCmp = tableDes[0].injector.get(EditionTkaTableStubComponent) as EditionTkaTableStubComponent;
+
+                expectToBe(tableCmp.isTextcriticsForSketch, false);
             });
         });
 
