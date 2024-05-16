@@ -25,6 +25,14 @@ export class EditionTkaTableComponent {
     textcriticalComments: TextcriticalComment[];
 
     /**
+     * Input variable: isCorrections.
+     *
+     * It keeps a boolean flag to indicate if the table content are corrections.
+     */
+    @Input()
+    isCorrections = false;
+
+    /**
      * Input variable: isRowTable.
      *
      * It keeps a boolean flag to indicate if the table content is a row table.
@@ -89,6 +97,12 @@ export class EditionTkaTableComponent {
             { reference: 'location', label: 'Ort im Takt' },
             { reference: 'comment', label: 'Anmerkung' },
         ],
+        corrections: [
+            { reference: 'measure', label: 'Takt' },
+            { reference: 'system', label: 'System' },
+            { reference: 'location', label: 'Ort im Takt' },
+            { reference: 'comment', label: 'Korrektur' },
+        ],
         rowTable: [
             { reference: 'measure', label: 'Folio' },
             { reference: 'system', label: 'System' },
@@ -133,6 +147,8 @@ export class EditionTkaTableComponent {
 
         if (this.isRowTable) {
             selectedTableHeader = rowTable;
+        } else if (this.isCorrections) {
+            selectedTableHeader = correctionsTable;
         } else {
             selectedTableHeader = defaultTable;
         }
