@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { EDITION_GLYPHS_DATA } from '@awg-app/views/edition-view/data';
 
-import { TextcriticalComment } from '@awg-views/edition-view/models';
+import { TextcriticalComment, TkaTableHeaderColumn } from '@awg-views/edition-view/models';
 
 /**
  * The EditionTkaTable component.
@@ -82,18 +82,18 @@ export class EditionTkaTableComponent {
      *
      * It keeps different string collections for the table header.
      */
-    tableHeaderStrings = {
+    tableHeaderStrings: { [key: string]: TkaTableHeaderColumn[] } = {
         default: [
             { reference: 'measure', label: 'Takt' },
             { reference: 'system', label: 'System' },
             { reference: 'location', label: 'Ort im Takt' },
-            { reference: 'comment', label: 'Kommentar' },
+            { reference: 'comment', label: 'Anmerkung' },
         ],
         rowTable: [
             { reference: 'measure', label: 'Folio' },
             { reference: 'system', label: 'System' },
             { reference: 'location', label: 'Reihe/Reihenton' },
-            { reference: 'comment', label: 'Kommentar' },
+            { reference: 'comment', label: 'Anmerkung' },
         ],
     };
 
@@ -126,11 +126,24 @@ export class EditionTkaTableComponent {
      *
      * @returns {{reference: string, label: string}[]} The table header string collection.
      */
-    getTableHeaderStrings(): { reference: string; label: string }[] {
+    getTableHeaderStrings(): TkaTableHeaderColumn[] {
+        const { rowTable, default: defaultTable, corrections: correctionsTable } = this.tableHeaderStrings;
+
+        let selectedTableHeader: TkaTableHeaderColumn[];
+
         if (this.isRowTable) {
-            return this.tableHeaderStrings.rowTable;
+            selectedTableHeader = rowTable;
+        } else {
+            selectedTableHeader = defaultTable;
         }
-        return this.tableHeaderStrings.default;
+
+        if (this.isTextcriticsForSketch) {
+            selectedTableHeader = selectedTableHeader.map(item =>
+                item.reference === 'comment' ? { ...item, label: 'Kommentar' } : item
+            );
+        }
+
+        return selectedTableHeader;
     }
 
     /**
