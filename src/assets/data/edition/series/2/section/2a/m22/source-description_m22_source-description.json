@@ -13,7 +13,9 @@
                 "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen abgerissen.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": [
+                        "Bleistift"
+                    ]
                 },
                 "title": "",
                 "date": "",
@@ -24,7 +26,7 @@
                 "content": [
                     {
                         "item": "M* 408",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_408",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 408)",
                         "folios": [
                             {
@@ -66,10 +68,7 @@
                     },
                     {
                         "item": "M 22 Sk1",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk1"
-                        },
+                        "itemLinkTo": "M_22_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Thema)",
                         "folios": [
                             {
@@ -90,7 +89,7 @@
                     },
                     {
                         "item": "M* 411 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_411_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 411)",
                         "folios": [
                             {
@@ -118,7 +117,7 @@
                     },
                     {
                         "item": "M* 411 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_411_Sk1_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 411)",
                         "folios": [
                             {
@@ -139,7 +138,7 @@
                     },
                     {
                         "item": "M* 412 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_412_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 412)",
                         "folios": [
                             {
@@ -167,10 +166,7 @@
                     },
                     {
                         "item": "M 22 Sk2",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk2"
-                        },
+                        "itemLinkTo": "M_22_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. I)",
                         "folios": [
                             {
@@ -191,10 +187,7 @@
                     },
                     {
                         "item": "M 22 Sk3",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk3a"
-                        },
+                        "itemLinkTo": "M_22_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. II)",
                         "folios": [
                             {
@@ -206,14 +199,14 @@
                                         {
                                             "system": "26–25",
                                             "measure": "{1A}, 1B, 2–4, {5A}, 5B, 6",
-                                            "linkTo": "M_22_Sk3a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "24–23",
                                             "measure": "7–8",
-                                            "linkTo": "M_22_Sk3b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -222,10 +215,7 @@
                     },
                     {
                         "item": "M 22 Sk4",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk4a"
-                        },
+                        "itemLinkTo": "M_22_Sk4",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. III)",
                         "folios": [
                             {
@@ -237,14 +227,14 @@
                                         {
                                             "system": "22–21",
                                             "measure": "1–4, {5A}, 5B, 6(1–2/4)",
-                                            "linkTo": "M_22_Sk4a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "20–19",
                                             "measure": "6(3/4)–8",
-                                            "linkTo": "M_22_Sk4b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -253,10 +243,7 @@
                     },
                     {
                         "item": "M 22 Sk5",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk5"
-                        },
+                        "itemLinkTo": "M_22_Sk5",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. IV)",
                         "folios": [
                             {
@@ -277,10 +264,7 @@
                     },
                     {
                         "item": "M 22 Sk6",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk6"
-                        },
+                        "itemLinkTo": "M_22_Sk6",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. V)",
                         "folios": [
                             {
@@ -301,10 +285,7 @@
                     },
                     {
                         "item": "M 22 Sk7",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk7"
-                        },
+                        "itemLinkTo": "M_22_Sk7",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VI)",
                         "folios": [
                             {
@@ -325,10 +306,7 @@
                     },
                     {
                         "item": "M 22 Sk22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk22a"
-                        },
+                        "itemLinkTo": "M_22_Sk22",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VIII)",
                         "folios": [
                             {
@@ -340,21 +318,21 @@
                                         {
                                             "system": "14b–13b",
                                             "measure": "1–5(1–2/4)",
-                                            "linkTo": "M_22_Sk22a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16b–15b",
                                             "measure": "5(3/4)–6",
-                                            "linkTo": "M_22_Sk22b"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "18b–17b",
                                             "measure": "7–8",
-                                            "linkTo": "M_22_Sk22c"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -363,10 +341,7 @@
                     },
                     {
                         "item": "M 22 Sk8",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk8"
-                        },
+                        "itemLinkTo": "M_22_Sk8",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: verworfene Var.)",
                         "folios": [
                             {
@@ -387,10 +362,7 @@
                     },
                     {
                         "item": "M 22 Sk9",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk9a"
-                        },
+                        "itemLinkTo": "M_22_Sk9",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VII)",
                         "folios": [
                             {
@@ -402,14 +374,14 @@
                                         {
                                             "system": "10–9",
                                             "measure": "{1A–2A}, 1B–2B, 1C–2C, 3–4",
-                                            "linkTo": "M_22_Sk9a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7a–6",
                                             "measure": "5–8",
-                                            "linkTo": "M_22_Sk9b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -418,10 +390,7 @@
                     },
                     {
                         "item": "M 22 Sk10",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk10"
-                        },
+                        "itemLinkTo": "M_22_Sk10",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. IX)",
                         "folios": [
                             {
@@ -442,10 +411,7 @@
                     },
                     {
                         "item": "M 22 Sk11",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk11"
-                        },
+                        "itemLinkTo": "M_22_Sk11",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. IX)",
                         "folios": [
                             {
@@ -466,10 +432,7 @@
                     },
                     {
                         "item": "M 22 Sk12",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk12"
-                        },
+                        "itemLinkTo": "M_22_Sk12",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. X)",
                         "folios": [
                             {
@@ -504,7 +467,9 @@
                 "writingMaterialString": "Notenpapier, 18 Systeme, Format: hoch 347 × 267 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": [
+                        "Bleistift"
+                    ]
                 },
                 "title": "",
                 "date": "",
@@ -515,10 +480,7 @@
                 "content": [
                     {
                         "item": "M 22 Sk13",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk13"
-                        },
+                        "itemLinkTo": "M_22_Sk13",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XI)",
                         "folios": [
                             {
@@ -539,7 +501,7 @@
                     },
                     {
                         "item": "M* 414 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_414_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
                         "folios": [
                             {
@@ -567,10 +529,7 @@
                     },
                     {
                         "item": "M 22 Sk14",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk14"
-                        },
+                        "itemLinkTo": "M_22_Sk14",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: verworfene Var.)",
                         "folios": [
                             {
@@ -591,10 +550,7 @@
                     },
                     {
                         "item": "M 22 Sk15",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk15"
-                        },
+                        "itemLinkTo": "M_22_Sk15",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XII)",
                         "folios": [
                             {
@@ -615,7 +571,7 @@
                     },
                     {
                         "item": "M* 414 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_414_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 414)",
                         "folios": [
                             {
@@ -636,10 +592,7 @@
                     },
                     {
                         "item": "M 22 Sk23",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk23a"
-                        },
+                        "itemLinkTo": "M_22_Sk23",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XVI)",
                         "folios": [
                             {
@@ -651,28 +604,28 @@
                                         {
                                             "system": "3b–4b",
                                             "measure": "1–2",
-                                            "linkTo": "M_22_Sk23a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "5b–6b",
                                             "measure": "3–4",
-                                            "linkTo": "M_22_Sk23b"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "7b–8b",
                                             "measure": "5–6",
-                                            "linkTo": "M_22_Sk23c"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3d–4d",
                                             "measure": "7",
-                                            "linkTo": "M_22_Sk23d"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -681,7 +634,7 @@
                     },
                     {
                         "item": "M* 413 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_413_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 413)",
                         "folios": [
                             {
@@ -702,10 +655,7 @@
                     },
                     {
                         "item": "M 22 Sk16",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk16"
-                        },
+                        "itemLinkTo": "M_22_Sk16",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. VIII)",
                         "folios": [
                             {
@@ -726,10 +676,7 @@
                     },
                     {
                         "item": "M 22 Sk17",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk17"
-                        },
+                        "itemLinkTo": "M_22_Sk17",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIII)",
                         "folios": [
                             {
@@ -750,10 +697,7 @@
                     },
                     {
                         "item": "M 22 Sk18",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk18a"
-                        },
+                        "itemLinkTo": "M_22_Sk18",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIII)",
                         "folios": [
                             {
@@ -765,14 +709,14 @@
                                         {
                                             "system": "15–16",
                                             "measure": "1–6",
-                                            "linkTo": "M_22_Sk18a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "13b–14b",
                                             "measure": "7",
-                                            "linkTo": "M_22_Sk18b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -781,10 +725,7 @@
                     },
                     {
                         "item": "M 22 Sk19",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk19"
-                        },
+                        "itemLinkTo": "M_22_Sk19",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: verworfene Var.)",
                         "folios": [
                             {
@@ -805,10 +746,7 @@
                     },
                     {
                         "item": "M 22 Sk21",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk21a"
-                        },
+                        "itemLinkTo": "M_22_Sk21",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XV)",
                         "folios": [
                             {
@@ -820,7 +758,7 @@
                                         {
                                             "system": "17b–18b",
                                             "measure": "T. 1–4",
-                                            "linkTo": "M_22_Sk21a"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -834,14 +772,14 @@
                                         {
                                             "system": "16c–17c",
                                             "measure": "5–6",
-                                            "linkTo": "M_22_Sk21b"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "16a–17a",
                                             "measure": "7–8",
-                                            "linkTo": "M_22_Sk21c"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -850,7 +788,7 @@
                     },
                     {
                         "item": "M 32",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_32",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 32 Textfassung 2)",
                         "folios": [
                             {
@@ -885,7 +823,7 @@
                     },
                     {
                         "item": "M 32 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_32_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
                         "folios": [
                             {
@@ -906,7 +844,7 @@
                     },
                     {
                         "item": "M 32 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_32_Sk4",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
                         "folios": [
                             {
@@ -948,7 +886,7 @@
                     },
                     {
                         "item": "M 32 Sk5",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_32_Sk5",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
                         "folios": [
                             {
@@ -969,7 +907,7 @@
                     },
                     {
                         "item": "M 32 Sk4.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_32_Sk4_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 32 Textfassung 3)",
                         "folios": [
                             {
@@ -990,10 +928,7 @@
                     },
                     {
                         "item": "M 22 Sk20",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk20"
-                        },
+                        "itemLinkTo": "M_22_Sk20",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XV)",
                         "folios": [
                             {
@@ -1039,10 +974,7 @@
                 "content": [
                     {
                         "item": "M 22 Sk24",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk24"
-                        },
+                        "itemLinkTo": "M_22_Sk24",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XVI)",
                         "folios": [
                             {
@@ -1063,10 +995,7 @@
                     },
                     {
                         "item": "M 22 Sk27.1",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk27_1a"
-                        },
+                        "itemLinkTo": "M_22_Sk27_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XVIII)",
                         "folios": [
                             {
@@ -1078,14 +1007,14 @@
                                         {
                                             "system": "1b–2b",
                                             "measure": "5–6",
-                                            "linkTo": "M_22_Sk27_1a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3–4a",
                                             "measure": "7–8",
-                                            "linkTo": "M_22_Sk27_1b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -1094,10 +1023,7 @@
                     },
                     {
                         "item": "M 22 Sk25",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk25a"
-                        },
+                        "itemLinkTo": "M_22_Sk25",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: verworfene Var.)",
                         "folios": [
                             {
@@ -1109,14 +1035,14 @@
                                         {
                                             "system": "4–5",
                                             "measure": "{1–5}",
-                                            "linkTo": "M_22_Sk25a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "6–7",
                                             "measure": "{6–8}",
-                                            "linkTo": "M_22_Sk25b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -1125,10 +1051,7 @@
                     },
                     {
                         "item": "M 22 Sk26",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk26a"
-                        },
+                        "itemLinkTo": "M_22_Sk26",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XVII)",
                         "folios": [
                             {
@@ -1140,14 +1063,14 @@
                                         {
                                             "system": "8–9",
                                             "measure": "1–5",
-                                            "linkTo": "M_22_Sk26a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10a–11a",
                                             "measure": "6–8",
-                                            "linkTo": "M_22_Sk26b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -1156,10 +1079,7 @@
                     },
                     {
                         "item": "M 22 Sk27",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk27"
-                        },
+                        "itemLinkTo": "M_22_Sk27",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XVIII)",
                         "folios": [
                             {
@@ -1180,10 +1100,7 @@
                     },
                     {
                         "item": "M 22 Sk30",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk30"
-                        },
+                        "itemLinkTo": "M_22_Sk30",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXI)",
                         "folios": [
                             {
@@ -1204,7 +1121,7 @@
                     },
                     {
                         "item": "M* 408 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_408_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M* 408)",
                         "folios": [
                             {
@@ -1225,7 +1142,7 @@
                     },
                     {
                         "item": "M* 408 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_408_Sk1_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M* 408)",
                         "folios": [
                             {
@@ -1246,7 +1163,7 @@
                     },
                     {
                         "item": "M* 408 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_408_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M* 408)",
                         "folios": [
                             {
@@ -1288,7 +1205,7 @@
                     },
                     {
                         "item": "M* 408 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_408_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M* 408)",
                         "folios": [
                             {
@@ -1355,10 +1272,7 @@
                 "content": [
                     {
                         "item": "M 22 Sk29",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk29"
-                        },
+                        "itemLinkTo": "M_22_Sk29",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XX)",
                         "folios": [
                             {
@@ -1379,7 +1293,7 @@
                     },
                     {
                         "item": "M* 400 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_400_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 400)",
                         "folios": [
                             {
@@ -1400,7 +1314,7 @@
                     },
                     {
                         "item": "M 29 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_29_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
@@ -1435,7 +1349,7 @@
                     },
                     {
                         "item": "M 29 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_29_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
@@ -1456,7 +1370,7 @@
                     },
                     {
                         "item": "M 29 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_29_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29",
                         "folios": [
                             {
@@ -1484,7 +1398,7 @@
                     },
                     {
                         "item": "M* 415 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_415_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 415)",
                         "folios": [
                             {
@@ -1505,7 +1419,7 @@
                     },
                     {
                         "item": "M* 416 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_416_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 416)",
                         "folios": [
                             {
@@ -1526,10 +1440,7 @@
                     },
                     {
                         "item": "M 22 Sk28",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk28a"
-                        },
+                        "itemLinkTo": "M_22_Sk28",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIX)",
                         "folios": [
                             {
@@ -1541,14 +1452,14 @@
                                         {
                                             "system": "14–13b",
                                             "measure": "{1A–2A}, 1B–2B, 3–6",
-                                            "linkTo": "M_22_Sk28a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "10b–9b",
                                             "measure": "7–8",
-                                            "linkTo": "M_22_Sk28b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -1557,7 +1468,7 @@
                     },
                     {
                         "item": "M* 401 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_401_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
                         "folios": [
                             {
@@ -1585,7 +1496,7 @@
                     },
                     {
                         "item": "M* 401 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_401_Sk1_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
                         "folios": [
                             {
@@ -1606,7 +1517,7 @@
                     },
                     {
                         "item": "M* 401 Sk1.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_401_Sk1_2",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M* 401)",
                         "folios": [
                             {
@@ -1627,7 +1538,7 @@
                     },
                     {
                         "item": "M 29 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_29_Sk4",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 29)",
                         "folios": [
                             {
@@ -1694,10 +1605,7 @@
                 "content": [
                     {
                         "item": "M 22 Sk31",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk31a"
-                        },
+                        "itemLinkTo": "M_22_Sk31",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXI)",
                         "folios": [
                             {
@@ -1709,14 +1617,14 @@
                                         {
                                             "system": "1–2",
                                             "measure": "1–7",
-                                            "linkTo": "M_22_Sk31a"
+                                            "linkTo": ""
                                         }
                                     ],
                                     [
                                         {
                                             "system": "3a–4a",
                                             "measure": "8",
-                                            "linkTo": "M_22_Sk31b"
+                                            "linkTo": ""
                                         }
                                     ]
                                 ]
@@ -1725,7 +1633,7 @@
                     },
                     {
                         "item": "M 23 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Thema)",
                         "folios": [
                             {
@@ -1743,7 +1651,7 @@
                                     [
                                         {
                                             "system": "7–8",
-                                            "measure": "11–12, nach T. 12 Liedtext",
+                                            "measure": "11–12, Liedtext",
                                             "linkTo": ""
                                         }
                                     ]
@@ -1753,10 +1661,7 @@
                     },
                     {
                         "item": "M 22 Sk28.1",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk28_1"
-                        },
+                        "itemLinkTo": "M_22_Sk28_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XIX)",
                         "folios": [
                             {
@@ -1777,10 +1682,7 @@
                     },
                     {
                         "item": "M 22 Sk32",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk32"
-                        },
+                        "itemLinkTo": "M_22_Sk32",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXII)",
                         "folios": [
                             {
@@ -1801,10 +1703,7 @@
                     },
                     {
                         "item": "M 22 Sk32.1",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk32_1"
-                        },
+                        "itemLinkTo": "M_22_Sk32_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXII)",
                         "folios": [
                             {
@@ -1825,10 +1724,7 @@
                     },
                     {
                         "item": "M 22 Sk32.1.1",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk32_1_1"
-                        },
+                        "itemLinkTo": "M_22_Sk32_1_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXII)",
                         "folios": [
                             {
@@ -1849,10 +1745,7 @@
                     },
                     {
                         "item": "M 22 Sk33",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_Sk33"
-                        },
+                        "itemLinkTo": "M_22_Sk33",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 22: Var. XXIII)",
                         "folios": [
                             {
@@ -1873,7 +1766,7 @@
                     },
                     {
                         "item": "M* 417 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_417_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 417)",
                         "folios": [
                             {
@@ -1894,7 +1787,7 @@
                     },
                     {
                         "item": "M* 418 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_418_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 418)",
                         "folios": [
                             {
@@ -1915,7 +1808,7 @@
                     },
                     {
                         "item": "M* 419 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_419_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 419)",
                         "folios": [
                             {
@@ -1936,7 +1829,7 @@
                     },
                     {
                         "item": "M 23 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Var. I)",
                         "folios": [
                             {
@@ -1971,7 +1864,7 @@
                     },
                     {
                         "item": "M* 420 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_420_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 420)",
                         "folios": [
                             {
@@ -1992,7 +1885,7 @@
                     },
                     {
                         "item": "M* 421 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_421_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 421)",
                         "folios": [
                             {
@@ -2020,7 +1913,7 @@
                     },
                     {
                         "item": "M* 422 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_422_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 422)",
                         "folios": [
                             {
@@ -2041,7 +1934,7 @@
                     },
                     {
                         "item": "M 24 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Thema)",
                         "folios": [
                             {
@@ -2062,7 +1955,7 @@
                     },
                     {
                         "item": "M* 433 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_433_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 433)",
                         "folios": [
                             {
@@ -2083,7 +1976,7 @@
                     },
                     {
                         "item": "M* 434 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_434_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 434)",
                         "folios": [
                             {
@@ -2104,7 +1997,7 @@
                     },
                     {
                         "item": "M* 434 Sk1.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_434_Sk1_1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 434)",
                         "folios": [
                             {
@@ -2125,7 +2018,7 @@
                     },
                     {
                         "item": "M* 435 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_435_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 435)",
                         "folios": [
                             {
@@ -2146,7 +2039,7 @@
                     },
                     {
                         "item": "M* 436 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_436_Sk1",
                         "itemDescription": "(Skizze zu Palmsonntag-Tractus M* 436)",
                         "folios": [
                             {
@@ -2154,20 +2047,14 @@
                                 "folioLinkTo": "",
                                 "folioDescription": "",
                                 "systemGroups": [
-                                    [
-                                        {
-                                            "system": "6a",
-                                            "measure": "",
-                                            "linkTo": ""
-                                        }
-                                    ]
+                                    []
                                 ]
                             }
                         ]
                     },
                     {
                         "item": "M* 437 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_437_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 437)",
                         "folios": [
                             {
@@ -2188,7 +2075,7 @@
                     },
                     {
                         "item": "M 24 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. I)",
                         "folios": [
                             {
@@ -2216,7 +2103,7 @@
                     },
                     {
                         "item": "M 24 Sk2.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk2_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. I)",
                         "folios": [
                             {
@@ -2237,7 +2124,7 @@
                     },
                     {
                         "item": "M 24 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2258,7 +2145,7 @@
                     },
                     {
                         "item": "M 24 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk4",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2279,7 +2166,7 @@
                     },
                     {
                         "item": "M 24 Sk5",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk5",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2300,7 +2187,7 @@
                     },
                     {
                         "item": "M 24 Sk6",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk6",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2321,7 +2208,7 @@
                     },
                     {
                         "item": "M 24 Sk7",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk7",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2342,7 +2229,7 @@
                     },
                     {
                         "item": "M 24 Sk8",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk8",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. II)",
                         "folios": [
                             {
@@ -2370,7 +2257,7 @@
                     },
                     {
                         "item": "M 24 Sk9",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk9",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2391,7 +2278,7 @@
                     },
                     {
                         "item": "M 24 Sk10",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk10",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. III)",
                         "folios": [
                             {
@@ -2440,7 +2327,7 @@
                     },
                     {
                         "item": "M* 438 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_438_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 438)",
                         "folios": [
                             {
@@ -2461,7 +2348,7 @@
                     },
                     {
                         "item": "M* 439 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_439_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 439)",
                         "folios": [
                             {
@@ -2489,7 +2376,7 @@
                     },
                     {
                         "item": "M* 440 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_440_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 440)",
                         "folios": [
                             {
@@ -2517,7 +2404,7 @@
                     },
                     {
                         "item": "M* 441 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_441_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 441)",
                         "folios": [
                             {
@@ -2538,7 +2425,7 @@
                     },
                     {
                         "item": "M* 441 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_441_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition M* 441)",
                         "folios": [
                             {
@@ -2559,7 +2446,7 @@
                     },
                     {
                         "item": "M* 441 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_441_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition M* 441)",
                         "folios": [
                             {
@@ -2587,7 +2474,7 @@
                     },
                     {
                         "item": "M* 441 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_441_Sk4",
                         "itemDescription": "(Skizze zu Studienkomposition M* 441)",
                         "folios": [
                             {
@@ -2608,7 +2495,7 @@
                     },
                     {
                         "item": "M 24 Sk11",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk11",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2629,7 +2516,7 @@
                     },
                     {
                         "item": "M* 441 Sk4.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_441_Sk4_1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 441)",
                         "folios": [
                             {
@@ -2650,7 +2537,7 @@
                     },
                     {
                         "item": "M* 442 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_442_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 442)",
                         "folios": [
                             {
@@ -2678,7 +2565,7 @@
                     },
                     {
                         "item": "M* 443 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_443_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 443)",
                         "folios": [
                             {
@@ -2699,7 +2586,7 @@
                     },
                     {
                         "item": "M 24 Sk12",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk12",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
                             {
@@ -2727,7 +2614,7 @@
                     },
                     {
                         "item": "M 24 Sk12.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk12_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
                             {
@@ -2748,7 +2635,7 @@
                     },
                     {
                         "item": "M 24 Sk12.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk12_2",
                         "itemDescription": "(Skizze zu Studienkomposition M 24: Var. IV)",
                         "folios": [
                             {
@@ -2769,7 +2656,7 @@
                     },
                     {
                         "item": "M 24 Sk12.3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk12_3",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
                             {
@@ -2790,7 +2677,7 @@
                     },
                     {
                         "item": "M* 444 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_444_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 444)",
                         "folios": [
                             {
@@ -2811,7 +2698,7 @@
                     },
                     {
                         "item": "M 24 Sk13",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk13",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: verworfene Var.)",
                         "folios": [
                             {
@@ -2832,7 +2719,7 @@
                     },
                     {
                         "item": "M* 445 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_445_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 445)",
                         "folios": [
                             {
@@ -2853,7 +2740,7 @@
                     },
                     {
                         "item": "M 24 Sk12.4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk12_4",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. IV)",
                         "folios": [
                             {
@@ -2874,7 +2761,7 @@
                     },
                     {
                         "item": "M* 446 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_446_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 446)",
                         "folios": [
                             {
@@ -2902,7 +2789,7 @@
                     },
                     {
                         "item": "M 24 Sk14.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk14_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. V)",
                         "folios": [
                             {
@@ -2923,7 +2810,7 @@
                     },
                     {
                         "item": "M 24 Sk14",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk14",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. V)",
                         "folios": [
                             {
@@ -2951,7 +2838,7 @@
                     },
                     {
                         "item": "M* 447 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_447_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 447)",
                         "folios": [
                             {
@@ -2972,7 +2859,7 @@
                     },
                     {
                         "item": "M* 448 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_448_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 448)",
                         "folios": [
                             {
@@ -3000,7 +2887,7 @@
                     },
                     {
                         "item": "M 24 Sk15.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk15_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VI)",
                         "folios": [
                             {
@@ -3021,7 +2908,7 @@
                     },
                     {
                         "item": "M* 449 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_449_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 449)",
                         "folios": [
                             {
@@ -3042,7 +2929,7 @@
                     },
                     {
                         "item": "M 24 Sk15",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk15",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VI)",
                         "folios": [
                             {
@@ -3070,7 +2957,7 @@
                     },
                     {
                         "item": "M* 450 Sk2.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_450_Sk2_1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
                         "folios": [
                             {
@@ -3091,7 +2978,7 @@
                     },
                     {
                         "item": "M* 450 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_450_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
                         "folios": [
                             {
@@ -3112,28 +2999,13 @@
                     },
                     {
                         "item": "M* 450 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_450_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "9b–10b",
-                                            "measure": "1–8",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
+                        "folios": []
                     },
                     {
                         "item": "M 24 Sk16",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk16",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VI)",
                         "folios": [
                             {
@@ -3154,49 +3026,19 @@
                     },
                     {
                         "item": "M* 450 Sk2.2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_450_Sk2_2",
                         "itemDescription": "(Skizze zu Studienkomposition M* 450)",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "11b",
-                                            "measure": "{x+1 bis x+3}",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
+                        "folios": []
                     },
                     {
                         "item": "M* 451 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_451_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 451)",
-                        "folios": [
-                            {
-                                "folio": "2v",
-                                "folioLinkTo": "",
-                                "folioDescription": "",
-                                "systemGroups": [
-                                    [
-                                        {
-                                            "system": "14a–15a",
-                                            "measure": "1, 2A, {3A–4A}, 2B–4B, 5–7",
-                                            "linkTo": ""
-                                        }
-                                    ]
-                                ]
-                            }
-                        ]
+                        "folios": []
                     },
                     {
                         "item": "M* 451 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_451_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition M* 451)",
                         "folios": [
                             {
@@ -3210,13 +3052,6 @@
                                             "measure": "1–4, 5A",
                                             "linkTo": ""
                                         }
-                                    ],
-                                    [
-                                        {
-                                            "system": "12b–13b",
-                                            "measure": "5B, 6–12",
-                                            "linkTo": ""
-                                        }
                                     ]
                                 ]
                             }
@@ -3224,7 +3059,7 @@
                     },
                     {
                         "item": "M* 451 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_451_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition M* 451)",
                         "folios": [
                             {
@@ -3245,7 +3080,7 @@
                     },
                     {
                         "item": "M 24 Sk17",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk17",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VII)",
                         "folios": [
                             {
@@ -3273,7 +3108,7 @@
                     },
                     {
                         "item": "M 24 Sk17.1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_24_Sk17_1",
                         "itemDescription": "(Skizze zu Studienkomposition für Streichquartett M 24: Var. VII)",
                         "folios": [
                             {
@@ -3294,7 +3129,7 @@
                     },
                     {
                         "item": "M 65 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_65_Sk1",
                         "itemDescription": "(Skizze zu „Hochsommernacht“ M 65)",
                         "folios": [
                             {
@@ -3329,7 +3164,9 @@
                 "writingMaterialString": "Notenpapier, 28 Systeme, Format: hoch 343 × 264 mm, Firmenzeichen ### unten links auf Bl. 1<sup>r</sup>–3<sup>r</sup>.",
                 "writingInstruments": {
                     "main": "schwarze Tinte",
-                    "secondary": ["Bleistift"]
+                    "secondary": [
+                        "Bleistift"
+                    ]
                 },
                 "title": "",
                 "date": "",
@@ -3340,7 +3177,7 @@
                 "content": [
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_409",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 1)",
                         "folios": [
                             {
@@ -3368,7 +3205,7 @@
                     },
                     {
                         "item": "M* 409",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_409",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 409 Textfassung 2)",
                         "folios": [
                             {
@@ -3396,7 +3233,7 @@
                     },
                     {
                         "item": "M* 410",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_410",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 410)",
                         "folios": [
                             {
@@ -3431,10 +3268,7 @@
                     },
                     {
                         "item": "M 22",
-                        "itemLinkTo": {
-                            "complexId": "m22",
-                            "sheetId": "M_22_TF1"
-                        },
+                        "itemLinkTo": "M_22",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 22)",
                         "folios": [
                             {
@@ -3707,7 +3541,7 @@
                     },
                     {
                         "item": "M* 412",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_412",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 412)",
                         "folios": [
                             {
@@ -3735,7 +3569,7 @@
                     },
                     {
                         "item": "M* 413",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_413",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 413)",
                         "folios": [
                             {
@@ -3756,7 +3590,7 @@
                     },
                     {
                         "item": "M* 414",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_414",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 414)",
                         "folios": [
                             {
@@ -3777,7 +3611,7 @@
                     },
                     {
                         "item": "M* 415",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_415",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 415)",
                         "folios": [
                             {
@@ -3798,7 +3632,7 @@
                     },
                     {
                         "item": "M* 416",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_416",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M* 416)",
                         "folios": [
                             {
@@ -3819,7 +3653,7 @@
                     },
                     {
                         "item": "M 23",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition für Klavier M 23: Thema)",
                         "folios": [
                             {
@@ -3847,7 +3681,7 @@
                     },
                     {
                         "item": "M* 420",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_420",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition M* 420)",
                         "folios": [
                             {
@@ -3868,7 +3702,7 @@
                     },
                     {
                         "item": "M* 421",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_421",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition M* 421)",
                         "folios": [
                             {
@@ -3889,7 +3723,7 @@
                     },
                     {
                         "item": "M* 422",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_422",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition M* 422)",
                         "folios": [
                             {
@@ -3910,7 +3744,7 @@
                     },
                     {
                         "item": "M* 423",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_423",
                         "itemDescription": "(Tintenniederschrift von Studienkomposition M* 423)",
                         "folios": [
                             {
@@ -3931,7 +3765,7 @@
                     },
                     {
                         "item": "M* 424 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_424_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 424)",
                         "folios": [
                             {
@@ -3952,7 +3786,7 @@
                     },
                     {
                         "item": "M* 425 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_425_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 425)",
                         "folios": [
                             {
@@ -3973,7 +3807,7 @@
                     },
                     {
                         "item": "M* 426 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_426_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 426)",
                         "folios": [
                             {
@@ -4001,7 +3835,7 @@
                     },
                     {
                         "item": "M* 427 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_427_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 427)",
                         "folios": [
                             {
@@ -4022,7 +3856,7 @@
                     },
                     {
                         "item": "M* 428 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_428_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 428)",
                         "folios": [
                             {
@@ -4043,7 +3877,7 @@
                     },
                     {
                         "item": "M 23 Sk3",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk3",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Var. II)",
                         "folios": [
                             {
@@ -4071,7 +3905,7 @@
                     },
                     {
                         "item": "M 23 Sk4",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk4",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Var. III)",
                         "folios": [
                             {
@@ -4099,7 +3933,7 @@
                     },
                     {
                         "item": "M 23 Sk5",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk5",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: Var. IV)",
                         "folios": [
                             {
@@ -4127,7 +3961,7 @@
                     },
                     {
                         "item": "M* 429 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_429_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 429)",
                         "folios": [
                             {
@@ -4148,7 +3982,7 @@
                     },
                     {
                         "item": "M 23 Sk6",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk6",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: verworfene Var.)",
                         "folios": [
                             {
@@ -4169,7 +4003,7 @@
                     },
                     {
                         "item": "M 23 Sk7",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk7",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: verworfene Var.)",
                         "folios": [
                             {
@@ -4190,7 +4024,7 @@
                     },
                     {
                         "item": "M 23 Sk8",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk8",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: verworfene Var.)",
                         "folios": [
                             {
@@ -4211,7 +4045,7 @@
                     },
                     {
                         "item": "M* 430 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_430_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 430)",
                         "folios": [
                             {
@@ -4232,7 +4066,7 @@
                     },
                     {
                         "item": "M 23 Sk9",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "M_23_Sk9",
                         "itemDescription": "(Skizze zu Studienkomposition für Klavier M 23: verworfene Var.)",
                         "folios": [
                             {
@@ -4253,7 +4087,7 @@
                     },
                     {
                         "item": "M* 431 Sk2",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_431_Sk2",
                         "itemDescription": "(Skizze zu Studienkomposition M* 431)",
                         "folios": [
                             {
@@ -4274,7 +4108,7 @@
                     },
                     {
                         "item": "M* 431 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_431_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 431)",
                         "folios": [
                             {
@@ -4295,7 +4129,7 @@
                     },
                     {
                         "item": "M* 432 Sk1",
-                        "itemLinkTo": {},
+                        "itemLinkTo": "Mstar_432_Sk1",
                         "itemDescription": "(Skizze zu Studienkomposition M* 432)",
                         "folios": [
                             {

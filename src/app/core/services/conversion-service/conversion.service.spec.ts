@@ -137,30 +137,16 @@ describe('ConversionService', () => {
         });
 
         describe('... should return correct text', () => {
-            it('... for multiple results', () => {
+            it('... for no results (default value for nhits = 0)', () => {
                 const searchUrl = 'http://example.com';
                 const searchResponseWithQuery = new SearchResponseWithQuery(
                     JSON.parse(JSON.stringify(mockSearchResponseJson)),
                     'Test'
                 );
+                searchResponseWithQuery.data.subjects = [];
+                searchResponseWithQuery.data.nhits = undefined;
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse`;
-
-                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
-
-                expectToBe(result, expected);
-            });
-
-            it('... for multiple results with duplicates filtered out', () => {
-                conversionService.filteredOut = 2;
-
-                const searchUrl = 'http://example.com';
-                const searchResponseWithQuery = new SearchResponseWithQuery(
-                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
-                    'Test'
-                );
-                const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (Duplikate entfernt)`;
+                const expected = `0 / 0 Ergebnisse`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
@@ -182,21 +168,135 @@ describe('ConversionService', () => {
                 expectToBe(result, expected);
             });
 
-            it('... for no results (default value for nhits = 0)', () => {
+            it('... for multiple results', () => {
                 const searchUrl = 'http://example.com';
                 const searchResponseWithQuery = new SearchResponseWithQuery(
                     JSON.parse(JSON.stringify(mockSearchResponseJson)),
                     'Test'
                 );
-                searchResponseWithQuery.data.subjects = [];
-                searchResponseWithQuery.data.nhits = undefined;
                 const subjectsLength = searchResponseWithQuery.data.subjects.length;
-                const expected = `0 / 0 Ergebnisse`;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse`;
 
                 const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
 
                 expectToBe(result, expected);
             });
+
+            it('... for multiple results with single duplicate filtered out', () => {
+                conversionService.filteredOut = 1;
+
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (1 Duplikat entfernt)`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+
+            it('... for multiple results with multiple duplicates filtered out', () => {
+                conversionService.filteredOut = 2;
+
+                const searchUrl = 'http://example.com';
+                const searchResponseWithQuery = new SearchResponseWithQuery(
+                    JSON.parse(JSON.stringify(mockSearchResponseJson)),
+                    'Test'
+                );
+                const subjectsLength = searchResponseWithQuery.data.subjects.length;
+                const expected = `${subjectsLength} / ${searchResponseWithQuery.data.nhits} Ergebnisse (2 Duplikate entfernt)`;
+
+                const result = conversionService.prepareFullTextSearchResultText(searchResponseWithQuery, searchUrl);
+
+                expectToBe(result, expected);
+            });
+        });
+    });
+
+    describe('#_cleanSubjectValueLabels', () => {
+        it('... should have a method `_cleanSubjectValueLabels`', () => {
+            expect((conversionService as any)._cleanSubjectValueLabels).toBeDefined();
+        });
+
+        it('... should clean valuelabel and obj_id', () => {
+            const subject = {
+                valuelabel: ['Test (Richtext)'],
+                obj_id: '123_-_local',
+            };
+
+            const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+            expectToBe(result.valuelabel[0], 'Test');
+            expectToBe(result.obj_id, '123');
+        });
+
+        it('... should not modify other properties', () => {
+            const subject = {
+                valuelabel: ['Test (Richtext)'],
+                obj_id: '123_-_local',
+                otherProp: 'otherValue',
+            };
+
+            const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+            expectToBe(result.valuelabel[0], 'Test');
+            expectToBe(result.obj_id, '123');
+            expectToBe(result.otherProp, 'otherValue');
+        });
+    });
+
+    describe('#_cleanSubjectValues', () => {
+        it('... should have a method `_cleanSubjectValues`', () => {
+            expect((conversionService as any)._cleanSubjectValues).toBeDefined();
+        });
+
+        it('... should clean up richtext values for valuetype_id==14', () => {
+            const str = `A test string.`;
+            const jsonAttrs = {
+                italic: [{ start: 2, end: 6 }],
+                p: [{ start: 0, end: 14 }],
+            };
+            const subject = {
+                valuetype_id: ['14'],
+                value: [{ utf8str: str, textattr: JSON.stringify(jsonAttrs) }],
+            };
+            const expected = `A <em>test</em> string.`;
+
+            const result = (conversionService as any)._cleanSubjectValues(subject);
+
+            expectToBe(result.value[0], expected);
+        });
+
+        it('... should not clean up for other valuetype_ids', () => {
+            const str = `A test string.`;
+            const jsonAttrs = {
+                italic: [{ start: 2, end: 6 }],
+                p: [{ start: 0, end: 14 }],
+            };
+            const subject = {
+                valuetype_id: ['15'],
+                value: [{ utf8str: str, textattr: JSON.stringify(jsonAttrs) }],
+            };
+
+            const result = (conversionService as any)._cleanSubjectValues(subject);
+
+            expectToEqual(result, subject);
+            expectToEqual(result.value[0], subject.value[0]);
+        });
+
+        it('... should not clean up when no value is given', () => {
+            const subject = {
+                valuetype_id: ['14'],
+                value: [],
+            };
+
+            const result = (conversionService as any)._cleanSubjectValues(subject);
+
+            expectToEqual(result, subject);
+            expect(result.value[0]).toBeUndefined();
         });
     });
 
@@ -601,6 +701,80 @@ describe('ConversionService', () => {
 
                 expectToBe(result, expected);
             });
+        });
+    });
+
+    describe('#_distinctSubjects', () => {
+        it('... should have a method `_distinctSubjects`', () => {
+            expect((conversionService as any)._distinctSubjects).toBeDefined();
+        });
+
+        it('... should return undefined when subjects are undefined', () => {
+            const subjects = undefined;
+
+            const result = (conversionService as any)._distinctSubjects(subjects);
+
+            expect(result).toBeUndefined();
+        });
+
+        it('... should return unchanged array when input has no duplicates', () => {
+            const subjectsWithoutDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            const result = (conversionService as any)._distinctSubjects(subjectsWithoutDuplicate);
+
+            expectToEqual(result, subjectsWithoutDuplicate);
+        });
+
+        it('... should return distinct array when input has duplicates', () => {
+            const subjectsWithDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+                { obj_id: '1', obj_label: 'Label 1' },
+            ];
+
+            const expected = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            const result = (conversionService as any)._distinctSubjects(subjectsWithDuplicate);
+
+            expectToEqual(result, expected);
+        });
+
+        it('... should set filteredOut to correct value when input has duplicates', () => {
+            const subjectsWithSingleDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+                { obj_id: '1', obj_label: 'Label 1' },
+            ];
+
+            (conversionService as any)._distinctSubjects(subjectsWithSingleDuplicate);
+
+            expectToBe(conversionService.filteredOut, 1);
+
+            const subjectsWithMultipleDuplicates = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            (conversionService as any)._distinctSubjects(subjectsWithMultipleDuplicates);
+
+            expectToBe(conversionService.filteredOut, 2);
+
+            const subjectsWithoutDuplicate = [
+                { obj_id: '1', obj_label: 'Label 1' },
+                { obj_id: '2', obj_label: 'Label 2' },
+            ];
+
+            (conversionService as any)._distinctSubjects(subjectsWithoutDuplicate);
+
+            expectToBe(conversionService.filteredOut, 0);
         });
     });
 
