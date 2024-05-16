@@ -68,27 +68,16 @@ export class TextcriticsListComponent {
     }
 
     /**
-     * Public method: getCommentString.
+     * Public method: isTextcriticsForSketch.
      *
-     * It returns the comment string for the textcritics
-     * depending on wether the selected textcritics id refers to a sketch or not.
+     * It checks if the selected textcritics id refers to a sketch.
      *
-     * @returns {string} The comment string.
+     * @param {Textcritics} selectedTextcritics The given selected textcritics.
+     *
+     * @returns {boolean} The result of the check.
      */
-    getCommentString(selectedTextcritics: Textcritics): string {
-        return `${selectedTextcritics?.id.includes('_Sk') ? 'Textkritischer Kommentar' : 'Textkritische Anmerkungen'}:`;
-    }
-
-    /**
-     * Public method: evaluationString.
-     *
-     * It returns the evaluation string for the textcritics
-     * depending on wether the selected textcritics id refers to a sketch or not.
-     *
-     * @returns {string} The evaluation string.
-     */
-    getEvaluationString(selectedTextcritics: Textcritics): string {
-        return `${selectedTextcritics?.id.includes('_Sk') ? 'Skizzenkommentar' : 'Quellenbewertung'}:`;
+    isTextcriticsForSketch(selectedTextcritics: Textcritics): boolean {
+        return selectedTextcritics?.id?.includes('_Sk') || false;
     }
 
     /**

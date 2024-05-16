@@ -7,7 +7,9 @@
                     &nbsp;
                 </span>
             }
-            <span class="smallcaps">{{ getEvaluationString(selectedTextcritics) }}</span>
+            <span class="smallcaps"
+                >{{ isTextcriticsForSketch(selectedTextcritics) ? 'Skizzenkommentar' : 'Quellenbewertung' }}:</span
+            >
             @if (selectedTextcritics.description && !utils.isNotEmptyArray(selectedTextcritics.description)) {
                 <span>&nbsp;---</span>
             }
@@ -25,7 +27,13 @@
     </div>
     @if (showTkA) {
         <div class="awg-edition-svg-sheet-footer-textcritics">
-            <p class="smallcaps">{{ getCommentString(selectedTextcritics) }}</p>
+            <p class="smallcaps">
+                {{
+                    isTextcriticsForSketch(selectedTextcritics)
+                        ? 'Textkritischer Kommentar'
+                        : 'Textkritische Anmerkungen'
+                }}:
+            </p>
             <awg-edition-tka-table
                 [textcriticalComments]="selectedTextcriticalComments"
                 [isRowTable]="selectedTextcritics.rowtable"

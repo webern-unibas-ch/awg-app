@@ -248,7 +248,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
             });
 
-            it('... should display evaluationString `Quellenbewertung:` if no sketch id is given', () => {
+            it('... should display `Quellenbewertung:` in paragraph if no sketch id is given', () => {
                 component.selectedTextcritics.id = 'test-1';
 
                 detectChangesOnPush(fixture);
@@ -264,10 +264,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl = spanDes[0].nativeElement;
 
-                expectToBe(spanEl.textContent, 'Quellenbewertung:');
+                expectToBe(spanEl.textContent.trim(), 'Quellenbewertung:');
             });
 
-            it('... should display evaluationString `Skizzenkommentar:` if sketch id is given', () => {
+            it('... should display `Skizzenkommentar:` in paragraph if sketch id is given', () => {
                 component.selectedTextcritics.id = 'test-1_Sk1';
 
                 detectChangesOnPush(fixture);
@@ -283,7 +283,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const spanDes = getAndExpectDebugElementByCss(pDes[0], 'span.smallcaps', 1, 1);
                 const spanEl = spanDes[0].nativeElement;
 
-                expectToBe(spanEl.textContent, 'Skizzenkommentar:');
+                expectToBe(spanEl.textContent.trim(), 'Skizzenkommentar:');
             });
 
             it('... should contain a second span in p with `---` if selectedTextcritics.description is empty', () => {
@@ -356,7 +356,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
             });
 
-            it('... should display commentString `Textkritische Anmerkungen:` if no sketch id is given', () => {
+            it('... should display `Textkritische Anmerkungen:` in paragraph if no sketch id is given', () => {
                 component.selectedTextcritics.id = 'test-1';
 
                 detectChangesOnPush(fixture);
@@ -371,10 +371,10 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent, 'Textkritische Anmerkungen:');
+                expectToBe(pEl.textContent.trim(), 'Textkritische Anmerkungen:');
             });
 
-            it('... should display commentString `Textkritischer Kommentar:` if sketch id is given', () => {
+            it('... should display `Textkritischer Kommentar:` in paragraph if sketch id is given', () => {
                 component.selectedTextcritics.id = 'test-1_Sk1';
 
                 detectChangesOnPush(fixture);
@@ -389,7 +389,7 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
                 const pDes = getAndExpectDebugElementByCss(divDes[0], 'p.smallcaps', 1, 1);
                 const pEl = pDes[0].nativeElement;
 
-                expectToBe(pEl.textContent, 'Textkritischer Kommentar:');
+                expectToBe(pEl.textContent.trim(), 'Textkritischer Kommentar:');
             });
 
             it('... should contain one EditionTkaTableComponent (stubbed) in textcritics div', () => {
@@ -417,69 +417,41 @@ describe('EditionSvgSheetFooterComponent (DONE)', () => {
             });
         });
 
-        describe('#getCommentString()', () => {
-            it('... should have a method `getCommentString`', () => {
-                expect(component.getCommentString).toBeDefined();
+        describe('#isTextcriticsForSketch()', () => {
+            it('... should have a method `isTextcriticsForSketch`', () => {
+                expect(component.isTextcriticsForSketch).toBeDefined();
             });
 
-            it('... should return `Textkritische Anmerkungen:` when selectedTextcritics is undefined', () => {
-                const result = component.getCommentString(undefined);
-                const expected = 'Textkritische Anmerkungen:';
+            describe('... should return false if', () => {
+                it('... selectedTextcritics is undefined', () => {
+                    const result = component.isTextcriticsForSketch(undefined);
 
-                expectToBe(result, expected);
+                    expect(result).toBeFalse();
+                });
+
+                it('... selectedTextcritics is null', () => {
+                    const result = component.isTextcriticsForSketch(null);
+
+                    expect(result).toBeFalse();
+                });
+
+                it('... selectedTextcritics id does not include `_Sk`', () => {
+                    const textcritics = expectedSelectedTextcritics;
+                    textcritics.id = 'test-1';
+
+                    const result = component.isTextcriticsForSketch(textcritics);
+
+                    expect(result).toBeFalse();
+                });
             });
 
-            it('... should return `Textkritische Anmerkungen:` when selectedTextcritics id does not include `_Sk`', () => {
-                const textcritics = expectedSelectedTextcritics;
-                textcritics.id = 'test-1';
-
-                const result = component.getCommentString(expectedSelectedTextcritics);
-                const expected = 'Textkritische Anmerkungen:';
-
-                expectToBe(result, expected);
-            });
-
-            it('... should return `Textkritischer Kommentar:` when selectedTextcritics id includes `_Sk`', () => {
-                const textcritics = expectedSelectedTextcritics;
-                textcritics.id = 'test-1_Sk1';
-
-                const result = component.getCommentString(expectedSelectedTextcritics);
-                const expected = 'Textkritischer Kommentar:';
-
-                expectToBe(result, expected);
-            });
-        });
-
-        describe('#getEvaluationString()', () => {
-            it('... should have a method `getEvaluationString`', () => {
-                expect(component.getEvaluationString).toBeDefined();
-            });
-
-            it('... should return `Quellenbewertung:` when selectedTextcritics is undefined', () => {
-                const result = component.getEvaluationString(undefined);
-                const expected = 'Quellenbewertung:';
-
-                expectToBe(result, expected);
-            });
-
-            it('... should return `Quellenbewertung:` when selectedTextcritics id does not include `_Sk`', () => {
-                const textcritics = expectedSelectedTextcritics;
-                textcritics.id = 'test-1';
-
-                const result = component.getEvaluationString(expectedSelectedTextcritics);
-                const expected = 'Quellenbewertung:';
-
-                expectToBe(result, expected);
-            });
-
-            it('... should return `Skizzenkommentar:` when selectedTextcritics id includes `_Sk`', () => {
+            it('... should return true if selectedTextcritics id includes `_Sk`', () => {
                 const textcritics = expectedSelectedTextcritics;
                 textcritics.id = 'test-1_Sk1';
 
-                const result = component.getEvaluationString(expectedSelectedTextcritics);
-                const expected = 'Skizzenkommentar:';
+                const result = component.isTextcriticsForSketch(textcritics);
 
-                expectToBe(result, expected);
+                expect(result).toBeTrue();
             });
         });
 

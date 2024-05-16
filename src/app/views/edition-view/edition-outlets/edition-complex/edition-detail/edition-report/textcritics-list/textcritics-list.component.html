@@ -18,7 +18,13 @@
                         <ng-template>
                             @if (utils.isNotEmptyArray(textcritic.description)) {
                                 <div>
-                                    <p class="smallcaps">{{ getEvaluationString(textcritic) }}</p>
+                                    <p class="smallcaps">
+                                        {{
+                                            isTextcriticsForSketch(textcritic)
+                                                ? 'Skizzenkommentar'
+                                                : 'Quellenbewertung'
+                                        }}:
+                                    </p>
                                     <awg-edition-tka-description
                                         [textcriticalDescriptions]="textcritic.description"
                                         (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
@@ -28,7 +34,13 @@
                             }
                             @if (utils.isNotEmptyArray(textcritic.comments)) {
                                 <div>
-                                    <p class="smallcaps">{{ getCommentString(textcritic) }}</p>
+                                    <p class="smallcaps">
+                                        {{
+                                            isTextcriticsForSketch(textcritic)
+                                                ? 'Textkritischer Kommentar'
+                                                : 'Textkritische Anmerkungen'
+                                        }}:
+                                    </p>
                                     <awg-edition-tka-table
                                         [textcriticalComments]="textcritic.comments"
                                         [isRowTable]="textcritic.rowtable"
