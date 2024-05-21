@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { UtilityService } from '@awg-core/services';
-import { TextcriticsList } from '@awg-views/edition-view/models';
+import { Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
  * The TextcriticsList component.
@@ -65,6 +65,19 @@ export class TextcriticsListComponent {
      */
     constructor(public utils: UtilityService) {
         this.ref = this;
+    }
+
+    /**
+     * Public method: isTextcriticsForSketch.
+     *
+     * It checks if the selected textcritics id refers to a sketch.
+     *
+     * @param {Textcritics} selectedTextcritics The given selected textcritics.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    isTextcriticsForSketch(selectedTextcritics: Textcritics): boolean {
+        return selectedTextcritics?.id?.includes('_Sk') || selectedTextcritics?.id?.includes('SkRT') || false;
     }
 
     /**

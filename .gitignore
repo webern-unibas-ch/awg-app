@@ -46,6 +46,7 @@ speed-measure-plugin*.json
 # Miscellaneous
 /.angular/cache
 /.cache/
+/.nx/cache
 .sass-cache
 /connect.lock
 /coverage

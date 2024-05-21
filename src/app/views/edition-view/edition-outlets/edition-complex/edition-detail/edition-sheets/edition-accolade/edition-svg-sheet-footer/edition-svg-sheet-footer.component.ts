@@ -107,6 +107,19 @@ export class EditionSvgSheetFooterComponent {
     }
 
     /**
+     * Public method: isTextcriticsForSketch.
+     *
+     * It checks if the selected textcritics id refers to a sketch.
+     *
+     * @param {Textcritics} selectedTextcritics The given selected textcritics.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    isTextcriticsForSketch(selectedTextcritics: Textcritics): boolean {
+        return selectedTextcritics?.id?.includes('_Sk') || selectedTextcritics?.id?.includes('SkRT') || false;
+    }
+
+    /**
      * Public method: navigateToReportFragment.
      *
      * It emits a given id of a fragment of the edition report
