@@ -160,7 +160,7 @@
         "webpack-bundle-analyzer": "^4.10.2"
     },
     "engines": {
-        "node": ">= 18.19.0",
+        "node": ">= 18.19.1",
         "npm": ">= 8.19.3",
         "yarn": "^1.22.0"
     }
