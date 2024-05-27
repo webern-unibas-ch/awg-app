@@ -40,7 +40,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
               with:
                   egress-policy: audit
 
@@ -82,7 +82,7 @@ jobs:
 
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 20.9 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
-              uses: SonarSource/sonarcloud-github-action@49e6cd3b187936a73b8280d59ffd9da69df63ec9 # ratchet:SonarSource/sonarcloud-github-action@v2.1.1
+              uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216 # v2.2.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -129,7 +129,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
               with:
                   egress-policy: audit
 
@@ -195,7 +195,7 @@ jobs:
 
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
               with:
                   egress-policy: audit
 
@@ -235,7 +235,7 @@ jobs:
                 node-version: [20.9]
         steps:
             - name: Harden Runner
-              uses: step-security/harden-runner@a4aa98b93cab29d9b1101a6143fb8bce00e2eac4 # v2.7.1
+              uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
               with:
                   egress-policy: audit
 
