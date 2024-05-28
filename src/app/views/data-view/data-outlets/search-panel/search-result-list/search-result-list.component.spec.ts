@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule, UntypedFormBuilder } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 
 import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -67,7 +67,7 @@ describe('SearchResultListComponent', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
+            imports: [FontAwesomeTestingModule, NgbPaginationModule, ReactiveFormsModule, RouterModule],
             declarations: [SearchResultListComponent, CompileHtmlComponent, TableStubComponent],
             providers: [
                 { provide: DataStreamerService, useValue: mockDataStreamerService },

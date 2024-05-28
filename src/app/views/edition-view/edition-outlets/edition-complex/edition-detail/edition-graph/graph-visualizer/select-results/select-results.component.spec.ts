@@ -76,10 +76,10 @@ describe('SelectResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
 
         // Test data
-        const varKeys = ['Test', 'success'];
+        const varKeys = ['test', 'success'];
         const b = [
             {
-                Test: { type: 'test type', value: 'test value' },
+                test: { type: 'test type', value: 'test value' },
                 success: { type: 'success type', value: 'sucess value' },
             },
         ];
