@@ -120,17 +120,17 @@ export class ConversionService extends ApiService {
             return searchResults;
         }
 
-        searchResults.subjects = searchResults.subjects.reduce((acc, subject) => {
-            subject = this._cleanSubjectValueLabels(subject);
-            subject = this._cleanSubjectValues(subject);
+        // Clean up labels and values of result subjects
+        const cleanedSubjects = searchResults.subjects.map(subject => {
+            subject = this._cleanSubjectValueLabels({ ...subject });
+            subject = this._cleanSubjectValues({ ...subject });
+            return subject;
+        });
 
-            acc.push(subject);
-            return acc;
-        }, []);
+        // Remove duplicates from result subjects
+        const distinctSubjects = this._distinctSubjects(cleanedSubjects);
 
-        // Remove duplicates from response
-        searchResults.subjects = this._distinctSubjects(searchResults.subjects);
-        return searchResults;
+        return { ...searchResults, subjects: distinctSubjects };
     }
 
     /**
@@ -531,16 +531,14 @@ export class ConversionService extends ApiService {
      *
      * @returns {SubjectItemJson} The cleaned subject.
      */
-    _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
-        let { valuelabel, obj_id } = subject;
+    private _cleanSubjectValueLabels(subject: SubjectItemJson): SubjectItemJson {
+        const { valuelabel, obj_id: objId } = subject;
+        const firstValueLabel = valuelabel?.[0];
 
-        if (valuelabel?.[0]) {
-            valuelabel[0] = valuelabel[0].replace(' (Richtext)', '');
-        }
-        if (obj_id) {
-            obj_id = obj_id.replace('_-_local', '');
-        }
-        return { ...subject, valuelabel, obj_id };
+        const modifiedValuelabel = firstValueLabel ? [firstValueLabel.replace(' (Richtext)', '')] : valuelabel;
+        const modifiedObjId = objId ? objId.replace('_-_local', '') : objId;
+
+        return { ...subject, valuelabel: modifiedValuelabel, obj_id: modifiedObjId };
     }
 
     /**
@@ -553,12 +551,12 @@ export class ConversionService extends ApiService {
      *
      * @returns {SubjectItemJson} The cleaned subject.
      */
-    _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
-        let tmpSubject = { ...subject };
-        const { valuetype_id, value } = tmpSubject;
+    private _cleanSubjectValues(subject: SubjectItemJson): SubjectItemJson {
+        const tmpSubject = { ...subject };
+        const { valuetype_id: valueTypeId, value } = tmpSubject;
         const firstValue = value?.[0];
 
-        if (valuetype_id?.[0] === '14' && firstValue) {
+        if (valueTypeId?.[0] === '14' && firstValue) {
             const { utf8str, textattr } = firstValue;
             if (utf8str && textattr) {
                 const htmlstr = this._convertRichtextValue(utf8str, textattr);
@@ -693,14 +691,11 @@ export class ConversionService extends ApiService {
      */
     private _convertLinkValue(prop: any, index: number): string {
         // Add <a>-tag with click-directive; linktext is stored in "$&"
-        const firstValue = prop.value_firstprops[index];
-        const replaceValue =
-            '<a (click)="ref.navigateToResource(\'' +
-            prop.values[index] +
-            '\')">$& (' +
-            prop.value_restype[index] +
-            ')</a>';
-        return firstValue.replace(firstValue, replaceValue);
+        const originalValue = prop.value_firstprops[index];
+        const linkTemplate = `<a (click)="ref.navigateToResource('${prop.values[index]}')">$& (${prop.value_restype[index]})</a>`;
+        const linkedValue = originalValue.replace(originalValue, linkTemplate);
+
+        return linkedValue;
     }
 
     /**
@@ -869,7 +864,7 @@ export class ConversionService extends ApiService {
     private _getNodeIdFromAttributes(attributes: string): string {
         // Identify node id from prop.attributes
         // E.g. "hlist=17" or "selection=77"
-        return attributes.split('=')[1].toString();
+        return attributes?.split('=')[1]?.toString();
     }
 
     /**
