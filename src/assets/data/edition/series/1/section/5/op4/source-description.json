@@ -1138,6 +1138,366 @@
             }
         },
         {
+            "id": "source_I",
+            "siglum": "I",
+            "siglumAddendum": "",
+            "type": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4.",
+            "location": "US-NYpm, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "description": {
+                "desc": [
+                    "7 Blätter (Bl. 1–7): 1 Blatt (Bl. 1) und 3 ineinander gelegte, fadenheftete Bögen (Bl. 2/7, 3/6, 4/5). Auf Bl. 1<sup>r</sup> ist oben links ein Zettel (hoch 140 × 125 mm) mit Klebstoff aufgeklebt. Foliierung unten links mit <em>1</em> (aufgeklebter Zettel auf Bl. 1<sup>r</sup>) und von <em>2</em> bis <em>8</em> (Bl. 1–7) recto unten links mit Bleistift. Bl. 7<sup>r</sup> bis auf die Foliierung unbeschriftet, Verso Seite des auf Bl. 1<sup>r</sup> aufgeklebten Zettels, Bl. 1<sup>v</sup>, 8<sup>v</sup> unbeschriftet. Spuren von Klebstoff am rechten Rand von Bl. 8<sup>v</sup>."
+                ],
+                "writingMaterialString": "Notenpapier, 24 Systeme, Format: hoch 330 × 253 mm, kein Firmenzeichen (Bl. 1);<br />Notenpapier, 12 Systeme (mit vier vorgedruckten Akkoalden [1 + 2 Systeme]), Format: hoch 341 × 270 mm, Firmenzeichen: [JE] | <em>Protokoll. Schutzmarke | No.12 </em>auf Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup> unten links (Bl. 2–7).",
+                "writingInstruments": {
+                    "main": "schwarze Tinte",
+                    "secondary": [
+                        "Bleistift",
+                        "blauer",
+                        "grüner und roter Buntstift",
+                        "roter",
+                        "schwarzer und violetter Stempelabdruck",
+                        "blaue Tinte"
+                    ]
+                },
+                "title": "<em>Anton Webern | Fünf Lieder | nach | Gedichten von Stefan George | für | Singsti<span style=\"text-decoration:overline;\">m̅</span>e u. Klavier | op. 4 </em>auf Bl. 1<sup>r</sup> System 4–14 Mitte;<br /><em>I. | EINGANG.</em> [Mitte] &lt;<em>Anton Webern, Op</em>[.] <em>4</em>&gt; [rechts] auf Bl. 2<sup>r</sup> oben (Hs. ?), &lt;<em>Anton Webern, Op</em>[.] <em>4</em>&gt; mit blauem Buntstift (Hs.?);<br /><em>II.</em> auf Bl. 3<sup>v</sup> oben Mitte;<br /><em>III.</em> auf Bl. 4<sup>v</sup> oben Mitte;<br /><em>IV.</em> auf Bl. 4<sup>v</sup> oben Mitte;<br /><em>V.</em> auf Bl. 5<sup>r</sup> oben Mitte.",
+                "date": "",
+                "pagination": "",
+                "measureNumbers": "",
+                "instrumentation": "<em>Gesang</em>, <em>Klavier</em> (2 Systeme) auf Bl. 2<sup>r</sup> 1. Akkolade mit blauem Buntstift (Hs.?).",
+                "annotations": "<em>Die Tempovorschriften nur <u>einmal</u> | (über den <u>Gesang</u>), <u>nicht</u> auch über | das Klaviersystem; alle <u>in einheitlicher</u> | Größe (die im Verlaufe eines Liedes | angegebenen ebenso groß wie die | Tempovorschrift zu Beginn); große | Schrift. | Die Art der Notierung der Singsti<span style=\"text-decoration:overline;\">m̅</span>e, | wie sie im <u>Manuscript</u> ist, absolut | beibehalten; das heißt:</em> &lt;<em>für</em>&gt; [vier zusammengebalkte Achtel] <em>u.s.w. | nicht etwa</em> [vier Achtel mit Fähnchen] <em>setzen, wenn | auf die Textsilbe nur eine Note ko<span style=\"text-decoration:overline;\">m̅</span>t.</em> auf dem auf Bl. 1<sup>r</sup> aufgeklebten Zettel;<br /><em>Schrift des Titelblattes | wie bei meinen Violinstücken op. 7 | U. E. N<sup><u>o</u></sup> 6642</em> [alles eingekreist] auf Bl. 1<sup>r</sup> System 1–4 rechts mit Bleistift;<br /><em>DOUANES | FRANÇAISES</em> [kreisförmig oben und unten, im Kreis:] <em>BUREAU | D’ | ORLY | 3</em> auf Bl. 1<sup>r</sup> unten links, Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup> oben rechts als roter Stempelabdruck;<br /><em>„Universal-Edition“ A.-G. | WIEN</em> [Stempel] | <em>11/5 ̅2̅3</em> [blauer Buntstift] | <em>Zum Stich!</em> [Stempel] | <em>U. E. 4<sup>o</sup></em> [Paraphe] [blauer Buntstift] auf Bl. 2<sup>r</sup> oben rechts (Hs. ?);<br /><em>Aufführungsrechte vorbehalten.</em> | <em>Droits d’exécution réserves.</em> auf Bl. 2<sup>r</sup> oben links als violetter Stempelabdruck;<br /><em>Copyright 19</em>&lt;<em>23</em>&gt; <em>by Universal Edition</em> auf Bl. 2<sup>r</sup> unten links als schwarzer Stempelabdruck, &lt;<em>25</em>&gt; mit Bleistift (Hs. ?);<br /><em>Universal – Edition Nr.</em> <em>7395</em> auf Bl. 2<sup>r</sup> unten Mitte mit Bleistift (Hs. ?);<br /><em>ARCHIV</em> | [darum im Kreis:] <em>DER UNIVERSAL-EDITION A. G. *</em> [alles in einem Kreis] auf Bl. 2<sup>r</sup>, 3<sup>r</sup>, 4<sup>r</sup>, 5<sup>r</sup>, 6<sup>r</sup> unten rechts mit violettem Stempelabdruck;<br /><em>U. E. 7395</em> auf Bl. 2<sup>v</sup> unten Mitte mit Bleistift (Hs. ?);<br />Dispositionsziffern in I nach T. 1, 3, 5, 6, 7, 9, 10, 12, 15, in II nach T. 2, 5, 8, 11, 14, 17, 21, in III nach T. 2, 5, 7, 9, 11, 13, 15, in IV nach T. 4, 9, 13, 18 und in V nach T. 4, 8, 12, 15 mit Bleistift (Hs. ?).",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "Abschrift fremder Hand von <em>Fünf Lieder nach Gedichten von Stefan George</em> op. 4",
+                        "folios": [
+                            {
+                                "folio": "1r:",
+                                "folioLinkTo": "",
+                                "folioDescription": "Titelseite.",
+                                "systemGroups": []
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "I <em>Eingang</em> („Welt der Gestalten“) M 138: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "2r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–4",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "5–6(1–3/4)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "6(4–7/4)–7",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "8–9(1–4/4)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "9(5–7)–10",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "11–12(1–3/4)",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "12(4–7/4)–13",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "3r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "II „Noch zwingt mich Treue“ M 139: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "3v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "4r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "16–18",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "19–21",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "III „Ja Heil und Dank dir“ M 140: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "4v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–3",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "4–6",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "7–8",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "9–11",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "5r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "12–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "IV „So ich traurig bin“ M 141: Textfassung 2",
+                        "folios": [
+                            {
+                                "folio": "5v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–7",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "8–12",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "13–18",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "",
+                        "itemLinkTo": {},
+                        "itemDescription": "V „Ihr tratet zu dem Herde“ M 142: Textfassung 3",
+                        "folios": [
+                            {
+                                "folio": "6r",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "6–9",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "10–12",
+                                            "measure": "10–12",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "6v",
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "13–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "source_J",
             "siglum": "J",
             "siglumAddendum": "",
