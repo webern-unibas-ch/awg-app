@@ -1498,6 +1498,96 @@
             }
         },
         {
+            "id": "source_G",
+            "siglum": "G",
+            "siglumAddendum": "",
+            "type": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1.",
+            "location": "Beilage in: <em>Der blaue Reiter</em>, München: Piper, 1912.",
+            "description": {
+                "desc": [
+                    "Buch, 150 Seiten, Format (hoch) 296 × 215 mm, Einband: 305 × 320 mm. Beilagen mit Kompositionen von Arnold Schönberg, Alban Berg und Anton Webern zwischen S. [132] (vacat) und S. [133] (Inhaltsverzeichnis). (Es folgen: S. [134] vacat, S. [135]–140 Register der Reproduktionen, S. [141] vacat, S. [142–150] Werbeanzeigen.) Im konsultierten Exemplar (Berlin, Staatsbibliothek Preußischer Kulturbesitz, 1 B 20301) sind die Notenbeilagen (zusammen mit einer Anzeige „Moderne Galerie | Heinrich Tannhauser | MÜNCHEN THEATINERSTR. 7“) vermutlich nachträglich eingeheftet. Beilage Anton Webern: 1 Blatt, Format (hoch) 296 × ca. 222 mm, paginiert von 1 bis 2 recto oben rechts und verso oben links. Eine zweite Auflage des Buches von 1914 unterscheidet sich im Umfang (140 Seiten; die Werbeanzeigen fehlen) und Format ([hoch] 288 × 217 mm; Einband: 295 × 220 mm). Die Beilage mit der Komposition Anton Weberns unterscheidet sich in dieser Auflage ebenfalls im Format: (hoch) 280 × ca. 205 mm."
+                ],
+                "writingMaterialString": "",
+                "writingInstruments": {
+                    "main": "",
+                    "secondary": []
+                },
+                "title": "<em>„Ihr tratet zu dem herde _ _ _ _“ aus dem „Jahr der Seele“ | von STEFAN GEORGE | Für eine Singstimme und Klavier von ANTON von WEBERN</em> auf S. 1 oben Mitte.",
+                "date": "",
+                "pagination": "<em>1</em> bis <em>2</em> auf S. 1–2 Außenecken oben.",
+                "measureNumbers": "",
+                "instrumentation": "<em>Gesang | Piano</em> auf S. 1 System 1 | 2–3.",
+                "annotations": "",
+                "content": [
+                    {
+                        "item": "",
+                        "itemLinkTo": "",
+                        "itemDescription": "Druck von „Ihr tratet zu dem Herde“ M 142: Textfassung 1",
+                        "folios": [
+                            {
+                                "folio": "1",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "1–2",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "3–5",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "6–8",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            },
+                            {
+                                "folio": "2",
+                                "isPage": true,
+                                "folioLinkTo": "",
+                                "folioDescription": "",
+                                "systemGroups": [
+                                    [
+                                        {
+                                            "system": "1–3",
+                                            "measure": "9–11",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "4–6",
+                                            "measure": "12–13",
+                                            "linkTo": ""
+                                        }
+                                    ],
+                                    [
+                                        {
+                                            "system": "7–9",
+                                            "measure": "14–15",
+                                            "linkTo": ""
+                                        }
+                                    ]
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
             "id": "source_J",
             "siglum": "J",
             "siglumAddendum": "",
