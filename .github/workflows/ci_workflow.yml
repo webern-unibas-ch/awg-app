@@ -33,7 +33,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [18.19, 20.9] # TODO (when Angular allows it): 21.x
+                node-version: [18.19, 20.13]
 
         outputs:
             sha: ${{ steps.get-sha.outputs.SHA }}
@@ -72,7 +72,7 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 20.9 # upload coverage report for current node version only
+              if: matrix.node-version == 20.13 # upload coverage report for current node version only
               uses: codecov/codecov-action@125fc84a9a348dbcf27191600683ec096ec9021c # v4.4.1
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
@@ -81,7 +81,7 @@ jobs:
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
             - name: Perform SonarCloud Analysis
-              if: matrix.node-version == 20.9 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
+              if: matrix.node-version == 20.13 && github.event_name != 'pull_request' && github.repository_owner == env.MAIN_REPO_OWNER # perform SonarCloud analysis only for current node version and not with pull requests or forks(token issue)
               uses: SonarSource/sonarcloud-github-action@4006f663ecaf1f8093e8e4abb9227f6041f52216 # v2.2.0
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
@@ -101,7 +101,7 @@ jobs:
                   yarn run build:gh
 
             - name: Upload build artifacts
-              if: matrix.node-version == 20.9 # upload build artifacts for current node version only
+              if: matrix.node-version == 20.13 # upload build artifacts for current node version only
               uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # ratchet:actions/upload-artifact@v4.3.3
               with:
                   name: dist
@@ -125,7 +125,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.9]
+                node-version: [20.13]
 
         steps:
             - name: Harden Runner
@@ -191,7 +191,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.9]
+                node-version: [20.13]
 
         steps:
             - name: Harden Runner
@@ -232,7 +232,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [20.9]
+                node-version: [20.13]
         steps:
             - name: Harden Runner
               uses: step-security/harden-runner@f086349bfa2bd1361f7909c78558e816508cdc10 # v2.8.0
