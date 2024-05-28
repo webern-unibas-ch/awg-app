@@ -536,7 +536,7 @@ export class ConversionService extends ApiService {
         const firstValueLabel = valuelabel?.[0];
 
         const modifiedValuelabel = firstValueLabel ? [firstValueLabel.replace(' (Richtext)', '')] : valuelabel;
-        const modifiedObjId = objId ? objId.replace('_-_local', '') : objId;
+        const modifiedObjId = objId ? objId?.replace('_-_local', '') : '';
 
         return { ...subject, valuelabel: modifiedValuelabel, obj_id: modifiedObjId };
     }

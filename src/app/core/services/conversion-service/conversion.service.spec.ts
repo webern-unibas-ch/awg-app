@@ -317,7 +317,57 @@ describe('ConversionService', () => {
             expect((conversionService as any)._cleanSubjectValueLabels).toBeDefined();
         });
 
-        it('... should clean valuelabel and obj_id', () => {
+        describe('... should return default valuelabel and obj_id if', () => {
+            it('... values are undefined', () => {
+                const subject = {
+                    valuelabel: undefined,
+                    obj_id: undefined,
+                };
+
+                const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+                expect(result.valuelabel).toBeUndefined();
+                expectToBe(result.obj_id, '');
+            });
+
+            it('... values are null', () => {
+                const subject = {
+                    valuelabel: null,
+                    obj_id: null,
+                };
+
+                const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+                expect(result.valuelabel).toBeNull();
+                expectToBe(result.obj_id, '');
+            });
+
+            it('... values are empty', () => {
+                const subject = {
+                    valuelabel: [],
+                    obj_id: '',
+                };
+
+                const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+                expectToEqual(result.valuelabel, []);
+                expectToBe(result.obj_id, '');
+            });
+        });
+
+        it('... should return original valuelabel and obj_id if no replacement is needed', () => {
+            const subject = {
+                valuelabel: ['Test2'],
+                obj_id: '245',
+            };
+
+            const result = (conversionService as any)._cleanSubjectValueLabels(subject);
+
+            expectToEqual(result.valuelabel, ['Test2']);
+            expectToBe(result.obj_id, '245');
+        });
+
+        it('... should clean up given valuelabel and obj_id', () => {
             const subject = {
                 valuelabel: ['Test (Richtext)'],
                 obj_id: '123_-_local',
@@ -325,7 +375,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._cleanSubjectValueLabels(subject);
 
-            expectToBe(result.valuelabel[0], 'Test');
+            expectToEqual(result.valuelabel, ['Test']);
             expectToBe(result.obj_id, '123');
         });
 
@@ -338,7 +388,7 @@ describe('ConversionService', () => {
 
             const result = (conversionService as any)._cleanSubjectValueLabels(subject);
 
-            expectToBe(result.valuelabel[0], 'Test');
+            expectToEqual(result.valuelabel, ['Test']);
             expectToBe(result.obj_id, '123');
             expectToBe(result.otherProp, 'otherValue');
         });
