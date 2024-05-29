@@ -42,4 +42,17 @@ export class UtilityService {
         }
         return false;
     }
+
+    /**
+     * Public method: isSketchId.
+     *
+     * It checks if the given id refers to a sketch.
+     *
+     * @param {string} id The given id.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    isSketchId(id: string): boolean {
+        return id?.includes('_Sk') || id?.includes('SkRT') || false;
+    }
 }

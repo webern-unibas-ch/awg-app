@@ -1,5 +1,5 @@
 @if (labelType === 'evaluation') {
-    <span>{{ isSketchId(id) ? 'Skizzenkommentar' : 'Quellenbewertung' }}</span>
+    <span>{{ utils.isSketchId(id) ? 'Skizzenkommentar' : 'Quellenbewertung' }}</span>
 } @else if (labelType === 'comment') {
-    <span>{{ isSketchId(id) ? 'Textkritische Kommentare' : 'Textkritische Anmerkungen' }}</span>
+    <span>{{ utils.isSketchId(id) ? 'Textkritische Kommentare' : 'Textkritische Anmerkungen' }}</span>
 }

@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { UtilityService } from '@awg-core/services';
+
 /**
  * The EditionTkaLabel component.
  *
@@ -28,15 +30,11 @@ export class EditionTkaLabelComponent {
     @Input() labelType: 'evaluation' | 'comment';
 
     /**
-     * Public method: isSketchId.
+     * Constructor of the EditionTkaLabelComponent.
      *
-     * It checks if the given id refers to a sketch.
+     * It declares a public instance of the UtilityService.
      *
-     * @param {string} id The given id.
-     *
-     * @returns {boolean} The result of the check.
+     * @param {UtilityService} utils Instance of the UtilityService.
      */
-    isSketchId(id: string): boolean {
-        return id?.includes('_Sk') || id?.includes('SkRT') || false;
-    }
+    constructor(public utils: UtilityService) {}
 }
