@@ -30,6 +30,7 @@
                 <awg-license></awg-license>
                 @if (hasAvailableTkaOverlays || suppliedClasses.size > 0) {
                     <awg-edition-svg-sheet-viewer-switch
+                        [id]="selectedSvgSheet.id"
                         [suppliedClasses]="suppliedClasses"
                         [hasAvailableTkaOverlays]="hasAvailableTkaOverlays"
                         (toggleSuppliedClassesOpacityRequest)="onSuppliedClassesOpacityToggle($event)"
