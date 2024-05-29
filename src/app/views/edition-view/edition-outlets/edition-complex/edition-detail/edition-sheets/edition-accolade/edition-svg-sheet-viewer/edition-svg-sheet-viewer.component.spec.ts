@@ -45,6 +45,7 @@ class LicenseStubComponent {}
 
 @Component({ selector: 'awg-edition-svg-sheet-viewer-switch', template: '' })
 class EditionSvgSheetViewerSwitchStubComponent {
+    @Input() id?: string;
     @Input() suppliedClasses?: Map<string, boolean>;
     @Input() hasAvailableTkaOverlays?: boolean;
 
@@ -518,6 +519,20 @@ describe('EditionSvgSheetViewerComponent', () => {
                             0,
                             0
                         );
+                    });
+
+                    it('... should pass the sheet id to the switch component', () => {
+                        const switchDes = getAndExpectDebugElementByDirective(
+                            compDe,
+                            EditionSvgSheetViewerSwitchStubComponent,
+                            1,
+                            1
+                        );
+                        const switchCmp = switchDes[0].injector.get(
+                            EditionSvgSheetViewerSwitchStubComponent
+                        ) as EditionSvgSheetViewerSwitchStubComponent;
+
+                        expectToEqual(switchCmp.id, expectedSvgSheet.id);
                     });
 
                     it('... should pass the correct suppliedClasses to the switch component', () => {

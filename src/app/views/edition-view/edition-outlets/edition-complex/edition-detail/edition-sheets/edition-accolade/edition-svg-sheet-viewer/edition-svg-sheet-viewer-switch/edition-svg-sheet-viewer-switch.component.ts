@@ -21,6 +21,13 @@ import {
 })
 export class EditionSvgSheetViewerSwitchComponent implements OnChanges {
     /**
+     * Input variable: id.
+     *
+     * It keeps the id of the selected svg sheet
+     */
+    @Input() id: string;
+
+    /**
      * Input variable: suppliedClasses.
      *
      * It keeps the supplied classes as a map of class names and their visibility.

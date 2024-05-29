@@ -46,7 +46,9 @@
                             value=""
                             id="tkk"
                             (click)="toggleTkkClassesHighlight()" />
-                        <label class="form-check-label" for="tkk">Textkritische Kommentare</label>
+                        <label class="form-check-label" for="tkk">
+                            <awg-edition-tka-label [id]="id" [labelType]="'comment'"></awg-edition-tka-label
+                        ></label>
                     </div>
                 </div>
             }
